@@ -1,0 +1,14 @@
+{
+  "name": "ace-attorney-chapulin",
+  "version": "1.0.0",
+  "description": "El Chapulín Colorado: Ace Attorney — Turnabout Red Grasshopper",
+  "type": "module",
+  "scripts": {
+    "start": "npx serve .",
+    "build": "tsc",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  }
+}

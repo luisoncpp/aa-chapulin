@@ -1,27 +1,26 @@
 # Presentation & Game Engine Architecture
 
-Technical guide for [`js/engine.js`](file:///c:/Proyectos/ace-attorney-gemini/js/engine.js), [`index.html`](file:///c:/Proyectos/ace-attorney-gemini/index.html), and [`style.css`](file:///c:/Proyectos/ace-attorney-gemini/style.css).
+Technical guide for the presentation and game engine deep module (`src/engine/`, `index.html`, and `style.css`).
 
 ## Overview
 
-The `GameEngine` class orchestrates visual presentation, player input, typewriter text rendering, dialogue queue execution, visual special effects, and mode transitions between **Investigation** and **Trial**.
+The `src/engine/` module is organized into encapsulated deep module components with a thin public interface (`src/engine/index.ts`):
 
 ```mermaid
 flowchart TD
-    Engine[GameEngine]
-    Engine --> DOM[DOM Elements & Modals]
-    Engine --> Script[CASE_SCRIPT Data]
-    Engine --> State[GameState]
-    Engine --> Audio[SoundEngine & MidiComposer]
+    Engine[src/engine/index.ts] --> Coordinator[Private/GameEngine.ts]
     
-    subgraph UI Presentation
-        Typewriter[Typewriter & Blips]
-        Cutins[Cut-in & Screen FX]
-        Hotspots[Hotspot Overlays]
-        Modals[Court Record & Talk Modals]
-    end
+    Coordinator --> DOM[Private/DomElements.ts]
+    Coordinator --> Binder[Private/EngineEventBinder.ts]
+    Coordinator --> Typewriter[Private/Typewriter.ts]
+    Coordinator --> VisualFX[Private/VisualEffects.ts]
+    Coordinator --> Modals[Private/ModalManager.ts]
+    Coordinator --> InvCtrl[Private/InvestigationController.ts]
+    Coordinator --> TrialCtrl[Private/TrialController.ts]
     
-    Engine --> UI Presentation
+    Coordinator --> State[src/state/index.ts]
+    Coordinator --> Audio[src/audio/index.ts]
+    Coordinator --> Script[src/case/index.ts]
 ```
 
 ## Core Responsibilities

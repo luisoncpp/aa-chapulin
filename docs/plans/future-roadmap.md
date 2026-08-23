@@ -2,26 +2,25 @@
 
 Strategic engineering and content roadmap for **El Chapulín Colorado: Ace Attorney**.
 
-## Phase 1: Deep Module Modularization & TypeScript Migration
+## Phase 1: Deep Module Modularization & TypeScript Migration (COMPLETED)
 
-Refactor monolithic JavaScript files into type-safe deep modules according to [`GUIDELINES.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/GUIDELINES.md):
+Successfully refactored monolithic JavaScript files into type-safe deep modules according to [`GUIDELINES.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/GUIDELINES.md):
 
-1. **File Length Constraints**:
-   - Decompose `js/engine.js` (>600 lines) into deep module components under 200 lines each:
-     - `src/engine/Typewriter.ts`
-     - `src/engine/StagePresenter.ts`
-     - `src/engine/ModalManager.ts`
-     - `src/engine/CutinAnimator.ts`
-     - `src/engine/index.ts` (Thin public interface)
+1. **Strict File & Function Constraints**:
+   - Every file strictly < 200 lines (all files < 180 lines).
+   - Every function strictly <= 30 lines.
+   - Max 3 parameters per function.
+   - Simulated named parameter comments for hardcoded arguments (`/*isTrialPresent=*/true`) and callbacks (`setTimeout(/*hideSplash*/ () => {}, /*delayInMs=*/400)`).
+   - Return-early control flow patterns across all modules.
 
-2. **TypeScript Type Safety**:
-   - Define strict interfaces for `DialogueLine`, `Hotspot`, `TalkOption`, `Statement`, `Contradiction`, `EvidenceItem`, and `TrackDefinition`.
-   - Prevent runtime typos in asset names, audio SFX IDs, or evidence keys.
+2. **Deep Module Subsystems**:
+   - `src/types/`: Domain contracts (`DialogueLine`, `Hotspot`, `Statement`, `ContradictionRule`, `EvidenceItem`, `TrackDefinition`).
+   - `src/audio/`: Encapsulated Web Audio API synthesizer (`SoundEngine`, `CourtSfx`, `NoveltySfx`, `MidiMusicComposer`, `TrackCatalog`).
+   - `src/state/`: `GameStateManager` and `EvidenceCatalog`.
+   - `src/case/`: Declarative case data (`case1_investigation`, `case1_trial`, `case1_climax`).
+   - `src/engine/`: `GameEngine` coordinator, `Typewriter`, `VisualEffects`, `ModalManager`, `InvestigationController`, `TrialController`, `EngineEventBinder`, `DomElements`.
+   - `src/main.ts`: Application entrypoint.
 
-3. **Coding Standards Compliance**:
-   - Enforce max 3 parameters per function.
-   - Enforce return-early patterns.
-   - Enforce named parameter comments: e.g. `setTimeout(/*callback*/ () => {}, /*delayInMs=*/ 500)`.
 
 ## Phase 2: Automated Testing Suite
 

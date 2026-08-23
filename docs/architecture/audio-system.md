@@ -1,6 +1,6 @@
 # Audio & Music Synthesis Architecture
 
-Technical guide for [`js/audio_engine.js`](file:///c:/Proyectos/ace-attorney-gemini/js/audio_engine.js) and [`js/midi_music.js`](file:///c:/Proyectos/ace-attorney-gemini/js/midi_music.js).
+Technical guide for [`src/audio/`](file:///c:/Proyectos/ace-attorney-gemini/src/audio/).
 
 ## Overview
 
@@ -16,11 +16,15 @@ flowchart TD
     
     Composer[MidiMusicComposer] --> BGMGain
     SFX[SoundEngine SFX Methods] --> SFXGain
+    
+    SFX --> CourtSfx[CourtSfx]
+    SFX --> NoveltySfx[NoveltySfx]
+    Composer --> TrackCatalog[TrackCatalog]
 ```
 
 ## Subsystems
 
-### 1. Sound Synthesis Engine ([`SoundEngine`](file:///c:/Proyectos/ace-attorney-gemini/js/audio_engine.js))
+### 1. Sound Synthesis Engine ([`SoundEngine`](file:///c:/Proyectos/ace-attorney-gemini/src/audio/Private/SoundEngine.ts))
 
 Manages the `AudioContext` lifecycle and procedural SFX generators:
 

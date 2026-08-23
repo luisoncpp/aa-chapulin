@@ -1,6 +1,6 @@
 # Game State & Inventory Architecture
 
-Technical guide for [`js/game_state.js`](file:///c:/Proyectos/ace-attorney-gemini/js/game_state.js).
+Technical guide for [`src/state/`](file:///c:/Proyectos/ace-attorney-gemini/src/state/).
 
 ## Overview
 

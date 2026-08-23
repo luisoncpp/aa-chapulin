@@ -1,6 +1,6 @@
 # Case Scripting Architecture
 
-Technical guide for [`js/case_script.js`](file:///c:/Proyectos/ace-attorney-gemini/js/case_script.js).
+Technical guide for [`src/case/`](file:///c:/Proyectos/ace-attorney-gemini/src/case/).
 
 ## Overview
 

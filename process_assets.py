@@ -1,190 +1,321 @@
-# @Architecture(descriptionShort="Extracts AI sprite sheets via magenta chroma-keying and slicing", type="pipeline", icon="wrench")
 """
-Asset Generation & Sprite Extraction Script
-Keys out magenta backgrounds and crops 2x2 character/cut-in grids into assets/.
+High-Performance Asset Processor & Sprite Fixer
+Powered by scipy.ndimage, NumPy and PIL.
+Applies the agent-sprite-forge pipeline:
+1. Multi-stage Euclidean distance chroma keying
+2. Boundary-connected flood mask & edge dilation
+3. Vectorized color despill & defringing (eliminates pink halos)
+4. Connected component analysis (removes floating limbs, speech bubbles, and text)
+5. Auto-trimming & centering for evidence icons and UI assets
 """
 
 import os
 import shutil
-from PIL import Image
 import numpy as np
+from PIL import Image
+from scipy import ndimage
 
 ARTIFACT_DIR = r"C:\Users\luiso\.gemini\antigravity\brain\d6601f43-c0ae-494d-bbf8-ca413b3a64ed"
 DEST_DIR = r"c:\Proyectos\ace-attorney-gemini\assets"
 os.makedirs(DEST_DIR, exist_ok=True)
 
-artifact_files = os.listdir(ARTIFACT_DIR)
-
-def find_latest(pattern):
-    matching = [f for f in artifact_files if f.startswith(pattern) and f.endswith(('.jpg', '.png'))]
-    if not matching:
-        return None
-    matching.sort()
-    return os.path.join(ARTIFACT_DIR, matching[-1])
-
-# @Section(Magenta Chroma-Keying)
-def chroma_key_pink(img):
-    """Convert bright pink/magenta background to transparent alpha."""
+# @Section(Boundary Chroma-Key & Despill)
+def remove_bg_magenta_vectorized(
+    img: Image.Image,
+    threshold: float = 160.0,
+    despill_depth: int = 4
+) -> Image.Image:
+    """Vectorized chroma keying handling outer background, grid lines, and interior cavities."""
     img = img.convert("RGBA")
-    data = np.array(img)
-    
-    r, g, b, a = data[:, :, 0], data[:, :, 1], data[:, :, 2], data[:, :, 3]
-    
-    # Magenta/Pink mask: R > 160, G < 110, B > 160, and |R - B| < 75
-    is_pink = (r > 160) & (g < 110) & (b > 160) & (np.abs(r.astype(int) - b.astype(int)) < 75)
-    
-    data[:, :, 3] = np.where(is_pink, 0, 255)
-    return Image.fromarray(data, mode="RGBA")
+    arr = np.array(img, dtype=np.float32)
+    h, w = arr.shape[:2]
 
-# @Section(Grid Cropping & Slicing)
-def crop_grid(img_path, rows=2, cols=2, key_pink=True):
-    img = Image.open(img_path)
-    if key_pink:
-        img = chroma_key_pink(img)
+    r, g, b = arr[:, :, 0], arr[:, :, 1], arr[:, :, 2]
+
+    dist = np.sqrt((r - 255.0) ** 2 + g ** 2 + (b - 255.0) ** 2)
+
+    # 1. Pure and edge magenta (covers outer background + interior cavities/holes like wings/arms)
+    # Strict low G (g < 125) and balanced R/B prevents falsely capturing fair skin tones
+    is_magenta = (dist < threshold) | ((r > 140) & (b > 140) & (g < 125) & (np.abs(r - b) < 65))
+
+    # 2. Border-connected neutral grid lines (strictly on outer 10px perimeter)
+    edge_zone = np.zeros((h, w), dtype=bool)
+    edge_zone[:10, :], edge_zone[-10:, :] = True, True
+    edge_zone[:, :10], edge_zone[:, -10:] = True, True
+    is_grid = edge_zone & (r > 180) & (b > 180) & (np.abs(r - b) < 40)
+
+    # Combined background mask
+    bg_mask = is_magenta | is_grid
+
+    dilated_bg = ndimage.binary_dilation(bg_mask, structure=np.ones((3, 3), dtype=bool), iterations=1)
+    heavy_fringe = dilated_bg & ~bg_mask & ((r > 120) & (b > 120) & (g < 120))
+    bg_mask = bg_mask | heavy_fringe
+
+    dilated_bg_despill = ndimage.binary_dilation(bg_mask, structure=np.ones((3, 3), dtype=bool), iterations=despill_depth)
+    despill_zone = dilated_bg_despill & ~bg_mask
+
+    excess = np.maximum(0.0, np.minimum(r - g, b - g))
+    r_despilled = np.where(despill_zone & (excess > 0), np.maximum(0.0, r - excess), r)
+    b_despilled = np.where(despill_zone & (excess > 0), np.maximum(0.0, b - excess), b)
+
+    arr[:, :, 0] = r_despilled
+    arr[:, :, 2] = b_despilled
+    arr[bg_mask, 3] = 0
+
+    return Image.fromarray(np.clip(arr, 0, 255).astype(np.uint8), mode="RGBA")
+
+
+def clean_edges_vectorized(img: Image.Image, depth: int = 5) -> Image.Image:
+    """Clear outer border margin lines."""
+    arr = np.array(img)
+    h, w = arr.shape[:2]
+
+    edge_zone = np.zeros((h, w), dtype=bool)
+    edge_zone[:depth, :], edge_zone[-depth:, :] = True, True
+    edge_zone[:, :depth], edge_zone[:, -depth:] = True, True
+
+    arr[edge_zone, 3] = 0
+    return Image.fromarray(arr, mode="RGBA")
+
+
+# -------------------------------------------------------------
+# 2. CONNECTED COMPONENT FILTERING (DROP STRAY ARTIFACTS / LIMBS)
+# -------------------------------------------------------------
+
+def extract_primary_components_fast(img: Image.Image, min_area_fraction: float = 0.08, drop_boxes: list = None) -> Image.Image:
+    """
+    Keep primary character body components while dropping stray floating limbs, speech bubbles, and text.
+    """
+    arr = np.array(img)
+    alpha = arr[:, :, 3]
+    h, w = alpha.shape
     
+    # If drop boxes specified, zero out alpha in those regions first
+    if drop_boxes:
+        for (x0, y0, x1, y1) in drop_boxes:
+            arr[max(0, y0):min(h, y1), max(0, x0):min(w, x1), 3] = 0
+            alpha = arr[:, :, 3]
+            
+    fg_mask = alpha > 0
+    if not np.any(fg_mask):
+        return Image.fromarray(arr, mode="RGBA")
+        
+    labeled, num_features = ndimage.label(fg_mask)
+    if num_features == 0:
+        return Image.fromarray(arr, mode="RGBA")
+        
+    # Count area of each component
+    counts = np.bincount(labeled.ravel())
+    counts[0] = 0 # Ignore background
+    
+    max_area = counts.max()
+    threshold_area = max(500, int(max_area * min_area_fraction))
+    
+    keep_labels = np.where(counts >= threshold_area)[0]
+    keep_mask = np.isin(labeled, keep_labels)
+    
+    arr[~keep_mask, 3] = 0
+    return Image.fromarray(arr, mode="RGBA")
+
+
+# -------------------------------------------------------------
+# 3. SPECIFIC ASSET EXTRACTION PIPELINE
+# -------------------------------------------------------------
+
+def process_character_sheet(
+    sheet_name: str,
+    pose_names: list,
+    drop_boxes_per_cell: list = None,
+    custom_crops: list = None
+):
+    sheet_path = os.path.join(ARTIFACT_DIR, sheet_name)
+    if not os.path.exists(sheet_path):
+        print(f"Warning: Sheet not found {sheet_path}")
+        return
+
+    img = Image.open(sheet_path)
     w, h = img.size
-    cell_w, cell_h = w // cols, h // rows
-    
-    cells = []
-    for r in range(rows):
-        for c in range(cols):
-            box = (c * cell_w, r * cell_h, (c + 1) * cell_w, (r + 1) * cell_h)
-            cell_img = img.crop(box)
-            cells.append(cell_img)
-    return cells
+    cw, ch = w // 2, h // 2
 
-def save_image(img, filename):
-    out_path = os.path.join(DEST_DIR, filename)
-    img.save(out_path)
-    print(f"Saved: {filename} ({img.size})")
+    for idx, name in enumerate(pose_names):
+        if custom_crops and idx < len(custom_crops) and custom_crops[idx]:
+            cell = img.crop(custom_crops[idx])
+        else:
+            r = idx // 2
+            c = idx % 2
+            cell = img.crop((c * cw, r * ch, (c + 1) * cw, (r + 1) * ch))
 
-# @Section(Batch Extraction Runner)
-def process_all():
-    print("Processing assets...")
-    
-    # 1. Chapulin sprites
-    chap_file = find_latest("chapulin_sprites")
-    if chap_file:
-        cells = crop_grid(chap_file, 2, 2, key_pink=True)
-        save_image(cells[0], "chapulin_idle.png")
-        save_image(cells[1], "chapulin_slam.png")
-        save_image(cells[2], "chapulin_point.png")
-        save_image(cells[3], "chapulin_panic.png")
-    
-    # 2. Super Sam sprites
-    sam_file = find_latest("supersam_sprites")
-    if sam_file:
-        cells = crop_grid(sam_file, 2, 2, key_pink=True)
-        save_image(cells[0], "supersam_idle.png")
-        save_image(cells[1], "supersam_slam.png")
-        save_image(cells[2], "supersam_point.png")
-        save_image(cells[3], "supersam_breakdown.png")
-        
-    # 3. Tripaseca sprites
-    trip_file = find_latest("tripaseca_sprites")
-    if trip_file:
-        cells = crop_grid(trip_file, 2, 2, key_pink=True)
-        save_image(cells[0], "tripaseca_smug.png")
-        save_image(cells[1], "tripaseca_sweat.png")
-        save_image(cells[2], "tripaseca_panic.png")
-        save_image(cells[3], "tripaseca_breakdown.png")
-        
-    # 4. Judge sprites
-    judge_file = find_latest("judge_sprites")
-    if judge_file:
-        cells = crop_grid(judge_file, 2, 2, key_pink=True)
-        save_image(cells[0], "judge_neutral.png")
-        save_image(cells[1], "judge_gavel.png")
-        save_image(cells[2], "judge_shock.png")
-        save_image(cells[3], "judge_thinking.png")
-        
-    # 5. Witness Florinda sprites
-    flor_file = find_latest("witness_florinda_sprites")
-    if flor_file:
-        cells = crop_grid(flor_file, 2, 2, key_pink=True)
-        save_image(cells[0], "florinda_idle.png")
-        save_image(cells[1], "florinda_angry.png")
-        save_image(cells[2], "florinda_crying.png")
-        save_image(cells[3], "florinda_shock.png")
-        
-    # 6. Objection cut-ins
-    cutin_file = find_latest("ui_objection_cutins")
-    if cutin_file:
-        cells = crop_grid(cutin_file, 2, 2, key_pink=True)
-        save_image(cells[0], "objection_protesto.png")
-        save_image(cells[1], "objection_un_momento.png")
-        save_image(cells[2], "objection_toma_eso.png")
-        save_image(cells[3], "objection_culpable.png")
-        
-    # 7. Evidence items
-    ev_file = find_latest("evidence_icons")
-    if ev_file:
-        img = Image.open(ev_file)
-        w, h = img.size
-        cw, ch = w // 4, h // 3
-        items = [
-            (0, 0, "chipote_chillon.png"),
-            (1, 0, "pastillas_chiquitolina.png"),
-            (2, 0, "antenitas_vinil.png"),
-            (3, 0, "chicharra_oro.png"),
-            (0, 1, "informe_medico.png"),
-            (1, 1, "foto_crimen.png"),
-            (2, 1, "bolsa_dolares.png"),
-            (3, 1, "insignia_abogado.png")
+        cleaned = remove_bg_magenta_vectorized(cell, threshold=160.0, despill_depth=4)
+        cleaned = clean_edges_vectorized(cleaned, depth=5)
+
+        drop_boxes = drop_boxes_per_cell[idx] if (drop_boxes_per_cell and idx < len(drop_boxes_per_cell)) else None
+        final_img = extract_primary_components_fast(cleaned, min_area_fraction=0.10, drop_boxes=drop_boxes)
+
+        out_path = os.path.join(DEST_DIR, f"{name}.png")
+        final_img.save(out_path)
+        print(f"  [OK] Processed: {name}.png ({final_img.size})")
+
+def process_evidence_icons(ev_name: str):
+    ev_path = os.path.join(ARTIFACT_DIR, ev_name)
+    if not os.path.exists(ev_path):
+        return
+
+    img = Image.open(ev_path)
+    w, h = img.size
+    cw, ch = w // 4, h // 3
+
+    items = [
+        (0, 0, "chipote_chillon.png"),
+        (1, 0, "pastillas_chiquitolina.png"),
+        (2, 0, "antenitas_vinil.png"),
+        (3, 0, "chicharra_oro.png"),
+        (0, 1, "informe_medico.png"),
+        (1, 1, "foto_crimen.png"),
+        (2, 1, "bolsa_dolares.png"),
+        (3, 1, "insignia_abogado.png")
+    ]
+
+    for col, row, name in items:
+        cell = img.crop((col * cw, row * ch, (col + 1) * cw, (row + 1) * ch))
+        cleaned = remove_bg_magenta_vectorized(cell, threshold=165.0, despill_depth=4)
+        cleaned = clean_edges_vectorized(cleaned, depth=4)
+
+        # Drop the bottom text label zone (y in 275..341) and top/side frame bleed
+        drop_boxes = [
+            (0, 275, cw, ch),  # Bottom text label
+            (0, 0, cw, 55),    # Top frame line
+            (0, 0, 10, ch),    # Left frame line
+            (cw - 10, 0, cw, ch)# Right frame line
         ]
-        img_keyed = chroma_key_pink(img)
-        for col, row, name in items:
-            crop_box = (col * cw, row * ch, (col + 1) * cw, (row + 1) * ch)
-            sub = img_keyed.crop(crop_box)
-            save_image(sub, name)
+        filtered = extract_primary_components_fast(cleaned, min_area_fraction=0.15, drop_boxes=drop_boxes)
 
-    # 8. UI Elements
-    ui_file = find_latest("ui_elements")
-    if ui_file:
-        img = Image.open(ui_file)
-        img_keyed = chroma_key_pink(img)
-        w, h = img.size
-        
-        box_crop = img_keyed.crop((0, 0, w, int(h * 0.26)))
-        save_image(box_crop, "dialogue_box.png")
-        
-        badge_crop = img_keyed.crop((0, int(h * 0.25), int(w * 0.35), int(h * 0.48)))
-        save_image(badge_crop, "badge_button.png")
-        
-        health_crop = img_keyed.crop((int(w * 0.35), int(h * 0.28), w, int(h * 0.46)))
-        save_image(health_crop, "health_bar.png")
-        
-        press_crop = img_keyed.crop((0, int(h * 0.48), int(w * 0.38), int(h * 0.75)))
-        save_image(press_crop, "btn_press.png")
-        
-        present_crop = img_keyed.crop((int(w * 0.38), int(h * 0.48), int(w * 0.68), int(h * 0.75)))
-        save_image(present_crop, "btn_present.png")
-        
-        mag_crop = img_keyed.crop((int(w * 0.68), int(h * 0.48), w, int(h * 0.75)))
-        save_image(mag_crop, "btn_magnifier.png")
-        
-    # 9. Backgrounds
-    bg_witness = find_latest("court_witness_stand")
-    if bg_witness:
-        shutil.copy(bg_witness, os.path.join(DEST_DIR, "bg_witness.jpg"))
-        
-    bg_judge = find_latest("court_judge_view")
-    if bg_judge:
-        shutil.copy(bg_judge, os.path.join(DEST_DIR, "bg_judge.jpg"))
-        
-    bg_museum = find_latest("museum_crime_scene")
-    if bg_museum:
-        shutil.copy(bg_museum, os.path.join(DEST_DIR, "bg_museum.jpg"))
-        
-    bg_detention = find_latest("detention_center_room")
-    if bg_detention:
-        shutil.copy(bg_detention, os.path.join(DEST_DIR, "bg_detention.jpg"))
-        
-    bg_court = find_latest("courtroom_scenes")
-    if bg_court:
-        shutil.copy(bg_court, os.path.join(DEST_DIR, "bg_courtroom.jpg"))
+        # Trim transparent margins around the card/icon
+        bbox = filtered.getbbox()
+        if bbox:
+            cropped = filtered.crop(bbox)
+            max_dim = max(cropped.width, cropped.height)
+            canvas = Image.new("RGBA", (max_dim + 12, max_dim + 12), (0, 0, 0, 0))
+            offset_x = (canvas.width - cropped.width) // 2
+            offset_y = (canvas.height - cropped.height) // 2
+            canvas.paste(cropped, (offset_x, offset_y))
+            out_img = canvas.resize((128, 128), Image.Resampling.LANCZOS)
+        else:
+            out_img = filtered
 
-    print("All assets processed successfully!")
+        out_path = os.path.join(DEST_DIR, name)
+        out_img.save(out_path)
+        print(f"  [OK] Processed: {name} ({out_img.size})")
+
+def process_cutins(cutin_name: str):
+    cutin_path = os.path.join(ARTIFACT_DIR, cutin_name)
+    if not os.path.exists(cutin_path):
+        return
+
+    img = Image.open(cutin_path)
+    w, h = img.size
+    cw, ch = w // 2, h // 2
+
+    names = ["objection_protesto", "objection_un_momento", "objection_toma_eso", "objection_culpable"]
+    for idx, name in enumerate(names):
+        r = idx // 2
+        c = idx % 2
+        cell = img.crop((c * cw, r * ch, (c + 1) * cw, (r + 1) * ch))
+        cleaned = remove_bg_magenta_vectorized(cell, threshold=165.0, despill_depth=4)
+        cleaned = clean_edges_vectorized(cleaned, depth=4)
+        filtered = extract_primary_components_fast(cleaned, min_area_fraction=0.25)
+
+        out_path = os.path.join(DEST_DIR, f"{name}.png")
+        filtered.save(out_path)
+        print(f"  [OK] Processed: {name}.png ({filtered.size})")
+
+def run_all_fixes():
+    print("=== EXECUTING HIGH-PERFORMANCE ASSET RE-PROCESSING ===")
+
+    # 1. Chapulín Colorado
+    # Point (cell 2): extend crop to x: 0..576 so pointing hand is fully captured. Drop neighbor panic wing at (535, 350, 576, 512).
+    # Panic (cell 3): drop neighbor pointing finger bleed at (0, 100, 65, 230).
+    chap_crops = [
+        None,
+        None,
+        (0, 512, 576, 1024),
+        None
+    ]
+    chap_drop = [
+        None, # Idle
+        None, # Slam
+        [(535, 350, 576, 512)], # Point: drop panic wing on bottom right
+        [(0, 100, 65, 230)] # Panic: Drop pointing hand bleed from left neighbor
+    ]
+    process_character_sheet(
+        "chapulin_sprites_1787377102240.jpg",
+        ["chapulin_idle", "chapulin_slam", "chapulin_point", "chapulin_panic"],
+        chap_drop,
+        chap_crops
+    )
+
+    # 2. Super Sam
+    sam_drop = [
+        [(0, 0, 50, 50)], # Idle: drop corner [1]
+        [(0, 0, 50, 50), (20, 180, 135, 360)], # Slam: drop corner [2] and speech bubble
+        [(300, 0, 512, 138)], # Point: drop "TIME IS MONEY" speech bubble without clipping hand
+        [(0, 0, 50, 50)]  # Breakdown: drop corner [4]
+    ]
+    process_character_sheet(
+        "supersam_sprites_1787377120436.jpg",
+        ["supersam_idle", "supersam_slam", "supersam_point", "supersam_breakdown"],
+        sam_drop
+    )
+
+    # 3. El Tripaseca
+    process_character_sheet(
+        "tripaseca_sprites_1787377534812.jpg",
+        ["tripaseca_smug", "tripaseca_sweat", "tripaseca_panic", "tripaseca_breakdown"],
+        None
+    )
+
+    # 4. El Juez (The Judge)
+    process_character_sheet(
+        "judge_sprites_1787377585527.jpg",
+        ["judge_neutral", "judge_gavel", "judge_shock", "judge_thinking"],
+        None
+    )
+
+    # 5. Doña Florinda (Museum Curator)
+    # Drop top text banner zones (y in 0..55)
+    flor_drop = [
+        [(0, 0, 512, 55)],
+        [(0, 0, 512, 55)],
+        [(0, 0, 512, 55)],
+        [(0, 0, 512, 55)]
+    ]
+    process_character_sheet(
+        "witness_florinda_sprites_1787377757004.jpg",
+        ["florinda_idle", "florinda_angry", "florinda_crying", "florinda_shock"],
+        flor_drop
+    )
+    shutil.copy(os.path.join(DEST_DIR, "florinda_idle.png"), os.path.join(DEST_DIR, "florinda_fanning.png"))
+
+    # 6. Objection Cut-Ins
+    process_cutins("ui_objection_cutins_1787377615093.jpg")
+
+    # 7. Evidence Icons
+    process_evidence_icons("evidence_icons_1787377665647.jpg")
+
+    # 8. Backgrounds
+    bgs = [
+        ("court_witness_stand_1787377876023.jpg", "bg_witness.jpg"),
+        ("court_judge_view_1787377926397.jpg", "bg_judge.jpg"),
+        ("museum_crime_scene_1787377814093.jpg", "bg_museum.jpg"),
+        ("detention_center_room_1787377837506.jpg", "bg_detention.jpg"),
+        ("courtroom_scenes_1787377789540.jpg", "bg_courtroom.jpg")
+    ]
+    for src, dst in bgs:
+        src_p = os.path.join(ARTIFACT_DIR, src)
+        if os.path.exists(src_p):
+            shutil.copy(src_p, os.path.join(DEST_DIR, dst))
+            print(f"  [OK] Copied background: {dst}")
+
+    print("\nAll assets cleaned, despilled, and saved successfully!")
 
 if __name__ == "__main__":
-    process_all()
+    run_all_fixes()

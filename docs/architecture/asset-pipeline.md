@@ -20,22 +20,16 @@ flowchart LR
 
 ## Chroma-Keying & Slicing ([[process_assets.py]])
 
-### 1. Magenta Alpha Mask Algorithm ([[process_assets.py#Magenta Chroma-Keying]])
-AI image models often struggle with direct PNG alpha channel generation. The pipeline generates character grids on a solid magenta / hot-pink background (`#FF00FF`) and keys out the background via NumPy:
+### 1. Boundary Chroma-Keying & Mathematical Despill ([[process_assets.py#Boundary Chroma-Key & Despill]])
+AI image models often produce subpixel antialiasing blend between dark character outlines and magenta backgrounds, as well as white/gray grid divider lines.
 
-```python
-def chroma_key_pink(img):
-    img = img.convert("RGBA")
-    data = np.array(img)
-    r, g, b, a = data[:, :, 0], data[:, :, 1], data[:, :, 2], data[:, :, 3]
-    
-    # Magenta/Pink mask: high R & B, low G, balanced R-B
-    is_pink = (r > 160) & (g < 110) & (b > 160) & (np.abs(r.astype(int) - b.astype(int)) < 75)
-    data[:, :, 3] = np.where(is_pink, 0, 255)
-    return Image.fromarray(data, mode="RGBA")
-```
+The pipeline performs:
+1. **Boundary-Connected Masking**: Flood-fills from outer borders with magenta + grid line detection, preserving internal character colors (such as apron flowers).
+2. **Subpixel Dilation**: 1-pixel dilation of background mask to eliminate outer fringe.
+3. **Mathematical Despill**: In the fringe zone (within 4px of background), computes $\text{excess} = \max(0, \min(R - G, B - G))$ and subtracts it from $R$ and $B$, restoring neutral black outlines ($RGB: 0..30, 0..30, 0..30$).
+4. **Margin Clearing**: Zeros 4px outer edge borders to remove grid divider line artifacts.
 
-### 2. Grid Slicing ([[process_assets.py#Grid Cropping & Slicing]])
+### 2. Grid Slicing ([[process_assets.py#Connected Component Filtering]])
 - Character sheets are formatted as 2x2 grids (4 distinct emotional poses per character).
 - Cut-ins are formatted as 2x2 grids (4 distinct shout placards).
 - Evidence items are extracted from a 4x2 icon grid.

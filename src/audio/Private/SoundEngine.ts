@@ -17,14 +17,18 @@ export class SoundEngine {
   public isMuted = false;
 
   // @Section(AudioContext Lifecycle & Gains)
-  public init(): void {
+  public init(customCtx?: AudioContext): void {
     if (this.initialized && this.ctx) {
       this.resume();
       return;
     }
     try {
-      const AudioCtx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
-      this.ctx = new AudioCtx();
+      if (customCtx) {
+        this.ctx = customCtx;
+      } else {
+        const AudioCtx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+        this.ctx = new AudioCtx();
+      }
       this.setupGains();
       this.initialized = true;
       this.resume();

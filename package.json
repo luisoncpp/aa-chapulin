@@ -6,9 +6,15 @@
   "scripts": {
     "start": "npm run build && npx serve .",
     "build": "tsc",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:watch": "vitest"
   },
   "devDependencies": {
-    "typescript": "^5.4.5"
+    "@vitest/coverage-v8": "^4.1.11",
+    "jsdom": "^29.1.1",
+    "typescript": "^5.4.5",
+    "vitest": "^4.1.11"
   }
 }

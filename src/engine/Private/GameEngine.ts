@@ -4,10 +4,12 @@
  * Connects [[./Typewriter.ts]], [[./InvestigationController.ts]], and [[./TrialController.ts]].
  */
 
-import { midiComposer, soundEngine } from '../../audio/index.js';
-import { CASE_SCRIPT } from '../../case/index.js';
-import { gameState } from '../../state/index.js';
-import type { DialogueLine, EvidenceId, SFXName } from '../../types/index.js';
+import type { MidiMusicComposer, SoundEngine } from '../../audio/index.js';
+import { midiComposer as defaultMidiComposer, soundEngine as defaultSoundEngine } from '../../audio/index.js';
+import { CASE_SCRIPT as defaultCaseScript } from '../../case/index.js';
+import type { GameStateManager } from '../../state/index.js';
+import { gameState as defaultGameState } from '../../state/index.js';
+import type { CaseScript, DialogueLine, EvidenceId, SFXName } from '../../types/index.js';
 import { getDomElements, type DomElements } from './DomElements.js';
 import { EngineEventBinder } from './EngineEventBinder.js';
 import { InvestigationController } from './InvestigationController.js';
@@ -16,8 +18,20 @@ import { TrialController } from './TrialController.js';
 import { Typewriter } from './Typewriter.js';
 import { VisualEffects } from './VisualEffects.js';
 
+export interface GameEngineDeps {
+  dom?: DomElements;
+  state?: GameStateManager;
+  script?: CaseScript;
+  soundEngine?: SoundEngine;
+  midiComposer?: MidiMusicComposer;
+}
+
 export class GameEngine {
   private readonly dom: DomElements;
+  private readonly state: GameStateManager;
+  private readonly script: CaseScript;
+  private readonly soundEngine: SoundEngine;
+  private readonly midiComposer: MidiMusicComposer;
   private readonly typewriter: Typewriter;
   private readonly investigation: InvestigationController;
   private readonly trial: TrialController;
@@ -26,17 +40,22 @@ export class GameEngine {
   private hasStarted = false;
   private selectedEvidenceId: EvidenceId | null = null;
 
-  constructor() {
-    this.dom = getDomElements();
-    this.typewriter = new Typewriter(this.dom.dialogueTextEl, soundEngine);
+  constructor(deps: GameEngineDeps = {}) {
+    this.dom = deps.dom ?? getDomElements();
+    this.state = deps.state ?? defaultGameState;
+    this.script = deps.script ?? defaultCaseScript;
+    this.soundEngine = deps.soundEngine ?? defaultSoundEngine;
+    this.midiComposer = deps.midiComposer ?? defaultMidiComposer;
+
+    this.typewriter = new Typewriter(this.dom.dialogueTextEl, this.soundEngine);
 
     this.investigation = new InvestigationController(
-      this.dom, gameState, CASE_SCRIPT, soundEngine, midiComposer,
+      this.dom, this.state, this.script, this.soundEngine, this.midiComposer,
       (dlg, cb) => this.queueDialogue(dlg, cb)
     );
 
     this.trial = new TrialController(
-      this.dom, gameState, CASE_SCRIPT, soundEngine, midiComposer,
+      this.dom, this.state, this.script, this.soundEngine, this.midiComposer,
       (dlg, cb) => this.queueDialogue(dlg, cb),
       (line) => this.renderDialogueLine(line),
       (isTrialPresent) => this.openCourtRecord(isTrialPresent)
@@ -54,15 +73,15 @@ export class GameEngine {
       onOpenCourtRecord: (isTrial) => this.openCourtRecord(isTrial),
       onPresentFromModal: () => this.handlePresentFromModal()
     });
-    ModalManager.updateHealthUI(this.dom.healthBarEl, gameState.health, gameState.maxHealth);
+    ModalManager.updateHealthUI(this.dom.healthBarEl, this.state.health, this.state.maxHealth);
   }
 
   private startGame(): void {
     if (this.hasStarted) return;
     this.hasStarted = true;
-    soundEngine.init();
-    soundEngine.resume();
-    soundEngine.playGavel();
+    this.soundEngine.init();
+    this.soundEngine.resume();
+    this.soundEngine.playGavel();
 
     this.dom.startSplashOverlayEl.style.opacity = '0';
     setTimeout(/*hideSplash*/ () => {
@@ -77,7 +96,7 @@ export class GameEngine {
       this.startGame();
       return;
     }
-    soundEngine.ensureActive();
+    this.soundEngine.ensureActive();
     if (this.typewriter.isTyping) {
       this.typewriter.completeImmediately();
       return;
@@ -107,7 +126,7 @@ export class GameEngine {
   public renderDialogueLine(line: DialogueLine): void {
     if (!line) return;
     if (line.bg) this.dom.bgEl.style.backgroundImage = `url('${line.bg}')`;
-    if (line.bgm) midiComposer.playTrack(line.bgm);
+    if (line.bgm) this.midiComposer.playTrack(line.bgm);
     if (line.sfx) this.triggerSFX(line.sfx);
     if (line.cutin) VisualEffects.showCutin(this.dom, line.cutin);
     this.applyLineSpeakerAndPose(line);
@@ -127,15 +146,15 @@ export class GameEngine {
 
   private grantEvidenceIfPresent(evidenceId?: EvidenceId): void {
     if (!evidenceId) return;
-    const added = gameState.addEvidence(evidenceId);
+    const added = this.state.addEvidence(evidenceId);
     if (added) {
-      const item = gameState.allEvidence[evidenceId];
+      const item = this.state.allEvidence[evidenceId];
       VisualEffects.showNotification(this.dom.gameNotificationEl, `¡Añadido al Acta del Juicio: ${item.name}!`);
     }
   }
 
   private triggerSFX(sfx: SFXName): void {
-    soundEngine.playSFX(sfx);
+    this.soundEngine.playSFX(sfx);
     if (sfx === 'gavel') VisualEffects.shakeScreen(this.dom.gameScreen, /*durationMs=*/ 300);
     if (sfx === 'desk_slam') VisualEffects.shakeScreen(this.dom.gameScreen, /*durationMs=*/ 250);
     if (sfx === 'realization' || sfx === 'chicharra') VisualEffects.flashScreen(this.dom.flashEl);
@@ -149,7 +168,7 @@ export class GameEngine {
   private openCourtRecord(isTrialPresent: boolean): void {
     ModalManager.openCourtRecord({
       dom: this.dom,
-      state: gameState,
+      state: this.state,
       isTrialPresent,
       onSelect: (id) => {
         this.selectedEvidenceId = id;

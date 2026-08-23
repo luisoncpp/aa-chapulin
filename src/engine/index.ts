@@ -4,11 +4,11 @@
  * Exposes [[./Private/GameEngine.ts|GameEngine]] factory.
  */
 
-import { GameEngine } from './Private/GameEngine.js';
+import { GameEngine, type GameEngineDeps } from './Private/GameEngine.js';
 
-export { GameEngine } from './Private/GameEngine.js';
+export { GameEngine, type GameEngineDeps } from './Private/GameEngine.js';
 
 // @Section(Factory Function)
-export function createGameEngine(): GameEngine {
-  return new GameEngine();
+export function createGameEngine(deps?: GameEngineDeps): GameEngine {
+  return new GameEngine(deps);
 }

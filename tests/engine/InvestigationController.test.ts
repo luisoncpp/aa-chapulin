@@ -1,0 +1,143 @@
+// @Architecture(descriptionShort="Unit tests for crime scene exploration and hotspot controller", type="test", icon="panel")
+import { describe, expect, it, beforeEach, vi } from 'vitest';
+import { MidiMusicComposer, SoundEngine } from '../../src/audio/index.js';
+import { CASE_SCRIPT } from '../../src/case/index.js';
+import type { DomElements } from '../../src/engine/Private/DomElements.js';
+import { InvestigationController } from '../../src/engine/Private/InvestigationController.js';
+import { GameStateManager } from '../../src/state/index.js';
+import { FakeAudioContext } from '../fakes/FakeAudioContext.js';
+import { setupDomHarness } from '../fakes/DomHarness.js';
+
+describe('InvestigationController', () => {
+  let dom: DomElements;
+  let state: GameStateManager;
+  let soundEngineInstance: SoundEngine;
+  let midiComposerInstance: MidiMusicComposer;
+  let controller: InvestigationController;
+  let queuedDialogues: any[] = [];
+
+  beforeEach(() => {
+    vi.useFakeTimers();
+    dom = setupDomHarness();
+    state = new GameStateManager();
+    const fakeCtx = new FakeAudioContext();
+    soundEngineInstance = new SoundEngine();
+    soundEngineInstance.init(fakeCtx as unknown as AudioContext);
+    midiComposerInstance = new MidiMusicComposer(soundEngineInstance);
+    queuedDialogues = [];
+
+    controller = new InvestigationController(
+      dom,
+      state,
+      CASE_SCRIPT,
+      soundEngineInstance,
+      midiComposerInstance,
+      (dlg, cb) => {
+        queuedDialogues.push(dlg);
+        if (cb) cb();
+      }
+    );
+  });
+
+  it('starts investigation at museum with intro dialogue and background', () => {
+    controller.startInvestigation('museum');
+    expect(state.mode).toBe('INVESTIGATION');
+    expect(state.currentLocation).toBe('museum');
+    expect(dom.locationBannerEl.textContent).toContain('Museo');
+    expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_museum.jpg');
+    expect(midiComposerInstance.currentTrack).toBe('investigation');
+    expect(queuedDialogues).toHaveLength(1);
+  });
+
+  it('toggles examine mode and restores character pose on exit', () => {
+    controller.startInvestigation('museum');
+    controller.currentLocationCharPose = 'florinda_idle';
+    controller.startExamineMode();
+
+    expect(controller.isExamineActive).toBe(true);
+    expect(dom.hotspotsContainerEl.classList.contains('visible-hotspots')).toBe(true);
+    expect(dom.examineNavEl.classList.contains('hidden')).toBe(false);
+    expect(dom.charSpriteEl.classList.contains('hidden')).toBe(true);
+
+    controller.exitExamineMode();
+    expect(controller.isExamineActive).toBe(false);
+    expect(dom.hotspotsContainerEl.classList.contains('visible-hotspots')).toBe(false);
+    expect(dom.examineNavEl.classList.contains('hidden')).toBe(true);
+    expect(dom.charSpriteEl.src).toContain('assets/florinda_idle.png');
+  });
+
+  it('handles hotspot hovering and clicking to queue dialogue', () => {
+    controller.startInvestigation('museum');
+    const hotspotArea = dom.hotspotsContainerEl.children[0] as HTMLElement;
+    expect(hotspotArea).toBeDefined();
+
+    // Mouse enter when examine is NOT active does not show tooltip
+    hotspotArea.dispatchEvent(new Event('mouseenter'));
+    expect(dom.examineTooltipEl.classList.contains('hidden')).toBe(true);
+
+    // Enter examine mode
+    controller.startExamineMode();
+
+    // Mouse enter shows tooltip
+    hotspotArea.dispatchEvent(new Event('mouseenter'));
+    expect(dom.examineTooltipEl.classList.contains('hidden')).toBe(false);
+
+    // Mouse leave hides tooltip
+    hotspotArea.dispatchEvent(new Event('mouseleave'));
+    expect(dom.examineTooltipEl.classList.contains('hidden')).toBe(true);
+
+    // Click triggers hotspot interaction and exits examine mode
+    hotspotArea.click();
+    expect(controller.isExamineActive).toBe(false);
+    expect(queuedDialogues.length).toBeGreaterThan(1);
+  });
+
+  it('opens talk menu modal and handles conversation option', () => {
+    controller.startInvestigation('museum');
+    controller.openTalkMenu();
+
+    expect(dom.talkOptionsModalEl.classList.contains('hidden')).toBe(false);
+    const firstOption = dom.talkListEl.children[0] as HTMLButtonElement;
+    firstOption.click();
+
+    expect(dom.talkOptionsModalEl.classList.contains('hidden')).toBe(true);
+    expect(queuedDialogues.length).toBeGreaterThan(1);
+  });
+
+  it('gracefully handles openTalkMenu when scene has no options', () => {
+    const emptyController = new InvestigationController(
+      dom, state, { investigation: {} as any, trial: {} as any },
+      soundEngineInstance, midiComposerInstance, () => {}
+    );
+    expect(() => emptyController.openTalkMenu()).not.toThrow();
+  });
+
+  it('toggles location between museum and detention', () => {
+    controller.startInvestigation('museum');
+    expect(state.currentLocation).toBe('museum');
+
+    controller.toggleLocation();
+    expect(state.currentLocation).toBe('detention');
+    expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_detention.jpg');
+
+    controller.toggleLocation();
+    expect(state.currentLocation).toBe('museum');
+  });
+
+  it('unlocks trial button when all clues are discovered', () => {
+    const trialBtn = document.getElementById('btn-inv-trial')!;
+    expect(trialBtn.classList.contains('disabled')).toBe(true);
+
+    state.addEvidence('chipote_chillon');
+    state.addEvidence('pastillas_chiquitolina');
+    state.addEvidence('antenitas_vinil');
+    state.addEvidence('informe_medico');
+    state.addEvidence('foto_crimen');
+
+    controller.checkInvestigationProgress();
+
+    expect(trialBtn.classList.contains('disabled')).toBe(false);
+    expect(trialBtn.classList.contains('pulse-glow')).toBe(true);
+    expect(dom.gameNotificationEl.textContent).toContain('¡Has reunido todas las pruebas!');
+  });
+});

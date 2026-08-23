@@ -1,0 +1,9 @@
+{
+  "ignorePatterns": [
+    "tests/**",
+    "js/**"
+  ],
+  "health": {
+    "coverage": "coverage/coverage-final.json"
+  }
+}

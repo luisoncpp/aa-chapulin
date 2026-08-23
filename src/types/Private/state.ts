@@ -9,8 +9,6 @@ export type GameMode = 'INVESTIGATION' | 'TRIAL';
 
 export type LocationId = 'museum' | 'detention';
 
-export type TrialPhase = 'INTRO' | 'TESTIMONY_1' | 'TESTIMONY_2' | 'CLIMAX' | 'VERDICT';
-
 // @Section(Progression Flags)
 export interface GameFlags {
   examined_pedestal: boolean;

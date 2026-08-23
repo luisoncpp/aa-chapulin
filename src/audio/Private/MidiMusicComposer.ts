@@ -81,8 +81,12 @@ export class MidiMusicComposer {
     osc.stop(t + 0.13);
   }
 
-  private playSnare(ctx: AudioContext, t: number): void {
-    const bufferSize = Math.floor(ctx.sampleRate * 0.12);
+  private playNoiseDrum(
+    ctx: AudioContext,
+    t: number,
+    opts: { durationSec: number; filterFreq: number; gainLevel: number }
+  ): void {
+    const bufferSize = Math.floor(ctx.sampleRate * opts.durationSec);
     const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
     const data = buffer.getChannelData(0);
     for (let i = 0; i < bufferSize; i++) data[i] = Math.random() * 2 - 1;
@@ -90,33 +94,22 @@ export class MidiMusicComposer {
     noise.buffer = buffer;
     const filter = ctx.createBiquadFilter();
     filter.type = 'highpass';
-    filter.frequency.setValueAtTime(1100, t);
+    filter.frequency.setValueAtTime(opts.filterFreq, t);
     const gain = ctx.createGain();
-    gain.gain.setValueAtTime(0.25, t);
-    gain.gain.linearRampToValueAtTime(0.001, t + 0.12);
+    gain.gain.setValueAtTime(opts.gainLevel, t);
+    gain.gain.linearRampToValueAtTime(0.001, t + opts.durationSec);
     noise.connect(filter);
     filter.connect(gain);
     gain.connect(this.se.bgmGain!);
     noise.start(t);
   }
 
+  private playSnare(ctx: AudioContext, t: number): void {
+    this.playNoiseDrum(ctx, t, { durationSec: 0.12, filterFreq: 1100, gainLevel: 0.25 });
+  }
+
   private playHiHat(ctx: AudioContext, t: number): void {
-    const bufferSize = Math.floor(ctx.sampleRate * 0.04);
-    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
-    const data = buffer.getChannelData(0);
-    for (let i = 0; i < bufferSize; i++) data[i] = Math.random() * 2 - 1;
-    const noise = ctx.createBufferSource();
-    noise.buffer = buffer;
-    const filter = ctx.createBiquadFilter();
-    filter.type = 'highpass';
-    filter.frequency.setValueAtTime(6000, t);
-    const gain = ctx.createGain();
-    gain.gain.setValueAtTime(0.1, t);
-    gain.gain.linearRampToValueAtTime(0.001, t + 0.04);
-    noise.connect(filter);
-    filter.connect(gain);
-    gain.connect(this.se.bgmGain!);
-    noise.start(t);
+    this.playNoiseDrum(ctx, t, { durationSec: 0.04, filterFreq: 6000, gainLevel: 0.1 });
   }
 
   // @Section(Sequencer Loop & Timing)

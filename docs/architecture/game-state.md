@@ -17,9 +17,6 @@ classDiagram
         +Object allEvidence
         +Array~string~ inventory
         +Object flags
-        +string trialPhase
-        +number testimonyIndex
-        +number statementIndex
         +addEvidence(evidenceId) boolean
         +hasEvidence(evidenceId) boolean
         +takePenalty() boolean

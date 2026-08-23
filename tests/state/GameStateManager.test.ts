@@ -1,6 +1,6 @@
 // @Architecture(descriptionShort="Unit tests for game state manager, inventory, and health", type="test", icon="database")
 import { describe, expect, it, beforeEach } from 'vitest';
-import { GameStateManager, EVIDENCE_CATALOG, gameState } from '../../src/state/index.js';
+import { GameStateManager, gameState } from '../../src/state/index.js';
 import type { EvidenceId } from '../../src/types/index.js';
 
 describe('GameStateManager', () => {
@@ -82,9 +82,9 @@ describe('GameStateManager', () => {
     expect(state.flags.ready_for_trial).toBe(true);
   });
 
-  it('exports singleton gameState and EVIDENCE_CATALOG correctly', () => {
+  it('exports singleton gameState with evidence catalog correctly', () => {
     expect(gameState).toBeInstanceOf(GameStateManager);
-    expect(EVIDENCE_CATALOG.insignia_abogado.name).toBe('Insignia de Abogado CH');
-    expect(Object.keys(EVIDENCE_CATALOG)).toHaveLength(8);
+    expect(gameState.allEvidence.insignia_abogado.name).toBe('Insignia de Abogado CH');
+    expect(Object.keys(gameState.allEvidence)).toHaveLength(8);
   });
 });

@@ -4,7 +4,7 @@
  * Operates on [[./EvidenceCatalog.ts|EVIDENCE_CATALOG]] and progression flags.
  */
 
-import type { EvidenceCatalogMap, EvidenceId, GameFlags, GameMode, LocationId, TrialPhase } from '../../types/index.js';
+import type { EvidenceCatalogMap, EvidenceId, GameFlags, GameMode, LocationId } from '../../types/index.js';
 import { EVIDENCE_CATALOG } from './EvidenceCatalog.js';
 
 export class GameStateManager {
@@ -27,9 +27,6 @@ export class GameStateManager {
     talked_chapulin_antenitas: false,
     ready_for_trial: false
   };
-  public trialPhase: TrialPhase = 'INTRO';
-  public testimonyIndex = 0;
-  public statementIndex = 0;
 
   // @Section(Inventory Operations)
   public addEvidence(evidenceId: EvidenceId): boolean {

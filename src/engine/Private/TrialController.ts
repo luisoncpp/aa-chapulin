@@ -110,12 +110,16 @@ export class TrialController {
     });
   }
 
-  private onPenaltyPenalty(): void {
+  private applyPenaltyEffects(): void {
     this.state.takePenalty();
     ModalManager.updateHealthUI(this.dom.healthBarEl, this.state.health, this.state.maxHealth);
     this.soundEngine.playDamage();
     VisualEffects.shakeScreen(this.dom.gameScreen, /*durationMs=*/ 450);
     VisualEffects.flashScreen(this.dom.flashEl);
+  }
+
+  private onPenaltyPenalty(): void {
+    this.applyPenaltyEffects();
 
     const penaltyDialogue: DialogueLine[] = [
       { cutin: 'objection_protesto', speaker: 'DEFENSA', text: '¡PROTESTO!', sfx: 'whoosh' },
@@ -155,11 +159,7 @@ export class TrialController {
       return;
     }
 
-    this.state.takePenalty();
-    ModalManager.updateHealthUI(this.dom.healthBarEl, this.state.health, this.state.maxHealth);
-    this.soundEngine.playDamage();
-    VisualEffects.shakeScreen(this.dom.gameScreen, /*durationMs=*/ 450);
-    VisualEffects.flashScreen(this.dom.flashEl);
+    this.applyPenaltyEffects();
     VisualEffects.showNotification(this.dom.gameNotificationEl, '¡Prueba incorrecta! Revisa tus pistas.');
     this.startClimax();
   }

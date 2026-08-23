@@ -1,7 +1,7 @@
 // @Architecture(descriptionShort="Unit tests validating case narrative scripts and contradictions", type="test", icon="layers")
 import { describe, expect, it } from 'vitest';
 import { CASE_SCRIPT } from '../../src/case/index.js';
-import { EVIDENCE_CATALOG } from '../../src/state/index.js';
+import { gameState } from '../../src/state/index.js';
 
 describe('Case Scripts Narrative Integrity', () => {
   it('validates investigation scenes and hotspot references', () => {
@@ -21,7 +21,7 @@ describe('Case Scripts Narrative Integrity', () => {
       expect(h.h).toBeGreaterThan(0);
       h.dialogue.forEach((line) => {
         if (line.addEvidence) {
-          expect(EVIDENCE_CATALOG[line.addEvidence]).toBeDefined();
+          expect(gameState.allEvidence[line.addEvidence]).toBeDefined();
         }
       });
     });

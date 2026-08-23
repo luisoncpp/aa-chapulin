@@ -1,11 +1,14 @@
+// @Architecture(descriptionShort="Type schemas for dialogue lines, scenes, and testimonies", type="types", icon="cube")
 /**
  * Narrative & Case Scripting Type Definitions
+ * Used by [[src/case/index.ts]], [[src/engine/Private/GameEngine.ts]], and [[src/engine/Private/TrialController.ts]].
  */
 
 import type { SFXName, TrackName } from './audio.js';
 import type { EvidenceId } from './evidence.js';
 import type { LocationId } from './state.js';
 
+// @Section(Dialogue & Visual Tags)
 export type SpeakerName =
   | 'DEFENSA'
   | 'CHAPULÍN'
@@ -59,6 +62,7 @@ export interface DialogueLine {
   addEvidence?: EvidenceId;
 }
 
+// @Section(Investigation Schema)
 export interface Hotspot {
   id: string;
   label: string;
@@ -85,6 +89,7 @@ export interface InvestigationScene {
   talkOptions: TalkOption[];
 }
 
+// @Section(Trial & Testimony Schema)
 export interface ContradictionRule {
   evidence: EvidenceId[];
   successDialogue: DialogueLine[];

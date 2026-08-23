@@ -1,5 +1,7 @@
+// @Architecture(descriptionShort="Controls crime scene hotspots, examine mode, and talk menu", type="controller", icon="panel")
 /**
  * Investigation Scene & Examine Mode Controller
+ * Coordinates with [[./ModalManager.ts]] and [[./VisualEffects.ts]].
  */
 
 import type { MidiMusicComposer, SoundEngine } from '../../audio/index.js';
@@ -22,6 +24,7 @@ export class InvestigationController {
     private readonly onQueueDialogue: (dialogue: any[], onComplete?: () => void) => void
   ) {}
 
+  // @Section(Investigation Scene Transition)
   public startInvestigation(location: LocationId = 'museum'): void {
     this.state.mode = 'INVESTIGATION';
     this.state.currentLocation = location;
@@ -41,6 +44,7 @@ export class InvestigationController {
     this.onQueueDialogue(scene.intro);
   }
 
+  // @Section(Hotspot Rendering & Clicks)
   public renderHotspots(hotspots: Hotspot[]): void {
     this.dom.hotspotsContainerEl.innerHTML = '';
     hotspots.forEach((h) => {
@@ -77,6 +81,7 @@ export class InvestigationController {
     });
   }
 
+  // @Section(Examine Mode & Tooltips)
   public startExamineMode(): void {
     this.isExamineActive = true;
     this.dom.hotspotsContainerEl.classList.add('visible-hotspots');
@@ -102,6 +107,7 @@ export class InvestigationController {
     }
   }
 
+  // @Section(Talk Dialog & Readiness)
   public openTalkMenu(): void {
     const scene = this.script.investigation[this.state.currentLocation];
     if (!scene || !scene.talkOptions) return;

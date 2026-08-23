@@ -1,5 +1,7 @@
+// @Architecture(descriptionShort="Step-sequenced 4-channel retro chiptune synthesizer tracker", type="service", icon="music")
 /**
  * Procedural MIDI Synthesizer & Soundtrack Sequencer
+ * Uses [[./SoundEngine.ts]] and definitions from [[./TrackCatalog.ts]].
  */
 
 import type { DrumHitType, InstrumentWaveType, TrackName } from '../../types/index.js';
@@ -22,24 +24,23 @@ export class MidiMusicComposer {
 
   constructor(private readonly se: SoundEngine) {}
 
+  // @Section(Pitch Frequency Conversion)
   public midiToFreq(midi: number): number {
     if (!midi || midi <= 0) return 0;
     return 440 * Math.pow(2, (midi - 69) / 12);
   }
 
+  // @Section(Note Voice Synthesis)
   public playNote(midi: number, durationSec: number, options: NoteOptions = {}): void {
     if (!this.canPlay() || !midi) return;
     const ctx = this.se.ctx!;
     const t = ctx.currentTime;
-    const freq = this.midiToFreq(midi);
-
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
     const filter = ctx.createBiquadFilter();
 
     osc.type = options.type ?? 'square';
-    osc.frequency.setValueAtTime(freq, t);
-
+    osc.frequency.setValueAtTime(this.midiToFreq(midi), t);
     filter.type = 'lowpass';
     filter.frequency.setValueAtTime(options.filterFreq ?? 2800, t);
 
@@ -52,16 +53,15 @@ export class MidiMusicComposer {
     osc.connect(filter);
     filter.connect(gain);
     gain.connect(this.se.bgmGain!);
-
     osc.start(t);
     osc.stop(t + durationSec + 0.05);
   }
 
+  // @Section(Drum Synthesis Voices)
   public playDrum(type: DrumHitType): void {
     if (!this.canPlay() || type === '0') return;
     const ctx = this.se.ctx!;
     const t = ctx.currentTime;
-
     if (type === 'K') return this.playKick(ctx, t);
     if (type === 'S') return this.playSnare(ctx, t);
     if (type === 'H') return this.playHiHat(ctx, t);
@@ -73,10 +73,8 @@ export class MidiMusicComposer {
     osc.type = 'sine';
     osc.frequency.setValueAtTime(140, t);
     osc.frequency.linearRampToValueAtTime(35, t + 0.12);
-
     gain.gain.setValueAtTime(0.4, t);
     gain.gain.linearRampToValueAtTime(0.001, t + 0.12);
-
     osc.connect(gain);
     gain.connect(this.se.bgmGain!);
     osc.start(t);
@@ -88,17 +86,14 @@ export class MidiMusicComposer {
     const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
     const data = buffer.getChannelData(0);
     for (let i = 0; i < bufferSize; i++) data[i] = Math.random() * 2 - 1;
-
     const noise = ctx.createBufferSource();
     noise.buffer = buffer;
     const filter = ctx.createBiquadFilter();
     filter.type = 'highpass';
     filter.frequency.setValueAtTime(1100, t);
-
     const gain = ctx.createGain();
     gain.gain.setValueAtTime(0.25, t);
     gain.gain.linearRampToValueAtTime(0.001, t + 0.12);
-
     noise.connect(filter);
     filter.connect(gain);
     gain.connect(this.se.bgmGain!);
@@ -110,23 +105,21 @@ export class MidiMusicComposer {
     const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
     const data = buffer.getChannelData(0);
     for (let i = 0; i < bufferSize; i++) data[i] = Math.random() * 2 - 1;
-
     const noise = ctx.createBufferSource();
     noise.buffer = buffer;
     const filter = ctx.createBiquadFilter();
     filter.type = 'highpass';
     filter.frequency.setValueAtTime(6000, t);
-
     const gain = ctx.createGain();
     gain.gain.setValueAtTime(0.1, t);
     gain.gain.linearRampToValueAtTime(0.001, t + 0.04);
-
     noise.connect(filter);
     filter.connect(gain);
     gain.connect(this.se.bgmGain!);
     noise.start(t);
   }
 
+  // @Section(Sequencer Loop & Timing)
   public playTrack(trackName: TrackName): void {
     this.queuedTrack = trackName;
     const track = TRACK_CATALOG[trackName];

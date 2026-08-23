@@ -1,8 +1,11 @@
+// @Architecture(descriptionShort="Synthesizes gavel strikes, desk slams, and whoosh sounds", type="synthesizer", icon="bolt")
 /**
  * Procedural Courtroom Sound Effects Synthesizer
+ * Generates courtroom audio waveforms for [[./SoundEngine.ts]].
  */
 
 export class CourtSfx {
+  // @Section(Gavel Synthesis)
   public static playGavel(ctx: AudioContext, dest: GainNode): void {
     const t = ctx.currentTime;
     CourtSfx.playGavelThud(ctx, dest, t);
@@ -50,6 +53,7 @@ export class CourtSfx {
     noise.start(t);
   }
 
+  // @Section(Desk Slam Synthesis)
   public static playDeskSlam(ctx: AudioContext, dest: GainNode): void {
     const t = ctx.currentTime;
     const osc = ctx.createOscillator();
@@ -73,6 +77,7 @@ export class CourtSfx {
     osc.stop(t + 0.32);
   }
 
+  // @Section(Objection Whoosh Synthesis)
   public static playObjectionWhoosh(
     ctx: AudioContext,
     dest: GainNode,
@@ -109,6 +114,7 @@ export class CourtSfx {
     }, /*delayInMs=*/ 110);
   }
 
+  // @Section(Damage Synthesis)
   public static playDamage(ctx: AudioContext, dest: GainNode): void {
     const t = ctx.currentTime;
     const osc = ctx.createOscillator();

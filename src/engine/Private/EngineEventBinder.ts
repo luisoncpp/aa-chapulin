@@ -1,5 +1,7 @@
+// @Architecture(descriptionShort="Binds DOM click listeners and keyboard shortcuts", type="binder", icon="plug")
 /**
  * Engine DOM & Keyboard Event Binder
+ * Dispatches UI interactions to [[./InvestigationController.ts]] and [[./TrialController.ts]].
  */
 
 import { soundEngine } from '../../audio/index.js';
@@ -27,6 +29,7 @@ export class EngineEventBinder {
     EngineEventBinder.bindTrial(config);
   }
 
+  // @Section(Audio & Splash Bindings)
   private static bindStartAndAudio(config: EventBinderConfig): void {
     const { dom, onStartGame } = config;
     document.getElementById('btn-start-game')?.addEventListener('click', () => onStartGame());
@@ -38,6 +41,7 @@ export class EngineEventBinder {
     document.addEventListener('click', () => soundEngine.ensureActive(), { once: false });
   }
 
+  // @Section(Dialogue Advance Bindings)
   private static bindDialogueAdvance(config: EventBinderConfig): void {
     const { dom, onAdvance } = config;
     dom.dialogueBoxEl.addEventListener('click', (e) => {
@@ -49,6 +53,7 @@ export class EngineEventBinder {
     });
   }
 
+  // @Section(Court Record Bindings)
   private static bindCourtRecord(config: EventBinderConfig): void {
     const { dom, onOpenCourtRecord, onPresentFromModal } = config;
     document.getElementById('btn-court-record')?.addEventListener('click', (e) => {
@@ -65,6 +70,7 @@ export class EngineEventBinder {
     });
   }
 
+  // @Section(Investigation Bindings)
   private static bindInvestigation(config: EventBinderConfig): void {
     const { dom, investigation } = config;
     document.getElementById('btn-inv-examine')?.addEventListener('click', (e) => {
@@ -89,6 +95,7 @@ export class EngineEventBinder {
     });
   }
 
+  // @Section(Trial Bindings)
   private static bindTrial(config: EventBinderConfig): void {
     const { trial, onOpenCourtRecord } = config;
     document.getElementById('btn-inv-trial')?.addEventListener('click', (e) => {

@@ -6,10 +6,10 @@ Operational guide for the procedural Web Audio API synthesizer, MIDI music track
 - Player clicks "COMENZAR JUICIO (PLAY)" on the start splash screen, clicks the audio mute button, clicks anywhere on the screen, or game events request SFX or soundtrack track playback.
 
 ## 2. Entry Point
-- [`soundEngine.init()`](file:///c:/Proyectos/ace-attorney-gemini/js/audio_engine.js#L16) / [`soundEngine.ensureActive()`](file:///c:/Proyectos/ace-attorney-gemini/js/audio_engine.js#L59)
-- [`soundEngine.toggleMute()`](file:///c:/Proyectos/ace-attorney-gemini/js/audio_engine.js#L67)
-- [`midiComposer.playTrack(trackName)`](file:///c:/Proyectos/ace-attorney-gemini/js/midi_music.js#L295)
-- [`soundEngine.[sfxMethod]()`](file:///c:/Proyectos/ace-attorney-gemini/js/audio_engine.js#L78)
+- `soundEngine.init()` / `soundEngine.ensureActive()` in [[src/audio/Private/SoundEngine.ts#AudioContext Lifecycle & Gains]]
+- `soundEngine.toggleMute()` in [[src/audio/Private/SoundEngine.ts#Mute Control & State]]
+- `midiComposer.playTrack(trackName)` in [[src/audio/Private/MidiMusicComposer.ts#Sequencer Loop & Timing]]
+- `soundEngine.playSFX(sfxName)` in [[src/audio/Private/SoundEngine.ts#SFX Routing & Dispatcher]]
 
 ## 3. Step-by-Step Sequence
 
@@ -25,7 +25,7 @@ Operational guide for the procedural Web Audio API synthesizer, MIDI music track
 ### Procedural Music Sequencer Loop
 1. `midiComposer.playTrack(trackName)`:
    - Halts any existing tracker timer via `clearInterval()`.
-   - Looks up track definition (BPM, step length, Bass, Lead, Chords, Drums).
+   - Looks up track definition from [[src/audio/Private/TrackCatalog.ts]] (BPM, step length, Bass, Lead, Chords, Drums).
    - Computes 16th-note step interval: `stepTimeMs = (60000 / bpm) / 4`.
    - Starts interval timer advancing `step` index every `stepTimeMs` milliseconds:
      - **Bass**: Synthesizes triangle wave note with ADSR envelope through `bgmGain`.
@@ -37,7 +37,7 @@ Operational guide for the procedural Web Audio API synthesizer, MIDI music track
 ### On-Demand SFX Generation
 1. Game Engine calls specific SFX method (e.g. `playGavel()`):
    - Ensures `ctx.state` is active.
-   - Instantiates transient oscillators/noise buffer sources and gain nodes.
+   - Instantiates transient oscillators/noise buffer sources and gain nodes via [[src/audio/Private/CourtSfx.ts]] or [[src/audio/Private/NoveltySfx.ts]].
    - Applies frequency sweeps and linear gain ramps (`setValueAtTime`, `linearRampToValueAtTime`).
    - Connects node chain to `sfxGain`.
    - Calls `source.start(t)` and `source.stop(t + duration)`.
@@ -50,7 +50,7 @@ Operational guide for the procedural Web Audio API synthesizer, MIDI music track
    - Updates button icon (`🔇` / `🔊`).
 
 ## 4. Reads
-- `midiComposer.getTracks()`
+- `TRACK_CATALOG` in [[src/audio/Private/TrackCatalog.ts]]
 - `soundEngine.isMuted`
 - `soundEngine.ctx.currentTime`
 
@@ -65,8 +65,11 @@ Operational guide for the procedural Web Audio API synthesizer, MIDI music track
 - Real-time audio signal generation to default system sound output.
 
 ## 7. Files to Inspect
-- [`js/audio_engine.js`](file:///c:/Proyectos/ace-attorney-gemini/js/audio_engine.js) (complete file)
-- [`js/midi_music.js`](file:///c:/Proyectos/ace-attorney-gemini/js/midi_music.js) (complete file)
+- [[src/audio/Private/SoundEngine.ts]]
+- [[src/audio/Private/MidiMusicComposer.ts]]
+- [[src/audio/Private/CourtSfx.ts]]
+- [[src/audio/Private/NoveltySfx.ts]]
+- [[src/audio/Private/TrackCatalog.ts]]
 
 ## 8. Common Failure Modes
 - **Audio Suspended on Page Load**: If the user has not interacted with the DOM, browser policies suspend `AudioContext`. Resolved by the mandatory start splash card.

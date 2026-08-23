@@ -1,9 +1,12 @@
+// @Architecture(descriptionShort="Defines courtroom intro and witness testimonies 1 and 2", type="data", icon="layers")
 /**
  * Case 1 Courtroom Trial Script (Intro, Testimony 1 & Testimony 2)
+ * Consumed by [[src/engine/Private/TrialController.ts]].
  */
 
 import type { DialogueLine, Testimony } from '../../types/index.js';
 
+// @Section(Courtroom Intro Dialogue)
 export const TRIAL_INTRO: DialogueLine[] = [
   { bg: 'assets/bg_judge.jpg', speaker: 'JUEZ', pose: 'judge_gavel', text: '¡Silencio en la sala! Se abre la sesión del tribunal superior.', sfx: 'gavel', bgm: 'trial' },
   { bg: 'assets/bg_judge.jpg', speaker: 'JUEZ', pose: 'judge_neutral', text: '¿Está lista la fiscalía para presentar sus cargos?' },
@@ -13,6 +16,7 @@ export const TRIAL_INTRO: DialogueLine[] = [
   { bg: 'assets/bg_judge.jpg', speaker: 'JUEZ', pose: 'judge_neutral', text: 'Muy bien. Que el testigo principal de la fiscalía pase al estrado.' }
 ];
 
+// @Section(Testimony 1: Assault Weapon)
 export const TESTIMONY_1: Testimony = {
   title: 'Testimonio del Testigo: El Asalto en el Museo',
   witness: 'El Tripaseca',
@@ -68,6 +72,7 @@ export const TESTIMONY_1: Testimony = {
   ]
 };
 
+// @Section(Testimony 2: Escape Route)
 export const TESTIMONY_2: Testimony = {
   title: 'Testimonio del Testigo: La Fuga de la Escena',
   witness: 'El Tripaseca',

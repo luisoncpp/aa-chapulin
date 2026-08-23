@@ -1,5 +1,7 @@
+// @Architecture(descriptionShort="Manages Web Audio API context lifecycle and SFX routing", type="service", icon="bolt")
 /**
  * Web Audio API Sound Synthesizer & AudioContext Lifecycle Manager
+ * Delegates SFX synthesis to [[./CourtSfx.ts]] and [[./NoveltySfx.ts]].
  */
 
 import type { SFXName } from '../../types/index.js';
@@ -14,6 +16,7 @@ export class SoundEngine {
   public initialized = false;
   public isMuted = false;
 
+  // @Section(AudioContext Lifecycle & Gains)
   public init(): void {
     if (this.initialized && this.ctx) {
       this.resume();
@@ -59,6 +62,7 @@ export class SoundEngine {
     this.resume();
   }
 
+  // @Section(Mute Control & State)
   public toggleMute(): boolean {
     this.isMuted = !this.isMuted;
     if (this.masterGain && this.ctx) {
@@ -67,6 +71,7 @@ export class SoundEngine {
     return this.isMuted;
   }
 
+  // @Section(SFX Routing & Dispatcher)
   public playSFX(sfxName: SFXName): void {
     if (!this.canPlay()) return;
     switch (sfxName) {

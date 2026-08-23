@@ -1,9 +1,12 @@
+// @Architecture(descriptionShort="Defines final confrontation, culprit breakdown, and verdict", type="data", icon="layers")
 /**
  * Case 1 Final Climax & Verdict Script
+ * Consumed by [[src/engine/Private/TrialController.ts]].
  */
 
 import type { ClimaxDefinition } from '../../types/index.js';
 
+// @Section(Climax Confrontation & Dilemma)
 export const CLIMAX_DATA: ClimaxDefinition = {
   dialogue: [
     { speaker: 'SUPER SAM', text: 'Hold it right there! Si Tripaseca es el ladrón... ¿dónde está la Chicharra de Oro en este preciso instante?!', pose: 'supersam_point', sfx: 'desk_slam' },
@@ -11,6 +14,7 @@ export const CLIMAX_DATA: ClimaxDefinition = {
     { speaker: 'DEFENSA', text: '(Es mi última oportunidad. Las Antenitas de Vinil están detectando la presencia del enemigo... ¡justo en el estrado del testigo!)' }
   ],
   presentTarget: ['antenitas_vinil', 'bolsa_dolares'],
+  // @Section(Guilty Confession & Not Guilty Verdict)
   verdict: [
     { cutin: 'objection_protesto', speaker: 'DEFENSA', text: '¡PROTESTO!', sfx: 'whoosh', bgm: 'pursuit' },
     { speaker: 'DEFENSA', text: '¡Mis Antenitas de Vinil están vibrando con fuerza máxima apuntando al bolsillo de Tripaseca!', pose: 'chapulin_point' },

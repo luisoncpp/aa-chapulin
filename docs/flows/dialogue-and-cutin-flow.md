@@ -6,10 +6,10 @@ Operational guide for dialogue queueing, typewriter text animation, audio blip p
 - Script dialogue is queued, or the player advances dialogue via mouse click, `Space`, or `Enter` keys.
 
 ## 2. Entry Point
-- [`gameEngine.queueDialogue(dialogueArray, onComplete)`](file:///c:/Proyectos/ace-attorney-gemini/js/engine.js#L216)
-- [`gameEngine.handleAdvance()`](file:///c:/Proyectos/ace-attorney-gemini/js/engine.js#L198)
-- [`gameEngine.renderDialogueLine(line)`](file:///c:/Proyectos/ace-attorney-gemini/js/engine.js#L225)
-- [`gameEngine.startTypewriter(text)`](file:///c:/Proyectos/ace-attorney-gemini/js/engine.js#L271)
+- `engine.queueDialogue(dialogueArray, onComplete)` in [[src/engine/Private/GameEngine.ts#Dialogue Flow & Queue]]
+- `engine.handleAdvance()` in [[src/engine/Private/GameEngine.ts#Dialogue Flow & Queue]]
+- `engine.renderDialogueLine(line)` in [[src/engine/Private/GameEngine.ts#Line Rendering & Staging]]
+- `typewriter.start(text)` in [[src/engine/Private/Typewriter.ts#Typewriter Stepping & Chirping]]
 
 ## 3. Step-by-Step Sequence
 
@@ -44,9 +44,9 @@ sequenceDiagram
 
 ### Dialogue Line Rendering Sequence
 1. **Background Switch**: If `line.bg` is present, updates `#scene-bg` background URL.
-2. **Soundtrack Switch**: If `line.bgm` is present, `midiComposer.playTrack()` starts the requested chiptune track.
+2. **Soundtrack Switch**: If `line.bgm` is present, `midiComposer.playTrack()` starts the requested chiptune track from [[src/audio/Private/TrackCatalog.ts]].
 3. **Sound Effect**: If `line.sfx` is present, `triggerSFX(sfx)` runs corresponding synthesizer audio and optional screen effects (`gavel`, `desk_slam`, `whoosh`, `realization`, `damage`, `chipote`, `chicharra`).
-4. **Cut-in Animation**: If `line.cutin` is present, `showCutin(cutin)` applies `.cutin-animate` keyframes to `#cutin-overlay`, shakes the screen, and flashes white.
+4. **Cut-in Animation**: If `line.cutin` is present, `VisualEffects.showCutin(cutin)` applies `.cutin-animate` keyframes to `#cutin-overlay`, shakes the screen, and flashes white.
 5. **Sprite Management**:
    - If `line.pose` is set: updates `#character-sprite` `src` and removes `.hidden`.
    - If `line.speaker` is `'DEFENSA'` or `'NARRADOR'`: hides `#character-sprite`.
@@ -55,16 +55,16 @@ sequenceDiagram
 8. **Typewriter Effect**: Starts a 28ms `setInterval` timer appending characters one by one, playing `soundEngine.playTextBlip()` on every second non-whitespace character.
 
 ## 4. Reads
-- `gameEngine.dialogueQueue`
-- `gameEngine.isTyping`
-- `gameEngine.fullTextToType`
+- `engine.dialogueQueue`
+- `typewriter.isTyping`
+- `typewriter.fullText`
 - `line` properties (`bg`, `bgm`, `sfx`, `cutin`, `pose`, `speaker`, `text`, `addEvidence`)
 
 ## 5. Writes
-- `gameEngine.isTyping`
-- `gameEngine.typeIdx`
-- `gameEngine.dialogueQueue`
-- `gameEngine.onQueueFinish`
+- `typewriter.isTyping`
+- `typewriter.typeIdx`
+- `engine.dialogueQueue`
+- `engine.onQueueFinish`
 - `#dialogue-text.textContent`
 - `#speaker-name.textContent`
 
@@ -74,8 +74,10 @@ sequenceDiagram
 - Audio synthesis oscillator creation and termination.
 
 ## 7. Files to Inspect
-- [`js/engine.js`](file:///c:/Proyectos/ace-attorney-gemini/js/engine.js) (lines 198–369)
-- [`style.css`](file:///c:/Proyectos/ace-attorney-gemini/style.css) (lines 307–504)
+- [[src/engine/Private/GameEngine.ts]]
+- [[src/engine/Private/Typewriter.ts]]
+- [[src/engine/Private/VisualEffects.ts]]
+- [[style.css]]
 
 ## 8. Common Failure Modes
 - **Text Skipping**: Clicking rapidly during an empty queue fires the completion callback immediately.

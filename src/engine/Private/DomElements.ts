@@ -1,5 +1,7 @@
+// @Architecture(descriptionShort="Caches and strongly types DOM element handles", type="util", icon="panel")
 /**
  * Strongly-Typed Cached DOM Element References
+ * Lookup helper for [[./GameEngine.ts]].
  */
 
 export interface DomElements {
@@ -33,6 +35,7 @@ export interface DomElements {
   gameNotificationEl: HTMLElement;
 }
 
+// @Section(DOM Element Cache)
 export function getDomElements(): DomElements {
   return {
     gameScreen: document.getElementById('game-screen')!,

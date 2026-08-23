@@ -1,7 +1,10 @@
+// @Architecture(descriptionShort="Type schemas for sound effects and MIDI track definitions", type="types", icon="cube")
 /**
  * Audio Subsystem Type Definitions
+ * Declares sound effect names and procedural MIDI tracker schemas for [[src/audio/index.ts]].
  */
 
+// @Section(SFX Names)
 export type SFXName =
   | 'gavel'
   | 'desk_slam'
@@ -12,6 +15,7 @@ export type SFXName =
   | 'chicharra'
   | 'text';
 
+// @Section(Track & Sequencer Types)
 export type TrackName =
   | 'trial'
   | 'cross_exam_moderato'

@@ -1,6 +1,6 @@
 # Case 1: El Juicio del Escuadrón Colorado
 
-Detailed narrative and design specification for Case 1 ("Turnabout of the Red Grasshopper").
+Detailed narrative and design specification for Case 1 ("Turnabout of the Red Grasshopper"), configured in [[src/case/case.group.md]].
 
 ## Case Synopsis
 
@@ -49,16 +49,16 @@ flowchart TD
     C4 --> Verdict[Verdict: INOCENTE / Case Closed]
 ```
 
-1. **Testimony 1 (The Assault)**:
+1. **Testimony 1 (The Assault)** ([[src/case/Private/case1_trial.ts#Testimony 1: Assault Weapon]]):
    - *Tripaseca's Claim*: Saw Chapulín strike Alma Negra with his "lethal" Chipote Chillón.
    - *Contradiction*: Present **Chipote Chillón** or **Informe Médico**. The Chipote is soft hollow vinyl and emits a comedy squeak; the medical report proves the guard was knocked out by a dense sack of metal coins.
 
-2. **Testimony 2 (The Break-in & Escape)**:
+2. **Testimony 2 (The Break-in & Escape)** ([[src/case/Private/case1_trial.ts#Testimony 2: Escape Route]]):
    - *Tripaseca's Claim 1*: Culprit forced the locks and broke the glass case from the outside.
    - *Contradiction 1*: Present **Pastillas de Chiquitolina**. Glass fell outward; the culprit shrank, crawled through the duct, and broke the glass from inside.
    - *Tripaseca's Claim 2*: Security photo shows Chapulín running toward the front exit.
    - *Contradiction 2*: Present **Foto del Sospechoso**. The chest emblem reads "HC" instead of "CH", proving it is a mirror reflection; the culprit was actually running toward the rear loading dock.
 
-3. **Final Climax (The Hidden Loot)**:
+3. **Final Climax (The Hidden Loot)** ([[src/case/Private/case1_climax.ts#Climax Confrontation & Dilemma]]):
    - Super Sam demands proof of where the Chicharra is right now.
    - *Contradiction*: Present **Antenitas de Vinil**. The antennae vibrate violently towards Tripaseca's coat pocket, exposing the stolen relic.

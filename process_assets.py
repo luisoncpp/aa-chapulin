@@ -1,3 +1,9 @@
+# @Architecture(descriptionShort="Extracts AI sprite sheets via magenta chroma-keying and slicing", type="pipeline", icon="wrench")
+"""
+Asset Generation & Sprite Extraction Script
+Keys out magenta backgrounds and crops 2x2 character/cut-in grids into assets/.
+"""
+
 import os
 import shutil
 from PIL import Image
@@ -16,6 +22,7 @@ def find_latest(pattern):
     matching.sort()
     return os.path.join(ARTIFACT_DIR, matching[-1])
 
+# @Section(Magenta Chroma-Keying)
 def chroma_key_pink(img):
     """Convert bright pink/magenta background to transparent alpha."""
     img = img.convert("RGBA")
@@ -29,6 +36,7 @@ def chroma_key_pink(img):
     data[:, :, 3] = np.where(is_pink, 0, 255)
     return Image.fromarray(data, mode="RGBA")
 
+# @Section(Grid Cropping & Slicing)
 def crop_grid(img_path, rows=2, cols=2, key_pink=True):
     img = Image.open(img_path)
     if key_pink:
@@ -50,6 +58,7 @@ def save_image(img, filename):
     img.save(out_path)
     print(f"Saved: {filename} ({img.size})")
 
+# @Section(Batch Extraction Runner)
 def process_all():
     print("Processing assets...")
     

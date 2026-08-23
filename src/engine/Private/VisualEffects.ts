@@ -1,11 +1,14 @@
+// @Architecture(descriptionShort="Renders cut-in overlays, screen shakes, flashes, and confetti", type="view", icon="layers")
 /**
  * Visual Special Effects, Overlays, and Particle Synthesizer
+ * Operates on DOM nodes for [[./GameEngine.ts]].
  */
 
 import type { CutinName, PoseName } from '../../types/index.js';
 import type { DomElements } from './DomElements.js';
 
 export class VisualEffects {
+  // @Section(Character Pose Staging)
   public static setPose(charSpriteEl: HTMLImageElement, poseName: PoseName): void {
     if (!poseName) return;
     charSpriteEl.src = `assets/${poseName}.png`;
@@ -16,6 +19,7 @@ export class VisualEffects {
     charSpriteEl.classList.add('hidden');
   }
 
+  // @Section(Screen Shakes & Flashes)
   public static shakeScreen(gameScreen: HTMLElement, durationMs = 350): void {
     gameScreen.classList.add('screen-shake');
     setTimeout(/*removeShake*/ () => {
@@ -34,6 +38,7 @@ export class VisualEffects {
     }, /*delayInMs=*/ 120);
   }
 
+  // @Section(Dramatic Cut-in Overlays)
   public static showCutin(dom: DomElements, cutinName: CutinName): void {
     dom.cutinImgEl.src = `assets/${cutinName}.png`;
     dom.cutinOverlayEl.classList.remove('hidden');
@@ -47,6 +52,7 @@ export class VisualEffects {
     }, /*delayInMs=*/ 1100);
   }
 
+  // @Section(Confetti Celebration)
   public static triggerConfetti(containerEl: HTMLElement): void {
     containerEl.classList.remove('hidden');
     const colors = ['#FFD700', '#FF0000', '#00E5FF', '#76FF03', '#FFFFFF'];

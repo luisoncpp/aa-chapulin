@@ -1,15 +1,17 @@
+// @Architecture(descriptionShort="Type schemas for game modes, locations, and progression flags", type="types", icon="cube")
 /**
  * Game State & Progression Type Definitions
+ * Consumed by [[src/state/Private/GameStateManager.ts]].
  */
 
-import type { EvidenceId } from './evidence.js';
-
+// @Section(Mode & Location Enums)
 export type GameMode = 'INVESTIGATION' | 'TRIAL';
 
 export type LocationId = 'museum' | 'detention';
 
 export type TrialPhase = 'INTRO' | 'TESTIMONY_1' | 'TESTIMONY_2' | 'CLIMAX' | 'VERDICT';
 
+// @Section(Progression Flags)
 export interface GameFlags {
   examined_pedestal: boolean;
   examined_armor: boolean;

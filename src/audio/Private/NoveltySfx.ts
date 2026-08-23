@@ -1,5 +1,7 @@
+// @Architecture(descriptionShort="Synthesizes typewriter blips, chimes, squeaks, and buzzers", type="synthesizer", icon="bolt")
 /**
  * Procedural Character and Event Sound Effects Synthesizer
+ * Generates typewriter, comedic, and realization SFX for [[./SoundEngine.ts]].
  */
 
 import type { InstrumentWaveType } from '../../types/index.js';
@@ -11,6 +13,7 @@ export interface ChordOptions {
 }
 
 export class NoveltySfx {
+  // @Section(Typewriter Blip Synthesis)
   public static playTextBlip(ctx: AudioContext, dest: GainNode, pitchOffset = 0): void {
     const t = ctx.currentTime;
     const osc = ctx.createOscillator();
@@ -30,6 +33,7 @@ export class NoveltySfx {
     osc.stop(t + 0.045);
   }
 
+  // @Section(Realization Chime Synthesis)
   public static playRealization(ctx: AudioContext, dest: GainNode): void {
     const t = ctx.currentTime;
     const freqs = [880, 1174.66, 1760, 2349.32];
@@ -51,6 +55,7 @@ export class NoveltySfx {
     });
   }
 
+  // @Section(Chipote & Chicharra Synthesis)
   public static playChipoteSqueak(ctx: AudioContext, dest: GainNode): void {
     const t = ctx.currentTime;
     const osc = ctx.createOscillator();
@@ -89,6 +94,7 @@ export class NoveltySfx {
     osc.stop(t + 0.46);
   }
 
+  // @Section(Harmonic Chords)
   public static playChord(
     ctx: AudioContext,
     dest: GainNode,

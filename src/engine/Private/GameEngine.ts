@@ -1,5 +1,7 @@
+// @Architecture(descriptionShort="Main coordinator managing dialogue flow, scenes, and events", type="controller", icon="layout")
 /**
  * Ace Attorney Game Engine Coordinator
+ * Connects [[./Typewriter.ts]], [[./InvestigationController.ts]], and [[./TrialController.ts]].
  */
 
 import { midiComposer, soundEngine } from '../../audio/index.js';
@@ -41,6 +43,7 @@ export class GameEngine {
     );
   }
 
+  // @Section(Initialization & Bootstrapping)
   public init(): void {
     EngineEventBinder.bind({
       dom: this.dom,
@@ -68,6 +71,7 @@ export class GameEngine {
     this.investigation.startInvestigation('museum');
   }
 
+  // @Section(Dialogue Flow & Queue)
   public handleAdvance(): void {
     if (!this.hasStarted) {
       this.startGame();
@@ -99,6 +103,7 @@ export class GameEngine {
     }
   }
 
+  // @Section(Line Rendering & Staging)
   public renderDialogueLine(line: DialogueLine): void {
     if (!line) return;
     if (line.bg) this.dom.bgEl.style.backgroundImage = `url('${line.bg}')`;
@@ -140,6 +145,7 @@ export class GameEngine {
     }
   }
 
+  // @Section(Evidence Presentation Handling)
   private openCourtRecord(isTrialPresent: boolean): void {
     ModalManager.openCourtRecord({
       dom: this.dom,

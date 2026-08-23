@@ -1,9 +1,12 @@
+// @Architecture(descriptionShort="Master database of case evidence items and descriptions", type="catalog", icon="database")
 /**
  * Master Evidence Catalog Database
+ * Registry for [[./GameStateManager.ts]] and [[src/engine/Private/ModalManager.ts]].
  */
 
 import type { EvidenceCatalogMap } from '../../types/index.js';
 
+// @Section(Evidence Registry)
 export const EVIDENCE_CATALOG: EvidenceCatalogMap = {
   insignia_abogado: {
     id: 'insignia_abogado',

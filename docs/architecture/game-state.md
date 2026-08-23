@@ -1,10 +1,10 @@
 # Game State & Inventory Architecture
 
-Technical guide for [`src/state/`](file:///c:/Proyectos/ace-attorney-gemini/src/state/).
+Technical guide for [[src/state/index.ts]], configured in [[src/state/state.group.md]].
 
 ## Overview
 
-The `GameState` class is the single source of truth for the game's logical progression, inventory management, penalty/health meters, and investigation state.
+The `GameStateManager` class ([[src/state/Private/GameStateManager.ts]]) is the single source of truth for the game's logical progression, inventory management, penalty/health meters, and investigation state.
 
 ```mermaid
 classDiagram
@@ -31,7 +31,7 @@ classDiagram
 ## Data Model
 
 ### 1. Evidence Registry (`allEvidence`)
-Contains the master catalog of all possible evidence items in the case:
+Contains the master catalog defined in [[src/state/Private/EvidenceCatalog.ts#Evidence Registry]]:
 
 | Evidence ID | Name | Role in Case |
 |-------------|------|--------------|
@@ -47,16 +47,16 @@ Contains the master catalog of all possible evidence items in the case:
 ### 2. Player Inventory (`inventory`)
 - Array of active evidence IDs currently held by the player.
 - Initialized with `['insignia_abogado']`.
-- Updated via `addEvidence(evidenceId)` which prevents duplicate additions.
+- Updated via `addEvidence(evidenceId)` in [[src/state/Private/GameStateManager.ts#Inventory Operations]] which prevents duplicate additions.
 
 ### 3. Penalty System (`health` & `takePenalty`)
 - Defense starts with `5` health points (displayed as 5 green exclamation points `!` on the HUD).
-- Each invalid evidence submission deducts `1` point.
+- Each invalid evidence submission deducts `1` point via `takePenalty()` in [[src/state/Private/GameStateManager.ts#Penalty & Health]].
 - When `health` reaches `0`, `gameOver` is set to `true`, prompting a retry modal that restores health and resets the current trial phase.
 
 ### 4. Progression & Readiness Validation
 - Investigation progress is tracked via `flags`.
-- `checkTrialReadiness()` verifies that all 5 critical clues have been discovered:
+- `checkTrialReadiness()` in [[src/state/Private/GameStateManager.ts#Investigation Readiness]] verifies that all 5 critical clues have been discovered:
   1. `chipote_chillon`
   2. `pastillas_chiquitolina`
   3. `antenitas_vinil`

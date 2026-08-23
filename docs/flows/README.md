@@ -14,9 +14,9 @@ This folder is for:
 
 ## Flow Index
 
-| File | Scope | Trigger |
-|------|-------|---------|
-| [`investigation-flow.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/flows/investigation-flow.md) | Crime Scene Exploration | Player clicks Examine, Talk, Move, or Hotspots during investigation. |
-| [`trial-cross-examination-flow.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/flows/trial-cross-examination-flow.md) | Courtroom Cross-Examination | Player navigates statements, clicks "Presionar", presents evidence, or reaches verdict. |
-| [`dialogue-and-cutin-flow.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/flows/dialogue-and-cutin-flow.md) | Dialogue & Animation Sequencing | Engine queues dialogue lines, types text, displays cut-in shouts, and shakes screen. |
-| [`audio-synthesis-flow.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/flows/audio-synthesis-flow.md) | Web Audio & MIDI Lifecycle | Player clicks Start Game splash, triggers SFX, or soundtrack track transitions occur. |
+| File | Scope | Trigger | Relevant Modules |
+|------|-------|---------|------------------|
+| [[docs/flows/investigation-flow.md\|investigation-flow.md]] | Crime Scene Exploration | Player clicks Examine, Talk, Move, or Hotspots during investigation. | [[src/engine/Private/InvestigationController.ts]], [[src/state/Private/GameStateManager.ts]] |
+| [[docs/flows/trial-cross-examination-flow.md\|trial-cross-examination-flow.md]] | Courtroom Cross-Examination | Player navigates statements, clicks "Presionar", presents evidence, or reaches verdict. | [[src/engine/Private/TrialController.ts]], [[src/case/Private/case1_trial.ts]] |
+| [[docs/flows/dialogue-and-cutin-flow.md\|dialogue-and-cutin-flow.md]] | Dialogue & Animation Sequencing | Engine queues dialogue lines, types text, displays cut-in shouts, and shakes screen. | [[src/engine/Private/GameEngine.ts]], [[src/engine/Private/Typewriter.ts]], [[src/engine/Private/VisualEffects.ts]] |
+| [[docs/flows/audio-synthesis-flow.md\|audio-synthesis-flow.md]] | Web Audio & MIDI Lifecycle | Player clicks Start Game splash, triggers SFX, or soundtrack track transitions occur. | [[src/audio/Private/SoundEngine.ts]], [[src/audio/Private/MidiMusicComposer.ts]] |

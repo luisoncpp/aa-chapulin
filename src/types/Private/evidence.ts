@@ -1,7 +1,10 @@
+// @Architecture(descriptionShort="Type schemas for evidence items and court record catalog", type="types", icon="cube")
 /**
  * Evidence & Court Record Type Definitions
+ * Used by [[src/state/Private/EvidenceCatalog.ts]] and [[src/engine/Private/ModalManager.ts]].
  */
 
+// @Section(Evidence Identifiers & Items)
 export type EvidenceId =
   | 'insignia_abogado'
   | 'chipote_chillon'

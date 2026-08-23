@@ -1,5 +1,7 @@
+// @Architecture(descriptionShort="Controls testimony statements, pressing, and contradictions", type="controller", icon="panel")
 /**
  * Courtroom Trial & Cross-Examination Controller
+ * Drives cross-examinations and delegates UI to [[./ModalManager.ts]] and [[./VisualEffects.ts]].
  */
 
 import type { MidiMusicComposer, SoundEngine } from '../../audio/index.js';
@@ -24,6 +26,7 @@ export class TrialController {
     private readonly onOpenCourtRecord: (isTrialPresent: boolean) => void
   ) {}
 
+  // @Section(Trial Launch & Intro)
   public startTrial(): void {
     this.state.mode = 'TRIAL';
     this.dom.investigationNavEl.classList.add('hidden');
@@ -37,6 +40,7 @@ export class TrialController {
     });
   }
 
+  // @Section(Testimony Navigation)
   public startTestimony(testimonyKey: 'testimony1' | 'testimony2'): void {
     this.currentTestimony = this.script.trial[testimonyKey];
     this.currentStatementIdx = 0;
@@ -71,6 +75,7 @@ export class TrialController {
     this.renderCurrentStatement();
   }
 
+  // @Section(Statement Pressing & Contradictions)
   public handlePressStatement(): void {
     if (!this.currentTestimony) return;
     const stmt = this.currentTestimony.statements[this.currentStatementIdx];
@@ -126,6 +131,7 @@ export class TrialController {
     this.onQueueDialogue(penaltyDialogue, /*onComplete*/ () => this.renderCurrentStatement());
   }
 
+  // @Section(Climax & Verdict Confrontation)
   public startClimax(): void {
     this.dom.bgEl.style.backgroundImage = "url('assets/bg_courtroom.jpg')";
     this.midiComposer.playTrack('suspense');

@@ -1,10 +1,13 @@
+// @Architecture(descriptionShort="Catalog of 8 procedural multitrack 16-bit MIDI compositions", type="catalog", icon="music")
 /**
  * Procedural MIDI Soundtrack Definitions
+ * Compositions for [[./MidiMusicComposer.ts]].
  */
 
 import type { TrackCatalogMap } from '../../types/index.js';
 
 export const TRACK_CATALOG: TrackCatalogMap = {
+  // @Section(Courtroom & Cross-Examination Tracks)
   trial: {
     bpm: 124,
     length: 32,
@@ -68,6 +71,7 @@ export const TRACK_CATALOG: TrackCatalogMap = {
     ]
   },
 
+  // @Section(Objection & Pursuit Turnaround Tracks)
   objection: {
     bpm: 148,
     length: 32,
@@ -110,6 +114,7 @@ export const TRACK_CATALOG: TrackCatalogMap = {
     ]
   },
 
+  // @Section(Investigation & Suspense Tracks)
   investigation: {
     bpm: 112,
     length: 32,
@@ -148,6 +153,7 @@ export const TRACK_CATALOG: TrackCatalogMap = {
     ]
   },
 
+  // @Section(Victory Celebration Track)
   victory: {
     bpm: 136,
     length: 32,

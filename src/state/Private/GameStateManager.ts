@@ -1,5 +1,7 @@
+// @Architecture(descriptionShort="Tracks game modes, player inventory, health, and progress", type="service", icon="database")
 /**
  * Game State and Inventory Management
+ * Operates on [[./EvidenceCatalog.ts|EVIDENCE_CATALOG]] and progression flags.
  */
 
 import type { EvidenceCatalogMap, EvidenceId, GameFlags, GameMode, LocationId, TrialPhase } from '../../types/index.js';
@@ -29,6 +31,7 @@ export class GameStateManager {
   public testimonyIndex = 0;
   public statementIndex = 0;
 
+  // @Section(Inventory Operations)
   public addEvidence(evidenceId: EvidenceId): boolean {
     if (this.inventory.includes(evidenceId)) return false;
     if (!this.allEvidence[evidenceId]) return false;
@@ -40,6 +43,7 @@ export class GameStateManager {
     return this.inventory.includes(evidenceId);
   }
 
+  // @Section(Penalty & Health)
   public takePenalty(): boolean {
     if (this.health <= 0) return false;
     this.health--;
@@ -54,6 +58,7 @@ export class GameStateManager {
     this.gameOver = false;
   }
 
+  // @Section(Investigation Readiness)
   public checkTrialReadiness(): boolean {
     const hasRequiredClues =
       this.hasEvidence('chipote_chillon') &&

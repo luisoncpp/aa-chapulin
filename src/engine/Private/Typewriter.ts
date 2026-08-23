@@ -1,5 +1,7 @@
+// @Architecture(descriptionShort="Streams character-by-character dialogue text with SFX chirps", type="service", icon="gear")
 /**
  * Typewriter Text Animation Subsystem
+ * Uses [[src/audio/Private/SoundEngine.ts]] to play typewriter blips.
  */
 
 import type { SoundEngine } from '../../audio/index.js';
@@ -16,6 +18,7 @@ export class Typewriter {
     private readonly soundEngine: SoundEngine
   ) {}
 
+  // @Section(Typewriter Stepping & Chirping)
   public start(text: string, onComplete?: () => void): void {
     this.stop();
     this.isTyping = true;
@@ -39,6 +42,7 @@ export class Typewriter {
     }, /*delayInMs=*/ 28);
   }
 
+  // @Section(Immediate Completion)
   public completeImmediately(): void {
     if (!this.isTyping) return;
     this.stop();

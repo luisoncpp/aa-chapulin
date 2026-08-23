@@ -6,11 +6,10 @@ Covers implemented architecture. For future architectural plans and roadmaps, ch
 
 ## Subsystem Index
 
-| File | Subsystem | Notes |
-|------|-----------|-------|
-| [`game-engine.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/architecture/game-engine.md) | Presentation & Game Engine | DOM rendering, dialogue queue, typewriter FX, sprite stage, modals, and screen FX (`src/engine/`). |
-| [`game-state.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/architecture/game-state.md) | Game State & Inventory | Singleton `gameState`, Court Record, penalty meter, investigation readiness, and progress flags (`src/state/`). |
-| [`audio-system.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/architecture/audio-system.md) | Audio & Music Synthesis | Web Audio API sound synthesis, procedural SFX generator, and 4-channel procedural MIDI tracker (`src/audio/`). |
-| [`case-scripting.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/architecture/case-scripting.md) | Case Narrative & Trial Script | Dialogue graph, hotspot definitions, testimony schemas, contradictions, and climax scripting (`src/case/`). |
-| [`asset-pipeline.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/architecture/asset-pipeline.md) | Asset Extraction & Verification | Automated magenta chroma-keying, sprite grid slicing, and asset integrity verification (`process_assets.py`, `verify_assets.py`). |
-
+| File | Subsystem | CodeChart Group | Notes |
+|------|-----------|-----------------|-------|
+| [[docs/architecture/game-engine.md\|game-engine.md]] | Presentation & Game Engine | [[src/engine/engine.group.md\|engine]] | DOM rendering, dialogue queue, typewriter FX, sprite stage, modals, and screen FX ([[src/engine/index.ts]]). |
+| [[docs/architecture/game-state.md\|game-state.md]] | Game State & Inventory | [[src/state/state.group.md\|state]] | Singleton `gameState`, Court Record, penalty meter, investigation readiness, and progress flags ([[src/state/index.ts]]). |
+| [[docs/architecture/audio-system.md\|audio-system.md]] | Audio & Music Synthesis | [[src/audio/audio.group.md\|audio]] | Web Audio API sound synthesis, procedural SFX generator, and 4-channel procedural MIDI tracker ([[src/audio/index.ts]]). |
+| [[docs/architecture/case-scripting.md\|case-scripting.md]] | Case Narrative & Trial Script | [[src/case/case.group.md\|case]] | Dialogue graph, hotspot definitions, testimony schemas, contradictions, and climax scripting ([[src/case/index.ts]]). |
+| [[docs/architecture/asset-pipeline.md\|asset-pipeline.md]] | Asset Extraction & Verification | [[pipeline.group.md\|asset_pipeline]] | Automated magenta chroma-keying, sprite grid slicing, and asset integrity verification ([[process_assets.py]], [[verify_assets.py]]). |

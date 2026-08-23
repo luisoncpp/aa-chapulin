@@ -6,9 +6,9 @@ Operational guide for player actions during the crime scene investigation phase.
 - Player starts the game, moves to a scene (`#btn-inv-move`), clicks examine mode (`#btn-inv-examine`), or selects a talk topic (`#btn-inv-talk`).
 
 ## 2. Entry Point
-- [`gameEngine.startInvestigation(location)`](file:///c:/Proyectos/ace-attorney-gemini/js/engine.js#L428)
-- [`gameEngine.startExamineMode()`](file:///c:/Proyectos/ace-attorney-gemini/js/engine.js#L484)
-- [`gameEngine.openTalkMenu()`](file:///c:/Proyectos/ace-attorney-gemini/js/engine.js#L511)
+- `investigation.startInvestigation(location)` in [[src/engine/Private/InvestigationController.ts#Investigation Scene Transition]]
+- `investigation.startExamineMode()` in [[src/engine/Private/InvestigationController.ts#Examine Mode & Tooltips]]
+- `investigation.openTalkMenu()` in [[src/engine/Private/InvestigationController.ts#Talk Dialog & Readiness]]
 
 ## 3. Step-by-Step Sequence
 
@@ -18,7 +18,7 @@ Operational guide for player actions during the crime scene investigation phase.
 3. `bgEl` background style switches to scene image (`bg_museum.jpg` or `bg_detention.jpg`).
 4. `midiComposer.playTrack(scene.bgm)` transitions background music (`'investigation'` or `'suspense'`).
 5. `renderHotspots()` injects percentage-based clickable regions into `#hotspots-container`.
-6. `queueDialogue(scene.intro)` presents the opening narrative dialogue.
+6. `queueDialogue(scene.intro)` presents opening narrative dialogue.
 
 ### Examination & Hotspot Click
 1. Player clicks "🔍 Examinar" (`#btn-inv-examine`).
@@ -29,24 +29,24 @@ Operational guide for player actions during the crime scene investigation phase.
    - SFX `'realization'` plays.
    - `exitExamineMode()` disables hotspot hover layer.
    - Hotspot dialogue array is queued via `queueDialogue()`.
-   - Any `line.addEvidence` adds the item to `gameState.inventory` and shows `#game-notification`.
+   - Any `line.addEvidence` adds item to `gameState.inventory` and shows `#game-notification`.
    - On completion callback, `checkInvestigationProgress()` verifies if trial is unlocked.
 
 ### Talk Option Click
 1. Player clicks "💬 Hablar" (`#btn-inv-talk`).
-2. `#talk-options-modal` opens with buttons for each topic defined in `scene.talkOptions`.
+2. `#talk-options-modal` opens via `ModalManager.openTalkModal()` with buttons for each topic defined in `scene.talkOptions`.
 3. Player clicks a topic: modal closes, topic dialogue queues, and evidence is granted if scripted.
 4. On completion callback, `checkInvestigationProgress()` runs.
 
 ### Unlocking & Launching Trial
-1. `gameState.checkTrialReadiness()` verifies the 5 mandatory clues are collected.
+1. `gameState.checkTrialReadiness()` in [[src/state/Private/GameStateManager.ts#Investigation Readiness]] verifies the 5 mandatory clues are collected.
 2. If ready, `#btn-inv-trial` loses `.disabled`, gains `.pulse-glow`, and displays a ready notification.
-3. Player clicks "⚖️ Ir a Juicio": `startTrial()` is invoked.
+3. Player clicks "⚖️ Ir a Juicio": `trial.startTrial()` is invoked.
 
 ## 4. Reads
-- `CASE_SCRIPT.investigation[location]`
-- `gameState.inventory`
-- `gameState.flags`
+- `CASE_SCRIPT.investigation[location]` in [[src/case/Private/case1_investigation.ts]]
+- `gameState.inventory` in [[src/state/Private/GameStateManager.ts]]
+- `gameState.flags` in [[src/state/Private/GameStateManager.ts]]
 
 ## 5. Writes
 - `gameState.currentLocation`
@@ -59,9 +59,10 @@ Operational guide for player actions during the crime scene investigation phase.
 - Notification banner sliding animations.
 
 ## 7. Files to Inspect
-- [`js/engine.js`](file:///c:/Proyectos/ace-attorney-gemini/js/engine.js) (lines 428–550)
-- [`js/game_state.js`](file:///c:/Proyectos/ace-attorney-gemini/js/game_state.js) (lines 89–129)
-- [`js/case_script.js`](file:///c:/Proyectos/ace-attorney-gemini/js/case_script.js) (lines 10–150)
+- [[src/engine/Private/InvestigationController.ts]]
+- [[src/engine/Private/ModalManager.ts]]
+- [[src/state/Private/GameStateManager.ts]]
+- [[src/case/Private/case1_investigation.ts]]
 
 ## 8. Common Failure Modes
 - **Trial button remains disabled**: Player missed one of the 5 required clues (`chipote_chillon`, `pastillas_chiquitolina`, `antenitas_vinil`, `informe_medico`, `foto_crimen`).

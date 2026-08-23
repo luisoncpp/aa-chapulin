@@ -1,5 +1,7 @@
+// @Architecture(descriptionShort="Renders court record evidence modal and talk dialogs", type="view", icon="dialog")
 /**
  * Court Record, Talk Options, and HUD Health UI Modal Manager
+ * Interacts with [[src/state/Private/GameStateManager.ts]].
  */
 
 import type { GameStateManager } from '../../state/index.js';
@@ -14,6 +16,7 @@ export interface CourtRecordConfig {
 }
 
 export class ModalManager {
+  // @Section(Court Record Evidence Modal)
   public static openCourtRecord(config: CourtRecordConfig): void {
     const { dom, state, isTrialPresent, onSelect } = config;
     dom.courtRecordModalEl.classList.remove('hidden');
@@ -57,6 +60,7 @@ export class ModalManager {
     dom.courtRecordModalEl.classList.add('hidden');
   }
 
+  // @Section(Talk Options Dialog)
   public static openTalkModal(
     dom: DomElements,
     options: TalkOption[],
@@ -81,6 +85,7 @@ export class ModalManager {
     dom.talkOptionsModalEl.classList.add('hidden');
   }
 
+  // @Section(Penalty Health Bar UI)
   public static updateHealthUI(healthBarEl: HTMLElement, health: number, maxHealth: number): void {
     healthBarEl.innerHTML = '';
     for (let i = 0; i < maxHealth; i++) {

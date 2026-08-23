@@ -1,10 +1,13 @@
+// @Architecture(descriptionShort="Defines museum and detention scenes, hotspots, and talk data", type="data", icon="layers")
 /**
  * Case 1 Investigation Scenes Data (Museum & Detention)
+ * Consumed by [[src/engine/Private/InvestigationController.ts]].
  */
 
 import type { InvestigationScene, LocationId } from '../../types/index.js';
 
 export const INVESTIGATION_SCENES: Record<LocationId, InvestigationScene> = {
+  // @Section(Museum Crime Scene)
   museum: {
     title: 'Museo de Antigüedades y Curiosidades - Escena del Crimen',
     bg: 'assets/bg_museum.jpg',
@@ -82,6 +85,7 @@ export const INVESTIGATION_SCENES: Record<LocationId, InvestigationScene> = {
     ]
   },
 
+  // @Section(Detention Center Scene)
   detention: {
     title: 'Centro de Detención - Sala de Visitas',
     bg: 'assets/bg_detention.jpg',

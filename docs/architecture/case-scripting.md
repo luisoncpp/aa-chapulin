@@ -1,10 +1,10 @@
 # Case Scripting Architecture
 
-Technical guide for [`src/case/`](file:///c:/Proyectos/ace-attorney-gemini/src/case/).
+Technical guide for [[src/case/index.ts]], configured in [[src/case/case.group.md]].
 
 ## Overview
 
-Case content is defined declaratively in the `CASE_SCRIPT` data structure. It separates narrative text, logic trees, cross-examination rules, and evidence triggers from UI rendering code.
+Case content is defined declaratively in the `CASE_SCRIPT` data structure ([[src/case/index.ts]]). It separates narrative text, logic trees, cross-examination rules, and evidence triggers from UI rendering code.
 
 ```mermaid
 graph TD
@@ -28,7 +28,7 @@ graph TD
 
 ## Schema Definitions
 
-### 1. Dialogue Line Object
+### 1. Dialogue Line Object ([[src/types/Private/script.ts#Dialogue & Visual Tags]])
 
 Each entry in a dialogue sequence supports the following optional and required fields:
 
@@ -43,73 +43,48 @@ Each entry in a dialogue sequence supports the following optional and required f
 | `cutin` | string | Cut-in graphic key (`'objection_protesto'`, `'objection_un_momento'`, `'objection_toma_eso'`, `'objection_culpable'`). |
 | `addEvidence` | string | Evidence ID to automatically add to the player's inventory with UI notification. |
 
-### 2. Investigation Scene Schema
+### 2. Investigation Scene Schema ([[src/case/Private/case1_investigation.ts]])
 
-```javascript
+```typescript
 investigation: {
-    [locationId]: {
-        title: string,
-        bg: string,
-        bgm: string,
-        speaker: string,
-        intro: DialogueLine[],
-        hotspots: [
-            {
-                id: string,
-                label: string,
-                x: number, y: number, w: number, h: number, // Percentage coords
-                dialogue: DialogueLine[]
-            }
-        ],
-        talkOptions: [
-            {
-                id: string,
-                label: string,
-                dialogue: DialogueLine[]
-            }
-        ]
-    }
+  [locationId]: {
+    title: string;
+    bg: string;
+    bgm: TrackName;
+    speaker: SpeakerName;
+    intro: DialogueLine[];
+    hotspots: Hotspot[];
+    talkOptions: TalkOption[];
+  }
 }
 ```
 
-### 3. Testimony & Cross-Examination Schema
+### 3. Testimony & Cross-Examination Schema ([[src/case/Private/case1_trial.ts]])
 
-```javascript
+```typescript
 testimony: {
-    title: string,
-    witness: string,
-    bgm: string,
-    statements: [
-        {
-            id: string,
-            speaker: string,
-            pose: string,
-            text: string,
-            pressText: DialogueLine[],
-            contradiction?: {
-                evidence: string[], // Acceptable evidence IDs
-                successDialogue: DialogueLine[]
-            }
-        }
-    ]
+  title: string;
+  witness: string;
+  bgm: TrackName;
+  statements: Statement[];
 }
 ```
 
-### 4. Climax Schema
+### 4. Climax Schema ([[src/case/Private/case1_climax.ts]])
 
-```javascript
+```typescript
 climax: {
-    dialogue: DialogueLine[],
-    presentTarget: string[], // Valid evidence IDs
-    verdict: DialogueLine[]
+  dialogue: DialogueLine[];
+  presentTarget: EvidenceId[];
+  verdict: DialogueLine[];
 }
 ```
 
 ## Case 1 Contradiction Mapping
 
-| Phase | Statement | Contradiction Logic | Required Evidence |
-|-------|-----------|---------------------|-------------------|
-| **Testimony 1** | Witness claims Chapulín knocked out the guard with his lethal Chipote Chillón. | The Chipote is hollow soft vinyl and makes squeaky sounds; medical report proves the guard suffered a blunt fracture from heavy metal coins. | `chipote_chillon` or `informe_medico` |
-| **Testimony 2 (Part 1)** | Witness claims the culprit broke into the glass case from the outside. | Glass shards fell outward and Chiquitolina shrinking pills were found by the vent, showing the culprit shrank and broke the glass from inside. | `pastillas_chiquitolina` |
-| **Testimony 2 (Part 2)** | Witness claims security photo shows Chapulín running toward the front exit. | The chest logo shows inverted "HC", proving the photo captured a reflection in the mirror; culprit was running to the rear loading bay. | `foto_crimen` |
-| **Climax** | Prosecution demands physical proof of where the stolen artifact is right now. | Vinyl antennae detect enemy presence pointing straight at Tripaseca's jacket pocket where the Chicharra is concealed. | `antenitas_vinil` or `bolsa_dolares` |
+| Phase | Statement | Contradiction Logic | Required Evidence | Module Source |
+|-------|-----------|---------------------|-------------------|---------------|
+| **Testimony 1** | Witness claims Chapulín knocked out the guard with his lethal Chipote Chillón. | The Chipote is hollow soft vinyl and makes squeaky sounds; medical report proves the guard suffered a blunt fracture from heavy metal coins. | `chipote_chillon` or `informe_medico` | [[src/case/Private/case1_trial.ts#Testimony 1: Assault Weapon]] |
+| **Testimony 2 (Part 1)** | Witness claims the culprit broke into the glass case from the outside. | Glass shards fell outward and Chiquitolina shrinking pills were found by the vent, showing the culprit shrank and broke the glass from inside. | `pastillas_chiquitolina` | [[src/case/Private/case1_trial.ts#Testimony 2: Escape Route]] |
+| **Testimony 2 (Part 2)** | Witness claims security photo shows Chapulín running toward the front exit. | The chest logo shows inverted "HC", proving the photo captured a reflection in the mirror; culprit was running to the rear loading bay. | `foto_crimen` | [[src/case/Private/case1_trial.ts#Testimony 2: Escape Route]] |
+| **Climax** | Prosecution demands physical proof of where the stolen artifact is right now. | Vinyl antennae detect enemy presence pointing straight at Tripaseca's jacket pocket where the Chicharra is concealed. | `antenitas_vinil` or `bolsa_dolares` | [[src/case/Private/case1_climax.ts#Climax Confrontation & Dilemma]] |

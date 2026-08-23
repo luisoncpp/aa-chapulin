@@ -26,17 +26,17 @@ describe('InvestigationController', () => {
     midiComposerInstance = new MidiMusicComposer(soundEngineInstance);
     queuedDialogues = [];
 
-    controller = new InvestigationController(
+    controller = new InvestigationController({
       dom,
       state,
-      CASE_SCRIPT,
-      soundEngineInstance,
-      midiComposerInstance,
-      (dlg, cb) => {
+      script: CASE_SCRIPT,
+      soundEngine: soundEngineInstance,
+      midiComposer: midiComposerInstance,
+      onQueueDialogue: (dlg, cb) => {
         queuedDialogues.push(dlg);
         if (cb) cb();
       }
-    );
+    });
   });
 
   it('starts investigation at museum with intro dialogue and background', () => {
@@ -105,10 +105,14 @@ describe('InvestigationController', () => {
   });
 
   it('gracefully handles openTalkMenu when scene has no options', () => {
-    const emptyController = new InvestigationController(
-      dom, state, { investigation: {} as any, trial: {} as any },
-      soundEngineInstance, midiComposerInstance, () => {}
-    );
+    const emptyController = new InvestigationController({
+      dom,
+      state,
+      script: { investigation: {} as any, trial: {} as any },
+      soundEngine: soundEngineInstance,
+      midiComposer: midiComposerInstance,
+      onQueueDialogue: () => {}
+    });
     expect(() => emptyController.openTalkMenu()).not.toThrow();
   });
 

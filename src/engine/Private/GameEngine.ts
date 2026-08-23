@@ -49,23 +49,32 @@ export class GameEngine {
 
     this.typewriter = new Typewriter(this.dom.dialogueTextEl, this.soundEngine);
 
-    this.investigation = new InvestigationController(
-      this.dom, this.state, this.script, this.soundEngine, this.midiComposer,
-      (dlg, cb) => this.queueDialogue(dlg, cb)
-    );
+    this.investigation = new InvestigationController({
+      dom: this.dom,
+      state: this.state,
+      script: this.script,
+      soundEngine: this.soundEngine,
+      midiComposer: this.midiComposer,
+      onQueueDialogue: (dlg, cb) => this.queueDialogue(dlg, cb)
+    });
 
-    this.trial = new TrialController(
-      this.dom, this.state, this.script, this.soundEngine, this.midiComposer,
-      (dlg, cb) => this.queueDialogue(dlg, cb),
-      (line) => this.renderDialogueLine(line),
-      (isTrialPresent) => this.openCourtRecord(isTrialPresent)
-    );
+    this.trial = new TrialController({
+      dom: this.dom,
+      state: this.state,
+      script: this.script,
+      soundEngine: this.soundEngine,
+      midiComposer: this.midiComposer,
+      onQueueDialogue: (dlg, cb) => this.queueDialogue(dlg, cb),
+      onRenderLine: (line) => this.renderDialogueLine(line),
+      onOpenCourtRecord: (isTrialPresent) => this.openCourtRecord(isTrialPresent)
+    });
   }
 
   // @Section(Initialization & Bootstrapping)
   public init(): void {
     EngineEventBinder.bind({
       dom: this.dom,
+      soundEngine: this.soundEngine,
       investigation: this.investigation,
       trial: this.trial,
       onStartGame: () => this.startGame(),
@@ -172,7 +181,6 @@ export class GameEngine {
       isTrialPresent,
       onSelect: (id) => {
         this.selectedEvidenceId = id;
-        (this.dom.presentBtnEl as any).dataset.selectedId = id;
       }
     });
   }

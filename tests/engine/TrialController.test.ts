@@ -31,24 +31,21 @@ describe('TrialController', () => {
     renderedLines = [];
     courtRecordOpenedWithTrial = false;
 
-    // Stub window.alert
-    vi.stubGlobal('alert', vi.fn());
-
-    controller = new TrialController(
+    controller = new TrialController({
       dom,
       state,
-      CASE_SCRIPT,
-      soundEngineInstance,
-      midiComposerInstance,
-      (dlg, cb) => {
+      script: CASE_SCRIPT,
+      soundEngine: soundEngineInstance,
+      midiComposer: midiComposerInstance,
+      onQueueDialogue: (dlg, cb) => {
         queuedDialogues.push(dlg);
         if (cb) cb();
       },
-      (line) => renderedLines.push(line),
-      (isTrialPresent) => {
+      onRenderLine: (line) => renderedLines.push(line),
+      onOpenCourtRecord: (isTrialPresent) => {
         courtRecordOpenedWithTrial = isTrialPresent;
       }
-    );
+    });
   });
 
   it('starts trial mode and begins testimony 1', () => {
@@ -131,9 +128,9 @@ describe('TrialController', () => {
 
   it('handles climax submission: victory on correct target', () => {
     controller.startClimax();
-    (dom.presentBtnEl as any).dataset.selectedId = 'antenitas_vinil';
+    expect(controller.phase).toBe('CLIMAX');
 
-    dom.presentBtnEl.onclick?.({} as MouseEvent);
+    controller.handlePresentEvidence('antenitas_vinil');
 
     expect(queuedDialogues.some((d) => d.some((l) => l.text.includes('¡INOCENTE!')))).toBe(true);
     expect(dom.confettiContainerEl.children.length).toBe(80);
@@ -141,10 +138,10 @@ describe('TrialController', () => {
 
   it('handles climax submission: penalty and retry on incorrect item', () => {
     controller.startClimax();
-    (dom.presentBtnEl as any).dataset.selectedId = 'insignia_abogado';
-
+    expect(controller.phase).toBe('CLIMAX');
     expect(state.health).toBe(5);
-    dom.presentBtnEl.onclick?.({} as MouseEvent);
+
+    controller.handlePresentEvidence('insignia_abogado');
 
     expect(state.health).toBe(4);
   });

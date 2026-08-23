@@ -33,6 +33,19 @@ export interface DomElements {
   startSplashOverlayEl: HTMLElement;
   btnAudioToggleEl: HTMLButtonElement;
   gameNotificationEl: HTMLElement;
+  btnStartGame: HTMLButtonElement;
+  btnCourtRecord: HTMLButtonElement;
+  btnCloseRecord: HTMLButtonElement;
+  btnInvExamine: HTMLButtonElement;
+  btnExamineBack: HTMLButtonElement;
+  btnInvTalk: HTMLButtonElement;
+  btnInvMove: HTMLButtonElement;
+  btnCloseTalk: HTMLButtonElement;
+  btnInvTrial: HTMLButtonElement;
+  btnPress: HTMLButtonElement;
+  btnTrialPresent: HTMLButtonElement;
+  btnPrevStatement: HTMLButtonElement;
+  btnNextStatement: HTMLButtonElement;
 }
 
 // @Section(DOM Element Cache)
@@ -65,6 +78,19 @@ export function getDomElements(): DomElements {
     talkListEl: document.getElementById('talk-options-list')!,
     startSplashOverlayEl: document.getElementById('start-splash-overlay')!,
     btnAudioToggleEl: document.getElementById('btn-audio-toggle') as HTMLButtonElement,
-    gameNotificationEl: document.getElementById('game-notification')!
+    gameNotificationEl: document.getElementById('game-notification')!,
+    btnStartGame: document.getElementById('btn-start-game') as HTMLButtonElement,
+    btnCourtRecord: document.getElementById('btn-court-record') as HTMLButtonElement,
+    btnCloseRecord: document.getElementById('btn-close-record') as HTMLButtonElement,
+    btnInvExamine: document.getElementById('btn-inv-examine') as HTMLButtonElement,
+    btnExamineBack: document.getElementById('btn-examine-back') as HTMLButtonElement,
+    btnInvTalk: document.getElementById('btn-inv-talk') as HTMLButtonElement,
+    btnInvMove: document.getElementById('btn-inv-move') as HTMLButtonElement,
+    btnCloseTalk: document.getElementById('btn-close-talk') as HTMLButtonElement,
+    btnInvTrial: document.getElementById('btn-inv-trial') as HTMLButtonElement,
+    btnPress: document.getElementById('btn-press') as HTMLButtonElement,
+    btnTrialPresent: document.getElementById('btn-trial-present') as HTMLButtonElement,
+    btnPrevStatement: document.getElementById('btn-prev-statement') as HTMLButtonElement,
+    btnNextStatement: document.getElementById('btn-next-statement') as HTMLButtonElement
   };
 }

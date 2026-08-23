@@ -36,18 +36,29 @@ describe('EngineEventBinder', () => {
     courtRecordOpened = false;
     presentedFromModal = false;
 
-    investigation = new InvestigationController(
-      dom, state, CASE_SCRIPT, soundEngineInstance, midiComposerInstance,
-      () => {}
-    );
+    investigation = new InvestigationController({
+      dom,
+      state,
+      script: CASE_SCRIPT,
+      soundEngine: soundEngineInstance,
+      midiComposer: midiComposerInstance,
+      onQueueDialogue: () => {}
+    });
 
-    trial = new TrialController(
-      dom, state, CASE_SCRIPT, soundEngineInstance, midiComposerInstance,
-      () => {}, () => {}, () => {}
-    );
+    trial = new TrialController({
+      dom,
+      state,
+      script: CASE_SCRIPT,
+      soundEngine: soundEngineInstance,
+      midiComposer: midiComposerInstance,
+      onQueueDialogue: () => {},
+      onRenderLine: () => {},
+      onOpenCourtRecord: () => {}
+    });
 
     EngineEventBinder.bind({
       dom,
+      soundEngine: soundEngineInstance,
       investigation,
       trial,
       onStartGame: () => { startedGame = true; },

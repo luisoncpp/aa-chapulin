@@ -42,7 +42,7 @@ Operational guide for courtroom litigation, cross-examinations, evidence present
      2. Calls `ModalManager.updateHealthUI()` (one green `!` turns dark gray).
      3. Plays `damage` SFX and shakes screen.
      4. Queues judge/prosecutor penalty dialogue.
-     5. If `gameState.gameOver` (health == 0): triggers Game Over modal, resets health, and restarts trial intro.
+     5. If `gameState.gameOver` (health == 0): queues Game Over dialogue, resets health, and restarts trial.
      6. If health > 0: restores current statement after dialogue finishes.
 
 ### Final Climax & Verdict

@@ -6,23 +6,38 @@
 
 import type { MidiMusicComposer, SoundEngine } from '../../audio/index.js';
 import type { GameStateManager } from '../../state/index.js';
-import type { CaseScript, Hotspot, LocationId, TalkOption } from '../../types/index.js';
+import type { CaseScript, DialogueLine, Hotspot, LocationId, PoseName, TalkOption } from '../../types/index.js';
 import type { DomElements } from './DomElements.js';
 import { ModalManager } from './ModalManager.js';
 import { VisualEffects } from './VisualEffects.js';
 
+export interface InvestigationControllerDeps {
+  dom: DomElements;
+  state: GameStateManager;
+  script: CaseScript;
+  soundEngine: SoundEngine;
+  midiComposer: MidiMusicComposer;
+  onQueueDialogue: (dialogue: DialogueLine[], onComplete?: () => void) => void;
+}
+
 export class InvestigationController {
   public isExamineActive = false;
-  public currentLocationCharPose: string | null = null;
+  public currentLocationCharPose: PoseName = null;
+  private readonly dom: DomElements;
+  private readonly state: GameStateManager;
+  private readonly script: CaseScript;
+  private readonly soundEngine: SoundEngine;
+  private readonly midiComposer: MidiMusicComposer;
+  private readonly onQueueDialogue: (dialogue: DialogueLine[], onComplete?: () => void) => void;
 
-  constructor(
-    private readonly dom: DomElements,
-    private readonly state: GameStateManager,
-    private readonly script: CaseScript,
-    private readonly soundEngine: SoundEngine,
-    private readonly midiComposer: MidiMusicComposer,
-    private readonly onQueueDialogue: (dialogue: any[], onComplete?: () => void) => void
-  ) {}
+  constructor(deps: InvestigationControllerDeps) {
+    this.dom = deps.dom;
+    this.state = deps.state;
+    this.script = deps.script;
+    this.soundEngine = deps.soundEngine;
+    this.midiComposer = deps.midiComposer;
+    this.onQueueDialogue = deps.onQueueDialogue;
+  }
 
   // @Section(Investigation Scene Transition)
   public startInvestigation(location: LocationId = 'museum'): void {
@@ -103,7 +118,7 @@ export class InvestigationController {
     this.dom.investigationNavEl.classList.remove('hidden');
 
     if (this.currentLocationCharPose) {
-      VisualEffects.setPose(this.dom.charSpriteEl, this.currentLocationCharPose as any);
+      VisualEffects.setPose(this.dom.charSpriteEl, this.currentLocationCharPose);
     }
   }
 
@@ -126,7 +141,7 @@ export class InvestigationController {
 
   public checkInvestigationProgress(): void {
     const isReady = this.state.checkTrialReadiness();
-    const trialBtn = document.getElementById('btn-inv-trial');
+    const trialBtn = this.dom.btnInvTrial;
     if (!isReady || !trialBtn) return;
     trialBtn.classList.remove('disabled');
     trialBtn.classList.add('pulse-glow');

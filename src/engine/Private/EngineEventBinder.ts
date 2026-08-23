@@ -4,7 +4,7 @@
  * Dispatches UI interactions to [[./InvestigationController.ts]] and [[./TrialController.ts]].
  */
 
-import { soundEngine } from '../../audio/index.js';
+import type { SoundEngine } from '../../audio/index.js';
 import type { DomElements } from './DomElements.js';
 import type { InvestigationController } from './InvestigationController.js';
 import { ModalManager } from './ModalManager.js';
@@ -12,6 +12,7 @@ import type { TrialController } from './TrialController.js';
 
 export interface EventBinderConfig {
   dom: DomElements;
+  soundEngine: SoundEngine;
   investigation: InvestigationController;
   trial: TrialController;
   onStartGame: () => void;
@@ -31,24 +32,24 @@ export class EngineEventBinder {
 
   // @Section(Audio & Splash Bindings)
   private static bindStartAndAudio(config: EventBinderConfig): void {
-    const { dom, onStartGame } = config;
-    document.getElementById('btn-start-game')?.addEventListener('click', () => onStartGame());
-    dom.btnAudioToggleEl.addEventListener('click', (e) => {
+    const { dom, soundEngine, onStartGame } = config;
+    dom.btnStartGame?.addEventListener('click', /*onStartClick*/ () => onStartGame());
+    dom.btnAudioToggleEl.addEventListener('click', /*onToggleAudioClick*/ (e) => {
       e.stopPropagation();
       const isMuted = soundEngine.toggleMute();
       dom.btnAudioToggleEl.textContent = isMuted ? '🔇' : '🔊';
     });
-    document.addEventListener('click', () => soundEngine.ensureActive(), { once: false });
+    document.addEventListener('click', /*onGlobalClick*/ () => soundEngine.ensureActive(), { once: false });
   }
 
   // @Section(Dialogue Advance Bindings)
   private static bindDialogueAdvance(config: EventBinderConfig): void {
     const { dom, onAdvance } = config;
-    dom.dialogueBoxEl.addEventListener('click', (e) => {
+    dom.dialogueBoxEl.addEventListener('click', /*onDialogueBoxClick*/ (e) => {
       e.stopPropagation();
       onAdvance();
     });
-    document.addEventListener('keydown', (e) => {
+    document.addEventListener('keydown', /*onKeyDown*/ (e) => {
       if (e.code === 'Space' || e.code === 'Enter') onAdvance();
     });
   }
@@ -56,15 +57,15 @@ export class EngineEventBinder {
   // @Section(Court Record Bindings)
   private static bindCourtRecord(config: EventBinderConfig): void {
     const { dom, onOpenCourtRecord, onPresentFromModal } = config;
-    document.getElementById('btn-court-record')?.addEventListener('click', (e) => {
+    dom.btnCourtRecord.addEventListener('click', /*onOpenRecordClick*/ (e) => {
       e.stopPropagation();
       onOpenCourtRecord(/*isTrialPresent=*/ false);
     });
-    document.getElementById('btn-close-record')?.addEventListener('click', (e) => {
+    dom.btnCloseRecord.addEventListener('click', /*onCloseRecordClick*/ (e) => {
       e.stopPropagation();
       ModalManager.closeCourtRecord(dom);
     });
-    dom.presentBtnEl.addEventListener('click', (e) => {
+    dom.presentBtnEl.addEventListener('click', /*onPresentClick*/ (e) => {
       e.stopPropagation();
       onPresentFromModal();
     });
@@ -73,23 +74,23 @@ export class EngineEventBinder {
   // @Section(Investigation Bindings)
   private static bindInvestigation(config: EventBinderConfig): void {
     const { dom, investigation } = config;
-    document.getElementById('btn-inv-examine')?.addEventListener('click', (e) => {
+    dom.btnInvExamine.addEventListener('click', /*onExamineClick*/ (e) => {
       e.stopPropagation();
       investigation.startExamineMode();
     });
-    document.getElementById('btn-examine-back')?.addEventListener('click', (e) => {
+    dom.btnExamineBack.addEventListener('click', /*onExamineBackClick*/ (e) => {
       e.stopPropagation();
       investigation.exitExamineMode();
     });
-    document.getElementById('btn-inv-talk')?.addEventListener('click', (e) => {
+    dom.btnInvTalk.addEventListener('click', /*onTalkClick*/ (e) => {
       e.stopPropagation();
       investigation.openTalkMenu();
     });
-    document.getElementById('btn-inv-move')?.addEventListener('click', (e) => {
+    dom.btnInvMove.addEventListener('click', /*onMoveClick*/ (e) => {
       e.stopPropagation();
       investigation.toggleLocation();
     });
-    document.getElementById('btn-close-talk')?.addEventListener('click', (e) => {
+    dom.btnCloseTalk.addEventListener('click', /*onCloseTalkClick*/ (e) => {
       e.stopPropagation();
       ModalManager.closeTalkModal(dom);
     });
@@ -97,24 +98,24 @@ export class EngineEventBinder {
 
   // @Section(Trial Bindings)
   private static bindTrial(config: EventBinderConfig): void {
-    const { trial, onOpenCourtRecord } = config;
-    document.getElementById('btn-inv-trial')?.addEventListener('click', (e) => {
+    const { dom, trial, onOpenCourtRecord } = config;
+    dom.btnInvTrial.addEventListener('click', /*onStartTrialClick*/ (e) => {
       e.stopPropagation();
       trial.startTrial();
     });
-    document.getElementById('btn-press')?.addEventListener('click', (e) => {
+    dom.btnPress.addEventListener('click', /*onPressClick*/ (e) => {
       e.stopPropagation();
       trial.handlePressStatement();
     });
-    document.getElementById('btn-trial-present')?.addEventListener('click', (e) => {
+    dom.btnTrialPresent.addEventListener('click', /*onTrialPresentClick*/ (e) => {
       e.stopPropagation();
       onOpenCourtRecord(/*isTrialPresent=*/ true);
     });
-    document.getElementById('btn-prev-statement')?.addEventListener('click', (e) => {
+    dom.btnPrevStatement.addEventListener('click', /*onPrevStatementClick*/ (e) => {
       e.stopPropagation();
       trial.prevStatement();
     });
-    document.getElementById('btn-next-statement')?.addEventListener('click', (e) => {
+    dom.btnNextStatement.addEventListener('click', /*onNextStatementClick*/ (e) => {
       e.stopPropagation();
       trial.nextStatement();
     });

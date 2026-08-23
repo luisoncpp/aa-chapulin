@@ -20,7 +20,7 @@ function bootstrap(): void {
 }
 
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('DOMContentLoaded', /*onDOMContentLoaded*/ () => {
     bootstrap();
   });
 } else {

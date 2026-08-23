@@ -11,24 +11,47 @@ import type { DomElements } from './DomElements.js';
 import { ModalManager } from './ModalManager.js';
 import { VisualEffects } from './VisualEffects.js';
 
+export type TrialPhase = 'IDLE' | 'TESTIMONY' | 'CLIMAX';
+
+export interface TrialControllerDeps {
+  dom: DomElements;
+  state: GameStateManager;
+  script: CaseScript;
+  soundEngine: SoundEngine;
+  midiComposer: MidiMusicComposer;
+  onQueueDialogue: (dialogue: DialogueLine[], onComplete?: () => void) => void;
+  onRenderLine: (line: DialogueLine) => void;
+  onOpenCourtRecord: (isTrialPresent: boolean) => void;
+}
+
 export class TrialController {
+  public phase: TrialPhase = 'IDLE';
   public currentTestimony: Testimony | null = null;
   public currentStatementIdx = 0;
+  private readonly dom: DomElements;
+  private readonly state: GameStateManager;
+  private readonly script: CaseScript;
+  private readonly soundEngine: SoundEngine;
+  private readonly midiComposer: MidiMusicComposer;
+  private readonly onQueueDialogue: (dialogue: DialogueLine[], onComplete?: () => void) => void;
+  private readonly onRenderLine: (line: DialogueLine) => void;
+  private readonly onOpenCourtRecord: (isTrialPresent: boolean) => void;
 
-  constructor(
-    private readonly dom: DomElements,
-    private readonly state: GameStateManager,
-    private readonly script: CaseScript,
-    private readonly soundEngine: SoundEngine,
-    private readonly midiComposer: MidiMusicComposer,
-    private readonly onQueueDialogue: (dialogue: DialogueLine[], onComplete?: () => void) => void,
-    private readonly onRenderLine: (line: DialogueLine) => void,
-    private readonly onOpenCourtRecord: (isTrialPresent: boolean) => void
-  ) {}
+  constructor(deps: TrialControllerDeps) {
+    this.dom = deps.dom;
+    this.state = deps.state;
+    this.script = deps.script;
+    this.soundEngine = deps.soundEngine;
+    this.midiComposer = deps.midiComposer;
+    this.onQueueDialogue = deps.onQueueDialogue;
+    this.onRenderLine = deps.onRenderLine;
+    this.onOpenCourtRecord = deps.onOpenCourtRecord;
+  }
 
   // @Section(Trial Launch & Intro)
   public startTrial(): void {
     this.state.mode = 'TRIAL';
+    this.phase = 'TESTIMONY';
     this.dom.investigationNavEl.classList.add('hidden');
     this.dom.examineNavEl.classList.add('hidden');
     this.dom.trialNavEl.classList.remove('hidden');
@@ -42,6 +65,7 @@ export class TrialController {
 
   // @Section(Testimony Navigation)
   public startTestimony(testimonyKey: 'testimony1' | 'testimony2'): void {
+    this.phase = 'TESTIMONY';
     this.currentTestimony = this.script.trial[testimonyKey];
     this.currentStatementIdx = 0;
     this.midiComposer.playTrack(this.currentTestimony.bgm);
@@ -87,6 +111,16 @@ export class TrialController {
   }
 
   public handlePresentEvidence(evidenceId: EvidenceId): void {
+    if (this.phase === 'CLIMAX') {
+      this.handleClimaxEvidence(evidenceId);
+      return;
+    }
+    if (this.phase === 'TESTIMONY' && this.currentTestimony) {
+      this.handleTestimonyEvidence(evidenceId);
+    }
+  }
+
+  private handleTestimonyEvidence(evidenceId: EvidenceId): void {
     if (!this.currentTestimony) return;
     const stmt = this.currentTestimony.statements[this.currentStatementIdx];
     const isContradiction = stmt.contradiction?.evidence.includes(evidenceId);
@@ -128,7 +162,10 @@ export class TrialController {
     ];
 
     if (this.state.gameOver) {
-      penaltyDialogue.push({ speaker: 'JUEZ', pose: 'judge_gavel', text: '¡La defensa ha agotado sus oportunidades! Declaro al acusado... ¡CULPABLE!', sfx: 'gavel' });
+      penaltyDialogue.push(
+        { speaker: 'JUEZ', pose: 'judge_gavel', text: '¡La defensa ha agotado sus oportunidades! Declaro al acusado... ¡CULPABLE!', sfx: 'gavel' },
+        { speaker: 'DEFENSA', pose: 'chapulin_panic', text: '¡Oh, no! ¡Debo intentarlo de nuevo desde el principio del juicio!' }
+      );
       this.onQueueDialogue(penaltyDialogue, /*onComplete*/ () => this.showGameOverModal());
       return;
     }
@@ -137,22 +174,18 @@ export class TrialController {
 
   // @Section(Climax & Verdict Confrontation)
   public startClimax(): void {
+    this.phase = 'CLIMAX';
+    this.currentTestimony = null;
     this.dom.bgEl.style.backgroundImage = "url('assets/bg_courtroom.jpg')";
     this.midiComposer.playTrack('suspense');
 
     this.onQueueDialogue(this.script.trial.climax.dialogue, /*onComplete*/ () => {
       this.onOpenCourtRecord(/*isTrialPresent=*/ true);
-      this.dom.presentBtnEl.onclick = () => {
-        this.handleClimaxSubmit();
-      };
     });
   }
 
-  private handleClimaxSubmit(): void {
-    const evId = (this.dom.presentBtnEl as any).dataset.selectedId as EvidenceId;
-    ModalManager.closeCourtRecord(this.dom);
-
-    if (this.script.trial.climax.presentTarget.includes(evId)) {
+  private handleClimaxEvidence(evidenceId: EvidenceId): void {
+    if (this.script.trial.climax.presentTarget.includes(evidenceId)) {
       this.onQueueDialogue(this.script.trial.climax.verdict, /*onComplete*/ () => {
         VisualEffects.triggerConfetti(this.dom.confettiContainerEl);
       });
@@ -165,7 +198,6 @@ export class TrialController {
   }
 
   private showGameOverModal(): void {
-    alert('¡FIN DEL JUEGO! El Chapulín fue declarado culpable. Presiona Aceptar para reintentar el Juicio.');
     this.state.resetHealth();
     ModalManager.updateHealthUI(this.dom.healthBarEl, this.state.health, this.state.maxHealth);
     this.startTrial();

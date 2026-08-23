@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Chapulín Colorado: Ace Attorney — Turnabout Red Grasshopper</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="game-screen">
+        <!-- Background Scene -->
+        <div id="scene-bg"></div>
+
+        <!-- Character Sprite Stage -->
+        <div id="character-container">
+            <img id="character-sprite" src="" alt="Character Pose" class="hidden">
+        </div>
+
+        <!-- Interactive Investigation Hotspots Overlay -->
+        <div id="hotspots-container"></div>
+
+        <!-- Examine Reticle / Tooltip -->
+        <div id="examine-tooltip" class="hidden">🔍 Inspeccionar</div>
+
+        <!-- Top HUD Bar -->
+        <div id="top-hud">
+            <div id="location-banner">Museo de Curiosidades - Escena del Crimen</div>
+            <div id="hud-right-controls">
+                <!-- Audio Toggle Button -->
+                <button id="btn-audio-toggle" class="hud-btn" title="Activar/Desactivar Sonido">🔊</button>
+                <!-- Health / Penalty Bar -->
+                <div id="health-bar">
+                    <span class="penalty-mark active">!</span>
+                    <span class="penalty-mark active">!</span>
+                    <span class="penalty-mark active">!</span>
+                    <span class="penalty-mark active">!</span>
+                    <span class="penalty-mark active">!</span>
+                </div>
+                <!-- Court Record Button -->
+                <button id="btn-court-record" title="Acta del Juicio (Court Record)">
+                    <img src="assets/insignia_abogado.png" alt="Insignia">
+                    <span>Acta</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Notification Banner -->
+        <div id="game-notification" class="hidden"></div>
+
+        <!-- Bottom Controls Bar -->
+        <div id="controls-bar">
+            <!-- Main Investigation Controls -->
+            <div id="investigation-controls">
+                <button id="btn-inv-examine" class="menu-btn">🔍 Examinar</button>
+                <button id="btn-inv-talk" class="menu-btn">💬 Hablar</button>
+                <button id="btn-inv-move" class="menu-btn">🏃 Moverse</button>
+                <button id="btn-inv-trial" class="menu-btn trial-launch disabled">⚖️ Ir a Juicio</button>
+            </div>
+
+            <!-- Examine Mode Controls (Shown only during examine) -->
+            <div id="examine-controls" class="hidden">
+                <button id="btn-examine-back" class="menu-btn back-action">◀ Volver</button>
+            </div>
+
+            <!-- Trial Controls -->
+            <div id="trial-controls" class="hidden">
+                <button id="btn-prev-statement" class="menu-btn">◀ Anterior</button>
+                <button id="btn-press" class="menu-btn press-action">💥 Presionar</button>
+                <button id="btn-trial-present" class="menu-btn present-action">📜 Presentar</button>
+                <button id="btn-next-statement" class="menu-btn">Siguiente ▶</button>
+            </div>
+        </div>
+
+        <!-- Dialogue Box -->
+        <div id="dialogue-box-container">
+            <div id="dialogue-box">
+                <div id="speaker-tag">
+                    <span id="speaker-name">CHAPULÍN</span>
+                </div>
+                <div id="dialogue-text">¡No contaban con mi astucia!</div>
+                <div id="dialogue-arrow">▼</div>
+            </div>
+        </div>
+
+        <!-- Full-Screen Cut-in Overlay (¡PROTESTO!, ¡UN MOMENTO!, ¡TOMA ESO!) -->
+        <div id="cutin-overlay" class="hidden">
+            <img id="cutin-img" src="" alt="Cut-in">
+        </div>
+
+        <!-- Screen Flash -->
+        <div id="screen-flash" class="hidden"></div>
+
+        <!-- Confetti Victory Particles -->
+        <div id="confetti-container" class="hidden"></div>
+
+        <!-- Title / Audio Unlock Splash Overlay -->
+        <div id="start-splash-overlay">
+            <div class="splash-card">
+                <h1 class="splash-title">EL CHAPULÍN COLORADO</h1>
+                <h2 class="splash-subtitle">ACE ATTORNEY: EL CASO DEL ESCUADRÓN COLORADO</h2>
+                <div class="splash-character">
+                    <img src="assets/chapulin_point.png" alt="Chapulin Point">
+                </div>
+                <p class="splash-tip">¡Haz clic abajo para activar la música MIDI procedimental y comenzar!</p>
+                <button id="btn-start-game" class="splash-btn pulse-glow">🎵 COMENZAR JUICIO (PLAY)</button>
+            </div>
+        </div>
+
+        <!-- Court Record (Evidence Inventory) Modal -->
+        <div id="court-record-modal" class="game-modal hidden">
+            <div class="modal-window">
+                <div class="modal-header">
+                    <h2>ACTA DEL JUICIO (EVIDENCE RECORD)</h2>
+                    <button id="btn-close-record" class="close-btn">X</button>
+                </div>
+                <div class="modal-body">
+                    <div id="evidence-grid">
+                        <!-- Evidence cards dynamically inserted -->
+                    </div>
+                    <div id="evidence-details">
+                        <img id="evidence-icon-preview" src="" alt="Item" class="hidden">
+                        <h3 id="evidence-title">Selecciona una prueba</h3>
+                        <p id="evidence-description">Haz clic en cualquier objeto para ver sus detalles y contradicciones.</p>
+                        <button id="btn-modal-present" class="menu-btn present-action" style="display:none; width: 100%;">¡Presentar Prueba!</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Talk Options Modal -->
+        <div id="talk-options-modal" class="game-modal hidden">
+            <div class="modal-window" style="width: 550px; height: 350px;">
+                <div class="modal-header">
+                    <h2>CONVERSAR</h2>
+                    <button id="btn-close-talk" class="close-btn">X</button>
+                </div>
+                <div id="talk-options-list">
+                    <!-- Talk options inserted dynamically -->
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Game Scripts -->
+    <script src="js/audio_engine.js"></script>
+    <script src="js/midi_music.js"></script>
+    <script src="js/game_state.js"></script>
+    <script src="js/case_script.js"></script>
+    <script src="js/engine.js"></script>
+</body>
+</html>

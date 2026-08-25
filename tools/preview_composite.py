@@ -15,9 +15,9 @@ FRAMES = {
     "plain": dict(char_h=0.62, char_base=0.13, char_over=False,
                   furn_w=0.0, furn_h=0.0, furn_base=0.0),
     "bench-stand": dict(char_h=0.62, char_base=0.34, char_over=False,
-                        furn_w=1.0, furn_h=0.407, furn_base=0.05),
+                        furn_w=1.0, furn_h=0.457, furn_base=0.0),
     "bench-slam": dict(char_h=0.62, char_base=0.376, char_over=True,
-                       furn_w=1.0, furn_h=0.407, furn_base=0.05),
+                       furn_w=1.0, furn_h=0.457, furn_base=0.0),
     "podium": dict(char_h=0.62, char_base=0.18, char_over=False,
                    furn_w=0.75, furn_h=0.42, furn_base=0.0),
 }

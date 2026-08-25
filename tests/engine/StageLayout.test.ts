@@ -24,7 +24,7 @@ const STAGE_H = 540;
  * container's top edge and the hand-contact line are the same line. Any rows
  * above that outline would paint a flat strip in front of the character.
  */
-const BENCH_SRC = { w: 1353, h: 528, surfaceTop: 6, surfaceBottom: 86 };
+const BENCH_SRC = { w: 1060, h: 641, surfaceTop: 3, surfaceBottom: 90 };
 
 /**
  * Content bounds inside the 512x512 chapulin_slam.png frame, as fractions of the
@@ -137,7 +137,7 @@ describe('StageLayout composition frames', () => {
     expect(dom.gameScreen.style.getPropertyValue('--char-baseline')).toBe('37.60%');
     expect(dom.gameScreen.style.getPropertyValue('--char-layer')).toBe('4');
     expect(dom.gameScreen.style.getPropertyValue('--furniture-width')).toBe('100.00%');
-    expect(dom.gameScreen.style.getPropertyValue('--furniture-height')).toBe('40.70%');
-    expect(dom.gameScreen.style.getPropertyValue('--furniture-baseline')).toBe('5.00%');
+    expect(dom.gameScreen.style.getPropertyValue('--furniture-height')).toBe('45.70%');
+    expect(dom.gameScreen.style.getPropertyValue('--furniture-baseline')).toBe('0.00%');
   });
 });

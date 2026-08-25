@@ -72,8 +72,8 @@ export const STAGE_FRAMES: Record<StageFrameId, StageFrame> = {
     characterBaseline: 0.34,
     characterLayer: 2,
     furnitureWidth: 1,
-    furnitureHeight: 0.407,
-    furnitureBaseline: 0.05,
+    furnitureHeight: 0.457,
+    furnitureBaseline: 0,
     surfaceContact: false
   },
   'bench-slam': {
@@ -85,8 +85,8 @@ export const STAGE_FRAMES: Record<StageFrameId, StageFrame> = {
     characterBaseline: 0.376,
     characterLayer: 4,
     furnitureWidth: 1,
-    furnitureHeight: 0.407,
-    furnitureBaseline: 0.05,
+    furnitureHeight: 0.457,
+    furnitureBaseline: 0,
     surfaceContact: true
   },
   podium: {

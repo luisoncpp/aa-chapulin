@@ -15,7 +15,9 @@ import numpy as np
 from PIL import Image
 from scipy import ndimage
 
-CURRENT_ARTIFACT_DIR = r"C:\Users\luiso\.gemini\antigravity\brain\08f107f5-df93-448c-9eb8-753b2f2f4634"
+CURRENT_ARTIFACT_DIR = r"C:\Users\luiso\.gemini\antigravity\brain\3f1cace1-70b9-41d6-a3a5-40ae385364fc"
+PREV_ARTIFACT_DIR_3 = r"C:\Users\luiso\.gemini\antigravity\brain\0904b11c-4c33-4084-907e-e27c0820bf0f"
+PREV_ARTIFACT_DIR_2 = r"C:\Users\luiso\.gemini\antigravity\brain\08f107f5-df93-448c-9eb8-753b2f2f4634"
 PREV_ARTIFACT_DIR_1 = r"C:\Users\luiso\.gemini\antigravity\brain\91e780e1-ee3d-4c04-949d-db65c67e0f4d"
 PREV_ARTIFACT_DIR = r"C:\Users\luiso\.gemini\antigravity\brain\7d7a0700-41bc-4655-a94e-d886430a5c04"
 LEGACY_ARTIFACT_DIR = r"C:\Users\luiso\.gemini\antigravity\brain\d6601f43-c0ae-494d-bbf8-ca413b3a64ed"
@@ -23,7 +25,7 @@ DEST_DIR = r"c:\Proyectos\ace-attorney-gemini\assets"
 os.makedirs(DEST_DIR, exist_ok=True)
 
 def find_asset_file(filename: str) -> str:
-    for d in [CURRENT_ARTIFACT_DIR, PREV_ARTIFACT_DIR_1, PREV_ARTIFACT_DIR, LEGACY_ARTIFACT_DIR]:
+    for d in [CURRENT_ARTIFACT_DIR, PREV_ARTIFACT_DIR_3, PREV_ARTIFACT_DIR_2, PREV_ARTIFACT_DIR_1, PREV_ARTIFACT_DIR, LEGACY_ARTIFACT_DIR]:
         p = os.path.join(d, filename)
         if os.path.exists(p):
             return p
@@ -392,9 +394,9 @@ def run_all_fixes():
     # paint a solid strip across the frame in front of the character. See
     # docs/lessons-learned/decoupled-character-furniture-sprites.md
     process_standalone_prop(
-        "court_bench_front_1787543219060.jpg",
+        "court_bench_hd_1787628231232.jpg",
         "court_bench.png",
-        crop_box=(12, 232, 1365, 760)
+        crop_box=(158, 127, 1218, 768)
     )
 
     # 7. Objection Cut-Ins
@@ -413,7 +415,7 @@ def run_all_fixes():
         ("museum_crime_scene_1787377814093.jpg", "bg_museum.jpg"),
         ("detention_center_room_1787377837506.jpg", "bg_detention.jpg"),
         ("courtroom_scenes_1787377789540.jpg", "bg_courtroom.jpg"),
-        ("bg_defense.jpg", "bg_defense.jpg")
+        ("bg_defense_wood_wall_1787626957213.jpg", "bg_defense.jpg")
     ]
     for src, dst in bgs:
         src_p = find_asset_file(src)

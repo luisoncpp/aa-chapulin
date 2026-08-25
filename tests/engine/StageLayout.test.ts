@@ -5,6 +5,8 @@
  * counter's top surface instead of its far edge.
  */
 
+import fs from 'node:fs';
+import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import {
   applyStageFrame,
@@ -147,5 +149,11 @@ describe('StageLayout composition frames', () => {
     // Dialogue box sits 15px from bottom with 120px height (top edge at 135px / 540px = 25%)
     const dialogueBoxTopRatio = (15 + 120) / STAGE_H;
     expect(STAGE_FRAMES.plain.characterBaseline).toBeCloseTo(dialogueBoxTopRatio, 4);
+  });
+
+  it('does not apply position transitions to character container to avoid sliding on shot cuts', () => {
+    const cssContent = fs.readFileSync(path.resolve(__dirname, '../../style.css'), 'utf-8');
+    const charContainerRule = cssContent.match(/#character-container\s*\{([^}]+)\}/)?.[1] ?? '';
+    expect(charContainerRule).not.toMatch(/transition:[^;]*(bottom|height|top|transform)/);
   });
 });

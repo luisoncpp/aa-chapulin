@@ -54,7 +54,7 @@ sequenceDiagram
    - Resolves courtroom background (`bg_defense.jpg`, `bg_courtroom.jpg`, `bg_judge.jpg`, `bg_witness.jpg`) and updates `#scene-bg`.
    - Resolves furniture from `line.furniture`, else infers it from trial mode + resolved background + pose.
    - `resolveStageFrame(furniture, line.pose)` maps that pair to one of `plain` / `bench-stand` / `bench-slam` / `podium`.
-   - `applyStageFrame()` writes the frame's ratios to `#game-screen` as CSS custom properties, which resize and reposition `#character-container` and `#court-furniture-container` together. See [[src/engine/Private/StageLayout.ts]].
+   - `applyStageFrame()` writes the frame's ratios to `#game-screen` as CSS custom properties, which resize and reposition `#character-container` and `#court-furniture-container` together instantly without CSS position transitions (ensuring instant camera cuts without character sliding). See [[src/engine/Private/StageLayout.ts]].
 7. **Evidence Automatic Grant**: If `line.addEvidence` is present, calls `gameState.addEvidence()` and triggers `#game-notification`.
 8. **Speaker Tag**: Updates `#speaker-name` text content.
 9. **Typewriter Effect**: Starts a 28ms `setInterval` timer appending characters one by one, playing `soundEngine.playTextBlip()` on every second non-whitespace character.

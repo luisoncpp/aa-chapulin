@@ -137,7 +137,6 @@ body {
     height: 100%;
     background-size: cover;
     background-position: center;
-    transition: background-image 0.25s ease-in-out;
     z-index: 1;
 }
 
@@ -156,7 +155,6 @@ body {
     align-items: flex-end;
     z-index: var(--char-layer, 2);
     pointer-events: none;
-    transition: bottom 0.2s ease, height 0.2s ease, opacity 0.2s ease;
 }
 
 #character-sprite {

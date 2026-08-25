@@ -146,7 +146,7 @@ body {
    Never hardcode pixels here: the fallbacks below are only for a pre-staging first paint. */
 #character-container {
     position: absolute;
-    bottom: var(--char-baseline, 13%);
+    bottom: var(--char-baseline, 25%);
     left: 50%;
     transform: translateX(-50%);
     height: var(--char-height, 62%);

@@ -142,4 +142,10 @@ describe('StageLayout composition frames', () => {
     expect(dom.gameScreen.style.getPropertyValue('--furniture-height')).toBe('45.70%');
     expect(dom.gameScreen.style.getPropertyValue('--furniture-baseline')).toBe('0.00%');
   });
+
+  it('aligns plain frame character baseline with the dialogue box top edge', () => {
+    // Dialogue box sits 15px from bottom with 120px height (top edge at 135px / 540px = 25%)
+    const dialogueBoxTopRatio = (15 + 120) / STAGE_H;
+    expect(STAGE_FRAMES.plain.characterBaseline).toBeCloseTo(dialogueBoxTopRatio, 4);
+  });
 });

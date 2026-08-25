@@ -60,7 +60,7 @@ export const FURNITURE_LAYER = 3;
 export const STAGE_FRAMES: Record<StageFrameId, StageFrame> = {
   plain: {
     characterHeight: 0.62,
-    characterBaseline: 0.13,
+    characterBaseline: 0.25,
     characterLayer: 2,
     furnitureWidth: 0,
     furnitureHeight: 0,

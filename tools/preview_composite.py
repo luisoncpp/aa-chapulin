@@ -12,7 +12,7 @@ SCREEN = (960, 540)
 
 # Fractions of the stage box, matching STAGE_FRAMES in StageLayout.ts.
 FRAMES = {
-    "plain": dict(char_h=0.62, char_base=0.13, char_over=False,
+    "plain": dict(char_h=0.62, char_base=0.25, char_over=False,
                   furn_w=0.0, furn_h=0.0, furn_base=0.0),
     "bench-stand": dict(char_h=0.62, char_base=0.34, char_over=False,
                         furn_w=1.0, furn_h=0.457, furn_base=0.0),

@@ -233,7 +233,7 @@ describe('GameEngine Coordinator', () => {
 
     const trialSequence: DialogueLine[] = [
       { speaker: 'DEFENSA', text: '¡PROTESTO!', cutin: 'objection_protesto' },
-      { speaker: 'DEFENSA', pose: 'chapulin_point', text: '¡El testimonio es contradictorio!' },
+      { speaker: 'DEFENSA', pose: 'donramon_point', text: '¡El testimonio es contradictorio!' },
       { speaker: 'SUPER SAM', pose: 'supersam_point', text: 'Time is money!' },
       { speaker: 'JUEZ', pose: 'judge_thinking', text: 'Prosiga con su argumento.' },
       { speaker: 'TRIPASECA', pose: 'tripaseca_sweat', text: '¡Glup!' }
@@ -241,11 +241,11 @@ describe('GameEngine Coordinator', () => {
 
     engine.queueDialogue(trialSequence);
 
-    // 1. DEFENSA shout -> defense stand, Chapulin and bench visible
+    // 1. DEFENSA shout -> defense stand, Don Ramon and bench visible
     expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_defense.jpg');
     expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(false);
     expect(dom.courtFurnitureSpriteEl.src).toContain('assets/court_bench.png');
-    expect(dom.charSpriteEl.src).toContain('assets/chapulin_idle.png');
+    expect(dom.charSpriteEl.src).toContain('assets/donramon_idle.png');
     expect(dom.charSpriteEl.classList.contains('hidden')).toBe(false);
 
     // 2. DEFENSA with pose -> defense stand, bench and point pose
@@ -254,7 +254,7 @@ describe('GameEngine Coordinator', () => {
     expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_defense.jpg');
     expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(false);
     expect(dom.courtFurnitureSpriteEl.src).toContain('assets/court_bench.png');
-    expect(dom.charSpriteEl.src).toContain('assets/chapulin_point.png');
+    expect(dom.charSpriteEl.src).toContain('assets/donramon_point.png');
 
     // 3. SUPER SAM -> courtroom / prosecution stand, no furniture
     engine.handleAdvance();

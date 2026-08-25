@@ -15,12 +15,22 @@ const FURNITURE_ASSETS: Record<'podium' | 'bench', string> = {
 
 const TRIAL_SPEAKER_BACKGROUNDS: Record<string, string> = {
   DEFENSA: 'assets/bg_defense.jpg',
+  'DON RAMON': 'assets/bg_defense.jpg',
+  'DON RAMÓN': 'assets/bg_defense.jpg',
   CHAPULIN: 'assets/bg_defense.jpg',
   'CHAPULÍN': 'assets/bg_defense.jpg',
   'SUPER SAM': 'assets/bg_courtroom.jpg',
   JUEZ: 'assets/bg_judge.jpg',
   TRIPASECA: 'assets/bg_witness.jpg'
 };
+
+function isDefenseSpeaker(speaker: string): boolean {
+  return speaker === 'DEFENSA' || speaker === 'DON RAMON' || speaker === 'DON RAMÓN';
+}
+
+function isChapulinSpeaker(speaker: string): boolean {
+  return speaker === 'CHAPULIN' || speaker === 'CHAPULÍN';
+}
 
 export class VisualEffects {
   // @Section(Character Pose Staging)
@@ -65,10 +75,12 @@ export class VisualEffects {
     return VisualEffects.inferTrialBackground(line.speaker);
   }
 
+  // fallow-ignore-next-line complexity
   public static resolveEffectivePose(line: DialogueLine, isTrialMode: boolean): PoseName | null {
     if (line.pose) return line.pose;
-    const isDefense = line.speaker === 'DEFENSA' || line.speaker === 'CHAPULIN' || line.speaker === 'CHAPULÍN';
-    if (isTrialMode && isDefense) return 'chapulin_idle';
+    if (!isTrialMode || !line.speaker) return null;
+    if (isDefenseSpeaker(line.speaker)) return 'donramon_idle';
+    if (isChapulinSpeaker(line.speaker)) return 'chapulin_idle';
     return null;
   }
 

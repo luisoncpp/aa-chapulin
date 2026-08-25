@@ -15,7 +15,8 @@ import numpy as np
 from PIL import Image
 from scipy import ndimage
 
-CURRENT_ARTIFACT_DIR = r"C:\Users\luiso\.gemini\antigravity\brain\ce3ca77a-06af-4722-9a51-22316a36f2fc"
+CURRENT_ARTIFACT_DIR = r"C:\Users\luiso\.gemini\antigravity\brain\9705331f-35fd-45c3-b901-2f14dab60aed"
+PREV_ARTIFACT_DIR_5 = r"C:\Users\luiso\.gemini\antigravity\brain\ce3ca77a-06af-4722-9a51-22316a36f2fc"
 PREV_ARTIFACT_DIR_4 = r"C:\Users\luiso\.gemini\antigravity\brain\3f1cace1-70b9-41d6-a3a5-40ae385364fc"
 PREV_ARTIFACT_DIR_3 = r"C:\Users\luiso\.gemini\antigravity\brain\0904b11c-4c33-4084-907e-e27c0820bf0f"
 PREV_ARTIFACT_DIR_2 = r"C:\Users\luiso\.gemini\antigravity\brain\08f107f5-df93-448c-9eb8-753b2f2f4634"
@@ -26,7 +27,7 @@ DEST_DIR = r"c:\Proyectos\ace-attorney-gemini\assets"
 os.makedirs(DEST_DIR, exist_ok=True)
 
 def find_asset_file(filename: str) -> str:
-    for d in [CURRENT_ARTIFACT_DIR, PREV_ARTIFACT_DIR_4, PREV_ARTIFACT_DIR_3, PREV_ARTIFACT_DIR_2, PREV_ARTIFACT_DIR_1, PREV_ARTIFACT_DIR, LEGACY_ARTIFACT_DIR]:
+    for d in [CURRENT_ARTIFACT_DIR, PREV_ARTIFACT_DIR_5, PREV_ARTIFACT_DIR_4, PREV_ARTIFACT_DIR_3, PREV_ARTIFACT_DIR_2, PREV_ARTIFACT_DIR_1, PREV_ARTIFACT_DIR, LEGACY_ARTIFACT_DIR]:
         p = os.path.join(d, filename)
         if os.path.exists(p):
             return p
@@ -382,6 +383,67 @@ def run_all_fixes():
 
     # Copy florinda_idle to florinda_fanning
     shutil.copy(os.path.join(DEST_DIR, "florinda_idle.png"), os.path.join(DEST_DIR, "florinda_fanning.png"))
+
+    # 5b. Don Ramón (Defense Lawyer)
+    donramon_sheet = find_asset_file("donramon_sprites_1787636324654.jpg")
+    if os.path.exists(donramon_sheet):
+        dr_img = Image.open(donramon_sheet)
+        dr_w, dr_h = dr_img.size
+        dr_cw, dr_ch = dr_w // 2, dr_h // 2
+
+        # Idle
+        c_idle = dr_img.crop((0, 0, dr_cw, dr_ch))
+        cl_idle = remove_bg_magenta_vectorized(c_idle, threshold=165.0, despill_depth=4)
+        cl_idle = clean_edges_vectorized(cl_idle, depth=5)
+        a_idle = np.array(cl_idle)
+        a_idle[424:, :, 3] = 0
+        f_idle = despill_final(extract_primary_components_fast(Image.fromarray(a_idle, mode="RGBA"), min_area_fraction=0.08))
+        f_idle.save(os.path.join(DEST_DIR, "donramon_idle.png"))
+
+        # Slam
+        c_slam = dr_img.crop((dr_cw, 0, dr_w, dr_ch))
+        cl_slam = remove_bg_magenta_vectorized(c_slam, threshold=165.0, despill_depth=4)
+        cl_slam = clean_edges_vectorized(cl_slam, depth=5)
+        a_slam = np.array(cl_slam)
+        a_slam[415:, 210:330, 3] = 0
+        a_slam[400:, :100, 3] = 0
+        a_slam[385:, 470:, 3] = 0
+        a_slam[465:, :, 3] = 0
+        a_slam[408:416, 420:470, 3] = 0
+        for y in range(390, 465):
+            for x in range(0, 512):
+                if a_slam[y, x, 3] > 0:
+                    r, g, b, _ = [int(v) for v in a_slam[y, x]]
+                    is_sleeve = (r <= 75 and g <= 75 and b <= 105)
+                    is_cuff = (r >= 165 and g >= 165 and b >= 165)
+                    is_outline = (r <= 45 and g <= 45 and b <= 45)
+                    is_skin = (r >= 150 and g >= 95 and b >= 80 and (b / max(1, g)) >= 0.56)
+                    in_center = (x >= 200 and x <= 315 and y <= 415)
+                    if y >= 408 and not in_center:
+                        if not (is_sleeve or is_cuff or is_outline or is_skin):
+                            a_slam[y, x, 3] = 0
+        f_slam = despill_final(extract_primary_components_fast(Image.fromarray(a_slam, mode="RGBA"), min_area_fraction=0.04))
+        f_slam.save(os.path.join(DEST_DIR, "donramon_slam.png"))
+
+        # Point
+        c_point = dr_img.crop((0, dr_ch, dr_cw, dr_h))
+        cl_point = remove_bg_magenta_vectorized(c_point, threshold=165.0, despill_depth=4)
+        cl_point = clean_edges_vectorized(cl_point, depth=5)
+        a_point = np.array(cl_point)
+        a_point[400:, :, 3] = 0
+        f_point = despill_final(extract_primary_components_fast(Image.fromarray(a_point, mode="RGBA"), min_area_fraction=0.08))
+        f_point.save(os.path.join(DEST_DIR, "donramon_point.png"))
+
+        # Sweat & Panic
+        c_sweat = dr_img.crop((dr_cw, dr_ch, dr_w, dr_h))
+        cl_sweat = remove_bg_magenta_vectorized(c_sweat, threshold=165.0, despill_depth=4)
+        cl_sweat = clean_edges_vectorized(cl_sweat, depth=5)
+        a_sweat = np.array(cl_sweat)
+        a_sweat[425:, :, 3] = 0
+        f_sweat = despill_final(extract_primary_components_fast(Image.fromarray(a_sweat, mode="RGBA"), min_area_fraction=0.08))
+        f_sweat.save(os.path.join(DEST_DIR, "donramon_sweat.png"))
+        f_sweat.save(os.path.join(DEST_DIR, "donramon_panic.png"))
+        print("  [OK] Processed Don Ramón defense sprites")
 
     # 6. Standalone Courtroom Furniture Props (Podium & Defense Table)
     process_standalone_prop(

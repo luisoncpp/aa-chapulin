@@ -11,6 +11,8 @@ import type { LocationId } from './state.js';
 // @Section(Dialogue & Visual Tags)
 export type SpeakerName =
   | 'DEFENSA'
+  | 'DON RAMON'
+  | 'DON RAMÓN'
   | 'CHAPULÍN'
   | 'CHAPULIN'
   | 'SUPER SAM'
@@ -31,6 +33,11 @@ export type PoseName =
   | 'chapulin_panic'
   | 'chapulin_point'
   | 'chapulin_slam'
+  | 'donramon_idle'
+  | 'donramon_slam'
+  | 'donramon_point'
+  | 'donramon_sweat'
+  | 'donramon_panic'
   | 'supersam_idle'
   | 'supersam_slam'
   | 'supersam_point'

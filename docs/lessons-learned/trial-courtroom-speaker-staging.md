@@ -10,7 +10,7 @@ Requiring scriptwriters to annotate every single dialogue line, statement press,
 
 ### 2. Centralized Speaker-to-Courtroom Camera Mapping
 Resolving canonical courtroom camera angles dynamically based on the active speaker:
-- `DEFENSA` / `CHAPULIN` -> `bg_defense.jpg`
+- `DEFENSA` / `DON RAMON` / `CHAPULIN` -> `bg_defense.jpg`
 - `SUPER SAM` -> `bg_courtroom.jpg` (prosecutor bench)
 - `JUEZ` -> `bg_judge.jpg` (judge bench)
 - Witness / `TRIPASECA` -> `bg_witness.jpg` (witness stand)

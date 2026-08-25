@@ -12,7 +12,7 @@ export const EVIDENCE_CATALOG: EvidenceCatalogMap = {
     id: 'insignia_abogado',
     name: 'Insignia de Abogado CH',
     icon: 'assets/insignia_abogado.png',
-    desc: 'Mi prestigiosa insignia de abogado heroico. "¡No contaban con mi astucia!"'
+    desc: 'Insignia del Abogado Defensor. Don Ramón la porta con orgullo para defender al Chapulín (¡y pagar la renta!).'
   },
   chipote_chillon: {
     id: 'chipote_chillon',

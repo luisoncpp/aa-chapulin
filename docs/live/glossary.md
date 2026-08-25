@@ -20,6 +20,7 @@ Domain terminology and project-specific concepts for **El Chapulín Colorado: Ac
 
 | Term | Definition | Catalog Reference |
 |------|------------|-------------------|
+| **Don Ramón (Lic. Monchito)** | The defense lawyer: an improvised, street-smart public defender taking Chapulín's case to clear his client and pay his 14 months of rent. | [[src/case/Private/case1_trial.ts]], [[src/case/Private/case1_investigation.ts]] |
 | **El Chapulín Colorado** | The defendant: a bumbling yet noble superhero framed for stealing the Golden Chicharra. | [[src/case/Private/case1_investigation.ts]] |
 | **Super Sam** | The prosecutor: an eccentric hero obsessed with capitalism and speed ("Time is money!"), wielding bags of dollars. | [[src/case/Private/case1_trial.ts]] |
 | **El Tripaseca** | The prosecution witness and true culprit: a notorious gangster trying to frame Chapulín. | [[src/case/Private/case1_trial.ts]] |

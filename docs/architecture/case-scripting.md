@@ -34,9 +34,9 @@ Each entry in a dialogue sequence supports the following optional and required f
 
 | Field | Type | Description |
 |-------|------|-------------|
-| `speaker` | string | Speaker label displayed in the nameplate (e.g. `'DEFENSA'`, `'CHAPULIN'`, `'SUPER SAM'`, `'JUEZ'`, `'TRIPASECA'`, `'FLORINDA'`, `'NARRADOR'`). |
+| `speaker` | string | Speaker label displayed in the nameplate (e.g. `'DEFENSA'`, `'DON RAMON'`, `'CHAPULIN'`, `'SUPER SAM'`, `'JUEZ'`, `'TRIPASECA'`, `'FLORINDA'`, `'NARRADOR'`). |
 | `text` | string | Text string rendered via typewriter. |
-| `pose` | string \| null | Sprite key (e.g. `'chapulin_idle'`, `'tripaseca_sweat'`). If `null` and speaker is defense/narrator, hides the stage sprite. |
+| `pose` | string \| null | Sprite key (e.g. `'donramon_idle'`, `'donramon_slam'`, `'donramon_point'`, `'chapulin_idle'`, `'tripaseca_sweat'`). If `null` during trial, defense defaults to `'donramon_idle'`. |
 | `bg` | string | File path to switch the background image (`#scene-bg`). |
 | `bgm` | string | Track ID to switch soundtrack playback in `midiComposer`. |
 | `sfx` | string | SFX identifier to trigger procedural audio (`'gavel'`, `'desk_slam'`, `'whoosh'`, `'realization'`, `'damage'`, `'chipote'`, `'chicharra'`). |

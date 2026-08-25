@@ -193,7 +193,7 @@ describe('VisualEffects Subsystem', () => {
     expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(false);
     expect(dom.gameScreen.dataset.stageFrame).toBe('podium');
 
-    // 5. Defense speaks with NO explicit pose -> defaults to chapulin_idle and shows bench
+    // 5. Defense speaks with NO explicit pose -> defaults to donramon_idle and shows bench
     VisualEffects.updateStagingForLine(
       dom,
       { speaker: 'DEFENSA', text: '¡La defensa no descansará!' },
@@ -203,5 +203,14 @@ describe('VisualEffects Subsystem', () => {
     expect(dom.courtFurnitureSpriteEl.src).toContain('assets/court_bench.png');
     expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(false);
     expect(dom.gameScreen.dataset.stageFrame).toBe('bench-stand');
+  });
+
+  it('resolves effective pose for trial defense and defendant correctly', () => {
+    expect(VisualEffects.resolveEffectivePose({ text: 'A', speaker: 'DEFENSA' }, /*isTrialMode=*/ true)).toBe('donramon_idle');
+    expect(VisualEffects.resolveEffectivePose({ text: 'A', speaker: 'DON RAMON' }, /*isTrialMode=*/ true)).toBe('donramon_idle');
+    expect(VisualEffects.resolveEffectivePose({ text: 'A', speaker: 'CHAPULIN' }, /*isTrialMode=*/ true)).toBe('chapulin_idle');
+    expect(VisualEffects.resolveEffectivePose({ text: 'A', speaker: 'JUEZ' }, /*isTrialMode=*/ true)).toBe(null);
+    expect(VisualEffects.resolveEffectivePose({ text: 'A', speaker: 'DEFENSA' }, /*isTrialMode=*/ false)).toBe(null);
+    expect(VisualEffects.resolveEffectivePose({ text: 'A', speaker: 'DEFENSA', pose: 'donramon_slam' }, /*isTrialMode=*/ true)).toBe('donramon_slam');
   });
 });

@@ -15,14 +15,15 @@ import numpy as np
 from PIL import Image
 from scipy import ndimage
 
-CURRENT_ARTIFACT_DIR = r"C:\Users\luiso\.gemini\antigravity\brain\91e780e1-ee3d-4c04-949d-db65c67e0f4d"
+CURRENT_ARTIFACT_DIR = r"C:\Users\luiso\.gemini\antigravity\brain\08f107f5-df93-448c-9eb8-753b2f2f4634"
+PREV_ARTIFACT_DIR_1 = r"C:\Users\luiso\.gemini\antigravity\brain\91e780e1-ee3d-4c04-949d-db65c67e0f4d"
 PREV_ARTIFACT_DIR = r"C:\Users\luiso\.gemini\antigravity\brain\7d7a0700-41bc-4655-a94e-d886430a5c04"
 LEGACY_ARTIFACT_DIR = r"C:\Users\luiso\.gemini\antigravity\brain\d6601f43-c0ae-494d-bbf8-ca413b3a64ed"
 DEST_DIR = r"c:\Proyectos\ace-attorney-gemini\assets"
 os.makedirs(DEST_DIR, exist_ok=True)
 
 def find_asset_file(filename: str) -> str:
-    for d in [CURRENT_ARTIFACT_DIR, PREV_ARTIFACT_DIR, LEGACY_ARTIFACT_DIR]:
+    for d in [CURRENT_ARTIFACT_DIR, PREV_ARTIFACT_DIR_1, PREV_ARTIFACT_DIR, LEGACY_ARTIFACT_DIR]:
         p = os.path.join(d, filename)
         if os.path.exists(p):
             return p
@@ -381,9 +382,9 @@ def run_all_fixes():
 
     # 6. Standalone Courtroom Furniture Props (Podium & Defense Table)
     process_standalone_prop(
-        "court_podium_clean_witness_box_1787550287556.jpg",
+        "court_podium_clean_1787626053367.jpg",
         "court_podium.png",
-        crop_box=(4, 100, 1372, 764)
+        crop_box=(19, 24, 1358, 762)
     )
     # Top of the crop must land on the desk's far-edge outline, NOT above it. Rows above
     # that outline are a flat featureless band from the source art; because the bench is

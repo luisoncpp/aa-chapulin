@@ -16,6 +16,7 @@ export interface EventBinderConfig {
   investigation: InvestigationController;
   trial: TrialController;
   onStartGame: () => void;
+  onStartTrialDebug?: () => void;
   onAdvance: () => void;
   onOpenCourtRecord: (isTrialPresent: boolean) => void;
   onPresentFromModal: () => void;
@@ -32,8 +33,11 @@ export class EngineEventBinder {
 
   // @Section(Audio & Splash Bindings)
   private static bindStartAndAudio(config: EventBinderConfig): void {
-    const { dom, soundEngine, onStartGame } = config;
+    const { dom, soundEngine, onStartGame, onStartTrialDebug } = config;
     dom.btnStartGame?.addEventListener('click', /*onStartClick*/ () => onStartGame());
+    dom.btnStartTrialDebug?.addEventListener('click', /*onStartTrialDebugClick*/ () => {
+      onStartTrialDebug?.();
+    });
     dom.btnAudioToggleEl.addEventListener('click', /*onToggleAudioClick*/ (e) => {
       e.stopPropagation();
       const isMuted = soundEngine.toggleMute();

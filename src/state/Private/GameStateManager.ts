@@ -69,4 +69,21 @@ export class GameStateManager {
     }
     return this.flags.ready_for_trial;
   }
+
+  // @Section(Trial Debug Setup)
+  public populateTrialEvidence(): void {
+    const trialEvidence: EvidenceId[] = [
+      'chipote_chillon',
+      'pastillas_chiquitolina',
+      'antenitas_vinil',
+      'informe_medico',
+      'foto_crimen',
+      'bolsa_dolares'
+    ];
+    trialEvidence.forEach(/*addEachItem*/ (item) => {
+      this.addEvidence(item);
+    });
+    this.flags.ready_for_trial = true;
+    this.mode = 'TRIAL';
+  }
 }

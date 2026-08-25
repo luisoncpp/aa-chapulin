@@ -3,10 +3,11 @@
 Operational guide for courtroom litigation, cross-examinations, evidence presentations, penalties, and verdict climax.
 
 ## 1. Trigger
-- Player initiates the trial from investigation mode, navigates testimony statements, clicks "Presionar", presents evidence from the Court Record, or triggers the final climax.
+- Player initiates the trial from investigation mode, starts debug trial directly from the splash screen / URL parameter / console, navigates testimony statements, clicks "Presionar", presents evidence from the Court Record, or triggers the final climax.
 
 ## 2. Entry Point
-- `trial.startTrial()` in [[src/engine/Private/TrialController.ts#Trial Launch & Intro]]
+- Normal launch: `trial.startTrial()` in [[src/engine/Private/TrialController.ts#Trial Launch & Intro]] via `#btn-inv-trial`.
+- Debug launch: `engine.startTrialDebug()` in [[src/engine/Private/GameEngine.ts#Initialization & Bootstrapping]] via `#btn-start-trial-debug`, `?mode=trial` query string, `#trial` hash, or `window.gameEngine.startTrialDebug()`.
 - `trial.nextStatement()` / `trial.prevStatement()` in [[src/engine/Private/TrialController.ts#Testimony Navigation]]
 - `trial.handlePressStatement()` in [[src/engine/Private/TrialController.ts#Statement Pressing & Contradictions]]
 - `trial.handlePresentEvidence(evidenceId)` in [[src/engine/Private/TrialController.ts#Statement Pressing & Contradictions]]

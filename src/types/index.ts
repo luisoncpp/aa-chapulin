@@ -30,6 +30,7 @@ export type {
 export type {
   PoseName,
   CutinName,
+  FurnitureType,
   DialogueLine,
   Hotspot,
   TalkOption,

@@ -61,6 +61,9 @@ Contains the master catalog defined in [[src/state/Private/EvidenceCatalog.ts#Ev
   5. `foto_crimen`
 - Once satisfied, `flags.ready_for_trial` becomes `true`, enabling the "Ir a Juicio" button.
 
+### 5. Debug Trial State Setup (`populateTrialEvidence`)
+- `populateTrialEvidence()` in [[src/state/Private/GameStateManager.ts#Trial Debug Setup]] populates `inventory` with all required trial clues (`chipote_chillon`, `pastillas_chiquitolina`, `antenitas_vinil`, `informe_medico`, `foto_crimen`, `bolsa_dolares`), sets `flags.ready_for_trial = true`, and switches `mode` to `'TRIAL'`.
+
 ## Invariants
 
 - Evidence can only be added if it exists in `allEvidence`.

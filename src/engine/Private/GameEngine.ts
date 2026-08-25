@@ -4,11 +4,9 @@
  * Connects [[./Typewriter.ts]], [[./InvestigationController.ts]], and [[./TrialController.ts]].
  */
 
-import type { MidiMusicComposer, SoundEngine } from '../../audio/index.js';
-import { midiComposer as defaultMidiComposer, soundEngine as defaultSoundEngine } from '../../audio/index.js';
+import { midiComposer as defaultMidiComposer, soundEngine as defaultSoundEngine, type MidiMusicComposer, type SoundEngine } from '../../audio/index.js';
 import { CASE_SCRIPT as defaultCaseScript } from '../../case/index.js';
-import type { GameStateManager } from '../../state/index.js';
-import { gameState as defaultGameState } from '../../state/index.js';
+import { gameState as defaultGameState, type GameStateManager } from '../../state/index.js';
 import type { CaseScript, DialogueLine, EvidenceId, SFXName } from '../../types/index.js';
 import { getDomElements, type DomElements } from './DomElements.js';
 import { EngineEventBinder } from './EngineEventBinder.js';
@@ -46,25 +44,16 @@ export class GameEngine {
     this.script = deps.script ?? defaultCaseScript;
     this.soundEngine = deps.soundEngine ?? defaultSoundEngine;
     this.midiComposer = deps.midiComposer ?? defaultMidiComposer;
-
     this.typewriter = new Typewriter(this.dom.dialogueTextEl, this.soundEngine);
 
     this.investigation = new InvestigationController({
-      dom: this.dom,
-      state: this.state,
-      script: this.script,
-      soundEngine: this.soundEngine,
-      midiComposer: this.midiComposer,
-      onQueueDialogue: (dlg, cb) => this.queueDialogue(dlg, cb)
+      dom: this.dom, state: this.state, script: this.script, soundEngine: this.soundEngine,
+      midiComposer: this.midiComposer, onQueueDialogue: (dlg, cb) => this.queueDialogue(dlg, cb)
     });
 
     this.trial = new TrialController({
-      dom: this.dom,
-      state: this.state,
-      script: this.script,
-      soundEngine: this.soundEngine,
-      midiComposer: this.midiComposer,
-      onQueueDialogue: (dlg, cb) => this.queueDialogue(dlg, cb),
+      dom: this.dom, state: this.state, script: this.script, soundEngine: this.soundEngine,
+      midiComposer: this.midiComposer, onQueueDialogue: (dlg, cb) => this.queueDialogue(dlg, cb),
       onRenderLine: (line) => this.renderDialogueLine(line),
       onOpenCourtRecord: (isTrialPresent) => this.openCourtRecord(isTrialPresent)
     });
@@ -73,30 +62,47 @@ export class GameEngine {
   // @Section(Initialization & Bootstrapping)
   public init(): void {
     EngineEventBinder.bind({
-      dom: this.dom,
-      soundEngine: this.soundEngine,
-      investigation: this.investigation,
-      trial: this.trial,
+      dom: this.dom, soundEngine: this.soundEngine,
+      investigation: this.investigation, trial: this.trial,
       onStartGame: () => this.startGame(),
+      onStartTrialDebug: () => this.startTrialDebug(),
       onAdvance: () => this.handleAdvance(),
       onOpenCourtRecord: (isTrial) => this.openCourtRecord(isTrial),
       onPresentFromModal: () => this.handlePresentFromModal()
     });
     ModalManager.updateHealthUI(this.dom.healthBarEl, this.state.health, this.state.maxHealth);
+    this.checkDebugUrlParams();
   }
 
-  private startGame(): void {
-    if (this.hasStarted) return;
-    this.hasStarted = true;
+  private checkDebugUrlParams(): void {
+    if (typeof window === 'undefined' || !window.location) return;
+    const url = `${window.location.search} ${window.location.hash}`.toLowerCase();
+    if (url.includes('trial')) this.startTrialDebug();
+  }
+
+  private dismissSplashAndInitAudio(): void {
     this.soundEngine.init();
     this.soundEngine.resume();
     this.soundEngine.playGavel();
-
     this.dom.startSplashOverlayEl.style.opacity = '0';
     setTimeout(/*hideSplash*/ () => {
       this.dom.startSplashOverlayEl.classList.add('hidden');
     }, /*delayInMs=*/ 400);
+  }
+
+  public startGame(): void {
+    if (this.hasStarted) return;
+    this.hasStarted = true;
+    this.dismissSplashAndInitAudio();
     this.investigation.startInvestigation('museum');
+  }
+
+  public startTrialDebug(): void {
+    if (this.hasStarted) return;
+    this.hasStarted = true;
+    this.dismissSplashAndInitAudio();
+    this.state.populateTrialEvidence();
+    this.trial.startTrial();
   }
 
   // @Section(Dialogue Flow & Queue)
@@ -150,6 +156,8 @@ export class GameEngine {
     } else if (line.speaker === 'DEFENSA' || line.speaker === 'NARRADOR') {
       VisualEffects.hideCharacter(this.dom.charSpriteEl);
     }
+    const isTrial = this.state.mode === 'TRIAL';
+    VisualEffects.updateStagingForLine(this.dom, line, isTrial);
     this.dom.speakerBoxEl.textContent = line.speaker || '';
   }
 
@@ -164,8 +172,7 @@ export class GameEngine {
 
   private triggerSFX(sfx: SFXName): void {
     this.soundEngine.playSFX(sfx);
-    if (sfx === 'gavel') VisualEffects.shakeScreen(this.dom.gameScreen, /*durationMs=*/ 300);
-    if (sfx === 'desk_slam') VisualEffects.shakeScreen(this.dom.gameScreen, /*durationMs=*/ 250);
+    if (sfx === 'gavel' || sfx === 'desk_slam') VisualEffects.shakeScreen(this.dom.gameScreen, /*durationMs=*/ 300);
     if (sfx === 'realization' || sfx === 'chicharra') VisualEffects.flashScreen(this.dom.flashEl);
     if (sfx === 'damage') {
       VisualEffects.shakeScreen(this.dom.gameScreen, /*durationMs=*/ 450);
@@ -176,12 +183,8 @@ export class GameEngine {
   // @Section(Evidence Presentation Handling)
   private openCourtRecord(isTrialPresent: boolean): void {
     ModalManager.openCourtRecord({
-      dom: this.dom,
-      state: this.state,
-      isTrialPresent,
-      onSelect: (id) => {
-        this.selectedEvidenceId = id;
-      }
+      dom: this.dom, state: this.state, isTrialPresent,
+      onSelect: (id) => { this.selectedEvidenceId = id; }
     });
   }
 

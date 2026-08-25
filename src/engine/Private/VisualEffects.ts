@@ -4,8 +4,14 @@
  * Operates on DOM nodes for [[./GameEngine.ts]].
  */
 
-import type { CutinName, PoseName } from '../../types/index.js';
+import type { CutinName, DialogueLine, FurnitureType, PoseName } from '../../types/index.js';
 import type { DomElements } from './DomElements.js';
+import { applyStageFrame, resolveStageFrame } from './StageLayout.js';
+
+const FURNITURE_ASSETS: Record<'podium' | 'bench', string> = {
+  podium: 'assets/court_podium.png',
+  bench: 'assets/court_bench.png'
+};
 
 export class VisualEffects {
   // @Section(Character Pose Staging)
@@ -17,6 +23,50 @@ export class VisualEffects {
 
   public static hideCharacter(charSpriteEl: HTMLImageElement): void {
     charSpriteEl.classList.add('hidden');
+  }
+
+  // @Section(Courtroom Furniture Staging)
+  public static setFurniture(
+    furnitureSpriteEl: HTMLImageElement,
+    furnitureContainerEl: HTMLElement,
+    type: FurnitureType
+  ): void {
+    if (!type || type === 'none') {
+      VisualEffects.hideFurniture(furnitureContainerEl);
+      return;
+    }
+    furnitureSpriteEl.src = FURNITURE_ASSETS[type];
+    furnitureContainerEl.dataset.furniture = type;
+    furnitureContainerEl.classList.remove('hidden');
+  }
+
+  public static hideFurniture(furnitureContainerEl: HTMLElement): void {
+    furnitureContainerEl.classList.add('hidden');
+    furnitureContainerEl.dataset.furniture = 'none';
+  }
+
+  /**
+   * Resolves furniture and the matching stage frame together: sprite scale and
+   * surface contact are one composition decision, never two independent ones.
+   */
+  public static updateStagingForLine(
+    dom: DomElements,
+    line: DialogueLine,
+    isTrialMode: boolean
+  ): void {
+    const furniture = line.furniture ?? VisualEffects.inferFurniture(line, isTrialMode, dom.bgEl.style.backgroundImage);
+    VisualEffects.setFurniture(dom.courtFurnitureSpriteEl, dom.courtFurnitureContainerEl, furniture);
+    applyStageFrame(dom.gameScreen, resolveStageFrame(furniture, line.pose ?? null));
+  }
+
+  private static inferFurniture(line: DialogueLine, isTrialMode: boolean, currentBg: string): FurnitureType {
+    if (!isTrialMode) return 'none';
+    const bg = line.bg ?? currentBg ?? '';
+    if (bg.includes('bg_witness')) return 'podium';
+    const isDefense = line.speaker === 'DEFENSA' || line.speaker === 'CHAPULIN' || line.speaker === 'CHAPULÍN';
+    if (isDefense && line.pose) return 'bench';
+    if (bg.includes('bg_defense')) return 'bench';
+    return 'none';
   }
 
   // @Section(Screen Shakes & Flashes)

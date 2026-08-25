@@ -80,4 +80,31 @@ describe('Asset Integrity & Existence', () => {
       expect(fs.existsSync(filePath)).toBe(true);
     });
   });
+
+  it('verifies all courtroom furniture overlay sprites exist and have content', () => {
+    const furnitureSprites = ['court_podium.png', 'court_bench.png'];
+    furnitureSprites.forEach((file) => {
+      const filePath = path.join(assetsDir, file);
+      expect(fs.existsSync(filePath)).toBe(true);
+      const stats = fs.statSync(filePath);
+      expect(stats.size).toBeGreaterThan(1000);
+    });
+  });
+
+  it('verifies all scene background assets exist and have content', () => {
+    const backgrounds = [
+      'bg_defense.jpg',
+      'bg_courtroom.jpg',
+      'bg_witness.jpg',
+      'bg_judge.jpg',
+      'bg_museum.jpg',
+      'bg_detention.jpg'
+    ];
+    backgrounds.forEach((file) => {
+      const filePath = path.join(assetsDir, file);
+      expect(fs.existsSync(filePath)).toBe(true);
+      const stats = fs.statSync(filePath);
+      expect(stats.size).toBeGreaterThan(1000);
+    });
+  });
 });

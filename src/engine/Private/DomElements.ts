@@ -10,6 +10,8 @@ export interface DomElements {
   speakerBoxEl: HTMLElement;
   dialogueTextEl: HTMLElement;
   charSpriteEl: HTMLImageElement;
+  courtFurnitureContainerEl: HTMLElement;
+  courtFurnitureSpriteEl: HTMLImageElement;
   cutinOverlayEl: HTMLElement;
   cutinImgEl: HTMLImageElement;
   flashEl: HTMLElement;
@@ -34,6 +36,7 @@ export interface DomElements {
   btnAudioToggleEl: HTMLButtonElement;
   gameNotificationEl: HTMLElement;
   btnStartGame: HTMLButtonElement;
+  btnStartTrialDebug: HTMLButtonElement;
   btnCourtRecord: HTMLButtonElement;
   btnCloseRecord: HTMLButtonElement;
   btnInvExamine: HTMLButtonElement;
@@ -56,6 +59,8 @@ export function getDomElements(): DomElements {
     speakerBoxEl: document.getElementById('speaker-name')!,
     dialogueTextEl: document.getElementById('dialogue-text')!,
     charSpriteEl: document.getElementById('character-sprite') as HTMLImageElement,
+    courtFurnitureContainerEl: document.getElementById('court-furniture-container')!,
+    courtFurnitureSpriteEl: document.getElementById('court-furniture-sprite') as HTMLImageElement,
     cutinOverlayEl: document.getElementById('cutin-overlay')!,
     cutinImgEl: document.getElementById('cutin-img') as HTMLImageElement,
     flashEl: document.getElementById('screen-flash')!,
@@ -80,6 +85,7 @@ export function getDomElements(): DomElements {
     btnAudioToggleEl: document.getElementById('btn-audio-toggle') as HTMLButtonElement,
     gameNotificationEl: document.getElementById('game-notification')!,
     btnStartGame: document.getElementById('btn-start-game') as HTMLButtonElement,
+    btnStartTrialDebug: document.getElementById('btn-start-trial-debug') as HTMLButtonElement,
     btnCourtRecord: document.getElementById('btn-court-record') as HTMLButtonElement,
     btnCloseRecord: document.getElementById('btn-close-record') as HTMLButtonElement,
     btnInvExamine: document.getElementById('btn-inv-examine') as HTMLButtonElement,

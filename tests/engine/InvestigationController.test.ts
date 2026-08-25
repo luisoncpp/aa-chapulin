@@ -45,6 +45,7 @@ describe('InvestigationController', () => {
     expect(state.currentLocation).toBe('museum');
     expect(dom.locationBannerEl.textContent).toContain('Museo');
     expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_museum.jpg');
+    expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(true);
     expect(midiComposerInstance.currentTrack).toBe('investigation');
     expect(queuedDialogues).toHaveLength(1);
   });

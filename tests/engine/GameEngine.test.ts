@@ -151,4 +151,79 @@ describe('GameEngine Coordinator', () => {
     const defaultCreated = createGameEngine();
     expect(defaultCreated).toBeInstanceOf(GameEngine);
   });
+
+  it('stages courtroom furniture dynamically on dialogue rendering', () => {
+    state.mode = 'TRIAL';
+
+    // Witness speaking at witness stand -> shows podium
+    engine.renderDialogueLine({
+      speaker: 'TRIPASECA',
+      pose: 'tripaseca_smug',
+      text: 'Yo no fui',
+      bg: 'assets/bg_witness.jpg'
+    });
+    expect(dom.courtFurnitureSpriteEl.src).toContain('assets/court_podium.png');
+    expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(false);
+
+    // Defense speaking with pose -> shows defense bench
+    engine.renderDialogueLine({
+      speaker: 'DEFENSA',
+      pose: 'chapulin_point',
+      text: '¡Protesto!',
+      bg: 'assets/bg_courtroom.jpg'
+    });
+    expect(dom.courtFurnitureSpriteEl.src).toContain('assets/court_bench.png');
+    expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(false);
+    expect(dom.courtFurnitureContainerEl.dataset.furniture).toBe('bench');
+    expect(dom.gameScreen.dataset.stageFrame).toBe('bench-stand');
+
+    // Investigation mode -> hides furniture
+    state.mode = 'INVESTIGATION';
+    engine.renderDialogueLine({
+      speaker: 'CHAPULIN',
+      pose: 'chapulin_idle',
+      text: 'En la sala de visitas',
+      bg: 'assets/bg_detention.jpg'
+    });
+    expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(true);
+  });
+
+  it('starts trial directly with full evidence and audio on startTrialDebug', () => {
+    engine.startTrialDebug();
+    vi.advanceTimersByTime(400);
+
+    expect(soundEngineInstance.initialized).toBe(true);
+    expect(dom.startSplashOverlayEl.classList.contains('hidden')).toBe(true);
+    expect(state.mode).toBe('TRIAL');
+    expect(state.hasEvidence('chipote_chillon')).toBe(true);
+    expect(state.hasEvidence('pastillas_chiquitolina')).toBe(true);
+    expect(state.hasEvidence('antenitas_vinil')).toBe(true);
+    expect(dom.trialNavEl.classList.contains('hidden')).toBe(false);
+  });
+
+  it('starts trial directly when clicking debug trial button', () => {
+    dom.btnStartTrialDebug.click();
+    vi.advanceTimersByTime(400);
+
+    expect(state.mode).toBe('TRIAL');
+    expect(state.flags.ready_for_trial).toBe(true);
+    expect(dom.trialNavEl.classList.contains('hidden')).toBe(false);
+  });
+
+  it('triggers debug trial on init if URL contains trial query param', () => {
+    const originalLocation = window.location;
+    delete (window as any).location;
+    window.location = { search: '?mode=trial', hash: '' } as any;
+
+    const autoDebugEngine = new GameEngine({
+      dom,
+      state: new GameStateManager(),
+      soundEngine: soundEngineInstance,
+      midiComposer: midiComposerInstance
+    });
+    autoDebugEngine.init();
+    vi.advanceTimersByTime(400);
+
+    window.location = originalLocation;
+  });
 });

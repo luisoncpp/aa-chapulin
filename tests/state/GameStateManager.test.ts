@@ -82,6 +82,19 @@ describe('GameStateManager', () => {
     expect(state.flags.ready_for_trial).toBe(true);
   });
 
+  it('populates all required trial evidence and marks readiness for debug trial', () => {
+    state.populateTrialEvidence();
+    expect(state.mode).toBe('TRIAL');
+    expect(state.flags.ready_for_trial).toBe(true);
+    expect(state.hasEvidence('chipote_chillon')).toBe(true);
+    expect(state.hasEvidence('pastillas_chiquitolina')).toBe(true);
+    expect(state.hasEvidence('antenitas_vinil')).toBe(true);
+    expect(state.hasEvidence('informe_medico')).toBe(true);
+    expect(state.hasEvidence('foto_crimen')).toBe(true);
+    expect(state.hasEvidence('bolsa_dolares')).toBe(true);
+    expect(state.hasEvidence('insignia_abogado')).toBe(true);
+  });
+
   it('exports singleton gameState with evidence catalog correctly', () => {
     expect(gameState).toBeInstanceOf(GameStateManager);
     expect(gameState.allEvidence.insignia_abogado.name).toBe('Insignia de Abogado CH');

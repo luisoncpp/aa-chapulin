@@ -34,9 +34,9 @@ Characters are rendered in high-definition 2D Capcom sprite style with crisp dar
 ### A. El Chapulín Colorado (Defense / Defendant)
 * **Visual Motifs**: Scarlet-red superhero cowl and bodysuit, bright yellow heart chest crest with red "CH" typography, antennae with flexible physics, yellow wings/capelet.
 * **Palette**: Crimson Red (`#C0392B`), Canary Yellow (`#F1C40F`), Warm Flesh (`#F5CBA7`), Charcoal Outline (`#1A1A1A`).
-* **Sprite Poses** ([[assets/chapulin_sprites.png]]):
-  * `chapulin_idle`: Confident defense stance resting hands on the mahogany bench.
-  * `chapulin_slam`: Double-palmed desk slam kicking up dust clouds.
+* **Sprite Poses** ([[assets/chapulin_sprites_clean_1787540691618.jpg]]):
+  * `chapulin_idle`: Confident superhero/defense stance with hands resting on hips (standalone character sprite with zero baked furniture).
+  * `chapulin_slam`: Double-palmed desk slam pose with hands positioned downwards to align with foreground furniture.
   * `chapulin_point`: Iconic Phoenix Wright-style horizontal finger thrust with twitching antennae.
   * `chapulin_panic`: Wide-eyed comic sweat-storm with hands clutching cowl in despair.
 
@@ -81,9 +81,9 @@ graph TD
     I --> I2[Detention Center: Concrete Walls & Security Glass]
 ```
 
-### 1. Courtroom Environments (`bg_courtroom.jpg`, `bg_witness.jpg`, `bg_judge.jpg`)
+### 1. Courtroom Environments (`bg_defense.jpg`, `bg_courtroom.jpg`, `bg_witness.jpg`, `bg_judge.jpg`)
 * **Palette**: Mahogany wood (`#3D2314`), Gilded Brass (`#C5A059`), Classical Stone Grey (`#7F8C8D`), Warm Amber Lighting (`#F39C12`).
-* **Atmosphere**: Grand judicial hall with classical arches, elevated witness podium, and prominent Scales of Justice wall carvings.
+* **Atmosphere**: Grand judicial hall with classical arches, elevated witness podium, and prominent Scales of Justice wall carvings. `bg_defense.jpg` is the left side of that hall from the well: open floor, the elevated spectator gallery, a receding colonnade. Windows exist only on the far wall behind the judge, so this camera never shows them. Do not flatten it into a dead-end wall.
 
 ### 2. Museum of Curiosities (`bg_museum.jpg`)
 * **Palette**: Rich Burgundy Carpeting (`#78281F`), Night Blue Moonlight (`#1B4F72`), Ornate Walnut (`#4A235A`), Caution Gold (`#F4D03F`).
@@ -104,6 +104,8 @@ graph TD
 | **Health Penalty Bar** | Retro segmented display with 5 luminous green exclamation points (`! ! ! ! !`), flashing red on penalty strikes. | [[style.css#Health Bar]] |
 | **Court Record Cards** | Gold-bordered dark slate tiles with centered pixel item icons and glowing cyan selection highlights (`#00FFCC`). | [[style.css#Court Record Modal]] |
 | **Examine Tooltip** | Sleek dark tooltip (`🔍 Inspeccionar`) following cursor with subtle highlight outlines only on hover. | [[style.css#Examine Tooltip]] |
+| **Witness Podium** | Classical mahogany witness stand with antique gilded brass microphone overlay in foreground. | [[assets/court_podium.png]] |
+| **Defense Bench** | Wide mahogany defense desk. Staged as an aspect-preserved close-up crop whose top edge is the stage's hand-contact line (not a full-bleed squashed strip). Slam palms paint over the counter. Geometry comes from the `bench-*` stage frames, never from pixel offsets. | [[assets/court_bench.png]] |
 
 ---
 

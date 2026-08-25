@@ -49,6 +49,7 @@ export class InvestigationController {
     this.isExamineActive = false;
     this.dom.hotspotsContainerEl.classList.remove('visible-hotspots');
     this.dom.examineTooltipEl.classList.add('hidden');
+    VisualEffects.hideFurniture(this.dom.courtFurnitureContainerEl);
 
     const scene = this.script.investigation[location];
     this.dom.locationBannerEl.textContent = scene.title;
@@ -103,6 +104,7 @@ export class InvestigationController {
     this.dom.investigationNavEl.classList.add('hidden');
     this.dom.examineNavEl.classList.remove('hidden');
     VisualEffects.hideCharacter(this.dom.charSpriteEl);
+    VisualEffects.hideFurniture(this.dom.courtFurnitureContainerEl);
 
     this.dom.speakerBoxEl.textContent = 'MODO EXAMINAR';
     this.onQueueDialogue([
@@ -116,6 +118,7 @@ export class InvestigationController {
     this.dom.examineTooltipEl.classList.add('hidden');
     this.dom.examineNavEl.classList.add('hidden');
     this.dom.investigationNavEl.classList.remove('hidden');
+    VisualEffects.hideFurniture(this.dom.courtFurnitureContainerEl);
 
     if (this.currentLocationCharPose) {
       VisualEffects.setPose(this.dom.charSpriteEl, this.currentLocationCharPose);

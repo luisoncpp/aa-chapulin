@@ -26,6 +26,18 @@ describe('VisualEffects Subsystem', () => {
     expect(dom.charSpriteEl.src).toBe(prevSrc);
   });
 
+  it('stacks slam palms above the bench and keeps standing poses behind it', () => {
+    const slamLine = { text: '¡Protesto!', speaker: 'DEFENSA', pose: 'chapulin_slam' } as const;
+    VisualEffects.updateStagingForLine(dom, slamLine, /*isTrialMode=*/ true);
+    expect(dom.gameScreen.dataset.stageFrame).toBe('bench-slam');
+    expect(dom.gameScreen.style.getPropertyValue('--char-layer')).toBe('4');
+
+    const standLine = { text: 'Su Señoría...', speaker: 'DEFENSA', pose: 'chapulin_idle' } as const;
+    VisualEffects.updateStagingForLine(dom, standLine, /*isTrialMode=*/ true);
+    expect(dom.gameScreen.dataset.stageFrame).toBe('bench-stand');
+    expect(dom.gameScreen.style.getPropertyValue('--char-layer')).toBe('2');
+  });
+
   it('triggers screen shake animation and removes it after duration', () => {
     VisualEffects.shakeScreen(dom.gameScreen, /*durationMs=*/ 300);
     expect(dom.gameScreen.classList.contains('screen-shake')).toBe(true);
@@ -79,5 +91,59 @@ describe('VisualEffects Subsystem', () => {
     vi.advanceTimersByTime(2800);
     expect(dom.gameNotificationEl.classList.contains('hidden')).toBe(true);
     expect(dom.gameNotificationEl.classList.contains('notif-slide')).toBe(false);
+  });
+
+  it('stages podium and bench furniture overlays correctly', () => {
+    // Set podium
+    VisualEffects.setFurniture(dom.courtFurnitureSpriteEl, dom.courtFurnitureContainerEl, 'podium');
+    expect(dom.courtFurnitureSpriteEl.src).toContain('assets/court_podium.png');
+    expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(false);
+    expect(dom.courtFurnitureContainerEl.dataset.furniture).toBe('podium');
+
+    // Set bench
+    VisualEffects.setFurniture(dom.courtFurnitureSpriteEl, dom.courtFurnitureContainerEl, 'bench');
+    expect(dom.courtFurnitureSpriteEl.src).toContain('assets/court_bench.png');
+    expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(false);
+    expect(dom.courtFurnitureContainerEl.dataset.furniture).toBe('bench');
+
+    // Hide furniture
+    VisualEffects.hideFurniture(dom.courtFurnitureContainerEl);
+    expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(true);
+    expect(dom.courtFurnitureContainerEl.dataset.furniture).toBe('none');
+  });
+
+  it('updates furniture dynamically according to line and scene context', () => {
+    // Investigation mode -> no furniture
+    VisualEffects.updateStagingForLine(dom, { text: 'Intro' }, /*isTrialMode=*/ false);
+    expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(true);
+    expect(dom.gameScreen.dataset.stageFrame).toBe('plain');
+
+    // Trial mode with witness background -> podium
+    VisualEffects.updateStagingForLine(
+      dom,
+      { text: 'Testigo habla', bg: 'assets/bg_witness.jpg', speaker: 'TRIPASECA' },
+      /*isTrialMode=*/ true
+    );
+    expect(dom.courtFurnitureSpriteEl.src).toContain('assets/court_podium.png');
+    expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(false);
+    expect(dom.gameScreen.dataset.stageFrame).toBe('podium');
+
+    // Trial mode with defense speaking with pose -> bench
+    VisualEffects.updateStagingForLine(
+      dom,
+      { text: 'Objecion!', speaker: 'DEFENSA', pose: 'chapulin_slam' },
+      /*isTrialMode=*/ true
+    );
+    expect(dom.courtFurnitureSpriteEl.src).toContain('assets/court_bench.png');
+    expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(false);
+    expect(dom.gameScreen.dataset.stageFrame).toBe('bench-slam');
+
+    // Explicit furniture override
+    VisualEffects.updateStagingForLine(
+      dom,
+      { text: 'Custom line', furniture: 'none' },
+      /*isTrialMode=*/ true
+    );
+    expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(true);
   });
 });

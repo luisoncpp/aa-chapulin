@@ -113,6 +113,21 @@ body {
     transform: scale(1.08);
 }
 
+.splash-btn-debug {
+    background: linear-gradient(180deg, #8e44ad 0%, #5b2c6f 100%);
+    border: 3px solid #bb86fc;
+    font-size: 22px;
+    padding: 8px 24px;
+    box-shadow: 0 0 15px rgba(187, 134, 252, 0.5);
+    opacity: 0.95;
+}
+
+.splash-btn-debug:hover {
+    background: linear-gradient(180deg, #9b59b6 0%, #6c3483 100%);
+    box-shadow: 0 0 25px rgba(187, 134, 252, 0.85);
+    transform: scale(1.06);
+}
+
 /* Background Scene */
 #scene-bg {
     position: absolute;
@@ -126,20 +141,22 @@ body {
     z-index: 1;
 }
 
-/* Character Sprite */
+/* Character Sprite
+   Geometry comes from the stage frame vars set by src/engine/Private/StageLayout.ts.
+   Never hardcode pixels here: the fallbacks below are only for a pre-staging first paint. */
 #character-container {
     position: absolute;
-    bottom: 110px;
+    bottom: var(--char-baseline, 13%);
     left: 50%;
     transform: translateX(-50%);
-    width: 440px;
-    height: 440px;
+    height: var(--char-height, 62%);
+    aspect-ratio: 1 / 1;
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    z-index: 2;
+    z-index: var(--char-layer, 2);
     pointer-events: none;
-    transition: opacity 0.2s ease;
+    transition: bottom 0.2s ease, height 0.2s ease, opacity 0.2s ease;
 }
 
 #character-sprite {
@@ -151,9 +168,43 @@ body {
     animation: characterBreathe 3s infinite ease-in-out;
 }
 
+/* A pose whose hands are planted on furniture must not drift: the idle float would
+   open and close a gap at the contact line every cycle. Frame-driven, so any future
+   surface-contact frame gets this for free. */
+#game-screen[data-stage-contact="true"] #character-sprite {
+    animation: none;
+}
+
 @keyframes characterBreathe {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-3px); }
+}
+
+/* Courtroom Foreground Furniture (Witness Podium / Defense Bench)
+   Same contract as the character: the stage frame owns the geometry. */
+#court-furniture-container {
+    position: absolute;
+    bottom: var(--furniture-baseline, 0%);
+    left: 50%;
+    transform: translateX(-50%);
+    width: var(--furniture-width, 100%);
+    height: var(--furniture-height, 100%);
+    display: block;
+    overflow: hidden;
+    z-index: 3;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+#court-furniture-sprite {
+    width: 100%;
+    height: 100%;
+    /* cover + top alignment keeps the source aspect ratio and anchors the counter's
+       top surface to the container's top edge, which is the stage's contact line. */
+    object-fit: cover;
+    object-position: 50% 0%;
+    image-rendering: pixelated;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.7));
 }
 
 /* --- EXAMINE HOTSPOTS (Clean, Non-Intrusive, Precise) --- */

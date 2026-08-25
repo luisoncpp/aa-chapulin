@@ -12,6 +12,9 @@ export function setupDomHarness(): DomElements {
       <div id="character-container">
         <img id="character-sprite" src="" alt="Character Pose" class="hidden">
       </div>
+      <div id="court-furniture-container" class="hidden">
+        <img id="court-furniture-sprite" src="" alt="Courtroom Furniture">
+      </div>
       <div id="hotspots-container"></div>
       <div id="examine-tooltip" class="hidden">🔍 Inspeccionar</div>
       <div id="top-hud">
@@ -54,6 +57,7 @@ export function setupDomHarness(): DomElements {
       <div id="confetti-container" class="hidden"></div>
       <div id="start-splash-overlay">
         <button id="btn-start-game">COMENZAR</button>
+        <button id="btn-start-trial-debug">MODO DEBUG</button>
       </div>
       <div id="court-record-modal" class="game-modal hidden">
         <button id="btn-close-record">X</button>

@@ -50,9 +50,13 @@ sequenceDiagram
 5. **Sprite Management**:
    - If `line.pose` is set: updates `#character-sprite` `src` and removes `.hidden`.
    - If `line.speaker` is `'DEFENSA'` or `'NARRADOR'`: hides `#character-sprite`.
-6. **Evidence Automatic Grant**: If `line.addEvidence` is present, calls `gameState.addEvidence()` and triggers `#game-notification`.
-7. **Speaker Tag**: Updates `#speaker-name` text content.
-8. **Typewriter Effect**: Starts a 28ms `setInterval` timer appending characters one by one, playing `soundEngine.playTextBlip()` on every second non-whitespace character.
+6. **Stage Composition**: `VisualEffects.updateStagingForLine(dom, line, isTrialMode)` runs *after* the pose is set, because the frame depends on it:
+   - Resolves furniture from `line.furniture`, else infers it from trial mode + `line.bg` + `line.speaker`.
+   - `resolveStageFrame(furniture, line.pose)` maps that pair to one of `plain` / `bench-stand` / `bench-slam` / `podium`.
+   - `applyStageFrame()` writes the frame's ratios to `#game-screen` as CSS custom properties, which resize and reposition `#character-container` and `#court-furniture-container` together. See [[src/engine/Private/StageLayout.ts]].
+7. **Evidence Automatic Grant**: If `line.addEvidence` is present, calls `gameState.addEvidence()` and triggers `#game-notification`.
+8. **Speaker Tag**: Updates `#speaker-name` text content.
+9. **Typewriter Effect**: Starts a 28ms `setInterval` timer appending characters one by one, playing `soundEngine.playTextBlip()` on every second non-whitespace character.
 
 ## 4. Reads
 - `engine.dialogueQueue`

@@ -51,6 +51,8 @@ export type CutinName =
   | 'objection_toma_eso'
   | 'objection_culpable';
 
+export type FurnitureType = 'podium' | 'bench' | 'none';
+
 export interface DialogueLine {
   speaker?: SpeakerName;
   text: string;
@@ -60,6 +62,7 @@ export interface DialogueLine {
   sfx?: SFXName;
   cutin?: CutinName;
   addEvidence?: EvidenceId;
+  furniture?: FurnitureType;
 }
 
 // @Section(Investigation Schema)

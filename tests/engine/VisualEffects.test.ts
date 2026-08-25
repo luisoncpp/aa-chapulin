@@ -146,4 +146,62 @@ describe('VisualEffects Subsystem', () => {
     );
     expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(true);
   });
+
+  it('automatically switches courtroom background and furniture for each speaker in trial mode', () => {
+    // Start with witness background
+    dom.bgEl.style.backgroundImage = "url('assets/bg_witness.jpg')";
+
+    // 1. Defense protests with pose -> switches to defense background and bench
+    VisualEffects.updateStagingForLine(
+      dom,
+      { speaker: 'DEFENSA', pose: 'chapulin_point', text: '¡Su testimonio se desmorona!' },
+      /*isTrialMode=*/ true
+    );
+    expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_defense.jpg');
+    expect(dom.courtFurnitureSpriteEl.src).toContain('assets/court_bench.png');
+    expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(false);
+    expect(dom.gameScreen.dataset.stageFrame).toBe('bench-stand');
+
+    // 2. Prosecution talks -> switches to courtroom/prosecution background and hides furniture
+    VisualEffects.updateStagingForLine(
+      dom,
+      { speaker: 'SUPER SAM', pose: 'supersam_point', text: 'What?!' },
+      /*isTrialMode=*/ true
+    );
+    expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_courtroom.jpg');
+    expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(true);
+    expect(dom.gameScreen.dataset.stageFrame).toBe('plain');
+
+    // 3. Judge talks -> switches to judge background and hides furniture
+    VisualEffects.updateStagingForLine(
+      dom,
+      { speaker: 'JUEZ', pose: 'judge_thinking', text: '¡Vaya sonido!' },
+      /*isTrialMode=*/ true
+    );
+    expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_judge.jpg');
+    expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(true);
+    expect(dom.gameScreen.dataset.stageFrame).toBe('plain');
+
+    // 4. Witness talks -> switches back to witness background and shows podium
+    VisualEffects.updateStagingForLine(
+      dom,
+      { speaker: 'TRIPASECA', pose: 'tripaseca_sweat', text: '¡Glup!' },
+      /*isTrialMode=*/ true
+    );
+    expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_witness.jpg');
+    expect(dom.courtFurnitureSpriteEl.src).toContain('assets/court_podium.png');
+    expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(false);
+    expect(dom.gameScreen.dataset.stageFrame).toBe('podium');
+
+    // 5. Defense speaks with NO explicit pose -> defaults to chapulin_idle and shows bench
+    VisualEffects.updateStagingForLine(
+      dom,
+      { speaker: 'DEFENSA', text: '¡La defensa no descansará!' },
+      /*isTrialMode=*/ true
+    );
+    expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_defense.jpg');
+    expect(dom.courtFurnitureSpriteEl.src).toContain('assets/court_bench.png');
+    expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(false);
+    expect(dom.gameScreen.dataset.stageFrame).toBe('bench-stand');
+  });
 });

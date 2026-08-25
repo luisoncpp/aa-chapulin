@@ -82,8 +82,10 @@ graph TD
 ```
 
 ### 1. Courtroom Environments (`bg_defense.jpg`, `bg_courtroom.jpg`, `bg_witness.jpg`, `bg_judge.jpg`)
-* **Palette**: Mahogany wood (`#3D2314`), Gilded Brass (`#C5A059`), Classical Stone Grey (`#7F8C8D`), Warm Amber Lighting (`#F39C12`).
-* **Atmosphere**: Grand judicial hall with classical arches, elevated witness podium, and prominent Scales of Justice wall carvings. `bg_defense.jpg` captures the defense stand's close-up wooden wall: rich mahogany wainscoting panels and vertical wood planks matching the woodwork of the courtroom.
+* **Palette**: Mahogany wood (`#3D2314`), Gilded Brass (`#C5A059`), Classical Stone Grey (`#7F8C8D`), Warm Amber Lighting (`#F39C12`), Burgundy Velvet (`#581825`).
+* **Atmosphere**: Grand judicial hall with classical arches, elevated witness podium, and prominent Scales of Justice wall carvings.
+  * `bg_defense.jpg`: Close-up eye-level perspective of the defense stand's back wall with rich mahogany wainscoting and vertical wood planks.
+  * `bg_courtroom.jpg`: Close-up eye-level perspective of the prosecution stand's back wall, matching the defense scale and horizon line while featuring a central carved wooden arch with golden Scales of Justice crest, illuminated pilasters, and elegant burgundy velvet side drapes with gold tiebacks (solid wood wall, no windows).
 
 ### 2. Museum of Curiosities (`bg_museum.jpg`)
 * **Palette**: Rich Burgundy Carpeting (`#78281F`), Night Blue Moonlight (`#1B4F72`), Ornate Walnut (`#4A235A`), Caution Gold (`#F4D03F`).

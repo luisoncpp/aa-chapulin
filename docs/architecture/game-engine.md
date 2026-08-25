@@ -34,10 +34,10 @@ flowchart TD
    - Triggers `soundEngine.playTextBlip()` every alternate character for authentic Capcom typewriter chirping.
 
 3. **Character & Scene Staging** ([[src/engine/Private/VisualEffects.ts#Character Pose Staging]]):
-   - Updates `#scene-bg` background images.
+   - Updates `#scene-bg` background images automatically per speaker in trial mode (`bg_defense.jpg` for defense, `bg_courtroom.jpg` for prosecution, `bg_judge.jpg` for judge, `bg_witness.jpg` for witness) or via explicit `line.bg`.
    - Updates `#character-sprite` poses with continuous idle floating/breathing animation (`characterBreathe`).
-   - Dynamically stages courtroom foreground furniture (`#court-furniture-sprite`): shows `court_podium.png` during witness testimonies, `court_bench.png` when defense speaks in court, and hides furniture in detention or museum scenes.
-   - `updateStagingForLine(dom, line, isTrialMode)` resolves furniture **and** stage geometry in one step, because sprite scale and surface contact are a single composition decision.
+   - Dynamically stages courtroom foreground furniture (`#court-furniture-sprite`): shows `court_podium.png` during witness testimonies, `court_bench.png` when defense speaks with an active pose in court, and hides furniture during judge/prosecutor lines or in detention/museum scenes.
+   - `updateStagingForLine(dom, line, isTrialMode)` resolves background, furniture **and** stage geometry in one unified step, ensuring camera angle and furniture consistency across rapid speaker turns.
    - Automatically hides character sprites when narrator is speaking, or during active examine mode.
 
 4. **Stage Composition Frames** ([[src/engine/Private/StageLayout.ts#Frame Resolution]]):

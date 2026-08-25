@@ -43,15 +43,16 @@ sequenceDiagram
 ```
 
 ### Dialogue Line Rendering Sequence
-1. **Background Switch**: If `line.bg` is present, updates `#scene-bg` background URL.
+1. **Background Switch**: If `line.bg` is present, updates `#scene-bg` background URL. In trial mode, background is automatically resolved based on speaker if `line.bg` is omitted.
 2. **Soundtrack Switch**: If `line.bgm` is present, `midiComposer.playTrack()` starts the requested chiptune track from [[src/audio/Private/TrackCatalog.ts]].
 3. **Sound Effect**: If `line.sfx` is present, `triggerSFX(sfx)` runs corresponding synthesizer audio and optional screen effects (`gavel`, `desk_slam`, `whoosh`, `realization`, `damage`, `chipote`, `chicharra`).
 4. **Cut-in Animation**: If `line.cutin` is present, `VisualEffects.showCutin(cutin)` applies `.cutin-animate` keyframes to `#cutin-overlay`, shakes the screen, and flashes white.
 5. **Sprite Management**:
    - If `line.pose` is set: updates `#character-sprite` `src` and removes `.hidden`.
    - If `line.speaker` is `'DEFENSA'` or `'NARRADOR'`: hides `#character-sprite`.
-6. **Stage Composition**: `VisualEffects.updateStagingForLine(dom, line, isTrialMode)` runs *after* the pose is set, because the frame depends on it:
-   - Resolves furniture from `line.furniture`, else infers it from trial mode + `line.bg` + `line.speaker`.
+6. **Stage Composition**: `VisualEffects.updateStagingForLine(dom, line, isTrialMode)` runs *after* the pose is set, because the frame and background depend on it:
+   - Resolves courtroom background (`bg_defense.jpg`, `bg_courtroom.jpg`, `bg_judge.jpg`, `bg_witness.jpg`) and updates `#scene-bg`.
+   - Resolves furniture from `line.furniture`, else infers it from trial mode + resolved background + pose.
    - `resolveStageFrame(furniture, line.pose)` maps that pair to one of `plain` / `bench-stand` / `bench-slam` / `podium`.
    - `applyStageFrame()` writes the frame's ratios to `#game-screen` as CSS custom properties, which resize and reposition `#character-container` and `#court-furniture-container` together. See [[src/engine/Private/StageLayout.ts]].
 7. **Evidence Automatic Grant**: If `line.addEvidence` is present, calls `gameState.addEvidence()` and triggers `#game-notification`.

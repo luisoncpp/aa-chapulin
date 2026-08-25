@@ -78,5 +78,7 @@ def render_scene(bg_name: str, char_name: str, furniture: str, out_name: str):
 if __name__ == "__main__":
     render_scene("bg_defense.jpg", "chapulin_slam", "bench", "preview_defense_slam.png")
     render_scene("bg_defense.jpg", "chapulin_idle", "bench", "preview_defense_idle.png")
+    render_scene("bg_courtroom.jpg", "supersam_slam", "none", "preview_prosecution_slam.png")
+    render_scene("bg_courtroom.jpg", "supersam_idle", "none", "preview_prosecution_idle.png")
     render_scene("bg_witness.jpg", "tripaseca_smug", "podium", "preview_witness_stand.png")
     render_scene("bg_detention.jpg", "chapulin_idle", "none", "preview_detention_booth.png")

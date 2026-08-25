@@ -169,9 +169,9 @@ describe('GameEngine Coordinator', () => {
     engine.renderDialogueLine({
       speaker: 'DEFENSA',
       pose: 'chapulin_point',
-      text: '¡Protesto!',
-      bg: 'assets/bg_courtroom.jpg'
+      text: '¡Protesto!'
     });
+    expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_defense.jpg');
     expect(dom.courtFurnitureSpriteEl.src).toContain('assets/court_bench.png');
     expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(false);
     expect(dom.courtFurnitureContainerEl.dataset.furniture).toBe('bench');
@@ -225,5 +225,54 @@ describe('GameEngine Coordinator', () => {
     vi.advanceTimersByTime(400);
 
     window.location = originalLocation;
+  });
+
+  it('maintains consistent courtroom backgrounds and furniture throughout a multi-speaker trial dialogue sequence', () => {
+    engine.startTrialDebug();
+    vi.advanceTimersByTime(400);
+
+    const trialSequence: DialogueLine[] = [
+      { speaker: 'DEFENSA', text: '¡PROTESTO!', cutin: 'objection_protesto' },
+      { speaker: 'DEFENSA', pose: 'chapulin_point', text: '¡El testimonio es contradictorio!' },
+      { speaker: 'SUPER SAM', pose: 'supersam_point', text: 'Time is money!' },
+      { speaker: 'JUEZ', pose: 'judge_thinking', text: 'Prosiga con su argumento.' },
+      { speaker: 'TRIPASECA', pose: 'tripaseca_sweat', text: '¡Glup!' }
+    ];
+
+    engine.queueDialogue(trialSequence);
+
+    // 1. DEFENSA shout -> defense stand, Chapulin and bench visible
+    expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_defense.jpg');
+    expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(false);
+    expect(dom.courtFurnitureSpriteEl.src).toContain('assets/court_bench.png');
+    expect(dom.charSpriteEl.src).toContain('assets/chapulin_idle.png');
+    expect(dom.charSpriteEl.classList.contains('hidden')).toBe(false);
+
+    // 2. DEFENSA with pose -> defense stand, bench and point pose
+    engine.handleAdvance(); // finish typewriter
+    engine.handleAdvance(); // next line
+    expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_defense.jpg');
+    expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(false);
+    expect(dom.courtFurnitureSpriteEl.src).toContain('assets/court_bench.png');
+    expect(dom.charSpriteEl.src).toContain('assets/chapulin_point.png');
+
+    // 3. SUPER SAM -> courtroom / prosecution stand, no furniture
+    engine.handleAdvance();
+    engine.handleAdvance();
+    expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_courtroom.jpg');
+    expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(true);
+
+    // 4. JUEZ -> judge stand, no furniture
+    engine.handleAdvance();
+    engine.handleAdvance();
+    expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_judge.jpg');
+    expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(true);
+
+    // 5. TRIPASECA -> witness stand, podium
+    engine.handleAdvance();
+    engine.handleAdvance();
+    expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_witness.jpg');
+    expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(false);
+    expect(dom.courtFurnitureSpriteEl.src).toContain('assets/court_podium.png');
   });
 });

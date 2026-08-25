@@ -150,13 +150,14 @@ export class GameEngine {
   }
 
   private applyLineSpeakerAndPose(line: DialogueLine): void {
-    if (line.pose) {
-      this.investigation.currentLocationCharPose = line.pose;
-      VisualEffects.setPose(this.dom.charSpriteEl, line.pose);
+    const isTrial = this.state.mode === 'TRIAL';
+    const effectivePose = VisualEffects.resolveEffectivePose(line, isTrial);
+    if (effectivePose) {
+      this.investigation.currentLocationCharPose = effectivePose;
+      VisualEffects.setPose(this.dom.charSpriteEl, effectivePose);
     } else if (line.speaker === 'DEFENSA' || line.speaker === 'NARRADOR') {
       VisualEffects.hideCharacter(this.dom.charSpriteEl);
     }
-    const isTrial = this.state.mode === 'TRIAL';
     VisualEffects.updateStagingForLine(this.dom, line, isTrial);
     this.dom.speakerBoxEl.textContent = line.speaker || '';
   }

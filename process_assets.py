@@ -15,7 +15,8 @@ import numpy as np
 from PIL import Image
 from scipy import ndimage
 
-CURRENT_ARTIFACT_DIR = r"C:\Users\luiso\.gemini\antigravity\brain\3f1cace1-70b9-41d6-a3a5-40ae385364fc"
+CURRENT_ARTIFACT_DIR = r"C:\Users\luiso\.gemini\antigravity\brain\ce3ca77a-06af-4722-9a51-22316a36f2fc"
+PREV_ARTIFACT_DIR_4 = r"C:\Users\luiso\.gemini\antigravity\brain\3f1cace1-70b9-41d6-a3a5-40ae385364fc"
 PREV_ARTIFACT_DIR_3 = r"C:\Users\luiso\.gemini\antigravity\brain\0904b11c-4c33-4084-907e-e27c0820bf0f"
 PREV_ARTIFACT_DIR_2 = r"C:\Users\luiso\.gemini\antigravity\brain\08f107f5-df93-448c-9eb8-753b2f2f4634"
 PREV_ARTIFACT_DIR_1 = r"C:\Users\luiso\.gemini\antigravity\brain\91e780e1-ee3d-4c04-949d-db65c67e0f4d"
@@ -25,7 +26,7 @@ DEST_DIR = r"c:\Proyectos\ace-attorney-gemini\assets"
 os.makedirs(DEST_DIR, exist_ok=True)
 
 def find_asset_file(filename: str) -> str:
-    for d in [CURRENT_ARTIFACT_DIR, PREV_ARTIFACT_DIR_3, PREV_ARTIFACT_DIR_2, PREV_ARTIFACT_DIR_1, PREV_ARTIFACT_DIR, LEGACY_ARTIFACT_DIR]:
+    for d in [CURRENT_ARTIFACT_DIR, PREV_ARTIFACT_DIR_4, PREV_ARTIFACT_DIR_3, PREV_ARTIFACT_DIR_2, PREV_ARTIFACT_DIR_1, PREV_ARTIFACT_DIR, LEGACY_ARTIFACT_DIR]:
         p = os.path.join(d, filename)
         if os.path.exists(p):
             return p
@@ -414,7 +415,7 @@ def run_all_fixes():
         ("court_judge_view_1787377926397.jpg", "bg_judge.jpg"),
         ("museum_crime_scene_1787377814093.jpg", "bg_museum.jpg"),
         ("detention_center_room_1787377837506.jpg", "bg_detention.jpg"),
-        ("courtroom_scenes_1787377789540.jpg", "bg_courtroom.jpg"),
+        ("bg_prosecution_curtains_arch_1787633685599.jpg", "bg_courtroom.jpg"),
         ("bg_defense_wood_wall_1787626957213.jpg", "bg_defense.jpg")
     ]
     for src, dst in bgs:

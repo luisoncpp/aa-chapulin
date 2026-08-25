@@ -28,25 +28,17 @@ export class TrialController {
   public phase: TrialPhase = 'IDLE';
   public currentTestimony: Testimony | null = null;
   public currentStatementIdx = 0;
-  private readonly dom: DomElements;
-  private readonly state: GameStateManager;
-  private readonly script: CaseScript;
-  private readonly soundEngine: SoundEngine;
-  private readonly midiComposer: MidiMusicComposer;
-  private readonly onQueueDialogue: (dialogue: DialogueLine[], onComplete?: () => void) => void;
-  private readonly onRenderLine: (line: DialogueLine) => void;
-  private readonly onOpenCourtRecord: (isTrialPresent: boolean) => void;
 
-  constructor(deps: TrialControllerDeps) {
-    this.dom = deps.dom;
-    this.state = deps.state;
-    this.script = deps.script;
-    this.soundEngine = deps.soundEngine;
-    this.midiComposer = deps.midiComposer;
-    this.onQueueDialogue = deps.onQueueDialogue;
-    this.onRenderLine = deps.onRenderLine;
-    this.onOpenCourtRecord = deps.onOpenCourtRecord;
-  }
+  constructor(private readonly deps: TrialControllerDeps) {}
+
+  private get dom(): DomElements { return this.deps.dom; }
+  private get state(): GameStateManager { return this.deps.state; }
+  private get script(): CaseScript { return this.deps.script; }
+  private get soundEngine(): SoundEngine { return this.deps.soundEngine; }
+  private get midiComposer(): MidiMusicComposer { return this.deps.midiComposer; }
+  private get onQueueDialogue() { return this.deps.onQueueDialogue; }
+  private get onRenderLine() { return this.deps.onRenderLine; }
+  private get onOpenCourtRecord() { return this.deps.onOpenCourtRecord; }
 
   // @Section(Trial Launch & Intro)
   public startTrial(): void {
@@ -156,7 +148,7 @@ export class TrialController {
     this.applyPenaltyEffects();
 
     const penaltyDialogue: DialogueLine[] = [
-      { cutin: 'objection_protesto', speaker: 'DEFENSA', text: '¡PROTESTO!', sfx: 'whoosh' },
+      { cutin: 'objection_protesto', speaker: 'DEFENSA', text: '¡PROTESTO!', sfx: 'whoosh', pose: 'chapulin_point' },
       { speaker: 'SUPER SAM', text: 'Time is money, and you are wasting mine! Esa prueba no contradice en absoluto el testimonio.', pose: 'supersam_point' },
       { speaker: 'JUEZ', text: '¡La fiscalía tiene razón! Penalizaré a la defensa por presentar pruebas irrelevantes.', pose: 'judge_gavel', sfx: 'gavel' }
     ];

@@ -13,6 +13,15 @@ const FURNITURE_ASSETS: Record<'podium' | 'bench', string> = {
   bench: 'assets/court_bench.png'
 };
 
+const TRIAL_SPEAKER_BACKGROUNDS: Record<string, string> = {
+  DEFENSA: 'assets/bg_defense.jpg',
+  CHAPULIN: 'assets/bg_defense.jpg',
+  'CHAPULÍN': 'assets/bg_defense.jpg',
+  'SUPER SAM': 'assets/bg_courtroom.jpg',
+  JUEZ: 'assets/bg_judge.jpg',
+  TRIPASECA: 'assets/bg_witness.jpg'
+};
+
 export class VisualEffects {
   // @Section(Character Pose Staging)
   public static setPose(charSpriteEl: HTMLImageElement, poseName: PoseName): void {
@@ -45,26 +54,47 @@ export class VisualEffects {
     furnitureContainerEl.dataset.furniture = 'none';
   }
 
+  public static inferTrialBackground(speaker?: string): string | null {
+    if (!speaker || speaker === 'NARRADOR') return null;
+    return TRIAL_SPEAKER_BACKGROUNDS[speaker] ?? 'assets/bg_witness.jpg';
+  }
+
+  public static resolveBackground(line: DialogueLine, isTrialMode: boolean): string | null {
+    if (line.bg) return line.bg;
+    if (!isTrialMode) return null;
+    return VisualEffects.inferTrialBackground(line.speaker);
+  }
+
+  public static resolveEffectivePose(line: DialogueLine, isTrialMode: boolean): PoseName | null {
+    if (line.pose) return line.pose;
+    const isDefense = line.speaker === 'DEFENSA' || line.speaker === 'CHAPULIN' || line.speaker === 'CHAPULÍN';
+    if (isTrialMode && isDefense) return 'chapulin_idle';
+    return null;
+  }
+
   /**
-   * Resolves furniture and the matching stage frame together: sprite scale and
-   * surface contact are one composition decision, never two independent ones.
+   * Resolves background, furniture and the matching stage frame together:
+   * sprite scale, background camera angle and surface contact are one composition.
    */
   public static updateStagingForLine(
     dom: DomElements,
     line: DialogueLine,
     isTrialMode: boolean
   ): void {
-    const furniture = line.furniture ?? VisualEffects.inferFurniture(line, isTrialMode, dom.bgEl.style.backgroundImage);
+    const resolvedBg = VisualEffects.resolveBackground(line, isTrialMode);
+    if (resolvedBg) {
+      dom.bgEl.style.backgroundImage = `url('${resolvedBg}')`;
+    }
+    const currentBg = dom.bgEl.style.backgroundImage;
+    const effectivePose = VisualEffects.resolveEffectivePose(line, isTrialMode);
+    const furniture = line.furniture ?? VisualEffects.inferFurniture(isTrialMode, currentBg);
     VisualEffects.setFurniture(dom.courtFurnitureSpriteEl, dom.courtFurnitureContainerEl, furniture);
-    applyStageFrame(dom.gameScreen, resolveStageFrame(furniture, line.pose ?? null));
+    applyStageFrame(dom.gameScreen, resolveStageFrame(furniture, effectivePose));
   }
 
-  private static inferFurniture(line: DialogueLine, isTrialMode: boolean, currentBg: string): FurnitureType {
+  private static inferFurniture(isTrialMode: boolean, bg: string): FurnitureType {
     if (!isTrialMode) return 'none';
-    const bg = line.bg ?? currentBg ?? '';
     if (bg.includes('bg_witness')) return 'podium';
-    const isDefense = line.speaker === 'DEFENSA' || line.speaker === 'CHAPULIN' || line.speaker === 'CHAPULÍN';
-    if (isDefense && line.pose) return 'bench';
     if (bg.includes('bg_defense')) return 'bench';
     return 'none';
   }

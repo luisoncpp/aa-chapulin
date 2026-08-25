@@ -76,6 +76,10 @@ def render_scene(bg_name: str, char_name: str, furniture: str, out_name: str):
 
 
 if __name__ == "__main__":
+    render_scene("bg_defense.jpg", "donramon_slam", "bench", "preview_donramon_slam.png")
+    render_scene("bg_defense.jpg", "donramon_idle", "bench", "preview_donramon_idle.png")
+    render_scene("bg_defense.jpg", "donramon_point", "bench", "preview_donramon_point.png")
+    render_scene("bg_defense.jpg", "donramon_sweat", "bench", "preview_donramon_sweat.png")
     render_scene("bg_defense.jpg", "chapulin_slam", "bench", "preview_defense_slam.png")
     render_scene("bg_defense.jpg", "chapulin_idle", "bench", "preview_defense_idle.png")
     render_scene("bg_courtroom.jpg", "supersam_slam", "none", "preview_prosecution_slam.png")

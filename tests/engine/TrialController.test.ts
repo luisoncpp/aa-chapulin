@@ -93,8 +93,10 @@ describe('TrialController', () => {
 
   it('handles statement without pressText gracefully', () => {
     controller.startTestimony('testimony1');
+    const originalPressText = controller.currentTestimony!.statements[0].pressText;
     controller.currentTestimony!.statements[0].pressText = undefined;
     expect(() => controller.handlePressStatement()).not.toThrow();
+    controller.currentTestimony!.statements[0].pressText = originalPressText;
   });
 
   it('handles penalty when incorrect evidence is presented', () => {
@@ -156,4 +158,95 @@ describe('TrialController', () => {
     expect(state.gameOver).toBe(false); // Resets after restart
     expect(state.health).toBe(5);
   });
+
+  it('keeps trial controls hidden during intro dialogue and shows them only when cross-examination starts', () => {
+    let pendingCallback: (() => void) | null = null;
+    const asyncController = new TrialController({
+      dom,
+      state,
+      script: JSON.parse(JSON.stringify(CASE_SCRIPT)),
+      soundEngine: soundEngineInstance,
+      midiComposer: midiComposerInstance,
+      onQueueDialogue: (_dlg, cb) => {
+        pendingCallback = cb || null;
+      },
+      onRenderLine: (line) => renderedLines.push(line),
+      onOpenCourtRecord: (isTrialPresent) => {
+        courtRecordOpenedWithTrial = isTrialPresent;
+      }
+    });
+
+    asyncController.startTrial();
+    // Intro dialogue is playing -> trial controls MUST be hidden
+    expect(dom.trialNavEl.classList.contains('hidden')).toBe(true);
+
+    // Once intro finishes, startTestimony is called and controls appear
+    expect(pendingCallback).not.toBeNull();
+    pendingCallback!();
+    expect(dom.trialNavEl.classList.contains('hidden')).toBe(false);
+  });
+
+  it('hides trial controls while press dialogue is queued and reveals them when statement re-renders', () => {
+    let pendingCallback: (() => void) | null = null;
+    const asyncController = new TrialController({
+      dom,
+      state,
+      script: JSON.parse(JSON.stringify(CASE_SCRIPT)),
+      soundEngine: soundEngineInstance,
+      midiComposer: midiComposerInstance,
+      onQueueDialogue: (_dlg, cb) => {
+        pendingCallback = cb || null;
+      },
+      onRenderLine: (line) => renderedLines.push(line),
+      onOpenCourtRecord: (isTrialPresent) => {
+        courtRecordOpenedWithTrial = isTrialPresent;
+      }
+    });
+
+    asyncController.startTestimony('testimony1');
+    expect(dom.trialNavEl.classList.contains('hidden')).toBe(false);
+
+    asyncController.handlePressStatement();
+    // While press dialogue is playing -> controls hidden
+    expect(dom.trialNavEl.classList.contains('hidden')).toBe(true);
+
+    // When press dialogue finishes -> controls restored
+    pendingCallback!();
+    expect(dom.trialNavEl.classList.contains('hidden')).toBe(false);
+  });
+
+  it('hides trial controls during penalty dialogue and restores them when statement re-renders', () => {
+    let pendingCallback: (() => void) | null = null;
+    const asyncController = new TrialController({
+      dom,
+      state,
+      script: JSON.parse(JSON.stringify(CASE_SCRIPT)),
+      soundEngine: soundEngineInstance,
+      midiComposer: midiComposerInstance,
+      onQueueDialogue: (_dlg, cb) => {
+        pendingCallback = cb || null;
+      },
+      onRenderLine: (line) => renderedLines.push(line),
+      onOpenCourtRecord: (isTrialPresent) => {
+        courtRecordOpenedWithTrial = isTrialPresent;
+      }
+    });
+
+    asyncController.startTestimony('testimony1');
+    expect(dom.trialNavEl.classList.contains('hidden')).toBe(false);
+
+    asyncController.handlePresentEvidence('insignia_abogado');
+    // Penalty dialogue is playing -> controls hidden
+    expect(dom.trialNavEl.classList.contains('hidden')).toBe(true);
+
+    // When penalty dialogue finishes -> controls restored
+    pendingCallback!();
+    expect(dom.trialNavEl.classList.contains('hidden')).toBe(false);
+  });
+
+  it('keeps trial controls hidden throughout climax', () => {
+    controller.startClimax();
+    expect(dom.trialNavEl.classList.contains('hidden')).toBe(true);
+  });
 });
+

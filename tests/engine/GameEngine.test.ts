@@ -198,6 +198,15 @@ describe('GameEngine Coordinator', () => {
     expect(state.hasEvidence('chipote_chillon')).toBe(true);
     expect(state.hasEvidence('pastillas_chiquitolina')).toBe(true);
     expect(state.hasEvidence('antenitas_vinil')).toBe(true);
+    // Trial controls remain hidden while intro dialogue plays
+    expect(dom.trialNavEl.classList.contains('hidden')).toBe(true);
+
+    // Advance all intro lines to reach cross-examination
+    for (let i = 0; i < CASE_SCRIPT.trial.intro.length; i++) {
+      engine.handleAdvance(); // skips typewriter
+      engine.handleAdvance(); // advances line
+    }
+    // Now testimony 1 is active -> trial controls are revealed
     expect(dom.trialNavEl.classList.contains('hidden')).toBe(false);
   });
 
@@ -207,8 +216,10 @@ describe('GameEngine Coordinator', () => {
 
     expect(state.mode).toBe('TRIAL');
     expect(state.flags.ready_for_trial).toBe(true);
-    expect(dom.trialNavEl.classList.contains('hidden')).toBe(false);
+    // Controls should be hidden while intro dialogue is running
+    expect(dom.trialNavEl.classList.contains('hidden')).toBe(true);
   });
+
 
   it('triggers debug trial on init if URL contains trial query param', () => {
     const originalLocation = window.location;

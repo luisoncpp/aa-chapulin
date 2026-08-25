@@ -31,14 +31,15 @@ export class TrialController {
 
   constructor(private readonly deps: TrialControllerDeps) {}
 
-  private get dom(): DomElements { return this.deps.dom; }
-  private get state(): GameStateManager { return this.deps.state; }
-  private get script(): CaseScript { return this.deps.script; }
-  private get soundEngine(): SoundEngine { return this.deps.soundEngine; }
-  private get midiComposer(): MidiMusicComposer { return this.deps.midiComposer; }
+  private get dom() { return this.deps.dom; }
+  private get state() { return this.deps.state; }
+  private get script() { return this.deps.script; }
+  private get soundEngine() { return this.deps.soundEngine; }
+  private get midiComposer() { return this.deps.midiComposer; }
   private get onQueueDialogue() { return this.deps.onQueueDialogue; }
   private get onRenderLine() { return this.deps.onRenderLine; }
   private get onOpenCourtRecord() { return this.deps.onOpenCourtRecord; }
+  private hideControls(): void { this.dom.trialNavEl.classList.add('hidden'); }
 
   // @Section(Trial Launch & Intro)
   public startTrial(): void {
@@ -46,7 +47,7 @@ export class TrialController {
     this.phase = 'TESTIMONY';
     this.dom.investigationNavEl.classList.add('hidden');
     this.dom.examineNavEl.classList.add('hidden');
-    this.dom.trialNavEl.classList.remove('hidden');
+    this.hideControls();
     this.dom.hotspotsContainerEl.innerHTML = '';
     this.dom.locationBannerEl.textContent = 'Tribunal Superior - Sala de Audiencias No. 1';
 
@@ -62,19 +63,15 @@ export class TrialController {
     this.currentStatementIdx = 0;
     this.midiComposer.playTrack(this.currentTestimony.bgm);
     this.dom.bgEl.style.backgroundImage = "url('assets/bg_witness.jpg')";
-
     VisualEffects.showNotification(this.dom.gameNotificationEl, this.currentTestimony.title);
     this.renderCurrentStatement();
   }
 
   public renderCurrentStatement(): void {
     if (!this.currentTestimony) return;
+    this.dom.trialNavEl.classList.remove('hidden');
     const stmt = this.currentTestimony.statements[this.currentStatementIdx];
-    this.onRenderLine({
-      speaker: stmt.speaker,
-      pose: stmt.pose,
-      text: stmt.text
-    });
+    this.onRenderLine({ speaker: stmt.speaker, pose: stmt.pose, text: stmt.text });
   }
 
   public nextStatement(): void {
@@ -97,9 +94,8 @@ export class TrialController {
     const stmt = this.currentTestimony.statements[this.currentStatementIdx];
     if (!stmt.pressText) return;
 
-    this.onQueueDialogue(stmt.pressText, /*onComplete*/ () => {
-      this.renderCurrentStatement();
-    });
+    this.hideControls();
+    this.onQueueDialogue(stmt.pressText, /*onComplete*/ () => this.renderCurrentStatement());
   }
 
   public handlePresentEvidence(evidenceId: EvidenceId): void {
@@ -125,6 +121,7 @@ export class TrialController {
   }
 
   private onSuccessContradiction(dialogue: DialogueLine[]): void {
+    this.hideControls();
     this.onQueueDialogue(dialogue, /*onComplete*/ () => {
       if (this.currentTestimony === this.script.trial.testimony1) {
         this.startTestimony('testimony2');
@@ -146,13 +143,13 @@ export class TrialController {
 
   private onPenaltyPenalty(): void {
     this.applyPenaltyEffects();
+    this.hideControls();
 
     const penaltyDialogue: DialogueLine[] = [
       { cutin: 'objection_protesto', speaker: 'DEFENSA', text: '¡PROTESTO!', sfx: 'whoosh', pose: 'chapulin_point' },
       { speaker: 'SUPER SAM', text: 'Time is money, and you are wasting mine! Esa prueba no contradice en absoluto el testimonio.', pose: 'supersam_point' },
       { speaker: 'JUEZ', text: '¡La fiscalía tiene razón! Penalizaré a la defensa por presentar pruebas irrelevantes.', pose: 'judge_gavel', sfx: 'gavel' }
     ];
-
     if (this.state.gameOver) {
       penaltyDialogue.push(
         { speaker: 'JUEZ', pose: 'judge_gavel', text: '¡La defensa ha agotado sus oportunidades! Declaro al acusado... ¡CULPABLE!', sfx: 'gavel' },
@@ -168,6 +165,7 @@ export class TrialController {
   public startClimax(): void {
     this.phase = 'CLIMAX';
     this.currentTestimony = null;
+    this.hideControls();
     this.dom.bgEl.style.backgroundImage = "url('assets/bg_courtroom.jpg')";
     this.midiComposer.playTrack('suspense');
 
@@ -177,6 +175,7 @@ export class TrialController {
   }
 
   private handleClimaxEvidence(evidenceId: EvidenceId): void {
+    this.hideControls();
     if (this.script.trial.climax.presentTarget.includes(evidenceId)) {
       this.onQueueDialogue(this.script.trial.climax.verdict, /*onComplete*/ () => {
         VisualEffects.triggerConfetti(this.dom.confettiContainerEl);
@@ -190,6 +189,7 @@ export class TrialController {
   }
 
   private showGameOverModal(): void {
+    this.hideControls();
     this.state.resetHealth();
     ModalManager.updateHealthUI(this.dom.healthBarEl, this.state.health, this.state.maxHealth);
     this.startTrial();

@@ -24,19 +24,22 @@ export type TrackName =
   | 'pursuit'
   | 'investigation'
   | 'suspense'
-  | 'victory';
+  | 'victory'
+  | 'detention_center';
 
 export type InstrumentWaveType = 'sine' | 'square' | 'sawtooth' | 'triangle';
 
-export type DrumHitType = 'K' | 'S' | 'H' | '0';
+export type DrumHitType = 'K' | 'S' | 'H' | 'C' | 'O' | 'P' | '0' | string;
+export type NoteEntry = number | number[];
 
 export interface TrackDefinition {
   bpm: number;
   length: number;
-  bass?: number[];
-  lead?: number[];
-  chords?: number[];
-  drums?: DrumHitType[];
+  bass?: NoteEntry[];
+  lead?: NoteEntry[];
+  chords?: NoteEntry[];
+  drums?: string[];
 }
 
 export type TrackCatalogMap = Record<TrackName, TrackDefinition>;
+

@@ -4,7 +4,7 @@ Technical guide for [[src/audio/index.ts]], configured in [[src/audio/audio.grou
 
 ## Overview
 
-The audio system is a **100% procedural, zero-asset sound and music engine** built directly on the Web Audio API. It eliminates all external audio file downloads (`.mp3` or `.wav`) while providing classic 16-bit Capcom GBA/DS aesthetic chiptune audio.
+The audio system is a **100% procedural, zero-asset sound and music engine** built directly on the Web Audio API. It eliminates all external audio file downloads (`.mp3` or `.wav`) while providing polyphonic 16-bit retro visual novel and courtroom chiptune audio.
 
 ```mermaid
 flowchart TD
@@ -14,12 +14,16 @@ flowchart TD
     BGMGain[BGMGainNode 0.65] --> Master
     SFXGain[SFXGainNode 0.85] --> Master
     
-    Composer[MidiMusicComposer] --> BGMGain
+    Composer[MidiMusicComposer] --> VoiceSynth[SynthVoiceSynthesizer]
+    VoiceSynth --> BGMGain
     SFX[SoundEngine SFX Methods] --> SFXGain
     
     SFX --> CourtSfx[CourtSfx]
     SFX --> NoveltySfx[NoveltySfx]
     Composer --> TrackCatalog[TrackCatalog]
+    TrackCatalog --> CourtroomTracks[CourtroomTracks]
+    TrackCatalog --> TurnaroundTracks[TurnaroundTracks]
+    TrackCatalog --> AtmosphereTracks[AtmosphereTracks]
 ```
 
 ## Subsystems
@@ -39,29 +43,31 @@ Manages the `AudioContext` lifecycle and procedural SFX generators:
 | `playChipoteSqueak()` | Comedic squeaky hammer sound | Sine wave frequency modulator (680Hz -> 1550Hz -> 480Hz). | [[src/audio/Private/NoveltySfx.ts#Chipote & Chicharra Synthesis]] |
 | `playChicharra()` | Paralyzing bicycle buzzer | Dual-pitch sawtooth buzz (466.16Hz -> 349.23Hz). | [[src/audio/Private/NoveltySfx.ts#Chipote & Chicharra Synthesis]] |
 
-### 2. Procedural MIDI Music Tracker ([[src/audio/Private/MidiMusicComposer.ts]])
+### 2. Procedural Polyphonic MIDI Tracker ([[src/audio/Private/MidiMusicComposer.ts]])
 
-Real-time 4-channel step sequencer playing 16th-note musical patterns defined in [[src/audio/Private/TrackCatalog.ts]]:
+Real-time step sequencer delegating voice rendering to [[src/audio/Private/SynthVoiceSynthesizer.ts]] and playing 16th-note musical patterns defined in [[src/audio/Private/TrackCatalog.ts]]:
 
-- **Channels**:
-  - **Bass**: Low triangle wave with punchy lowpass filtering.
-  - **Lead**: Bright square wave melody channel.
-  - **Chords / Harmony**: Sawtooth pad channel.
-  - **Drums**: Synthesized Kick (sine sweep), Snare (1.1kHz highpass noise), and Hi-Hat (6kHz highpass noise).
-- **Pitch Math** ([[src/audio/Private/MidiMusicComposer.ts#Pitch Frequency Conversion]]): Standard MIDI note to Hz formula:
+- **Channels & Voice Synthesis**:
+  - **Bass**: Low triangle wave with punchy lowpass filtering (900 Hz, gain 0.35).
+  - **Lead**: Bright square wave melody channel with 5.5 Hz vibrato LFO and breathing rests (3600 Hz lowpass, gain 0.22).
+  - **Chords / Harmony**: Polyphonic sawtooth pad supporting 3-note triads and 4-note 7th chords with normalized gain scaling (2200 Hz lowpass, gain 0.16).
+  - **Drums**: Dynamic percussion engine supporting Kick (`K`), Snare (`S`), Closed Hat (`H`), Open Hat (`O`), Crash Cymbal (`C`), Slap (`P`), and compound hits (e.g. `'KC'`, `'KH'`).
+- **Pitch Math** ([[src/audio/Private/SynthVoiceSynthesizer.ts#Pitch Calculation]]): Standard MIDI note to Hz formula:
   $$f = 440 \times 2^{\frac{m - 69}{12}}$$
-- **Envelope**: Linear ADSR gain automation per note step.
+- **Anti-Fatigue Multi-Section Loop Design**:
+  All 8 soundtrack themes feature 64 to 128 steps (8 to 16 bars, ~25–45s loop duration) structured into 4 narrative phrases (Exposition, Tension/Development, Climax, and Cadence Turnaround) with polyphonic harmonic backing and breathing rests to prevent ear fatigue during extended gameplay sessions.
 
 ### Track Catalog ([[src/audio/Private/TrackCatalog.ts]])
 
-1. `trial` (124 BPM) - Courtroom opening atmosphere
-2. `cross_exam_moderato` (118 BPM) - Initial testimony cross-examination
-3. `cross_exam_allegro` (144 BPM) - High-tension testimony cross-examination
-4. `objection` (148 BPM) - "¡No contaban con mi astucia!" turnaround theme
-5. `pursuit` (156 BPM) - Cornered culprit pursuit theme ("¡Que no panda el cúnico!")
-6. `investigation` (112 BPM) - Museum crime scene investigation
-7. `suspense` (96 BPM) - Detention center & critical revelations
-8. `victory` (136 BPM) - Case resolution celebration ("¡Síganme los buenos!")
+Modularized into private track collections under `src/audio/Private/tracks/`:
+1. `trial` (115 BPM, 128 steps) - Stately C Minor courtroom opening with polyphonic chord pads and crash accents ([[src/audio/Private/tracks/CourtroomTracks.ts]])
+2. `cross_exam_moderato` (118 BPM, 128 steps) - Analytical E Minor testimony cross-examination with 7th chords and call-and-response lead motifs ([[src/audio/Private/tracks/CourtroomTracks.ts]])
+3. `cross_exam_allegro` (142 BPM, 128 steps) - High-tension G Minor cross-examination with fast 16th driving bass and syncopated stabs ([[src/audio/Private/tracks/CourtroomTracks.ts]])
+4. `objection` (152 BPM, 128 steps) - Heroic A Minor / C Major turnaround theme ("¡No contaban con mi astucia!") ([[src/audio/Private/tracks/TurnaroundTracks.ts]])
+5. `pursuit` (158 BPM, 128 steps) - Cornered culprit pursuit in D Spanish Phrygian ("¡Que no panda el cúnico!") ([[src/audio/Private/tracks/TurnaroundTracks.ts]])
+6. `investigation` (112 BPM, 128 steps) - Noir detective swing in E Dorian with walking jazz bass and 7th chords ([[src/audio/Private/tracks/AtmosphereTracks.ts]])
+7. `suspense` (90 BPM, 64 steps) - Detention center & critical revelations with heartbeat kick and diminished polyphonic drones ([[src/audio/Private/tracks/AtmosphereTracks.ts]])
+8. `victory` (136 BPM, 128 steps) - Celebratory G Major case resolution march ("¡Síganme los buenos!") ([[src/audio/Private/tracks/AtmosphereTracks.ts]])
 
 ## Invariants & Design Rules
 

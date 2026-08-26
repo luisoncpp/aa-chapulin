@@ -89,7 +89,7 @@ export const INVESTIGATION_SCENES_EN: Record<LocationId, InvestigationScene> = {
   detention: {
     title: 'Detention Center - Visitor Room',
     bg: 'assets/bg_detention.jpg',
-    bgm: 'suspense',
+    bgm: 'detention_center',
     speaker: 'CHAPULIN',
     intro: [
       { speaker: 'CHAPULIN', text: 'Oh! And now, who can defend me?!', pose: 'chapulin_panic', sfx: 'text' },

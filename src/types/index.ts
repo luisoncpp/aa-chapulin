@@ -10,6 +10,8 @@ export type {
   TrackName,
   InstrumentWaveType,
   DrumHitType,
+  NoteEntry,
+  TrackDefinition,
   TrackCatalogMap
 } from './Private/audio.js';
 

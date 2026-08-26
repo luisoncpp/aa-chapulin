@@ -1,6 +1,7 @@
-// @Architecture(descriptionShort="Unit tests for 4-channel MIDI tracker and soundtrack catalog", type="test", icon="music")
+// @Architecture(descriptionShort="Unit tests for polyphonic MIDI tracker and soundtrack catalog", type="test", icon="music")
 import { describe, expect, it, beforeEach, vi } from 'vitest';
 import { TRACK_CATALOG } from '../../src/audio/Private/TrackCatalog.js';
+import { SynthVoiceSynthesizer } from '../../src/audio/Private/SynthVoiceSynthesizer.js';
 import { MidiMusicComposer, SoundEngine, midiComposer } from '../../src/audio/index.js';
 import type { TrackName } from '../../src/types/index.js';
 import { FakeAudioContext } from '../fakes/FakeAudioContext.js';
@@ -25,20 +26,34 @@ describe('MidiMusicComposer & TRACK_CATALOG', () => {
     expect(composer.midiToFreq(-10)).toBe(0);
   });
 
-  it('synthesizes individual notes with defaults and custom options', () => {
+  it('synthesizes individual notes and polyphonic chords with options', () => {
     composer.isPlaying = true;
     expect(() => composer.playNote(69, 0.2)).not.toThrow();
-    expect(() => composer.playNote(69, 0.2, { type: 'triangle', gainLevel: 0.3, filterFreq: 1500 })).not.toThrow();
+    expect(() => composer.playNote([60, 64, 67], 0.2, { type: 'sawtooth', gainLevel: 0.2, vibrato: true })).not.toThrow();
     expect(() => composer.playNote(0, 0.2)).not.toThrow();
+    expect(() => composer.playNote([], 0.2)).not.toThrow();
   });
 
-  it('synthesizes drums and handles unknown or rest hits', () => {
+  it('synthesizes single and composite drum hits', () => {
     composer.isPlaying = true;
     expect(() => composer.playDrum('K')).not.toThrow();
     expect(() => composer.playDrum('S')).not.toThrow();
     expect(() => composer.playDrum('H')).not.toThrow();
+    expect(() => composer.playDrum('O')).not.toThrow();
+    expect(() => composer.playDrum('C')).not.toThrow();
+    expect(() => composer.playDrum('P')).not.toThrow();
+    expect(() => composer.playDrum('KH')).not.toThrow();
+    expect(() => composer.playDrum('KC')).not.toThrow();
     expect(() => composer.playDrum('0')).not.toThrow();
-    expect(() => composer.playDrum('X' as any)).not.toThrow();
+  });
+
+  it('handles direct calls to SynthVoiceSynthesizer', () => {
+    const dest = fakeCtx.createGain();
+    expect(() => SynthVoiceSynthesizer.playNote(fakeCtx as any, dest as any, { midi: [60, 64, 67], durationSec: 0.3, vibrato: true })).not.toThrow();
+    expect(() => SynthVoiceSynthesizer.playDrum(fakeCtx as any, dest as any, 'KC')).not.toThrow();
+    expect(() => SynthVoiceSynthesizer.playDrum(fakeCtx as any, dest as any, 'O')).not.toThrow();
+    expect(() => SynthVoiceSynthesizer.playDrum(fakeCtx as any, dest as any, 'P')).not.toThrow();
+    expect(() => SynthVoiceSynthesizer.playDrum(fakeCtx as any, dest as any, '0')).not.toThrow();
   });
 
   it('does not play notes or drums when not active', () => {
@@ -51,10 +66,10 @@ describe('MidiMusicComposer & TRACK_CATALOG', () => {
     composer.playTrack('trial');
     expect(composer.isPlaying).toBe(true);
     expect(composer.currentTrack).toBe('trial');
-    expect(composer.bpm).toBe(124);
+    expect(composer.bpm).toBe(115);
     expect(composer.step).toBe(0);
 
-    const stepMs = 60000 / 124 / 4;
+    const stepMs = 60000 / 115 / 4;
     vi.advanceTimersByTime(stepMs * 35);
     expect(composer.step).toBe(35);
 
@@ -70,7 +85,7 @@ describe('MidiMusicComposer & TRACK_CATALOG', () => {
     composer.playTrack('pursuit');
     expect(composer.currentTrack).toBe('pursuit');
     expect(composer.step).toBe(0);
-    expect(composer.bpm).toBe(156);
+    expect(composer.bpm).toBe(158);
   });
 
   it('stops and resumes playback reliably', () => {
@@ -94,21 +109,43 @@ describe('MidiMusicComposer & TRACK_CATALOG', () => {
     expect(composer.isPlaying).toBe(false);
   });
 
-  it('validates TRACK_CATALOG integrity for all 8 compositions', () => {
+  it('validates polyphonic anti-fatigue integrity and step alignment for all 8 compositions', () => {
     const trackNames: TrackName[] = [
       'trial', 'cross_exam_moderato', 'cross_exam_allegro',
       'objection', 'pursuit', 'investigation', 'suspense', 'victory'
     ];
+    const validDrums = new Set(['K', 'S', 'H', 'O', 'C', 'P', '0']);
 
     trackNames.forEach((name) => {
       const track = TRACK_CATALOG[name];
       expect(track).toBeDefined();
       expect(track.bpm).toBeGreaterThan(60);
-      expect(track.length).toBeGreaterThanOrEqual(16);
-      expect(track.bass).toBeDefined();
-      expect(track.lead).toBeDefined();
-      expect(track.chords).toBeDefined();
-      expect(track.drums).toBeDefined();
+      expect(track.length).toBeGreaterThanOrEqual(64); // Anti-fatigue rule: at least 64 steps
+
+      expect(track.bass).toHaveLength(track.length);
+      expect(track.lead).toHaveLength(track.length);
+      expect(track.chords).toHaveLength(track.length);
+      expect(track.drums).toHaveLength(track.length);
+
+      const validateNotes = (arr: any[] | undefined) => {
+        arr?.forEach((entry) => {
+          if (Array.isArray(entry)) {
+            entry.forEach((n) => expect(n).toBeGreaterThanOrEqual(0));
+          } else {
+            expect(entry).toBeGreaterThanOrEqual(0);
+          }
+        });
+      };
+
+      validateNotes(track.bass);
+      validateNotes(track.lead);
+      validateNotes(track.chords);
+
+      track.drums!.forEach((hit) => {
+        for (const char of hit) {
+          expect(validDrums.has(char)).toBe(true);
+        }
+      });
     });
   });
 

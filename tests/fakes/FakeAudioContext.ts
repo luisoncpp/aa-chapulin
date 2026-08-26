@@ -41,7 +41,10 @@ export class FakeGainNode extends FakeAudioNode {
 
 export class FakeOscillatorNode extends FakeAudioNode {
   public type: OscillatorType = 'sine';
-  public frequency = new FakeAudioParam(440);
+  private readonly _frequency = new FakeAudioParam(440);
+  public get frequency(): FakeAudioParam {
+    return this._frequency;
+  }
   public started = false;
   public stopped = false;
   public startTime = 0;

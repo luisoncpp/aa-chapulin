@@ -1,177 +1,27 @@
 // @Architecture(descriptionShort="Catalog of 8 procedural multitrack 16-bit MIDI compositions", type="catalog", icon="music")
 /**
  * Procedural MIDI Soundtrack Definitions
- * Compositions for [[./MidiMusicComposer.ts]].
+ * Compositions for [[./MidiMusicComposer.ts]] aggregated from [[./tracks/]].
  */
 
 import type { TrackCatalogMap } from '../../types/index.js';
+import { crossExamAllegroTrack, crossExamModeratoTrack, trialTrack } from './tracks/CourtroomTracks.js';
+import { objectionTrack, pursuitTrack } from './tracks/TurnaroundTracks.js';
+import { investigationTrack, suspenseTrack, victoryTrack, detentionCenterTrack } from './tracks/AtmosphereTracks.js';
 
 export const TRACK_CATALOG: TrackCatalogMap = {
   // @Section(Courtroom & Cross-Examination Tracks)
-  trial: {
-    bpm: 124,
-    length: 32,
-    bass: [
-      45, 0, 45, 0, 45, 0, 48, 50,  45, 0, 45, 0, 43, 0, 40, 43,
-      45, 0, 45, 0, 45, 0, 48, 50,  52, 0, 50, 0, 48, 0, 47, 43
-    ],
-    lead: [
-      69, 0, 72, 0, 76, 74, 72, 74,  69, 0, 0, 0, 67, 0, 64, 67,
-      69, 0, 72, 0, 77, 76, 74, 76,  79, 0, 76, 0, 72, 0, 74, 0
-    ],
-    chords: [
-      57, 0, 60, 0, 64, 0, 62, 0,  57, 0, 0, 0, 55, 0, 52, 0,
-      57, 0, 60, 0, 65, 0, 64, 0,  67, 0, 64, 0, 60, 0, 62, 0
-    ],
-    drums: [
-      'K', 'H', 'S', 'H', 'K', 'H', 'S', 'H', 'K', 'H', 'S', 'H', 'K', 'H', 'S', 'H',
-      'K', 'H', 'S', 'H', 'K', 'H', 'S', 'H', 'K', 'H', 'S', 'H', 'K', 'K', 'S', 'S'
-    ]
-  },
-
-  cross_exam_moderato: {
-    bpm: 118,
-    length: 32,
-    bass: [
-      38, 0, 38, 41, 43, 0, 41, 38,  36, 0, 36, 39, 41, 0, 39, 36,
-      38, 0, 38, 41, 43, 0, 41, 38,  45, 43, 41, 39, 38, 0, 36, 0
-    ],
-    lead: [
-      62, 0, 65, 0, 69, 0, 67, 65,  60, 0, 63, 0, 67, 0, 65, 63,
-      62, 0, 65, 0, 69, 70, 69, 65,  72, 0, 70, 0, 69, 0, 65, 67
-    ],
-    chords: [
-      50, 0, 53, 0, 57, 0, 55, 0,  48, 0, 51, 0, 55, 0, 53, 0,
-      50, 0, 53, 0, 57, 0, 55, 0,  60, 0, 58, 0, 57, 0, 53, 0
-    ],
-    drums: [
-      'K', 'H', 'S', 'H', 'K', 'K', 'S', 'H', 'K', 'H', 'S', 'H', 'K', 'K', 'S', 'H',
-      'K', 'H', 'S', 'H', 'K', 'K', 'S', 'H', 'K', 'H', 'S', 'H', 'K', 'H', 'S', 'S'
-    ]
-  },
-
-  cross_exam_allegro: {
-    bpm: 144,
-    length: 32,
-    bass: [
-      41, 41, 44, 41, 46, 41, 44, 41,  39, 39, 42, 39, 44, 39, 42, 39,
-      41, 41, 44, 41, 48, 46, 44, 41,  49, 48, 46, 44, 42, 41, 39, 37
-    ],
-    lead: [
-      65, 68, 72, 70, 68, 65, 68, 70,  63, 66, 70, 68, 66, 63, 66, 68,
-      65, 68, 72, 73, 72, 68, 70, 72,  75, 73, 72, 70, 68, 67, 65, 67
-    ],
-    chords: [
-      53, 0, 56, 0, 60, 0, 58, 0,  51, 0, 54, 0, 58, 0, 56, 0,
-      53, 0, 56, 0, 61, 0, 60, 0,  63, 0, 61, 0, 60, 0, 58, 0
-    ],
-    drums: [
-      'K', 'H', 'S', 'H', 'K', 'H', 'S', 'H', 'K', 'H', 'S', 'H', 'K', 'H', 'S', 'H',
-      'K', 'H', 'S', 'H', 'K', 'H', 'S', 'H', 'K', 'H', 'S', 'H', 'K', 'K', 'S', 'S'
-    ]
-  },
+  trial: trialTrack,
+  cross_exam_moderato: crossExamModeratoTrack,
+  cross_exam_allegro: crossExamAllegroTrack,
 
   // @Section(Objection & Pursuit Turnaround Tracks)
-  objection: {
-    bpm: 148,
-    length: 32,
-    bass: [
-      43, 0, 43, 46, 48, 0, 48, 51,  50, 0, 50, 48, 46, 0, 45, 43,
-      43, 0, 43, 46, 48, 0, 48, 51,  53, 0, 51, 0, 50, 48, 50, 53
-    ],
-    lead: [
-      67, 0, 70, 72, 75, 0, 72, 75,  79, 0, 77, 75, 74, 0, 72, 70,
-      67, 0, 70, 72, 75, 77, 79, 82,  84, 0, 82, 0, 79, 77, 79, 84
-    ],
-    chords: [
-      55, 58, 62, 0, 60, 63, 67, 0,  62, 65, 69, 0, 58, 62, 65, 0,
-      55, 58, 62, 0, 60, 63, 67, 0,  65, 68, 72, 0, 67, 70, 74, 0
-    ],
-    drums: [
-      'K', 'H', 'S', 'H', 'K', 'K', 'S', 'H', 'K', 'H', 'S', 'H', 'K', 'H', 'S', 'K',
-      'K', 'H', 'S', 'H', 'K', 'K', 'S', 'H', 'K', 'H', 'S', 'H', 'K', 'S', 'K', 'S'
-    ]
-  },
+  objection: objectionTrack,
+  pursuit: pursuitTrack,
 
-  pursuit: {
-    bpm: 156,
-    length: 32,
-    bass: [
-      48, 48, 51, 48, 53, 48, 55, 48,  56, 56, 55, 53, 51, 48, 50, 51,
-      48, 48, 51, 48, 53, 48, 55, 48,  58, 58, 56, 55, 53, 51, 53, 55
-    ],
-    lead: [
-      72, 0, 75, 77, 79, 0, 82, 84,  84, 82, 79, 77, 75, 72, 74, 75,
-      72, 0, 75, 77, 79, 82, 84, 87,  89, 0, 87, 84, 82, 79, 82, 84
-    ],
-    chords: [
-      60, 63, 67, 0, 65, 68, 72, 0,  68, 71, 75, 0, 63, 67, 70, 0,
-      60, 63, 67, 0, 65, 68, 72, 0,  70, 74, 77, 0, 67, 71, 74, 0
-    ],
-    drums: [
-      'K', 'H', 'S', 'H', 'K', 'H', 'S', 'H', 'K', 'H', 'S', 'H', 'K', 'K', 'S', 'S',
-      'K', 'H', 'S', 'H', 'K', 'H', 'S', 'H', 'K', 'H', 'S', 'H', 'K', 'K', 'S', 'S'
-    ]
-  },
-
-  // @Section(Investigation & Suspense Tracks)
-  investigation: {
-    bpm: 112,
-    length: 32,
-    bass: [
-      41, 0, 48, 0, 45, 0, 48, 0,  43, 0, 50, 0, 47, 0, 50, 0,
-      41, 0, 48, 0, 45, 0, 48, 0,  46, 0, 53, 0, 50, 0, 48, 45
-    ],
-    lead: [
-      65, 0, 69, 0, 72, 71, 69, 67,  67, 0, 71, 0, 74, 73, 71, 69,
-      65, 0, 69, 0, 72, 74, 76, 77,  77, 0, 74, 0, 72, 0, 69, 0
-    ],
-    chords: [
-      53, 0, 57, 0, 60, 0, 0, 0,  55, 0, 59, 0, 62, 0, 0, 0,
-      53, 0, 57, 0, 60, 0, 0, 0,  58, 0, 62, 0, 65, 0, 0, 0
-    ],
-    drums: [
-      'K', 'H', 'S', 'H', '0', 'H', 'S', 'H', 'K', 'H', 'S', 'H', '0', 'H', 'S', 'H',
-      'K', 'H', 'S', 'H', '0', 'H', 'S', 'H', 'K', 'H', 'S', 'H', 'K', 'H', 'S', '0'
-    ]
-  },
-
-  suspense: {
-    bpm: 96,
-    length: 16,
-    bass: [
-      36, 0, 36, 0, 39, 0, 38, 0,  35, 0, 35, 0, 38, 0, 37, 0
-    ],
-    lead: [
-      60, 0, 63, 0, 66, 65, 63, 62,  59, 0, 62, 0, 65, 64, 62, 60
-    ],
-    chords: [
-      48, 51, 54, 0, 48, 51, 54, 0,  47, 50, 53, 0, 47, 50, 53, 0
-    ],
-    drums: [
-      'K', '0', 'H', '0', 'S', '0', 'H', '0', 'K', '0', 'H', '0', 'S', '0', 'H', '0'
-    ]
-  },
-
-  // @Section(Victory Celebration Track)
-  victory: {
-    bpm: 136,
-    length: 32,
-    bass: [
-      48, 0, 52, 0, 55, 0, 52, 0,  53, 0, 57, 0, 60, 0, 57, 0,
-      55, 0, 59, 0, 62, 0, 59, 0,  48, 52, 55, 60, 64, 60, 55, 48
-    ],
-    lead: [
-      72, 0, 76, 0, 79, 0, 84, 0,  81, 0, 77, 0, 81, 0, 84, 0,
-      86, 0, 83, 0, 79, 0, 83, 0,  84, 0, 88, 0, 91, 0, 84, 0
-    ],
-    chords: [
-      60, 64, 67, 0, 60, 64, 67, 0,  65, 69, 72, 0, 65, 69, 72, 0,
-      67, 71, 74, 0, 67, 71, 74, 0,  60, 64, 67, 72, 72, 0, 0, 0
-    ],
-    drums: [
-      'K', 'H', 'S', 'H', 'K', 'H', 'S', 'H', 'K', 'H', 'S', 'H', 'K', 'H', 'S', 'H',
-      'K', 'H', 'S', 'H', 'K', 'H', 'S', 'H', 'K', 'H', 'S', 'H', 'K', 'K', 'S', 'S'
-    ]
-  }
+  // @Section(Atmosphere & Celebration Tracks)
+  investigation: investigationTrack,
+  suspense: suspenseTrack,
+  victory: victoryTrack,
+  detention_center: detentionCenterTrack
 };

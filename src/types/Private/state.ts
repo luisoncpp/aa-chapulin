@@ -5,6 +5,8 @@
  */
 
 // @Section(Mode & Location Enums)
+export type Language = 'es' | 'en';
+
 export type GameMode = 'INVESTIGATION' | 'TRIAL';
 
 export type LocationId = 'museum' | 'detention';

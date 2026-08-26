@@ -267,11 +267,12 @@ describe('GameEngine Coordinator', () => {
     expect(dom.courtFurnitureSpriteEl.src).toContain('assets/court_bench.png');
     expect(dom.charSpriteEl.src).toContain('assets/donramon_point.png');
 
-    // 3. SUPER SAM -> courtroom / prosecution stand, no furniture
+    // 3. SUPER SAM -> courtroom / prosecution stand, bench
     engine.handleAdvance();
     engine.handleAdvance();
     expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_courtroom.jpg');
-    expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(true);
+    expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(false);
+    expect(dom.courtFurnitureSpriteEl.src).toContain('assets/court_bench.png');
 
     // 4. JUEZ -> judge stand, no furniture
     engine.handleAdvance();
@@ -285,5 +286,31 @@ describe('GameEngine Coordinator', () => {
     expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_witness.jpg');
     expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(false);
     expect(dom.courtFurnitureSpriteEl.src).toContain('assets/court_podium.png');
+  });
+
+  it('switches UI and narrative scripts dynamically when language is toggled', () => {
+    // Initial state: Spanish
+    expect(dom.btnInvExamine.textContent).toContain('Examinar');
+    expect(dom.btnLangToggleEl.textContent).toContain('ES');
+    expect(state.allEvidence.chipote_chillon.name).toBe('Chipote Chillón');
+
+    // Toggle to English
+    dom.btnLangToggleEl.click();
+    expect(state.language).toBe('en');
+    expect(dom.btnInvExamine.textContent).toContain('Examine');
+    expect(dom.btnInvTalk.textContent).toContain('Talk');
+    expect(dom.btnInvMove.textContent).toContain('Move');
+    expect(dom.btnLangToggleEl.textContent).toContain('EN');
+    expect(state.allEvidence.chipote_chillon.name).toContain('Squeaky Mallet');
+
+    // Start investigation in English -> English location banner
+    engine.startGame();
+    expect(dom.locationBannerEl.textContent).toContain('Museum');
+
+    // Toggle back to Spanish
+    engine.toggleLanguage();
+    expect(state.language).toBe('es');
+    expect(dom.btnInvExamine.textContent).toContain('Examinar');
+    expect(dom.locationBannerEl.textContent).toContain('Museo');
   });
 });

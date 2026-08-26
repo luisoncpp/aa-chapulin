@@ -4,16 +4,17 @@
  * Operates on [[./EvidenceCatalog.ts|EVIDENCE_CATALOG]] and progression flags.
  */
 
-import type { EvidenceCatalogMap, EvidenceId, GameFlags, GameMode, LocationId } from '../../types/index.js';
-import { EVIDENCE_CATALOG } from './EvidenceCatalog.js';
+import type { EvidenceCatalogMap, EvidenceId, GameFlags, GameMode, Language, LocationId } from '../../types/index.js';
+import { getEvidenceCatalog } from './EvidenceCatalog.js';
 
 export class GameStateManager {
   public mode: GameMode = 'INVESTIGATION';
   public currentLocation: LocationId = 'museum';
+  public language: Language = 'es';
   public health = 5;
   public readonly maxHealth = 5;
   public gameOver = false;
-  public readonly allEvidence: EvidenceCatalogMap = EVIDENCE_CATALOG;
+  public allEvidence: EvidenceCatalogMap = getEvidenceCatalog('es');
   public inventory: EvidenceId[] = ['insignia_abogado'];
   public flags: GameFlags = {
     examined_pedestal: false,
@@ -38,6 +39,12 @@ export class GameStateManager {
 
   public hasEvidence(evidenceId: EvidenceId): boolean {
     return this.inventory.includes(evidenceId);
+  }
+
+  // @Section(Language Setting)
+  public setLanguage(lang: Language): void {
+    this.language = lang;
+    this.allEvidence = getEvidenceCatalog(lang);
   }
 
   // @Section(Penalty & Health)

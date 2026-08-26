@@ -5,15 +5,17 @@
  */
 
 import { midiComposer as defaultMidiComposer, soundEngine as defaultSoundEngine, type MidiMusicComposer, type SoundEngine } from '../../audio/index.js';
-import { CASE_SCRIPT as defaultCaseScript } from '../../case/index.js';
+import { CASE_SCRIPT as defaultCaseScript, getCaseScript } from '../../case/index.js';
+import { i18n } from '../../i18n/index.js';
 import { gameState as defaultGameState, type GameStateManager } from '../../state/index.js';
-import type { CaseScript, DialogueLine, EvidenceId, SFXName } from '../../types/index.js';
+import type { CaseScript, DialogueLine, EvidenceId, Language, SFXName } from '../../types/index.js';
 import { getDomElements, type DomElements } from './DomElements.js';
 import { EngineEventBinder } from './EngineEventBinder.js';
 import { InvestigationController } from './InvestigationController.js';
 import { ModalManager } from './ModalManager.js';
 import { TrialController } from './TrialController.js';
 import { Typewriter } from './Typewriter.js';
+import { UiLanguageUpdater } from './UiLanguageUpdater.js';
 import { VisualEffects } from './VisualEffects.js';
 
 export interface GameEngineDeps {
@@ -27,7 +29,7 @@ export interface GameEngineDeps {
 export class GameEngine {
   private readonly dom: DomElements;
   private readonly state: GameStateManager;
-  private readonly script: CaseScript;
+  private script: CaseScript;
   private readonly soundEngine: SoundEngine;
   private readonly midiComposer: MidiMusicComposer;
   private readonly typewriter: Typewriter;
@@ -68,15 +70,32 @@ export class GameEngine {
       onStartTrialDebug: () => this.startTrialDebug(),
       onAdvance: () => this.handleAdvance(),
       onOpenCourtRecord: (isTrial) => this.openCourtRecord(isTrial),
-      onPresentFromModal: () => this.handlePresentFromModal()
+      onPresentFromModal: () => this.handlePresentFromModal(),
+      onToggleLanguage: () => this.toggleLanguage()
     });
     ModalManager.updateHealthUI(this.dom.healthBarEl, this.state.health, this.state.maxHealth);
+    this.setLanguage(this.state.language);
     this.checkDebugUrlParams();
+  }
+
+  public setLanguage(lang: Language): void {
+    i18n.setLanguage(lang);
+    this.state.setLanguage(lang);
+    this.script = getCaseScript(lang);
+    this.investigation.setScript(this.script);
+    this.trial.setScript(this.script);
+    UiLanguageUpdater.updateUi(this.dom, lang);
+  }
+
+  public toggleLanguage(): void {
+    const nextLang = i18n.toggleLanguage();
+    this.setLanguage(nextLang);
   }
 
   private checkDebugUrlParams(): void {
     if (typeof window === 'undefined' || !window.location) return;
     const url = `${window.location.search} ${window.location.hash}`.toLowerCase();
+    if (url.includes('lang=en')) this.setLanguage('en');
     if (url.includes('trial')) this.startTrialDebug();
   }
 
@@ -167,7 +186,7 @@ export class GameEngine {
     const added = this.state.addEvidence(evidenceId);
     if (added) {
       const item = this.state.allEvidence[evidenceId];
-      VisualEffects.showNotification(this.dom.gameNotificationEl, `¡Añadido al Acta del Juicio: ${item.name}!`);
+      VisualEffects.showNotification(this.dom.gameNotificationEl, i18n.t.notifEvidenceAdded(item.name));
     }
   }
 

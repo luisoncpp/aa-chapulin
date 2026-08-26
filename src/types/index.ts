@@ -21,6 +21,7 @@ export type {
 
 // @Section(Game State Types)
 export type {
+  Language,
   GameMode,
   LocationId,
   GameFlags

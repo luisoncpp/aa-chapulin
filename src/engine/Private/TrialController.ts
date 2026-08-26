@@ -5,6 +5,7 @@
  */
 
 import type { MidiMusicComposer, SoundEngine } from '../../audio/index.js';
+import { i18n } from '../../i18n/index.js';
 import type { GameStateManager } from '../../state/index.js';
 import type { CaseScript, DialogueLine, EvidenceId, Testimony } from '../../types/index.js';
 import type { DomElements } from './DomElements.js';
@@ -28,12 +29,14 @@ export class TrialController {
   public phase: TrialPhase = 'IDLE';
   public currentTestimony: Testimony | null = null;
   public currentStatementIdx = 0;
+  private script: CaseScript;
 
-  constructor(private readonly deps: TrialControllerDeps) {}
+  constructor(private readonly deps: TrialControllerDeps) {
+    this.script = deps.script;
+  }
 
   private get dom() { return this.deps.dom; }
   private get state() { return this.deps.state; }
-  private get script() { return this.deps.script; }
   private get soundEngine() { return this.deps.soundEngine; }
   private get midiComposer() { return this.deps.midiComposer; }
   private get onQueueDialogue() { return this.deps.onQueueDialogue; }
@@ -49,7 +52,7 @@ export class TrialController {
     this.dom.examineNavEl.classList.add('hidden');
     this.hideControls();
     this.dom.hotspotsContainerEl.innerHTML = '';
-    this.dom.locationBannerEl.textContent = 'Tribunal Superior - Sala de Audiencias No. 1';
+    this.dom.locationBannerEl.textContent = i18n.t.locationCourtroom;
 
     this.onQueueDialogue(this.script.trial.intro, /*onComplete*/ () => {
       this.startTestimony('testimony1');
@@ -146,14 +149,14 @@ export class TrialController {
     this.hideControls();
 
     const penaltyDialogue: DialogueLine[] = [
-      { cutin: 'objection_protesto', speaker: 'DEFENSA', text: '¡PROTESTO!', sfx: 'whoosh', pose: 'chapulin_point' },
-      { speaker: 'SUPER SAM', text: 'Time is money, and you are wasting mine! Esa prueba no contradice en absoluto el testimonio.', pose: 'supersam_point' },
-      { speaker: 'JUEZ', text: '¡La fiscalía tiene razón! Penalizaré a la defensa por presentar pruebas irrelevantes.', pose: 'judge_gavel', sfx: 'gavel' }
+      { cutin: 'objection_protesto', speaker: 'DEFENSA', text: i18n.getLanguage() === 'en' ? 'OBJECTION!' : '¡PROTESTO!', sfx: 'whoosh', pose: 'chapulin_point' },
+      { speaker: 'SUPER SAM', text: i18n.t.penaltyProsecutionText, pose: 'supersam_point' },
+      { speaker: 'JUEZ', text: i18n.t.penaltyJudgeText, pose: 'judge_gavel', sfx: 'gavel' }
     ];
     if (this.state.gameOver) {
       penaltyDialogue.push(
-        { speaker: 'JUEZ', pose: 'judge_gavel', text: '¡La defensa ha agotado sus oportunidades! Declaro al acusado... ¡CULPABLE!', sfx: 'gavel' },
-        { speaker: 'DEFENSA', pose: 'chapulin_panic', text: '¡Oh, no! ¡Debo intentarlo de nuevo desde el principio del juicio!' }
+        { speaker: 'JUEZ', pose: 'judge_gavel', text: i18n.t.gameOverJudgeText, sfx: 'gavel' },
+        { speaker: 'DEFENSA', pose: 'chapulin_panic', text: i18n.t.gameOverDefenseText }
       );
       this.onQueueDialogue(penaltyDialogue, /*onComplete*/ () => this.showGameOverModal());
       return;
@@ -184,7 +187,7 @@ export class TrialController {
     }
 
     this.applyPenaltyEffects();
-    VisualEffects.showNotification(this.dom.gameNotificationEl, '¡Prueba incorrecta! Revisa tus pistas.');
+    VisualEffects.showNotification(this.dom.gameNotificationEl, i18n.t.notifIncorrectClue);
     this.startClimax();
   }
 
@@ -193,5 +196,17 @@ export class TrialController {
     this.state.resetHealth();
     ModalManager.updateHealthUI(this.dom.healthBarEl, this.state.health, this.state.maxHealth);
     this.startTrial();
+  }
+
+  // fallow-ignore-next-line complexity
+  public setScript(script: CaseScript): void {
+    const isTestimony1 = this.currentTestimony === this.script.trial.testimony1;
+    const isTestimony2 = this.currentTestimony === this.script.trial.testimony2;
+    this.script = script;
+    if (isTestimony1) this.currentTestimony = script.trial.testimony1;
+    else if (isTestimony2) this.currentTestimony = script.trial.testimony2;
+    if (this.phase === 'TESTIMONY' && this.currentTestimony) {
+      this.renderCurrentStatement();
+    }
   }
 }

@@ -20,6 +20,7 @@ export function setupDomHarness(): DomElements {
       <div id="top-hud">
         <div id="location-banner">Museo</div>
         <div id="hud-right-controls">
+          <button id="btn-lang-toggle" class="hud-btn">🌐 ES</button>
           <button id="btn-audio-toggle" class="hud-btn">🔊</button>
           <div id="health-bar"></div>
           <button id="btn-court-record"><img src="" alt="Insignia"><span>Acta</span></button>
@@ -56,6 +57,7 @@ export function setupDomHarness(): DomElements {
       <div id="screen-flash" class="hidden"></div>
       <div id="confetti-container" class="hidden"></div>
       <div id="start-splash-overlay">
+        <button id="btn-lang-splash">IDIOMA</button>
         <button id="btn-start-game">COMENZAR</button>
         <button id="btn-start-trial-debug">MODO DEBUG</button>
       </div>

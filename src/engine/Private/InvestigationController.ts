@@ -5,6 +5,7 @@
  */
 
 import type { MidiMusicComposer, SoundEngine } from '../../audio/index.js';
+import { i18n } from '../../i18n/index.js';
 import type { GameStateManager } from '../../state/index.js';
 import type { CaseScript, DialogueLine, Hotspot, LocationId, PoseName, TalkOption } from '../../types/index.js';
 import type { DomElements } from './DomElements.js';
@@ -25,7 +26,7 @@ export class InvestigationController {
   public currentLocationCharPose: PoseName = null;
   private readonly dom: DomElements;
   private readonly state: GameStateManager;
-  private readonly script: CaseScript;
+  private script: CaseScript;
   private readonly soundEngine: SoundEngine;
   private readonly midiComposer: MidiMusicComposer;
   private readonly onQueueDialogue: (dialogue: DialogueLine[], onComplete?: () => void) => void;
@@ -106,9 +107,9 @@ export class InvestigationController {
     VisualEffects.hideCharacter(this.dom.charSpriteEl);
     VisualEffects.hideFurniture(this.dom.courtFurnitureContainerEl);
 
-    this.dom.speakerBoxEl.textContent = 'MODO EXAMINAR';
+    this.dom.speakerBoxEl.textContent = i18n.t.examineTitle;
     this.onQueueDialogue([
-      { speaker: 'MODO EXAMINAR', text: '🔍 Mueve el cursor y haz clic sobre los objetos para investigar.' }
+      { speaker: i18n.t.examineTitle, text: i18n.t.examinePrompt }
     ]);
   }
 
@@ -148,6 +149,17 @@ export class InvestigationController {
     if (!isReady || !trialBtn) return;
     trialBtn.classList.remove('disabled');
     trialBtn.classList.add('pulse-glow');
-    VisualEffects.showNotification(this.dom.gameNotificationEl, '¡Has reunido todas las pruebas! ¡Puedes iniciar el Juicio!');
+    VisualEffects.showNotification(this.dom.gameNotificationEl, i18n.t.notifTrialReady);
+  }
+
+  public setScript(script: CaseScript): void {
+    this.script = script;
+    if (this.state.mode === 'INVESTIGATION') {
+      const scene = this.script.investigation[this.state.currentLocation];
+      if (scene) {
+        this.dom.locationBannerEl.textContent = scene.title;
+        this.renderHotspots(scene.hotspots || []);
+      }
+    }
   }
 }

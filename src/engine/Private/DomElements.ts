@@ -34,6 +34,8 @@ export interface DomElements {
   talkListEl: HTMLElement;
   startSplashOverlayEl: HTMLElement;
   btnAudioToggleEl: HTMLButtonElement;
+  btnLangToggleEl: HTMLButtonElement;
+  btnLangSplashEl?: HTMLButtonElement;
   gameNotificationEl: HTMLElement;
   btnStartGame: HTMLButtonElement;
   btnStartTrialDebug: HTMLButtonElement;
@@ -83,6 +85,8 @@ export function getDomElements(): DomElements {
     talkListEl: document.getElementById('talk-options-list')!,
     startSplashOverlayEl: document.getElementById('start-splash-overlay')!,
     btnAudioToggleEl: document.getElementById('btn-audio-toggle') as HTMLButtonElement,
+    btnLangToggleEl: document.getElementById('btn-lang-toggle') as HTMLButtonElement,
+    btnLangSplashEl: document.getElementById('btn-lang-splash') as HTMLButtonElement,
     gameNotificationEl: document.getElementById('game-notification')!,
     btnStartGame: document.getElementById('btn-start-game') as HTMLButtonElement,
     btnStartTrialDebug: document.getElementById('btn-start-trial-debug') as HTMLButtonElement,

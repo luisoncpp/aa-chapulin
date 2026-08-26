@@ -15,7 +15,8 @@ import numpy as np
 from PIL import Image
 from scipy import ndimage
 
-CURRENT_ARTIFACT_DIR = r"C:\Users\luiso\.gemini\antigravity\brain\e2f1a61b-7fc5-4a37-9032-9dce380a7993"
+CURRENT_ARTIFACT_DIR = r"C:\Users\luiso\.gemini\antigravity\brain\7510db40-7e99-4124-9a9f-6691a7d11982"
+PREV_ARTIFACT_DIR_7 = r"C:\Users\luiso\.gemini\antigravity\brain\e2f1a61b-7fc5-4a37-9032-9dce380a7993"
 PREV_ARTIFACT_DIR_6 = r"C:\Users\luiso\.gemini\antigravity\brain\9705331f-35fd-45c3-b901-2f14dab60aed"
 PREV_ARTIFACT_DIR_5 = r"C:\Users\luiso\.gemini\antigravity\brain\ce3ca77a-06af-4722-9a51-22316a36f2fc"
 PREV_ARTIFACT_DIR_4 = r"C:\Users\luiso\.gemini\antigravity\brain\3f1cace1-70b9-41d6-a3a5-40ae385364fc"
@@ -28,7 +29,7 @@ DEST_DIR = r"c:\Proyectos\ace-attorney-gemini\assets"
 os.makedirs(DEST_DIR, exist_ok=True)
 
 def find_asset_file(filename: str) -> str:
-    for d in [CURRENT_ARTIFACT_DIR, PREV_ARTIFACT_DIR_6, PREV_ARTIFACT_DIR_5, PREV_ARTIFACT_DIR_4, PREV_ARTIFACT_DIR_3, PREV_ARTIFACT_DIR_2, PREV_ARTIFACT_DIR_1, PREV_ARTIFACT_DIR, LEGACY_ARTIFACT_DIR]:
+    for d in [CURRENT_ARTIFACT_DIR, PREV_ARTIFACT_DIR_7, PREV_ARTIFACT_DIR_6, PREV_ARTIFACT_DIR_5, PREV_ARTIFACT_DIR_4, PREV_ARTIFACT_DIR_3, PREV_ARTIFACT_DIR_2, PREV_ARTIFACT_DIR_1, PREV_ARTIFACT_DIR, LEGACY_ARTIFACT_DIR]:
         p = os.path.join(d, filename)
         if os.path.exists(p):
             return p
@@ -168,7 +169,8 @@ def process_character_sheet(
     sheet_name: str,
     pose_names: list,
     custom_crops: list = None,
-    drop_boxes_per_cell: list = None
+    drop_boxes_per_cell: list = None,
+    min_area_fractions: list = None
 ):
     sheet_path = find_asset_file(sheet_name)
     if not os.path.exists(sheet_path):
@@ -193,7 +195,8 @@ def process_character_sheet(
         cleaned = clean_edges_vectorized(cleaned, depth=5)
 
         drop_boxes = drop_boxes_per_cell[idx] if (drop_boxes_per_cell and idx < len(drop_boxes_per_cell)) else None
-        final_img = extract_primary_components_fast(cleaned, min_area_fraction=0.10, drop_boxes=drop_boxes)
+        min_area = min_area_fractions[idx] if (min_area_fractions and idx < len(min_area_fractions)) else 0.10
+        final_img = extract_primary_components_fast(cleaned, min_area_fraction=min_area, drop_boxes=drop_boxes)
         final_img = despill_final(final_img)
 
         out_path = os.path.join(DEST_DIR, f"{name}.png")
@@ -339,18 +342,34 @@ def run_all_fixes():
     )
 
     # 2. Super Sam
-    sam_drop = [
-        [(0, 0, 50, 50)],
-        [(0, 0, 50, 50), (20, 180, 135, 360)],
-        [(300, 0, 512, 135)],
-        [(0, 0, 50, 50)]
-    ]
-    process_character_sheet(
-        "supersam_sprites_1787377120436.jpg",
-        ["supersam_idle", "supersam_slam", "supersam_point", "supersam_breakdown"],
-        None,
-        sam_drop
-    )
+    sam_sheet = find_asset_file("supersam_sprites_clean_1787702494437.jpg")
+    if os.path.exists(sam_sheet):
+        sam_drop = [
+            None,
+            [(0, 400, 50, 480)],  # Drop edge impact spark on slam
+            None,
+            None
+        ]
+        process_character_sheet(
+            os.path.basename(sam_sheet),
+            ["supersam_idle", "supersam_slam", "supersam_point", "supersam_breakdown"],
+            custom_crops=None,
+            drop_boxes_per_cell=sam_drop,
+            min_area_fractions=[0.10, 0.10, 0.10, 0.01]
+        )
+    else:
+        sam_drop = [
+            [(0, 0, 50, 50)],
+            [(0, 0, 50, 50), (20, 180, 135, 360)],
+            [(300, 0, 512, 135)],
+            [(0, 0, 50, 50)]
+        ]
+        process_character_sheet(
+            "supersam_sprites_1787377120436.jpg",
+            ["supersam_idle", "supersam_slam", "supersam_point", "supersam_breakdown"],
+            custom_crops=None,
+            drop_boxes_per_cell=sam_drop
+        )
 
     # 3. El Tripaseca
     process_character_sheet(

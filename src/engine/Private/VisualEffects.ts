@@ -81,6 +81,7 @@ export class VisualEffects {
     if (!isTrialMode || !line.speaker) return null;
     if (isDefenseSpeaker(line.speaker)) return 'donramon_idle';
     if (isChapulinSpeaker(line.speaker)) return 'chapulin_idle';
+    if (line.speaker === 'SUPER SAM') return 'supersam_idle';
     return null;
   }
 
@@ -104,10 +105,11 @@ export class VisualEffects {
     applyStageFrame(dom.gameScreen, resolveStageFrame(furniture, effectivePose));
   }
 
+  // fallow-ignore-next-line complexity
   private static inferFurniture(isTrialMode: boolean, bg: string): FurnitureType {
     if (!isTrialMode) return 'none';
     if (bg.includes('bg_witness')) return 'podium';
-    if (bg.includes('bg_defense')) return 'bench';
+    if (bg.includes('bg_defense') || bg.includes('bg_courtroom')) return 'bench';
     return 'none';
   }
 

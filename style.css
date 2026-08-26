@@ -128,6 +128,21 @@ body {
     transform: scale(1.06);
 }
 
+.splash-btn-lang {
+    background: linear-gradient(180deg, #2980b9 0%, #1a5276 100%);
+    border: 3px solid #00ffcc;
+    font-size: 20px;
+    padding: 6px 20px;
+    box-shadow: 0 0 15px rgba(0, 255, 204, 0.4);
+    opacity: 0.95;
+}
+
+.splash-btn-lang:hover {
+    background: linear-gradient(180deg, #3498db 0%, #2471a3 100%);
+    box-shadow: 0 0 25px rgba(0, 255, 204, 0.8);
+    transform: scale(1.06);
+}
+
 /* Background Scene */
 #scene-bg {
     position: absolute;

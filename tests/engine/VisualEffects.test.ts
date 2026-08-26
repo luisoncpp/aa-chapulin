@@ -162,15 +162,26 @@ describe('VisualEffects Subsystem', () => {
     expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(false);
     expect(dom.gameScreen.dataset.stageFrame).toBe('bench-stand');
 
-    // 2. Prosecution talks -> switches to courtroom/prosecution background and hides furniture
+    // 2. Prosecution talks -> switches to courtroom/prosecution background and shows bench
     VisualEffects.updateStagingForLine(
       dom,
       { speaker: 'SUPER SAM', pose: 'supersam_point', text: 'What?!' },
       /*isTrialMode=*/ true
     );
     expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_courtroom.jpg');
-    expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(true);
-    expect(dom.gameScreen.dataset.stageFrame).toBe('plain');
+    expect(dom.courtFurnitureSpriteEl.src).toContain('assets/court_bench.png');
+    expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(false);
+    expect(dom.gameScreen.dataset.stageFrame).toBe('bench-stand');
+
+    // 2b. Prosecution desk slam -> switches to bench-slam frame
+    VisualEffects.updateStagingForLine(
+      dom,
+      { speaker: 'SUPER SAM', pose: 'supersam_slam', text: 'Time is money!' },
+      /*isTrialMode=*/ true
+    );
+    expect(dom.courtFurnitureSpriteEl.src).toContain('assets/court_bench.png');
+    expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(false);
+    expect(dom.gameScreen.dataset.stageFrame).toBe('bench-slam');
 
     // 3. Judge talks -> switches to judge background and hides furniture
     VisualEffects.updateStagingForLine(
@@ -205,12 +216,14 @@ describe('VisualEffects Subsystem', () => {
     expect(dom.gameScreen.dataset.stageFrame).toBe('bench-stand');
   });
 
-  it('resolves effective pose for trial defense and defendant correctly', () => {
+  it('resolves effective pose for trial defense, prosecution, and defendant correctly', () => {
     expect(VisualEffects.resolveEffectivePose({ text: 'A', speaker: 'DEFENSA' }, /*isTrialMode=*/ true)).toBe('donramon_idle');
     expect(VisualEffects.resolveEffectivePose({ text: 'A', speaker: 'DON RAMON' }, /*isTrialMode=*/ true)).toBe('donramon_idle');
     expect(VisualEffects.resolveEffectivePose({ text: 'A', speaker: 'CHAPULIN' }, /*isTrialMode=*/ true)).toBe('chapulin_idle');
+    expect(VisualEffects.resolveEffectivePose({ text: 'A', speaker: 'SUPER SAM' }, /*isTrialMode=*/ true)).toBe('supersam_idle');
     expect(VisualEffects.resolveEffectivePose({ text: 'A', speaker: 'JUEZ' }, /*isTrialMode=*/ true)).toBe(null);
     expect(VisualEffects.resolveEffectivePose({ text: 'A', speaker: 'DEFENSA' }, /*isTrialMode=*/ false)).toBe(null);
     expect(VisualEffects.resolveEffectivePose({ text: 'A', speaker: 'DEFENSA', pose: 'donramon_slam' }, /*isTrialMode=*/ true)).toBe('donramon_slam');
   });
 });
+

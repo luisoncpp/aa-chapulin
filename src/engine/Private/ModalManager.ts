@@ -4,6 +4,7 @@
  * Interacts with [[src/state/Private/GameStateManager.ts]].
  */
 
+import { i18n } from '../../i18n/index.js';
 import type { GameStateManager } from '../../state/index.js';
 import type { EvidenceId, TalkOption } from '../../types/index.js';
 import type { DomElements } from './DomElements.js';
@@ -21,6 +22,7 @@ export class ModalManager {
     const { dom, state, isTrialPresent, onSelect } = config;
     dom.courtRecordModalEl.classList.remove('hidden');
     dom.evidenceListEl.innerHTML = '';
+    dom.presentBtnEl.textContent = i18n.t.modalPresentBtn;
     dom.presentBtnEl.style.display = isTrialPresent ? 'block' : 'none';
 
     state.inventory.forEach((id, idx) => {

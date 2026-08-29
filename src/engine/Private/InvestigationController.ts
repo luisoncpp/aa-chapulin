@@ -23,6 +23,7 @@ export interface InvestigationControllerDeps {
 
 export class InvestigationController {
   public isExamineActive = false;
+  public isFirstTimeDialogue = false;
   public currentLocationCharPose: PoseName = null;
   private readonly dom: DomElements;
   private readonly state: GameStateManager;
@@ -44,6 +45,7 @@ export class InvestigationController {
   public startInvestigation(location: LocationId = 'museum'): void {
     this.state.mode = 'INVESTIGATION';
     this.state.currentLocation = location;
+    this.isFirstTimeDialogue = false;
     this.dom.investigationNavEl.classList.remove('hidden');
     this.dom.examineNavEl.classList.add('hidden');
     this.dom.trialNavEl.classList.add('hidden');
@@ -90,16 +92,28 @@ export class InvestigationController {
   }
 
   private handleHotspotClick(h: Hotspot): void {
+    const isRepeated = this.state.isHotspotExamined(h.id);
     this.soundEngine.playRealization();
     this.dom.examineTooltipEl.classList.add('hidden');
     this.exitExamineMode();
+    if (!isRepeated) {
+      this.dom.investigationNavEl.classList.add('hidden');
+      this.isFirstTimeDialogue = true;
+    }
     this.onQueueDialogue(h.dialogue, /*onComplete*/ () => {
+      this.isFirstTimeDialogue = false;
+      this.state.markHotspotExamined(h.id);
+      this.dom.investigationNavEl.classList.remove('hidden');
+      if (this.currentLocationCharPose) {
+        VisualEffects.setPose(this.dom.charSpriteEl, this.currentLocationCharPose);
+      }
       this.checkInvestigationProgress();
     });
   }
 
   // @Section(Examine Mode & Tooltips)
   public startExamineMode(): void {
+    if (this.isFirstTimeDialogue) return;
     this.isExamineActive = true;
     this.dom.hotspotsContainerEl.classList.add('visible-hotspots');
     this.dom.investigationNavEl.classList.add('hidden');
@@ -128,6 +142,7 @@ export class InvestigationController {
 
   // @Section(Talk Dialog & Readiness)
   public openTalkMenu(): void {
+    if (this.isFirstTimeDialogue) return;
     const scene = this.script.investigation[this.state.currentLocation];
     if (!scene || !scene.talkOptions) return;
 
@@ -139,6 +154,7 @@ export class InvestigationController {
   }
 
   public openMoveMenu(): void {
+    if (this.isFirstTimeDialogue) return;
     const destinations = this.state.unlockedLocations
       .map((locId) => {
         const scene = this.script.investigation[locId];

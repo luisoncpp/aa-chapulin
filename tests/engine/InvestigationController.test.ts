@@ -94,6 +94,68 @@ describe('InvestigationController', () => {
     expect(queuedDialogues.length).toBeGreaterThan(1);
   });
 
+  it('hides navigation and prevents talking or examining during first-time hotspot dialogue until completed', () => {
+    let completeCallback: (() => void) | undefined;
+    const manualController = new InvestigationController({
+      dom,
+      state,
+      script: CASE_SCRIPT,
+      soundEngine: soundEngineInstance,
+      midiComposer: midiComposerInstance,
+      onQueueDialogue: (_dlg, cb) => {
+        completeCallback = cb;
+      }
+    });
+
+    manualController.startInvestigation('museum');
+    expect(state.isHotspotExamined('pedestal')).toBe(false);
+
+    // Enter examine and click first hotspot (pedestal)
+    manualController.startExamineMode();
+    const hotspotArea = dom.hotspotsContainerEl.children[0] as HTMLElement;
+    hotspotArea.click();
+
+    // First-time dialogue is active: investigation nav must be hidden
+    expect(dom.investigationNavEl.classList.contains('hidden')).toBe(true);
+    expect(manualController.isFirstTimeDialogue).toBe(true);
+    expect(state.isHotspotExamined('pedestal')).toBe(false);
+
+    // Attempting to talk, examine, or move during first-time dialogue is blocked
+    manualController.openTalkMenu();
+    expect(dom.talkOptionsModalEl.classList.contains('hidden')).toBe(true);
+    manualController.startExamineMode();
+    expect(manualController.isExamineActive).toBe(false);
+    manualController.openMoveMenu();
+    expect(dom.moveLocationsModalEl.classList.contains('hidden')).toBe(true);
+
+    // Finish dialogue queue
+    expect(completeCallback).toBeDefined();
+    completeCallback!();
+
+    // Now dialogue is completed: hotspot marked examined and nav restored
+    expect(state.isHotspotExamined('pedestal')).toBe(true);
+    expect(manualController.isFirstTimeDialogue).toBe(false);
+    expect(dom.investigationNavEl.classList.contains('hidden')).toBe(false);
+  });
+
+  it('allows choosing to talk or investigate something else during repeated hotspot dialogue', () => {
+    state.markHotspotExamined('pedestal');
+    expect(state.isHotspotExamined('pedestal')).toBe(true);
+
+    controller.startInvestigation('museum');
+    controller.startExamineMode();
+    const hotspotArea = dom.hotspotsContainerEl.children[0] as HTMLElement;
+    hotspotArea.click();
+
+    // Repeated dialogue: investigation nav remains visible and isFirstTimeDialogue is false
+    expect(dom.investigationNavEl.classList.contains('hidden')).toBe(false);
+    expect(controller.isFirstTimeDialogue).toBe(false);
+
+    // Player CAN open talk menu
+    controller.openTalkMenu();
+    expect(dom.talkOptionsModalEl.classList.contains('hidden')).toBe(false);
+  });
+
   it('opens talk menu modal and handles conversation option', () => {
     controller.startInvestigation('museum');
     controller.openTalkMenu();

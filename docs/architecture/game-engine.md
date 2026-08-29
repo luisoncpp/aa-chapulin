@@ -64,6 +64,9 @@ flowchart TD
    - `startInvestigation(location)` renders hotspots and loads intro dialogue.
    - `startExamineMode()` enables pointer events on hotspots, attaches a cursor-following tooltip (`#examine-tooltip`), and hides the character sprite to give an unobstructed view.
    - Hotspot clicks trigger audio feedback, hide the examine cursor, and queue hotspot dialogue.
+   - **First-time Hotspot Dialogue**: When examining a hotspot for the first time, investigation navigation controls (`#investigation-controls`) remain hidden and actions (talk, examine, move) are locked until the dialogue is completed, at which point the hotspot is marked examined in `gameState.flags` and navigation controls reappear.
+   - **Repeated Hotspot Dialogue**: When examining a previously completed hotspot, navigation controls remain interactive, allowing the player to freely talk or examine something else without being locked into known dialogue.
+
 
 7. **Debug Trial Launch** ([[src/engine/Private/GameEngine.ts#Initialization & Bootstrapping]]):
    - `startTrialDebug()` bypasses the investigation phase, activates Web Audio API synth, dismisses splash screen overlay, populates all required case clues via `gameState.populateTrialEvidence()`, and launches the courtroom trial directly.

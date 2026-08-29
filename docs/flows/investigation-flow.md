@@ -28,9 +28,15 @@ Operational guide for player actions during the crime scene investigation phase.
 5. Player clicks hotspot:
    - SFX `'realization'` plays.
    - `exitExamineMode()` disables hotspot hover layer.
-   - Hotspot dialogue array is queued via `queueDialogue()`.
-   - Any `line.addEvidence` adds item to `gameState.inventory` and shows `#game-notification`.
-   - On completion callback, `checkInvestigationProgress()` verifies if trial is unlocked.
+   - If first-time inspection (`!gameState.isHotspotExamined(h.id)`):
+     - Investigation controls (`#investigation-controls`) remain hidden to prevent switching to talk/examine during active dialogue.
+     - Hotspot dialogue array is queued via `queueDialogue()`.
+     - Any `line.addEvidence` adds item to `gameState.inventory` and shows `#game-notification`.
+     - On completion callback, `gameState.markHotspotExamined(h.id)` records completion, `#investigation-controls` is revealed, and `checkInvestigationProgress()` runs.
+   - If repeated inspection (`gameState.isHotspotExamined(h.id)`):
+     - Investigation controls (`#investigation-controls`) remain visible, allowing player to switch to talk or examine something else immediately.
+     - Hotspot dialogue array is queued via `queueDialogue()`.
+
 
 ### Location Selection & Move Modal
 1. Player clicks "🏃 Moverse" (`#btn-inv-move`).

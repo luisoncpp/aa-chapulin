@@ -137,10 +137,21 @@ describe('GameStateManager', () => {
     expect(newState.flags.talked_chapulin_reason).toBe(true);
   });
 
+  it('tracks examined hotspots using isHotspotExamined and markHotspotExamined', () => {
+    expect(state.isHotspotExamined('pedestal')).toBe(false);
+    expect(state.isHotspotExamined('armor')).toBe(false);
+
+    state.markHotspotExamined('pedestal');
+    expect(state.isHotspotExamined('pedestal')).toBe(true);
+    expect(state.isHotspotExamined('armor')).toBe(false);
+    expect(state.flags.examined_pedestal).toBe(true);
+  });
+
   it('exports singleton gameState with evidence catalog correctly', () => {
     expect(gameState).toBeInstanceOf(GameStateManager);
     expect(gameState.allEvidence.insignia_abogado.name).toBe('Insignia de Abogado CH');
     expect(Object.keys(gameState.allEvidence)).toHaveLength(8);
   });
 });
+
 

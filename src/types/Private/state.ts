@@ -13,14 +13,21 @@ export type LocationId = 'museum' | 'detention' | (string & {});
 
 // @Section(Progression Flags)
 export interface GameFlags {
-  examined_pedestal: boolean;
-  examined_armor: boolean;
-  examined_vent: boolean;
-  talked_florinda_crime: boolean;
-  talked_florinda_suspect: boolean;
-  presented_chiquitolina_florinda: boolean;
-  visited_detention: boolean;
-  talked_chapulin_reason: boolean;
-  talked_chapulin_antenitas: boolean;
+  examined_pedestal?: boolean;
+  examined_armor?: boolean;
+  examined_vent?: boolean;
+  examined_security_cam?: boolean;
+  examined_treasure_chest?: boolean;
+  examined_chapulin_spot?: boolean;
+  examined_phone_spot?: boolean;
+  examined_table_spot?: boolean;
+  talked_florinda_crime?: boolean;
+  talked_florinda_suspect?: boolean;
+  presented_chiquitolina_florinda?: boolean;
+  visited_detention?: boolean;
+  talked_chapulin_reason?: boolean;
+  talked_chapulin_antenitas?: boolean;
   ready_for_trial: boolean;
+  [key: string]: boolean | undefined;
 }
+

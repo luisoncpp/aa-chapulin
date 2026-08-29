@@ -31,3 +31,5 @@ Avoid: "bug description + fix". Prefer: "what I learned that applies to future w
 | [`dialogue-box-sprite-baseline-alignment.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/lessons-learned/dialogue-box-sprite-baseline-alignment.md) | Aligning free-standing waist-up sprite baselines with the dialogue box top edge in visual novel scenes. | 2026-08-25 |
 | [`instant-camera-cut-staging.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/lessons-learned/instant-camera-cut-staging.md) | Snapping stage composition geometry instantly vs CSS transitions causing sliding artifacts during shot changes. | 2026-08-25 |
 | [`web-audio-audioparam-immutability.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/lessons-learned/web-audio-audioparam-immutability.md) | Avoiding Object.assign hazards on read-only AudioParam getters in Web Audio synthesis. | 2026-08-25 |
+| [`investigation-dialogue-completion-lifecycle.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/lessons-learned/investigation-dialogue-completion-lifecycle.md) | Gating environment investigation dialogue completion and controls visibility to protect FIFO queue callbacks. | 2026-08-29 |
+

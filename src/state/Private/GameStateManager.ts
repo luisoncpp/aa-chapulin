@@ -22,6 +22,11 @@ export class GameStateManager {
     examined_pedestal: false,
     examined_armor: false,
     examined_vent: false,
+    examined_security_cam: false,
+    examined_treasure_chest: false,
+    examined_chapulin_spot: false,
+    examined_phone_spot: false,
+    examined_table_spot: false,
     talked_florinda_crime: false,
     talked_florinda_suspect: false,
     presented_chiquitolina_florinda: false,
@@ -30,6 +35,15 @@ export class GameStateManager {
     talked_chapulin_antenitas: false,
     ready_for_trial: false
   };
+
+  // @Section(Hotspot & Progress Tracking)
+  public isHotspotExamined(hotspotId: string): boolean {
+    return Boolean(this.flags[`examined_${hotspotId}`] || this.flags[hotspotId]);
+  }
+
+  public markHotspotExamined(hotspotId: string): void {
+    this.flags[`examined_${hotspotId}`] = true;
+  }
 
   // @Section(Location Operations)
   public unlockLocation(locationId: LocationId): boolean {
@@ -76,6 +90,7 @@ export class GameStateManager {
   }
 
   // @Section(Investigation Readiness)
+  // fallow-ignore-next-line complexity
   public checkTrialReadiness(): boolean {
     const hasRequiredClues =
       this.hasEvidence('chipote_chillon') &&

@@ -38,14 +38,19 @@ Implement comprehensive automated testing via Vitest:
 
 ## Phase 3: Episode 2 & Gameplay Extensions
 
-1. **Case 2: "El Juicio del Rascabuches" (Turnabout in the Wild West)**:
-   - Setting: Old Western Cantina & Sheriff's Jailhouse.
-   - Defendant: Don Ramón (The harmless cowboy mistaken for the dreaded outlaw).
-   - Culprit: El Rascabuches.
-   - Mechanic: Antenitas de Vinil directional detection minigame.
+1. **Case 2: "El Juicio del Chómpiras — El Asalto de las Dos Caras" (Turnabout of the Two-Faced Thief)**:
+   - Spec: [`case-2-el-juicio-del-chompiras.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/specs/case-2-el-juicio-del-chompiras.md)
+   - Scope: 2 Investigation Days and 2 Trial Days (~1 hour of gameplay).
+   - Defense Team: Don Ramón (Lic. Monchito) & El Chapulín Colorado.
+   - Prosecutor: Super Sam.
+   - Defendant: El Chómpiras (Aquiles Esquivel Madrazo).
+   - Star Witness & True Culprit: El Peterete (Lic. Severiano Baldomero).
+   - Supporting Cast: El Profesor Jirafales, Doña Florinda, Don Jaimito el Cartero, Doña Clotilde.
 
 2. **Save / Load Persistence**:
-   - `localStorage` serialization of `gameState` allowing players to save and resume progress mid-investigation or mid-trial.
+    - `localStorage` serialization of `gameState` allowing players to save and resume progress mid-investigation or mid-trial.
 
 3. **Gamepad & Keyboard Accessibility**:
-   - Full keyboard shortcuts (`Z`/`Enter` to advance, `X`/`Esc` to back, `C` to Court Record, `P` to Present).
+    - Full keyboard shortcuts (`Z`/`Enter` to advance, `X`/`Esc` to back, `C` to Court Record, `P` to Present).
+
+> **Nota:** El nombre canónico del Caso 2 es "El Juicio del Chómpiras — El Asalto de las Dos Caras" (ver `docs/specs/case-2-el-juicio-del-chompiras.md`). Referencias previas a "Rascabuches" quedan obsoletas.

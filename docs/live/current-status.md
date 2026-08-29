@@ -18,5 +18,5 @@ Live status of **El Chapulín Colorado: Ace Attorney — Turnabout Red Grasshopp
 
 ## Planned Next Steps
 - Automated testing suite (unit tests for state transitions and contradictions via Vitest).
-- Development of Case 2: "El Juicio del Rascabuches".
+- Development of Case 2: "El Juicio del Chómpiras — El Asalto de las Dos Caras".
 - Save / Load persistence in `localStorage`.

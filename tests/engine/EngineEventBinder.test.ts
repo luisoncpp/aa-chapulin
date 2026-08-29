@@ -136,10 +136,19 @@ describe('EngineEventBinder', () => {
     expect(dom.moveLocationsModalEl.classList.contains('hidden')).toBe(true);
   });
 
-  it('dispatches trial actions: start trial, press, present, prev, next', () => {
+  it('dispatches trial actions: start trial (only when enabled), press, present, prev, next', () => {
     const startTrialSpy = vi.spyOn(trial, 'startTrial');
-    document.getElementById('btn-inv-trial')?.click();
-    expect(startTrialSpy).toHaveBeenCalled();
+
+    // Button is disabled initially; clicking must not start trial
+    expect(dom.btnInvTrial.classList.contains('disabled')).toBe(true);
+    dom.btnInvTrial.click();
+    expect(startTrialSpy).not.toHaveBeenCalled();
+
+    // When enabled, clicking starts trial
+    dom.btnInvTrial.classList.remove('disabled');
+    dom.btnInvTrial.disabled = false;
+    dom.btnInvTrial.click();
+    expect(startTrialSpy).toHaveBeenCalledTimes(1);
 
     const pressSpy = vi.spyOn(trial, 'handlePressStatement');
     document.getElementById('btn-press')?.click();

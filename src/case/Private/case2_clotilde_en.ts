@@ -9,7 +9,7 @@ export const CASE2_CLOTILDE_EN: InvestigationScene = {
   title: 'Room 71 and Botanical Laboratory',
   name: "Doña Clotilde's House",
   bg: 'assets/bg_clotilde.jpg',
-  bgm: 'investigation',
+  bgm: 'casa_clotilde',
   speaker: 'NARRADOR',
   intro: [
     { speaker: 'NARRADOR', text: "August 30, 11:30 AM. Doña Clotilde's House." },
@@ -22,7 +22,7 @@ export const CASE2_CLOTILDE_EN: InvestigationScene = {
     {
       id: 'hotspot_frasco',
       label: 'Essence Bottles',
-      x: 18, y: 28, w: 22, h: 40,
+      x: 32, y: 14, w: 24, h: 32,
       dialogue: [
         { speaker: 'CLOTILDE', text: 'Take a sample, my Roro. It causes instant sleep for about thirty minutes. It matches the aroma on your handkerchief!', pose: 'clotilde_idle', addEvidence: 'frasco_valeriana' }
       ]
@@ -30,7 +30,7 @@ export const CASE2_CLOTILDE_EN: InvestigationScene = {
     {
       id: 'hotspot_basura',
       label: 'Trash and Wax',
-      x: 62, y: 48, w: 26, h: 32,
+      x: 30, y: 74, w: 22, h: 24,
       dialogue: [
         { speaker: 'DEFENSA', text: 'Doña Clotilde, would you mind if we look around? Chapulín, look at this!', pose: 'donramon_idle' },
         { speaker: 'CHAPULIN', text: 'It is a piece of candle wax shaped like a key!', pose: 'chapulin_idle', addEvidence: 'molde_cera' },

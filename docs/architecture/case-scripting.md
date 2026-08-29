@@ -55,6 +55,8 @@ investigation: {
 }
 ```
 
+Hotspot `x,y,w,h` are percentages of the 960×540 `#game-screen`, not of the JPEG. `#scene-bg` uses `background-size: cover` and `background-position: center`, so a 1536×1024 (3:2) Case 2 plate is width-fitted and the extra height is cropped equally top and bottom. Place boxes on that cover crop (and keep Spanish/English geometry identical). Keep clickable regions above the dialogue strip when the object is fully visible there; a floor object that only exists under the 145px dialogue box still belongs on that object.
+
 ### 3. Testimony & Cross-Examination Schema ([[src/case/Private/case1_trial.ts]])
 
 ```typescript

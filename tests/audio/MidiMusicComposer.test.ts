@@ -116,11 +116,8 @@ describe('MidiMusicComposer & TRACK_CATALOG', () => {
     expect(composer.isPlaying).toBe(false);
   });
 
-  it('validates polyphonic anti-fatigue integrity and step alignment for all 8 compositions', () => {
-    const trackNames: TrackName[] = [
-      'trial', 'cross_exam_moderato', 'cross_exam_allegro',
-      'objection', 'pursuit', 'investigation', 'suspense', 'victory'
-    ];
+  it('validates polyphonic anti-fatigue integrity and step alignment for all compositions', () => {
+    const trackNames = Object.keys(TRACK_CATALOG) as TrackName[];
     const validDrums = new Set(['K', 'S', 'H', 'O', 'C', 'P', '0']);
 
     trackNames.forEach((name) => {

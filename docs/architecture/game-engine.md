@@ -90,4 +90,5 @@ flowchart TD
 - **Input Safety**: Interactions are blocked or sequenced through the dialogue queue to prevent race conditions during animations.
 - **Audio Context Activation**: Any user gesture ensures the `AudioContext` is active via `soundEngine.ensureActive()`.
 - **Clean Mode Toggles**: Switching modes (`INVESTIGATION` <-> `TRIAL` <-> `EXAMINE`) explicitly hides inactive HUD groups to avoid overlapping controls.
+- **Splash stack fits the 960×540 stage.** `#game-screen` is `overflow: hidden` at 540px. The title card must stay inside that box with Continue visible (five buttons). Compact type, 80px art, and `max-height: 100%` plus `overflow-y: auto` on `.splash-card` are required. Do not grow the card by adding launch buttons without shrinking the stack. Regression: [[tests/engine/SplashLayout.test.ts]].
 

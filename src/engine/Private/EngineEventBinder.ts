@@ -142,6 +142,7 @@ export class EngineEventBinder {
     const { dom, trial, onOpenCourtRecord } = config;
     dom.btnInvTrial.addEventListener('click', /*onStartTrialClick*/ (e) => {
       e.stopPropagation();
+      if (dom.btnInvTrial.disabled || dom.btnInvTrial.classList.contains('disabled')) return;
       trial.startTrial();
     });
     dom.btnPress.addEventListener('click', /*onPressClick*/ (e) => {

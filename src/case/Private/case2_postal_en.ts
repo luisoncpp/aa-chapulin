@@ -9,7 +9,7 @@ export const CASE2_POSTAL_EN: InvestigationScene = {
   title: 'Post Office and Rear Alley',
   name: 'Postal Alley',
   bg: 'assets/bg_postal.jpg',
-  bgm: 'investigation',
+  bgm: 'callejon_postal',
   speaker: 'NARRADOR',
   intro: [
     { speaker: 'NARRADOR', text: 'August 30, 9:00 AM. Rear Alley and Postal Stand.' },
@@ -23,7 +23,7 @@ export const CASE2_POSTAL_EN: InvestigationScene = {
     {
       id: 'hotspot_multa',
       label: 'Traffic Citation',
-      x: 8, y: 48, w: 20, h: 28,
+      x: 2, y: 40, w: 11, h: 22,
       dialogue: [
         { speaker: 'JAIMITO', text: 'Yes, look. It says: "9:30 PM. Postal vehicle abandoned with no carrier in sight."', pose: 'jaimito_tired', addEvidence: 'multa_transito' }
       ]
@@ -31,7 +31,7 @@ export const CASE2_POSTAL_EN: InvestigationScene = {
     {
       id: 'hotspot_registro',
       label: 'Postal Ledger',
-      x: 36, y: 30, w: 22, h: 34,
+      x: 13, y: 30, w: 16, h: 28,
       dialogue: [
         { speaker: 'DEFENSA', text: 'This 9:30 PM entry is stamped with an irregular hand stamp... not the official mechanical stamp you always carry.', pose: 'donramon_point', addEvidence: 'registro_postal' },
         { speaker: 'JAIMITO', text: 'I stamped nothing! The official stamp never leaves me, to avoid the fatigue of looking for it.', pose: 'jaimito_proud' }
@@ -40,7 +40,7 @@ export const CASE2_POSTAL_EN: InvestigationScene = {
     {
       id: 'hotspot_saca_postal',
       label: 'Mail Sack',
-      x: 64, y: 42, w: 28, h: 36,
+      x: 28, y: 55, w: 22, h: 20,
       dialogue: [
         { speaker: 'DEFENSA', text: 'Good grief! This shoe-polish tin weighs over 5 kilos... and golden dust is spilling from the lid!', pose: 'donramon_slam', sfx: 'realization', addEvidence: 'lata_grasa' },
         { speaker: 'CHAPULIN', text: 'My vinyl antennae are vibrating at 10,000 RPM! The gold is inside!', pose: 'chapulin_point', addEvidence: 'antenitas_vinil', unlockLocation: 'casa_clotilde' }

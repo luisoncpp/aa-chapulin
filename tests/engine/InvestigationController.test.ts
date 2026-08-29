@@ -217,8 +217,9 @@ describe('InvestigationController', () => {
   });
 
   it('unlocks trial button when all clues are discovered', () => {
-    const trialBtn = document.getElementById('btn-inv-trial')!;
+    const trialBtn = document.getElementById('btn-inv-trial') as HTMLButtonElement;
     expect(trialBtn.classList.contains('disabled')).toBe(true);
+    expect(trialBtn.disabled).toBe(true);
 
     state.addEvidence('chipote_chillon');
     state.addEvidence('pastillas_chiquitolina');
@@ -229,6 +230,7 @@ describe('InvestigationController', () => {
     controller.checkInvestigationProgress();
 
     expect(trialBtn.classList.contains('disabled')).toBe(false);
+    expect(trialBtn.disabled).toBe(false);
     expect(trialBtn.classList.contains('pulse-glow')).toBe(true);
     expect(dom.gameNotificationEl.textContent).toContain('¡Has reunido todas las pruebas!');
   });
@@ -250,15 +252,18 @@ describe('InvestigationController', () => {
     case2.requiredEvidence.forEach(/*addDay1*/ (id) => state.addEvidence(id));
     case2Controller.checkInvestigationProgress();
     expect(dom.btnInvTrial.classList.contains('disabled')).toBe(false);
+    expect(dom.btnInvTrial.disabled).toBe(false);
 
     state.beginTrialDay2(case2.adjournment!);
     case2Controller.resetTrialLaunchButton();
     expect(dom.btnInvTrial.classList.contains('disabled')).toBe(true);
+    expect(dom.btnInvTrial.disabled).toBe(true);
     expect(dom.btnInvTrial.classList.contains('pulse-glow')).toBe(false);
 
     case2.adjournment!.requiredEvidence.forEach(/*addDay2*/ (id) => state.addEvidence(id));
     case2Controller.checkInvestigationProgress();
     expect(dom.btnInvTrial.classList.contains('disabled')).toBe(false);
+    expect(dom.btnInvTrial.disabled).toBe(false);
     expect(dom.btnInvTrial.classList.contains('pulse-glow')).toBe(true);
   });
 });

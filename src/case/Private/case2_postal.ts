@@ -9,7 +9,7 @@ export const CASE2_POSTAL: InvestigationScene = {
   title: 'Oficina Postal y Callejón Trasero',
   name: 'Callejón Postal',
   bg: 'assets/bg_postal.jpg',
-  bgm: 'investigation',
+  bgm: 'callejon_postal',
   speaker: 'NARRADOR',
   intro: [
     { speaker: 'NARRADOR', text: '30 de Agosto, 9:00 AM. Callejón Trasero y Puesto Postal.' },
@@ -23,7 +23,7 @@ export const CASE2_POSTAL: InvestigationScene = {
     {
       id: 'hotspot_multa',
       label: 'Multa de Tránsito',
-      x: 8, y: 48, w: 20, h: 28,
+      x: 2, y: 40, w: 11, h: 22,
       dialogue: [
         { speaker: 'JAIMITO', text: 'Sí, mire. Aquí dice: "9:30 PM. Vehículo postal abandonado sin cartero a la vista."', pose: 'jaimito_tired', addEvidence: 'multa_transito' }
       ]
@@ -31,7 +31,7 @@ export const CASE2_POSTAL: InvestigationScene = {
     {
       id: 'hotspot_registro',
       label: 'Registro Postal',
-      x: 36, y: 30, w: 22, h: 34,
+      x: 13, y: 30, w: 16, h: 28,
       dialogue: [
         { speaker: 'DEFENSA', text: 'Esta entrada de las 9:30 PM está estampada con un sello manual irregular... no con el sello mecánico oficial que usted lleva encima.', pose: 'donramon_point', addEvidence: 'registro_postal' },
         { speaker: 'JAIMITO', text: '¡Yo no sellé nada! El sello oficial nunca se me separa, para evitar la fatiga de buscarlo.', pose: 'jaimito_proud' }
@@ -40,7 +40,7 @@ export const CASE2_POSTAL: InvestigationScene = {
     {
       id: 'hotspot_saca_postal',
       label: 'Saca de Correo',
-      x: 64, y: 42, w: 28, h: 36,
+      x: 28, y: 55, w: 22, h: 20,
       dialogue: [
         { speaker: 'DEFENSA', text: '¡Caray! Esta lata de grasa para zapatos pesa más de 5 kilos... ¡y de la tapa cae un polvillo amarillo resplandeciente!', pose: 'donramon_slam', sfx: 'realization', addEvidence: 'lata_grasa' },
         { speaker: 'CHAPULIN', text: '¡Mis antenitas de vinil están vibrando a 10,000 revoluciones por minuto! ¡El oro está aquí adentro!', pose: 'chapulin_point', addEvidence: 'antenitas_vinil', unlockLocation: 'casa_clotilde' }

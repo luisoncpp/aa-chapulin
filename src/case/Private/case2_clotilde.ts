@@ -9,7 +9,7 @@ export const CASE2_CLOTILDE: InvestigationScene = {
   title: 'Habitación 71 y Laboratorio Botánico',
   name: 'Casa de Doña Clotilde',
   bg: 'assets/bg_clotilde.jpg',
-  bgm: 'investigation',
+  bgm: 'casa_clotilde',
   speaker: 'NARRADOR',
   intro: [
     { speaker: 'NARRADOR', text: '30 de Agosto, 11:30 AM. Casa de Doña Clotilde.' },
@@ -22,7 +22,7 @@ export const CASE2_CLOTILDE: InvestigationScene = {
     {
       id: 'hotspot_frasco',
       label: 'Frascos de Esencia',
-      x: 18, y: 28, w: 22, h: 40,
+      x: 32, y: 14, w: 24, h: 32,
       dialogue: [
         { speaker: 'CLOTILDE', text: 'Tome una muestra, mi Roro. Provoca un sueño instantáneo de unos treinta minutos. ¡Es idéntica al aroma de su pañuelo!', pose: 'clotilde_idle', addEvidence: 'frasco_valeriana' }
       ]
@@ -30,7 +30,7 @@ export const CASE2_CLOTILDE: InvestigationScene = {
     {
       id: 'hotspot_basura',
       label: 'Basura y Cera',
-      x: 62, y: 48, w: 26, h: 32,
+      x: 30, y: 74, w: 22, h: 24,
       dialogue: [
         { speaker: 'DEFENSA', text: 'Doña Clotilde, ¿le importaría si revisamos un poco? ¡Chapulín, mira esto!', pose: 'donramon_idle' },
         { speaker: 'CHAPULIN', text: '¡Es un trozo de cera de veladora con la forma de una llave!', pose: 'chapulin_idle', addEvidence: 'molde_cera' },

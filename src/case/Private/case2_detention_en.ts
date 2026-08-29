@@ -24,7 +24,7 @@ export const CASE2_DETENTION_EN: InvestigationScene = {
     {
       id: 'chompiras_spot',
       label: 'El Chómpiras',
-      x: 20, y: 15, w: 32, h: 60,
+      x: 22, y: 16, w: 36, h: 50,
       dialogue: [
         { speaker: 'CHOMPIRAS', text: 'Boss, I was only shining boots! I swear on this empty tin Mr. Peterete gave me!', pose: 'chompiras_nervous' }
       ]
@@ -32,7 +32,7 @@ export const CASE2_DETENTION_EN: InvestigationScene = {
     {
       id: 'phone_spot',
       label: 'Visitor Phone',
-      x: 76, y: 28, w: 14, h: 36,
+      x: 86, y: 16, w: 13, h: 40,
       dialogue: [
         { speaker: 'DEFENSA', text: 'The visitor handset. Super Sam already left a message: "Time is money. Plead guilty."', pose: 'donramon_idle' }
       ]

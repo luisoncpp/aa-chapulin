@@ -26,6 +26,7 @@ function createHotspotElement(h: Hotspot, config: HotspotBindConfig): HTMLDivEle
   spot.style.top = `${h.y}%`;
   spot.style.width = `${h.w}%`;
   spot.style.height = `${h.h}%`;
+  // Percents of #game-screen after #scene-bg cover-crop, not of the JPEG.
   spot.title = h.label;
   spot.addEventListener('mouseenter', () => {
     if (!config.isExamineActive()) return;

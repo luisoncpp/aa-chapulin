@@ -9,7 +9,7 @@ export const CASE2_BOVEDA_EN: InvestigationScene = {
   title: 'Grand Treasure Vault - Crime Scene',
   name: 'Underground Vault',
   bg: 'assets/bg_boveda.jpg',
-  bgm: 'investigation',
+  bgm: 'investigation_core',
   speaker: 'NARRADOR',
   intro: [
     { speaker: 'NARRADOR', text: 'August 29, 11:30 AM. Hacienda Underground Vault.' },
@@ -22,7 +22,7 @@ export const CASE2_BOVEDA_EN: InvestigationScene = {
     {
       id: 'hotspot_caja',
       label: 'Open Safe',
-      x: 40, y: 28, w: 22, h: 42,
+      x: 16, y: 16, w: 36, h: 58,
       dialogue: [
         { speaker: 'DEFENSA', text: 'Look at this... a armored safe with a master-key lock, and not a single crowbar mark.', pose: 'donramon_idle', sfx: 'realization', addEvidence: 'informe_boveda' }
       ]
@@ -30,7 +30,7 @@ export const CASE2_BOVEDA_EN: InvestigationScene = {
     {
       id: 'hotspot_reloj',
       label: 'Pendulum Clock',
-      x: 68, y: 8, w: 16, h: 36,
+      x: 54, y: 8, w: 12, h: 44,
       dialogue: [
         { speaker: 'CHAPULIN', text: 'Look at that clock! It fell asleep early! It reads 9:15 PM and it is not moving.', pose: 'chapulin_idle', addEvidence: 'reloj_pendulo' },
         { speaker: 'PETERETE', text: 'Nonsense. That clock is a decorative antique that has not worked since the last century.', pose: 'peterete_smug', unlockLocation: 'restaurante' }
@@ -39,7 +39,7 @@ export const CASE2_BOVEDA_EN: InvestigationScene = {
     {
       id: 'hotspot_rejilla',
       label: 'Air Vent Grille',
-      x: 6, y: 12, w: 18, h: 28,
+      x: 70, y: 30, w: 16, h: 28,
       dialogue: [
         { speaker: 'CHAPULIN', text: 'Mmm! It smells like rose perfume and linden tea... just like Doña Clotilde\'s brew when she gets a fright!', pose: 'chapulin_idle' },
         { speaker: 'DEFENSA', text: 'I will take a sample with this handkerchief.', pose: 'donramon_idle', sfx: 'realization', addEvidence: 'aroma_dulce' }

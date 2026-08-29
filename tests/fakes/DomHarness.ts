@@ -34,7 +34,7 @@ export function setupDomHarness(): DomElements {
           <button id="btn-inv-examine">🔍 Examinar</button>
           <button id="btn-inv-talk">💬 Hablar</button>
           <button id="btn-inv-move">🏃 Moverse</button>
-          <button id="btn-inv-trial" class="disabled">⚖️ Ir a Juicio</button>
+          <button id="btn-inv-trial" class="disabled" disabled>⚖️ Ir a Juicio</button>
         </div>
         <div id="examine-controls" class="hidden">
           <button id="btn-examine-back">◀ Volver</button>

@@ -9,7 +9,7 @@ export const CASE2_BOVEDA: InvestigationScene = {
   title: 'Gran Bóveda del Tesoro - Escena del Crimen',
   name: 'Bóveda Subterránea',
   bg: 'assets/bg_boveda.jpg',
-  bgm: 'investigation',
+  bgm: 'investigation_core',
   speaker: 'NARRADOR',
   intro: [
     { speaker: 'NARRADOR', text: '29 de Agosto, 11:30 AM. Bóveda Subterránea de la Hacienda.' },
@@ -22,7 +22,7 @@ export const CASE2_BOVEDA: InvestigationScene = {
     {
       id: 'hotspot_caja',
       label: 'Caja Fuerte Abierta',
-      x: 40, y: 28, w: 22, h: 42,
+      x: 16, y: 16, w: 36, h: 58,
       dialogue: [
         { speaker: 'DEFENSA', text: 'Miren esto... una caja blindada con cerradura de llave maestra y no tiene ni un solo golpe de palanca.', pose: 'donramon_idle', sfx: 'realization', addEvidence: 'informe_boveda' }
       ]
@@ -30,7 +30,7 @@ export const CASE2_BOVEDA: InvestigationScene = {
     {
       id: 'hotspot_reloj',
       label: 'Reloj de Péndulo',
-      x: 68, y: 8, w: 16, h: 36,
+      x: 54, y: 8, w: 12, h: 44,
       dialogue: [
         { speaker: 'CHAPULIN', text: '¡Miren ese reloj! ¡Se quedó dormido antes de tiempo! Marca las 9:15 PM y no se mueve.', pose: 'chapulin_idle', addEvidence: 'reloj_pendulo' },
         { speaker: 'PETERETE', text: 'Pamplinas. Ese reloj es una antigüedad decorativa que no funciona desde el siglo pasado.', pose: 'peterete_smug', unlockLocation: 'restaurante' }
@@ -39,7 +39,7 @@ export const CASE2_BOVEDA: InvestigationScene = {
     {
       id: 'hotspot_rejilla',
       label: 'Rejilla de Ventilación',
-      x: 6, y: 12, w: 18, h: 28,
+      x: 70, y: 30, w: 16, h: 28,
       dialogue: [
         { speaker: 'CHAPULIN', text: '¡Mmm! Huele a perfume de rosas con té de tila... ¡igualito al que prepara Doña Clotilde cuando se le mete un susto!', pose: 'chapulin_idle' },
         { speaker: 'DEFENSA', text: 'Tomaré una muestra con este pañuelo.', pose: 'donramon_idle', sfx: 'realization', addEvidence: 'aroma_dulce' }

@@ -9,7 +9,7 @@ export const CASE2_RESTAURANTE: InvestigationScene = {
   title: 'Restaurante de Doña Florinda y Cuadro Eléctrico',
   name: 'Restaurante de Doña Florinda',
   bg: 'assets/bg_restaurante.jpg',
-  bgm: 'investigation',
+  bgm: 'restaurante',
   speaker: 'NARRADOR',
   intro: [
     { speaker: 'NARRADOR', text: '29 de Agosto, 1:00 PM. Restaurante de Doña Florinda.' },
@@ -23,7 +23,7 @@ export const CASE2_RESTAURANTE: InvestigationScene = {
     {
       id: 'hotspot_plano',
       label: 'Plano Arquitectónico',
-      x: 42, y: 30, w: 24, h: 36,
+      x: 36, y: 48, w: 22, h: 22,
       dialogue: [
         { speaker: 'JIRAFALES', text: 'Tenga este plano. La bóveda carece de ventanas y puertas al exterior; sólo posee el ducto de ventilación y un antiguo montaplatos de lavandería que conecta con el callejón trasero.', pose: 'jirafales_idle', addEvidence: 'plano_hacienda' }
       ]
@@ -31,7 +31,7 @@ export const CASE2_RESTAURANTE: InvestigationScene = {
     {
       id: 'hotspot_generador',
       label: 'Generador Eléctrico Exterior',
-      x: 72, y: 40, w: 22, h: 38,
+      x: 69, y: 30, w: 13, h: 28,
       dialogue: [
         { speaker: 'DEFENSA', text: '¡Miren! La punta de la palanca tiene pintura azul marino del generador... ¡la usaron para forzar la caja del generador, no la caja fuerte!', pose: 'donramon_slam', sfx: 'realization', addEvidence: 'caja_generador' }
       ]

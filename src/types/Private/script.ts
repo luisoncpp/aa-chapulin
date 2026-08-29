@@ -97,6 +97,7 @@ export interface DialogueLine {
 export interface Hotspot {
   id: string;
   label: string;
+  /** Percent of the 960×540 stage after background-size:cover. */
   x: number;
   y: number;
   w: number;

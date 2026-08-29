@@ -52,4 +52,37 @@ describe('Case 2 El Juicio del Chómpiras', () => {
     const enT1 = en.trial.testimony1.statements.find((s) => s.contradiction);
     expect(enT1?.contradiction?.evidence).toEqual(esT1?.contradiction?.evidence);
   });
+
+  it('places investigation hotspots on the 16:9 cover crop of each background', () => {
+    const geom = (h: { id: string; x: number; y: number; w: number; h: number }) => (
+      { id: h.id, x: h.x, y: h.y, w: h.w, h: h.h }
+    );
+    expect(es.investigation.detention.hotspots.map(geom)).toEqual([
+      { id: 'chompiras_spot', x: 22, y: 16, w: 36, h: 50 },
+      { id: 'phone_spot', x: 86, y: 16, w: 13, h: 40 }
+    ]);
+    expect(es.investigation.boveda.hotspots.map(geom)).toEqual([
+      { id: 'hotspot_caja', x: 16, y: 16, w: 36, h: 58 },
+      { id: 'hotspot_reloj', x: 54, y: 8, w: 12, h: 44 },
+      { id: 'hotspot_rejilla', x: 70, y: 30, w: 16, h: 28 }
+    ]);
+    expect(es.investigation.restaurante.hotspots.map(geom)).toEqual([
+      { id: 'hotspot_plano', x: 36, y: 48, w: 22, h: 22 },
+      { id: 'hotspot_generador', x: 69, y: 30, w: 13, h: 28 }
+    ]);
+    expect(es.investigation.oficina_postal.hotspots.map(geom)).toEqual([
+      { id: 'hotspot_multa', x: 2, y: 40, w: 11, h: 22 },
+      { id: 'hotspot_registro', x: 13, y: 30, w: 16, h: 28 },
+      { id: 'hotspot_saca_postal', x: 28, y: 55, w: 22, h: 20 }
+    ]);
+    expect(es.investigation.casa_clotilde.hotspots.map(geom)).toEqual([
+      { id: 'hotspot_frasco', x: 32, y: 14, w: 24, h: 32 },
+      { id: 'hotspot_basura', x: 30, y: 74, w: 22, h: 24 }
+    ]);
+    for (const loc of Object.keys(es.investigation)) {
+      expect(en.investigation[loc].hotspots.map(geom)).toEqual(
+        es.investigation[loc].hotspots.map(geom)
+      );
+    }
+  });
 });

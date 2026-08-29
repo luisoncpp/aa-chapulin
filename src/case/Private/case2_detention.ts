@@ -14,7 +14,7 @@ export const CASE2_DETENTION: InvestigationScene = {
   intro: [
     { speaker: 'NARRADOR', text: '29 de Agosto, 10:00 AM. Centro de Detención de la Ciudad.' },
     { speaker: 'DEFENSA', text: 'Bueno, aquí estamos. Según la policía, el sospechoso es un peligroso asaltante internacional...', pose: 'donramon_idle' },
-    { speaker: 'CHAPULIN', text: '¡Calma, Monchito! ¡Que no cunda el pánico! Mis antenitas de vinil me dicen que el acusado es inofensivo... o muy despistado.', pose: 'chapulin_idle' },
+    { speaker: 'CHAPULIN', text: '¡Calma, Monchito! ¡Que no panda el cúnico! Mis antenitas de vinil me dicen que el acusado es inofensivo... o muy despistado.', pose: 'chapulin_idle' },
     { speaker: 'CHOMPIRAS', text: '¡Buaaaa! ¡Yo no fui, jefecito! ¡Yo no me robé ningún chanfle de nada! ¡Lo único que me he robado son dos panes de dulce y ya los devolví mordidos!', pose: 'chompiras_crying' },
     { speaker: 'DEFENSA', text: '(Vaya facha de genio criminal... se parece a mí cuando llega el casero.)', pose: 'donramon_sweat' },
     { speaker: 'DEFENSA', text: 'A ver, muchacho, cálmate. Soy el Licenciado Monchito, tu abogado defensor, y vengo con el Chapulín Colorado.', pose: 'donramon_point', addEvidence: 'chanfle_oro' },
@@ -24,7 +24,7 @@ export const CASE2_DETENTION: InvestigationScene = {
     {
       id: 'chompiras_spot',
       label: 'El Chómpiras',
-      x: 20, y: 15, w: 32, h: 60,
+      x: 22, y: 16, w: 36, h: 50,
       dialogue: [
         { speaker: 'CHOMPIRAS', text: '¡Jefecito, yo sólo lustraba botas! ¡Le juro por esta lata vacía que me dio el señor Peterete!', pose: 'chompiras_nervous' }
       ]
@@ -32,7 +32,7 @@ export const CASE2_DETENTION: InvestigationScene = {
     {
       id: 'phone_spot',
       label: 'Teléfono de Visitas',
-      x: 76, y: 28, w: 14, h: 36,
+      x: 86, y: 16, w: 13, h: 40,
       dialogue: [
         { speaker: 'DEFENSA', text: 'El auricular de visitas. Super Sam ya dejó un recado: "Time is money. Plead guilty."', pose: 'donramon_idle' }
       ]
@@ -54,7 +54,7 @@ export const CASE2_DETENTION: InvestigationScene = {
       label: 'Sobre el señor Peterete',
       dialogue: [
         { speaker: 'CHOMPIRAS', text: 'Es un señor muy fino y elegante. Dice que es el jefe de seguridad de la hacienda y perito valuador. Trae un sombrero muy bonito y siempre me ayuda a no caer en malos pasos.', pose: 'chompiras_idle' },
-        { speaker: 'CHAPULIN', text: '¡Sospechosa amabilidad! ¡Mis movimientos están fríamente calculados!', pose: 'chapulin_point', unlockLocation: 'boveda' }
+        { speaker: 'CHAPULIN', text: '¡Sospechosa amabilidad! ¡Todos mis movimientos están fríamente calculados!', pose: 'chapulin_point', unlockLocation: 'boveda' }
       ]
     }
   ]

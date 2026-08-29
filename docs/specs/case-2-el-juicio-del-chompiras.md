@@ -144,7 +144,7 @@ flowchart TD
 [ENTRADA AL CENTRO DE DETENCIÓN]
 NARRADOR: 29 de Agosto, 10:00 AM. Centro de Detención de la Ciudad.
 DEFENSA (donramon_idle): Bueno, aquí estamos. Según la policía, el sospechoso es un peligroso asaltante internacional...
-CHAPULIN (chapulin_idle): ¡Calma, Monchito! ¡Que no cunda el pánico! Mis antenitas de vinil me dicen que el acusado es una persona totalmente inofensiva... o muy despistada.
+CHAPULIN (chapulin_idle): ¡Calma, Monchito! ¡Que no panda el cúnico! Mis antenitas de vinil me dicen que el acusado es una persona totalmente inofensiva... o muy despistada.
 CHOMPIRAS (chompiras_crying): ¡Buaaaa! ¡Yo no fui, jefecito! ¡Yo no me robé ningún chanfle de nada! ¡Lo único que me he robado en mi vida son dos panes de dulce y ya los devolví mordidos!
 DEFENSA (donramon_sweat): (Vaya facha de genio criminal... se parece a mí cuando llega el casero.)
 DEFENSA (donramon_point): A ver, muchacho, cálmate. Soy el Licenciado Monchito, tu abogado defensor, y vengo con el Chapulín Colorado.
@@ -160,7 +160,7 @@ CHOMPIRAS (chompiras_relieved): ¡El Chapulín Colorado! ¡No contaban con mi as
     - **Se añade al acta**: `palanca_rota` (copia del inventario policial de la pieza incautada; Chómpiras aclara que despertó con ella ya en las manos).
 2. **"Sobre el señor Peterete"**:
    - **Chómpiras**: *"Es un señor muy fino y elegante. Dice que es el jefe de seguridad de la hacienda y perito valuador. Trae un sombrero muy bonito y siempre me ayuda a no caer en malos pasos."*
-   - **Chapulín**: *"¡Sospechosa amabilidad! ¡Mis movimientos están fríamente calculados!"*
+   - **Chapulín**: *"¡Sospechosa amabilidad! ¡Todos mis movimientos están fríamente calculados!"*
    - **Se desbloquea locación**: `boveda_crimen`.
 
 ---

@@ -9,7 +9,7 @@ export const CASE2_RESTAURANTE_EN: InvestigationScene = {
   title: "Doña Florinda's Restaurant and Electrical Yard",
   name: "Doña Florinda's Restaurant",
   bg: 'assets/bg_restaurante.jpg',
-  bgm: 'investigation',
+  bgm: 'restaurante',
   speaker: 'NARRADOR',
   intro: [
     { speaker: 'NARRADOR', text: "August 29, 1:00 PM. Doña Florinda's Restaurant." },
@@ -23,7 +23,7 @@ export const CASE2_RESTAURANTE_EN: InvestigationScene = {
     {
       id: 'hotspot_plano',
       label: 'Architectural Blueprint',
-      x: 42, y: 30, w: 24, h: 36,
+      x: 36, y: 48, w: 22, h: 22,
       dialogue: [
         { speaker: 'JIRAFALES', text: 'Take this plan. The vault has no windows or outer doors; only the ventilation duct and an old laundry dumbwaiter to the rear alley.', pose: 'jirafales_idle', addEvidence: 'plano_hacienda' }
       ]
@@ -31,7 +31,7 @@ export const CASE2_RESTAURANTE_EN: InvestigationScene = {
     {
       id: 'hotspot_generador',
       label: 'Outdoor Generator Box',
-      x: 72, y: 40, w: 22, h: 38,
+      x: 69, y: 30, w: 13, h: 28,
       dialogue: [
         { speaker: 'DEFENSA', text: 'Look! The crowbar tip has navy-blue generator paint... they used it to force the generator box, not the safe!', pose: 'donramon_slam', sfx: 'realization', addEvidence: 'caja_generador' }
       ]

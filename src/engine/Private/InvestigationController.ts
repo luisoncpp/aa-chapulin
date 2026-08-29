@@ -161,14 +161,17 @@ export class InvestigationController {
     if (!trialBtn) return;
     trialBtn.classList.toggle('disabled', !isReady);
     trialBtn.classList.toggle('pulse-glow', isReady);
+    trialBtn.disabled = !isReady;
     if (isReady) {
       VisualEffects.showNotification(this.dom.gameNotificationEl, i18n.t.notifTrialReady);
     }
   }
 
   public resetTrialLaunchButton(): void {
-    this.dom.btnInvTrial?.classList.add('disabled');
-    this.dom.btnInvTrial?.classList.remove('pulse-glow');
+    if (!this.dom.btnInvTrial) return;
+    this.dom.btnInvTrial.classList.add('disabled');
+    this.dom.btnInvTrial.classList.remove('pulse-glow');
+    this.dom.btnInvTrial.disabled = true;
   }
 
   public setScript(script: CaseScript): void {

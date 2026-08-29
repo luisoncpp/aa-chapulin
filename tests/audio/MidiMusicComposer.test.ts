@@ -66,10 +66,10 @@ describe('MidiMusicComposer & TRACK_CATALOG', () => {
     composer.playTrack('trial');
     expect(composer.isPlaying).toBe(true);
     expect(composer.currentTrack).toBe('trial');
-    expect(composer.bpm).toBe(115);
+    expect(composer.bpm).toBe(110);
     expect(composer.step).toBe(0);
 
-    const stepMs = 60000 / 115 / 4;
+    const stepMs = 60000 / 110 / 4;
     vi.advanceTimersByTime(stepMs * 35);
     expect(composer.step).toBe(35);
 
@@ -85,7 +85,7 @@ describe('MidiMusicComposer & TRACK_CATALOG', () => {
     composer.playTrack('pursuit');
     expect(composer.currentTrack).toBe('pursuit');
     expect(composer.step).toBe(0);
-    expect(composer.bpm).toBe(158);
+    expect(composer.bpm).toBe(162);
   });
 
   it('stops and resumes playback reliably', () => {

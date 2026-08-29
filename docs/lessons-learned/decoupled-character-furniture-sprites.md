@@ -60,7 +60,10 @@ That makes the bench's on-screen scale a hard constraint rather than a compositi
 
 The lesson generalises: before tuning a contact pose's position, compute the *depth* of the surface it has to land on and compare it against the distance between the sprite's own contact features. If the surface is too shallow, the position search is unsatisfiable and no amount of nudging will find it. A solver over a few candidate furniture widths finds this in one pass — worth doing before iterating visually.
 
-### 10. Solve Contact Geometry, Do Not Eyeball It
+### 10. A Slam Pose Must Share Both Identity And The Contact Silhouette
+Idle, point, and breakdown can be waist-up busts that the bench simply occludes. A slam pose paints *over* the bench, so a restyled close-up (centered logo, filled waist, no arm-gap) will look like a different character *and* dump torso pixels onto the wood. Generate slam from the accepted idle identity, but lock the Chapulín/Don Ramón A-frame: both palms at the bottom, magenta notch between the forearms, belt and bag kept above that notch.
+
+### 11. Solve Contact Geometry, Do Not Eyeball It
 Three separate attempts at this one contact pose were wrong, and each error was ~2–12px — below what a screenshot downscaled to fit a review pane can resolve. Describing what a render "looks like" produced confident wrong answers twice: a gap was reported as absent when it was 1.9px open, and a flat strip painted by the furniture asset was misread as a sprite positioning problem.
 
 What worked, every time, was arithmetic on measured constants:

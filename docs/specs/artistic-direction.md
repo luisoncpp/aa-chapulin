@@ -45,7 +45,7 @@ Characters are rendered in high-definition 2D Capcom sprite style with crisp dar
 * **Palette**: Deep Navy (`#1B263B`), Star Spangled Red/White/Blue (`#E63946`, `#FFFFFF`, `#1D3557`), Dollar Green (`#2A9D8F`), Gold (`#E9C46A`).
 * **Sprite Poses** ([[assets/supersam_sprites.png]]):
   * `supersam_idle`: Smug half-smile clutching the money bag over his shoulder.
-  * `supersam_slam`: Smashing the prosecutor bench with the heavy coin sack.
+  * `supersam_slam`: Double-palm desk slam with the cash sack slung over the shoulder. Same costume as idle/point (off-center `$`, gold SS belt, red trunks, flag cape). Contact silhouette matches other slam poses: A-frame arms and a transparent waist notch so the bench covers the waist instead of the torso painting onto the wood.
   * `supersam_point`: Arrogant finger-pointing objection shout ("Time is money!").
   * `supersam_breakdown`: Screaming recoil as dollar bills scatter into the air.
 

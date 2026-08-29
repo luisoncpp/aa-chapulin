@@ -15,7 +15,8 @@ import numpy as np
 from PIL import Image
 from scipy import ndimage
 
-CURRENT_ARTIFACT_DIR = r"C:\Users\luiso\.gemini\antigravity\brain\7510db40-7e99-4124-9a9f-6691a7d11982"
+CURRENT_ARTIFACT_DIR = r"C:\Users\luiso\.gemini\antigravity\brain\ea504c98-228b-4b3d-ad8c-a1a238ea3b94"
+PREV_ARTIFACT_DIR_8 = r"C:\Users\luiso\.gemini\antigravity\brain\242c8b4f-9360-4ec8-b38f-ecac117b2298"
 PREV_ARTIFACT_DIR_7 = r"C:\Users\luiso\.gemini\antigravity\brain\e2f1a61b-7fc5-4a37-9032-9dce380a7993"
 PREV_ARTIFACT_DIR_6 = r"C:\Users\luiso\.gemini\antigravity\brain\9705331f-35fd-45c3-b901-2f14dab60aed"
 PREV_ARTIFACT_DIR_5 = r"C:\Users\luiso\.gemini\antigravity\brain\ce3ca77a-06af-4722-9a51-22316a36f2fc"
@@ -26,10 +27,14 @@ PREV_ARTIFACT_DIR_1 = r"C:\Users\luiso\.gemini\antigravity\brain\91e780e1-ee3d-4
 PREV_ARTIFACT_DIR = r"C:\Users\luiso\.gemini\antigravity\brain\7d7a0700-41bc-4655-a94e-d886430a5c04"
 LEGACY_ARTIFACT_DIR = r"C:\Users\luiso\.gemini\antigravity\brain\d6601f43-c0ae-494d-bbf8-ca413b3a64ed"
 DEST_DIR = r"c:\Proyectos\ace-attorney-gemini\assets"
+REPO_RAW_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "tools", "raw")
 os.makedirs(DEST_DIR, exist_ok=True)
 
 def find_asset_file(filename: str) -> str:
-    for d in [CURRENT_ARTIFACT_DIR, PREV_ARTIFACT_DIR_7, PREV_ARTIFACT_DIR_6, PREV_ARTIFACT_DIR_5, PREV_ARTIFACT_DIR_4, PREV_ARTIFACT_DIR_3, PREV_ARTIFACT_DIR_2, PREV_ARTIFACT_DIR_1, PREV_ARTIFACT_DIR, LEGACY_ARTIFACT_DIR]:
+    search = [REPO_RAW_DIR, CURRENT_ARTIFACT_DIR, PREV_ARTIFACT_DIR_8, PREV_ARTIFACT_DIR_7,
+              PREV_ARTIFACT_DIR_6, PREV_ARTIFACT_DIR_5, PREV_ARTIFACT_DIR_4, PREV_ARTIFACT_DIR_3,
+              PREV_ARTIFACT_DIR_2, PREV_ARTIFACT_DIR_1, PREV_ARTIFACT_DIR, LEGACY_ARTIFACT_DIR]
+    for d in search:
         p = os.path.join(d, filename)
         if os.path.exists(p):
             return p
@@ -159,6 +164,33 @@ def extract_primary_components_fast(img: Image.Image, min_area_fraction: float =
 
     arr[~keep_mask, 3] = 0
     return Image.fromarray(arr, mode="RGBA")
+
+
+def slam_waist_notch_top(img: Image.Image) -> int | None:
+    """First row in the lower third where both arms are opaque and the waist is see-through."""
+    fg = np.array(img)[:, :, 3] > 8
+    h, w = fg.shape
+    cx0, cx1 = int(w * 0.35), int(w * 0.65)
+    for y in range(int(h * 0.70), h):
+        row = fg[y]
+        if row[:cx0].any() and row[cx1:].any() and row[cx0:cx1].mean() < 0.25:
+            return y
+    return None
+
+
+def shift_slam_to_notch(img: Image.Image, target_row: int) -> Image.Image:
+    """Translate a slam pose down so its waist notch matches bench-slam geometry."""
+    notch = slam_waist_notch_top(img)
+    if notch is None:
+        return img
+    # Palms sit near the bottom; more than 8px eats them.
+    shift = max(0, min(8, target_row - notch))
+    if shift == 0:
+        return img
+    arr = np.array(img)
+    out = np.zeros_like(arr)
+    out[shift:] = arr[:-shift]
+    return Image.fromarray(out, mode="RGBA")
 
 
 # -------------------------------------------------------------
@@ -370,6 +402,20 @@ def run_all_fixes():
             custom_crops=None,
             drop_boxes_per_cell=sam_drop
         )
+
+    # Dedicated Super Sam slam: same identity as idle/point, Chapulín slam contact silhouette.
+    sam_slam_sheet = find_asset_file("supersam_slam_sheet_raw.png")
+    if os.path.exists(sam_slam_sheet):
+        img = Image.open(sam_slam_sheet)
+        w, h = img.size
+        cell = img.crop((0, 0, w // 2, h // 2))
+        cleaned = remove_bg_magenta_vectorized(cell, threshold=165.0, despill_depth=4)
+        cleaned = clean_edges_vectorized(cleaned, depth=2)
+        filtered = extract_primary_components_fast(cleaned, min_area_fraction=0.10)
+        aligned = shift_slam_to_notch(filtered, target_row=448)
+        final_slam = despill_final(aligned)
+        final_slam.save(os.path.join(DEST_DIR, "supersam_slam.png"))
+        print("  [OK] Processed dedicated Super Sam desk slam sprite")
 
     # 3. El Tripaseca
     process_character_sheet(

@@ -33,6 +33,7 @@ The pipeline performs:
 ### 2. Grid Slicing & Extended Bounds ([[process_assets.py#Connected Component Filtering]])
 - Character sheets are formatted as 2x2 grids (4 distinct emotional poses per character).
 - **Extended Gesture Bounds**: Poses with outstretched gestures (e.g. `chapulin_point`) support custom crop windows ($x: 0..576$) to capture complete pointing fingers and hands with zero clipping.
+- **Dedicated Super Sam slam**: `supersam_slam` is extracted from the top-left cell of [[tools/raw/supersam_slam_sheet_raw.png]], then translated so the waist notch lands on the same contact row as `chapulin_slam` (`448/512`). Re-running the 2x2 Super Sam sheet must not keep the slam cell — that pose has to match idle identity *and* the shared `bench-slam` silhouette.
 - **Accurate Drop Boxes**: Speech bubbles and cross-cell neighbor bleed are dropped using calibrated bounding boxes that preserve character hair, hands, and hats.
 - Cut-ins are formatted as 2x2 grids (4 distinct shout placards).
 - Evidence items are extracted from a 4x2 icon grid.

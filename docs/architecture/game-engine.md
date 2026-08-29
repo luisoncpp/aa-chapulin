@@ -17,6 +17,12 @@ flowchart TD
     Coordinator --> Modals[Private/ModalManager.ts]
     Coordinator --> InvCtrl[Private/InvestigationController.ts]
     Coordinator --> TrialCtrl[Private/TrialController.ts]
+    Coordinator --> Dialogue[Private/DialogueFlow.ts]
+    Coordinator --> Launch[Private/EngineLaunch.ts]
+    Coordinator --> DebugURL[Private/EngineDebugBootstrap.ts]
+    Coordinator --> Adjourn[Private/AdjournmentHandler.ts]
+    Coordinator --> Persist[Private/EnginePersistence.ts]
+    Coordinator --> DayRouter[Private/TrialDayRouter.ts]
     
     Coordinator --> State[src/state/index.ts]
     Coordinator --> Audio[src/audio/index.ts]
@@ -25,7 +31,7 @@ flowchart TD
 
 ## Core Responsibilities
 
-1. **Dialogue Queue System** ([[src/engine/Private/GameEngine.ts#Dialogue Flow & Queue]]):
+1. **Dialogue Queue System** ([[src/engine/Private/DialogueFlow.ts]]):
    - `queueDialogue(dialogueArray, onComplete)` maintains a FIFO queue of dialogue line objects.
    - `handleAdvance()` advances dialogue on user input (Click / Space / Enter). If typewriter animation is running, it instantly reveals the complete line; otherwise, it dequeues the next line or triggers `onComplete`.
 
@@ -68,9 +74,11 @@ flowchart TD
    - **Repeated Hotspot Dialogue**: When examining a previously completed hotspot, navigation controls remain interactive, allowing the player to freely talk or examine something else without being locked into known dialogue.
 
 
-7. **Debug Trial Launch** ([[src/engine/Private/GameEngine.ts#Initialization & Bootstrapping]]):
-   - `startTrialDebug()` bypasses the investigation phase, activates Web Audio API synth, dismisses splash screen overlay, populates all required case clues via `gameState.populateTrialEvidence()`, and launches the courtroom trial directly.
-   - Triggerable via `#btn-start-trial-debug` on the splash card, URL query/hash parameters (`?mode=trial`, `?trial=1`, `#trial`), or `window.gameEngine.startTrialDebug()`.
+7. **Debug Trial Launch** ([[src/engine/Private/EngineDebugBootstrap.ts]], [[src/engine/Private/EngineLaunch.ts]]):
+   - `applyDebugUrlParams` reads query/hash (`lang=en`, `case=2`, `trial`) during `GameEngine.init()`.
+   - `startTrialDebug()` bypasses investigation, dismisses splash, populates debug evidence, and launches the active case's courtroom.
+   - Also triggerable via `#btn-start-trial-debug` or `window.gameEngine.startTrialDebug()`.
+   - Case 2 day-1 adjournment returns to investigation through [[src/engine/Private/AdjournmentHandler.ts]] (`resetTrialLaunchButton` then `startInvestigation`).
 
 8. **Court Record & Talk Modals** ([[src/engine/Private/ModalManager.ts#Court Record Evidence Modal]]):
    - Dynamically populates `#court-record-modal` with items from `gameState.inventory`.

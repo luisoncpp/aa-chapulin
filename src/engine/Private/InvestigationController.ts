@@ -9,6 +9,7 @@ import { i18n } from '../../i18n/index.js';
 import type { GameStateManager } from '../../state/index.js';
 import type { CaseScript, DialogueLine, Hotspot, LocationId, PoseName, TalkOption } from '../../types/index.js';
 import type { DomElements } from './DomElements.js';
+import { renderHotspots } from './HotspotLayer.js';
 import { ModalManager } from './ModalManager.js';
 import { VisualEffects } from './VisualEffects.js';
 
@@ -65,29 +66,11 @@ export class InvestigationController {
 
   // @Section(Hotspot Rendering & Clicks)
   public renderHotspots(hotspots: Hotspot[]): void {
-    this.dom.hotspotsContainerEl.innerHTML = '';
-    hotspots.forEach((h) => {
-      const spot = document.createElement('div');
-      spot.className = 'hotspot-area';
-      spot.style.left = `${h.x}%`;
-      spot.style.top = `${h.y}%`;
-      spot.style.width = `${h.w}%`;
-      spot.style.height = `${h.h}%`;
-      spot.title = h.label;
-
-      spot.addEventListener('mouseenter', () => {
-        if (!this.isExamineActive) return;
-        this.dom.examineTooltipEl.textContent = `🔍 ${h.label}`;
-        this.dom.examineTooltipEl.classList.remove('hidden');
-      });
-      spot.addEventListener('mouseleave', () => {
-        this.dom.examineTooltipEl.classList.add('hidden');
-      });
-      spot.addEventListener('click', (e) => {
-        e.stopPropagation();
-        this.handleHotspotClick(h);
-      });
-      this.dom.hotspotsContainerEl.appendChild(spot);
+    renderHotspots(hotspots, {
+      container: this.dom.hotspotsContainerEl,
+      tooltipEl: this.dom.examineTooltipEl,
+      isExamineActive: () => this.isExamineActive,
+      onClick: (h) => this.handleHotspotClick(h)
     });
   }
 

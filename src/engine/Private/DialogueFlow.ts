@@ -1,0 +1,115 @@
+// @Architecture(descriptionShort="Queues dialogue lines and renders speaker staging", type="controller", icon="layers")
+/**
+ * Dialogue FIFO queue and per-line rendering for [[./GameEngine.ts]].
+ */
+
+import type { MidiMusicComposer, SoundEngine } from '../../audio/index.js';
+import { i18n } from '../../i18n/index.js';
+import type { GameStateManager } from '../../state/index.js';
+import type { CaseScript, DialogueLine, EvidenceId, LocationId, SFXName } from '../../types/index.js';
+import type { DomElements } from './DomElements.js';
+import type { InvestigationController } from './InvestigationController.js';
+import type { Typewriter } from './Typewriter.js';
+import { VisualEffects } from './VisualEffects.js';
+
+export interface DialogueFlowDeps {
+  dom: DomElements;
+  state: GameStateManager;
+  getScript: () => CaseScript;
+  soundEngine: SoundEngine;
+  midiComposer: MidiMusicComposer;
+  typewriter: Typewriter;
+  investigation: InvestigationController;
+}
+
+export class DialogueFlow {
+  private queue: DialogueLine[] = [];
+  private onQueueFinish: (() => void) | null = null;
+
+  constructor(private readonly deps: DialogueFlowDeps) {}
+
+  public clear(): void {
+    this.queue = [];
+    this.onQueueFinish = null;
+  }
+
+  public handleAdvance(): void {
+    if (this.deps.typewriter.isTyping) {
+      this.deps.typewriter.completeImmediately();
+      return;
+    }
+    if (this.queue.length > 0) {
+      this.renderDialogueLine(this.queue.shift()!);
+      return;
+    }
+    if (!this.onQueueFinish) return;
+    const cb = this.onQueueFinish;
+    this.onQueueFinish = null;
+    cb();
+  }
+
+  public queueDialogue(dialogueArray: DialogueLine[], onComplete: (() => void) | null = null): void {
+    this.queue = [...dialogueArray];
+    this.onQueueFinish = onComplete;
+    if (this.queue.length > 0) {
+      this.renderDialogueLine(this.queue.shift()!);
+    }
+  }
+
+  public renderDialogueLine(line: DialogueLine): void {
+    if (!line) return;
+    if (line.bg) this.deps.dom.bgEl.style.backgroundImage = `url('${line.bg}')`;
+    if (line.bgm) this.deps.midiComposer.playTrack(line.bgm);
+    if (line.sfx) this.triggerSFX(line.sfx);
+    if (line.cutin) VisualEffects.showCutin(this.deps.dom, line.cutin);
+    this.applyLineSpeakerAndPose(line);
+    this.grantEvidenceIfPresent(line.addEvidence);
+    this.unlockLocationIfPresent(line.unlockLocation);
+    this.deps.typewriter.start(line.text || '');
+  }
+
+  private applyLineSpeakerAndPose(line: DialogueLine): void {
+    const isTrial = this.deps.state.mode === 'TRIAL';
+    const effectivePose = VisualEffects.resolveEffectivePose(line, isTrial);
+    if (effectivePose) {
+      this.deps.investigation.currentLocationCharPose = effectivePose;
+      VisualEffects.setPose(this.deps.dom.charSpriteEl, effectivePose);
+    } else if (line.speaker === 'DEFENSA' || line.speaker === 'NARRADOR') {
+      VisualEffects.hideCharacter(this.deps.dom.charSpriteEl);
+    }
+    VisualEffects.updateStagingForLine(this.deps.dom, line, isTrial);
+    this.deps.dom.speakerBoxEl.textContent = line.speaker || '';
+  }
+
+  private grantEvidenceIfPresent(evidenceId?: EvidenceId): void {
+    if (!evidenceId) return;
+    const added = this.deps.state.addEvidence(evidenceId);
+    if (!added) return;
+    const item = this.deps.state.allEvidence[evidenceId];
+    VisualEffects.showNotification(this.deps.dom.gameNotificationEl, i18n.t.notifEvidenceAdded(item.name));
+  }
+
+  // fallow-ignore-next-line complexity
+  private unlockLocationIfPresent(locationId?: LocationId): void {
+    if (!locationId) return;
+    const unlocked = this.deps.state.unlockLocation(locationId);
+    if (!unlocked) return;
+    this.deps.soundEngine.playRealization();
+    const scene = this.deps.getScript().investigation[locationId];
+    const locName = scene?.name ?? scene?.title ?? locationId;
+    VisualEffects.showNotification(
+      this.deps.dom.gameNotificationEl,
+      i18n.t.notifLocationUnlocked(locName)
+    );
+  }
+
+  private triggerSFX(sfx: SFXName): void {
+    this.deps.soundEngine.playSFX(sfx);
+    if (sfx === 'gavel' || sfx === 'desk_slam' || sfx === 'damage') {
+      VisualEffects.shakeScreen(this.deps.dom.gameScreen, /*durationMs=*/ sfx === 'damage' ? 450 : 300);
+    }
+    if (sfx === 'realization' || sfx === 'chicharra' || sfx === 'damage') {
+      VisualEffects.flashScreen(this.deps.dom.flashEl);
+    }
+  }
+}

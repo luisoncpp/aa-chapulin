@@ -125,4 +125,40 @@ describe('SaveManager', () => {
     expect(SaveManager.load(throwingStorage)).toBeNull();
     expect(() => SaveManager.clear(throwingStorage)).not.toThrow();
   });
+
+  it('uses window.localStorage when no custom storage is passed', () => {
+    window.localStorage.clear();
+    expect(SaveManager.save({ ...validSaveData, language: 'en' })).toBe(true);
+    const loaded = SaveManager.load();
+    expect(loaded?.language).toBe('en');
+    expect(SaveManager.hasSave()).toBe(true);
+    SaveManager.clear();
+    expect(SaveManager.hasSave()).toBe(false);
+  });
+
+  it('returns false when localStorage is missing or throws on access', () => {
+    const original = window.localStorage;
+    Object.defineProperty(window, 'localStorage', {
+      configurable: true,
+      get: () => { throw new Error('denied'); }
+    });
+    expect(SaveManager.save(validSaveData)).toBe(false);
+    expect(SaveManager.load()).toBeNull();
+    expect(() => SaveManager.clear()).not.toThrow();
+    Object.defineProperty(window, 'localStorage', { configurable: true, value: undefined });
+    expect(SaveManager.save(validSaveData)).toBe(false);
+    Object.defineProperty(window, 'localStorage', { configurable: true, value: original });
+  });
+
+  it('rejects payloads that fail schema checks', () => {
+    expect(SaveManager.isValidSave(null)).toBe(false);
+    expect(SaveManager.isValidSave('nope')).toBe(false);
+    expect(SaveManager.isValidSave({ ...validSaveData, timestamp: 'now' })).toBe(false);
+    expect(SaveManager.isValidSave({ ...validSaveData, inventory: {} })).toBe(false);
+    expect(SaveManager.isValidSave({ ...validSaveData, flags: null })).toBe(false);
+    expect(SaveManager.isValidSave({ ...validSaveData, unlockedLocations: 'museum' })).toBe(false);
+    expect(SaveManager.isValidSave({ ...validSaveData, language: 'en', unlockedLocations: ['museum'] })).toBe(true);
+    mockStorage.setItem(SAVE_STORAGE_KEY, '');
+    expect(SaveManager.load(mockStorage)).toBeNull();
+  });
 });

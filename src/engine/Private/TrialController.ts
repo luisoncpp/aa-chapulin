@@ -10,6 +10,7 @@ import type { CaseScript, DialogueLine, EvidenceId, LocationId, Testimony } from
 import type { DomElements } from './DomElements.js';
 import { ModalManager } from './ModalManager.js';
 import { applyAdjournment, getActiveTrial, shouldAdjourn } from './TrialDayRouter.js';
+import { applyPenaltyEffects, queuePenaltyDialogue } from './TrialPenalty.js';
 import { VisualEffects } from './VisualEffects.js';
 
 export type TrialPhase = 'IDLE' | 'TESTIMONY' | 'CLIMAX';
@@ -144,31 +145,13 @@ export class TrialController {
     this.deps.onAdjourn?.(adjournment.nextLocation);
   }
 
-  private applyPenaltyEffects(): void {
-    this.deps.state.takePenalty();
-    ModalManager.updateHealthUI(this.deps.dom.healthBarEl, this.deps.state.health, this.deps.state.maxHealth);
-    this.deps.soundEngine.playDamage();
-    VisualEffects.shakeScreen(this.deps.dom.gameScreen, /*durationMs=*/ 450);
-    VisualEffects.flashScreen(this.deps.dom.flashEl);
-  }
-
   private onPenaltyPenalty(): void {
-    this.applyPenaltyEffects();
+    applyPenaltyEffects(this.deps);
     this.hideControls();
-    const isEn = i18n.getLanguage() === 'en';
-    const lines: DialogueLine[] = [
-      { cutin: 'objection_protesto', speaker: 'DEFENSA', text: isEn ? 'OBJECTION!' : '¡PROTESTO!', sfx: 'whoosh', pose: 'chapulin_point' },
-      { speaker: 'SUPER SAM', text: i18n.t.penaltyProsecutionText, pose: 'supersam_point' },
-      { speaker: 'JUEZ', text: i18n.t.penaltyJudgeText, pose: 'judge_gavel', sfx: 'gavel' }
-    ];
-    if (this.deps.state.gameOver) {
-      lines.push(
-        { speaker: 'JUEZ', pose: 'judge_gavel', text: i18n.t.gameOverJudgeText, sfx: 'gavel' },
-        { speaker: 'DEFENSA', pose: 'chapulin_panic', text: i18n.t.gameOverDefenseText }
-      );
-      return this.deps.onQueueDialogue(lines, /*onComplete*/ () => this.showGameOverModal());
-    }
-    this.deps.onQueueDialogue(lines, /*onComplete*/ () => this.renderCurrentStatement());
+    const resume = this.deps.state.gameOver
+      ? () => this.showGameOverModal()
+      : () => this.renderCurrentStatement();
+    queuePenaltyDialogue(this.deps, /*onResume*/ resume);
   }
 
   // @Section(Climax & Verdict Confrontation)
@@ -191,7 +174,7 @@ export class TrialController {
       });
       return;
     }
-    this.applyPenaltyEffects();
+    applyPenaltyEffects(this.deps);
     VisualEffects.showNotification(this.deps.dom.gameNotificationEl, i18n.t.notifIncorrectClue);
     this.startClimax();
   }

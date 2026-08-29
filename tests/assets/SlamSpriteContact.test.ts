@@ -33,7 +33,7 @@ function measurePng(fileName: string): {
     'print(json.dumps({"notch": notch, "palms": int(rows[-1]),',
     '    "center80": int(fg[-80:, w//2].sum()), "red": red, "gold": gold}))'
   ].join('\n');
-  return JSON.parse(execFileSync('python', ['-c', py, pngPath], { encoding: 'utf8' }));
+  return JSON.parse(execFileSync('python3', ['-c', py, pngPath], { encoding: 'utf8' }));
 }
 
 describe('Super Sam slam sprite', () => {

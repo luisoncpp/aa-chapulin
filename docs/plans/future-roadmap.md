@@ -22,35 +22,17 @@ Successfully refactored monolithic JavaScript files into type-safe deep modules 
    - `src/main.ts`: Application entrypoint.
 
 
-## Phase 2: Automated Testing Suite
+## Phase 2: Automated Testing Suite (IN PROGRESS)
 
-Implement comprehensive automated testing via Vitest:
-
-- **State Unit Tests**:
-  - `addEvidence()` idempotency and inventory array mutations.
-  - `takePenalty()` deduction and game over boundary conditions.
-  - `checkTrialReadiness()` flag validation.
-- **Trial Contradiction Tests**:
-  - Verify every statement with a contradiction accepts only designated evidence items.
-  - Verify invalid evidence triggers penalties.
-- **Audio Synthesis Smoke Tests**:
-  - Mock `AudioContext` and verify waveform node creation and cleanup.
+Vitest covers state, contradictions, investigation, engine, i18n, and Case 1/2 scripts. Remaining: raise branch coverage to 90%, `npx fallow audit`, browser playtest of Case 2.
 
 ## Phase 3: Episode 2 & Gameplay Extensions
 
-1. **Case 2: "El Juicio del Chómpiras — El Asalto de las Dos Caras" (Turnabout of the Two-Faced Thief)**:
-   - Spec: [`case-2-el-juicio-del-chompiras.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/specs/case-2-el-juicio-del-chompiras.md)
-   - Scope: 2 Investigation Days and 2 Trial Days (~1 hour of gameplay).
-   - Defense Team: Don Ramón (Lic. Monchito) & El Chapulín Colorado.
-   - Prosecutor: Super Sam.
-   - Defendant: El Chómpiras (Aquiles Esquivel Madrazo).
-   - Star Witness & True Culprit: El Peterete (Lic. Severiano Baldomero).
-   - Supporting Cast: El Profesor Jirafales, Doña Florinda, Don Jaimito el Cartero, Doña Clotilde.
+1. **Case 2: "El Juicio del Chómpiras — El Asalto de las Dos Caras"** — **content implemented** (bilingual scripts in [[src/case/Private/case2_script.ts]], dedicated poses/BGs/icons via [[process_case2_assets.py]]). Spec: [[docs/specs/case-2-el-juicio-del-chompiras.md]]. Remaining polish: split [[src/engine/Private/GameEngine.ts]] / [[src/engine/Private/TrialController.ts]] under 200 lines, coverage/fallow, playtest. Unique Case 2 art is **not** a TODO.
 
-2. **Save / Load Persistence**:
-    - `localStorage` serialization of `gameState` allowing players to save and resume progress mid-investigation or mid-trial.
+2. **Save / Load Persistence** — implemented (`localStorage`, including `caseId` / `trialDay`).
 
-3. **Gamepad & Keyboard Accessibility**:
+3. **Gamepad & Keyboard Accessibility** — still planned:
     - Full keyboard shortcuts (`Z`/`Enter` to advance, `X`/`Esc` to back, `C` to Court Record, `P` to Present).
 
-> **Nota:** El nombre canónico del Caso 2 es "El Juicio del Chómpiras — El Asalto de las Dos Caras" (ver `docs/specs/case-2-el-juicio-del-chompiras.md`). Referencias previas a "Rascabuches" quedan obsoletas.
+> Canonical Case 2 title: "El Juicio del Chómpiras — El Asalto de las Dos Caras". Older "Rascabuches" name is obsolete.

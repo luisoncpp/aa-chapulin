@@ -10,6 +10,7 @@ export const INVESTIGATION_SCENES_EN: Record<LocationId, InvestigationScene> = {
   // @Section(Museum Crime Scene - English)
   museum: {
     title: 'Museum of Antiques and Curiosities - Crime Scene',
+    name: 'Museum of Curiosities',
     bg: 'assets/bg_museum.jpg',
     bgm: 'investigation',
     speaker: 'NARRADOR',
@@ -78,7 +79,7 @@ export const INVESTIGATION_SCENES_EN: Record<LocationId, InvestigationScene> = {
         label: 'About the detained suspect',
         dialogue: [
           { speaker: 'FLORINDA', text: "Prosecutor Super Sam arrived in three minutes shouting 'Time is money!' and ordered his immediate arrest.", pose: 'florinda_idle' },
-          { speaker: 'FLORINDA', text: 'El Chapulín was trapped upside down inside an 18th-century parrot cage.', pose: 'florinda_idle' },
+          { speaker: 'FLORINDA', text: 'El Chapulín was trapped upside down inside an 18th-century parrot cage.', pose: 'florinda_idle', unlockLocation: 'detention' },
           { speaker: 'DEFENSA', text: '(Classic Chapulín... all his movements are cold and calculated.)' }
         ]
       }
@@ -88,6 +89,7 @@ export const INVESTIGATION_SCENES_EN: Record<LocationId, InvestigationScene> = {
   // @Section(Detention Center Scene - English)
   detention: {
     title: 'Detention Center - Visitor Room',
+    name: 'Detention Center',
     bg: 'assets/bg_detention.jpg',
     bgm: 'detention_center',
     speaker: 'CHAPULIN',

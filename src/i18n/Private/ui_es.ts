@@ -26,8 +26,12 @@ export const UI_ES: UiTranslations = {
   evidencePlaceholderDesc: 'Haz clic en cualquier objeto para ver sus detalles y contradicciones.',
   modalPresentBtn: '¡Presentar Prueba!',
   talkModalTitle: 'CONVERSAR',
+  moveModalTitle: 'DESPLAZARSE',
+  currentLocationBadge: 'Actual',
 
   hudAudioToggleTitle: 'Activar/Desactivar Sonido',
+  hudSaveTitle: 'Guardar Partida (Save Game)',
+  hudLoadTitle: 'Cargar Partida (Load Game)',
   hudCourtRecordTitle: 'Acta del Juicio (Court Record)',
   hudCourtRecordText: 'Acta',
 
@@ -36,6 +40,7 @@ export const UI_ES: UiTranslations = {
   splashTip: '¡Haz clic abajo para activar la música MIDI procedimental y comenzar!',
   btnStartGame: '🔍 INICIAR INVESTIGACIÓN (PLAY)',
   btnStartTrialDebug: '⚖️ MODO DEBUG: INICIAR EN JUICIO',
+  btnContinue: '📂 CONTINUAR PARTIDA (CONTINUE)',
   langToggleLabel: '🌐 Idioma: Español',
 
   locationMuseum: 'Museo de Antigüedades y Curiosidades - Escena del Crimen',
@@ -43,8 +48,12 @@ export const UI_ES: UiTranslations = {
   locationCourtroom: 'Tribunal Superior - Sala de Audiencias No. 1',
 
   notifEvidenceAdded: (name: string) => `¡Añadido al Acta del Juicio: ${name}!`,
+  notifLocationUnlocked: (name: string) => `¡Nueva ubicación desbloqueada: ${name}!`,
   notifTrialReady: '¡Has reunido todas las pruebas! ¡Puedes iniciar el Juicio!',
   notifIncorrectClue: '¡Prueba incorrecta! Revisa tus pistas.',
+  notifGameSaved: '¡Partida guardada correctamente!',
+  notifGameLoaded: '¡Partida cargada!',
+  notifNoSaveFound: 'No se encontró ninguna partida guardada.',
 
   gameOverJudgeText: '¡La defensa ha agotado sus oportunidades! Declaro al acusado... ¡CULPABLE!',
   gameOverDefenseText: '¡Oh, no! ¡Debo intentarlo de nuevo desde el principio del juicio!',

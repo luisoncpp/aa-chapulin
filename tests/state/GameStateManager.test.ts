@@ -13,11 +13,26 @@ describe('GameStateManager', () => {
   it('initializes with default values', () => {
     expect(state.mode).toBe('INVESTIGATION');
     expect(state.currentLocation).toBe('museum');
+    expect(state.unlockedLocations).toEqual(['museum']);
     expect(state.health).toBe(5);
     expect(state.maxHealth).toBe(5);
     expect(state.gameOver).toBe(false);
     expect(state.inventory).toEqual(['insignia_abogado']);
     expect(state.flags.ready_for_trial).toBe(false);
+  });
+
+  it('manages unlocked locations and rejects duplicates', () => {
+    expect(state.isLocationUnlocked('museum')).toBe(true);
+    expect(state.isLocationUnlocked('detention')).toBe(false);
+
+    const firstUnlock = state.unlockLocation('detention');
+    expect(firstUnlock).toBe(true);
+    expect(state.isLocationUnlocked('detention')).toBe(true);
+    expect(state.unlockedLocations).toEqual(['museum', 'detention']);
+
+    const duplicateUnlock = state.unlockLocation('detention');
+    expect(duplicateUnlock).toBe(false);
+    expect(state.unlockedLocations).toEqual(['museum', 'detention']);
   });
 
   it('adds valid evidence to inventory', () => {
@@ -95,9 +110,37 @@ describe('GameStateManager', () => {
     expect(state.hasEvidence('insignia_abogado')).toBe(true);
   });
 
+  it('exports and restores state snapshot accurately', () => {
+    state.health = 3;
+    state.currentLocation = 'detention';
+    state.unlockLocation('detention');
+    state.language = 'en';
+    state.addEvidence('chipote_chillon');
+    state.flags.talked_chapulin_reason = true;
+
+    const snapshot = state.exportState({ phase: 'TESTIMONY', testimonyKey: 'testimony1', statementIdx: 2 });
+    expect(snapshot.health).toBe(3);
+    expect(snapshot.currentLocation).toBe('detention');
+    expect(snapshot.unlockedLocations).toEqual(['museum', 'detention']);
+    expect(snapshot.language).toBe('en');
+    expect(snapshot.inventory).toContain('chipote_chillon');
+    expect(snapshot.flags.talked_chapulin_reason).toBe(true);
+    expect(snapshot.trial?.statementIdx).toBe(2);
+
+    const newState = new GameStateManager();
+    newState.restoreState(snapshot);
+    expect(newState.health).toBe(3);
+    expect(newState.currentLocation).toBe('detention');
+    expect(newState.unlockedLocations).toEqual(['museum', 'detention']);
+    expect(newState.language).toBe('en');
+    expect(newState.hasEvidence('chipote_chillon')).toBe(true);
+    expect(newState.flags.talked_chapulin_reason).toBe(true);
+  });
+
   it('exports singleton gameState with evidence catalog correctly', () => {
     expect(gameState).toBeInstanceOf(GameStateManager);
     expect(gameState.allEvidence.insignia_abogado.name).toBe('Insignia de Abogado CH');
     expect(Object.keys(gameState.allEvidence)).toHaveLength(8);
   });
 });
+

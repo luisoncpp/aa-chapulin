@@ -43,6 +43,9 @@ export class UiLanguageUpdater {
       dom.btnLangSplashEl.textContent = lang === 'es' ? '🌐 IDIOMA: ESPAÑOL (ES / EN)' : '🌐 LANGUAGE: ENGLISH (EN / ES)';
     }
     if (dom.btnAudioToggleEl) dom.btnAudioToggleEl.title = t.hudAudioToggleTitle;
+    if (dom.btnSaveGame) dom.btnSaveGame.title = t.hudSaveTitle;
+    if (dom.btnLoadGame) dom.btnLoadGame.title = t.hudLoadTitle;
+    if (dom.btnContinueGame) dom.btnContinueGame.textContent = t.btnContinue;
     if (dom.btnStartGame) dom.btnStartGame.textContent = t.btnStartGame;
     if (dom.btnStartTrialDebug) dom.btnStartTrialDebug.textContent = t.btnStartTrialDebug;
     if (dom.btnCourtRecord) {
@@ -52,11 +55,14 @@ export class UiLanguageUpdater {
     }
   }
 
+  // fallow-ignore-next-line complexity
   private static updateModalHeaders(dom: DomElements, t: ReturnType<typeof i18n.getUI>): void {
     const recordHeader = dom.courtRecordModalEl?.querySelector('.modal-header h2');
     if (recordHeader) recordHeader.textContent = t.courtRecordTitle;
     const talkHeader = dom.talkOptionsModalEl?.querySelector('.modal-header h2');
     if (talkHeader) talkHeader.textContent = t.talkModalTitle;
+    const moveHeader = dom.moveLocationsModalEl?.querySelector('.modal-header h2');
+    if (moveHeader) moveHeader.textContent = t.moveModalTitle;
     if (dom.presentBtnEl) dom.presentBtnEl.textContent = t.modalPresentBtn;
   }
 }

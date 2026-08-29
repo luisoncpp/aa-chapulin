@@ -6,10 +6,12 @@
 
 import type { EvidenceCatalogMap, EvidenceId, GameFlags, GameMode, Language, LocationId } from '../../types/index.js';
 import { getEvidenceCatalog } from './EvidenceCatalog.js';
+import { CURRENT_SAVE_VERSION, type SaveData, type TrialStateSnapshot } from './SaveManager.js';
 
 export class GameStateManager {
   public mode: GameMode = 'INVESTIGATION';
   public currentLocation: LocationId = 'museum';
+  public unlockedLocations: LocationId[] = ['museum'];
   public language: Language = 'es';
   public health = 5;
   public readonly maxHealth = 5;
@@ -28,6 +30,17 @@ export class GameStateManager {
     talked_chapulin_antenitas: false,
     ready_for_trial: false
   };
+
+  // @Section(Location Operations)
+  public unlockLocation(locationId: LocationId): boolean {
+    if (this.unlockedLocations.includes(locationId)) return false;
+    this.unlockedLocations.push(locationId);
+    return true;
+  }
+
+  public isLocationUnlocked(locationId: LocationId): boolean {
+    return this.unlockedLocations.includes(locationId);
+  }
 
   // @Section(Inventory Operations)
   public addEvidence(evidenceId: EvidenceId): boolean {
@@ -90,7 +103,38 @@ export class GameStateManager {
     trialEvidence.forEach(/*addEachItem*/ (item) => {
       this.addEvidence(item);
     });
+    this.unlockLocation('detention');
     this.flags.ready_for_trial = true;
     this.mode = 'TRIAL';
+  }
+
+  // @Section(State Persistence)
+  public exportState(trialSnapshot?: TrialStateSnapshot): SaveData {
+    return {
+      version: CURRENT_SAVE_VERSION,
+      timestamp: Date.now(),
+      mode: this.mode,
+      currentLocation: this.currentLocation,
+      unlockedLocations: [...this.unlockedLocations],
+      language: this.language,
+      health: this.health,
+      gameOver: this.gameOver,
+      inventory: [...this.inventory],
+      flags: { ...this.flags },
+      trial: trialSnapshot
+    };
+  }
+
+  public restoreState(data: SaveData): void {
+    this.mode = data.mode;
+    this.currentLocation = data.currentLocation;
+    this.unlockedLocations = data.unlockedLocations
+      ? [...data.unlockedLocations]
+      : ['museum', 'detention'];
+    this.health = data.health;
+    this.gameOver = data.gameOver;
+    this.inventory = [...data.inventory];
+    this.flags = { ...data.flags };
+    this.setLanguage(data.language);
   }
 }

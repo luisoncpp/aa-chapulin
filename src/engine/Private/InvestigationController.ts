@@ -138,9 +138,22 @@ export class InvestigationController {
     });
   }
 
-  public toggleLocation(): void {
-    const nextLoc: LocationId = this.state.currentLocation === 'museum' ? 'detention' : 'museum';
-    this.startInvestigation(nextLoc);
+  public openMoveMenu(): void {
+    const destinations = this.state.unlockedLocations
+      .map((locId) => {
+        const scene = this.script.investigation[locId];
+        if (!scene) return null;
+        return {
+          id: locId,
+          name: scene.name ?? scene.title,
+          isCurrent: locId === this.state.currentLocation
+        };
+      })
+      .filter((d): d is NonNullable<typeof d> => d !== null);
+
+    ModalManager.openMoveModal(this.dom, destinations, (locId: LocationId) => {
+      this.startInvestigation(locId);
+    });
   }
 
   public checkInvestigationProgress(): void {

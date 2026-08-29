@@ -29,9 +29,13 @@ export interface UiTranslations {
   evidencePlaceholderDesc: string;
   modalPresentBtn: string;
   talkModalTitle: string;
+  moveModalTitle: string;
+  currentLocationBadge: string;
 
   // HUD Elements
   hudAudioToggleTitle: string;
+  hudSaveTitle: string;
+  hudLoadTitle: string;
   hudCourtRecordTitle: string;
   hudCourtRecordText: string;
 
@@ -41,6 +45,7 @@ export interface UiTranslations {
   splashTip: string;
   btnStartGame: string;
   btnStartTrialDebug: string;
+  btnContinue: string;
   langToggleLabel: string;
 
   // Location Names
@@ -50,8 +55,12 @@ export interface UiTranslations {
 
   // Notifications
   notifEvidenceAdded: (name: string) => string;
+  notifLocationUnlocked: (name: string) => string;
   notifTrialReady: string;
   notifIncorrectClue: string;
+  notifGameSaved: string;
+  notifGameLoaded: string;
+  notifNoSaveFound: string;
 
   // Game Over Dialogues
   gameOverJudgeText: string;

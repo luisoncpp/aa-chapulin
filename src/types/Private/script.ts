@@ -69,6 +69,7 @@ export interface DialogueLine {
   sfx?: SFXName;
   cutin?: CutinName;
   addEvidence?: EvidenceId;
+  unlockLocation?: LocationId;
   furniture?: FurnitureType;
 }
 
@@ -91,6 +92,7 @@ export interface TalkOption {
 
 export interface InvestigationScene {
   title: string;
+  name?: string;
   bg: string;
   bgm: TrackName;
   speaker: SpeakerName;

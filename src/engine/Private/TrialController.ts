@@ -3,17 +3,15 @@
  * Courtroom Trial & Cross-Examination Controller
  * Drives cross-examinations and delegates UI to [[./ModalManager.ts]] and [[./VisualEffects.ts]].
  */
-
 import type { MidiMusicComposer, SoundEngine } from '../../audio/index.js';
 import { i18n } from '../../i18n/index.js';
-import type { GameStateManager } from '../../state/index.js';
+import type { GameStateManager, TrialStateSnapshot } from '../../state/index.js';
 import type { CaseScript, DialogueLine, EvidenceId, Testimony } from '../../types/index.js';
 import type { DomElements } from './DomElements.js';
 import { ModalManager } from './ModalManager.js';
 import { VisualEffects } from './VisualEffects.js';
 
 export type TrialPhase = 'IDLE' | 'TESTIMONY' | 'CLIMAX';
-
 export interface TrialControllerDeps {
   dom: DomElements;
   state: GameStateManager;
@@ -35,52 +33,63 @@ export class TrialController {
     this.script = deps.script;
   }
 
-  private get dom() { return this.deps.dom; }
-  private get state() { return this.deps.state; }
-  private get soundEngine() { return this.deps.soundEngine; }
-  private get midiComposer() { return this.deps.midiComposer; }
-  private get onQueueDialogue() { return this.deps.onQueueDialogue; }
-  private get onRenderLine() { return this.deps.onRenderLine; }
-  private get onOpenCourtRecord() { return this.deps.onOpenCourtRecord; }
-  private hideControls(): void { this.dom.trialNavEl.classList.add('hidden'); }
+  private hideControls(): void { this.deps.dom.trialNavEl.classList.add('hidden'); }
 
-  // @Section(Trial Launch & Intro)
-  public startTrial(): void {
-    this.state.mode = 'TRIAL';
-    this.phase = 'TESTIMONY';
-    this.dom.investigationNavEl.classList.add('hidden');
-    this.dom.examineNavEl.classList.add('hidden');
-    this.hideControls();
-    this.dom.hotspotsContainerEl.innerHTML = '';
-    this.dom.locationBannerEl.textContent = i18n.t.locationCourtroom;
-
-    this.onQueueDialogue(this.script.trial.intro, /*onComplete*/ () => {
-      this.startTestimony('testimony1');
-    });
+  // @Section(Trial State Snapshot)
+  public getTrialSnapshot(): TrialStateSnapshot {
+    let testimonyKey: 'testimony1' | 'testimony2' | null = null;
+    if (this.currentTestimony === this.script.trial.testimony1) testimonyKey = 'testimony1';
+    else if (this.currentTestimony === this.script.trial.testimony2) testimonyKey = 'testimony2';
+    return { phase: this.phase, testimonyKey, statementIdx: this.currentStatementIdx };
   }
 
+  // fallow-ignore-next-line complexity
+  public restoreTrialSnapshot(snapshot?: TrialStateSnapshot): void {
+    this.deps.dom.investigationNavEl.classList.add('hidden');
+    this.deps.dom.examineNavEl.classList.add('hidden');
+    this.deps.dom.hotspotsContainerEl.innerHTML = '';
+    this.deps.dom.locationBannerEl.textContent = i18n.t.locationCourtroom;
+
+    if (snapshot?.phase === 'CLIMAX') return this.startClimax();
+    if (snapshot?.phase === 'TESTIMONY' && snapshot.testimonyKey) {
+      this.startTestimony(snapshot.testimonyKey);
+      this.currentStatementIdx = snapshot.statementIdx || 0;
+      return this.renderCurrentStatement();
+    }
+    this.startTrial();
+  }
+  // @Section(Trial Launch & Intro)
+  public startTrial(): void {
+    this.deps.state.mode = 'TRIAL';
+    this.phase = 'TESTIMONY';
+    this.deps.dom.investigationNavEl.classList.add('hidden');
+    this.deps.dom.examineNavEl.classList.add('hidden');
+    this.hideControls();
+    this.deps.dom.hotspotsContainerEl.innerHTML = '';
+    this.deps.dom.locationBannerEl.textContent = i18n.t.locationCourtroom;
+    this.deps.onQueueDialogue(this.script.trial.intro, /*onComplete*/ () => this.startTestimony('testimony1'));
+  }
   // @Section(Testimony Navigation)
   public startTestimony(testimonyKey: 'testimony1' | 'testimony2'): void {
     this.phase = 'TESTIMONY';
     this.currentTestimony = this.script.trial[testimonyKey];
     this.currentStatementIdx = 0;
-    this.midiComposer.playTrack(this.currentTestimony.bgm);
-    this.dom.bgEl.style.backgroundImage = "url('assets/bg_witness.jpg')";
-    VisualEffects.showNotification(this.dom.gameNotificationEl, this.currentTestimony.title);
+    this.deps.midiComposer.playTrack(this.currentTestimony.bgm);
+    this.deps.dom.bgEl.style.backgroundImage = "url('assets/bg_witness.jpg')";
+    VisualEffects.showNotification(this.deps.dom.gameNotificationEl, this.currentTestimony.title);
     this.renderCurrentStatement();
   }
 
   public renderCurrentStatement(): void {
     if (!this.currentTestimony) return;
-    this.dom.trialNavEl.classList.remove('hidden');
+    this.deps.dom.trialNavEl.classList.remove('hidden');
     const stmt = this.currentTestimony.statements[this.currentStatementIdx];
-    this.onRenderLine({ speaker: stmt.speaker, pose: stmt.pose, text: stmt.text });
+    this.deps.onRenderLine({ speaker: stmt.speaker, pose: stmt.pose, text: stmt.text });
   }
 
   public nextStatement(): void {
     if (!this.currentTestimony) return;
-    const len = this.currentTestimony.statements.length;
-    this.currentStatementIdx = (this.currentStatementIdx + 1) % len;
+    this.currentStatementIdx = (this.currentStatementIdx + 1) % this.currentTestimony.statements.length;
     this.renderCurrentStatement();
   }
 
@@ -96,72 +105,53 @@ export class TrialController {
     if (!this.currentTestimony) return;
     const stmt = this.currentTestimony.statements[this.currentStatementIdx];
     if (!stmt.pressText) return;
-
     this.hideControls();
-    this.onQueueDialogue(stmt.pressText, /*onComplete*/ () => this.renderCurrentStatement());
+    this.deps.onQueueDialogue(stmt.pressText, /*onComplete*/ () => this.renderCurrentStatement());
   }
 
   public handlePresentEvidence(evidenceId: EvidenceId): void {
-    if (this.phase === 'CLIMAX') {
-      this.handleClimaxEvidence(evidenceId);
-      return;
-    }
-    if (this.phase === 'TESTIMONY' && this.currentTestimony) {
-      this.handleTestimonyEvidence(evidenceId);
-    }
-  }
-
-  private handleTestimonyEvidence(evidenceId: EvidenceId): void {
-    if (!this.currentTestimony) return;
+    if (this.phase === 'CLIMAX') return this.handleClimaxEvidence(evidenceId);
+    if (!this.currentTestimony || this.phase !== 'TESTIMONY') return;
     const stmt = this.currentTestimony.statements[this.currentStatementIdx];
-    const isContradiction = stmt.contradiction?.evidence.includes(evidenceId);
-
-    if (isContradiction && stmt.contradiction) {
-      this.onSuccessContradiction(stmt.contradiction.successDialogue);
-      return;
+    if (stmt.contradiction?.evidence.includes(evidenceId)) {
+      return this.onSuccessContradiction(stmt.contradiction.successDialogue);
     }
     this.onPenaltyPenalty();
   }
 
   private onSuccessContradiction(dialogue: DialogueLine[]): void {
     this.hideControls();
-    this.onQueueDialogue(dialogue, /*onComplete*/ () => {
-      if (this.currentTestimony === this.script.trial.testimony1) {
-        this.startTestimony('testimony2');
-        return;
-      }
-      if (this.currentTestimony === this.script.trial.testimony2) {
-        this.startClimax();
-      }
+    this.deps.onQueueDialogue(dialogue, /*onComplete*/ () => {
+      if (this.currentTestimony === this.script.trial.testimony1) return this.startTestimony('testimony2');
+      if (this.currentTestimony === this.script.trial.testimony2) this.startClimax();
     });
   }
 
   private applyPenaltyEffects(): void {
-    this.state.takePenalty();
-    ModalManager.updateHealthUI(this.dom.healthBarEl, this.state.health, this.state.maxHealth);
-    this.soundEngine.playDamage();
-    VisualEffects.shakeScreen(this.dom.gameScreen, /*durationMs=*/ 450);
-    VisualEffects.flashScreen(this.dom.flashEl);
+    this.deps.state.takePenalty();
+    ModalManager.updateHealthUI(this.deps.dom.healthBarEl, this.deps.state.health, this.deps.state.maxHealth);
+    this.deps.soundEngine.playDamage();
+    VisualEffects.shakeScreen(this.deps.dom.gameScreen, /*durationMs=*/ 450);
+    VisualEffects.flashScreen(this.deps.dom.flashEl);
   }
 
   private onPenaltyPenalty(): void {
     this.applyPenaltyEffects();
     this.hideControls();
-
-    const penaltyDialogue: DialogueLine[] = [
-      { cutin: 'objection_protesto', speaker: 'DEFENSA', text: i18n.getLanguage() === 'en' ? 'OBJECTION!' : '¡PROTESTO!', sfx: 'whoosh', pose: 'chapulin_point' },
+    const isEn = i18n.getLanguage() === 'en';
+    const lines: DialogueLine[] = [
+      { cutin: 'objection_protesto', speaker: 'DEFENSA', text: isEn ? 'OBJECTION!' : '¡PROTESTO!', sfx: 'whoosh', pose: 'chapulin_point' },
       { speaker: 'SUPER SAM', text: i18n.t.penaltyProsecutionText, pose: 'supersam_point' },
       { speaker: 'JUEZ', text: i18n.t.penaltyJudgeText, pose: 'judge_gavel', sfx: 'gavel' }
     ];
-    if (this.state.gameOver) {
-      penaltyDialogue.push(
+    if (this.deps.state.gameOver) {
+      lines.push(
         { speaker: 'JUEZ', pose: 'judge_gavel', text: i18n.t.gameOverJudgeText, sfx: 'gavel' },
         { speaker: 'DEFENSA', pose: 'chapulin_panic', text: i18n.t.gameOverDefenseText }
       );
-      this.onQueueDialogue(penaltyDialogue, /*onComplete*/ () => this.showGameOverModal());
-      return;
+      return this.deps.onQueueDialogue(lines, /*onComplete*/ () => this.showGameOverModal());
     }
-    this.onQueueDialogue(penaltyDialogue, /*onComplete*/ () => this.renderCurrentStatement());
+    this.deps.onQueueDialogue(lines, /*onComplete*/ () => this.renderCurrentStatement());
   }
 
   // @Section(Climax & Verdict Confrontation)
@@ -169,32 +159,30 @@ export class TrialController {
     this.phase = 'CLIMAX';
     this.currentTestimony = null;
     this.hideControls();
-    this.dom.bgEl.style.backgroundImage = "url('assets/bg_courtroom.jpg')";
-    this.midiComposer.playTrack('suspense');
-
-    this.onQueueDialogue(this.script.trial.climax.dialogue, /*onComplete*/ () => {
-      this.onOpenCourtRecord(/*isTrialPresent=*/ true);
+    this.deps.dom.bgEl.style.backgroundImage = "url('assets/bg_courtroom.jpg')";
+    this.deps.midiComposer.playTrack('suspense');
+    this.deps.onQueueDialogue(this.script.trial.climax.dialogue, /*onComplete*/ () => {
+      this.deps.onOpenCourtRecord(/*isTrialPresent=*/ true);
     });
   }
 
   private handleClimaxEvidence(evidenceId: EvidenceId): void {
     this.hideControls();
     if (this.script.trial.climax.presentTarget.includes(evidenceId)) {
-      this.onQueueDialogue(this.script.trial.climax.verdict, /*onComplete*/ () => {
-        VisualEffects.triggerConfetti(this.dom.confettiContainerEl);
+      this.deps.onQueueDialogue(this.script.trial.climax.verdict, /*onComplete*/ () => {
+        VisualEffects.triggerConfetti(this.deps.dom.confettiContainerEl);
       });
       return;
     }
-
     this.applyPenaltyEffects();
-    VisualEffects.showNotification(this.dom.gameNotificationEl, i18n.t.notifIncorrectClue);
+    VisualEffects.showNotification(this.deps.dom.gameNotificationEl, i18n.t.notifIncorrectClue);
     this.startClimax();
   }
 
   private showGameOverModal(): void {
     this.hideControls();
-    this.state.resetHealth();
-    ModalManager.updateHealthUI(this.dom.healthBarEl, this.state.health, this.state.maxHealth);
+    this.deps.state.resetHealth();
+    ModalManager.updateHealthUI(this.deps.dom.healthBarEl, this.deps.state.health, this.deps.state.maxHealth);
     this.startTrial();
   }
 
@@ -205,8 +193,6 @@ export class TrialController {
     this.script = script;
     if (isTestimony1) this.currentTestimony = script.trial.testimony1;
     else if (isTestimony2) this.currentTestimony = script.trial.testimony2;
-    if (this.phase === 'TESTIMONY' && this.currentTestimony) {
-      this.renderCurrentStatement();
-    }
+    if (this.phase === 'TESTIMONY' && this.currentTestimony) this.renderCurrentStatement();
   }
 }

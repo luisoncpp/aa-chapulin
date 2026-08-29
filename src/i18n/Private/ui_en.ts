@@ -26,8 +26,12 @@ export const UI_EN: UiTranslations = {
   evidencePlaceholderDesc: 'Click on any item to view its details and contradictions.',
   modalPresentBtn: 'Present Evidence!',
   talkModalTitle: 'TALK',
+  moveModalTitle: 'MOVE',
+  currentLocationBadge: 'Current',
 
   hudAudioToggleTitle: 'Toggle Audio Mute',
+  hudSaveTitle: 'Save Game',
+  hudLoadTitle: 'Load Game',
   hudCourtRecordTitle: 'Court Record (Evidence)',
   hudCourtRecordText: 'Record',
 
@@ -36,6 +40,7 @@ export const UI_EN: UiTranslations = {
   splashTip: 'Click below to activate procedural MIDI audio and start playing!',
   btnStartGame: '🔍 START INVESTIGATION (PLAY)',
   btnStartTrialDebug: '⚖️ DEBUG MODE: START IN TRIAL',
+  btnContinue: '📂 CONTINUE GAME',
   langToggleLabel: '🌐 Language: English',
 
   locationMuseum: 'Museum of Antiques & Curiosities - Crime Scene',
@@ -43,8 +48,12 @@ export const UI_EN: UiTranslations = {
   locationCourtroom: 'High Court - Courtroom No. 1',
 
   notifEvidenceAdded: (name: string) => `Added to Court Record: ${name}!`,
+  notifLocationUnlocked: (name: string) => `New location unlocked: ${name}!`,
   notifTrialReady: 'All clues collected! You can now proceed to Trial!',
   notifIncorrectClue: 'Incorrect evidence! Review your clues.',
+  notifGameSaved: 'Game saved successfully!',
+  notifGameLoaded: 'Game loaded!',
+  notifNoSaveFound: 'No saved game found.',
 
   gameOverJudgeText: 'The defense has exhausted all chances! I declare the defendant... GUILTY!',
   gameOverDefenseText: 'Oh no! I will have to start over from the beginning of the trial!',

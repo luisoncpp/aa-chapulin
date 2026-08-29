@@ -4,6 +4,7 @@ import { MidiMusicComposer, SoundEngine } from '../../src/audio/index.js';
 import { CASE_SCRIPT } from '../../src/case/index.js';
 import type { DomElements } from '../../src/engine/Private/DomElements.js';
 import { InvestigationController } from '../../src/engine/Private/InvestigationController.js';
+import { ModalManager } from '../../src/engine/Private/ModalManager.js';
 import { GameStateManager } from '../../src/state/index.js';
 import { FakeAudioContext } from '../fakes/FakeAudioContext.js';
 import { setupDomHarness } from '../fakes/DomHarness.js';
@@ -117,16 +118,40 @@ describe('InvestigationController', () => {
     expect(() => emptyController.openTalkMenu()).not.toThrow();
   });
 
-  it('toggles location between museum and detention', () => {
+  it('opens move menu and navigates to unlocked locations', () => {
     controller.startInvestigation('museum');
     expect(state.currentLocation).toBe('museum');
+    expect(state.unlockedLocations).toEqual(['museum']);
 
-    controller.toggleLocation();
+    // When only museum is unlocked, move modal shows museum as current/disabled
+    controller.openMoveMenu();
+    expect(dom.moveLocationsModalEl.classList.contains('hidden')).toBe(false);
+    expect(dom.moveLocationsListEl.children).toHaveLength(1);
+    const museumBtn = dom.moveLocationsListEl.children[0] as HTMLButtonElement;
+    expect(museumBtn.textContent).toContain('Museo');
+    expect(museumBtn.classList.contains('disabled')).toBe(true);
+
+    // Close modal
+    ModalManager.closeMoveModal(dom);
+    expect(dom.moveLocationsModalEl.classList.contains('hidden')).toBe(true);
+
+    // Unlock detention
+    state.unlockLocation('detention');
+    expect(state.unlockedLocations).toEqual(['museum', 'detention']);
+
+    // Open move menu again
+    controller.openMoveMenu();
+    expect(dom.moveLocationsListEl.children).toHaveLength(2);
+
+    const detentionBtn = dom.moveLocationsListEl.children[1] as HTMLButtonElement;
+    expect(detentionBtn.textContent).toContain('Centro de Detención');
+    expect(detentionBtn.classList.contains('disabled')).toBe(false);
+
+    // Click detention button -> navigates to detention
+    detentionBtn.click();
+    expect(dom.moveLocationsModalEl.classList.contains('hidden')).toBe(true);
     expect(state.currentLocation).toBe('detention');
     expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_detention.jpg');
-
-    controller.toggleLocation();
-    expect(state.currentLocation).toBe('museum');
   });
 
   it('unlocks trial button when all clues are discovered', () => {

@@ -36,6 +36,10 @@
                 <button id="btn-lang-toggle" class="hud-btn" title="Cambiar Idioma / Switch Language">🌐 ES</button>
                 <!-- Audio Toggle Button -->
                 <button id="btn-audio-toggle" class="hud-btn" title="Activar/Desactivar Sonido">🔊</button>
+                <!-- Save Game Button -->
+                <button id="btn-save-game" class="hud-btn" title="Guardar Partida (Save Game)">💾</button>
+                <!-- Load Game Button -->
+                <button id="btn-load-game" class="hud-btn" title="Cargar Partida (Load Game)">📂</button>
                 <!-- Health / Penalty Bar -->
                 <div id="health-bar">
                     <span class="penalty-mark active">!</span>
@@ -110,6 +114,7 @@
                     <img src="assets/chapulin_point.png" alt="Chapulin Point">
                 </div>
                 <p class="splash-tip">¡Haz clic abajo para activar la música MIDI procedimental y comenzar!</p>
+                <button id="btn-continue-game" class="splash-btn splash-btn-continue hidden pulse-glow">📂 CONTINUAR PARTIDA (CONTINUE)</button>
                 <button id="btn-lang-splash" class="splash-btn splash-btn-lang">🌐 IDIOMA: ESPAÑOL (ES / EN)</button>
                 <button id="btn-start-game" class="splash-btn pulse-glow">🔍 INICIAR INVESTIGACIÓN (PLAY)</button>
                 <button id="btn-start-trial-debug" class="splash-btn splash-btn-debug">⚖️ MODO DEBUG: INICIAR EN JUICIO</button>
@@ -146,6 +151,19 @@
                 </div>
                 <div id="talk-options-list">
                     <!-- Talk options inserted dynamically -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Move Locations Modal -->
+        <div id="move-locations-modal" class="game-modal hidden">
+            <div class="modal-window" style="width: 550px; height: 350px;">
+                <div class="modal-header">
+                    <h2>DESPLAZARSE</h2>
+                    <button id="btn-close-move" class="close-btn">X</button>
+                </div>
+                <div id="move-locations-list">
+                    <!-- Move location options inserted dynamically -->
                 </div>
             </div>
         </div>

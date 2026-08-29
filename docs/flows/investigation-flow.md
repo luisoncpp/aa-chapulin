@@ -32,11 +32,22 @@ Operational guide for player actions during the crime scene investigation phase.
    - Any `line.addEvidence` adds item to `gameState.inventory` and shows `#game-notification`.
    - On completion callback, `checkInvestigationProgress()` verifies if trial is unlocked.
 
-### Talk Option Click
+### Location Selection & Move Modal
+1. Player clicks "🏃 Moverse" (`#btn-inv-move`).
+2. `investigation.openMoveMenu()` queries `gameState.unlockedLocations` and case scenes in `CASE_SCRIPT.investigation`.
+3. `#move-locations-modal` opens via `ModalManager.openMoveModal()` with destination buttons:
+   - Current location is styled with `disabled` and badge `(Actual)` / `(Current)`.
+   - Other unlocked locations are clickable.
+4. Player clicks an unlocked destination: modal closes and `startInvestigation(locId)` executes scene transition.
+
+### Talk Option Click & Dynamic Location Unlock
 1. Player clicks "💬 Hablar" (`#btn-inv-talk`).
 2. `#talk-options-modal` opens via `ModalManager.openTalkModal()` with buttons for each topic defined in `scene.talkOptions`.
-3. Player clicks a topic: modal closes, topic dialogue queues, and evidence is granted if scripted.
-4. On completion callback, `checkInvestigationProgress()` runs.
+3. Player clicks a topic: modal closes, topic dialogue queues, and evidence or location unlocks are granted if scripted.
+4. When dialogue line contains `line.unlockLocation`:
+   - `gameState.unlockLocation(locId)` registers the location.
+   - If newly unlocked, SFX `realization` plays and `#game-notification` displays `notifLocationUnlocked`.
+5. On completion callback, `checkInvestigationProgress()` runs.
 
 ### Unlocking & Launching Trial
 1. `gameState.checkTrialReadiness()` in [[src/state/Private/GameStateManager.ts#Investigation Readiness]] verifies the 5 mandatory clues are collected.
@@ -46,10 +57,12 @@ Operational guide for player actions during the crime scene investigation phase.
 ## 4. Reads
 - `CASE_SCRIPT.investigation[location]` in [[src/case/Private/case1_investigation.ts]]
 - `gameState.inventory` in [[src/state/Private/GameStateManager.ts]]
+- `gameState.unlockedLocations` in [[src/state/Private/GameStateManager.ts]]
 - `gameState.flags` in [[src/state/Private/GameStateManager.ts]]
 
 ## 5. Writes
 - `gameState.currentLocation`
+- `gameState.unlockedLocations` (via `unlockLocation`)
 - `gameState.inventory` (via `addEvidence`)
 - `gameState.flags.ready_for_trial`
 

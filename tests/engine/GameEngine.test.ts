@@ -313,4 +313,38 @@ describe('GameEngine Coordinator', () => {
     expect(dom.btnInvExamine.textContent).toContain('Examinar');
     expect(dom.locationBannerEl.textContent).toContain('Museo');
   });
+
+  it('unlocks detention location and shows notification when Florinda mentions El Chapulin', () => {
+    engine.startGame();
+    vi.advanceTimersByTime(400);
+
+    expect(state.unlockedLocations).toEqual(['museum']);
+
+    // Advance opening dialogue
+    for (let i = 0; i < CASE_SCRIPT.investigation.museum.intro.length; i++) {
+      engine.handleAdvance();
+      engine.handleAdvance();
+    }
+
+    // Open talk menu and choose "Sobre el sospechoso detenido"
+    document.getElementById('btn-inv-talk')?.click();
+    const suspectBtn = dom.talkListEl.children[1] as HTMLButtonElement;
+    expect(suspectBtn.textContent).toContain('sospechoso');
+    suspectBtn.click();
+
+    // Advance through the dialogue:
+    // Line 1: Super Sam
+    engine.handleAdvance();
+    expect(state.unlockedLocations).toEqual(['museum']);
+
+    // Line 2: Florinda mentions Chapulin in the parrot cage (unlocks detention)
+    engine.handleAdvance(); // advance to line 2
+    expect(state.unlockedLocations).toEqual(['museum', 'detention']);
+    expect(dom.gameNotificationEl.textContent).toContain('Centro de Detención');
+
+    // Line 3: Monchito thought
+    engine.handleAdvance(); // finish typewriter
+    engine.handleAdvance(); // advance to line 3
+    expect(state.unlockedLocations).toEqual(['museum', 'detention']);
+  });
 });

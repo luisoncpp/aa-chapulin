@@ -21,11 +21,15 @@ export interface EventBinderConfig {
   onOpenCourtRecord: (isTrialPresent: boolean) => void;
   onPresentFromModal: () => void;
   onToggleLanguage?: () => void;
+  onSaveGame?: () => void;
+  onLoadGame?: () => void;
+  onContinueGame?: () => void;
 }
 
 export class EngineEventBinder {
   public static bind(config: EventBinderConfig): void {
     EngineEventBinder.bindStartAndAudio(config);
+    EngineEventBinder.bindSaveAndLoad(config);
     EngineEventBinder.bindDialogueAdvance(config);
     EngineEventBinder.bindCourtRecord(config);
     EngineEventBinder.bindInvestigation(config);
@@ -53,6 +57,22 @@ export class EngineEventBinder {
       dom.btnAudioToggleEl.textContent = isMuted ? '🔇' : '🔊';
     });
     document.addEventListener('click', /*onGlobalClick*/ () => soundEngine.ensureActive(), { once: false });
+  }
+
+  // @Section(Save & Load Bindings)
+  private static bindSaveAndLoad(config: EventBinderConfig): void {
+    const { dom, onSaveGame, onLoadGame, onContinueGame } = config;
+    dom.btnSaveGame?.addEventListener('click', /*onSaveClick*/ (e) => {
+      e.stopPropagation();
+      onSaveGame?.();
+    });
+    dom.btnLoadGame?.addEventListener('click', /*onLoadClick*/ (e) => {
+      e.stopPropagation();
+      onLoadGame?.();
+    });
+    dom.btnContinueGame?.addEventListener('click', /*onContinueClick*/ () => {
+      onContinueGame?.();
+    });
   }
 
   // @Section(Dialogue Advance Bindings)
@@ -101,11 +121,15 @@ export class EngineEventBinder {
     });
     dom.btnInvMove.addEventListener('click', /*onMoveClick*/ (e) => {
       e.stopPropagation();
-      investigation.toggleLocation();
+      investigation.openMoveMenu();
     });
     dom.btnCloseTalk.addEventListener('click', /*onCloseTalkClick*/ (e) => {
       e.stopPropagation();
       ModalManager.closeTalkModal(dom);
+    });
+    dom.btnCloseMove?.addEventListener('click', /*onCloseMoveClick*/ (e) => {
+      e.stopPropagation();
+      ModalManager.closeMoveModal(dom);
     });
   }
 

@@ -9,7 +9,7 @@ export type Language = 'es' | 'en';
 
 export type GameMode = 'INVESTIGATION' | 'TRIAL';
 
-export type LocationId = 'museum' | 'detention';
+export type LocationId = 'museum' | 'detention' | (string & {});
 
 // @Section(Progression Flags)
 export interface GameFlags {

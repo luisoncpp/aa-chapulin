@@ -6,7 +6,7 @@
 
 import { i18n } from '../../i18n/index.js';
 import type { GameStateManager } from '../../state/index.js';
-import type { EvidenceId, TalkOption } from '../../types/index.js';
+import type { EvidenceId, LocationId, TalkOption } from '../../types/index.js';
 import type { DomElements } from './DomElements.js';
 
 export interface CourtRecordConfig {
@@ -14,6 +14,12 @@ export interface CourtRecordConfig {
   state: GameStateManager;
   isTrialPresent: boolean;
   onSelect: (id: EvidenceId) => void;
+}
+
+export interface MoveDestination {
+  id: LocationId;
+  name: string;
+  isCurrent: boolean;
 }
 
 export class ModalManager {
@@ -85,6 +91,33 @@ export class ModalManager {
 
   public static closeTalkModal(dom: DomElements): void {
     dom.talkOptionsModalEl.classList.add('hidden');
+  }
+
+  // @Section(Move Locations Dialog)
+  public static openMoveModal(
+    dom: DomElements,
+    destinations: MoveDestination[],
+    onSelect: (id: LocationId) => void
+  ): void {
+    dom.moveLocationsListEl.innerHTML = '';
+    destinations.forEach((dest) => {
+      const btn = document.createElement('button');
+      btn.className = 'menu-btn talk-btn' + (dest.isCurrent ? ' disabled' : '');
+      btn.textContent = dest.name + (dest.isCurrent ? ` (${i18n.t.currentLocationBadge})` : '');
+      if (!dest.isCurrent) {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          ModalManager.closeMoveModal(dom);
+          onSelect(dest.id);
+        });
+      }
+      dom.moveLocationsListEl.appendChild(btn);
+    });
+    dom.moveLocationsModalEl.classList.remove('hidden');
+  }
+
+  public static closeMoveModal(dom: DomElements): void {
+    dom.moveLocationsModalEl.classList.add('hidden');
   }
 
   // @Section(Penalty Health Bar UI)

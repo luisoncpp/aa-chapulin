@@ -22,6 +22,8 @@ export function setupDomHarness(): DomElements {
         <div id="hud-right-controls">
           <button id="btn-lang-toggle" class="hud-btn">🌐 ES</button>
           <button id="btn-audio-toggle" class="hud-btn">🔊</button>
+          <button id="btn-save-game" class="hud-btn">💾</button>
+          <button id="btn-load-game" class="hud-btn">📂</button>
           <div id="health-bar"></div>
           <button id="btn-court-record"><img src="" alt="Insignia"><span>Acta</span></button>
         </div>
@@ -58,6 +60,7 @@ export function setupDomHarness(): DomElements {
       <div id="confetti-container" class="hidden"></div>
       <div id="start-splash-overlay">
         <button id="btn-lang-splash">IDIOMA</button>
+        <button id="btn-continue-game" class="hidden">CONTINUAR</button>
         <button id="btn-start-game">COMENZAR</button>
         <button id="btn-start-trial-debug">MODO DEBUG</button>
       </div>
@@ -72,6 +75,11 @@ export function setupDomHarness(): DomElements {
       <div id="talk-options-modal" class="game-modal hidden">
         <button id="btn-close-talk">X</button>
         <div id="talk-options-list"></div>
+      </div>
+      <div id="move-locations-modal" class="game-modal hidden">
+        <div class="modal-header"><h2>DESPLAZARSE</h2></div>
+        <button id="btn-close-move">X</button>
+        <div id="move-locations-list"></div>
       </div>
     </div>
   `;

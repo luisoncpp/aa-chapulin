@@ -17,6 +17,15 @@ export {
   // fallow-ignore-next-line unused-export
   getEvidenceCatalog
 } from './Private/EvidenceCatalog.js';
+export {
+  SaveManager,
+  // fallow-ignore-next-line unused-export
+  SAVE_STORAGE_KEY,
+  // fallow-ignore-next-line unused-export
+  CURRENT_SAVE_VERSION,
+  type SaveData,
+  type TrialStateSnapshot
+} from './Private/SaveManager.js';
 
 // @Section(Singleton State Instance)
 export const gameState = new GameStateManager();

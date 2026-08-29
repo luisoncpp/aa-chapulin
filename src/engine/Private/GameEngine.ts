@@ -7,8 +7,8 @@
 import { midiComposer as defaultMidiComposer, soundEngine as defaultSoundEngine, type MidiMusicComposer, type SoundEngine } from '../../audio/index.js';
 import { CASE_SCRIPT as defaultCaseScript, getCaseScript } from '../../case/index.js';
 import { i18n } from '../../i18n/index.js';
-import { gameState as defaultGameState, type GameStateManager } from '../../state/index.js';
-import type { CaseScript, DialogueLine, EvidenceId, Language, SFXName } from '../../types/index.js';
+import { gameState as defaultGameState, type GameStateManager, SaveManager, type SaveData } from '../../state/index.js';
+import type { CaseScript, DialogueLine, EvidenceId, Language, LocationId, SFXName } from '../../types/index.js';
 import { getDomElements, type DomElements } from './DomElements.js';
 import { EngineEventBinder } from './EngineEventBinder.js';
 import { InvestigationController } from './InvestigationController.js';
@@ -24,6 +24,7 @@ export interface GameEngineDeps {
   script?: CaseScript;
   soundEngine?: SoundEngine;
   midiComposer?: MidiMusicComposer;
+  storage?: Storage;
 }
 
 export class GameEngine {
@@ -35,6 +36,7 @@ export class GameEngine {
   private readonly typewriter: Typewriter;
   private readonly investigation: InvestigationController;
   private readonly trial: TrialController;
+  private readonly storage?: Storage;
   private dialogueQueue: DialogueLine[] = [];
   private onQueueFinish: (() => void) | null = null;
   private hasStarted = false;
@@ -46,6 +48,7 @@ export class GameEngine {
     this.script = deps.script ?? defaultCaseScript;
     this.soundEngine = deps.soundEngine ?? defaultSoundEngine;
     this.midiComposer = deps.midiComposer ?? defaultMidiComposer;
+    this.storage = deps.storage;
     this.typewriter = new Typewriter(this.dom.dialogueTextEl, this.soundEngine);
 
     this.investigation = new InvestigationController({
@@ -71,10 +74,14 @@ export class GameEngine {
       onAdvance: () => this.handleAdvance(),
       onOpenCourtRecord: (isTrial) => this.openCourtRecord(isTrial),
       onPresentFromModal: () => this.handlePresentFromModal(),
-      onToggleLanguage: () => this.toggleLanguage()
+      onToggleLanguage: () => this.toggleLanguage(),
+      onSaveGame: () => this.saveGame(),
+      onLoadGame: () => this.loadGame(),
+      onContinueGame: () => this.loadGame()
     });
     ModalManager.updateHealthUI(this.dom.healthBarEl, this.state.health, this.state.maxHealth);
     this.setLanguage(this.state.language);
+    this.updateContinueButton();
     this.checkDebugUrlParams();
   }
 
@@ -88,8 +95,7 @@ export class GameEngine {
   }
 
   public toggleLanguage(): void {
-    const nextLang = i18n.toggleLanguage();
-    this.setLanguage(nextLang);
+    this.setLanguage(i18n.toggleLanguage());
   }
 
   private checkDebugUrlParams(): void {
@@ -122,6 +128,56 @@ export class GameEngine {
     this.dismissSplashAndInitAudio();
     this.state.populateTrialEvidence();
     this.trial.startTrial();
+  }
+
+  // @Section(Save & Load Management)
+  public saveGame(storage?: Storage): boolean {
+    const activeStorage = storage ?? this.storage;
+    const trialSnapshot = this.state.mode === 'TRIAL' ? this.trial.getTrialSnapshot() : undefined;
+    const data = this.state.exportState(trialSnapshot);
+    const success = SaveManager.save(data, activeStorage);
+    if (success) {
+      this.soundEngine.playRealization();
+      VisualEffects.showNotification(this.dom.gameNotificationEl, i18n.t.notifGameSaved);
+      this.updateContinueButton(activeStorage);
+    }
+    return success;
+  }
+
+  public loadGame(storage?: Storage): boolean {
+    const activeStorage = storage ?? this.storage;
+    const data = SaveManager.load(activeStorage);
+    if (!data) {
+      VisualEffects.showNotification(this.dom.gameNotificationEl, i18n.t.notifNoSaveFound);
+      return false;
+    }
+    this.restoreSaveData(data);
+    VisualEffects.showNotification(this.dom.gameNotificationEl, i18n.t.notifGameLoaded);
+    return true;
+  }
+
+  private restoreSaveData(data: SaveData): void {
+    if (!this.hasStarted) this.dismissSplashAndInitAudio();
+    this.hasStarted = true;
+    this.state.restoreState(data);
+    this.setLanguage(data.language);
+    ModalManager.updateHealthUI(this.dom.healthBarEl, this.state.health, this.state.maxHealth);
+    this.dialogueQueue = [];
+    this.onQueueFinish = null;
+
+    if (data.mode === 'INVESTIGATION') {
+      this.investigation.startInvestigation(data.currentLocation);
+      this.investigation.checkInvestigationProgress();
+      return;
+    }
+    this.trial.restoreTrialSnapshot(data.trial);
+  }
+
+  public updateContinueButton(storage?: Storage): void {
+    const hasSave = SaveManager.hasSave(storage ?? this.storage);
+    if (this.dom.btnContinueGame) {
+      this.dom.btnContinueGame.classList.toggle('hidden', !hasSave);
+    }
   }
 
   // @Section(Dialogue Flow & Queue)
@@ -165,6 +221,7 @@ export class GameEngine {
     if (line.cutin) VisualEffects.showCutin(this.dom, line.cutin);
     this.applyLineSpeakerAndPose(line);
     this.grantEvidenceIfPresent(line.addEvidence);
+    this.unlockLocationIfPresent(line.unlockLocation);
     this.typewriter.start(line.text || '');
   }
 
@@ -190,12 +247,26 @@ export class GameEngine {
     }
   }
 
+  // fallow-ignore-next-line complexity
+  private unlockLocationIfPresent(locationId?: LocationId): void {
+    if (!locationId) return;
+    const unlocked = this.state.unlockLocation(locationId);
+    if (!unlocked) return;
+    this.soundEngine.playRealization();
+    const scene = this.script.investigation[locationId];
+    const locName = scene?.name ?? scene?.title ?? locationId;
+    VisualEffects.showNotification(
+      this.dom.gameNotificationEl,
+      i18n.t.notifLocationUnlocked(locName)
+    );
+  }
+
   private triggerSFX(sfx: SFXName): void {
     this.soundEngine.playSFX(sfx);
-    if (sfx === 'gavel' || sfx === 'desk_slam') VisualEffects.shakeScreen(this.dom.gameScreen, /*durationMs=*/ 300);
-    if (sfx === 'realization' || sfx === 'chicharra') VisualEffects.flashScreen(this.dom.flashEl);
-    if (sfx === 'damage') {
-      VisualEffects.shakeScreen(this.dom.gameScreen, /*durationMs=*/ 450);
+    if (sfx === 'gavel' || sfx === 'desk_slam' || sfx === 'damage') {
+      VisualEffects.shakeScreen(this.dom.gameScreen, /*durationMs=*/ sfx === 'damage' ? 450 : 300);
+    }
+    if (sfx === 'realization' || sfx === 'chicharra' || sfx === 'damage') {
       VisualEffects.flashScreen(this.dom.flashEl);
     }
   }

@@ -32,10 +32,15 @@ export interface DomElements {
   dialogueBoxEl: HTMLElement;
   talkOptionsModalEl: HTMLElement;
   talkListEl: HTMLElement;
+  moveLocationsModalEl: HTMLElement;
+  moveLocationsListEl: HTMLElement;
   startSplashOverlayEl: HTMLElement;
   btnAudioToggleEl: HTMLButtonElement;
   btnLangToggleEl: HTMLButtonElement;
   btnLangSplashEl?: HTMLButtonElement;
+  btnSaveGame?: HTMLButtonElement;
+  btnLoadGame?: HTMLButtonElement;
+  btnContinueGame?: HTMLButtonElement;
   gameNotificationEl: HTMLElement;
   btnStartGame: HTMLButtonElement;
   btnStartTrialDebug: HTMLButtonElement;
@@ -46,6 +51,7 @@ export interface DomElements {
   btnInvTalk: HTMLButtonElement;
   btnInvMove: HTMLButtonElement;
   btnCloseTalk: HTMLButtonElement;
+  btnCloseMove: HTMLButtonElement;
   btnInvTrial: HTMLButtonElement;
   btnPress: HTMLButtonElement;
   btnTrialPresent: HTMLButtonElement;
@@ -83,10 +89,15 @@ export function getDomElements(): DomElements {
     dialogueBoxEl: document.getElementById('dialogue-box')!,
     talkOptionsModalEl: document.getElementById('talk-options-modal')!,
     talkListEl: document.getElementById('talk-options-list')!,
+    moveLocationsModalEl: document.getElementById('move-locations-modal')!,
+    moveLocationsListEl: document.getElementById('move-locations-list')!,
     startSplashOverlayEl: document.getElementById('start-splash-overlay')!,
     btnAudioToggleEl: document.getElementById('btn-audio-toggle') as HTMLButtonElement,
     btnLangToggleEl: document.getElementById('btn-lang-toggle') as HTMLButtonElement,
     btnLangSplashEl: document.getElementById('btn-lang-splash') as HTMLButtonElement,
+    btnSaveGame: document.getElementById('btn-save-game') as HTMLButtonElement,
+    btnLoadGame: document.getElementById('btn-load-game') as HTMLButtonElement,
+    btnContinueGame: document.getElementById('btn-continue-game') as HTMLButtonElement,
     gameNotificationEl: document.getElementById('game-notification')!,
     btnStartGame: document.getElementById('btn-start-game') as HTMLButtonElement,
     btnStartTrialDebug: document.getElementById('btn-start-trial-debug') as HTMLButtonElement,
@@ -97,6 +108,7 @@ export function getDomElements(): DomElements {
     btnInvTalk: document.getElementById('btn-inv-talk') as HTMLButtonElement,
     btnInvMove: document.getElementById('btn-inv-move') as HTMLButtonElement,
     btnCloseTalk: document.getElementById('btn-close-talk') as HTMLButtonElement,
+    btnCloseMove: document.getElementById('btn-close-move') as HTMLButtonElement,
     btnInvTrial: document.getElementById('btn-inv-trial') as HTMLButtonElement,
     btnPress: document.getElementById('btn-press') as HTMLButtonElement,
     btnTrialPresent: document.getElementById('btn-trial-present') as HTMLButtonElement,

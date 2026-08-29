@@ -110,4 +110,37 @@ describe('ModalManager Subsystem', () => {
     expect(marks[3].classList.contains('empty')).toBe(true);
     expect(marks[4].classList.contains('empty')).toBe(true);
   });
+
+  it('renders move destinations and handles location selection', () => {
+    const destinations = [
+      { id: 'museum', name: 'Museo de Curiosidades', isCurrent: true },
+      { id: 'detention', name: 'Centro de Detención', isCurrent: false }
+    ];
+
+    let selectedLoc: string | null = null;
+    ModalManager.openMoveModal(dom, destinations, (locId) => {
+      selectedLoc = locId;
+    });
+
+    expect(dom.moveLocationsModalEl.classList.contains('hidden')).toBe(false);
+    expect(dom.moveLocationsListEl.children).toHaveLength(2);
+
+    const currentBtn = dom.moveLocationsListEl.children[0] as HTMLButtonElement;
+    expect(currentBtn.textContent).toContain('Actual');
+    expect(currentBtn.classList.contains('disabled')).toBe(true);
+    // Clicking disabled current button does nothing
+    currentBtn.click();
+    expect(selectedLoc).toBeNull();
+    expect(dom.moveLocationsModalEl.classList.contains('hidden')).toBe(false);
+
+    const destBtn = dom.moveLocationsListEl.children[1] as HTMLButtonElement;
+    expect(destBtn.classList.contains('disabled')).toBe(false);
+    destBtn.click();
+
+    expect(selectedLoc).toBe('detention');
+    expect(dom.moveLocationsModalEl.classList.contains('hidden')).toBe(true);
+
+    ModalManager.closeMoveModal(dom);
+    expect(dom.moveLocationsModalEl.classList.contains('hidden')).toBe(true);
+  });
 });

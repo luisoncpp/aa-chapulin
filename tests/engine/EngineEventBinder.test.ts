@@ -120,12 +120,15 @@ describe('EngineEventBinder', () => {
     document.getElementById('btn-inv-talk')?.click();
     expect(openTalkSpy).toHaveBeenCalled();
 
-    const toggleLocationSpy = vi.spyOn(investigation, 'toggleLocation');
+    const openMoveSpy = vi.spyOn(investigation, 'openMoveMenu');
     document.getElementById('btn-inv-move')?.click();
-    expect(toggleLocationSpy).toHaveBeenCalled();
+    expect(openMoveSpy).toHaveBeenCalled();
 
     document.getElementById('btn-close-talk')?.click();
     expect(dom.talkOptionsModalEl.classList.contains('hidden')).toBe(true);
+
+    document.getElementById('btn-close-move')?.click();
+    expect(dom.moveLocationsModalEl.classList.contains('hidden')).toBe(true);
   });
 
   it('dispatches trial actions: start trial, press, present, prev, next', () => {

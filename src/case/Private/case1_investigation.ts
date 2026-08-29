@@ -10,6 +10,7 @@ export const INVESTIGATION_SCENES: Record<LocationId, InvestigationScene> = {
   // @Section(Museum Crime Scene)
   museum: {
     title: 'Museo de Antigüedades y Curiosidades - Escena del Crimen',
+    name: 'Museo de Curiosidades',
     bg: 'assets/bg_museum.jpg',
     bgm: 'investigation',
     speaker: 'NARRADOR',
@@ -78,7 +79,7 @@ export const INVESTIGATION_SCENES: Record<LocationId, InvestigationScene> = {
         label: 'Sobre el sospechoso detenido',
         dialogue: [
           { speaker: 'FLORINDA', text: "El fiscal Super Sam llegó en tres minutos diciendo 'Time is money!' y ordenó su arresto inmediato.", pose: 'florinda_idle' },
-          { speaker: 'FLORINDA', text: 'El Chapulín estaba atrapado de cabeza dentro de una jaula para loros del siglo XVIII.', pose: 'florinda_idle' },
+          { speaker: 'FLORINDA', text: 'El Chapulín estaba atrapado de cabeza dentro de una jaula para loros del siglo XVIII.', pose: 'florinda_idle', unlockLocation: 'detention' },
           { speaker: 'DEFENSA', text: '(Típico del Chapulín... siempre calculando fríamente sus movimientos.)' }
         ]
       }
@@ -88,6 +89,7 @@ export const INVESTIGATION_SCENES: Record<LocationId, InvestigationScene> = {
   // @Section(Detention Center Scene)
   detention: {
     title: 'Centro de Detención - Sala de Visitas',
+    name: 'Centro de Detención',
     bg: 'assets/bg_detention.jpg',
     bgm: 'detention_center',
     speaker: 'CHAPULIN',

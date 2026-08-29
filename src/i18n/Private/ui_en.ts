@@ -47,6 +47,7 @@ export const UI_EN: UiTranslations = {
   locationMuseum: 'Museum of Antiques & Curiosities - Crime Scene',
   locationDetention: 'Detention Center - Visitor Room',
   locationCourtroom: 'High Court - Courtroom No. 1',
+  locationWaitingRoom: 'High Court - Waiting Room',
 
   notifEvidenceAdded: (name: string) => `Added to Court Record: ${name}!`,
   notifLocationUnlocked: (name: string) => `New location unlocked: ${name}!`,

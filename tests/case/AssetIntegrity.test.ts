@@ -104,7 +104,8 @@ describe('Asset Integrity & Existence', () => {
       'bg_witness.jpg',
       'bg_judge.jpg',
       'bg_museum.jpg',
-      'bg_detention.jpg'
+      'bg_detention.jpg',
+      'bg_waiting_room.jpg'
     ];
     backgrounds.forEach((file) => {
       const filePath = path.join(assetsDir, file);

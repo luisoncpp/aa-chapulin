@@ -144,10 +144,16 @@ export interface Testimony {
   statements: Statement[];
 }
 
+export interface ClimaxEpilogue {
+  bg: string;
+  dialogue: DialogueLine[];
+}
+
 export interface ClimaxDefinition {
   dialogue: DialogueLine[];
   presentTarget: EvidenceId[];
   verdict: DialogueLine[];
+  epilogue?: ClimaxEpilogue;
 }
 
 export interface TrialScript {

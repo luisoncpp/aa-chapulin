@@ -57,7 +57,8 @@ Operational guide for courtroom litigation, cross-examinations, evidence present
    - Tripaseca & Super Sam breakdown animations trigger.
    - Displays `¡INOCENTE!` cut-in.
    - BGM switches to `'victory'`.
-   - `triggerConfetti()` fires celebratory confetti.
+   - If `climax.epilogue` exists (Case 2), [[src/engine/Private/TrialClimax.ts]] switches `#scene-bg` to `bg_waiting_room.jpg`, updates the location banner, and queues stamped epilogue lines (`furniture: 'none'`). Case 1 has no epilogue.
+   - `triggerConfetti()` fires after the last queued sequence (verdict, or epilogue when present).
 
 ## 4. Reads
 - Active trial day from `getActiveTrial(script, trialDay)` ([[src/engine/Private/TrialDayRouter.ts]]); Case 1/2 day-1 `script.trial`, Case 2 day-2 `adjournment.trial`, climax always `script.trial.climax`
@@ -79,6 +80,7 @@ Operational guide for courtroom litigation, cross-examinations, evidence present
 
 ## 7. Files to Inspect
 - [[src/engine/Private/TrialController.ts]]
+- [[src/engine/Private/TrialClimax.ts]]
 - [[src/engine/Private/ModalManager.ts]]
 - [[src/state/Private/GameStateManager.ts]]
 - [[src/engine/Private/TrialDayRouter.ts]]

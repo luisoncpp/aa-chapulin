@@ -80,6 +80,7 @@ graph TD
     
     I[Investigation Stages] --> I1[Museum of Curiosities: Broken Vault & Moonlight]
     I --> I2[Detention Center: Concrete Walls & Security Glass]
+    I --> I3[Court Waiting Room: Benches, Doors, Amber Dust]
 ```
 
 ### 1. Courtroom Environments (`bg_defense.jpg`, `bg_courtroom.jpg`, `bg_witness.jpg`, `bg_judge.jpg`)
@@ -95,6 +96,10 @@ graph TD
 ### 3. Detention Center (`bg_detention.jpg`)
 * **Palette**: Cold Concrete Grey (`#34495E`), Industrial Steel (`#2C3E50`), Dim Barred Sunlight (`#BDC3C7`).
 * **Atmosphere**: Stark visitor booth with thick security glass, metallic intercom grill, and wall-mounted phone.
+
+### 4. Court Waiting Room (`bg_waiting_room.jpg`)
+* **Palette**: Same mahogany / brass / burgundy as the courtroom plates, cream plaster above the wainscot, terracotta floor, amber dust in the light.
+* **Atmosphere**: Public lobby outside the hall: facing benches, carpet runner to closed courtroom doors, scales crest over the arch. Empty of people so waist-up sprites can overlay. Not a trial camera (no bench, podium, or judge dais). 1536×1024 plate, cover-cropped like other Case 2 backgrounds.
 
 ---
 

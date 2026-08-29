@@ -42,6 +42,7 @@ export type {
   TalkOption,
   InvestigationScene,
   Testimony,
+  ClimaxEpilogue,
   ClimaxDefinition,
   TrialDayScript,
   AdjournmentDefinition,

@@ -147,6 +147,23 @@ describe('VisualEffects Subsystem', () => {
     expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(true);
   });
 
+  it('keeps waiting-room epilogue lines off courtroom furniture', () => {
+    VisualEffects.updateStagingForLine(
+      dom,
+      {
+        speaker: 'CHOMPIRAS',
+        pose: 'chompiras_relieved',
+        text: '¡Gracias!',
+        bg: 'assets/bg_waiting_room.jpg',
+        furniture: 'none'
+      },
+      /*isTrialMode=*/ true
+    );
+    expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_waiting_room.jpg');
+    expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(true);
+    expect(dom.gameScreen.dataset.stageFrame).toBe('plain');
+  });
+
   it('automatically switches courtroom background and furniture for each speaker in trial mode', () => {
     // Start with witness background
     dom.bgEl.style.backgroundImage = "url('assets/bg_witness.jpg')";

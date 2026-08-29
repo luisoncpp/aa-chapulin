@@ -11,6 +11,7 @@ import type { DomElements } from './DomElements.js';
 import { ModalManager } from './ModalManager.js';
 import { applyAdjournment, getActiveTrial, shouldAdjourn } from './TrialDayRouter.js';
 import { applyPenaltyEffects, queuePenaltyDialogue } from './TrialPenalty.js';
+import { queueClimaxVictory } from './TrialClimax.js';
 import { VisualEffects } from './VisualEffects.js';
 
 export type TrialPhase = 'IDLE' | 'TESTIMONY' | 'CLIMAX';
@@ -117,6 +118,7 @@ export class TrialController {
     this.deps.onQueueDialogue(stmt.pressText, /*onComplete*/ () => this.renderCurrentStatement());
   }
 
+  // fallow-ignore-next-line complexity
   public handlePresentEvidence(evidenceId: EvidenceId): void {
     if (this.phase === 'CLIMAX') return this.handleClimaxEvidence(evidenceId);
     if (!this.currentTestimony || this.phase !== 'TESTIMONY') return;
@@ -169,9 +171,7 @@ export class TrialController {
   private handleClimaxEvidence(evidenceId: EvidenceId): void {
     this.hideControls();
     if (this.script.trial.climax.presentTarget.includes(evidenceId)) {
-      this.deps.onQueueDialogue(this.script.trial.climax.verdict, /*onComplete*/ () => {
-        VisualEffects.triggerConfetti(this.deps.dom.confettiContainerEl);
-      });
+      queueClimaxVictory(this.script.trial.climax, this.deps);
       return;
     }
     applyPenaltyEffects(this.deps);

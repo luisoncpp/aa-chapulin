@@ -39,6 +39,7 @@ EV_NAMES = [
 
 BGS = [
     "bg_boveda.jpg", "bg_restaurante.jpg", "bg_postal.jpg", "bg_clotilde.jpg",
+    "bg_waiting_room.jpg",
 ]
 
 

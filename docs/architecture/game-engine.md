@@ -17,6 +17,7 @@ flowchart TD
     Coordinator --> Modals[Private/ModalManager.ts]
     Coordinator --> InvCtrl[Private/InvestigationController.ts]
     Coordinator --> TrialCtrl[Private/TrialController.ts]
+    TrialCtrl --> Climax[Private/TrialClimax.ts]
     Coordinator --> Dialogue[Private/DialogueFlow.ts]
     Coordinator --> Launch[Private/EngineLaunch.ts]
     Coordinator --> DebugURL[Private/EngineDebugBootstrap.ts]
@@ -40,9 +41,9 @@ flowchart TD
    - Triggers `soundEngine.playTextBlip()` every alternate character for authentic Capcom typewriter chirping.
 
 3. **Character & Scene Staging** ([[src/engine/Private/VisualEffects.ts#Character Pose Staging]]):
-   - Updates `#scene-bg` background images automatically per speaker in trial mode (`bg_defense.jpg` for defense, `bg_courtroom.jpg` for prosecution, `bg_judge.jpg` for judge, `bg_witness.jpg` for witness) or via explicit `line.bg`.
+   - Updates `#scene-bg` background images automatically per speaker in trial mode (`bg_defense.jpg` for defense, `bg_courtroom.jpg` for prosecution, `bg_judge.jpg` for judge, `bg_witness.jpg` for witness) or via explicit `line.bg`. Location plates (waiting room, investigation) skip courtroom cameras when `line.bg` is set.
    - Updates `#character-sprite` poses with continuous idle floating/breathing animation (`characterBreathe`).
-   - Dynamically stages courtroom foreground furniture (`#court-furniture-sprite`): shows `court_podium.png` during witness testimonies, `court_bench.png` when defense or prosecution speaks in court (`bg_defense.jpg`, `bg_courtroom.jpg`), and hides furniture during judge lines or in detention/museum scenes.
+   - Dynamically stages courtroom foreground furniture (`#court-furniture-sprite`): shows `court_podium.png` during witness testimonies, `court_bench.png` when defense or prosecution speaks in court (`bg_defense.jpg`, `bg_courtroom.jpg`), and hides furniture during judge lines, investigation scenes, and waiting-room epilogue lines (`bg_waiting_room.jpg`).
    - `updateStagingForLine(dom, line, isTrialMode)` resolves background, furniture **and** stage geometry in one unified step, ensuring camera angle and furniture consistency across rapid speaker turns.
    - Automatically hides character sprites when narrator is speaking, or during active examine mode.
 

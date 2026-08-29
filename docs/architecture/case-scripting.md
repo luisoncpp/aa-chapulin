@@ -20,7 +20,7 @@ graph TD
     Day2 --> Climax[script.trial.climax]
 ```
 
-Case 2 is assembled in [[src/case/Private/case2_script.ts]]: ES/EN scene modules, day-1 trial (`case2_trial_day1*`), day-2 trial (`case2_trial_day2*`), climax on `trial.climax` (`case2_climax.ts`). Day-1 investigation: `detention` → `boveda` → `restaurante`. After testimony 2, `adjournment` sends the player to `oficina_postal` (unlock), then `casa_clotilde`. Day-2 testimonies live on `adjournment.trial`; the finale is still `script.trial.climax` (targets `lata_grasa` or `antenitas_vinil`). Case 1 has no `adjournment`.
+Case 2 is assembled in [[src/case/Private/case2_script.ts]]: ES/EN scene modules, day-1 trial (`case2_trial_day1*`), day-2 trial (`case2_trial_day2*`), climax on `trial.climax` (`case2_climax.ts`). Day-1 investigation: `detention` → `boveda` → `restaurante`. After testimony 2, `adjournment` sends the player to `oficina_postal` (unlock), then `casa_clotilde`. Day-2 testimonies live on `adjournment.trial`; the finale is still `script.trial.climax` (targets `lata_grasa` or `antenitas_vinil`). After the Not Guilty line, Case 2 `climax.epilogue` plays in `assets/bg_waiting_room.jpg` (no bench/podium). Case 1 has no `adjournment` and no epilogue.
 
 ## Schema Definitions
 
@@ -75,8 +75,11 @@ climax: {
   dialogue: DialogueLine[];
   presentTarget: EvidenceId[];
   verdict: DialogueLine[];
+  epilogue?: { bg: string; dialogue: DialogueLine[] };
 }
 ```
+
+[[src/engine/Private/TrialClimax.ts]] queues `verdict`, then stamps `epilogue.bg` and `furniture: 'none'` on every epilogue line so trial speaker cameras do not fire. Case 1 omits `epilogue`.
 
 ### 5. Adjournment ([[src/types/Private/script.ts]])
 

@@ -44,7 +44,7 @@ The pipeline performs:
 Case 2 art lives in [[tools/raw/]] and is processed separately so [[process_assets.py]] stays frozen:
 - **2x2 pose sheets** (row-major): Chómpiras, Peterete, Jirafales, Jaimito, Clotilde. Peterete breakdown is the top-left cell of `peterete_breakdown_raw.png`. Super Sam sweat is the top-right cell of `supersam_sweat_raw.png` (does not overwrite idle/point/slam/breakdown). That sheet must be generated with idle as the identity lock; otherwise the model paints Chespirito yellow/green instead of navy + flag cape.
 - **Evidence**: `case2_evidence_icons_raw.png` (4 columns × 3 rows) → `chanfle_oro.png` … `lata_grasa.png`.
-- **Backgrounds** copied as JPEG: `bg_boveda.jpg`, `bg_restaurante.jpg`, `bg_postal.jpg`, `bg_clotilde.jpg`.
+- **Backgrounds** copied as JPEG: `bg_boveda.jpg`, `bg_restaurante.jpg`, `bg_postal.jpg`, `bg_clotilde.jpg`, `bg_waiting_room.jpg`.
 
 ### 3. Asset Naming Conventions
 
@@ -53,7 +53,7 @@ Case 2 art lives in [[tools/raw/]] and is processed separately so [[process_asse
 | **Character Poses** | `[character]_[emotion].png` | `chapulin_idle.png`, `supersam_point.png`, `tripaseca_sweat.png`, `judge_gavel.png`, `florinda_angry.png` |
 | **Cut-ins** | `objection_[type].png` | `objection_protesto.png`, `objection_un_momento.png`, `objection_toma_eso.png`, `objection_culpable.png` |
 | **Evidence Icons** | `[item_id].png` | `chipote_chillon.png`, `chanfle_oro.png`, `reloj_pendulo.png` |
-| **Backgrounds** | `bg_[location].jpg` | `bg_museum.jpg`, `bg_detention.jpg`, `bg_boveda.jpg`, `bg_restaurante.jpg`, `bg_postal.jpg`, `bg_clotilde.jpg` |
+| **Backgrounds** | `bg_[location].jpg` | `bg_museum.jpg`, `bg_detention.jpg`, `bg_boveda.jpg`, `bg_restaurante.jpg`, `bg_postal.jpg`, `bg_clotilde.jpg`, `bg_waiting_room.jpg` |
 
 ## Integrity Verification ([[verify_assets.py]])
 

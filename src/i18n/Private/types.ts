@@ -53,6 +53,7 @@ export interface UiTranslations {
   locationMuseum: string;
   locationDetention: string;
   locationCourtroom: string;
+  locationWaitingRoom: string;
 
   // Notifications
   notifEvidenceAdded: (name: string) => string;

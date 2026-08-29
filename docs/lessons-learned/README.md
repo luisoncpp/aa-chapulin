@@ -34,4 +34,5 @@ Avoid: "bug description + fix". Prefer: "what I learned that applies to future w
 | [`investigation-dialogue-completion-lifecycle.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/lessons-learned/investigation-dialogue-completion-lifecycle.md) | Gating environment investigation dialogue completion and controls visibility to protect FIFO queue callbacks. | 2026-08-29 |
 | [`investigation-hotspot-cover-crop.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/lessons-learned/investigation-hotspot-cover-crop.md) | Hotspot percentages track the 960×540 cover crop of a 3:2 background, not the raw JPEG. | 2026-08-29 |
 | [`splash-card-stage-height.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/lessons-learned/splash-card-stage-height.md) | Title splash stack must fit 540px; flex centering clips both ends when the card is taller than the stage. | 2026-08-29 |
+| [`supersam-pose-identity-lock.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/lessons-learned/supersam-pose-identity-lock.md) | Extra Super Sam poses default to Chespirito yellow/green unless idle is the identity lock. | 2026-08-29 |
 

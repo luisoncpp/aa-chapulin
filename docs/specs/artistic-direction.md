@@ -47,6 +47,7 @@ Characters are rendered in high-definition 2D Capcom sprite style with crisp dar
   * `supersam_idle`: Smug half-smile clutching the money bag over his shoulder.
   * `supersam_slam`: Double-palm desk slam with the cash sack slung over the shoulder. Same costume as idle/point (off-center `$`, gold SS belt, red trunks, flag cape). Contact silhouette matches other slam poses: A-frame arms and a transparent waist notch so the bench covers the waist instead of the torso painting onto the wood.
   * `supersam_point`: Arrogant finger-pointing objection shout ("Time is money!").
+  * `supersam_sweat`: Collar-tugging grimace with sweat beads. Same navy bodysuit, white `$`, gold SS belt, red trunks, flag cape, and red/white cravat as idle. A new pose sheet that is not locked to idle identity will default to Chespirito yellow/green Super Sam.
   * `supersam_breakdown`: Screaming recoil as dollar bills scatter into the air.
 
 ### C. El Tripaseca (Witness & Culprit)

@@ -38,6 +38,7 @@ describe('Asset Integrity & Existence', () => {
       'supersam_slam.png',
       'supersam_point.png',
       'supersam_breakdown.png',
+      'supersam_sweat.png',
       'tripaseca_smug.png',
       'tripaseca_sweat.png',
       'tripaseca_panic.png',

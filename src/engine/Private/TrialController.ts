@@ -6,9 +6,10 @@
 import type { MidiMusicComposer, SoundEngine } from '../../audio/index.js';
 import { i18n } from '../../i18n/index.js';
 import type { GameStateManager, TrialStateSnapshot } from '../../state/index.js';
-import type { CaseScript, DialogueLine, EvidenceId, Testimony } from '../../types/index.js';
+import type { CaseScript, DialogueLine, EvidenceId, LocationId, Testimony } from '../../types/index.js';
 import type { DomElements } from './DomElements.js';
 import { ModalManager } from './ModalManager.js';
+import { applyAdjournment, getActiveTrial, shouldAdjourn } from './TrialDayRouter.js';
 import { VisualEffects } from './VisualEffects.js';
 
 export type TrialPhase = 'IDLE' | 'TESTIMONY' | 'CLIMAX';
@@ -21,12 +22,14 @@ export interface TrialControllerDeps {
   onQueueDialogue: (dialogue: DialogueLine[], onComplete?: () => void) => void;
   onRenderLine: (line: DialogueLine) => void;
   onOpenCourtRecord: (isTrialPresent: boolean) => void;
+  onAdjourn?: (location: LocationId) => void;
 }
 
 export class TrialController {
   public phase: TrialPhase = 'IDLE';
   public currentTestimony: Testimony | null = null;
   public currentStatementIdx = 0;
+  private testimonyKey: 'testimony1' | 'testimony2' | null = null;
   private script: CaseScript;
 
   constructor(private readonly deps: TrialControllerDeps) {
@@ -37,10 +40,12 @@ export class TrialController {
 
   // @Section(Trial State Snapshot)
   public getTrialSnapshot(): TrialStateSnapshot {
-    let testimonyKey: 'testimony1' | 'testimony2' | null = null;
-    if (this.currentTestimony === this.script.trial.testimony1) testimonyKey = 'testimony1';
-    else if (this.currentTestimony === this.script.trial.testimony2) testimonyKey = 'testimony2';
-    return { phase: this.phase, testimonyKey, statementIdx: this.currentStatementIdx };
+    return {
+      phase: this.phase,
+      testimonyKey: this.testimonyKey,
+      statementIdx: this.currentStatementIdx,
+      trialDay: this.deps.state.trialDay
+    };
   }
 
   // fallow-ignore-next-line complexity
@@ -52,6 +57,7 @@ export class TrialController {
 
     if (snapshot?.phase === 'CLIMAX') return this.startClimax();
     if (snapshot?.phase === 'TESTIMONY' && snapshot.testimonyKey) {
+      if (snapshot.trialDay) this.deps.state.trialDay = snapshot.trialDay;
       this.startTestimony(snapshot.testimonyKey);
       this.currentStatementIdx = snapshot.statementIdx || 0;
       return this.renderCurrentStatement();
@@ -67,12 +73,13 @@ export class TrialController {
     this.hideControls();
     this.deps.dom.hotspotsContainerEl.innerHTML = '';
     this.deps.dom.locationBannerEl.textContent = i18n.t.locationCourtroom;
-    this.deps.onQueueDialogue(this.script.trial.intro, /*onComplete*/ () => this.startTestimony('testimony1'));
+    this.deps.onQueueDialogue(getActiveTrial(this.script, this.deps.state.trialDay).intro, /*onComplete*/ () => this.startTestimony('testimony1'));
   }
   // @Section(Testimony Navigation)
   public startTestimony(testimonyKey: 'testimony1' | 'testimony2'): void {
     this.phase = 'TESTIMONY';
-    this.currentTestimony = this.script.trial[testimonyKey];
+    this.testimonyKey = testimonyKey;
+    this.currentTestimony = getActiveTrial(this.script, this.deps.state.trialDay)[testimonyKey];
     this.currentStatementIdx = 0;
     this.deps.midiComposer.playTrack(this.currentTestimony.bgm);
     this.deps.dom.bgEl.style.backgroundImage = "url('assets/bg_witness.jpg')";
@@ -122,9 +129,19 @@ export class TrialController {
   private onSuccessContradiction(dialogue: DialogueLine[]): void {
     this.hideControls();
     this.deps.onQueueDialogue(dialogue, /*onComplete*/ () => {
-      if (this.currentTestimony === this.script.trial.testimony1) return this.startTestimony('testimony2');
-      if (this.currentTestimony === this.script.trial.testimony2) this.startClimax();
+      if (this.testimonyKey === 'testimony1') return this.startTestimony('testimony2');
+      if (shouldAdjourn(this.script, this.deps.state.trialDay)) return this.adjournToInvestigation();
+      this.startClimax();
     });
+  }
+
+  private adjournToInvestigation(): void {
+    const adjournment = applyAdjournment(this.deps.state, this.script);
+    if (!adjournment) return this.startClimax();
+    this.phase = 'IDLE';
+    this.currentTestimony = null;
+    this.testimonyKey = null;
+    this.deps.onAdjourn?.(adjournment.nextLocation);
   }
 
   private applyPenaltyEffects(): void {
@@ -188,11 +205,9 @@ export class TrialController {
 
   // fallow-ignore-next-line complexity
   public setScript(script: CaseScript): void {
-    const isTestimony1 = this.currentTestimony === this.script.trial.testimony1;
-    const isTestimony2 = this.currentTestimony === this.script.trial.testimony2;
     this.script = script;
-    if (isTestimony1) this.currentTestimony = script.trial.testimony1;
-    else if (isTestimony2) this.currentTestimony = script.trial.testimony2;
-    if (this.phase === 'TESTIMONY' && this.currentTestimony) this.renderCurrentStatement();
+    if (this.phase !== 'TESTIMONY' || !this.testimonyKey) return;
+    this.currentTestimony = getActiveTrial(this.script, this.deps.state.trialDay)[this.testimonyKey];
+    this.renderCurrentStatement();
   }
 }

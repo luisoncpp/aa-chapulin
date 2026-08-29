@@ -18,6 +18,7 @@ export type {
 // @Section(Evidence Subsystem Types)
 export type {
   EvidenceId,
+  EvidenceItem,
   EvidenceCatalogMap
 } from './Private/evidence.js';
 
@@ -25,6 +26,8 @@ export type {
 export type {
   Language,
   GameMode,
+  CaseId,
+  TrialDay,
   LocationId,
   GameFlags
 } from './Private/state.js';
@@ -40,6 +43,8 @@ export type {
   InvestigationScene,
   Testimony,
   ClimaxDefinition,
+  TrialDayScript,
+  AdjournmentDefinition,
   CaseScript
 } from './Private/script.js';
 

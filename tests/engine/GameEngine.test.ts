@@ -347,4 +347,30 @@ describe('GameEngine Coordinator', () => {
     engine.handleAdvance(); // advance to line 3
     expect(state.unlockedLocations).toEqual(['museum', 'detention']);
   });
+
+  it('starts Case 2 investigation at the detention center', () => {
+    engine.startGame('case2');
+    vi.advanceTimersByTime(400);
+    expect(state.caseId).toBe('case2');
+    expect(state.currentLocation).toBe('detention');
+    expect(dom.locationBannerEl.textContent).toContain('Detención');
+  });
+
+  it('starts Case 2 trial debug with day-1 evidence', () => {
+    state.caseId = 'case2';
+    engine.startTrialDebug();
+    vi.advanceTimersByTime(400);
+    expect(state.mode).toBe('TRIAL');
+    expect(state.hasEvidence('reloj_pendulo')).toBe(true);
+    expect(state.hasEvidence('informe_boveda')).toBe(true);
+  });
+
+  it('returns to postal investigation when Case 2 adjourns', () => {
+    engine.startGame('case2');
+    vi.advanceTimersByTime(400);
+    const adjourn = (engine as unknown as { handleAdjournment: (loc: string) => void });
+    adjourn.handleAdjournment('oficina_postal');
+    expect(state.currentLocation).toBe('oficina_postal');
+    expect(dom.btnInvTrial.classList.contains('disabled')).toBe(true);
+  });
 });

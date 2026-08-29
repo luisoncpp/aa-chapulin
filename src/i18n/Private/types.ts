@@ -44,6 +44,7 @@ export interface UiTranslations {
   splashSubtitle: string;
   splashTip: string;
   btnStartGame: string;
+  btnStartCase2: string;
   btnStartTrialDebug: string;
   btnContinue: string;
   langToggleLabel: string;

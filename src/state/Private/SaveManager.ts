@@ -4,12 +4,13 @@
  * Handles serialization, schema validation, and storage errors for [[./GameStateManager.ts]].
  */
 
-import type { EvidenceId, GameFlags, GameMode, Language, LocationId } from '../../types/index.js';
+import type { CaseId, EvidenceId, GameFlags, GameMode, Language, LocationId, TrialDay } from '../../types/index.js';
 
 export interface TrialStateSnapshot {
   phase: 'IDLE' | 'TESTIMONY' | 'CLIMAX';
   testimonyKey?: 'testimony1' | 'testimony2' | null;
   statementIdx: number;
+  trialDay?: TrialDay;
 }
 
 export interface SaveData {
@@ -24,6 +25,8 @@ export interface SaveData {
   inventory: EvidenceId[];
   flags: GameFlags;
   trial?: TrialStateSnapshot;
+  caseId?: CaseId;
+  trialDay?: TrialDay;
 }
 
 // fallow-ignore-next-line unused-export

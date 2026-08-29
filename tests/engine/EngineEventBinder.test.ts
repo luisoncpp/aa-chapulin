@@ -19,6 +19,7 @@ describe('EngineEventBinder', () => {
   let trial: TrialController;
 
   let startedGame = false;
+  let startedCase2 = false;
   let advanced = false;
   let courtRecordOpened = false;
   let presentedFromModal = false;
@@ -32,6 +33,7 @@ describe('EngineEventBinder', () => {
     midiComposerInstance = new MidiMusicComposer(soundEngineInstance);
 
     startedGame = false;
+    startedCase2 = false;
     advanced = false;
     courtRecordOpened = false;
     presentedFromModal = false;
@@ -62,6 +64,7 @@ describe('EngineEventBinder', () => {
       investigation,
       trial,
       onStartGame: () => { startedGame = true; },
+      onStartCase2: () => { startedCase2 = true; },
       onAdvance: () => { advanced = true; },
       onOpenCourtRecord: () => { courtRecordOpened = true; },
       onPresentFromModal: () => { presentedFromModal = true; }
@@ -71,6 +74,8 @@ describe('EngineEventBinder', () => {
   it('dispatches start game and audio mute toggle events', () => {
     document.getElementById('btn-start-game')?.click();
     expect(startedGame).toBe(true);
+    document.getElementById('btn-start-case2')?.click();
+    expect(startedCase2).toBe(true);
 
     dom.btnAudioToggleEl.click();
     expect(dom.btnAudioToggleEl.textContent).toBe('🔇');

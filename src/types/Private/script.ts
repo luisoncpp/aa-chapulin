@@ -6,7 +6,7 @@
 
 import type { SFXName, TrackName } from './audio.js';
 import type { EvidenceId } from './evidence.js';
-import type { LocationId } from './state.js';
+import type { CaseId, LocationId } from './state.js';
 
 // @Section(Dialogue & Visual Tags)
 export type SpeakerName =
@@ -41,6 +41,7 @@ export type PoseName =
   | 'supersam_idle'
   | 'supersam_slam'
   | 'supersam_point'
+  | 'supersam_sweat'
   | 'supersam_breakdown'
   | 'tripaseca_smug'
   | 'tripaseca_sweat'
@@ -50,6 +51,25 @@ export type PoseName =
   | 'judge_gavel'
   | 'judge_thinking'
   | 'judge_shock'
+  | 'chompiras_idle'
+  | 'chompiras_nervous'
+  | 'chompiras_crying'
+  | 'chompiras_relieved'
+  | 'peterete_smug'
+  | 'peterete_thinking'
+  | 'peterete_sweat'
+  | 'peterete_panic'
+  | 'peterete_breakdown'
+  | 'jirafales_idle'
+  | 'jirafales_smoking'
+  | 'jirafales_angry'
+  | 'jirafales_shock'
+  | 'jaimito_idle'
+  | 'jaimito_tired'
+  | 'jaimito_proud'
+  | 'clotilde_idle'
+  | 'clotilde_flustered'
+  | 'clotilde_mysterious'
   | null;
 
 export type CutinName =
@@ -136,7 +156,26 @@ export interface TrialScript {
   climax: ClimaxDefinition;
 }
 
+export interface TrialDayScript {
+  intro: DialogueLine[];
+  testimony1: Testimony;
+  testimony2: Testimony;
+}
+
+export interface AdjournmentDefinition {
+  nextLocation: LocationId;
+  unlockLocations: LocationId[];
+  requiredEvidence: EvidenceId[];
+  trial: TrialDayScript;
+}
+
 export interface CaseScript {
-  investigation: Record<LocationId, InvestigationScene>;
+  id: CaseId;
+  startLocation: LocationId;
+  requiredEvidence: EvidenceId[];
+  debugEvidence: EvidenceId[];
+  debugUnlockLocations: LocationId[];
+  investigation: Record<string, InvestigationScene>;
   trial: TrialScript;
+  adjournment?: AdjournmentDefinition;
 }

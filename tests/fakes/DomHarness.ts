@@ -62,6 +62,7 @@ export function setupDomHarness(): DomElements {
         <button id="btn-lang-splash">IDIOMA</button>
         <button id="btn-continue-game" class="hidden">CONTINUAR</button>
         <button id="btn-start-game">COMENZAR</button>
+        <button id="btn-start-case2">CASO 2</button>
         <button id="btn-start-trial-debug">MODO DEBUG</button>
       </div>
       <div id="court-record-modal" class="game-modal hidden">

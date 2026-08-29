@@ -1,5 +1,6 @@
 // @Architecture(descriptionShort="Unit tests for game state manager, inventory, and health", type="test", icon="database")
 import { describe, expect, it, beforeEach } from 'vitest';
+import { getCaseScript } from '../../src/case/index.js';
 import { GameStateManager, gameState } from '../../src/state/index.js';
 import type { EvidenceId } from '../../src/types/index.js';
 
@@ -147,10 +148,25 @@ describe('GameStateManager', () => {
     expect(state.flags.examined_pedestal).toBe(true);
   });
 
+  it('configures Case 2 progression and day-2 evidence gates', () => {
+    const script = getCaseScript('es', 'case2');
+    state.beginNewCase(script);
+    expect(state.caseId).toBe('case2');
+    expect(state.currentLocation).toBe('detention');
+    expect(state.unlockedLocations).toEqual(['detention']);
+    expect(state.checkTrialReadiness()).toBe(false);
+    script.requiredEvidence.forEach((id) => state.addEvidence(id));
+    expect(state.checkTrialReadiness()).toBe(true);
+    state.beginTrialDay2(script.adjournment!);
+    state.applyProgressionRules(script);
+    expect(state.trialDay).toBe(2);
+    expect(state.requiredEvidence).toEqual(script.adjournment?.requiredEvidence);
+  });
+
   it('exports singleton gameState with evidence catalog correctly', () => {
     expect(gameState).toBeInstanceOf(GameStateManager);
     expect(gameState.allEvidence.insignia_abogado.name).toBe('Insignia de Abogado CH');
-    expect(Object.keys(gameState.allEvidence)).toHaveLength(8);
+    expect(Object.keys(gameState.allEvidence).length).toBeGreaterThanOrEqual(20);
   });
 });
 

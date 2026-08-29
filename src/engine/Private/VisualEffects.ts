@@ -6,6 +6,7 @@
 
 import type { CutinName, DialogueLine, FurnitureType, PoseName } from '../../types/index.js';
 import type { DomElements } from './DomElements.js';
+import { resolvePoseAsset } from './PoseAliases.js';
 import { applyStageFrame, resolveStageFrame } from './StageLayout.js';
 
 const FURNITURE_ASSETS: Record<'podium' | 'bench', string> = {
@@ -21,7 +22,13 @@ const TRIAL_SPEAKER_BACKGROUNDS: Record<string, string> = {
   'CHAPULÍN': 'assets/bg_defense.jpg',
   'SUPER SAM': 'assets/bg_courtroom.jpg',
   JUEZ: 'assets/bg_judge.jpg',
-  TRIPASECA: 'assets/bg_witness.jpg'
+  TRIPASECA: 'assets/bg_witness.jpg',
+  FLORINDA: 'assets/bg_witness.jpg',
+  PETERETE: 'assets/bg_witness.jpg',
+  CHOMPIRAS: 'assets/bg_witness.jpg',
+  JIRAFALES: 'assets/bg_witness.jpg',
+  JAIMITO: 'assets/bg_witness.jpg',
+  CLOTILDE: 'assets/bg_witness.jpg'
 };
 
 function isDefenseSpeaker(speaker: string): boolean {
@@ -36,7 +43,9 @@ export class VisualEffects {
   // @Section(Character Pose Staging)
   public static setPose(charSpriteEl: HTMLImageElement, poseName: PoseName): void {
     if (!poseName) return;
-    charSpriteEl.src = `assets/${poseName}.png`;
+    const asset = resolvePoseAsset(poseName);
+    if (!asset) return;
+    charSpriteEl.src = `assets/${asset}.png`;
     charSpriteEl.classList.remove('hidden');
   }
 

@@ -175,10 +175,17 @@ export class InvestigationController {
   public checkInvestigationProgress(): void {
     const isReady = this.state.checkTrialReadiness();
     const trialBtn = this.dom.btnInvTrial;
-    if (!isReady || !trialBtn) return;
-    trialBtn.classList.remove('disabled');
-    trialBtn.classList.add('pulse-glow');
-    VisualEffects.showNotification(this.dom.gameNotificationEl, i18n.t.notifTrialReady);
+    if (!trialBtn) return;
+    trialBtn.classList.toggle('disabled', !isReady);
+    trialBtn.classList.toggle('pulse-glow', isReady);
+    if (isReady) {
+      VisualEffects.showNotification(this.dom.gameNotificationEl, i18n.t.notifTrialReady);
+    }
+  }
+
+  public resetTrialLaunchButton(): void {
+    this.dom.btnInvTrial?.classList.add('disabled');
+    this.dom.btnInvTrial?.classList.remove('pulse-glow');
   }
 
   public setScript(script: CaseScript): void {

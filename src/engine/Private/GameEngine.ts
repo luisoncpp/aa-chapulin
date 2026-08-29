@@ -8,7 +8,7 @@ import { midiComposer as defaultMidiComposer, soundEngine as defaultSoundEngine,
 import { CASE_SCRIPT as defaultCaseScript, getCaseScript } from '../../case/index.js';
 import { i18n } from '../../i18n/index.js';
 import { gameState as defaultGameState, type GameStateManager, SaveManager, type SaveData } from '../../state/index.js';
-import type { CaseScript, DialogueLine, EvidenceId, Language, LocationId, SFXName } from '../../types/index.js';
+import type { CaseId, CaseScript, DialogueLine, EvidenceId, Language, LocationId, SFXName } from '../../types/index.js';
 import { getDomElements, type DomElements } from './DomElements.js';
 import { EngineEventBinder } from './EngineEventBinder.js';
 import { InvestigationController } from './InvestigationController.js';
@@ -60,7 +60,8 @@ export class GameEngine {
       dom: this.dom, state: this.state, script: this.script, soundEngine: this.soundEngine,
       midiComposer: this.midiComposer, onQueueDialogue: (dlg, cb) => this.queueDialogue(dlg, cb),
       onRenderLine: (line) => this.renderDialogueLine(line),
-      onOpenCourtRecord: (isTrialPresent) => this.openCourtRecord(isTrialPresent)
+      onOpenCourtRecord: (isTrialPresent) => this.openCourtRecord(isTrialPresent),
+      onAdjourn: (location) => this.handleAdjournment(location)
     });
   }
 
@@ -69,7 +70,8 @@ export class GameEngine {
     EngineEventBinder.bind({
       dom: this.dom, soundEngine: this.soundEngine,
       investigation: this.investigation, trial: this.trial,
-      onStartGame: () => this.startGame(),
+      onStartGame: () => this.startGame('case1'),
+      onStartCase2: () => this.startGame('case2'),
       onStartTrialDebug: () => this.startTrialDebug(),
       onAdvance: () => this.handleAdvance(),
       onOpenCourtRecord: (isTrial) => this.openCourtRecord(isTrial),
@@ -88,7 +90,8 @@ export class GameEngine {
   public setLanguage(lang: Language): void {
     i18n.setLanguage(lang);
     this.state.setLanguage(lang);
-    this.script = getCaseScript(lang);
+    this.script = getCaseScript(lang, this.state.caseId);
+    this.state.applyProgressionRules(this.script);
     this.investigation.setScript(this.script);
     this.trial.setScript(this.script);
     UiLanguageUpdater.updateUi(this.dom, lang);
@@ -102,7 +105,16 @@ export class GameEngine {
     if (typeof window === 'undefined' || !window.location) return;
     const url = `${window.location.search} ${window.location.hash}`.toLowerCase();
     if (url.includes('lang=en')) this.setLanguage('en');
+    if (url.includes('case=2')) this.loadCase('case2');
     if (url.includes('trial')) this.startTrialDebug();
+  }
+
+  private loadCase(caseId: CaseId): void {
+    this.state.caseId = caseId;
+    this.script = getCaseScript(this.state.language, caseId);
+    this.investigation.setScript(this.script);
+    this.trial.setScript(this.script);
+    this.state.applyProgressionRules(this.script);
   }
 
   private dismissSplashAndInitAudio(): void {
@@ -115,19 +127,28 @@ export class GameEngine {
     }, /*delayInMs=*/ 400);
   }
 
-  public startGame(): void {
+  public startGame(caseId: CaseId = 'case1'): void {
     if (this.hasStarted) return;
     this.hasStarted = true;
+    this.loadCase(caseId);
+    this.state.beginNewCase(this.script);
     this.dismissSplashAndInitAudio();
-    this.investigation.startInvestigation('museum');
+    this.investigation.startInvestigation(this.script.startLocation);
   }
 
   public startTrialDebug(): void {
     if (this.hasStarted) return;
     this.hasStarted = true;
+    this.loadCase(this.state.caseId);
+    this.state.beginNewCase(this.script);
     this.dismissSplashAndInitAudio();
     this.state.populateTrialEvidence();
     this.trial.startTrial();
+  }
+
+  private handleAdjournment(location: LocationId): void {
+    this.investigation.resetTrialLaunchButton();
+    this.investigation.startInvestigation(location);
   }
 
   // @Section(Save & Load Management)
@@ -160,6 +181,7 @@ export class GameEngine {
     if (!this.hasStarted) this.dismissSplashAndInitAudio();
     this.hasStarted = true;
     this.state.restoreState(data);
+    this.loadCase(data.caseId ?? 'case1');
     this.setLanguage(data.language);
     ModalManager.updateHealthUI(this.dom.healthBarEl, this.state.health, this.state.maxHealth);
     this.dialogueQueue = [];

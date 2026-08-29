@@ -13,7 +13,19 @@ export type EvidenceId =
   | 'informe_medico'
   | 'foto_crimen'
   | 'chicharra_oro'
-  | 'bolsa_dolares';
+  | 'bolsa_dolares'
+  | 'chanfle_oro'
+  | 'reloj_pendulo'
+  | 'informe_boveda'
+  | 'palanca_rota'
+  | 'aroma_dulce'
+  | 'plano_hacienda'
+  | 'caja_generador'
+  | 'registro_postal'
+  | 'multa_transito'
+  | 'frasco_valeriana'
+  | 'molde_cera'
+  | 'lata_grasa';
 
 export interface EvidenceItem {
   id: EvidenceId;

@@ -8,7 +8,7 @@ import type { InvestigationScene } from '../../types/index.js';
 export const CASE2_BOVEDA_EN: InvestigationScene = {
   title: 'Grand Treasure Vault - Crime Scene',
   name: 'Underground Vault',
-  bg: 'assets/bg_museum.jpg',
+  bg: 'assets/bg_boveda.jpg',
   bgm: 'investigation',
   speaker: 'NARRADOR',
   intro: [

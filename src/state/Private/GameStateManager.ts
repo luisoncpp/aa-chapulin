@@ -124,9 +124,8 @@ export class GameStateManager {
     this.flags.ready_for_trial = false;
     this.requiredEvidence = [...adjournment.requiredEvidence];
     this.mode = 'INVESTIGATION';
-    adjournment.unlockLocations.forEach(/*unlockEach*/ (loc) => {
-      this.unlockLocation(loc);
-    });
+    this.currentLocation = adjournment.nextLocation;
+    this.unlockedLocations = [...adjournment.unlockLocations];
   }
 
   // @Section(Investigation Readiness)

@@ -455,6 +455,31 @@ body {
     animation: blinkArrow 0.8s infinite alternate;
 }
 
+#dialogue-box.examine-mode {
+    height: 48px;
+    padding: 8px 18px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.85);
+    pointer-events: none;
+}
+
+#dialogue-box.examine-mode #speaker-tag {
+    top: -14px;
+    padding: 1px 10px;
+}
+
+#dialogue-box.examine-mode #speaker-name {
+    font-size: 15px;
+}
+
+#dialogue-box.examine-mode #dialogue-text {
+    font-size: 17px;
+    line-height: 1.2;
+}
+
+#dialogue-box.examine-mode #dialogue-arrow {
+    display: none;
+}
+
 @keyframes blinkArrow {
     0% { transform: translateY(0); opacity: 0.3; }
     100% { transform: translateY(4px); opacity: 1; }

@@ -160,6 +160,8 @@ describe('GameStateManager', () => {
     state.beginTrialDay2(script.adjournment!);
     state.applyProgressionRules(script);
     expect(state.trialDay).toBe(2);
+    expect(state.currentLocation).toBe('oficina_postal');
+    expect(state.unlockedLocations).toEqual(['oficina_postal']);
     expect(state.requiredEvidence).toEqual(script.adjournment?.requiredEvidence);
   });
 

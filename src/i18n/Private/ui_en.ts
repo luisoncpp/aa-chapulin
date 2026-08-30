@@ -38,7 +38,8 @@ export const UI_EN: UiTranslations = {
   splashTitle: 'EL CHAPULÍN COLORADO',
   splashSubtitle: 'ACE ATTORNEY: THE CASE OF THE COLORADO SQUAD',
   splashTip: 'Click below to activate procedural MIDI audio and start playing!',
-  btnStartGame: '🔍 START INVESTIGATION (PLAY)',
+  btnStartGame: '🔍 CASE 1: THE COLORADO SQUAD',
+  btnStartCase2: '🔍 CASE 2: TURNABOUT OF THE TWO-FACED THIEF',
   btnStartTrialDebug: '⚖️ DEBUG MODE: START IN TRIAL',
   btnContinue: '📂 CONTINUE GAME',
   langToggleLabel: '🌐 Language: English',
@@ -46,6 +47,7 @@ export const UI_EN: UiTranslations = {
   locationMuseum: 'Museum of Antiques & Curiosities - Crime Scene',
   locationDetention: 'Detention Center - Visitor Room',
   locationCourtroom: 'High Court - Courtroom No. 1',
+  locationWaitingRoom: 'High Court - Waiting Room',
 
   notifEvidenceAdded: (name: string) => `Added to Court Record: ${name}!`,
   notifLocationUnlocked: (name: string) => `New location unlocked: ${name}!`,

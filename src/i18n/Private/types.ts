@@ -44,6 +44,7 @@ export interface UiTranslations {
   splashSubtitle: string;
   splashTip: string;
   btnStartGame: string;
+  btnStartCase2: string;
   btnStartTrialDebug: string;
   btnContinue: string;
   langToggleLabel: string;
@@ -52,6 +53,7 @@ export interface UiTranslations {
   locationMuseum: string;
   locationDetention: string;
   locationCourtroom: string;
+  locationWaitingRoom: string;
 
   // Notifications
   notifEvidenceAdded: (name: string) => string;

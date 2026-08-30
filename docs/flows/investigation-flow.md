@@ -13,11 +13,11 @@ Operational guide for player actions during the crime scene investigation phase.
 ## 3. Step-by-Step Sequence
 
 ### Scene Transition
-1. `gameState.currentLocation` is updated to the target location (`'museum'` or `'detention'`).
+1. `gameState.currentLocation` is updated to the target location (Case 1: `'museum'` / `'detention'`; Case 2: `'detention'`, `'boveda'`, `'restaurante'`, and after adjournment `'oficina_postal'` / `'casa_clotilde'`).
 2. `locationBannerEl` text updates to current scene title.
-3. `bgEl` background style switches to scene image (`bg_museum.jpg` or `bg_detention.jpg`).
+3. `bgEl` background style switches to the scene image from the active script (`bg_museum.jpg`, `bg_detention.jpg`, or Case 2 `bg_boveda.jpg` / `bg_restaurante.jpg` / `bg_postal.jpg` / `bg_clotilde.jpg`).
 4. `midiComposer.playTrack(scene.bgm)` transitions background music (`'investigation'` or `'suspense'`).
-5. `renderHotspots()` injects percentage-based clickable regions into `#hotspots-container`.
+5. `renderHotspots()` injects percentage-based clickable regions into `#hotspots-container` (`x,y,w,h` are of the 960×540 stage after `background-size: cover`, not of the raw background file).
 6. `queueDialogue(scene.intro)` presents opening narrative dialogue.
 
 ### Examination & Hotspot Click
@@ -40,7 +40,7 @@ Operational guide for player actions during the crime scene investigation phase.
 
 ### Location Selection & Move Modal
 1. Player clicks "🏃 Moverse" (`#btn-inv-move`).
-2. `investigation.openMoveMenu()` queries `gameState.unlockedLocations` and case scenes in `CASE_SCRIPT.investigation`.
+2. `investigation.openMoveMenu()` queries `gameState.unlockedLocations` and scenes on the active script (`getCaseScript` → `investigation`).
 3. `#move-locations-modal` opens via `ModalManager.openMoveModal()` with destination buttons:
    - Current location is styled with `disabled` and badge `(Actual)` / `(Current)`.
    - Other unlocked locations are clickable.
@@ -56,12 +56,13 @@ Operational guide for player actions during the crime scene investigation phase.
 5. On completion callback, `checkInvestigationProgress()` runs.
 
 ### Unlocking & Launching Trial
-1. `gameState.checkTrialReadiness()` in [[src/state/Private/GameStateManager.ts#Investigation Readiness]] verifies the 5 mandatory clues are collected.
-2. If ready, `#btn-inv-trial` loses `.disabled`, gains `.pulse-glow`, and displays a ready notification.
-3. Player clicks "⚖️ Ir a Juicio": `trial.startTrial()` is invoked.
+1. `gameState.checkTrialReadiness()` in [[src/state/Private/GameStateManager.ts#Investigation Readiness]] checks `script.requiredEvidence` (day 1) or `adjournment.requiredEvidence` after Case 2 day-1 adjournment.
+2. If ready, `#btn-inv-trial` loses `.disabled`, sets `disabled = false`, gains `.pulse-glow`, and displays a ready notification.
+3. While disabled (due to `disabled` property and `.disabled` class), clicking `#btn-inv-trial` is ignored.
+4. When enabled, player clicks "⚖️ Ir a Juicio": `trial.startTrial()` is invoked.
 
 ## 4. Reads
-- `CASE_SCRIPT.investigation[location]` in [[src/case/Private/case1_investigation.ts]]
+- Active `script.investigation[location]` ([[src/case/Private/case1_investigation.ts]] or Case 2 scenes via [[src/case/Private/case2_script.ts]])
 - `gameState.inventory` in [[src/state/Private/GameStateManager.ts]]
 - `gameState.unlockedLocations` in [[src/state/Private/GameStateManager.ts]]
 - `gameState.flags` in [[src/state/Private/GameStateManager.ts]]
@@ -81,8 +82,8 @@ Operational guide for player actions during the crime scene investigation phase.
 - [[src/engine/Private/InvestigationController.ts]]
 - [[src/engine/Private/ModalManager.ts]]
 - [[src/state/Private/GameStateManager.ts]]
-- [[src/case/Private/case1_investigation.ts]]
+- [[src/case/Private/case1_investigation.ts]] / [[src/case/Private/case2_script.ts]]
 
 ## 8. Common Failure Modes
-- **Trial button remains disabled**: Player missed one of the 5 required clues (`chipote_chillon`, `pastillas_chiquitolina`, `antenitas_vinil`, `informe_medico`, `foto_crimen`).
+- **Trial button remains disabled**: Missing an ID from the current `requiredEvidence` list (Case 1 five clues; Case 2 six day-1 or six day-2 items after adjournment). After Case 2 day-1 adjournment, [[src/engine/Private/AdjournmentHandler.ts]] calls `resetTrialLaunchButton()` so the button stays off until day-2 evidence is complete.
 - **Hotspots unclickable**: `isExamineActive` is false; user must click "🔍 Examinar" button first.

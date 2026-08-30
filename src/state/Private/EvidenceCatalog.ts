@@ -5,6 +5,7 @@
  */
 
 import type { EvidenceCatalogMap, Language } from '../../types/index.js';
+import { CASE2_EVIDENCE_EN, CASE2_EVIDENCE_ES } from './EvidenceCatalogCase2.js';
 
 // @Section(Spanish Evidence Catalog)
 // fallow-ignore-next-line unused-export
@@ -56,8 +57,9 @@ export const EVIDENCE_CATALOG_ES: EvidenceCatalogMap = {
     name: 'Bolsa de Dólares de Super Sam',
     icon: 'assets/bolsa_dolares.png',
     desc: 'Saco pesado con monedas de plata y billetes con el lema "Time is Money".'
-  }
-};
+  },
+  ...CASE2_EVIDENCE_ES
+} as EvidenceCatalogMap;
 
 // @Section(English Evidence Catalog)
 // fallow-ignore-next-line unused-export
@@ -109,8 +111,9 @@ export const EVIDENCE_CATALOG_EN: EvidenceCatalogMap = {
     name: "Super Sam's Dollar Bag",
     icon: 'assets/bolsa_dolares.png',
     desc: 'Heavy sack with silver coins and bills carrying the motto "Time is Money".'
-  }
-};
+  },
+  ...CASE2_EVIDENCE_EN
+} as EvidenceCatalogMap;
 
 // @Section(Evidence Registry Accessor)
 // fallow-ignore-next-line unused-export

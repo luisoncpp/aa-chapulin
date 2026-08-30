@@ -78,6 +78,10 @@ describe('VisualEffects Subsystem', () => {
 
     const firstPiece = dom.confettiContainerEl.children[0] as HTMLElement;
     expect(firstPiece.className).toBe('confetti-piece');
+
+    VisualEffects.clearConfetti(dom.confettiContainerEl);
+    expect(dom.confettiContainerEl.children).toHaveLength(0);
+    expect(dom.confettiContainerEl.classList.contains('hidden')).toBe(true);
     expect(firstPiece.style.left).toBeDefined();
     expect(firstPiece.style.backgroundColor).toBeDefined();
   });
@@ -145,6 +149,23 @@ describe('VisualEffects Subsystem', () => {
       /*isTrialMode=*/ true
     );
     expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(true);
+  });
+
+  it('keeps waiting-room epilogue lines off courtroom furniture', () => {
+    VisualEffects.updateStagingForLine(
+      dom,
+      {
+        speaker: 'CHOMPIRAS',
+        pose: 'chompiras_relieved',
+        text: '¡Gracias!',
+        bg: 'assets/bg_waiting_room.jpg',
+        furniture: 'none'
+      },
+      /*isTrialMode=*/ true
+    );
+    expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_waiting_room.jpg');
+    expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(true);
+    expect(dom.gameScreen.dataset.stageFrame).toBe('plain');
   });
 
   it('automatically switches courtroom background and furniture for each speaker in trial mode', () => {

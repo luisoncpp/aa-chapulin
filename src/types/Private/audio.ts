@@ -23,6 +23,10 @@ export type TrackName =
   | 'objection'
   | 'pursuit'
   | 'investigation'
+  | 'investigation_core'
+  | 'restaurante'
+  | 'callejon_postal'
+  | 'casa_clotilde'
   | 'suspense'
   | 'victory'
   | 'detention_center';

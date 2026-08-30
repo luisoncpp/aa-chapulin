@@ -1,6 +1,6 @@
 // @Architecture(descriptionShort="Unit tests validating case narrative scripts and contradictions", type="test", icon="layers")
 import { describe, expect, it } from 'vitest';
-import { CASE_SCRIPT } from '../../src/case/index.js';
+import { CASE_SCRIPT, getCaseScript } from '../../src/case/index.js';
 import { gameState } from '../../src/state/index.js';
 
 describe('Case Scripts Narrative Integrity', () => {
@@ -57,5 +57,16 @@ describe('Case Scripts Narrative Integrity', () => {
 
     const innocentLine = climax.verdict.find((l) => l.text.includes('¡INOCENTE!'));
     expect(innocentLine).toBeDefined();
+  });
+
+  it('keeps Case 2 thanks-you dialogue in the waiting-room epilogue', () => {
+    const case2 = getCaseScript('es', 'case2');
+    const climax = case2.trial.climax;
+    expect(climax.epilogue?.bg).toBe('assets/bg_waiting_room.jpg');
+    expect(climax.epilogue?.dialogue[0]?.speaker).toBe('NARRADOR');
+    expect(climax.epilogue?.dialogue.some((l) => l.speaker === 'CHOMPIRAS')).toBe(true);
+    expect(climax.verdict.some((l) => l.speaker === 'CHOMPIRAS')).toBe(false);
+    const en = getCaseScript('en', 'case2').trial.climax;
+    expect(en.epilogue?.dialogue.length).toBe(climax.epilogue?.dialogue.length);
   });
 });

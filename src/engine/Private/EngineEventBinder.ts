@@ -16,6 +16,7 @@ export interface EventBinderConfig {
   investigation: InvestigationController;
   trial: TrialController;
   onStartGame: () => void;
+  onStartCase2?: () => void;
   onStartTrialDebug?: () => void;
   onAdvance: () => void;
   onOpenCourtRecord: (isTrialPresent: boolean) => void;
@@ -38,8 +39,11 @@ export class EngineEventBinder {
 
   // @Section(Audio & Splash Bindings)
   private static bindStartAndAudio(config: EventBinderConfig): void {
-    const { dom, soundEngine, onStartGame, onStartTrialDebug, onToggleLanguage } = config;
+    const { dom, soundEngine, onStartGame, onStartCase2, onStartTrialDebug, onToggleLanguage } = config;
     dom.btnStartGame?.addEventListener('click', /*onStartClick*/ () => onStartGame());
+    dom.btnStartCase2?.addEventListener('click', /*onStartCase2Click*/ () => {
+      onStartCase2?.();
+    });
     dom.btnStartTrialDebug?.addEventListener('click', /*onStartTrialDebugClick*/ () => {
       onStartTrialDebug?.();
     });
@@ -138,6 +142,7 @@ export class EngineEventBinder {
     const { dom, trial, onOpenCourtRecord } = config;
     dom.btnInvTrial.addEventListener('click', /*onStartTrialClick*/ (e) => {
       e.stopPropagation();
+      if (dom.btnInvTrial.disabled || dom.btnInvTrial.classList.contains('disabled')) return;
       trial.startTrial();
     });
     dom.btnPress.addEventListener('click', /*onPressClick*/ (e) => {

@@ -225,16 +225,38 @@ describe('GameEngine Coordinator', () => {
     const originalLocation = window.location;
     delete (window as any).location;
     window.location = { search: '?mode=trial', hash: '' } as any;
+    const debugState = new GameStateManager();
 
     const autoDebugEngine = new GameEngine({
       dom,
-      state: new GameStateManager(),
+      state: debugState,
       soundEngine: soundEngineInstance,
       midiComposer: midiComposerInstance
     });
     autoDebugEngine.init();
     vi.advanceTimersByTime(400);
 
+    expect(debugState.mode).toBe('TRIAL');
+    window.location = originalLocation;
+  });
+
+  it('loads Case 2 and starts trial debug from ?case=2&trial', () => {
+    const originalLocation = window.location;
+    delete (window as any).location;
+    window.location = { search: '?case=2&trial', hash: '' } as any;
+    const debugState = new GameStateManager();
+
+    new GameEngine({
+      dom,
+      state: debugState,
+      soundEngine: soundEngineInstance,
+      midiComposer: midiComposerInstance
+    }).init();
+    vi.advanceTimersByTime(400);
+
+    expect(debugState.caseId).toBe('case2');
+    expect(debugState.mode).toBe('TRIAL');
+    expect(debugState.hasEvidence('reloj_pendulo')).toBe(true);
     window.location = originalLocation;
   });
 
@@ -346,5 +368,37 @@ describe('GameEngine Coordinator', () => {
     engine.handleAdvance(); // finish typewriter
     engine.handleAdvance(); // advance to line 3
     expect(state.unlockedLocations).toEqual(['museum', 'detention']);
+  });
+
+  it('starts Case 2 investigation at the detention center', () => {
+    engine.startGame('case2');
+    vi.advanceTimersByTime(400);
+    expect(state.caseId).toBe('case2');
+    expect(state.currentLocation).toBe('detention');
+    expect(dom.locationBannerEl.textContent).toContain('Detención');
+  });
+
+  it('starts Case 2 trial debug with day-1 evidence', () => {
+    state.caseId = 'case2';
+    engine.startTrialDebug();
+    vi.advanceTimersByTime(400);
+    expect(state.mode).toBe('TRIAL');
+    expect(state.hasEvidence('reloj_pendulo')).toBe(true);
+    expect(state.hasEvidence('informe_boveda')).toBe(true);
+  });
+
+  it('returns to postal investigation when Case 2 adjourns', () => {
+    engine.startGame('case2');
+    vi.advanceTimersByTime(400);
+    state.flags.ready_for_trial = true;
+    document.getElementById('btn-inv-trial')?.classList.remove('disabled');
+    document.getElementById('btn-inv-trial')?.classList.add('pulse-glow');
+    const adjourn = (engine as unknown as { handleAdjournment: (loc: string) => void });
+    adjourn.handleAdjournment('oficina_postal');
+    expect(state.currentLocation).toBe('oficina_postal');
+    expect(state.mode).toBe('INVESTIGATION');
+    expect(dom.btnInvTrial.classList.contains('disabled')).toBe(true);
+    expect(dom.btnInvTrial.classList.contains('pulse-glow')).toBe(false);
+    expect(dom.locationBannerEl.textContent).toContain('Postal');
   });
 });

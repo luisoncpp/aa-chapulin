@@ -38,7 +38,8 @@ export const UI_ES: UiTranslations = {
   splashTitle: 'EL CHAPULÍN COLORADO',
   splashSubtitle: 'ACE ATTORNEY: EL CASO DEL ESCUADRÓN COLORADO',
   splashTip: '¡Haz clic abajo para activar la música MIDI procedimental y comenzar!',
-  btnStartGame: '🔍 INICIAR INVESTIGACIÓN (PLAY)',
+  btnStartGame: '🔍 CASO 1: EL ESCUADRÓN COLORADO',
+  btnStartCase2: '🔍 CASO 2: EL JUICIO DEL CHÓMPIRAS',
   btnStartTrialDebug: '⚖️ MODO DEBUG: INICIAR EN JUICIO',
   btnContinue: '📂 CONTINUAR PARTIDA (CONTINUE)',
   langToggleLabel: '🌐 Idioma: Español',
@@ -46,6 +47,7 @@ export const UI_ES: UiTranslations = {
   locationMuseum: 'Museo de Antigüedades y Curiosidades - Escena del Crimen',
   locationDetention: 'Centro de Detención - Sala de Visitas',
   locationCourtroom: 'Tribunal Superior - Sala de Audiencias No. 1',
+  locationWaitingRoom: 'Tribunal Superior - Sala de Espera',
 
   notifEvidenceAdded: (name: string) => `¡Añadido al Acta del Juicio: ${name}!`,
   notifLocationUnlocked: (name: string) => `¡Nueva ubicación desbloqueada: ${name}!`,

@@ -8,6 +8,12 @@ import type { TrackCatalogMap } from '../../types/index.js';
 import { crossExamAllegroTrack, crossExamModeratoTrack, trialTrack } from './tracks/CourtroomTracks.js';
 import { objectionTrack, pursuitTrack } from './tracks/TurnaroundTracks.js';
 import { investigationTrack, suspenseTrack, victoryTrack, detentionCenterTrack } from './tracks/AtmosphereTracks.js';
+import {
+  callejonPostalTrack,
+  casaClotildeTrack,
+  investigationCoreTrack,
+  restauranteTrack
+} from './tracks/InvestigationTracks.js';
 
 export const TRACK_CATALOG: TrackCatalogMap = {
   // @Section(Courtroom & Cross-Examination Tracks)
@@ -21,6 +27,10 @@ export const TRACK_CATALOG: TrackCatalogMap = {
 
   // @Section(Atmosphere & Celebration Tracks)
   investigation: investigationTrack,
+  investigation_core: investigationCoreTrack,
+  restaurante: restauranteTrack,
+  callejon_postal: callejonPostalTrack,
+  casa_clotilde: casaClotildeTrack,
   suspense: suspenseTrack,
   victory: victoryTrack,
   detention_center: detentionCenterTrack

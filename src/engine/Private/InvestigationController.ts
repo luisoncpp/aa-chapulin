@@ -9,6 +9,7 @@ import { i18n } from '../../i18n/index.js';
 import type { GameStateManager } from '../../state/index.js';
 import type { CaseScript, DialogueLine, Hotspot, LocationId, PoseName, TalkOption } from '../../types/index.js';
 import type { DomElements } from './DomElements.js';
+import { renderHotspots } from './HotspotLayer.js';
 import { ModalManager } from './ModalManager.js';
 import { VisualEffects } from './VisualEffects.js';
 
@@ -46,6 +47,7 @@ export class InvestigationController {
     this.state.mode = 'INVESTIGATION';
     this.state.currentLocation = location;
     this.isFirstTimeDialogue = false;
+    this.dom.dialogueBoxEl.classList.remove('examine-mode');
     this.dom.investigationNavEl.classList.remove('hidden');
     this.dom.examineNavEl.classList.add('hidden');
     this.dom.trialNavEl.classList.add('hidden');
@@ -65,29 +67,11 @@ export class InvestigationController {
 
   // @Section(Hotspot Rendering & Clicks)
   public renderHotspots(hotspots: Hotspot[]): void {
-    this.dom.hotspotsContainerEl.innerHTML = '';
-    hotspots.forEach((h) => {
-      const spot = document.createElement('div');
-      spot.className = 'hotspot-area';
-      spot.style.left = `${h.x}%`;
-      spot.style.top = `${h.y}%`;
-      spot.style.width = `${h.w}%`;
-      spot.style.height = `${h.h}%`;
-      spot.title = h.label;
-
-      spot.addEventListener('mouseenter', () => {
-        if (!this.isExamineActive) return;
-        this.dom.examineTooltipEl.textContent = `🔍 ${h.label}`;
-        this.dom.examineTooltipEl.classList.remove('hidden');
-      });
-      spot.addEventListener('mouseleave', () => {
-        this.dom.examineTooltipEl.classList.add('hidden');
-      });
-      spot.addEventListener('click', (e) => {
-        e.stopPropagation();
-        this.handleHotspotClick(h);
-      });
-      this.dom.hotspotsContainerEl.appendChild(spot);
+    renderHotspots(hotspots, {
+      container: this.dom.hotspotsContainerEl,
+      tooltipEl: this.dom.examineTooltipEl,
+      isExamineActive: () => this.isExamineActive,
+      onClick: (h) => this.handleHotspotClick(h)
     });
   }
 
@@ -116,6 +100,7 @@ export class InvestigationController {
     if (this.isFirstTimeDialogue) return;
     this.isExamineActive = true;
     this.dom.hotspotsContainerEl.classList.add('visible-hotspots');
+    this.dom.dialogueBoxEl.classList.add('examine-mode');
     this.dom.investigationNavEl.classList.add('hidden');
     this.dom.examineNavEl.classList.remove('hidden');
     VisualEffects.hideCharacter(this.dom.charSpriteEl);
@@ -130,6 +115,7 @@ export class InvestigationController {
   public exitExamineMode(): void {
     this.isExamineActive = false;
     this.dom.hotspotsContainerEl.classList.remove('visible-hotspots');
+    this.dom.dialogueBoxEl.classList.remove('examine-mode');
     this.dom.examineTooltipEl.classList.add('hidden');
     this.dom.examineNavEl.classList.add('hidden');
     this.dom.investigationNavEl.classList.remove('hidden');
@@ -175,10 +161,20 @@ export class InvestigationController {
   public checkInvestigationProgress(): void {
     const isReady = this.state.checkTrialReadiness();
     const trialBtn = this.dom.btnInvTrial;
-    if (!isReady || !trialBtn) return;
-    trialBtn.classList.remove('disabled');
-    trialBtn.classList.add('pulse-glow');
-    VisualEffects.showNotification(this.dom.gameNotificationEl, i18n.t.notifTrialReady);
+    if (!trialBtn) return;
+    trialBtn.classList.toggle('disabled', !isReady);
+    trialBtn.classList.toggle('pulse-glow', isReady);
+    trialBtn.disabled = !isReady;
+    if (isReady) {
+      VisualEffects.showNotification(this.dom.gameNotificationEl, i18n.t.notifTrialReady);
+    }
+  }
+
+  public resetTrialLaunchButton(): void {
+    if (!this.dom.btnInvTrial) return;
+    this.dom.btnInvTrial.classList.add('disabled');
+    this.dom.btnInvTrial.classList.remove('pulse-glow');
+    this.dom.btnInvTrial.disabled = true;
   }
 
   public setScript(script: CaseScript): void {

@@ -47,6 +47,7 @@ export class UiLanguageUpdater {
     if (dom.btnLoadGame) dom.btnLoadGame.title = t.hudLoadTitle;
     if (dom.btnContinueGame) dom.btnContinueGame.textContent = t.btnContinue;
     if (dom.btnStartGame) dom.btnStartGame.textContent = t.btnStartGame;
+    if (dom.btnStartCase2) dom.btnStartCase2.textContent = t.btnStartCase2;
     if (dom.btnStartTrialDebug) dom.btnStartTrialDebug.textContent = t.btnStartTrialDebug;
     if (dom.btnCourtRecord) {
       dom.btnCourtRecord.title = t.hudCourtRecordTitle;

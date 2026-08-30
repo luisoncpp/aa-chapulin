@@ -34,7 +34,7 @@ export function setupDomHarness(): DomElements {
           <button id="btn-inv-examine">🔍 Examinar</button>
           <button id="btn-inv-talk">💬 Hablar</button>
           <button id="btn-inv-move">🏃 Moverse</button>
-          <button id="btn-inv-trial" class="disabled">⚖️ Ir a Juicio</button>
+          <button id="btn-inv-trial" class="disabled" disabled>⚖️ Ir a Juicio</button>
         </div>
         <div id="examine-controls" class="hidden">
           <button id="btn-examine-back">◀ Volver</button>
@@ -62,6 +62,7 @@ export function setupDomHarness(): DomElements {
         <button id="btn-lang-splash">IDIOMA</button>
         <button id="btn-continue-game" class="hidden">CONTINUAR</button>
         <button id="btn-start-game">COMENZAR</button>
+        <button id="btn-start-case2">CASO 2</button>
         <button id="btn-start-trial-debug">MODO DEBUG</button>
       </div>
       <div id="court-record-modal" class="game-modal hidden">

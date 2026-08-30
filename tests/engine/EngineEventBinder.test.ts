@@ -19,6 +19,7 @@ describe('EngineEventBinder', () => {
   let trial: TrialController;
 
   let startedGame = false;
+  let startedCase2 = false;
   let advanced = false;
   let courtRecordOpened = false;
   let presentedFromModal = false;
@@ -32,6 +33,7 @@ describe('EngineEventBinder', () => {
     midiComposerInstance = new MidiMusicComposer(soundEngineInstance);
 
     startedGame = false;
+    startedCase2 = false;
     advanced = false;
     courtRecordOpened = false;
     presentedFromModal = false;
@@ -62,6 +64,7 @@ describe('EngineEventBinder', () => {
       investigation,
       trial,
       onStartGame: () => { startedGame = true; },
+      onStartCase2: () => { startedCase2 = true; },
       onAdvance: () => { advanced = true; },
       onOpenCourtRecord: () => { courtRecordOpened = true; },
       onPresentFromModal: () => { presentedFromModal = true; }
@@ -71,6 +74,8 @@ describe('EngineEventBinder', () => {
   it('dispatches start game and audio mute toggle events', () => {
     document.getElementById('btn-start-game')?.click();
     expect(startedGame).toBe(true);
+    document.getElementById('btn-start-case2')?.click();
+    expect(startedCase2).toBe(true);
 
     dom.btnAudioToggleEl.click();
     expect(dom.btnAudioToggleEl.textContent).toBe('🔇');
@@ -131,10 +136,19 @@ describe('EngineEventBinder', () => {
     expect(dom.moveLocationsModalEl.classList.contains('hidden')).toBe(true);
   });
 
-  it('dispatches trial actions: start trial, press, present, prev, next', () => {
+  it('dispatches trial actions: start trial (only when enabled), press, present, prev, next', () => {
     const startTrialSpy = vi.spyOn(trial, 'startTrial');
-    document.getElementById('btn-inv-trial')?.click();
-    expect(startTrialSpy).toHaveBeenCalled();
+
+    // Button is disabled initially; clicking must not start trial
+    expect(dom.btnInvTrial.classList.contains('disabled')).toBe(true);
+    dom.btnInvTrial.click();
+    expect(startTrialSpy).not.toHaveBeenCalled();
+
+    // When enabled, clicking starts trial
+    dom.btnInvTrial.classList.remove('disabled');
+    dom.btnInvTrial.disabled = false;
+    dom.btnInvTrial.click();
+    expect(startTrialSpy).toHaveBeenCalledTimes(1);
 
     const pressSpy = vi.spyOn(trial, 'handlePressStatement');
     document.getElementById('btn-press')?.click();

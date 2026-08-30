@@ -38,6 +38,7 @@ describe('Asset Integrity & Existence', () => {
       'supersam_slam.png',
       'supersam_point.png',
       'supersam_breakdown.png',
+      'supersam_sweat.png',
       'tripaseca_smug.png',
       'tripaseca_sweat.png',
       'tripaseca_panic.png',
@@ -103,7 +104,8 @@ describe('Asset Integrity & Existence', () => {
       'bg_witness.jpg',
       'bg_judge.jpg',
       'bg_museum.jpg',
-      'bg_detention.jpg'
+      'bg_detention.jpg',
+      'bg_waiting_room.jpg'
     ];
     backgrounds.forEach((file) => {
       const filePath = path.join(assetsDir, file);

@@ -1,7 +1,7 @@
 // @Architecture(descriptionShort="Unit tests for crime scene exploration and hotspot controller", type="test", icon="panel")
 import { describe, expect, it, beforeEach, vi } from 'vitest';
 import { MidiMusicComposer, SoundEngine } from '../../src/audio/index.js';
-import { CASE_SCRIPT } from '../../src/case/index.js';
+import { CASE_SCRIPT, getCaseScript } from '../../src/case/index.js';
 import type { DomElements } from '../../src/engine/Private/DomElements.js';
 import { InvestigationController } from '../../src/engine/Private/InvestigationController.js';
 import { ModalManager } from '../../src/engine/Private/ModalManager.js';
@@ -58,12 +58,14 @@ describe('InvestigationController', () => {
 
     expect(controller.isExamineActive).toBe(true);
     expect(dom.hotspotsContainerEl.classList.contains('visible-hotspots')).toBe(true);
+    expect(dom.dialogueBoxEl.classList.contains('examine-mode')).toBe(true);
     expect(dom.examineNavEl.classList.contains('hidden')).toBe(false);
     expect(dom.charSpriteEl.classList.contains('hidden')).toBe(true);
 
     controller.exitExamineMode();
     expect(controller.isExamineActive).toBe(false);
     expect(dom.hotspotsContainerEl.classList.contains('visible-hotspots')).toBe(false);
+    expect(dom.dialogueBoxEl.classList.contains('examine-mode')).toBe(false);
     expect(dom.examineNavEl.classList.contains('hidden')).toBe(true);
     expect(dom.charSpriteEl.src).toContain('assets/florinda_idle.png');
   });
@@ -217,8 +219,9 @@ describe('InvestigationController', () => {
   });
 
   it('unlocks trial button when all clues are discovered', () => {
-    const trialBtn = document.getElementById('btn-inv-trial')!;
+    const trialBtn = document.getElementById('btn-inv-trial') as HTMLButtonElement;
     expect(trialBtn.classList.contains('disabled')).toBe(true);
+    expect(trialBtn.disabled).toBe(true);
 
     state.addEvidence('chipote_chillon');
     state.addEvidence('pastillas_chiquitolina');
@@ -229,7 +232,40 @@ describe('InvestigationController', () => {
     controller.checkInvestigationProgress();
 
     expect(trialBtn.classList.contains('disabled')).toBe(false);
+    expect(trialBtn.disabled).toBe(false);
     expect(trialBtn.classList.contains('pulse-glow')).toBe(true);
     expect(dom.gameNotificationEl.textContent).toContain('¡Has reunido todas las pruebas!');
+  });
+
+  it('disables the trial button after adjournment and re-enables with day-2 evidence', () => {
+    const case2 = getCaseScript('es', 'case2');
+    const case2Controller = new InvestigationController({
+      dom,
+      state,
+      script: case2,
+      soundEngine: soundEngineInstance,
+      midiComposer: midiComposerInstance,
+      onQueueDialogue: (dlg, cb) => {
+        queuedDialogues.push(dlg);
+        if (cb) cb();
+      }
+    });
+    state.beginNewCase(case2);
+    case2.requiredEvidence.forEach(/*addDay1*/ (id) => state.addEvidence(id));
+    case2Controller.checkInvestigationProgress();
+    expect(dom.btnInvTrial.classList.contains('disabled')).toBe(false);
+    expect(dom.btnInvTrial.disabled).toBe(false);
+
+    state.beginTrialDay2(case2.adjournment!);
+    case2Controller.resetTrialLaunchButton();
+    expect(dom.btnInvTrial.classList.contains('disabled')).toBe(true);
+    expect(dom.btnInvTrial.disabled).toBe(true);
+    expect(dom.btnInvTrial.classList.contains('pulse-glow')).toBe(false);
+
+    case2.adjournment!.requiredEvidence.forEach(/*addDay2*/ (id) => state.addEvidence(id));
+    case2Controller.checkInvestigationProgress();
+    expect(dom.btnInvTrial.classList.contains('disabled')).toBe(false);
+    expect(dom.btnInvTrial.disabled).toBe(false);
+    expect(dom.btnInvTrial.classList.contains('pulse-glow')).toBe(true);
   });
 });

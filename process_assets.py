@@ -26,8 +26,9 @@ PREV_ARTIFACT_DIR_2 = r"C:\Users\luiso\.gemini\antigravity\brain\08f107f5-df93-4
 PREV_ARTIFACT_DIR_1 = r"C:\Users\luiso\.gemini\antigravity\brain\91e780e1-ee3d-4c04-949d-db65c67e0f4d"
 PREV_ARTIFACT_DIR = r"C:\Users\luiso\.gemini\antigravity\brain\7d7a0700-41bc-4655-a94e-d886430a5c04"
 LEGACY_ARTIFACT_DIR = r"C:\Users\luiso\.gemini\antigravity\brain\d6601f43-c0ae-494d-bbf8-ca413b3a64ed"
-DEST_DIR = r"c:\Proyectos\ace-attorney-gemini\assets"
-REPO_RAW_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "tools", "raw")
+_REPO_ROOT = os.path.dirname(os.path.abspath(__file__))
+DEST_DIR = os.path.join(_REPO_ROOT, "assets")
+REPO_RAW_DIR = os.path.join(_REPO_ROOT, "tools", "raw")
 os.makedirs(DEST_DIR, exist_ok=True)
 
 def find_asset_file(filename: str) -> str:

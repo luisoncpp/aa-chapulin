@@ -4,11 +4,33 @@
  * Operates on [[./EvidenceCatalog.ts|EVIDENCE_CATALOG]] and progression flags.
  */
 
-import type { EvidenceCatalogMap, EvidenceId, GameFlags, GameMode, Language, LocationId } from '../../types/index.js';
+import type {
+  AdjournmentDefinition,
+  CaseId,
+  CaseScript,
+  EvidenceCatalogMap,
+  EvidenceId,
+  GameFlags,
+  GameMode,
+  Language,
+  LocationId,
+  TrialDay
+} from '../../types/index.js';
 import { getEvidenceCatalog } from './EvidenceCatalog.js';
 import { CURRENT_SAVE_VERSION, type SaveData, type TrialStateSnapshot } from './SaveManager.js';
 
+const CASE1_REQUIRED: EvidenceId[] = [
+  'chipote_chillon', 'pastillas_chiquitolina', 'antenitas_vinil',
+  'informe_medico', 'foto_crimen'
+];
+const CASE1_DEBUG: EvidenceId[] = [...CASE1_REQUIRED, 'bolsa_dolares'];
+
 export class GameStateManager {
+  public caseId: CaseId = 'case1';
+  public trialDay: TrialDay = 1;
+  public requiredEvidence: EvidenceId[] = [...CASE1_REQUIRED];
+  public debugEvidence: EvidenceId[] = [...CASE1_DEBUG];
+  public debugUnlockLocations: LocationId[] = ['detention'];
   public mode: GameMode = 'INVESTIGATION';
   public currentLocation: LocationId = 'museum';
   public unlockedLocations: LocationId[] = ['museum'];
@@ -18,23 +40,7 @@ export class GameStateManager {
   public gameOver = false;
   public allEvidence: EvidenceCatalogMap = getEvidenceCatalog('es');
   public inventory: EvidenceId[] = ['insignia_abogado'];
-  public flags: GameFlags = {
-    examined_pedestal: false,
-    examined_armor: false,
-    examined_vent: false,
-    examined_security_cam: false,
-    examined_treasure_chest: false,
-    examined_chapulin_spot: false,
-    examined_phone_spot: false,
-    examined_table_spot: false,
-    talked_florinda_crime: false,
-    talked_florinda_suspect: false,
-    presented_chiquitolina_florinda: false,
-    visited_detention: false,
-    talked_chapulin_reason: false,
-    talked_chapulin_antenitas: false,
-    ready_for_trial: false
-  };
+  public flags: GameFlags = { ready_for_trial: false };
 
   // @Section(Hotspot & Progress Tracking)
   public isHotspotExamined(hotspotId: string): boolean {
@@ -89,16 +95,42 @@ export class GameStateManager {
     this.gameOver = false;
   }
 
-  // @Section(Investigation Readiness)
-  // fallow-ignore-next-line complexity
-  public checkTrialReadiness(): boolean {
-    const hasRequiredClues =
-      this.hasEvidence('chipote_chillon') &&
-      this.hasEvidence('pastillas_chiquitolina') &&
-      this.hasEvidence('antenitas_vinil') &&
-      this.hasEvidence('informe_medico') &&
-      this.hasEvidence('foto_crimen');
+  // @Section(Case Progression)
+  public beginNewCase(script: CaseScript): void {
+    this.caseId = script.id;
+    this.trialDay = 1;
+    this.mode = 'INVESTIGATION';
+    this.currentLocation = script.startLocation;
+    this.unlockedLocations = [script.startLocation];
+    this.inventory = ['insignia_abogado'];
+    this.flags = { ready_for_trial: false };
+    this.resetHealth();
+    this.applyProgressionRules(script);
+  }
 
+  public applyProgressionRules(script: CaseScript): void {
+    this.debugEvidence = [...script.debugEvidence];
+    this.debugUnlockLocations = [...script.debugUnlockLocations];
+    if (this.trialDay === 2 && script.adjournment) {
+      this.requiredEvidence = [...script.adjournment.requiredEvidence];
+      return;
+    }
+    this.requiredEvidence = [...script.requiredEvidence];
+  }
+
+  public beginTrialDay2(adjournment: AdjournmentDefinition): void {
+    this.trialDay = 2;
+    this.flags.completed_trial_day1 = true;
+    this.flags.ready_for_trial = false;
+    this.requiredEvidence = [...adjournment.requiredEvidence];
+    this.mode = 'INVESTIGATION';
+    this.currentLocation = adjournment.nextLocation;
+    this.unlockedLocations = [...adjournment.unlockLocations];
+  }
+
+  // @Section(Investigation Readiness)
+  public checkTrialReadiness(): boolean {
+    const hasRequiredClues = this.requiredEvidence.every(/*owned*/ (id) => this.hasEvidence(id));
     if (hasRequiredClues) {
       this.flags.ready_for_trial = true;
     }
@@ -107,18 +139,12 @@ export class GameStateManager {
 
   // @Section(Trial Debug Setup)
   public populateTrialEvidence(): void {
-    const trialEvidence: EvidenceId[] = [
-      'chipote_chillon',
-      'pastillas_chiquitolina',
-      'antenitas_vinil',
-      'informe_medico',
-      'foto_crimen',
-      'bolsa_dolares'
-    ];
-    trialEvidence.forEach(/*addEachItem*/ (item) => {
+    this.debugEvidence.forEach(/*addEachItem*/ (item) => {
       this.addEvidence(item);
     });
-    this.unlockLocation('detention');
+    this.debugUnlockLocations.forEach(/*unlockEach*/ (loc) => {
+      this.unlockLocation(loc);
+    });
     this.flags.ready_for_trial = true;
     this.mode = 'TRIAL';
   }
@@ -136,11 +162,15 @@ export class GameStateManager {
       gameOver: this.gameOver,
       inventory: [...this.inventory],
       flags: { ...this.flags },
-      trial: trialSnapshot
+      trial: trialSnapshot,
+      caseId: this.caseId,
+      trialDay: this.trialDay
     };
   }
 
   public restoreState(data: SaveData): void {
+    this.caseId = data.caseId ?? 'case1';
+    this.trialDay = data.trialDay ?? 1;
     this.mode = data.mode;
     this.currentLocation = data.currentLocation;
     this.unlockedLocations = data.unlockedLocations

@@ -9,6 +9,10 @@ export type Language = 'es' | 'en';
 
 export type GameMode = 'INVESTIGATION' | 'TRIAL';
 
+export type CaseId = 'case1' | 'case2';
+
+export type TrialDay = 1 | 2;
+
 export type LocationId = 'museum' | 'detention' | (string & {});
 
 // @Section(Progression Flags)
@@ -28,6 +32,7 @@ export interface GameFlags {
   talked_chapulin_reason?: boolean;
   talked_chapulin_antenitas?: boolean;
   ready_for_trial: boolean;
+  completed_trial_day1?: boolean;
   [key: string]: boolean | undefined;
 }
 

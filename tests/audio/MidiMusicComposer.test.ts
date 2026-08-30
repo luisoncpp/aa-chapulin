@@ -1,5 +1,5 @@
 // @Architecture(descriptionShort="Unit tests for polyphonic MIDI tracker and soundtrack catalog", type="test", icon="music")
-import { describe, expect, it, beforeEach, vi } from 'vitest';
+import { describe, expect, it, beforeEach, afterEach, vi } from 'vitest';
 import { TRACK_CATALOG } from '../../src/audio/Private/TrackCatalog.js';
 import { SynthVoiceSynthesizer } from '../../src/audio/Private/SynthVoiceSynthesizer.js';
 import { MidiMusicComposer, SoundEngine, midiComposer } from '../../src/audio/index.js';
@@ -11,12 +11,19 @@ describe('MidiMusicComposer & TRACK_CATALOG', () => {
   let composer: MidiMusicComposer;
   let fakeCtx: FakeAudioContext;
 
+  const originalTrialTrack = TRACK_CATALOG.trial;
+
   beforeEach(() => {
     vi.useFakeTimers();
     fakeCtx = new FakeAudioContext();
     soundEngineInstance = new SoundEngine();
     soundEngineInstance.init(fakeCtx as unknown as AudioContext);
     composer = new MidiMusicComposer(soundEngineInstance);
+  });
+
+  afterEach(() => {
+    TRACK_CATALOG.trial = originalTrialTrack;
+    composer.stop();
   });
 
   it('converts MIDI note numbers to frequencies correctly', () => {
@@ -109,11 +116,8 @@ describe('MidiMusicComposer & TRACK_CATALOG', () => {
     expect(composer.isPlaying).toBe(false);
   });
 
-  it('validates polyphonic anti-fatigue integrity and step alignment for all 8 compositions', () => {
-    const trackNames: TrackName[] = [
-      'trial', 'cross_exam_moderato', 'cross_exam_allegro',
-      'objection', 'pursuit', 'investigation', 'suspense', 'victory'
-    ];
+  it('validates polyphonic anti-fatigue integrity and step alignment for all compositions', () => {
+    const trackNames = Object.keys(TRACK_CATALOG) as TrackName[];
     const validDrums = new Set(['K', 'S', 'H', 'O', 'C', 'P', '0']);
 
     trackNames.forEach((name) => {
@@ -151,5 +155,36 @@ describe('MidiMusicComposer & TRACK_CATALOG', () => {
 
   it('exports singleton midiComposer', () => {
     expect(midiComposer).toBeInstanceOf(MidiMusicComposer);
+  });
+
+  it('skips voices when muted, notes are empty, or the sequencer is paused', () => {
+    composer.isPlaying = true;
+    soundEngineInstance.isMuted = true;
+    expect(() => composer.playNote(72, 0.1)).not.toThrow();
+    soundEngineInstance.isMuted = false;
+    expect(() => composer.playNote(null as unknown as number, 0.1)).not.toThrow();
+    expect(() => composer.playDrum('' as 'K')).not.toThrow();
+
+    const original = TRACK_CATALOG.trial;
+    TRACK_CATALOG.trial = { bpm: 0, length: 2 };
+    composer.playTrack('trial');
+    expect(composer.bpm).toBe(120);
+    vi.advanceTimersByTime(60000 / 120 / 4);
+    composer.isPlaying = false;
+    vi.advanceTimersByTime(60000 / 120 / 4);
+    delete (TRACK_CATALOG as { trial?: typeof original }).trial;
+    composer.isPlaying = true;
+    vi.advanceTimersByTime(60000 / 120 / 4);
+    TRACK_CATALOG.trial = original;
+    composer.stop();
+  });
+
+  it('resumes when a track is queued but the timer is missing', () => {
+    composer.playTrack('suspense');
+    composer.stop();
+    composer.isPlaying = true;
+    composer.resumePlayback();
+    expect(composer.isPlaying).toBe(true);
+    expect(composer.currentTrack).toBe('suspense');
   });
 });

@@ -15,6 +15,7 @@ Domain terminology and project-specific concepts for **El Chapulín Colorado: Ac
 | **Contradicción (Contradiction)** | A direct conflict between a witness statement and factual evidence in the Court Record. | [[src/case/Private/case1_trial.ts]] |
 | **Penalización (Penalty)** | A strike deducted from the defense's 5-point health bar upon presenting incorrect evidence during a trial cross-examination. Reaching 0 health triggers a Game Over ("Culpable"). | [[src/state/Private/GameStateManager.ts#Penalty & Health]] |
 | **Cut-in** | Full-screen animated graphic overlay (e.g. `¡PROTESTO!`, `¡UN MOMENTO!`, `¡TOMA ESO!`, `¡INOCENTE!`) accompanying major dramatic legal shouts. | [[src/engine/Private/VisualEffects.ts#Dramatic Cut-in Overlays]] |
+| **Sala de espera (Waiting Room)** | Lobby outside the courtroom used for the Case 2 post-verdict epilogue (`bg_waiting_room.jpg`), not a trial camera angle. | [[src/engine/Private/TrialClimax.ts]], [[src/case/Private/case2_climax.ts]] |
 
 ## El Chapulín Colorado Lore & Case Items
 
@@ -30,6 +31,12 @@ Domain terminology and project-specific concepts for **El Chapulín Colorado: Ac
 | **Pastillas de Chiquitolina** | Shrinking pills used by the true culprit to enter the sealed museum display through an air vent. | [[src/state/Private/EvidenceCatalog.ts]] |
 | **Antenitas de Vinil** | Vinyl antennae that vibrate when detecting the presence of enemies, used to pinpoint the hidden loot. | [[src/state/Private/EvidenceCatalog.ts]] |
 | **Chicharra Paralizadora de Oro** | The stolen museum relic that immobilizes anyone nearby when sounded. | [[src/state/Private/EvidenceCatalog.ts]] |
+| **El Chómpiras** | Case 2 defendant: hapless thief framed for stealing the Chanfle de Oro from Jirafales's vault. | [[src/case/Private/case2_detention.ts]] |
+| **El Peterete** | Case 2 star witness and true culprit: Chómpiras's partner posing as a lawyer. | [[src/case/Private/case2_trial_day1_t2.ts]] |
+| **Profesor Jirafales** | Vault owner and Case 2 judge; hacienda floor plans and generator box are his. | [[src/case/Private/case2_boveda.ts]] |
+| **Don Jaimito** | Postman whose overtime alibi and traffic ticket break Peterete's postal story. | [[src/case/Private/case2_postal.ts]] |
+| **Doña Clotilde** | Neighbor whose valerian perfume and wax mold expose the dumbwaiter escape. | [[src/case/Private/case2_clotilde.ts]] |
+| **Chanfle de Oro** | Stolen 5 kg gold relic (`chanfle_oro`); the Case 2 corpus delicti. | [[src/state/Private/EvidenceCatalogCase2.ts]] |
 
 ## Audio & Engine Terminology
 

@@ -1,7 +1,7 @@
 // @Architecture(descriptionShort="Unit tests for trial cross-examination, pressing, and contradictions", type="test", icon="panel")
 import { describe, expect, it, beforeEach, vi } from 'vitest';
 import { MidiMusicComposer, SoundEngine } from '../../src/audio/index.js';
-import { CASE_SCRIPT } from '../../src/case/index.js';
+import { CASE_SCRIPT, getCaseScript } from '../../src/case/index.js';
 import type { DomElements } from '../../src/engine/Private/DomElements.js';
 import { TrialController } from '../../src/engine/Private/TrialController.js';
 import { GameStateManager } from '../../src/state/index.js';
@@ -247,6 +247,59 @@ describe('TrialController', () => {
   it('keeps trial controls hidden throughout climax', () => {
     controller.startClimax();
     expect(dom.trialNavEl.classList.contains('hidden')).toBe(true);
+  });
+
+  it('adjourns Case 2 after testimony 2 instead of starting the climax', () => {
+    const case2 = getCaseScript('es', 'case2');
+    let adjournedTo: string | null = null;
+    const case2Controller = new TrialController({
+      dom,
+      state,
+      script: case2,
+      soundEngine: soundEngineInstance,
+      midiComposer: midiComposerInstance,
+      onQueueDialogue: (dlg, cb) => {
+        queuedDialogues.push(dlg);
+        if (cb) cb();
+      },
+      onRenderLine: (line) => renderedLines.push(line),
+      onOpenCourtRecord: (isTrialPresent) => {
+        courtRecordOpenedWithTrial = isTrialPresent;
+      },
+      onAdjourn: (location) => {
+        adjournedTo = location;
+      }
+    });
+
+    case2Controller.startTestimony('testimony2');
+    case2Controller.currentStatementIdx = 1;
+    case2Controller.handlePresentEvidence('informe_boveda');
+
+    expect(adjournedTo).toBe('oficina_postal');
+    expect(state.trialDay).toBe(2);
+    expect(state.flags.completed_trial_day1).toBe(true);
+    expect(courtRecordOpenedWithTrial).toBe(false);
+    expect(case2Controller.phase).toBe('IDLE');
+  });
+
+  it('starts Case 2 day-2 testimonies after adjournment', () => {
+    const case2 = getCaseScript('es', 'case2');
+    state.beginTrialDay2(case2.adjournment!);
+    const day2 = new TrialController({
+      dom,
+      state,
+      script: case2,
+      soundEngine: soundEngineInstance,
+      midiComposer: midiComposerInstance,
+      onQueueDialogue: (dlg, cb) => {
+        queuedDialogues.push(dlg);
+        if (cb) cb();
+      },
+      onRenderLine: (line) => renderedLines.push(line),
+      onOpenCourtRecord: () => {}
+    });
+    day2.startTrial();
+    expect(day2.currentTestimony).toBe(case2.adjournment?.trial.testimony1);
   });
 });
 

@@ -17,6 +17,13 @@ flowchart TD
     Coordinator --> Modals[Private/ModalManager.ts]
     Coordinator --> InvCtrl[Private/InvestigationController.ts]
     Coordinator --> TrialCtrl[Private/TrialController.ts]
+    TrialCtrl --> Climax[Private/TrialClimax.ts]
+    Coordinator --> Dialogue[Private/DialogueFlow.ts]
+    Coordinator --> Launch[Private/EngineLaunch.ts]
+    Coordinator --> DebugURL[Private/EngineDebugBootstrap.ts]
+    Coordinator --> Adjourn[Private/AdjournmentHandler.ts]
+    Coordinator --> Persist[Private/EnginePersistence.ts]
+    Coordinator --> DayRouter[Private/TrialDayRouter.ts]
     
     Coordinator --> State[src/state/index.ts]
     Coordinator --> Audio[src/audio/index.ts]
@@ -25,7 +32,7 @@ flowchart TD
 
 ## Core Responsibilities
 
-1. **Dialogue Queue System** ([[src/engine/Private/GameEngine.ts#Dialogue Flow & Queue]]):
+1. **Dialogue Queue System** ([[src/engine/Private/DialogueFlow.ts]]):
    - `queueDialogue(dialogueArray, onComplete)` maintains a FIFO queue of dialogue line objects.
    - `handleAdvance()` advances dialogue on user input (Click / Space / Enter). If typewriter animation is running, it instantly reveals the complete line; otherwise, it dequeues the next line or triggers `onComplete`.
 
@@ -34,9 +41,9 @@ flowchart TD
    - Triggers `soundEngine.playTextBlip()` every alternate character for authentic Capcom typewriter chirping.
 
 3. **Character & Scene Staging** ([[src/engine/Private/VisualEffects.ts#Character Pose Staging]]):
-   - Updates `#scene-bg` background images automatically per speaker in trial mode (`bg_defense.jpg` for defense, `bg_courtroom.jpg` for prosecution, `bg_judge.jpg` for judge, `bg_witness.jpg` for witness) or via explicit `line.bg`.
+   - Updates `#scene-bg` background images automatically per speaker in trial mode (`bg_defense.jpg` for defense, `bg_courtroom.jpg` for prosecution, `bg_judge.jpg` for judge, `bg_witness.jpg` for witness) or via explicit `line.bg`. Location plates (waiting room, investigation) skip courtroom cameras when `line.bg` is set.
    - Updates `#character-sprite` poses with continuous idle floating/breathing animation (`characterBreathe`).
-   - Dynamically stages courtroom foreground furniture (`#court-furniture-sprite`): shows `court_podium.png` during witness testimonies, `court_bench.png` when defense or prosecution speaks in court (`bg_defense.jpg`, `bg_courtroom.jpg`), and hides furniture during judge lines or in detention/museum scenes.
+   - Dynamically stages courtroom foreground furniture (`#court-furniture-sprite`): shows `court_podium.png` during witness testimonies, `court_bench.png` when defense or prosecution speaks in court (`bg_defense.jpg`, `bg_courtroom.jpg`), and hides furniture during judge lines, investigation scenes, and waiting-room epilogue lines (`bg_waiting_room.jpg`).
    - `updateStagingForLine(dom, line, isTrialMode)` resolves background, furniture **and** stage geometry in one unified step, ensuring camera angle and furniture consistency across rapid speaker turns.
    - Automatically hides character sprites when narrator is speaking, or during active examine mode.
 
@@ -58,7 +65,8 @@ flowchart TD
    - **Cut-in Animation**: `showCutin(cutinName)` triggers zoom, shake, and flash animations for `¡PROTESTO!`, `¡UN MOMENTO!`, `¡TOMA ESO!`, and `¡INOCENTE!`.
    - **Screen Shake**: `shakeScreen(durationMs)` applies CSS shake keyframes (`aaShake`).
    - **Screen Flash**: `flashScreen()` fades in an opaque white flash overlay.
-   - **Confetti Victory**: `triggerConfetti()` creates randomized falling celebratory particles.
+   - **Location Fade**: [[src/engine/Private/SceneFade.ts]] covers `#screen-flash` in black, swaps the plate while opaque, then reveals. Used after a Not Guilty so the waiting room is not a hard cut.
+   - **Confetti Victory**: `triggerConfetti()` runs on the verdict camera. Case 2 clears it during the black cover before the waiting-room epilogue. Case 1 has no epilogue, so confetti stays up.
 
 6. **Investigation & Examination Mode** ([[src/engine/Private/InvestigationController.ts#Examine Mode & Tooltips]]):
    - `startInvestigation(location)` renders hotspots and loads intro dialogue.
@@ -68,18 +76,22 @@ flowchart TD
    - **Repeated Hotspot Dialogue**: When examining a previously completed hotspot, navigation controls remain interactive, allowing the player to freely talk or examine something else without being locked into known dialogue.
 
 
-7. **Debug Trial Launch** ([[src/engine/Private/GameEngine.ts#Initialization & Bootstrapping]]):
-   - `startTrialDebug()` bypasses the investigation phase, activates Web Audio API synth, dismisses splash screen overlay, populates all required case clues via `gameState.populateTrialEvidence()`, and launches the courtroom trial directly.
-   - Triggerable via `#btn-start-trial-debug` on the splash card, URL query/hash parameters (`?mode=trial`, `?trial=1`, `#trial`), or `window.gameEngine.startTrialDebug()`.
+7. **Debug Trial Launch** ([[src/engine/Private/EngineDebugBootstrap.ts]], [[src/engine/Private/EngineLaunch.ts]]):
+   - `applyDebugUrlParams` reads query/hash (`lang=en`, `case=2`, `trial`) during `GameEngine.init()`.
+   - `startTrialDebug()` bypasses investigation, dismisses splash, populates debug evidence, and launches the active case's courtroom.
+   - Also triggerable via `#btn-start-trial-debug` or `window.gameEngine.startTrialDebug()`.
+   - Case 2 day-1 adjournment returns to investigation through [[src/engine/Private/AdjournmentHandler.ts]] (`resetTrialLaunchButton` then `startInvestigation`).
 
 8. **Court Record & Talk Modals** ([[src/engine/Private/ModalManager.ts#Court Record Evidence Modal]]):
    - Dynamically populates `#court-record-modal` with items from `gameState.inventory`.
    - Renders evidence details (icon preview, title, description) and provides the "¡Presentar Prueba!" button during trial cross-examinations.
    - Dynamically renders `#talk-options-modal` with topics defined in the current scene script.
+   - **Invariant — Court Record cards share equal tracks and scroll only on Y.** `#evidence-grid` is a flex child (`min-width: 0`) with `repeat(3, minmax(0, 1fr))`. Grid items also use `min-width: 0`. Names wrap up to two lines (`line-clamp: 2`); they must not use `white-space: nowrap` or they grow a column (`min-width: auto`) and the grid overflows X. `overflow-x: clip` + `overflow-y: auto` (not `overflow: auto`). Regression: [[tests/engine/CourtRecordLayout.test.ts]].
 
 ## Invariants & Design Rules
 
 - **Input Safety**: Interactions are blocked or sequenced through the dialogue queue to prevent race conditions during animations.
 - **Audio Context Activation**: Any user gesture ensures the `AudioContext` is active via `soundEngine.ensureActive()`.
 - **Clean Mode Toggles**: Switching modes (`INVESTIGATION` <-> `TRIAL` <-> `EXAMINE`) explicitly hides inactive HUD groups to avoid overlapping controls.
+- **Splash stack fits the 960×540 stage.** `#game-screen` is `overflow: hidden` at 540px. The title card must stay inside that box with Continue visible (five buttons). Compact type, 80px art, and `max-height: 100%` plus `overflow-y: auto` on `.splash-card` are required. Do not grow the card by adding launch buttons without shrinking the stack. Regression: [[tests/engine/SplashLayout.test.ts]].
 

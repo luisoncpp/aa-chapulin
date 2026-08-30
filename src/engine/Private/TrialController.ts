@@ -8,8 +8,8 @@ import { ModalManager } from './ModalManager.js';
 import { applyAdjournment, getActiveTrial, shouldAdjourn } from './TrialDayRouter.js';
 import { applyPenaltyEffects, queuePenaltyDialogue } from './TrialPenalty.js';
 import {
-  handleClimaxEvidencePresent, rebindClimaxChoiceModal, resolveClimaxChoiceFromController,
-  restoreClimaxFromSnapshot, startClimaxPhase
+  handleClimaxEvidencePresent, isAwaitingClimaxEvidence, rebindClimaxChoiceModal,
+  resolveClimaxChoiceFromController, restoreClimaxFromSnapshot, startClimaxPhase
 } from './TrialClimax.js';
 import { paintCourtroomPlate } from './TrialOpening.js';
 import { fadeThroughBlack } from './SceneFade.js';
@@ -167,6 +167,8 @@ export class TrialController {
   }
 
   public startClimax(): void { startClimaxPhase(this, /*replayOpening=*/ true); }
+
+  public isAwaitingEvidence(): boolean { return isAwaitingClimaxEvidence(this); }
 
   // fallow-ignore-next-line unused-class-member
   public handleSelectChoice(optionId: string): void {

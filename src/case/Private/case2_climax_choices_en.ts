@@ -46,7 +46,7 @@ export const CASE2_CLIMAX_CHOICES_EN: ChoicePrompt[] = [
       { speaker: 'NARRADOR', text: '(Peterete slaps himself with his fedora until he collapses on the witness stand).' },
       { speaker: 'SUPER SAM', text: 'OH NOOO! My fees! My bonus! Time is money and I lost my dollars!', pose: 'supersam_breakdown' },
       { speaker: 'JUEZ', text: 'Silence and order! With the smoking gun revealed, the method proven, and the true culprit confessed, this court issues its final verdict!', pose: 'judge_gavel', sfx: 'gavel' },
-      { cutin: 'objection_culpable', speaker: 'JUEZ', text: 'I declare the defendant, Aquiles Esquivel Madrazo... NOT GUILTY!', sfx: 'whoosh', bgm: 'victory', pose: 'judge_gavel' }
+      { cutin: 'objection_inocente', speaker: 'JUEZ', text: 'I declare the defendant, Aquiles Esquivel Madrazo... NOT GUILTY!', sfx: 'whoosh', bgm: 'victory', pose: 'judge_gavel' }
     ]
   }
 ];

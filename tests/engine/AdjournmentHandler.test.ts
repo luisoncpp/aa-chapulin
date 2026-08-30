@@ -24,15 +24,26 @@ describe('AdjournmentHandler', () => {
       onQueueDialogue: (dlg) => { queued.push(dlg); }
     });
     state.beginNewCase(case2);
+    dom.bgEl.style.backgroundImage = "url('assets/bg_judge.jpg')";
+    dom.charSpriteEl.classList.remove('hidden');
+    dom.courtFurnitureContainerEl.classList.remove('hidden');
+    dom.gameScreen.dataset.stageFrame = 'bench-stand';
+    dom.dialogueTextEl.textContent = 'Última línea del juicio';
     dom.btnInvTrial.classList.remove('disabled');
     dom.btnInvTrial.classList.add('pulse-glow');
 
     handleAdjournment(investigation, 'oficina_postal', dom.flashEl);
     expect(state.currentLocation).not.toBe('oficina_postal');
     expect(queued).toHaveLength(0);
+    expect(dom.bgEl.style.backgroundImage).toContain('bg_judge.jpg');
 
     vi.advanceTimersByTime(SCENE_FADE_MS);
     expect(state.currentLocation).toBe('oficina_postal');
+    expect(dom.bgEl.style.backgroundImage).toContain('bg_postal.jpg');
+    expect(dom.charSpriteEl.classList.contains('hidden')).toBe(true);
+    expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(true);
+    expect(dom.gameScreen.dataset.stageFrame).toBe('plain');
+    expect(dom.dialogueTextEl.textContent).toBe('');
     expect(dom.btnInvTrial.classList.contains('disabled')).toBe(true);
     expect(dom.btnInvTrial.classList.contains('pulse-glow')).toBe(false);
     expect(queued).toHaveLength(0);

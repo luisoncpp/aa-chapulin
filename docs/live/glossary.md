@@ -14,7 +14,7 @@ Domain terminology and project-specific concepts for **El Chapulín Colorado: Ac
 | **Presentar (Present / ¡PROTESTO!)** | Cross-examination action where the defense submits a piece of evidence from the Court Record to expose a logical contradiction in the witness's statement. | [[src/engine/Private/TrialController.ts#Statement Pressing & Contradictions]] |
 | **Contradicción (Contradiction)** | A direct conflict between a witness statement and factual evidence in the Court Record. | [[src/case/Private/case1_trial.ts]] |
 | **Penalización (Penalty)** | A strike deducted from the defense's 5-point health bar upon presenting incorrect evidence during a trial cross-examination. Reaching 0 health triggers a Game Over ("Culpable"). | [[src/state/Private/GameStateManager.ts#Penalty & Health]] |
-| **Cut-in** | Full-screen animated graphic overlay (e.g. `¡PROTESTO!`, `¡UN MOMENTO!`, `¡TOMA ESO!`, `¡INOCENTE!`) accompanying major dramatic legal shouts. | [[src/engine/Private/VisualEffects.ts#Dramatic Cut-in Overlays]] |
+| **Cut-in** | Full-screen animated graphic overlay (e.g. `¡PROTESTO!`, `¡UN MOMENTO!`, `¡TOMA ESO!`, `¡CULPABLE!`, `¡INOCENTE!`) accompanying major dramatic legal shouts and verdicts. | [[src/engine/Private/VisualEffects.ts#Dramatic Cut-in Overlays]] |
 | **Sala de espera (Waiting Room)** | Lobby outside the courtroom used for the Case 2 post-verdict epilogue (`bg_waiting_room.jpg`), not a trial camera angle. | [[src/engine/Private/TrialClimax.ts]], [[src/case/Private/case2_climax.ts]] |
 
 ## El Chapulín Colorado Lore & Case Items

@@ -15,3 +15,6 @@ The dialogue box geometry (`height: 120px` + `padding-bottom: 15px` = 135px on a
 - Setting `characterBaseline: 0.25` in the `plain` frame ensures that the bottom edge of waist-up sprites aligns exactly with the upper golden border of the dialogue box.
 - The character bust emerges cleanly from behind the dialogue box, matching classic Capcom visual novel composition.
 - With `characterHeight: 0.62`, the top of the sprite reaches ~87% of stage height, providing ample clearance below the 50px top HUD banner.
+
+### 3. Canvas Floor Is the Hem, Not Empty Magenta
+`plain` aligns the **512×512 canvas** bottom to the dialogue box. Idle/point already put opaque pixels 5px above that floor. A 2x2 generation cell that keeps the bust in the central safe area leaves 20px+ of transparency under the jacket. After chroma-key, that padding is still there, so the bust floats above the gold line. Extra standing poses must be translated onto the canvas floor (`anchor_standing_bust`) before they ship.

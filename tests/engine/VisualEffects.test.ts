@@ -245,6 +245,8 @@ describe('VisualEffects Subsystem', () => {
     expect(VisualEffects.resolveEffectivePose({ text: 'A', speaker: 'JUEZ' }, /*isTrialMode=*/ true)).toBe(null);
     expect(VisualEffects.resolveEffectivePose({ text: 'A', speaker: 'DEFENSA' }, /*isTrialMode=*/ false)).toBe(null);
     expect(VisualEffects.resolveEffectivePose({ text: 'A', speaker: 'DEFENSA', pose: 'donramon_slam' }, /*isTrialMode=*/ true)).toBe('donramon_slam');
+    expect(VisualEffects.resolveEffectivePose({ text: 'A', speaker: 'DEFENSA', pose: 'donramon_slam' }, /*isTrialMode=*/ false)).toBe('donramon_shock');
+    expect(VisualEffects.resolveEffectivePose({ text: 'A', speaker: 'DEFENSA', pose: 'donramon_shock' }, /*isTrialMode=*/ false)).toBe('donramon_shock');
   });
 });
 

@@ -403,4 +403,50 @@ describe('GameEngine Coordinator', () => {
     expect(dom.btnInvTrial.classList.contains('pulse-glow')).toBe(false);
     expect(dom.locationBannerEl.textContent).toContain('Postal');
   });
+
+  it('reopens court record with present option on handleAdvance if closed during climax', () => {
+    engine.startTrialDebug();
+    vi.advanceTimersByTime(SCENE_FADE_MS * 2);
+
+    const trial = (engine as unknown as { trial: { startClimax: () => void } }).trial;
+    trial.startClimax();
+
+    // Advance through climax opening dialogue until court record opens
+    while (!dom.dialogueBoxEl.classList.contains('hidden') && dom.courtRecordModalEl.classList.contains('hidden')) {
+      engine.handleAdvance();
+    }
+
+    expect(dom.courtRecordModalEl.classList.contains('hidden')).toBe(false);
+    expect(dom.presentBtnEl.style.display).toBe('block');
+
+    // Player closes court record modal
+    dom.btnCloseRecord.click();
+    expect(dom.courtRecordModalEl.classList.contains('hidden')).toBe(true);
+
+    // Player advances dialogue -> should reopen court record with present option
+    engine.handleAdvance();
+    expect(dom.courtRecordModalEl.classList.contains('hidden')).toBe(false);
+    expect(dom.presentBtnEl.style.display).toBe('block');
+  });
+
+  it('shows present button when opening court record from top bar during climax', () => {
+    engine.startTrialDebug();
+    vi.advanceTimersByTime(SCENE_FADE_MS * 2);
+
+    const trial = (engine as unknown as { trial: { startClimax: () => void } }).trial;
+    trial.startClimax();
+
+    while (!dom.dialogueBoxEl.classList.contains('hidden') && dom.courtRecordModalEl.classList.contains('hidden')) {
+      engine.handleAdvance();
+    }
+
+    dom.btnCloseRecord.click();
+    expect(dom.courtRecordModalEl.classList.contains('hidden')).toBe(true);
+
+    // Player opens court record from top HUD button
+    dom.btnCourtRecord.click();
+    expect(dom.courtRecordModalEl.classList.contains('hidden')).toBe(false);
+    expect(dom.presentBtnEl.style.display).toBe('block');
+  });
 });
+

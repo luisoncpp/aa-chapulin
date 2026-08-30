@@ -73,6 +73,12 @@ export class VisualEffects {
     furnitureContainerEl.dataset.furniture = 'none';
   }
 
+  public static clearCourtroomPlate(dom: DomElements): void {
+    VisualEffects.hideCharacter(dom.charSpriteEl);
+    VisualEffects.hideFurniture(dom.courtFurnitureContainerEl);
+    applyStageFrame(dom.gameScreen, 'plain');
+  }
+
   public static inferTrialBackground(speaker?: string): string | null {
     if (!speaker || speaker === 'NARRADOR') return null;
     return TRIAL_SPEAKER_BACKGROUNDS[speaker] ?? 'assets/bg_witness.jpg';
@@ -86,7 +92,10 @@ export class VisualEffects {
 
   // fallow-ignore-next-line complexity
   public static resolveEffectivePose(line: DialogueLine, isTrialMode: boolean): PoseName | null {
-    if (line.pose) return line.pose;
+    if (line.pose) {
+      if (!isTrialMode && line.pose === 'donramon_slam') return 'donramon_shock';
+      return line.pose;
+    }
     if (!isTrialMode || !line.speaker) return null;
     if (isDefenseSpeaker(line.speaker)) return 'donramon_idle';
     if (isChapulinSpeaker(line.speaker)) return 'chapulin_idle';

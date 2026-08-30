@@ -64,6 +64,7 @@ describe('StageLayout composition frames', () => {
     expect(resolveStageFrame('bench', 'supersam_slam')).toBe('bench-slam');
     expect(resolveStageFrame('bench', 'chapulin_idle')).toBe('bench-stand');
     expect(resolveStageFrame('bench', 'donramon_idle')).toBe('bench-stand');
+    expect(resolveStageFrame('bench', 'donramon_shock')).toBe('bench-stand');
     expect(resolveStageFrame('bench', null)).toBe('bench-stand');
     expect(resolveStageFrame('podium', 'tripaseca_smug')).toBe('podium');
     expect(resolveStageFrame('none', 'chapulin_slam')).toBe('plain');

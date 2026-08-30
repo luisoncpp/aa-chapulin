@@ -42,7 +42,7 @@ The pipeline performs:
 
 ### Case 2 ([[process_case2_assets.py]])
 Case 2 art lives in [[tools/raw/]] and is processed separately so [[process_assets.py]] stays frozen:
-- **2x2 pose sheets** (row-major): Chómpiras, Peterete, Jirafales, Jaimito, Clotilde. Peterete breakdown is the top-left cell of `peterete_breakdown_raw.png`. Super Sam sweat is the top-right cell of `supersam_sweat_raw.png` (does not overwrite idle/point/slam/breakdown). That sheet must be generated with idle as the identity lock; otherwise the model paints Chespirito yellow/green instead of navy + flag cape.
+- **2x2 pose sheets** (row-major): Chómpiras, Peterete, Jirafales, Jaimito, Clotilde. Peterete breakdown is the top-left cell of `peterete_breakdown_raw.png`. Super Sam sweat is the top-right cell of `supersam_sweat_raw.png` (does not overwrite idle/point/slam/breakdown). That sheet must be generated with idle as the identity lock; otherwise the model paints Chespirito yellow/green instead of navy + flag cape. Don Ramón shock is the top-left cell of `donramon_shock_raw.png` (does not overwrite slam). Generate it with idle as the identity lock so the model keeps the navy lawyer suit and denim hat instead of TV casual clothes. After chroma-key, `anchor_standing_bust` pastes the opaque hem 5px from the 512 canvas floor — same floor as idle — because `plain` staging lines the **canvas** bottom to the dialogue box, not the drawn waist.
 - **Evidence**: `case2_evidence_icons_raw.png` (4 columns × 3 rows) → `chanfle_oro.png` … `lata_grasa.png`.
 - **Backgrounds** copied as JPEG: `bg_boveda.jpg`, `bg_restaurante.jpg`, `bg_postal.jpg`, `bg_clotilde.jpg`, `bg_waiting_room.jpg`.
 
@@ -51,7 +51,7 @@ Case 2 art lives in [[tools/raw/]] and is processed separately so [[process_asse
 | Category | File Prefix / Suffix | Examples |
 |----------|----------------------|----------|
 | **Character Poses** | `[character]_[emotion].png` | `chapulin_idle.png`, `supersam_point.png`, `tripaseca_sweat.png`, `judge_gavel.png`, `florinda_angry.png` |
-| **Cut-ins** | `objection_[type].png` | `objection_protesto.png`, `objection_un_momento.png`, `objection_toma_eso.png`, `objection_culpable.png` |
+| **Cut-ins** | `objection_[type].png` | `objection_protesto.png`, `objection_un_momento.png`, `objection_toma_eso.png`, `objection_culpable.png`, `objection_inocente.png` |
 | **Evidence Icons** | `[item_id].png` | `chipote_chillon.png`, `chanfle_oro.png`, `reloj_pendulo.png` |
 | **Backgrounds** | `bg_[location].jpg` | `bg_museum.jpg`, `bg_detention.jpg`, `bg_boveda.jpg`, `bg_restaurante.jpg`, `bg_postal.jpg`, `bg_clotilde.jpg`, `bg_waiting_room.jpg` |
 

@@ -160,7 +160,12 @@ export class GameEngine {
       return;
     }
     this.soundEngine.ensureActive();
-    this.dialogue.handleAdvance();
+    const advanced = this.dialogue.handleAdvance();
+    if (!advanced && this.trial.isAwaitingEvidence()) {
+      if (this.dom.courtRecordModalEl.classList.contains('hidden')) {
+        this.openCourtRecord(/*isTrialPresent=*/ true);
+      }
+    }
   }
 
   public queueDialogue(dialogueArray: DialogueLine[], onComplete: (() => void) | null = null): void {
@@ -173,8 +178,9 @@ export class GameEngine {
 
   // @Section(Evidence Presentation Handling)
   private openCourtRecord(isTrialPresent: boolean): void {
+    const shouldPresent = isTrialPresent || this.trial.isAwaitingEvidence();
     ModalManager.openCourtRecord({
-      dom: this.dom, state: this.state, isTrialPresent,
+      dom: this.dom, state: this.state, isTrialPresent: shouldPresent,
       onSelect: (id) => { this.selectedEvidenceId = id; }
     });
   }

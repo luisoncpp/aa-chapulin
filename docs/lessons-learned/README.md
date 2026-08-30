@@ -39,4 +39,7 @@ Avoid: "bug description + fix". Prefer: "what I learned that applies to future w
 | [`court-record-description-updates.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/lessons-learned/court-record-description-updates.md) | Second `addEvidence` is silent; later facts need `updateEvidence` + `updatedDesc`. | 2026-08-30 |
 | [`verdict-celebration-before-location-cut.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/lessons-learned/verdict-celebration-before-location-cut.md) | Confetti belongs on the Not Guilty camera; fade through black before a waiting-room epilogue. | 2026-08-29 |
 | [`mode-fade-and-case-complete.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/lessons-learned/mode-fade-and-case-complete.md) | Mode hops fade through black; a finished case stays on a black complete plate. | 2026-08-30 |
+| [`investigation-slam-needs-standing-pose.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/lessons-learned/investigation-slam-needs-standing-pose.md) | `*_slam` sprites are desk-contact; investigation needs a standing pose (`donramon_shock`). | 2026-08-30 |
+| [`climax-court-record-reopening.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/lessons-learned/climax-court-record-reopening.md) | Dialogue advance and HUD court record reopen evidence presentation mode during climax. | 2026-08-30 |
+
 

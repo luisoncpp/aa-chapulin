@@ -35,6 +35,7 @@ export type PoseName =
   | 'chapulin_slam'
   | 'donramon_idle'
   | 'donramon_slam'
+  | 'donramon_shock'
   | 'donramon_point'
   | 'donramon_sweat'
   | 'donramon_panic'
@@ -76,7 +77,8 @@ export type CutinName =
   | 'objection_protesto'
   | 'objection_un_momento'
   | 'objection_toma_eso'
-  | 'objection_culpable';
+  | 'objection_culpable'
+  | 'objection_inocente';
 
 export type FurnitureType = 'podium' | 'bench' | 'none';
 

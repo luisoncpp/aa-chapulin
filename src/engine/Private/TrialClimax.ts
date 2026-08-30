@@ -171,7 +171,12 @@ export function rebindClimaxChoiceModal(ctrl: ClimaxControllerPort): void {
 // fallow-ignore-next-line unused-export
 export { celebrateClimax, queueClimaxCelebration } from './TrialChoice.js';
 
+export function isAwaitingClimaxEvidence(ctrl: ClimaxControllerPort): boolean {
+  return ctrl.phase === 'CLIMAX' && ctrl.climaxChoiceIdx == null;
+}
+
 // fallow-ignore-next-line unused-export
 export function queueClimaxVictory(climax: ClimaxDefinition, deps: ClimaxQueueDeps): void {
   queueClimaxCelebration(climax.verdict, climax, deps);
 }
+

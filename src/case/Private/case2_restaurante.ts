@@ -33,8 +33,8 @@ export const CASE2_RESTAURANTE: InvestigationScene = {
       label: 'Generador Eléctrico Exterior',
       x: 69, y: 30, w: 13, h: 28,
       dialogue: [
-        { speaker: 'DEFENSA', text: '¡Miren! La punta de la palanca tiene pintura azul marino del generador...', pose: 'donramon_slam', sfx: 'realization', updateEvidence: 'palanca_rota' },
-        { speaker: 'DEFENSA', text: '¡La usaron para forzar la caja del generador, no la caja fuerte!', pose: 'donramon_slam', addEvidence: 'caja_generador' }
+        { speaker: 'DEFENSA', text: '¡Miren! La punta de la palanca tiene pintura azul marino del generador...', pose: 'donramon_shock', sfx: 'realization', updateEvidence: 'palanca_rota' },
+        { speaker: 'DEFENSA', text: '¡La usaron para forzar la caja del generador, no la caja fuerte!', pose: 'donramon_shock', addEvidence: 'caja_generador' }
       ]
     }
   ],

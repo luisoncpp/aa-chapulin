@@ -52,11 +52,13 @@ export class InvestigationController {
     this.dom.examineNavEl.classList.add('hidden');
     this.dom.trialNavEl.classList.add('hidden');
     this.isExamineActive = false;
+    this.currentLocationCharPose = null;
     this.dom.hotspotsContainerEl.classList.remove('visible-hotspots');
     this.dom.examineTooltipEl.classList.add('hidden');
-    VisualEffects.hideFurniture(this.dom.courtFurnitureContainerEl);
-
     const scene = this.script.investigation[location];
+    VisualEffects.clearCourtroomPlate(this.dom);
+    this.dom.speakerBoxEl.textContent = scene.speaker || '';
+    this.dom.dialogueTextEl.textContent = '';
     this.dom.locationBannerEl.textContent = scene.title;
     this.dom.bgEl.style.backgroundImage = `url('${scene.bg}')`;
     this.midiComposer.playTrack(scene.bgm);

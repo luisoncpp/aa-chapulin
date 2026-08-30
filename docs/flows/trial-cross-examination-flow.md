@@ -50,7 +50,7 @@ Operational guide for courtroom litigation, cross-examinations, evidence present
 
 ### Final Climax & Verdict
 1. `startClimax()` keeps trial controls hidden, transitions BGM to `'suspense'`, and queues dilemma dialogue from the case climax (`case1_climax` or `case2_climax`).
-2. Court Record opens in presentation mode.
+2. Court Record opens in presentation mode (`isTrialPresent: true`). If closed by the player, advancing dialogue (Click / Space / Enter) or clicking the top HUD Court Record button (`#btn-court-record`) reopens the Court Record in presentation mode (`isTrialPresent: true`).
 3. Player presents a `presentTarget` for the current climax stage (`climax.stages` when set; otherwise `climax.presentTarget`):
    - Wrong item: penalty, incorrect-clue toast, Court Record stays open on the same stage.
    - Correct item on a non-final stage: queues that stage's `successDialogue`, then opens the Court Record again.

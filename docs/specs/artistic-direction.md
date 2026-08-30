@@ -40,6 +40,16 @@ Characters are rendered in high-definition 2D Capcom sprite style with crisp dar
   * `chapulin_point`: Iconic Phoenix Wright-style horizontal finger thrust with twitching antennae.
   * `chapulin_panic`: Wide-eyed comic sweat-storm with hands clutching cowl in despair.
 
+### Don Ramón / Lic. Monchito (Defense Lawyer)
+* **Visual Motifs**: Street-smart public defender in a navy lawyer suit, still wearing his light-blue denim bucket hat and thick mustache.
+* **Palette**: Navy jacket (`#1B263B`), white shirt, dark blue necktie, denim-hat cyan (`#7EB8D4`), warm tan skin, charcoal outline.
+* **Sprite Poses** ([[assets/donramon_idle.png]]):
+  * `donramon_idle`: Waist-up, adjusting his necktie, smug half-smile. Identity lock for extra poses (navy suit, not TV casual denim).
+  * `donramon_slam`: Double-palmed desk slam for trial benches only (palms down, waist notch for `court_bench.png`).
+  * `donramon_shock`: Upright shocked gasp, both hands raised beside the head. Investigation / `plain` frame — never a desk-contact silhouette.
+  * `donramon_point`: Horizontal objection point.
+  * `donramon_sweat` / `donramon_panic`: Nervous grimace; panic currently copies sweat in the Case 1 sheet pipeline.
+
 ### B. Super Sam (Prosecutor)
 * **Visual Motifs**: Capitalist superhero rival in sharp navy suit with US flag lapels/cape, blonde pompadour, heavy burlap sack stamped with green `$`.
 * **Palette**: Deep Navy (`#1B263B`), Star Spangled Red/White/Blue (`#E63946`, `#FFFFFF`, `#1D3557`), Dollar Green (`#2A9D8F`), Gold (`#E9C46A`).

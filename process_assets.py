@@ -314,26 +314,34 @@ def process_evidence_icons(ev_name: str):
 
 def process_cutins(cutin_name: str):
     cutin_path = find_asset_file(cutin_name)
-    if not os.path.exists(cutin_path):
-        return
+    if os.path.exists(cutin_path):
+        img = Image.open(cutin_path)
+        w, h = img.size
+        cw, ch = w // 2, h // 2
 
-    img = Image.open(cutin_path)
-    w, h = img.size
-    cw, ch = w // 2, h // 2
+        names = ["objection_protesto", "objection_un_momento", "objection_toma_eso", "objection_culpable"]
+        for idx, name in enumerate(names):
+            r = idx // 2
+            c = idx % 2
+            cell = img.crop((c * cw, r * ch, (c + 1) * cw, (r + 1) * ch))
+            cleaned = remove_bg_magenta_vectorized(cell, threshold=165.0, despill_depth=4)
+            cleaned = clean_edges_vectorized(cleaned, depth=4)
+            filtered = extract_primary_components_fast(cleaned, min_area_fraction=0.25)
+            filtered = despill_final(filtered)
 
-    names = ["objection_protesto", "objection_un_momento", "objection_toma_eso", "objection_culpable"]
-    for idx, name in enumerate(names):
-        r = idx // 2
-        c = idx % 2
-        cell = img.crop((c * cw, r * ch, (c + 1) * cw, (r + 1) * ch))
-        cleaned = remove_bg_magenta_vectorized(cell, threshold=165.0, despill_depth=4)
-        cleaned = clean_edges_vectorized(cleaned, depth=4)
-        filtered = extract_primary_components_fast(cleaned, min_area_fraction=0.25)
-        filtered = despill_final(filtered)
+            out_path = os.path.join(DEST_DIR, f"{name}.png")
+            filtered.save(out_path)
+            print(f"  [OK] Processed: {name}.png ({filtered.size})")
 
-        out_path = os.path.join(DEST_DIR, f"{name}.png")
-        filtered.save(out_path)
-        print(f"  [OK] Processed: {name}.png ({filtered.size})")
+    inocente_path = find_asset_file("objection_inocente_raw.jpg")
+    if os.path.exists(inocente_path):
+        img_inocente = Image.open(inocente_path).convert("RGBA")
+        cleaned_i = remove_bg_magenta_vectorized(img_inocente, threshold=165.0, despill_depth=4)
+        cleaned_i = clean_edges_vectorized(cleaned_i, depth=4)
+        filtered_i = extract_primary_components_fast(cleaned_i, min_area_fraction=0.25)
+        final_i = despill_final(filtered_i).resize((512, 512), Image.Resampling.LANCZOS)
+        final_i.save(os.path.join(DEST_DIR, "objection_inocente.png"))
+        print(f"  [OK] Processed: objection_inocente.png ({final_i.size})")
 
 
 def process_ui_elements(ui_name: str):

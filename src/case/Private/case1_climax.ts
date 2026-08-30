@@ -25,7 +25,7 @@ export const CLIMAX_DATA: ClimaxDefinition = {
     { speaker: 'TRIPASECA', text: '¡¡¡MALDICIIIIIIÓN!!! ¡¡¡CONFIEEEEESOOOOOO!!! ¡¡¡YO ME ROBÉ LA CHICHARRA Y LE PAGUÉ A SAM CON DÓLARES FALSOS!!!', pose: 'tripaseca_breakdown' },
     { speaker: 'SUPER SAM', text: 'WHAAAAT?! ¡¿DÓLARES FALSOS?! ¡¡¡MY MONEY IS RUINED, OH NOOOOO!!!', pose: 'supersam_breakdown' },
     { speaker: 'JUEZ', text: '¡Visto y comprobado! Este tribunal ha llegado a un veredicto definitivo e incuestionable.', pose: 'judge_gavel', sfx: 'gavel' },
-    { cutin: 'objection_culpable', speaker: 'JUEZ', text: '¡INOCENTE!', sfx: 'whoosh', bgm: 'victory', pose: 'judge_gavel' },
+    { cutin: 'objection_inocente', speaker: 'JUEZ', text: '¡INOCENTE!', sfx: 'whoosh', bgm: 'victory', pose: 'judge_gavel' },
     { speaker: 'CHAPULIN', text: '¡Se aprovechan de mi nobleza! ¡Pero la justicia siempre triunfa! ¡¡¡SÍGANME LOS BUENOS!!!', pose: 'chapulin_point' },
     { speaker: 'DEFENSA', text: '¡Caso Cerrado! Y ahora, señor Barriga... ¡le pago sus 14 meses de renta!', pose: 'donramon_idle' }
   ]

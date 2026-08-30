@@ -33,19 +33,20 @@ export class DialogueFlow {
     this.onQueueFinish = null;
   }
 
-  public handleAdvance(): void {
+  public handleAdvance(): boolean {
     if (this.deps.typewriter.isTyping) {
       this.deps.typewriter.completeImmediately();
-      return;
+      return true;
     }
     if (this.queue.length > 0) {
       this.renderDialogueLine(this.queue.shift()!);
-      return;
+      return true;
     }
-    if (!this.onQueueFinish) return;
+    if (!this.onQueueFinish) return false;
     const cb = this.onQueueFinish;
     this.onQueueFinish = null;
     cb();
+    return true;
   }
 
   public queueDialogue(dialogueArray: DialogueLine[], onComplete: (() => void) | null = null): void {

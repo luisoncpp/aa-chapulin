@@ -32,11 +32,11 @@ Each entry in a dialogue sequence supports the following optional and required f
 |-------|------|-------------|
 | `speaker` | string | Speaker label displayed in the nameplate (e.g. `'DEFENSA'`, `'DON RAMON'`, `'CHAPULIN'`, `'SUPER SAM'`, `'JUEZ'`, `'TRIPASECA'`, `'FLORINDA'`, `'NARRADOR'`). |
 | `text` | string | Text string rendered via typewriter. |
-| `pose` | string \| null | Sprite key (e.g. `'donramon_idle'`, `'chompiras_crying'`, `'peterete_smug'`). If `null` during trial, defense defaults to `'donramon_idle'`. |
+| `pose` | string \| null | Sprite key (e.g. `'donramon_idle'`, `'donramon_shock'`, `'chompiras_crying'`). If `null` during trial, defense defaults to `'donramon_idle'`. `donramon_slam` is a desk-contact pose for trial benches; investigation uses `donramon_shock`. Leftover slam tags remap to shock when mode is not `TRIAL`. |
 | `bg` | string | File path to switch the background image (`#scene-bg`). |
 | `bgm` | string | Track ID to switch soundtrack playback in `midiComposer`. |
 | `sfx` | string | SFX identifier to trigger procedural audio (`'gavel'`, `'desk_slam'`, `'whoosh'`, `'realization'`, `'damage'`, `'chipote'`, `'chicharra'`). |
-| `cutin` | string | Cut-in graphic key (`'objection_protesto'`, `'objection_un_momento'`, `'objection_toma_eso'`, `'objection_culpable'`). |
+| `cutin` | string | Cut-in graphic key (`'objection_protesto'`, `'objection_un_momento'`, `'objection_toma_eso'`, `'objection_culpable'`, `'objection_inocente'`). |
 | `addEvidence` | string | Evidence ID to automatically add to the player's inventory with a progress notification (same toast + realization SFX as a new location). |
 | `updateEvidence` | string | Evidence ID whose Court Record `updatedDesc` should apply. If the item is new, it is added (add toast). If it was already owned, shows the update toast. |
 

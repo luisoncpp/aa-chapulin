@@ -95,6 +95,7 @@ export class GameEngine {
       investigation: this.investigation, trial: this.trial,
       onStartGame: () => this.startGame('case1'),
       onStartCase2: () => this.startGame('case2'),
+      onStartCase3: () => this.startGame('case3'),
       onStartTrialDebug: () => this.startTrialDebug(),
       onAdvance: () => this.handleAdvance(),
       onOpenCourtRecord: (isTrial) => this.openCourtRecord(isTrial),
@@ -132,8 +133,8 @@ export class GameEngine {
     launchGame(this.host(), caseId);
   }
 
-  public startTrialDebug(): void {
-    launchTrial(this.host());
+  public startTrialDebug(day?: import('../../types/index.js').TrialDay): void {
+    launchTrial(this.host(), day);
   }
 
   private handleAdjournment(location: LocationId): void {

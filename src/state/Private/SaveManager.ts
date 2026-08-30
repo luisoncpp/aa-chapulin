@@ -13,6 +13,7 @@ export interface TrialStateSnapshot {
   trialDay?: TrialDay;
   climaxStageIdx?: number;
   climaxChoiceIdx?: number;
+  pressedStatementIds?: string[];
 }
 
 export interface SaveData {
@@ -26,6 +27,7 @@ export interface SaveData {
   gameOver: boolean;
   inventory: EvidenceId[];
   flags: GameFlags;
+  evidenceUpdateStage?: Record<string, number>;
   trial?: TrialStateSnapshot;
   caseId?: CaseId;
   trialDay?: TrialDay;

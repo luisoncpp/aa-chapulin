@@ -45,6 +45,7 @@ export interface UiTranslations {
   splashTip: string;
   btnStartGame: string;
   btnStartCase2: string;
+  btnStartCase3: string;
   btnStartTrialDebug: string;
   btnContinue: string;
   langToggleLabel: string;
@@ -60,6 +61,8 @@ export interface UiTranslations {
   notifEvidenceUpdated: (name: string) => string;
   notifLocationUnlocked: (name: string) => string;
   notifTrialReady: string;
+  notifWitnessAddedStatement: string;
+  pressHint: string;
   notifIncorrectClue: string;
   notifGameSaved: string;
   notifGameLoaded: string;

@@ -1,0 +1,55 @@
+// @Architecture(descriptionShort="Trial contradiction outcomes and penalties", type="util", icon="panel")
+/**
+ * Contradiction success and penalty flows for [[./TrialController.ts]].
+ */
+
+import type { DialogueLine } from '../../types/index.js';
+import { ModalManager } from './ModalManager.js';
+import { applyAdjournment, shouldAdjourn } from './TrialDayRouter.js';
+import { applyPenaltyEffects, queuePenaltyDialogue } from './TrialPenalty.js';
+import { maybeQueuePressHint } from './TrialPressFlow.js';
+import type { TrialController } from './TrialController.js';
+
+export function onSuccessContradiction(ctrl: TrialController, dialogue: DialogueLine[]): void {
+  ctrl.hideControls();
+  ctrl.deps.onQueueDialogue(dialogue, /*onComplete*/ () => {
+    if (ctrl.getTestimonyKey() === 'testimony1') return ctrl.startTestimony('testimony2');
+    if (shouldAdjourn(ctrl.script, ctrl.deps.state.trialDay)) return adjournToInvestigation(ctrl);
+    ctrl.startClimax();
+  });
+}
+
+export function adjournToInvestigation(ctrl: TrialController): void {
+  const adjournment = applyAdjournment(ctrl.deps.state, ctrl.script);
+  if (!adjournment) return ctrl.startClimax();
+  ctrl.phase = 'IDLE';
+  ctrl.clearActiveTestimony();
+  ctrl.deps.onAdjourn?.(adjournment.nextLocation);
+}
+
+export function onPresentPenalty(ctrl: TrialController): void {
+  const failedCount = ctrl.bumpFailedPresentCount();
+  applyPenaltyEffects(ctrl.deps);
+  ctrl.hideControls();
+  const resume = ctrl.deps.state.gameOver
+    ? () => showGameOverModal(ctrl)
+    : () => ctrl.renderCurrentStatement();
+  if (maybeQueuePressHint(
+    ctrl.currentTestimony,
+    failedCount,
+    ctrl.deps.onQueueDialogue,
+    resume
+  )) return;
+  queuePenaltyDialogue(ctrl.deps, /*onResume*/ resume);
+}
+
+export function showGameOverModal(ctrl: TrialController): void {
+  ctrl.hideControls();
+  ctrl.deps.state.resetHealth();
+  ModalManager.updateHealthUI(
+    ctrl.deps.dom.healthBarEl,
+    ctrl.deps.state.health,
+    ctrl.deps.state.maxHealth
+  );
+  ctrl.startTrial();
+}

@@ -13,6 +13,7 @@ import { TESTIMONY_1, TESTIMONY_2, TRIAL_INTRO } from './Private/case1_trial.js'
 import { TESTIMONY_1_EN, TESTIMONY_2_EN, TRIAL_INTRO_EN } from './Private/case1_trial_en.js';
 export { CASE_SCRIPT_CASE2_EN, CASE_SCRIPT_CASE2_ES } from './Private/case2_script.js';
 import { CASE_SCRIPT_CASE2_EN, CASE_SCRIPT_CASE2_ES } from './Private/case2_script.js';
+import { CASE_SCRIPT_CASE3_EN, CASE_SCRIPT_CASE3_ES } from './Private/case3_script.js';
 
 const CASE1_REQUIRED: EvidenceId[] = [
   'chipote_chillon', 'pastillas_chiquitolina', 'antenitas_vinil',
@@ -59,6 +60,9 @@ export const CASE_SCRIPT_EN: CaseScript = {
 export const CASE_SCRIPT: CaseScript = CASE_SCRIPT_ES;
 
 export function getCaseScript(lang: Language = 'es', caseId: CaseId = 'case1'): CaseScript {
+  if (caseId === 'case3') {
+    return lang === 'en' ? CASE_SCRIPT_CASE3_EN : CASE_SCRIPT_CASE3_ES;
+  }
   if (caseId === 'case2') {
     return lang === 'en' ? CASE_SCRIPT_CASE2_EN : CASE_SCRIPT_CASE2_ES;
   }

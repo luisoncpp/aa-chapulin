@@ -41,6 +41,7 @@ export type {
   Hotspot,
   TalkOption,
   InvestigationScene,
+  Statement,
   Testimony,
   ClimaxEpilogue,
   ClimaxStage,

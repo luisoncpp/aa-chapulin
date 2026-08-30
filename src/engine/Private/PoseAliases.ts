@@ -8,5 +8,6 @@ import type { PoseName } from '../../types/index.js';
 
 export function resolvePoseAsset(poseName: PoseName): string | null {
   if (!poseName) return null;
+  if (poseName === 'chapulin_thinking') return 'chapulin_idle';
   return poseName;
 }

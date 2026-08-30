@@ -46,11 +46,16 @@ function getClimaxStages(climax: ClimaxDefinition): ClimaxStage[] {
 function climaxStageMatches(
   climax: ClimaxDefinition,
   stageIdx: number,
-  evidenceId: EvidenceId
+  evidenceId: EvidenceId,
+  getUpdateStage: (id: EvidenceId) => number
 ): boolean {
   const stages = getClimaxStages(climax);
   const idx = Math.min(Math.max(stageIdx, 0), stages.length - 1);
-  return stages[idx].presentTarget.includes(evidenceId);
+  const stage = stages[idx];
+  if (!stage.presentTarget.includes(evidenceId)) return false;
+  const minStage = stage.minUpdateStage?.[evidenceId];
+  if (minStage != null && getUpdateStage(evidenceId) < minStage) return false;
+  return true;
 }
 
 function isFinalClimaxStage(climax: ClimaxDefinition, stageIdx: number): boolean {
@@ -96,7 +101,7 @@ function presentClimaxEvidence(
   onChoiceSelect: (optionId: string) => void
 ): ClimaxSession {
   const { climax, stageIdx, evidenceId } = session;
-  if (!climaxStageMatches(climax, stageIdx, evidenceId)) {
+  if (!climaxStageMatches(climax, stageIdx, evidenceId, deps.state.getEvidenceUpdateStage)) {
     applyPenaltyEffects(deps);
     VisualEffects.showNotification(deps.dom.gameNotificationEl, i18n.t.notifIncorrectClue);
     deps.onOpenCourtRecord(/*isTrialPresent=*/ true);

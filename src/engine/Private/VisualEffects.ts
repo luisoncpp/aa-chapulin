@@ -28,7 +28,13 @@ const TRIAL_SPEAKER_BACKGROUNDS: Record<string, string> = {
   CHOMPIRAS: 'assets/bg_witness.jpg',
   JIRAFALES: 'assets/bg_witness.jpg',
   JAIMITO: 'assets/bg_witness.jpg',
-  CLOTILDE: 'assets/bg_witness.jpg'
+  CLOTILDE: 'assets/bg_witness.jpg',
+  CHAPATIN: 'assets/bg_witness.jpg',
+  PAZGUATO: 'assets/bg_witness.jpg',
+  ANICETO: 'assets/bg_witness.jpg',
+  BARRIGA: 'assets/bg_witness.jpg',
+  NONO: 'assets/bg_witness.jpg',
+  CHIMOLTRUFIA: 'assets/bg_witness.jpg'
 };
 
 function isDefenseSpeaker(speaker: string): boolean {

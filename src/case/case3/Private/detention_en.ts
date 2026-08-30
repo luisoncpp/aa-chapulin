@@ -1,11 +1,11 @@
 // @Architecture(descriptionShort="English Case 3 day-1 detention visit with Chapatín", type="data", icon="layers")
 /**
- * Case 3 Day 1 — Detention Center investigation (English).
+ * Case 3 Day 1 — Detention Center (`centro_detencion`) English.
  */
 
 import type { InvestigationScene } from '../../../types/index.js';
 
-export const CASE3_DETENTION_EN = {
+export const CASE3_DETENTION_EN: InvestigationScene = {
   title: 'Detention Center - Visitor Room',
   name: 'Detention Center',
   bg: 'assets/bg_detention.jpg',
@@ -25,17 +25,17 @@ export const CASE3_DETENTION_EN = {
     {
       id: 'chapatin_spot',
       label: 'Doctor Chapatín',
-      x: 22, y: 16, w: 36, h: 50,
+      x: 24, y: 14, w: 34, h: 54,
       dialogue: [
-        { speaker: 'CHAPATIN', text: 'Don\'t ask my age. Don\'t touch the bag. And don\'t call me "grandpa."', pose: 'chapatin_enojado' }
+        { speaker: 'CHAPATIN', text: 'What are you staring at? Never seen an innocent doctor before?', pose: 'chapatin_enojado' }
       ]
     },
     {
       id: 'phone_spot',
       label: 'Visitor Phone',
-      x: 86, y: 16, w: 13, h: 40,
+      x: 86, y: 16, w: 12, h: 40,
       dialogue: [
-        { speaker: 'DEFENSA', text: 'Super Sam left a note: "Time is money. Plead guilty before lunch."', pose: 'donramon_idle' }
+        { speaker: 'DEFENSA', text: 'Not even a message from the prosecutor. He must be counting coins.', pose: 'donramon_idle' }
       ]
     }
   ],
@@ -54,19 +54,18 @@ export const CASE3_DETENTION_EN = {
       label: 'Where were you between 10:40 and 11:03?',
       dialogue: [
         { speaker: 'CHAPATIN', text: 'None of your business.', pose: 'chapatin_enojado' },
-        { speaker: 'DEFENSA', text: 'Doctor, with all respect, that\'s exactly what will send you to prison for twenty years.', pose: 'donramon_idle' },
+        { speaker: 'DEFENSA', text: 'Doctor, with all respect, that\'s exactly what will send you to prison for twenty years.', pose: 'donramon_point' },
         { speaker: 'CHAPATIN', text: 'Then I\'ll go twenty years. A doctor who talks is not a doctor — he\'s a gossip.', pose: 'chapatin_idle' },
         { speaker: 'CHAPULIN', text: '(Monchito... he\'s covering for someone.)', pose: 'chapulin_thinking' },
-        { speaker: 'DEFENSA', text: '(And that someone is his patient. Note it, Chapulín: the alibi exists, but it\'s under professional secrecy.)', pose: 'donramon_point' }
+        { speaker: 'DEFENSA', text: '(And that someone is his patient. Note it, Chapulín: the alibi exists, but it\'s under professional secrecy.)', pose: 'donramon_sweat' }
       ]
     },
     {
-      id: 'about_pleito',
+      id: 'about_barriga_fight',
       label: 'About your fight with Señor Barriga',
       dialogue: [
-        { speaker: 'CHAPATIN', text: 'He wanted to raise the clinic rent forty percent. I yelled. He yelled. We yelled. We\'ve done that for eleven years and nobody died... until last night.', pose: 'chapatin_enojado' },
-        { speaker: 'DEFENSA', text: 'Then we start at the crime scene.', pose: 'donramon_idle', unlockLocation: 'cabina_radio' }
+        { speaker: 'CHAPATIN', text: 'He wanted to raise the clinic rent forty percent. I yelled. He yelled. We yelled. We\'ve done that for eleven years and nobody died... until last night.', pose: 'chapatin_enojado', unlockLocation: 'cabina_radio' }
       ]
     }
   ]
-} as InvestigationScene;
+};

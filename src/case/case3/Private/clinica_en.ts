@@ -1,13 +1,13 @@
-// @Architecture(descriptionShort="English Case 3 clinic visit with Ñoño and Jirafales", type="data", icon="layers")
+// @Architecture(descriptionShort="English Case 3 clinic scene with Ñoño and kermés libretto", type="data", icon="layers")
 /**
- * Case 3 Day 2 — Doctor Chapatín's clinic investigation (English).
+ * Case 3 Day 2 — Doctor Chapatín's clinic (`clinica_chapatin`) English.
  */
 
 import type { InvestigationScene } from '../../../types/index.js';
 
-export const CASE3_CLINICA_EN = {
+export const CASE3_CLINICA_EN: InvestigationScene = {
   title: 'Doctor Chapatín\'s Clinic',
-  name: 'Clinic',
+  name: 'Chapatín Clinic',
   bg: 'assets/bg_clinica.jpg',
   bgm: 'detention_center',
   speaker: 'NARRADOR',
@@ -25,32 +25,32 @@ export const CASE3_CLINICA_EN = {
     {
       id: 'hotspot_libreta',
       label: 'Consultation Logbook',
-      x: 55, y: 40, w: 25, h: 30,
+      x: 48, y: 36, w: 24, h: 28,
       dialogue: [
-        { speaker: 'CHAPULIN', text: 'Ten-fifty at night! The doctor was treating someone while the cart squeaked!', pose: 'chapulin_point', addEvidence: 'receta_nono' },
-        { speaker: 'DEFENSA', text: 'And he charged nothing. That\'s why the old man prefers prison: he\'s not covering an accomplice — he\'s covering a patient.', pose: 'donramon_idle' },
+        { speaker: 'CHAPULIN', text: 'Ten-fifty at night! The doctor was treating someone while the cart squeaked!', pose: 'chapulin_point' },
+        { speaker: 'DEFENSA', text: 'And he charged nothing. That\'s why the old man prefers prison: he\'s not covering an accomplice — he\'s covering a patient.', pose: 'donramon_point', sfx: 'realization', addEvidence: 'receta_nono' },
         { speaker: 'NONO', text: 'Please don\'t say anything! If Daddy finds out about my heart he\'ll die of fright!', pose: 'nono_llorando' },
-        { speaker: 'DEFENSA', text: 'Your father\'s in a coma, kid. He won\'t die of fright. My client will die of an unjust verdict.', pose: 'donramon_point', unlockLocation: 'delegacion' }
+        { speaker: 'DEFENSA', text: 'Your father\'s in a coma, kid. He won\'t die of fright. My client will die of an unjust verdict.', pose: 'donramon_idle', unlockLocation: 'delegacion' }
       ]
     },
     {
       id: 'hotspot_camilla',
-      label: 'Victim\'s Cot',
-      x: 15, y: 35, w: 30, h: 40,
+      label: 'Patient Cot',
+      x: 12, y: 28, w: 28, h: 40,
       dialogue: [
-        { speaker: 'FLORINDA', text: 'The poor landlord... and to think that doctor argued with him before half the building!', pose: 'florinda_idle' },
-        { speaker: 'DEFENSA', text: '(Coma. Bandages. And a secret injection at 10:50. The pieces fit.)', pose: 'donramon_idle' }
+        { speaker: 'FLORINDA', text: 'Poor Señor Barriga... And to think last night he was still helping us look for Quico.', pose: 'florinda_idle' },
+        { speaker: 'DEFENSA', text: '(Still in a coma. Every hour counts.)', pose: 'donramon_sweat' }
       ]
     }
   ],
   talkOptions: [
     {
-      id: 'about_nono',
+      id: 'about_nono_console',
       label: 'About the console that night',
       dialogue: [
-        { speaker: 'NONO', text: 'I swear I ran everything! The Grito, the cutaways, everything!', pose: 'nono_nervioso' },
-        { speaker: 'CHAPULIN', text: 'My antennae say there\'s a gap in that story...', pose: 'chapulin_thinking' }
+        { speaker: 'NONO', text: 'I... I didn\'t move. Really. Well, almost. Don\'t say I said almost!', pose: 'nono_nervioso' },
+        { speaker: 'CHAPULIN', text: 'My vinyl antennae are vibrating nasty!', pose: 'chapulin_panic' }
       ]
     }
   ]
-} as InvestigationScene;
+};

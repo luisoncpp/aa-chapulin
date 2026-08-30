@@ -1,13 +1,13 @@
-// @Architecture(descriptionShort="English Case 3 Barriga office crime-scene revisit", type="data", icon="layers")
+// @Architecture(descriptionShort="English Case 3 Barriga office crime-scene hotspots", type="data", icon="layers")
 /**
- * Case 3 Day 2 — Señor Barriga's office investigation (English).
+ * Case 3 Day 2 — Señor Barriga's office (`despacho_barriga`) English.
  */
 
 import type { InvestigationScene } from '../../../types/index.js';
 
-export const CASE3_DESPACHO_EN = {
+export const CASE3_DESPACHO_EN: InvestigationScene = {
   title: 'Señor Barriga\'s Office',
-  name: 'Administration Office',
+  name: 'Barriga Office',
   bg: 'assets/bg_despacho.jpg',
   bgm: 'suspense',
   speaker: 'NARRADOR',
@@ -23,39 +23,40 @@ export const CASE3_DESPACHO_EN = {
     {
       id: 'hotspot_escritorio',
       label: 'Under the Desk',
-      x: 30, y: 55, w: 40, h: 25,
+      x: 22, y: 48, w: 30, h: 24,
       dialogue: [
-        { speaker: 'CHAPULIN', text: 'Here\'s the eye the glasses were missing!', pose: 'chapulin_point', updateEvidence: 'lentes_barriga' },
-        { speaker: 'DEFENSA', text: 'And the rug is red wool. The medical report\'s fibers came from here. This is the real crime scene.', pose: 'donramon_shock' }
+        { speaker: 'CHAPULIN', text: 'Here\'s the eye the glasses were missing!', pose: 'chapulin_point' },
+        { speaker: 'DEFENSA', text: 'And the rug is red wool. The medical report\'s fibers came from here. This is the real crime scene.', pose: 'donramon_point', sfx: 'realization', updateEvidence: 'lentes_barriga' }
       ]
     },
     {
       id: 'hotspot_pedestal',
       label: 'Velvet Pedestal',
-      x: 70, y: 30, w: 20, h: 40,
+      x: 62, y: 22, w: 20, h: 40,
       dialogue: [
-        { speaker: 'ANICETO', text: '...Yes. It\'s mine. How ugly, that they used it for that.', pose: 'aniceto_thinking', updateEvidence: 'microfono_oro' },
-        { speaker: 'DEFENSA', text: '(His trophy was in the office. It turned up in the booth. So it rode the cart with Señor Barriga.)', pose: 'donramon_idle' }
+        { speaker: 'DEFENSA', text: 'Empty pedestal... dust ring the exact size of the octagonal base. The plaque says: "A Aniceto Rebollar, 25 años de La Voz de Oro".', pose: 'donramon_idle', updateEvidence: 'microfono_oro' },
+        { speaker: 'ANICETO', text: '...Yes. It\'s mine. How ugly, that they used it for that.', pose: 'aniceto_thinking' },
+        { speaker: 'DEFENSA', text: '(His trophy was in the office. It turned up in the booth. So it rode the cart with Señor Barriga.)', pose: 'donramon_sweat' }
       ]
     },
     {
       id: 'hotspot_caja',
       label: 'Safe & Ashtray',
-      x: 10, y: 25, w: 25, h: 40,
+      x: 8, y: 28, w: 22, h: 38,
       dialogue: [
-        { speaker: 'CHAPULIN', text: 'They stole a page and smoked it!', pose: 'chapulin_panic', addEvidence: 'libro_verde' },
-        { speaker: 'DEFENSA', text: 'They burned it, Chapulín. Someone didn\'t want September 12 read... and that someone knew the combination.', pose: 'donramon_point', unlockLocation: 'clinica_chapatin' }
+        { speaker: 'CHAPULIN', text: 'They stole a page and smoked it!', pose: 'chapulin_panic' },
+        { speaker: 'DEFENSA', text: 'They burned it, Chapulín. Someone didn\'t want September 12 read... and that someone knew the combination.', pose: 'donramon_point', sfx: 'realization', addEvidence: 'libro_verde', unlockLocation: 'clinica_chapatin' }
       ]
     }
   ],
   talkOptions: [
     {
       id: 'about_tesoro',
-      label: 'About the kermés fund',
+      label: 'About the Kermés Fund',
       dialogue: [
-        { speaker: 'ANICETO', text: 'I sign every withdrawal. Twenty-five years of trust. If something\'s missing... I\'d be the first to want it found.', pose: 'aniceto_terciopelo' },
-        { speaker: 'DEFENSA', text: '(Velvet voice, perfect manners, and that compulsion to correct. Note it twice now.)', pose: 'donramon_sweat' }
+        { speaker: 'ANICETO', text: 'I signed the Green Book. Every peso, every missing peso... and last night they tore out the page that hurt most.', pose: 'aniceto_terciopelo' },
+        { speaker: 'DEFENSA', text: '(Who else knew that safe\'s combination?)', pose: 'donramon_idle' }
       ]
     }
   ]
-} as InvestigationScene;
+};

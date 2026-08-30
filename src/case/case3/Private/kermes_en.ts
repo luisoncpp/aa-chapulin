@@ -1,15 +1,15 @@
-// @Architecture(descriptionShort="English Case 3 plaza kermés witness talks", type="data", icon="layers")
+// @Architecture(descriptionShort="English Case 3 plaza kermés with Aniceto proverb plant", type="data", icon="layers")
 /**
- * Case 3 Day 1 — Plaza de la Kermés investigation (English).
+ * Case 3 Day 1 — Plaza de la Kermés (`plaza_kermes`) English.
  */
 
 import type { InvestigationScene } from '../../../types/index.js';
 
-export const CASE3_KERMES_EN = {
+export const CASE3_KERMES_EN: InvestigationScene = {
   title: 'Plaza de la Kermés',
-  name: 'Kermés Plaza',
+  name: 'Plaza de la Kermés',
   bg: 'assets/bg_kermes.jpg',
-  bgm: 'investigation',
+  bgm: 'kermes',
   speaker: 'NARRADOR',
   intro: [
     { speaker: 'NARRADOR', text: 'September 16, 3:00 PM. Plaza de la Kermés, colored paper still hanging.' },
@@ -26,47 +26,39 @@ export const CASE3_KERMES_EN = {
     {
       id: 'hotspot_bocinas',
       label: 'Plaza Speakers',
-      x: 70, y: 8, w: 22, h: 30,
+      x: 70, y: 12, w: 22, h: 36,
       dialogue: [
-        { speaker: 'DEFENSA', text: 'These trumpet speakers repeat everything that goes on air. Two thousand ears, one scream.', pose: 'donramon_idle' }
+        { speaker: 'JIRAFALES', text: 'Those speakers repeat EVERYTHING that goes on air from XEVC. No filter, no mercy.', pose: 'jirafales_idle' }
       ]
     },
     {
-      id: 'hotspot_puesto',
-      label: 'Florinda\'s Stall',
-      x: 15, y: 40, w: 28, h: 35,
+      id: 'hotspot_kiosco',
+      label: 'Plaza Kiosk',
+      x: 30, y: 20, w: 28, h: 40,
       dialogue: [
-        { speaker: 'FLORINDA', text: '¡Chusma, chusma! Keep your paws off the candy apples!', pose: 'florinda_angry' }
+        { speaker: 'DEFENSA', text: 'Still smells of fireworks and fritters. The whole barrio heard the scream from here.', pose: 'donramon_idle' }
       ]
     }
   ],
   talkOptions: [
     {
       id: 'about_barriga_plaza',
-      label: 'Where was Señor Barriga at 9:40?',
+      label: 'Did you see Señor Barriga last night?',
       dialogue: [
-        { speaker: 'FLORINDA', text: 'Alive and kicking in this plaza, looking for Quico with the Professor and me!', pose: 'florinda_idle' },
+        { speaker: 'FLORINDA', text: 'Of course we did! At 9:40 he was still alive in this plaza, helping us look for Quico.', pose: 'florinda_idle' },
         { speaker: 'QUICO', text: '¡Cállate, cállate, que me desesperas!' },
-        { speaker: 'JIRAFALES', text: 'Confirmed. The lost-child notice went out only once: 9:40 PM sharp.', pose: 'jirafales_idle' }
-      ]
-    },
-    {
-      id: 'about_grito',
-      label: 'About El Grito broadcast',
-      dialogue: [
-        { speaker: 'JIRAFALES', text: 'I keep a minute-by-minute script. At 11:03 the station cut in with that scream. ¡¡¡TA-TA-TA-TA-TAAAAAA!!!', pose: 'jirafales_angry' },
-        { speaker: 'ANICETO', text: 'The whole neighborhood adores this station. Twenty-five years of velvet voice...', pose: 'aniceto_terciopelo' },
-        { speaker: 'DEFENSA', text: '(Most beloved man in the barrio. Nobody would look at him twice — including me.)', pose: 'donramon_idle' }
+        { speaker: 'NARRADOR', text: '(Quico\'s voice arrives from offscreen, behind a stall.)' },
+        { speaker: 'JIRAFALES', text: 'Señor Barriga helped with the notice over the speakers. Big cheeks, I said. And I was not wrong!', pose: 'jirafales_smoking' }
       ]
     },
     {
       id: 'about_aniceto',
-      label: 'About being tied up',
+      label: 'About Don Aniceto',
       dialogue: [
-        { speaker: 'ANICETO', text: 'They found me in the storeroom. Silk handkerchief, microphone cable... I nearly suffocated.', pose: 'aniceto_terciopelo' },
-        { speaker: 'CHAPULIN', text: '¡Se aprovechan de mi nobleza! I mean — of his!', pose: 'chapulin_point' },
-        { speaker: 'DEFENSA', text: 'We\'ve got what we need for day one. Time for court.', pose: 'donramon_point' }
+        { speaker: 'FLORINDA', text: 'He\'s the most beloved man in the barrio. Twenty-five years of golden voice. Don\'t you dare suspect him!', pose: 'florinda_angry' },
+        { speaker: 'ANICETO', text: 'You\'re very kind, Doña Florinda. I only want them to catch whoever left me tied up like a long-play record.', pose: 'aniceto_terciopelo' },
+        { speaker: 'DEFENSA', text: '(Nobody looks at this gentleman twice. Noted... just in case.)', pose: 'donramon_idle' }
       ]
     }
   ]
-} as InvestigationScene;
+};

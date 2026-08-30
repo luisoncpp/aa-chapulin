@@ -20,7 +20,8 @@ export const EVIDENCE_CATALOG_ES: EvidenceCatalogMap = {
     id: 'chipote_chillon',
     name: 'Chipote Chillón',
     icon: 'assets/chipote_chillon.png',
-    desc: 'Arma supuestamente letal. Hecho de vinil suave; sólo emite un chillido al golpear.'
+    desc: 'Arma supuestamente letal. Hecho de vinil suave y goma hueca.',
+    updatedDesc: 'Arma supuestamente letal. Vinil suave y hueco; al apretarlo emite un cómico chillido. Imposible fracturar un cráneo.'
   },
   pastillas_chiquitolina: {
     id: 'pastillas_chiquitolina',
@@ -32,7 +33,8 @@ export const EVIDENCE_CATALOG_ES: EvidenceCatalogMap = {
     id: 'antenitas_vinil',
     name: 'Antenitas de Vinil',
     icon: 'assets/antenitas_vinil.png',
-    desc: 'Detectan la presencia del enemigo. Registraron actividad sospechosa a las 8:45 PM.'
+    desc: 'Detectan la presencia del enemigo.',
+    updatedDesc: 'Detectan la presencia del enemigo. Registraron actividad sospechosa a las 8:45 PM.'
   },
   informe_medico: {
     id: 'informe_medico',
@@ -74,7 +76,8 @@ export const EVIDENCE_CATALOG_EN: EvidenceCatalogMap = {
     id: 'chipote_chillon',
     name: 'Chipote Chillón (Squeaky Mallet)',
     icon: 'assets/chipote_chillon.png',
-    desc: 'Supposedly lethal assault weapon. Made of soft vinyl; only emits a squeak when struck.'
+    desc: 'Supposedly lethal assault weapon. Made of soft vinyl and hollow rubber.',
+    updatedDesc: 'Supposedly lethal assault weapon. Soft hollow vinyl; squeezing it emits a silly squeak. Impossible to fracture a skull.'
   },
   pastillas_chiquitolina: {
     id: 'pastillas_chiquitolina',
@@ -86,7 +89,8 @@ export const EVIDENCE_CATALOG_EN: EvidenceCatalogMap = {
     id: 'antenitas_vinil',
     name: 'Antenitas de Vinil (Vinyl Antennae)',
     icon: 'assets/antenitas_vinil.png',
-    desc: 'Detect enemy presence. Recorded suspicious activity at 8:45 PM.'
+    desc: 'Detect enemy presence.',
+    updatedDesc: 'Detect enemy presence. Recorded suspicious activity at 8:45 PM.'
   },
   informe_medico: {
     id: 'informe_medico',

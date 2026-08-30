@@ -26,11 +26,11 @@ The internationalization deep module exposes:
 
 1. **Trigger**: Player clicks the language toggle button (`#btn-lang-toggle` in top HUD or `#btn-lang-splash` in start splash overlay) or loads a URL parameter (`?lang=en`).
 2. **State & i18n Update**: `GameEngine.setLanguage(lang)` invokes `i18n.setLanguage(lang)` and `gameState.setLanguage(lang)`.
-3. **Evidence Reload**: `gameState.allEvidence` is repopulated with localized titles and descriptions via `getEvidenceCatalog(lang)`.
+3. **Evidence Reload**: `gameState.allEvidence` is repopulated with localized titles, `desc`, and optional `updatedDesc` via `getEvidenceCatalog(lang)`. Update flags stay on `gameState.flags`, so language switch keeps the revised text in the new locale.
 4. **Script Swap**: Investigation and trial controllers receive the matching localized narrative graph via `getCaseScript(lang, caseId)` (Case 1 and Case 2 both have ES/EN scripts).
 5. **DOM Synchronization**: `UiLanguageUpdater.updateUi(dom, lang)` updates all button labels, modal headers, HUD banners, and tooltip templates in the DOM without requiring a full page reload.
 
 ## Structural Invariants
 
 - **Contradiction Parity**: English and Spanish scripts for the same `caseId` must share statement indices and evidence IDs. Case 1 climax targets `antenitas_vinil` / `bolsa_dolares`; Case 2 climax targets `lata_grasa` / `antenitas_vinil`.
-- **Asset Uniformity**: Character pose keys, sound effect names, background images, and cut-in keys remain invariant across languages.
+- **Catalog Parity**: If an evidence ID has `updatedDesc` in one language catalog, the other language must have it too.

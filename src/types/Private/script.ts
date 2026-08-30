@@ -89,6 +89,7 @@ export interface DialogueLine {
   sfx?: SFXName;
   cutin?: CutinName;
   addEvidence?: EvidenceId;
+  updateEvidence?: EvidenceId;
   unlockLocation?: LocationId;
   furniture?: FurnitureType;
 }

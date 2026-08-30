@@ -5,8 +5,8 @@
 
 import type { EvidenceId, EvidenceItem } from '../../types/index.js';
 
-function ev(id: EvidenceId, text: { name: string; desc: string }): EvidenceItem {
-  return { id, name: text.name, icon: `assets/${id}.png`, desc: text.desc };
+function ev(id: EvidenceId, text: { name: string; desc: string; updatedDesc?: string }): EvidenceItem {
+  return { id, name: text.name, icon: `assets/${id}.png`, desc: text.desc, updatedDesc: text.updatedDesc };
 }
 
 // @Section(Spanish Case 2 Evidence)
@@ -25,7 +25,8 @@ export const CASE2_EVIDENCE_ES: Record<string, EvidenceItem> = {
   }),
   palanca_rota: ev('palanca_rota', {
     name: 'Palanca Rota',
-    desc: 'Barra hallada en manos del Chómpiras. La punta tiene pintura azul marino, no gris de caja fuerte.'
+    desc: 'Barra de hierro hallada en manos del Chómpiras.',
+    updatedDesc: 'Barra hallada en manos del Chómpiras. La punta tiene pintura azul marino, no gris de caja fuerte.'
   }),
   aroma_dulce: ev('aroma_dulce', {
     name: 'Muestra de Aroma Dulce',
@@ -77,7 +78,8 @@ export const CASE2_EVIDENCE_EN: Record<string, EvidenceItem> = {
   }),
   palanca_rota: ev('palanca_rota', {
     name: 'Broken Crowbar',
-    desc: "Found in Chómpiras's hands. The tip has navy-blue paint, not safe-gray metal."
+    desc: "Iron bar found in Chómpiras's hands.",
+    updatedDesc: "Found in Chómpiras's hands. The tip has navy-blue paint, not safe-gray metal."
   }),
   aroma_dulce: ev('aroma_dulce', {
     name: 'Sweet Aroma Sample',

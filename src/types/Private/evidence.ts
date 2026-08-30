@@ -32,6 +32,7 @@ export interface EvidenceItem {
   name: string;
   icon: string;
   desc: string;
+  updatedDesc?: string;
 }
 
 export type EvidenceCatalogMap = Record<EvidenceId, EvidenceItem>;

@@ -26,7 +26,10 @@ classDiagram
         +unlockLocation(locationId) boolean
         +isLocationUnlocked(locationId) boolean
         +addEvidence(evidenceId) boolean
+        +updateEvidence(evidenceId) boolean
         +hasEvidence(evidenceId) boolean
+        +isEvidenceUpdated(evidenceId) boolean
+        +getEvidenceDesc(evidenceId) string
         +takePenalty() boolean
         +resetHealth() void
         +checkTrialReadiness() boolean
@@ -53,6 +56,8 @@ Contains the master catalog defined in [[src/state/Private/EvidenceCatalog.ts#Ev
 - Array of active evidence IDs currently held by the player.
 - Initialized with `['insignia_abogado']`.
 - Updated via `addEvidence(evidenceId)` in [[src/state/Private/GameStateManager.ts#Inventory Operations]] which prevents duplicate additions.
+- Optional catalog field `updatedDesc` is a later Court Record text. `updateEvidence(evidenceId)` returns `true` only when the item is owned, has `updatedDesc`, and is not already flagged `updated_<id>` in `flags`. `getEvidenceDesc(evidenceId)` returns `updatedDesc` after that flag; otherwise `desc`.
+- `beginNewCase` clears flags (including update flags). `populateTrialEvidence` also applies `updateEvidence` so debug trial shows the revised text. Saves persist the flags with the rest of `flags`.
 
 ### 3. Location Management (`unlockedLocations`)
 - Array of unlocked location identifiers accessible during the investigation phase.
@@ -85,5 +90,6 @@ Contains the master catalog defined in [[src/state/Private/EvidenceCatalog.ts#Ev
 
 - Evidence can only be added if it exists in `allEvidence`.
 - Inventory contains no duplicates.
+- Description updates require `updatedDesc` and do not re-apply.
 - Health cannot drop below 0.
 - Corrupted or outdated save payloads are rejected safely without mutating runtime state.

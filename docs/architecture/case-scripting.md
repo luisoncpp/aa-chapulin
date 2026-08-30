@@ -37,7 +37,8 @@ Each entry in a dialogue sequence supports the following optional and required f
 | `bgm` | string | Track ID to switch soundtrack playback in `midiComposer`. |
 | `sfx` | string | SFX identifier to trigger procedural audio (`'gavel'`, `'desk_slam'`, `'whoosh'`, `'realization'`, `'damage'`, `'chipote'`, `'chicharra'`). |
 | `cutin` | string | Cut-in graphic key (`'objection_protesto'`, `'objection_un_momento'`, `'objection_toma_eso'`, `'objection_culpable'`). |
-| `addEvidence` | string | Evidence ID to automatically add to the player's inventory with UI notification. |
+| `addEvidence` | string | Evidence ID to automatically add to the player's inventory with a progress notification (same toast + realization SFX as a new location). |
+| `updateEvidence` | string | Evidence ID whose Court Record `updatedDesc` should apply. If the item is new, it is added (add toast). If it was already owned, shows the update toast. |
 
 ### 2. Investigation Scene Schema ([[src/case/Private/case1_investigation.ts]], [[src/case/Private/case2_script.ts]])
 

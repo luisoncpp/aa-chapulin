@@ -82,4 +82,40 @@ describe('DialogueFlow', () => {
     });
     expect(dom.gameNotificationEl.textContent).toContain('boveda');
   });
+
+  it('notifies when an owned court-record description is updated', () => {
+    state.addEvidence('chipote_chillon');
+    dom.gameNotificationEl.textContent = '';
+    flow.renderDialogueLine({
+      speaker: 'DEFENSA',
+      text: 'SQUIIIIK!',
+      updateEvidence: 'chipote_chillon'
+    });
+    expect(state.isEvidenceUpdated('chipote_chillon')).toBe(true);
+    expect(dom.gameNotificationEl.textContent).toContain('actualizada');
+  });
+
+  it('treats a first-time description update as an add, not a second toast', () => {
+    flow.renderDialogueLine({
+      speaker: 'DEFENSA',
+      text: 'SQUIIIIK!',
+      updateEvidence: 'chipote_chillon'
+    });
+    expect(state.hasEvidence('chipote_chillon')).toBe(true);
+    expect(state.isEvidenceUpdated('chipote_chillon')).toBe(true);
+    expect(dom.gameNotificationEl.textContent).toContain('Añadido');
+    expect(dom.gameNotificationEl.textContent).not.toContain('actualizada');
+  });
+
+  it('skips the description-update notification when already revised', () => {
+    state.addEvidence('chipote_chillon');
+    expect(state.updateEvidence('chipote_chillon')).toBe(true);
+    dom.gameNotificationEl.textContent = '';
+    flow.renderDialogueLine({
+      speaker: 'DEFENSA',
+      text: 'Otra vez.',
+      updateEvidence: 'chipote_chillon'
+    });
+    expect(dom.gameNotificationEl.textContent).toBe('');
+  });
 });

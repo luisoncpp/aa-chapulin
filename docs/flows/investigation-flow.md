@@ -31,7 +31,8 @@ Operational guide for player actions during the crime scene investigation phase.
    - If first-time inspection (`!gameState.isHotspotExamined(h.id)`):
      - Investigation controls (`#investigation-controls`) remain hidden to prevent switching to talk/examine during active dialogue.
      - Hotspot dialogue array is queued via `queueDialogue()`.
-     - Any `line.addEvidence` adds item to `gameState.inventory` and shows `#game-notification`.
+     - Any `line.addEvidence` adds the item and shows `#game-notification` (`notifEvidenceAdded`) with realization SFX, same pattern as a new location.
+     - Any `line.updateEvidence` applies catalog `updatedDesc`. If the item was already owned, `#game-notification` shows `notifEvidenceUpdated`; if it was new, the add toast is used instead.
      - On completion callback, `gameState.markHotspotExamined(h.id)` records completion, `#investigation-controls` is revealed, and `checkInvestigationProgress()` runs.
    - If repeated inspection (`gameState.isHotspotExamined(h.id)`):
      - Investigation controls (`#investigation-controls`) remain visible, allowing player to switch to talk or examine something else immediately.
@@ -49,7 +50,7 @@ Operational guide for player actions during the crime scene investigation phase.
 ### Talk Option Click & Dynamic Location Unlock
 1. Player clicks "💬 Hablar" (`#btn-inv-talk`).
 2. `#talk-options-modal` opens via `ModalManager.openTalkModal()` with buttons for each topic defined in `scene.talkOptions`.
-3. Player clicks a topic: modal closes, topic dialogue queues, and evidence or location unlocks are granted if scripted.
+3. Player clicks a topic: modal closes, topic dialogue queues, and evidence grants, description updates, or location unlocks are granted if scripted.
 4. When dialogue line contains `line.unlockLocation`:
    - `gameState.unlockLocation(locId)` registers the location.
    - If newly unlocked, SFX `realization` plays and `#game-notification` displays `notifLocationUnlocked`.

@@ -69,6 +69,10 @@ describe('ModalManager Subsystem', () => {
     expect(dom.evidenceTitleEl.textContent).toBe('Chipote Chillón');
     expect(dom.evidenceDescEl.textContent).toContain('Arma supuestamente letal');
 
+    state.updateEvidence('chipote_chillon');
+    ModalManager.selectEvidence(dom, state, 'chipote_chillon');
+    expect(dom.evidenceDescEl.textContent).toContain('chillido');
+
     // Invalid id selection does nothing
     expect(() => ModalManager.selectEvidence(dom, state, 'invalid_item' as any)).not.toThrow();
   });

@@ -59,7 +59,7 @@ export class ModalManager {
     const item = state.allEvidence[id];
     if (!item) return;
     dom.evidenceTitleEl.textContent = item.name;
-    dom.evidenceDescEl.textContent = item.desc;
+    dom.evidenceDescEl.textContent = state.getEvidenceDesc(id);
     dom.evidenceIconPreviewEl.src = item.icon;
     dom.evidenceIconPreviewEl.classList.remove('hidden');
   }

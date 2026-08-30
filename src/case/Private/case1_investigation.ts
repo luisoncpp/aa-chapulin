@@ -135,7 +135,7 @@ export const INVESTIGATION_SCENES: Record<LocationId, InvestigationScene> = {
           { speaker: 'CHAPULIN', text: 'Estaba yo cenando una torta de jamón cuando mis antenitas de vinil comenzaron a vibrar a las 8:45 PM.', pose: 'chapulin_idle' },
           { speaker: 'CHAPULIN', text: '¡Detectaron la presencia del enemigo! Así que me teletransporté de inmediato... o bueno, tomé un taxi.', pose: 'chapulin_idle' },
           { speaker: 'CHAPULIN', text: 'Al llegar, la vitrina ya estaba rota y Alma Negra estaba inconsciente. ¡Alguien me tendió una trampa!', pose: 'chapulin_panic' },
-          { speaker: 'DEFENSA', text: "Las 'Antenitas de Vinil' tienen un registro de la hora de alarma: 8:45 PM.", sfx: 'realization', addEvidence: 'antenitas_vinil' }
+          { speaker: 'DEFENSA', text: "Las 'Antenitas de Vinil' tienen un registro de la hora de alarma: 8:45 PM.", sfx: 'realization', updateEvidence: 'antenitas_vinil' }
         ]
       },
       {
@@ -144,7 +144,7 @@ export const INVESTIGATION_SCENES: Record<LocationId, InvestigationScene> = {
         dialogue: [
           { speaker: 'CHAPULIN', text: '¡¿Yo?! ¡Jamás! ¡El Chipote Chillón es un instrumento noble para defender a los indefensos!', pose: 'chapulin_slam', sfx: 'desk_slam' },
           { speaker: 'CHAPULIN', text: '¡Míralo tú mismo! Es de goma y plástico inflable.', pose: 'chapulin_idle' },
-          { speaker: 'DEFENSA', text: 'Al apretarlo, emite un cómico chillido: ¡SQUIIIIK!', sfx: 'chipote', addEvidence: 'chipote_chillon' },
+          { speaker: 'DEFENSA', text: 'Al apretarlo, emite un cómico chillido: ¡SQUIIIIK!', sfx: 'chipote', updateEvidence: 'chipote_chillon' },
           { speaker: 'DEFENSA', text: '(Es físicamente imposible fracturar un cráneo con esto... ¡Tengo una prueba sólida!)', sfx: 'realization' }
         ]
       }

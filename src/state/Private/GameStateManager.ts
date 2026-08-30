@@ -20,8 +20,7 @@ import { getEvidenceCatalog } from './EvidenceCatalog.js';
 import { CURRENT_SAVE_VERSION, type SaveData, type TrialStateSnapshot } from './SaveManager.js';
 
 const CASE1_REQUIRED: EvidenceId[] = [
-  'chipote_chillon', 'pastillas_chiquitolina', 'antenitas_vinil',
-  'informe_medico', 'foto_crimen'
+  'chipote_chillon', 'pastillas_chiquitolina', 'antenitas_vinil', 'informe_medico', 'foto_crimen'
 ];
 const CASE1_DEBUG: EvidenceId[] = [...CASE1_REQUIRED, 'bolsa_dolares'];
 
@@ -74,6 +73,24 @@ export class GameStateManager {
     return this.inventory.includes(evidenceId);
   }
 
+  public isEvidenceUpdated(evidenceId: EvidenceId): boolean {
+    return Boolean(this.flags[`updated_${evidenceId}`]);
+  }
+
+  public updateEvidence(evidenceId: EvidenceId): boolean {
+    if (!this.hasEvidence(evidenceId) || this.isEvidenceUpdated(evidenceId)) return false;
+    if (!this.allEvidence[evidenceId]?.updatedDesc) return false;
+    this.flags[`updated_${evidenceId}`] = true;
+    return true;
+  }
+
+  public getEvidenceDesc(evidenceId: EvidenceId): string {
+    const item = this.allEvidence[evidenceId];
+    if (!item) return '';
+    if (this.isEvidenceUpdated(evidenceId) && item.updatedDesc) return item.updatedDesc;
+    return item.desc;
+  }
+
   // @Section(Language Setting)
   public setLanguage(lang: Language): void {
     this.language = lang;
@@ -84,9 +101,7 @@ export class GameStateManager {
   public takePenalty(): boolean {
     if (this.health <= 0) return false;
     this.health--;
-    if (this.health <= 0) {
-      this.gameOver = true;
-    }
+    if (this.health <= 0) this.gameOver = true;
     return true;
   }
 
@@ -141,6 +156,7 @@ export class GameStateManager {
   public populateTrialEvidence(): void {
     this.debugEvidence.forEach(/*addEachItem*/ (item) => {
       this.addEvidence(item);
+      this.updateEvidence(item);
     });
     this.debugUnlockLocations.forEach(/*unlockEach*/ (loc) => {
       this.unlockLocation(loc);
@@ -173,9 +189,7 @@ export class GameStateManager {
     this.trialDay = data.trialDay ?? 1;
     this.mode = data.mode;
     this.currentLocation = data.currentLocation;
-    this.unlockedLocations = data.unlockedLocations
-      ? [...data.unlockedLocations]
-      : ['museum', 'detention'];
+    this.unlockedLocations = data.unlockedLocations ? [...data.unlockedLocations] : ['museum', 'detention'];
     this.health = data.health;
     this.gameOver = data.gameOver;
     this.inventory = [...data.inventory];

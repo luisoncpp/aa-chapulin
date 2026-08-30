@@ -4,7 +4,7 @@ Technical guide for [[src/case/index.ts]], configured in [[src/case/case.group.m
 
 ## Overview
 
-Narrative lives in `CaseScript` objects. `getCaseScript(lang, caseId)` in [[src/case/index.ts]] returns Case 1 (`case1`) or Case 2 (`case2`); default `CASE_SCRIPT` is still Case 1 Spanish. Each script has `id`, `startLocation`, `requiredEvidence`, `debugEvidence`, `debugUnlockLocations`, `investigation`, `trial`, and optional `adjournment` ([[src/types/Private/script.ts]]).
+Narrative lives in `CaseScript` objects. `getCaseScript(lang, caseId)` in [[src/case/index.ts]] returns Case 1 (`case1`), Case 2 (`case2`), or Case 3 (`case3`); default `CASE_SCRIPT` is still Case 1 Spanish. Each script has `id`, `startLocation`, `requiredEvidence`, `debugEvidence`, `debugUnlockLocations`, `investigation`, `trial`, and optional `adjournment` ([[src/types/Private/script.ts]]). Case 3 lives in nested module [[src/case/case3/index.ts]].
 
 ```mermaid
 graph TD
@@ -19,6 +19,8 @@ graph TD
     Inv3 --> Day2[adjournment.trial]
     Day2 --> Climax[script.trial.climax]
 ```
+
+Case 3 (`case3`) is assembled in [[src/case/case3/index.ts]]: detention → cabina → kermés → day-1 trial → despacho → clínica → delegación → day-2 trial → bodega → `delegacion_d3` → `centro_detencion_d3` → day-3 trial → four-stage climax + proverb-trap choices + waiting-room epilogue. Day 3 reuses precinct/detention as distinct location ids so intros stay day-specific. `Statement.unlockedBy` hides a line until another statement is pressed. `ClimaxStage.minUpdateStage` rejects `microfono_oro` until two description updates. `adjournment.next` is the third trial day.
 
 Case 2 is assembled in [[src/case/Private/case2_script.ts]]: ES/EN scene modules, day-1 trial (`case2_trial_day1*`), day-2 trial (`case2_trial_day2*`), climax on `trial.climax` (`case2_climax.ts`). Day-1 investigation: `detention` → `boveda` → `restaurante`. After testimony 2, `adjournment` sends the player to `oficina_postal` (unlock), then `casa_clotilde`. Day-2 testimonies live on `adjournment.trial`; the finale is still `script.trial.climax`. Case 2 uses optional `climax.stages`: three presents (`lata_grasa`/`antenitas_vinil`, then `frasco_valeriana`/`aroma_dulce`, then `molde_cera`), then optional `climax.choices` (two `ChoicePrompt` questions after the wax-mold present). Case 1 has a single present (`presentTarget` only) and no choices. After the Not Guilty line, courtroom confetti plays, then a black fade into Case 2 `climax.epilogue` in `assets/bg_waiting_room.jpg` (no bench/podium). Case 1 has no `adjournment` and no epilogue.
 
@@ -38,7 +40,9 @@ Each entry in a dialogue sequence supports the following optional and required f
 | `sfx` | string | SFX identifier to trigger procedural audio (`'gavel'`, `'desk_slam'`, `'whoosh'`, `'realization'`, `'damage'`, `'chipote'`, `'chicharra'`). |
 | `cutin` | string | Cut-in graphic key (`'objection_protesto'`, `'objection_un_momento'`, `'objection_toma_eso'`, `'objection_culpable'`, `'objection_inocente'`). |
 | `addEvidence` | string | Evidence ID to automatically add to the player's inventory with a progress notification (same toast + realization SFX as a new location). |
-| `updateEvidence` | string | Evidence ID whose Court Record `updatedDesc` should apply. If the item is new, it is added (add toast). If it was already owned, shows the update toast. |
+| `updateEvidence` | string | Advances one Court Record description stage (`updates[]` or legacy `updatedDesc`). Missing items are added first. |
+
+Statements may set `unlockedBy` to another statement id; [[src/engine/Private/StatementUnlock.ts]] keeps those lines out of the visible cross-exam list until that id is pressed.
 
 ### 2. Investigation Scene Schema ([[src/case/Private/case1_investigation.ts]], [[src/case/Private/case2_script.ts]])
 
@@ -75,7 +79,7 @@ testimony: {
 climax: {
   dialogue: DialogueLine[];
   presentTarget: EvidenceId[];
-  stages?: { presentTarget: EvidenceId[]; successDialogue: DialogueLine[] }[];
+  stages?: { presentTarget: EvidenceId[]; successDialogue: DialogueLine[]; minUpdateStage?: Partial<Record<EvidenceId, number>> }[];
   choices?: ChoicePrompt[];
   verdict: DialogueLine[];
   epilogue?: { bg: string; dialogue: DialogueLine[] };
@@ -95,7 +99,7 @@ If `stages` is set, [[src/engine/Private/TrialClimax.ts]] walks them in order: a
 
 ### 5. Adjournment ([[src/types/Private/script.ts]])
 
-Optional `AdjournmentDefinition`: `nextLocation`, `unlockLocations`, day-2 `requiredEvidence`, and a `trial` with intro + two testimonies (no nested climax). [[src/engine/Private/TrialDayRouter.ts]] selects `script.trial` on day 1 and `adjournment.trial` on day 2.
+Optional `AdjournmentDefinition`: `nextLocation`, `unlockLocations`, next-day `requiredEvidence`, a `trial` (intro + two testimonies, no nested climax), and optional `next` for a third day. Climax always stays on `script.trial.climax`. [[src/engine/Private/TrialDayRouter.ts]] walks that chain (`trialDay` 1|2|3).
 
 ## Case 1 Contradiction Mapping
 

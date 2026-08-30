@@ -46,6 +46,9 @@ Case 2 art lives in [[tools/raw/]] and is processed separately so [[process_asse
 - **Evidence**: `case2_evidence_icons_raw.png` (4 columns × 3 rows) → `chanfle_oro.png` … `lata_grasa.png`.
 - **Backgrounds** copied as JPEG: `bg_boveda.jpg`, `bg_restaurante.jpg`, `bg_postal.jpg`, `bg_clotilde.jpg`, `bg_waiting_room.jpg`.
 
+### Case 3 ([[process_case3_assets.py]])
+Same chroma pipeline as Case 2. Sheets in [[tools/raw/]]: Chapatín, Pazguato, Aniceto, Barriga, Ñoño, Chimoltrufia, plus extra cells for `chapatin_conmovido` and `aniceto_breakdown`. Evidence grids write Case 3 icon IDs except `informe_medico.png` / `insignia_abogado.png` (those stay Case 1 files; Case 3 reuses the medical-report icon). Backgrounds: `bg_cabina.jpg`, `bg_kermes.jpg`, `bg_despacho.jpg`, `bg_clinica.jpg`, `bg_bodega.jpg`, `bg_delegacion.jpg`. Detention reuses `bg_detention.jpg`.
+
 ### 3. Asset Naming Conventions
 
 | Category | File Prefix / Suffix | Examples |

@@ -111,7 +111,7 @@ export class GameEngine {
     applyDebugUrlParams({
       setLanguage: (lang) => this.setLanguage(lang),
       loadCase: (caseId) => loadCase(this.host(), caseId),
-      startTrialDebug: () => this.startTrialDebug()
+      startTrialDebug: (day) => this.startTrialDebug(day)
     });
   }
 

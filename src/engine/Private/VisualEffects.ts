@@ -170,6 +170,11 @@ export class VisualEffects {
     }
   }
 
+  public static clearConfetti(containerEl: HTMLElement): void {
+    containerEl.replaceChildren();
+    containerEl.classList.add('hidden');
+  }
+
   public static showNotification(notifEl: HTMLElement, msg: string): void {
     notifEl.textContent = msg;
     notifEl.classList.remove('hidden');

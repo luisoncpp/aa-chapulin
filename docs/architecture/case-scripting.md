@@ -20,7 +20,7 @@ graph TD
     Day2 --> Climax[script.trial.climax]
 ```
 
-Case 2 is assembled in [[src/case/Private/case2_script.ts]]: ES/EN scene modules, day-1 trial (`case2_trial_day1*`), day-2 trial (`case2_trial_day2*`), climax on `trial.climax` (`case2_climax.ts`). Day-1 investigation: `detention` → `boveda` → `restaurante`. After testimony 2, `adjournment` sends the player to `oficina_postal` (unlock), then `casa_clotilde`. Day-2 testimonies live on `adjournment.trial`; the finale is still `script.trial.climax` (targets `lata_grasa` or `antenitas_vinil`). After the Not Guilty line, Case 2 `climax.epilogue` plays in `assets/bg_waiting_room.jpg` (no bench/podium). Case 1 has no `adjournment` and no epilogue.
+Case 2 is assembled in [[src/case/Private/case2_script.ts]]: ES/EN scene modules, day-1 trial (`case2_trial_day1*`), day-2 trial (`case2_trial_day2*`), climax on `trial.climax` (`case2_climax.ts`). Day-1 investigation: `detention` → `boveda` → `restaurante`. After testimony 2, `adjournment` sends the player to `oficina_postal` (unlock), then `casa_clotilde`. Day-2 testimonies live on `adjournment.trial`; the finale is still `script.trial.climax` (targets `lata_grasa` or `antenitas_vinil`). After the Not Guilty line, courtroom confetti plays, then a black fade into Case 2 `climax.epilogue` in `assets/bg_waiting_room.jpg` (no bench/podium). Case 1 has no `adjournment` and no epilogue.
 
 ## Schema Definitions
 
@@ -79,7 +79,7 @@ climax: {
 }
 ```
 
-[[src/engine/Private/TrialClimax.ts]] queues `verdict`, then stamps `epilogue.bg` and `furniture: 'none'` on every epilogue line so trial speaker cameras do not fire. Case 1 omits `epilogue`.
+[[src/engine/Private/TrialClimax.ts]] queues `verdict`, fires courtroom confetti, then fades through black into `epilogue.bg`. Every epilogue line is stamped with that `bg` and `furniture: 'none'` so trial speaker cameras do not fire. Case 1 omits `epilogue`. Case 2 opens the epilogue with a narrator time-skip into the waiting room.
 
 ### 5. Adjournment ([[src/types/Private/script.ts]])
 

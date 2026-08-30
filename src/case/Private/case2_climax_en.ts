@@ -31,6 +31,7 @@ export const CASE2_CLIMAX_EN: ClimaxDefinition = {
   epilogue: {
     bg: WAITING_ROOM_BG,
     dialogue: [
+      { speaker: 'NARRADOR', text: '(Later, in the courthouse waiting room...)' },
       { speaker: 'CHOMPIRAS', text: 'Oh, Don Ramón, Chapulín! I don\'t know how to thank you! I already saw myself eating rock soup for 20 years!', pose: 'chompiras_relieved' },
       { speaker: 'CHAPULIN', text: 'Think nothing of it, Chómpiras! Nobility and cunning always beat evil! Follow the good guys!', pose: 'chapulin_point' },
       { speaker: 'FLORINDA', text: 'I must admit, Don Ramón... for once in your life you did not behave like the usual rabble.', pose: 'florinda_idle' },

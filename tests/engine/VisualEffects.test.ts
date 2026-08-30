@@ -78,6 +78,10 @@ describe('VisualEffects Subsystem', () => {
 
     const firstPiece = dom.confettiContainerEl.children[0] as HTMLElement;
     expect(firstPiece.className).toBe('confetti-piece');
+
+    VisualEffects.clearConfetti(dom.confettiContainerEl);
+    expect(dom.confettiContainerEl.children).toHaveLength(0);
+    expect(dom.confettiContainerEl.classList.contains('hidden')).toBe(true);
     expect(firstPiece.style.left).toBeDefined();
     expect(firstPiece.style.backgroundColor).toBeDefined();
   });

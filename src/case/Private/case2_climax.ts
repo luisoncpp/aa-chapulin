@@ -31,6 +31,7 @@ export const CASE2_CLIMAX: ClimaxDefinition = {
   epilogue: {
     bg: WAITING_ROOM_BG,
     dialogue: [
+      { speaker: 'NARRADOR', text: '(Más tarde, en la sala de espera del tribunal...)' },
       { speaker: 'CHOMPIRAS', text: '¡Ay, Don Ramón, Chapulín! ¡No sé cómo agradecerles! ¡Ya me veía 20 años comiendo sopa de piedras!', pose: 'chompiras_relieved' },
       { speaker: 'CHAPULIN', text: '¡No hay de qué, Chómpiras! ¡La nobleza y la astucia siempre vencen al mal! ¡Síganme los buenos!', pose: 'chapulin_point' },
       { speaker: 'FLORINDA', text: 'Debo admitir, Don Ramón... que por una vez en su vida no se comportó como la chusma habitual.', pose: 'florinda_idle' },

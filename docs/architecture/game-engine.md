@@ -65,7 +65,8 @@ flowchart TD
    - **Cut-in Animation**: `showCutin(cutinName)` triggers zoom, shake, and flash animations for `¡PROTESTO!`, `¡UN MOMENTO!`, `¡TOMA ESO!`, and `¡INOCENTE!`.
    - **Screen Shake**: `shakeScreen(durationMs)` applies CSS shake keyframes (`aaShake`).
    - **Screen Flash**: `flashScreen()` fades in an opaque white flash overlay.
-   - **Confetti Victory**: `triggerConfetti()` creates randomized falling celebratory particles.
+   - **Location Fade**: [[src/engine/Private/SceneFade.ts]] covers `#screen-flash` in black, swaps the plate while opaque, then reveals. Used after a Not Guilty so the waiting room is not a hard cut.
+   - **Confetti Victory**: `triggerConfetti()` runs on the verdict camera. Case 2 clears it during the black cover before the waiting-room epilogue. Case 1 has no epilogue, so confetti stays up.
 
 6. **Investigation & Examination Mode** ([[src/engine/Private/InvestigationController.ts#Examine Mode & Tooltips]]):
    - `startInvestigation(location)` renders hotspots and loads intro dialogue.

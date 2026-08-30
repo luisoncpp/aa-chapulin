@@ -47,5 +47,10 @@ Avoid: "bug description + fix". Prefer: "what I learned that applies to future w
 | [`chimoltrufia-not-florinda-identity.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/lessons-learned/chimoltrufia-not-florinda-identity.md) | Chimoltrufia sheets snap to Florinda (rollers, full teeth) unless caricature markers lock the idle. | 2026-08-30 |
 | [`examine-hud-hotspot-occlusion.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/lessons-learned/examine-hud-hotspot-occlusion.md) | A full-width controls dock still captures hits on empty pixels; shrinking the examine plate does not move it. | 2026-08-30 |
 | [`court-record-description-scroll.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/lessons-learned/court-record-description-scroll.md) | Long Acta copy must scroll inside the description; otherwise Presentar is clipped. | 2026-08-30 |
+| [`short-character-stage-scale.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/lessons-learned/short-character-stage-scale.md) | A short character who fills the 512 canvas still needs a height multiplier; do not add a fifth stage frame. | 2026-08-30 |
+| [`barriga-injured-pose-lock.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/lessons-learned/barriga-injured-pose-lock.md) | Extra Barriga poses snap to standing idle unless vendado is the lock on a second sheet. | 2026-08-30 |
+| [`oversized-full-pose-anchor.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/lessons-learned/oversized-full-pose-anchor.md) | A 1x1 pose larger than 512 must scale onto the canvas; paste-crop zoom-crops the bust. | 2026-08-30 |
+| [`climax-present-prompt-hud.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/lessons-learned/climax-present-prompt-hud.md) | Climax stage questions must stay on the HUD; the judge's opening recap is already gone when the Acta opens. | 2026-08-30 |
+| [`climax-settled-choice-idx.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/lessons-learned/climax-settled-choice-idx.md) | After the last climax success, `choiceIdx` is null again; that is not a present prompt. | 2026-08-30 |
 
 

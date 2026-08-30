@@ -13,6 +13,7 @@ import {
   choiceOpenSession, openClimaxChoice, queueClimaxCelebration,
   resolveClimaxChoice, restoreClimaxSession, type ClimaxRestoreCtx, type ClimaxSession
 } from './TrialChoice.js';
+import { applyClimaxPresentPrompt } from './ClimaxPresentPrompt.js';
 import { applyPenaltyEffects, type PenaltyHost } from './TrialPenalty.js';
 import type { TrialControllerDeps, TrialPhase } from './TrialController.js';
 import { VisualEffects } from './VisualEffects.js';
@@ -33,6 +34,7 @@ export interface ClimaxControllerPort {
   phase: TrialPhase;
   climaxStageIdx: number;
   climaxChoiceIdx: number | null;
+  climaxResolved: boolean;
   currentTestimony: Testimony | null;
   hideControls(): void;
   handleSelectChoice(optionId: string): void;
@@ -116,7 +118,7 @@ function presentClimaxEvidence(
       return { stageIdx, choiceIdx: 0 };
     }
     queueClimaxVictory(climax, deps);
-    return { stageIdx, choiceIdx: null };
+    return { stageIdx, choiceIdx: null, settled: true };
   }
   const stage = getClimaxStages(climax)[stageIdx];
   deps.onQueueDialogue(stage.successDialogue, /*openNextPresent*/ () => {
@@ -136,9 +138,11 @@ export function restoreClimaxFromSnapshot(
 export function startClimaxPhase(ctrl: ClimaxControllerPort, replayOpening: boolean): void {
   ctrl.climaxStageIdx = 0;
   ctrl.climaxChoiceIdx = null;
+  ctrl.climaxResolved = false;
   ctrl.phase = 'CLIMAX';
   ctrl.currentTestimony = null;
   ctrl.hideControls();
+  applyClimaxPresentPrompt(ctrl.deps.dom, null);
   openClimaxPresent(ctrl.deps, ctrl.script.trial.climax, replayOpening);
 }
 
@@ -152,6 +156,7 @@ export function handleClimaxEvidencePresent(ctrl: ClimaxControllerPort, evidence
   );
   ctrl.climaxStageIdx = result.stageIdx;
   ctrl.climaxChoiceIdx = result.choiceIdx;
+  if (result.settled) ctrl.climaxResolved = true;
 }
 
 export function resolveClimaxChoiceFromController(ctrl: ClimaxControllerPort, optionId: string): void {
@@ -161,6 +166,7 @@ export function resolveClimaxChoiceFromController(ctrl: ClimaxControllerPort, op
     buildClimaxCtx(ctrl),
     (id) => ctrl.handleSelectChoice(id)
   );
+  if (ctrl.climaxChoiceIdx == null) ctrl.climaxResolved = true;
 }
 
 export function rebindClimaxChoiceModal(ctrl: ClimaxControllerPort): void {
@@ -177,7 +183,13 @@ export function rebindClimaxChoiceModal(ctrl: ClimaxControllerPort): void {
 export { celebrateClimax, queueClimaxCelebration } from './TrialChoice.js';
 
 export function isAwaitingClimaxEvidence(ctrl: ClimaxControllerPort): boolean {
-  return ctrl.phase === 'CLIMAX' && ctrl.climaxChoiceIdx == null;
+  return ctrl.phase === 'CLIMAX' && ctrl.climaxChoiceIdx == null && !ctrl.climaxResolved;
+}
+
+export function getClimaxPresentPrompt(ctrl: ClimaxControllerPort): string | null {
+  if (!isAwaitingClimaxEvidence(ctrl)) return null;
+  const stages = getClimaxStages(ctrl.script.trial.climax);
+  return stages[ctrl.climaxStageIdx]?.prompt ?? null;
 }
 
 // fallow-ignore-next-line unused-export

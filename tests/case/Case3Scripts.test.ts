@@ -164,6 +164,18 @@ describe('Case 3 La Noche del Grito', () => {
       ['boleta_empeno', 'libro_verde', 'microfono_oro']
     ]);
     expect(es.trial.climax.stages?.[3].requiredUpdateStage).toEqual({ microfono_oro: 2 });
+    expect(es.trial.climax.stages?.map((s) => s.prompt)).toEqual([
+      '¿CUÁNDO se grabó el grito?',
+      '¿DÓNDE se grabó? (y por qué no pudo ser el acusado)',
+      '¿QUIÉN podía hacer esa voz?',
+      '¿POR QUÉ?'
+    ]);
+    expect(en.trial.climax.stages?.map((s) => s.prompt)).toEqual([
+      'WHEN was the scream recorded?',
+      'WHERE was it recorded? (and why it could not be the defendant)',
+      'WHO could make that voice?',
+      'WHY?'
+    ]);
     expect(es.trial.climax.choices?.map((c) => c.id)).toEqual(['prove_voice', 'proverb_trap']);
     expect(en.trial.climax.choices?.map((c) => c.correctId)).toEqual(
       es.trial.climax.choices?.map((c) => c.correctId)

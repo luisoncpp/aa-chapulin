@@ -182,6 +182,8 @@ export interface ClimaxEpilogue {
 export interface ClimaxStage {
   presentTarget: EvidenceId[];
   successDialogue: DialogueLine[];
+  /** Question shown on the HUD and Court Record while this stage awaits a present. */
+  prompt?: string;
   /** Minimum evidence update stage required before an id is accepted at this stage. */
   requiredUpdateStage?: Partial<Record<EvidenceId, number>>;
 }

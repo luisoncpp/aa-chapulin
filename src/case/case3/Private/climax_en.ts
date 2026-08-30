@@ -84,6 +84,12 @@ export const CASE3_CLIMAX_EN: ClimaxDefinition = assembleCase3Climax({
   stage2: STAGE2,
   stage3: STAGE3,
   stage4: STAGE4,
+  prompts: [
+    'WHEN was the scream recorded?',
+    'WHERE was it recorded? (and why it could not be the defendant)',
+    'WHO could make that voice?',
+    'WHY?'
+  ],
   choices: CASE3_CLIMAX_CHOICES_EN,
   verdict: VERDICT_LINES,
   epilogue: EPILOGUE

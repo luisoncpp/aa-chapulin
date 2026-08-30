@@ -14,7 +14,8 @@ import {
 } from './TrialOutcome.js';
 import { getActiveTrial } from './TrialDayRouter.js';
 import {
-  handleClimaxEvidencePresent, isAwaitingClimaxEvidence, rebindClimaxChoiceModal,
+  handleClimaxEvidencePresent, isAwaitingClimaxEvidence, getClimaxPresentPrompt,
+  rebindClimaxChoiceModal,
   resolveClimaxChoiceFromController, startClimaxPhase
 } from './TrialClimax.js';
 import { visibleStatements } from './StatementUnlock.js';
@@ -42,11 +43,12 @@ export class TrialController {
   public currentStatementIdx = 0;
   public climaxStageIdx = 0;
   public climaxChoiceIdx: number | null = null;
+  // fallow-ignore-next-line unused-class-member
+  public climaxResolved = false;
   private testimonyKey: 'testimony1' | 'testimony2' | null = null;
   private readonly pressedStatementIds = new Set<string>();
   private failedPresentCount = 0;
   script: CaseScript;
-
   constructor(public readonly deps: TrialControllerDeps) {
     this.script = deps.script;
   }
@@ -174,13 +176,16 @@ export class TrialController {
   }
 
   public startClimax(): void { startClimaxPhase(this, /*replayOpening=*/ true); }
-
   public isAwaitingEvidence(): boolean { return isAwaitingClimaxEvidence(this); }
 
+  public getPresentPrompt(): string | null { return getClimaxPresentPrompt(this); }
+
+  // fallow-ignore-next-line unused-class-member
   public handleSelectChoice(optionId: string): void {
     resolveClimaxChoiceFromController(this, optionId);
   }
 
+  // fallow-ignore-next-line complexity
   public setScript(script: CaseScript): void {
     this.script = script;
     if (this.phase === 'CLIMAX' && this.climaxChoiceIdx != null) {

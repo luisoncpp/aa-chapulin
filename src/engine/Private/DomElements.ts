@@ -29,6 +29,8 @@ export interface DomElements {
   hotspotsContainerEl: HTMLElement;
   examineTooltipEl: HTMLElement;
   locationBannerEl: HTMLElement;
+  climaxPresentPromptEl: HTMLElement;
+  courtRecordPresentPromptEl: HTMLElement;
   dialogueBoxEl: HTMLElement;
   talkOptionsModalEl: HTMLElement;
   talkListEl: HTMLElement;
@@ -94,6 +96,8 @@ export function getDomElements(): DomElements {
     hotspotsContainerEl: document.getElementById('hotspots-container')!,
     examineTooltipEl: document.getElementById('examine-tooltip')!,
     locationBannerEl: document.getElementById('location-banner')!,
+    climaxPresentPromptEl: document.getElementById('climax-present-prompt')!,
+    courtRecordPresentPromptEl: document.getElementById('court-record-present-prompt')!,
     dialogueBoxEl: document.getElementById('dialogue-box')!,
     talkOptionsModalEl: document.getElementById('talk-options-modal')!,
     talkListEl: document.getElementById('talk-options-list')!,

@@ -61,3 +61,17 @@ describe('court record evidence detail pane', () => {
     expect(cssProp(present, 'flex-shrink')).toBe('0');
   });
 });
+
+describe('climax present prompt layout', () => {
+  const css = fs.readFileSync(path.resolve(__dirname, '../../style.css'), 'utf-8');
+  const hud = cssRule(css, '#climax-present-prompt');
+  const modal = cssRule(css, '#court-record-present-prompt');
+
+  it('does not steal clicks on the courtroom HUD', () => {
+    expect(cssProp(hud, 'pointer-events')).toBe('none');
+  });
+
+  it('does not grow the court record body when the question wraps', () => {
+    expect(cssProp(modal, 'flex-shrink')).toBe('0');
+  });
+});

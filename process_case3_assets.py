@@ -32,7 +32,7 @@ SHEETS = [
     ("aniceto_sprites_raw.png",
      ["aniceto_idle", "aniceto_thinking", "aniceto_sweat", "aniceto_panic"]),
     ("barriga_sprites_raw.png",
-     ["barriga_idle", "barriga_vendado", "barriga_shock", "barriga_enojado"]),
+     ["barriga_idle", "barriga_vendado"]),
     ("nono_sprites_raw.png",
      ["nono_idle", "nono_nervioso", "nono_llorando"]),
     ("chimoltrufia_sprites_raw.png",
@@ -107,7 +107,7 @@ def process_evidence_grid(sheet_name: str, cells: list, cols: int, rows: int) ->
 # dialogue box; do not floor only a subset of characters.
 FLOOR_BUSTS = [
     name for _sheet, names in SHEETS for name in names
-] + ["chapatin_conmovido"]
+] + ["chapatin_conmovido", "barriga_shock", "barriga_enojado"]
 
 
 def copy_backgrounds() -> None:
@@ -136,6 +136,10 @@ def run_case3() -> None:
     for sheet, names in SHEETS:
         process_character_sheet(sheet, names)
     process_grid_cell("chapatin_conmovido_raw.png", "chapatin_conmovido", (0, 0))
+    # Shock/enojado are wheelchair+bandage cells locked to vendado; the
+    # original 2x2 snapped those poses to standing fedora-and-briefcase idle.
+    process_grid_cell("barriga_injured_poses_raw.png", "barriga_shock", (1, 0))
+    process_grid_cell("barriga_injured_poses_raw.png", "barriga_enojado", (0, 1))
     floor_standing_busts(FLOOR_BUSTS)
     process_full_pose("aniceto_breakdown_raw.png", "aniceto_breakdown")
     # Sheet A is a 4×3 card grid (12 cells). Slicing it as 4×4 cuts through

@@ -27,6 +27,12 @@ export const CASE3_CLIMAX: ClimaxDefinition = assembleCase3Climax({
   stage2: CASE3_CLIMAX_STAGE2,
   stage3: CASE3_CLIMAX_STAGE3,
   stage4: CASE3_CLIMAX_STAGE4,
+  prompts: [
+    '¿CUÁNDO se grabó el grito?',
+    '¿DÓNDE se grabó? (y por qué no pudo ser el acusado)',
+    '¿QUIÉN podía hacer esa voz?',
+    '¿POR QUÉ?'
+  ],
   choices: CASE3_CLIMAX_CHOICES,
   verdict: VERDICT_LINES,
   epilogue: CASE3_EPILOGUE

@@ -123,7 +123,11 @@ export class VisualEffects {
     const effectivePose = VisualEffects.resolveEffectivePose(line, isTrialMode);
     const furniture = line.furniture ?? VisualEffects.inferFurniture(isTrialMode, currentBg);
     VisualEffects.setFurniture(dom.courtFurnitureSpriteEl, dom.courtFurnitureContainerEl, furniture);
-    applyStageFrame(dom.gameScreen, resolveStageFrame(furniture, effectivePose));
+    applyStageFrame(
+      dom.gameScreen,
+      resolveStageFrame(furniture, effectivePose),
+      /*pose=*/ effectivePose
+    );
   }
 
   // fallow-ignore-next-line complexity

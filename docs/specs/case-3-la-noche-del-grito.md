@@ -51,7 +51,7 @@ Lo que empieza como un pleito de casero y inquilino se desenreda en tres días h
 
 ## 3. Cronología Real de los Hechos (Timeline)
 
-> **Nota de coherencia física:** El **ventilador central de las cabinas** de XEVC está descompuesto desde agosto, así que las tres cabinas transmiten con la ventana trabada con una cuña de madera: desde adentro se oyen las bocinas de la plaza, y las bocinas de la plaza se cuelan en toda grabación. Los **cartuchos de corte** (formato de consola, rotulados "IDENTIFICACIÓN XEVC") **sólo se graban desde las cabinas**, enchufados a la mesa; no hay grabadora portátil que deje ese formato. El **cable del micrófono de la Cabina B** lo enrolla el operador al terminar cada sesión (rutina, no sabotaje): quedó desconectado desde las 9:50 PM. La consola dispara **sola** el cartucho de "corte de estación" en el minuto programado por la hoja de programación (esa noche, 11:03 PM, al terminar el enlace del Grito). El piso de la Cabina B es linóleo gris; el del despacho, un tapete de lana roja.
+> **Nota de coherencia física:** El **ventilador central de las cabinas** de XEVC está descompuesto desde agosto, así que las tres cabinas transmiten con la ventana trabada con una cuña de madera: desde adentro se oyen las bocinas de la plaza, y las bocinas de la plaza se cuelan en toda grabación. Los **cartuchos de corte** (formato de consola, rotulados "IDENTIFICACIÓN XEVC") **sólo se graban desde las cabinas**, enchufados a la mesa; no hay grabadora portátil que deje ese formato. El **cable del micrófono de la Cabina B** lo enrolla el operador al terminar cada sesión (rutina, no sabotaje): quedó desconectado desde las 9:50 PM. La consola dispara **sola** el cartucho de "corte de estación" en el minuto programado por la hoja de programación (esa noche, 11:03 PM, al terminar el enlace del Grito). El piso de la Cabina B es linóleo gris; el del despacho, un tapete de lana roja. El segundo piso tiene **dos rutas independientes**: el **pasillo alfombrado**, que une el despacho con las tres cabinas y con la bocina de monitoreo, y la **escalera de servicio**, que baja al callejón desde el hueco de la consola sin tocar el pasillo. Todo el que entra o sale del edificio esa noche sin ser visto usa la escalera; lo único que cruza el pasillo entre las 10:40 y las 11:03 es el carrito de discos.
 
 ```mermaid
 timeline
@@ -65,12 +65,13 @@ timeline
     10:00 PM : La Chimoltrufia entra a la Cabina C a grabar los horoscopos (bitacora: 22:00-23:00). A las 9:40 no estaba ahi.
     10:15 PM : Aniceto carga el falso grito en el cartucho 3 de corte de estacion, que la consola disparara sola a las 11:03 PM segun la hoja de programacion.
     10:40 PM : Chapatin se va furioso por la escalera de servicio al callejon.
-    10:45 PM : Nono baja al callejon porque le falta el aire. Arriba, Aniceto entra al despacho, toma su propio Microfono de Oro del pedestal y golpea a Barriga en la sien derecha. Los lentes se rompen y un cristal rueda bajo el escritorio.
+    10:45 PM : Nono baja al callejon por la escalera de servicio porque le falta el aire. Arriba, Aniceto entra al despacho, toma su propio Microfono de Oro del pedestal y golpea a Barriga en la sien derecha. Los lentes se rompen y un cristal rueda bajo el escritorio.
     10:47 PM : Aniceto abre la caja fuerte, arranca la hoja del 12 de septiembre del Libro Verde y la quema en el cenicero.
     10:50 PM : En el callejon, Chapatin le aplica a Nono la inyeccion y anota el asiento en su libreta de bolsillo. Arriba, Aniceto sube a Barriga al carrito de discos y lo lleva por el pasillo hasta la Cabina B. Las ruedas engrasadas chirrian y dejan dos rayas negras paralelas en la alfombra. La Chimoltrufia lo oye desde la Cabina C y cree que es el conserje.
-    10:53 PM : Acomoda la escena, deja el trofeo sobre la mesa de la consola y le encarga a Nono subir a la azotea a mover la antena a las once en punto. Nono sube solo; Chapatin se queda en el callejon y de ahi pasa a la plaza para oir el Grito.
+    10:52 PM : Nono vuelve del callejon por la misma escalera de servicio y llega directo a la consola, sin pisar el pasillo alfombrado; no ve las rayas del carrito ni se cruza con nadie. Chapatin se queda abajo.
+    10:53 PM : Aniceto acomoda la escena, deja el trofeo sobre la mesa de la consola y sale al hueco de la consola a encargarle a Nono que a las once en punto suba a la azotea a mover la antena. Nono acepta y se queda operando hasta esa hora. Chapatin pasa del callejon a la plaza para oir el Grito.
     10:55 PM : Aniceto baja a la bodega, se ata las munecas con un cable de microfono y se amordaza con su propio panuelo de seda, anudado al frente.
-    11:00 PM : Jirafales da el Grito. Truenan los cohetes. Nono esta en la azotea y la consola queda sola.
+    11:00 PM : Jirafales da el Grito. Truenan los cohetes. Nono sube a la azotea y la consola queda sola.
     11:03 PM : Termina el enlace y la consola dispara sola el cartucho 3. La voz de Barriga grita el nombre del doctor ante toda la plaza.
     11:04 PM : Chapatin, que estaba en la plaza, corre al edificio. El Sargento corre tras el.
     11:06 PM : El Sargento sube de la plaza y Nono baja de la azotea; coinciden en la puerta de la Cabina B y hallan al doctor arrodillado dando primeros auxilios. Arresto inmediato.
@@ -431,6 +432,8 @@ CHIMOLTRUFIA (stmt2_2): A las 11:03 oí el grito del señor Barriga por la bocin
 CHIMOLTRUFIA (stmt2_3): Y por ese pasillo no pasó nadie en toda la noche, más que el doctorcito, que se fue echando pestes a las 10:40.
 CHIMOLTRUFIA (stmt2_4): Por eso yo digo que fue él... aunque también digo que quién sabe.
 ```
+
+> **Cuidado al redactar `stmt2_3`:** la declaración es literalmente cierta, y debe seguir siéndolo. El **pasillo alfombrado** (despacho ↔ cabinas) y la **escalera de servicio** son rutas distintas: Chapatín sale a las 10:40 y Ñoño baja a las 10:45 y vuelve a las 10:52 **por la escalera**, sin cruzar el pasillo (§3). Lo único que pasó por ahí fue el carrito de las 10:50 — y por eso `stmt2_3b` es la única grieta del testimonio. Si en algún guión posterior se hace bajar o subir a Ñoño por el pasillo, `stmt2_3` se vuelve una mentira y el jugador gana una contradicción falsa que el caso no resuelve.
 
 - **Presionar `stmt2_1`**: *"Los horóscopos los grabo yo solita porque nadie me quiere ayudar. Ah, y salieron muy bonitos: dije que a los Piscis les iba a ir espantoso, y mire nomás."*
 - **Presionar `stmt2_3`** → **desbloquea `stmt2_3b`**:

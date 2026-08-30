@@ -59,7 +59,7 @@ flowchart TD
    - **Invariant — the `plain` frame aligns with the dialogue box top edge.** The dialogue box is 120px tall with 15px bottom padding (top edge at 135px / 540px = 0.25). Setting `characterBaseline: 0.25` anchors the waist-up bust so the bottom cut of the character sprite rests cleanly along the upper golden border of the dialogue box during investigation mode and free-standing scenes, preventing characters from sinking into the dialogue box.
    - **Invariant — the defense bench spans the full stage width.** This is geometry, not taste. `chapulin_slam.png` has a transparent notch between the forearms, and the counter's far edge must cover it while the palms still stay clear of the gold trim. Those two features are 37px apart on stage, so the rendered wood surface must be deeper than that; below ~0.9 furniture width the frame is unsatisfiable at any character baseline.
    - **Invariant — instant positioning without transition sliding on shot changes.** `#character-container` geometry (`bottom`, `height`) snaps immediately to stage frame custom properties without CSS transitions. In visual novels, courtroom camera shot changes and character switches are instant visual cuts; animating container dimensions/positions causes incoming character sprites to momentarily display at the prior character's baseline and visibly slide into place.
-   - Geometry is regression-tested in [[tests/engine/StageLayout.test.ts]], which resolves the ratios into stage pixels and asserts dialogue box alignment, head clearance, palm-on-surface contact against the measured source geometry of `court_bench.png`, and absence of position transitions on `#character-container`.
+   - Geometry is regression-tested in [[tests/engine/StageLayout.test.ts]], which resolves the ratios into stage pixels and asserts dialogue box alignment, head clearance, palm-on-surface contact against the measured source geometry of `court_bench.png`, and absence of position transitions on `#character-container`. Case 3 bust PNGs are gated in [[tests/assets/Case3StandingBusts.test.ts]] so a floating hem cannot pass as a staging bug.
 
 5. **Visual Effects & Overlays** ([[src/engine/Private/VisualEffects.ts#Dramatic Cut-in Overlays]]):
    - **Cut-in Animation**: `showCutin(cutinName)` triggers zoom, shake, and flash animations for `¡PROTESTO!`, `¡UN MOMENTO!`, `¡TOMA ESO!`, and `¡INOCENTE!`.
@@ -70,7 +70,7 @@ flowchart TD
 
 6. **Investigation & Examination Mode** ([[src/engine/Private/InvestigationController.ts#Examine Mode & Tooltips]]):
    - `startInvestigation(location)` renders hotspots, loads intro dialogue, and clears leftover courtroom staging (sprite, bench frame, dialogue) so a fade-in from trial is already the crime scene.
-   - `startExamineMode()` enables pointer events on hotspots, attaches a cursor-following tooltip (`#examine-tooltip`), and hides the character sprite to give an unobstructed view.
+   - `startExamineMode()` enables pointer events on hotspots, attaches a cursor-following tooltip (`#examine-tooltip`), hides the character sprite, and stamps `examine-mode` on `#game-screen` so `#controls-bar` drops onto the 48px examine plate. The bar itself is `pointer-events: none`; only `.menu-btn` receives clicks, so empty dock space cannot cover floor hotspots.
    - Hotspot clicks trigger audio feedback, hide the examine cursor, and queue hotspot dialogue.
    - **First-time Hotspot Dialogue**: When examining a hotspot for the first time, investigation navigation controls (`#investigation-controls`) remain hidden and actions (talk, examine, move) are locked until the dialogue is completed, at which point the hotspot is marked examined in `gameState.flags` and navigation controls reappear.
    - **Repeated Hotspot Dialogue**: When examining a previously completed hotspot, navigation controls remain interactive, allowing the player to freely talk or examine something else without being locked into known dialogue.
@@ -88,6 +88,7 @@ flowchart TD
    - Dynamically renders `#talk-options-modal` with topics defined in the current scene script.
    - Renders `#choice-prompt-modal` during climax via `openChoiceModal()` — non-dismissible, no close button; option buttons use `menu-btn talk-btn` and call `TrialController.handleSelectChoice()`.
    - **Invariant — Court Record cards share equal tracks and scroll only on Y.** `#evidence-grid` is a flex child (`min-width: 0`) with `repeat(3, minmax(0, 1fr))`. Grid items also use `min-width: 0`. Names wrap up to two lines (`line-clamp: 2`); they must not use `white-space: nowrap` or they grow a column (`min-width: auto`) and the grid overflows X. `overflow-x: clip` + `overflow-y: auto` (not `overflow: auto`). Regression: [[tests/engine/CourtRecordLayout.test.ts]].
+   - **Invariant — Evidence descriptions scroll; Presentar stays fully visible.** `.modal-body` is `overflow: hidden`. `#evidence-details` uses `min-height: 0` so it can shrink to that body instead of growing with copy. `#evidence-description` is capped at six lines (`max-height: calc(1.3em * 6)`, matching `line-height: 1.3`) with `overflow-y: auto`. `#btn-modal-present` is `flex-shrink: 0`. Regression: [[tests/engine/CourtRecordLayout.test.ts]].
 
 ## Invariants & Design Rules
 
@@ -95,4 +96,5 @@ flowchart TD
 - **Audio Context Activation**: Any user gesture ensures the `AudioContext` is active via `soundEngine.ensureActive()`.
 - **Clean Mode Toggles**: Switching modes (`INVESTIGATION` <-> `TRIAL` <-> `EXAMINE`) explicitly hides inactive HUD groups to avoid overlapping controls.
 - **Splash stack fits the 960×540 stage.** `#game-screen` is `overflow: hidden` at 540px. The title screen directly uses the 960×540 canvas without nested inner card boxes. Language toggle is stationed in the top corner (`#btn-lang-splash`), Chapulín is displayed at hero size (180px), and case selection buttons hover cleanly. Regression: [[tests/engine/SplashLayout.test.ts]].
+- **Full-width HUD docks must not steal hotspot hits.** `#controls-bar` is `pointer-events: none` with `.menu-btn { pointer-events: auto }`. Examine mode lowers the dock (`bottom: 82px`) with the shrunk dialogue plate. Regression: [[tests/engine/ExamineHudLayout.test.ts]].
 

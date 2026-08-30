@@ -23,7 +23,7 @@ export const CASE3_DESPACHO: InvestigationScene = {
     {
       id: 'hotspot_escritorio',
       label: 'Bajo el Escritorio',
-      x: 22, y: 48, w: 30, h: 24,
+      x: 42, y: 56, w: 38, h: 32,
       dialogue: [
         { speaker: 'CHAPULIN', text: '¡Aquí está el ojo que le faltaba a los lentes!', pose: 'chapulin_point' },
         { speaker: 'DEFENSA', text: 'Y el tapete es de lana roja. Las fibras del informe médico salieron de aquí. Esta es la escena del crimen de verdad.', pose: 'donramon_point', sfx: 'realization', updateEvidence: 'lentes_barriga' }
@@ -32,7 +32,7 @@ export const CASE3_DESPACHO: InvestigationScene = {
     {
       id: 'hotspot_pedestal',
       label: 'Pedestal de Terciopelo',
-      x: 62, y: 22, w: 20, h: 40,
+      x: 2, y: 50, w: 24, h: 34,
       dialogue: [
         { speaker: 'DEFENSA', text: 'Pedestal vacío... cerco de polvo del tamaño exacto de la base octagonal. La placa dice: "A Aniceto Rebollar, 25 años de La Voz de Oro".', pose: 'donramon_idle', updateEvidence: 'microfono_oro' },
         { speaker: 'ANICETO', text: '...Sí. Es mío. Qué cosa tan fea, que me lo hayan usado para eso.', pose: 'aniceto_thinking' },
@@ -42,7 +42,7 @@ export const CASE3_DESPACHO: InvestigationScene = {
     {
       id: 'hotspot_caja',
       label: 'Caja Fuerte y Cenicero',
-      x: 8, y: 28, w: 22, h: 38,
+      x: 2, y: 14, w: 24, h: 36,
       dialogue: [
         { speaker: 'CHAPULIN', text: '¡Se robaron una hoja y se la fumaron!', pose: 'chapulin_panic' },
         { speaker: 'DEFENSA', text: 'Se la quemaron, Chapulín. Y la caja no tiene un solo billete, porque el Fondo no se guarda en efectivo. No vinieron por billetes. Vinieron por una hoja... y ese alguien sabía la combinación.', pose: 'donramon_point', sfx: 'realization', addEvidence: 'libro_verde', unlockLocation: 'clinica_chapatin' }

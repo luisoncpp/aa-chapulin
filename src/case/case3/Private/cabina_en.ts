@@ -9,7 +9,7 @@ const CABINA_HOTSPOTS_EN: Hotspot[] = [
   {
     id: 'hotspot_trofeo',
     label: 'Console Desk',
-    x: 38, y: 28, w: 28, h: 30,
+    x: 30, y: 28, w: 24, h: 30,
     dialogue: [
       { speaker: 'SARGENTO', text: 'I put it there for the photo. Looked neater that way.', pose: 'pazguato_sweat' },
       { speaker: 'DEFENSA', text: 'You... put it there? Sergeant, that\'s altering the scene.', pose: 'donramon_shock', sfx: 'realization', addEvidence: 'microfono_oro' }
@@ -18,7 +18,7 @@ const CABINA_HOTSPOTS_EN: Hotspot[] = [
   {
     id: 'hotspot_piso',
     label: 'Floor & Chalk Outline',
-    x: 28, y: 58, w: 40, h: 28,
+    x: 50, y: 60, w: 42, h: 32,
     dialogue: [
       { speaker: 'CHAPULIN', text: 'Look, Monchito! These glasses are missing an eye!', pose: 'chapulin_point' },
       { speaker: 'DEFENSA', text: 'The right lens is gone... and there isn\'t a single shard of glass in this booth. Interesting.', pose: 'donramon_idle', sfx: 'realization', addEvidence: 'lentes_barriga' }
@@ -27,7 +27,7 @@ const CABINA_HOTSPOTS_EN: Hotspot[] = [
   {
     id: 'hotspot_micro',
     label: 'Booth Microphone',
-    x: 58, y: 18, w: 16, h: 28,
+    x: 52, y: 24, w: 16, h: 40,
     dialogue: [
       { speaker: 'CHIMOLTRUFIA', text: 'Ay, the boy unplugs it every night when we finish. ¡Como digo una cosa, digo otra!: I tell him to leave it, and he coils it up.', pose: 'chimoltrufia_idle', addEvidence: 'microfono_cabina' }
     ]
@@ -35,7 +35,7 @@ const CABINA_HOTSPOTS_EN: Hotspot[] = [
   {
     id: 'hotspot_ventana',
     label: 'Window & Fan',
-    x: 78, y: 10, w: 18, h: 36,
+    x: 70, y: 2, w: 28, h: 50,
     dialogue: [
       { speaker: 'CHAPULIN', text: 'You can hear the fair like we\'re standing in the fair!', pose: 'chapulin_idle' },
       { speaker: 'DEFENSA', text: 'Write that down. It might matter.', pose: 'donramon_idle', addEvidence: 'ventana_cabina' }
@@ -44,7 +44,7 @@ const CABINA_HOTSPOTS_EN: Hotspot[] = [
   {
     id: 'hotspot_cintas',
     label: 'Tape Shelf',
-    x: 8, y: 16, w: 18, h: 40,
+    x: 16, y: 8, w: 16, h: 44,
     dialogue: [
       { speaker: 'DEFENSA', text: '(A tape of digestion tips. Doubt this helps anyone.)', pose: 'donramon_sweat', addEvidence: 'cinta_salud' }
     ]
@@ -52,7 +52,7 @@ const CABINA_HOTSPOTS_EN: Hotspot[] = [
   {
     id: 'hotspot_pasillo',
     label: 'Hallway Carpet',
-    x: 4, y: 62, w: 24, h: 22,
+    x: 0, y: 54, w: 22, h: 32,
     dialogue: [
       { speaker: 'DEFENSA', text: 'Two black grease streaks... from the office to Cabina B. And a brown cashmere thread.', pose: 'donramon_point', sfx: 'realization', addEvidence: 'marcas_carrito' }
     ]

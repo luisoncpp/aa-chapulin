@@ -40,6 +40,7 @@ SHEETS = [
 ]
 
 EV_A = [
+    # 4×3 sheet; (0,0) badge and (1,0) draft informe are unused.
     (2, 0, "lentes_barriga.png"),
     (3, 0, "microfono_oro.png"),
     (0, 1, "bolsa_papel.png"),
@@ -91,7 +92,7 @@ def process_evidence_grid(sheet_name: str, cells: list, cols: int, rows: int) ->
     img = Image.open(path)
     w, h = img.size
     cw, ch = w // cols, h // rows
-    drops = icon_drop_boxes(cw, ch)
+    drops = [] if cols * rows == 1 else icon_drop_boxes(cw, ch)
     for col, row, name in cells:
         cell = img.crop((col * cw, row * ch, (col + 1) * cw, (row + 1) * ch))
         cleaned = remove_bg_magenta_vectorized(cell, threshold=165.0, despill_depth=4)
@@ -100,6 +101,13 @@ def process_evidence_grid(sheet_name: str, cells: list, cols: int, rows: int) ->
             cleaned, min_area_fraction=0.12, drop_boxes=drops
         )
         save_evidence_icon(filtered, name)
+
+
+# Every plain-frame bust. Magenta under the waist becomes a gap above the
+# dialogue box; do not floor only a subset of characters.
+FLOOR_BUSTS = [
+    name for _sheet, names in SHEETS for name in names
+] + ["chapatin_conmovido"]
 
 
 def copy_backgrounds() -> None:
@@ -112,18 +120,30 @@ def copy_backgrounds() -> None:
         print(f"  [OK] Copied background: {name}")
 
 
+def floor_standing_busts(names: list) -> None:
+    """Sit opaque hems on the 512 canvas floor so plain staging meets the dialogue box."""
+    for name in names:
+        path = os.path.join(DEST_DIR, f"{name}.png")
+        if not os.path.exists(path):
+            continue
+        anchored = despill_final(anchor_standing_bust(Image.open(path)))
+        anchored.save(path)
+        print(f"  [OK] Floored bust: {name}.png")
+
+
 def run_case3() -> None:
     print("=== CASE 3 ASSET PROCESSING ===")
     for sheet, names in SHEETS:
         process_character_sheet(sheet, names)
     process_grid_cell("chapatin_conmovido_raw.png", "chapatin_conmovido", (0, 0))
-    shock_path = os.path.join(DEST_DIR, "chapatin_conmovido.png")
-    if os.path.exists(shock_path):
-        anchored = despill_final(anchor_standing_bust(Image.open(shock_path)))
-        anchored.save(shock_path)
+    floor_standing_busts(FLOOR_BUSTS)
     process_full_pose("aniceto_breakdown_raw.png", "aniceto_breakdown")
-    process_evidence_grid("case3_evidence_icons_raw.png", EV_A, 4, 4)
+    # Sheet A is a 4×3 card grid (12 cells). Slicing it as 4×4 cuts through
+    # the painted icons and bakes white divider lines into the court-record PNGs.
+    process_evidence_grid("case3_evidence_icons_raw.png", EV_A, 4, 3)
     process_evidence_grid("case3_evidence_icons_b_raw.png", EV_B, 3, 2)
+    # Dedicated crop: sheet B nests this clipboard in a second magenta frame.
+    process_evidence_grid("informe_barriga_icon_raw.png", [(0, 0, "informe_barriga.png")], 1, 1)
     copy_backgrounds()
     print("\nCase 3 assets saved.")
 

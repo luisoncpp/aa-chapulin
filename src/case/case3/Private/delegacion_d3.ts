@@ -30,7 +30,7 @@ export const CASE3_DELEGACION_D3: InvestigationScene = {
     {
       id: 'hotspot_reproductor',
       label: 'Reproductor de Cartuchos',
-      x: 42, y: 30, w: 26, h: 32,
+      x: 74, y: 68, w: 24, h: 28,
       dialogue: [
         { speaker: 'DEFENSA', text: 'El grito de las 11:03... y debajo, el aviso de las 9:40. Imposible que sea la misma persona en dos sitios.', pose: 'donramon_point' }
       ]

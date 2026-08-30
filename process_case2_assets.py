@@ -98,7 +98,8 @@ def save_evidence_icon(filtered: Image.Image, name: str) -> None:
         return
     cropped = filtered.crop(bbox)
     max_dim = max(cropped.width, cropped.height)
-    canvas = Image.new("RGBA", (max_dim + 12, max_dim + 12), (0, 0, 0, 0))
+    pad = max(24, max_dim // 8)
+    canvas = Image.new("RGBA", (max_dim + pad * 2, max_dim + pad * 2), (0, 0, 0, 0))
     ox = (canvas.width - cropped.width) // 2
     oy = (canvas.height - cropped.height) // 2
     canvas.paste(cropped, (ox, oy))

@@ -25,7 +25,7 @@ export const CASE3_DETENTION: InvestigationScene = {
     {
       id: 'chapatin_spot',
       label: 'Doctor Chapatín',
-      x: 24, y: 14, w: 34, h: 54,
+      x: 32, y: 10, w: 36, h: 58,
       dialogue: [
         { speaker: 'CHAPATIN', text: '¿Qué me ve? ¿Nunca había visto a un médico inocente?', pose: 'chapatin_enojado' }
       ]

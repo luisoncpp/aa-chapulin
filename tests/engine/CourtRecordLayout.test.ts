@@ -38,3 +38,26 @@ describe('court record evidence grid layout', () => {
     expect(cssProp(label, 'line-clamp')).toBe('2');
   });
 });
+
+describe('court record evidence detail pane', () => {
+  const css = fs.readFileSync(path.resolve(__dirname, '../../style.css'), 'utf-8');
+  const details = cssRule(css, '#evidence-details');
+  const description = cssRule(css, '#evidence-description');
+  const present = cssRule(css, '#btn-modal-present');
+
+  it('lets the details column shrink inside the overflow-hidden modal body', () => {
+    expect(cssProp(details, 'min-height')).toBe('0');
+    expect(cssProp(details, 'overflow')).toBe('hidden');
+  });
+
+  it('caps the description at six lines and scrolls the rest', () => {
+    expect(cssProp(description, 'min-height')).toBe('0');
+    expect(cssProp(description, 'overflow-y')).toBe('auto');
+    expect(cssProp(description, 'max-height')).toBe('calc(1.3em * 6)');
+    expect(cssProp(description, 'line-height')).toBe('1.3');
+  });
+
+  it('keeps Presentar from shrinking when the description is long', () => {
+    expect(cssProp(present, 'flex-shrink')).toBe('0');
+  });
+});

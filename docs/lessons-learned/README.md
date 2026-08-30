@@ -43,5 +43,9 @@ Avoid: "bug description + fix". Prefer: "what I learned that applies to future w
 | [`climax-court-record-reopening.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/lessons-learned/climax-court-record-reopening.md) | Dialogue advance and HUD court record reopen evidence presentation mode during climax. | 2026-08-30 |
 | [`trial-gating-is-inventory-only.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/lessons-learned/trial-gating-is-inventory-only.md) | `checkTrialReadiness` ignores visited locations; the last location of each day must carry required evidence. | 2026-08-30 |
 | [`spec-snapshot-drift.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/lessons-learned/spec-snapshot-drift.md) | A cloning agent freezes the spec at clone time; diff `docs/specs/` against main before auditing its output. | 2026-08-30 |
+| [`court-record-evidence-grid-rows.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/lessons-learned/court-record-evidence-grid-rows.md) | Court-record "clipped" icons are often a 4×4 slice of a 4×3 evidence sheet. | 2026-08-30 |
+| [`chimoltrufia-not-florinda-identity.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/lessons-learned/chimoltrufia-not-florinda-identity.md) | Chimoltrufia sheets snap to Florinda (rollers, full teeth) unless caricature markers lock the idle. | 2026-08-30 |
+| [`examine-hud-hotspot-occlusion.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/lessons-learned/examine-hud-hotspot-occlusion.md) | A full-width controls dock still captures hits on empty pixels; shrinking the examine plate does not move it. | 2026-08-30 |
+| [`court-record-description-scroll.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/lessons-learned/court-record-description-scroll.md) | Long Acta copy must scroll inside the description; otherwise Presentar is clipped. | 2026-08-30 |
 
 

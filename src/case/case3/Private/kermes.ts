@@ -26,7 +26,7 @@ export const CASE3_KERMES: InvestigationScene = {
     {
       id: 'hotspot_bocinas',
       label: 'Bocinas de la Plaza',
-      x: 70, y: 12, w: 22, h: 36,
+      x: 82, y: 6, w: 16, h: 52,
       dialogue: [
         { speaker: 'JIRAFALES', text: 'Esas bocinas repiten TODO lo que sale al aire de XEVC. Sin filtro y sin piedad.', pose: 'jirafales_idle' }
       ]
@@ -34,7 +34,7 @@ export const CASE3_KERMES: InvestigationScene = {
     {
       id: 'hotspot_kiosco',
       label: 'Kiosco de la Plaza',
-      x: 30, y: 20, w: 28, h: 40,
+      x: 2, y: 8, w: 30, h: 56,
       dialogue: [
         { speaker: 'DEFENSA', text: 'Todavía huele a cohete y a buñuelo. Aquí oyó todo el barrio el grito.', pose: 'donramon_idle' }
       ]

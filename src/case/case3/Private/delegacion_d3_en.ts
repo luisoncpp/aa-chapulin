@@ -30,7 +30,7 @@ export const CASE3_DELEGACION_D3_EN: InvestigationScene = {
     {
       id: 'hotspot_reproductor',
       label: 'Cartridge Player',
-      x: 42, y: 30, w: 26, h: 32,
+      x: 74, y: 68, w: 24, h: 28,
       dialogue: [
         { speaker: 'DEFENSA', text: 'The 11:03 scream... and underneath, the 9:40 notice. Impossible for the same person to be in two places.', pose: 'donramon_point' }
       ]

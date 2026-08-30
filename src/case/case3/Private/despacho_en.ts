@@ -23,7 +23,7 @@ export const CASE3_DESPACHO_EN: InvestigationScene = {
     {
       id: 'hotspot_escritorio',
       label: 'Under the Desk',
-      x: 22, y: 48, w: 30, h: 24,
+      x: 42, y: 56, w: 38, h: 32,
       dialogue: [
         { speaker: 'CHAPULIN', text: 'Here\'s the eye the glasses were missing!', pose: 'chapulin_point' },
         { speaker: 'DEFENSA', text: 'And the rug is red wool. The medical report\'s fibers came from here. This is the real crime scene.', pose: 'donramon_point', sfx: 'realization', updateEvidence: 'lentes_barriga' }
@@ -32,7 +32,7 @@ export const CASE3_DESPACHO_EN: InvestigationScene = {
     {
       id: 'hotspot_pedestal',
       label: 'Velvet Pedestal',
-      x: 62, y: 22, w: 20, h: 40,
+      x: 2, y: 50, w: 24, h: 34,
       dialogue: [
         { speaker: 'DEFENSA', text: 'Empty pedestal... dust ring the exact size of the octagonal base. The plaque says: "A Aniceto Rebollar, 25 años de La Voz de Oro".', pose: 'donramon_idle', updateEvidence: 'microfono_oro' },
         { speaker: 'ANICETO', text: '...Yes. It\'s mine. How ugly, that they used it for that.', pose: 'aniceto_thinking' },
@@ -42,7 +42,7 @@ export const CASE3_DESPACHO_EN: InvestigationScene = {
     {
       id: 'hotspot_caja',
       label: 'Safe & Ashtray',
-      x: 8, y: 28, w: 22, h: 38,
+      x: 2, y: 14, w: 24, h: 36,
       dialogue: [
         { speaker: 'CHAPULIN', text: 'They stole a page and smoked it!', pose: 'chapulin_panic' },
         { speaker: 'DEFENSA', text: 'They burned it, Chapulín. And there isn\'t a single bill in that safe, because the Fund is never kept in cash. They didn\'t come for money. They came for a page... and that someone knew the combination.', pose: 'donramon_point', sfx: 'realization', addEvidence: 'libro_verde', unlockLocation: 'clinica_chapatin' }

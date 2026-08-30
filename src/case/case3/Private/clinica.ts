@@ -23,7 +23,7 @@ export const CASE3_CLINICA: InvestigationScene = {
     {
       id: 'hotspot_libreta',
       label: 'Libreta de Bolsillo',
-      x: 48, y: 36, w: 24, h: 28,
+      x: 10, y: 68, w: 28, h: 24,
       dialogue: [
         { speaker: 'CHAPULIN', text: '¡Diez cincuenta de la noche! ¡Y está escrita con lápiz de feria, no en un escritorio!', pose: 'chapulin_point' },
         { speaker: 'DEFENSA', text: 'La apuntó de pie, en el callejón. Y no le cobró. Por eso el viejo prefiere la cárcel: no está tapando a un cómplice, está tapando a un paciente.', pose: 'donramon_point', sfx: 'realization', addEvidence: 'receta_nono' },
@@ -34,7 +34,7 @@ export const CASE3_CLINICA: InvestigationScene = {
     {
       id: 'hotspot_camilla',
       label: 'Camilla del Paciente',
-      x: 12, y: 28, w: 28, h: 40,
+      x: 68, y: 48, w: 32, h: 42,
       dialogue: [
         { speaker: 'FLORINDA', text: 'Pobre Señor Barriga... Y pensar que anoche todavía nos ayudaba a buscar a Quico.', pose: 'florinda_idle' },
         { speaker: 'DEFENSA', text: '(Sigue en coma. Cada hora cuenta.)', pose: 'donramon_sweat' }

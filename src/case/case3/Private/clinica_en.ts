@@ -23,7 +23,7 @@ export const CASE3_CLINICA_EN: InvestigationScene = {
     {
       id: 'hotspot_libreta',
       label: 'Pocket Notebook',
-      x: 48, y: 36, w: 24, h: 28,
+      x: 10, y: 68, w: 28, h: 24,
       dialogue: [
         { speaker: 'CHAPULIN', text: 'Ten-fifty at night! And it\'s written with a fairground pencil, not at a desk!', pose: 'chapulin_point' },
         { speaker: 'DEFENSA', text: 'He wrote it standing up, in the alley. And he charged nothing. That\'s why the old man prefers prison: he\'s not covering an accomplice — he\'s covering a patient.', pose: 'donramon_point', sfx: 'realization', addEvidence: 'receta_nono' },
@@ -34,7 +34,7 @@ export const CASE3_CLINICA_EN: InvestigationScene = {
     {
       id: 'hotspot_camilla',
       label: 'Patient Cot',
-      x: 12, y: 28, w: 28, h: 40,
+      x: 68, y: 48, w: 32, h: 42,
       dialogue: [
         { speaker: 'FLORINDA', text: 'Poor Señor Barriga... And to think last night he was still helping us look for Quico.', pose: 'florinda_idle' },
         { speaker: 'DEFENSA', text: '(Still in a coma. Every hour counts.)', pose: 'donramon_sweat' }

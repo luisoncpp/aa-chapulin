@@ -25,7 +25,7 @@ export const CASE3_DELEGACION_EN: InvestigationScene = {
     {
       id: 'hotspot_archivo',
       label: 'Evidence Filing Cabinet',
-      x: 68, y: 18, w: 24, h: 48,
+      x: 8, y: 16, w: 18, h: 50,
       dialogue: [
         { speaker: 'SARGENTO', text: 'I keep whatever the prosecutor doesn\'t dock me for. For now, pure paper.', pose: 'pazguato_idle' }
       ]
@@ -33,7 +33,7 @@ export const CASE3_DELEGACION_EN: InvestigationScene = {
     {
       id: 'hotspot_torta',
       label: 'Bean Torta',
-      x: 36, y: 42, w: 20, h: 20,
+      x: 42, y: 68, w: 24, h: 26,
       dialogue: [
         { speaker: 'DEFENSA', text: '(Better not. I already know where he kept the medical report.)', pose: 'donramon_sweat' }
       ]

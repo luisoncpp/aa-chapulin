@@ -42,7 +42,7 @@ Juntos, Don Ramón y El Chapulín deberán enfrentarse a un misterio que parece 
 ```mermaid
 timeline
     title Cronología del Robo del Chanfle de Oro (Noche del 28 de Agosto)
-    Tarde 28 Ago : El Peterete, que como jefe de seguridad porta la llave maestra sólo durante su turno (debe devolverla cada noche a la caja de custodia del hotel), visita a Doña Clotilde para comprar la Esencia de Valeriana y aprovecha para copiar la llave en cera (molde desechado en la basura de Clotilde).
+    Tarde 28 Ago : Un individuo misterioso visita a Doña Clotilde para comprar la Esencia de Valeriana y aprovecha un descuido de ella para copiar la llave maestra en cera (molde desechado en la basura de Clotilde).
     8:30 PM : El Peterete devuelve la llave original a custodia y contrata a Chómpiras para lustrar unas botas de plata históricas en la antecámara de la bóveda, dejándolo encerrado con su lata de grasa vacía.
     9:15 PM : Peterete fuerza la caja del generador (pintura azul) y baja el interruptor principal; el reloj de péndulo centralizado se detiene a las 9:15 PM y el reloj digital del pasillo (sin pila de respaldo) queda sin hora. En el restaurante, con acometida eléctrica propia, Jirafales y Florinda sólo perciben un parpadeo momentáneo de las luces.
     9:20 PM : Peterete bombea Esencia Sedante de Valeriana por el ducto de aire independiente; Chómpiras (aún sin palanca en manos) cae dormido profundamente (~30 min de efecto).
@@ -82,9 +82,9 @@ timeline
 10. **Multa de Tránsito (`multa_transito`)**:
      - *Descripción*: Multa de tránsito municipal expedida a las 9:30 PM al carrito de correos por estar "abandonado y sin supervisión" en el callejón trasero. La multa fue puesta por un agente vial de ronda, independiente de la policía judicial que aseguró la bóveda, por lo que el carrito no fue inspeccionado como parte de la escena del crimen.
 11. **Frasco de Esencia de Valeriana (`frasco_valeriana`)**:
-    - *Descripción*: Brebaje herbal concentrado creado por Doña Clotilde (rosas + valeriana). Provoca sueño instantáneo y profundo de ~30 minutos; coincide químicamente con el residuo del ducto.
+    - *Descripción*: Brebaje herbal concentrado creado por Doña Clotilde (rosas + valeriana). Provoca sueño instantáneo y profundo de ~30 minutos; coincide químicamente con el residuo del ducto. Fue comprado por un cliente misterioso.
 12. **Molde de Cera (`molde_cera`)**:
-    - *Descripción*: Trozo de cera de veladora encontrado en la basura de Doña Clotilde. Contiene la huella exacta de la llave maestra de la bóveda. Fue creado la tarde del 28 de agosto cuando Peterete visitó a Clotilde para comprar la esencia.
+    - *Descripción*: Trozo de cera de veladora encontrado en la basura de Doña Clotilde. Contiene la huella exacta de la llave maestra de la bóveda. Fue creado la tarde del 28 de agosto por el misterioso cliente que visitó a Clotilde para comprar la esencia.
 13. **Lata de Grasa de Zapatos (`lata_grasa`)**:
     - *Descripción*: Lata grande de betún negro con el logotipo del Chómpiras. Es inusualmente pesada (~5.3 kg: 5 kg del Chanfle + lata) y de su junta brota polvo dorado brillante. Fue la lata vacía que Chómpiras llevó a la bóveda por encargo de Peterete.
 14. **Antenitas de Vinil (`antenitas_vinil`)**:
@@ -359,16 +359,17 @@ JAIMITO (jaimito_tired): Sí, mire. Aquí dice: "9:30 PM. Vehículo postal aband
 NARRADOR: 30 de Agosto, 11:30 AM. Casa de Doña Clotilde.
 CLOTILDE (clotilde_flustered): ¡Ay, mi Roro! ¡Qué dicha tenerte en mi humilde morada! ¿Quieres que te prepare una tacita de café o una infusión para los nervios?
 DEFENSA (donramon_sweat): Este... gracias, Doña Clotilde, pero andamos investigando un aroma muy curioso. ¿Reconoce este frasco?
-CLOTILDE (clotilde_mysterious): ¡Por supuesto! Es mi fórmula secreta de 'Esencia Concentrada de Valeriana y Rosas'. El señor Peterete vino antier por la tarde, justo antes del robo, a comprarme tres frascos diciendo que tenía insomnio.
-CHAPULIN (chapulin_point): ¡Bingo! ¡El somnífero del ducto de ventilación fue comprado por el mismísimo Peterete!
+CLOTILDE (clotilde_mysterious): ¡Por supuesto! Es mi fórmula secreta de 'Esencia Concentrada de Valeriana y Rosas'. Un hombre muy elegante vino antier por la tarde, justo antes del robo, a comprarme tres frascos diciendo que tenía un insomnio terrible.
+CHAPULIN (chapulin_thinking): ¿Un hombre elegante? ¿No recuerda quién era?
+CLOTILDE (clotilde_mysterious): Llevaba el sombrero calado y una bufanda que le tapaba media cara. Pero tenía unos modales muy refinados, nada que ver con la chusma.
 DEFENSA (donramon_idle): Doña Clotilde, ¿le importaría si revisamos un poco? (Mira la basura) ¡Chapulín, mira esto!
 CHAPULIN (chapulin_idle): ¡Es un trozo de cera de veladora con la forma de una llave!
-DEFENSA (donramon_point): ¡El Peterete usó la cera de Doña Clotilde para hacer el molde de la llave maestra cuando vino a comprar el sedante!
+DEFENSA (donramon_point): ¡El misterioso comprador usó la cera de Doña Clotilde para hacer el molde de una llave cuando vino a comprar el sedante!
 ```
 
 #### Pruebas Recolectadas:
 - **Frasco de Esencia de Valeriana (`frasco_valeriana`)**: Coincidencia química 100% idéntica con el residuo del ducto (`aroma_dulce`).
-- **Molde de Cera (`molde_cera`)**: Peterete usó cera de las velas de Doña Clotilde para copiar la llave de la bóveda la tarde previa al robo (28 de agosto) y desechó el molde en su basura por exceso de confianza.
+- **Molde de Cera (`molde_cera`)**: El comprador misterioso usó cera de las velas de Doña Clotilde para copiar una llave la tarde previa al robo (28 de agosto) y desechó el molde en su basura por exceso de confianza.
 
 ---
 
@@ -493,7 +494,10 @@ PETERETE (peterete_panic): ¡P-pero la caja fuerte se abrió con llave! ¡Yo dev
 [LA CULPABILIDAD DEL PETERETE]
 DEFENSA (donramon_point): ¡PROTESTO! ¡Usted no necesitaba la llave original, porque fabricó un DUPLICADO! [cutin: objection_protesto, sfx: whoosh]
 DEFENSA (donramon_slam): ¡Encontramos este 'Molde de Cera' en la basura de Doña Clotilde! ¡Tiene la huella exacta de la llave maestra! [sfx: desk_slam]
-DEFENSA (donramon_point): Usted fue a comprarle la esencia de valeriana la tarde del robo, y aprovechó para copiar la llave en la cera de sus veladoras. ¡Usted durmió al Chómpiras, abrió la caja con su copia, metió el oro en la lata y la tiró por el montaplatos!
+PETERETE (peterete_smug): ¡Bah! Doña Clotilde dijo que fue un hombre misterioso con bufanda y sombrero. ¡Podría ser cualquiera!
+DEFENSA (donramon_point): ¡No se haga el tonto! Doña Clotilde dijo que el hombre fue a comprar la esencia la tarde del 28 de agosto.
+DEFENSA (donramon_slam): Y según las reglas del hotel, ¡la única persona que portaba la llave maestra original durante esa tarde era el JEFE DE SEGURIDAD! [sfx: desk_slam]
+DEFENSA (donramon_point): ¡Usted fue a comprarle la esencia de valeriana, y aprovechó para copiar su propia llave en la cera de sus veladoras! ¡Usted durmió al Chómpiras, abrió la caja con su copia, metió el oro en la lata y la tiró por el montaplatos!
 PETERETE (peterete_breakdown): ¡¡¡NOOOOOOOOOOOO!!! ¡¡¡MI PLAN PERFECTO DE CINCO MILLONES DE DÓLARES ARRUINADO POR UN LIMPIABOTAS Y UN DEFENSOR DEL NECAXA!!! [sfx: damage]
 NARRADOR: (El Peterete comienza a propinarse sonoras bofetadas con su propio sombrero fedora mientras gira desquiciado por el estrado de los testigos hasta caer desplomado).
 SUPER SAM (supersam_breakdown): OH NOOO! ¡My fees! ¡My bonus! ¡Time is money and I lost my dollars!

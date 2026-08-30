@@ -50,6 +50,7 @@ export const UI_EN: UiTranslations = {
   locationWaitingRoom: 'High Court - Waiting Room',
 
   notifEvidenceAdded: (name: string) => `Added to Court Record: ${name}!`,
+  notifEvidenceUpdated: (name: string) => `Court Record updated: ${name}!`,
   notifLocationUnlocked: (name: string) => `New location unlocked: ${name}!`,
   notifTrialReady: 'All clues collected! You can now proceed to Trial!',
   notifIncorrectClue: 'Incorrect evidence! Review your clues.',

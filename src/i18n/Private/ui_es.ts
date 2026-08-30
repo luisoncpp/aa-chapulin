@@ -50,6 +50,7 @@ export const UI_ES: UiTranslations = {
   locationWaitingRoom: 'Tribunal Superior - Sala de Espera',
 
   notifEvidenceAdded: (name: string) => `¡Añadido al Acta del Juicio: ${name}!`,
+  notifEvidenceUpdated: (name: string) => `¡Acta del Juicio actualizada: ${name}!`,
   notifLocationUnlocked: (name: string) => `¡Nueva ubicación desbloqueada: ${name}!`,
   notifTrialReady: '¡Has reunido todas las pruebas! ¡Puedes iniciar el Juicio!',
   notifIncorrectClue: '¡Prueba incorrecta! Revisa tus pistas.',

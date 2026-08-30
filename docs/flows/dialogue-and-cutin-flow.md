@@ -55,15 +55,17 @@ sequenceDiagram
    - Resolves furniture from `line.furniture`, else infers it from trial mode + resolved background + pose.
    - `resolveStageFrame(furniture, line.pose)` maps that pair to one of `plain` / `bench-stand` / `bench-slam` / `podium`.
    - `applyStageFrame()` writes the frame's ratios to `#game-screen` as CSS custom properties, which resize and reposition `#character-container` and `#court-furniture-container` together instantly without CSS position transitions (ensuring instant camera cuts without character sliding). See [[src/engine/Private/StageLayout.ts]].
-7. **Evidence Automatic Grant**: If `line.addEvidence` is present, calls `gameState.addEvidence()` and triggers `#game-notification`.
-8. **Speaker Tag**: Updates `#speaker-name` text content.
-9. **Typewriter Effect**: Starts a 28ms `setInterval` timer appending characters one by one, playing `soundEngine.playTextBlip()` on every second non-whitespace character.
+7. **Evidence Automatic Grant**: If `line.addEvidence` is present, calls `gameState.addEvidence()`, plays realization SFX, and shows `#game-notification` (`notifEvidenceAdded`).
+8. **Evidence Description Update**: If `line.updateEvidence` is present, `gameState.updateEvidence()` applies catalog `updatedDesc`. Newly acquired items get the add toast; already owned items get `notifEvidenceUpdated` (same toast + realization SFX as a location unlock).
+9. **Location Unlock**: If `line.unlockLocation` is present and newly unlocked, realization SFX + `notifLocationUnlocked`.
+10. **Speaker Tag**: Updates `#speaker-name` text content.
+11. **Typewriter Effect**: Starts a 28ms `setInterval` timer appending characters one by one, playing `soundEngine.playTextBlip()` on every second non-whitespace character.
 
 ## 4. Reads
 - `engine.dialogueQueue`
 - `typewriter.isTyping`
 - `typewriter.fullText`
-- `line` properties (`bg`, `bgm`, `sfx`, `cutin`, `pose`, `speaker`, `text`, `addEvidence`)
+- `line` properties (`bg`, `bgm`, `sfx`, `cutin`, `pose`, `speaker`, `text`, `addEvidence`, `updateEvidence`, `unlockLocation`)
 
 ## 5. Writes
 - `typewriter.isTyping`

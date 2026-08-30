@@ -64,6 +64,7 @@ export class DialogueFlow {
     if (line.cutin) VisualEffects.showCutin(this.deps.dom, line.cutin);
     this.applyLineSpeakerAndPose(line);
     this.grantEvidenceIfPresent(line.addEvidence);
+    this.updateEvidenceIfPresent(line.updateEvidence);
     this.unlockLocationIfPresent(line.unlockLocation);
     this.deps.typewriter.start(line.text || '');
   }
@@ -86,21 +87,31 @@ export class DialogueFlow {
     const added = this.deps.state.addEvidence(evidenceId);
     if (!added) return;
     const item = this.deps.state.allEvidence[evidenceId];
-    VisualEffects.showNotification(this.deps.dom.gameNotificationEl, i18n.t.notifEvidenceAdded(item.name));
+    this.showProgressNotification(i18n.t.notifEvidenceAdded(item.name));
   }
 
-  // fallow-ignore-next-line complexity
+  private updateEvidenceIfPresent(evidenceId?: EvidenceId): void {
+    if (!evidenceId) return;
+    const alreadyHeld = this.deps.state.hasEvidence(evidenceId);
+    if (!alreadyHeld) this.grantEvidenceIfPresent(evidenceId);
+    const updated = this.deps.state.updateEvidence(evidenceId);
+    if (!alreadyHeld || !updated) return;
+    const item = this.deps.state.allEvidence[evidenceId];
+    this.showProgressNotification(i18n.t.notifEvidenceUpdated(item.name));
+  }
+
   private unlockLocationIfPresent(locationId?: LocationId): void {
     if (!locationId) return;
     const unlocked = this.deps.state.unlockLocation(locationId);
     if (!unlocked) return;
-    this.deps.soundEngine.playRealization();
     const scene = this.deps.getScript().investigation[locationId];
     const locName = scene?.name ?? scene?.title ?? locationId;
-    VisualEffects.showNotification(
-      this.deps.dom.gameNotificationEl,
-      i18n.t.notifLocationUnlocked(locName)
-    );
+    this.showProgressNotification(i18n.t.notifLocationUnlocked(locName));
+  }
+
+  private showProgressNotification(msg: string): void {
+    this.deps.soundEngine.playRealization();
+    VisualEffects.showNotification(this.deps.dom.gameNotificationEl, msg);
   }
 
   private triggerSFX(sfx: SFXName): void {

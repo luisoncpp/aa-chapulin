@@ -84,7 +84,7 @@ flowchart TD
 
 8. **Court Record & Talk Modals** ([[src/engine/Private/ModalManager.ts#Court Record Evidence Modal]]):
    - Dynamically populates `#court-record-modal` with items from `gameState.inventory`.
-   - Renders evidence details (icon preview, title, description) and provides the "¡Presentar Prueba!" button during trial cross-examinations.
+   - Renders evidence details (icon preview, title, `getEvidenceDesc` which swaps in `updatedDesc` after `updateEvidence`) and provides the "¡Presentar Prueba!" button during trial cross-examinations.
    - Dynamically renders `#talk-options-modal` with topics defined in the current scene script.
    - **Invariant — Court Record cards share equal tracks and scroll only on Y.** `#evidence-grid` is a flex child (`min-width: 0`) with `repeat(3, minmax(0, 1fr))`. Grid items also use `min-width: 0`. Names wrap up to two lines (`line-clamp: 2`); they must not use `white-space: nowrap` or they grow a column (`min-width: auto`) and the grid overflows X. `overflow-x: clip` + `overflow-y: auto` (not `overflow: auto`). Regression: [[tests/engine/CourtRecordLayout.test.ts]].
 

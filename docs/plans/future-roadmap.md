@@ -36,3 +36,14 @@ Vitest covers state, contradictions, investigation, engine, i18n, and Case 1/2 s
     - Full keyboard shortcuts (`Z`/`Enter` to advance, `X`/`Esc` to back, `C` to Court Record, `P` to Present).
 
 > Canonical Case 2 title: "El Juicio del Chómpiras — El Asalto de las Dos Caras". Older "Rascabuches" name is obsolete.
+
+## Phase 4: Episode 3 (DESIGNED, NOT IMPLEMENTED)
+
+**Case 3: "El Juicio del Doctor Chapatín — La Noche del Grito"** — full narrative + technical design in [[docs/specs/case-3-la-noche-del-grito.md]]. ~2 hours across 3 investigation days and 3 trial days, with two turnabouts. Nothing is coded yet.
+
+Engine work the spec depends on (details in its §6 and §19):
+
+1. **Press-gated statements** (`Statement.unlockedBy`): part of a testimony only appears after pressing another statement; `TrialController` navigates a *visible* statement list and stores `pressedStatementIds` in its snapshot.
+2. **Multi-stage evidence descriptions** (`EvidenceItem.updates[]`): today's single `updatedDesc` is not enough — `microfono_oro` revises twice, and the last climax present only accepts it fully revised.
+3. **Third trial day**: `AdjournmentDefinition.next` chaining, `trialDay: 1 | 2 | 3`, `beginNextTrialDay()`.
+4. New art: 6 backgrounds, 6 character sheets (Doctor Chapatín, Sargento Pazguato, Aniceto Rebollar, Señor Barriga, Ñoño, La Chimoltrufia), 17 evidence icons, 2 new BGM tracks.

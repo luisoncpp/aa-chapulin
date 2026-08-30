@@ -50,15 +50,15 @@ export const CASE2_EVIDENCE_ES: Record<string, EvidenceItem> = {
   }),
   frasco_valeriana: ev('frasco_valeriana', {
     name: 'Frasco de Esencia de Valeriana',
-    desc: 'Brebaje de Clotilde. Sueño profundo ~30 min; coincide con el residuo del ducto.'
+    desc: 'Brebaje de Clotilde. Sueño profundo ~30 min; coincide con el residuo del ducto. Lo compró un cliente misterioso.'
   }),
   molde_cera: ev('molde_cera', {
     name: 'Molde de Cera',
-    desc: 'Cera de veladora con la huella de la llave maestra. Peterete la copió al comprar la esencia.'
+    desc: 'Cera de veladora con la huella de la llave maestra. El cliente misterioso la copió al comprar la esencia.'
   }),
   lata_grasa: ev('lata_grasa', {
     name: 'Lata de Grasa de Zapatos',
-    desc: 'Lata del Chómpiras, ~5.3 kg, con polvo dorado en la junta. Contiene el Chanfle.'
+    desc: 'Lata del Chómpiras, ~5.3 kg. Tiene polvo dorado resplandeciente en la junta.'
   })
 };
 
@@ -103,14 +103,14 @@ export const CASE2_EVIDENCE_EN: Record<string, EvidenceItem> = {
   }),
   frasco_valeriana: ev('frasco_valeriana', {
     name: 'Valerian Essence Bottle',
-    desc: "Clotilde's brew. Instant deep sleep ~30 min; matches the vent residue."
+    desc: "Clotilde's brew. Instant deep sleep ~30 min; matches the vent residue. Bought by a mysterious client."
   }),
   molde_cera: ev('molde_cera', {
     name: 'Wax Mold',
-    desc: 'Candle wax bearing the master key imprint. Copied while buying the essence.'
+    desc: 'Candle wax bearing the master key imprint. Copied by the mysterious client while buying the essence.'
   }),
   lata_grasa: ev('lata_grasa', {
     name: 'Shoe Polish Tin',
-    desc: "Chómpiras's tin, ~5.3 kg, gold dust at the seam. The Chanfle is inside."
+    desc: "Chómpiras's tin, ~5.3 kg. There is sparkling gold dust at the seam."
   })
 };

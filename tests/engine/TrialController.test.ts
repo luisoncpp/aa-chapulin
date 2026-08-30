@@ -148,6 +148,36 @@ describe('TrialController', () => {
     expect(state.health).toBe(4);
   });
 
+  it('walks Case 2 climax through gold, valerian, then wax mold', () => {
+    const case2 = getCaseScript('es', 'case2');
+    const case2Controller = new TrialController({
+      dom,
+      state,
+      script: case2,
+      soundEngine: soundEngineInstance,
+      midiComposer: midiComposerInstance,
+      onQueueDialogue: (dlg, cb) => {
+        queuedDialogues.push(dlg);
+        if (cb) cb();
+      },
+      onRenderLine: (line) => renderedLines.push(line),
+      onOpenCourtRecord: (isTrialPresent) => {
+        courtRecordOpenedWithTrial = isTrialPresent;
+      }
+    });
+
+    case2Controller.startClimax();
+    case2Controller.handlePresentEvidence('lata_grasa');
+    expect(queuedDialogues.some((d) => d.some((l) => l.text.includes('INOCENTE')))).toBe(false);
+    expect(queuedDialogues.some((d) => d.some((l) => l.text.includes('lata del Chómpiras')))).toBe(true);
+
+    case2Controller.handlePresentEvidence('frasco_valeriana');
+    expect(queuedDialogues.some((d) => d.some((l) => l.text.includes('profundamente dormido')))).toBe(true);
+
+    case2Controller.handlePresentEvidence('molde_cera');
+    expect(queuedDialogues.some((d) => d.some((l) => l.text.includes('INOCENTE')))).toBe(true);
+  });
+
   it('triggers game over when penalties exhaust all health', () => {
     controller.startTestimony('testimony1');
     controller.currentStatementIdx = 0;

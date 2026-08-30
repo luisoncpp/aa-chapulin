@@ -43,14 +43,34 @@ describe('Case 2 El Juicio del Chómpiras', () => {
     expect(es.adjournment?.trial.testimony1.statements.some((s) => s.contradiction)).toBe(true);
     expect(es.adjournment?.trial.testimony2.statements.some((s) => s.contradiction?.evidence.includes('plano_hacienda'))).toBe(true);
     expect(es.trial.climax.presentTarget).toEqual(['lata_grasa', 'antenitas_vinil']);
+    expect(es.trial.climax.stages?.map((s) => s.presentTarget)).toEqual([
+      ['lata_grasa', 'antenitas_vinil'],
+      ['frasco_valeriana', 'aroma_dulce'],
+      ['molde_cera']
+    ]);
   });
 
   it('keeps English scripts in lockstep with Spanish contradictions', () => {
     expect(en.trial.testimony1.statements.length).toBe(es.trial.testimony1.statements.length);
     expect(en.trial.climax.presentTarget).toEqual(es.trial.climax.presentTarget);
+    expect(en.trial.climax.stages?.map((s) => s.presentTarget)).toEqual(
+      es.trial.climax.stages?.map((s) => s.presentTarget)
+    );
     const esT1 = es.trial.testimony1.statements.find((s) => s.contradiction);
     const enT1 = en.trial.testimony1.statements.find((s) => s.contradiction);
     expect(enT1?.contradiction?.evidence).toEqual(esT1?.contradiction?.evidence);
+  });
+
+  it('names Peterete as suspect one at detention without naming him at Clotilde', () => {
+    const petereteTalk = es.investigation.detention.talkOptions.find((o) => o.id === 'about_peterete');
+    expect(petereteTalk?.dialogue.some((l) => l.text.includes('sospechoso número uno'))).toBe(true);
+    expect(en.investigation.detention.talkOptions.find((o) => o.id === 'about_peterete')?.dialogue.length)
+      .toBe(petereteTalk?.dialogue.length);
+    const clotildeIntro = es.investigation.casa_clotilde.intro.map((l) => l.text).join(' ');
+    expect(clotildeIntro).toContain('hombre muy elegante');
+    expect(clotildeIntro).not.toContain('Peterete');
+    expect(catalog.frasco_valeriana.desc).toContain('misterioso');
+    expect(catalog.molde_cera.desc).toContain('misterioso');
   });
 
   it('places investigation hotspots on the 16:9 cover crop of each background', () => {

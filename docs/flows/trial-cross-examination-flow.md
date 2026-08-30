@@ -49,14 +49,14 @@ Operational guide for courtroom litigation, cross-examinations, evidence present
      6. If health > 0: restores current statement and re-reveals trial controls after dialogue finishes.
 
 ### Final Climax & Verdict
-1. `startClimax()` keeps trial controls hidden, transitions BGM to `'suspense'`, and queues dilemma dialogue from [[src/case/Private/case1_climax.ts#Climax Confrontation & Dilemma]].
+1. `startClimax()` keeps trial controls hidden, transitions BGM to `'suspense'`, and queues dilemma dialogue from the case climax (`case1_climax` or `case2_climax`).
 2. Court Record opens in presentation mode.
-3. Player presents `antenitas_vinil` or `bolsa_dolares`:
-   - Queues `script.trial.climax.verdict` from [[src/case/Private/case1_climax.ts#Guilty Confession & Not Guilty Verdict]].
-   - Plays `chicharra` sound effect.
-   - Tripaseca & Super Sam breakdown animations trigger.
-   - Displays `¡INOCENTE!` cut-in.
-   - BGM switches to `'victory'`.
+3. Player presents a `presentTarget` for the current climax stage (`climax.stages` when set; otherwise `climax.presentTarget`):
+   - Wrong item: penalty, incorrect-clue toast, Court Record stays open on the same stage.
+   - Correct item on a non-final stage: queues that stage's `successDialogue`, then opens the Court Record again.
+   - Correct item on the final stage: queues `script.trial.climax.verdict`, then confetti and optional epilogue as below.
+   - Case 1 is one stage (`antenitas_vinil` or `bolsa_dolares`). Case 2 is three: gold tin, valerian/aroma, then wax mold.
+4. After `verdict`:
    - `triggerConfetti()` fires as soon as the verdict queue finishes, while the judge camera is still up.
    - If `climax.epilogue` exists (Case 2), [[src/engine/Private/TrialClimax.ts]] holds that courtroom shot, fades `#screen-flash` to black, swaps to `bg_waiting_room.jpg` (clears confetti, hides bench/sprites), fades in, then queues stamped epilogue lines (`furniture: 'none'`). Case 1 has no epilogue.
 

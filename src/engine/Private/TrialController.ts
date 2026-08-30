@@ -11,7 +11,7 @@ import type { DomElements } from './DomElements.js';
 import { ModalManager } from './ModalManager.js';
 import { applyAdjournment, getActiveTrial, shouldAdjourn } from './TrialDayRouter.js';
 import { applyPenaltyEffects, queuePenaltyDialogue } from './TrialPenalty.js';
-import { queueClimaxVictory } from './TrialClimax.js';
+import { openClimaxPresent, presentClimaxEvidence } from './TrialClimax.js';
 import { VisualEffects } from './VisualEffects.js';
 
 export type TrialPhase = 'IDLE' | 'TESTIMONY' | 'CLIMAX';
@@ -32,6 +32,7 @@ export class TrialController {
   public currentTestimony: Testimony | null = null;
   public currentStatementIdx = 0;
   private testimonyKey: 'testimony1' | 'testimony2' | null = null;
+  private climaxStageIdx = 0;
   private script: CaseScript;
 
   constructor(private readonly deps: TrialControllerDeps) {
@@ -46,7 +47,8 @@ export class TrialController {
       phase: this.phase,
       testimonyKey: this.testimonyKey,
       statementIdx: this.currentStatementIdx,
-      trialDay: this.deps.state.trialDay
+      trialDay: this.deps.state.trialDay,
+      climaxStageIdx: this.climaxStageIdx
     };
   }
 
@@ -57,7 +59,10 @@ export class TrialController {
     this.deps.dom.hotspotsContainerEl.innerHTML = '';
     this.deps.dom.locationBannerEl.textContent = i18n.t.locationCourtroom;
 
-    if (snapshot?.phase === 'CLIMAX') return this.startClimax();
+    if (snapshot?.phase === 'CLIMAX') {
+      this.climaxStageIdx = snapshot.climaxStageIdx ?? 0;
+      return this.enterClimax(/*replayOpening=*/ this.climaxStageIdx === 0);
+    }
     if (snapshot?.phase === 'TESTIMONY' && snapshot.testimonyKey) {
       if (snapshot.trialDay) this.deps.state.trialDay = snapshot.trialDay;
       this.startTestimony(snapshot.testimonyKey);
@@ -158,25 +163,23 @@ export class TrialController {
 
   // @Section(Climax & Verdict Confrontation)
   public startClimax(): void {
+    this.climaxStageIdx = 0;
+    this.enterClimax(/*replayOpening=*/ true);
+  }
+
+  private enterClimax(replayOpening: boolean): void {
     this.phase = 'CLIMAX';
     this.currentTestimony = null;
     this.hideControls();
-    this.deps.dom.bgEl.style.backgroundImage = "url('assets/bg_courtroom.jpg')";
-    this.deps.midiComposer.playTrack('suspense');
-    this.deps.onQueueDialogue(this.script.trial.climax.dialogue, /*onComplete*/ () => {
-      this.deps.onOpenCourtRecord(/*isTrialPresent=*/ true);
-    });
+    openClimaxPresent(this.deps, this.script.trial.climax, replayOpening);
   }
 
   private handleClimaxEvidence(evidenceId: EvidenceId): void {
     this.hideControls();
-    if (this.script.trial.climax.presentTarget.includes(evidenceId)) {
-      queueClimaxVictory(this.script.trial.climax, this.deps);
-      return;
-    }
-    applyPenaltyEffects(this.deps);
-    VisualEffects.showNotification(this.deps.dom.gameNotificationEl, i18n.t.notifIncorrectClue);
-    this.startClimax();
+    this.climaxStageIdx = presentClimaxEvidence(
+      { climax: this.script.trial.climax, stageIdx: this.climaxStageIdx, evidenceId },
+      this.deps
+    );
   }
 
   private showGameOverModal(): void {

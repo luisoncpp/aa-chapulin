@@ -43,6 +43,7 @@ export type {
   InvestigationScene,
   Testimony,
   ClimaxEpilogue,
+  ClimaxStage,
   ClimaxDefinition,
   TrialDayScript,
   AdjournmentDefinition,

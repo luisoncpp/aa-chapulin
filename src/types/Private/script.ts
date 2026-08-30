@@ -150,10 +150,16 @@ export interface ClimaxEpilogue {
   dialogue: DialogueLine[];
 }
 
+export interface ClimaxStage {
+  presentTarget: EvidenceId[];
+  successDialogue: DialogueLine[];
+}
+
 export interface ClimaxDefinition {
   dialogue: DialogueLine[];
   presentTarget: EvidenceId[];
   verdict: DialogueLine[];
+  stages?: ClimaxStage[];
   epilogue?: ClimaxEpilogue;
 }
 

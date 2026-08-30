@@ -54,7 +54,10 @@ export const CASE2_DETENTION: InvestigationScene = {
       label: 'Sobre el señor Peterete',
       dialogue: [
         { speaker: 'CHOMPIRAS', text: 'Es un señor muy fino y elegante. Dice que es el jefe de seguridad de la hacienda y perito valuador. Trae un sombrero muy bonito y siempre me ayuda a no caer en malos pasos.', pose: 'chompiras_idle' },
-        { speaker: 'CHAPULIN', text: '¡Sospechosa amabilidad! ¡Todos mis movimientos están fríamente calculados!', pose: 'chapulin_point', unlockLocation: 'boveda' }
+        { speaker: 'CHAPULIN', text: '¡Sospechosa amabilidad! ¡Todos mis movimientos están fríamente calculados!', pose: 'chapulin_point' },
+        { speaker: 'DEFENSA', text: 'Dime una cosa, muchacho... Si él es el jefe de seguridad, ¿no es el principal responsable de vigilar el Chanfle de Oro? ¿Y fue él quien te encerró justo en la escena del crimen?', pose: 'donramon_idle' },
+        { speaker: 'CHOMPIRAS', text: "Pues sí, jefecito. Hasta me dijo: 'Quédate aquí quietecito, que si algo desaparece, tú serás el chivo expiatorio perfecto'. ¡Qué señor tan bromista!", pose: 'chompiras_nervous' },
+        { speaker: 'DEFENSA', text: '(¡De bromista no tiene nada! Este Peterete lo planeó todo para incriminar al pobre diablo. ¡Es nuestro sospechoso número uno!)', pose: 'donramon_point', unlockLocation: 'boveda' }
       ]
     }
   ]

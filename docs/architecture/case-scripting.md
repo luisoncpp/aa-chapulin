@@ -20,7 +20,7 @@ graph TD
     Day2 --> Climax[script.trial.climax]
 ```
 
-Case 2 is assembled in [[src/case/Private/case2_script.ts]]: ES/EN scene modules, day-1 trial (`case2_trial_day1*`), day-2 trial (`case2_trial_day2*`), climax on `trial.climax` (`case2_climax.ts`). Day-1 investigation: `detention` → `boveda` → `restaurante`. After testimony 2, `adjournment` sends the player to `oficina_postal` (unlock), then `casa_clotilde`. Day-2 testimonies live on `adjournment.trial`; the finale is still `script.trial.climax` (targets `lata_grasa` or `antenitas_vinil`). After the Not Guilty line, courtroom confetti plays, then a black fade into Case 2 `climax.epilogue` in `assets/bg_waiting_room.jpg` (no bench/podium). Case 1 has no `adjournment` and no epilogue.
+Case 2 is assembled in [[src/case/Private/case2_script.ts]]: ES/EN scene modules, day-1 trial (`case2_trial_day1*`), day-2 trial (`case2_trial_day2*`), climax on `trial.climax` (`case2_climax.ts`). Day-1 investigation: `detention` → `boveda` → `restaurante`. After testimony 2, `adjournment` sends the player to `oficina_postal` (unlock), then `casa_clotilde`. Day-2 testimonies live on `adjournment.trial`; the finale is still `script.trial.climax`. Case 2 uses optional `climax.stages`: three presents (`lata_grasa`/`antenitas_vinil`, then `frasco_valeriana`/`aroma_dulce`, then `molde_cera`) before `verdict`. Case 1 has a single present (`presentTarget` only). After the Not Guilty line, courtroom confetti plays, then a black fade into Case 2 `climax.epilogue` in `assets/bg_waiting_room.jpg` (no bench/podium). Case 1 has no `adjournment` and no epilogue.
 
 ## Schema Definitions
 
@@ -75,12 +75,13 @@ testimony: {
 climax: {
   dialogue: DialogueLine[];
   presentTarget: EvidenceId[];
+  stages?: { presentTarget: EvidenceId[]; successDialogue: DialogueLine[] }[];
   verdict: DialogueLine[];
   epilogue?: { bg: string; dialogue: DialogueLine[] };
 }
 ```
 
-[[src/engine/Private/TrialClimax.ts]] queues `verdict`, fires courtroom confetti, then fades through black into `epilogue.bg`. Every epilogue line is stamped with that `bg` and `furniture: 'none'` so trial speaker cameras do not fire. Case 1 omits `epilogue`. Case 2 opens the epilogue with a narrator time-skip into the waiting room.
+If `stages` is set, [[src/engine/Private/TrialClimax.ts]] walks them in order: a correct present plays that stage's `successDialogue` and opens the Court Record again, until the last stage plays `verdict`. Case 1 omits `stages` and treats `presentTarget` + `verdict` as one step. [[src/engine/Private/TrialClimax.ts]] then fires courtroom confetti and fades through black into `epilogue.bg`. Every epilogue line is stamped with that `bg` and `furniture: 'none'` so trial speaker cameras do not fire. Case 1 omits `epilogue`. Case 2 opens the epilogue with a narrator time-skip into the waiting room.
 
 ### 5. Adjournment ([[src/types/Private/script.ts]])
 

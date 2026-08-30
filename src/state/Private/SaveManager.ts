@@ -11,6 +11,7 @@ export interface TrialStateSnapshot {
   testimonyKey?: 'testimony1' | 'testimony2' | null;
   statementIdx: number;
   trialDay?: TrialDay;
+  climaxStageIdx?: number;
 }
 
 export interface SaveData {

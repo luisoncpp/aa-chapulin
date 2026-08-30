@@ -39,7 +39,7 @@ Operational guide for player save game persistence and restoration flows using b
    - `ModalManager.updateHealthUI()` renders health points on `#health-bar`.
    - Dialogue queue is cleared to prevent cross-scene dialogue spill.
    - **Investigation Mode**: `investigation.startInvestigation(data.currentLocation)` initializes crime scene, hotspots, and evaluates readiness.
-   - **Trial Mode**: `trial.restoreTrialSnapshot(data.trial)` jumps directly into the saved testimony statement or climax phase.
+   - **Trial Mode**: `trial.restoreTrialSnapshot(data.trial)` jumps into the saved testimony statement or climax stage (`climaxStageIdx` when mid-finale).
    - `#game-notification` displays `i18n.t.notifGameLoaded`.
 
 ## 4. Reads

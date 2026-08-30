@@ -46,4 +46,4 @@ Engine work the spec depends on (details in its §6 and §19):
 1. **Press-gated statements** (`Statement.unlockedBy`): part of a testimony only appears after pressing another statement; `TrialController` navigates a *visible* statement list and stores `pressedStatementIds` in its snapshot.
 2. **Multi-stage evidence descriptions** (`EvidenceItem.updates[]`): today's single `updatedDesc` is not enough — `microfono_oro` revises twice, and the last climax present only accepts it fully revised.
 3. **Third trial day**: `AdjournmentDefinition.next` chaining, `trialDay: 1 | 2 | 3`, `beginNextTrialDay()`.
-4. New art: 6 backgrounds, 6 character sheets (Doctor Chapatín, Sargento Pazguato, Aniceto Rebollar, Señor Barriga, Ñoño, La Chimoltrufia), 17 evidence icons, 2 new BGM tracks.
+4. New art: 6 backgrounds, 6 character sheets (Doctor Chapatín, El Sargento / Sargento Pazguato, Aniceto Rebollar, Señor Barriga, Ñoño, La Chimoltrufia), 17 evidence icons, 2 new BGM tracks.

@@ -161,6 +161,9 @@ CHOMPIRAS (chompiras_relieved): ¡El Chapulín Colorado! ¡No contaban con mi as
 2. **"Sobre el señor Peterete"**:
    - **Chómpiras**: *"Es un señor muy fino y elegante. Dice que es el jefe de seguridad de la hacienda y perito valuador. Trae un sombrero muy bonito y siempre me ayuda a no caer en malos pasos."*
    - **Chapulín**: *"¡Sospechosa amabilidad! ¡Todos mis movimientos están fríamente calculados!"*
+   - **Don Ramón**: *"Dime una cosa, muchacho... Si él es el jefe de seguridad, ¿no es el principal responsable de vigilar el Chanfle de Oro? ¿Y fue él quien te encerró justo en la escena del crimen?"*
+   - **Chómpiras**: *"Pues sí, jefecito. Hasta me dijo: 'Quédate aquí quietecito, que si algo desaparece, tú serás el chivo expiatorio perfecto'. ¡Qué señor tan bromista!"*
+   - **Don Ramón**: *"(¡De bromista no tiene nada! Este Peterete lo planeó todo para incriminar al pobre diablo. ¡Es nuestro sospechoso número uno!)"*
    - **Se desbloquea locación**: `boveda_crimen`.
 
 ---
@@ -458,20 +461,43 @@ DEFENSA (donramon_idle): (Es el momento decisivo. El oro no está en los bolsill
 CHAPULIN (chapulin_point): ¡Monchito! ¡Mis antenitas de vinil me dicen que el culpable disfrazó el tesoro a la vista de todos!
 ```
 
-#### Elección de Prueba Clímax:
+#### Elección de Prueba Clímax 1: El Oro
 - **Presentar**: `lata_grasa` (prueba directa) o `antenitas_vinil` (detector que apunta a la lata).
 
 ```dialogue
-[RESOLUCIÓN DEL CLÍMAX Y DESENLACE]
+[REVELACIÓN DEL ORO]
 DEFENSA (donramon_point): ¡PROTESTO! ¡Aquí está el Chanfle de Oro, oculto dentro de la 'Lata de Grasa de Zapatos' del Chómpiras! [cutin: objection_protesto, sfx: whoosh, bgm: pursuit]
 SUPER SAM (supersam_slam): What?! ¡¿Una simple lata de betún para calzado?! [sfx: desk_slam]
 DEFENSA (donramon_slam): ¡Pesa más de 5 KILOS y de su junta brota polvo dorado! El señor Peterete vació el betún, introdujo la estatuilla de oro macizo y reselló la tapa con betún negro para que pareciera un inocente utensilio de trabajo. [sfx: desk_slam]
 CHAPULIN (chapulin_slam): ¡Y mis Antenitas de Vinil lo confirman — vibran justo hacia esta lata! ¡Ábranla y verán el brillo del oro! [sfx: chipote]
 NARRADOR: *¡¡¡CLAAANG-BRILLOOOO!!!* (La tapa cede y el resplandor dorado del Chanfle de Oro ilumina toda la sala del tribunal) [sfx: realization]
+PETERETE (peterete_sweat): ¡G-grrrk! ¡E-esa es la lata del Chómpiras! ¡Esto solo demuestra que él escondió el oro en su propia lata! ¡Yo no tengo nada que ver!
+SUPER SAM (supersam_point): ¡Exactly! ¡El acusado tenía la lata y la palanca! ¡Sigue siendo el único culpable posible!
+DEFENSA (donramon_idle): (¡Rayos! Tienen razón, el oro en la lata del Chómpiras no incrimina directamente al Peterete... a menos que demuestre que el Chómpiras no pudo haberlo hecho, y que el Peterete tenía cómo abrir la caja.)
+```
+
+#### Elección de Prueba Clímax 2: La Inocencia del Chómpiras
+- **Presentar**: `frasco_valeriana` o `aroma_dulce`.
+
+```dialogue
+[LA INOCENCIA DEL CHÓMPIRAS]
+DEFENSA (donramon_point): ¡TOMA ESO! ¡El Chómpiras no pudo haber guardado el oro porque estaba profundamente dormido! [cutin: objection_toma_eso, sfx: whoosh]
+DEFENSA (donramon_slam): Alguien bombeó esta 'Esencia de Valeriana' por el ducto de ventilación. ¡Un sedante tan potente que lo dejó inconsciente por 30 minutos! [sfx: desk_slam]
+PETERETE (peterete_panic): ¡P-pero la caja fuerte se abrió con llave! ¡Yo devolví la llave maestra a custodia a las 8:30 PM! ¡Nadie más tenía cómo abrirla!
+```
+
+#### Elección de Prueba Clímax 3: La Culpabilidad del Peterete
+- **Presentar**: `molde_cera`.
+
+```dialogue
+[LA CULPABILIDAD DEL PETERETE]
+DEFENSA (donramon_point): ¡PROTESTO! ¡Usted no necesitaba la llave original, porque fabricó un DUPLICADO! [cutin: objection_protesto, sfx: whoosh]
+DEFENSA (donramon_slam): ¡Encontramos este 'Molde de Cera' en la basura de Doña Clotilde! ¡Tiene la huella exacta de la llave maestra! [sfx: desk_slam]
+DEFENSA (donramon_point): Usted fue a comprarle la esencia de valeriana la tarde del robo, y aprovechó para copiar la llave en la cera de sus veladoras. ¡Usted durmió al Chómpiras, abrió la caja con su copia, metió el oro en la lata y la tiró por el montaplatos!
 PETERETE (peterete_breakdown): ¡¡¡NOOOOOOOOOOOO!!! ¡¡¡MI PLAN PERFECTO DE CINCO MILLONES DE DÓLARES ARRUINADO POR UN LIMPIABOTAS Y UN DEFENSOR DEL NECAXA!!! [sfx: damage]
 NARRADOR: (El Peterete comienza a propinarse sonoras bofetadas con su propio sombrero fedora mientras gira desquiciado por el estrado de los testigos hasta caer desplomado).
 SUPER SAM (supersam_breakdown): OH NOOO! ¡My fees! ¡My bonus! ¡Time is money and I lost my dollars!
-JUEZ (judge_gavel): ¡Silencio y orden! Habiendo aparecido la prueba reina y confesado el verdadero culpable, ¡este juzgado emite su veredicto definitivo! [sfx: gavel]
+JUEZ (judge_gavel): ¡Silencio y orden! Habiendo aparecido la prueba reina, demostrado el método y confesado el verdadero culpable, ¡este juzgado emite su veredicto definitivo! [sfx: gavel]
 JUEZ (judge_gavel): ¡Declaro al acusado, Aquiles Esquivel Madrazo... INOCENTE! [cutin: objection_culpable, sfx: whoosh, bgm: victory]
 ```
 

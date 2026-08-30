@@ -38,6 +38,9 @@ export interface DomElements {
   choicePromptQuestionEl: HTMLElement;
   choicePromptListEl: HTMLElement;
   startSplashOverlayEl: HTMLElement;
+  caseCompleteOverlayEl: HTMLElement;
+  caseCompleteTitleEl: HTMLElement;
+  caseCompleteBodyEl: HTMLElement;
   btnAudioToggleEl: HTMLButtonElement;
   btnLangToggleEl: HTMLButtonElement;
   btnLangSplashEl?: HTMLButtonElement;
@@ -47,7 +50,7 @@ export interface DomElements {
   gameNotificationEl: HTMLElement;
   btnStartGame: HTMLButtonElement;
   btnStartCase2?: HTMLButtonElement;
-  btnStartTrialDebug: HTMLButtonElement;
+  btnStartTrialDebug?: HTMLButtonElement;
   btnCourtRecord: HTMLButtonElement;
   btnCloseRecord: HTMLButtonElement;
   btnInvExamine: HTMLButtonElement;
@@ -99,6 +102,9 @@ export function getDomElements(): DomElements {
     choicePromptQuestionEl: document.getElementById('choice-prompt-question')!,
     choicePromptListEl: document.getElementById('choice-prompt-list')!,
     startSplashOverlayEl: document.getElementById('start-splash-overlay')!,
+    caseCompleteOverlayEl: document.getElementById('case-complete-overlay')!,
+    caseCompleteTitleEl: document.getElementById('case-complete-title')!,
+    caseCompleteBodyEl: document.getElementById('case-complete-body')!,
     btnAudioToggleEl: document.getElementById('btn-audio-toggle') as HTMLButtonElement,
     btnLangToggleEl: document.getElementById('btn-lang-toggle') as HTMLButtonElement,
     btnLangSplashEl: document.getElementById('btn-lang-splash') as HTMLButtonElement,
@@ -108,7 +114,7 @@ export function getDomElements(): DomElements {
     gameNotificationEl: document.getElementById('game-notification')!,
     btnStartGame: document.getElementById('btn-start-game') as HTMLButtonElement,
     btnStartCase2: document.getElementById('btn-start-case2') as HTMLButtonElement,
-    btnStartTrialDebug: document.getElementById('btn-start-trial-debug') as HTMLButtonElement,
+    btnStartTrialDebug: (document.getElementById('btn-start-trial-debug') as HTMLButtonElement) || undefined,
     btnCourtRecord: document.getElementById('btn-court-record') as HTMLButtonElement,
     btnCloseRecord: document.getElementById('btn-close-record') as HTMLButtonElement,
     btnInvExamine: document.getElementById('btn-inv-examine') as HTMLButtonElement,

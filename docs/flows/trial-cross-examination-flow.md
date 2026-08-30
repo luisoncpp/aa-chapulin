@@ -7,7 +7,7 @@ Operational guide for courtroom litigation, cross-examinations, evidence present
 
 ## 2. Entry Point
 - Normal launch: `trial.startTrial()` in [[src/engine/Private/TrialController.ts#Trial Launch & Intro]] via `#btn-inv-trial`.
-- Debug launch: `engine.startTrialDebug()` via `#btn-start-trial-debug`, URL flags parsed by [[src/engine/Private/EngineDebugBootstrap.ts]] (`?trial`, `?case=2&trial`), or `window.gameEngine.startTrialDebug()`.
+- Debug launch: `engine.startTrialDebug()` via URL flags parsed by [[src/engine/Private/EngineDebugBootstrap.ts]] (`?trial`, `?case=2&trial`), or `window.gameEngine.startTrialDebug()`.
 - `trial.nextStatement()` / `trial.prevStatement()` in [[src/engine/Private/TrialController.ts#Testimony Navigation]]
 - `trial.handlePressStatement()` in [[src/engine/Private/TrialController.ts#Statement Pressing & Contradictions]]
 - `trial.handlePresentEvidence(evidenceId)` in [[src/engine/Private/TrialController.ts#Statement Pressing & Contradictions]]
@@ -16,9 +16,9 @@ Operational guide for courtroom litigation, cross-examinations, evidence present
 ## 3. Step-by-Step Sequence
 
 ### Courtroom Initialization
-1. `gameState.mode` switches to `'TRIAL'`.
-2. HUD switches to trial mode by hiding investigation/examine controls and keeping trial controls (`#trial-controls`) hidden during the opening sequence.
-3. `queueDialogue` of the active day's intro (`getActiveTrial(script, trialDay).intro` via [[src/engine/Private/TrialDayRouter.ts]]).
+1. `fadeThroughBlack` covers the investigation plate.
+2. While covered, `gameState.mode` switches to `'TRIAL'`, HUD hides investigation controls, and the first intro shot (`bg`, pose, furniture) is painted so the reveal is already the courtroom.
+3. After the reveal, `queueDialogue` of the active day's intro (`getActiveTrial(script, trialDay).intro` via [[src/engine/Private/TrialDayRouter.ts]]).
 4. On intro complete, `startTestimony('testimony1')` is invoked.
 
 ### Testimony Looping & Pressing
@@ -39,7 +39,7 @@ Operational guide for courtroom litigation, cross-examinations, evidence present
      1. Queues `stmt.contradiction.successDialogue` (displays `¡PROTESTO!` or `¡TOMA ESO!`, desk slams, realization sound, BGM switches to `objection` or `pursuit`).
      2. On finish callback:
         - If finishing Testimony 1 -> launches `testimony2` (re-reveals trial controls upon statement render).
-        - If finishing Testimony 2: Case 1 (no `adjournment`) calls `startClimax()`. Case 2 day 1 (`shouldAdjourn`) returns to investigation at `oficina_postal` via [[src/engine/Private/TrialDayRouter.ts]]; Case 2 day 2 then calls `startClimax()` on `script.trial.climax`.
+        - If finishing Testimony 2: Case 1 (no `adjournment`) calls `startClimax()`. Case 2 day 1 (`shouldAdjourn`) fades through black back to investigation at `oficina_postal` via [[src/engine/Private/TrialDayRouter.ts]] and [[src/engine/Private/AdjournmentHandler.ts]]; Case 2 day 2 then calls `startClimax()` on `script.trial.climax`.
    - **Incorrect Evidence**:
      1. Calls `gameState.takePenalty()` in [[src/state/Private/GameStateManager.ts#Penalty & Health]].
      2. Calls `ModalManager.updateHealthUI()` (one green `!` turns dark gray).
@@ -60,6 +60,7 @@ Operational guide for courtroom litigation, cross-examinations, evidence present
 4. After the Not Guilty line (from `verdict` or last choice `successDialogue`):
    - `triggerConfetti()` fires as soon as the verdict queue finishes, while the judge camera is still up.
    - If `climax.epilogue` exists (Case 2), [[src/engine/Private/TrialClimax.ts]] holds that courtroom shot, fades `#screen-flash` to black, swaps to `bg_waiting_room.jpg` (clears confetti, hides bench/sprites), fades in, then queues stamped epilogue lines (`furniture: 'none'`). Case 1 has no epilogue.
+   - After the last Case 1 verdict click (following confetti) or the last Case 2 epilogue line, `fadeToBlack` stays covered and `#case-complete-overlay` reports that the case is finished.
 
 ## 4. Reads
 - Active trial day from `getActiveTrial(script, trialDay)` ([[src/engine/Private/TrialDayRouter.ts]]); Case 1/2 day-1 `script.trial`, Case 2 day-2 `adjournment.trial`, climax always `script.trial.climax`
@@ -84,6 +85,7 @@ Operational guide for courtroom litigation, cross-examinations, evidence present
 - [[src/engine/Private/TrialClimax.ts]]
 - [[src/engine/Private/TrialChoice.ts]]
 - [[src/engine/Private/SceneFade.ts]]
+- [[src/engine/Private/CaseComplete.ts]]
 - [[src/engine/Private/ModalManager.ts]]
 - [[src/state/Private/GameStateManager.ts]]
 - [[src/engine/Private/TrialDayRouter.ts]]

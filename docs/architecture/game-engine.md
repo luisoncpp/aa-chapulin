@@ -65,7 +65,7 @@ flowchart TD
    - **Cut-in Animation**: `showCutin(cutinName)` triggers zoom, shake, and flash animations for `¡PROTESTO!`, `¡UN MOMENTO!`, `¡TOMA ESO!`, and `¡INOCENTE!`.
    - **Screen Shake**: `shakeScreen(durationMs)` applies CSS shake keyframes (`aaShake`).
    - **Screen Flash**: `flashScreen()` fades in an opaque white flash overlay.
-   - **Location Fade**: [[src/engine/Private/SceneFade.ts]] covers `#screen-flash` in black, swaps the plate while opaque, then reveals. Used after a Not Guilty so the waiting room is not a hard cut.
+   - **Location Fade**: [[src/engine/Private/SceneFade.ts]] covers `#screen-flash` in black. `fadeThroughBlack` swaps the plate while opaque, then reveals. Entering trial paints the first intro courtroom shot during the black cover (not after the reveal). Also used when Case 2 day 1 adjourns back to investigation, and after a Not Guilty so the waiting room is not a hard cut. `fadeToBlack` stays covered for the case-complete plate ([[src/engine/Private/CaseComplete.ts]]) after the last verdict or epilogue line.
    - **Confetti Victory**: `triggerConfetti()` runs on the verdict camera. Case 2 clears it during the black cover before the waiting-room epilogue. Case 1 has no epilogue, so confetti stays up.
 
 6. **Investigation & Examination Mode** ([[src/engine/Private/InvestigationController.ts#Examine Mode & Tooltips]]):
@@ -79,8 +79,8 @@ flowchart TD
 7. **Debug Trial Launch** ([[src/engine/Private/EngineDebugBootstrap.ts]], [[src/engine/Private/EngineLaunch.ts]]):
    - `applyDebugUrlParams` reads query/hash (`lang=en`, `case=2`, `trial`) during `GameEngine.init()`.
    - `startTrialDebug()` bypasses investigation, dismisses splash, populates debug evidence, and launches the active case's courtroom.
-   - Also triggerable via `#btn-start-trial-debug` or `window.gameEngine.startTrialDebug()`.
-   - Case 2 day-1 adjournment returns to investigation through [[src/engine/Private/AdjournmentHandler.ts]] (`resetTrialLaunchButton` then `startInvestigation`).
+   - Also triggerable via URL params (`?trial`) or `window.gameEngine.startTrialDebug()`.
+   - Case 2 day-1 adjournment returns to investigation through [[src/engine/Private/AdjournmentHandler.ts]] (`fadeThroughBlack`, then `resetTrialLaunchButton` and `startInvestigation` with the location intro queued after the reveal).
 
 8. **Court Record & Talk Modals** ([[src/engine/Private/ModalManager.ts#Court Record Evidence Modal]]):
    - Dynamically populates `#court-record-modal` with items from `gameState.inventory`.
@@ -94,5 +94,5 @@ flowchart TD
 - **Input Safety**: Interactions are blocked or sequenced through the dialogue queue to prevent race conditions during animations.
 - **Audio Context Activation**: Any user gesture ensures the `AudioContext` is active via `soundEngine.ensureActive()`.
 - **Clean Mode Toggles**: Switching modes (`INVESTIGATION` <-> `TRIAL` <-> `EXAMINE`) explicitly hides inactive HUD groups to avoid overlapping controls.
-- **Splash stack fits the 960×540 stage.** `#game-screen` is `overflow: hidden` at 540px. The title card must stay inside that box with Continue visible (five buttons). Compact type, 80px art, and `max-height: 100%` plus `overflow-y: auto` on `.splash-card` are required. Do not grow the card by adding launch buttons without shrinking the stack. Regression: [[tests/engine/SplashLayout.test.ts]].
+- **Splash stack fits the 960×540 stage.** `#game-screen` is `overflow: hidden` at 540px. The title screen directly uses the 960×540 canvas without nested inner card boxes. Language toggle is stationed in the top corner (`#btn-lang-splash`), Chapulín is displayed at hero size (180px), and case selection buttons hover cleanly. Regression: [[tests/engine/SplashLayout.test.ts]].
 

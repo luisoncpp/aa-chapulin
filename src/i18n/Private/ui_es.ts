@@ -57,6 +57,8 @@ export const UI_ES: UiTranslations = {
   notifGameSaved: '¡Partida guardada correctamente!',
   notifGameLoaded: '¡Partida cargada!',
   notifNoSaveFound: 'No se encontró ninguna partida guardada.',
+  caseCompleteTitle: 'Caso concluido',
+  caseCompleteBody: 'Has resuelto el caso.',
 
   gameOverJudgeText: '¡La defensa ha agotado sus oportunidades! Declaro al acusado... ¡CULPABLE!',
   gameOverDefenseText: '¡Oh, no! ¡Debo intentarlo de nuevo desde el principio del juicio!',

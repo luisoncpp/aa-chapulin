@@ -7,6 +7,7 @@ import type { SoundEngine } from '../../audio/index.js';
 import { getCaseScript } from '../../case/index.js';
 import type { GameStateManager } from '../../state/index.js';
 import type { CaseId, CaseScript } from '../../types/index.js';
+import { hideCaseComplete } from './CaseComplete.js';
 import type { DomElements } from './DomElements.js';
 import type { InvestigationController } from './InvestigationController.js';
 import type { TrialController } from './TrialController.js';
@@ -44,6 +45,7 @@ export function dismissSplash(dom: DomElements, soundEngine: SoundEngine): void 
 
 export function startGame(host: LaunchHost, caseId: CaseId = 'case1'): void {
   if (host.hasStarted) return;
+  hideCaseComplete(host.dom);
   host.markStarted();
   loadCase(host, caseId);
   host.state.beginNewCase(host.getScript());
@@ -53,6 +55,7 @@ export function startGame(host: LaunchHost, caseId: CaseId = 'case1'): void {
 
 export function startTrialDebug(host: LaunchHost): void {
   if (host.hasStarted) return;
+  hideCaseComplete(host.dom);
   host.markStarted();
   loadCase(host, host.state.caseId);
   host.state.beginNewCase(host.getScript());

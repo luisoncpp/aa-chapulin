@@ -57,6 +57,10 @@ export function setupDomHarness(): DomElements {
         <img id="cutin-img" src="" alt="Cut-in">
       </div>
       <div id="screen-flash" class="hidden"></div>
+      <div id="case-complete-overlay" class="hidden">
+        <h2 id="case-complete-title">Caso concluido</h2>
+        <p id="case-complete-body">Has resuelto el caso.</p>
+      </div>
       <div id="confetti-container" class="hidden"></div>
       <div id="start-splash-overlay">
         <button id="btn-lang-splash">IDIOMA</button>

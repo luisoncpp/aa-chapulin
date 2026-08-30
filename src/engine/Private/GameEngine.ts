@@ -137,7 +137,7 @@ export class GameEngine {
   }
 
   private handleAdjournment(location: LocationId): void {
-    handleAdjournment(this.investigation, location);
+    handleAdjournment(this.investigation, location, /*flashEl=*/ this.dom.flashEl);
   }
 
   // @Section(Save & Load Management)

@@ -43,7 +43,7 @@ export class InvestigationController {
   }
 
   // @Section(Investigation Scene Transition)
-  public startInvestigation(location: LocationId = 'museum'): void {
+  public startInvestigation(location: LocationId = 'museum', deferIntro = false): void {
     this.state.mode = 'INVESTIGATION';
     this.state.currentLocation = location;
     this.isFirstTimeDialogue = false;
@@ -62,6 +62,13 @@ export class InvestigationController {
     this.midiComposer.playTrack(scene.bgm);
 
     this.renderHotspots(scene.hotspots || []);
+    if (deferIntro) return;
+    this.onQueueDialogue(scene.intro);
+  }
+
+  public queueCurrentIntro(): void {
+    const scene = this.script.investigation[this.state.currentLocation];
+    if (!scene) return;
     this.onQueueDialogue(scene.intro);
   }
 

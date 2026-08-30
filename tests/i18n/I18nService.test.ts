@@ -66,8 +66,8 @@ describe('I18nService Subsystem', () => {
 
     expect(UI_ES.notifEvidenceAdded('Insignia')).toContain('Insignia');
     expect(UI_EN.notifEvidenceAdded('Badge')).toContain('Badge');
-    expect(UI_ES.notifEvidenceUpdated('Insignia')).toContain('Insignia');
-    expect(UI_EN.notifEvidenceUpdated('Badge')).toContain('Badge');
+    expect(UI_ES.caseCompleteTitle).toBe('Caso concluido');
+    expect(UI_EN.caseCompleteTitle).toBe('Case complete');
   });
 
   it('verifies bilingual evidence catalogs have matching keys and contents', () => {

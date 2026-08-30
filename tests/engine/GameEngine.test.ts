@@ -4,6 +4,7 @@ import { MidiMusicComposer, SoundEngine } from '../../src/audio/index.js';
 import { CASE_SCRIPT } from '../../src/case/index.js';
 import type { DomElements } from '../../src/engine/Private/DomElements.js';
 import { GameEngine, createGameEngine } from '../../src/engine/index.js';
+import { SCENE_FADE_MS } from '../../src/engine/Private/SceneFade.js';
 import { GameStateManager } from '../../src/state/index.js';
 import type { DialogueLine } from '../../src/types/index.js';
 import { FakeAudioContext } from '../fakes/FakeAudioContext.js';
@@ -190,7 +191,7 @@ describe('GameEngine Coordinator', () => {
 
   it('starts trial directly with full evidence and audio on startTrialDebug', () => {
     engine.startTrialDebug();
-    vi.advanceTimersByTime(400);
+    vi.advanceTimersByTime(SCENE_FADE_MS * 2);
 
     expect(soundEngineInstance.initialized).toBe(true);
     expect(dom.startSplashOverlayEl.classList.contains('hidden')).toBe(true);
@@ -212,7 +213,7 @@ describe('GameEngine Coordinator', () => {
 
   it('starts trial directly when clicking debug trial button', () => {
     dom.btnStartTrialDebug.click();
-    vi.advanceTimersByTime(400);
+    vi.advanceTimersByTime(SCENE_FADE_MS * 2);
 
     expect(state.mode).toBe('TRIAL');
     expect(state.flags.ready_for_trial).toBe(true);
@@ -234,7 +235,7 @@ describe('GameEngine Coordinator', () => {
       midiComposer: midiComposerInstance
     });
     autoDebugEngine.init();
-    vi.advanceTimersByTime(400);
+    vi.advanceTimersByTime(SCENE_FADE_MS * 2);
 
     expect(debugState.mode).toBe('TRIAL');
     window.location = originalLocation;
@@ -252,7 +253,7 @@ describe('GameEngine Coordinator', () => {
       soundEngine: soundEngineInstance,
       midiComposer: midiComposerInstance
     }).init();
-    vi.advanceTimersByTime(400);
+    vi.advanceTimersByTime(SCENE_FADE_MS * 2);
 
     expect(debugState.caseId).toBe('case2');
     expect(debugState.mode).toBe('TRIAL');
@@ -262,7 +263,7 @@ describe('GameEngine Coordinator', () => {
 
   it('maintains consistent courtroom backgrounds and furniture throughout a multi-speaker trial dialogue sequence', () => {
     engine.startTrialDebug();
-    vi.advanceTimersByTime(400);
+    vi.advanceTimersByTime(SCENE_FADE_MS * 2);
 
     const trialSequence: DialogueLine[] = [
       { speaker: 'DEFENSA', text: '¡PROTESTO!', cutin: 'objection_protesto' },
@@ -381,7 +382,7 @@ describe('GameEngine Coordinator', () => {
   it('starts Case 2 trial debug with day-1 evidence', () => {
     state.caseId = 'case2';
     engine.startTrialDebug();
-    vi.advanceTimersByTime(400);
+    vi.advanceTimersByTime(SCENE_FADE_MS * 2);
     expect(state.mode).toBe('TRIAL');
     expect(state.hasEvidence('reloj_pendulo')).toBe(true);
     expect(state.hasEvidence('informe_boveda')).toBe(true);
@@ -395,6 +396,7 @@ describe('GameEngine Coordinator', () => {
     document.getElementById('btn-inv-trial')?.classList.add('pulse-glow');
     const adjourn = (engine as unknown as { handleAdjournment: (loc: string) => void });
     adjourn.handleAdjournment('oficina_postal');
+    vi.advanceTimersByTime(SCENE_FADE_MS);
     expect(state.currentLocation).toBe('oficina_postal');
     expect(state.mode).toBe('INVESTIGATION');
     expect(dom.btnInvTrial.classList.contains('disabled')).toBe(true);

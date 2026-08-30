@@ -64,6 +64,8 @@ export interface UiTranslations {
   notifGameSaved: string;
   notifGameLoaded: string;
   notifNoSaveFound: string;
+  caseCompleteTitle: string;
+  caseCompleteBody: string;
 
   // Game Over Dialogues
   gameOverJudgeText: string;

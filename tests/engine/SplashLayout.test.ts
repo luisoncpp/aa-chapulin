@@ -1,14 +1,12 @@
-// @Architecture(descriptionShort="Regression tests for splash card fitting the 540px stage", type="test", icon="layout")
+// @Architecture(descriptionShort="Regression tests for splash layout fitting the 540px stage", type="test", icon="layout")
 import fs from 'node:fs';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 
 const STAGE_H = 540;
-const SPLASH_CHILD_COUNT = 9;
-const BUTTON_COUNT = 5;
+const BUTTON_COUNT = 3;
 const TITLE_SHADOW_PX = 3;
-const SUBTITLE_LINES = 2;
-const TIP_LINES = 2;
+const SUBTITLE_LINES = 1;
 
 function cssRule(css: string, selector: string): string {
   const escaped = selector.replace(/[.#]/g, '\\$&');
@@ -43,35 +41,37 @@ function buttonHeight(rule: string): number {
 
 function splashStackHeight(css: string): number {
   const overlay = cssRule(css, '#start-splash-overlay');
-  const card = cssRule(css, '.splash-card');
+  const header = cssRule(css, '.splash-header');
   const title = cssRule(css, '.splash-title');
   const subtitle = cssRule(css, '.splash-subtitle');
   const character = cssRule(css, '.splash-character img');
-  const tip = cssRule(css, '.splash-tip');
+  const menu = cssRule(css, '.splash-menu');
   const btn = cssRule(css, '.splash-btn');
+
   const overlayPad = px(cssProp(overlay, 'padding') || '0px', 'overlay padding');
-  const cardPadY = verticalPadding(cssProp(card, 'padding'), 'card padding');
-  const gap = px(cssProp(card, 'gap'), 'card gap');
-  return (
-    overlayPad * 2 +
-    cardPadY +
-    gap * (SPLASH_CHILD_COUNT - 1) +
-    px(cssProp(title, 'font-size'), 'title') +
-    TITLE_SHADOW_PX +
-    px(cssProp(subtitle, 'font-size'), 'subtitle') * SUBTITLE_LINES +
-    px(cssProp(character, 'height'), 'character') +
-    px(cssProp(tip, 'font-size'), 'tip') * TIP_LINES +
-    buttonHeight(btn) * BUTTON_COUNT
-  );
+  const overlayGap = px(cssProp(overlay, 'gap') || '0px', 'overlay gap');
+  const headerGap = px(cssProp(header, 'gap') || '0px', 'header gap');
+  const menuGap = px(cssProp(menu, 'gap') || '0px', 'menu gap');
+
+  const headerH = px(cssProp(title, 'font-size'), 'title') + TITLE_SHADOW_PX + headerGap + px(cssProp(subtitle, 'font-size'), 'subtitle') * SUBTITLE_LINES;
+  const characterH = px(cssProp(character, 'height'), 'character');
+  const menuH = buttonHeight(btn) * BUTTON_COUNT + menuGap * (BUTTON_COUNT - 1);
+
+  return overlayPad * 2 + overlayGap * 2 + headerH + characterH + menuH;
 }
 
 describe('splash layout fits the 960x540 stage', () => {
   const css = fs.readFileSync(path.resolve(__dirname, '../../style.css'), 'utf-8');
-  const card = cssRule(css, '.splash-card');
+  const overlay = cssRule(css, '#start-splash-overlay');
+  const langCorner = cssRule(css, '.splash-lang-corner');
 
-  it('keeps the splash card inside the overlay instead of clipping through #game-screen', () => {
-    expect(cssProp(card, 'max-height')).toBe('100%');
-    expect(cssProp(card, 'overflow-y') || cssProp(card, 'overflow')).toMatch(/auto|scroll/);
+  it('positions the language toggle in the corner', () => {
+    expect(cssProp(langCorner, 'position')).toBe('absolute');
+    expect(cssProp(langCorner, 'right')).toBe('18px');
+  });
+
+  it('keeps the overlay inside 960x540 viewport without overflow clipping', () => {
+    expect(cssProp(overlay, 'overflow')).toBe('hidden');
   });
 
   it('sizes the stacked splash content to fit 540px with Continue visible', () => {

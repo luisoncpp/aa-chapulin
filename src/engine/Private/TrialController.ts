@@ -11,6 +11,8 @@ import {
   handleClimaxEvidencePresent, rebindClimaxChoiceModal, resolveClimaxChoiceFromController,
   restoreClimaxFromSnapshot, startClimaxPhase
 } from './TrialClimax.js';
+import { paintCourtroomPlate } from './TrialOpening.js';
+import { fadeThroughBlack } from './SceneFade.js';
 import { VisualEffects } from './VisualEffects.js';
 
 export type TrialPhase = 'IDLE' | 'TESTIMONY' | 'CLIMAX';
@@ -64,19 +66,27 @@ export class TrialController {
       this.currentStatementIdx = snapshot.statementIdx || 0;
       return this.renderCurrentStatement();
     }
-    this.startTrial();
+    this.startTrial(/*skipFade=*/ true);
   }
 
-  public startTrial(): void {
-    this.deps.state.mode = 'TRIAL';
+  public startTrial(skipFade = false): void {
+    if (skipFade) {
+      this.enterCourtroom();
+      this.deps.onQueueDialogue(getActiveTrial(this.script, this.deps.state.trialDay).intro,
+        /*onComplete*/ () => this.startTestimony('testimony1'));
+      return;
+    }
+    fadeThroughBlack(
+      this.deps.dom.flashEl,
+      /*onCovered*/ () => this.enterCourtroom(),
+      /*onRevealed*/ () => this.deps.onQueueDialogue(getActiveTrial(this.script, this.deps.state.trialDay).intro,
+        /*onComplete*/ () => this.startTestimony('testimony1'))
+    );
+  }
+
+  private enterCourtroom(): void {
     this.phase = 'TESTIMONY';
-    this.deps.dom.investigationNavEl.classList.add('hidden');
-    this.deps.dom.examineNavEl.classList.add('hidden');
-    this.hideControls();
-    this.deps.dom.hotspotsContainerEl.innerHTML = '';
-    this.deps.dom.locationBannerEl.textContent = i18n.t.locationCourtroom;
-    this.deps.onQueueDialogue(getActiveTrial(this.script, this.deps.state.trialDay).intro,
-      /*onComplete*/ () => this.startTestimony('testimony1'));
+    paintCourtroomPlate(this.deps, this.script);
   }
 
   public startTestimony(testimonyKey: 'testimony1' | 'testimony2'): void {

@@ -3,6 +3,7 @@ import { describe, expect, it, beforeEach, vi } from 'vitest';
 import { MidiMusicComposer, SoundEngine } from '../../src/audio/index.js';
 import { CASE_SCRIPT, getCaseScript } from '../../src/case/index.js';
 import type { DomElements } from '../../src/engine/Private/DomElements.js';
+import { SCENE_FADE_MS } from '../../src/engine/Private/SceneFade.js';
 import { TrialController } from '../../src/engine/Private/TrialController.js';
 import { GameStateManager } from '../../src/state/index.js';
 import type { DialogueLine } from '../../src/types/index.js';
@@ -50,10 +51,27 @@ describe('TrialController', () => {
 
   it('starts trial mode and begins testimony 1', () => {
     controller.startTrial();
+    vi.advanceTimersByTime(SCENE_FADE_MS * 2);
     expect(state.mode).toBe('TRIAL');
     expect(dom.trialNavEl.classList.contains('hidden')).toBe(false);
     expect(controller.currentTestimony).toBe(CASE_SCRIPT.trial.testimony1);
     expect(renderedLines.length).toBeGreaterThan(0);
+  });
+
+  it('covers the investigation plate before swapping into the courtroom', () => {
+    queuedDialogues = [];
+    dom.bgEl.style.backgroundImage = "url('assets/bg_museum.jpg')";
+    controller.startTrial();
+    expect(state.mode).not.toBe('TRIAL');
+    expect(queuedDialogues).toHaveLength(0);
+    expect(dom.flashEl.classList.contains('hidden')).toBe(false);
+    expect(dom.bgEl.style.backgroundImage).toContain('bg_museum.jpg');
+    vi.advanceTimersByTime(SCENE_FADE_MS);
+    expect(state.mode).toBe('TRIAL');
+    expect(dom.bgEl.style.backgroundImage).toContain('bg_judge.jpg');
+    expect(queuedDialogues).toHaveLength(0);
+    vi.advanceTimersByTime(SCENE_FADE_MS);
+    expect(queuedDialogues).toHaveLength(1);
   });
 
   it('navigates statements with next and previous cycling', () => {
@@ -214,6 +232,7 @@ describe('TrialController', () => {
     });
 
     asyncController.startTrial();
+    vi.advanceTimersByTime(SCENE_FADE_MS * 2);
     // Intro dialogue is playing -> trial controls MUST be hidden
     expect(dom.trialNavEl.classList.contains('hidden')).toBe(true);
 
@@ -336,6 +355,7 @@ describe('TrialController', () => {
       onOpenCourtRecord: () => {}
     });
     day2.startTrial();
+    vi.advanceTimersByTime(SCENE_FADE_MS * 2);
     expect(day2.currentTestimony).toBe(case2.adjournment?.trial.testimony1);
   });
 });

@@ -7,6 +7,7 @@ import { i18n } from '../../i18n/index.js';
 import { SaveManager, type SaveData } from '../../state/index.js';
 import type { Language } from '../../types/index.js';
 import type { DialogueFlow } from './DialogueFlow.js';
+import { hideCaseComplete } from './CaseComplete.js';
 import { dismissSplash, loadCase, type LaunchHost } from './EngineLaunch.js';
 import { applyTrialSnapshot, persistTrialSnapshot } from './TrialSnapshot.js';
 import { ModalManager } from './ModalManager.js';
@@ -41,6 +42,7 @@ export function loadGame(host: PersistenceHost, storage?: Storage): boolean {
 }
 
 function restoreSaveData(host: PersistenceHost, data: SaveData): void {
+  hideCaseComplete(host.dom);
   if (!host.hasStarted) dismissSplash(host.dom, host.soundEngine);
   host.markStarted();
   host.state.restoreState(data);

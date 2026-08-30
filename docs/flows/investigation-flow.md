@@ -18,7 +18,7 @@ Operational guide for player actions during the crime scene investigation phase.
 3. `bgEl` background style switches to the scene image from the active script (`bg_museum.jpg`, `bg_detention.jpg`, or Case 2 `bg_boveda.jpg` / `bg_restaurante.jpg` / `bg_postal.jpg` / `bg_clotilde.jpg`).
 4. `midiComposer.playTrack(scene.bgm)` transitions background music (`'investigation'` or `'suspense'`).
 5. `renderHotspots()` injects percentage-based clickable regions into `#hotspots-container` (`x,y,w,h` are of the 960×540 stage after `background-size: cover`, not of the raw background file).
-6. `queueDialogue(scene.intro)` presents opening narrative dialogue.
+6. `queueDialogue(scene.intro)` presents opening narrative dialogue. After a trial adjournment the intro waits until `fadeThroughBlack` has revealed the new plate.
 
 ### Examination & Hotspot Click
 1. Player clicks "🔍 Examinar" (`#btn-inv-examine`).
@@ -60,7 +60,7 @@ Operational guide for player actions during the crime scene investigation phase.
 1. `gameState.checkTrialReadiness()` in [[src/state/Private/GameStateManager.ts#Investigation Readiness]] checks `script.requiredEvidence` (day 1) or `adjournment.requiredEvidence` after Case 2 day-1 adjournment.
 2. If ready, `#btn-inv-trial` loses `.disabled`, sets `disabled = false`, gains `.pulse-glow`, and displays a ready notification.
 3. While disabled (due to `disabled` property and `.disabled` class), clicking `#btn-inv-trial` is ignored.
-4. When enabled, player clicks "⚖️ Ir a Juicio": `trial.startTrial()` is invoked.
+4. When enabled, player clicks "⚖️ Ir a Juicio": `trial.startTrial()` fades through black, then queues the courtroom intro.
 
 ## 4. Reads
 - Active `script.investigation[location]` ([[src/case/Private/case1_investigation.ts]] or Case 2 scenes via [[src/case/Private/case2_script.ts]])

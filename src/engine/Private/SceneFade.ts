@@ -4,7 +4,8 @@
  */
 
 export const COURTROOM_CELEBRATION_MS = 1600;
-const SCENE_FADE_MS = 500;
+// fallow-ignore-next-line unused-export
+export const SCENE_FADE_MS = 500;
 
 export function fadeThroughBlack(
   flashEl: HTMLElement,
@@ -16,6 +17,11 @@ export function fadeThroughBlack(
     onCovered();
     uncoverFromBlack(flashEl, onRevealed);
   }, /*delayInMs=*/ SCENE_FADE_MS);
+}
+
+export function fadeToBlack(flashEl: HTMLElement, onCovered: () => void): void {
+  coverWithBlack(flashEl);
+  setTimeout(/*stayCovered*/ onCovered, /*delayInMs=*/ SCENE_FADE_MS);
 }
 
 function coverWithBlack(flashEl: HTMLElement): void {
@@ -30,9 +36,14 @@ function coverWithBlack(flashEl: HTMLElement): void {
 function uncoverFromBlack(flashEl: HTMLElement, onRevealed: () => void): void {
   flashEl.style.opacity = '0';
   setTimeout(/*resetFlashPlate*/ () => {
-    flashEl.classList.add('hidden');
-    flashEl.style.backgroundColor = '#ffffff';
-    flashEl.style.transition = '';
+    resetFlashPlate(flashEl);
     onRevealed();
   }, /*delayInMs=*/ SCENE_FADE_MS);
+}
+
+export function resetFlashPlate(flashEl: HTMLElement): void {
+  flashEl.classList.add('hidden');
+  flashEl.style.backgroundColor = '#ffffff';
+  flashEl.style.transition = '';
+  flashEl.style.opacity = '';
 }

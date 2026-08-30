@@ -8,7 +8,8 @@ import { i18n } from '../../i18n/index.js';
 import type { ClimaxDefinition, ClimaxEpilogue, DialogueLine } from '../../types/index.js';
 import type { DomElements } from './DomElements.js';
 import { ModalManager } from './ModalManager.js';
-import { COURTROOM_CELEBRATION_MS, fadeThroughBlack } from './SceneFade.js';
+import { showCaseComplete } from './CaseComplete.js';
+import { COURTROOM_CELEBRATION_MS, fadeToBlack, fadeThroughBlack } from './SceneFade.js';
 import { applyPenaltyEffects, type PenaltyHost } from './TrialPenalty.js';
 import { VisualEffects } from './VisualEffects.js';
 
@@ -116,7 +117,10 @@ function stampEpilogueLines(bg: string, lines: DialogueLine[]): DialogueLine[] {
 // fallow-ignore-next-line unused-export
 export function celebrateClimax(climax: ClimaxDefinition, deps: ClimaxQueueDeps): void {
   VisualEffects.triggerConfetti(deps.dom.confettiContainerEl);
-  if (!climax.epilogue) return;
+  if (!climax.epilogue) {
+    scheduleCaseComplete(deps);
+    return;
+  }
   scheduleWaitingRoomFade(climax.epilogue, deps);
 }
 
@@ -150,5 +154,13 @@ function cutToWaitingRoom(epilogue: ClimaxEpilogue, deps: ClimaxQueueDeps): void
 
 function queueEpilogue(epilogue: ClimaxEpilogue, deps: ClimaxQueueDeps): void {
   const lines = stampEpilogueLines(epilogue.bg, epilogue.dialogue);
-  deps.onQueueDialogue(lines);
+  deps.onQueueDialogue(lines, /*onEpilogueDone*/ () => fadeToCaseComplete(deps));
+}
+
+function scheduleCaseComplete(deps: ClimaxQueueDeps): void {
+  setTimeout(/*leaveVerdictShot*/ () => fadeToCaseComplete(deps), /*delayInMs=*/ COURTROOM_CELEBRATION_MS);
+}
+
+function fadeToCaseComplete(deps: ClimaxQueueDeps): void {
+  fadeToBlack(deps.dom.flashEl, /*onCovered*/ () => showCaseComplete(deps.dom));
 }

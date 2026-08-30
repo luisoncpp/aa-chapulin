@@ -2,7 +2,7 @@
 import { describe, expect, it, beforeEach, vi } from 'vitest';
 import { getCaseScript } from '../../src/case/index.js';
 import type { DomElements } from '../../src/engine/Private/DomElements.js';
-import { COURTROOM_CELEBRATION_MS } from '../../src/engine/Private/SceneFade.js';
+import { COURTROOM_CELEBRATION_MS, SCENE_FADE_MS } from '../../src/engine/Private/SceneFade.js';
 import { queueClimaxVictory } from '../../src/engine/Private/TrialClimax.js';
 import { UI_ES } from '../../src/i18n/index.js';
 import type { DialogueLine } from '../../src/types/index.js';
@@ -61,6 +61,26 @@ describe('TrialClimax waiting-room epilogue', () => {
     expect(dom.confettiContainerEl.children.length).toBe(0);
   });
 
+  it('fades to the case-complete plate after the waiting-room epilogue', () => {
+    const climax = getCaseScript('es', 'case2').trial.climax;
+    queueClimaxVictory(climax, {
+      dom,
+      onQueueDialogue: (dialogue, onComplete) => {
+        queued.push(dialogue);
+        pending.push(onComplete);
+      }
+    });
+    pending[0]!();
+    vi.advanceTimersByTime(COURTROOM_CELEBRATION_MS + SCENE_FADE_MS * 2);
+    expect(queued).toHaveLength(2);
+    pending[1]!();
+    expect(dom.caseCompleteOverlayEl.classList.contains('hidden')).toBe(true);
+    vi.advanceTimersByTime(SCENE_FADE_MS);
+    expect(dom.caseCompleteOverlayEl.classList.contains('hidden')).toBe(false);
+    expect(dom.caseCompleteTitleEl.textContent).toBe(UI_ES.caseCompleteTitle);
+    expect(dom.dialogueBoxEl.classList.contains('hidden')).toBe(true);
+  });
+
   it('treats Case 1 as a single present stage and Case 2 as three with choices', () => {
     const case1 = getCaseScript('es', 'case1').trial.climax;
     expect(case1.stages).toBeUndefined();
@@ -85,5 +105,8 @@ describe('TrialClimax waiting-room epilogue', () => {
     pending[0]!();
     expect(queued).toHaveLength(1);
     expect(dom.confettiContainerEl.children.length).toBe(80);
+    vi.advanceTimersByTime(COURTROOM_CELEBRATION_MS + SCENE_FADE_MS);
+    expect(dom.caseCompleteOverlayEl.classList.contains('hidden')).toBe(false);
+    expect(dom.caseCompleteTitleEl.textContent).toBe(UI_ES.caseCompleteTitle);
   });
 });

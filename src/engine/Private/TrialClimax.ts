@@ -53,7 +53,7 @@ function climaxStageMatches(
   const idx = Math.min(Math.max(stageIdx, 0), stages.length - 1);
   const stage = stages[idx];
   if (!stage.presentTarget.includes(evidenceId)) return false;
-  const minStage = stage.minUpdateStage?.[evidenceId];
+  const minStage = stage.requiredUpdateStage?.[evidenceId];
   if (minStage != null && getUpdateStage(evidenceId) < minStage) return false;
   return true;
 }

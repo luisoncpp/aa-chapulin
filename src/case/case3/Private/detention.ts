@@ -1,6 +1,6 @@
 // @Architecture(descriptionShort="Case 3 day 1 detention visit with Chapatín talks", type="data", icon="layers")
 /**
- * Case 3 Day 1 — Centro de Detención (`centro_detencion`).
+ * Case 3 Day 1 — Centro de Detención (`detention`).
  */
 
 import type { InvestigationScene } from '../../../types/index.js';
@@ -56,7 +56,7 @@ export const CASE3_DETENTION: InvestigationScene = {
         { speaker: 'CHAPATIN', text: 'No le importa.', pose: 'chapatin_enojado' },
         { speaker: 'DEFENSA', text: 'Doctor, con todo respeto, eso es exactamente lo que lo va a mandar veinte años a la cárcel.', pose: 'donramon_point' },
         { speaker: 'CHAPATIN', text: 'Entonces me voy veinte años. Un médico que suelta la lengua no es médico, es chismoso.', pose: 'chapatin_idle' },
-        { speaker: 'CHAPULIN', text: '(Monchito... está encubriendo a alguien.)', pose: 'chapulin_thinking' },
+        { speaker: 'CHAPULIN', text: '(Monchito... está encubriendo a alguien.)', pose: 'chapulin_idle' },
         { speaker: 'DEFENSA', text: '(Y ese alguien es su paciente. Apunte, Chapulín: la coartada existe, pero está bajo secreto profesional.)', pose: 'donramon_sweat' }
       ]
     },

@@ -12,14 +12,14 @@ export const CASE3_DAY3_INTRO_EN: DialogueLine[] = [
 ];
 
 const T5_SUCCESS: DialogueLine[] = [
-  { cutin: 'objection_protesto', speaker: 'DEFENSA', text: 'OBJECTION!', sfx: 'whoosh', bgm: 'pursuit', pose: 'donramon_point' },
+  { cutin: 'objection_protesto', speaker: 'DEFENSA', text: 'OBJECTION!', sfx: 'whoosh', bgm: 'objection', pose: 'donramon_point' },
   { speaker: 'DEFENSA', text: 'Your Honor, before we continue I want something on the record!', pose: 'donramon_point' },
   { speaker: 'DEFENSA', text: 'For three days this defense has NOT pointed at any witness. Not the sergeant, not Mrs. Chimoltrufia, not the boy. I didn\'t come to hand out blame — I came to read evidence.', pose: 'donramon_idle' },
   { speaker: 'DEFENSA', text: 'And this evidence says something I take no pleasure in saying.', sfx: 'desk_slam', pose: 'donramon_slam' },
   { speaker: 'DEFENSA', text: 'These are the storeroom bonds! The gag knot sat IN FRONT, on the left side!', pose: 'donramon_point' },
   { speaker: 'JUEZ', text: 'And what does that mean, Counselor?', pose: 'judge_thinking' },
   { speaker: 'DEFENSA', text: 'That whoever tied it stood IN FRONT of that mouth! Nobody gags another from behind and ties the knot in front!', sfx: 'desk_slam', pose: 'donramon_slam' },
-  { speaker: 'CHAPULIN', text: 'And more! Three quarters of an hour tied and not a scrape on the wrists! And in the floor dust — not one struggle mark, just a neat sit-down!', pose: 'chapulin_slam', sfx: 'desk_slam' },
+  { speaker: 'CHAPULIN', text: 'And more! Twenty minutes tied and not a scrape on the wrists! And in the floor dust — not one struggle mark, just a neat sit-down!', pose: 'chapulin_slam', sfx: 'desk_slam' },
   { speaker: 'CHAPATIN', text: 'I examined him that night! That gentleman did not struggle one second! And if anyone doubts it, they can come argue with the bag!', pose: 'chapatin_enojado' },
   { speaker: 'NARRADOR', text: '(Absolute silence. Don Aniceto Rebollar stops smiling for the first time in twenty-five years.)', sfx: 'realization' },
   { speaker: 'JUEZ', text: 'Are you saying the second victim... tied himself?!', pose: 'judge_shock' },

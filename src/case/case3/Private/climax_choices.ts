@@ -17,7 +17,7 @@ export const CASE3_CLIMAX_CHOICES: ChoicePrompt[] = [
     correctId: 'prove_voice',
     failDialogue: [
       { speaker: 'DEFENSA', text: '¡Pues... que confiese, señor Juez! ¡Que confiese ya!', pose: 'donramon_sweat' },
-      { speaker: 'ANICETO', text: 'Con mucho gusto confieso... que estoy indignado.', pose: 'aniceto_terciopelo' },
+      { speaker: 'ANICETO', text: 'Con mucho gusto confieso... que estoy indignado.', pose: 'aniceto_sweat' },
       { speaker: 'JUEZ', text: 'Licenciado, este tribunal no funciona con buenos deseos. ¡Penalización!', pose: 'judge_gavel', sfx: 'damage' }
     ],
     successDialogue: [
@@ -37,7 +37,7 @@ export const CASE3_CLIMAX_CHOICES: ChoicePrompt[] = [
     correctId: 'proverb_trap',
     failDialogue: [
       { speaker: 'DEFENSA', text: '¿No nos haría usted una vocecita, por favorcito?', pose: 'donramon_sweat' },
-      { speaker: 'ANICETO', text: 'Licenciado, tengo veinticinco años de carrera y usted tiene una insignia abollada.', pose: 'aniceto_terciopelo' },
+      { speaker: 'ANICETO', text: 'Licenciado, tengo veinticinco años de carrera y usted tiene una insignia abollada.', pose: 'aniceto_panic' },
       { speaker: 'JUEZ', text: '¡No haga usted payasadas en mi tribunal!', pose: 'judge_gavel', sfx: 'damage' }
     ],
     successDialogue: [

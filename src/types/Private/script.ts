@@ -33,7 +33,7 @@ export type PoseName =
   | 'chapulin_panic'
   | 'chapulin_point'
   | 'chapulin_slam'
-  | 'chapulin_thinking'
+  | 'chapulin_idle'
   | 'donramon_idle'
   | 'donramon_slam'
   | 'donramon_shock'
@@ -81,7 +81,7 @@ export type PoseName =
   | 'pazguato_saludo'
   | 'pazguato_sweat'
   | 'pazguato_decidido'
-  | 'aniceto_terciopelo'
+  | 'aniceto_idle'
   | 'aniceto_thinking'
   | 'aniceto_sweat'
   | 'aniceto_panic'
@@ -183,7 +183,7 @@ export interface ClimaxStage {
   presentTarget: EvidenceId[];
   successDialogue: DialogueLine[];
   /** Minimum evidence update stage required before an id is accepted at this stage. */
-  minUpdateStage?: Partial<Record<EvidenceId, number>>;
+  requiredUpdateStage?: Partial<Record<EvidenceId, number>>;
 }
 
 export interface ChoiceOption {

@@ -32,9 +32,9 @@ Implemented (scripts + dedicated art). Spec: [[docs/specs/case-2-el-juicio-del-c
 ### Playable Content: Case 3 ("El Juicio del Doctor Chapatín — La Noche del Grito")
 Implemented in [[src/case/case3/index.ts]] (nested deep module). Spec: [[docs/specs/case-3-la-noche-del-grito.md]]. Launch: splash **Caso 3**, `?case=3`, `?case=3&trial`, `?case=3&trial=2`, `?case=3&trial=3`.
 
-- **Three-day loop:** `adjournment.next`, `trialDay` 1\|2\|3, `beginNextTrialDay`. Press-gated statements (`unlockedBy`) and multi-stage evidence (`updates[]`, climax `minUpdateStage` on `microfono_oro`).
-- **Locations:** `centro_detencion` → `cabina_radio` → `plaza_kermes` → trial → `despacho_barriga` → `clinica_chapatin` → `delegacion` → trial → `bodega_radio` → `delegacion_d3` → `centro_detencion_d3` → trial → climax.
-- **Art:** [[process_case3_assets.py]]; BGM `kermes` and `cross_exam_presto`.
+- **Three-day loop:** `adjournment.next`, `trialDay` 1\|2\|3, `beginNextTrialDay`. Press-gated statements (`unlockedBy`) and multi-stage evidence (`updates[]`, climax `requiredUpdateStage` on `microfono_oro`).
+- **Locations:** `detention` → `cabina_radio` → `plaza_kermes` → trial → `despacho_barriga` → `clinica_chapatin` → `delegacion` → trial → `bodega_radio` → `detention_d3` → `delegacion_d3` → trial → climax. Each day ends on a location that hands over a required clue.
+- **Art:** [[process_case3_assets.py]]; BGM `kermes` and `cross_exam_presto`. **Pending:** Aniceto's sheet and `informe_barriga.png` still need to be generated (`aniceto_idle.png` is the old `aniceto_terciopelo.png` renamed).
 - **Tests:** [[tests/case/Case3Scripts.test.ts]], [[tests/engine/StatementUnlock.test.ts]], [[tests/state/EvidenceUpdateStages.test.ts]].
 
 ---

@@ -11,7 +11,7 @@ export const CASE3_T2_SUCCESS: DialogueLine[] = [
   { speaker: 'CHIMOLTRUFIA', text: '¡Ay, qué la canción! ¿Entonces lo que iba en el carrito era...?', pose: 'chimoltrufia_shock' },
   { speaker: 'CHAPULIN', text: '¡Era el señor Barriga! ¡Lo pasearon por el pasillo como si fuera un long play!', sfx: 'desk_slam', pose: 'chapulin_slam' },
   { speaker: 'SUPER SAM', text: 'Objection! ¡El acusado pudo haberlo movido él mismo!', pose: 'supersam_sweat' },
-  { speaker: 'DEFENSA', text: '¿En noventa segundos, señor fiscal? Entre el grito de las 11:03 y el arresto de las 11:06 hay hora y media de minutos... digo, ¡hay minuto y medio! ¡Un anciano no abre una caja fuerte, golpea a un hombre, lo sube a un carrito, lo pasea cincuenta metros y lo acuesta en minuto y medio!', pose: 'donramon_point' },
+  { speaker: 'DEFENSA', text: '¿En tres minutos, señor fiscal? Entre el grito de las 11:03 y el arresto de las 11:06 hay hora y media de minutos... digo, ¡hay tres minutos! ¡Un anciano no abre una caja fuerte, golpea a un hombre, lo sube a un carrito, lo pasea cincuenta metros y lo acuesta en tres minutos!', pose: 'donramon_point' },
   { speaker: 'JUEZ', text: '¡La defensa tiene razón! ¡Al Señor Barriga lo atacaron en el despacho y lo trasladaron a la cabina!', pose: 'judge_shock' },
   { speaker: 'SUPER SAM', text: 'Then he did it EARLIER! ¡Y montó la escena para fingir la hora!', pose: 'supersam_slam', sfx: 'desk_slam' },
   { speaker: 'JUEZ', text: 'Suficiente. Ordeno sellar y registrar el despacho del Señor Barriga. ¡Se aplaza la sesión veinticuatro horas!', pose: 'judge_gavel', sfx: 'gavel' }

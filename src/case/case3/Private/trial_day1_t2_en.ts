@@ -12,7 +12,7 @@ const T2_SUCCESS: DialogueLine[] = [
   { speaker: 'CHIMOLTRUFIA', text: '¡Ay, qué la canción! So what was on the cart was...?', pose: 'chimoltrufia_shock' },
   { speaker: 'CHAPULIN', text: 'It was Señor Barriga! They wheeled him down the hall like a long-play record!', pose: 'chapulin_slam', sfx: 'desk_slam' },
   { speaker: 'SUPER SAM', text: 'Objection! The defendant could have moved him himself!', pose: 'supersam_sweat' },
-  { speaker: 'DEFENSA', text: 'In ninety seconds, Mr. Prosecutor? Between the 11:03 scream and the 11:06 arrest there\'s a minute and a half! An old man does not open a safe, strike a man, load him on a cart, roll him fifty meters, and lay him down in ninety seconds!', pose: 'donramon_point' },
+  { speaker: 'DEFENSA', text: 'In three minutes, Mr. Prosecutor? Between the 11:03 scream and the 11:06 arrest there\'s three minutes! An old man does not open a safe, strike a man, load him on a cart, roll him fifty meters, and lay him down in three minutes!', pose: 'donramon_point' },
   { speaker: 'JUEZ', text: 'The defense is right! Señor Barriga was attacked in the office and moved to the booth!', pose: 'judge_shock' },
   { speaker: 'SUPER SAM', text: 'Then he did it EARLIER! And staged the scene to fake the time!', pose: 'supersam_slam', sfx: 'desk_slam' },
   { speaker: 'JUEZ', text: 'Enough. I order Señor Barriga\'s office sealed and searched. This session is adjourned twenty-four hours!', pose: 'judge_gavel', sfx: 'gavel' }
@@ -50,15 +50,15 @@ export const CASE3_TESTIMONY_2_EN: Testimony = {
       text: 'And nobody walked that hallway all night except the little doctor, who left cursing at 10:40.',
       pressText: [
         { speaker: 'DEFENSA', text: 'HOLD IT!', cutin: 'objection_un_momento', sfx: 'whoosh', pose: 'donramon_point' },
-        { speaker: 'CHIMOLTRUFIA', text: 'Well, walk-walk nobody... but around a quarter to eleven I heard the record cart\'s wheels squeaking. Must\'ve been the janitor hauling discs — heavily loaded, that cart!', pose: 'chimoltrufia_confundida' },
-        { speaker: 'DEFENSA', text: '(There it is. At 10:45 someone was pushing something heavy down that hall... and the doctor had already left at 10:40.)', pose: 'donramon_idle' }
+        { speaker: 'CHIMOLTRUFIA', text: 'Well, walk-walk nobody... but around ten-fifty I heard the record cart\'s wheels squeaking. Must\'ve been the janitor hauling discs — heavily loaded, that cart!', pose: 'chimoltrufia_confundida' },
+        { speaker: 'DEFENSA', text: '(There it is. At 10:50 someone was pushing something heavy down that hall... and the doctor had already left at 10:40.)', pose: 'donramon_idle' }
       ]
     },
     {
       id: 'stmt2_3b',
       speaker: 'CHIMOLTRUFIA',
       pose: 'chimoltrufia_confundida',
-      text: 'Around a quarter to eleven I heard the record cart squeak — must\'ve been the janitor hauling discs.',
+      text: 'Around ten-fifty I heard the record cart squeak — must\'ve been the janitor hauling discs.',
       unlockedBy: 'stmt2_3',
       pressText: [
         { speaker: 'DEFENSA', text: 'HOLD IT!', cutin: 'objection_un_momento', sfx: 'whoosh', pose: 'donramon_point' },

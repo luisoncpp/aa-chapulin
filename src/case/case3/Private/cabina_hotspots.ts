@@ -11,7 +11,7 @@ export const CABINA_HOTSPOTS: Hotspot[] = [
     label: 'Mesa de la Consola',
     x: 38, y: 28, w: 28, h: 30,
     dialogue: [
-      { speaker: 'PAZGUATO', text: 'Ahí lo puse yo para la foto, se veía más ordenadito.', pose: 'pazguato_sweat' },
+      { speaker: 'SARGENTO', text: 'Ahí lo puse yo para la foto, se veía más ordenadito.', pose: 'pazguato_sweat' },
       { speaker: 'DEFENSA', text: '¿Que usted... lo puso? Sargento, eso se llama alterar la escena.', pose: 'donramon_shock', sfx: 'realization', addEvidence: 'microfono_oro' }
     ]
   },
@@ -54,7 +54,7 @@ export const CABINA_HOTSPOTS: Hotspot[] = [
     label: 'Alfombra del Pasillo',
     x: 4, y: 62, w: 24, h: 22,
     dialogue: [
-      { speaker: 'DEFENSA', text: 'Dos rayas de grasa negra... del despacho a la Cabina B. Y un hilo de casimir gris.', pose: 'donramon_point', sfx: 'realization', addEvidence: 'marcas_carrito' }
+      { speaker: 'DEFENSA', text: 'Dos rayas de grasa negra... del despacho a la Cabina B. Y un hilo de casimir café.', pose: 'donramon_point', sfx: 'realization', addEvidence: 'marcas_carrito' }
     ]
   }
 ];

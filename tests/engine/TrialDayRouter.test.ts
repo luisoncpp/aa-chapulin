@@ -12,10 +12,10 @@ import type { CaseScript } from '../../src/types/index.js';
 
 const fakeDay3Script: CaseScript = {
   id: 'case3',
-  startLocation: 'centro_detencion',
+  startLocation: 'detention',
   requiredEvidence: ['lentes_barriga'],
   debugEvidence: ['lentes_barriga'],
-  debugUnlockLocations: ['centro_detencion'],
+  debugUnlockLocations: ['detention'],
   investigation: {},
   trial: {
     intro: [{ text: 'day1 intro' }],

@@ -8,24 +8,6 @@ import type { CaseId, EvidenceCatalogMap, Language } from '../../types/index.js'
 import { CASE2_EVIDENCE_EN, CASE2_EVIDENCE_ES } from './EvidenceCatalogCase2.js';
 import { CASE3_EVIDENCE_EN, CASE3_EVIDENCE_ES } from './EvidenceCatalogCase3.js';
 
-const CASE1_INSIGNIA_ES = {
-  insignia_abogado: {
-    id: 'insignia_abogado' as const,
-    name: 'Insignia de Abogado CH',
-    icon: 'assets/insignia_abogado.png',
-    desc: 'Insignia del Abogado Defensor. Don Ramón la porta con orgullo para defender al Chapulín (¡y pagar la renta!).'
-  }
-};
-
-const CASE1_INSIGNIA_EN = {
-  insignia_abogado: {
-    id: 'insignia_abogado' as const,
-    name: "Attorney's Badge CH",
-    icon: 'assets/insignia_abogado.png',
-    desc: 'Defense Attorney Badge. Don Ramón wears it proudly to defend El Chapulín (and pay his 14 months of rent!).'
-  }
-};
-
 // @Section(Spanish Evidence Catalog)
 // fallow-ignore-next-line unused-export
 export const EVIDENCE_CATALOG_ES: EvidenceCatalogMap = {
@@ -144,9 +126,7 @@ export const EVIDENCE_CATALOG: EvidenceCatalogMap = EVIDENCE_CATALOG_ES;
 
 export function getEvidenceCatalog(lang: Language = 'es', caseId?: CaseId): EvidenceCatalogMap {
   if (caseId === 'case3') {
-    const insignia = lang === 'en' ? CASE1_INSIGNIA_EN : CASE1_INSIGNIA_ES;
-    const case3 = lang === 'en' ? CASE3_EVIDENCE_EN : CASE3_EVIDENCE_ES;
-    return { ...insignia, ...case3 } as EvidenceCatalogMap;
+    return (lang === 'en' ? CASE3_EVIDENCE_EN : CASE3_EVIDENCE_ES) as EvidenceCatalogMap;
   }
   return lang === 'en' ? EVIDENCE_CATALOG_EN : EVIDENCE_CATALOG_ES;
 }

@@ -18,7 +18,7 @@ export const CASE3_CLIMAX_STAGE2: DialogueLine[] = [
   { speaker: 'NARRADOR', text: '(De la bocina sale la voz del doctor recomendando el té de manzanilla... y por debajo, lejano, "...se ha perdido un niño de cachetes muy grandes...")', sfx: 'realization' },
   { speaker: 'JUEZ', text: '¡El mismo aviso! ¡En la cinta del acusado!', pose: 'judge_shock' },
   { speaker: 'DEFENSA', text: 'A las 9:40 en punto, mi cliente estaba hablando de la manzanilla en la Cabina B, y quedó grabado haciéndolo. No pudo estar en dos cabinas a la vez.', pose: 'donramon_idle' },
-  { speaker: 'DEFENSA', text: '¡Y sólo había otra cabina ocupada esa noche! ¡La Cabina A!', pose: 'donramon_point' },
+  { speaker: 'DEFENSA', text: 'La bitácora lo dice: a las 9:40 la Cabina C todavía estaba vacía. La Chimoltrufia no entra a grabar horóscopos hasta las diez. ¡Sólo había otra cabina ocupada a esa hora! ¡La Cabina A!', pose: 'donramon_point' },
   { speaker: 'SUPER SAM', text: '...Y en la Cabina A, de 9:30 a 10:00, según la bitácora, estaba grabándose...', pose: 'supersam_sweat' },
   { speaker: 'CHAPULIN', text: '¡El sketch de los jueves!', pose: 'chapulin_point' }
 ];

@@ -26,6 +26,7 @@ export type EvidenceId =
   | 'frasco_valeriana'
   | 'molde_cera'
   | 'lata_grasa'
+  | 'informe_barriga'
   | 'lentes_barriga'
   | 'microfono_oro'
   | 'bolsa_papel'

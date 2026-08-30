@@ -17,7 +17,7 @@ export const CASE3_CLIMAX_CHOICES_EN: ChoicePrompt[] = [
     correctId: 'prove_voice',
     failDialogue: [
       { speaker: 'DEFENSA', text: 'Well... he should confess, Your Honor! Confess already!', pose: 'donramon_sweat' },
-      { speaker: 'ANICETO', text: 'Gladly I confess... that I am outraged.', pose: 'aniceto_terciopelo' },
+      { speaker: 'ANICETO', text: 'Gladly I confess... that I am outraged.', pose: 'aniceto_sweat' },
       { speaker: 'JUEZ', text: 'Counselor, this court does not run on wishes. Penalty!', pose: 'judge_gavel', sfx: 'damage' }
     ],
     successDialogue: [
@@ -37,7 +37,7 @@ export const CASE3_CLIMAX_CHOICES_EN: ChoicePrompt[] = [
     correctId: 'proverb_trap',
     failDialogue: [
       { speaker: 'DEFENSA', text: 'Wouldn\'t you do a little voice for us, pretty please?', pose: 'donramon_sweat' },
-      { speaker: 'ANICETO', text: 'Counselor, I have twenty-five years of career and you have a dented badge.', pose: 'aniceto_terciopelo' },
+      { speaker: 'ANICETO', text: 'Counselor, I have twenty-five years of career and you have a dented badge.', pose: 'aniceto_panic' },
       { speaker: 'JUEZ', text: 'Do not clown in my courtroom!', pose: 'judge_gavel', sfx: 'damage' }
     ],
     successDialogue: [

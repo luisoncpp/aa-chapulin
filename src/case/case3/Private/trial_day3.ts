@@ -46,18 +46,18 @@ export const CASE3_TESTIMONY_5: Testimony = {
       pressText: [
         { speaker: 'DEFENSA', text: '¡UN MOMENTO!', cutin: 'objection_un_momento', sfx: 'whoosh', pose: 'donramon_point' },
         { speaker: 'DEFENSA', text: '¿A quién le confió el secreto del faltante?', pose: 'donramon_idle' },
-        { speaker: 'BARRIGA', text: 'Se lo dije a las ocho de la noche, en mi despacho, mientras guardaba el Libro Verde en la caja fuerte.', pose: 'barriga_vendado' }
+        { speaker: 'BARRIGA', text: 'Se lo dije a las ocho de la noche, en mi despacho, mientras guardaba el Libro Verde en la caja fuerte. Me acuerdo clarito porque él me detuvo la puerta mientras yo marcaba la combinación.', pose: 'barriga_vendado' }
       ]
     },
     {
       id: 'stmt5_3b',
       speaker: 'BARRIGA',
       pose: 'barriga_vendado',
-      text: 'Me acuerdo clarito porque él me detuvo la puerta mientras yo marcaba la combinación.',
+      text: 'Se lo dije a las ocho, en mi despacho, mientras él me detenía la puerta y yo marcaba la combinación.',
       unlockedBy: 'stmt5_3',
       pressText: [
         { speaker: 'DEFENSA', text: '(Una sola persona sabía del faltante. Una sola persona vio la combinación. Y esa persona apareció amarrada.)', pose: 'donramon_idle' },
-        { speaker: 'CHAPULIN', text: '(¡Monchito! ¡Pero si esa persona es la víctima número dos!)', pose: 'chapulin_thinking' },
+        { speaker: 'CHAPULIN', text: '(¡Monchito! ¡Pero si esa persona es la víctima número dos!)', pose: 'chapulin_idle' },
         { speaker: 'DEFENSA', text: '(Por eso mismo, Chapulín. Por eso a nadie se le ocurrió mirarla.)', pose: 'donramon_idle' }
       ]
     },

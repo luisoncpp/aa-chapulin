@@ -17,7 +17,7 @@ export const CASE3_KERMES: InvestigationScene = {
     { speaker: 'DEFENSA', text: 'A un doctor de ochenta años, doña Florinda.', pose: 'donramon_idle' },
     { speaker: 'FLORINDA', text: '...Setenta y nueve. Se lo pregunté una vez y casi me mata con la bolsa.', pose: 'florinda_idle' },
     { speaker: 'JIRAFALES', text: 'Yo di el Grito a las once en punto, Licenciado. A las once y tres minutos, las bocinas de la estación transmitieron ese alarido espantoso. Lo oímos DOS MIL personas.', pose: 'jirafales_smoking' },
-    { speaker: 'ANICETO', text: 'Muy buenas tardes tengan todos ustedes... Aniceto Rebollar, veinticinco años al servicio de esta vecindad. Perdonen si aún hablo despacito: anoche estuve amordazado tres cuartos de hora.', pose: 'aniceto_terciopelo' },
+    { speaker: 'ANICETO', text: 'Muy buenas tardes tengan todos ustedes... Aniceto Rebollar, veinticinco años al servicio de esta vecindad. Perdonen si aún hablo despacito: anoche estuve amordazado veinte minutos que se me hicieron una eternidad.', pose: 'aniceto_idle' },
     { speaker: 'CHAPULIN', text: '¡Pobre señor! Pero no se apure, que perro que ladra... no muerde, porque no puede hacer las dos cosas al mismo tiempo.', pose: 'chapulin_idle' },
     { speaker: 'ANICETO', text: 'Permítame, joven: es "perro que ladra no muerde". La dicción, ante todo. Veinticinco años corrigiendo micrófonos, ya es enfermedad.', pose: 'aniceto_thinking' },
     { speaker: 'DEFENSA', text: '(Este señor corrige hasta a un superhéroe. Qué manía.)', pose: 'donramon_sweat' }
@@ -42,6 +42,16 @@ export const CASE3_KERMES: InvestigationScene = {
   ],
   talkOptions: [
     {
+      id: 'about_programa',
+      label: 'Su programa de anoche',
+      dialogue: [
+        { speaker: 'JIRAFALES', text: 'Tenga usted mi libreto, Licenciado. Ahí está minuto por minuto todo lo que se anunció por estas bocinas.', pose: 'jirafales_idle', addEvidence: 'programa_kermes' },
+        { speaker: 'DEFENSA', text: '¿Minuto por minuto, profesor?', pose: 'donramon_idle' },
+        { speaker: 'JIRAFALES', text: '¡¡¡TA-TA-TA-TA-TAAAAAA!!! ¡Un maestro de ceremonias sin minutario es un charlatán con micrófono!', pose: 'jirafales_angry' },
+        { speaker: 'DEFENSA', text: '(Nueve cuarenta: el aviso del niño perdido. Papeles que no le sirven a nadie. Como todos los que me tocan a mí.)', pose: 'donramon_sweat' }
+      ]
+    },
+    {
       id: 'about_barriga_plaza',
       label: '¿Vieron al Señor Barriga anoche?',
       dialogue: [
@@ -56,7 +66,7 @@ export const CASE3_KERMES: InvestigationScene = {
       label: 'Sobre don Aniceto',
       dialogue: [
         { speaker: 'FLORINDA', text: 'Es el hombre más querido del barrio. Veinticinco años de voz de oro. ¡Ni se le ocurra sospechar de él!', pose: 'florinda_angry' },
-        { speaker: 'ANICETO', text: 'Usted es muy amable, doña Florinda. Yo sólo quiero que atrapen a quien me dejó amarrado como un long play.', pose: 'aniceto_terciopelo' },
+        { speaker: 'ANICETO', text: 'Usted es muy amable, doña Florinda. Yo sólo quiero que atrapen a quien me dejó amarrado como un long play.', pose: 'aniceto_idle' },
         { speaker: 'DEFENSA', text: '(Nadie mira dos veces a este señor. Anotado... por si acaso.)', pose: 'donramon_idle' }
       ]
     }

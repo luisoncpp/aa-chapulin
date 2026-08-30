@@ -39,7 +39,7 @@ export const CASE3_TESTIMONY_3_EN: Testimony = {
       text: 'I\'m the operator. That night I ran the console through the whole Grito.',
       pressText: [
         { speaker: 'DEFENSA', text: 'HOLD IT!', cutin: 'objection_un_momento', sfx: 'whoosh', pose: 'donramon_point' },
-        { speaker: 'NONO', text: '...Okay. At eleven sharp Don Aniceto sent me to the roof to move the antenna, because El Grito was coming through with static. I came down at 11:06.', pose: 'nono_llorando' },
+        { speaker: 'NONO', text: '...Okay. At ten fifty-three Don Aniceto told me to go up to the roof at eleven sharp and move the antenna, because El Grito was coming through with static. I came down at 11:06.', pose: 'nono_llorando' },
         { speaker: 'DEFENSA', text: 'So the console was ALONE at the exact minute of the scream?', pose: 'donramon_idle' },
         { speaker: 'SUPER SAM', text: 'Objection! That helps the prosecution! An empty console is a console anyone could use!', pose: 'supersam_slam', sfx: 'desk_slam' },
         { speaker: 'DEFENSA', text: '(Or a console that needed nobody...)', pose: 'donramon_idle' }
@@ -49,7 +49,7 @@ export const CASE3_TESTIMONY_3_EN: Testimony = {
       id: 'stmt3_1b',
       speaker: 'NONO',
       pose: 'nono_llorando',
-      text: 'At eleven sharp Don Aniceto sent me to the roof — I was gone until 11:06.',
+      text: 'At ten fifty-three Don Aniceto told me to go up to the roof at eleven. I was gone until 11:06.',
       unlockedBy: 'stmt3_1',
       pressText: [
         { speaker: 'DEFENSA', text: 'HOLD IT!', cutin: 'objection_un_momento', sfx: 'whoosh', pose: 'donramon_point' },

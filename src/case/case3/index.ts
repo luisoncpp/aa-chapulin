@@ -58,7 +58,7 @@ interface Case3Parts {
 function assembleCase3(parts: Case3Parts): CaseScript {
   return {
     id: 'case3',
-    startLocation: 'centro_detencion',
+    startLocation: 'detention',
     requiredEvidence: CASE3_DAY1_EVIDENCE,
     debugEvidence: CASE3_DEBUG_EVIDENCE,
     debugUnlockLocations: CASE3_DAY1_UNLOCK,
@@ -85,7 +85,7 @@ function assembleCase3(parts: Case3Parts): CaseScript {
 }
 
 const SCENES_ES: CaseScript['investigation'] = {
-  centro_detencion: CASE3_DETENTION,
+  detention: CASE3_DETENTION,
   cabina_radio: CASE3_CABINA,
   plaza_kermes: CASE3_KERMES,
   despacho_barriga: CASE3_DESPACHO,
@@ -93,11 +93,11 @@ const SCENES_ES: CaseScript['investigation'] = {
   delegacion: CASE3_DELEGACION,
   bodega_radio: CASE3_BODEGA,
   delegacion_d3: CASE3_DELEGACION_D3,
-  centro_detencion_d3: CASE3_DETENTION_D3
+  detention_d3: CASE3_DETENTION_D3
 };
 
 const SCENES_EN: CaseScript['investigation'] = {
-  centro_detencion: CASE3_DETENTION_EN,
+  detention: CASE3_DETENTION_EN,
   cabina_radio: CASE3_CABINA_EN,
   plaza_kermes: CASE3_KERMES_EN,
   despacho_barriga: CASE3_DESPACHO_EN,
@@ -105,7 +105,7 @@ const SCENES_EN: CaseScript['investigation'] = {
   delegacion: CASE3_DELEGACION_EN,
   bodega_radio: CASE3_BODEGA_EN,
   delegacion_d3: CASE3_DELEGACION_D3_EN,
-  centro_detencion_d3: CASE3_DETENTION_D3_EN
+  detention_d3: CASE3_DETENTION_D3_EN
 };
 
 export const CASE_SCRIPT_CASE3_ES: CaseScript = assembleCase3({

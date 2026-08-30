@@ -7,6 +7,7 @@ import type { DialogueLine } from '../../../types/index.js';
 
 export const CASE3_T1_SUCCESS: DialogueLine[] = [
   { cutin: 'objection_protesto', speaker: 'DEFENSA', text: '¡PROTESTO! ¡Sargento, esa cabina no está como la dejó el criminal, porque el criminal nunca estuvo ahí!', sfx: 'whoosh', bgm: 'objection', pose: 'donramon_point' },
+  { speaker: 'SARGENTO', text: 'Y... y ahí junto al doctor estaba tirada su bolsa de papel, mi Licenciado. Con la jeringa recién usada adentro.', pose: 'pazguato_sweat', addEvidence: 'bolsa_papel' },
   { speaker: 'DEFENSA', text: '¡A estos lentes les falta el cristal derecho! Se rompieron con el golpe... ¿y dónde está el vidrio? ¡En esa cabina no hay ni una esquirla!', sfx: 'desk_slam', pose: 'donramon_slam' },
   { speaker: 'JUEZ', text: '¡Cáspita! ¡Los lentes se rompieron en otra parte!', pose: 'judge_shock' },
   { speaker: 'DEFENSA', text: 'Y hay más. El informe médico reporta FIBRAS ROJAS DE LANA en el cabello y el cuello de la víctima. El piso de la Cabina B es linóleo gris. ¡Ahí no hay una sola hebra roja!', pose: 'donramon_point' },

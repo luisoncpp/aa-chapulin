@@ -31,13 +31,14 @@ describe('EvidenceUpdateStages', () => {
     expect(state.getEvidenceDesc('lentes_barriga')).toContain('cristal apareció');
   });
 
-  it('uses case3 catalog without overwriting case1 informe_medico in default catalog', () => {
+  it('gives case3 its own informe_barriga instead of reusing case1 informe_medico', () => {
     const defaultState = new GameStateManager();
     expect(defaultState.allEvidence.informe_medico?.name).toContain('Alma Negra');
 
     const case3State = new GameStateManager();
     case3State.beginNewCase(getCaseScript('es', 'case3'));
-    expect(case3State.allEvidence.informe_medico?.name).toContain('Barriga');
+    expect(case3State.allEvidence.informe_barriga?.name).toContain('Barriga');
+    expect(case3State.allEvidence.informe_medico).toBeUndefined();
   });
 
   it('persists evidenceUpdateStage in save data', () => {

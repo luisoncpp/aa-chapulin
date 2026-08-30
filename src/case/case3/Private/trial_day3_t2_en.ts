@@ -56,7 +56,7 @@ export const CASE3_TESTIMONY_6_EN: Testimony = {
       unlockedBy: 'stmt6_2',
       pressText: [
         { speaker: 'DEFENSA', text: 'HOLD IT!', cutin: 'objection_un_momento', sfx: 'whoosh', pose: 'donramon_point' },
-        { speaker: 'ANICETO', text: 'Soundproof. Sealed. Everyone in radio knows that.', pose: 'aniceto_terciopelo' }
+        { speaker: 'ANICETO', text: 'Soundproof. Sealed. Everyone in radio knows that.', pose: 'aniceto_sweat' }
       ],
       contradiction: {
         evidence: ['ventana_cabina', 'cartucho_corte'],

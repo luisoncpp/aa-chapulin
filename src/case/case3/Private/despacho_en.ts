@@ -13,10 +13,10 @@ export const CASE3_DESPACHO_EN: InvestigationScene = {
   speaker: 'NARRADOR',
   intro: [
     { speaker: 'NARRADOR', text: 'September 17, 9:30 AM. Administration office, court seals on the door.' },
-    { speaker: 'ANICETO', text: 'Come in, Counselor. They asked me to open it — I\'m treasurer of the kermés... though I confess my hands shake coming in here.', pose: 'aniceto_terciopelo' },
+    { speaker: 'ANICETO', text: 'Come in, Counselor. They asked me to open it — I\'m treasurer of the kermés... though I confess my hands shake coming in here.', pose: 'aniceto_idle' },
     { speaker: 'DEFENSA', text: 'You keep the fund\'s books?', pose: 'donramon_idle' },
-    { speaker: 'ANICETO', text: 'I keep them, I sign them, and I weep over them. Twenty-five years. This station runs on affection and cables tied with string.', pose: 'aniceto_terciopelo' },
-    { speaker: 'CHAPULIN', text: 'Incredible! No wonder they say el que mucho abarca... poco aprieta el cinturón.', pose: 'chapulin_thinking' },
+    { speaker: 'ANICETO', text: 'I keep them, I sign them, and I weep over them. Twenty-five years. This station runs on affection and cables tied with string.', pose: 'aniceto_idle' },
+    { speaker: 'CHAPULIN', text: 'Incredible! No wonder they say el que mucho abarca... poco aprieta el cinturón.', pose: 'chapulin_idle' },
     { speaker: 'ANICETO', text: '"El que mucho abarca, poco aprieta," young man. No belt. Forgive me — I simply cannot help it.', pose: 'aniceto_thinking' }
   ],
   hotspots: [
@@ -45,7 +45,7 @@ export const CASE3_DESPACHO_EN: InvestigationScene = {
       x: 8, y: 28, w: 22, h: 38,
       dialogue: [
         { speaker: 'CHAPULIN', text: 'They stole a page and smoked it!', pose: 'chapulin_panic' },
-        { speaker: 'DEFENSA', text: 'They burned it, Chapulín. Someone didn\'t want September 12 read... and that someone knew the combination.', pose: 'donramon_point', sfx: 'realization', addEvidence: 'libro_verde', unlockLocation: 'clinica_chapatin' }
+        { speaker: 'DEFENSA', text: 'They burned it, Chapulín. And there isn\'t a single bill in that safe, because the Fund is never kept in cash. They didn\'t come for money. They came for a page... and that someone knew the combination.', pose: 'donramon_point', sfx: 'realization', addEvidence: 'libro_verde', unlockLocation: 'clinica_chapatin' }
       ]
     }
   ],
@@ -54,7 +54,7 @@ export const CASE3_DESPACHO_EN: InvestigationScene = {
       id: 'about_tesoro',
       label: 'About the Kermés Fund',
       dialogue: [
-        { speaker: 'ANICETO', text: 'I signed the Green Book. Every peso, every missing peso... and last night they tore out the page that hurt most.', pose: 'aniceto_terciopelo' },
+        { speaker: 'ANICETO', text: 'I signed the Green Book. Every peso, every missing peso... and last night they tore out the page that hurt most.', pose: 'aniceto_idle' },
         { speaker: 'DEFENSA', text: '(Who else knew that safe\'s combination?)', pose: 'donramon_idle' }
       ]
     }

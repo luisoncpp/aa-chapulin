@@ -17,7 +17,7 @@ export const CASE3_KERMES_EN: InvestigationScene = {
     { speaker: 'DEFENSA', text: 'An eighty-year-old doctor, Doña Florinda.', pose: 'donramon_idle' },
     { speaker: 'FLORINDA', text: '...Seventy-nine. I asked once and he nearly killed me with the bag.', pose: 'florinda_idle' },
     { speaker: 'JIRAFALES', text: 'I gave El Grito at eleven sharp, Counselor. At eleven-oh-three the station speakers blasted that horrifying scream. TWO THOUSAND of us heard it.', pose: 'jirafales_smoking' },
-    { speaker: 'ANICETO', text: 'Muy buenas tardes tengan todos ustedes... Aniceto Rebollar, twenty-five years serving this neighborhood. Forgive me if I still speak softly: last night I was gagged for three quarters of an hour.', pose: 'aniceto_terciopelo' },
+    { speaker: 'ANICETO', text: 'Muy buenas tardes tengan todos ustedes... Aniceto Rebollar, twenty-five years serving this neighborhood. Forgive me if I still speak softly: last night I was gagged for twenty minutes that felt like an eternity.', pose: 'aniceto_idle' },
     { speaker: 'CHAPULIN', text: 'Poor gentleman! But don\'t worry — perro que ladra... no muerde, porque no puede hacer las dos cosas al mismo tiempo.', pose: 'chapulin_idle' },
     { speaker: 'ANICETO', text: 'Allow me, young man: it\'s "perro que ladra no muerde." Diction first. Twenty-five years correcting microphones — it\'s a disease by now.', pose: 'aniceto_thinking' },
     { speaker: 'DEFENSA', text: '(This man corrects even a superhero. What a mania.)', pose: 'donramon_sweat' }
@@ -42,6 +42,16 @@ export const CASE3_KERMES_EN: InvestigationScene = {
   ],
   talkOptions: [
     {
+      id: 'about_programa',
+      label: 'Your rundown from last night',
+      dialogue: [
+        { speaker: 'JIRAFALES', text: 'Take my script, Counselor. Minute by minute, everything announced over these speakers.', pose: 'jirafales_idle', addEvidence: 'programa_kermes' },
+        { speaker: 'DEFENSA', text: 'Minute by minute, Professor?', pose: 'donramon_idle' },
+        { speaker: 'JIRAFALES', text: '¡¡¡TA-TA-TA-TA-TAAAAAA!!! A master of ceremonies without a rundown is a charlatan with a microphone!', pose: 'jirafales_angry' },
+        { speaker: 'DEFENSA', text: '(Nine-forty: the lost-child notice. Papers nobody needs. Like every paper I ever get.)', pose: 'donramon_sweat' }
+      ]
+    },
+    {
       id: 'about_barriga_plaza',
       label: 'Did you see Señor Barriga last night?',
       dialogue: [
@@ -56,7 +66,7 @@ export const CASE3_KERMES_EN: InvestigationScene = {
       label: 'About Don Aniceto',
       dialogue: [
         { speaker: 'FLORINDA', text: 'He\'s the most beloved man in the barrio. Twenty-five years of golden voice. Don\'t you dare suspect him!', pose: 'florinda_angry' },
-        { speaker: 'ANICETO', text: 'You\'re very kind, Doña Florinda. I only want them to catch whoever left me tied up like a long-play record.', pose: 'aniceto_terciopelo' },
+        { speaker: 'ANICETO', text: 'You\'re very kind, Doña Florinda. I only want them to catch whoever left me tied up like a long-play record.', pose: 'aniceto_idle' },
         { speaker: 'DEFENSA', text: '(Nobody looks at this gentleman twice. Noted... just in case.)', pose: 'donramon_idle' }
       ]
     }

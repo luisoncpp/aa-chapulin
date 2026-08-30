@@ -51,7 +51,7 @@ const BODEGA_HOTSPOTS_EN: Hotspot[] = [
     dialogue: [
       { speaker: 'CHAPULIN', text: 'It\'s Señor Barriga\'s voice! He\'s alive and talking!', pose: 'chapulin_point' },
       { speaker: 'DEFENSA', text: 'It\'s the Thursday sketch, Chapulín. An actor imitating the landlord. It\'s been on air for years and the whole neighborhood laughs.', pose: 'donramon_idle', addEvidence: 'cinta_sketch' },
-      { speaker: 'DEFENSA', text: '(...An actor imitating the landlord. An actor. Imitating. The landlord.)', pose: 'donramon_shock', sfx: 'realization', unlockLocation: 'delegacion_d3' }
+      { speaker: 'DEFENSA', text: '(...An actor imitating the landlord. An actor. Imitating. The landlord.)', pose: 'donramon_shock', sfx: 'realization', unlockLocation: 'detention_d3' }
     ]
   }
 ];
@@ -65,7 +65,7 @@ export const CASE3_BODEGA_EN: InvestigationScene = {
   intro: [
     { speaker: 'NARRADOR', text: 'September 18, 7:00 AM. XEVC storeroom: cables, dust, and a door to Cabina A.' },
     { speaker: 'DEFENSA', text: 'This is where they found Don Aniceto tied up. Let\'s check every corner.', pose: 'donramon_idle' },
-    { speaker: 'CHAPULIN', text: 'My vinyl antennae are already trembling!', pose: 'chapulin_thinking' }
+    { speaker: 'CHAPULIN', text: 'My vinyl antennae are already trembling!', pose: 'chapulin_idle' }
   ],
   hotspots: BODEGA_HOTSPOTS_EN,
   talkOptions: [
@@ -73,7 +73,7 @@ export const CASE3_BODEGA_EN: InvestigationScene = {
       id: 'about_amarrado',
       label: 'About Aniceto\'s bonds',
       dialogue: [
-        { speaker: 'DEFENSA', text: 'Three quarters of an hour gagged... and the dust shows no struggle. That doesn\'t add up.', pose: 'donramon_point' },
+        { speaker: 'DEFENSA', text: 'Twenty minutes gagged... and the dust shows no struggle. That doesn\'t add up.', pose: 'donramon_point' },
         { speaker: 'CHAPULIN', text: '¡Lo sospeché desde un principio!', pose: 'chapulin_point' }
       ]
     }

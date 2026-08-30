@@ -51,7 +51,7 @@ export const BODEGA_HOTSPOTS: Hotspot[] = [
     dialogue: [
       { speaker: 'CHAPULIN', text: '¡Es la voz del señor Barriga! ¡Está vivo y hablando!', pose: 'chapulin_point' },
       { speaker: 'DEFENSA', text: 'Es el sketch de los jueves, Chapulín. Un actor imitando al casero. Lleva años al aire y a toda la vecindad le da risa.', pose: 'donramon_idle', addEvidence: 'cinta_sketch' },
-      { speaker: 'DEFENSA', text: '(...Un actor imitando al casero. Un actor. Imitando. Al casero.)', pose: 'donramon_shock', sfx: 'realization', unlockLocation: 'delegacion_d3' }
+      { speaker: 'DEFENSA', text: '(...Un actor imitando al casero. Un actor. Imitando. Al casero.)', pose: 'donramon_shock', sfx: 'realization', unlockLocation: 'detention_d3' }
     ]
   }
 ];

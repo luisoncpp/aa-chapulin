@@ -39,17 +39,19 @@ export const CASE3_TESTIMONY_2: Testimony = {
       pressText: [
         { speaker: 'DEFENSA', text: '¡UN MOMENTO!', cutin: 'objection_un_momento', sfx: 'whoosh', pose: 'donramon_point' },
         { speaker: 'DEFENSA', text: '¿Nadie más pasó por ese pasillo en toda la noche?', pose: 'donramon_idle' },
-        { speaker: 'CHIMOLTRUFIA', text: 'Pasar-pasar nadie... pero como a las once menos cuarto oí rechinar las ruedas del carrito de los discos.', pose: 'chimoltrufia_confundida' }
+        { speaker: 'CHIMOLTRUFIA', text: 'Bueno, pasar-pasar nadie... pero como a las diez cincuenta oí rechinar las ruedas del carrito de los discos. Ha de haber sido el conserje llevando discos, ¡bien cargadito que iba!', pose: 'chimoltrufia_confundida' },
+        { speaker: 'DEFENSA', text: '(Ahí está. A las 10:50 alguien empujaba algo pesado por ese pasillo... y el doctor ya se había ido a las 10:40.)', pose: 'donramon_idle' }
       ]
     },
     {
       id: 'stmt2_3b',
       speaker: 'CHIMOLTRUFIA',
       pose: 'chimoltrufia_confundida',
-      text: 'Ha de haber sido el conserje llevando discos, ¡bien cargadito que iba!',
+      text: 'Como a las diez cincuenta oí el carrito de los discos. Ha de haber sido el conserje, ¡bien cargadito que iba!',
       unlockedBy: 'stmt2_3',
       pressText: [
-        { speaker: 'DEFENSA', text: '(Ahí está. A las 10:45 alguien empujaba algo pesado por ese pasillo... y el doctor ya se había ido a las 10:40.)', pose: 'donramon_idle' }
+        { speaker: 'DEFENSA', text: '¡UN MOMENTO!', cutin: 'objection_un_momento', sfx: 'whoosh', pose: 'donramon_point' },
+        { speaker: 'CHIMOLTRUFIA', text: '¡Bien cargadito, le digo! ¡Ay, qué la canción!', pose: 'chimoltrufia_shock' }
       ],
       contradiction: { evidence: ['marcas_carrito'], successDialogue: CASE3_T2_SUCCESS }
     },

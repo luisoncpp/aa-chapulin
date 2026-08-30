@@ -26,14 +26,14 @@ export const CASE3_TESTIMONY_3: Testimony = {
       pressText: [
         { speaker: 'DEFENSA', text: '¡UN MOMENTO!', cutin: 'objection_un_momento', sfx: 'whoosh', pose: 'donramon_point' },
         { speaker: 'DEFENSA', text: '¿Estuvo usted frente a la consola todo el rato?', pose: 'donramon_idle' },
-        { speaker: 'NONO', text: '...Bueno.', pose: 'nono_llorando' }
+        { speaker: 'NONO', text: '...Bueno. A las diez cincuenta y tres don Aniceto me dijo que a las once en punto subiera a la azotea a mover la antena, porque el Grito se estaba oyendo con estática. Bajé hasta las 11:06.', pose: 'nono_llorando' }
       ]
     },
     {
       id: 'stmt3_1b',
       speaker: 'NONO',
       pose: 'nono_llorando',
-      text: 'A las once en punto don Aniceto me mandó a la azotea a mover la antena, porque el Grito se estaba oyendo con estática. Bajé hasta las 11:06.',
+      text: 'A las diez cincuenta y tres don Aniceto me dijo que a las once subiera a la azotea. Bajé hasta las 11:06.',
       unlockedBy: 'stmt3_1',
       pressText: [
         { speaker: 'DEFENSA', text: '¿Entonces la consola estuvo SOLA justo en el minuto del grito?', pose: 'donramon_idle' },

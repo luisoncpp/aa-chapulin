@@ -30,7 +30,7 @@ SHEETS = [
     ("pazguato_sprites_raw.png",
      ["pazguato_idle", "pazguato_saludo", "pazguato_sweat", "pazguato_decidido"]),
     ("aniceto_sprites_raw.png",
-     ["aniceto_terciopelo", "aniceto_thinking", "aniceto_sweat", "aniceto_panic"]),
+     ["aniceto_idle", "aniceto_thinking", "aniceto_sweat", "aniceto_panic"]),
     ("barriga_sprites_raw.png",
      ["barriga_idle", "barriga_vendado", "barriga_shock", "barriga_enojado"]),
     ("nono_sprites_raw.png",
@@ -58,6 +58,9 @@ EV_B = [
     (2, 0, "cartucho_corte.png"),
     (0, 1, "cinta_sketch.png"),
     (1, 1, "boleta_empeno.png"),
+    # Case 3 has its own medical report; informe_medico.png is Case 1 art
+    # (Alma Negra's coin sack) and must not be reused. See spec section 17.
+    (2, 1, "informe_barriga.png"),
 ]
 
 BGS = [

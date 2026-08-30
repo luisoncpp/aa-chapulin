@@ -12,18 +12,18 @@ export const CASE3_DELEGACION_D3_EN: InvestigationScene = {
   bgm: 'investigation',
   speaker: 'NARRADOR',
   intro: [
-    { speaker: 'NARRADOR', text: 'September 18, 8:00 AM. The sergeant hasn\'t changed uniforms. And doesn\'t plan to.' },
-    { speaker: 'PAZGUATO', text: '¡Mi Licenciado! All night in the station trash bins! Eight hours! With these little hands!', pose: 'pazguato_decidido' },
+    { speaker: 'NARRADOR', text: 'September 18, 4:00 PM. The sergeant hasn\'t changed uniforms since last night. And doesn\'t plan to.' },
+    { speaker: 'SARGENTO', text: '¡Mi Licenciado! All night in the station trash bins! Eight hours! With these little hands!', pose: 'pazguato_decidido' },
     { speaker: 'CHAPULIN', text: 'And with my vinyl antennae! They vibrated nasty over the alley bin!', pose: 'chapulin_point' },
-    { speaker: 'PAZGUATO', text: 'There it was, mi Licenciado. Under the peels. Cartridge three.', pose: 'pazguato_decidido', addEvidence: 'cartucho_corte' },
+    { speaker: 'SARGENTO', text: 'There it was, mi Licenciado. Under the peels. Cartridge three.', pose: 'pazguato_decidido', addEvidence: 'cartucho_corte' },
     { speaker: 'NARRADOR', text: '(They put the cartridge in the machine. The room goes silent.)', sfx: 'realization' },
     { speaker: 'BARRIGA', text: '¡Doctor Chapatín, no! ¡Auxilio! ...' },
     { speaker: 'DEFENSA', text: 'Again. Turn up what\'s BEHIND the voice.', pose: 'donramon_shock' },
     { speaker: 'NARRADOR', text: '(Under the scream, distant and raspy, a plaza speaker:) "...se ha perdido un niño de cachetes muy grandes..."' },
     { speaker: 'CHAPULIN', text: 'That\'s Quico\'s notice! From the Professor\'s script! Nine-forty at night!', pose: 'chapulin_panic' },
     { speaker: 'DEFENSA', text: 'At 9:40 Señor Barriga was in the plaza, alive, helping search for the boy — in front of Doña Florinda and the Professor!', pose: 'donramon_slam', updateEvidence: 'cartucho_corte' },
-    { speaker: 'DEFENSA', text: 'So at 9:40, while Señor Barriga hunted Quico in the plaza... SOMEONE was recording his voice in a booth.', pose: 'donramon_point' },
-    { speaker: 'PAZGUATO', text: 'What does that mean, mi Licenciado?', pose: 'pazguato_sweat' },
+    { speaker: 'DEFENSA', text: 'So at 9:40, while Señor Barriga hunted Quico in the plaza... SOMEONE was recording his voice IN A BOOTH. These station-ID cartridges are only cut plugged into the console desk. No fairground recorder leaves this format.', pose: 'donramon_point' },
+    { speaker: 'SARGENTO', text: 'What does that mean, mi Licenciado?', pose: 'pazguato_sweat' },
     { speaker: 'DEFENSA', text: 'That the voice on this cartridge, Sergeant, was never Señor Barriga\'s.', pose: 'donramon_idle' }
   ],
   hotspots: [
@@ -41,7 +41,7 @@ export const CASE3_DELEGACION_D3_EN: InvestigationScene = {
       id: 'about_empeno',
       label: 'About the Golden Microphone',
       dialogue: [
-        { speaker: 'PAZGUATO', text: 'And while I was at it I went to the Monte de Piedad, mi Licenciado. That microphone was pawned since June. Redeemed September 3. Twelve thousand pesos. Cash.', pose: 'pazguato_decidido', addEvidence: 'boleta_empeno', updateEvidence: 'microfono_oro' },
+        { speaker: 'SARGENTO', text: 'And while I was at it I went to the Monte de Piedad, mi Licenciado. That microphone was pawned since June. Redeemed September 3. Twelve thousand pesos. Cash.', pose: 'pazguato_decidido', addEvidence: 'boleta_empeno', updateEvidence: 'microfono_oro' },
         { speaker: 'DEFENSA', text: 'And where does a neighborhood radio announcer get twelve thousand pesos in cash?', pose: 'donramon_idle' }
       ]
     },
@@ -49,8 +49,8 @@ export const CASE3_DELEGACION_D3_EN: InvestigationScene = {
       id: 'about_libro_verde',
       label: 'Pencil rubbing of the Green Book',
       dialogue: [
-        { speaker: 'CHAPULIN', text: 'With the pencil on its side, like in school! It came out! It says: \'Missing forty thousand. The withdrawals were signed by the treasurer. I\'ll say it on air.\'', pose: 'chapulin_point', sfx: 'realization', updateEvidence: 'libro_verde', unlockLocation: 'centro_detencion_d3' },
-        { speaker: 'DEFENSA', text: '(Señor Barriga was going to denounce the treasurer... on air. On his own station.)', pose: 'donramon_shock' }
+        { speaker: 'CHAPULIN', text: 'With the pencil on its side, like in school! It came out! It says: \'Missing forty thousand. The withdrawals were signed by the treasurer. I\'ll say it on air.\'', pose: 'chapulin_point', sfx: 'realization', updateEvidence: 'libro_verde' },
+        { speaker: 'DEFENSA', text: '(We have the how, the when and the why, Chapulín. We still need WHO. And that... Señor Barriga will say himself without realizing.)', pose: 'donramon_shock' }
       ]
     }
   ]

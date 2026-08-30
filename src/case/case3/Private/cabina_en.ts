@@ -11,7 +11,7 @@ const CABINA_HOTSPOTS_EN: Hotspot[] = [
     label: 'Console Desk',
     x: 38, y: 28, w: 28, h: 30,
     dialogue: [
-      { speaker: 'PAZGUATO', text: 'I put it there for the photo. Looked neater that way.', pose: 'pazguato_sweat' },
+      { speaker: 'SARGENTO', text: 'I put it there for the photo. Looked neater that way.', pose: 'pazguato_sweat' },
       { speaker: 'DEFENSA', text: 'You... put it there? Sergeant, that\'s altering the scene.', pose: 'donramon_shock', sfx: 'realization', addEvidence: 'microfono_oro' }
     ]
   },
@@ -54,7 +54,7 @@ const CABINA_HOTSPOTS_EN: Hotspot[] = [
     label: 'Hallway Carpet',
     x: 4, y: 62, w: 24, h: 22,
     dialogue: [
-      { speaker: 'DEFENSA', text: 'Two black grease streaks... from the office to Cabina B. And a gray cashmere thread.', pose: 'donramon_point', sfx: 'realization', addEvidence: 'marcas_carrito' }
+      { speaker: 'DEFENSA', text: 'Two black grease streaks... from the office to Cabina B. And a brown cashmere thread.', pose: 'donramon_point', sfx: 'realization', addEvidence: 'marcas_carrito' }
     ]
   }
 ];
@@ -67,9 +67,9 @@ export const CASE3_CABINA_EN: InvestigationScene = {
   speaker: 'NARRADOR',
   intro: [
     { speaker: 'NARRADOR', text: 'September 16, 11:00 AM. Radio station XEVC, second floor of Edificio Barriga.' },
-    { speaker: 'PAZGUATO', text: '¡A sus órdenes, mi Licenciado! Sergeant Refugio Pazguato, at your service and justice\'s.', pose: 'pazguato_saludo' },
+    { speaker: 'SARGENTO', text: '¡A sus órdenes, mi Licenciado! Sergeant Refugio Pazguato, at your service and justice\'s.', pose: 'pazguato_saludo' },
     { speaker: 'DEFENSA', text: 'Does the prosecution know you\'re letting us in?', pose: 'donramon_idle' },
-    { speaker: 'PAZGUATO', text: 'Uh... no. And please don\'t tell Super Sam — he\'s docked me three paychecks already. But I... I don\'t think the little doctor did it.', pose: 'pazguato_sweat' },
+    { speaker: 'SARGENTO', text: 'Uh... no. And please don\'t tell Super Sam — he\'s docked me three paychecks already. But I... I don\'t think the little doctor did it.', pose: 'pazguato_sweat' },
     { speaker: 'CHAPULIN', text: 'That\'s the spirit! ¡Síganme los buenos!', pose: 'chapulin_idle' }
   ],
   hotspots: CABINA_HOTSPOTS_EN,
@@ -78,7 +78,7 @@ export const CASE3_CABINA_EN: InvestigationScene = {
       id: 'about_informe',
       label: 'The medical report',
       dialogue: [
-        { speaker: 'PAZGUATO', text: 'Here\'s the report, mi Licenciado. I had it folded in four... inside a bean torta. Don\'t worry, I removed the bean.', pose: 'pazguato_saludo', addEvidence: 'informe_medico' },
+        { speaker: 'SARGENTO', text: 'Here\'s the report, mi Licenciado. I had it folded in four... inside a bean torta. Don\'t worry, I removed the bean.', pose: 'pazguato_saludo', addEvidence: 'informe_barriga' },
         { speaker: 'DEFENSA', text: '(Red wool fibers in the hair... Contusion with an octagonal mark. Noted.)', pose: 'donramon_idle' }
       ]
     },
@@ -86,7 +86,7 @@ export const CASE3_CABINA_EN: InvestigationScene = {
       id: 'about_who_else',
       label: 'Who else was in the building?',
       dialogue: [
-        { speaker: 'PAZGUATO', text: 'Young Ñoño at the console, Mrs. Chimoltrufia in Cabina C, and Don Aniceto... poor Don Aniceto, we found him tied up in the storeroom. Whoever did that had a steady hand.', pose: 'pazguato_sweat', unlockLocation: 'plaza_kermes' },
+        { speaker: 'SARGENTO', text: 'Young Ñoño at the console, Mrs. Chimoltrufia in Cabina C, and Don Aniceto... poor Don Aniceto, we found him tied up in the storeroom. Whoever did that had a steady hand.', pose: 'pazguato_sweat', unlockLocation: 'plaza_kermes' },
         { speaker: 'CHAPULIN', text: 'We should talk to the people in the plaza!', pose: 'chapulin_point' }
       ]
     }

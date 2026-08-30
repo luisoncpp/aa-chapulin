@@ -26,7 +26,7 @@ export function assembleCase3Climax(lines: {
       { presentTarget: ['cinta_sketch'], successDialogue: lines.stage3 },
       {
         presentTarget: ['boleta_empeno', 'libro_verde', 'microfono_oro'],
-        minUpdateStage: { microfono_oro: 2 },
+        requiredUpdateStage: { microfono_oro: 2 },
         successDialogue: lines.stage4
       }
     ],

@@ -18,7 +18,8 @@ export const CASE3_TESTIMONY_6: Testimony = {
       text: 'Está bien. Sí. Yo me até. ¡Me até de puro miedo, porque oí al asesino en el pasillo y me escondí en la bodega!',
       pressText: [
         { speaker: 'DEFENSA', text: '¡UN MOMENTO!', cutin: 'objection_un_momento', sfx: 'whoosh', pose: 'donramon_point' },
-        { speaker: 'ANICETO', text: '¿Nunca ha tenido miedo, Licenciado? Yo tengo sesenta y cuatro años y una voz bonita. Con eso no se pelea uno.', pose: 'aniceto_sweat' }
+        { speaker: 'ANICETO', text: '¿Nunca ha tenido miedo, Licenciado? Yo tengo sesenta y cuatro años y una voz bonita. Con eso no se pelea uno.', pose: 'aniceto_sweat' },
+        { speaker: 'SUPER SAM', text: '(La sala vuelve a compadecerlo. El fiscal aplaude.)', pose: 'supersam_idle' }
       ]
     },
     {
@@ -29,17 +30,19 @@ export const CASE3_TESTIMONY_6: Testimony = {
       pressText: [
         { speaker: 'DEFENSA', text: '¡UN MOMENTO!', cutin: 'objection_un_momento', sfx: 'whoosh', pose: 'donramon_point' },
         { speaker: 'DEFENSA', text: '¿La ventana de la cabina estaba cerrada?', pose: 'donramon_idle' },
-        { speaker: 'ANICETO', text: 'Cerrada, naturalmente. Una cabina de radio es hermética.', pose: 'aniceto_sweat' }
+        { speaker: 'ANICETO', text: 'Y la ventana estaba cerrada, naturalmente. Una cabina de radio es hermética: por eso se llama cabina.', pose: 'aniceto_sweat' },
+        { speaker: 'DEFENSA', text: '...Hermética. Repítalo, por favor. Que conste en actas.', pose: 'donramon_idle' }
       ]
     },
     {
       id: 'stmt6_2b',
       speaker: 'ANICETO',
       pose: 'aniceto_sweat',
-      text: 'Por eso se llama cabina. Hermética. Repítalo, por favor. Que conste en actas.',
+      text: 'Y la ventana estaba cerrada, naturalmente. Una cabina de radio es hermética.',
       unlockedBy: 'stmt6_2',
       pressText: [
-        { speaker: 'DEFENSA', text: '...Hermética. Repítalo, por favor. Que conste en actas.', pose: 'donramon_idle' }
+        { speaker: 'DEFENSA', text: '¡UN MOMENTO!', cutin: 'objection_un_momento', sfx: 'whoosh', pose: 'donramon_point' },
+        { speaker: 'ANICETO', text: 'Hermética, Licenciado. Por eso se llama cabina.', pose: 'aniceto_sweat' }
       ],
       contradiction: { evidence: ['ventana_cabina', 'cartucho_corte'], successDialogue: CASE3_T6_SUCCESS }
     },
@@ -50,7 +53,7 @@ export const CASE3_TESTIMONY_6: Testimony = {
       text: 'Y además yo no sé imitar a nadie. Soy locutor de noticias, no payaso de carpa.',
       pressText: [
         { speaker: 'DEFENSA', text: '¡UN MOMENTO!', cutin: 'objection_un_momento', sfx: 'whoosh', pose: 'donramon_point' },
-        { speaker: 'ANICETO', text: 'Locutor de noticias. Veinticinco años. La dicción, ante todo.', pose: 'aniceto_terciopelo' }
+        { speaker: 'ANICETO', text: 'Locutor de noticias. Veinticinco años. La dicción, ante todo.', pose: 'aniceto_thinking' }
       ]
     },
     {

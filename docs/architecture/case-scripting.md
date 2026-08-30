@@ -20,7 +20,9 @@ graph TD
     Day2 --> Climax[script.trial.climax]
 ```
 
-Case 3 (`case3`) is assembled in [[src/case/case3/index.ts]]: detention → cabina → kermés → day-1 trial → despacho → clínica → delegación → day-2 trial → bodega → `delegacion_d3` → `centro_detencion_d3` → day-3 trial → four-stage climax + proverb-trap choices + waiting-room epilogue. Day 3 reuses precinct/detention as distinct location ids so intros stay day-specific. `Statement.unlockedBy` hides a line until another statement is pressed. `ClimaxStage.minUpdateStage` rejects `microfono_oro` until two description updates. `adjournment.next` is the third trial day.
+Case 3 (`case3`) is assembled in [[src/case/case3/index.ts]]: `detention` → `cabina_radio` → `plaza_kermes` → day-1 trial → `despacho_barriga` → `clinica_chapatin` → `delegacion` → day-2 trial → `bodega_radio` → `detention_d3` → `delegacion_d3` → day-3 trial → four-stage climax + proverb-trap choices + waiting-room epilogue. Day 1 reuses the shared `detention` id; day 3 revisits detention and the precinct under `_d3` ids because `investigation` is one scene per location key and the intros are day-specific. Day 3 visits detention **before** the precinct so the two precinct clues close the day (see the gating invariant below). `Statement.unlockedBy` hides a line until another statement is pressed. `ClimaxStage.requiredUpdateStage` rejects `microfono_oro` until two description updates. `adjournment.next` is the third trial day. Case 3 owns `informe_barriga` rather than reusing Case 1's `informe_medico`, and `getEvidenceCatalog(lang, 'case3')` returns the Case 3 map alone — no Case 1 entries leak in.
+
+> **Gating invariant (all multi-day cases):** `checkTrialReadiness` reads only the inventory, never the visited-location set. The **last** location of each investigation day must therefore hand over at least one `requiredEvidence` item, or `#btn-inv-trial` lights up early and the player can skip scenes the trial script assumes were seen. Case 3 day lists live in [[src/case/case3/Private/progress.ts]]; `tests/case/Case3Scripts.test.ts` walks the `unlockLocation` chain to assert it.
 
 Case 2 is assembled in [[src/case/Private/case2_script.ts]]: ES/EN scene modules, day-1 trial (`case2_trial_day1*`), day-2 trial (`case2_trial_day2*`), climax on `trial.climax` (`case2_climax.ts`). Day-1 investigation: `detention` → `boveda` → `restaurante`. After testimony 2, `adjournment` sends the player to `oficina_postal` (unlock), then `casa_clotilde`. Day-2 testimonies live on `adjournment.trial`; the finale is still `script.trial.climax`. Case 2 uses optional `climax.stages`: three presents (`lata_grasa`/`antenitas_vinil`, then `frasco_valeriana`/`aroma_dulce`, then `molde_cera`), then optional `climax.choices` (two `ChoicePrompt` questions after the wax-mold present). Case 1 has a single present (`presentTarget` only) and no choices. After the Not Guilty line, courtroom confetti plays, then a black fade into Case 2 `climax.epilogue` in `assets/bg_waiting_room.jpg` (no bench/podium). Case 1 has no `adjournment` and no epilogue.
 
@@ -79,7 +81,7 @@ testimony: {
 climax: {
   dialogue: DialogueLine[];
   presentTarget: EvidenceId[];
-  stages?: { presentTarget: EvidenceId[]; successDialogue: DialogueLine[]; minUpdateStage?: Partial<Record<EvidenceId, number>> }[];
+  stages?: { presentTarget: EvidenceId[]; successDialogue: DialogueLine[]; requiredUpdateStage?: Partial<Record<EvidenceId, number>> }[];
   choices?: ChoicePrompt[];
   verdict: DialogueLine[];
   epilogue?: { bg: string; dialogue: DialogueLine[] };

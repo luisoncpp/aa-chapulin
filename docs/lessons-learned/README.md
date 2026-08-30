@@ -36,4 +36,5 @@ Avoid: "bug description + fix". Prefer: "what I learned that applies to future w
 | [`splash-card-stage-height.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/lessons-learned/splash-card-stage-height.md) | Title splash stack must fit 540px; flex centering clips both ends when the card is taller than the stage. | 2026-08-29 |
 | [`supersam-pose-identity-lock.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/lessons-learned/supersam-pose-identity-lock.md) | Extra Super Sam poses default to Chespirito yellow/green unless idle is the identity lock. | 2026-08-29 |
 | [`trial-waiting-room-epilogue-staging.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/lessons-learned/trial-waiting-room-epilogue-staging.md) | Trial speaker cameras fire on any line without `bg`; waiting-room epilogues must stamp a location plate on every line. | 2026-08-29 |
+| [`court-record-grid-overflow.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/lessons-learned/court-record-grid-overflow.md) | Court Record `1fr` tracks still widen from nowrap labels (`min-width: auto`); that overflow paints both scrollbars. | 2026-08-29 |
 

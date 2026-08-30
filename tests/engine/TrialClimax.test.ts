@@ -61,12 +61,15 @@ describe('TrialClimax waiting-room epilogue', () => {
     expect(dom.confettiContainerEl.children.length).toBe(0);
   });
 
-  it('treats Case 1 as a single present stage and Case 2 as three', () => {
+  it('treats Case 1 as a single present stage and Case 2 as three with choices', () => {
     const case1 = getCaseScript('es', 'case1').trial.climax;
     expect(case1.stages).toBeUndefined();
+    expect(case1.choices).toBeUndefined();
     const case2 = getCaseScript('es', 'case2').trial.climax;
     expect(case2.stages).toHaveLength(3);
-    expect(case2.stages?.[2].successDialogue).toBe(case2.verdict);
+    expect(case2.choices).toHaveLength(2);
+    expect(case2.stages?.[2].successDialogue).not.toBe(case2.verdict);
+    expect(case2.stages?.[2].successDialogue.some((l) => l.text.includes('Molde de Cera'))).toBe(true);
   });
 
   it('fires confetti after Case 1 verdict when there is no epilogue', () => {

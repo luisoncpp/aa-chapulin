@@ -155,11 +155,26 @@ export interface ClimaxStage {
   successDialogue: DialogueLine[];
 }
 
+export interface ChoiceOption {
+  id: string;
+  label: string;
+}
+
+export interface ChoicePrompt {
+  id: string;
+  question: string;
+  options: ChoiceOption[];
+  correctId: string;
+  successDialogue: DialogueLine[];
+  failDialogue: DialogueLine[];
+}
+
 export interface ClimaxDefinition {
   dialogue: DialogueLine[];
   presentTarget: EvidenceId[];
   verdict: DialogueLine[];
   stages?: ClimaxStage[];
+  choices?: ChoicePrompt[];
   epilogue?: ClimaxEpilogue;
 }
 

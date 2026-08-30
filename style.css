@@ -787,7 +787,8 @@ body {
 }
 
 #talk-options-list,
-#move-locations-list {
+#move-locations-list,
+#choice-prompt-list {
     display: flex;
     flex-direction: column;
     gap: 12px;

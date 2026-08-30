@@ -497,8 +497,45 @@ PETERETE (peterete_panic): ¡P-pero la caja fuerte se abrió con llave! ¡Yo dev
 DEFENSA (donramon_point): ¡PROTESTO! ¡Usted no necesitaba la llave original, porque fabricó un DUPLICADO! [cutin: objection_protesto, sfx: whoosh]
 DEFENSA (donramon_slam): ¡Encontramos este 'Molde de Cera' en la basura de Doña Clotilde! ¡Tiene la huella exacta de la llave maestra! [sfx: desk_slam]
 PETERETE (peterete_smug): ¡Bah! Doña Clotilde dijo que fue un hombre misterioso con bufanda y sombrero. ¡Podría ser cualquiera!
-DEFENSA (donramon_point): ¡No se haga el tonto! Doña Clotilde dijo que el hombre fue a comprar la esencia la tarde del 28 de agosto.
+JUEZ (judge_idle): Licenciado Monchito, ¿qué nos indica el testimonio de Doña Clotilde sobre la identidad del comprador?
+```
+
+#### Elección Múltiple 1: Lo importante del testimonio
+- **Pregunta:** ¿Qué es lo más importante del testimonio de Doña Clotilde?
+- **Opciones**:
+  - Cómo iba vestido. (Incorrecta)
+  - Sus modales. (Incorrecta)
+  - La hora de compra. (Correcta)
+
+```dialogue
+[OPCIÓN INCORRECTA: Cómo iba vestido / Sus modales]
+DEFENSA (donramon_sweat): ¡Pues... que el hombre tenía un estilo impecable, señor Juez!
+SUPER SAM (supersam_smug): Time is money! This is a court of law, not a fashion show!
+JUEZ (judge_headshake): La defensa recibirá una penalización si no deja de perder el tiempo. [sfx: damage]
+(El jugador recibe daño y debe volver a intentar)
+
+[OPCIÓN CORRECTA: La hora de compra]
+DEFENSA (donramon_point): ¡La clave no es cómo iba vestido, sino CUÁNDO fue! Doña Clotilde dijo que el hombre fue a comprar la esencia la tarde del 28 de agosto.
+JUEZ (judge_idle): ¿La tarde del 28 de agosto? ¿Y por qué es tan importante esa hora específica?
+```
+
+#### Elección Múltiple 2: El portador de la llave
+- **Pregunta:** ¿Quién era el portador de la llave maestra durante la tarde del 28 de agosto?
+- **Opciones**:
+  - El botones. (Incorrecta)
+  - El jefe de seguridad. (Correcta)
+  - El gerente general. (Incorrecta)
+
+```dialogue
+[OPCIÓN INCORRECTA: El botones / El gerente general]
+DEFENSA (donramon_thinking): ¡Está clarísimo! El que portaba la llave era... ¡esa persona!
+PETERETE (peterete_smug): Me temo que las reglas del hotel dicen lo contrario. Intente leer el manual de empleados antes de acusar.
+JUEZ (judge_gavel): Licenciado, si va a hacer acusaciones infundadas me veré obligado a penalizarlo. [sfx: damage]
+(El jugador recibe daño y debe volver a intentar)
+
+[OPCIÓN CORRECTA: El jefe de seguridad]
 DEFENSA (donramon_slam): Y según las reglas del hotel, ¡la única persona que portaba la llave maestra original durante esa tarde era el JEFE DE SEGURIDAD! [sfx: desk_slam]
+PETERETE (peterete_sweat): ¡P-pero la llave regresó a custodia! ¡¿Cómo abrí la caja fuerte a las 9:15?!
 DEFENSA (donramon_point): ¡Usted fue a comprarle la esencia de valeriana, y aprovechó para copiar su propia llave en la cera de sus veladoras! ¡Usted durmió al Chómpiras, abrió la caja con su copia, metió el oro en la lata y la tiró por el montaplatos!
 PETERETE (peterete_breakdown): ¡¡¡NOOOOOOOOOOOO!!! ¡¡¡MI PLAN PERFECTO DE CINCO MILLONES DE DÓLARES ARRUINADO POR UN LIMPIABOTAS Y UN DEFENSOR DEL NECAXA!!! [sfx: damage]
 NARRADOR: (El Peterete comienza a propinarse sonoras bofetadas con su propio sombrero fedora mientras gira desquiciado por el estrado de los testigos hasta caer desplomado).

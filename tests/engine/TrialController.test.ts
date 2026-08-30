@@ -175,6 +175,13 @@ describe('TrialController', () => {
     expect(queuedDialogues.some((d) => d.some((l) => l.text.includes('profundamente dormido')))).toBe(true);
 
     case2Controller.handlePresentEvidence('molde_cera');
+    expect(queuedDialogues.some((d) => d.some((l) => l.text.includes('INOCENTE')))).toBe(false);
+    expect(dom.choicePromptModalEl.classList.contains('hidden')).toBe(false);
+
+    case2Controller.handleSelectChoice('purchase_time');
+    expect(queuedDialogues.some((d) => d.some((l) => l.text.includes('INOCENTE')))).toBe(false);
+
+    case2Controller.handleSelectChoice('security_chief');
     expect(queuedDialogues.some((d) => d.some((l) => l.text.includes('INOCENTE')))).toBe(true);
   });
 

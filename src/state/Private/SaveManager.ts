@@ -12,6 +12,7 @@ export interface TrialStateSnapshot {
   statementIdx: number;
   trialDay?: TrialDay;
   climaxStageIdx?: number;
+  climaxChoiceIdx?: number;
 }
 
 export interface SaveData {

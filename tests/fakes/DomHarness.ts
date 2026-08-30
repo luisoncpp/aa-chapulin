@@ -82,6 +82,14 @@ export function setupDomHarness(): DomElements {
         <button id="btn-close-move">X</button>
         <div id="move-locations-list"></div>
       </div>
+      <div id="choice-prompt-modal" class="game-modal hidden">
+        <div class="modal-window" style="width: 550px; height: auto;">
+          <div class="modal-header">
+            <h2 id="choice-prompt-question"></h2>
+          </div>
+          <div id="choice-prompt-list"></div>
+        </div>
+      </div>
     </div>
   `;
 

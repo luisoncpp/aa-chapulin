@@ -4,6 +4,7 @@
  */
 
 import type { DialogueLine } from '../../types/index.js';
+import { CASE2_CLIMAX_CHOICES_EN } from './case2_climax_choices_en.js';
 import { assembleCase2Climax } from './case2_climax_shared.js';
 
 const GOLD_REVEAL: DialogueLine[] = [
@@ -24,19 +25,14 @@ const CHOMPIRAS_ASLEEP: DialogueLine[] = [
   { speaker: 'PETERETE', text: 'B-but the safe opened with a key! I returned the master key to custody at 8:30 PM! Nobody else had a way to open it!', pose: 'peterete_panic' }
 ];
 
-const VERDICT_LINES: DialogueLine[] = [
+const WAX_MOLD: DialogueLine[] = [
   { cutin: 'objection_protesto', speaker: 'DEFENSA', text: 'OBJECTION! You did not need the original key, because you made a DUPLICATE!', sfx: 'whoosh', pose: 'donramon_point' },
   { speaker: 'DEFENSA', text: "We found this Wax Mold in Doña Clotilde's trash! It bears the exact imprint of the master key!", pose: 'donramon_slam', sfx: 'desk_slam' },
   { speaker: 'PETERETE', text: 'Bah! Doña Clotilde said it was a mysterious man with a scarf and hat. It could have been anyone!', pose: 'peterete_smug' },
-  { speaker: 'DEFENSA', text: 'Don\'t play dumb! Doña Clotilde said the man came to buy the essence on the afternoon of August 28.', pose: 'donramon_point' },
-  { speaker: 'DEFENSA', text: 'And by hotel rules, the only person carrying the original master key that afternoon was the CHIEF OF SECURITY!', pose: 'donramon_slam', sfx: 'desk_slam' },
-  { speaker: 'DEFENSA', text: 'You bought the valerian, copied your own key, put Chómpiras to sleep, opened the safe, and stuffed the gold in the tin!', pose: 'donramon_point' },
-  { speaker: 'PETERETE', text: 'NOOOOOOOOOOOO!!! MY PERFECT FIVE-MILLION-DOLLAR PLAN RUINED BY A SHOESHINE BOY AND A NECAXA FAN!!!', pose: 'peterete_breakdown', sfx: 'damage' },
-  { speaker: 'NARRADOR', text: '(Peterete slaps himself with his fedora until he collapses on the witness stand).' },
-  { speaker: 'SUPER SAM', text: 'OH NOOO! My fees! My bonus! Time is money and I lost my dollars!', pose: 'supersam_breakdown' },
-  { speaker: 'JUEZ', text: 'Silence and order! With the smoking gun revealed, the method proven, and the true culprit confessed, this court issues its final verdict!', pose: 'judge_gavel', sfx: 'gavel' },
-  { cutin: 'objection_culpable', speaker: 'JUEZ', text: 'I declare the defendant, Aquiles Esquivel Madrazo... NOT GUILTY!', sfx: 'whoosh', bgm: 'victory', pose: 'judge_gavel' }
+  { speaker: 'JUEZ', text: "Hmm... According to Doña Clotilde's testimony, what does it tell us about the buyer of the essence?", pose: 'judge_neutral' }
 ];
+
+const VERDICT_LINES: DialogueLine[] = CASE2_CLIMAX_CHOICES_EN[1].successDialogue;
 
 export const CASE2_CLIMAX_EN = assembleCase2Climax({
   dialogue: [
@@ -47,6 +43,8 @@ export const CASE2_CLIMAX_EN = assembleCase2Climax({
   ],
   goldReveal: GOLD_REVEAL,
   chompirasAsleep: CHOMPIRAS_ASLEEP,
+  waxMold: WAX_MOLD,
+  choices: CASE2_CLIMAX_CHOICES_EN,
   verdict: VERDICT_LINES,
   epilogue: [
     { speaker: 'NARRADOR', text: '(Later, in the courthouse waiting room...)' },

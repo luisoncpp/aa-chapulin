@@ -34,6 +34,9 @@ export interface DomElements {
   talkListEl: HTMLElement;
   moveLocationsModalEl: HTMLElement;
   moveLocationsListEl: HTMLElement;
+  choicePromptModalEl: HTMLElement;
+  choicePromptQuestionEl: HTMLElement;
+  choicePromptListEl: HTMLElement;
   startSplashOverlayEl: HTMLElement;
   btnAudioToggleEl: HTMLButtonElement;
   btnLangToggleEl: HTMLButtonElement;
@@ -92,6 +95,9 @@ export function getDomElements(): DomElements {
     talkListEl: document.getElementById('talk-options-list')!,
     moveLocationsModalEl: document.getElementById('move-locations-modal')!,
     moveLocationsListEl: document.getElementById('move-locations-list')!,
+    choicePromptModalEl: document.getElementById('choice-prompt-modal')!,
+    choicePromptQuestionEl: document.getElementById('choice-prompt-question')!,
+    choicePromptListEl: document.getElementById('choice-prompt-list')!,
     startSplashOverlayEl: document.getElementById('start-splash-overlay')!,
     btnAudioToggleEl: document.getElementById('btn-audio-toggle') as HTMLButtonElement,
     btnLangToggleEl: document.getElementById('btn-lang-toggle') as HTMLButtonElement,

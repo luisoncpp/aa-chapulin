@@ -73,6 +73,17 @@ describe('Case 2 El Juicio del Chómpiras', () => {
     expect(catalog.molde_cera.desc).toContain('misterioso');
   });
 
+  it('defines two climax choices with matching ids in ES and EN', () => {
+    const esChoices = es.trial.climax.choices!;
+    const enChoices = en.trial.climax.choices!;
+    expect(esChoices).toHaveLength(2);
+    expect(enChoices).toHaveLength(2);
+    expect(esChoices.map((c) => c.id)).toEqual(enChoices.map((c) => c.id));
+    expect(esChoices.map((c) => c.correctId)).toEqual(enChoices.map((c) => c.correctId));
+    expect(esChoices[0].correctId).toBe('purchase_time');
+    expect(esChoices[1].correctId).toBe('security_chief');
+  });
+
   it('places investigation hotspots on the 16:9 cover crop of each background', () => {
     const geom = (h: { id: string; x: number; y: number; w: number; h: number }) => (
       { id: h.id, x: h.x, y: h.y, w: h.w, h: h.h }

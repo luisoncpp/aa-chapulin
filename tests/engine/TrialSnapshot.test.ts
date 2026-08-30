@@ -117,4 +117,23 @@ describe('TrialController snapshot and setScript', () => {
     controller.setScript(english);
     expect(controller.currentTestimony).toBe(english.trial.testimony1);
   });
+
+  it('restores mid-climax choice without opening court record', () => {
+    const case2 = getCaseScript('es', 'case2');
+    let openedRecord = false;
+    const day2 = new TrialController({
+      dom,
+      state,
+      script: case2,
+      soundEngine,
+      midiComposer,
+      onQueueDialogue: (_dlg, cb) => { if (cb) cb(); },
+      onRenderLine: () => {},
+      onOpenCourtRecord: () => { openedRecord = true; }
+    });
+    day2.restoreTrialSnapshot({ phase: 'CLIMAX', statementIdx: 0, climaxStageIdx: 2, climaxChoiceIdx: 0 });
+    expect(day2.phase).toBe('CLIMAX');
+    expect(dom.choicePromptModalEl.classList.contains('hidden')).toBe(false);
+    expect(openedRecord).toBe(false);
+  });
 });

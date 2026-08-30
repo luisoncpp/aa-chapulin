@@ -4,6 +4,7 @@
  */
 
 import type { DialogueLine } from '../../types/index.js';
+import { CASE2_CLIMAX_CHOICES } from './case2_climax_choices.js';
 import { assembleCase2Climax } from './case2_climax_shared.js';
 
 const GOLD_REVEAL: DialogueLine[] = [
@@ -24,19 +25,14 @@ const CHOMPIRAS_ASLEEP: DialogueLine[] = [
   { speaker: 'PETERETE', text: '¡P-pero la caja fuerte se abrió con llave! ¡Yo devolví la llave maestra a custodia a las 8:30 PM! ¡Nadie más tenía cómo abrirla!', pose: 'peterete_panic' }
 ];
 
-const VERDICT_LINES: DialogueLine[] = [
+const WAX_MOLD: DialogueLine[] = [
   { cutin: 'objection_protesto', speaker: 'DEFENSA', text: '¡PROTESTO! ¡Usted no necesitaba la llave original, porque fabricó un DUPLICADO!', sfx: 'whoosh', pose: 'donramon_point' },
   { speaker: 'DEFENSA', text: "¡Encontramos este 'Molde de Cera' en la basura de Doña Clotilde! ¡Tiene la huella exacta de la llave maestra!", pose: 'donramon_slam', sfx: 'desk_slam' },
   { speaker: 'PETERETE', text: '¡Bah! Doña Clotilde dijo que fue un hombre misterioso con bufanda y sombrero. ¡Podría ser cualquiera!', pose: 'peterete_smug' },
-  { speaker: 'DEFENSA', text: '¡No se haga el tonto! Doña Clotilde dijo que el hombre fue a comprar la esencia la tarde del 28 de agosto.', pose: 'donramon_point' },
-  { speaker: 'DEFENSA', text: 'Y según las reglas del hotel, ¡la única persona que portaba la llave maestra original esa tarde era el JEFE DE SEGURIDAD!', pose: 'donramon_slam', sfx: 'desk_slam' },
-  { speaker: 'DEFENSA', text: '¡Usted compró la valeriana, copió su propia llave, durmió al Chómpiras, abrió la caja y metió el oro en la lata!', pose: 'donramon_point' },
-  { speaker: 'PETERETE', text: '¡¡¡NOOOOOOOOOOOO!!! ¡¡¡MI PLAN PERFECTO DE CINCO MILLONES DE DÓLARES ARRUINADO POR UN LIMPIABOTAS Y UN DEFENSOR DEL NECAXA!!!', pose: 'peterete_breakdown', sfx: 'damage' },
-  { speaker: 'NARRADOR', text: '(El Peterete se abofetea con su fedora hasta caer desplomado en el estrado).' },
-  { speaker: 'SUPER SAM', text: 'OH NOOO! ¡My fees! ¡My bonus! ¡Time is money and I lost my dollars!', pose: 'supersam_breakdown' },
-  { speaker: 'JUEZ', text: '¡Silencio y orden! Habiendo aparecido la prueba reina, demostrado el método y confesado el verdadero culpable, ¡este juzgado emite su veredicto definitivo!', pose: 'judge_gavel', sfx: 'gavel' },
-  { cutin: 'objection_culpable', speaker: 'JUEZ', text: '¡Declaro al acusado, Aquiles Esquivel Madrazo... INOCENTE!', sfx: 'whoosh', bgm: 'victory', pose: 'judge_gavel' }
+  { speaker: 'JUEZ', text: 'Hmm... Según el testimonio de Doña Clotilde, ¿qué nos dice sobre el comprador de la esencia?', pose: 'judge_neutral' }
 ];
+
+const VERDICT_LINES: DialogueLine[] = CASE2_CLIMAX_CHOICES[1].successDialogue;
 
 export const CASE2_CLIMAX = assembleCase2Climax({
   dialogue: [
@@ -47,6 +43,8 @@ export const CASE2_CLIMAX = assembleCase2Climax({
   ],
   goldReveal: GOLD_REVEAL,
   chompirasAsleep: CHOMPIRAS_ASLEEP,
+  waxMold: WAX_MOLD,
+  choices: CASE2_CLIMAX_CHOICES,
   verdict: VERDICT_LINES,
   epilogue: [
     { speaker: 'NARRADOR', text: '(Más tarde, en la sala de espera del tribunal...)' },

@@ -6,11 +6,15 @@
 import type { MidiMusicComposer } from '../../audio/index.js';
 import { i18n } from '../../i18n/index.js';
 import type {
-  ClimaxDefinition, ClimaxEpilogue, ClimaxStage, DialogueLine, EvidenceId
+  CaseScript, ClimaxDefinition, ClimaxStage, DialogueLine, EvidenceId, Testimony
 } from '../../types/index.js';
 import type { DomElements } from './DomElements.js';
-import { COURTROOM_CELEBRATION_MS, fadeThroughBlack } from './SceneFade.js';
+import {
+  choiceOpenSession, openClimaxChoice, queueClimaxCelebration,
+  resolveClimaxChoice, restoreClimaxSession, type ClimaxRestoreCtx, type ClimaxSession
+} from './TrialChoice.js';
 import { applyPenaltyEffects, type PenaltyHost } from './TrialPenalty.js';
+import type { TrialControllerDeps, TrialPhase } from './TrialController.js';
 import { VisualEffects } from './VisualEffects.js';
 
 interface ClimaxQueueDeps {
@@ -21,6 +25,17 @@ interface ClimaxQueueDeps {
 interface ClimaxRunDeps extends PenaltyHost {
   midiComposer: MidiMusicComposer;
   onOpenCourtRecord: (isTrialPresent: boolean) => void;
+}
+
+export interface ClimaxControllerPort {
+  deps: TrialControllerDeps;
+  script: CaseScript;
+  phase: TrialPhase;
+  climaxStageIdx: number;
+  climaxChoiceIdx: number | null;
+  currentTestimony: Testimony | null;
+  hideControls(): void;
+  handleSelectChoice(optionId: string): void;
 }
 
 function getClimaxStages(climax: ClimaxDefinition): ClimaxStage[] {
@@ -42,7 +57,24 @@ function isFinalClimaxStage(climax: ClimaxDefinition, stageIdx: number): boolean
   return stageIdx >= getClimaxStages(climax).length - 1;
 }
 
-export function openClimaxPresent(
+function buildClimaxCtx(ctrl: ClimaxControllerPort): ClimaxRestoreCtx {
+  return {
+    ...ctrl.deps,
+    climax: ctrl.script.trial.climax,
+    stageIdx: ctrl.climaxStageIdx,
+    choiceIdx: ctrl.climaxChoiceIdx,
+    onSelect: (id) => ctrl.handleSelectChoice(id),
+    setStageIdx: (n) => { ctrl.climaxStageIdx = n; },
+    setChoiceIdx: (n) => { ctrl.climaxChoiceIdx = n; },
+    enterClimaxPhase: () => {
+      ctrl.phase = 'CLIMAX';
+      ctrl.currentTestimony = null;
+      ctrl.hideControls();
+    }
+  };
+}
+
+function openClimaxPresent(
   deps: ClimaxRunDeps,
   climax: ClimaxDefinition,
   replayOpening: boolean
@@ -58,64 +90,88 @@ export function openClimaxPresent(
   });
 }
 
-export function presentClimaxEvidence(
+function presentClimaxEvidence(
   session: { climax: ClimaxDefinition; stageIdx: number; evidenceId: EvidenceId },
-  deps: ClimaxRunDeps
-): number {
+  deps: ClimaxRunDeps,
+  onChoiceSelect: (optionId: string) => void
+): ClimaxSession {
   const { climax, stageIdx, evidenceId } = session;
   if (!climaxStageMatches(climax, stageIdx, evidenceId)) {
     applyPenaltyEffects(deps);
     VisualEffects.showNotification(deps.dom.gameNotificationEl, i18n.t.notifIncorrectClue);
     deps.onOpenCourtRecord(/*isTrialPresent=*/ true);
-    return stageIdx;
+    return { stageIdx, choiceIdx: null };
   }
   if (isFinalClimaxStage(climax, stageIdx)) {
+    if (climax.choices && climax.choices.length > 0) {
+      const stage = getClimaxStages(climax)[stageIdx];
+      deps.onQueueDialogue(stage.successDialogue, /*openFirstChoice*/ () => {
+        openClimaxChoice(choiceOpenSession(deps, climax, 0, onChoiceSelect));
+      });
+      return { stageIdx, choiceIdx: 0 };
+    }
     queueClimaxVictory(climax, deps);
-    return stageIdx;
+    return { stageIdx, choiceIdx: null };
   }
   const stage = getClimaxStages(climax)[stageIdx];
   deps.onQueueDialogue(stage.successDialogue, /*openNextPresent*/ () => {
     deps.onOpenCourtRecord(/*isTrialPresent=*/ true);
   });
-  return stageIdx + 1;
+  return { stageIdx: stageIdx + 1, choiceIdx: null };
 }
 
-function stampEpilogueLines(bg: string, lines: DialogueLine[]): DialogueLine[] {
-  return lines.map((line) => ({
-    ...line,
-    bg: line.bg ?? bg,
-    furniture: line.furniture ?? 'none'
-  }));
+export function restoreClimaxFromSnapshot(
+  ctrl: ClimaxControllerPort,
+  stageIdx: number,
+  choiceIdx: number | null
+): void {
+  restoreClimaxSession({ ...buildClimaxCtx(ctrl), stageIdx, choiceIdx });
+}
+
+export function startClimaxPhase(ctrl: ClimaxControllerPort, replayOpening: boolean): void {
+  ctrl.climaxStageIdx = 0;
+  ctrl.climaxChoiceIdx = null;
+  ctrl.phase = 'CLIMAX';
+  ctrl.currentTestimony = null;
+  ctrl.hideControls();
+  openClimaxPresent(ctrl.deps, ctrl.script.trial.climax, replayOpening);
+}
+
+export function handleClimaxEvidencePresent(ctrl: ClimaxControllerPort, evidenceId: EvidenceId): void {
+  if (ctrl.climaxChoiceIdx != null) return;
+  ctrl.hideControls();
+  const result = presentClimaxEvidence(
+    { climax: ctrl.script.trial.climax, stageIdx: ctrl.climaxStageIdx, evidenceId },
+    ctrl.deps,
+    (id) => ctrl.handleSelectChoice(id)
+  );
+  ctrl.climaxStageIdx = result.stageIdx;
+  ctrl.climaxChoiceIdx = result.choiceIdx;
+}
+
+export function resolveClimaxChoiceFromController(ctrl: ClimaxControllerPort, optionId: string): void {
+  if (ctrl.phase !== 'CLIMAX' || ctrl.climaxChoiceIdx == null) return;
+  ctrl.climaxChoiceIdx = resolveClimaxChoice(
+    { climax: ctrl.script.trial.climax, choiceIdx: ctrl.climaxChoiceIdx, optionId },
+    buildClimaxCtx(ctrl),
+    (id) => ctrl.handleSelectChoice(id)
+  );
+}
+
+export function rebindClimaxChoiceModal(ctrl: ClimaxControllerPort): void {
+  if (ctrl.phase !== 'CLIMAX' || ctrl.climaxChoiceIdx == null) return;
+  openClimaxChoice(choiceOpenSession(
+    ctrl.deps,
+    ctrl.script.trial.climax,
+    ctrl.climaxChoiceIdx,
+    (id) => ctrl.handleSelectChoice(id)
+  ));
 }
 
 // fallow-ignore-next-line unused-export
+export { celebrateClimax, queueClimaxCelebration } from './TrialChoice.js';
+
+// fallow-ignore-next-line unused-export
 export function queueClimaxVictory(climax: ClimaxDefinition, deps: ClimaxQueueDeps): void {
-  deps.onQueueDialogue(climax.verdict, /*onVerdictDone*/ () => {
-    VisualEffects.triggerConfetti(deps.dom.confettiContainerEl);
-    if (!climax.epilogue) return;
-    scheduleWaitingRoomFade(climax.epilogue, deps);
-  });
-}
-
-function scheduleWaitingRoomFade(epilogue: ClimaxEpilogue, deps: ClimaxQueueDeps): void {
-  setTimeout(/*leaveCourtroom*/ () => {
-    fadeThroughBlack(
-      deps.dom.flashEl,
-      /*onCovered*/ () => cutToWaitingRoom(epilogue, deps),
-      /*onRevealed*/ () => queueEpilogue(epilogue, deps)
-    );
-  }, /*delayInMs=*/ COURTROOM_CELEBRATION_MS);
-}
-
-function cutToWaitingRoom(epilogue: ClimaxEpilogue, deps: ClimaxQueueDeps): void {
-  VisualEffects.clearConfetti(deps.dom.confettiContainerEl);
-  VisualEffects.hideFurniture(deps.dom.courtFurnitureContainerEl);
-  VisualEffects.hideCharacter(deps.dom.charSpriteEl);
-  deps.dom.bgEl.style.backgroundImage = `url('${epilogue.bg}')`;
-  deps.dom.locationBannerEl.textContent = i18n.t.locationWaitingRoom;
-}
-
-function queueEpilogue(epilogue: ClimaxEpilogue, deps: ClimaxQueueDeps): void {
-  const lines = stampEpilogueLines(epilogue.bg, epilogue.dialogue);
-  deps.onQueueDialogue(lines);
+  queueClimaxCelebration(climax.verdict, climax, deps);
 }

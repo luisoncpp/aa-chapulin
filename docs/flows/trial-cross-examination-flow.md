@@ -54,9 +54,10 @@ Operational guide for courtroom litigation, cross-examinations, evidence present
 3. Player presents a `presentTarget` for the current climax stage (`climax.stages` when set; otherwise `climax.presentTarget`):
    - Wrong item: penalty, incorrect-clue toast, Court Record stays open on the same stage.
    - Correct item on a non-final stage: queues that stage's `successDialogue`, then opens the Court Record again.
-   - Correct item on the final stage: queues `script.trial.climax.verdict`, then confetti and optional epilogue as below.
-   - Case 1 is one stage (`antenitas_vinil` or `bolsa_dolares`). Case 2 is three: gold tin, valerian/aroma, then wax mold.
-4. After `verdict`:
+   - Correct item on the final stage without `choices`: queues `script.trial.climax.verdict`, then confetti and optional epilogue as below.
+   - Correct item on the final stage with `choices` (Case 2): queues that stage's `successDialogue` (wax mold + judge question), then opens `#choice-prompt-modal`. Wrong choice: penalty + `failDialogue`, same prompt reopens. Correct choice: `successDialogue`, then next prompt or verdict on the last one.
+   - Case 1 is one stage (`antenitas_vinil` or `bolsa_dolares`). Case 2 is three presents then two choices.
+4. After the Not Guilty line (from `verdict` or last choice `successDialogue`):
    - `triggerConfetti()` fires as soon as the verdict queue finishes, while the judge camera is still up.
    - If `climax.epilogue` exists (Case 2), [[src/engine/Private/TrialClimax.ts]] holds that courtroom shot, fades `#screen-flash` to black, swaps to `bg_waiting_room.jpg` (clears confetti, hides bench/sprites), fades in, then queues stamped epilogue lines (`furniture: 'none'`). Case 1 has no epilogue.
 
@@ -81,6 +82,7 @@ Operational guide for courtroom litigation, cross-examinations, evidence present
 ## 7. Files to Inspect
 - [[src/engine/Private/TrialController.ts]]
 - [[src/engine/Private/TrialClimax.ts]]
+- [[src/engine/Private/TrialChoice.ts]]
 - [[src/engine/Private/SceneFade.ts]]
 - [[src/engine/Private/ModalManager.ts]]
 - [[src/state/Private/GameStateManager.ts]]

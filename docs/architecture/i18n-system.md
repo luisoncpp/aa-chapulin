@@ -32,5 +32,5 @@ The internationalization deep module exposes:
 
 ## Structural Invariants
 
-- **Contradiction Parity**: English and Spanish scripts for the same `caseId` must share statement indices and evidence IDs. Case 1 climax targets `antenitas_vinil` / `bolsa_dolares`; Case 2 climax stages target `lata_grasa` / `antenitas_vinil`, then `frasco_valeriana` / `aroma_dulce`, then `molde_cera`.
+- **Contradiction Parity**: English and Spanish scripts for the same `caseId` must share statement indices and evidence IDs. Case 1 climax targets `antenitas_vinil` / `bolsa_dolares`; Case 2 climax stages target `lata_grasa` / `antenitas_vinil`, then `frasco_valeriana` / `aroma_dulce`, then `molde_cera`. Case 2 `climax.choices` must keep the same `id`, option `id`, and `correctId` values in ES and EN (`case2_climax_choices.ts` / `case2_climax_choices_en.ts`); only `question` and `label` strings differ.
 - **Catalog Parity**: If an evidence ID has `updatedDesc` in one language catalog, the other language must have it too.

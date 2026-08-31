@@ -146,6 +146,19 @@ describe('StageLayout composition frames', () => {
     expect(dom.gameScreen.style.getPropertyValue('--furniture-baseline')).toBe('0.00%');
   });
 
+  it('stages Doctor Chapatín shorter so the witness podium is not swallowed', () => {
+    const dom = setupDomHarness();
+    applyStageFrame(dom.gameScreen, 'podium', 'chapatin_enojado');
+    const chapatinHeight = parseFloat(dom.gameScreen.style.getPropertyValue('--char-height'));
+    expect(chapatinHeight).toBeLessThan(48);
+    expect(chapatinHeight).toBeGreaterThan(40);
+    expect(dom.gameScreen.style.getPropertyValue('--char-baseline')).toBe('18.00%');
+
+    applyStageFrame(dom.gameScreen, 'podium', 'aniceto_idle');
+    expect(dom.gameScreen.style.getPropertyValue('--char-height')).toBe('62.00%');
+    expect(dom.gameScreen.style.getPropertyValue('--char-baseline')).toBe('18.00%');
+  });
+
   it('aligns plain frame character baseline with the dialogue box top edge', () => {
     // Dialogue box sits 15px from bottom with 120px height (top edge at 135px / 540px = 25%)
     const dialogueBoxTopRatio = (15 + 120) / STAGE_H;

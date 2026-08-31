@@ -56,6 +56,9 @@
             </div>
         </div>
 
+        <!-- Climax present question (visible while a stage awaits evidence) -->
+        <div id="climax-present-prompt" class="hidden"></div>
+
         <!-- Notification Banner -->
         <div id="game-notification" class="hidden"></div>
 
@@ -124,6 +127,7 @@
                 <button id="btn-continue-game" class="splash-btn splash-btn-continue hidden">📂 CONTINUAR PARTIDA (CONTINUE)</button>
                 <button id="btn-start-game" class="splash-btn">🔍 CASO 1: EL ESCUADRÓN COLORADO</button>
                 <button id="btn-start-case2" class="splash-btn">🔍 CASO 2: EL JUICIO DEL CHÓMPIRAS</button>
+                <button id="btn-start-case3" class="splash-btn">🔍 CASO 3: LA NOCHE DEL GRITO</button>
             </div>
         </div>
 
@@ -134,6 +138,7 @@
                     <h2>ACTA DEL JUICIO (EVIDENCE RECORD)</h2>
                     <button id="btn-close-record" class="close-btn">X</button>
                 </div>
+                <p id="court-record-present-prompt" class="hidden"></p>
                 <div class="modal-body">
                     <div id="evidence-grid">
                         <!-- Evidence cards dynamically inserted -->

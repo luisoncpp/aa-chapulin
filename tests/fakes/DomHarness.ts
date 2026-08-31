@@ -28,6 +28,7 @@ export function setupDomHarness(): DomElements {
           <button id="btn-court-record"><img src="" alt="Insignia"><span>Acta</span></button>
         </div>
       </div>
+      <div id="climax-present-prompt" class="hidden"></div>
       <div id="game-notification" class="hidden"></div>
       <div id="controls-bar">
         <div id="investigation-controls">
@@ -67,10 +68,12 @@ export function setupDomHarness(): DomElements {
         <button id="btn-continue-game" class="hidden">CONTINUAR</button>
         <button id="btn-start-game">COMENZAR</button>
         <button id="btn-start-case2">CASO 2</button>
+        <button id="btn-start-case3">CASO 3</button>
         <button id="btn-start-trial-debug">MODO DEBUG</button>
       </div>
       <div id="court-record-modal" class="game-modal hidden">
         <button id="btn-close-record">X</button>
+        <p id="court-record-present-prompt" class="hidden"></p>
         <div id="evidence-grid"></div>
         <img id="evidence-icon-preview" src="" alt="Item" class="hidden">
         <h3 id="evidence-title"></h3>

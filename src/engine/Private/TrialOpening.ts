@@ -5,7 +5,7 @@
 
 import { i18n } from '../../i18n/index.js';
 import type { GameStateManager } from '../../state/index.js';
-import type { CaseScript } from '../../types/index.js';
+import type { CaseScript, TrialDay } from '../../types/index.js';
 import type { DomElements } from './DomElements.js';
 import { getActiveTrial } from './TrialDayRouter.js';
 import { VisualEffects } from './VisualEffects.js';
@@ -25,7 +25,7 @@ export function paintCourtroomPlate(deps: CourtroomPaintDeps, script: CaseScript
   paintOpeningShot(deps.dom, script, deps.state.trialDay);
 }
 
-function paintOpeningShot(dom: DomElements, script: CaseScript, trialDay: number): void {
+function paintOpeningShot(dom: DomElements, script: CaseScript, trialDay: TrialDay): void {
   const first = getActiveTrial(script, trialDay).intro[0];
   if (!first) return;
   VisualEffects.updateStagingForLine(dom, first, /*isTrialMode=*/ true);

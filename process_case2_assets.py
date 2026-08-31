@@ -45,6 +45,18 @@ BGS = [
 
 STANDING_CANVAS = 512
 STANDING_HEM_MARGIN = 5
+STANDING_SIDE_MARGIN = 8
+
+
+def _fit_bust_to_canvas(cropped: Image.Image) -> Image.Image:
+    """Scale a larger-than-canvas crop down. Pasting without this zoom-crops the bust."""
+    max_w = STANDING_CANVAS - 2 * STANDING_SIDE_MARGIN
+    max_h = STANDING_CANVAS - STANDING_HEM_MARGIN - STANDING_SIDE_MARGIN
+    if cropped.width <= STANDING_CANVAS and cropped.height <= STANDING_CANVAS:
+        return cropped
+    scale = min(max_w / cropped.width, max_h / cropped.height)
+    size = (max(1, int(cropped.width * scale)), max(1, int(cropped.height * scale)))
+    return cropped.resize(size, Image.Resampling.LANCZOS)
 
 
 def anchor_standing_bust(img: Image.Image) -> Image.Image:
@@ -52,7 +64,7 @@ def anchor_standing_bust(img: Image.Image) -> Image.Image:
     bbox = img.getbbox()
     if not bbox:
         return img
-    cropped = img.crop(bbox)
+    cropped = _fit_bust_to_canvas(img.crop(bbox))
     canvas = Image.new("RGBA", (STANDING_CANVAS, STANDING_CANVAS), (0, 0, 0, 0))
     ox = (STANDING_CANVAS - cropped.width) // 2
     oy = STANDING_CANVAS - STANDING_HEM_MARGIN - cropped.height
@@ -98,7 +110,8 @@ def save_evidence_icon(filtered: Image.Image, name: str) -> None:
         return
     cropped = filtered.crop(bbox)
     max_dim = max(cropped.width, cropped.height)
-    canvas = Image.new("RGBA", (max_dim + 12, max_dim + 12), (0, 0, 0, 0))
+    pad = max(24, max_dim // 8)
+    canvas = Image.new("RGBA", (max_dim + pad * 2, max_dim + pad * 2), (0, 0, 0, 0))
     ox = (canvas.width - cropped.width) // 2
     oy = (canvas.height - cropped.height) // 2
     canvas.paste(cropped, (ox, oy))

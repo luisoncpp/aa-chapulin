@@ -36,7 +36,10 @@ Domain terminology and project-specific concepts for **El Chapulín Colorado: Ac
 | **Profesor Jirafales** | Vault owner and Case 2 judge; hacienda floor plans and generator box are his. | [[src/case/Private/case2_boveda.ts]] |
 | **Don Jaimito** | Postman whose overtime alibi and traffic ticket break Peterete's postal story. | [[src/case/Private/case2_postal.ts]] |
 | **Doña Clotilde** | Neighbor whose valerian perfume and wax mold expose the dumbwaiter escape. | [[src/case/Private/case2_clotilde.ts]] |
-| **Chanfle de Oro** | Stolen 5 kg gold relic (`chanfle_oro`); the Case 2 corpus delicti. | [[src/state/Private/EvidenceCatalogCase2.ts]] |
+| **Doctor Chapatín** | Case 3 defendant: elderly grouchy doctor who hits people with a paper bag and hides Ñoño's treatment under professional secrecy. | [[src/case/case3/index.ts]] |
+| **El Sargento** (Refugio Pazguato) | Case 3 Gumshoe-style cop. Everyone calls him "el Sargento"; the full name is spoken once. Dialogue speaker key is `SARGENTO`, sprite prefix stays `pazguato_*`. Contaminates the scene, then recovers the station-cut cartridge from the trash. | [[src/case/case3/index.ts]] |
+| **Don Aniceto Rebollar** | Case 3 star announcer and true culprit; corrects other people's diction and cannot let a misquoted sketch line pass. Base pose `aniceto_idle` is his identity lock. | [[src/case/case3/index.ts]] |
+| **Micrófono de Oro** | Bronze trophy-mic (`microfono_oro`); Case 3 murder weapon. Needs two Court Record updates before the last climax present accepts it. | [[src/state/Private/EvidenceCatalogCase3.ts]] |
 
 ## Audio & Engine Terminology
 

@@ -48,6 +48,7 @@ export class InvestigationController {
     this.state.currentLocation = location;
     this.isFirstTimeDialogue = false;
     this.dom.dialogueBoxEl.classList.remove('examine-mode');
+    this.dom.gameScreen.classList.remove('examine-mode');
     this.dom.investigationNavEl.classList.remove('hidden');
     this.dom.examineNavEl.classList.add('hidden');
     this.dom.trialNavEl.classList.add('hidden');
@@ -110,6 +111,7 @@ export class InvestigationController {
     this.isExamineActive = true;
     this.dom.hotspotsContainerEl.classList.add('visible-hotspots');
     this.dom.dialogueBoxEl.classList.add('examine-mode');
+    this.dom.gameScreen.classList.add('examine-mode');
     this.dom.investigationNavEl.classList.add('hidden');
     this.dom.examineNavEl.classList.remove('hidden');
     VisualEffects.hideCharacter(this.dom.charSpriteEl);
@@ -125,6 +127,7 @@ export class InvestigationController {
     this.isExamineActive = false;
     this.dom.hotspotsContainerEl.classList.remove('visible-hotspots');
     this.dom.dialogueBoxEl.classList.remove('examine-mode');
+    this.dom.gameScreen.classList.remove('examine-mode');
     this.dom.examineTooltipEl.classList.add('hidden');
     this.dom.examineNavEl.classList.add('hidden');
     this.dom.investigationNavEl.classList.remove('hidden');

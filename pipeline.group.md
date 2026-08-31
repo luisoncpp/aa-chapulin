@@ -6,6 +6,7 @@ icon: wrench
 files:
   - process_assets.py
   - process_case2_assets.py
+  - process_case3_assets.py
   - verify_assets.py
 architectureDoc: docs/architecture/asset-pipeline.md
 descriptionShort: "Automates sprite chroma-keying, grid slicing, and asset verification"

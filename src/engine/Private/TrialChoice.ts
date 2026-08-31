@@ -16,6 +16,7 @@ import { VisualEffects } from './VisualEffects.js';
 export interface ClimaxSession {
   stageIdx: number;
   choiceIdx: number | null;
+  settled?: boolean;
 }
 
 export interface ChoiceOpenSession {

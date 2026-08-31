@@ -29,6 +29,8 @@ export interface DomElements {
   hotspotsContainerEl: HTMLElement;
   examineTooltipEl: HTMLElement;
   locationBannerEl: HTMLElement;
+  climaxPresentPromptEl: HTMLElement;
+  courtRecordPresentPromptEl: HTMLElement;
   dialogueBoxEl: HTMLElement;
   talkOptionsModalEl: HTMLElement;
   talkListEl: HTMLElement;
@@ -50,6 +52,7 @@ export interface DomElements {
   gameNotificationEl: HTMLElement;
   btnStartGame: HTMLButtonElement;
   btnStartCase2?: HTMLButtonElement;
+  btnStartCase3?: HTMLButtonElement;
   btnStartTrialDebug?: HTMLButtonElement;
   btnCourtRecord: HTMLButtonElement;
   btnCloseRecord: HTMLButtonElement;
@@ -93,6 +96,8 @@ export function getDomElements(): DomElements {
     hotspotsContainerEl: document.getElementById('hotspots-container')!,
     examineTooltipEl: document.getElementById('examine-tooltip')!,
     locationBannerEl: document.getElementById('location-banner')!,
+    climaxPresentPromptEl: document.getElementById('climax-present-prompt')!,
+    courtRecordPresentPromptEl: document.getElementById('court-record-present-prompt')!,
     dialogueBoxEl: document.getElementById('dialogue-box')!,
     talkOptionsModalEl: document.getElementById('talk-options-modal')!,
     talkListEl: document.getElementById('talk-options-list')!,
@@ -114,6 +119,7 @@ export function getDomElements(): DomElements {
     gameNotificationEl: document.getElementById('game-notification')!,
     btnStartGame: document.getElementById('btn-start-game') as HTMLButtonElement,
     btnStartCase2: document.getElementById('btn-start-case2') as HTMLButtonElement,
+    btnStartCase3: document.getElementById('btn-start-case3') as HTMLButtonElement,
     btnStartTrialDebug: (document.getElementById('btn-start-trial-debug') as HTMLButtonElement) || undefined,
     btnCourtRecord: document.getElementById('btn-court-record') as HTMLButtonElement,
     btnCloseRecord: document.getElementById('btn-close-record') as HTMLButtonElement,

@@ -144,6 +144,14 @@ flowchart LR
 2. **Palette Restriction**: No pink/magenta tones permitted in foreground character outfits or props to prevent keying artifacts.
 3. **No Image Stretching**: Handled via `object-fit: contain` and integer scaling across all viewports.
 
+### Waist-up bust generation (investigation / `plain` frame)
+`plain` staging lines the **512 canvas bottom** to the dialogue box gold trim. The drawn waist must sit there.
+
+- Prompt each 2x2 cell as a waist-up bust whose **hem/waist cut is on the bottom of the cell** (~5px of `#FF00FF` below the shirt). Hair and hands keep magenta margin so they do not clip the cell edges.
+- Do **not** follow full-body sprite advice that parks the subject in the central 60–70% of the cell. That padding under the torso survives chroma-key and reads as a clipped floating character.
+- After slicing, every new `plain` pose goes through `anchor_standing_bust` ([[process_case2_assets.py]], used by Case 2 extra poses and [[process_case3_assets.py]]). Do not floor a subset of names.
+- Desk-slam poses are not this contract: they keep the A-frame waist notch for `court_bench.png`.
+
 ---
 
 ## 6. Audio Architecture & Musical Direction

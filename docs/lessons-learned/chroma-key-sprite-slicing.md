@@ -38,3 +38,7 @@ Always validate extracted sprites using pixel-level static checks:
 - 0 purple perimeter fringe pixels (cast to int to avoid uint8 overflow)
 - 0 outer margin line noise
 - 0 hollowed skin areas
+- For `plain`-frame waist-up busts: opaque hem within 8px of the 512 canvas floor (see [[docs/lessons-learned/dialogue-box-sprite-baseline-alignment.md]])
+
+### 8. Waist-up cells are not full-body safe-area cells
+A generic 2x2 prompt that parks the body in the central 60% of each cell leaves a magenta strip under the waist. After keying, that strip is still in the PNG, and `plain` staging shows room background between the torso and the dialogue box. Prompt the waist cut onto the cell floor; keep containment padding on top and sides only.

@@ -33,6 +33,7 @@ export type PoseName =
   | 'chapulin_panic'
   | 'chapulin_point'
   | 'chapulin_slam'
+  | 'chapulin_idle'
   | 'donramon_idle'
   | 'donramon_slam'
   | 'donramon_shock'
@@ -71,6 +72,30 @@ export type PoseName =
   | 'clotilde_idle'
   | 'clotilde_flustered'
   | 'clotilde_mysterious'
+  | 'chapatin_idle'
+  | 'chapatin_enojado'
+  | 'chapatin_bolsa'
+  | 'chapatin_sweat'
+  | 'chapatin_conmovido'
+  | 'pazguato_idle'
+  | 'pazguato_saludo'
+  | 'pazguato_sweat'
+  | 'pazguato_decidido'
+  | 'aniceto_idle'
+  | 'aniceto_thinking'
+  | 'aniceto_sweat'
+  | 'aniceto_panic'
+  | 'aniceto_breakdown'
+  | 'barriga_idle'
+  | 'barriga_vendado'
+  | 'barriga_shock'
+  | 'barriga_enojado'
+  | 'nono_idle'
+  | 'nono_nervioso'
+  | 'nono_llorando'
+  | 'chimoltrufia_idle'
+  | 'chimoltrufia_confundida'
+  | 'chimoltrufia_shock'
   | null;
 
 export type CutinName =
@@ -138,6 +163,8 @@ export interface Statement {
   text: string;
   pressText?: DialogueLine[];
   contradiction?: ContradictionRule;
+  /** Visible only after the statement with this id has been pressed. */
+  unlockedBy?: string;
 }
 
 export interface Testimony {
@@ -155,6 +182,10 @@ export interface ClimaxEpilogue {
 export interface ClimaxStage {
   presentTarget: EvidenceId[];
   successDialogue: DialogueLine[];
+  /** Question shown on the HUD and Court Record while this stage awaits a present. */
+  prompt?: string;
+  /** Minimum evidence update stage required before an id is accepted at this stage. */
+  requiredUpdateStage?: Partial<Record<EvidenceId, number>>;
 }
 
 export interface ChoiceOption {
@@ -198,6 +229,7 @@ export interface AdjournmentDefinition {
   unlockLocations: LocationId[];
   requiredEvidence: EvidenceId[];
   trial: TrialDayScript;
+  next?: AdjournmentDefinition;
 }
 
 export interface CaseScript {

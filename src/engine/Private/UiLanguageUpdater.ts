@@ -49,6 +49,7 @@ export class UiLanguageUpdater {
     if (dom.btnContinueGame) dom.btnContinueGame.textContent = t.btnContinue;
     if (dom.btnStartGame) dom.btnStartGame.textContent = t.btnStartGame;
     if (dom.btnStartCase2) dom.btnStartCase2.textContent = t.btnStartCase2;
+    if (dom.btnStartCase3) dom.btnStartCase3.textContent = t.btnStartCase3;
     if (dom.btnStartTrialDebug) dom.btnStartTrialDebug.textContent = t.btnStartTrialDebug;
     fillCaseCompleteCopy(dom, lang);
     if (dom.btnCourtRecord) {

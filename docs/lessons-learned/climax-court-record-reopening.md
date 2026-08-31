@@ -8,5 +8,5 @@ Closing the Court Record modal dismissed the prompt while the dialogue FIFO queu
 
 ## Effective Pattern
 1. **Status from Dialogue Advance**: `DialogueFlow.handleAdvance()` returns `boolean` indicating whether an active dialogue action (typewriter skip, queue dequeue, or callback) occurred.
-2. **Idle Reopen Fallback**: When `handleAdvance()` returns `false` while `trial.isAwaitingEvidence()` is true, `GameEngine` reopens the Court Record in presentation mode (`isTrialPresent: true`) if the modal is currently hidden.
+2. **Idle Reopen Fallback**: When `handleAdvance()` returns `false` while `trial.isAwaitingEvidence()` is true, `GameEngine` reopens the Court Record in presentation mode (`isTrialPresent: true`) if the modal is currently hidden. `isAwaitingEvidence()` is false after the last correct present or last correct choice (`climaxResolved`), so idle clicks during verdict, confetti, or the waiting-room fade must not reopen the Acta.
 3. **Contextual HUD Present Capability**: When in a climax evidence presentation state (`trial.isAwaitingEvidence()`), opening the Court Record via the top HUD briefcase (`#btn-court-record`) also automatically sets `isTrialPresent: true`.

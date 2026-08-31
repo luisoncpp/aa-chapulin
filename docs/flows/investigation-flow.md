@@ -87,4 +87,4 @@ Operational guide for player actions during the crime scene investigation phase.
 
 ## 8. Common Failure Modes
 - **Trial button remains disabled**: Missing an ID from the current `requiredEvidence` list (Case 1 five clues; Case 2 six day-1 or six day-2 items after adjournment). After Case 2 day-1 adjournment, [[src/engine/Private/AdjournmentHandler.ts]] calls `resetTrialLaunchButton()` so the button stays off until day-2 evidence is complete.
-- **Hotspots unclickable**: `isExamineActive` is false; user must click "🔍 Examinar" button first.
+- **Hotspots unclickable**: `isExamineActive` is false; user must click "🔍 Examinar" button first. If examine is on and a horizontal band still ignores hover, a full-width HUD sibling (usually `#controls-bar`) is sitting above the hotspot layer — see [[docs/lessons-learned/examine-hud-hotspot-occlusion.md]].

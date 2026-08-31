@@ -14,12 +14,14 @@ import {
   investigationCoreTrack,
   restauranteTrack
 } from './tracks/InvestigationTracks.js';
+import { crossExamPrestoTrack, kermesTrack } from './tracks/Case3Tracks.js';
 
 export const TRACK_CATALOG: TrackCatalogMap = {
   // @Section(Courtroom & Cross-Examination Tracks)
   trial: trialTrack,
   cross_exam_moderato: crossExamModeratoTrack,
   cross_exam_allegro: crossExamAllegroTrack,
+  cross_exam_presto: crossExamPrestoTrack,
 
   // @Section(Objection & Pursuit Turnaround Tracks)
   objection: objectionTrack,
@@ -33,5 +35,6 @@ export const TRACK_CATALOG: TrackCatalogMap = {
   casa_clotilde: casaClotildeTrack,
   suspense: suspenseTrack,
   victory: victoryTrack,
-  detention_center: detentionCenterTrack
+  detention_center: detentionCenterTrack,
+  kermes: kermesTrack
 };

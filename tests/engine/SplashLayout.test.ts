@@ -4,7 +4,7 @@ import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 
 const STAGE_H = 540;
-const BUTTON_COUNT = 3;
+const BUTTON_COUNT = 4;
 const TITLE_SHADOW_PX = 3;
 const SUBTITLE_LINES = 1;
 

@@ -215,6 +215,7 @@ describe('TrialController', () => {
 
     case2Controller.handleSelectChoice('security_chief');
     expect(queuedDialogues.some((d) => d.some((l) => l.text.includes('INOCENTE')))).toBe(true);
+    expect(case2Controller.isAwaitingEvidence()).toBe(false);
   });
 
   it('triggers game over when penalties exhaust all health', () => {

@@ -6,7 +6,6 @@
 
 import type { CutinName, DialogueLine, FurnitureType, PoseName } from '../../types/index.js';
 import type { DomElements } from './DomElements.js';
-import { resolvePoseAsset } from './PoseAliases.js';
 import { applyStageFrame, resolveStageFrame } from './StageLayout.js';
 
 const FURNITURE_ASSETS: Record<'podium' | 'bench', string> = {
@@ -28,7 +27,13 @@ const TRIAL_SPEAKER_BACKGROUNDS: Record<string, string> = {
   CHOMPIRAS: 'assets/bg_witness.jpg',
   JIRAFALES: 'assets/bg_witness.jpg',
   JAIMITO: 'assets/bg_witness.jpg',
-  CLOTILDE: 'assets/bg_witness.jpg'
+  CLOTILDE: 'assets/bg_witness.jpg',
+  CHAPATIN: 'assets/bg_witness.jpg',
+  ANICETO: 'assets/bg_witness.jpg',
+  BARRIGA: 'assets/bg_witness.jpg',
+  NONO: 'assets/bg_witness.jpg',
+  CHIMOLTRUFIA: 'assets/bg_witness.jpg',
+  SARGENTO: 'assets/bg_witness.jpg'
 };
 
 function isDefenseSpeaker(speaker: string): boolean {
@@ -43,9 +48,7 @@ export class VisualEffects {
   // @Section(Character Pose Staging)
   public static setPose(charSpriteEl: HTMLImageElement, poseName: PoseName): void {
     if (!poseName) return;
-    const asset = resolvePoseAsset(poseName);
-    if (!asset) return;
-    charSpriteEl.src = `assets/${asset}.png`;
+    charSpriteEl.src = `assets/${poseName}.png`;
     charSpriteEl.classList.remove('hidden');
   }
 
@@ -120,7 +123,11 @@ export class VisualEffects {
     const effectivePose = VisualEffects.resolveEffectivePose(line, isTrialMode);
     const furniture = line.furniture ?? VisualEffects.inferFurniture(isTrialMode, currentBg);
     VisualEffects.setFurniture(dom.courtFurnitureSpriteEl, dom.courtFurnitureContainerEl, furniture);
-    applyStageFrame(dom.gameScreen, resolveStageFrame(furniture, effectivePose));
+    applyStageFrame(
+      dom.gameScreen,
+      resolveStageFrame(furniture, effectivePose),
+      /*pose=*/ effectivePose
+    );
   }
 
   // fallow-ignore-next-line complexity

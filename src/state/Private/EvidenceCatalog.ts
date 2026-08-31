@@ -4,8 +4,9 @@
  * Registry for [[./GameStateManager.ts]] and [[src/engine/Private/ModalManager.ts]].
  */
 
-import type { EvidenceCatalogMap, Language } from '../../types/index.js';
+import type { CaseId, EvidenceCatalogMap, Language } from '../../types/index.js';
 import { CASE2_EVIDENCE_EN, CASE2_EVIDENCE_ES } from './EvidenceCatalogCase2.js';
+import { CASE3_EVIDENCE_EN, CASE3_EVIDENCE_ES } from './EvidenceCatalogCase3.js';
 
 // @Section(Spanish Evidence Catalog)
 // fallow-ignore-next-line unused-export
@@ -123,6 +124,9 @@ export const EVIDENCE_CATALOG_EN: EvidenceCatalogMap = {
 // fallow-ignore-next-line unused-export
 export const EVIDENCE_CATALOG: EvidenceCatalogMap = EVIDENCE_CATALOG_ES;
 
-export function getEvidenceCatalog(lang: Language = 'es'): EvidenceCatalogMap {
+export function getEvidenceCatalog(lang: Language = 'es', caseId?: CaseId): EvidenceCatalogMap {
+  if (caseId === 'case3') {
+    return (lang === 'en' ? CASE3_EVIDENCE_EN : CASE3_EVIDENCE_ES) as EvidenceCatalogMap;
+  }
   return lang === 'en' ? EVIDENCE_CATALOG_EN : EVIDENCE_CATALOG_ES;
 }

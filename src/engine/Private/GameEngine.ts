@@ -10,6 +10,7 @@ import { i18n } from '../../i18n/index.js';
 import { gameState as defaultGameState, type GameStateManager } from '../../state/index.js';
 import type { CaseId, CaseScript, DialogueLine, EvidenceId, Language, LocationId } from '../../types/index.js';
 import { handleAdjournment } from './AdjournmentHandler.js';
+import { applyClimaxPresentPrompt } from './ClimaxPresentPrompt.js';
 import { DialogueFlow } from './DialogueFlow.js';
 import { getDomElements, type DomElements } from './DomElements.js';
 import { applyDebugUrlParams } from './EngineDebugBootstrap.js';
@@ -95,6 +96,7 @@ export class GameEngine {
       investigation: this.investigation, trial: this.trial,
       onStartGame: () => this.startGame('case1'),
       onStartCase2: () => this.startGame('case2'),
+      onStartCase3: () => this.startGame('case3'),
       onStartTrialDebug: () => this.startTrialDebug(),
       onAdvance: () => this.handleAdvance(),
       onOpenCourtRecord: (isTrial) => this.openCourtRecord(isTrial),
@@ -110,7 +112,7 @@ export class GameEngine {
     applyDebugUrlParams({
       setLanguage: (lang) => this.setLanguage(lang),
       loadCase: (caseId) => loadCase(this.host(), caseId),
-      startTrialDebug: () => this.startTrialDebug()
+      startTrialDebug: (day) => this.startTrialDebug(day)
     });
   }
 
@@ -122,6 +124,7 @@ export class GameEngine {
     this.investigation.setScript(this.script);
     this.trial.setScript(this.script);
     UiLanguageUpdater.updateUi(this.dom, lang);
+    applyClimaxPresentPrompt(this.dom, this.trial.getPresentPrompt());
   }
 
   public toggleLanguage(): void {
@@ -132,8 +135,8 @@ export class GameEngine {
     launchGame(this.host(), caseId);
   }
 
-  public startTrialDebug(): void {
-    launchTrial(this.host());
+  public startTrialDebug(day?: import('../../types/index.js').TrialDay): void {
+    launchTrial(this.host(), day);
   }
 
   private handleAdjournment(location: LocationId): void {
@@ -179,6 +182,7 @@ export class GameEngine {
   // @Section(Evidence Presentation Handling)
   private openCourtRecord(isTrialPresent: boolean): void {
     const shouldPresent = isTrialPresent || this.trial.isAwaitingEvidence();
+    applyClimaxPresentPrompt(this.dom, shouldPresent ? this.trial.getPresentPrompt() : null);
     ModalManager.openCourtRecord({
       dom: this.dom, state: this.state, isTrialPresent: shouldPresent,
       onSelect: (id) => { this.selectedEvidenceId = id; }
@@ -189,6 +193,7 @@ export class GameEngine {
     if (!this.selectedEvidenceId) return;
     const evId = this.selectedEvidenceId;
     ModalManager.closeCourtRecord(this.dom);
+    applyClimaxPresentPrompt(this.dom, null);
     this.trial.handlePresentEvidence(evId);
   }
 }

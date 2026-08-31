@@ -5,6 +5,7 @@
  */
 
 import type { SoundEngine } from '../../audio/index.js';
+import { fitDialogueFontSize } from './DialogueTextFit.js';
 
 export class Typewriter {
   public isTyping = false;
@@ -26,6 +27,7 @@ export class Typewriter {
     this.typeIdx = 0;
     this.targetEl.textContent = '';
     this.onCompleteCallback = onComplete ?? null;
+    fitDialogueFontSize(this.targetEl, text);
 
     let count = 0;
     this.timer = setInterval(/*onCharTick*/ () => {

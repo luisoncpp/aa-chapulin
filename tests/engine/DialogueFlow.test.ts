@@ -41,6 +41,32 @@ describe('DialogueFlow', () => {
     expect(dom.speakerBoxEl.textContent).toBe('CHAPULÍN');
   });
 
+  it('hides the advance arrow once the queue is exhausted', () => {
+    flow.queueDialogue([
+      { speaker: 'DEFENSA', text: 'Uno.' },
+      { speaker: 'DEFENSA', text: 'Dos.' }
+    ]);
+    expect(dom.dialogueArrowEl.classList.contains('hidden')).toBe(false);
+    vi.runAllTimers();
+    flow.handleAdvance();
+    vi.runAllTimers();
+    expect(dom.dialogueArrowEl.classList.contains('hidden')).toBe(true);
+  });
+
+  it('keeps the advance arrow while a completion callback is still pending', () => {
+    flow.queueDialogue([{ speaker: 'DEFENSA', text: 'Uno.' }], /*onComplete=*/ () => {});
+    expect(dom.dialogueArrowEl.classList.contains('hidden')).toBe(false);
+    vi.runAllTimers();
+    flow.handleAdvance();
+    vi.runAllTimers();
+    expect(dom.dialogueArrowEl.classList.contains('hidden')).toBe(true);
+  });
+
+  it('hides the advance arrow for cross-examination statements rendered outside the queue', () => {
+    flow.renderDialogueLine({ speaker: 'TRIPASECA', text: 'Yo lo vi.' });
+    expect(dom.dialogueArrowEl.classList.contains('hidden')).toBe(true);
+  });
+
   it('clears the speaker tag when a line omits speaker', () => {
     flow.renderDialogueLine({ speaker: '', text: '...' } as never);
     expect(dom.speakerBoxEl.textContent).toBe('');

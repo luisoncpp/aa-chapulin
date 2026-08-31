@@ -52,6 +52,7 @@ Avoid: "bug description + fix". Prefer: "what I learned that applies to future w
 | [`barriga-injured-pose-lock.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/lessons-learned/barriga-injured-pose-lock.md) | Extra Barriga poses snap to standing idle unless vendado is the lock on a second sheet. | 2026-08-30 |
 | [`oversized-full-pose-anchor.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/lessons-learned/oversized-full-pose-anchor.md) | A 1x1 pose larger than 512 must scale onto the canvas; paste-crop zoom-crops the bust. | 2026-08-30 |
 | [`climax-present-prompt-hud.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/lessons-learned/climax-present-prompt-hud.md) | Climax stage questions must stay on the HUD; the judge's opening recap is already gone when the Acta opens. | 2026-08-30 |
+| [`dialogue-box-long-line-autofit.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/lessons-learned/dialogue-box-long-line-autofit.md) | The fixed dialogue plate cannot grow; long lines shrink the font via a CSS variable. | 2026-08-30 |
 | [`climax-settled-choice-idx.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/lessons-learned/climax-settled-choice-idx.md) | After the last climax success, `choiceIdx` is null again; that is not a present prompt. | 2026-08-30 |
 
 

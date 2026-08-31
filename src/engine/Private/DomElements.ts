@@ -32,6 +32,7 @@ export interface DomElements {
   climaxPresentPromptEl: HTMLElement;
   courtRecordPresentPromptEl: HTMLElement;
   dialogueBoxEl: HTMLElement;
+  dialogueArrowEl: HTMLElement;
   talkOptionsModalEl: HTMLElement;
   talkListEl: HTMLElement;
   moveLocationsModalEl: HTMLElement;
@@ -99,6 +100,7 @@ export function getDomElements(): DomElements {
     climaxPresentPromptEl: document.getElementById('climax-present-prompt')!,
     courtRecordPresentPromptEl: document.getElementById('court-record-present-prompt')!,
     dialogueBoxEl: document.getElementById('dialogue-box')!,
+    dialogueArrowEl: document.getElementById('dialogue-arrow')!,
     talkOptionsModalEl: document.getElementById('talk-options-modal')!,
     talkListEl: document.getElementById('talk-options-list')!,
     moveLocationsModalEl: document.getElementById('move-locations-modal')!,

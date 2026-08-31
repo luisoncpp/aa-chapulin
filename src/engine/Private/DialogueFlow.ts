@@ -31,6 +31,7 @@ export class DialogueFlow {
   public clear(): void {
     this.queue = [];
     this.onQueueFinish = null;
+    this.refreshAdvanceArrow();
   }
 
   public handleAdvance(): boolean {
@@ -45,6 +46,7 @@ export class DialogueFlow {
     if (!this.onQueueFinish) return false;
     const cb = this.onQueueFinish;
     this.onQueueFinish = null;
+    this.refreshAdvanceArrow();
     cb();
     return true;
   }
@@ -68,6 +70,18 @@ export class DialogueFlow {
     this.updateEvidenceIfPresent(line.updateEvidence);
     this.unlockLocationIfPresent(line.unlockLocation);
     this.deps.typewriter.start(line.text || '');
+    this.refreshAdvanceArrow();
+  }
+
+  /**
+   * The blinking arrow promises "click for more". It must only show when
+   * `handleAdvance` would actually do something: a queued line left, or a
+   * pending completion callback. Cross-examination statements are rendered
+   * outside the queue, so this hides the arrow there too.
+   */
+  private refreshAdvanceArrow(): void {
+    const canAdvance = this.queue.length > 0 || this.onQueueFinish !== null;
+    this.deps.dom.dialogueArrowEl.classList.toggle('hidden', !canAdvance);
   }
 
   private applyLineSpeakerAndPose(line: DialogueLine): void {

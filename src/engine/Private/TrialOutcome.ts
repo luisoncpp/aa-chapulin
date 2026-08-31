@@ -22,9 +22,18 @@ export function onSuccessContradiction(ctrl: TrialController, dialogue: Dialogue
 function adjournToInvestigation(ctrl: TrialController): void {
   const adjournment = applyAdjournment(ctrl.deps.state, ctrl.script);
   if (!adjournment) return ctrl.startClimax();
+  refreshHealthUI(ctrl);
   ctrl.phase = 'IDLE';
   ctrl.clearActiveTestimony();
   ctrl.deps.onAdjourn?.(adjournment.nextLocation);
+}
+
+function refreshHealthUI(ctrl: TrialController): void {
+  ModalManager.updateHealthUI(
+    ctrl.deps.dom.healthBarEl,
+    ctrl.deps.state.health,
+    ctrl.deps.state.maxHealth
+  );
 }
 
 export function onPresentPenalty(ctrl: TrialController): void {
@@ -46,10 +55,6 @@ export function onPresentPenalty(ctrl: TrialController): void {
 export function showGameOverModal(ctrl: TrialController): void {
   ctrl.hideControls();
   ctrl.deps.state.resetHealth();
-  ModalManager.updateHealthUI(
-    ctrl.deps.dom.healthBarEl,
-    ctrl.deps.state.health,
-    ctrl.deps.state.maxHealth
-  );
+  refreshHealthUI(ctrl);
   ctrl.startTrial();
 }

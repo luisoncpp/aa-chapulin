@@ -95,4 +95,16 @@ describe('TrialDayRouter', () => {
     expect(day3?.nextLocation).toBe('bodega_radio');
     expect(state.trialDay).toBe(3);
   });
+
+  it('replenishes penalty attempts when a trial day ends', () => {
+    const state = new GameStateManager();
+    state.beginNewCase(fakeDay3Script);
+    state.takePenalty();
+    state.takePenalty();
+    expect(state.health).toBeLessThan(state.maxHealth);
+
+    applyAdjournment(state, fakeDay3Script);
+    expect(state.health).toBe(state.maxHealth);
+    expect(state.gameOver).toBe(false);
+  });
 });

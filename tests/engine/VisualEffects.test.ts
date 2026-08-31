@@ -45,7 +45,7 @@ describe('VisualEffects Subsystem', () => {
       /*isTrialMode=*/ true
     );
     expect(dom.gameScreen.dataset.stageFrame).toBe('podium');
-    expect(parseFloat(dom.gameScreen.style.getPropertyValue('--char-height'))).toBeLessThan(48);
+    expect(parseFloat(dom.gameScreen.style.getPropertyValue('--char-height'))).toBeLessThan(62);
   });
 
   it('triggers screen shake animation and removes it after duration', () => {

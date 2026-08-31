@@ -30,6 +30,7 @@ export function beginNextTrialDayState(
   state.flags.ready_for_trial = false;
   state.requiredEvidence = [...adjournment.requiredEvidence];
   state.mode = 'INVESTIGATION';
+  state.resetHealth();
   state.currentLocation = adjournment.nextLocation;
   state.unlockedLocations = [...adjournment.unlockLocations];
 }

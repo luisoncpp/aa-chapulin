@@ -150,8 +150,11 @@ describe('StageLayout composition frames', () => {
     const dom = setupDomHarness();
     applyStageFrame(dom.gameScreen, 'podium', 'chapatin_enojado');
     const chapatinHeight = parseFloat(dom.gameScreen.style.getPropertyValue('--char-height'));
-    expect(chapatinHeight).toBeLessThan(48);
-    expect(chapatinHeight).toBeGreaterThan(40);
+    // Shorter than the 62% cast default, but not so short he reads as a child: his ink
+    // fills the same share of the 512 canvas as every other bust.
+    expect(chapatinHeight).toBeCloseTo(52.7, 1);
+    expect(chapatinHeight).toBeGreaterThan(50);
+    expect(chapatinHeight).toBeLessThan(62);
     expect(dom.gameScreen.style.getPropertyValue('--char-baseline')).toBe('18.00%');
 
     applyStageFrame(dom.gameScreen, 'podium', 'aniceto_idle');

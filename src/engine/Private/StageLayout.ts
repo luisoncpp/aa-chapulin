@@ -13,8 +13,13 @@
 
 import type { FurnitureType, PoseName } from '../../types/index.js';
 
-/** Doctor Chapatín is a short old man; filling the default 0.62 box swallows the podium. */
-const CHAPATIN_HEIGHT_SCALE = 0.70;
+/**
+ * Doctor Chapatín is a short old man; filling the default 0.62 box swallows the podium.
+ * Read as a fraction of a full-height cast member, not as an absolute size: his ink fills
+ * 94% of the 512 canvas, the same as Aniceto, so anything under ~0.8 reads as a child
+ * rather than a short adult.
+ */
+const CHAPATIN_HEIGHT_SCALE = 0.85;
 
 export type StageFrameId = 'plain' | 'bench-stand' | 'bench-slam' | 'podium';
 

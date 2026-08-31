@@ -199,11 +199,15 @@ body {
     pointer-events: none;
 }
 
+/* Busts are 512px paintings, not pixel art, and every stage frame downscales them by a
+   non-integer ratio. `pixelated` is nearest-neighbour: it drops whole rows and columns and
+   chews through thin linework (glasses wire, hair strands). Smooth filtering is required
+   here even though the rest of the UI is deliberately pixelated. */
 #character-sprite {
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
-    image-rendering: pixelated;
+    image-rendering: auto;
     filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.6));
     animation: characterBreathe 3s infinite ease-in-out;
 }
@@ -478,7 +482,11 @@ body {
 }
 
 #dialogue-text {
-    font-size: 24px;
+    /* Auto-fit steps this down for long lines (see DialogueTextFit.ts). */
+    font-size: var(--dialogue-font-size, 24px);
+    height: 100%;
+    overflow: hidden;
+    padding-right: 22px; /* keep the last line clear of the blinking arrow */
     line-height: 1.35;
     color: #f1f2f6;
     text-shadow: 1px 1px 2px #000;

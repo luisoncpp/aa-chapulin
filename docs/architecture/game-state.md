@@ -69,10 +69,11 @@ Contains the master catalog defined in [[src/state/Private/EvidenceCatalog.ts#Ev
 - Defense starts with `5` health points (displayed as 5 green exclamation points `!` on the HUD).
 - Each invalid evidence submission deducts `1` point via `takePenalty()` in [[src/state/Private/GameStateManager.ts#Penalty & Health]].
 - When `health` reaches `0`, `gameOver` is set to `true`. The calling penalty site (cross-examination, climax present, or climax choice) must queue the guilty lines and restart the trial, which restores health.
+- Health is also fully replenished when a trial day ends in adjournment (`beginNextTrialDay`), so every trial day starts with all 5 attempts. The HUD bar is repainted by [[src/engine/Private/TrialOutcome.ts]] on adjournment.
 
 ### 5. Case start, trial day, and readiness
 - `beginNewCase(script)` in [[src/state/Private/GameStateManager.ts#Case Progression]] sets `caseId`, `trialDay = 1`, investigation at `script.startLocation`, inventory to `['insignia_abogado']`, then `applyProgressionRules(script)`.
-- `trialDay` is `1 | 2 | 3`. `beginNextTrialDay(adjournment)` increments the day, copies that adjournment's required evidence and location list. `beginTrialDay2` is a wrapper for Case 2 tests.
+- `trialDay` is `1 | 2 | 3`. `beginNextTrialDay(adjournment)` increments the day, copies that adjournment's required evidence and location list, and resets health. `beginTrialDay2` is a wrapper for Case 2 tests.
 - `checkTrialReadiness()` is case-aware: it requires every ID in the current `requiredEvidence` list (not a hardcoded Case 1 five-item set).
 - Case 1 `requiredEvidence`: `chipote_chillon`, `pastillas_chiquitolina`, `antenitas_vinil`, `informe_medico`, `foto_crimen`.
 - Case 2 day 1: `palanca_rota`, `informe_boveda`, `reloj_pendulo`, `aroma_dulce`, `plano_hacienda`, `caja_generador`.

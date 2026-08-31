@@ -68,7 +68,7 @@ Contains the master catalog defined in [[src/state/Private/EvidenceCatalog.ts#Ev
 ### 4. Penalty System (`health` & `takePenalty`)
 - Defense starts with `5` health points (displayed as 5 green exclamation points `!` on the HUD).
 - Each invalid evidence submission deducts `1` point via `takePenalty()` in [[src/state/Private/GameStateManager.ts#Penalty & Health]].
-- When `health` reaches `0`, `gameOver` is set to `true`, prompting a retry modal that restores health and resets the current trial phase.
+- When `health` reaches `0`, `gameOver` is set to `true`. The calling penalty site (cross-examination, climax present, or climax choice) must queue the guilty lines and restart the trial, which restores health.
 
 ### 5. Case start, trial day, and readiness
 - `beginNewCase(script)` in [[src/state/Private/GameStateManager.ts#Case Progression]] sets `caseId`, `trialDay = 1`, investigation at `script.startLocation`, inventory to `['insignia_abogado']`, then `applyProgressionRules(script)`.

@@ -41,6 +41,7 @@ Avoid: "bug description + fix". Prefer: "what I learned that applies to future w
 | [`mode-fade-and-case-complete.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/lessons-learned/mode-fade-and-case-complete.md) | Mode hops fade through black; a finished case stays on a black complete plate. | 2026-08-30 |
 | [`investigation-slam-needs-standing-pose.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/lessons-learned/investigation-slam-needs-standing-pose.md) | `*_slam` sprites are desk-contact; investigation needs a standing pose (`donramon_shock`). | 2026-08-30 |
 | [`climax-court-record-reopening.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/lessons-learned/climax-court-record-reopening.md) | Dialogue advance and HUD court record reopen evidence presentation mode during climax. | 2026-08-30 |
+| [`climax-penalty-must-restart.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/lessons-learned/climax-penalty-must-restart.md) | Health 0 does nothing unless the penalty site queues guilty lines and restarts. | 2026-08-31 |
 | [`trial-gating-is-inventory-only.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/lessons-learned/trial-gating-is-inventory-only.md) | `checkTrialReadiness` ignores visited locations; the last location of each day must carry required evidence. | 2026-08-30 |
 
 

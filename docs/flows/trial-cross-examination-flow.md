@@ -52,10 +52,10 @@ Operational guide for courtroom litigation, cross-examinations, evidence present
 1. `startClimax()` keeps trial controls hidden, transitions BGM to `'suspense'`, and queues dilemma dialogue from the case climax (`case1_climax` or `case2_climax`).
 2. Court Record opens in presentation mode (`isTrialPresent: true`). If closed by the player, advancing dialogue (Click / Space / Enter) or clicking the top HUD Court Record button (`#btn-court-record`) reopens the Court Record in presentation mode (`isTrialPresent: true`).
 3. Player presents a `presentTarget` for the current climax stage (`climax.stages` when set; otherwise `climax.presentTarget`):
-   - Wrong item: penalty, incorrect-clue toast, Court Record stays open on the same stage.
+   - Wrong item: penalty and incorrect-clue toast; Court Record stays open on the same stage. If that penalty sets health to 0, queue the guilty (`CULPABLE`) game-over lines and restart the trial instead of reopening the Court Record.
    - Correct item on a non-final stage: queues that stage's `successDialogue`, then opens the Court Record again.
    - Correct item on the final stage without `choices`: queues `script.trial.climax.verdict`, then confetti and optional epilogue as below.
-   - Correct item on the final stage with `choices` (Case 2): queues that stage's `successDialogue` (wax mold + judge question), then opens `#choice-prompt-modal`. Wrong choice: penalty + `failDialogue`, same prompt reopens. Correct choice: `successDialogue`, then next prompt or verdict on the last one.
+   - Correct item on the final stage with `choices` (Case 2): queues that stage's `successDialogue` (wax mold + judge question), then opens `#choice-prompt-modal`. Wrong choice: penalty + `failDialogue`, same prompt reopens. A wrong choice that exhausts health queues the guilty game-over lines and restarts the trial. Correct choice: `successDialogue`, then next prompt or verdict on the last one.
    - Case 1 is one stage (`antenitas_vinil` or `bolsa_dolares`). Case 2 is three presents then two choices.
 4. After the Not Guilty line (from `verdict` or last choice `successDialogue`):
    - `triggerConfetti()` fires as soon as the verdict queue finishes, while the judge camera is still up.

@@ -13,7 +13,7 @@ import {
   choiceOpenSession, openClimaxChoice, queueClimaxCelebration,
   resolveClimaxChoice, restoreClimaxSession, type ClimaxRestoreCtx, type ClimaxSession
 } from './TrialChoice.js';
-import { applyPenaltyEffects, type PenaltyHost } from './TrialPenalty.js';
+import { applyPenaltyEffects, queuePenaltyOrRestart, type PenaltyHost } from './TrialPenalty.js';
 import type { TrialControllerDeps, TrialPhase } from './TrialController.js';
 import { VisualEffects } from './VisualEffects.js';
 
@@ -36,6 +36,7 @@ export interface ClimaxControllerPort {
   currentTestimony: Testimony | null;
   hideControls(): void;
   handleSelectChoice(optionId: string): void;
+  restartAfterGameOver(): void;
 }
 
 function getClimaxStages(climax: ClimaxDefinition): ClimaxStage[] {
@@ -51,6 +52,15 @@ function climaxStageMatches(
   const stages = getClimaxStages(climax);
   const idx = Math.min(Math.max(stageIdx, 0), stages.length - 1);
   return stages[idx].presentTarget.includes(evidenceId);
+}
+
+function applyWrongClimaxPresent(deps: ClimaxRunDeps, stageIdx: number): ClimaxSession {
+  applyPenaltyEffects(deps);
+  queuePenaltyOrRestart(deps, /*onContinue*/ () => {
+    VisualEffects.showNotification(deps.dom.gameNotificationEl, i18n.t.notifIncorrectClue);
+    deps.onOpenCourtRecord(/*isTrialPresent=*/ true);
+  });
+  return { stageIdx, choiceIdx: null };
 }
 
 function isFinalClimaxStage(climax: ClimaxDefinition, stageIdx: number): boolean {
@@ -70,7 +80,8 @@ function buildClimaxCtx(ctrl: ClimaxControllerPort): ClimaxRestoreCtx {
       ctrl.phase = 'CLIMAX';
       ctrl.currentTestimony = null;
       ctrl.hideControls();
-    }
+    },
+    onRestartTrial: () => ctrl.restartAfterGameOver()
   };
 }
 
@@ -97,10 +108,7 @@ function presentClimaxEvidence(
 ): ClimaxSession {
   const { climax, stageIdx, evidenceId } = session;
   if (!climaxStageMatches(climax, stageIdx, evidenceId)) {
-    applyPenaltyEffects(deps);
-    VisualEffects.showNotification(deps.dom.gameNotificationEl, i18n.t.notifIncorrectClue);
-    deps.onOpenCourtRecord(/*isTrialPresent=*/ true);
-    return { stageIdx, choiceIdx: null };
+    return applyWrongClimaxPresent(deps, stageIdx);
   }
   if (isFinalClimaxStage(climax, stageIdx)) {
     if (climax.choices && climax.choices.length > 0) {
@@ -142,7 +150,7 @@ export function handleClimaxEvidencePresent(ctrl: ClimaxControllerPort, evidence
   ctrl.hideControls();
   const result = presentClimaxEvidence(
     { climax: ctrl.script.trial.climax, stageIdx: ctrl.climaxStageIdx, evidenceId },
-    ctrl.deps,
+    { ...ctrl.deps, onRestartTrial: () => ctrl.restartAfterGameOver() },
     (id) => ctrl.handleSelectChoice(id)
   );
   ctrl.climaxStageIdx = result.stageIdx;

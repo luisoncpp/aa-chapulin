@@ -161,7 +161,7 @@ export class TrialController {
     applyPenaltyEffects(this.deps);
     this.hideControls();
     const resume = this.deps.state.gameOver
-      ? () => this.showGameOverModal()
+      ? () => this.restartAfterGameOver()
       : () => this.renderCurrentStatement();
     queuePenaltyDialogue(this.deps, /*onResume*/ resume);
   }
@@ -175,7 +175,7 @@ export class TrialController {
     resolveClimaxChoiceFromController(this, optionId);
   }
 
-  private showGameOverModal(): void {
+  public restartAfterGameOver(): void {
     this.hideControls();
     this.deps.state.resetHealth();
     ModalManager.updateHealthUI(this.deps.dom.healthBarEl, this.deps.state.health, this.deps.state.maxHealth);

@@ -53,6 +53,29 @@ describe('TrialController snapshot and setScript', () => {
     expect(controller.currentTestimony).toBeNull();
   });
 
+  it('restores a mid-climax stage without replaying the opening dilemma', () => {
+    const case2 = getCaseScript('es', 'case2');
+    let queuedCount = 0;
+    let openedRecord = false;
+    const day2 = new TrialController({
+      dom,
+      state,
+      script: case2,
+      soundEngine,
+      midiComposer,
+      onQueueDialogue: (_dlg, cb) => {
+        queuedCount += 1;
+        if (cb) cb();
+      },
+      onRenderLine: () => {},
+      onOpenCourtRecord: () => { openedRecord = true; }
+    });
+    day2.restoreTrialSnapshot({ phase: 'CLIMAX', statementIdx: 0, climaxStageIdx: 1 });
+    expect(day2.phase).toBe('CLIMAX');
+    expect(queuedCount).toBe(0);
+    expect(openedRecord).toBe(true);
+  });
+
   it('restores a testimony snapshot including trial day and statement index', () => {
     const case2 = getCaseScript('es', 'case2');
     const day2 = new TrialController({
@@ -93,5 +116,24 @@ describe('TrialController snapshot and setScript', () => {
     const english = getCaseScript('en', 'case1');
     controller.setScript(english);
     expect(controller.currentTestimony).toBe(english.trial.testimony1);
+  });
+
+  it('restores mid-climax choice without opening court record', () => {
+    const case2 = getCaseScript('es', 'case2');
+    let openedRecord = false;
+    const day2 = new TrialController({
+      dom,
+      state,
+      script: case2,
+      soundEngine,
+      midiComposer,
+      onQueueDialogue: (_dlg, cb) => { if (cb) cb(); },
+      onRenderLine: () => {},
+      onOpenCourtRecord: () => { openedRecord = true; }
+    });
+    day2.restoreTrialSnapshot({ phase: 'CLIMAX', statementIdx: 0, climaxStageIdx: 2, climaxChoiceIdx: 0 });
+    expect(day2.phase).toBe('CLIMAX');
+    expect(dom.choicePromptModalEl.classList.contains('hidden')).toBe(false);
+    expect(openedRecord).toBe(false);
   });
 });

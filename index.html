@@ -56,6 +56,9 @@
             </div>
         </div>
 
+        <!-- Climax present question (visible while a stage awaits evidence) -->
+        <div id="climax-present-prompt" class="hidden"></div>
+
         <!-- Notification Banner -->
         <div id="game-notification" class="hidden"></div>
 
@@ -102,23 +105,29 @@
         <!-- Screen Flash -->
         <div id="screen-flash" class="hidden"></div>
 
+        <div id="case-complete-overlay" class="hidden">
+            <h2 id="case-complete-title">Caso concluido</h2>
+            <p id="case-complete-body">Has resuelto el caso.</p>
+        </div>
+
         <!-- Confetti Victory Particles -->
         <div id="confetti-container" class="hidden"></div>
 
         <!-- Title / Audio Unlock Splash Overlay -->
         <div id="start-splash-overlay">
-            <div class="splash-card">
+            <button id="btn-lang-splash" class="splash-lang-corner" title="Cambiar Idioma / Switch Language">🇲🇽 ES</button>
+            <div class="splash-header">
                 <h1 class="splash-title">EL CHAPULÍN COLORADO</h1>
                 <h2 class="splash-subtitle">ACE ATTORNEY: EL CASO DEL ESCUADRÓN COLORADO</h2>
-                <div class="splash-character">
-                    <img src="assets/chapulin_point.png" alt="Chapulin Point">
-                </div>
-                <p class="splash-tip">¡Haz clic abajo para activar la música MIDI procedimental y comenzar!</p>
-                <button id="btn-continue-game" class="splash-btn splash-btn-continue hidden pulse-glow">📂 CONTINUAR PARTIDA (CONTINUE)</button>
-                <button id="btn-lang-splash" class="splash-btn splash-btn-lang">🌐 IDIOMA: ESPAÑOL (ES / EN)</button>
-                <button id="btn-start-game" class="splash-btn pulse-glow">🔍 CASO 1: EL ESCUADRÓN COLORADO</button>
-                <button id="btn-start-case2" class="splash-btn pulse-glow">🔍 CASO 2: EL JUICIO DEL CHÓMPIRAS</button>
-                <button id="btn-start-trial-debug" class="splash-btn splash-btn-debug">⚖️ MODO DEBUG: INICIAR EN JUICIO</button>
+            </div>
+            <div class="splash-character">
+                <img src="assets/chapulin_point.png" alt="Chapulin Point">
+            </div>
+            <div class="splash-menu">
+                <button id="btn-continue-game" class="splash-btn splash-btn-continue hidden">📂 CONTINUAR PARTIDA (CONTINUE)</button>
+                <button id="btn-start-game" class="splash-btn">🔍 CASO 1: EL ESCUADRÓN COLORADO</button>
+                <button id="btn-start-case2" class="splash-btn">🔍 CASO 2: EL JUICIO DEL CHÓMPIRAS</button>
+                <button id="btn-start-case3" class="splash-btn">🔍 CASO 3: LA NOCHE DEL GRITO</button>
             </div>
         </div>
 
@@ -129,6 +138,7 @@
                     <h2>ACTA DEL JUICIO (EVIDENCE RECORD)</h2>
                     <button id="btn-close-record" class="close-btn">X</button>
                 </div>
+                <p id="court-record-present-prompt" class="hidden"></p>
                 <div class="modal-body">
                     <div id="evidence-grid">
                         <!-- Evidence cards dynamically inserted -->
@@ -166,6 +176,16 @@
                 <div id="move-locations-list">
                     <!-- Move location options inserted dynamically -->
                 </div>
+            </div>
+        </div>
+
+        <!-- Choice Prompt Modal (non-dismissible) -->
+        <div id="choice-prompt-modal" class="game-modal hidden">
+            <div class="modal-window" style="width: 550px; height: auto;">
+                <div class="modal-header">
+                    <h2 id="choice-prompt-question"></h2>
+                </div>
+                <div id="choice-prompt-list"></div>
             </div>
         </div>
 

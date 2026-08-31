@@ -23,6 +23,10 @@ describe('Case Scripts Narrative Integrity', () => {
         if (line.addEvidence) {
           expect(gameState.allEvidence[line.addEvidence]).toBeDefined();
         }
+        if (line.updateEvidence) {
+          expect(gameState.allEvidence[line.updateEvidence]).toBeDefined();
+          expect(gameState.allEvidence[line.updateEvidence].updatedDesc).toBeDefined();
+        }
       });
     });
   });
@@ -57,6 +61,19 @@ describe('Case Scripts Narrative Integrity', () => {
 
     const innocentLine = climax.verdict.find((l) => l.text.includes('¡INOCENTE!'));
     expect(innocentLine).toBeDefined();
+  });
+
+  it('wires court-record description updates to catalog variants', () => {
+    const detentionTalk = CASE_SCRIPT.investigation.detention.talkOptions;
+    const story = detentionTalk.find((t) => t.id === 'chapulin_story');
+    const weapon = detentionTalk.find((t) => t.id === 'chapulin_weapon');
+    expect(story?.dialogue.some((l) => l.updateEvidence === 'antenitas_vinil')).toBe(true);
+    expect(weapon?.dialogue.some((l) => l.updateEvidence === 'chipote_chillon')).toBe(true);
+
+    const case2 = getCaseScript('es', 'case2');
+    const generator = case2.investigation.restaurante.hotspots.find((h) => h.id === 'hotspot_generador');
+    expect(generator?.dialogue.some((l) => l.updateEvidence === 'palanca_rota')).toBe(true);
+    expect(gameState.allEvidence.palanca_rota.updatedDesc).toBeDefined();
   });
 
   it('keeps Case 2 thanks-you dialogue in the waiting-room epilogue', () => {

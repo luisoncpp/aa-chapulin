@@ -31,6 +31,7 @@ describe('Asset Integrity & Existence', () => {
       'chapulin_panic.png',
       'donramon_idle.png',
       'donramon_slam.png',
+      'donramon_shock.png',
       'donramon_point.png',
       'donramon_sweat.png',
       'donramon_panic.png',
@@ -61,6 +62,7 @@ describe('Asset Integrity & Existence', () => {
       'objection_un_momento.png',
       'objection_toma_eso.png',
       'objection_culpable.png',
+      'objection_inocente.png',
     ];
 
     cutins.forEach((file) => {

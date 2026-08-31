@@ -25,13 +25,31 @@ export type EvidenceId =
   | 'multa_transito'
   | 'frasco_valeriana'
   | 'molde_cera'
-  | 'lata_grasa';
+  | 'lata_grasa'
+  | 'informe_barriga'
+  | 'lentes_barriga'
+  | 'microfono_oro'
+  | 'bolsa_papel'
+  | 'microfono_cabina'
+  | 'cinta_salud'
+  | 'marcas_carrito'
+  | 'ventana_cabina'
+  | 'libro_verde'
+  | 'bitacora_transmision'
+  | 'receta_nono'
+  | 'programa_kermes'
+  | 'ataduras_bodega'
+  | 'cartucho_corte'
+  | 'cinta_sketch'
+  | 'boleta_empeno';
 
 export interface EvidenceItem {
   id: EvidenceId;
   name: string;
   icon: string;
   desc: string;
+  updatedDesc?: string;
+  updates?: string[];
 }
 
 export type EvidenceCatalogMap = Record<EvidenceId, EvidenceItem>;

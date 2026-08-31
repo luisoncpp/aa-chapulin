@@ -25,7 +25,7 @@ export const CLIMAX_DATA_EN: ClimaxDefinition = {
     { speaker: 'TRIPASECA', text: 'CURSESSSS! I CONFEEEEEESS! I STOLE THE CHICHARRA AND PAID OFF SAM WITH COUNTERFEIT DOLLARS!', pose: 'tripaseca_breakdown' },
     { speaker: 'SUPER SAM', text: 'WHAAAT?! COUNTERFEIT DOLLARS?! MY MONEY IS RUINED, OH NOOOOO!', pose: 'supersam_breakdown' },
     { speaker: 'JUEZ', text: 'Proven and verified! This court has reached a definitive and unquestionable verdict.', pose: 'judge_gavel', sfx: 'gavel' },
-    { cutin: 'objection_culpable', speaker: 'JUEZ', text: 'NOT GUILTY!', sfx: 'whoosh', bgm: 'victory', pose: 'judge_gavel' },
+    { cutin: 'objection_inocente', speaker: 'JUEZ', text: 'NOT GUILTY!', sfx: 'whoosh', bgm: 'victory', pose: 'judge_gavel' },
     { speaker: 'CHAPULIN', text: 'They take advantage of my nobility! But justice always triumphs! FOLLOW ME, GOOD GUYS!', pose: 'chapulin_point' },
     { speaker: 'DEFENSA', text: 'Case Closed! And now, Señor Barriga... I can pay your 14 months of rent!', pose: 'donramon_idle' }
   ]

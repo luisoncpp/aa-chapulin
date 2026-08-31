@@ -6,11 +6,24 @@
 
 import type { LocationId } from '../../types/index.js';
 import type { InvestigationController } from './InvestigationController.js';
+import { fadeThroughBlack } from './SceneFade.js';
 
 export function handleAdjournment(
+  investigation: InvestigationController,
+  location: LocationId,
+  flashEl: HTMLElement
+): void {
+  fadeThroughBlack(
+    flashEl,
+    /*onCovered*/ () => enterAdjournedLocation(investigation, location),
+    /*onRevealed*/ () => investigation.queueCurrentIntro()
+  );
+}
+
+function enterAdjournedLocation(
   investigation: InvestigationController,
   location: LocationId
 ): void {
   investigation.resetTrialLaunchButton();
-  investigation.startInvestigation(location);
+  investigation.startInvestigation(location, /*deferIntro=*/ true);
 }

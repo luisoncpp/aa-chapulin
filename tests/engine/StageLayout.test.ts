@@ -64,6 +64,7 @@ describe('StageLayout composition frames', () => {
     expect(resolveStageFrame('bench', 'supersam_slam')).toBe('bench-slam');
     expect(resolveStageFrame('bench', 'chapulin_idle')).toBe('bench-stand');
     expect(resolveStageFrame('bench', 'donramon_idle')).toBe('bench-stand');
+    expect(resolveStageFrame('bench', 'donramon_shock')).toBe('bench-stand');
     expect(resolveStageFrame('bench', null)).toBe('bench-stand');
     expect(resolveStageFrame('podium', 'tripaseca_smug')).toBe('podium');
     expect(resolveStageFrame('none', 'chapulin_slam')).toBe('plain');
@@ -143,6 +144,19 @@ describe('StageLayout composition frames', () => {
     expect(dom.gameScreen.style.getPropertyValue('--furniture-width')).toBe('100.00%');
     expect(dom.gameScreen.style.getPropertyValue('--furniture-height')).toBe('45.70%');
     expect(dom.gameScreen.style.getPropertyValue('--furniture-baseline')).toBe('0.00%');
+  });
+
+  it('stages Doctor Chapatín shorter so the witness podium is not swallowed', () => {
+    const dom = setupDomHarness();
+    applyStageFrame(dom.gameScreen, 'podium', 'chapatin_enojado');
+    const chapatinHeight = parseFloat(dom.gameScreen.style.getPropertyValue('--char-height'));
+    expect(chapatinHeight).toBeLessThan(48);
+    expect(chapatinHeight).toBeGreaterThan(40);
+    expect(dom.gameScreen.style.getPropertyValue('--char-baseline')).toBe('18.00%');
+
+    applyStageFrame(dom.gameScreen, 'podium', 'aniceto_idle');
+    expect(dom.gameScreen.style.getPropertyValue('--char-height')).toBe('62.00%');
+    expect(dom.gameScreen.style.getPropertyValue('--char-baseline')).toBe('18.00%');
   });
 
   it('aligns plain frame character baseline with the dialogue box top edge', () => {

@@ -40,6 +40,16 @@ Characters are rendered in high-definition 2D Capcom sprite style with crisp dar
   * `chapulin_point`: Iconic Phoenix Wright-style horizontal finger thrust with twitching antennae.
   * `chapulin_panic`: Wide-eyed comic sweat-storm with hands clutching cowl in despair.
 
+### Don Ramón / Lic. Monchito (Defense Lawyer)
+* **Visual Motifs**: Street-smart public defender in a navy lawyer suit, still wearing his light-blue denim bucket hat and thick mustache.
+* **Palette**: Navy jacket (`#1B263B`), white shirt, dark blue necktie, denim-hat cyan (`#7EB8D4`), warm tan skin, charcoal outline.
+* **Sprite Poses** ([[assets/donramon_idle.png]]):
+  * `donramon_idle`: Waist-up, adjusting his necktie, smug half-smile. Identity lock for extra poses (navy suit, not TV casual denim).
+  * `donramon_slam`: Double-palmed desk slam for trial benches only (palms down, waist notch for `court_bench.png`).
+  * `donramon_shock`: Upright shocked gasp, both hands raised beside the head. Investigation / `plain` frame — never a desk-contact silhouette.
+  * `donramon_point`: Horizontal objection point.
+  * `donramon_sweat` / `donramon_panic`: Nervous grimace; panic currently copies sweat in the Case 1 sheet pipeline.
+
 ### B. Super Sam (Prosecutor)
 * **Visual Motifs**: Capitalist superhero rival in sharp navy suit with US flag lapels/cape, blonde pompadour, heavy burlap sack stamped with green `$`.
 * **Palette**: Deep Navy (`#1B263B`), Star Spangled Red/White/Blue (`#E63946`, `#FFFFFF`, `#1D3557`), Dollar Green (`#2A9D8F`), Gold (`#E9C46A`).
@@ -133,6 +143,14 @@ flowchart LR
 1. **Background Chroma**: Pure neon magenta pink (`R > 160, G < 110, B > 160, |R - B| < 75`).
 2. **Palette Restriction**: No pink/magenta tones permitted in foreground character outfits or props to prevent keying artifacts.
 3. **No Image Stretching**: Handled via `object-fit: contain` and integer scaling across all viewports.
+
+### Waist-up bust generation (investigation / `plain` frame)
+`plain` staging lines the **512 canvas bottom** to the dialogue box gold trim. The drawn waist must sit there.
+
+- Prompt each 2x2 cell as a waist-up bust whose **hem/waist cut is on the bottom of the cell** (~5px of `#FF00FF` below the shirt). Hair and hands keep magenta margin so they do not clip the cell edges.
+- Do **not** follow full-body sprite advice that parks the subject in the central 60–70% of the cell. That padding under the torso survives chroma-key and reads as a clipped floating character.
+- After slicing, every new `plain` pose goes through `anchor_standing_bust` ([[process_case2_assets.py]], used by Case 2 extra poses and [[process_case3_assets.py]]). Do not floor a subset of names.
+- Desk-slam poses are not this contract: they keep the A-frame waist notch for `court_bench.png`.
 
 ---
 

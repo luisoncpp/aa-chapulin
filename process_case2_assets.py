@@ -43,6 +43,37 @@ BGS = [
 ]
 
 
+STANDING_CANVAS = 512
+STANDING_HEM_MARGIN = 5
+STANDING_SIDE_MARGIN = 8
+
+
+def _fit_bust_to_canvas(cropped: Image.Image) -> Image.Image:
+    """Scale a larger-than-canvas crop down. Pasting without this zoom-crops the bust."""
+    max_w = STANDING_CANVAS - 2 * STANDING_SIDE_MARGIN
+    max_h = STANDING_CANVAS - STANDING_HEM_MARGIN - STANDING_SIDE_MARGIN
+    if cropped.width <= STANDING_CANVAS and cropped.height <= STANDING_CANVAS:
+        return cropped
+    scale = min(max_w / cropped.width, max_h / cropped.height)
+    size = (max(1, int(cropped.width * scale)), max(1, int(cropped.height * scale)))
+    return cropped.resize(size, Image.Resampling.LANCZOS)
+
+
+def anchor_standing_bust(img: Image.Image) -> Image.Image:
+    """Sit the opaque hem on the canvas floor so the plain stage meets the dialogue box."""
+    bbox = img.getbbox()
+    if not bbox:
+        return img
+    cropped = _fit_bust_to_canvas(img.crop(bbox))
+    canvas = Image.new("RGBA", (STANDING_CANVAS, STANDING_CANVAS), (0, 0, 0, 0))
+    ox = (STANDING_CANVAS - cropped.width) // 2
+    oy = STANDING_CANVAS - STANDING_HEM_MARGIN - cropped.height
+    if oy < 0:
+        oy = 0
+    canvas.paste(cropped, (ox, oy), cropped)
+    return canvas
+
+
 def process_grid_cell(sheet_name: str, out_name: str, cell_xy: tuple[int, int]) -> None:
     """Crop one 2x2 cell (col, row) and chroma-key it into assets/."""
     path = find_asset_file(sheet_name)
@@ -79,7 +110,8 @@ def save_evidence_icon(filtered: Image.Image, name: str) -> None:
         return
     cropped = filtered.crop(bbox)
     max_dim = max(cropped.width, cropped.height)
-    canvas = Image.new("RGBA", (max_dim + 12, max_dim + 12), (0, 0, 0, 0))
+    pad = max(24, max_dim // 8)
+    canvas = Image.new("RGBA", (max_dim + pad * 2, max_dim + pad * 2), (0, 0, 0, 0))
     ox = (canvas.width - cropped.width) // 2
     oy = (canvas.height - cropped.height) // 2
     canvas.paste(cropped, (ox, oy))
@@ -125,6 +157,12 @@ def run_case2() -> None:
         process_character_sheet(sheet, names)
     process_grid_cell("peterete_breakdown_raw.png", "peterete_breakdown", (0, 0))
     process_grid_cell("supersam_sweat_raw.png", "supersam_sweat", (1, 0))
+    process_grid_cell("donramon_shock_raw.png", "donramon_shock", (0, 0))
+    shock_path = os.path.join(DEST_DIR, "donramon_shock.png")
+    if os.path.exists(shock_path):
+        anchored = despill_final(anchor_standing_bust(Image.open(shock_path)))
+        anchored.save(shock_path)
+        print(f"  [OK] Anchored standing hem: donramon_shock.png ({anchored.size})")
     process_case2_evidence()
     copy_backgrounds()
     print("\nCase 2 assets saved.")

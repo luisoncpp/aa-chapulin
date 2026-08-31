@@ -36,3 +36,7 @@ Vitest covers state, contradictions, investigation, engine, i18n, and Case 1/2 s
     - Full keyboard shortcuts (`Z`/`Enter` to advance, `X`/`Esc` to back, `C` to Court Record, `P` to Present).
 
 > Canonical Case 2 title: "El Juicio del Chómpiras — El Asalto de las Dos Caras". Older "Rascabuches" name is obsolete.
+
+## Phase 4: Episode 3 (IMPLEMENTED)
+
+**Case 3: "El Juicio del Doctor Chapatín — La Noche del Grito"** — scripts, engine hooks, and art pipeline in [[src/case/case3/index.ts]], spec [[docs/specs/case-3-la-noche-del-grito.md]]. Press-gated statements, multi-stage evidence descriptions, third trial day via `adjournment.next`, splash `#btn-start-case3`, debug `?case=3&trial=2|3`.

@@ -17,6 +17,7 @@ export interface EventBinderConfig {
   trial: TrialController;
   onStartGame: () => void;
   onStartCase2?: () => void;
+  onStartCase3?: () => void;
   onStartTrialDebug?: () => void;
   onAdvance: () => void;
   onOpenCourtRecord: (isTrialPresent: boolean) => void;
@@ -39,10 +40,13 @@ export class EngineEventBinder {
 
   // @Section(Audio & Splash Bindings)
   private static bindStartAndAudio(config: EventBinderConfig): void {
-    const { dom, soundEngine, onStartGame, onStartCase2, onStartTrialDebug, onToggleLanguage } = config;
+    const { dom, soundEngine, onStartGame, onStartCase2, onStartCase3, onStartTrialDebug, onToggleLanguage } = config;
     dom.btnStartGame?.addEventListener('click', /*onStartClick*/ () => onStartGame());
     dom.btnStartCase2?.addEventListener('click', /*onStartCase2Click*/ () => {
       onStartCase2?.();
+    });
+    dom.btnStartCase3?.addEventListener('click', /*onStartCase3Click*/ () => {
+      onStartCase3?.();
     });
     dom.btnStartTrialDebug?.addEventListener('click', /*onStartTrialDebugClick*/ () => {
       onStartTrialDebug?.();

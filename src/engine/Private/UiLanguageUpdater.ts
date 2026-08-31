@@ -6,6 +6,7 @@
 
 import { i18n } from '../../i18n/index.js';
 import type { Language } from '../../types/index.js';
+import { fillCaseCompleteCopy } from './CaseComplete.js';
 import type { DomElements } from './DomElements.js';
 
 export class UiLanguageUpdater {
@@ -40,7 +41,7 @@ export class UiLanguageUpdater {
       dom.btnLangToggleEl.textContent = lang === 'es' ? '🌐 ES' : '🌐 EN';
     }
     if (dom.btnLangSplashEl) {
-      dom.btnLangSplashEl.textContent = lang === 'es' ? '🌐 IDIOMA: ESPAÑOL (ES / EN)' : '🌐 LANGUAGE: ENGLISH (EN / ES)';
+      dom.btnLangSplashEl.textContent = lang === 'es' ? '🇲🇽 ES' : '🇺🇸 EN';
     }
     if (dom.btnAudioToggleEl) dom.btnAudioToggleEl.title = t.hudAudioToggleTitle;
     if (dom.btnSaveGame) dom.btnSaveGame.title = t.hudSaveTitle;
@@ -48,7 +49,9 @@ export class UiLanguageUpdater {
     if (dom.btnContinueGame) dom.btnContinueGame.textContent = t.btnContinue;
     if (dom.btnStartGame) dom.btnStartGame.textContent = t.btnStartGame;
     if (dom.btnStartCase2) dom.btnStartCase2.textContent = t.btnStartCase2;
+    if (dom.btnStartCase3) dom.btnStartCase3.textContent = t.btnStartCase3;
     if (dom.btnStartTrialDebug) dom.btnStartTrialDebug.textContent = t.btnStartTrialDebug;
+    fillCaseCompleteCopy(dom, lang);
     if (dom.btnCourtRecord) {
       dom.btnCourtRecord.title = t.hudCourtRecordTitle;
       const span = dom.btnCourtRecord.querySelector('span');

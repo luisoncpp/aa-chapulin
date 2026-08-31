@@ -33,8 +33,10 @@ export type PoseName =
   | 'chapulin_panic'
   | 'chapulin_point'
   | 'chapulin_slam'
+  | 'chapulin_idle'
   | 'donramon_idle'
   | 'donramon_slam'
+  | 'donramon_shock'
   | 'donramon_point'
   | 'donramon_sweat'
   | 'donramon_panic'
@@ -70,13 +72,38 @@ export type PoseName =
   | 'clotilde_idle'
   | 'clotilde_flustered'
   | 'clotilde_mysterious'
+  | 'chapatin_idle'
+  | 'chapatin_enojado'
+  | 'chapatin_bolsa'
+  | 'chapatin_sweat'
+  | 'chapatin_conmovido'
+  | 'pazguato_idle'
+  | 'pazguato_saludo'
+  | 'pazguato_sweat'
+  | 'pazguato_decidido'
+  | 'aniceto_idle'
+  | 'aniceto_thinking'
+  | 'aniceto_sweat'
+  | 'aniceto_panic'
+  | 'aniceto_breakdown'
+  | 'barriga_idle'
+  | 'barriga_vendado'
+  | 'barriga_shock'
+  | 'barriga_enojado'
+  | 'nono_idle'
+  | 'nono_nervioso'
+  | 'nono_llorando'
+  | 'chimoltrufia_idle'
+  | 'chimoltrufia_confundida'
+  | 'chimoltrufia_shock'
   | null;
 
 export type CutinName =
   | 'objection_protesto'
   | 'objection_un_momento'
   | 'objection_toma_eso'
-  | 'objection_culpable';
+  | 'objection_culpable'
+  | 'objection_inocente';
 
 export type FurnitureType = 'podium' | 'bench' | 'none';
 
@@ -89,6 +116,7 @@ export interface DialogueLine {
   sfx?: SFXName;
   cutin?: CutinName;
   addEvidence?: EvidenceId;
+  updateEvidence?: EvidenceId;
   unlockLocation?: LocationId;
   furniture?: FurnitureType;
 }
@@ -135,6 +163,8 @@ export interface Statement {
   text: string;
   pressText?: DialogueLine[];
   contradiction?: ContradictionRule;
+  /** Visible only after the statement with this id has been pressed. */
+  unlockedBy?: string;
 }
 
 export interface Testimony {
@@ -149,10 +179,35 @@ export interface ClimaxEpilogue {
   dialogue: DialogueLine[];
 }
 
+export interface ClimaxStage {
+  presentTarget: EvidenceId[];
+  successDialogue: DialogueLine[];
+  /** Question shown on the HUD and Court Record while this stage awaits a present. */
+  prompt?: string;
+  /** Minimum evidence update stage required before an id is accepted at this stage. */
+  requiredUpdateStage?: Partial<Record<EvidenceId, number>>;
+}
+
+export interface ChoiceOption {
+  id: string;
+  label: string;
+}
+
+export interface ChoicePrompt {
+  id: string;
+  question: string;
+  options: ChoiceOption[];
+  correctId: string;
+  successDialogue: DialogueLine[];
+  failDialogue: DialogueLine[];
+}
+
 export interface ClimaxDefinition {
   dialogue: DialogueLine[];
   presentTarget: EvidenceId[];
   verdict: DialogueLine[];
+  stages?: ClimaxStage[];
+  choices?: ChoicePrompt[];
   epilogue?: ClimaxEpilogue;
 }
 
@@ -174,6 +229,7 @@ export interface AdjournmentDefinition {
   unlockLocations: LocationId[];
   requiredEvidence: EvidenceId[];
   trial: TrialDayScript;
+  next?: AdjournmentDefinition;
 }
 
 export interface CaseScript {

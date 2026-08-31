@@ -1,4 +1,4 @@
-// @Architecture(descriptionShort="Public facade exporting bilingual case 1 and case 2 scripts", type="facade", icon="layers")
+// @Architecture(descriptionShort="Public facade exporting bilingual case 1, 2, and 3 scripts", type="facade", icon="layers")
 /**
  * Case Script Subsystem Public Interface (Spanish & English)
  * Assembles data from investigation, trial, and climax private scripts.
@@ -11,8 +11,10 @@ import { INVESTIGATION_SCENES } from './Private/case1_investigation.js';
 import { INVESTIGATION_SCENES_EN } from './Private/case1_investigation_en.js';
 import { TESTIMONY_1, TESTIMONY_2, TRIAL_INTRO } from './Private/case1_trial.js';
 import { TESTIMONY_1_EN, TESTIMONY_2_EN, TRIAL_INTRO_EN } from './Private/case1_trial_en.js';
+// fallow-ignore-next-line unused-export
 export { CASE_SCRIPT_CASE2_EN, CASE_SCRIPT_CASE2_ES } from './Private/case2_script.js';
 import { CASE_SCRIPT_CASE2_EN, CASE_SCRIPT_CASE2_ES } from './Private/case2_script.js';
+import { CASE_SCRIPT_CASE3_EN, CASE_SCRIPT_CASE3_ES } from './case3/index.js';
 
 const CASE1_REQUIRED: EvidenceId[] = [
   'chipote_chillon', 'pastillas_chiquitolina', 'antenitas_vinil',
@@ -59,6 +61,9 @@ export const CASE_SCRIPT_EN: CaseScript = {
 export const CASE_SCRIPT: CaseScript = CASE_SCRIPT_ES;
 
 export function getCaseScript(lang: Language = 'es', caseId: CaseId = 'case1'): CaseScript {
+  if (caseId === 'case3') {
+    return lang === 'en' ? CASE_SCRIPT_CASE3_EN : CASE_SCRIPT_CASE3_ES;
+  }
   if (caseId === 'case2') {
     return lang === 'en' ? CASE_SCRIPT_CASE2_EN : CASE_SCRIPT_CASE2_ES;
   }

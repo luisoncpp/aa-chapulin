@@ -43,25 +43,35 @@ export class InvestigationController {
   }
 
   // @Section(Investigation Scene Transition)
-  public startInvestigation(location: LocationId = 'museum'): void {
+  public startInvestigation(location: LocationId = 'museum', deferIntro = false): void {
     this.state.mode = 'INVESTIGATION';
     this.state.currentLocation = location;
     this.isFirstTimeDialogue = false;
     this.dom.dialogueBoxEl.classList.remove('examine-mode');
+    this.dom.gameScreen.classList.remove('examine-mode');
     this.dom.investigationNavEl.classList.remove('hidden');
     this.dom.examineNavEl.classList.add('hidden');
     this.dom.trialNavEl.classList.add('hidden');
     this.isExamineActive = false;
+    this.currentLocationCharPose = null;
     this.dom.hotspotsContainerEl.classList.remove('visible-hotspots');
     this.dom.examineTooltipEl.classList.add('hidden');
-    VisualEffects.hideFurniture(this.dom.courtFurnitureContainerEl);
-
     const scene = this.script.investigation[location];
+    VisualEffects.clearCourtroomPlate(this.dom);
+    this.dom.speakerBoxEl.textContent = scene.speaker || '';
+    this.dom.dialogueTextEl.textContent = '';
     this.dom.locationBannerEl.textContent = scene.title;
     this.dom.bgEl.style.backgroundImage = `url('${scene.bg}')`;
     this.midiComposer.playTrack(scene.bgm);
 
     this.renderHotspots(scene.hotspots || []);
+    if (deferIntro) return;
+    this.onQueueDialogue(scene.intro);
+  }
+
+  public queueCurrentIntro(): void {
+    const scene = this.script.investigation[this.state.currentLocation];
+    if (!scene) return;
     this.onQueueDialogue(scene.intro);
   }
 
@@ -101,6 +111,7 @@ export class InvestigationController {
     this.isExamineActive = true;
     this.dom.hotspotsContainerEl.classList.add('visible-hotspots');
     this.dom.dialogueBoxEl.classList.add('examine-mode');
+    this.dom.gameScreen.classList.add('examine-mode');
     this.dom.investigationNavEl.classList.add('hidden');
     this.dom.examineNavEl.classList.remove('hidden');
     VisualEffects.hideCharacter(this.dom.charSpriteEl);
@@ -116,6 +127,7 @@ export class InvestigationController {
     this.isExamineActive = false;
     this.dom.hotspotsContainerEl.classList.remove('visible-hotspots');
     this.dom.dialogueBoxEl.classList.remove('examine-mode');
+    this.dom.gameScreen.classList.remove('examine-mode');
     this.dom.examineTooltipEl.classList.add('hidden');
     this.dom.examineNavEl.classList.add('hidden');
     this.dom.investigationNavEl.classList.remove('hidden');

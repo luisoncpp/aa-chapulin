@@ -13,6 +13,9 @@
 
 import type { FurnitureType, PoseName } from '../../types/index.js';
 
+/** Doctor Chapatín is a short old man; filling the default 0.62 box swallows the podium. */
+const CHAPATIN_HEIGHT_SCALE = 0.70;
+
 export type StageFrameId = 'plain' | 'bench-stand' | 'bench-slam' | 'podium';
 
 export interface StageFrame {
@@ -113,17 +116,28 @@ export function resolveStageFrame(furniture: FurnitureType, pose: PoseName): Sta
 }
 
 // @Section(CSS Custom Property Projection)
-export function applyStageFrame(gameScreenEl: HTMLElement, frameId: StageFrameId): void {
+export function applyStageFrame(
+  gameScreenEl: HTMLElement,
+  frameId: StageFrameId,
+  pose?: PoseName
+): void {
   const frame = STAGE_FRAMES[frameId];
   const style = gameScreenEl.style;
+  const height = frame.characterHeight * characterHeightScale(pose);
   gameScreenEl.dataset.stageFrame = frameId;
   gameScreenEl.dataset.stageContact = String(frame.surfaceContact);
-  style.setProperty('--char-height', toPercent(frame.characterHeight));
+  style.setProperty('--char-height', toPercent(height));
   style.setProperty('--char-baseline', toPercent(frame.characterBaseline));
   style.setProperty('--char-layer', String(frame.characterLayer));
   style.setProperty('--furniture-width', toPercent(frame.furnitureWidth));
   style.setProperty('--furniture-height', toPercent(frame.furnitureHeight));
   style.setProperty('--furniture-baseline', toPercent(frame.furnitureBaseline));
+}
+
+function characterHeightScale(pose?: PoseName): number {
+  if (!pose) return 1;
+  if (pose.startsWith('chapatin_')) return CHAPATIN_HEIGHT_SCALE;
+  return 1;
 }
 
 function toPercent(ratio: number): string {

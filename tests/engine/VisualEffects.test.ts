@@ -38,6 +38,16 @@ describe('VisualEffects Subsystem', () => {
     expect(dom.gameScreen.style.getPropertyValue('--char-layer')).toBe('2');
   });
 
+  it('passes Chapatín poses through so the podium box is shorter than the default', () => {
+    VisualEffects.updateStagingForLine(
+      dom,
+      { text: '¡Eso era secreto profesional!', speaker: 'CHAPATIN', pose: 'chapatin_enojado' },
+      /*isTrialMode=*/ true
+    );
+    expect(dom.gameScreen.dataset.stageFrame).toBe('podium');
+    expect(parseFloat(dom.gameScreen.style.getPropertyValue('--char-height'))).toBeLessThan(48);
+  });
+
   it('triggers screen shake animation and removes it after duration', () => {
     VisualEffects.shakeScreen(dom.gameScreen, /*durationMs=*/ 300);
     expect(dom.gameScreen.classList.contains('screen-shake')).toBe(true);
@@ -245,6 +255,8 @@ describe('VisualEffects Subsystem', () => {
     expect(VisualEffects.resolveEffectivePose({ text: 'A', speaker: 'JUEZ' }, /*isTrialMode=*/ true)).toBe(null);
     expect(VisualEffects.resolveEffectivePose({ text: 'A', speaker: 'DEFENSA' }, /*isTrialMode=*/ false)).toBe(null);
     expect(VisualEffects.resolveEffectivePose({ text: 'A', speaker: 'DEFENSA', pose: 'donramon_slam' }, /*isTrialMode=*/ true)).toBe('donramon_slam');
+    expect(VisualEffects.resolveEffectivePose({ text: 'A', speaker: 'DEFENSA', pose: 'donramon_slam' }, /*isTrialMode=*/ false)).toBe('donramon_shock');
+    expect(VisualEffects.resolveEffectivePose({ text: 'A', speaker: 'DEFENSA', pose: 'donramon_shock' }, /*isTrialMode=*/ false)).toBe('donramon_shock');
   });
 });
 

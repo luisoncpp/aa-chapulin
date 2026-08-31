@@ -22,7 +22,7 @@ Juntos, Don Ramón y El Chapulín deberán enfrentarse a un misterio que parece 
 
 | Personaje | Rol en el Caso | Perfil y Comportamiento | Sprites / Poses Clave |
 |---|---|---|---|
-| **Don Ramón (Lic. Monchito)** | Abogado Defensor | Sagaz, callejero y sarcástico. Aunque improvisa sobre la marcha para salvar a su cliente y cobrar honorarios, posee una intuición lógica impecable. Grita con orgullo *"¡Yo le voy al Necaxa!"* y *"¡Con permisito, dijo Monchito!"*. | `donramon_idle`, `donramon_point`, `donramon_slam`, `donramon_sweat`, `donramon_panic` |
+| **Don Ramón (Lic. Monchito)** | Abogado Defensor | Sagaz, callejero y sarcástico. Aunque improvisa sobre la marcha para salvar a su cliente y cobrar honorarios, posee una intuición lógica impecable. Grita con orgullo *"¡Yo le voy al Necaxa!"* y *"¡Con permisito, dijo Monchito!"*. | `donramon_idle`, `donramon_point`, `donramon_slam` (trial desk), `donramon_shock` (investigation), `donramon_sweat`, `donramon_panic` |
 | **El Chapulín Colorado** | Co-defensor / Asistente | Compañero de investigación y apoyo en el estrado. Aporta sus icónicos artefactos (*Antenitas de Vinil*, *Pastillas de Chiquitolina*, *Chipote Chillón*), sus deducciones disparatadas pero certeras y su moral inquebrantable. | `chapulin_idle`, `chapulin_point`, `chapulin_slam`, `chapulin_panic`, `chapulin_thinking` |
 | **Super Sam** | Fiscal Acusador | *"Time is money!"*. Superhéroe capitalista armado con bolsas de dólares que azota contra el estrado. Desea condenas instantáneas para maximizar la rentabilidad de la corte y desprecia los rodeos legales. | `supersam_idle`, `supersam_point`, `supersam_slam`, `supersam_sweat`, `supersam_breakdown` |
 | **El Chómpiras (Aquiles Esquivel Madrazo)** | Acusado | Ex-ladrón de poca monta con un corazón inocente. Extremadamente ingenuo y torpe al explicarse, casi incriminándose a sí mismo por accidente en cada frase. | `chompiras_idle`, `chompiras_nervous`, `chompiras_crying`, `chompiras_relieved` |
@@ -122,8 +122,10 @@ flowchart TD
         D2_C3 --> D2_T2[Testimonio 2: El Peterete - La Ruta Imposible de Escape]
         D2_T2 --> D2_C4[Contradicción 4: El Montaplatos del Plano vs Salida Inexistente]
         D2_C4 --> D2_CLIMAX[Clímax: ¿Dónde está el Chanfle de Oro AHORA?]
-        D2_CLIMAX --> D2_FINAL[Presentar: Lata de Grasa + Antenitas de Vinil]
-        D2_FINAL --> D2_BREAKDOWN[Breakdown Cómico del Peterete]
+        D2_CLIMAX --> D2_GOLD[Presentar: Lata de Grasa o Antenitas]
+        D2_GOLD --> D2_SLEEP[Presentar: Valeriana o Aroma Dulce]
+        D2_SLEEP --> D2_KEY[Presentar: Molde de Cera]
+        D2_KEY --> D2_BREAKDOWN[Breakdown Cómico del Peterete]
         D2_BREAKDOWN --> D2_VERDICT[Veredicto: ¡INOCENTE!]
     end
 
@@ -360,7 +362,7 @@ NARRADOR: 30 de Agosto, 11:30 AM. Casa de Doña Clotilde.
 CLOTILDE (clotilde_flustered): ¡Ay, mi Roro! ¡Qué dicha tenerte en mi humilde morada! ¿Quieres que te prepare una tacita de café o una infusión para los nervios?
 DEFENSA (donramon_sweat): Este... gracias, Doña Clotilde, pero andamos investigando un aroma muy curioso. ¿Reconoce este frasco?
 CLOTILDE (clotilde_mysterious): ¡Por supuesto! Es mi fórmula secreta de 'Esencia Concentrada de Valeriana y Rosas'. Un hombre muy elegante vino antier por la tarde, justo antes del robo, a comprarme tres frascos diciendo que tenía un insomnio terrible.
-CHAPULIN (chapulin_thinking): ¿Un hombre elegante? ¿No recuerda quién era?
+CHAPULIN (chapulin_idle): ¿Un hombre elegante? ¿No recuerda quién era?
 CLOTILDE (clotilde_mysterious): Llevaba el sombrero calado y una bufanda que le tapaba media cara. Pero tenía unos modales muy refinados, nada que ver con la chusma.
 DEFENSA (donramon_idle): Doña Clotilde, ¿le importaría si revisamos un poco? (Mira la basura) ¡Chapulín, mira esto!
 CHAPULIN (chapulin_idle): ¡Es un trozo de cera de veladora con la forma de una llave!
@@ -495,8 +497,45 @@ PETERETE (peterete_panic): ¡P-pero la caja fuerte se abrió con llave! ¡Yo dev
 DEFENSA (donramon_point): ¡PROTESTO! ¡Usted no necesitaba la llave original, porque fabricó un DUPLICADO! [cutin: objection_protesto, sfx: whoosh]
 DEFENSA (donramon_slam): ¡Encontramos este 'Molde de Cera' en la basura de Doña Clotilde! ¡Tiene la huella exacta de la llave maestra! [sfx: desk_slam]
 PETERETE (peterete_smug): ¡Bah! Doña Clotilde dijo que fue un hombre misterioso con bufanda y sombrero. ¡Podría ser cualquiera!
-DEFENSA (donramon_point): ¡No se haga el tonto! Doña Clotilde dijo que el hombre fue a comprar la esencia la tarde del 28 de agosto.
+JUEZ (judge_idle): Licenciado Monchito, ¿qué nos indica el testimonio de Doña Clotilde sobre la identidad del comprador?
+```
+
+#### Elección Múltiple 1: Lo importante del testimonio
+- **Pregunta:** ¿Qué es lo más importante del testimonio de Doña Clotilde?
+- **Opciones**:
+  - Cómo iba vestido. (Incorrecta)
+  - Sus modales. (Incorrecta)
+  - La hora de compra. (Correcta)
+
+```dialogue
+[OPCIÓN INCORRECTA: Cómo iba vestido / Sus modales]
+DEFENSA (donramon_sweat): ¡Pues... que el hombre tenía un estilo impecable, señor Juez!
+SUPER SAM (supersam_smug): Time is money! This is a court of law, not a fashion show!
+JUEZ (judge_headshake): La defensa recibirá una penalización si no deja de perder el tiempo. [sfx: damage]
+(El jugador recibe daño y debe volver a intentar)
+
+[OPCIÓN CORRECTA: La hora de compra]
+DEFENSA (donramon_point): ¡La clave no es cómo iba vestido, sino CUÁNDO fue! Doña Clotilde dijo que el hombre fue a comprar la esencia la tarde del 28 de agosto.
+JUEZ (judge_idle): ¿La tarde del 28 de agosto? ¿Y por qué es tan importante esa hora específica?
+```
+
+#### Elección Múltiple 2: El portador de la llave
+- **Pregunta:** ¿Quién era el portador de la llave maestra durante la tarde del 28 de agosto?
+- **Opciones**:
+  - El botones. (Incorrecta)
+  - El jefe de seguridad. (Correcta)
+  - El gerente general. (Incorrecta)
+
+```dialogue
+[OPCIÓN INCORRECTA: El botones / El gerente general]
+DEFENSA (donramon_thinking): ¡Está clarísimo! El que portaba la llave era... ¡esa persona!
+PETERETE (peterete_smug): Me temo que las reglas del hotel dicen lo contrario. Intente leer el manual de empleados antes de acusar.
+JUEZ (judge_gavel): Licenciado, si va a hacer acusaciones infundadas me veré obligado a penalizarlo. [sfx: damage]
+(El jugador recibe daño y debe volver a intentar)
+
+[OPCIÓN CORRECTA: El jefe de seguridad]
 DEFENSA (donramon_slam): Y según las reglas del hotel, ¡la única persona que portaba la llave maestra original durante esa tarde era el JEFE DE SEGURIDAD! [sfx: desk_slam]
+PETERETE (peterete_sweat): ¡P-pero la llave regresó a custodia! ¡¿Cómo abrí la caja fuerte a las 9:15?!
 DEFENSA (donramon_point): ¡Usted fue a comprarle la esencia de valeriana, y aprovechó para copiar su propia llave en la cera de sus veladoras! ¡Usted durmió al Chómpiras, abrió la caja con su copia, metió el oro en la lata y la tiró por el montaplatos!
 PETERETE (peterete_breakdown): ¡¡¡NOOOOOOOOOOOO!!! ¡¡¡MI PLAN PERFECTO DE CINCO MILLONES DE DÓLARES ARRUINADO POR UN LIMPIABOTAS Y UN DEFENSOR DEL NECAXA!!! [sfx: damage]
 NARRADOR: (El Peterete comienza a propinarse sonoras bofetadas con su propio sombrero fedora mientras gira desquiciado por el estrado de los testigos hasta caer desplomado).

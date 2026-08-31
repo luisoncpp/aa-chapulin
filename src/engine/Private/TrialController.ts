@@ -1,17 +1,28 @@
 // @Architecture(descriptionShort="Controls testimony statements, pressing, and contradictions", type="controller", icon="panel")
-/**
- * Courtroom Trial & Cross-Examination Controller
- * Drives cross-examinations and delegates UI to [[./ModalManager.ts]] and [[./VisualEffects.ts]].
- */
 import type { MidiMusicComposer, SoundEngine } from '../../audio/index.js';
-import { i18n } from '../../i18n/index.js';
 import type { GameStateManager, TrialStateSnapshot } from '../../state/index.js';
-import type { CaseScript, DialogueLine, EvidenceId, LocationId, Testimony } from '../../types/index.js';
+import type { CaseScript, DialogueLine, EvidenceId, LocationId, Statement, Testimony } from '../../types/index.js';
 import type { DomElements } from './DomElements.js';
-import { ModalManager } from './ModalManager.js';
-import { applyAdjournment, getActiveTrial, shouldAdjourn } from './TrialDayRouter.js';
-import { applyPenaltyEffects, queuePenaltyDialogue } from './TrialPenalty.js';
-import { queueClimaxVictory } from './TrialClimax.js';
+import {
+  indexInVisible,
+  notifyWitnessAddedStatement,
+  registerPress
+} from './TrialPressFlow.js';
+import {
+  onPresentPenalty,
+  onSuccessContradiction,
+  showGameOverModal
+} from './TrialOutcome.js';
+import { getActiveTrial } from './TrialDayRouter.js';
+import {
+  handleClimaxEvidencePresent, isAwaitingClimaxEvidence, getClimaxPresentPrompt,
+  rebindClimaxChoiceModal,
+  resolveClimaxChoiceFromController, startClimaxPhase
+} from './TrialClimax.js';
+import { visibleStatements } from './StatementUnlock.js';
+import { restoreTrialFromSnapshot } from './TrialRestore.js';
+import { paintCourtroomPlate } from './TrialOpening.js';
+import { fadeThroughBlack } from './SceneFade.js';
 import { VisualEffects } from './VisualEffects.js';
 
 export type TrialPhase = 'IDLE' | 'TESTIMONY' | 'CLIMAX';
@@ -31,58 +42,84 @@ export class TrialController {
   public phase: TrialPhase = 'IDLE';
   public currentTestimony: Testimony | null = null;
   public currentStatementIdx = 0;
+  public climaxStageIdx = 0;
+  public climaxChoiceIdx: number | null = null;
+  // fallow-ignore-next-line unused-class-member
+  public climaxResolved = false;
   private testimonyKey: 'testimony1' | 'testimony2' | null = null;
-  private script: CaseScript;
-
-  constructor(private readonly deps: TrialControllerDeps) {
+  private readonly pressedStatementIds = new Set<string>();
+  private failedPresentCount = 0;
+  script: CaseScript;
+  constructor(public readonly deps: TrialControllerDeps) {
     this.script = deps.script;
   }
 
-  private hideControls(): void { this.deps.dom.trialNavEl.classList.add('hidden'); }
+  public bumpFailedPresentCount(): number {
+    this.failedPresentCount++;
+    return this.failedPresentCount;
+  }
 
-  // @Section(Trial State Snapshot)
+  public clearActiveTestimony(): void {
+    this.testimonyKey = null;
+    this.currentTestimony = null;
+  }
+
+  public getTestimonyKey(): 'testimony1' | 'testimony2' | null {
+    return this.testimonyKey;
+  }
+
+  hideControls(): void { this.deps.dom.trialNavEl.classList.add('hidden'); }
+
+  private visibleStatements(): Statement[] {
+    if (!this.currentTestimony) return [];
+    return visibleStatements(this.currentTestimony, this.pressedStatementIds);
+  }
+
   public getTrialSnapshot(): TrialStateSnapshot {
     return {
-      phase: this.phase,
-      testimonyKey: this.testimonyKey,
-      statementIdx: this.currentStatementIdx,
-      trialDay: this.deps.state.trialDay
+      phase: this.phase, testimonyKey: this.testimonyKey, statementIdx: this.currentStatementIdx,
+      trialDay: this.deps.state.trialDay, climaxStageIdx: this.climaxStageIdx,
+      climaxChoiceIdx: this.climaxChoiceIdx ?? undefined,
+      pressedStatementIds: [...this.pressedStatementIds]
     };
   }
 
-  // fallow-ignore-next-line complexity
   public restoreTrialSnapshot(snapshot?: TrialStateSnapshot): void {
-    this.deps.dom.investigationNavEl.classList.add('hidden');
-    this.deps.dom.examineNavEl.classList.add('hidden');
-    this.deps.dom.hotspotsContainerEl.innerHTML = '';
-    this.deps.dom.locationBannerEl.textContent = i18n.t.locationCourtroom;
+    restoreTrialFromSnapshot(this, snapshot);
+  }
 
-    if (snapshot?.phase === 'CLIMAX') return this.startClimax();
-    if (snapshot?.phase === 'TESTIMONY' && snapshot.testimonyKey) {
-      if (snapshot.trialDay) this.deps.state.trialDay = snapshot.trialDay;
-      this.startTestimony(snapshot.testimonyKey);
-      this.currentStatementIdx = snapshot.statementIdx || 0;
-      return this.renderCurrentStatement();
+  public resetPressedState(ids?: string[]): void {
+    this.pressedStatementIds.clear();
+    ids?.forEach((id) => this.pressedStatementIds.add(id));
+    this.failedPresentCount = 0;
+  }
+
+  public startTrial(skipFade = false): void {
+    const intro = getActiveTrial(this.script, this.deps.state.trialDay).intro;
+    const afterIntro = /*onComplete*/ () => this.startTestimony('testimony1');
+    if (skipFade) {
+      this.enterCourtroom();
+      this.deps.onQueueDialogue(intro, afterIntro);
+      return;
     }
-    this.startTrial();
+    fadeThroughBlack(
+      this.deps.dom.flashEl,
+      /*onCovered*/ () => this.enterCourtroom(),
+      /*onRevealed*/ () => this.deps.onQueueDialogue(intro, afterIntro)
+    );
   }
-  // @Section(Trial Launch & Intro)
-  public startTrial(): void {
-    this.deps.state.mode = 'TRIAL';
+
+  private enterCourtroom(): void {
     this.phase = 'TESTIMONY';
-    this.deps.dom.investigationNavEl.classList.add('hidden');
-    this.deps.dom.examineNavEl.classList.add('hidden');
-    this.hideControls();
-    this.deps.dom.hotspotsContainerEl.innerHTML = '';
-    this.deps.dom.locationBannerEl.textContent = i18n.t.locationCourtroom;
-    this.deps.onQueueDialogue(getActiveTrial(this.script, this.deps.state.trialDay).intro, /*onComplete*/ () => this.startTestimony('testimony1'));
+    paintCourtroomPlate(this.deps, this.script);
   }
-  // @Section(Testimony Navigation)
+
   public startTestimony(testimonyKey: 'testimony1' | 'testimony2'): void {
     this.phase = 'TESTIMONY';
     this.testimonyKey = testimonyKey;
     this.currentTestimony = getActiveTrial(this.script, this.deps.state.trialDay)[testimonyKey];
     this.currentStatementIdx = 0;
+    this.failedPresentCount = 0;
     this.deps.midiComposer.playTrack(this.currentTestimony.bgm);
     this.deps.dom.bgEl.style.backgroundImage = "url('assets/bg_witness.jpg')";
     VisualEffects.showNotification(this.deps.dom.gameNotificationEl, this.currentTestimony.title);
@@ -90,105 +127,74 @@ export class TrialController {
   }
 
   public renderCurrentStatement(): void {
-    if (!this.currentTestimony) return;
+    const visible = this.visibleStatements();
+    if (!visible.length) return;
     this.deps.dom.trialNavEl.classList.remove('hidden');
-    const stmt = this.currentTestimony.statements[this.currentStatementIdx];
+    const stmt = visible[this.currentStatementIdx] ?? visible[0];
     this.deps.onRenderLine({ speaker: stmt.speaker, pose: stmt.pose, text: stmt.text });
   }
 
   public nextStatement(): void {
-    if (!this.currentTestimony) return;
-    this.currentStatementIdx = (this.currentStatementIdx + 1) % this.currentTestimony.statements.length;
+    const visible = this.visibleStatements();
+    if (!visible.length) return;
+    this.currentStatementIdx = (this.currentStatementIdx + 1) % visible.length;
     this.renderCurrentStatement();
   }
 
   public prevStatement(): void {
-    if (!this.currentTestimony) return;
-    const len = this.currentTestimony.statements.length;
-    this.currentStatementIdx = (this.currentStatementIdx - 1 + len) % len;
+    const visible = this.visibleStatements();
+    if (!visible.length) return;
+    this.currentStatementIdx = (this.currentStatementIdx - 1 + visible.length) % visible.length;
     this.renderCurrentStatement();
   }
 
-  // @Section(Statement Pressing & Contradictions)
   public handlePressStatement(): void {
-    if (!this.currentTestimony) return;
-    const stmt = this.currentTestimony.statements[this.currentStatementIdx];
-    if (!stmt.pressText) return;
+    const visible = this.visibleStatements();
+    const stmt = visible[this.currentStatementIdx];
+    if (!stmt?.pressText) return;
+    const pressedId = stmt.id;
     this.hideControls();
-    this.deps.onQueueDialogue(stmt.pressText, /*onComplete*/ () => this.renderCurrentStatement());
+    this.deps.onQueueDialogue(stmt.pressText, /*onComplete*/ () => {
+      const unlocked = registerPress(this.currentTestimony!, this.pressedStatementIds, pressedId);
+      if (unlocked) {
+        notifyWitnessAddedStatement(this.deps.dom, this.deps.soundEngine);
+        const idx = indexInVisible(this.currentTestimony!, this.pressedStatementIds, unlocked.id);
+        if (idx >= 0) this.currentStatementIdx = idx;
+      }
+      this.renderCurrentStatement();
+    });
   }
 
-  // fallow-ignore-next-line complexity
   public handlePresentEvidence(evidenceId: EvidenceId): void {
-    if (this.phase === 'CLIMAX') return this.handleClimaxEvidence(evidenceId);
-    if (!this.currentTestimony || this.phase !== 'TESTIMONY') return;
-    const stmt = this.currentTestimony.statements[this.currentStatementIdx];
+    if (this.phase === 'CLIMAX') return handleClimaxEvidencePresent(this, evidenceId);
+    const visible = this.visibleStatements();
+    const stmt = visible[this.currentStatementIdx];
+    if (!stmt || this.phase !== 'TESTIMONY') return;
     if (stmt.contradiction?.evidence.includes(evidenceId)) {
-      return this.onSuccessContradiction(stmt.contradiction.successDialogue);
+      return onSuccessContradiction(this, stmt.contradiction.successDialogue);
     }
-    this.onPenaltyPenalty();
+    onPresentPenalty(this);
   }
 
-  private onSuccessContradiction(dialogue: DialogueLine[]): void {
-    this.hideControls();
-    this.deps.onQueueDialogue(dialogue, /*onComplete*/ () => {
-      if (this.testimonyKey === 'testimony1') return this.startTestimony('testimony2');
-      if (shouldAdjourn(this.script, this.deps.state.trialDay)) return this.adjournToInvestigation();
-      this.startClimax();
-    });
+  public startClimax(): void { startClimaxPhase(this, /*replayOpening=*/ true); }
+  public isAwaitingEvidence(): boolean { return isAwaitingClimaxEvidence(this); }
+
+  public getPresentPrompt(): string | null { return getClimaxPresentPrompt(this); }
+
+  // fallow-ignore-next-line unused-class-member
+  public handleSelectChoice(optionId: string): void {
+    resolveClimaxChoiceFromController(this, optionId);
   }
 
-  private adjournToInvestigation(): void {
-    const adjournment = applyAdjournment(this.deps.state, this.script);
-    if (!adjournment) return this.startClimax();
-    this.phase = 'IDLE';
-    this.currentTestimony = null;
-    this.testimonyKey = null;
-    this.deps.onAdjourn?.(adjournment.nextLocation);
-  }
-
-  private onPenaltyPenalty(): void {
-    applyPenaltyEffects(this.deps);
-    this.hideControls();
-    const resume = this.deps.state.gameOver
-      ? () => this.showGameOverModal()
-      : () => this.renderCurrentStatement();
-    queuePenaltyDialogue(this.deps, /*onResume*/ resume);
-  }
-
-  // @Section(Climax & Verdict Confrontation)
-  public startClimax(): void {
-    this.phase = 'CLIMAX';
-    this.currentTestimony = null;
-    this.hideControls();
-    this.deps.dom.bgEl.style.backgroundImage = "url('assets/bg_courtroom.jpg')";
-    this.deps.midiComposer.playTrack('suspense');
-    this.deps.onQueueDialogue(this.script.trial.climax.dialogue, /*onComplete*/ () => {
-      this.deps.onOpenCourtRecord(/*isTrialPresent=*/ true);
-    });
-  }
-
-  private handleClimaxEvidence(evidenceId: EvidenceId): void {
-    this.hideControls();
-    if (this.script.trial.climax.presentTarget.includes(evidenceId)) {
-      queueClimaxVictory(this.script.trial.climax, this.deps);
-      return;
-    }
-    applyPenaltyEffects(this.deps);
-    VisualEffects.showNotification(this.deps.dom.gameNotificationEl, i18n.t.notifIncorrectClue);
-    this.startClimax();
-  }
-
-  private showGameOverModal(): void {
-    this.hideControls();
-    this.deps.state.resetHealth();
-    ModalManager.updateHealthUI(this.deps.dom.healthBarEl, this.deps.state.health, this.deps.state.maxHealth);
-    this.startTrial();
-  }
+  public restartAfterGameOver(): void { showGameOverModal(this); }
 
   // fallow-ignore-next-line complexity
   public setScript(script: CaseScript): void {
     this.script = script;
+    if (this.phase === 'CLIMAX' && this.climaxChoiceIdx != null) {
+      rebindClimaxChoiceModal(this);
+      return;
+    }
     if (this.phase !== 'TESTIMONY' || !this.testimonyKey) return;
     this.currentTestimony = getActiveTrial(this.script, this.deps.state.trialDay)[this.testimonyKey];
     this.renderCurrentStatement();

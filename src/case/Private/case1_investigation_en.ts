@@ -135,7 +135,7 @@ export const INVESTIGATION_SCENES_EN: Record<LocationId, InvestigationScene> = {
           { speaker: 'CHAPULIN', text: 'I was enjoying a ham sandwich when my vinyl antennae started vibrating at 8:45 PM.', pose: 'chapulin_idle' },
           { speaker: 'CHAPULIN', text: 'They detected enemy presence! So I teleported at once... well, actually I took a cab.', pose: 'chapulin_idle' },
           { speaker: 'CHAPULIN', text: 'When I arrived, the display was already smashed and Alma Negra was unconscious. Somebody set me up!', pose: 'chapulin_panic' },
-          { speaker: 'DEFENSA', text: "The 'Antenitas de Vinil' have an alert timestamp: 8:45 PM.", sfx: 'realization', addEvidence: 'antenitas_vinil' }
+          { speaker: 'DEFENSA', text: "The 'Antenitas de Vinil' have an alert timestamp: 8:45 PM.", sfx: 'realization', updateEvidence: 'antenitas_vinil' }
         ]
       },
       {
@@ -144,7 +144,7 @@ export const INVESTIGATION_SCENES_EN: Record<LocationId, InvestigationScene> = {
         dialogue: [
           { speaker: 'CHAPULIN', text: 'Me?! Never! The Chipote Chillón is a noble instrument to defend the innocent!', pose: 'chapulin_slam', sfx: 'desk_slam' },
           { speaker: 'CHAPULIN', text: 'See for yourself! It is made of soft rubber and inflatable plastic.', pose: 'chapulin_idle' },
-          { speaker: 'DEFENSA', text: 'When squeezed, it lets out a silly squeak: SQUEEEAK!', sfx: 'chipote', addEvidence: 'chipote_chillon' },
+          { speaker: 'DEFENSA', text: 'When squeezed, it lets out a silly squeak: SQUEEEAK!', sfx: 'chipote', updateEvidence: 'chipote_chillon' },
           { speaker: 'DEFENSA', text: '(It is physically impossible to fracture a skull with this... I have solid proof!)', sfx: 'realization' }
         ]
       }

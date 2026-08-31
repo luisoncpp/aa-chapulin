@@ -22,12 +22,20 @@ Live status of **El Chapulín Colorado: Ace Attorney — Turnabout Red Grasshopp
 ### Playable Content: Case 2 ("El Juicio del Chómpiras — El Asalto de las Dos Caras")
 Implemented (scripts + dedicated art). Spec: [[docs/specs/case-2-el-juicio-del-chompiras.md]]. Launch: splash **Caso 2**, `?case=2`, or `?case=2&trial` (day-1 courtroom).
 
-- **Selection:** `getCaseScript(lang, caseId)` (`'case1' | 'case2'`) in [[src/case/index.ts]]; `#btn-start-case2` in [[index.html]].
-- **Two-day loop:** `CaseScript.id` / `startLocation` / `requiredEvidence` / optional `adjournment`. After Case 2 testimony 2 on day 1, [[src/engine/Private/TrialDayRouter.ts]] returns to `oficina_postal` instead of climax. Day 2 uses `adjournment.trial`; climax stays on `script.trial.climax`.
+- **Selection:** `getCaseScript(lang, caseId)` (`'case1' | 'case2' | 'case3'`) in [[src/case/index.ts]]; `#btn-start-case2` / `#btn-start-case3` in [[index.html]].
+- **Two-day loop:** `CaseScript.id` / `startLocation` / `requiredEvidence` / optional `adjournment`. After Case 2 testimony 2 on day 1, [[src/engine/Private/TrialDayRouter.ts]] returns to `oficina_postal` instead of climax. Day 2 uses `adjournment.trial`; climax stays on `script.trial.climax` and walks three presents (gold tin, valerian, wax mold) then two multiple-choice verdict questions.
 - **State:** `beginNewCase`, `trialDay`, `beginTrialDay2`, case-aware `checkTrialReadiness` / `populateTrialEvidence`. Day-1 required: `palanca_rota`, `informe_boveda`, `reloj_pendulo`, `aroma_dulce`, `plano_hacienda`, `caja_generador`. Day-2: `multa_transito`, `registro_postal`, `lata_grasa`, `antenitas_vinil`, `frasco_valeriana`, `molde_cera`.
 - **Scripts (ES + EN)** assembled in [[src/case/Private/case2_script.ts]]: detention → `boveda` → `restaurante` → trial day 1 → `oficina_postal` → `casa_clotilde` → trial day 2 → climax.
 - **Art done:** dedicated poses (Chómpiras, Peterete, Jirafales, Jaimito, Clotilde, Super Sam sweat), location BGs (`bg_boveda`, `bg_restaurante`, `bg_postal`, `bg_clotilde`), evidence icons including `chanfle_oro`. [[src/engine/Private/PoseAliases.ts]] is identity (no Case-1 sheet aliases). Pipeline: [[process_case2_assets.py]].
 - **Tests:** [[tests/case/Case2Scripts.test.ts]], [[tests/engine/TrialDayRouter.test.ts]], plus Case 2 coverage in GameEngine / TrialController / GameState.
+
+### Playable Content: Case 3 ("El Juicio del Doctor Chapatín — La Noche del Grito")
+Implemented in [[src/case/case3/index.ts]] (nested deep module). Spec: [[docs/specs/case-3-la-noche-del-grito.md]]. Launch: splash **Caso 3**, `?case=3`, `?case=3&trial`, `?case=3&trial=2`, `?case=3&trial=3`.
+
+- **Three-day loop:** `adjournment.next`, `trialDay` 1\|2\|3, `beginNextTrialDay`. Press-gated statements (`unlockedBy`) and multi-stage evidence (`updates[]`, climax `requiredUpdateStage` on `microfono_oro`).
+- **Locations:** `detention` → `cabina_radio` → `plaza_kermes` → trial → `despacho_barriga` → `clinica_chapatin` → `delegacion` → trial → `bodega_radio` → `detention_d3` → `delegacion_d3` → trial → climax. Each day ends on a location that hands over a required clue.
+- **Art:** [[process_case3_assets.py]]; BGM `kermes` and `cross_exam_presto`. All Case 3 `plain` busts (including Ñoño) floor-anchor onto the dialogue box; Case 3 owns `informe_barriga.png` (not Case 1's `informe_medico.png`).
+- **Tests:** [[tests/case/Case3Scripts.test.ts]], [[tests/engine/StatementUnlock.test.ts]], [[tests/state/EvidenceUpdateStages.test.ts]].
 
 ---
 

@@ -15,8 +15,9 @@ export const CASE2_CLOTILDE: InvestigationScene = {
     { speaker: 'NARRADOR', text: '30 de Agosto, 11:30 AM. Casa de Doña Clotilde.' },
     { speaker: 'CLOTILDE', text: '¡Ay, mi Roro! ¡Qué dicha tenerte en mi humilde morada! ¿Quieres que te prepare una tacita de café o una infusión para los nervios?', pose: 'clotilde_flustered' },
     { speaker: 'DEFENSA', text: 'Este... gracias, Doña Clotilde, pero andamos investigando un aroma muy curioso. ¿Reconoce este frasco?', pose: 'donramon_sweat' },
-    { speaker: 'CLOTILDE', text: '¡Por supuesto! Es mi fórmula secreta de Esencia Concentrada de Valeriana y Rosas. El señor Peterete vino antier por la tarde, justo antes del robo, a comprarme tres frascos diciendo que tenía insomnio.', pose: 'clotilde_mysterious' },
-    { speaker: 'CHAPULIN', text: '¡Bingo! ¡El somnífero del ducto de ventilación fue comprado por el mismísimo Peterete!', pose: 'chapulin_point' }
+    { speaker: 'CLOTILDE', text: '¡Por supuesto! Es mi fórmula secreta de Esencia Concentrada de Valeriana y Rosas. Un hombre muy elegante vino antier por la tarde, justo antes del robo, a comprarme tres frascos diciendo que tenía un insomnio terrible.', pose: 'clotilde_mysterious' },
+    { speaker: 'CHAPULIN', text: '¿Un hombre elegante? ¿No recuerda quién era?', pose: 'chapulin_idle' },
+    { speaker: 'CLOTILDE', text: 'Llevaba el sombrero calado y una bufanda que le tapaba media cara. Pero tenía unos modales muy refinados, nada que ver con la chusma.', pose: 'clotilde_mysterious' }
   ],
   hotspots: [
     {
@@ -34,16 +35,16 @@ export const CASE2_CLOTILDE: InvestigationScene = {
       dialogue: [
         { speaker: 'DEFENSA', text: 'Doña Clotilde, ¿le importaría si revisamos un poco? ¡Chapulín, mira esto!', pose: 'donramon_idle' },
         { speaker: 'CHAPULIN', text: '¡Es un trozo de cera de veladora con la forma de una llave!', pose: 'chapulin_idle', addEvidence: 'molde_cera' },
-        { speaker: 'DEFENSA', text: '¡El Peterete usó la cera de Doña Clotilde para hacer el molde de la llave maestra cuando vino a comprar el sedante!', pose: 'donramon_point' }
+        { speaker: 'DEFENSA', text: '¡El misterioso comprador usó la cera de Doña Clotilde para hacer el molde de una llave cuando vino a comprar el sedante!', pose: 'donramon_point' }
       ]
     }
   ],
   talkOptions: [
     {
       id: 'about_peterete_visit',
-      label: 'Sobre la visita de Peterete',
+      label: 'Sobre el comprador misterioso',
       dialogue: [
-        { speaker: 'CLOTILDE', text: 'Vino muy elegante, con su sombrero. Pidió la esencia "para el insomnio" y se entretuvo junto a mis veladoras. ¡Qué caballero... aunque ahora lo dudo!', pose: 'clotilde_flustered' }
+        { speaker: 'CLOTILDE', text: 'Vino muy elegante, con sombrero y bufanda. Pidió la esencia "para el insomnio" y se entretuvo junto a mis veladoras. ¡Nunca le vi la cara con claridad!', pose: 'clotilde_flustered' }
       ]
     }
   ]

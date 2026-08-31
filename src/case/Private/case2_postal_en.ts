@@ -42,8 +42,8 @@ export const CASE2_POSTAL_EN: InvestigationScene = {
       label: 'Mail Sack',
       x: 28, y: 55, w: 22, h: 20,
       dialogue: [
-        { speaker: 'DEFENSA', text: 'Good grief! This shoe-polish tin weighs over 5 kilos... and golden dust is spilling from the lid!', pose: 'donramon_slam', sfx: 'realization', addEvidence: 'lata_grasa' },
-        { speaker: 'CHAPULIN', text: 'My vinyl antennae are vibrating at 10,000 RPM! The gold is inside!', pose: 'chapulin_point', addEvidence: 'antenitas_vinil', unlockLocation: 'casa_clotilde' }
+        { speaker: 'DEFENSA', text: 'Good grief! This shoe-polish tin weighs over 5 kilos... and golden dust is spilling from the lid!', pose: 'donramon_shock', sfx: 'realization', addEvidence: 'lata_grasa' },
+        { speaker: 'CHAPULIN', text: "My vinyl antennae are detecting the presence of the enemy! I mean... they're detecting something very suspicious in this tin!", pose: 'chapulin_point', addEvidence: 'antenitas_vinil', unlockLocation: 'casa_clotilde' }
       ]
     }
   ],

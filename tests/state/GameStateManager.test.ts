@@ -109,6 +109,24 @@ describe('GameStateManager', () => {
     expect(state.hasEvidence('foto_crimen')).toBe(true);
     expect(state.hasEvidence('bolsa_dolares')).toBe(true);
     expect(state.hasEvidence('insignia_abogado')).toBe(true);
+    expect(state.isEvidenceUpdated('chipote_chillon')).toBe(true);
+  });
+
+  it('updates evidence descriptions with stages and persists the flag', () => {
+    expect(state.getEvidenceDesc('chipote_chillon')).toContain('vinil suave y goma');
+    expect(state.updateEvidence('chipote_chillon')).toBe(true);
+    expect(state.hasEvidence('chipote_chillon')).toBe(true);
+    expect(state.isEvidenceUpdated('chipote_chillon')).toBe(true);
+    expect(state.getEvidenceDesc('chipote_chillon')).toContain('chillido');
+    expect(state.updateEvidence('chipote_chillon')).toBe(false);
+    expect(state.getEvidenceDesc('missing' as EvidenceId)).toBe('');
+
+    const snapshot = state.exportState();
+    const restored = new GameStateManager();
+    restored.restoreState(snapshot);
+    expect(restored.isEvidenceUpdated('chipote_chillon')).toBe(true);
+    expect(restored.getEvidenceDesc('chipote_chillon')).toContain('chillido');
+    expect(restored.getEvidenceUpdateStage('chipote_chillon')).toBe(1);
   });
 
   it('exports and restores state snapshot accurately', () => {

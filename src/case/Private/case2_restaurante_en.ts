@@ -33,7 +33,8 @@ export const CASE2_RESTAURANTE_EN: InvestigationScene = {
       label: 'Outdoor Generator Box',
       x: 69, y: 30, w: 13, h: 28,
       dialogue: [
-        { speaker: 'DEFENSA', text: 'Look! The crowbar tip has navy-blue generator paint... they used it to force the generator box, not the safe!', pose: 'donramon_slam', sfx: 'realization', addEvidence: 'caja_generador' }
+        { speaker: 'DEFENSA', text: 'Look! The crowbar tip has navy-blue generator paint...', pose: 'donramon_shock', sfx: 'realization', updateEvidence: 'palanca_rota' },
+        { speaker: 'DEFENSA', text: 'They used it to force the generator box, not the safe!', pose: 'donramon_shock', addEvidence: 'caja_generador' }
       ]
     }
   ],

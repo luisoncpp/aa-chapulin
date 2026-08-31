@@ -29,7 +29,9 @@ export type TrackName =
   | 'casa_clotilde'
   | 'suspense'
   | 'victory'
-  | 'detention_center';
+  | 'detention_center'
+  | 'kermes'
+  | 'cross_exam_presto';
 
 export type InstrumentWaveType = 'sine' | 'square' | 'sawtooth' | 'triangle';
 

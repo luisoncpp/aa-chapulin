@@ -66,6 +66,8 @@ describe('I18nService Subsystem', () => {
 
     expect(UI_ES.notifEvidenceAdded('Insignia')).toContain('Insignia');
     expect(UI_EN.notifEvidenceAdded('Badge')).toContain('Badge');
+    expect(UI_ES.caseCompleteTitle).toBe('Caso concluido');
+    expect(UI_EN.caseCompleteTitle).toBe('Case complete');
   });
 
   it('verifies bilingual evidence catalogs have matching keys and contents', () => {
@@ -95,6 +97,11 @@ describe('I18nService Subsystem', () => {
       expect(enItem.name.length).toBeGreaterThan(0);
       expect(esItem.desc.length).toBeGreaterThan(0);
       expect(enItem.desc.length).toBeGreaterThan(0);
+      expect(Boolean(esItem.updatedDesc)).toBe(Boolean(enItem.updatedDesc));
+      if (esItem.updatedDesc) {
+        expect(esItem.updatedDesc.length).toBeGreaterThan(0);
+        expect(enItem.updatedDesc.length).toBeGreaterThan(0);
+      }
       expect(esItem.icon).toBe(enItem.icon);
     });
   });

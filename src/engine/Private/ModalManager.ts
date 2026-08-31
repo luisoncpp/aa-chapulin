@@ -6,7 +6,7 @@
 
 import { i18n } from '../../i18n/index.js';
 import type { GameStateManager } from '../../state/index.js';
-import type { EvidenceId, LocationId, TalkOption } from '../../types/index.js';
+import type { EvidenceId, LocationId, TalkOption, ChoicePrompt } from '../../types/index.js';
 import type { DomElements } from './DomElements.js';
 
 export interface CourtRecordConfig {
@@ -23,6 +23,21 @@ export interface MoveDestination {
 }
 
 export class ModalManager {
+  private static appendMenuButton(
+    listEl: HTMLElement,
+    config: { label: string; onClose: () => void; onSelect: () => void }
+  ): void {
+    const btn = document.createElement('button');
+    btn.className = 'menu-btn talk-btn';
+    btn.textContent = config.label;
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      config.onClose();
+      config.onSelect();
+    });
+    listEl.appendChild(btn);
+  }
+
   // @Section(Court Record Evidence Modal)
   public static openCourtRecord(config: CourtRecordConfig): void {
     const { dom, state, isTrialPresent, onSelect } = config;
@@ -59,7 +74,7 @@ export class ModalManager {
     const item = state.allEvidence[id];
     if (!item) return;
     dom.evidenceTitleEl.textContent = item.name;
-    dom.evidenceDescEl.textContent = item.desc;
+    dom.evidenceDescEl.textContent = state.getEvidenceDesc(id);
     dom.evidenceIconPreviewEl.src = item.icon;
     dom.evidenceIconPreviewEl.classList.remove('hidden');
   }
@@ -76,15 +91,11 @@ export class ModalManager {
   ): void {
     dom.talkListEl.innerHTML = '';
     options.forEach((opt) => {
-      const btn = document.createElement('button');
-      btn.className = 'menu-btn talk-btn';
-      btn.textContent = opt.label;
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        ModalManager.closeTalkModal(dom);
-        onSelect(opt);
+      ModalManager.appendMenuButton(dom.talkListEl, {
+        label: opt.label,
+        onClose: () => ModalManager.closeTalkModal(dom),
+        onSelect: () => onSelect(opt)
       });
-      dom.talkListEl.appendChild(btn);
     });
     dom.talkOptionsModalEl.classList.remove('hidden');
   }
@@ -118,6 +129,28 @@ export class ModalManager {
 
   public static closeMoveModal(dom: DomElements): void {
     dom.moveLocationsModalEl.classList.add('hidden');
+  }
+
+  // @Section(Climax Choice Prompt)
+  public static openChoiceModal(
+    dom: DomElements,
+    prompt: ChoicePrompt,
+    onSelect: (optionId: string) => void
+  ): void {
+    dom.choicePromptQuestionEl.textContent = prompt.question;
+    dom.choicePromptListEl.innerHTML = '';
+    prompt.options.forEach((opt) => {
+      ModalManager.appendMenuButton(dom.choicePromptListEl, {
+        label: opt.label,
+        onClose: () => ModalManager.closeChoiceModal(dom),
+        onSelect: () => onSelect(opt.id)
+      });
+    });
+    dom.choicePromptModalEl.classList.remove('hidden');
+  }
+
+  public static closeChoiceModal(dom: DomElements): void {
+    dom.choicePromptModalEl.classList.add('hidden');
   }
 
   // @Section(Penalty Health Bar UI)

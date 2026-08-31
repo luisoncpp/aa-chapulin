@@ -42,8 +42,8 @@ export const CASE2_POSTAL: InvestigationScene = {
       label: 'Saca de Correo',
       x: 28, y: 55, w: 22, h: 20,
       dialogue: [
-        { speaker: 'DEFENSA', text: '¡Caray! Esta lata de grasa para zapatos pesa más de 5 kilos... ¡y de la tapa cae un polvillo amarillo resplandeciente!', pose: 'donramon_slam', sfx: 'realization', addEvidence: 'lata_grasa' },
-        { speaker: 'CHAPULIN', text: '¡Mis antenitas de vinil están vibrando a 10,000 revoluciones por minuto! ¡El oro está aquí adentro!', pose: 'chapulin_point', addEvidence: 'antenitas_vinil', unlockLocation: 'casa_clotilde' }
+        { speaker: 'DEFENSA', text: '¡Caray! Esta lata de grasa para zapatos pesa más de 5 kilos... ¡y de la tapa cae un polvillo amarillo resplandeciente!', pose: 'donramon_shock', sfx: 'realization', addEvidence: 'lata_grasa' },
+        { speaker: 'CHAPULIN', text: '¡Mis antenitas de vinil están detectando la presencia del enemigo! Digo... ¡detectan algo muy sospechoso en esta lata!', pose: 'chapulin_point', addEvidence: 'antenitas_vinil', unlockLocation: 'casa_clotilde' }
       ]
     }
   ],

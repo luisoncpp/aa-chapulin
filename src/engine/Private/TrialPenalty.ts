@@ -16,6 +16,7 @@ export interface PenaltyHost {
   state: GameStateManager;
   soundEngine: SoundEngine;
   onQueueDialogue: (dialogue: DialogueLine[], onComplete?: () => void) => void;
+  onRestartTrial?: () => void;
 }
 
 export function applyPenaltyEffects(deps: PenaltyHost): void {
@@ -40,4 +41,12 @@ export function queuePenaltyDialogue(deps: PenaltyHost, onResume: () => void): v
     );
   }
   deps.onQueueDialogue(lines, /*onComplete*/ onResume);
+}
+
+export function queuePenaltyOrRestart(deps: PenaltyHost, onContinue: () => void): void {
+  if (!deps.state.gameOver) {
+    onContinue();
+    return;
+  }
+  queuePenaltyDialogue(deps, /*onResume*/ () => deps.onRestartTrial?.());
 }

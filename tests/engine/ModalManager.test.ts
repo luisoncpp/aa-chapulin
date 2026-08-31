@@ -69,6 +69,10 @@ describe('ModalManager Subsystem', () => {
     expect(dom.evidenceTitleEl.textContent).toBe('Chipote Chillón');
     expect(dom.evidenceDescEl.textContent).toContain('Arma supuestamente letal');
 
+    state.updateEvidence('chipote_chillon');
+    ModalManager.selectEvidence(dom, state, 'chipote_chillon');
+    expect(dom.evidenceDescEl.textContent).toContain('chillido');
+
     // Invalid id selection does nothing
     expect(() => ModalManager.selectEvidence(dom, state, 'invalid_item' as any)).not.toThrow();
   });
@@ -142,5 +146,31 @@ describe('ModalManager Subsystem', () => {
 
     ModalManager.closeMoveModal(dom);
     expect(dom.moveLocationsModalEl.classList.contains('hidden')).toBe(true);
+  });
+
+  it('renders choice prompt and handles option selection without close button', () => {
+    const prompt = {
+      id: 'test_choice',
+      question: '¿Cuál es la respuesta correcta?',
+      options: [
+        { id: 'wrong', label: 'Opción incorrecta' },
+        { id: 'right', label: 'Opción correcta' }
+      ],
+      correctId: 'right',
+      successDialogue: [],
+      failDialogue: []
+    };
+    let selectedId: string | null = null;
+    ModalManager.openChoiceModal(dom, prompt, (id) => { selectedId = id; });
+
+    expect(dom.choicePromptModalEl.classList.contains('hidden')).toBe(false);
+    expect(dom.choicePromptQuestionEl.textContent).toBe(prompt.question);
+    expect(dom.choicePromptListEl.children).toHaveLength(2);
+    expect(dom.choicePromptModalEl.querySelector('.close-btn')).toBeNull();
+
+    const firstBtn = dom.choicePromptListEl.children[0] as HTMLButtonElement;
+    firstBtn.click();
+    expect(selectedId).toBe('wrong');
+    expect(dom.choicePromptModalEl.classList.contains('hidden')).toBe(true);
   });
 });

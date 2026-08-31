@@ -4,6 +4,7 @@ import { MidiMusicComposer, SoundEngine } from '../../src/audio/index.js';
 import { CASE_SCRIPT } from '../../src/case/index.js';
 import type { DomElements } from '../../src/engine/Private/DomElements.js';
 import { GameEngine } from '../../src/engine/index.js';
+import { SCENE_FADE_MS } from '../../src/engine/Private/SceneFade.js';
 import { GameStateManager, SaveManager } from '../../src/state/index.js';
 import { FakeAudioContext } from '../fakes/FakeAudioContext.js';
 import { setupDomHarness } from '../fakes/DomHarness.js';
@@ -103,7 +104,7 @@ describe('GameEngine Save and Load Feature', () => {
 
   it('saves and restores cross-examination state in trial mode', () => {
     engine.startTrialDebug();
-    vi.advanceTimersByTime(400);
+    vi.advanceTimersByTime(SCENE_FADE_MS * 2);
 
     // Advance through trial intro dialogue to reach testimony
     for (let i = 0; i < CASE_SCRIPT.trial.intro.length; i++) {

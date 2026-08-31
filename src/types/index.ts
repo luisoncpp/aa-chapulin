@@ -41,11 +41,16 @@ export type {
   Hotspot,
   TalkOption,
   InvestigationScene,
+  Statement,
   Testimony,
   ClimaxEpilogue,
+  ClimaxStage,
+  ChoicePrompt,
   ClimaxDefinition,
   TrialDayScript,
   AdjournmentDefinition,
   CaseScript
 } from './Private/script.js';
+// fallow-ignore-next-line unused-type
+export type { ChoiceOption } from './Private/script.js';
 

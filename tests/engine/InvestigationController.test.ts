@@ -59,6 +59,7 @@ describe('InvestigationController', () => {
     expect(controller.isExamineActive).toBe(true);
     expect(dom.hotspotsContainerEl.classList.contains('visible-hotspots')).toBe(true);
     expect(dom.dialogueBoxEl.classList.contains('examine-mode')).toBe(true);
+    expect(dom.gameScreen.classList.contains('examine-mode')).toBe(true);
     expect(dom.examineNavEl.classList.contains('hidden')).toBe(false);
     expect(dom.charSpriteEl.classList.contains('hidden')).toBe(true);
 
@@ -66,6 +67,7 @@ describe('InvestigationController', () => {
     expect(controller.isExamineActive).toBe(false);
     expect(dom.hotspotsContainerEl.classList.contains('visible-hotspots')).toBe(false);
     expect(dom.dialogueBoxEl.classList.contains('examine-mode')).toBe(false);
+    expect(dom.gameScreen.classList.contains('examine-mode')).toBe(false);
     expect(dom.examineNavEl.classList.contains('hidden')).toBe(true);
     expect(dom.charSpriteEl.src).toContain('assets/florinda_idle.png');
   });

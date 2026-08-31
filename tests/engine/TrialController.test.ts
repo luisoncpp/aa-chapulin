@@ -166,6 +166,20 @@ describe('TrialController', () => {
     expect(state.health).toBe(4);
   });
 
+  it('triggers game over when a wrong climax present exhausts health', () => {
+    controller.startClimax();
+    courtRecordOpenedWithTrial = false;
+    queuedDialogues = [];
+    state.health = 1;
+
+    controller.handlePresentEvidence('insignia_abogado');
+
+    expect(queuedDialogues.some((d) => d.some((l) => l.text.includes('CULPABLE')))).toBe(true);
+    expect(courtRecordOpenedWithTrial).toBe(false);
+    expect(state.gameOver).toBe(false);
+    expect(state.health).toBe(5);
+  });
+
   it('walks Case 2 climax through gold, valerian, then wax mold', () => {
     const case2 = getCaseScript('es', 'case2');
     const case2Controller = new TrialController({

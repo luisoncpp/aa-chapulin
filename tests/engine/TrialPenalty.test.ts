@@ -1,7 +1,7 @@
 // @Architecture(descriptionShort="Unit tests for penalty SFX and bilingual objection lines", type="test", icon="bolt")
 import { describe, expect, it, beforeEach, vi } from 'vitest';
 import { SoundEngine } from '../../src/audio/index.js';
-import { applyPenaltyEffects, queuePenaltyDialogue } from '../../src/engine/Private/TrialPenalty.js';
+import { applyPenaltyEffects, queuePenaltyDialogue, queuePenaltyOrRestart } from '../../src/engine/Private/TrialPenalty.js';
 import { i18n } from '../../src/i18n/index.js';
 import { GameStateManager } from '../../src/state/index.js';
 import type { DialogueLine } from '../../src/types/index.js';
@@ -56,5 +56,16 @@ describe('TrialPenalty', () => {
     queuePenaltyDialogue(host(), /*onResume*/ () => {});
     expect(queued[0].some((line) => line.text === i18n.t.gameOverJudgeText)).toBe(true);
     expect(queued[0].some((line) => line.text === i18n.t.gameOverDefenseText)).toBe(true);
+  });
+
+  it('restarts after game-over instead of continuing the current prompt', () => {
+    state.health = 1;
+    const deps = { ...host(), onRestartTrial: vi.fn() };
+    applyPenaltyEffects(deps);
+    const onContinue = vi.fn();
+    queuePenaltyOrRestart(deps, /*onContinue*/ onContinue);
+    expect(onContinue).not.toHaveBeenCalled();
+    expect(queued[0].some((line) => line.text === i18n.t.gameOverJudgeText)).toBe(true);
+    expect(deps.onRestartTrial).toHaveBeenCalled();
   });
 });

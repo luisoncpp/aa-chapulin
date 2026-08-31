@@ -10,7 +10,7 @@ import type { DomElements } from './DomElements.js';
 import { ModalManager } from './ModalManager.js';
 import { showCaseComplete } from './CaseComplete.js';
 import { COURTROOM_CELEBRATION_MS, fadeToBlack, fadeThroughBlack } from './SceneFade.js';
-import { applyPenaltyEffects, type PenaltyHost } from './TrialPenalty.js';
+import { applyPenaltyEffects, queuePenaltyOrRestart, type PenaltyHost } from './TrialPenalty.js';
 import { VisualEffects } from './VisualEffects.js';
 
 export interface ClimaxSession {
@@ -40,6 +40,7 @@ export interface ClimaxRestoreCtx extends ClimaxQueueDeps, PenaltyHost {
   enterClimaxPhase: () => void;
   midiComposer: MidiMusicComposer;
   onOpenCourtRecord: (isTrialPresent: boolean) => void;
+  onRestartTrial: () => void;
 }
 
 // fallow-ignore-next-line unused-export
@@ -71,8 +72,10 @@ export function resolveClimaxChoice(
   const prompt = climax.choices![choiceIdx];
   if (optionId !== prompt.correctId) {
     applyPenaltyEffects(ctx);
-    ctx.onQueueDialogue(prompt.failDialogue, /*reopenChoice*/ () => {
-      openClimaxChoice(choiceOpenSession(ctx, climax, choiceIdx, onSelect));
+    queuePenaltyOrRestart(ctx, /*reopenChoice*/ () => {
+      ctx.onQueueDialogue(prompt.failDialogue, /*reopenChoice*/ () => {
+        openClimaxChoice(choiceOpenSession(ctx, climax, choiceIdx, onSelect));
+      });
     });
     return choiceIdx;
   }

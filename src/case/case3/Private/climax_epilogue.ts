@@ -5,7 +5,7 @@
 
 import type { DialogueLine } from '../../../types/index.js';
 
-const WAITING_ROOM = 'assets/bg_waiting_room.jpg';
+const WAITING_ROOM = 'assets/bg_waiting_room.webp';
 
 export const CASE3_EPILOGUE: DialogueLine[] = [
   { bg: WAITING_ROOM, furniture: 'none', speaker: 'NARRADOR', text: 'Una hora después. Sala de espera del tribunal. Afuera, la vecindad todavía no se lo cree.' },

@@ -24,6 +24,7 @@ import { restoreTrialFromSnapshot } from './TrialRestore.js';
 import { paintCourtroomPlate } from './TrialOpening.js';
 import { fadeThroughBlack } from './SceneFade.js';
 import { VisualEffects } from './VisualEffects.js';
+import { warmTrialVisuals } from './VisualWarmup.js';
 
 export type TrialPhase = 'IDLE' | 'TESTIMONY' | 'CLIMAX';
 export interface TrialControllerDeps {
@@ -55,8 +56,7 @@ export class TrialController {
   }
 
   public bumpFailedPresentCount(): number {
-    this.failedPresentCount++;
-    return this.failedPresentCount;
+    return ++this.failedPresentCount;
   }
 
   public clearActiveTestimony(): void {
@@ -64,9 +64,7 @@ export class TrialController {
     this.currentTestimony = null;
   }
 
-  public getTestimonyKey(): 'testimony1' | 'testimony2' | null {
-    return this.testimonyKey;
-  }
+  public getTestimonyKey(): 'testimony1' | 'testimony2' | null { return this.testimonyKey; }
 
   hideControls(): void { this.deps.dom.trialNavEl.classList.add('hidden'); }
 
@@ -95,6 +93,7 @@ export class TrialController {
   }
 
   public startTrial(skipFade = false): void {
+    warmTrialVisuals(this.script, this.deps.state.trialDay);
     const intro = getActiveTrial(this.script, this.deps.state.trialDay).intro;
     const afterIntro = /*onComplete*/ () => this.startTestimony('testimony1');
     if (skipFade) {
@@ -121,7 +120,6 @@ export class TrialController {
     this.currentStatementIdx = 0;
     this.failedPresentCount = 0;
     this.deps.midiComposer.playTrack(this.currentTestimony.bgm);
-    this.deps.dom.bgEl.style.backgroundImage = "url('assets/bg_witness.jpg')";
     VisualEffects.showNotification(this.deps.dom.gameNotificationEl, this.currentTestimony.title);
     this.renderCurrentStatement();
   }

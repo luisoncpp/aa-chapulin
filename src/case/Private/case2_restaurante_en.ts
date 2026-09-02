@@ -8,7 +8,7 @@ import type { InvestigationScene } from '../../types/index.js';
 export const CASE2_RESTAURANTE_EN: InvestigationScene = {
   title: "Doña Florinda's Restaurant and Electrical Yard",
   name: "Doña Florinda's Restaurant",
-  bg: 'assets/bg_restaurante.jpg',
+  bg: 'assets/bg_restaurante.webp',
   bgm: 'restaurante',
   speaker: 'NARRADOR',
   intro: [

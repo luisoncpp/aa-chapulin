@@ -1,9 +1,4 @@
 // @Architecture(descriptionShort="Controls crime scene hotspots, examine mode, and talk menu", type="controller", icon="panel")
-/**
- * Investigation Scene & Examine Mode Controller
- * Coordinates with [[./ModalManager.ts]] and [[./VisualEffects.ts]].
- */
-
 import type { MidiMusicComposer, SoundEngine } from '../../audio/index.js';
 import { i18n } from '../../i18n/index.js';
 import type { GameStateManager } from '../../state/index.js';
@@ -12,6 +7,7 @@ import type { DomElements } from './DomElements.js';
 import { renderHotspots } from './HotspotLayer.js';
 import { ModalManager } from './ModalManager.js';
 import { VisualEffects } from './VisualEffects.js';
+import { prepareSceneVisuals } from './VisualWarmup.js';
 
 export interface InvestigationControllerDeps {
   dom: DomElements;
@@ -57,6 +53,7 @@ export class InvestigationController {
     this.dom.hotspotsContainerEl.classList.remove('visible-hotspots');
     this.dom.examineTooltipEl.classList.add('hidden');
     const scene = this.script.investigation[location];
+    prepareSceneVisuals(scene);
     VisualEffects.clearCourtroomPlate(this.dom);
     this.dom.speakerBoxEl.textContent = scene.speaker || '';
     this.dom.dialogueTextEl.textContent = '';

@@ -19,6 +19,11 @@ describe('character sprite downscaling', () => {
     expect(cssRule(css, '#character-sprite')).toMatch(/image-rendering:\s*auto/);
   });
 
+  it('lets the stage box own sprite size so intrinsic pixels cannot pop the layout', () => {
+    expect(cssRule(css, '#character-sprite')).toMatch(/width:\s*100%/);
+    expect(cssRule(css, '#character-sprite')).toMatch(/height:\s*100%/);
+  });
+
   it('keeps the rest of the pixel-art UI on nearest-neighbour', () => {
     // Court-record art is displayed at or near its native size, so it must stay crisp.
     expect(cssRule(css, '#evidence-icon-preview')).toMatch(/image-rendering:\s*pixelated/);

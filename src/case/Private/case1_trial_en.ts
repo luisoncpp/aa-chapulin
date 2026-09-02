@@ -8,12 +8,12 @@ import type { DialogueLine, Testimony } from '../../types/index.js';
 
 // @Section(Courtroom Intro Dialogue - English)
 export const TRIAL_INTRO_EN: DialogueLine[] = [
-  { bg: 'assets/bg_judge.jpg', speaker: 'JUEZ', pose: 'judge_gavel', text: 'Order in the court! The high court session is now in session.', sfx: 'gavel', bgm: 'trial' },
-  { bg: 'assets/bg_judge.jpg', speaker: 'JUEZ', pose: 'judge_neutral', text: 'Is the prosecution ready to present its charges?' },
-  { bg: 'assets/bg_courtroom.jpg', speaker: 'SUPER SAM', pose: 'supersam_slam', text: 'Time is money, Your Honor! The prosecution is more than ready to wrap up this case in record time.', sfx: 'desk_slam' },
-  { bg: 'assets/bg_courtroom.jpg', speaker: 'SUPER SAM', pose: 'supersam_point', text: 'The defendant was caught red-handed with the assault weapon at the scene of the crime. I demand a guilty verdict in 3 minutes!' },
-  { bg: 'assets/bg_defense.jpg', speaker: 'DEFENSA', pose: 'donramon_slam', text: 'The defense is ready, Your Honor! And we shall prove the innocence of El Chapulín Colorado!', sfx: 'desk_slam' },
-  { bg: 'assets/bg_judge.jpg', speaker: 'JUEZ', pose: 'judge_neutral', text: 'Very well. Let the prosecution call its key witness to the stand.' }
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_gavel', text: 'Order in the court! The high court session is now in session.', sfx: 'gavel', bgm: 'trial' },
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_neutral', text: 'Is the prosecution ready to present its charges?' },
+  { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_slam', text: 'Time is money, Your Honor! The prosecution is more than ready to wrap up this case in record time.', sfx: 'desk_slam' },
+  { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_point', text: 'The defendant was caught red-handed with the assault weapon at the scene of the crime. I demand a guilty verdict in 3 minutes!' },
+  { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_slam', text: 'The defense is ready, Your Honor! And we shall prove the innocence of El Chapulín Colorado!', sfx: 'desk_slam' },
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_neutral', text: 'Very well. Let the prosecution call its key witness to the stand.' }
 ];
 
 // @Section(Testimony 1: Assault Weapon - English)

@@ -79,7 +79,7 @@ describe('Case Scripts Narrative Integrity', () => {
   it('keeps Case 2 thanks-you dialogue in the waiting-room epilogue', () => {
     const case2 = getCaseScript('es', 'case2');
     const climax = case2.trial.climax;
-    expect(climax.epilogue?.bg).toBe('assets/bg_waiting_room.jpg');
+    expect(climax.epilogue?.bg).toBe('assets/bg_waiting_room.webp');
     expect(climax.epilogue?.dialogue[0]?.speaker).toBe('NARRADOR');
     expect(climax.epilogue?.dialogue.some((l) => l.speaker === 'CHOMPIRAS')).toBe(true);
     expect(climax.verdict.some((l) => l.speaker === 'CHOMPIRAS')).toBe(false);

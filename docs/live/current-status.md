@@ -39,6 +39,10 @@ Implemented in [[src/case/case3/index.ts]] (nested deep module). Spec: [[docs/sp
 
 ---
 
+## Release zip (Netlify)
+
+`.\build.ps1` compiles TypeScript and writes `ace-attorney-chapulin.zip` (`index.html`, `style.css`, `dist/`, `assets/` at the archive root). Same command: `npm run package`. Drop the zip on Netlify Sites → Deploy manually.
+
 ## Remaining polish (not unimplemented content)
 
 1. Coverage 90% branches (`npm run test:coverage`). Engine files are under 200 lines. [[tests/assets/SlamSpriteContact.test.ts]] needs Python + Pillow.

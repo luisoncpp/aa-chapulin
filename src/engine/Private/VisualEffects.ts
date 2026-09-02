@@ -9,31 +9,31 @@ import type { DomElements } from './DomElements.js';
 import { applyStageFrame, resolveStageFrame } from './StageLayout.js';
 
 const FURNITURE_ASSETS: Record<'podium' | 'bench', string> = {
-  podium: 'assets/court_podium.png',
-  bench: 'assets/court_bench.png'
+  podium: 'assets/court_podium.webp',
+  bench: 'assets/court_bench.webp'
 };
 
 const TRIAL_SPEAKER_BACKGROUNDS: Record<string, string> = {
-  DEFENSA: 'assets/bg_defense.jpg',
-  'DON RAMON': 'assets/bg_defense.jpg',
-  'DON RAMÓN': 'assets/bg_defense.jpg',
-  CHAPULIN: 'assets/bg_defense.jpg',
-  'CHAPULÍN': 'assets/bg_defense.jpg',
-  'SUPER SAM': 'assets/bg_courtroom.jpg',
-  JUEZ: 'assets/bg_judge.jpg',
-  TRIPASECA: 'assets/bg_witness.jpg',
-  FLORINDA: 'assets/bg_witness.jpg',
-  PETERETE: 'assets/bg_witness.jpg',
-  CHOMPIRAS: 'assets/bg_witness.jpg',
-  JIRAFALES: 'assets/bg_witness.jpg',
-  JAIMITO: 'assets/bg_witness.jpg',
-  CLOTILDE: 'assets/bg_witness.jpg',
-  CHAPATIN: 'assets/bg_witness.jpg',
-  ANICETO: 'assets/bg_witness.jpg',
-  BARRIGA: 'assets/bg_witness.jpg',
-  NONO: 'assets/bg_witness.jpg',
-  CHIMOLTRUFIA: 'assets/bg_witness.jpg',
-  SARGENTO: 'assets/bg_witness.jpg'
+  DEFENSA: 'assets/bg_defense.webp',
+  'DON RAMON': 'assets/bg_defense.webp',
+  'DON RAMÓN': 'assets/bg_defense.webp',
+  CHAPULIN: 'assets/bg_defense.webp',
+  'CHAPULÍN': 'assets/bg_defense.webp',
+  'SUPER SAM': 'assets/bg_courtroom.webp',
+  JUEZ: 'assets/bg_judge.webp',
+  TRIPASECA: 'assets/bg_witness.webp',
+  FLORINDA: 'assets/bg_witness.webp',
+  PETERETE: 'assets/bg_witness.webp',
+  CHOMPIRAS: 'assets/bg_witness.webp',
+  JIRAFALES: 'assets/bg_witness.webp',
+  JAIMITO: 'assets/bg_witness.webp',
+  CLOTILDE: 'assets/bg_witness.webp',
+  CHAPATIN: 'assets/bg_witness.webp',
+  ANICETO: 'assets/bg_witness.webp',
+  BARRIGA: 'assets/bg_witness.webp',
+  NONO: 'assets/bg_witness.webp',
+  CHIMOLTRUFIA: 'assets/bg_witness.webp',
+  SARGENTO: 'assets/bg_witness.webp'
 };
 
 function isDefenseSpeaker(speaker: string): boolean {
@@ -48,7 +48,7 @@ export class VisualEffects {
   // @Section(Character Pose Staging)
   public static setPose(charSpriteEl: HTMLImageElement, poseName: PoseName): void {
     if (!poseName) return;
-    charSpriteEl.src = `assets/${poseName}.png`;
+    charSpriteEl.src = `assets/${poseName}.webp`;
     charSpriteEl.classList.remove('hidden');
   }
 
@@ -84,7 +84,7 @@ export class VisualEffects {
 
   public static inferTrialBackground(speaker?: string): string | null {
     if (!speaker || speaker === 'NARRADOR') return null;
-    return TRIAL_SPEAKER_BACKGROUNDS[speaker] ?? 'assets/bg_witness.jpg';
+    return TRIAL_SPEAKER_BACKGROUNDS[speaker] ?? 'assets/bg_witness.webp';
   }
 
   public static resolveBackground(line: DialogueLine, isTrialMode: boolean): string | null {
@@ -106,10 +106,7 @@ export class VisualEffects {
     return null;
   }
 
-  /**
-   * Resolves background, furniture and the matching stage frame together:
-   * sprite scale, background camera angle and surface contact are one composition.
-   */
+  /** Background, furniture, and stage frame are one composition. */
   public static updateStagingForLine(
     dom: DomElements,
     line: DialogueLine,
@@ -119,9 +116,9 @@ export class VisualEffects {
     if (resolvedBg) {
       dom.bgEl.style.backgroundImage = `url('${resolvedBg}')`;
     }
-    const currentBg = dom.bgEl.style.backgroundImage;
+    const bgHint = resolvedBg ?? dom.bgEl.style.backgroundImage;
     const effectivePose = VisualEffects.resolveEffectivePose(line, isTrialMode);
-    const furniture = line.furniture ?? VisualEffects.inferFurniture(isTrialMode, currentBg);
+    const furniture = line.furniture ?? VisualEffects.inferFurniture(isTrialMode, bgHint);
     VisualEffects.setFurniture(dom.courtFurnitureSpriteEl, dom.courtFurnitureContainerEl, furniture);
     applyStageFrame(
       dom.gameScreen,
@@ -131,7 +128,7 @@ export class VisualEffects {
   }
 
   // fallow-ignore-next-line complexity
-  private static inferFurniture(isTrialMode: boolean, bg: string): FurnitureType {
+  public static inferFurniture(isTrialMode: boolean, bg: string): FurnitureType {
     if (!isTrialMode) return 'none';
     if (bg.includes('bg_witness')) return 'podium';
     if (bg.includes('bg_defense') || bg.includes('bg_courtroom')) return 'bench';
@@ -159,7 +156,7 @@ export class VisualEffects {
 
   // @Section(Dramatic Cut-in Overlays)
   public static showCutin(dom: DomElements, cutinName: CutinName): void {
-    dom.cutinImgEl.src = `assets/${cutinName}.png`;
+    dom.cutinImgEl.src = `assets/${cutinName}.webp`;
     dom.cutinOverlayEl.classList.remove('hidden');
     dom.cutinOverlayEl.classList.add('cutin-animate');
     VisualEffects.shakeScreen(dom.gameScreen, /*durationMs=*/ 400);

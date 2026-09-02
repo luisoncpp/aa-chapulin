@@ -9,7 +9,7 @@ import { BODEGA_HOTSPOTS } from './bodega_hotspots.js';
 export const CASE3_BODEGA: InvestigationScene = {
   title: 'Bodega y Cabina A de XEVC',
   name: 'Bodega XEVC',
-  bg: 'assets/bg_bodega.jpg',
+  bg: 'assets/bg_bodega.webp',
   bgm: 'suspense',
   speaker: 'NARRADOR',
   intro: [

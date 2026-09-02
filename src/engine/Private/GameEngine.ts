@@ -12,6 +12,8 @@ import type { CaseId, CaseScript, DialogueLine, EvidenceId, Language, LocationId
 import { handleAdjournment } from './AdjournmentHandler.js';
 import { applyClimaxPresentPrompt } from './ClimaxPresentPrompt.js';
 import { DialogueFlow } from './DialogueFlow.js';
+import { DialogueHistory } from './DialogueHistory.js';
+import { openHistoryModal } from './HistoryModal.js';
 import { getDomElements, type DomElements } from './DomElements.js';
 import { applyDebugUrlParams } from './EngineDebugBootstrap.js';
 import { EngineEventBinder } from './EngineEventBinder.js';
@@ -72,7 +74,7 @@ export class GameEngine {
     this.dialogue = new DialogueFlow({
       dom: this.dom, state: this.state, getScript: () => this.script,
       soundEngine: this.soundEngine, midiComposer: this.midiComposer,
-      typewriter, investigation: this.investigation
+      typewriter, investigation: this.investigation, history: new DialogueHistory()
     });
   }
 
@@ -100,6 +102,7 @@ export class GameEngine {
       onStartTrialDebug: () => this.startTrialDebug(),
       onAdvance: () => this.handleAdvance(),
       onOpenCourtRecord: (isTrial) => this.openCourtRecord(isTrial),
+      onOpenHistory: () => openHistoryModal(this.dom, this.dialogue.getHistory()),
       onPresentFromModal: () => this.handlePresentFromModal(),
       onToggleLanguage: () => this.toggleLanguage(),
       onSaveGame: () => this.saveGame(),
@@ -132,6 +135,7 @@ export class GameEngine {
   }
 
   public startGame(caseId: CaseId = 'case1'): void {
+    this.dialogue.clearHistory();
     launchGame(this.host(), caseId);
   }
 

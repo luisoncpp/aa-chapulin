@@ -18,7 +18,7 @@ describe('TrialClimax waiting-room epilogue', () => {
     dom = setupDomHarness();
     queued = [];
     pending = [];
-    dom.bgEl.style.backgroundImage = "url('assets/bg_courtroom.jpg')";
+    dom.bgEl.style.backgroundImage = "url('assets/bg_courtroom.webp')";
     dom.locationBannerEl.textContent = UI_ES.locationCourtroom;
   });
 
@@ -35,27 +35,27 @@ describe('TrialClimax waiting-room epilogue', () => {
     expect(queued).toHaveLength(1);
     expect(queued[0].some((line) => line.text.includes('INOCENTE'))).toBe(true);
     expect(queued[0].some((line) => line.speaker === 'CHOMPIRAS')).toBe(false);
-    expect(dom.bgEl.style.backgroundImage).toContain('bg_courtroom.jpg');
+    expect(dom.bgEl.style.backgroundImage).toContain('bg_courtroom.webp');
     expect(dom.confettiContainerEl.children.length).toBe(0);
 
     pending[0]!();
     expect(dom.confettiContainerEl.children.length).toBe(80);
-    expect(dom.bgEl.style.backgroundImage).toContain('bg_courtroom.jpg');
+    expect(dom.bgEl.style.backgroundImage).toContain('bg_courtroom.webp');
     expect(dom.locationBannerEl.textContent).toBe(UI_ES.locationCourtroom);
     expect(queued).toHaveLength(1);
 
     vi.advanceTimersByTime(COURTROOM_CELEBRATION_MS);
-    expect(dom.bgEl.style.backgroundImage).toContain('bg_courtroom.jpg');
+    expect(dom.bgEl.style.backgroundImage).toContain('bg_courtroom.webp');
     expect(dom.confettiContainerEl.children.length).toBe(80);
     expect(dom.flashEl.classList.contains('hidden')).toBe(false);
     expect(dom.flashEl.style.opacity).toBe('1');
 
     vi.advanceTimersByTime(5000);
-    expect(dom.bgEl.style.backgroundImage).toContain('bg_waiting_room.jpg');
+    expect(dom.bgEl.style.backgroundImage).toContain('bg_waiting_room.webp');
     expect(dom.locationBannerEl.textContent).toBe(UI_ES.locationWaitingRoom);
     expect(queued).toHaveLength(2);
     expect(queued[1].some((line) => line.speaker === 'CHOMPIRAS')).toBe(true);
-    expect(queued[1].every((line) => line.bg === 'assets/bg_waiting_room.jpg')).toBe(true);
+    expect(queued[1].every((line) => line.bg === 'assets/bg_waiting_room.webp')).toBe(true);
     expect(queued[1].every((line) => line.furniture === 'none')).toBe(true);
     expect(dom.flashEl.classList.contains('hidden')).toBe(true);
     expect(dom.confettiContainerEl.children.length).toBe(0);

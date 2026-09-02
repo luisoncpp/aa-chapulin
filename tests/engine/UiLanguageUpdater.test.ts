@@ -27,6 +27,8 @@ describe('UiLanguageUpdater', () => {
     expect(dom.btnAudioToggleEl.title).toBe('Toggle Audio Mute');
     expect(dom.btnSaveGame?.title).toBe('Save Game');
     expect(dom.btnLoadGame?.title).toBe('Load Game');
+    expect(dom.btnHistory?.title).toBe('Message History');
+    expect(dom.historyModalEl?.querySelector('.modal-header h2')?.textContent).toBe('MESSAGE HISTORY');
     expect(dom.btnContinueGame?.textContent).toContain('CONTINUE GAME');
     expect(dom.btnStartGame.textContent).toContain('CASE 1');
     expect(dom.btnStartCase2?.textContent).toContain('CASE 2');
@@ -44,6 +46,7 @@ describe('UiLanguageUpdater', () => {
     expect(dom.btnLangToggleEl.textContent).toBe('🌐 ES');
     expect(dom.btnLangSplashEl?.textContent).toBe('🇲🇽 ES');
     expect(dom.btnCourtRecord.querySelector('span')?.textContent).toBe('Acta');
+    expect(dom.historyModalEl?.querySelector('.modal-header h2')?.textContent).toBe('HISTORIAL DE DIÁLOGOS');
   });
 
   it('skips missing optional buttons, headers, and court-record span', () => {
@@ -64,6 +67,8 @@ describe('UiLanguageUpdater', () => {
       btnAudioToggleEl: undefined,
       btnSaveGame: undefined,
       btnLoadGame: undefined,
+      btnHistory: undefined,
+      historyModalEl: undefined,
       btnContinueGame: undefined,
       btnStartGame: undefined,
       btnStartCase2: undefined,

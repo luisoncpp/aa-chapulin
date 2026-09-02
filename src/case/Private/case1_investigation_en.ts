@@ -11,7 +11,7 @@ export const INVESTIGATION_SCENES_EN: Record<LocationId, InvestigationScene> = {
   museum: {
     title: 'Museum of Antiques and Curiosities - Crime Scene',
     name: 'Museum of Curiosities',
-    bg: 'assets/bg_museum.jpg',
+    bg: 'assets/bg_museum.webp',
     bgm: 'investigation',
     speaker: 'NARRADOR',
     intro: [
@@ -90,7 +90,7 @@ export const INVESTIGATION_SCENES_EN: Record<LocationId, InvestigationScene> = {
   detention: {
     title: 'Detention Center - Visitor Room',
     name: 'Detention Center',
-    bg: 'assets/bg_detention.jpg',
+    bg: 'assets/bg_detention.webp',
     bgm: 'detention_center',
     speaker: 'CHAPULIN',
     intro: [

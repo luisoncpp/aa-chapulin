@@ -34,7 +34,7 @@ describe('InvestigationController edges', () => {
     controller.currentLocationCharPose = 'florinda_idle';
     controller.startExamineMode();
     (dom.hotspotsContainerEl.children[0] as HTMLElement).click();
-    expect(dom.charSpriteEl.src).toContain('assets/florinda_idle.png');
+    expect(dom.charSpriteEl.src).toContain('assets/florinda_idle.webp');
   });
 
   it('renders an empty hotspot layer when a scene omits hotspots', () => {

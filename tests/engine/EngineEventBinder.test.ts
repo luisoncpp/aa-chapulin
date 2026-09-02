@@ -23,6 +23,7 @@ describe('EngineEventBinder', () => {
   let advanced = false;
   let courtRecordOpened = false;
   let presentedFromModal = false;
+  let historyOpened = false;
 
   beforeEach(() => {
     dom = setupDomHarness();
@@ -37,6 +38,7 @@ describe('EngineEventBinder', () => {
     advanced = false;
     courtRecordOpened = false;
     presentedFromModal = false;
+    historyOpened = false;
 
     investigation = new InvestigationController({
       dom,
@@ -67,7 +69,8 @@ describe('EngineEventBinder', () => {
       onStartCase2: () => { startedCase2 = true; },
       onAdvance: () => { advanced = true; },
       onOpenCourtRecord: () => { courtRecordOpened = true; },
-      onPresentFromModal: () => { presentedFromModal = true; }
+      onPresentFromModal: () => { presentedFromModal = true; },
+      onOpenHistory: () => { historyOpened = true; }
     });
   });
 
@@ -99,6 +102,31 @@ describe('EngineEventBinder', () => {
     advanced = false;
     document.dispatchEvent(new KeyboardEvent('keydown', { code: 'KeyA' }));
     expect(advanced).toBe(false);
+  });
+
+  it('dispatches message history open and close events', () => {
+    dom.btnHistory!.click();
+    expect(historyOpened).toBe(true);
+
+    dom.historyModalEl!.classList.remove('hidden');
+    dom.btnCloseHistory!.click();
+    expect(dom.historyModalEl!.classList.contains('hidden')).toBe(true);
+  });
+
+  it('closes the message history on Escape', () => {
+    dom.historyModalEl!.classList.remove('hidden');
+    document.dispatchEvent(new KeyboardEvent('keydown', { code: 'Escape' }));
+    expect(dom.historyModalEl!.classList.contains('hidden')).toBe(true);
+  });
+
+  it('does not advance the scene while a modal is open', () => {
+    dom.historyModalEl!.classList.remove('hidden');
+    document.dispatchEvent(new KeyboardEvent('keydown', { code: 'Space' }));
+    expect(advanced).toBe(false);
+
+    document.dispatchEvent(new KeyboardEvent('keydown', { code: 'Escape' }));
+    document.dispatchEvent(new KeyboardEvent('keydown', { code: 'Space' }));
+    expect(advanced).toBe(true);
   });
 
   it('dispatches court record open, close, and present events', () => {

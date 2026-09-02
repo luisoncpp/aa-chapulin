@@ -41,32 +41,36 @@ SHEETS = [
 
 EV_A = [
     # 4×3 sheet; (0,0) badge and (1,0) draft informe are unused.
-    (2, 0, "lentes_barriga.png"),
-    (3, 0, "microfono_oro.png"),
-    (0, 1, "bolsa_papel.png"),
-    (1, 1, "microfono_cabina.png"),
-    (2, 1, "cinta_salud.png"),
-    (3, 1, "marcas_carrito.png"),
-    (0, 2, "ventana_cabina.png"),
-    (1, 2, "libro_verde.png"),
-    (2, 2, "bitacora_transmision.png"),
-    (3, 2, "receta_nono.png"),
+    (2, 0, "lentes_barriga.webp"),
+    (3, 0, "microfono_oro.webp"),
+    (0, 1, "bolsa_papel.webp"),
+    (1, 1, "microfono_cabina.webp"),
+    (2, 1, "cinta_salud.webp"),
+    (3, 1, "marcas_carrito.webp"),
+    (0, 2, "ventana_cabina.webp"),
+    (1, 2, "libro_verde.webp"),
+    (2, 2, "bitacora_transmision.webp"),
+    (3, 2, "receta_nono.webp"),
 ]
 
 EV_B = [
-    (0, 0, "programa_kermes.png"),
-    (1, 0, "ataduras_bodega.png"),
-    (2, 0, "cartucho_corte.png"),
-    (0, 1, "cinta_sketch.png"),
-    (1, 1, "boleta_empeno.png"),
+    (0, 0, "programa_kermes.webp"),
+    (1, 0, "ataduras_bodega.webp"),
+    (2, 0, "cartucho_corte.webp"),
+    (0, 1, "cinta_sketch.webp"),
+    (1, 1, "boleta_empeno.webp"),
     # Case 3 has its own medical report; informe_medico.png is Case 1 art
     # (Alma Negra's coin sack) and must not be reused. See spec section 17.
-    (2, 1, "informe_barriga.png"),
+    (2, 1, "informe_barriga.webp"),
 ]
 
 BGS = [
-    "bg_cabina.jpg", "bg_kermes.jpg", "bg_despacho.jpg",
-    "bg_clinica.jpg", "bg_bodega.jpg", "bg_delegacion.jpg",
+    ("bg_cabina.jpg", "bg_cabina.webp"),
+    ("bg_kermes.jpg", "bg_kermes.webp"),
+    ("bg_despacho.jpg", "bg_despacho.webp"),
+    ("bg_clinica.jpg", "bg_clinica.webp"),
+    ("bg_bodega.jpg", "bg_bodega.webp"),
+    ("bg_delegacion.jpg", "bg_delegacion.webp"),
 ]
 
 
@@ -80,8 +84,8 @@ def process_full_pose(sheet_name: str, out_name: str) -> None:
     cleaned = clean_edges_vectorized(cleaned, depth=5)
     filtered = extract_primary_components_fast(cleaned, min_area_fraction=0.08)
     anchored = despill_final(anchor_standing_bust(filtered))
-    anchored.save(os.path.join(DEST_DIR, f"{out_name}.png"))
-    print(f"  [OK] Processed: {out_name}.png ({anchored.size})")
+    anchored.save(os.path.join(DEST_DIR, f"{out_name}.webp"), 'WEBP', quality=85, method=6)
+    print(f"  [OK] Processed: {out_name}.webp ({anchored.size})")
 
 
 def process_evidence_grid(sheet_name: str, cells: list, cols: int, rows: int) -> None:
@@ -111,24 +115,25 @@ FLOOR_BUSTS = [
 
 
 def copy_backgrounds() -> None:
-    for name in BGS:
-        src_p = find_asset_file(name)
+    for src_name, dst_name in BGS:
+        src_p = find_asset_file(src_name)
         if not os.path.exists(src_p):
             print(f"Warning: Background not found {src_p}")
             continue
-        shutil.copy(src_p, os.path.join(DEST_DIR, name))
-        print(f"  [OK] Copied background: {name}")
+        bg_img = Image.open(src_p)
+        bg_img.save(os.path.join(DEST_DIR, dst_name), 'WEBP', quality=85, method=6)
+        print(f"  [OK] Saved WebP background: {dst_name}")
 
 
 def floor_standing_busts(names: list) -> None:
     """Sit opaque hems on the 512 canvas floor so plain staging meets the dialogue box."""
     for name in names:
-        path = os.path.join(DEST_DIR, f"{name}.png")
+        path = os.path.join(DEST_DIR, f"{name}.webp")
         if not os.path.exists(path):
             continue
         anchored = despill_final(anchor_standing_bust(Image.open(path)))
-        anchored.save(path)
-        print(f"  [OK] Floored bust: {name}.png")
+        anchored.save(path, 'WEBP', quality=85, method=6)
+        print(f"  [OK] Floored bust: {name}.webp")
 
 
 def run_case3() -> None:
@@ -147,7 +152,7 @@ def run_case3() -> None:
     process_evidence_grid("case3_evidence_icons_raw.png", EV_A, 4, 3)
     process_evidence_grid("case3_evidence_icons_b_raw.png", EV_B, 3, 2)
     # Dedicated crop: sheet B nests this clipboard in a second magenta frame.
-    process_evidence_grid("informe_barriga_icon_raw.png", [(0, 0, "informe_barriga.png")], 1, 1)
+    process_evidence_grid("informe_barriga_icon_raw.png", [(0, 0, "informe_barriga.webp")], 1, 1)
     copy_backgrounds()
     print("\nCase 3 assets saved.")
 

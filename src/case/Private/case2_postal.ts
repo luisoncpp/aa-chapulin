@@ -8,7 +8,7 @@ import type { InvestigationScene } from '../../types/index.js';
 export const CASE2_POSTAL: InvestigationScene = {
   title: 'Oficina Postal y Callejón Trasero',
   name: 'Callejón Postal',
-  bg: 'assets/bg_postal.jpg',
+  bg: 'assets/bg_postal.webp',
   bgm: 'callejon_postal',
   speaker: 'NARRADOR',
   intro: [

@@ -36,7 +36,7 @@ function bottomGaps(fileNames: string[]): Record<string, number> {
     '  out[name] = int(a.shape[0] - 1 - rows[-1]) if len(rows) else 999',
     'print(json.dumps(out))',
   ].join('\n');
-  const files = fileNames.map((n) => `${n}.png`);
+  const files = fileNames.map((n) => `${n}.webp`);
   return pythonJson(py, [assetsDir, ...files]) as Record<string, number>;
 }
 
@@ -62,12 +62,12 @@ describe('Case 3 standing busts', () => {
   it('keeps opaque hems on the 512 canvas floor so plain meets the dialogue box', () => {
     const gaps = bottomGaps(CASE3_PLAIN_BUSTS);
     for (const pose of CASE3_PLAIN_BUSTS) {
-      expect(gaps[`${pose}.png`], pose).toBeLessThanOrEqual(8);
+      expect(gaps[`${pose}.webp`], pose).toBeLessThanOrEqual(8);
     }
   });
 
   it('keeps Aniceto breakdown inside 512 with side and top magenta margin', () => {
-    const pads = edgePads('aniceto_breakdown.png');
+    const pads = edgePads('aniceto_breakdown.webp');
     expect(pads.size).toEqual([512, 512]);
     expect(pads.left, 'left edge clips the bust').toBeGreaterThanOrEqual(8);
     expect(pads.right, 'right edge clips the bust').toBeGreaterThanOrEqual(8);
@@ -101,5 +101,5 @@ describe('anchor_standing_bust', () => {
     expect(pads.right).toBeGreaterThanOrEqual(8);
     expect(pads.top).toBeGreaterThanOrEqual(8);
     expect(pads.bottom).toBeLessThanOrEqual(8);
-  });
+  }, 20000);
 });

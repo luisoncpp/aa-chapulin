@@ -97,7 +97,7 @@ function openClimaxPresent(
   climax: ClimaxDefinition,
   replayOpening: boolean
 ): void {
-  deps.dom.bgEl.style.backgroundImage = "url('assets/bg_courtroom.jpg')";
+  deps.dom.bgEl.style.backgroundImage = "url('assets/bg_courtroom.webp')";
   deps.midiComposer.playTrack('suspense');
   if (!replayOpening) {
     deps.onOpenCourtRecord(/*isTrialPresent=*/ true);

@@ -8,7 +8,7 @@ import type { InvestigationScene } from '../../../types/index.js';
 export const CASE3_DETENTION: InvestigationScene = {
   title: 'Centro de Detención - Sala de Visitas',
   name: 'Centro de Detención',
-  bg: 'assets/bg_detention.jpg',
+  bg: 'assets/bg_detention.webp',
   bgm: 'detention_center',
   speaker: 'NARRADOR',
   intro: [

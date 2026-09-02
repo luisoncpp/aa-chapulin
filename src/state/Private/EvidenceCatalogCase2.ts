@@ -6,7 +6,7 @@
 import type { EvidenceId, EvidenceItem } from '../../types/index.js';
 
 function ev(id: EvidenceId, text: { name: string; desc: string; updatedDesc?: string }): EvidenceItem {
-  return { id, name: text.name, icon: `assets/${id}.png`, desc: text.desc, updatedDesc: text.updatedDesc };
+  return { id, name: text.name, icon: `assets/${id}.webp`, desc: text.desc, updatedDesc: text.updatedDesc };
 }
 
 // @Section(Spanish Case 2 Evidence)

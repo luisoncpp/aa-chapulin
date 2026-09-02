@@ -39,7 +39,7 @@ function measurePng(fileName: string): {
 
 describe('Super Sam slam sprite', () => {
   it('keeps the desk-contact notch and matching costume colors', () => {
-    const m = measurePng('supersam_slam.png');
+    const m = measurePng('supersam_slam.webp');
     // Waist gap must open near chapulin_slam's 448/512 target, not down on the wood.
     expect(m.notch).toBeGreaterThanOrEqual(430);
     expect(m.notch).toBeLessThanOrEqual(460);

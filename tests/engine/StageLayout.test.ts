@@ -21,7 +21,7 @@ const STAGE_W = 960;
 const STAGE_H = 540;
 
 /**
- * Source pixel geometry of assets/court_bench.png. The asset is cropped so its
+ * Source pixel geometry of assets/court_bench.webp. The asset is cropped so its
  * first row IS the desk's far-edge outline, which is why surfaceTop is ~0: the
  * container's top edge and the hand-contact line are the same line. Any rows
  * above that outline would paint a flat strip in front of the character.
@@ -172,5 +172,11 @@ describe('StageLayout composition frames', () => {
     const cssContent = fs.readFileSync(path.resolve(__dirname, '../../style.css'), 'utf-8');
     const charContainerRule = cssContent.match(/#character-container\s*\{([^}]+)\}/)?.[1] ?? '';
     expect(charContainerRule).not.toMatch(/transition:[^;]*(bottom|height|top|transform)/);
+  });
+
+  it('does not fade furniture opacity across camera cuts', () => {
+    const cssContent = fs.readFileSync(path.resolve(__dirname, '../../style.css'), 'utf-8');
+    const furnitureRule = cssContent.match(/#court-furniture-container\s*\{([^}]+)\}/)?.[1] ?? '';
+    expect(furnitureRule).not.toMatch(/transition:/);
   });
 });

@@ -8,7 +8,7 @@ import type { InvestigationScene } from '../../../types/index.js';
 export const CASE3_KERMES_EN: InvestigationScene = {
   title: 'Plaza de la Kermés',
   name: 'Plaza de la Kermés',
-  bg: 'assets/bg_kermes.jpg',
+  bg: 'assets/bg_kermes.webp',
   bgm: 'kermes',
   speaker: 'NARRADOR',
   intro: [

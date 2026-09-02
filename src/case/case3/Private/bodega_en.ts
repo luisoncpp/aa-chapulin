@@ -59,7 +59,7 @@ const BODEGA_HOTSPOTS_EN: Hotspot[] = [
 export const CASE3_BODEGA_EN: InvestigationScene = {
   title: 'XEVC Storeroom & Cabina A',
   name: 'XEVC Storeroom',
-  bg: 'assets/bg_bodega.jpg',
+  bg: 'assets/bg_bodega.webp',
   bgm: 'suspense',
   speaker: 'NARRADOR',
   intro: [

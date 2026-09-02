@@ -34,8 +34,8 @@ function measureCostume(fileName: string): {
 
 describe('Super Sam costume identity', () => {
   it('keeps sweat on the navy flag suit, not the yellow-green Chespirito suit', () => {
-    const idle = measureCostume('supersam_idle.png');
-    const sweat = measureCostume('supersam_sweat.png');
+    const idle = measureCostume('supersam_idle.webp');
+    const sweat = measureCostume('supersam_sweat.webp');
     expect(idle.navy).toBeGreaterThan(40000);
     expect(idle.red).toBeGreaterThan(5000);
     expect(sweat.navy).toBeGreaterThan(40000);

@@ -7,13 +7,13 @@ import type { DialogueLine, Testimony } from '../../../types/index.js';
 import { CASE3_T1_SUCCESS } from './trial_day1_success.js';
 
 export const CASE3_TRIAL_INTRO: DialogueLine[] = [
-  { bg: 'assets/bg_judge.jpg', speaker: 'JUEZ', pose: 'judge_gavel', text: '¡Silencio en la sala! Se abre el juicio contra el Doctor Chapatín.', sfx: 'gavel', bgm: 'trial' },
-  { bg: 'assets/bg_courtroom.jpg', speaker: 'SUPER SAM', pose: 'supersam_slam', text: 'Time is money, Your Honor! ¡Dos mil testigos oyeron a la víctima gritar el nombre del acusado!', sfx: 'desk_slam' },
-  { bg: 'assets/bg_courtroom.jpg', speaker: 'SUPER SAM', pose: 'supersam_point', text: '¡Y tres minutos después lo hallaron encima del cuerpo! ¡Pido veredicto antes de mi hora de la comida!' },
-  { bg: 'assets/bg_defense.jpg', speaker: 'DEFENSA', pose: 'donramon_slam', text: '¡PROTESTO! ¡Con permisito, dijo Monchito!', sfx: 'desk_slam' },
-  { bg: 'assets/bg_defense.jpg', speaker: 'DEFENSA', pose: 'donramon_point', text: 'La defensa sostiene que en esa cabina no se cometió ningún crimen.' },
-  { bg: 'assets/bg_judge.jpg', speaker: 'JUEZ', pose: 'judge_shock', text: '¿Cómo que no...? ¡Si ahí estaba la víctima!' },
-  { bg: 'assets/bg_defense.jpg', speaker: 'DEFENSA', pose: 'donramon_idle', text: 'Ahí estaba la víctima, señor Juez. Que no es lo mismo.' }
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_gavel', text: '¡Silencio en la sala! Se abre el juicio contra el Doctor Chapatín.', sfx: 'gavel', bgm: 'trial' },
+  { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_slam', text: 'Time is money, Your Honor! ¡Dos mil testigos oyeron a la víctima gritar el nombre del acusado!', sfx: 'desk_slam' },
+  { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_point', text: '¡Y tres minutos después lo hallaron encima del cuerpo! ¡Pido veredicto antes de mi hora de la comida!' },
+  { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_slam', text: '¡PROTESTO! ¡Con permisito, dijo Monchito!', sfx: 'desk_slam' },
+  { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_point', text: 'La defensa sostiene que en esa cabina no se cometió ningún crimen.' },
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_shock', text: '¿Cómo que no...? ¡Si ahí estaba la víctima!' },
+  { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_idle', text: 'Ahí estaba la víctima, señor Juez. Que no es lo mismo.' }
 ];
 
 export const CASE3_TESTIMONY_1: Testimony = {

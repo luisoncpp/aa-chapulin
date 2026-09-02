@@ -8,7 +8,7 @@ import type { InvestigationScene } from '../../../types/index.js';
 export const CASE3_CLINICA: InvestigationScene = {
   title: 'Clínica del Doctor Chapatín',
   name: 'Clínica Chapatín',
-  bg: 'assets/bg_clinica.jpg',
+  bg: 'assets/bg_clinica.webp',
   bgm: 'detention_center',
   speaker: 'NARRADOR',
   intro: [

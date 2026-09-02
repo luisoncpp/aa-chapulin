@@ -8,7 +8,7 @@ import type { GameStateManager } from '../../state/index.js';
 import type { CaseScript, TrialDay } from '../../types/index.js';
 import type { DomElements } from './DomElements.js';
 import { getActiveTrial } from './TrialDayRouter.js';
-import { VisualEffects } from './VisualEffects.js';
+import { presentDialogueVisuals } from './StageCommit.js';
 
 interface CourtroomPaintDeps {
   dom: DomElements;
@@ -28,10 +28,7 @@ export function paintCourtroomPlate(deps: CourtroomPaintDeps, script: CaseScript
 function paintOpeningShot(dom: DomElements, script: CaseScript, trialDay: TrialDay): void {
   const first = getActiveTrial(script, trialDay).intro[0];
   if (!first) return;
-  VisualEffects.updateStagingForLine(dom, first, /*isTrialMode=*/ true);
-  const pose = VisualEffects.resolveEffectivePose(first, /*isTrialMode=*/ true);
-  if (pose) VisualEffects.setPose(dom.charSpriteEl, pose);
-  else VisualEffects.hideCharacter(dom.charSpriteEl);
+  presentDialogueVisuals(dom, first, /*isTrialMode=*/ true);
   dom.speakerBoxEl.textContent = first.speaker || '';
   dom.dialogueTextEl.textContent = '';
 }

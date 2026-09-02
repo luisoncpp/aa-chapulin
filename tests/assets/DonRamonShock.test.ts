@@ -28,16 +28,16 @@ function measureSprite(fileName: string): { navy: number; bottomGap: number } {
 
 describe('Don Ramón shock sprite', () => {
   it('keeps the navy lawyer suit from idle, not TV denim', () => {
-    const idleNavy = measureSprite('donramon_idle.png').navy;
-    const shockNavy = measureSprite('donramon_shock.png').navy;
+    const idleNavy = measureSprite('donramon_idle.webp').navy;
+    const shockNavy = measureSprite('donramon_shock.webp').navy;
     expect(idleNavy).toBeGreaterThan(25000);
     expect(shockNavy).toBeGreaterThan(25000);
     expect(shockNavy).toBeGreaterThan(idleNavy * 0.6);
   });
 
   it('puts the hem on the canvas floor like idle so the plain frame meets the dialogue box', () => {
-    const idleGap = measureSprite('donramon_idle.png').bottomGap;
-    const shockGap = measureSprite('donramon_shock.png').bottomGap;
+    const idleGap = measureSprite('donramon_idle.webp').bottomGap;
+    const shockGap = measureSprite('donramon_shock.webp').bottomGap;
     expect(idleGap).toBeLessThanOrEqual(8);
     expect(shockGap).toBeLessThanOrEqual(8);
   });

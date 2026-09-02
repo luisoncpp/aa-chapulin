@@ -138,6 +138,20 @@ describe('GameEngine Save and Load Feature', () => {
     expect(freshState.hasEvidence('chipote_chillon')).toBe(true);
   });
 
+  it('drops the message history on load so the backlog matches the restored scene', () => {
+    engine.startGame();
+    vi.advanceTimersByTime(400);
+    engine.renderDialogueLine({ speaker: 'DEFENSA', text: 'Línea de la sesión previa.' });
+    engine.saveGame();
+
+    dom.btnLoadGame?.click();
+    vi.advanceTimersByTime(400);
+
+    dom.btnHistory?.click();
+    const texts = Array.from(dom.historyListEl!.querySelectorAll('.history-text')).map((el) => el.textContent);
+    expect(texts).not.toContain('Línea de la sesión previa.');
+  });
+
   it('shows notification when loading with no save file present', () => {
     SaveManager.clear(storage);
     const loaded = engine.loadGame();

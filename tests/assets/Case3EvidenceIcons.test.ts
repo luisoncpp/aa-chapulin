@@ -51,7 +51,7 @@ function measureIcons(fileNames: string[]): Record<string, {
 }
 
 describe('Case 3 evidence icon pipeline', () => {
-  const measured = measureIcons(CASE3_ICONS.map((id) => `${id}.png`));
+  const measured = measureIcons(CASE3_ICONS.map((id) => `${id}.webp`));
 
   it('slices sheet A as 4 columns by 3 rows, matching the raw grid', () => {
     const src = fs.readFileSync(path.join(ROOT, 'process_case3_assets.py'), 'utf8');
@@ -62,7 +62,7 @@ describe('Case 3 evidence icon pipeline', () => {
 
   it('keeps every Case 3 icon centered in its 128 canvas instead of a cell-slice strip', () => {
     for (const id of CASE3_ICONS) {
-      const m = measured[`${id}.png`];
+      const m = measured[`${id}.webp`];
       expect(m.fill, id).toBeGreaterThan(0.08);
       expect(m.cx, id).toBeGreaterThan(0.35);
       expect(m.cx, id).toBeLessThan(0.65);
@@ -75,8 +75,8 @@ describe('Case 3 evidence icon pipeline', () => {
   });
 
   it('maps the window wedge cell to wood, not the paper-bag syringe slice', () => {
-    const wedge = measured['ventana_cabina.png'];
-    const bag = measured['bolsa_papel.png'];
+    const wedge = measured['ventana_cabina.webp'];
+    const bag = measured['bolsa_papel.webp'];
     expect(wedge.wood).toBeGreaterThan(80);
     expect(wedge.bagBlue).toBeLessThan(bag.bagBlue * 0.5 + 40);
   });

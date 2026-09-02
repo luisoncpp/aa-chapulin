@@ -8,7 +8,7 @@ import type { InvestigationScene } from '../../../types/index.js';
 export const CASE3_DELEGACION_EN: InvestigationScene = {
   title: 'Police Station',
   name: 'Police Station',
-  bg: 'assets/bg_delegacion.jpg',
+  bg: 'assets/bg_delegacion.webp',
   bgm: 'investigation',
   speaker: 'NARRADOR',
   intro: [

@@ -3,6 +3,7 @@ import { describe, expect, it, beforeEach, vi } from 'vitest';
 import { MidiMusicComposer, SoundEngine } from '../../src/audio/index.js';
 import { CASE_SCRIPT } from '../../src/case/index.js';
 import { DialogueFlow } from '../../src/engine/Private/DialogueFlow.js';
+import { DialogueHistory } from '../../src/engine/Private/DialogueHistory.js';
 import type { DomElements } from '../../src/engine/Private/DomElements.js';
 import { InvestigationController } from '../../src/engine/Private/InvestigationController.js';
 import { Typewriter } from '../../src/engine/Private/Typewriter.js';
@@ -32,8 +33,25 @@ describe('DialogueFlow', () => {
       soundEngine,
       midiComposer: midi,
       typewriter: new Typewriter(dom.dialogueTextEl, soundEngine),
-      investigation
+      investigation,
+      history: new DialogueHistory()
     });
+  });
+
+  it('records every rendered line in the message history', () => {
+    flow.queueDialogue([{ speaker: 'DEFENSA', text: 'Uno.' }]);
+    vi.runAllTimers();
+    flow.handleAdvance();
+    expect(flow.getHistory()).toEqual([{ speaker: 'DEFENSA', text: 'Uno.' }]);
+  });
+
+  it('keeps the message history when the pending queue is cleared', () => {
+    flow.queueDialogue([{ speaker: 'DEFENSA', text: 'Uno.' }]);
+    vi.runAllTimers();
+    flow.clear();
+    expect(flow.getHistory()).toHaveLength(1);
+    flow.clearHistory();
+    expect(flow.getHistory()).toHaveLength(0);
   });
 
   it('does not render when the queued array is empty', () => {

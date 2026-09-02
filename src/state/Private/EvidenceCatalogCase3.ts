@@ -12,7 +12,7 @@ function ev(
   return {
     id,
     name: text.name,
-    icon: `assets/${id}.png`,
+    icon: `assets/${id}.webp`,
     desc: text.desc,
     updatedDesc: text.updatedDesc,
     updates: text.updates

@@ -14,7 +14,7 @@ describe('VisualEffects Subsystem', () => {
 
   it('updates character sprite pose and visibility', () => {
     VisualEffects.setPose(dom.charSpriteEl, 'chapulin_point');
-    expect(dom.charSpriteEl.src).toContain('assets/chapulin_point.png');
+    expect(dom.charSpriteEl.src).toContain('assets/chapulin_point.webp');
     expect(dom.charSpriteEl.classList.contains('hidden')).toBe(false);
 
     VisualEffects.hideCharacter(dom.charSpriteEl);
@@ -70,7 +70,7 @@ describe('VisualEffects Subsystem', () => {
 
   it('displays dramatic cut-in overlay and auto-hides after duration', () => {
     VisualEffects.showCutin(dom, 'objection_protesto');
-    expect(dom.cutinImgEl.src).toContain('assets/objection_protesto.png');
+    expect(dom.cutinImgEl.src).toContain('assets/objection_protesto.webp');
     expect(dom.cutinOverlayEl.classList.contains('hidden')).toBe(false);
     expect(dom.cutinOverlayEl.classList.contains('cutin-animate')).toBe(true);
 
@@ -110,13 +110,13 @@ describe('VisualEffects Subsystem', () => {
   it('stages podium and bench furniture overlays correctly', () => {
     // Set podium
     VisualEffects.setFurniture(dom.courtFurnitureSpriteEl, dom.courtFurnitureContainerEl, 'podium');
-    expect(dom.courtFurnitureSpriteEl.src).toContain('assets/court_podium.png');
+    expect(dom.courtFurnitureSpriteEl.src).toContain('assets/court_podium.webp');
     expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(false);
     expect(dom.courtFurnitureContainerEl.dataset.furniture).toBe('podium');
 
     // Set bench
     VisualEffects.setFurniture(dom.courtFurnitureSpriteEl, dom.courtFurnitureContainerEl, 'bench');
-    expect(dom.courtFurnitureSpriteEl.src).toContain('assets/court_bench.png');
+    expect(dom.courtFurnitureSpriteEl.src).toContain('assets/court_bench.webp');
     expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(false);
     expect(dom.courtFurnitureContainerEl.dataset.furniture).toBe('bench');
 
@@ -135,10 +135,10 @@ describe('VisualEffects Subsystem', () => {
     // Trial mode with witness background -> podium
     VisualEffects.updateStagingForLine(
       dom,
-      { text: 'Testigo habla', bg: 'assets/bg_witness.jpg', speaker: 'TRIPASECA' },
+      { text: 'Testigo habla', bg: 'assets/bg_witness.webp', speaker: 'TRIPASECA' },
       /*isTrialMode=*/ true
     );
-    expect(dom.courtFurnitureSpriteEl.src).toContain('assets/court_podium.png');
+    expect(dom.courtFurnitureSpriteEl.src).toContain('assets/court_podium.webp');
     expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(false);
     expect(dom.gameScreen.dataset.stageFrame).toBe('podium');
 
@@ -148,7 +148,7 @@ describe('VisualEffects Subsystem', () => {
       { text: 'Objecion!', speaker: 'DEFENSA', pose: 'chapulin_slam' },
       /*isTrialMode=*/ true
     );
-    expect(dom.courtFurnitureSpriteEl.src).toContain('assets/court_bench.png');
+    expect(dom.courtFurnitureSpriteEl.src).toContain('assets/court_bench.webp');
     expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(false);
     expect(dom.gameScreen.dataset.stageFrame).toBe('bench-slam');
 
@@ -168,19 +168,19 @@ describe('VisualEffects Subsystem', () => {
         speaker: 'CHOMPIRAS',
         pose: 'chompiras_relieved',
         text: '¡Gracias!',
-        bg: 'assets/bg_waiting_room.jpg',
+        bg: 'assets/bg_waiting_room.webp',
         furniture: 'none'
       },
       /*isTrialMode=*/ true
     );
-    expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_waiting_room.jpg');
+    expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_waiting_room.webp');
     expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(true);
     expect(dom.gameScreen.dataset.stageFrame).toBe('plain');
   });
 
   it('automatically switches courtroom background and furniture for each speaker in trial mode', () => {
     // Start with witness background
-    dom.bgEl.style.backgroundImage = "url('assets/bg_witness.jpg')";
+    dom.bgEl.style.backgroundImage = "url('assets/bg_witness.webp')";
 
     // 1. Defense protests with pose -> switches to defense background and bench
     VisualEffects.updateStagingForLine(
@@ -188,8 +188,8 @@ describe('VisualEffects Subsystem', () => {
       { speaker: 'DEFENSA', pose: 'chapulin_point', text: '¡Su testimonio se desmorona!' },
       /*isTrialMode=*/ true
     );
-    expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_defense.jpg');
-    expect(dom.courtFurnitureSpriteEl.src).toContain('assets/court_bench.png');
+    expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_defense.webp');
+    expect(dom.courtFurnitureSpriteEl.src).toContain('assets/court_bench.webp');
     expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(false);
     expect(dom.gameScreen.dataset.stageFrame).toBe('bench-stand');
 
@@ -199,8 +199,8 @@ describe('VisualEffects Subsystem', () => {
       { speaker: 'SUPER SAM', pose: 'supersam_point', text: 'What?!' },
       /*isTrialMode=*/ true
     );
-    expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_courtroom.jpg');
-    expect(dom.courtFurnitureSpriteEl.src).toContain('assets/court_bench.png');
+    expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_courtroom.webp');
+    expect(dom.courtFurnitureSpriteEl.src).toContain('assets/court_bench.webp');
     expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(false);
     expect(dom.gameScreen.dataset.stageFrame).toBe('bench-stand');
 
@@ -210,7 +210,7 @@ describe('VisualEffects Subsystem', () => {
       { speaker: 'SUPER SAM', pose: 'supersam_slam', text: 'Time is money!' },
       /*isTrialMode=*/ true
     );
-    expect(dom.courtFurnitureSpriteEl.src).toContain('assets/court_bench.png');
+    expect(dom.courtFurnitureSpriteEl.src).toContain('assets/court_bench.webp');
     expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(false);
     expect(dom.gameScreen.dataset.stageFrame).toBe('bench-slam');
 
@@ -220,7 +220,7 @@ describe('VisualEffects Subsystem', () => {
       { speaker: 'JUEZ', pose: 'judge_thinking', text: '¡Vaya sonido!' },
       /*isTrialMode=*/ true
     );
-    expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_judge.jpg');
+    expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_judge.webp');
     expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(true);
     expect(dom.gameScreen.dataset.stageFrame).toBe('plain');
 
@@ -230,8 +230,8 @@ describe('VisualEffects Subsystem', () => {
       { speaker: 'TRIPASECA', pose: 'tripaseca_sweat', text: '¡Glup!' },
       /*isTrialMode=*/ true
     );
-    expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_witness.jpg');
-    expect(dom.courtFurnitureSpriteEl.src).toContain('assets/court_podium.png');
+    expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_witness.webp');
+    expect(dom.courtFurnitureSpriteEl.src).toContain('assets/court_podium.webp');
     expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(false);
     expect(dom.gameScreen.dataset.stageFrame).toBe('podium');
 
@@ -241,8 +241,8 @@ describe('VisualEffects Subsystem', () => {
       { speaker: 'DEFENSA', text: '¡La defensa no descansará!' },
       /*isTrialMode=*/ true
     );
-    expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_defense.jpg');
-    expect(dom.courtFurnitureSpriteEl.src).toContain('assets/court_bench.png');
+    expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_defense.webp');
+    expect(dom.courtFurnitureSpriteEl.src).toContain('assets/court_bench.webp');
     expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(false);
     expect(dom.gameScreen.dataset.stageFrame).toBe('bench-stand');
   });

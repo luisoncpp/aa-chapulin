@@ -10,7 +10,7 @@ import type { InvestigationScene } from '../../../types/index.js';
 export const CASE3_DETENTION_D3_EN: InvestigationScene = {
   title: 'Detention Center — Third Day',
   name: 'Detention Center',
-  bg: 'assets/bg_detention.jpg',
+  bg: 'assets/bg_detention.webp',
   bgm: 'detention_center',
   speaker: 'NARRADOR',
   intro: [

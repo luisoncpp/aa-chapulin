@@ -40,6 +40,8 @@
                 <button id="btn-save-game" class="hud-btn" title="Guardar Partida (Save Game)">💾</button>
                 <!-- Load Game Button -->
                 <button id="btn-load-game" class="hud-btn" title="Cargar Partida (Load Game)">📂</button>
+                <!-- Message History Button -->
+                <button id="btn-history" class="hud-btn" title="Historial de Diálogos (Message History)">📜</button>
                 <!-- Health / Penalty Bar -->
                 <div id="health-bar">
                     <span class="penalty-mark active">!</span>
@@ -50,7 +52,7 @@
                 </div>
                 <!-- Court Record Button -->
                 <button id="btn-court-record" title="Acta del Juicio (Court Record)">
-                    <img src="assets/insignia_abogado.png" alt="Insignia">
+                    <img src="assets/insignia_abogado.webp" alt="Insignia">
                     <span>Acta</span>
                 </button>
             </div>
@@ -121,7 +123,7 @@
                 <h2 class="splash-subtitle">ACE ATTORNEY: EL CASO DEL ESCUADRÓN COLORADO</h2>
             </div>
             <div class="splash-character">
-                <img src="assets/chapulin_point.png" alt="Chapulin Point">
+                <img src="assets/chapulin_point.webp" alt="Chapulin Point">
             </div>
             <div class="splash-menu">
                 <button id="btn-continue-game" class="splash-btn splash-btn-continue hidden">📂 CONTINUAR PARTIDA (CONTINUE)</button>
@@ -186,6 +188,21 @@
                     <h2 id="choice-prompt-question"></h2>
                 </div>
                 <div id="choice-prompt-list"></div>
+            </div>
+        </div>
+
+        <!-- Message History (Dialogue Backlog) Modal -->
+        <div id="history-modal" class="game-modal hidden">
+            <div class="modal-window">
+                <div class="modal-header">
+                    <h2>HISTORIAL</h2>
+                    <button id="btn-close-history" class="close-btn">X</button>
+                </div>
+                <div class="modal-body">
+                    <div id="history-list">
+                        <!-- History entries inserted dynamically -->
+                    </div>
+                </div>
             </div>
         </div>
 

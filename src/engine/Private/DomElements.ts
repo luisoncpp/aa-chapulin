@@ -48,6 +48,10 @@ export interface DomElements {
   btnLangToggleEl: HTMLButtonElement;
   btnLangSplashEl?: HTMLButtonElement;
   btnSaveGame?: HTMLButtonElement;
+  btnHistory?: HTMLButtonElement;
+  btnCloseHistory?: HTMLButtonElement;
+  historyModalEl?: HTMLElement;
+  historyListEl?: HTMLElement;
   btnLoadGame?: HTMLButtonElement;
   btnContinueGame?: HTMLButtonElement;
   gameNotificationEl: HTMLElement;
@@ -116,6 +120,10 @@ export function getDomElements(): DomElements {
     btnLangToggleEl: document.getElementById('btn-lang-toggle') as HTMLButtonElement,
     btnLangSplashEl: document.getElementById('btn-lang-splash') as HTMLButtonElement,
     btnSaveGame: document.getElementById('btn-save-game') as HTMLButtonElement,
+    btnHistory: (document.getElementById('btn-history') as HTMLButtonElement) || undefined,
+    btnCloseHistory: (document.getElementById('btn-close-history') as HTMLButtonElement) || undefined,
+    historyModalEl: document.getElementById('history-modal') || undefined,
+    historyListEl: document.getElementById('history-list') || undefined,
     btnLoadGame: document.getElementById('btn-load-game') as HTMLButtonElement,
     btnContinueGame: document.getElementById('btn-continue-game') as HTMLButtonElement,
     gameNotificationEl: document.getElementById('game-notification')!,

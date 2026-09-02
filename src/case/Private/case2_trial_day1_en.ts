@@ -6,13 +6,13 @@
 import type { DialogueLine, Testimony } from '../../types/index.js';
 
 export const CASE2_TRIAL_INTRO_EN: DialogueLine[] = [
-  { bg: 'assets/bg_judge.jpg', speaker: 'JUEZ', pose: 'judge_gavel', text: 'Order in the court! The high court is now in session.', sfx: 'gavel', bgm: 'trial' },
-  { bg: 'assets/bg_judge.jpg', speaker: 'JUEZ', pose: 'judge_neutral', text: 'The prosecution may present its charges against Aquiles Esquivel Madrazo.' },
-  { bg: 'assets/bg_courtroom.jpg', speaker: 'SUPER SAM', pose: 'supersam_slam', text: 'Time is money, Your Honor!', sfx: 'desk_slam' },
-  { bg: 'assets/bg_courtroom.jpg', speaker: 'SUPER SAM', pose: 'supersam_point', text: 'The defendant was caught red-handed in the vault at 10:00 PM with the crime tool in his hands. I demand a guilty verdict in 3 minutes!' },
-  { bg: 'assets/bg_defense.jpg', speaker: 'DEFENSA', pose: 'donramon_slam', text: 'OBJECTION! The defense will prove this entire case is a frame-up!', sfx: 'desk_slam' },
-  { bg: 'assets/bg_defense.jpg', speaker: 'CHAPULIN', pose: 'chapulin_point', text: 'Follow the good guys! We will not let an innocent man be condemned!' },
-  { bg: 'assets/bg_judge.jpg', speaker: 'JUEZ', pose: 'judge_neutral', text: 'Call the prosecution\'s first witness.' }
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_gavel', text: 'Order in the court! The high court is now in session.', sfx: 'gavel', bgm: 'trial' },
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_neutral', text: 'The prosecution may present its charges against Aquiles Esquivel Madrazo.' },
+  { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_slam', text: 'Time is money, Your Honor!', sfx: 'desk_slam' },
+  { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_point', text: 'The defendant was caught red-handed in the vault at 10:00 PM with the crime tool in his hands. I demand a guilty verdict in 3 minutes!' },
+  { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_slam', text: 'OBJECTION! The defense will prove this entire case is a frame-up!', sfx: 'desk_slam' },
+  { bg: 'assets/bg_defense.webp', speaker: 'CHAPULIN', pose: 'chapulin_point', text: 'Follow the good guys! We will not let an innocent man be condemned!' },
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_neutral', text: 'Call the prosecution\'s first witness.' }
 ];
 
 const T1_SUCCESS: DialogueLine[] = [

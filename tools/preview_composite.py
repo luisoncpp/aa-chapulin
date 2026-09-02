@@ -22,7 +22,7 @@ FRAMES = {
                    furn_w=0.75, furn_h=0.42, furn_base=0.0),
 }
 
-FURNITURE_ASSETS = {"bench": "court_bench.png", "podium": "court_podium.png"}
+FURNITURE_ASSETS = {"bench": "court_bench.webp", "podium": "court_podium.webp"}
 
 
 def resolve_frame(furniture: str, pose: str) -> str:
@@ -52,7 +52,7 @@ def render_scene(bg_name: str, char_name: str, furniture: str, out_name: str):
     if char_name:
         # Sprites are square, so the contain-fitted box side equals its height.
         side = round(frame["char_h"] * height)
-        char_img = Image.open(f"assets/{char_name}.png").convert("RGBA").resize((side, side), Image.Resampling.NEAREST)
+        char_img = Image.open(f"assets/{char_name}.webp").convert("RGBA").resize((side, side), Image.Resampling.NEAREST)
         char_xy = ((width - side) // 2, height - round(frame["char_base"] * height) - side)
 
     furn_img = furn_xy = None
@@ -76,15 +76,15 @@ def render_scene(bg_name: str, char_name: str, furniture: str, out_name: str):
 
 
 if __name__ == "__main__":
-    render_scene("bg_defense.jpg", "donramon_slam", "bench", "preview_donramon_slam.png")
-    render_scene("bg_defense.jpg", "donramon_idle", "bench", "preview_donramon_idle.png")
-    render_scene("bg_defense.jpg", "donramon_point", "bench", "preview_donramon_point.png")
-    render_scene("bg_defense.jpg", "donramon_sweat", "bench", "preview_donramon_sweat.png")
-    render_scene("bg_defense.jpg", "chapulin_slam", "bench", "preview_defense_slam.png")
-    render_scene("bg_defense.jpg", "chapulin_idle", "bench", "preview_defense_idle.png")
-    render_scene("bg_courtroom.jpg", "supersam_slam", "bench", "preview_prosecution_slam.png")
-    render_scene("bg_courtroom.jpg", "supersam_idle", "bench", "preview_prosecution_idle.png")
-    render_scene("bg_courtroom.jpg", "supersam_point", "bench", "preview_prosecution_point.png")
-    render_scene("bg_courtroom.jpg", "supersam_breakdown", "bench", "preview_prosecution_breakdown.png")
-    render_scene("bg_witness.jpg", "tripaseca_smug", "podium", "preview_witness_stand.png")
-    render_scene("bg_detention.jpg", "chapulin_idle", "none", "preview_detention_booth.png")
+    render_scene("bg_defense.webp", "donramon_slam", "bench", "preview_donramon_slam.png")
+    render_scene("bg_defense.webp", "donramon_idle", "bench", "preview_donramon_idle.png")
+    render_scene("bg_defense.webp", "donramon_point", "bench", "preview_donramon_point.png")
+    render_scene("bg_defense.webp", "donramon_sweat", "bench", "preview_donramon_sweat.png")
+    render_scene("bg_defense.webp", "chapulin_slam", "bench", "preview_defense_slam.png")
+    render_scene("bg_defense.webp", "chapulin_idle", "bench", "preview_defense_idle.png")
+    render_scene("bg_courtroom.webp", "supersam_slam", "bench", "preview_prosecution_slam.png")
+    render_scene("bg_courtroom.webp", "supersam_idle", "bench", "preview_prosecution_idle.png")
+    render_scene("bg_courtroom.webp", "supersam_point", "bench", "preview_prosecution_point.png")
+    render_scene("bg_courtroom.webp", "supersam_breakdown", "bench", "preview_prosecution_breakdown.png")
+    render_scene("bg_witness.webp", "tripaseca_smug", "podium", "preview_witness_stand.png")
+    render_scene("bg_detention.webp", "chapulin_idle", "none", "preview_detention_booth.png")

@@ -60,15 +60,15 @@ describe('TrialController', () => {
 
   it('covers the investigation plate before swapping into the courtroom', () => {
     queuedDialogues = [];
-    dom.bgEl.style.backgroundImage = "url('assets/bg_museum.jpg')";
+    dom.bgEl.style.backgroundImage = "url('assets/bg_museum.webp')";
     controller.startTrial();
     expect(state.mode).not.toBe('TRIAL');
     expect(queuedDialogues).toHaveLength(0);
     expect(dom.flashEl.classList.contains('hidden')).toBe(false);
-    expect(dom.bgEl.style.backgroundImage).toContain('bg_museum.jpg');
+    expect(dom.bgEl.style.backgroundImage).toContain('bg_museum.webp');
     vi.advanceTimersByTime(SCENE_FADE_MS);
     expect(state.mode).toBe('TRIAL');
-    expect(dom.bgEl.style.backgroundImage).toContain('bg_judge.jpg');
+    expect(dom.bgEl.style.backgroundImage).toContain('bg_judge.webp');
     expect(queuedDialogues).toHaveLength(0);
     vi.advanceTimersByTime(SCENE_FADE_MS);
     expect(queuedDialogues).toHaveLength(1);

@@ -6,9 +6,9 @@
 import type { DialogueLine, Testimony } from '../../../types/index.js';
 
 export const CASE3_DAY3_INTRO_EN: DialogueLine[] = [
-  { bg: 'assets/bg_judge.jpg', speaker: 'JUEZ', pose: 'judge_gavel', text: 'Session resumes. The court has been informed the victim regained consciousness.', sfx: 'gavel', bgm: 'trial' },
-  { bg: 'assets/bg_courtroom.jpg', speaker: 'SUPER SAM', pose: 'supersam_slam', text: 'And the prosecution calls him to the stand at once! Let the victim point to his attacker and we go to lunch!', sfx: 'desk_slam' },
-  { bg: 'assets/bg_defense.jpg', speaker: 'DEFENSA', pose: 'donramon_idle', text: '(Let him talk. That\'s exactly what I need.)' }
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_gavel', text: 'Session resumes. The court has been informed the victim regained consciousness.', sfx: 'gavel', bgm: 'trial' },
+  { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_slam', text: 'And the prosecution calls him to the stand at once! Let the victim point to his attacker and we go to lunch!', sfx: 'desk_slam' },
+  { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_idle', text: '(Let him talk. That\'s exactly what I need.)' }
 ];
 
 const T5_SUCCESS: DialogueLine[] = [

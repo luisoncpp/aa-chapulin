@@ -34,6 +34,9 @@ export const UI_ES: UiTranslations = {
   hudLoadTitle: 'Cargar Partida (Load Game)',
   hudCourtRecordTitle: 'Acta del Juicio (Court Record)',
   hudCourtRecordText: 'Acta',
+  hudHistoryTitle: 'Historial de Diálogos (Message History)',
+  historyModalTitle: 'HISTORIAL DE DIÁLOGOS',
+  historyEmpty: 'Todavía no hay diálogos en el historial.',
 
   splashTitle: 'EL CHAPULÍN COLORADO',
   splashSubtitle: 'ACE ATTORNEY: EL CASO DEL ESCUADRÓN COLORADO',

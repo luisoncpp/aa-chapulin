@@ -6,14 +6,14 @@
 import type { DialogueLine, Testimony } from '../../../types/index.js';
 
 export const CASE3_TRIAL_INTRO_EN: DialogueLine[] = [
-  { bg: 'assets/bg_judge.jpg', speaker: 'JUEZ', pose: 'judge_gavel', text: 'Silence in the court! The trial of Doctor Chapatín is now in session.', sfx: 'gavel', bgm: 'trial' },
-  { bg: 'assets/bg_courtroom.jpg', speaker: 'SUPER SAM', pose: 'supersam_slam', text: 'Time is money, Your Honor! Two thousand witnesses heard the victim scream the defendant\'s name!', sfx: 'desk_slam' },
-  { bg: 'assets/bg_courtroom.jpg', speaker: 'SUPER SAM', pose: 'supersam_point', text: 'And three minutes later they found him on top of the body! I want a verdict before my lunch hour!' },
-  { bg: 'assets/bg_defense.jpg', speaker: 'DEFENSA', pose: 'donramon_slam', text: 'OBJECTION! ¡Con permisito, dijo Monchito!', sfx: 'desk_slam' },
-  { bg: 'assets/bg_defense.jpg', speaker: 'DEFENSA', pose: 'donramon_point', text: 'The defense maintains that no crime was committed in that booth.' },
-  { bg: 'assets/bg_judge.jpg', speaker: 'JUEZ', pose: 'judge_shock', text: 'How do you mean no...? The victim was right there!' },
-  { bg: 'assets/bg_defense.jpg', speaker: 'DEFENSA', pose: 'donramon_idle', text: 'The victim was there, Your Honor. That is not the same thing.' },
-  { bg: 'assets/bg_judge.jpg', speaker: 'JUEZ', pose: 'judge_neutral', text: 'Call the prosecution\'s first witness.' }
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_gavel', text: 'Silence in the court! The trial of Doctor Chapatín is now in session.', sfx: 'gavel', bgm: 'trial' },
+  { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_slam', text: 'Time is money, Your Honor! Two thousand witnesses heard the victim scream the defendant\'s name!', sfx: 'desk_slam' },
+  { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_point', text: 'And three minutes later they found him on top of the body! I want a verdict before my lunch hour!' },
+  { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_slam', text: 'OBJECTION! ¡Con permisito, dijo Monchito!', sfx: 'desk_slam' },
+  { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_point', text: 'The defense maintains that no crime was committed in that booth.' },
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_shock', text: 'How do you mean no...? The victim was right there!' },
+  { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_idle', text: 'The victim was there, Your Honor. That is not the same thing.' },
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_neutral', text: 'Call the prosecution\'s first witness.' }
 ];
 
 const T1_SUCCESS: DialogueLine[] = [

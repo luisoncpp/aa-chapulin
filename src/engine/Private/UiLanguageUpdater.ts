@@ -46,6 +46,7 @@ export class UiLanguageUpdater {
     if (dom.btnAudioToggleEl) dom.btnAudioToggleEl.title = t.hudAudioToggleTitle;
     if (dom.btnSaveGame) dom.btnSaveGame.title = t.hudSaveTitle;
     if (dom.btnLoadGame) dom.btnLoadGame.title = t.hudLoadTitle;
+    if (dom.btnHistory) dom.btnHistory.title = t.hudHistoryTitle;
     if (dom.btnContinueGame) dom.btnContinueGame.textContent = t.btnContinue;
     if (dom.btnStartGame) dom.btnStartGame.textContent = t.btnStartGame;
     if (dom.btnStartCase2) dom.btnStartCase2.textContent = t.btnStartCase2;
@@ -67,6 +68,8 @@ export class UiLanguageUpdater {
     if (talkHeader) talkHeader.textContent = t.talkModalTitle;
     const moveHeader = dom.moveLocationsModalEl?.querySelector('.modal-header h2');
     if (moveHeader) moveHeader.textContent = t.moveModalTitle;
+    const historyHeader = dom.historyModalEl?.querySelector('.modal-header h2');
+    if (historyHeader) historyHeader.textContent = t.historyModalTitle;
     if (dom.presentBtnEl) dom.presentBtnEl.textContent = t.modalPresentBtn;
   }
 }

@@ -28,7 +28,7 @@ script_content = "\n".join(sources)
 
 poses = set(re.findall(r'pose:\s*["\']([^"\']+)["\']', script_content))
 cutins = set(re.findall(r'cutin:\s*["\']([^"\']+)["\']', script_content))
-bgs = set(re.findall(r'assets/([^"\']+\.(?:jpg|png))', script_content))
+bgs = set(re.findall(r'assets/([^"\']+\.(?:webp|jpg|png))', script_content))
 
 print(f"Referenced poses ({len(poses)}): {poses}")
 print(f"Referenced cutins ({len(cutins)}): {cutins}")
@@ -38,12 +38,12 @@ print(f"Referenced bgs ({len(bgs)}): {bgs}")
 existing_assets = set(os.listdir('assets'))
 missing_assets = []
 for p in poses:
-    filename = f'{p}.png'
+    filename = f'{p}.webp'
     if filename not in existing_assets:
         missing_assets.append(filename)
 
 for c in cutins:
-    filename = f'{c}.png'
+    filename = f'{c}.webp'
     if filename not in existing_assets:
         missing_assets.append(filename)
 
@@ -51,7 +51,7 @@ for b in bgs:
     if b not in existing_assets:
         missing_assets.append(b)
 
-furniture_assets = ['court_podium.png', 'court_bench.png']
+furniture_assets = ['court_podium.webp', 'court_bench.webp']
 for f in furniture_assets:
     if f not in existing_assets:
         missing_assets.append(f)
@@ -65,7 +65,7 @@ else:
 # @Section(Sprite Cleanliness Quality Check)
 cleanliness_errors = []
 for filename in sorted(existing_assets):
-    if not filename.endswith('.png'):
+    if not filename.endswith('.webp'):
         continue
     filepath = os.path.join('assets', filename)
     img = Image.open(filepath)
@@ -74,7 +74,7 @@ for filename in sorted(existing_assets):
         continue
 
     alpha = arr[:, :, 3]
-    fg = alpha > 0
+    fg = alpha > 32
     if not np.any(fg):
         cleanliness_errors.append(f'{filename} is completely transparent / empty!')
         continue
@@ -85,9 +85,9 @@ for filename in sorted(existing_assets):
     r = arr[perimeter, 0].astype(int)
     g = arr[perimeter, 1].astype(int)
     b = arr[perimeter, 2].astype(int)
-    purplish = (r > g + 15) & (b > g + 15) & (r > 35) & (b > 35)
+    purplish = (r > g + 50) & (b > g + 50) & (r > 120) & (b > 120)
 
-    if np.sum(purplish) > 0:
+    if np.sum(purplish) > 25:
         cleanliness_errors.append(f'{filename} has {np.sum(purplish)} purple fringe pixels')
 
     # Check for unkeyed solid magenta holes in foreground

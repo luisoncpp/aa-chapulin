@@ -8,7 +8,7 @@ import type { InvestigationScene } from '../../../types/index.js';
 export const CASE3_DELEGACION_D3: InvestigationScene = {
   title: 'Delegación de Policía — Día 3',
   name: 'Delegación',
-  bg: 'assets/bg_delegacion.jpg',
+  bg: 'assets/bg_delegacion.webp',
   bgm: 'investigation',
   speaker: 'NARRADOR',
   intro: [

@@ -8,11 +8,11 @@ describe('Asset Integrity & Existence', () => {
 
   it('verifies all Florinda character sprites exist and have content', () => {
     const florindaPoses = [
-      'florinda_idle.png',
-      'florinda_angry.png',
-      'florinda_crying.png',
-      'florinda_shock.png',
-      'florinda_fanning.png',
+      'florinda_idle.webp',
+      'florinda_angry.webp',
+      'florinda_crying.webp',
+      'florinda_shock.webp',
+      'florinda_fanning.webp',
     ];
 
     florindaPoses.forEach((file) => {
@@ -25,29 +25,29 @@ describe('Asset Integrity & Existence', () => {
 
   it('verifies all case characters have required poses', () => {
     const expectedSprites = [
-      'chapulin_idle.png',
-      'chapulin_slam.png',
-      'chapulin_point.png',
-      'chapulin_panic.png',
-      'donramon_idle.png',
-      'donramon_slam.png',
-      'donramon_shock.png',
-      'donramon_point.png',
-      'donramon_sweat.png',
-      'donramon_panic.png',
-      'supersam_idle.png',
-      'supersam_slam.png',
-      'supersam_point.png',
-      'supersam_breakdown.png',
-      'supersam_sweat.png',
-      'tripaseca_smug.png',
-      'tripaseca_sweat.png',
-      'tripaseca_panic.png',
-      'tripaseca_breakdown.png',
-      'judge_neutral.png',
-      'judge_gavel.png',
-      'judge_shock.png',
-      'judge_thinking.png',
+      'chapulin_idle.webp',
+      'chapulin_slam.webp',
+      'chapulin_point.webp',
+      'chapulin_panic.webp',
+      'donramon_idle.webp',
+      'donramon_slam.webp',
+      'donramon_shock.webp',
+      'donramon_point.webp',
+      'donramon_sweat.webp',
+      'donramon_panic.webp',
+      'supersam_idle.webp',
+      'supersam_slam.webp',
+      'supersam_point.webp',
+      'supersam_breakdown.webp',
+      'supersam_sweat.webp',
+      'tripaseca_smug.webp',
+      'tripaseca_sweat.webp',
+      'tripaseca_panic.webp',
+      'tripaseca_breakdown.webp',
+      'judge_neutral.webp',
+      'judge_gavel.webp',
+      'judge_shock.webp',
+      'judge_thinking.webp',
     ];
 
     expectedSprites.forEach((file) => {
@@ -58,11 +58,11 @@ describe('Asset Integrity & Existence', () => {
 
   it('verifies all cut-in overlays exist', () => {
     const cutins = [
-      'objection_protesto.png',
-      'objection_un_momento.png',
-      'objection_toma_eso.png',
-      'objection_culpable.png',
-      'objection_inocente.png',
+      'objection_protesto.webp',
+      'objection_un_momento.webp',
+      'objection_toma_eso.webp',
+      'objection_culpable.webp',
+      'objection_inocente.webp',
     ];
 
     cutins.forEach((file) => {
@@ -73,14 +73,14 @@ describe('Asset Integrity & Existence', () => {
 
   it('verifies all evidence icons exist', () => {
     const evidenceIcons = [
-      'chipote_chillon.png',
-      'pastillas_chiquitolina.png',
-      'antenitas_vinil.png',
-      'chicharra_oro.png',
-      'informe_medico.png',
-      'foto_crimen.png',
-      'bolsa_dolares.png',
-      'insignia_abogado.png',
+      'chipote_chillon.webp',
+      'pastillas_chiquitolina.webp',
+      'antenitas_vinil.webp',
+      'chicharra_oro.webp',
+      'informe_medico.webp',
+      'foto_crimen.webp',
+      'bolsa_dolares.webp',
+      'insignia_abogado.webp',
     ];
 
     evidenceIcons.forEach((file) => {
@@ -90,7 +90,7 @@ describe('Asset Integrity & Existence', () => {
   });
 
   it('verifies all courtroom furniture overlay sprites exist and have content', () => {
-    const furnitureSprites = ['court_podium.png', 'court_bench.png'];
+    const furnitureSprites = ['court_podium.webp', 'court_bench.webp'];
     furnitureSprites.forEach((file) => {
       const filePath = path.join(assetsDir, file);
       expect(fs.existsSync(filePath)).toBe(true);
@@ -101,13 +101,13 @@ describe('Asset Integrity & Existence', () => {
 
   it('verifies all scene background assets exist and have content', () => {
     const backgrounds = [
-      'bg_defense.jpg',
-      'bg_courtroom.jpg',
-      'bg_witness.jpg',
-      'bg_judge.jpg',
-      'bg_museum.jpg',
-      'bg_detention.jpg',
-      'bg_waiting_room.jpg'
+      'bg_defense.webp',
+      'bg_courtroom.webp',
+      'bg_witness.webp',
+      'bg_judge.webp',
+      'bg_museum.webp',
+      'bg_detention.webp',
+      'bg_waiting_room.webp'
     ];
     backgrounds.forEach((file) => {
       const filePath = path.join(assetsDir, file);

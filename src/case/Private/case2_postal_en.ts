@@ -8,7 +8,7 @@ import type { InvestigationScene } from '../../types/index.js';
 export const CASE2_POSTAL_EN: InvestigationScene = {
   title: 'Post Office and Rear Alley',
   name: 'Postal Alley',
-  bg: 'assets/bg_postal.jpg',
+  bg: 'assets/bg_postal.webp',
   bgm: 'callejon_postal',
   speaker: 'NARRADOR',
   intro: [

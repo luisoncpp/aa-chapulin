@@ -6,6 +6,7 @@
 
 import type { SoundEngine } from '../../audio/index.js';
 import type { DomElements } from './DomElements.js';
+import { closeHistoryModal, isAnyModalOpen } from './HistoryModal.js';
 import type { InvestigationController } from './InvestigationController.js';
 import { ModalManager } from './ModalManager.js';
 import type { TrialController } from './TrialController.js';
@@ -21,6 +22,7 @@ export interface EventBinderConfig {
   onStartTrialDebug?: () => void;
   onAdvance: () => void;
   onOpenCourtRecord: (isTrialPresent: boolean) => void;
+  onOpenHistory?: () => void;
   onPresentFromModal: () => void;
   onToggleLanguage?: () => void;
   onSaveGame?: () => void;
@@ -34,6 +36,7 @@ export class EngineEventBinder {
     EngineEventBinder.bindSaveAndLoad(config);
     EngineEventBinder.bindDialogueAdvance(config);
     EngineEventBinder.bindCourtRecord(config);
+    EngineEventBinder.bindHistory(config);
     EngineEventBinder.bindInvestigation(config);
     EngineEventBinder.bindTrial(config);
   }
@@ -91,6 +94,9 @@ export class EngineEventBinder {
       onAdvance();
     });
     document.addEventListener('keydown', /*onKeyDown*/ (e) => {
+      // An open modal owns the keyboard: advancing the scene behind it would
+      // desync the dialogue the player is currently reading or scrolling.
+      if (isAnyModalOpen()) return;
       if (e.code === 'Space' || e.code === 'Enter') onAdvance();
     });
   }
@@ -109,6 +115,22 @@ export class EngineEventBinder {
     dom.presentBtnEl.addEventListener('click', /*onPresentClick*/ (e) => {
       e.stopPropagation();
       onPresentFromModal();
+    });
+  }
+
+  // @Section(Message History Bindings)
+  private static bindHistory(config: EventBinderConfig): void {
+    const { dom, onOpenHistory } = config;
+    dom.btnHistory?.addEventListener('click', /*onOpenHistoryClick*/ (e) => {
+      e.stopPropagation();
+      onOpenHistory?.();
+    });
+    dom.btnCloseHistory?.addEventListener('click', /*onCloseHistoryClick*/ (e) => {
+      e.stopPropagation();
+      closeHistoryModal(dom);
+    });
+    document.addEventListener('keydown', /*onEscapeKey*/ (e) => {
+      if (e.code === 'Escape') closeHistoryModal(dom);
     });
   }
 

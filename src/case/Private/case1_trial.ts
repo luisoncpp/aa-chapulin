@@ -8,12 +8,12 @@ import type { DialogueLine, Testimony } from '../../types/index.js';
 
 // @Section(Courtroom Intro Dialogue)
 export const TRIAL_INTRO: DialogueLine[] = [
-  { bg: 'assets/bg_judge.jpg', speaker: 'JUEZ', pose: 'judge_gavel', text: '¡Silencio en la sala! Se abre la sesión del tribunal superior.', sfx: 'gavel', bgm: 'trial' },
-  { bg: 'assets/bg_judge.jpg', speaker: 'JUEZ', pose: 'judge_neutral', text: '¿Está lista la fiscalía para presentar sus cargos?' },
-  { bg: 'assets/bg_courtroom.jpg', speaker: 'SUPER SAM', pose: 'supersam_slam', text: 'Time is money, Your Honor! La fiscalía está más que lista para liquidar este caso en tiempo récord.', sfx: 'desk_slam' },
-  { bg: 'assets/bg_courtroom.jpg', speaker: 'SUPER SAM', pose: 'supersam_point', text: 'El acusado fue atrapado in fraganti con el arma agresora en la escena del crimen. ¡Exijo veredicto culpable en 3 minutos!' },
-  { bg: 'assets/bg_defense.jpg', speaker: 'DEFENSA', pose: 'donramon_slam', text: '¡La defensa está lista, Su Señoría! ¡Y demostraremos la inocencia del Chapulín Colorado!', sfx: 'desk_slam' },
-  { bg: 'assets/bg_judge.jpg', speaker: 'JUEZ', pose: 'judge_neutral', text: 'Muy bien. Que el testigo principal de la fiscalía pase al estrado.' }
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_gavel', text: '¡Silencio en la sala! Se abre la sesión del tribunal superior.', sfx: 'gavel', bgm: 'trial' },
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_neutral', text: '¿Está lista la fiscalía para presentar sus cargos?' },
+  { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_slam', text: 'Time is money, Your Honor! La fiscalía está más que lista para liquidar este caso en tiempo récord.', sfx: 'desk_slam' },
+  { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_point', text: 'El acusado fue atrapado in fraganti con el arma agresora en la escena del crimen. ¡Exijo veredicto culpable en 3 minutos!' },
+  { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_slam', text: '¡La defensa está lista, Su Señoría! ¡Y demostraremos la inocencia del Chapulín Colorado!', sfx: 'desk_slam' },
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_neutral', text: 'Muy bien. Que el testigo principal de la fiscalía pase al estrado.' }
 ];
 
 // @Section(Testimony 1: Assault Weapon)

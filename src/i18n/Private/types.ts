@@ -38,6 +38,9 @@ export interface UiTranslations {
   hudLoadTitle: string;
   hudCourtRecordTitle: string;
   hudCourtRecordText: string;
+  hudHistoryTitle: string;
+  historyModalTitle: string;
+  historyEmpty: string;
 
   // Splash Screen
   splashTitle: string;

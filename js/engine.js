@@ -564,7 +564,7 @@ class GameEngine {
         this.currentTestimony = this.script.trial[testimonyKey];
         this.currentStatementIdx = 0;
         this.midiComposer.playTrack(this.currentTestimony.bgm);
-        this.bgEl.style.backgroundImage = `url('assets/bg_witness.jpg')`;
+        this.bgEl.style.backgroundImage = `url('assets/bg_witness.webp')`;
 
         this.showNotification(this.currentTestimony.title);
         this.renderCurrentStatement();
@@ -644,7 +644,7 @@ class GameEngine {
     }
 
     startClimax() {
-        this.bgEl.style.backgroundImage = `url('assets/bg_courtroom.jpg')`;
+        this.bgEl.style.backgroundImage = `url('assets/bg_courtroom.webp')`;
         this.midiComposer.playTrack('suspense');
 
         this.queueDialogue(this.script.trial.climax.dialogue, () => {

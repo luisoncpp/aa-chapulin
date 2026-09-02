@@ -22,9 +22,9 @@ function headWhite(fileName: string): number {
 
 describe('Barriga injured poses', () => {
   it('keeps shock and enojado on the vendado bandage, not the standing fedora', () => {
-    expect(headWhite('barriga_idle.png')).toBeLessThan(200);
-    expect(headWhite('barriga_vendado.png')).toBeGreaterThan(2000);
-    expect(headWhite('barriga_shock.png')).toBeGreaterThan(2000);
-    expect(headWhite('barriga_enojado.png')).toBeGreaterThan(2000);
+    expect(headWhite('barriga_idle.webp')).toBeLessThan(200);
+    expect(headWhite('barriga_vendado.webp')).toBeGreaterThan(2000);
+    expect(headWhite('barriga_shock.webp')).toBeGreaterThan(2000);
+    expect(headWhite('barriga_enojado.webp')).toBeGreaterThan(2000);
   });
 });

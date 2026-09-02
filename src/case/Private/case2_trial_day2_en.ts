@@ -6,10 +6,10 @@
 import type { DialogueLine, Testimony } from '../../types/index.js';
 
 export const CASE2_DAY2_INTRO_EN: DialogueLine[] = [
-  { bg: 'assets/bg_judge.jpg', speaker: 'JUEZ', pose: 'judge_gavel', text: 'This court resumes in the matter of the Golden Chanfle.', sfx: 'gavel', bgm: 'trial' },
-  { bg: 'assets/bg_courtroom.jpg', speaker: 'SUPER SAM', pose: 'supersam_slam', text: 'Time is money! Your Honor, the prosecution has confirmed Mr. Peterete has an ironclad alibi at the time of the blackout.', sfx: 'desk_slam' },
-  { bg: 'assets/bg_courtroom.jpg', speaker: 'SUPER SAM', pose: 'supersam_point', text: 'He was at the post office with the mailman dispatching parcels. The defendant remains the only viable suspect!' },
-  { bg: 'assets/bg_defense.jpg', speaker: 'DEFENSA', pose: 'donramon_slam', text: 'The defense demands Mr. Peterete return to the witness stand!', sfx: 'desk_slam' }
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_gavel', text: 'This court resumes in the matter of the Golden Chanfle.', sfx: 'gavel', bgm: 'trial' },
+  { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_slam', text: 'Time is money! Your Honor, the prosecution has confirmed Mr. Peterete has an ironclad alibi at the time of the blackout.', sfx: 'desk_slam' },
+  { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_point', text: 'He was at the post office with the mailman dispatching parcels. The defendant remains the only viable suspect!' },
+  { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_slam', text: 'The defense demands Mr. Peterete return to the witness stand!', sfx: 'desk_slam' }
 ];
 
 const T3_SUCCESS: DialogueLine[] = [

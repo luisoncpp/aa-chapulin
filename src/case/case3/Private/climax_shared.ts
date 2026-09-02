@@ -5,7 +5,7 @@
 
 import type { ChoicePrompt, ClimaxDefinition, DialogueLine } from '../../../types/index.js';
 
-const WAITING_ROOM_BG = 'assets/bg_waiting_room.jpg';
+const WAITING_ROOM_BG = 'assets/bg_waiting_room.webp';
 
 export function assembleCase3Climax(lines: {
   dialogue: DialogueLine[];

@@ -9,7 +9,7 @@ import { CABINA_HOTSPOTS } from './cabina_hotspots.js';
 export const CASE3_CABINA: InvestigationScene = {
   title: 'Radiodifusora XEVC - Cabina B',
   name: 'Cabina B',
-  bg: 'assets/bg_cabina.jpg',
+  bg: 'assets/bg_cabina.webp',
   bgm: 'investigation',
   speaker: 'NARRADOR',
   intro: [

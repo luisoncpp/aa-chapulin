@@ -95,7 +95,7 @@ export function restoreClimaxSession(ctx: ClimaxRestoreCtx): void {
   ctx.setStageIdx(ctx.stageIdx);
   ctx.setChoiceIdx(ctx.choiceIdx);
   ctx.enterClimaxPhase();
-  ctx.dom.bgEl.style.backgroundImage = "url('assets/bg_courtroom.jpg')";
+  ctx.dom.bgEl.style.backgroundImage = "url('assets/bg_courtroom.webp')";
   ctx.midiComposer.playTrack('suspense');
   if (ctx.choiceIdx != null) {
     openClimaxChoice(choiceOpenSession(ctx, ctx.climax, ctx.choiceIdx, ctx.onSelect));

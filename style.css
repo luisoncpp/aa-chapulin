@@ -204,8 +204,8 @@ body {
    chews through thin linework (glasses wire, hair strands). Smooth filtering is required
    here even though the rest of the UI is deliberately pixelated. */
 #character-sprite {
-    max-width: 100%;
-    max-height: 100%;
+    width: 100%;
+    height: 100%;
     object-fit: contain;
     image-rendering: auto;
     filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.6));
@@ -237,7 +237,6 @@ body {
     overflow: hidden;
     z-index: 3;
     pointer-events: none;
-    transition: opacity 0.2s ease;
 }
 
 #court-furniture-sprite {
@@ -955,4 +954,58 @@ body {
 
 .hidden {
     display: none !important;
+}
+
+/* --- Message History (Dialogue Backlog) Modal --- */
+/* `flex: 1` alone will not scroll inside a flex column: `min-height: 0` is what
+   lets the list shrink below its content height. See
+   docs/lessons-learned/court-record-description-scroll.md */
+#history-list {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 100%;
+    padding: 4px 12px 4px 4px;
+    text-align: left;
+}
+
+#history-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+#history-list::-webkit-scrollbar-track {
+    background: #223;
+}
+
+#history-list::-webkit-scrollbar-thumb {
+    background: #556;
+    border-radius: 4px;
+}
+
+.history-entry {
+    margin-bottom: 12px;
+}
+
+.history-speaker {
+    display: block;
+    color: #ffcc66;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 0 #000;
+}
+
+.history-text {
+    margin: 2px 0 0 18px;
+    color: #eaf6ff;
+    font-size: 14px;
+    line-height: 1.4;
+    white-space: pre-wrap;
+}
+
+.history-empty {
+    color: #aab;
+    font-size: 14px;
+    text-align: center;
+    padding: 24px 8px;
 }

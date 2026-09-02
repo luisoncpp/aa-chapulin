@@ -45,7 +45,7 @@ describe('InvestigationController', () => {
     expect(state.mode).toBe('INVESTIGATION');
     expect(state.currentLocation).toBe('museum');
     expect(dom.locationBannerEl.textContent).toContain('Museo');
-    expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_museum.jpg');
+    expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_museum.webp');
     expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(true);
     expect(midiComposerInstance.currentTrack).toBe('investigation');
     expect(queuedDialogues).toHaveLength(1);
@@ -69,7 +69,7 @@ describe('InvestigationController', () => {
     expect(dom.dialogueBoxEl.classList.contains('examine-mode')).toBe(false);
     expect(dom.gameScreen.classList.contains('examine-mode')).toBe(false);
     expect(dom.examineNavEl.classList.contains('hidden')).toBe(true);
-    expect(dom.charSpriteEl.src).toContain('assets/florinda_idle.png');
+    expect(dom.charSpriteEl.src).toContain('assets/florinda_idle.webp');
   });
 
   it('handles hotspot hovering and clicking to queue dialogue', () => {
@@ -217,7 +217,7 @@ describe('InvestigationController', () => {
     detentionBtn.click();
     expect(dom.moveLocationsModalEl.classList.contains('hidden')).toBe(true);
     expect(state.currentLocation).toBe('detention');
-    expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_detention.jpg');
+    expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_detention.webp');
   });
 
   it('unlocks trial button when all clues are discovered', () => {

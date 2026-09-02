@@ -7,7 +7,7 @@ import type { ClimaxDefinition, DialogueLine } from '../../../types/index.js';
 import { CASE3_CLIMAX_CHOICES_EN } from './climax_choices_en.js';
 import { assembleCase3Climax } from './climax_shared.js';
 
-const WAITING_ROOM = 'assets/bg_waiting_room.jpg';
+const WAITING_ROOM = 'assets/bg_waiting_room.webp';
 
 const STAGE1: DialogueLine[] = [
   { cutin: 'objection_protesto', speaker: 'DEFENSA', text: 'Professor Jirafales\'s script! The lost-child notice aired ONLY ONCE all night: at 9:40 PM!', sfx: 'desk_slam', pose: 'donramon_slam' },

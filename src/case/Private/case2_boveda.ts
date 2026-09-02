@@ -8,7 +8,7 @@ import type { InvestigationScene } from '../../types/index.js';
 export const CASE2_BOVEDA: InvestigationScene = {
   title: 'Gran Bóveda del Tesoro - Escena del Crimen',
   name: 'Bóveda Subterránea',
-  bg: 'assets/bg_boveda.jpg',
+  bg: 'assets/bg_boveda.webp',
   bgm: 'investigation_core',
   speaker: 'NARRADOR',
   intro: [

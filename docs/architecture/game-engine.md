@@ -19,6 +19,8 @@ flowchart TD
     Coordinator --> TrialCtrl[Private/TrialController.ts]
     TrialCtrl --> Climax[Private/TrialClimax.ts]
     Coordinator --> Dialogue[Private/DialogueFlow.ts]
+    Dialogue --> StageCommit[Private/StageCommit.ts]
+    StageCommit --> VisualFX
     Coordinator --> Launch[Private/EngineLaunch.ts]
     Coordinator --> DebugURL[Private/EngineDebugBootstrap.ts]
     Coordinator --> Adjourn[Private/AdjournmentHandler.ts]
@@ -37,14 +39,16 @@ flowchart TD
    - `handleAdvance()` advances dialogue on user input (Click / Space / Enter) and returns a boolean. If typewriter animation is running, it instantly reveals the complete line; otherwise, it dequeues the next line, triggers `onComplete`, or returns `false` when idle. When idle during a climax present (`isAwaitingEvidence()`), `GameEngine.handleAdvance()` reopens the Court Record in presentation mode. After the climax is settled (verdict, confetti, waiting-room epilogue) that reopen must not fire.
    - The blinking `#dialogue-arrow` is a promise that a click advances. `DialogueFlow` toggles `.hidden` on it after every render: visible only while a queued line or an `onComplete` callback is still pending. Cross-examination statements are rendered outside the queue (`renderDialogueLine` direct), so the arrow stays hidden there, where clicking the box does nothing.
 
+   - **Message history** ([[src/engine/Private/DialogueHistory.ts]], rendered by [[src/engine/Private/HistoryModal.ts]]): every rendered line is appended to a capped 150-entry session backlog, opened from the 📜 HUD button (`#btn-history` → `#history-modal`). It is deliberately session-only: `SaveManager` does not serialize it, and a load clears it because the engine re-queues dialogue for the restored scene.
+
 2. **Typewriter & Text Rendering** ([[src/engine/Private/Typewriter.ts#Typewriter Stepping & Chirping]]):
    - `start(text)` steps character-by-character at 28ms intervals.
    - Triggers `soundEngine.playTextBlip()` every alternate character for authentic Capcom typewriter chirping.
 
 3. **Character & Scene Staging** ([[src/engine/Private/VisualEffects.ts#Character Pose Staging]]):
-   - Updates `#scene-bg` background images automatically per speaker in trial mode (`bg_defense.jpg` for defense, `bg_courtroom.jpg` for prosecution, `bg_judge.jpg` for judge, `bg_witness.jpg` for witness) or via explicit `line.bg`. Location plates (waiting room, investigation) skip courtroom cameras when `line.bg` is set.
-   - Updates `#character-sprite` poses with continuous idle floating/breathing animation (`characterBreathe`). `donramon_slam` on a non-trial line resolves to `donramon_shock` so the desk-contact silhouette is never staged on a location plate.
-   - Dynamically stages courtroom foreground furniture (`#court-furniture-sprite`): shows `court_podium.png` during witness testimonies, `court_bench.png` when defense or prosecution speaks in court (`bg_defense.jpg`, `bg_courtroom.jpg`), and hides furniture during judge lines, investigation scenes, and waiting-room epilogue lines (`bg_waiting_room.jpg`).
+   - Updates `#scene-bg` background images automatically per speaker in trial mode (`bg_defense.webp` for defense, `bg_courtroom.webp` for prosecution, `bg_judge.webp` for judge, `bg_witness.webp` for witness) or via explicit `line.bg`. Location plates (waiting room, investigation) skip courtroom cameras when `line.bg` is set.
+   - Updates `#character-sprite` poses with continuous idle floating/breathing animation (`characterBreathe`). `donramon_slam` on a non-trial line resolves to `donramon_shock` so the desk-contact silhouette is never staged on a location plate. Pose `src`, background URL, furniture `src`, and `applyStageFrame` commit together after `Image.decode` ([[src/engine/Private/StageCommit.ts]]); a pending generation is dropped if the player advances again.
+   - Dynamically stages courtroom foreground furniture (`#court-furniture-sprite`): shows `court_podium.webp` during witness testimonies, `court_bench.webp` when defense or prosecution speaks in court (`bg_defense.webp`, `bg_courtroom.webp`), and hides furniture during judge lines, investigation scenes, and waiting-room epilogue lines (`bg_waiting_room.webp`).
    - `updateStagingForLine(dom, line, isTrialMode)` resolves background, furniture **and** stage geometry in one unified step, ensuring camera angle and furniture consistency across rapid speaker turns.
    - Automatically hides character sprites when narrator is speaking, or during active examine mode.
 
@@ -98,5 +102,7 @@ flowchart TD
 - **Audio Context Activation**: Any user gesture ensures the `AudioContext` is active via `soundEngine.ensureActive()`.
 - **Clean Mode Toggles**: Switching modes (`INVESTIGATION` <-> `TRIAL` <-> `EXAMINE`) explicitly hides inactive HUD groups to avoid overlapping controls.
 - **Splash stack fits the 960×540 stage.** `#game-screen` is `overflow: hidden` at 540px. The title screen directly uses the 960×540 canvas without nested inner card boxes. Language toggle is stationed in the top corner (`#btn-lang-splash`), Chapulín is displayed at hero size (180px), and case selection buttons hover cleanly. Regression: [[tests/engine/SplashLayout.test.ts]].
+- **The message history records at `renderDialogueLine`, never at `queueDialogue`.** Cross-examination statements are rendered outside the queue, so hooking the queue would silently drop exactly the lines players most need to re-read. The backlog survives `DialogueFlow.clear()` (a queue reset is not a scene change) and is cleared only on a new case or a save load. Regression: [[tests/engine/GameEngineHistory.test.ts]].
+- **An open modal owns the keyboard.** The global Space/Enter advance handler returns early while any `.game-modal` is visible, so scrolling the history (or reading the Acta) cannot advance the scene behind it. Regression: [[tests/engine/EngineEventBinder.test.ts]].
 - **Full-width HUD docks must not steal hotspot hits.** `#controls-bar` is `pointer-events: none` with `.menu-btn { pointer-events: auto }`. Examine mode lowers the dock (`bottom: 82px`) with the shrunk dialogue plate. Regression: [[tests/engine/ExamineHudLayout.test.ts]].
 

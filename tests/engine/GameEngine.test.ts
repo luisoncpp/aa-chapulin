@@ -84,7 +84,7 @@ describe('GameEngine Coordinator', () => {
     engine.handleAdvance();
     engine.handleAdvance();
     expect(dom.dialogueTextEl.textContent).toBe('Línea 2');
-    expect(dom.charSpriteEl.src).toContain('assets/florinda_angry.png');
+    expect(dom.charSpriteEl.src).toContain('assets/florinda_angry.webp');
 
     // Final advance triggers queue complete callback
     engine.handleAdvance();
@@ -99,7 +99,7 @@ describe('GameEngine Coordinator', () => {
       speaker: 'SUPER SAM',
       pose: 'supersam_slam',
       text: 'Time is money!',
-      bg: 'assets/bg_courtroom.jpg',
+      bg: 'assets/bg_courtroom.webp',
       bgm: 'trial',
       sfx: 'gavel',
       cutin: 'objection_protesto',
@@ -108,10 +108,10 @@ describe('GameEngine Coordinator', () => {
 
     engine.renderDialogueLine(richLine);
 
-    expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_courtroom.jpg');
+    expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_courtroom.webp');
     expect(midiComposerInstance.currentTrack).toBe('trial');
     expect(dom.speakerBoxEl.textContent).toBe('SUPER SAM');
-    expect(dom.charSpriteEl.src).toContain('assets/supersam_slam.png');
+    expect(dom.charSpriteEl.src).toContain('assets/supersam_slam.webp');
     expect(state.hasEvidence('chipote_chillon')).toBe(true);
     expect(dom.gameNotificationEl.textContent).toContain('Chipote Chillón');
   });
@@ -161,9 +161,9 @@ describe('GameEngine Coordinator', () => {
       speaker: 'TRIPASECA',
       pose: 'tripaseca_smug',
       text: 'Yo no fui',
-      bg: 'assets/bg_witness.jpg'
+      bg: 'assets/bg_witness.webp'
     });
-    expect(dom.courtFurnitureSpriteEl.src).toContain('assets/court_podium.png');
+    expect(dom.courtFurnitureSpriteEl.src).toContain('assets/court_podium.webp');
     expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(false);
 
     // Defense speaking with pose -> shows defense bench
@@ -172,8 +172,8 @@ describe('GameEngine Coordinator', () => {
       pose: 'chapulin_point',
       text: '¡Protesto!'
     });
-    expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_defense.jpg');
-    expect(dom.courtFurnitureSpriteEl.src).toContain('assets/court_bench.png');
+    expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_defense.webp');
+    expect(dom.courtFurnitureSpriteEl.src).toContain('assets/court_bench.webp');
     expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(false);
     expect(dom.courtFurnitureContainerEl.dataset.furniture).toBe('bench');
     expect(dom.gameScreen.dataset.stageFrame).toBe('bench-stand');
@@ -184,7 +184,7 @@ describe('GameEngine Coordinator', () => {
       speaker: 'CHAPULIN',
       pose: 'chapulin_idle',
       text: 'En la sala de visitas',
-      bg: 'assets/bg_detention.jpg'
+      bg: 'assets/bg_detention.webp'
     });
     expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(true);
   });
@@ -276,39 +276,39 @@ describe('GameEngine Coordinator', () => {
     engine.queueDialogue(trialSequence);
 
     // 1. DEFENSA shout -> defense stand, Don Ramon and bench visible
-    expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_defense.jpg');
+    expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_defense.webp');
     expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(false);
-    expect(dom.courtFurnitureSpriteEl.src).toContain('assets/court_bench.png');
-    expect(dom.charSpriteEl.src).toContain('assets/donramon_idle.png');
+    expect(dom.courtFurnitureSpriteEl.src).toContain('assets/court_bench.webp');
+    expect(dom.charSpriteEl.src).toContain('assets/donramon_idle.webp');
     expect(dom.charSpriteEl.classList.contains('hidden')).toBe(false);
 
     // 2. DEFENSA with pose -> defense stand, bench and point pose
     engine.handleAdvance(); // finish typewriter
     engine.handleAdvance(); // next line
-    expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_defense.jpg');
+    expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_defense.webp');
     expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(false);
-    expect(dom.courtFurnitureSpriteEl.src).toContain('assets/court_bench.png');
-    expect(dom.charSpriteEl.src).toContain('assets/donramon_point.png');
+    expect(dom.courtFurnitureSpriteEl.src).toContain('assets/court_bench.webp');
+    expect(dom.charSpriteEl.src).toContain('assets/donramon_point.webp');
 
     // 3. SUPER SAM -> courtroom / prosecution stand, bench
     engine.handleAdvance();
     engine.handleAdvance();
-    expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_courtroom.jpg');
+    expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_courtroom.webp');
     expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(false);
-    expect(dom.courtFurnitureSpriteEl.src).toContain('assets/court_bench.png');
+    expect(dom.courtFurnitureSpriteEl.src).toContain('assets/court_bench.webp');
 
     // 4. JUEZ -> judge stand, no furniture
     engine.handleAdvance();
     engine.handleAdvance();
-    expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_judge.jpg');
+    expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_judge.webp');
     expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(true);
 
     // 5. TRIPASECA -> witness stand, podium
     engine.handleAdvance();
     engine.handleAdvance();
-    expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_witness.jpg');
+    expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_witness.webp');
     expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(false);
-    expect(dom.courtFurnitureSpriteEl.src).toContain('assets/court_podium.png');
+    expect(dom.courtFurnitureSpriteEl.src).toContain('assets/court_podium.webp');
   });
 
   it('switches UI and narrative scripts dynamically when language is toggled', () => {

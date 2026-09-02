@@ -6,10 +6,10 @@
 import type { DialogueLine, Testimony } from '../../types/index.js';
 
 export const CASE2_DAY2_INTRO: DialogueLine[] = [
-  { bg: 'assets/bg_judge.jpg', speaker: 'JUEZ', pose: 'judge_gavel', text: 'Se reanuda la sesión en el caso del Chanfle de Oro.', sfx: 'gavel', bgm: 'trial' },
-  { bg: 'assets/bg_courtroom.jpg', speaker: 'SUPER SAM', pose: 'supersam_slam', text: 'Time is money! Your Honor, la fiscalía ha comprobado que el señor Peterete tiene una coartada de hierro a la hora del corte de luz.', sfx: 'desk_slam' },
-  { bg: 'assets/bg_courtroom.jpg', speaker: 'SUPER SAM', pose: 'supersam_point', text: 'Estaba en la oficina postal con el cartero despachando encomiendas. ¡El acusado sigue siendo el único sospechoso viable!' },
-  { bg: 'assets/bg_defense.jpg', speaker: 'DEFENSA', pose: 'donramon_slam', text: '¡La defensa exige que el señor Peterete vuelva al banquillo de los testigos!', sfx: 'desk_slam' }
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_gavel', text: 'Se reanuda la sesión en el caso del Chanfle de Oro.', sfx: 'gavel', bgm: 'trial' },
+  { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_slam', text: 'Time is money! Your Honor, la fiscalía ha comprobado que el señor Peterete tiene una coartada de hierro a la hora del corte de luz.', sfx: 'desk_slam' },
+  { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_point', text: 'Estaba en la oficina postal con el cartero despachando encomiendas. ¡El acusado sigue siendo el único sospechoso viable!' },
+  { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_slam', text: '¡La defensa exige que el señor Peterete vuelva al banquillo de los testigos!', sfx: 'desk_slam' }
 ];
 
 const T3_SUCCESS: DialogueLine[] = [

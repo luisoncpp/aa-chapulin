@@ -6,10 +6,10 @@
 import type { DialogueLine, Testimony } from '../../../types/index.js';
 
 export const CASE3_DAY2_INTRO_EN: DialogueLine[] = [
-  { bg: 'assets/bg_judge.jpg', speaker: 'JUEZ', pose: 'judge_gavel', text: 'Session resumes. The office search confirmed what the defense said: the assault happened there.', sfx: 'gavel', bgm: 'trial' },
-  { bg: 'assets/bg_courtroom.jpg', speaker: 'SUPER SAM', pose: 'supersam_slam', text: 'Correction, Your Honor! It confirms WHERE it happened, not WHO did it!', sfx: 'desk_slam' },
-  { bg: 'assets/bg_courtroom.jpg', speaker: 'SUPER SAM', pose: 'supersam_point', text: 'The defendant had from 10:40 to 11:03! Time enough to be money!' },
-  { bg: 'assets/bg_defense.jpg', speaker: 'DEFENSA', pose: 'donramon_slam', text: 'The defense calls the console operator of XEVC.', sfx: 'desk_slam' }
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_gavel', text: 'Session resumes. The office search confirmed what the defense said: the assault happened there.', sfx: 'gavel', bgm: 'trial' },
+  { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_slam', text: 'Correction, Your Honor! It confirms WHERE it happened, not WHO did it!', sfx: 'desk_slam' },
+  { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_point', text: 'The defendant had from 10:40 to 11:03! Time enough to be money!' },
+  { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_slam', text: 'The defense calls the console operator of XEVC.', sfx: 'desk_slam' }
 ];
 
 const T3_SUCCESS: DialogueLine[] = [

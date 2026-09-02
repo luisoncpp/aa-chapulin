@@ -50,6 +50,9 @@ function restoreSaveData(host: PersistenceHost, data: SaveData): void {
   host.setLanguage(data.language);
   ModalManager.updateHealthUI(host.dom.healthBarEl, host.state.health, host.state.maxHealth);
   host.dialogue.clear();
+  // A restored save resumes elsewhere; the previous session's backlog would not
+  // line up with the lines the engine is about to re-queue.
+  host.dialogue.clearHistory();
   if (data.mode === 'INVESTIGATION') {
     host.investigation.startInvestigation(data.currentLocation);
     host.investigation.checkInvestigationProgress();

@@ -92,7 +92,7 @@ def remove_bg_magenta_vectorized(
 
     arr[:, :, 0] = r_despilled
     arr[:, :, 2] = b_despilled
-    arr[bg_mask, 3] = 0
+    arr[bg_mask] = [0, 0, 0, 0]
 
     return Image.fromarray(np.clip(arr, 0, 255).astype(np.uint8), mode="RGBA")
 
@@ -106,7 +106,10 @@ def clean_edges_vectorized(img: Image.Image, depth: int = 5) -> Image.Image:
     edge_zone[:depth, :], edge_zone[-depth:, :] = True, True
     edge_zone[:, :depth], edge_zone[:, -depth:] = True, True
 
-    arr[edge_zone, 3] = 0
+    r, g, b = arr[:, :, 0].astype(int), arr[:, :, 1].astype(int), arr[:, :, 2].astype(int)
+    bg_like = (r > 140) & (b > 140) & (g < 120)
+    arr[edge_zone & bg_like] = [0, 0, 0, 0]
+
     return Image.fromarray(arr, mode="RGBA")
 
 
@@ -124,6 +127,7 @@ def despill_final(img: Image.Image) -> Image.Image:
     excess = np.maximum(0.0, np.minimum(r - g, b - g))
     arr[fringe, 0] = np.where(excess[fringe] > 0, np.maximum(0.0, r[fringe] - excess[fringe]), r[fringe])
     arr[fringe, 2] = np.where(excess[fringe] > 0, np.maximum(0.0, b[fringe] - excess[fringe]), b[fringe])
+    arr[alpha == 0] = [0, 0, 0, 0]
     return Image.fromarray(np.clip(arr, 0, 255).astype(np.uint8), mode="RGBA")
 
 
@@ -232,9 +236,9 @@ def process_character_sheet(
         final_img = extract_primary_components_fast(cleaned, min_area_fraction=min_area, drop_boxes=drop_boxes)
         final_img = despill_final(final_img)
 
-        out_path = os.path.join(DEST_DIR, f"{name}.png")
-        final_img.save(out_path)
-        print(f"  [OK] Processed: {name}.png ({final_img.size})")
+        out_path = os.path.join(DEST_DIR, f"{name}.webp")
+        final_img.save(out_path, 'WEBP', quality=85, method=6)
+        print(f"  [OK] Processed: {name}.webp ({final_img.size})")
 
 
 def process_standalone_prop(prop_name: str, out_filename: str, crop_box=None):
@@ -253,7 +257,7 @@ def process_standalone_prop(prop_name: str, out_filename: str, crop_box=None):
         final_img = final_img.crop(crop_box)
 
     out_path = os.path.join(DEST_DIR, out_filename)
-    final_img.save(out_path)
+    final_img.save(out_path, 'WEBP', quality=85, method=6)
     print(f"  [OK] Processed prop: {out_filename} ({final_img.size})")
 
 
@@ -269,14 +273,14 @@ def process_evidence_icons(ev_name: str):
     cw, ch = w // 4, h // 3
 
     items = [
-        (0, 0, "chipote_chillon.png"),
-        (1, 0, "pastillas_chiquitolina.png"),
-        (2, 0, "antenitas_vinil.png"),
-        (3, 0, "chicharra_oro.png"),
-        (0, 1, "informe_medico.png"),
-        (1, 1, "foto_crimen.png"),
-        (2, 1, "bolsa_dolares.png"),
-        (3, 1, "insignia_abogado.png")
+        (0, 0, "chipote_chillon.webp"),
+        (1, 0, "pastillas_chiquitolina.webp"),
+        (2, 0, "antenitas_vinil.webp"),
+        (3, 0, "chicharra_oro.webp"),
+        (0, 1, "informe_medico.webp"),
+        (1, 1, "foto_crimen.webp"),
+        (2, 1, "bolsa_dolares.webp"),
+        (3, 1, "insignia_abogado.webp")
     ]
 
     for col, row, name in items:
@@ -308,7 +312,7 @@ def process_evidence_icons(ev_name: str):
             out_img = despill_final(filtered)
 
         out_path = os.path.join(DEST_DIR, name)
-        out_img.save(out_path)
+        out_img.save(out_path, 'WEBP', quality=85, method=6)
         print(f"  [OK] Processed: {name} ({out_img.size})")
 
 
@@ -329,9 +333,9 @@ def process_cutins(cutin_name: str):
             filtered = extract_primary_components_fast(cleaned, min_area_fraction=0.25)
             filtered = despill_final(filtered)
 
-            out_path = os.path.join(DEST_DIR, f"{name}.png")
-            filtered.save(out_path)
-            print(f"  [OK] Processed: {name}.png ({filtered.size})")
+            out_path = os.path.join(DEST_DIR, f"{name}.webp")
+            filtered.save(out_path, 'WEBP', quality=85, method=6)
+            print(f"  [OK] Processed: {name}.webp ({filtered.size})")
 
     inocente_path = find_asset_file("objection_inocente_raw.jpg")
     if os.path.exists(inocente_path):
@@ -340,8 +344,8 @@ def process_cutins(cutin_name: str):
         cleaned_i = clean_edges_vectorized(cleaned_i, depth=4)
         filtered_i = extract_primary_components_fast(cleaned_i, min_area_fraction=0.25)
         final_i = despill_final(filtered_i).resize((512, 512), Image.Resampling.LANCZOS)
-        final_i.save(os.path.join(DEST_DIR, "objection_inocente.png"))
-        print(f"  [OK] Processed: objection_inocente.png ({final_i.size})")
+        final_i.save(os.path.join(DEST_DIR, "objection_inocente.webp"), 'WEBP', quality=85, method=6)
+        print(f"  [OK] Processed: objection_inocente.webp ({final_i.size})")
 
 
 def process_ui_elements(ui_name: str):
@@ -354,12 +358,12 @@ def process_ui_elements(ui_name: str):
     w, h = img.size
 
     crops = [
-        ("dialogue_box.png", (0, 0, w, int(h * 0.26))),
-        ("badge_button.png", (0, int(h * 0.25), int(w * 0.35), int(h * 0.48))),
-        ("health_bar.png", (int(w * 0.35), int(h * 0.28), w, int(h * 0.46))),
-        ("btn_press.png", (0, int(h * 0.48), int(w * 0.38), int(h * 0.75))),
-        ("btn_present.png", (int(w * 0.38), int(h * 0.48), int(w * 0.68), int(h * 0.75))),
-        ("btn_magnifier.png", (int(w * 0.68), int(h * 0.48), w, int(h * 0.75)))
+        ("dialogue_box.webp", (0, 0, w, int(h * 0.26))),
+        ("badge_button.webp", (0, int(h * 0.25), int(w * 0.35), int(h * 0.48))),
+        ("health_bar.webp", (int(w * 0.35), int(h * 0.28), w, int(h * 0.46))),
+        ("btn_press.webp", (0, int(h * 0.48), int(w * 0.38), int(h * 0.75))),
+        ("btn_present.webp", (int(w * 0.38), int(h * 0.48), int(w * 0.68), int(h * 0.75))),
+        ("btn_magnifier.webp", (int(w * 0.68), int(h * 0.48), w, int(h * 0.75)))
     ]
 
     for name, box in crops:
@@ -367,7 +371,7 @@ def process_ui_elements(ui_name: str):
         cleaned = clean_edges_vectorized(cropped, depth=4)
         cleaned = despill_final(cleaned)
         out_path = os.path.join(DEST_DIR, name)
-        cleaned.save(out_path)
+        cleaned.save(out_path, 'WEBP', quality=85, method=6)
         print(f"  [OK] Processed UI: {name}")
 
 
@@ -423,7 +427,7 @@ def run_all_fixes():
         filtered = extract_primary_components_fast(cleaned, min_area_fraction=0.10)
         aligned = shift_slam_to_notch(filtered, target_row=448)
         final_slam = despill_final(aligned)
-        final_slam.save(os.path.join(DEST_DIR, "supersam_slam.png"))
+        final_slam.save(os.path.join(DEST_DIR, "supersam_slam.webp"), 'WEBP', quality=85, method=6)
         print("  [OK] Processed dedicated Super Sam desk slam sprite")
 
     # 3. El Tripaseca
@@ -457,7 +461,7 @@ def run_all_fixes():
     )
 
     # Copy florinda_idle to florinda_fanning
-    shutil.copy(os.path.join(DEST_DIR, "florinda_idle.png"), os.path.join(DEST_DIR, "florinda_fanning.png"))
+    shutil.copy(os.path.join(DEST_DIR, "florinda_idle.webp"), os.path.join(DEST_DIR, "florinda_fanning.webp"))
 
     # 5b. Don Ramón (Defense Lawyer)
     donramon_sheet = find_asset_file("donramon_sprites_clean_1787638918112.jpg")
@@ -470,13 +474,13 @@ def run_all_fixes():
             None,
             None
         )
-        shutil.copy(os.path.join(DEST_DIR, "donramon_sweat.png"), os.path.join(DEST_DIR, "donramon_panic.png"))
+        shutil.copy(os.path.join(DEST_DIR, "donramon_sweat.webp"), os.path.join(DEST_DIR, "donramon_panic.webp"))
         print("  [OK] Processed Don Ramón defense sprites")
 
     # 6. Standalone Courtroom Furniture Props (Podium & Defense Table)
     process_standalone_prop(
         "court_podium_clean_1787626053367.jpg",
-        "court_podium.png",
+        "court_podium.webp",
         crop_box=(19, 24, 1358, 762)
     )
     # Top of the crop must land on the desk's far-edge outline, NOT above it. Rows above
@@ -486,7 +490,7 @@ def run_all_fixes():
     # docs/lessons-learned/decoupled-character-furniture-sprites.md
     process_standalone_prop(
         "court_bench_hd_1787628231232.jpg",
-        "court_bench.png",
+        "court_bench.webp",
         crop_box=(158, 127, 1218, 768)
     )
 
@@ -501,18 +505,19 @@ def run_all_fixes():
 
     # 10. Backgrounds
     bgs = [
-        ("court_witness_stand_1787377876023.jpg", "bg_witness.jpg"),
-        ("court_judge_view_1787377926397.jpg", "bg_judge.jpg"),
-        ("museum_crime_scene_1787377814093.jpg", "bg_museum.jpg"),
-        ("detention_center_room_1787377837506.jpg", "bg_detention.jpg"),
-        ("bg_prosecution_curtains_arch_1787633685599.jpg", "bg_courtroom.jpg"),
-        ("bg_defense_wood_wall_1787626957213.jpg", "bg_defense.jpg")
+        ("court_witness_stand_1787377876023.jpg", "bg_witness.webp"),
+        ("court_judge_view_1787377926397.jpg", "bg_judge.webp"),
+        ("museum_crime_scene_1787377814093.jpg", "bg_museum.webp"),
+        ("detention_center_room_1787377837506.jpg", "bg_detention.webp"),
+        ("bg_prosecution_curtains_arch_1787633685599.jpg", "bg_courtroom.webp"),
+        ("bg_defense_wood_wall_1787626957213.jpg", "bg_defense.webp")
     ]
     for src, dst in bgs:
         src_p = find_asset_file(src)
         if os.path.exists(src_p):
-            shutil.copy(src_p, os.path.join(DEST_DIR, dst))
-            print(f"  [OK] Copied background: {dst}")
+            bg_img = Image.open(src_p)
+            bg_img.save(os.path.join(DEST_DIR, dst), 'WEBP', quality=85, method=6)
+            print(f"  [OK] Saved WebP background: {dst}")
 
     print("\nAll assets cleaned, despilled, and saved successfully!")
 

@@ -180,7 +180,7 @@ describe('Case 3 La Noche del Grito', () => {
     expect(en.trial.climax.choices?.map((c) => c.correctId)).toEqual(
       es.trial.climax.choices?.map((c) => c.correctId)
     );
-    expect(es.trial.climax.epilogue?.bg).toBe('assets/bg_waiting_room.jpg');
+    expect(es.trial.climax.epilogue?.bg).toBe('assets/bg_waiting_room.webp');
   });
 
   it('keeps English hotspot geometry and statement counts in lockstep', () => {

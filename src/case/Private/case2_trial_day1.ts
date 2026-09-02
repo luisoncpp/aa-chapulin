@@ -6,13 +6,13 @@
 import type { DialogueLine, Testimony } from '../../types/index.js';
 
 export const CASE2_TRIAL_INTRO: DialogueLine[] = [
-  { bg: 'assets/bg_judge.jpg', speaker: 'JUEZ', pose: 'judge_gavel', text: '¡Silencio en la sala! Se abre la sesión del tribunal superior.', sfx: 'gavel', bgm: 'trial' },
-  { bg: 'assets/bg_judge.jpg', speaker: 'JUEZ', pose: 'judge_neutral', text: 'La fiscalía puede presentar sus cargos en contra del acusado Aquiles Esquivel Madrazo.' },
-  { bg: 'assets/bg_courtroom.jpg', speaker: 'SUPER SAM', pose: 'supersam_slam', text: 'Time is money, Your Honor!', sfx: 'desk_slam' },
-  { bg: 'assets/bg_courtroom.jpg', speaker: 'SUPER SAM', pose: 'supersam_point', text: 'El acusado fue sorprendido in fraganti dentro de la bóveda a las 10:00 PM con la herramienta del delito en sus manos. ¡Exijo un veredicto de culpabilidad en 3 minutos!' },
-  { bg: 'assets/bg_defense.jpg', speaker: 'DEFENSA', pose: 'donramon_slam', text: '¡PROTESTO! ¡La defensa demostrará que todo este caso es un vil montaje!', sfx: 'desk_slam' },
-  { bg: 'assets/bg_defense.jpg', speaker: 'CHAPULIN', pose: 'chapulin_point', text: '¡Síganme los buenos! ¡No permitiremos que condenen a un inocente!' },
-  { bg: 'assets/bg_judge.jpg', speaker: 'JUEZ', pose: 'judge_neutral', text: 'Que pase al estrado el primer testigo de la fiscalía.' }
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_gavel', text: '¡Silencio en la sala! Se abre la sesión del tribunal superior.', sfx: 'gavel', bgm: 'trial' },
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_neutral', text: 'La fiscalía puede presentar sus cargos en contra del acusado Aquiles Esquivel Madrazo.' },
+  { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_slam', text: 'Time is money, Your Honor!', sfx: 'desk_slam' },
+  { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_point', text: 'El acusado fue sorprendido in fraganti dentro de la bóveda a las 10:00 PM con la herramienta del delito en sus manos. ¡Exijo un veredicto de culpabilidad en 3 minutos!' },
+  { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_slam', text: '¡PROTESTO! ¡La defensa demostrará que todo este caso es un vil montaje!', sfx: 'desk_slam' },
+  { bg: 'assets/bg_defense.webp', speaker: 'CHAPULIN', pose: 'chapulin_point', text: '¡Síganme los buenos! ¡No permitiremos que condenen a un inocente!' },
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_neutral', text: 'Que pase al estrado el primer testigo de la fiscalía.' }
 ];
 
 const T1_SUCCESS: DialogueLine[] = [

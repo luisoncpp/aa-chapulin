@@ -32,14 +32,17 @@ SHEETS = [
 ]
 
 EV_NAMES = [
-    "chanfle_oro.png", "reloj_pendulo.png", "informe_boveda.png", "palanca_rota.png",
-    "aroma_dulce.png", "plano_hacienda.png", "caja_generador.png", "registro_postal.png",
-    "multa_transito.png", "frasco_valeriana.png", "molde_cera.png", "lata_grasa.png",
+    "chanfle_oro.webp", "reloj_pendulo.webp", "informe_boveda.webp", "palanca_rota.webp",
+    "aroma_dulce.webp", "plano_hacienda.webp", "caja_generador.webp", "registro_postal.webp",
+    "multa_transito.webp", "frasco_valeriana.webp", "molde_cera.webp", "lata_grasa.webp",
 ]
 
 BGS = [
-    "bg_boveda.jpg", "bg_restaurante.jpg", "bg_postal.jpg", "bg_clotilde.jpg",
-    "bg_waiting_room.jpg",
+    ("bg_boveda.jpg", "bg_boveda.webp"),
+    ("bg_restaurante.jpg", "bg_restaurante.webp"),
+    ("bg_postal.jpg", "bg_postal.webp"),
+    ("bg_clotilde.jpg", "bg_clotilde.webp"),
+    ("bg_waiting_room.jpg", "bg_waiting_room.webp"),
 ]
 
 
@@ -89,8 +92,8 @@ def process_grid_cell(sheet_name: str, out_name: str, cell_xy: tuple[int, int]) 
     cleaned = clean_edges_vectorized(cleaned, depth=5)
     filtered = extract_primary_components_fast(cleaned, min_area_fraction=0.10)
     final_img = despill_final(filtered)
-    final_img.save(os.path.join(DEST_DIR, f"{out_name}.png"))
-    print(f"  [OK] Processed: {out_name}.png ({final_img.size})")
+    final_img.save(os.path.join(DEST_DIR, f"{out_name}.webp"), 'WEBP', quality=85, method=6)
+    print(f"  [OK] Processed: {out_name}.webp ({final_img.size})")
 
 
 def icon_drop_boxes(cw: int, ch: int) -> list:
@@ -106,7 +109,7 @@ def icon_drop_boxes(cw: int, ch: int) -> list:
 def save_evidence_icon(filtered: Image.Image, name: str) -> None:
     bbox = filtered.getbbox()
     if not bbox:
-        despill_final(filtered).save(os.path.join(DEST_DIR, name))
+        despill_final(filtered).save(os.path.join(DEST_DIR, name), 'WEBP', quality=85, method=6)
         return
     cropped = filtered.crop(bbox)
     max_dim = max(cropped.width, cropped.height)
@@ -117,7 +120,7 @@ def save_evidence_icon(filtered: Image.Image, name: str) -> None:
     canvas.paste(cropped, (ox, oy))
     out_img = canvas.resize((128, 128), Image.Resampling.LANCZOS)
     out_img = despill_final(out_img)
-    out_img.save(os.path.join(DEST_DIR, name))
+    out_img.save(os.path.join(DEST_DIR, name), 'WEBP', quality=85, method=6)
     print(f"  [OK] Processed: {name} ({out_img.size})")
 
 
@@ -142,13 +145,14 @@ def process_case2_evidence() -> None:
 
 
 def copy_backgrounds() -> None:
-    for name in BGS:
-        src_p = find_asset_file(name)
+    for src_name, dst_name in BGS:
+        src_p = find_asset_file(src_name)
         if not os.path.exists(src_p):
             print(f"Warning: Background not found {src_p}")
             continue
-        shutil.copy(src_p, os.path.join(DEST_DIR, name))
-        print(f"  [OK] Copied background: {name}")
+        bg_img = Image.open(src_p)
+        bg_img.save(os.path.join(DEST_DIR, dst_name), 'WEBP', quality=85, method=6)
+        print(f"  [OK] Saved WebP background: {dst_name}")
 
 
 def run_case2() -> None:
@@ -158,11 +162,11 @@ def run_case2() -> None:
     process_grid_cell("peterete_breakdown_raw.png", "peterete_breakdown", (0, 0))
     process_grid_cell("supersam_sweat_raw.png", "supersam_sweat", (1, 0))
     process_grid_cell("donramon_shock_raw.png", "donramon_shock", (0, 0))
-    shock_path = os.path.join(DEST_DIR, "donramon_shock.png")
+    shock_path = os.path.join(DEST_DIR, "donramon_shock.webp")
     if os.path.exists(shock_path):
         anchored = despill_final(anchor_standing_bust(Image.open(shock_path)))
-        anchored.save(shock_path)
-        print(f"  [OK] Anchored standing hem: donramon_shock.png ({anchored.size})")
+        anchored.save(shock_path, 'WEBP', quality=85, method=6)
+        print(f"  [OK] Anchored standing hem: donramon_shock.webp ({anchored.size})")
     process_case2_evidence()
     copy_backgrounds()
     print("\nCase 2 assets saved.")

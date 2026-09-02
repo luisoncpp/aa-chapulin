@@ -7,9 +7,11 @@ import type { MidiMusicComposer, SoundEngine } from '../../audio/index.js';
 import { i18n } from '../../i18n/index.js';
 import type { GameStateManager } from '../../state/index.js';
 import type { CaseScript, DialogueLine, EvidenceId, LocationId, SFXName } from '../../types/index.js';
+import type { DialogueHistory, HistoryEntry } from './DialogueHistory.js';
 import type { DomElements } from './DomElements.js';
 import type { InvestigationController } from './InvestigationController.js';
 import type { Typewriter } from './Typewriter.js';
+import { presentDialogueVisuals } from './StageCommit.js';
 import { VisualEffects } from './VisualEffects.js';
 
 export interface DialogueFlowDeps {
@@ -20,6 +22,7 @@ export interface DialogueFlowDeps {
   midiComposer: MidiMusicComposer;
   typewriter: Typewriter;
   investigation: InvestigationController;
+  history: DialogueHistory;
 }
 
 export class DialogueFlow {
@@ -28,6 +31,7 @@ export class DialogueFlow {
 
   constructor(private readonly deps: DialogueFlowDeps) {}
 
+  /** Clears the pending queue only; the message history survives queue resets. */
   public clear(): void {
     this.queue = [];
     this.onQueueFinish = null;
@@ -59,9 +63,22 @@ export class DialogueFlow {
     }
   }
 
+  public clearHistory(): void {
+    this.deps.history.clear();
+  }
+
+  public getHistory(): readonly HistoryEntry[] {
+    return this.deps.history.entries();
+  }
+
+  /**
+   * Every displayed line funnels through here, including cross-examination
+   * statements rendered outside the queue, so this is the only correct place to
+   * record the message history.
+   */
   public renderDialogueLine(line: DialogueLine): void {
     if (!line) return;
-    if (line.bg) this.deps.dom.bgEl.style.backgroundImage = `url('${line.bg}')`;
+    this.deps.history.record(line);
     if (line.bgm) this.deps.midiComposer.playTrack(line.bgm);
     if (line.sfx) this.triggerSFX(line.sfx);
     if (line.cutin) VisualEffects.showCutin(this.deps.dom, line.cutin);
@@ -87,13 +104,8 @@ export class DialogueFlow {
   private applyLineSpeakerAndPose(line: DialogueLine): void {
     const isTrial = this.deps.state.mode === 'TRIAL';
     const effectivePose = VisualEffects.resolveEffectivePose(line, isTrial);
-    if (effectivePose) {
-      this.deps.investigation.currentLocationCharPose = effectivePose;
-      VisualEffects.setPose(this.deps.dom.charSpriteEl, effectivePose);
-    } else if (line.speaker === 'DEFENSA' || line.speaker === 'NARRADOR') {
-      VisualEffects.hideCharacter(this.deps.dom.charSpriteEl);
-    }
-    VisualEffects.updateStagingForLine(this.deps.dom, line, isTrial);
+    if (effectivePose) this.deps.investigation.currentLocationCharPose = effectivePose;
+    presentDialogueVisuals(this.deps.dom, line, /*isTrialMode=*/ isTrial);
     this.deps.dom.speakerBoxEl.textContent = line.speaker || '';
   }
 
@@ -105,6 +117,7 @@ export class DialogueFlow {
     this.showProgressNotification(i18n.t.notifEvidenceAdded(item.name));
   }
 
+  // fallow-ignore-next-line complexity
   private updateEvidenceIfPresent(evidenceId?: EvidenceId): void {
     if (!evidenceId) return;
     const alreadyHeld = this.deps.state.hasEvidence(evidenceId);
@@ -115,6 +128,7 @@ export class DialogueFlow {
     this.showProgressNotification(i18n.t.notifEvidenceUpdated(item.name));
   }
 
+  // fallow-ignore-next-line complexity
   private unlockLocationIfPresent(locationId?: LocationId): void {
     if (!locationId) return;
     const unlocked = this.deps.state.unlockLocation(locationId);
@@ -129,6 +143,7 @@ export class DialogueFlow {
     VisualEffects.showNotification(this.deps.dom.gameNotificationEl, msg);
   }
 
+  // fallow-ignore-next-line complexity
   private triggerSFX(sfx: SFXName): void {
     this.deps.soundEngine.playSFX(sfx);
     if (sfx === 'gavel' || sfx === 'desk_slam' || sfx === 'damage') {

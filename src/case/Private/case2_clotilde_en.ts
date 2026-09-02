@@ -8,7 +8,7 @@ import type { InvestigationScene } from '../../types/index.js';
 export const CASE2_CLOTILDE_EN: InvestigationScene = {
   title: 'Room 71 and Botanical Laboratory',
   name: "Doña Clotilde's House",
-  bg: 'assets/bg_clotilde.jpg',
+  bg: 'assets/bg_clotilde.webp',
   bgm: 'casa_clotilde',
   speaker: 'NARRADOR',
   intro: [

@@ -8,7 +8,7 @@ import type { InvestigationScene } from '../../../types/index.js';
 export const CASE3_DESPACHO: InvestigationScene = {
   title: 'Despacho del Señor Barriga',
   name: 'Despacho Barriga',
-  bg: 'assets/bg_despacho.jpg',
+  bg: 'assets/bg_despacho.webp',
   bgm: 'suspense',
   speaker: 'NARRADOR',
   intro: [

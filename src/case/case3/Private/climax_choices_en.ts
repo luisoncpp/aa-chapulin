@@ -63,7 +63,6 @@ export const CASE3_CLIMAX_CHOICES_EN: ChoicePrompt[] = [
       { speaker: 'SUPER SAM', text: 'OH NOOO! Three days! THREE DAYS! My fees! My bonus! My lunch hour!', sfx: 'damage', pose: 'supersam_breakdown' },
       { speaker: 'JUEZ', text: 'Order! Method, motive, and author established... this court issues its verdict.', pose: 'judge_gavel', sfx: 'gavel' },
       { cutin: 'objection_inocente', speaker: 'JUEZ', text: 'I declare the defendant, Doctor Chapatín... NOT GUILTY!', sfx: 'whoosh', bgm: 'victory', pose: 'judge_gavel' },
-      { speaker: 'NARRADOR', text: '(Confetti falls. The doctor eyes it with suspicion, as if someone might bill him for it.)' },
       { speaker: 'CHAPATIN', text: '...Hmpf. About time.', pose: 'chapatin_conmovido' },
       { speaker: 'CHAPULIN', text: '¡Síganme los buenos!', pose: 'chapulin_point' }
     ]

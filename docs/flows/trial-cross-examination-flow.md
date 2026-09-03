@@ -90,8 +90,8 @@ Operational guide for courtroom litigation, cross-examinations, evidence present
 - [[src/engine/Private/ModalManager.ts]]
 - [[src/state/Private/GameStateManager.ts]]
 - [[src/engine/Private/TrialDayRouter.ts]]
-- [[src/case/Private/case1_trial.ts]] / [[src/case/Private/case2_script.ts]]
-- [[src/case/Private/case1_climax.ts]] / [[src/case/Private/case2_climax.ts]]
+- [[src/case/case1/Private/trial.ts]] / [[src/case/case2/index.ts]]
+- [[src/case/case1/Private/climax.ts]] / [[src/case/case2/Private/climax.ts]]
 
 ## 8. Common Failure Modes
 - **Wrong Evidence Penalty**: Presenting evidence that does not match `stmt.contradiction.evidence`.

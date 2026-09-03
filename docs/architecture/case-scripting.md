@@ -24,7 +24,7 @@ Case 3 (`case3`) is assembled in [[src/case/case3/index.ts]]: `detention` → `c
 
 > **Gating invariant (all multi-day cases):** `checkTrialReadiness` reads only the inventory, never the visited-location set. The **last** location of each investigation day must therefore hand over at least one `requiredEvidence` item, or `#btn-inv-trial` lights up early and the player can skip scenes the trial script assumes were seen. Case 3 day lists live in [[src/case/case3/Private/progress.ts]]; `tests/case/Case3Scripts.test.ts` walks the `unlockLocation` chain to assert it.
 
-Case 2 is assembled in [[src/case/Private/case2_script.ts]]: ES/EN scene modules, day-1 trial (`case2_trial_day1*`), day-2 trial (`case2_trial_day2*`), climax on `trial.climax` (`case2_climax.ts`). Day-1 investigation: `detention` → `boveda` → `restaurante`. After testimony 2, `adjournment` sends the player to `oficina_postal` (unlock), then `casa_clotilde`. Day-2 testimonies live on `adjournment.trial`; the finale is still `script.trial.climax`. Case 2 uses optional `climax.stages`: three presents (`lata_grasa`/`antenitas_vinil`, then `frasco_valeriana`/`aroma_dulce`, then `molde_cera`), then optional `climax.choices` (two `ChoicePrompt` questions after the wax-mold present). Case 1 has a single present (`presentTarget` only) and no choices. After the Not Guilty line, courtroom confetti plays, then a black fade into Case 2 `climax.epilogue` in `assets/bg_waiting_room.jpg` (no bench/podium). Case 1 has no `adjournment` and no epilogue. Once that victory is queued, the engine is no longer awaiting a climax present, so the Acta must not reopen on the lobby cut.
+Case 2 is assembled in [[src/case/case2/index.ts]]: ES/EN scene modules, day-1 trial (`trial_day1*`), day-2 trial (`trial_day2*`), climax on `trial.climax` (`climax.ts`). Day-1 investigation: `detention` → `boveda` → `restaurante`. After testimony 2, `adjournment` sends the player to `oficina_postal` (unlock), then `casa_clotilde`. Day-2 testimonies live on `adjournment.trial`; the finale is still `script.trial.climax`. Case 2 uses optional `climax.stages`: three presents (`lata_grasa`/`antenitas_vinil`, then `frasco_valeriana`/`aroma_dulce`, then `molde_cera`), then optional `climax.choices` (two `ChoicePrompt` questions after the wax-mold present). Case 1 has a single present (`presentTarget` only) and no choices. After the Not Guilty line, courtroom confetti plays, then a black fade into Case 2 `climax.epilogue` in `assets/bg_waiting_room.jpg` (no bench/podium). Case 1 has no `adjournment` and no epilogue. Once that victory is queued, the engine is no longer awaiting a climax present, so the Acta must not reopen on the lobby cut.
 
 ## Schema Definitions
 
@@ -46,7 +46,7 @@ Each entry in a dialogue sequence supports the following optional and required f
 
 Statements may set `unlockedBy` to another statement id; [[src/engine/Private/StatementUnlock.ts]] keeps those lines out of the visible cross-exam list until that id is pressed.
 
-### 2. Investigation Scene Schema ([[src/case/Private/case1_investigation.ts]], [[src/case/Private/case2_script.ts]])
+### 2. Investigation Scene Schema ([[src/case/case1/Private/investigation.ts]], [[src/case/case2/index.ts]])
 
 ```typescript
 investigation: {
@@ -64,7 +64,7 @@ investigation: {
 
 Hotspot `x,y,w,h` are percentages of the 960×540 `#game-screen`, not of the JPEG. `#scene-bg` uses `background-size: cover` and `background-position: center`, so a 1536×1024 (3:2) Case 2 plate is width-fitted and the extra height is cropped equally top and bottom. Place boxes on that cover crop (and keep Spanish/English geometry identical). Keep clickable regions above the dialogue strip when the object is fully visible there; a floor object that only exists under the 145px dialogue box still belongs on that object.
 
-### 3. Testimony & Cross-Examination Schema ([[src/case/Private/case1_trial.ts]])
+### 3. Testimony & Cross-Examination Schema ([[src/case/case1/Private/trial.ts]])
 
 ```typescript
 testimony: {
@@ -75,7 +75,7 @@ testimony: {
 }
 ```
 
-### 4. Climax Schema ([[src/case/Private/case1_climax.ts]], [[src/case/Private/case2_climax.ts]])
+### 4. Climax Schema ([[src/case/case1/Private/climax.ts]], [[src/case/case2/Private/climax.ts]])
 
 ```typescript
 climax: {
@@ -107,7 +107,7 @@ Optional `AdjournmentDefinition`: `nextLocation`, `unlockLocations`, next-day `r
 
 | Phase | Statement | Contradiction Logic | Required Evidence | Module Source |
 |-------|-----------|---------------------|-------------------|---------------|
-| **Testimony 1** | Witness claims Chapulín knocked out the guard with his lethal Chipote Chillón. | The Chipote is hollow soft vinyl and makes squeaky sounds; medical report proves the guard suffered a blunt fracture from heavy metal coins. | `chipote_chillon` or `informe_medico` | [[src/case/Private/case1_trial.ts#Testimony 1: Assault Weapon]] |
-| **Testimony 2 (Part 1)** | Witness claims the culprit broke into the glass case from the outside. | Glass shards fell outward and Chiquitolina shrinking pills were found by the vent, showing the culprit shrank and broke the glass from inside. | `pastillas_chiquitolina` | [[src/case/Private/case1_trial.ts#Testimony 2: Escape Route]] |
-| **Testimony 2 (Part 2)** | Witness claims security photo shows Chapulín running toward the front exit. | The chest logo shows inverted "HC", proving the photo captured a reflection in the mirror; culprit was running to the rear loading bay. | `foto_crimen` | [[src/case/Private/case1_trial.ts#Testimony 2: Escape Route]] |
-| **Climax** | Prosecution demands physical proof of where the stolen artifact is right now. | Vinyl antennae detect enemy presence pointing straight at Tripaseca's jacket pocket where the Chicharra is concealed. | `antenitas_vinil` or `bolsa_dolares` | [[src/case/Private/case1_climax.ts#Climax Confrontation & Dilemma]] |
+| **Testimony 1** | Witness claims Chapulín knocked out the guard with his lethal Chipote Chillón. | The Chipote is hollow soft vinyl and makes squeaky sounds; medical report proves the guard suffered a blunt fracture from heavy metal coins. | `chipote_chillon` or `informe_medico` | [[src/case/case1/Private/trial.ts#Testimony 1: Assault Weapon]] |
+| **Testimony 2 (Part 1)** | Witness claims the culprit broke into the glass case from the outside. | Glass shards fell outward and Chiquitolina shrinking pills were found by the vent, showing the culprit shrank and broke the glass from inside. | `pastillas_chiquitolina` | [[src/case/case1/Private/trial.ts#Testimony 2: Escape Route]] |
+| **Testimony 2 (Part 2)** | Witness claims security photo shows Chapulín running toward the front exit. | The chest logo shows inverted "HC", proving the photo captured a reflection in the mirror; culprit was running to the rear loading bay. | `foto_crimen` | [[src/case/case1/Private/trial.ts#Testimony 2: Escape Route]] |
+| **Climax** | Prosecution demands physical proof of where the stolen artifact is right now. | Vinyl antennae detect enemy presence pointing straight at Tripaseca's jacket pocket where the Chicharra is concealed. | `antenitas_vinil` or `bolsa_dolares` | [[src/case/case1/Private/climax.ts#Climax Confrontation & Dilemma]] |

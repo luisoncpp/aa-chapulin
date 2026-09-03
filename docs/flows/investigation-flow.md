@@ -63,7 +63,7 @@ Operational guide for player actions during the crime scene investigation phase.
 4. When enabled, player clicks "⚖️ Ir a Juicio": `trial.startTrial()` fades through black, then queues the courtroom intro.
 
 ## 4. Reads
-- Active `script.investigation[location]` ([[src/case/Private/case1_investigation.ts]] or Case 2 scenes via [[src/case/Private/case2_script.ts]])
+- Active `script.investigation[location]` ([[src/case/case1/Private/investigation.ts]] or Case 2 scenes via [[src/case/case2/index.ts]])
 - `gameState.inventory` in [[src/state/Private/GameStateManager.ts]]
 - `gameState.unlockedLocations` in [[src/state/Private/GameStateManager.ts]]
 - `gameState.flags` in [[src/state/Private/GameStateManager.ts]]
@@ -83,7 +83,7 @@ Operational guide for player actions during the crime scene investigation phase.
 - [[src/engine/Private/InvestigationController.ts]]
 - [[src/engine/Private/ModalManager.ts]]
 - [[src/state/Private/GameStateManager.ts]]
-- [[src/case/Private/case1_investigation.ts]] / [[src/case/Private/case2_script.ts]]
+- [[src/case/case1/Private/investigation.ts]] / [[src/case/case2/index.ts]]
 
 ## 8. Common Failure Modes
 - **Trial button remains disabled**: Missing an ID from the current `requiredEvidence` list (Case 1 five clues; Case 2 six day-1 or six day-2 items after adjournment). After Case 2 day-1 adjournment, [[src/engine/Private/AdjournmentHandler.ts]] calls `resetTrialLaunchButton()` so the button stays off until day-2 evidence is complete.

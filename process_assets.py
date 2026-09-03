@@ -507,7 +507,7 @@ def run_all_fixes():
     bgs = [
         ("court_witness_stand_1787377876023.jpg", "bg_witness.webp"),
         ("court_judge_view_1787377926397.jpg", "bg_judge.webp"),
-        ("museum_crime_scene_1787377814093.jpg", "bg_museum.webp"),
+        ("bg_museum.jpg", "bg_museum.webp"),
         ("detention_center_room_1787377837506.jpg", "bg_detention.webp"),
         ("bg_prosecution_curtains_arch_1787633685599.jpg", "bg_courtroom.webp"),
         ("bg_defense_wood_wall_1787626957213.jpg", "bg_defense.webp")

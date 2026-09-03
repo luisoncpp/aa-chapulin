@@ -24,7 +24,7 @@ export const INVESTIGATION_SCENES_EN: Record<LocationId, InvestigationScene> = {
       {
         id: 'pedestal',
         label: 'Shattered Display Case & Pedestal',
-        x: 44, y: 22, w: 18, h: 48,
+        x: 42, y: 33, w: 30, h: 58,
         dialogue: [
           { speaker: 'DEFENSA', text: 'The central display case is shattered to pieces... Glass shards are scattered outward.', sfx: 'realization' },
           { speaker: 'DEFENSA', text: 'Wait a second! What is this glowing at the base of the pedestal?', sfx: 'text' },
@@ -35,7 +35,7 @@ export const INVESTIGATION_SCENES_EN: Record<LocationId, InvestigationScene> = {
       {
         id: 'armor',
         label: 'Guard Alma Negra & Suit of Armor',
-        x: 3, y: 25, w: 18, h: 50,
+        x: 2, y: 20, w: 36, h: 72,
         dialogue: [
           { speaker: 'DEFENSA', text: 'Pirate Alma Negra, the museum guard, is sitting down holding an ice pack against his head.', sfx: 'text' },
           { speaker: 'DEFENSA', text: "Let's examine the paramedics' preliminary medical report...", sfx: 'text' },
@@ -46,7 +46,7 @@ export const INVESTIGATION_SCENES_EN: Record<LocationId, InvestigationScene> = {
       {
         id: 'security_cam',
         label: 'Security Camera & Skylight',
-        x: 58, y: 8, w: 15, h: 32,
+        x: 54, y: 2, w: 22, h: 26,
         dialogue: [
           { speaker: 'DEFENSA', text: 'The front security camera captured a blurry photograph at exactly 9:00 PM.', sfx: 'text' },
           { speaker: 'DEFENSA', text: 'It shows someone in a red hood and antennae running... but something looks very strange on their chest.', sfx: 'realization', addEvidence: 'foto_crimen' },
@@ -56,7 +56,7 @@ export const INVESTIGATION_SCENES_EN: Record<LocationId, InvestigationScene> = {
       {
         id: 'treasure_chest',
         label: 'Curiosity Chest & Oil Lantern',
-        x: 74, y: 48, w: 22, h: 38,
+        x: 75, y: 64, w: 23, h: 30,
         dialogue: [
           { speaker: 'DEFENSA', text: 'An antique wooden chest and an old oil lantern.', sfx: 'text' },
           { speaker: 'FLORINDA', text: 'That chest contained collectible pirate coins, but they are untouched! The thief was only after the Golden Chicharra.', pose: 'florinda_idle' }

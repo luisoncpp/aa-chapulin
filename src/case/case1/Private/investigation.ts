@@ -24,7 +24,7 @@ export const INVESTIGATION_SCENES: Record<LocationId, InvestigationScene> = {
       {
         id: 'pedestal',
         label: 'Vitrina Destrozada & Pedestal',
-        x: 44, y: 22, w: 18, h: 48,
+        x: 42, y: 33, w: 30, h: 58,
         dialogue: [
           { speaker: 'DEFENSA', text: 'La vitrina central está hecha añicos... El vidrio está esparcido hacia afuera.', sfx: 'realization' },
           { speaker: 'DEFENSA', text: '¡Espera un segundo! ¿Qué es esto brillando en la base del pedestal?', sfx: 'text' },
@@ -35,7 +35,7 @@ export const INVESTIGATION_SCENES: Record<LocationId, InvestigationScene> = {
       {
         id: 'armor',
         label: 'Guardia Alma Negra & Armadura',
-        x: 3, y: 25, w: 18, h: 50,
+        x: 2, y: 20, w: 36, h: 72,
         dialogue: [
           { speaker: 'DEFENSA', text: 'El pirata Alma Negra, guardia del museo, está sentado con una compresa de hielo en la cabeza.', sfx: 'text' },
           { speaker: 'DEFENSA', text: 'Examinemos el informe médico preliminar de los paramédicos...', sfx: 'text' },
@@ -46,7 +46,7 @@ export const INVESTIGATION_SCENES: Record<LocationId, InvestigationScene> = {
       {
         id: 'security_cam',
         label: 'Cámara de Seguridad & Tragaluz',
-        x: 58, y: 8, w: 15, h: 32,
+        x: 54, y: 2, w: 22, h: 26,
         dialogue: [
           { speaker: 'DEFENSA', text: 'La cámara de seguridad frontal capturó una fotografía borrosa a las 9:00 PM en punto.', sfx: 'text' },
           { speaker: 'DEFENSA', text: 'Muestra a una persona con capucha roja y antenas corriendo... pero algo luce muy extraño en su pecho.', sfx: 'realization', addEvidence: 'foto_crimen' },
@@ -56,7 +56,7 @@ export const INVESTIGATION_SCENES: Record<LocationId, InvestigationScene> = {
       {
         id: 'treasure_chest',
         label: 'Cofre y Farol de Curiosidades',
-        x: 74, y: 48, w: 22, h: 38,
+        x: 75, y: 64, w: 23, h: 30,
         dialogue: [
           { speaker: 'DEFENSA', text: 'Un cofre de madera antiguo y un farol de aceite.', sfx: 'text' },
           { speaker: 'FLORINDA', text: '¡Ese cofre contenía monedas de colección pirata, pero están intactas! El ladrón sólo buscaba la Chicharra de Oro.', pose: 'florinda_idle' }

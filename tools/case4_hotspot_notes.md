@@ -68,10 +68,10 @@ Landmarks: motor housing ~31–66% X, 12–94% Y; roof sign ~0–19% X, 0–20% 
 
 ## Examine plates (`examine_*.webp`) — Present & Point
 
-Art already matches the spec click boxes; bounds were **not** changed.
+Spec percentages written before the plates exist miss the painted objects. Overlay boxes on the generated 960×540 WebPs.
 
-| File | Target | Spec box `[minX, minY, maxX, maxY]` |
+| File | Target | Box `[minX, minY, maxX, maxY]` |
 |------|--------|--------------------------------------|
-| `examine_foto.webp` | Galvanized ice bucket (melted water, no cubes) | `[56, 46, 76, 70]` |
-| `examine_plano.webp` | Vertical steam pipe 204↔304↔caldera | `[42, 26, 58, 68]` |
-| `examine_botella.webp` | Red wax seal dome + needle puncture | `[44, 4, 56, 24]` |
+| `examine_foto.webp` | Full galvanized bucket including melted water | `[50, 14, 88, 82]` |
+| `examine_plano.webp` | Vertical steam pipe 204↔304 (not boiler firebox) | `[40, 18, 62, 74]` |
+| `examine_botella.webp` | Red wax seal dome, drips, and needle puncture | `[42, 2, 58, 30]` |

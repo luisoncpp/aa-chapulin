@@ -16,7 +16,7 @@ export const CASE4_CLIMAX_BOTTLE_POINT: PointTargetContradiction = {
   promptQuestion: '¡Señale el punto exacto por donde penetró el cianuro en la botella sellada!',
   imageAsset: 'assets/examine_botella.webp',
   zones: [
-    { id: 'cupula_sello_lacre', bounds: [44, 4, 56, 24], isCorrect: true, failureDialogue: [] },
+    { id: 'cupula_sello_lacre', bounds: [42, 2, 58, 30], isCorrect: true, failureDialogue: [] },
     { id: 'botella_resto', bounds: [0, 0, 100, 100], isCorrect: false, failureDialogue: BOTTLE_FAILURE }
   ]
 };

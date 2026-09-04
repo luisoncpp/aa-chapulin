@@ -19,7 +19,9 @@ export type {
 export type {
   EvidenceId,
   EvidenceItem,
-  EvidenceCatalogMap
+  EvidenceCatalogMap,
+  EvidenceDetailedView,
+  EvidenceExamineZone
 } from './Private/evidence.js';
 
 // @Section(Game State Types)
@@ -50,7 +52,12 @@ export type {
   ClimaxDefinition,
   TrialDayScript,
   AdjournmentDefinition,
-  CaseScript
+  CaseScript,
+  PointZone,
+  PointTargetContradiction,
+  ContradictionFollowUp,
+  ContradictionRule,
+  OpeningPresent
 } from './Private/script.js';
 // fallow-ignore-next-line unused-type
 export type { ChoiceOption } from './Private/script.js';

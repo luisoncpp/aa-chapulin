@@ -9,7 +9,7 @@ export type Language = 'es' | 'en';
 
 export type GameMode = 'INVESTIGATION' | 'TRIAL';
 
-export type CaseId = 'case1' | 'case2' | 'case3';
+export type CaseId = 'case1' | 'case2' | 'case3' | 'case4';
 
 export type TrialDay = 1 | 2 | 3;
 

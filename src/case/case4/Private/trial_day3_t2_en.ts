@@ -3,15 +3,15 @@
  * Case 4 Trial Day 3 — Testimony 6 (English).
  */
 
-import type { Testimony } from '../../../types/index.js';
+import type { DialogueLine, Testimony } from '../../../types/index.js';
 
-const T6_BAUL_EN = [
+const T6_BAUL_EN: DialogueLine[] = [
   { cutin: 'objection_protesto', speaker: 'DEFENSA', text: 'OBJECTION! Inside your travel trunk found on the roof were wool fibers from Cuajinais\'s suit and coal dust from the freight elevator!', sfx: 'desk_slam', bgm: 'pursuit', pose: 'donramon_slam' },
   { speaker: 'RUFINO', text: 'Th-That trunk... that trunk could have been stolen by any barefoot bellhop!', pose: 'rufino_panic' },
   { speaker: 'DEFENSA', text: 'And to complete the picture, we present the wine glass found beside the corpse!', pose: 'donramon_point' }
 ];
 
-const T6_COPA_EN = [
+const T6_COPA_EN: DialogueLine[] = [
   { cutin: 'objection_toma_eso', speaker: 'DEFENSA', text: 'This glass proves Cuajinais ingested cyanide from the Chateau Buena Vista 1958 served by the fake count!', sfx: 'whoosh', bgm: 'pursuit', pose: 'donramon_point' },
   { speaker: 'RUFINO', text: 'Nonsense! Nobody in this courtroom can scientifically prove how cyanide entered that bottle if the cork was sealed with my wax intact!', pose: 'rufino_panic', sfx: 'desk_slam' },
   { speaker: 'JUEZ', text: 'Silence in the court! Counselor Monchito: the witness challenges this tribunal. Does the defense hold material proof showing how the poison was injected without breaking the cork?', pose: 'judge_gavel', sfx: 'gavel' },

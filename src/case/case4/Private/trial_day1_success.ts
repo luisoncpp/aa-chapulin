@@ -21,6 +21,9 @@ export const CASE4_FOTO_POINT_TARGET: PointTargetContradiction = {
   ]
 };
 
+/** Alias used by trial_day1.ts */
+export const CASE4_D1_T1_POINT_TARGET = CASE4_FOTO_POINT_TARGET;
+
 export const CASE4_D1_T1_POINT_SUCCESS: DialogueLine[] = [
   { cutin: 'objection_protesto', speaker: 'DEFENSA', text: '¡Mire con aumento la cubeta de la mesita, señor Juez!', sfx: 'whoosh', bgm: 'objection', pose: 'donramon_point' },
   { speaker: 'JUEZ', text: '¿La cubeta metálica? Pero si sólo contiene líquido...', pose: 'judge_shock' },

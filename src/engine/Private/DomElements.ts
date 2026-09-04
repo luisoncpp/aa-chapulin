@@ -58,6 +58,7 @@ export interface DomElements {
   btnStartGame: HTMLButtonElement;
   btnStartCase2?: HTMLButtonElement;
   btnStartCase3?: HTMLButtonElement;
+  btnStartCase4?: HTMLButtonElement;
   btnStartTrialDebug?: HTMLButtonElement;
   btnCourtRecord: HTMLButtonElement;
   btnCloseRecord: HTMLButtonElement;
@@ -130,6 +131,7 @@ export function getDomElements(): DomElements {
     btnStartGame: document.getElementById('btn-start-game') as HTMLButtonElement,
     btnStartCase2: document.getElementById('btn-start-case2') as HTMLButtonElement,
     btnStartCase3: document.getElementById('btn-start-case3') as HTMLButtonElement,
+    btnStartCase4: document.getElementById('btn-start-case4') as HTMLButtonElement,
     btnStartTrialDebug: (document.getElementById('btn-start-trial-debug') as HTMLButtonElement) || undefined,
     btnCourtRecord: document.getElementById('btn-court-record') as HTMLButtonElement,
     btnCloseRecord: document.getElementById('btn-close-record') as HTMLButtonElement,

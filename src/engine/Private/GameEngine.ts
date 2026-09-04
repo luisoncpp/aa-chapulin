@@ -99,6 +99,7 @@ export class GameEngine {
       onStartGame: () => this.startGame('case1'),
       onStartCase2: () => this.startGame('case2'),
       onStartCase3: () => this.startGame('case3'),
+      onStartCase4: () => this.startGame('case4'),
       onStartTrialDebug: () => this.startTrialDebug(),
       onAdvance: () => this.handleAdvance(),
       onOpenCourtRecord: (isTrial) => this.openCourtRecord(isTrial),

@@ -84,7 +84,7 @@ flowchart TD
 
 
 7. **Debug Trial Launch** ([[src/engine/Private/EngineDebugBootstrap.ts]], [[src/engine/Private/EngineLaunch.ts]]):
-   - `applyDebugUrlParams` reads query/hash (`lang=en`, `case=2`, `trial`) during `GameEngine.init()`.
+   - `applyDebugUrlParams` reads query/hash (`lang=en`, `case=2|3|4`, `trial`) during `GameEngine.init()`.
    - `startTrialDebug()` bypasses investigation, dismisses splash, populates debug evidence, and launches the active case's courtroom.
    - Also triggerable via URL params (`?trial`) or `window.gameEngine.startTrialDebug()`.
    - Case 2 day-1 adjournment returns to investigation through [[src/engine/Private/AdjournmentHandler.ts]] (`fadeThroughBlack`, then `resetTrialLaunchButton` and `startInvestigation` with the postal plate painted while covered and the intro queued after the reveal).
@@ -96,6 +96,15 @@ flowchart TD
    - Renders `#choice-prompt-modal` during climax via `openChoiceModal()` — non-dismissible, no close button; option buttons use `menu-btn talk-btn` and call `TrialController.handleSelectChoice()`.
    - **Invariant — Court Record cards share equal tracks and scroll only on Y.** `#evidence-grid` is a flex child (`min-width: 0`) with `repeat(3, minmax(0, 1fr))`. Grid items also use `min-width: 0`. Names wrap up to two lines (`line-clamp: 2`); they must not use `white-space: nowrap` or they grow a column (`min-width: auto`) and the grid overflows X. `overflow-x: clip` + `overflow-y: auto` (not `overflow: auto`). Regression: [[tests/engine/CourtRecordLayout.test.ts]].
    - **Invariant — Evidence descriptions scroll; Presentar stays fully visible.** `.modal-body` is `overflow: hidden`. `#evidence-details` uses `min-height: 0` so it can shrink to that body instead of growing with copy. `#evidence-description` is capped at six lines (`max-height: calc(1.3em * 6)`, matching `line-height: 1.3`) with `overflow-y: auto`. `#btn-modal-present` is `flex-shrink: 0`. Regression: [[tests/engine/CourtRecordLayout.test.ts]].
+
+9. **Present & Point overlay** (Case 4, [[docs/flows/present-point-flow.md]]):
+   - When a contradiction or climax stage sets `pointTarget`, a correct present queues `#present-point-overlay` instead of immediate success dialogue.
+   - `#present-point-image` shows the same `detailedView.imageAsset` as the Acta examine plate; zone `bounds` are percentages of that image as rendered with `object-fit: contain` inside `#present-point-stage` (see [[docs/lessons-learned/present-point-cover-crop.md]]).
+   - Wrong zone: `takePenalty()`, `failureDialogue`, reopen overlay. Correct zone: `realization` SFX, `¡TOMA ESO!` cut-in, `successDialogue`, then optional `updateEvidence`.
+
+10. **Evidence examine in Acta** (Case 4, [[docs/flows/evidence-examine-flow.md]]):
+   - Selecting inventory evidence with `detailedView` reveals `#btn-evidence-examine` (*Examinar Detalle* / *Examine Detail*).
+   - Opens `#evidence-examine-modal` with caption, plate image, and optional `clickableZones` tooltips (e.g. `nota_amenaza` sentence highlights). Does not advance trial state by itself.
 
 ## Invariants & Design Rules
 

@@ -8,7 +8,8 @@ export { CASE4_TRIAL_INTRO_EN, CASE4_TESTIMONY_1_EN } from './Private/trial_day1
 export { CASE4_TESTIMONY_2 } from './Private/trial_day1_t2.js';
 export { CASE4_TESTIMONY_2_EN } from './Private/trial_day1_t2_en.js';
 export { CASE4_DAY2_INTRO, CASE4_TESTIMONY_3 } from './Private/trial_day2.js';
-export { CASE4_DAY2_INTRO_EN, CASE4_TESTIMONY_3_EN, CASE4_TESTIMONY_4_EN } from './Private/trial_day2_en.js';
+export { CASE4_DAY2_INTRO_EN, CASE4_TESTIMONY_3_EN } from './Private/trial_day2_en.js';
+export { CASE4_TESTIMONY_4_EN } from './Private/trial_day2_t2_en.js';
 export { CASE4_TESTIMONY_4 } from './Private/trial_day2_t2.js';
 export {
   CASE4_DAY3_INTRO, CASE4_DAY3_OPENING_PRESENT, CASE4_TESTIMONY_5

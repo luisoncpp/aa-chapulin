@@ -4,7 +4,7 @@ Technical guide for [[src/case/index.ts]], configured in [[src/case/case.group.m
 
 ## Overview
 
-Narrative lives in `CaseScript` objects. `getCaseScript(lang, caseId)` in [[src/case/index.ts]] returns Case 1 (`case1`), Case 2 (`case2`), or Case 3 (`case3`); default `CASE_SCRIPT` is still Case 1 Spanish. Each script has `id`, `startLocation`, `requiredEvidence`, `debugEvidence`, `debugUnlockLocations`, `investigation`, `trial`, and optional `adjournment` ([[src/types/Private/script.ts]]). Case 3 lives in nested module [[src/case/case3/index.ts]].
+Narrative lives in `CaseScript` objects. `getCaseScript(lang, caseId)` in [[src/case/index.ts]] returns Case 1 (`case1`), Case 2 (`case2`), Case 3 (`case3`), or Case 4 (`case4` when scripted); default `CASE_SCRIPT` is still Case 1 Spanish. Each script has `id`, `startLocation`, `requiredEvidence`, `debugEvidence`, `debugUnlockLocations`, `investigation`, `trial`, and optional `adjournment` ([[src/types/Private/script.ts]]). Case 3 lives in nested module [[src/case/case3/index.ts]]; Case 4 will live in [[src/case/case4/index.ts]].
 
 ```mermaid
 graph TD
@@ -113,3 +113,36 @@ Optional `AdjournmentDefinition`: `nextLocation`, `unlockLocations`, next-day `r
 | **Testimony 2 (Part 1)** | Witness claims the culprit broke into the glass case from the outside. | Glass shards fell outward and Chiquitolina shrinking pills were found by the vent, showing the culprit shrank and broke the glass from inside. | `pastillas_chiquitolina` | [[src/case/case1/Private/trial.ts#Testimony 2: Escape Route]] |
 | **Testimony 2 (Part 2)** | Witness claims security photo shows Chapulín running toward the front exit. | The chest logo shows inverted "HC", proving the photo captured a reflection in the mirror; culprit was running to the rear loading bay. | `foto_crimen` | [[src/case/case1/Private/trial.ts#Testimony 2: Escape Route]] |
 | **Climax** | Prosecution demands physical proof of where the stolen artifact is right now. | Vinyl antennae detect enemy presence pointing straight at Tripaseca's jacket pocket where the Chicharra is concealed. | `antenitas_vinil` or `bolsa_dolares` | [[src/case/case1/Private/climax.ts#Climax Confrontation & Dilemma]] |
+
+## Case 4 Assembly (`case4`)
+
+Case 4 (`case4`) is specified in [[docs/specs/case-4-el-caso-del-hotel-buena-vista.md]]; scripts land in [[src/case/case4/index.ts]] when implemented. Investigation path:
+
+| Day | Location chain | Notes |
+|-----|----------------|-------|
+| **1** | `detention` → `hotel_lobby` → `suite_304` → `hotel_terraza` | Maruja (`maruja_idle`) seals day with `candado_cadena`. |
+| **2** | `sotano` → `suite_204` → `hotel_terraza_d2` → `delegacion` | Terrace rotates to Chómpiras (`chompiras_idle`); precinct delivers `informe_forense`. |
+| **3** | `cava_sotano` → `hotel_lobby_d3` → `azotea` → `detention_d3` | Lobby rotates to Chimoltrufia (`chimoltrufia_idle`); detention revisit unlocks `nota_amenaza`. |
+
+Day 1 reuses `detention`; day 3 revisits it as `detention_d3` (same gating pattern as Case 3). Cast rotation uses **new location ids** (`hotel_terraza_d2`, `hotel_lobby_d3`) instead of mutating the same scene — see [[docs/lessons-learned/location-cast-rotation.md]].
+
+### Case 4 script fields (beyond Case 3)
+
+| Field | Where | Purpose |
+|-------|-------|---------|
+| `pointTarget` | `Statement`, `ContradictionRule`, `ClimaxStage` | After a correct present, opens `#present-point-overlay` so the player clicks a zone on the evidence plate ([[docs/flows/present-point-flow.md]]). |
+| `followUp` | `ContradictionRule` | Optional second beat after `pointTarget` success (extra dialogue before `updateEvidence`). |
+| `openingPresent` | `testimony` | Day-3 trial opens with a mandatory present (`nota_amenaza`) before testimony 1. |
+| `detailedView` | `EvidenceItem` in [[src/state/Private/EvidenceCatalogCase4.ts]] | Five items expose `#btn-evidence-examine` in the Acta ([[docs/flows/evidence-examine-flow.md]]). |
+
+### Case 4 trial gating (`checkTrialReadiness`)
+
+Readiness is inventory-only (see [[docs/lessons-learned/trial-gating-is-inventory-only.md]]). Last location of each day must hand over at least one `requiredEvidence` item:
+
+| Day | `requiredEvidence` | Last location | Sealing item |
+|-----|-------------------|---------------|--------------|
+| **1** | `informe_policial`, `foto_crimen`, `plano_hotel`, `billetera_cuajinais`, `candado_cadena` | `hotel_terraza` | `candado_cadena` |
+| **2** | `residuos_manos`, `casquillo_fogueo`, `registro_montacargas`, `informe_forense` | `delegacion` | `informe_forense` |
+| **3** | `copa_vino`, `botella_vino`, `boleta_baccarat`, `baul_etiquetas`, `sello_lacre`, `nota_amenaza` | `detention_d3` | `nota_amenaza` |
+
+`getEvidenceCatalog(lang, 'case4')` returns the Case 4 map alone (16 entries including `insignia_abogado`); Case 1 `foto_crimen` text must not leak.

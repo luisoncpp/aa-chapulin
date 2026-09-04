@@ -40,3 +40,7 @@ Vitest covers state, contradictions, investigation, engine, i18n, and Case 1/2 s
 ## Phase 4: Episode 3 (IMPLEMENTED)
 
 **Case 3: "El Juicio del Doctor Chapatín — La Noche del Grito"** — scripts, engine hooks, and art pipeline in [[src/case/case3/index.ts]], spec [[docs/specs/case-3-la-noche-del-grito.md]]. Press-gated statements, multi-stage evidence descriptions, third trial day via `adjournment.next`, splash `#btn-start-case3`, debug `?case=3&trial=2|3`.
+
+## Phase 5: Episode 4 (IMPLEMENTED — catalog & platform hooks)
+
+**Case 4: "Crimen en el Gran Hotel — El Caso del Hotel Buena Vista"** — spec [[docs/specs/case-4-el-caso-del-hotel-buena-vista.md]]. **Implemented in this phase:** isolated evidence catalog ([[src/state/Private/EvidenceCatalogCase4.ts]]), `detailedView` / `pointTarget` types, Present & Point and Acta examine DOM/CSS, splash `#btn-start-case4`, i18n `btnStartCase4`, debug `?case=4`. **Pending:** bilingual scripts in [[src/case/case4/index.ts]], trial/investigation content, asset pipeline for hotel cast and examine plates.

@@ -24,6 +24,7 @@ export function applyDebugUrlParams(actions: DebugUrlActions): void {
   const url = `${window.location.search} ${window.location.hash}`.toLowerCase();
   if (url.includes('lang=en')) actions.setLanguage('en');
   if (url.includes('case=3')) actions.loadCase('case3');
+  else if (url.includes('case=4')) actions.loadCase('case4');
   else if (url.includes('case=2')) actions.loadCase('case2');
   const trialDay = parseTrialDay(url);
   if (trialDay) actions.startTrialDebug(trialDay);

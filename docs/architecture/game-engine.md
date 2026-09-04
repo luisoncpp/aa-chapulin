@@ -103,7 +103,7 @@ flowchart TD
 
 9. **Present & Point overlay** (Case 4, [[docs/flows/present-point-flow.md]], [[src/engine/Private/PresentPoint.ts]]):
    - When a contradiction, follow-up, or climax stage sets `pointTarget`, a correct present closes the Acta and opens `#present-point-overlay` instead of playing success dialogue yet.
-   - Image: `pointTarget.imageAsset`, else the evidence `detailedView.imageAsset`, else `assets/examine_<id>.webp`. Clicks convert to percent of the 640×360 `#present-point-stage`.
+   - Image: `pointTarget.imageAsset`, else the evidence `detailedView.imageAsset`, else `assets/examine_<id>.webp`. Clicks convert to percent of the 640×360 `#present-point-stage`. Case 4 examine plates are already 16:9; pin zones to the painted object on those WebPs ([[tests/case/Case4PresentPointZones.test.ts]]).
    - Correct `isCorrect` zone: realization SFX, then the **parent** `successDialogue`. Miss: penalty, that zone's `failureDialogue` (or the first incorrect zone on a total miss); overlay reopens after the fail lines. Health 0 restarts the trial.
    - Optional `ContradictionRule.followUp` then reopens the Acta for a second present. `TrialDayScript.openingPresent` runs after the day intro and before testimony 1.
 

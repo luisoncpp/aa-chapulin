@@ -16,7 +16,7 @@ export const CASE4_PLANO_POINT_TARGET: PointTargetContradiction = {
   promptQuestion: '¡Señale el conducto exacto donde se propagó la onda sonora del disparo de las 11:15 PM!',
   imageAsset: 'assets/examine_plano.webp',
   zones: [
-    { id: 'tuberia_vapor_vertical', bounds: [42, 26, 58, 68], isCorrect: true, failureDialogue: [] },
+    { id: 'tuberia_vapor_vertical', bounds: [40, 18, 62, 74], isCorrect: true, failureDialogue: [] },
     { id: 'plano_resto', bounds: [0, 0, 100, 100], isCorrect: false, failureDialogue: PLANO_FAILURE }
   ]
 };

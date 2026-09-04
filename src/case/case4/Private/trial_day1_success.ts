@@ -16,7 +16,7 @@ export const CASE4_FOTO_POINT_TARGET: PointTargetContradiction = {
   promptQuestion: '¡Señale el elemento gráfico que desmiente que el servicio estuviera recién servido a las 11:15 PM!',
   imageAsset: 'assets/examine_foto.webp',
   zones: [
-    { id: 'cubeta_hielo_derretido', bounds: [56, 46, 76, 70], isCorrect: true, failureDialogue: [] },
+    { id: 'cubeta_hielo_derretido', bounds: [50, 14, 88, 82], isCorrect: true, failureDialogue: [] },
     { id: 'foto_resto', bounds: [0, 0, 100, 100], isCorrect: false, failureDialogue: FOTO_FAILURE }
   ]
 };

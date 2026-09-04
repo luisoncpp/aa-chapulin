@@ -293,7 +293,7 @@ export interface PointTargetContradiction {
    - **`promptQuestion`**: *"¡Señale el elemento gráfico que desmiente que el servicio estuviera recién servido a las 11:15 PM!"*
    - **Zona correcta**:
      - `id`: `'cubeta_hielo_derretido'`
-     - `bounds`: `[56, 46, 76, 70]` (área de la cubeta metálica sobre la mesita ratona conteniendo agua líquida a temperatura ambiente sin cubos ni témpanos de hielo)
+     - `bounds`: `[50, 14, 88, 82]` (cubeta metálica completa sobre la mesita, incluido el agua templada del interior; el WebP generado ocupa casi todo el tercio derecho, no un parche en el costado)
      - `isCorrect`: `true`
    - **Zona incorrecta / `failureDialogue`**:
      ```typescript
@@ -309,7 +309,7 @@ export interface PointTargetContradiction {
    - **`promptQuestion`**: *"¡Señale el conducto exacto donde se propagó la onda sonora del disparo de las 11:15 PM!"*
    - **Zona correcta**:
      - `id`: `'tuberia_vapor_vertical'`
-     - `bounds`: `[42, 26, 58, 68]` (tiro vertical directo de la tubería de calefacción y purga de vapor que une la Suite 204 con la Suite 304)
+     - `bounds`: `[40, 18, 62, 74]` (tiro vertical de vapor y radiadores 204↔304 sobre `examine_plano.webp`, sin las habitaciones laterales ni la boca de la caldera)
      - `isCorrect`: `true`
    - **Zona incorrecta / `failureDialogue`**:
      ```typescript
@@ -325,7 +325,7 @@ export interface PointTargetContradiction {
    - **`promptQuestion`**: *"¡Señale el punto exacto por donde penetró el cianuro en la botella sellada!"*
    - **Zona correcta**:
      - `id`: `'cupula_sello_lacre'`
-     - `bounds`: `[44, 4, 56, 24]` (cúpula superior del sello de lacre rojo sobre el cuello de la botella, donde se aprecia la micro-punzada de aguja hipodérmica resellada con calor)
+     - `bounds`: `[42, 2, 58, 30]` (cúpula y goteos del sello de lacre rojo, con la micro-punzada de aguja en el centro de la tapa)
      - `isCorrect`: `true`
    - **Zona incorrecta / `failureDialogue`**:
      ```typescript
@@ -560,7 +560,7 @@ SUPER SAM (supersam_point): ¡No intente justificarlo! ¡Botija no tuvo tiempo d
 - **Presentar**: `foto_crimen` (prueba gráfica admisible para señalamiento).
 - **Se activa mecánica Señalar Detalle (`Present & Point`)**:
   - Pregunta del tribunal: *"¡Señale el elemento gráfico que desmiente que el servicio estuviera recién servido a las 11:15 PM!"*
-  - **Zona correcta**: La cubeta de metal sobre la mesita ratona (`id`: `'cubeta_hielo_derretido'`, `bounds`: `[56, 46, 76, 70]`).
+  - **Zona correcta**: La cubeta de metal sobre la mesita ratona (`id`: `'cubeta_hielo_derretido'`, `bounds`: `[50, 14, 88, 82]`).
   - **Zona incorrecta / Fallo**: Si se señala fuera de la cubeta, se activa el `failureDialogue` y se descuenta 1 punto de salud (`penalty`).
 - **Diálogo de éxito**:
 
@@ -856,7 +856,7 @@ DEFENSA (donramon_idle): (Ese es el truco maestro... Si la detonación parece sa
 - **Presentar**: `plano_hotel`.
 - **Se activa mecánica Señalar Detalle (`Present & Point`)**:
   - Pregunta del tribunal: *"¡Señale el conducto exacto donde se propagó la onda sonora del disparo de las 11:15 PM!"*
-  - **Zona correcta**: La conexión vertical de vapor entre el radiador de la Suite 204 y el radiador de la Suite 304 (`id`: `'tuberia_vapor_vertical'`, `bounds`: `[42, 26, 58, 68]`).
+  - **Zona correcta**: La conexión vertical de vapor entre el radiador de la Suite 204 y el radiador de la Suite 304 (`id`: `'tuberia_vapor_vertical'`, `bounds`: `[40, 18, 62, 74]`).
   - **Zona incorrecta / Fallo**: Si se señala fuera del conducto vertical, se activa el `failureDialogue` y se descuenta 1 punto de salud (`penalty`).
 - **Presentar enseguida**: `casquillo_fogueo`.
 
@@ -1091,7 +1091,7 @@ DEFENSA (donramon_slam): ¡La defensa tiene la prueba decisiva que destruirá la
 - **Presentar**: `botella_vino`.
 - **Se activa mecánica Señalar Detalle (`Present & Point`)**:
   - Pregunta del tribunal: *"¡Señale el punto exacto por donde penetró el cianuro en la botella sellada!"*
-  - **Zona correcta**: La cúpula superior del sello de lacre rojo sobre el cuello de la botella (`id`: `'cupula_sello_lacre'`, `bounds`: `[44, 4, 56, 24]`, el micro-orificio de aguja disimulado con calor).
+  - **Zona correcta**: La cúpula superior del sello de lacre rojo sobre el cuello de la botella (`id`: `'cupula_sello_lacre'`, `bounds`: `[42, 2, 58, 30]`, el micro-orificio de aguja disimulado con calor).
   - **Zona incorrecta / Fallo**: Si se señala el cuerpo de la botella, la etiqueta o el cristal, se activa el `failureDialogue` y se descuenta 1 punto de salud (`penalty`).
 
 ```dialogue

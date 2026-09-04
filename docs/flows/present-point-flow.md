@@ -32,7 +32,7 @@ Player presents the matching evidence during cross-examination, a `followUp` pre
 ## 5. Side Effects
 
 - Overlay is a `.game-modal`, so it must hide during fail dialogue or Space/Enter cannot advance.
-- Authors place bounds on the visible plate ([[docs/lessons-learned/present-point-cover-crop.md]]).
+- Authors overlay bounds on the generated `examine_*.webp` (Case 4 plates are already 16:9, so letterboxing is not the usual miss). Regression: [[tests/case/Case4PresentPointZones.test.ts]].
 
 ## 6. Related Modules
 

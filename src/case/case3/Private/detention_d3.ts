@@ -14,6 +14,7 @@ export const CASE3_DETENTION_D3: InvestigationScene = {
   bg: 'assets/bg_detention.webp',
   bgm: 'detention_center',
   speaker: 'NARRADOR',
+  idlePose: 'chapatin_idle',
   intro: [
     { speaker: 'NARRADOR', text: '18 de septiembre, 10:00 AM. Centro de Detención. Tercer día, el mismo banco de cemento.' },
     { speaker: 'DEFENSA', text: 'Doctor, su paciente despertó. El señor Barriga abrió los ojos esta mañana.', pose: 'donramon_idle' },

@@ -18,7 +18,9 @@ Operational guide for player actions during the crime scene investigation phase.
 3. `bgEl` background style switches to the scene image from the active script (`bg_museum.jpg`, `bg_detention.jpg`, or Case 2 `bg_boveda.jpg` / `bg_restaurante.jpg` / `bg_postal.jpg` / `bg_clotilde.jpg`).
 4. `midiComposer.playTrack(scene.bgm)` transitions background music (`'investigation'` or `'suspense'`).
 5. `renderHotspots()` injects percentage-based clickable regions into `#hotspots-container` (`x,y,w,h` are of the 960×540 stage after `background-size: cover`, not of the raw background file).
-6. `queueDialogue(scene.intro)` presents opening narrative dialogue. After a trial adjournment the intro waits until `fadeThroughBlack` has revealed the new plate; the postal background, plain stage frame, and hidden courtroom sprite are already applied while covered.
+6. `resolveSceneIntro(scene, gameState)` checks whether an opening dialogue should play:
+   - On first visit (or when a conditional `SceneIntro` matches unplayed event flags), `gameState.markIntroPlayed(intro.id)` records completion and `queueDialogue(intro.dialogue)` presents opening dialogue. After trial adjournment, intro waits until `fadeThroughBlack` reveals the new plate.
+   - On re-visits where no new event intro matches, opening dialogue is bypassed as in Ace Attorney games; the speaker tag and dialogue box are cleared, the resident character pose is restored from the scene's resolved `idlePose` (or hidden if `null`), and investigation navigation is immediately ready. Dialogue completions (intro, hotspot examination, and talk topics) similarly restore the resident character's `idlePose`.
 
 ### Examination & Hotspot Click
 1. Player clicks "🔍 Examinar" (`#btn-inv-examine`).
@@ -26,7 +28,7 @@ Operational guide for player actions during the crime scene investigation phase.
 3. Active character sprite is hidden (`hideCharacter()`) so the background is clear.
 4. Player moves cursor over a hotspot: `#examine-tooltip` updates position and text label.
 5. Player clicks hotspot:
-   - SFX `'realization'` plays.
+   - SFX `'click'` plays.
    - `exitExamineMode()` disables hotspot hover layer.
    - If first-time inspection (`!gameState.isHotspotExamined(h.id)`):
      - Investigation controls (`#investigation-controls`) remain hidden to prevent switching to talk/examine during active dialogue.
@@ -47,14 +49,15 @@ Operational guide for player actions during the crime scene investigation phase.
    - Other unlocked locations are clickable.
 4. Player clicks an unlocked destination: modal closes and `startInvestigation(locId)` executes scene transition.
 
-### Talk Option Click & Dynamic Location Unlock
+### Talk Option Click, Progressive Unlocking & Dynamic Location Unlock
 1. Player clicks "💬 Hablar" (`#btn-inv-talk`).
-2. `#talk-options-modal` opens via `ModalManager.openTalkModal()` with buttons for each topic defined in `scene.talkOptions`.
-3. Player clicks a topic: modal closes, topic dialogue queues, and evidence grants, description updates, or location unlocks are granted if scripted.
-4. When dialogue line contains `line.unlockLocation`:
+2. `visibleTalkOptions(scene.talkOptions, gameState)` filters options, hiding any topics gated by `unlockedByTalk`, `unlockedByHotspot`, or `condition` whose requirements have not yet been satisfied.
+3. `#talk-options-modal` opens via `ModalManager.openTalkModal()` with buttons for each currently unlocked topic.
+4. Player clicks a topic: modal closes, topic dialogue queues, `gameState.markTalkCompleted(opt.id)` records completion, and evidence grants, description updates, or location unlocks are granted if scripted.
+5. When dialogue line contains `line.unlockLocation`:
    - `gameState.unlockLocation(locId)` registers the location.
    - If newly unlocked, SFX `realization` plays and `#game-notification` displays `notifLocationUnlocked`.
-5. On completion callback, `checkInvestigationProgress()` runs.
+6. On dialogue completion callback (or hotspot examination completion), `notifyNewlyUnlocked()` checks if any previously locked topic in the scene became unlocked. If so, `realization` SFX plays, `#game-notification` displays `notifDialogueUnlocked(opt.label)`, and `checkInvestigationProgress()` runs.
 
 ### Unlocking & Launching Trial
 1. `gameState.checkTrialReadiness()` in [[src/state/Private/GameStateManager.ts#Investigation Readiness]] checks `script.requiredEvidence` (day 1) or `adjournment.requiredEvidence` after Case 2 day-1 adjournment.

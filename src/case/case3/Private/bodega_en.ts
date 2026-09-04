@@ -62,6 +62,7 @@ export const CASE3_BODEGA_EN: InvestigationScene = {
   bg: 'assets/bg_bodega.webp',
   bgm: 'suspense',
   speaker: 'NARRADOR',
+  idlePose: null,
   intro: [
     { speaker: 'NARRADOR', text: 'September 18, 7:00 AM. XEVC storeroom: cables, dust, and a door to Cabina A.' },
     { speaker: 'DEFENSA', text: 'This is where they found Don Aniceto tied up. Let\'s check every corner.', pose: 'donramon_idle' },
@@ -72,6 +73,7 @@ export const CASE3_BODEGA_EN: InvestigationScene = {
     {
       id: 'about_amarrado',
       label: 'About Aniceto\'s bonds',
+      unlockedByHotspot: 'hotspot_polvo',
       dialogue: [
         { speaker: 'DEFENSA', text: 'Twenty minutes gagged... and the dust shows no struggle. That doesn\'t add up.', pose: 'donramon_point' },
         { speaker: 'CHAPULIN', text: '¡Lo sospeché desde un principio!', pose: 'chapulin_point' }

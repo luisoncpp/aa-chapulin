@@ -11,6 +11,7 @@ export const CASE2_POSTAL: InvestigationScene = {
   bg: 'assets/bg_postal.webp',
   bgm: 'callejon_postal',
   speaker: 'NARRADOR',
+  idlePose: 'jaimito_idle',
   intro: [
     { speaker: 'NARRADOR', text: '30 de Agosto, 9:00 AM. Callejón Trasero y Puesto Postal.' },
     { speaker: 'JAIMITO', text: 'Buenos días... Vengo a entregar estas cartas, pero es que quiero evitar la fatiga...', pose: 'jaimito_tired' },
@@ -51,6 +52,7 @@ export const CASE2_POSTAL: InvestigationScene = {
     {
       id: 'about_siesta',
       label: '¿Dónde estaba a las 9:30 PM?',
+      unlockedByHotspot: 'hotspot_multa',
       dialogue: [
         { speaker: 'JAIMITO', text: 'En la banca del parque, evitando la fatiga. El carrito se quedó solitito en el callejón. La policía no lo revisó; sólo aseguraron la bóveda.', pose: 'jaimito_tired' }
       ]

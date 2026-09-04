@@ -11,6 +11,7 @@ export const CASE2_DETENTION: InvestigationScene = {
   bg: 'assets/bg_detention.webp',
   bgm: 'detention_center',
   speaker: 'NARRADOR',
+  idlePose: 'chompiras_idle',
   intro: [
     { speaker: 'NARRADOR', text: '29 de Agosto, 10:00 AM. Centro de Detención de la Ciudad.' },
     { speaker: 'DEFENSA', text: 'Bueno, aquí estamos. Según la policía, el sospechoso es un peligroso asaltante internacional...', pose: 'donramon_idle' },
@@ -52,6 +53,7 @@ export const CASE2_DETENTION: InvestigationScene = {
     {
       id: 'about_peterete',
       label: 'Sobre el señor Peterete',
+      unlockedByTalk: 'about_vault',
       dialogue: [
         { speaker: 'CHOMPIRAS', text: 'Es un señor muy fino y elegante. Dice que es el jefe de seguridad de la hacienda y perito valuador. Trae un sombrero muy bonito y siempre me ayuda a no caer en malos pasos.', pose: 'chompiras_idle' },
         { speaker: 'CHAPULIN', text: '¡Sospechosa amabilidad! ¡Todos mis movimientos están fríamente calculados!', pose: 'chapulin_point' },

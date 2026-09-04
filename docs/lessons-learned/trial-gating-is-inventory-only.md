@@ -25,7 +25,19 @@ Los Casos 1 y 2 la cumplen por accidente feliz, no por diseño explícito — de
 | Día | Última locación | Prueba que la ancla |
 |---|---|---|
 | Caso 2, día 1 | `restaurante` | 2 de las 6 de `CASE2_DAY1_EVIDENCE` |
-| Caso 2, día 2 | `casa_clotilde` | 2 de las 6 de `CASE2_DAY2_EVIDENCE` |
+| Caso 2, día 2 | `casa_clotilde` | 2 de las 6 de `CASE2_DAY2_EVIDENCE` (`molde_cera` anclado al diálogo de Clotilde) |
+
+### El corolario intra-escena (Hotspots vs Diálogos)
+
+No basta con que la última locación entregue pruebas: **dentro de esa locación, la prueba final debe entregarse en el diálogo clave, no en un hotspot libre.**
+
+Si una escena final tiene 2 hotspots que entregan prueba física (`hotspot_frasco` y `hotspot_basura`) y un diálogo con la revelación importante (`about_peterete_visit`, "Sobre el comprador misterioso") sin prueba, el jugador puede examinar los dos hotspots, completar el inventario y ver `#btn-inv-trial` encenderse antes de abrir el menú de hablar.
+
+La solución sin tocar el motor es atar la entrega de la prueba final al diálogo narrativo:
+- `about_peterete_visit`: Clotilde revela que el comprador rondó las veladoras y la defensa encuentra `molde_cera`.
+- `hotspot_basura`: queda como observación de ambientación.
+
+Así, es físicamente imposible alcanzar las 6 pruebas sin haber escuchado la revelación de Clotilde.
 
 ## Cómo arreglarlo sin tocar el motor
 
@@ -41,3 +53,4 @@ La segunda suele mejorar el ritmo además de arreglar el gate: la escena de puro
 Un test de guión lo atrapa sin ejecutar el juego: para cada día, cruzar `requiredEvidence` contra los `addEvidence` de la última locación de la cadena de `unlockLocation` y exigir intersección no vacía. Es más barato que descubrirlo jugando, porque el síntoma —un plante que el jugador no vio— sólo aparece dos horas después, en el clímax.
 
 Ver también [[investigation-dialogue-completion-lifecycle]] y [[climax-court-record-reopening]].
+

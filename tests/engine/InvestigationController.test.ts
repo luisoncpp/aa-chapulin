@@ -51,6 +51,65 @@ describe('InvestigationController', () => {
     expect(queuedDialogues).toHaveLength(1);
   });
 
+  it('does not replay opening dialogue when re-visiting an already visited location', () => {
+    controller.startInvestigation('museum');
+    expect(queuedDialogues).toHaveLength(1);
+
+    state.unlockLocation('detention');
+    controller.startInvestigation('detention');
+    expect(queuedDialogues).toHaveLength(2);
+
+    // Re-visit museum: opening dialogue should NOT be queued again
+    controller.startInvestigation('museum');
+    expect(queuedDialogues).toHaveLength(2);
+    expect(state.currentLocation).toBe('museum');
+    expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_museum.webp');
+    expect(dom.charSpriteEl.src).toContain('assets/florinda_idle.webp');
+  });
+
+  it('plays new conditional intro when an event flag is triggered on a re-visit', () => {
+    const scriptWithConditionalIntro = {
+      ...CASE_SCRIPT,
+      investigation: {
+        ...CASE_SCRIPT.investigation,
+        detention: {
+          ...CASE_SCRIPT.investigation.detention,
+          intro: [
+            {
+              id: 'detention_initial',
+              dialogue: [{ speaker: 'CHAPULIN', text: 'Initial dialogue' }]
+            },
+            {
+              id: 'detention_after_event',
+              condition: (flags: any) => Boolean(flags.found_clue),
+              dialogue: [{ speaker: 'CHAPULIN', text: 'Event dialogue after finding clue!' }]
+            }
+          ]
+        }
+      }
+    };
+    controller.setScript(scriptWithConditionalIntro as any);
+
+    controller.startInvestigation('detention');
+    expect(queuedDialogues).toHaveLength(1);
+    expect(queuedDialogues[0][0].text).toBe('Initial dialogue');
+
+    // Move to museum, then return to detention without flag: no new dialogue
+    controller.startInvestigation('museum');
+    controller.startInvestigation('detention');
+    expect(queuedDialogues).toHaveLength(2); // 1 detention initial + 1 museum
+
+    // Now trigger event flag and return to detention: event dialogue should play once
+    state.flags.found_clue = true;
+    controller.startInvestigation('detention');
+    expect(queuedDialogues).toHaveLength(3);
+    expect(queuedDialogues[2][0].text).toBe('Event dialogue after finding clue!');
+
+    // Re-visiting detention again: event dialogue should not repeat
+    controller.startInvestigation('detention');
+    expect(queuedDialogues).toHaveLength(3);
+  });
+
   it('toggles examine mode and restores character pose on exit', () => {
     controller.startInvestigation('museum');
     controller.currentLocationCharPose = 'florinda_idle';
@@ -92,8 +151,12 @@ describe('InvestigationController', () => {
     hotspotArea.dispatchEvent(new Event('mouseleave'));
     expect(dom.examineTooltipEl.classList.contains('hidden')).toBe(true);
 
-    // Click triggers hotspot interaction and exits examine mode
+    // Click triggers hotspot interaction, plays quiet click sound (not realization chime), and exits examine mode
+    const clickSpy = vi.spyOn(soundEngineInstance, 'playClick');
+    const realizationSpy = vi.spyOn(soundEngineInstance, 'playRealization');
     hotspotArea.click();
+    expect(clickSpy).toHaveBeenCalledTimes(1);
+    expect(realizationSpy).not.toHaveBeenCalled();
     expect(controller.isExamineActive).toBe(false);
     expect(queuedDialogues.length).toBeGreaterThan(1);
   });

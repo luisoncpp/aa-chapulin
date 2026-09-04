@@ -11,6 +11,7 @@ export const CASE3_KERMES: InvestigationScene = {
   bg: 'assets/bg_kermes.webp',
   bgm: 'kermes',
   speaker: 'NARRADOR',
+  idlePose: 'jirafales_idle',
   intro: [
     { speaker: 'NARRADOR', text: '16 de septiembre, 3:00 PM. Plaza de la Kermés, con los papeles de colores todavía colgados.' },
     { speaker: 'FLORINDA', text: '¡Otra vez usted! ¿Ahora a quién defiende, a la chusma o a los caseros?', pose: 'florinda_angry' },

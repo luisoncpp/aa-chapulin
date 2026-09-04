@@ -11,6 +11,7 @@ export const CASE3_DELEGACION_EN: InvestigationScene = {
   bg: 'assets/bg_delegacion.webp',
   bgm: 'investigation',
   speaker: 'NARRADOR',
+  idlePose: 'pazguato_idle',
   intro: [
     { speaker: 'NARRADOR', text: 'September 17, 5:00 PM. Police station, the back desk that fell to the sergeant.' },
     { speaker: 'SARGENTO', text: 'Come in, Licenciado. Want some? Bean torta. I only eat beans now — the prosecutor left me fourteen pesos this paycheck.', pose: 'pazguato_sweat' },

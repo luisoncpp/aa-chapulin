@@ -86,6 +86,7 @@ export class SoundEngine {
       case 'damage': return this.playDamage();
       case 'chipote': return this.playChipoteSqueak();
       case 'chicharra': return this.playChicharra();
+      case 'click': return this.playClick();
       default: return this.playTextBlip();
     }
   }
@@ -99,6 +100,11 @@ export class SoundEngine {
   public playTextBlip(pitchOffset = 0): void {
     if (!this.canPlay()) return;
     NoveltySfx.playTextBlip(this.ctx!, this.sfxGain!, pitchOffset);
+  }
+
+  public playClick(): void {
+    if (!this.canPlay()) return;
+    NoveltySfx.playClick(this.ctx!, this.sfxGain!);
   }
 
   public playGavel(): void {

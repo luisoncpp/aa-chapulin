@@ -40,6 +40,11 @@ Domain terminology and project-specific concepts for **El Chapulín Colorado: Ac
 | **El Sargento** (Refugio Pazguato) | Case 3 Gumshoe-style cop. Everyone calls him "el Sargento"; the full name is spoken once. Dialogue speaker key is `SARGENTO`, sprite prefix stays `pazguato_*`. Contaminates the scene, then recovers the station-cut cartridge from the trash. | [[src/case/case3/index.ts]] |
 | **Don Aniceto Rebollar** | Case 3 star announcer and true culprit; corrects other people's diction and cannot let a misquoted sketch line pass. Base pose `aniceto_idle` is his identity lock. | [[src/case/case3/index.ts]] |
 | **Micrófono de Oro** | Bronze trophy-mic (`microfono_oro`); Case 3 murder weapon. Needs two Court Record updates before the last climax present accepts it. | [[src/state/Private/EvidenceCatalogCase3.ts]] |
+| **Gordon Botija ("El Botija")** | Case 4 defendant: reformed ex-burglar working as hotel plumber/maintenance, framed for murder in the penthouse suite. | [[docs/specs/case-4-el-caso-del-hotel-buena-vista.md]] |
+| **Rufino Rufián** | Case 4 star guest and true culprit: fake count ("Conde de Montemayor") and international swindler who poisoned Cuajinais and staged the phantom gunshot. | [[docs/specs/case-4-el-caso-del-hotel-buena-vista.md]] |
+| **Don Cecilio Buenavista** | Case 4 witness: Gran Hotel owner/manager; severely nearsighted and easily confused. | [[docs/specs/case-4-el-caso-del-hotel-buena-vista.md]] |
+| **Maruja** | Case 4 witness: glamorous guest ("La Sirena del Hotel") staying in Suite 303. | [[docs/specs/case-4-el-caso-del-hotel-buena-vista.md]] |
+| **El Cuajinais** | Case 4 victim: mobster with the scar on his cheek, checked in as "Sr. Gómez" to extort Rufino. | [[docs/specs/case-4-el-caso-del-hotel-buena-vista.md]] |
 
 ## Audio & Engine Terminology
 

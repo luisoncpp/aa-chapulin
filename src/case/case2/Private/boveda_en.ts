@@ -11,6 +11,7 @@ export const CASE2_BOVEDA_EN: InvestigationScene = {
   bg: 'assets/bg_boveda.webp',
   bgm: 'investigation_core',
   speaker: 'NARRADOR',
+  idlePose: 'peterete_smug',
   intro: [
     { speaker: 'NARRADOR', text: 'August 29, 11:30 AM. Hacienda Underground Vault.' },
     { speaker: 'FLORINDA', text: 'This is inconceivable! A lowlife thief prowling the hotel neighborhood! Thank goodness prosecutor Super Sam arrested him at once!', pose: 'florinda_angry' },
@@ -50,6 +51,7 @@ export const CASE2_BOVEDA_EN: InvestigationScene = {
     {
       id: 'about_alarm',
       label: 'Who discovered the defendant?',
+      unlockedByHotspot: 'hotspot_caja',
       dialogue: [
         { speaker: 'FLORINDA', text: 'The alarm rang at 10:00 PM! Mr. Peterete and I went down and saw that rabble with the crowbar.', pose: 'florinda_angry' },
         { speaker: 'PETERETE', text: 'Caught red-handed. Case closed, counselor.', pose: 'peterete_smug' }

@@ -78,7 +78,7 @@ describe('SoundEngine & Procedural SFX', () => {
     engine.init(fakeCtx as unknown as AudioContext);
     const sfxList: SFXName[] = [
       'gavel', 'desk_slam', 'whoosh', 'realization',
-      'damage', 'chipote', 'chicharra', 'text'
+      'damage', 'chipote', 'chicharra', 'click', 'text'
     ];
 
     sfxList.forEach((sfx) => {
@@ -91,6 +91,7 @@ describe('SoundEngine & Procedural SFX', () => {
   it('synthesizes all direct methods when active', () => {
     engine.init(fakeCtx as unknown as AudioContext);
     expect(() => engine.playTextBlip()).not.toThrow();
+    expect(() => engine.playClick()).not.toThrow();
     expect(() => engine.playGavel()).not.toThrow();
     expect(() => engine.playDeskSlam()).not.toThrow();
     expect(() => engine.playObjectionWhoosh()).not.toThrow();
@@ -121,6 +122,7 @@ describe('SoundEngine & Procedural SFX', () => {
   it('synthesizes individual NoveltySfx methods directly including defaults', () => {
     const dest = fakeCtx.createGain();
     expect(() => NoveltySfx.playTextBlip(fakeCtx as unknown as AudioContext, dest as unknown as GainNode, /*pitchOffset=*/ 2)).not.toThrow();
+    expect(() => NoveltySfx.playClick(fakeCtx as unknown as AudioContext, dest as unknown as GainNode)).not.toThrow();
     expect(() => NoveltySfx.playRealization(fakeCtx as unknown as AudioContext, dest as unknown as GainNode)).not.toThrow();
     expect(() => NoveltySfx.playChipoteSqueak(fakeCtx as unknown as AudioContext, dest as unknown as GainNode)).not.toThrow();
     expect(() => NoveltySfx.playChicharra(fakeCtx as unknown as AudioContext, dest as unknown as GainNode)).not.toThrow();
@@ -133,6 +135,7 @@ describe('SoundEngine & Procedural SFX', () => {
     const uninitEngine = new SoundEngine();
     expect(() => uninitEngine.playGavel()).not.toThrow();
     expect(() => uninitEngine.playTextBlip()).not.toThrow();
+    expect(() => uninitEngine.playClick()).not.toThrow();
     expect(() => uninitEngine.playDeskSlam()).not.toThrow();
     expect(() => uninitEngine.playObjectionWhoosh()).not.toThrow();
     expect(() => uninitEngine.playRealization()).not.toThrow();
@@ -144,6 +147,7 @@ describe('SoundEngine & Procedural SFX', () => {
     engine.toggleMute();
     expect(() => engine.playSFX('desk_slam')).not.toThrow();
     expect(() => engine.playTextBlip()).not.toThrow();
+    expect(() => engine.playClick()).not.toThrow();
     expect(() => engine.playGavel()).not.toThrow();
     expect(() => engine.playDeskSlam()).not.toThrow();
     expect(() => engine.playObjectionWhoosh()).not.toThrow();

@@ -11,6 +11,7 @@ export const CASE2_BOVEDA: InvestigationScene = {
   bg: 'assets/bg_boveda.webp',
   bgm: 'investigation_core',
   speaker: 'NARRADOR',
+  idlePose: 'peterete_smug',
   intro: [
     { speaker: 'NARRADOR', text: '29 de Agosto, 11:30 AM. Bóveda Subterránea de la Hacienda.' },
     { speaker: 'FLORINDA', text: '¡Esto es inconcebible! ¡Tener a un ladrón de baja ralea merodeando por el vecindario del hotel! ¡Menos mal que el fiscal Super Sam lo apresó de inmediato!', pose: 'florinda_angry' },
@@ -50,6 +51,7 @@ export const CASE2_BOVEDA: InvestigationScene = {
     {
       id: 'about_alarm',
       label: '¿Quién descubrió al acusado?',
+      unlockedByHotspot: 'hotspot_caja',
       dialogue: [
         { speaker: 'FLORINDA', text: '¡Sonó la alarma a las 10:00 PM! El señor Peterete y yo bajamos y vimos a esa chusma con la palanca.', pose: 'florinda_angry' },
         { speaker: 'PETERETE', text: 'In fraganti total. Caso cerrado, abogado.', pose: 'peterete_smug' }

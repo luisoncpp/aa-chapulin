@@ -11,6 +11,7 @@ export const CASE3_DESPACHO: InvestigationScene = {
   bg: 'assets/bg_despacho.webp',
   bgm: 'suspense',
   speaker: 'NARRADOR',
+  idlePose: 'aniceto_idle',
   intro: [
     { speaker: 'NARRADOR', text: '17 de septiembre, 9:30 AM. Despacho de la administración, con sellos judiciales en la puerta.' },
     { speaker: 'ANICETO', text: 'Adelante, Licenciado. Me pidieron abrir yo, por ser el tesorero de la kermés... aunque le confieso que me tiemblan las manos al entrar aquí.', pose: 'aniceto_idle' },
@@ -53,6 +54,7 @@ export const CASE3_DESPACHO: InvestigationScene = {
     {
       id: 'about_tesoro',
       label: 'Sobre el Fondo de la Kermés',
+      unlockedByHotspot: 'hotspot_caja',
       dialogue: [
         { speaker: 'ANICETO', text: 'El Libro Verde lo firmaba yo. Cada peso, cada peso faltante... y anoche arrancaron la hoja que más dolía.', pose: 'aniceto_idle' },
         { speaker: 'DEFENSA', text: '(¿Quién más conocía la combinación de esa caja?)', pose: 'donramon_idle' }

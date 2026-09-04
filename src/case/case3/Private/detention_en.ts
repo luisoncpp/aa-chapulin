@@ -11,6 +11,7 @@ export const CASE3_DETENTION_EN: InvestigationScene = {
   bg: 'assets/bg_detention.webp',
   bgm: 'detention_center',
   speaker: 'NARRADOR',
+  idlePose: 'chapatin_idle',
   intro: [
     { speaker: 'NARRADOR', text: 'September 16, 9:00 AM. City Detention Center.' },
     { speaker: 'DEFENSA', text: 'Good morning, Doctor. I\'m Licenciado Monchito, your defense attorney.', pose: 'donramon_idle' },
@@ -52,6 +53,7 @@ export const CASE3_DETENTION_EN: InvestigationScene = {
     {
       id: 'about_alibi',
       label: 'Where were you between 10:40 and 11:03?',
+      unlockedByTalk: 'about_cabina',
       dialogue: [
         { speaker: 'CHAPATIN', text: 'None of your business.', pose: 'chapatin_enojado' },
         { speaker: 'DEFENSA', text: 'Doctor, with all respect, that\'s exactly what will send you to prison for twenty years.', pose: 'donramon_point' },

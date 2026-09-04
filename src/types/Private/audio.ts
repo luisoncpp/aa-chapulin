@@ -13,6 +13,7 @@ export type SFXName =
   | 'damage'
   | 'chipote'
   | 'chicharra'
+  | 'click'
   | 'text';
 
 // @Section(Track & Sequencer Types)

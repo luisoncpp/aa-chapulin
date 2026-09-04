@@ -11,6 +11,7 @@ export const CASE3_DESPACHO_EN: InvestigationScene = {
   bg: 'assets/bg_despacho.webp',
   bgm: 'suspense',
   speaker: 'NARRADOR',
+  idlePose: 'aniceto_idle',
   intro: [
     { speaker: 'NARRADOR', text: 'September 17, 9:30 AM. Administration office, court seals on the door.' },
     { speaker: 'ANICETO', text: 'Come in, Counselor. They asked me to open it — I\'m treasurer of the kermés... though I confess my hands shake coming in here.', pose: 'aniceto_idle' },
@@ -53,6 +54,7 @@ export const CASE3_DESPACHO_EN: InvestigationScene = {
     {
       id: 'about_tesoro',
       label: 'About the Kermés Fund',
+      unlockedByHotspot: 'hotspot_caja',
       dialogue: [
         { speaker: 'ANICETO', text: 'I signed the Green Book. Every peso, every missing peso... and last night they tore out the page that hurt most.', pose: 'aniceto_idle' },
         { speaker: 'DEFENSA', text: '(Who else knew that safe\'s combination?)', pose: 'donramon_idle' }

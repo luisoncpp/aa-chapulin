@@ -14,6 +14,7 @@ export const INVESTIGATION_SCENES_EN: Record<LocationId, InvestigationScene> = {
     bg: 'assets/bg_museum.webp',
     bgm: 'investigation',
     speaker: 'NARRADOR',
+    idlePose: 'florinda_idle',
     intro: [
       { speaker: 'NARRADOR', text: 'August 21, 9:30 PM. Museum of Curiosities.' },
       { speaker: 'DEFENSA', text: "The legendary 'Golden Paralyzing Chicharra' has been stolen from its secure display case..." },
@@ -77,6 +78,7 @@ export const INVESTIGATION_SCENES_EN: Record<LocationId, InvestigationScene> = {
       {
         id: 'about_suspect',
         label: 'About the detained suspect',
+        unlockedByTalk: 'about_crime',
         dialogue: [
           { speaker: 'FLORINDA', text: "Prosecutor Super Sam arrived in three minutes shouting 'Time is money!' and ordered his immediate arrest.", pose: 'florinda_idle' },
           { speaker: 'FLORINDA', text: 'El Chapulín was trapped upside down inside an 18th-century parrot cage.', pose: 'florinda_idle', unlockLocation: 'detention' },
@@ -93,6 +95,7 @@ export const INVESTIGATION_SCENES_EN: Record<LocationId, InvestigationScene> = {
     bg: 'assets/bg_detention.webp',
     bgm: 'detention_center',
     speaker: 'CHAPULIN',
+    idlePose: 'chapulin_idle',
     intro: [
       { speaker: 'CHAPULIN', text: 'Oh! And now, who can defend me?!', pose: 'chapulin_panic', sfx: 'text' },
       { speaker: 'DEFENSA', text: 'None other than Licenciado Monchito! I mean... Don Ramón! I shall take your defense in court to save you from the clink and earn a few pesos!' },
@@ -134,16 +137,17 @@ export const INVESTIGATION_SCENES_EN: Record<LocationId, InvestigationScene> = {
         dialogue: [
           { speaker: 'CHAPULIN', text: 'I was enjoying a ham sandwich when my vinyl antennae started vibrating at 8:45 PM.', pose: 'chapulin_idle' },
           { speaker: 'CHAPULIN', text: 'They detected enemy presence! So I teleported at once... well, actually I took a cab.', pose: 'chapulin_idle' },
-          { speaker: 'CHAPULIN', text: 'When I arrived, the display was already smashed and Alma Negra was unconscious. Somebody set me up!', pose: 'chapulin_panic' },
+          { speaker: 'CHAPULIN', text: 'When I arrived, the display was already smashed and Alma Negra was unconscious. Somebody set me up!', pose: 'chapulin_panic', addEvidence: 'antenitas_vinil' },
           { speaker: 'DEFENSA', text: "The 'Antenitas de Vinil' have an alert timestamp: 8:45 PM.", sfx: 'realization', updateEvidence: 'antenitas_vinil' }
         ]
       },
       {
         id: 'chapulin_weapon',
         label: 'Did you attack the guard with your mallet?',
+        unlockedByTalk: 'chapulin_story',
         dialogue: [
           { speaker: 'CHAPULIN', text: 'Me?! Never! The Chipote Chillón is a noble instrument to defend the innocent!', pose: 'chapulin_slam', sfx: 'desk_slam' },
-          { speaker: 'CHAPULIN', text: 'See for yourself! It is made of soft rubber and inflatable plastic.', pose: 'chapulin_idle' },
+          { speaker: 'CHAPULIN', text: 'See for yourself! It is made of soft rubber and inflatable plastic.', pose: 'chapulin_idle', addEvidence: 'chipote_chillon' },
           { speaker: 'DEFENSA', text: 'When squeezed, it lets out a silly squeak: SQUEEEAK!', sfx: 'chipote', updateEvidence: 'chipote_chillon' },
           { speaker: 'DEFENSA', text: '(It is physically impossible to fracture a skull with this... I have solid proof!)', sfx: 'realization' }
         ]

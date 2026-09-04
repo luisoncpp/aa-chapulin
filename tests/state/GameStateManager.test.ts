@@ -166,6 +166,14 @@ describe('GameStateManager', () => {
     expect(state.flags.examined_pedestal).toBe(true);
   });
 
+  it('tracks played intros using isIntroPlayed and markIntroPlayed in flags', () => {
+    expect(state.isIntroPlayed('case1_d1_museum')).toBe(false);
+
+    state.markIntroPlayed('case1_d1_museum');
+    expect(state.isIntroPlayed('case1_d1_museum')).toBe(true);
+    expect(state.flags.intro_case1_d1_museum).toBe(true);
+  });
+
   it('configures Case 2 progression and day-2 evidence gates', () => {
     const script = getCaseScript('es', 'case2');
     state.beginNewCase(script);

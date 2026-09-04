@@ -63,6 +63,7 @@ export interface UiTranslations {
   notifEvidenceAdded: (name: string) => string;
   notifEvidenceUpdated: (name: string) => string;
   notifLocationUnlocked: (name: string) => string;
+  notifDialogueUnlocked: (label: string) => string;
   notifTrialReady: string;
   notifWitnessAddedStatement: string;
   pressHint: string;

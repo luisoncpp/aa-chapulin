@@ -11,6 +11,7 @@ export const CASE2_CLOTILDE_EN: InvestigationScene = {
   bg: 'assets/bg_clotilde.webp',
   bgm: 'casa_clotilde',
   speaker: 'NARRADOR',
+  idlePose: 'clotilde_idle',
   intro: [
     { speaker: 'NARRADOR', text: "August 30, 11:30 AM. Doña Clotilde's House." },
     { speaker: 'CLOTILDE', text: 'Oh, my Roro! What joy to have you in my humble home! Shall I prepare coffee or a calming infusion?', pose: 'clotilde_flustered' },
@@ -30,12 +31,11 @@ export const CASE2_CLOTILDE_EN: InvestigationScene = {
     },
     {
       id: 'hotspot_basura',
-      label: 'Trash and Wax',
+      label: 'Trash and Candles',
       x: 30, y: 74, w: 22, h: 24,
       dialogue: [
-        { speaker: 'DEFENSA', text: 'Doña Clotilde, would you mind if we look around? Chapulín, look at this!', pose: 'donramon_idle' },
-        { speaker: 'CHAPULIN', text: 'It is a piece of candle wax shaped like a key!', pose: 'chapulin_idle', addEvidence: 'molde_cera' },
-        { speaker: 'DEFENSA', text: 'The mysterious buyer used Doña Clotilde\'s wax to mold a key when he came to buy the sedative!', pose: 'donramon_point' }
+        { speaker: 'DEFENSA', text: 'A corner with used candle stubs and botanical waste from Doña Clotilde.', pose: 'donramon_idle' },
+        { speaker: 'CHAPULIN', text: 'Melted wax and scented candles... Doña Clotilde always has her laboratory full of curious things.', pose: 'chapulin_idle' }
       ]
     }
   ],
@@ -43,8 +43,12 @@ export const CASE2_CLOTILDE_EN: InvestigationScene = {
     {
       id: 'about_peterete_visit',
       label: 'About the mysterious buyer',
+      unlockedByHotspot: 'hotspot_frasco',
       dialogue: [
-        { speaker: 'CLOTILDE', text: 'He arrived so elegant, hat and scarf. He asked for the essence "for insomnia" and lingered by my candles. I never saw his face clearly!', pose: 'clotilde_flustered' }
+        { speaker: 'CLOTILDE', text: 'He arrived so elegant, hat and scarf. He asked for the essence "for insomnia" and lingered by my candles. I never saw his face clearly!', pose: 'clotilde_flustered' },
+        { speaker: 'DEFENSA', text: 'By the candles? Doña Clotilde, would you mind if we look around? Chapulín, look at this!', pose: 'donramon_idle' },
+        { speaker: 'CHAPULIN', text: 'It is a piece of candle wax shaped like a key!', pose: 'chapulin_idle', addEvidence: 'molde_cera' },
+        { speaker: 'DEFENSA', text: 'The mysterious buyer used Doña Clotilde\'s wax to mold a key when he came to buy the sedative!', pose: 'donramon_point' }
       ]
     }
   ]

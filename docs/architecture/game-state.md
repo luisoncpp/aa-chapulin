@@ -89,6 +89,12 @@ Contains the master catalog defined in [[src/state/Private/EvidenceCatalog.ts#Ev
 - `exportState(trialSnapshot)` serializes game progression, unlocked locations, inventory, flags, health, mode, language, `caseId`, `trialDay`, and active trial testimony statements.
 - `restoreState(data)` rehydrates game state and validates schema versioning (`CURRENT_SAVE_VERSION = 1`).
 
+### 8. Scene Intro Tracking (`isIntroPlayed` & `markIntroPlayed`)
+- Tracks completed opening and event-driven scene entrance dialogues in `flags` via keys `intro_<id>`.
+- Queried via `isIntroPlayed(introId)` and marked via `markIntroPlayed(introId)`.
+- Scoped by default to `${caseId}_d${trialDay}_${location}` for standard scene intros, or uses custom intro IDs for conditional `SceneIntro` events.
+- Because intro records are stored directly in `flags`, they are automatically serialized, persisted in local storage saves, and reset on starting a new case.
+
 ## Invariants
 
 - Evidence can only be added if it exists in `allEvidence`.

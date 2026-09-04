@@ -56,6 +56,22 @@ export class GameStateManager {
     this.flags[`examined_${hotspotId}`] = true;
   }
 
+  public isTalkCompleted(talkId: string): boolean {
+    return Boolean(this.flags[`talk_${talkId}`]);
+  }
+
+  public markTalkCompleted(talkId: string): void {
+    this.flags[`talk_${talkId}`] = true;
+  }
+
+  public isIntroPlayed(introId: string): boolean {
+    return Boolean(this.flags[`intro_${introId}`]);
+  }
+
+  public markIntroPlayed(introId: string): void {
+    this.flags[`intro_${introId}`] = true;
+  }
+
   // @Section(Location Operations)
   public unlockLocation(locationId: LocationId): boolean {
     if (this.unlockedLocations.includes(locationId)) return false;
@@ -87,6 +103,7 @@ export class GameStateManager {
     return this.getEvidenceUpdateStage(evidenceId) > 0;
   }
 
+  // fallow-ignore-next-line complexity
   public updateEvidence(evidenceId: EvidenceId): boolean {
     const item = this.allEvidence[evidenceId];
     if (!item) return false;
@@ -139,17 +156,9 @@ export class GameStateManager {
     this.applyProgressionRules(script);
   }
 
-  public applyProgressionRules(script: CaseScript): void {
-    applyCaseProgressionRules(this, script);
-  }
-
-  public beginNextTrialDay(adjournment: AdjournmentDefinition): void {
-    beginNextTrialDayState(this, adjournment);
-  }
-
-  public beginTrialDay2(adjournment: AdjournmentDefinition): void {
-    this.beginNextTrialDay(adjournment);
-  }
+  public applyProgressionRules(script: CaseScript): void { applyCaseProgressionRules(this, script); }
+  public beginNextTrialDay(adjournment: AdjournmentDefinition): void { beginNextTrialDayState(this, adjournment); }
+  public beginTrialDay2(adjournment: AdjournmentDefinition): void { this.beginNextTrialDay(adjournment); }
 
   // @Section(Investigation Readiness)
   public checkTrialReadiness(): boolean {

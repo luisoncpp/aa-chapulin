@@ -1,7 +1,7 @@
 // @Architecture(descriptionShort="Unit tests for Case 2 scenes, contradictions, and bilingual parity", type="test", icon="layers")
 import { describe, expect, it } from 'vitest';
 import { getCaseScript } from '../../src/case/index.js';
-import { getEvidenceCatalog } from '../../src/state/index.js';
+import { GameStateManager, getEvidenceCatalog } from '../../src/state/index.js';
 
 describe('Case 2 El Juicio del Chómpiras', () => {
   const es = getCaseScript('es', 'case2');
@@ -116,4 +116,48 @@ describe('Case 2 El Juicio del Chómpiras', () => {
       );
     }
   });
+
+  it('delivers molde_cera via the talk option about_peterete_visit rather than hotspot_basura', () => {
+    const esHotspotBasura = es.investigation.casa_clotilde.hotspots.find((h) => h.id === 'hotspot_basura');
+    const enHotspotBasura = en.investigation.casa_clotilde.hotspots.find((h) => h.id === 'hotspot_basura');
+    expect(esHotspotBasura?.dialogue.some((d) => d.addEvidence === 'molde_cera')).toBe(false);
+    expect(enHotspotBasura?.dialogue.some((d) => d.addEvidence === 'molde_cera')).toBe(false);
+
+    const esTalk = es.investigation.casa_clotilde.talkOptions.find((o) => o.id === 'about_peterete_visit');
+    const enTalk = en.investigation.casa_clotilde.talkOptions.find((o) => o.id === 'about_peterete_visit');
+    expect(esTalk?.dialogue.some((d) => d.addEvidence === 'molde_cera')).toBe(true);
+    expect(enTalk?.dialogue.some((d) => d.addEvidence === 'molde_cera')).toBe(true);
+  });
+
+  it('gates Case 2 Day 2 trial readiness strictly behind about_peterete_visit talk topic', () => {
+    const state = new GameStateManager();
+    state.beginNewCase(es);
+    state.beginNextTrialDay(es.adjournment!);
+
+    state.addEvidence('multa_transito');
+    state.addEvidence('registro_postal');
+    state.addEvidence('lata_grasa');
+    state.addEvidence('antenitas_vinil');
+    state.addEvidence('frasco_valeriana');
+
+    const basuraDialogue = es.investigation.casa_clotilde.hotspots
+      .find((h) => h.id === 'hotspot_basura')?.dialogue || [];
+    basuraDialogue.forEach((l) => {
+      if (l.addEvidence) state.addEvidence(l.addEvidence);
+    });
+
+    expect(state.hasEvidence('molde_cera')).toBe(false);
+    expect(state.checkTrialReadiness()).toBe(false);
+
+    const talkDialogue = es.investigation.casa_clotilde.talkOptions
+      .find((o) => o.id === 'about_peterete_visit')?.dialogue || [];
+    talkDialogue.forEach((l) => {
+      if (l.addEvidence) state.addEvidence(l.addEvidence);
+    });
+
+    expect(state.hasEvidence('molde_cera')).toBe(true);
+    expect(state.checkTrialReadiness()).toBe(true);
+  });
 });
+
+

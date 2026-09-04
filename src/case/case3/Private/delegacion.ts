@@ -11,6 +11,7 @@ export const CASE3_DELEGACION: InvestigationScene = {
   bg: 'assets/bg_delegacion.webp',
   bgm: 'investigation',
   speaker: 'NARRADOR',
+  idlePose: 'pazguato_idle',
   intro: [
     { speaker: 'NARRADOR', text: '17 de septiembre, 5:00 PM. Delegación de Policía, escritorio del fondo, el que le tocó al sargento.' },
     { speaker: 'SARGENTO', text: 'Pásele, Licenciado. ¿Gusta? Es torta de frijoles. Ya nomás como de frijoles porque el fiscal me dejó la quincena en catorce pesos.', pose: 'pazguato_sweat' },

@@ -13,6 +13,7 @@ export const CASE3_DETENTION_D3_EN: InvestigationScene = {
   bg: 'assets/bg_detention.webp',
   bgm: 'detention_center',
   speaker: 'NARRADOR',
+  idlePose: 'chapatin_idle',
   intro: [
     { speaker: 'NARRADOR', text: 'September 18, 10:00 AM. Detention Center. Third day, the same concrete bench.' },
     { speaker: 'DEFENSA', text: 'Doctor, your patient woke up. Señor Barriga opened his eyes this morning.', pose: 'donramon_idle' },

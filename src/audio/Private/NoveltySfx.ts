@@ -33,6 +33,26 @@ export class NoveltySfx {
     osc.stop(t + 0.045);
   }
 
+  // @Section(Subtle Click Synthesis)
+  public static playClick(ctx: AudioContext, dest: GainNode): void {
+    const t = ctx.currentTime;
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(600, t);
+    osc.frequency.linearRampToValueAtTime(120, t + 0.025);
+
+    gain.gain.setValueAtTime(0.12, t);
+    gain.gain.linearRampToValueAtTime(0.001, t + 0.025);
+
+    osc.connect(gain);
+    gain.connect(dest);
+
+    osc.start(t);
+    osc.stop(t + 0.03);
+  }
+
   // @Section(Realization Chime Synthesis)
   public static playRealization(ctx: AudioContext, dest: GainNode): void {
     const t = ctx.currentTime;

@@ -11,6 +11,7 @@ export const CASE2_POSTAL_EN: InvestigationScene = {
   bg: 'assets/bg_postal.webp',
   bgm: 'callejon_postal',
   speaker: 'NARRADOR',
+  idlePose: 'jaimito_idle',
   intro: [
     { speaker: 'NARRADOR', text: 'August 30, 9:00 AM. Rear Alley and Postal Stand.' },
     { speaker: 'JAIMITO', text: 'Good morning... I came to deliver these letters, but I want to avoid fatigue...', pose: 'jaimito_tired' },
@@ -51,6 +52,7 @@ export const CASE2_POSTAL_EN: InvestigationScene = {
     {
       id: 'about_siesta',
       label: 'Where were you at 9:30 PM?',
+      unlockedByHotspot: 'hotspot_multa',
       dialogue: [
         { speaker: 'JAIMITO', text: 'On the park bench, avoiding fatigue. The cart sat all alone in the alley. The police never searched it; they only secured the vault.', pose: 'jaimito_tired' }
       ]

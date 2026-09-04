@@ -12,6 +12,7 @@ export const CASE3_BODEGA: InvestigationScene = {
   bg: 'assets/bg_bodega.webp',
   bgm: 'suspense',
   speaker: 'NARRADOR',
+  idlePose: null,
   intro: [
     { speaker: 'NARRADOR', text: '18 de septiembre, 7:00 AM. Bodega de XEVC: cables, polvo y una puerta a la Cabina A.' },
     { speaker: 'DEFENSA', text: 'Aquí hallaron amarrado a don Aniceto. Revisemos cada rincón.', pose: 'donramon_idle' },
@@ -22,6 +23,7 @@ export const CASE3_BODEGA: InvestigationScene = {
     {
       id: 'about_amarrado',
       label: 'Sobre el amarre de Aniceto',
+      unlockedByHotspot: 'hotspot_polvo',
       dialogue: [
         { speaker: 'DEFENSA', text: 'Veinte minutos amordazado... y el polvo no muestra forcejeo. Eso no cuadra.', pose: 'donramon_point' },
         { speaker: 'CHAPULIN', text: '¡Lo sospeché desde un principio!', pose: 'chapulin_point' }

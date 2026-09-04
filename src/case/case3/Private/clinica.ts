@@ -11,6 +11,7 @@ export const CASE3_CLINICA: InvestigationScene = {
   bg: 'assets/bg_clinica.webp',
   bgm: 'detention_center',
   speaker: 'NARRADOR',
+  idlePose: 'nono_idle',
   intro: [
     { speaker: 'NARRADOR', text: '17 de septiembre, 12:00 PM. Clínica del Doctor Chapatín — la más cercana al edificio, y por eso trasladaron aquí a la víctima.' },
     { speaker: 'NONO', text: 'Mi papi sigue dormido... Dicen que a lo mejor despierta, y a lo mejor no.', pose: 'nono_nervioso' },

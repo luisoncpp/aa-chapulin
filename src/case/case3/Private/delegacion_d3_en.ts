@@ -11,6 +11,7 @@ export const CASE3_DELEGACION_D3_EN: InvestigationScene = {
   bg: 'assets/bg_delegacion.webp',
   bgm: 'investigation',
   speaker: 'NARRADOR',
+  idlePose: 'pazguato_idle',
   intro: [
     { speaker: 'NARRADOR', text: 'September 18, 4:00 PM. The sergeant hasn\'t changed uniforms since last night. And doesn\'t plan to.' },
     { speaker: 'SARGENTO', text: '¡Mi Licenciado! All night in the station trash bins! Eight hours! With these little hands!', pose: 'pazguato_decidido' },

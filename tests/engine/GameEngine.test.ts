@@ -349,6 +349,9 @@ describe('GameEngine Coordinator', () => {
       engine.handleAdvance();
     }
 
+    // Complete required opening topic to unlock "about_suspect"
+    state.markTalkCompleted('about_crime');
+
     // Open talk menu and choose "Sobre el sospechoso detenido"
     document.getElementById('btn-inv-talk')?.click();
     const suspectBtn = dom.talkListEl.children[1] as HTMLButtonElement;

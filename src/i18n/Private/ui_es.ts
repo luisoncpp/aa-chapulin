@@ -56,6 +56,7 @@ export const UI_ES: UiTranslations = {
   notifEvidenceAdded: (name: string) => `¡Añadido al Acta del Juicio: ${name}!`,
   notifEvidenceUpdated: (name: string) => `¡Acta del Juicio actualizada: ${name}!`,
   notifLocationUnlocked: (name: string) => `¡Nueva ubicación desbloqueada: ${name}!`,
+  notifDialogueUnlocked: (label: string) => `¡Nuevo tema de conversación desbloqueado: ${label}!`,
   notifTrialReady: '¡Has reunido todas las pruebas! ¡Puedes iniciar el Juicio!',
   notifWitnessAddedStatement: 'El testigo ha añadido una declaración',
   pressHint: '¡Monchito! ¡A ese testigo hay que exprimirlo, no nomás oírlo!',

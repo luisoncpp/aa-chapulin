@@ -23,13 +23,23 @@ export function prepareSceneVisuals(scene: InvestigationScene): void {
   warmSceneVisuals(scene);
 }
 
-// fallow-ignore-next-line complexity
 function warmSceneVisuals(scene: InvestigationScene): void {
   const urls = new Set<string>([scene.bg]);
-  addLines(scene.intro, urls);
+  addIntro(scene.intro, urls);
   for (const hotspot of scene.hotspots || []) addLines(hotspot.dialogue, urls);
   for (const option of scene.talkOptions || []) addLines(option.dialogue, urls);
   warmUrls([...urls]);
+}
+
+function addIntro(intro: InvestigationScene['intro'] | undefined, urls: Set<string>): void {
+  if (!intro) return;
+  for (const item of intro) {
+    if ('dialogue' in item) {
+      addLines(item.dialogue, urls);
+      continue;
+    }
+    addLineUrls(item, urls);
+  }
 }
 
 export function warmTrialVisuals(script: CaseScript, trialDay: TrialDay): void {

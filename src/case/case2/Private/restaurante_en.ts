@@ -11,6 +11,7 @@ export const CASE2_RESTAURANTE_EN: InvestigationScene = {
   bg: 'assets/bg_restaurante.webp',
   bgm: 'restaurante',
   speaker: 'NARRADOR',
+  idlePose: 'jirafales_idle',
   intro: [
     { speaker: 'NARRADOR', text: "August 29, 1:00 PM. Doña Florinda's Restaurant." },
     { speaker: 'JIRAFALES', text: 'Ah, Don Ramón! I heard of Mr. Chómpiras\'s unfortunate situation. As a man of science, I stand for absolute truth.', pose: 'jirafales_idle' },

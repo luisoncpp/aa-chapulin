@@ -40,6 +40,7 @@ export type {
   DialogueLine,
   Hotspot,
   TalkOption,
+  SceneIntro,
   InvestigationScene,
   Statement,
   Testimony,

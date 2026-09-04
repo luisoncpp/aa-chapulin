@@ -5,9 +5,17 @@ import type { GameStateManager } from '../../state/index.js';
 import type { CaseScript, DialogueLine, Hotspot, LocationId, PoseName, TalkOption } from '../../types/index.js';
 import type { DomElements } from './DomElements.js';
 import { renderHotspots } from './HotspotLayer.js';
+import {
+  applySceneIdlePose,
+  buildMoveDestinations,
+  resolveSceneIdlePose,
+  resolveSceneIntro,
+  setupScenePresentation
+} from './InvestigationSceneTransition.js';
+import { resetTrialButton, updateTrialButtonProgress } from './InvestigationTrialButton.js';
 import { ModalManager } from './ModalManager.js';
+import { notifyNewlyUnlocked, visibleTalkOptions } from './TalkOptionUnlock.js';
 import { VisualEffects } from './VisualEffects.js';
-import { prepareSceneVisuals } from './VisualWarmup.js';
 
 export interface InvestigationControllerDeps {
   dom: DomElements;
@@ -38,38 +46,46 @@ export class InvestigationController {
     this.onQueueDialogue = deps.onQueueDialogue;
   }
 
+  public restoreSceneIdlePose(): void {
+    const scene = this.script.investigation[this.state.currentLocation];
+    this.currentLocationCharPose = resolveSceneIdlePose(scene, this.state);
+    applySceneIdlePose(this.dom, this.currentLocationCharPose);
+  }
+
   // @Section(Investigation Scene Transition)
+  // fallow-ignore-next-line complexity
   public startInvestigation(location: LocationId = 'museum', deferIntro = false): void {
     this.state.mode = 'INVESTIGATION';
     this.state.currentLocation = location;
     this.isFirstTimeDialogue = false;
-    this.dom.dialogueBoxEl.classList.remove('examine-mode');
-    this.dom.gameScreen.classList.remove('examine-mode');
-    this.dom.investigationNavEl.classList.remove('hidden');
-    this.dom.examineNavEl.classList.add('hidden');
-    this.dom.trialNavEl.classList.add('hidden');
     this.isExamineActive = false;
-    this.currentLocationCharPose = null;
-    this.dom.hotspotsContainerEl.classList.remove('visible-hotspots');
-    this.dom.examineTooltipEl.classList.add('hidden');
     const scene = this.script.investigation[location];
-    prepareSceneVisuals(scene);
-    VisualEffects.clearCourtroomPlate(this.dom);
-    this.dom.speakerBoxEl.textContent = scene.speaker || '';
-    this.dom.dialogueTextEl.textContent = '';
-    this.dom.locationBannerEl.textContent = scene.title;
-    this.dom.bgEl.style.backgroundImage = `url('${scene.bg}')`;
-    this.midiComposer.playTrack(scene.bgm);
+    setupScenePresentation(this.dom, scene, this.midiComposer);
+    this.renderHotspots(scene?.hotspots || []);
 
-    this.renderHotspots(scene.hotspots || []);
-    if (deferIntro) return;
-    this.onQueueDialogue(scene.intro);
+    const intro = resolveSceneIntro(scene, this.state);
+    if (intro) {
+      this.currentLocationCharPose = null;
+      if (deferIntro) return;
+      this.state.markIntroPlayed(intro.id);
+      this.onQueueDialogue(intro.dialogue, /*onComplete*/ () => {
+        this.restoreSceneIdlePose();
+      });
+      return;
+    }
+
+    this.restoreSceneIdlePose();
   }
 
   public queueCurrentIntro(): void {
     const scene = this.script.investigation[this.state.currentLocation];
     if (!scene) return;
-    this.onQueueDialogue(scene.intro);
+    const intro = resolveSceneIntro(scene, this.state);
+    if (!intro) return;
+    this.state.markIntroPlayed(intro.id);
+    this.onQueueDialogue(intro.dialogue, /*onComplete*/ () => {
+      this.restoreSceneIdlePose();
+    });
   }
 
   // @Section(Hotspot Rendering & Clicks)
@@ -84,7 +100,7 @@ export class InvestigationController {
 
   private handleHotspotClick(h: Hotspot): void {
     const isRepeated = this.state.isHotspotExamined(h.id);
-    this.soundEngine.playRealization();
+    this.soundEngine.playClick();
     this.dom.examineTooltipEl.classList.add('hidden');
     this.exitExamineMode();
     if (!isRepeated) {
@@ -95,9 +111,8 @@ export class InvestigationController {
       this.isFirstTimeDialogue = false;
       this.state.markHotspotExamined(h.id);
       this.dom.investigationNavEl.classList.remove('hidden');
-      if (this.currentLocationCharPose) {
-        VisualEffects.setPose(this.dom.charSpriteEl, this.currentLocationCharPose);
-      }
+      this.restoreSceneIdlePose();
+      this.notifyUnlockedTalk();
       this.checkInvestigationProgress();
     });
   }
@@ -129,71 +144,55 @@ export class InvestigationController {
     this.dom.examineNavEl.classList.add('hidden');
     this.dom.investigationNavEl.classList.remove('hidden');
     VisualEffects.hideFurniture(this.dom.courtFurnitureContainerEl);
-
-    if (this.currentLocationCharPose) {
-      VisualEffects.setPose(this.dom.charSpriteEl, this.currentLocationCharPose);
-    }
+    this.restoreSceneIdlePose();
   }
 
   // @Section(Talk Dialog & Readiness)
   public openTalkMenu(): void {
     if (this.isFirstTimeDialogue) return;
     const scene = this.script.investigation[this.state.currentLocation];
-    if (!scene || !scene.talkOptions) return;
+    if (!scene?.talkOptions) return;
 
-    ModalManager.openTalkModal(this.dom, scene.talkOptions, (opt: TalkOption) => {
+    const options = visibleTalkOptions(scene.talkOptions, this.state);
+    ModalManager.openTalkModal(this.dom, options, (opt: TalkOption) => {
+      this.state.markTalkCompleted(opt.id);
       this.onQueueDialogue(opt.dialogue, /*onComplete*/ () => {
+        this.restoreSceneIdlePose();
+        this.notifyUnlockedTalk();
         this.checkInvestigationProgress();
       });
     });
   }
 
-  public openMoveMenu(): void {
-    if (this.isFirstTimeDialogue) return;
-    const destinations = this.state.unlockedLocations
-      .map((locId) => {
-        const scene = this.script.investigation[locId];
-        if (!scene) return null;
-        return {
-          id: locId,
-          name: scene.name ?? scene.title,
-          isCurrent: locId === this.state.currentLocation
-        };
-      })
-      .filter((d): d is NonNullable<typeof d> => d !== null);
-
-    ModalManager.openMoveModal(this.dom, destinations, (locId: LocationId) => {
-      this.startInvestigation(locId);
+  private notifyUnlockedTalk(): void {
+    notifyNewlyUnlocked(this.script.investigation[this.state.currentLocation]?.talkOptions, {
+      dom: this.dom, state: this.state, soundEngine: this.soundEngine
     });
   }
 
+  public openMoveMenu(): void {
+    if (this.isFirstTimeDialogue) return;
+    const destinations = buildMoveDestinations(
+      this.state.unlockedLocations, this.script.investigation, this.state.currentLocation
+    );
+    ModalManager.openMoveModal(this.dom, destinations, (locId: LocationId) => this.startInvestigation(locId));
+  }
+
   public checkInvestigationProgress(): void {
-    const isReady = this.state.checkTrialReadiness();
-    const trialBtn = this.dom.btnInvTrial;
-    if (!trialBtn) return;
-    trialBtn.classList.toggle('disabled', !isReady);
-    trialBtn.classList.toggle('pulse-glow', isReady);
-    trialBtn.disabled = !isReady;
-    if (isReady) {
-      VisualEffects.showNotification(this.dom.gameNotificationEl, i18n.t.notifTrialReady);
-    }
+    updateTrialButtonProgress(this.dom.btnInvTrial, this.state.checkTrialReadiness(), this.dom.gameNotificationEl);
   }
 
   public resetTrialLaunchButton(): void {
-    if (!this.dom.btnInvTrial) return;
-    this.dom.btnInvTrial.classList.add('disabled');
-    this.dom.btnInvTrial.classList.remove('pulse-glow');
-    this.dom.btnInvTrial.disabled = true;
+    resetTrialButton(this.dom.btnInvTrial);
   }
 
   public setScript(script: CaseScript): void {
     this.script = script;
-    if (this.state.mode === 'INVESTIGATION') {
-      const scene = this.script.investigation[this.state.currentLocation];
-      if (scene) {
-        this.dom.locationBannerEl.textContent = scene.title;
-        this.renderHotspots(scene.hotspots || []);
-      }
+    if (this.state.mode !== 'INVESTIGATION') return;
+    const scene = this.script.investigation[this.state.currentLocation];
+    if (scene) {
+      this.dom.locationBannerEl.textContent = scene.title;
+      this.renderHotspots(scene.hotspots || []);
     }
   }
 }

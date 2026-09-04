@@ -11,6 +11,7 @@ export const CASE2_CLOTILDE: InvestigationScene = {
   bg: 'assets/bg_clotilde.webp',
   bgm: 'casa_clotilde',
   speaker: 'NARRADOR',
+  idlePose: 'clotilde_idle',
   intro: [
     { speaker: 'NARRADOR', text: '30 de Agosto, 11:30 AM. Casa de Doña Clotilde.' },
     { speaker: 'CLOTILDE', text: '¡Ay, mi Roro! ¡Qué dicha tenerte en mi humilde morada! ¿Quieres que te prepare una tacita de café o una infusión para los nervios?', pose: 'clotilde_flustered' },
@@ -30,12 +31,11 @@ export const CASE2_CLOTILDE: InvestigationScene = {
     },
     {
       id: 'hotspot_basura',
-      label: 'Basura y Cera',
+      label: 'Basura y Veladoras',
       x: 30, y: 74, w: 22, h: 24,
       dialogue: [
-        { speaker: 'DEFENSA', text: 'Doña Clotilde, ¿le importaría si revisamos un poco? ¡Chapulín, mira esto!', pose: 'donramon_idle' },
-        { speaker: 'CHAPULIN', text: '¡Es un trozo de cera de veladora con la forma de una llave!', pose: 'chapulin_idle', addEvidence: 'molde_cera' },
-        { speaker: 'DEFENSA', text: '¡El misterioso comprador usó la cera de Doña Clotilde para hacer el molde de una llave cuando vino a comprar el sedante!', pose: 'donramon_point' }
+        { speaker: 'DEFENSA', text: 'Un rincón con restos de veladoras usadas y desperdicios de botánica de Doña Clotilde.', pose: 'donramon_idle' },
+        { speaker: 'CHAPULIN', text: 'Cera derretida y veladoras aromáticas... Doña Clotilde siempre tiene su laboratorio lleno de cosas curiosas.', pose: 'chapulin_idle' }
       ]
     }
   ],
@@ -43,8 +43,12 @@ export const CASE2_CLOTILDE: InvestigationScene = {
     {
       id: 'about_peterete_visit',
       label: 'Sobre el comprador misterioso',
+      unlockedByHotspot: 'hotspot_frasco',
       dialogue: [
-        { speaker: 'CLOTILDE', text: 'Vino muy elegante, con sombrero y bufanda. Pidió la esencia "para el insomnio" y se entretuvo junto a mis veladoras. ¡Nunca le vi la cara con claridad!', pose: 'clotilde_flustered' }
+        { speaker: 'CLOTILDE', text: 'Vino muy elegante, con sombrero y bufanda. Pidió la esencia "para el insomnio" y se entretuvo junto a mis veladoras. ¡Nunca le vi la cara con claridad!', pose: 'clotilde_flustered' },
+        { speaker: 'DEFENSA', text: '¿Junto a las veladoras? Doña Clotilde, ¿le importaría si revisamos por aquí? ¡Chapulín, mira esto!', pose: 'donramon_idle' },
+        { speaker: 'CHAPULIN', text: '¡Es un trozo de cera de veladora con la forma de una llave!', pose: 'chapulin_idle', addEvidence: 'molde_cera' },
+        { speaker: 'DEFENSA', text: '¡El misterioso comprador usó la cera de Doña Clotilde para hacer el molde de una llave cuando vino a comprar el sedante!', pose: 'donramon_point' }
       ]
     }
   ]

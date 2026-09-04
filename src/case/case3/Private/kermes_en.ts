@@ -11,6 +11,7 @@ export const CASE3_KERMES_EN: InvestigationScene = {
   bg: 'assets/bg_kermes.webp',
   bgm: 'kermes',
   speaker: 'NARRADOR',
+  idlePose: 'jirafales_idle',
   intro: [
     { speaker: 'NARRADOR', text: 'September 16, 3:00 PM. Plaza de la Kermés, colored paper still hanging.' },
     { speaker: 'FLORINDA', text: 'You again! Who are you defending now — the rabble or the landlords?', pose: 'florinda_angry' },

@@ -56,6 +56,7 @@ export const UI_EN: UiTranslations = {
   notifEvidenceAdded: (name: string) => `Added to Court Record: ${name}!`,
   notifEvidenceUpdated: (name: string) => `Court Record updated: ${name}!`,
   notifLocationUnlocked: (name: string) => `New location unlocked: ${name}!`,
+  notifDialogueUnlocked: (label: string) => `New conversation topic unlocked: ${label}!`,
   notifTrialReady: 'All clues collected! You can now proceed to Trial!',
   notifWitnessAddedStatement: 'The witness has added a statement',
   pressHint: 'Monchito! We need to squeeze this witness, not just listen!',

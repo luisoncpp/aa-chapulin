@@ -104,7 +104,9 @@ export class DialogueFlow {
   private applyLineSpeakerAndPose(line: DialogueLine): void {
     const isTrial = this.deps.state.mode === 'TRIAL';
     const effectivePose = VisualEffects.resolveEffectivePose(line, isTrial);
-    if (effectivePose) this.deps.investigation.currentLocationCharPose = effectivePose;
+    if (effectivePose) {
+      this.deps.investigation.currentLocationCharPose = effectivePose;
+    }
     presentDialogueVisuals(this.deps.dom, line, /*isTrialMode=*/ isTrial);
     this.deps.dom.speakerBoxEl.textContent = line.speaker || '';
   }

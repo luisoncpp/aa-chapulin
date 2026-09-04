@@ -12,6 +12,7 @@ export const CASE3_CABINA: InvestigationScene = {
   bg: 'assets/bg_cabina.webp',
   bgm: 'investigation',
   speaker: 'NARRADOR',
+  idlePose: 'pazguato_idle',
   intro: [
     { speaker: 'NARRADOR', text: '16 de septiembre, 11:00 AM. Radiodifusora XEVC, segundo piso del Edificio Barriga.' },
     { speaker: 'SARGENTO', text: '¡A sus órdenes, mi Licenciado! Sargento Refugio Pazguato, para servir a usted y a la justicia.', pose: 'pazguato_saludo' },

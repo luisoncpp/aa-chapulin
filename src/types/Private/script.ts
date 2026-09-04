@@ -6,7 +6,7 @@
 
 import type { SFXName, TrackName } from './audio.js';
 import type { EvidenceId } from './evidence.js';
-import type { CaseId, LocationId } from './state.js';
+import type { CaseId, GameFlags, LocationId } from './state.js';
 
 // @Section(Dialogue & Visual Tags)
 export type SpeakerName =
@@ -137,7 +137,22 @@ export interface TalkOption {
   id: string;
   label: string;
   dialogue: DialogueLine[];
+  /** Talk topic id that must be played before this option is visible. */
+  unlockedByTalk?: string;
+  /** Hotspot id that must be examined before this option is visible. */
+  unlockedByHotspot?: string;
+  /** Optional custom condition predicate. */
+  condition?: (flags: GameFlags) => boolean;
 }
+
+export interface SceneIntro {
+  id: string;
+  condition?: (flags: GameFlags) => boolean;
+  dialogue: DialogueLine[];
+  idlePose?: PoseName | null;
+}
+
+export type SceneIntroDefinition = DialogueLine[] | SceneIntro[];
 
 export interface InvestigationScene {
   title: string;
@@ -145,7 +160,8 @@ export interface InvestigationScene {
   bg: string;
   bgm: TrackName;
   speaker: SpeakerName;
-  intro: DialogueLine[];
+  idlePose?: PoseName | null;
+  intro: SceneIntroDefinition;
   hotspots: Hotspot[];
   talkOptions: TalkOption[];
 }

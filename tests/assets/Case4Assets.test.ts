@@ -26,7 +26,7 @@ const EXAMINE = [
 ];
 
 const ICONS = [
-  'informe_policial', 'foto_crimen', 'candado_cadena', 'plano_hotel',
+  'informe_policial', 'foto_suite304', 'candado_cadena', 'plano_hotel',
   'residuos_manos', 'billetera_cuajinais', 'informe_forense', 'casquillo_fogueo',
   'registro_montacargas', 'copa_vino', 'botella_vino', 'boleta_baccarat',
   'baul_etiquetas', 'sello_lacre', 'nota_amenaza',

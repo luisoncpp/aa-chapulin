@@ -37,7 +37,7 @@ export const CASE4_HOTEL_TERRAZA: InvestigationScene = {
       id: 'about_hallway',
       label: '¿Qué escuchó anoche en el pasillo?',
       dialogue: [
-        { speaker: 'MARUJA', text: 'Estaba en mi Suite 303 descansando de una migraña. A las 11:15 PM oyó una detonación brutal que cimbró las paredes.', pose: 'maruja_idle' },
+        { speaker: 'MARUJA', text: 'Estaba en mi Suite 303 descansando de una migraña. A las 11:15 PM oí una detonación brutal que cimbró las paredes.', pose: 'maruja_idle' },
         { speaker: 'MARUJA', text: 'Al salir al pasillo, vi a Don Cecilio tratando de empujar la puerta de la 304.', pose: 'maruja_nerviosa' }
       ]
     },

@@ -38,8 +38,10 @@ describe('Case4EvidenceCatalog', () => {
     const foto = catalog.foto_crimen;
     expect(foto?.name).toContain('Suite 304');
     expect(foto?.desc).toContain('cubeta de hielo');
+    expect(foto?.icon).toBe('assets/foto_suite304.webp');
     expect(foto?.desc).not.toContain('HC');
     expect(foto?.desc).not.toMatch(/espejo/i);
+    expect(getEvidenceCatalog('es', 'case1').foto_crimen?.icon).toBe('assets/foto_crimen.webp');
   });
 
   it('attaches detailedView to the five examine items', () => {

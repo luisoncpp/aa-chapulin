@@ -7,13 +7,13 @@ import type { EvidenceId, EvidenceItem } from '../../types/index.js';
 
 function ev(
   id: EvidenceId,
-  text: { name: string; desc: string; updatedDesc?: string; updates?: string[] },
+  text: { name: string; desc: string; updatedDesc?: string; updates?: string[]; icon?: string },
   detailedView?: EvidenceItem['detailedView']
 ): EvidenceItem {
   return {
     id,
     name: text.name,
-    icon: `assets/${id}.webp`,
+    icon: text.icon ?? `assets/${id}.webp`,
     desc: text.desc,
     updatedDesc: text.updatedDesc,
     updates: text.updates,
@@ -36,6 +36,7 @@ export const CASE4_EVIDENCE_EN: Record<string, EvidenceItem> = {
   }),
   foto_crimen: ev('foto_crimen', {
     name: 'Suite 304 Photograph',
+    icon: 'assets/foto_suite304.webp',
     desc: 'Crime scene at 11:30 PM. Body by the fireplace; broken glass, dried residue, and an opened Chateau Buena Vista 1958 bottle beside an ice bucket on the coffee table, secured by the Sergeant.',
     updates: [
       'Crime scene at 11:30 PM. The bucket on the coffee table holds lukewarm water without a single ice cube, proving drinks were served hours before the gunshot noise.'

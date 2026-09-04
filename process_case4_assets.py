@@ -25,11 +25,10 @@ SHEETS = [
      ["rufino_smug", "rufino_monocle", "rufino_sweat", "rufino_panic"]),
 ]
 
-# foto_crimen.webp is a shared EvidenceId with Case 1; this sheet paints the
-# Suite 304 polaroid used by Case 4 Present & Point.
+# Case 1 owns assets/foto_crimen.webp (museum still). Case 4 uses a unique icon.
 EV = [
     (0, 0, "informe_policial.webp"),
-    (1, 0, "foto_crimen.webp"),
+    (1, 0, "foto_suite304.webp"),
     (2, 0, "candado_cadena.webp"),
     (3, 0, "plano_hotel.webp"),
     (0, 1, "residuos_manos.webp"),

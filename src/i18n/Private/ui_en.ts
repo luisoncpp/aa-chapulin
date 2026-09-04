@@ -28,6 +28,7 @@ export const UI_EN: UiTranslations = {
   talkModalTitle: 'TALK',
   moveModalTitle: 'MOVE',
   currentLocationBadge: 'Current',
+  btnEvidenceExamine: 'Examine Detail',
 
   hudAudioToggleTitle: 'Toggle Audio Mute',
   hudSaveTitle: 'Save Game',

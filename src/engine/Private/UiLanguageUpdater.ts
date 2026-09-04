@@ -27,7 +27,8 @@ export class UiLanguageUpdater {
       [dom.btnPrevStatement, t.btnPrev],
       [dom.btnPress, t.btnPress],
       [dom.btnTrialPresent, t.btnPresent],
-      [dom.btnNextStatement, t.btnNext]
+      [dom.btnNextStatement, t.btnNext],
+      [dom.btnEvidenceExamine, t.btnEvidenceExamine]
     ];
     for (const [btn, label] of mappings) {
       if (btn) btn.textContent = label;

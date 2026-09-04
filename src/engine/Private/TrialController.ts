@@ -8,17 +8,15 @@ import {
   notifyWitnessAddedStatement,
   registerPress
 } from './TrialPressFlow.js';
-import {
-  onPresentPenalty,
-  onSuccessContradiction,
-  showGameOverModal
-} from './TrialOutcome.js';
+import { showGameOverModal } from './TrialOutcome.js';
 import { getActiveTrial } from './TrialDayRouter.js';
 import {
   handleClimaxEvidencePresent, isAwaitingClimaxEvidence, getClimaxPresentPrompt,
   rebindClimaxChoiceModal,
   resolveClimaxChoiceFromController, startClimaxPhase
 } from './TrialClimax.js';
+import { afterTrialIntro, getTrialPresentPrompt, handleTestimonyPresent, hasPendingTrialPresent } from './TrialPresent.js';
+import { isPresentPointOpen } from './PresentPoint.js';
 import { visibleStatements } from './StatementUnlock.js';
 import { restoreTrialFromSnapshot } from './TrialRestore.js';
 import { paintCourtroomPlate } from './TrialOpening.js';
@@ -95,7 +93,7 @@ export class TrialController {
   public startTrial(skipFade = false): void {
     warmTrialVisuals(this.script, this.deps.state.trialDay);
     const intro = getActiveTrial(this.script, this.deps.state.trialDay).intro;
-    const afterIntro = /*onComplete*/ () => this.startTestimony('testimony1');
+    const afterIntro = /*onComplete*/ () => afterTrialIntro(this);
     if (skipFade) {
       this.enterCourtroom();
       this.deps.onQueueDialogue(intro, afterIntro);
@@ -165,19 +163,18 @@ export class TrialController {
 
   public handlePresentEvidence(evidenceId: EvidenceId): void {
     if (this.phase === 'CLIMAX') return handleClimaxEvidencePresent(this, evidenceId);
-    const visible = this.visibleStatements();
-    const stmt = visible[this.currentStatementIdx];
-    if (!stmt || this.phase !== 'TESTIMONY') return;
-    if (stmt.contradiction?.evidence.includes(evidenceId)) {
-      return onSuccessContradiction(this, stmt.contradiction.successDialogue);
-    }
-    onPresentPenalty(this);
+    handleTestimonyPresent(this, evidenceId);
   }
 
   public startClimax(): void { startClimaxPhase(this, /*replayOpening=*/ true); }
-  public isAwaitingEvidence(): boolean { return isAwaitingClimaxEvidence(this); }
+  public isAwaitingEvidence(): boolean {
+    if (isPresentPointOpen(this.deps.dom)) return false;
+    return hasPendingTrialPresent(this) || isAwaitingClimaxEvidence(this);
+  }
 
-  public getPresentPrompt(): string | null { return getClimaxPresentPrompt(this); }
+  public getPresentPrompt(): string | null {
+    return getTrialPresentPrompt(this) ?? getClimaxPresentPrompt(this);
+  }
 
   // fallow-ignore-next-line unused-class-member
   public handleSelectChoice(optionId: string): void {

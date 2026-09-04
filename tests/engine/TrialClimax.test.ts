@@ -1,11 +1,16 @@
 // @Architecture(descriptionShort="Tests climax verdict then waiting-room epilogue staging", type="test", icon="dialog")
 import { describe, expect, it, beforeEach, vi } from 'vitest';
-import { getCaseScript } from '../../src/case/index.js';
+import { MidiMusicComposer, SoundEngine } from '../../src/audio/index.js';
+import { CASE_SCRIPT, getCaseScript } from '../../src/case/index.js';
 import type { DomElements } from '../../src/engine/Private/DomElements.js';
 import { COURTROOM_CELEBRATION_MS, SCENE_FADE_MS } from '../../src/engine/Private/SceneFade.js';
 import { queueClimaxVictory } from '../../src/engine/Private/TrialClimax.js';
+import { resolvePointClick } from '../../src/engine/Private/PresentPoint.js';
+import { TrialController } from '../../src/engine/Private/TrialController.js';
 import { UI_ES } from '../../src/i18n/index.js';
-import type { DialogueLine } from '../../src/types/index.js';
+import { GameStateManager } from '../../src/state/index.js';
+import type { CaseScript, DialogueLine } from '../../src/types/index.js';
+import { FakeAudioContext } from '../fakes/FakeAudioContext.js';
 import { setupDomHarness } from '../fakes/DomHarness.js';
 
 describe('TrialClimax waiting-room epilogue', () => {
@@ -110,3 +115,91 @@ describe('TrialClimax waiting-room epilogue', () => {
     expect(dom.caseCompleteTitleEl.textContent).toBe(UI_ES.caseCompleteTitle);
   });
 });
+
+describe('TrialClimax staged finale without choices', () => {
+  it('plays the final stage successDialogue then the verdict celebration', () => {
+    const dom = setupDomHarness();
+    const sound = new SoundEngine();
+    sound.init(new FakeAudioContext() as unknown as AudioContext);
+    const script = JSON.parse(JSON.stringify(CASE_SCRIPT)) as CaseScript;
+    script.trial.climax = {
+      dialogue: [{ speaker: 'JUEZ', text: 'Presente la prueba.' }],
+      presentTarget: ['chipote_chillon'],
+      stages: [
+        { presentTarget: ['chipote_chillon'], successDialogue: [{ speaker: 'DEFENSA', text: 'Etapa uno.' }] },
+        { presentTarget: ['informe_medico'], successDialogue: [{ speaker: 'DEFENSA', text: 'Breakdown del falso conde.' }] }
+      ],
+      verdict: [{ speaker: 'JUEZ', text: '¡INOCENTE!' }]
+    };
+    const queued: DialogueLine[][] = [];
+    const controller = new TrialController({
+      dom,
+      state: new GameStateManager(),
+      script,
+      soundEngine: sound,
+      midiComposer: new MidiMusicComposer(sound),
+      onQueueDialogue: (dialogue, onComplete) => {
+        queued.push(dialogue);
+        if (onComplete) onComplete();
+      },
+      onRenderLine: () => {},
+      onOpenCourtRecord: () => {}
+    });
+    controller.startClimax();
+    controller.handlePresentEvidence('chipote_chillon');
+    controller.handlePresentEvidence('informe_medico');
+    expect(queued.some((d) => d.some((l) => l.text.includes('Breakdown')))).toBe(true);
+    expect(queued.some((d) => d.some((l) => l.text.includes('INOCENTE')))).toBe(true);
+    expect(dom.confettiContainerEl.children.length).toBe(80);
+    expect(controller.isAwaitingEvidence()).toBe(false);
+  });
+
+  it('holds climax successDialogue until Present & Point hits the correct zone', () => {
+    const dom = setupDomHarness();
+    const sound = new SoundEngine();
+    sound.init(new FakeAudioContext() as unknown as AudioContext);
+    const script = JSON.parse(JSON.stringify(CASE_SCRIPT)) as CaseScript;
+    script.trial.climax = {
+      dialogue: [{ speaker: 'JUEZ', text: 'Presente la botella.' }],
+      presentTarget: ['chipote_chillon'],
+      stages: [
+        {
+          presentTarget: ['chipote_chillon'],
+          successDialogue: [{ speaker: 'DEFENSA', text: 'El lacre está pinchado.' }],
+          pointTarget: {
+            targetEvidenceId: 'chipote_chillon',
+            promptQuestion: 'Señale el pinchazo.',
+            imageAsset: 'assets/examine_botella.webp',
+            zones: [
+              { id: 'seal', bounds: [40, 0, 60, 30], isCorrect: true, failureDialogue: [] },
+              { id: 'rest', bounds: [0, 0, 100, 100], isCorrect: false, failureDialogue: [{ text: 'No es ahí.' }] }
+            ]
+          }
+        },
+        { presentTarget: ['informe_medico'], successDialogue: [{ speaker: 'DEFENSA', text: 'El sello.' }] }
+      ],
+      verdict: [{ speaker: 'JUEZ', text: '¡INOCENTE!' }]
+    };
+    const queued: DialogueLine[][] = [];
+    const controller = new TrialController({
+      dom,
+      state: new GameStateManager(),
+      script,
+      soundEngine: sound,
+      midiComposer: new MidiMusicComposer(sound),
+      onQueueDialogue: (dialogue, onComplete) => {
+        queued.push(dialogue);
+        if (onComplete) onComplete();
+      },
+      onRenderLine: () => {},
+      onOpenCourtRecord: () => {}
+    });
+    controller.startClimax();
+    controller.handlePresentEvidence('chipote_chillon');
+    expect(queued.some((d) => d.some((l) => l.text.includes('pinchado')))).toBe(false);
+    expect(dom.presentPointOverlayEl?.classList.contains('hidden')).toBe(false);
+    resolvePointClick(50, 10);
+    expect(queued.some((d) => d.some((l) => l.text.includes('pinchado')))).toBe(true);
+  });
+});
+

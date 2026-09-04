@@ -32,6 +32,8 @@ describe('UiLanguageUpdater', () => {
     expect(dom.btnContinueGame?.textContent).toContain('CONTINUE GAME');
     expect(dom.btnStartGame.textContent).toContain('CASE 1');
     expect(dom.btnStartCase2?.textContent).toContain('CASE 2');
+    expect(dom.btnStartCase4?.textContent).toContain('CASE 4');
+    expect(dom.btnEvidenceExamine?.textContent).toBe('Examine Detail');
     if (dom.btnStartTrialDebug) expect(dom.btnStartTrialDebug.textContent).toContain('DEBUG MODE');
     expect(dom.btnCourtRecord.title).toContain('Court Record');
     expect(dom.btnCourtRecord.querySelector('span')?.textContent).toBe('Record');

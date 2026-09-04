@@ -31,6 +31,7 @@ export interface UiTranslations {
   talkModalTitle: string;
   moveModalTitle: string;
   currentLocationBadge: string;
+  btnEvidenceExamine: string;
 
   // HUD Elements
   hudAudioToggleTitle: string;

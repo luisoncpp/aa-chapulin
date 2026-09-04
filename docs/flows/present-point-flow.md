@@ -1,40 +1,39 @@
 # Present & Point Flow
 
-Operational guide for Case 4 trial contradictions that require clicking a zone on the presented evidence plate.
+Operational guide for trial contradictions (and climax stages) that require clicking a zone on the presented evidence plate.
 
 ## 1. Trigger
 
-Player presents the correct evidence during cross-examination or climax **and** the active rule or stage defines `pointTarget` (e.g. `foto_crimen` melted-ice bucket, `plano_hotel` steam pipe, `botella_vino` wax seal).
+Player presents the matching evidence during cross-examination, a `followUp` present, or climax **and** the matched rule/stage defines `pointTarget`.
 
 ## 2. Entry Point
 
-- `TrialController` / `TrialClimax` after a valid present when `pointTarget` is set on the matched `ContradictionRule` or `ClimaxStage`.
-- Types: `PointTargetContradiction` in [[src/types/Private/script.ts]].
+- [[src/engine/Private/TrialPresent.ts]] / [[src/engine/Private/TrialClimaxPresent.ts]] after a valid present when `pointTarget` is set.
+- Overlay logic: [[src/engine/Private/PresentPoint.ts]]. Types: `PointTargetContradiction` in [[src/types/Private/script.ts]].
 
 ## 3. Step-by-Step Sequence
 
-1. Correct evidence id matches `pointTarget.targetEvidenceId`; penalty path is skipped for the present itself.
-2. Court Record closes; `#present-point-overlay` opens with `promptQuestion` on `#present-point-prompt`.
-3. `#present-point-image` loads the evidence `detailedView.imageAsset` (same plate as Acta examine).
-4. Invisible hit targets are laid from `zones[].bounds` as `[minX, minY, maxX, maxY]` percentages of the **contained** image box (not the raw JPEG — see [[docs/lessons-learned/present-point-cover-crop.md]]).
-5. **Wrong zone:** `gameState.takePenalty()`, `damage` SFX, `failureDialogue` for that zone (or generic judicial scolding), overlay stays open.
-6. **Correct zone (`isCorrect: true`):** `realization` SFX, `objection` + `¡TOMA ESO!` cut-in, `successDialogue` queued, overlay closes.
-7. Optional `followUp` on the parent contradiction runs next; dialogue lines may set `updateEvidence` (e.g. `foto_crimen` melted-ice stage).
+1. Matching evidence is accepted; the Acta closes. Parent `successDialogue` is **not** queued yet.
+2. `#present-point-overlay` opens with `promptQuestion` on `#present-point-prompt`.
+3. `#present-point-image` loads `pointTarget.imageAsset`, else `detailedView.imageAsset`, else `assets/examine_<id>.webp`.
+4. Player clicks `#present-point-stage`. The click is converted to percent of the **640×360 stage** (same box as overlay CSS). `zones[].bounds` are `[minX, minY, maxX, maxY]` percent. A catch-all incorrect zone must not steal a correct hotspot: correct zones are tested first.
+5. **Miss:** hide the overlay, `takePenalty()`, play that zone's `failureDialogue` (or the first incorrect zone's lines if the click hit empty space). After those lines, **reopen** the overlay. Health 0 queues guilty lines and restarts the trial.
+6. **Hit (`isCorrect`):** hide the overlay, `realization` SFX, then queue the **parent** `successDialogue` (`contradiction` / `followUp` / climax `stage`). Cut-ins live in that dialogue, not in the overlay.
+7. Optional `followUp` then reopens the Acta. Climax continues its stage flow (next present, choices, or `successDialogue` then `verdict`).
 
 ## 4. State Read / Write
 
 | Read | Write |
 |------|-------|
-| `pointTarget` from active statement rule or climax stage | `health` via `takePenalty` on miss |
-| `detailedView.imageAsset` from catalog | `evidenceUpdateStage` via `updateEvidence` in success dialogue |
-| Current `gameState.language` for localized failure lines | Trial presentation mode flags in `TrialController` |
+| `pointTarget` from active rule, follow-up, or climax stage | `health` via `takePenalty` on miss |
+| Evidence catalog for image fallback | Trial present pending flags in `TrialPresent` |
+| Click position vs 640×360 stage | `gameOver` / trial restart at 0 health |
 
 ## 5. Side Effects
 
-- Penalty on wrong zone (same 5-heart pool as a bad present).
-- Does not add evidence; only advances description stages already in inventory.
-- After success, normal dialogue queue resumes (press / next statement / next climax stage).
+- Overlay is a `.game-modal`, so it must hide during fail dialogue or Space/Enter cannot advance.
+- Authors place bounds on the visible plate ([[docs/lessons-learned/present-point-cover-crop.md]]).
 
 ## 6. Related Modules
 
-[[src/engine/Private/TrialController.ts]], [[src/engine/Private/TrialClimax.ts]], [[src/state/Private/EvidenceCatalogCase4.ts]], [[docs/architecture/case-scripting.md#Case 4 script fields (beyond Case 3)]]
+[[src/engine/Private/PresentPoint.ts]], [[src/engine/Private/TrialPresent.ts]], [[src/engine/Private/TrialClimaxPresent.ts]], [[docs/architecture/case-scripting.md#Case 4 script fields (beyond Case 3)]]

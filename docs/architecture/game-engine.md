@@ -18,6 +18,9 @@ flowchart TD
     Coordinator --> InvCtrl[Private/InvestigationController.ts]
     Coordinator --> TrialCtrl[Private/TrialController.ts]
     TrialCtrl --> Climax[Private/TrialClimax.ts]
+    TrialCtrl --> Present[Private/TrialPresent.ts]
+    Present --> Point[Private/PresentPoint.ts]
+    Climax --> Point
     Coordinator --> Dialogue[Private/DialogueFlow.ts]
     Dialogue --> StageCommit[Private/StageCommit.ts]
     StageCommit --> VisualFX
@@ -91,20 +94,22 @@ flowchart TD
 
 8. **Court Record & Talk Modals** ([[src/engine/Private/ModalManager.ts#Court Record Evidence Modal]]):
    - Dynamically populates `#court-record-modal` with items from `gameState.inventory`.
-   - Renders evidence details (icon preview, title, `getEvidenceDesc` which swaps in `updatedDesc` after `updateEvidence`) and provides the "¡Presentar Prueba!" button during trial cross-examinations and climax evidence prompts (whether opened automatically, via dialogue advance, or from `#btn-court-record`). While a climax stage with `prompt` awaits a present, [[src/engine/Private/ClimaxPresentPrompt.ts]] copies that question onto `#climax-present-prompt` (HUD, `pointer-events: none`) and `#court-record-present-prompt` (inside the Acta). The banners hide during success dialogue and choice prompts. Language switch re-reads the current stage's `prompt` from the swapped script.
+   - Renders evidence details (icon preview, title, `getEvidenceDesc` which swaps in `updatedDesc` after `updateEvidence`) and provides the "¡Presentar Prueba!" button during trial cross-examinations and climax evidence prompts (whether opened automatically, via dialogue advance, or from `#btn-court-record`). While a climax stage with `prompt` (or a day `openingPresent.prompt`) awaits a present, [[src/engine/Private/ClimaxPresentPrompt.ts]] copies that question onto `#climax-present-prompt` (HUD, `pointer-events: none`) and `#court-record-present-prompt` (inside the Acta). The banners hide during success dialogue and choice prompts. Language switch re-reads the current stage's `prompt` from the swapped script.
+  - Selecting an item with `detailedView` shows `#btn-evidence-examine`. [[src/engine/Private/EvidenceExamine.ts]] opens `#evidence-examine-modal` with `imageAsset`, `caption`, and optional percentage `clickableZones`. Zone clicks toast the tooltip (and update the caption). Close via `#btn-close-examine`.
    - Dynamically renders `#talk-options-modal` with topics defined in the current scene script.
    - Renders `#choice-prompt-modal` during climax via `openChoiceModal()` — non-dismissible, no close button; option buttons use `menu-btn talk-btn` and call `TrialController.handleSelectChoice()`.
    - **Invariant — Court Record cards share equal tracks and scroll only on Y.** `#evidence-grid` is a flex child (`min-width: 0`) with `repeat(3, minmax(0, 1fr))`. Grid items also use `min-width: 0`. Names wrap up to two lines (`line-clamp: 2`); they must not use `white-space: nowrap` or they grow a column (`min-width: auto`) and the grid overflows X. `overflow-x: clip` + `overflow-y: auto` (not `overflow: auto`). Regression: [[tests/engine/CourtRecordLayout.test.ts]].
    - **Invariant — Evidence descriptions scroll; Presentar stays fully visible.** `.modal-body` is `overflow: hidden`. `#evidence-details` uses `min-height: 0` so it can shrink to that body instead of growing with copy. `#evidence-description` is capped at six lines (`max-height: calc(1.3em * 6)`, matching `line-height: 1.3`) with `overflow-y: auto`. `#btn-modal-present` is `flex-shrink: 0`. Regression: [[tests/engine/CourtRecordLayout.test.ts]].
 
-9. **Present & Point overlay** (Case 4, [[docs/flows/present-point-flow.md]]):
-   - When a contradiction or climax stage sets `pointTarget`, a correct present queues `#present-point-overlay` instead of immediate success dialogue.
-   - `#present-point-image` shows the same `detailedView.imageAsset` as the Acta examine plate; zone `bounds` are percentages of that image as rendered with `object-fit: contain` inside `#present-point-stage` (see [[docs/lessons-learned/present-point-cover-crop.md]]).
-   - Wrong zone: `takePenalty()`, `failureDialogue`, reopen overlay. Correct zone: `realization` SFX, `¡TOMA ESO!` cut-in, `successDialogue`, then optional `updateEvidence`.
+9. **Present & Point overlay** (Case 4, [[docs/flows/present-point-flow.md]], [[src/engine/Private/PresentPoint.ts]]):
+   - When a contradiction, follow-up, or climax stage sets `pointTarget`, a correct present closes the Acta and opens `#present-point-overlay` instead of playing success dialogue yet.
+   - Image: `pointTarget.imageAsset`, else the evidence `detailedView.imageAsset`, else `assets/examine_<id>.webp`. Clicks convert to percent of the 640×360 `#present-point-stage`.
+   - Correct `isCorrect` zone: realization SFX, then the **parent** `successDialogue`. Miss: penalty, that zone's `failureDialogue` (or the first incorrect zone on a total miss); overlay reopens after the fail lines. Health 0 restarts the trial.
+   - Optional `ContradictionRule.followUp` then reopens the Acta for a second present. `TrialDayScript.openingPresent` runs after the day intro and before testimony 1.
 
-10. **Evidence examine in Acta** (Case 4, [[docs/flows/evidence-examine-flow.md]]):
+10. **Evidence examine in Acta** (Case 4, [[docs/flows/evidence-examine-flow.md]], [[src/engine/Private/EvidenceExamine.ts]]):
    - Selecting inventory evidence with `detailedView` reveals `#btn-evidence-examine` (*Examinar Detalle* / *Examine Detail*).
-   - Opens `#evidence-examine-modal` with caption, plate image, and optional `clickableZones` tooltips (e.g. `nota_amenaza` sentence highlights). Does not advance trial state by itself.
+   - Opens `#evidence-examine-modal` with caption, plate image, and optional `clickableZones` as percentage boxes. Zone clicks toast the tooltip. Does not advance trial state.
 
 ## Invariants & Design Rules
 

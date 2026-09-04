@@ -7,8 +7,10 @@
 import type { SoundEngine } from '../../audio/index.js';
 import type { DomElements } from './DomElements.js';
 import { closeHistoryModal, isAnyModalOpen } from './HistoryModal.js';
+import { bindEvidenceExamine } from './EvidenceExamine.js';
 import type { InvestigationController } from './InvestigationController.js';
 import { ModalManager } from './ModalManager.js';
+import { bindPresentPoint } from './PresentPoint.js';
 import type { TrialController } from './TrialController.js';
 
 export interface EventBinderConfig {
@@ -37,6 +39,8 @@ export class EngineEventBinder {
     EngineEventBinder.bindSaveAndLoad(config);
     EngineEventBinder.bindDialogueAdvance(config);
     EngineEventBinder.bindCourtRecord(config);
+    bindEvidenceExamine(config.dom);
+    bindPresentPoint(config.dom);
     EngineEventBinder.bindHistory(config);
     EngineEventBinder.bindInvestigation(config);
     EngineEventBinder.bindTrial(config);

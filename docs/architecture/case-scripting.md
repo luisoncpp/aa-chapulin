@@ -83,7 +83,7 @@ testimony: {
 climax: {
   dialogue: DialogueLine[];
   presentTarget: EvidenceId[];
-  stages?: { presentTarget: EvidenceId[]; successDialogue: DialogueLine[]; prompt?: string; requiredUpdateStage?: Partial<Record<EvidenceId, number>> }[];
+  stages?: { presentTarget: EvidenceId[]; successDialogue: DialogueLine[]; prompt?: string; requiredUpdateStage?: Partial<Record<EvidenceId, number>>; pointTarget?: PointTargetContradiction }[];
   choices?: ChoicePrompt[];
   verdict: DialogueLine[];
   epilogue?: { bg: string; dialogue: DialogueLine[] };
@@ -99,7 +99,7 @@ interface ChoicePrompt {
 }
 ```
 
-If `stages` is set, [[src/engine/Private/TrialClimax.ts]] walks them in order: a correct present plays that stage's `successDialogue` and opens the Court Record again, until the last stage. Optional `ClimaxStage.prompt` is the question shown on `#climax-present-prompt` and `#court-record-present-prompt` while that stage awaits a present ([[src/engine/Private/ClimaxPresentPrompt.ts]]); Case 3 fills all four (cuándo / dónde / quién / por qué). Case 1 omits `stages` and treats `presentTarget` + `verdict` as one step. When `choices` is set (Case 2), the final present plays that stage's `successDialogue` (wax mold + judge question), then [[src/engine/Private/TrialChoice.ts]] opens `#choice-prompt-modal` for each `ChoicePrompt`. Wrong answers apply penalties and reopen the same prompt; the last correct choice queues its `successDialogue` (verdict through Not Guilty), then confetti and epilogue. `climax.verdict` mirrors the last choice's `successDialogue`. [[src/engine/Private/TrialClimax.ts]] fires courtroom confetti and fades through black into `epilogue.bg`. Every epilogue line is stamped with that `bg` and `furniture: 'none'` so trial speaker cameras do not fire. After the last epilogue line the screen fades to black and `#case-complete-overlay` reports the case is finished. Case 1 omits `epilogue` and uses the same complete plate after the verdict confetti. Case 2 opens the epilogue with a narrator time-skip into the waiting room.
+If `stages` is set, [[src/engine/Private/TrialClimax.ts]] walks them in order: a correct present plays that stage's `successDialogue` and opens the Court Record again, until the last stage. Optional `ClimaxStage.prompt` is the question shown on `#climax-present-prompt` and `#court-record-present-prompt` while that stage awaits a present ([[src/engine/Private/ClimaxPresentPrompt.ts]]); Case 3 fills all four (cuándo / dónde / quién / por qué). Optional `ClimaxStage.pointTarget` opens Present & Point **before** `successDialogue`. Case 1 omits `stages` and treats `presentTarget` + `verdict` as one step. When `choices` is set (Case 2), the final present plays that stage's `successDialogue` (wax mold + judge question), then [[src/engine/Private/TrialChoice.ts]] opens `#choice-prompt-modal` for each `ChoicePrompt`. Wrong answers apply penalties and reopen the same prompt; the last correct choice queues its `successDialogue` (verdict through Not Guilty), then confetti and epilogue. `climax.verdict` mirrors the last choice's `successDialogue`. A final stage **without** `choices` plays `stage.successDialogue` then `queueClimaxCelebration(climax.verdict)` (Case 4 bottle + wax-seal breakdown, then INOCENTE). Case 1 has no `stages` array, so victory is still `verdict` only. [[src/engine/Private/TrialClimax.ts]] fires courtroom confetti and fades through black into `epilogue.bg`. Every epilogue line is stamped with that `bg` and `furniture: 'none'` so trial speaker cameras do not fire. After the last epilogue line the screen fades to black and `#case-complete-overlay` reports the case is finished. Case 1 omits `epilogue` and uses the same complete plate after the verdict confetti. Case 2 opens the epilogue with a narrator time-skip into the waiting room.
 
 ### 5. Adjournment ([[src/types/Private/script.ts]])
 
@@ -130,9 +130,9 @@ Day 1 reuses `detention`; day 3 revisits it as `detention_d3` (same gating patte
 
 | Field | Where | Purpose |
 |-------|-------|---------|
-| `pointTarget` | `Statement`, `ContradictionRule`, `ClimaxStage` | After a correct present, opens `#present-point-overlay` so the player clicks a zone on the evidence plate ([[docs/flows/present-point-flow.md]]). |
-| `followUp` | `ContradictionRule` | Optional second beat after `pointTarget` success (extra dialogue before `updateEvidence`). |
-| `openingPresent` | `testimony` | Day-3 trial opens with a mandatory present (`nota_amenaza`) before testimony 1. |
+| `pointTarget` | `ContradictionRule`, `ContradictionFollowUp`, `ClimaxStage` | After a correct present, opens `#present-point-overlay` so the player clicks a zone on the 640×360 plate ([[docs/flows/present-point-flow.md]]). Parent `successDialogue` plays only after a correct click. |
+| `followUp` | `ContradictionRule` | After the first present's success (and point, if any), reopen the Acta for `followUp.evidence`. Wrong item = penalty. Correct plays `followUp.successDialogue` (optional `followUp.pointTarget` first), then testimony 2 / adjourn / climax. |
+| `openingPresent` | `TrialScript` / `TrialDayScript` | After that day's intro, before testimony 1: Acta present (Case 4 day 3 `nota_amenaza`). Wrong = penalty then reopen; correct plays `successDialogue` then `startTestimony('testimony1')`. |
 | `detailedView` | `EvidenceItem` in [[src/state/Private/EvidenceCatalogCase4.ts]] | Five items expose `#btn-evidence-examine` in the Acta ([[docs/flows/evidence-examine-flow.md]]). |
 
 ### Case 4 trial gating (`checkTrialReadiness`)

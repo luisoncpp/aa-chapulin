@@ -8,8 +8,8 @@ Player opens the Acta (`#btn-court-record` or trial Present), selects an invento
 
 ## 2. Entry Point
 
-- `ModalManager` evidence selection handler in [[src/engine/Private/ModalManager.ts]].
-- Catalog field `EvidenceItem.detailedView` in [[src/types/Private/evidence.ts]]; Case 4 data in [[src/state/Private/EvidenceCatalogCase4.ts]].
+- `ModalManager.selectEvidence` → [[src/engine/Private/EvidenceExamine.ts]] `syncExamineButton`.
+- Catalog field `EvidenceItem.detailedView` in [[src/types/Private/evidence.ts]].
 
 ## 3. Step-by-Step Sequence
 
@@ -17,7 +17,7 @@ Player opens the Acta (`#btn-court-record` or trial Present), selects an invento
 2. If `detailedView` exists, `#btn-evidence-examine` is shown; otherwise hidden.
 3. Player clicks **Examinar Detalle** → `#evidence-examine-modal` opens (Court Record may stay underneath).
 4. `#evidence-examine-caption` shows `detailedView.caption`; `#evidence-examine-image` loads `imageAsset` (`assets/examine_*.webp`).
-5. Optional `clickableZones` render on `#evidence-examine-zones` with hover tooltips (e.g. `nota_amenaza`: Conde, $50,000, room 304). Zones are informational only unless a future script hooks them.
+5. Optional `clickableZones` render on `#evidence-examine-zones` as percentage boxes (`x,y,width,height`). A click toasts `tooltip` via the game notification (and updates the caption). Zones do not change inventory or trial state.
 6. Close via `#btn-close-examine` or backdrop; no inventory or trial state change.
 
 ## 4. State Read / Write
@@ -39,4 +39,4 @@ Player opens the Acta (`#btn-court-record` or trial Present), selects an invento
 
 ## 6. Related Modules
 
-[[src/engine/Private/ModalManager.ts]], [[src/state/Private/EvidenceCatalogCase4.ts]], [[docs/architecture/game-engine.md#Evidence examine in Acta]]
+[[src/engine/Private/EvidenceExamine.ts]], [[src/engine/Private/ModalManager.ts]], [[docs/architecture/game-engine.md]]

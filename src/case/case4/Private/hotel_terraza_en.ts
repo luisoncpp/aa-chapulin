@@ -26,7 +26,7 @@ export const CASE4_HOTEL_TERRAZA_EN: InvestigationScene = {
     {
       id: 'hotspot_barra',
       label: 'Bar Counter',
-      x: 10, y: 38, w: 42, h: 34,
+      x: 2, y: 36, w: 60, h: 40,
       dialogue: [
         { speaker: 'MARUJA', text: 'I serve cocktails to high society here. Though last night I nearly dropped my fan from fright.', pose: 'maruja_abanico' }
       ]

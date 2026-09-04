@@ -9,7 +9,7 @@ export const CAVA_HOTSPOTS_EN: Hotspot[] = [
   {
     id: 'hotspot_estanteria',
     label: 'Wine Racks',
-    x: 8, y: 18, w: 84, h: 58,
+    x: 8, y: 16, w: 90, h: 72,
     dialogue: [
       { speaker: 'SARGENTO', text: 'In the Count\'s private locker we found the intact twin bottle and his private order list.', pose: 'pazguato_saludo' },
       { speaker: 'DEFENSA', text: 'And what was secured on day one in Suite 304?', pose: 'donramon_point' },

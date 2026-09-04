@@ -9,7 +9,7 @@ export const AZOTEA_HOTSPOTS_EN: Hotspot[] = [
   {
     id: 'hotspot_baul',
     label: 'Trunk Behind the Motor',
-    x: 62, y: 44, w: 26, h: 36,
+    x: 38, y: 52, w: 22, h: 34,
     dialogue: [
       { speaker: 'CHOMPIRAS', text: 'Look what I found behind the freight-elevator generator!', pose: 'chompiras_nervous' },
       { speaker: 'DEFENSA', text: 'Rufino Rufián\'s English trunk!', pose: 'donramon_point' },

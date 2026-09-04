@@ -9,7 +9,7 @@ export const CAVA_HOTSPOTS: Hotspot[] = [
   {
     id: 'hotspot_estanteria',
     label: 'Estanterías de Vino',
-    x: 8, y: 18, w: 84, h: 58,
+    x: 8, y: 16, w: 90, h: 72,
     dialogue: [
       { speaker: 'SARGENTO', text: 'En el casillero exclusivo del Conde hallamos la botella gemela intacta y la lista de pedidos privados a su nombre.', pose: 'pazguato_saludo' },
       { speaker: 'DEFENSA', text: '¿Y lo asegurado el primer día en la Suite 304?', pose: 'donramon_point' },

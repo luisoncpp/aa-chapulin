@@ -24,7 +24,7 @@ export const CASE4_HOTEL_LOBBY_EN: InvestigationScene = {
     {
       id: 'hotspot_recepcion',
       label: 'Reception Desk',
-      x: 38, y: 42, w: 24, h: 38,
+      x: 46, y: 40, w: 44, h: 42,
       dialogue: [
         { speaker: 'CECILIO', text: 'Here I register the cream of society. No denim caps on my marble counter!', pose: 'cecilio_escandalo' }
       ]
@@ -32,7 +32,7 @@ export const CASE4_HOTEL_LOBBY_EN: InvestigationScene = {
     {
       id: 'hotspot_candelabro',
       label: 'Crystal Chandelier',
-      x: 48, y: 4, w: 18, h: 28,
+      x: 42, y: 8, w: 16, h: 20,
       dialogue: [
         { speaker: 'DEFENSA', text: '(Shines brighter than my financial future. Useless, but pretty.)', pose: 'donramon_sweat' },
         { speaker: 'CHAPULIN', text: '¡Más vale pájaro en mano que ciento volando!', pose: 'chapulin_idle' },

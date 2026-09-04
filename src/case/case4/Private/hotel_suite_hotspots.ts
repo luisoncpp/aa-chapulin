@@ -9,7 +9,7 @@ export const SUITE304_HOTSPOTS: Hotspot[] = [
   {
     id: 'hotspot_cuerpo',
     label: 'Silueta junto a la Chimenea',
-    x: 58, y: 48, w: 22, h: 28,
+    x: 28, y: 72, w: 36, h: 26,
     dialogue: [
       { speaker: 'SARGENTO', text: 'Aquí yacía el occiso junto a la chimenea. La copa rota, la botella descorchada y la cubeta de hielo quedaron aseguradas bajo cadena de custodia.', pose: 'pazguato_saludo' },
       { speaker: 'DEFENSA', text: '¿Y las actuaciones preliminares?', pose: 'donramon_idle' },
@@ -20,7 +20,7 @@ export const SUITE304_HOTSPOTS: Hotspot[] = [
   {
     id: 'hotspot_puerta',
     label: 'Marco de la Puerta',
-    x: 6, y: 18, w: 16, h: 52,
+    x: 2, y: 6, w: 24, h: 68,
     dialogue: [
       { speaker: 'SARGENTO', text: 'El marco de caoba está astillado donde empujamos la puerta. El cerrojo de cadena estaba en su riel interior.', pose: 'pazguato_idle' },
       { speaker: 'DEFENSA', text: '¿Y qué vio la señorita Maruja?', pose: 'donramon_point' },
@@ -30,7 +30,7 @@ export const SUITE304_HOTSPOTS: Hotspot[] = [
   {
     id: 'hotspot_radiador',
     label: 'Radiador de Hierro',
-    x: 78, y: 32, w: 14, h: 40,
+    x: 34, y: 42, w: 16, h: 36,
     dialogue: [
       { speaker: 'DEFENSA', text: 'Tubería gruesa que baja hacia el piso 2. Huele a humo de combustión y azufre concentrado.', pose: 'donramon_idle' },
       { speaker: 'CHAPULIN', text: '¡No contaban con mi astucia! ¡Esa tubería conecta con el sótano!', pose: 'chapulin_point' }
@@ -39,7 +39,7 @@ export const SUITE304_HOTSPOTS: Hotspot[] = [
   {
     id: 'hotspot_cesto',
     label: 'Cesto de Lavandería',
-    x: 28, y: 54, w: 20, h: 32,
+    x: 86, y: 52, w: 14, h: 32,
     dialogue: [
       { speaker: 'SARGENTO', text: 'Gran cesto de mimbre con sábanas blancas salpicadas de tizne. Aquí se ocultó Botija.', pose: 'pazguato_sweat' },
       { speaker: 'DEFENSA', text: '(Se metió de pánico... pero no mató a nadie.)', pose: 'donramon_sweat', unlockLocation: 'hotel_terraza' }

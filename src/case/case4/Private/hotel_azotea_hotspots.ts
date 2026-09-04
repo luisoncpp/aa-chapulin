@@ -9,7 +9,7 @@ export const AZOTEA_HOTSPOTS: Hotspot[] = [
   {
     id: 'hotspot_baul',
     label: 'Baúl detrás del Motor',
-    x: 62, y: 44, w: 26, h: 36,
+    x: 38, y: 52, w: 22, h: 34,
     dialogue: [
       { speaker: 'CHOMPIRAS', text: '¡Mire lo que descubrí detrás del generador del montacargas!', pose: 'chompiras_nervous' },
       { speaker: 'DEFENSA', text: '¡El baúl inglés de Rufino Rufián!', pose: 'donramon_point' },

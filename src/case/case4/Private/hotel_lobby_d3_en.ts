@@ -23,7 +23,7 @@ export const CASE4_HOTEL_LOBBY_D3_EN: InvestigationScene = {
     {
       id: 'hotspot_recepcion',
       label: 'Reception Desk',
-      x: 38, y: 42, w: 24, h: 38,
+      x: 46, y: 40, w: 44, h: 42,
       dialogue: [
         { speaker: 'CHIMOLTRUFIA', text: 'I clean here while the manager handles investors! As I say one thing, I say another!', pose: 'chimoltrufia_confundida' }
       ]
@@ -31,7 +31,7 @@ export const CASE4_HOTEL_LOBBY_D3_EN: InvestigationScene = {
     {
       id: 'hotspot_candelabro',
       label: 'Crystal Chandelier',
-      x: 48, y: 4, w: 18, h: 28,
+      x: 42, y: 8, w: 16, h: 20,
       dialogue: [
         { speaker: 'DEFENSA', text: '(Still shines like day one. Still useless.)', pose: 'donramon_sweat' }
       ]

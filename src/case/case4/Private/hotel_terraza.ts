@@ -26,7 +26,7 @@ export const CASE4_HOTEL_TERRAZA: InvestigationScene = {
     {
       id: 'hotspot_barra',
       label: 'Mostrador del Bar',
-      x: 10, y: 38, w: 42, h: 34,
+      x: 2, y: 36, w: 60, h: 40,
       dialogue: [
         { speaker: 'MARUJA', text: 'Aquí sirvo cócteles a la alta sociedad. Aunque anoche casi se me cae el abanico del susto.', pose: 'maruja_abanico' }
       ]

@@ -9,7 +9,7 @@ export const SOTANO_HOTSPOTS: Hotspot[] = [
   {
     id: 'hotspot_caldera',
     label: 'Caldera y Cenizas',
-    x: 44, y: 28, w: 28, h: 48,
+    x: 54, y: 32, w: 38, h: 52,
     dialogue: [
       { speaker: 'SARGENTO', text: 'Entre las cenizas del tiro de la chimenea que baja de los pisos superiores, recuperé un revólver .38 de cañón corto con una bala percutida.', pose: 'pazguato_decidido' },
       { speaker: 'DEFENSA', text: '¿Y eso entra al acta de la defensa?', pose: 'donramon_point' },

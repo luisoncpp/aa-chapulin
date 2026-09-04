@@ -9,7 +9,7 @@ export const SOTANO_HOTSPOTS_EN: Hotspot[] = [
   {
     id: 'hotspot_caldera',
     label: 'Boiler and Ashes',
-    x: 44, y: 28, w: 28, h: 48,
+    x: 54, y: 32, w: 38, h: 52,
     dialogue: [
       { speaker: 'SARGENTO', text: 'Among the ashes of the chimney flue from the upper floors, I recovered a short-barrel .38 revolver with a fired round.', pose: 'pazguato_decidido' },
       { speaker: 'DEFENSA', text: 'Does that go into the defense record?', pose: 'donramon_point' },

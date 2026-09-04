@@ -23,7 +23,7 @@ export const CASE4_HOTEL_TERRAZA_D2: InvestigationScene = {
     {
       id: 'hotspot_barra',
       label: 'Mostrador del Bar',
-      x: 10, y: 38, w: 42, h: 34,
+      x: 2, y: 36, w: 60, h: 40,
       dialogue: [
         { speaker: 'CHOMPIRAS', text: 'Aquí me escondo cuando el gerente pasa. ¡Un refresco de naranja y a seguir chambeando!', pose: 'chompiras_relieved' }
       ]

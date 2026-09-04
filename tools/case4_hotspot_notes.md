@@ -1,76 +1,77 @@
-# Case 4 hotspot notes (painted-object guesses)
+# Case 4 hotspot notes (stage percentages)
 
-Percent boxes are **guesses on the processed 1536×1024 plates** (`assets/bg_hotel_*.webp`). The investigation stage is 960×540 with CSS `background-size: cover` + center, so it trims ~equal bands from the top and bottom of the 3:2 plate (~8% of plate height each side). Do not place a clickable box only in the extreme top or bottom 10% of these notes without overlaying a 960×540 cover crop. Re-tune after overlaying [[docs/lessons-learned/investigation-hotspot-cover-crop.md]].
+Boxes below are **percentages of the 960×540 investigation stage** after CSS `background-size: cover` + center on the 1536×1024 (3:2) plates. Cover is width-fitted: ~80px (~7.8125% of plate height) cropped equally from top and bottom. X matches plate X. Convert plate-Y with `stageY = (plateY - 7.8125) / 84.375 * 100`. Do not place a box only in the cropped bands.
 
-Deep-examine bounds below are **percent of `assets/examine_*.webp` (960×540)** and must stay aligned with the spec Present & Point boxes.
+Spanish and English copies use **identical** `id, x, y, w, h`. Examine-plate Present & Point bounds are percent of the 960×540 `examine_*.webp` (already 16:9).
 
-## `bg_hotel_lobby.webp`
+## `bg_hotel_lobby.webp` (`hotel_lobby`, `hotel_lobby_d3`)
 
-- Reception desk: ~52–96% X, 42–78% Y
-- Key pigeonholes behind the desk: ~58–92% X, 22–52% Y
-- Persian red carpet runner: ~4–48% X, 48–92% Y
-- Chandelier (crystals hang into mid-frame): ~28–68% X, 4–28% Y — top of the fixture may clip in 16:9
-- Arch / hallway: ~18–48% X, 28–58% Y
+Committed:
+
+- `hotspot_recepcion`: `46, 40, 44, 42` — marble desk + lower pigeonholes (desk starts ~43% X)
+- `hotspot_candelabro`: `42, 8, 16, 20` — hanging crystal bowl (mount sits on the top crop edge; y:8 keeps the box in the visible band)
+
+Landmarks on the cover crop: key cubbies ~52–90% X, 18–50% Y; hallway arch ~24–44% X; red runner ~4–42% X, 48–92% Y.
 
 ## `bg_hotel_suite.webp` (Suite 304)
 
-- Door + chain lock / splintered jamb: ~0–22% X, 18–78% Y
-- Wrought-iron radiator (left of fireplace): ~24–40% X, 48–82% Y
-- Marble fireplace: ~40–62% X, 22–62% Y
-- Chalk body outline on the rug (near fireplace): ~28–58% X, 58–82% Y
-- Coffee table: ~58–92% X, 62–92% Y
-- Ice bucket on the table: ~68–84% X, 64–86% Y — the **wide plate still shows ice cubes**; the melted-water fact lives on `examine_foto.webp`
-- Wicker hamper: ~84–98% X, 42–78% Y
-- Window / gold curtains: ~70–98% X, 12–48% Y
+Committed:
 
-## `bg_hotel_bar.webp` (El Chapuzón)
+- `hotspot_puerta`: `2, 6, 24, 68` — Suite 304 door, plaque, chain, splintered jamb (far left)
+- `hotspot_radiador`: `34, 42, 16, 36` — cast-iron radiator **left of the fireplace** (~34–50% X)
+- `hotspot_cuerpo`: `28, 72, 36, 26` — chalk outline on the rug, center-left in front of radiator/fireplace
+- `hotspot_cesto`: `86, 52, 14, 32` — wicker hamper **far right** (~86–100% X)
 
-- Wood bar counter: ~2–42% X, 42–78% Y
-- Leather stools: ~8–38% X, 58–86% Y
-- Bottle rack / “EL CHAPUZON” sign: ~6–40% X, 12–42% Y
-- Umbrella tables: ~48–92% X, 42–78% Y
-- Garden / palms beyond the rail: ~40–100% X, 18–48% Y
+Landmarks: fireplace ~51–84% X, 28–76% Y; ice bucket on the foreground table ~67–81% X, 70–94% Y (the melted-water fact lives on `examine_foto.webp`).
+
+## `bg_hotel_bar.webp` (`hotel_terraza`, `hotel_terraza_d2`)
+
+Committed:
+
+- `hotspot_barra`: `2, 36, 60, 40` — wood counter, stools, and back-bar bottles (counter runs ~0–65% X)
+
+Landmarks: umbrella tables ~64–98% X, 48–70% Y; hanging glasses ~2–49% X, 2–22% Y.
 
 ## `bg_hotel_sotano.webp`
 
-- Gauge panel: ~4–22% X, 32–62% Y
-- Horizontal riveted steam pipe: ~8–70% X, 38–58% Y
-- Coal furnace door + glow: ~58–92% X, 28–78% Y
-- Ash pit / ember tray: ~62–88% X, 70–88% Y
-- “SALA DE CALDERAS” sign: ~4–26% X, 12–32% Y
+Committed:
+
+- `hotspot_caldera`: `54, 32, 38, 52` — boiler body, fire door, and coal at the base (right half)
+
+Landmarks: gauge panel ~2–18% X, 32–69% Y; horizontal steam pipe ~0–50% X, 46–62% Y; “SALA DE CALDERAS” sign ~4–22% X, 8–25% Y.
 
 ## `bg_hotel_suite204.webp`
 
-- Valet stand + black tailcoat: ~4–26% X, 28–86% Y
-- Oak wardrobe (open door): ~22–56% X, 8–76% Y
-- Leather briefcase at wardrobe base: ~24–38% X, 68–84% Y
-- Radiator: ~60–88% X, 46–90% Y
-- Brass purge valve on the radiator: ~74–84% X, 56–74% Y
+Committed:
+
+- `hotspot_armario`: `6, 8, 52, 78` — valet tailcoat, oak wardrobe (open door), briefcase at the base
+- `hotspot_radiador204`: `62, 46, 26, 48` — radiator **right of the wardrobe** (~62–88% X), including the brass purge valve (~78% X, 65–76% Y)
 
 ## `bg_hotel_cava.webp`
 
-- Oak racks / bottles (back wall): ~8–70% X, 18–62% Y
-- Locked private bins (right, padlocks): ~62–96% X, 42–78% Y
-- Nameplate bin (“Marqués…”): ~78–96% X, 48–72% Y
-- Barrels: ~8–48% X, 48–78% Y
-- Tasting table + glass: ~28–62% X, 62–88% Y
+Committed:
+
+- `hotspot_estanteria`: `8, 16, 90, 72` — back-wall racks, barrels, locked bins, and the “MARQUÉS DE ALTAMIRA” nameplate chest
 
 ## `bg_hotel_azotea.webp`
 
-- Elevator motor housing / gauges / wheel: ~32–68% X, 22–72% Y
-- Steel cables above the housing: ~40–60% X, 4–24% Y — may clip in 16:9
-- English travel trunk in the machinery recess: ~38–62% X, 58–78% Y
-- Brick chimney flues: ~12–28% X and ~70–86% X, 18–52% Y
-- “GRAN HOTEL BUENA VISTA” roof sign: ~4–28% X, 22–42% Y
+Committed:
 
-## Examine plates (`examine_*.webp`)
+- `hotspot_baul`: `38, 52, 22, 34` — English travel trunk in the motor-housing recess (~39–57% X, 53–85% Y)
 
-These match the spec click boxes; overlay before changing numbers.
+Landmarks: motor housing ~31–66% X, 12–94% Y; roof sign ~0–19% X, 0–20% Y (top clips).
 
-| File | Target | Spec box `[minX, minY, maxX, maxY]` | What landed |
-|------|--------|--------------------------------------|-------------|
-| `examine_foto.webp` | Metal ice bucket with melted water, no cubes | `[56, 46, 76, 70]` | Galvanized bucket body fills this rectangle; bottle and broken glass sit to the left of it |
-| `examine_plano.webp` | Vertical steam pipe 204↔304↔caldera | `[42, 26, 58, 68]` | Riveted stack + both radiators sit in the center column |
-| `examine_botella.webp` | Red wax seal dome + needle puncture | `[44, 4, 56, 24]` | Standing bottle; glossy red dome with a dark puncture occupies the top-center box |
-| `examine_cadena.webp` | Brass slide rail, nylon on the bolt, jamb scratch | (no Present & Point box) | Horizontal brass lock fills the frame; nylon trails into the jamb gap; scratch below the plate |
-| `examine_nota.webp` | 1970s telegram, readable Spanish | (no Present & Point box) | Telégrafos Nacionales form; postmark Terminal de Autobuses 24 OCT 1978 8:15 PM; Conde de Montemayor; $50,000 / Collar de Cleopatra / habitación 304 |
+## Reused plates
+
+- `bg_detention.webp` (`detention`, `detention_d3`): kept Case 3 geometry — `botija_spot` `32, 10, 36, 58`; `phone_spot` `86, 16, 12, 40` (wall phone on the visitor side). Plate is ~16:9 (1376×768); cover crops ~5px from the sides.
+- `bg_delegacion.webp` (`delegacion`): kept `hotspot_archivo` `8, 16, 18, 50` on the left filing cabinets.
+
+## Examine plates (`examine_*.webp`) — Present & Point
+
+Art already matches the spec click boxes; bounds were **not** changed.
+
+| File | Target | Spec box `[minX, minY, maxX, maxY]` |
+|------|--------|--------------------------------------|
+| `examine_foto.webp` | Galvanized ice bucket (melted water, no cubes) | `[56, 46, 76, 70]` |
+| `examine_plano.webp` | Vertical steam pipe 204↔304↔caldera | `[42, 26, 58, 68]` |
+| `examine_botella.webp` | Red wax seal dome + needle puncture | `[44, 4, 56, 24]` |

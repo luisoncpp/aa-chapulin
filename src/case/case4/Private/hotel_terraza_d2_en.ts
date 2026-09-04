@@ -23,7 +23,7 @@ export const CASE4_HOTEL_TERRAZA_D2_EN: InvestigationScene = {
     {
       id: 'hotspot_barra',
       label: 'Bar Counter',
-      x: 10, y: 38, w: 42, h: 34,
+      x: 2, y: 36, w: 60, h: 40,
       dialogue: [
         { speaker: 'CHOMPIRAS', text: 'I hide here when the manager passes. Orange soda and back to work!', pose: 'chompiras_relieved' }
       ]

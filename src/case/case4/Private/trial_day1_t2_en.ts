@@ -69,7 +69,11 @@ export const CASE4_TESTIMONY_2_EN: Testimony = {
       contradiction: {
         evidence: ['candado_cadena'],
         successDialogue: T2_CHAIN_EN,
-        followUp: { evidence: ['billetera_cuajinais'], successDialogue: T2_WALLET_EN }
+        followUp: {
+          evidence: ['billetera_cuajinais'],
+          prompt: 'Do you have proof in your possession that refutes the robbery motive?',
+          successDialogue: T2_WALLET_EN
+        }
       }
     },
     {

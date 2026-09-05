@@ -22,12 +22,13 @@ export const CASE4_CLIMAX: ClimaxDefinition = {
   stages: [
     {
       presentTarget: ['botella_vino'],
-      prompt: '¡Señale el punto exacto por donde penetró el cianuro en la botella sellada!',
+      prompt: '¿Qué prueba material demuestra cómo se inoculó el veneno sin violar el corcho?',
       pointTarget: CASE4_CLIMAX_BOTTLE_POINT,
       successDialogue: CASE4_CLIMAX_STAGE1_SUCCESS
     },
     {
       presentTarget: ['sello_lacre'],
+      prompt: '¿Con qué objeto específico se derritió y estampó el sello de lacre?',
       successDialogue: CASE4_CLIMAX_STAGE2_SUCCESS
     }
   ],

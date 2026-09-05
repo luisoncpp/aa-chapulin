@@ -37,13 +37,13 @@ export const CASE4_EVIDENCE_ES: Record<string, EvidenceItem> = {
   foto_crimen: ev('foto_crimen', {
     name: 'Fotografía de la Suite 304',
     icon: 'assets/foto_suite304.webp',
-    desc: 'Escena del crimen a las 11:30 PM. El cuerpo yace junto a la chimenea; sobre la alfombra y la mesita yacen la copa rota con residuos secos y la botella descorchada de Chateau Buena Vista 1958 junto a la cubeta de hielo, aseguradas por el Sargento.',
+    desc: 'Escena del crimen a las 11:30 PM. El cuerpo yace junto a la chimenea; sobre la alfombra y la mesita yacen la copa rota con residuos secos y la botella descorchada de Chateau Buena Vista 1958 junto a la cubeta de hielo, aseguradas por el Sargento. En el sofá junto a la chimenea se aprecian una almohada de plumas desgarrada con orificio chamuscado y plumas esparcidas.',
     updates: [
       'Escena del crimen a las 11:30 PM. La cubeta sobre la mesita contiene agua templada sin un solo témpano de hielo flotando, demostrando que el servicio de bebidas se entregó horas antes del estruendo.'
     ]
   }, {
     imageAsset: 'assets/examine_foto.webp',
-    caption: 'Fotografía asegurada del Sargento: mesita ratona con cubeta de hielo, copa rota y botella descorchada junto a la chimenea.'
+    caption: 'Fotografía asegurada del Sargento: mesita ratona con cubeta de hielo, copa rota, botella descorchada y almohada de plumas chamuscada junto a la chimenea.'
   }),
   candado_cadena: ev('candado_cadena', {
     name: 'Cerrojo de Cadena de la 304',

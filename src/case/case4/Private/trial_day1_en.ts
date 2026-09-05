@@ -102,7 +102,11 @@ export const CASE4_TESTIMONY_1_EN: Testimony = {
         evidence: ['foto_crimen'],
         pointTarget: FOTO_POINT_EN,
         successDialogue: T1_POINT_SUCCESS_EN,
-        followUp: { evidence: ['informe_policial'], successDialogue: T1_FOLLOWUP_EN }
+        followUp: {
+          evidence: ['informe_policial'],
+          prompt: 'Do you have documentary proof that discredits the time in the police report?',
+          successDialogue: T1_FOLLOWUP_EN
+        }
       }
     },
     {

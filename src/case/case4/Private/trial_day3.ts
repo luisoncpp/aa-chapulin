@@ -17,6 +17,7 @@ export const CASE4_DAY3_INTRO: DialogueLine[] = [
 
 export const CASE4_DAY3_OPENING_PRESENT: OpeningPresent = {
   evidence: ['nota_amenaza'],
+  prompt: '¿Qué prueba demuestra el móvil de extorsión entre la víctima y Rufino?',
   successDialogue: CASE4_DAY3_OPENING_PRESENT_SUCCESS
 };
 
@@ -51,7 +52,11 @@ export const CASE4_TESTIMONY_5: Testimony = {
       contradiction: {
         evidence: ['boleta_baccarat'],
         successDialogue: CASE4_D3_T1_BOLETA_SUCCESS,
-        followUp: { evidence: ['registro_montacargas'], successDialogue: CASE4_D3_T1_REGISTRO_FOLLOWUP }
+        followUp: {
+          evidence: ['registro_montacargas'],
+          prompt: '¿Qué registro del hotel demuestra el traslado del cadáver al tercer piso?',
+          successDialogue: CASE4_D3_T1_REGISTRO_FOLLOWUP
+        }
       }
     },
     {

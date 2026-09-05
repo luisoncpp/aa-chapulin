@@ -50,12 +50,13 @@ export const CASE4_CLIMAX_EN: ClimaxDefinition = {
   stages: [
     {
       presentTarget: ['botella_vino'],
-      prompt: 'Point to the exact spot where cyanide penetrated the sealed bottle!',
+      prompt: 'What material proof shows how poison was injected without breaking the cork?',
       pointTarget: BOTTLE_POINT_EN,
       successDialogue: STAGE1_EN
     },
     {
       presentTarget: ['sello_lacre'],
+      prompt: 'With what specific object was the wax seal melted and stamped?',
       successDialogue: STAGE2_EN
     }
   ],

@@ -49,7 +49,11 @@ export const CASE4_TESTIMONY_2: Testimony = {
       contradiction: {
         evidence: ['candado_cadena'],
         successDialogue: CASE4_D1_T2_CHAIN_SUCCESS,
-        followUp: { evidence: ['billetera_cuajinais'], successDialogue: CASE4_D1_T2_WALLET_SUCCESS }
+        followUp: {
+          evidence: ['billetera_cuajinais'],
+          prompt: '¿Tiene alguna prueba en su poder que refute el móvil de robo?',
+          successDialogue: CASE4_D1_T2_WALLET_SUCCESS
+        }
       }
     },
     {

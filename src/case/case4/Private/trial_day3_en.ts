@@ -45,6 +45,7 @@ export const CASE4_DAY3_INTRO_EN: DialogueLine[] = [
 
 export const CASE4_DAY3_OPENING_PRESENT_EN: OpeningPresent = {
   evidence: ['nota_amenaza'],
+  prompt: 'What proof shows the extortion motive between the victim and Rufino?',
   successDialogue: OPENING_PRESENT_EN
 };
 
@@ -79,7 +80,11 @@ export const CASE4_TESTIMONY_5_EN: Testimony = {
       contradiction: {
         evidence: ['boleta_baccarat'],
         successDialogue: T5_BOLETA_EN,
-        followUp: { evidence: ['registro_montacargas'], successDialogue: T5_REGISTRO_EN }
+        followUp: {
+          evidence: ['registro_montacargas'],
+          prompt: 'What hotel log proves the body was transported to the third floor?',
+          successDialogue: T5_REGISTRO_EN
+        }
       }
     },
     {

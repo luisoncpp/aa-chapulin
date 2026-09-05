@@ -19,7 +19,7 @@ Operational guide for courtroom litigation, cross-examinations, evidence present
 1. `fadeThroughBlack` covers the investigation plate.
 2. While covered, `gameState.mode` switches to `'TRIAL'`, HUD hides investigation controls, and the first intro shot (`bg`, pose, furniture) is painted so the reveal is already the courtroom.
 3. After the reveal, `queueDialogue` of the active day's intro (`getActiveTrial(script, trialDay).intro` via [[src/engine/Private/TrialDayRouter.ts]]).
-4. On intro complete: if `getActiveTrial(...).openingPresent` is set ([[src/engine/Private/TrialPresent.ts]]), open the Court Record in presentation mode. Correct evidence plays `successDialogue` then `startTestimony('testimony1')`; wrong evidence is a penalty and the Acta reopens. Otherwise `startTestimony('testimony1')` runs immediately.
+4. On intro complete: if `getActiveTrial(...).openingPresent` is set ([[src/engine/Private/TrialPresent.ts]]), open the Court Record in presentation mode. If `openingPresent.prompt` is defined, the question is displayed on `#climax-present-prompt` and `#court-record-present-prompt` while awaiting evidence. Correct evidence plays `successDialogue` then `startTestimony('testimony1')`; wrong evidence is a penalty and the Acta reopens. Otherwise `startTestimony('testimony1')` runs immediately.
 
 ### Testimony Looping & Pressing
 1. `startTestimony(testimonyKey)` sets `currentTestimony`, resets `currentStatementIdx = 0`, starts BGM (`cross_exam_moderato` or `cross_exam_allegro`), and renders statement 0.
@@ -39,7 +39,7 @@ Operational guide for courtroom litigation, cross-examinations, evidence present
    - **Correct Evidence**:
      1. If the matched rule has `pointTarget`, open `#present-point-overlay` first ([[docs/flows/present-point-flow.md]]). Parent `successDialogue` waits for a correct click.
      2. Queues `successDialogue` (displays `¡PROTESTO!` or `¡TOMA ESO!`, desk slams, realization sound, BGM switches to `objection` or `pursuit`).
-     3. If `followUp` is set, reopen the Acta for `followUp.evidence` (wrong = penalty; correct may also `pointTarget` then `followUp.successDialogue`).
+     3. If `followUp` is set, reopen the Acta for `followUp.evidence` (wrong = penalty; correct may also `pointTarget` then `followUp.successDialogue`). If `followUp.prompt` is set, that question is shown on the HUD and inside the Court Record window.
      4. On finish callback:
         - If finishing Testimony 1 -> launches `testimony2` (re-reveals trial controls upon statement render).
         - If finishing Testimony 2: no pending `adjournment` for this day → `startClimax()`. Otherwise fade back to investigation (`adjournment.nextLocation`; Case 3 day 2 goes to the office, day 3 to the storeroom).

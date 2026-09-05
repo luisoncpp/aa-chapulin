@@ -9,8 +9,9 @@ import { CASE4_TESTIMONY_1, CASE4_TRIAL_INTRO } from '../../src/case/case4/Priva
 import { CASE4_TESTIMONY_1_EN } from '../../src/case/case4/Private/trial_day1_en.js';
 import { CASE4_TESTIMONY_2 } from '../../src/case/case4/Private/trial_day1_t2.js';
 import { CASE4_TESTIMONY_2_EN } from '../../src/case/case4/Private/trial_day1_t2_en.js';
-import { CASE4_TESTIMONY_3 } from '../../src/case/case4/Private/trial_day2.js';
-import { CASE4_TESTIMONY_3_EN } from '../../src/case/case4/Private/trial_day2_en.js';
+import { CASE4_DAY2_INTRO, CASE4_TESTIMONY_3 } from '../../src/case/case4/Private/trial_day2.js';
+import { CASE4_DAY2_INTRO_EN, CASE4_TESTIMONY_3_EN } from '../../src/case/case4/Private/trial_day2_en.js';
+import { CASE4_D2_T2_CASQUILLO_SUCCESS } from '../../src/case/case4/Private/trial_day2_success.js';
 import { CASE4_TESTIMONY_4 } from '../../src/case/case4/Private/trial_day2_t2.js';
 import { CASE4_TESTIMONY_4_EN } from '../../src/case/case4/Private/trial_day2_t2_en.js';
 import { CASE4_TESTIMONY_5 } from '../../src/case/case4/Private/trial_day3.js';
@@ -57,6 +58,32 @@ describe('Case 4 Hotel Buena Vista trial scripts', () => {
     expect(stmt?.contradiction?.followUp?.evidence).toEqual(['informe_policial']);
   });
 
+  it('D2-T1 has El Sargento as witness and allows presenting on d2_t1_2 and d2_t1_3', () => {
+    expect(CASE4_TESTIMONY_3.witness).toBe('El Sargento');
+    expect(CASE4_TESTIMONY_3_EN.witness).toBe('Sergeant Pazguato');
+    for (const stmt of CASE4_TESTIMONY_3.statements) {
+      expect(stmt.speaker).toBe('SARGENTO');
+    }
+    for (const stmt of CASE4_TESTIMONY_3_EN.statements) {
+      expect(stmt.speaker).toBe('SARGENTO');
+    }
+    const stmt2 = CASE4_TESTIMONY_3.statements.find((s) => s.id === 'd2_t1_2');
+    expect(stmt2?.contradiction?.evidence).toEqual(['residuos_manos']);
+    expect(stmt2?.contradiction?.followUp?.evidence).toEqual(['informe_forense']);
+
+    const stmt3 = CASE4_TESTIMONY_3.statements.find((s) => s.id === 'd2_t1_3');
+    expect(stmt3?.contradiction?.evidence).toEqual(['informe_forense']);
+
+    expect(CASE4_DAY2_INTRO[2].bgm).toBeUndefined();
+    expect(CASE4_DAY2_INTRO_EN[2].bgm).toBeUndefined();
+
+    expect(CASE4_D2_T2_CASQUILLO_SUCCESS[0].cutin).toBe('objection_toma_eso');
+
+    const pt = CASE4_TESTIMONY_4_EN.statements.find((s) => s.id === 'd2_t2_4')?.contradiction?.pointTarget;
+    const failZone = pt?.zones.find((z) => !z.isCorrect);
+    expect(failZone?.failureDialogue[0].text).toContain('Through this section');
+  });
+
   it('day-3 openingPresent requires nota_amenaza in ES and EN', () => {
     expect(CASE4_DAY3_OPENING_PRESENT.evidence).toEqual(['nota_amenaza']);
     expect(CASE4_DAY3_OPENING_PRESENT_EN.evidence).toEqual(['nota_amenaza']);
@@ -88,5 +115,23 @@ describe('Case 4 Hotel Buena Vista trial scripts', () => {
     ES_TESTIMONIES.forEach((es, i) => {
       expect(statementIds(es)).toEqual(statementIds(EN_TESTIMONIES[i]));
     });
+  });
+
+  it('defines non-empty present prompts outside cross examination in ES and EN', () => {
+    expect(CASE4_DAY3_OPENING_PRESENT.prompt).toBeTruthy();
+    expect(CASE4_DAY3_OPENING_PRESENT_EN.prompt).toBeTruthy();
+
+    const findFollowUps = (testimonies: Testimony[]) =>
+      testimonies.flatMap((t) => t.statements.filter((s) => s.contradiction?.followUp).map((s) => s.contradiction!.followUp!));
+
+    const esFollowUps = findFollowUps(ES_TESTIMONIES);
+    const enFollowUps = findFollowUps(EN_TESTIMONIES);
+    expect(esFollowUps).toHaveLength(6);
+    expect(enFollowUps).toHaveLength(6);
+    esFollowUps.forEach((fu) => expect(fu.prompt).toBeTruthy());
+    enFollowUps.forEach((fu) => expect(fu.prompt).toBeTruthy());
+
+    CASE4_CLIMAX.stages!.forEach((stage) => expect(stage.prompt).toBeTruthy());
+    CASE4_CLIMAX_EN.stages!.forEach((stage) => expect(stage.prompt).toBeTruthy());
   });
 });

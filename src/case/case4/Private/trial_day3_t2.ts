@@ -49,7 +49,11 @@ export const CASE4_TESTIMONY_6: Testimony = {
       contradiction: {
         evidence: ['baul_etiquetas'],
         successDialogue: CASE4_D3_T2_BAUL_SUCCESS,
-        followUp: { evidence: ['copa_vino'], successDialogue: CASE4_D3_T2_COPA_FOLLOWUP }
+        followUp: {
+          evidence: ['copa_vino'],
+          prompt: '¿Qué prueba vincula el envenenamiento de la víctima con el falso conde?',
+          successDialogue: CASE4_D3_T2_COPA_FOLLOWUP
+        }
       }
     },
     {

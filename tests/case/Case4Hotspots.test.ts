@@ -19,7 +19,8 @@ describe('Case 4 investigation hotspot geometry', () => {
       { id: 'hotspot_cuerpo', x: 28, y: 72, w: 36, h: 26 },
       { id: 'hotspot_puerta', x: 2, y: 6, w: 24, h: 68 },
       { id: 'hotspot_radiador', x: 34, y: 42, w: 16, h: 36 },
-      { id: 'hotspot_cesto', x: 86, y: 52, w: 14, h: 32 }
+      { id: 'hotspot_cesto', x: 86, y: 52, w: 14, h: 32 },
+      { id: 'hotspot_almohada', x: 64, y: 54, w: 20, h: 26 }
     ]);
     expect(es.investigation.hotel_terraza.hotspots.map(geom)).toEqual([
       { id: 'hotspot_barra', x: 2, y: 36, w: 60, h: 40 }

@@ -15,7 +15,10 @@ import {
   rebindClimaxChoiceModal,
   resolveClimaxChoiceFromController, startClimaxPhase
 } from './TrialClimax.js';
-import { afterTrialIntro, getTrialPresentPrompt, handleTestimonyPresent, hasPendingTrialPresent } from './TrialPresent.js';
+import {
+  afterTrialIntro, getTrialPresentPrompt, handleTestimonyPresent,
+  hasPendingTrialPresent, rebindTrialPresentScript
+} from './TrialPresent.js';
 import { isPresentPointOpen } from './PresentPoint.js';
 import { visibleStatements } from './StatementUnlock.js';
 import { restoreTrialFromSnapshot } from './TrialRestore.js';
@@ -168,18 +171,13 @@ export class TrialController {
 
   public startClimax(): void { startClimaxPhase(this, /*replayOpening=*/ true); }
   public isAwaitingEvidence(): boolean {
-    if (isPresentPointOpen(this.deps.dom)) return false;
-    return hasPendingTrialPresent(this) || isAwaitingClimaxEvidence(this);
+    return !isPresentPointOpen(this.deps.dom) && (hasPendingTrialPresent(this) || isAwaitingClimaxEvidence(this));
   }
 
-  public getPresentPrompt(): string | null {
-    return getTrialPresentPrompt(this) ?? getClimaxPresentPrompt(this);
-  }
+  public getPresentPrompt(): string | null { return getTrialPresentPrompt(this) ?? getClimaxPresentPrompt(this); }
 
   // fallow-ignore-next-line unused-class-member
-  public handleSelectChoice(optionId: string): void {
-    resolveClimaxChoiceFromController(this, optionId);
-  }
+  public handleSelectChoice(optionId: string): void { resolveClimaxChoiceFromController(this, optionId); }
 
   public restartAfterGameOver(): void { showGameOverModal(this); }
 
@@ -190,8 +188,11 @@ export class TrialController {
       rebindClimaxChoiceModal(this);
       return;
     }
-    if (this.phase !== 'TESTIMONY' || !this.testimonyKey) return;
-    this.currentTestimony = getActiveTrial(this.script, this.deps.state.trialDay)[this.testimonyKey];
-    this.renderCurrentStatement();
+    if (this.phase !== 'TESTIMONY') return;
+    if (this.testimonyKey) {
+      this.currentTestimony = getActiveTrial(this.script, this.deps.state.trialDay)[this.testimonyKey];
+      this.renderCurrentStatement();
+    }
+    rebindTrialPresentScript(this);
   }
 }

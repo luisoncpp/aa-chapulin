@@ -75,7 +75,11 @@ export const CASE4_TESTIMONY_1: Testimony = {
         evidence: ['foto_crimen'],
         pointTarget: CASE4_D1_T1_POINT_TARGET,
         successDialogue: CASE4_D1_T1_POINT_SUCCESS,
-        followUp: { evidence: ['informe_policial'], successDialogue: CASE4_D1_T1_FOLLOWUP_SUCCESS }
+        followUp: {
+          evidence: ['informe_policial'],
+          prompt: '¿Tiene alguna prueba documental que desacredite la hora registrada en el reporte policial?',
+          successDialogue: CASE4_D1_T1_FOLLOWUP_SUCCESS
+        }
       }
     },
     {

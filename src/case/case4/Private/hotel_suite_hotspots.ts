@@ -44,5 +44,15 @@ export const SUITE304_HOTSPOTS: Hotspot[] = [
       { speaker: 'SARGENTO', text: 'Gran cesto de mimbre con sábanas blancas salpicadas de tizne. Aquí se ocultó Botija.', pose: 'pazguato_sweat' },
       { speaker: 'DEFENSA', text: '(Se metió de pánico... pero no mató a nadie.)', pose: 'donramon_sweat', unlockLocation: 'hotel_terraza' }
     ]
+  },
+  {
+    id: 'hotspot_almohada',
+    label: 'Almohada del Sofá',
+    x: 64, y: 54, w: 20, h: 26,
+    dialogue: [
+      { speaker: 'DEFENSA', text: '¡Miren esto con lupa! Esta almohada de plumas tiene un agujero ennegrecido y plumón regado por todo el sofá. Quien haya disparado aquí pegó el cañón a la almohada para ahogar el sonido del fogonazo.', pose: 'donramon_point' },
+      { speaker: 'CHAPULIN', text: '¡Lo sospeché desde un principio! ¡Usaron una almohada de plumas como silenciador casero para sofocar el estruendo!', pose: 'chapulin_point' },
+      { speaker: 'SARGENTO', text: 'Caray... tiene usted razón, mi Licenciado. Yo pensé que el difunto había tenido una pelea de almohadas antes de que le dieran el plomazo.', pose: 'pazguato_sweat' }
+    ]
   }
 ];

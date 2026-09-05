@@ -28,6 +28,7 @@ describe('TrialFollowUp', () => {
       successDialogue: [{ speaker: 'DEFENSA', text: 'Primera prueba.' }],
       followUp: {
         evidence: ['informe_medico'],
+        prompt: '¿Cuál es la segunda prueba?',
         successDialogue: [{ speaker: 'DEFENSA', text: 'Segunda prueba.' }]
       }
     };
@@ -56,6 +57,7 @@ describe('TrialFollowUp', () => {
     expect(courtRecordOpened).toBe(true);
     expect(controller.currentTestimony).toBe(controller.script.trial.testimony1);
     expect(controller.isAwaitingEvidence()).toBe(true);
+    expect(controller.getPresentPrompt()).toBe('¿Cuál es la segunda prueba?');
   });
 
   it('advances testimony after the follow-up present and penalizes a wrong item', () => {
@@ -67,5 +69,14 @@ describe('TrialFollowUp', () => {
     controller.handlePresentEvidence('informe_medico');
     expect(queued.some((d) => d.some((l) => l.text.includes('Segunda')))).toBe(true);
     expect(controller.currentTestimony).toBe(controller.script.trial.testimony2);
+  });
+
+  it('updates follow-up prompt on script language rebind', () => {
+    controller.handlePresentEvidence('chipote_chillon');
+    expect(controller.getPresentPrompt()).toBe('¿Cuál es la segunda prueba?');
+    const newScript = JSON.parse(JSON.stringify(controller.script)) as CaseScript;
+    newScript.trial.testimony1.statements[1].contradiction!.followUp!.prompt = 'What is the second piece of evidence?';
+    controller.setScript(newScript);
+    expect(controller.getPresentPrompt()).toBe('What is the second piece of evidence?');
   });
 });

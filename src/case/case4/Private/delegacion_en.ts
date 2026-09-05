@@ -36,7 +36,7 @@ export const CASE4_DELEGACION_EN: InvestigationScene = {
       label: 'Real cause of death?',
       dialogue: [
         { speaker: 'SARGENTO', text: 'Cellular asphyxia from potassium cyanide between 9:30 and 10:00 PM. The 11:15 shot was post-mortem.', pose: 'pazguato_decidido' },
-        { speaker: 'DEFENSA', text: '(Turn 1... The false time of death. Tomorrow we tear it apart in court.)', pose: 'donramon_point' }
+        { speaker: 'DEFENSA', text: '(Turn 1... The false time of death. In a little while we tear it apart in court.)', pose: 'donramon_point' }
       ]
     }
   ]

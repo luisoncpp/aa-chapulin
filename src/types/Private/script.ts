@@ -203,6 +203,7 @@ export interface ContradictionFollowUp {
   evidence: EvidenceId[];
   successDialogue: DialogueLine[];
   pointTarget?: PointTargetContradiction;
+  prompt?: string;
 }
 
 export interface ContradictionRule {

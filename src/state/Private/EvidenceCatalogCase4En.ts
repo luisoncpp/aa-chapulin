@@ -37,13 +37,13 @@ export const CASE4_EVIDENCE_EN: Record<string, EvidenceItem> = {
   foto_crimen: ev('foto_crimen', {
     name: 'Suite 304 Photograph',
     icon: 'assets/foto_suite304.webp',
-    desc: 'Crime scene at 11:30 PM. Body by the fireplace; broken glass, dried residue, and an opened Chateau Buena Vista 1958 bottle beside an ice bucket on the coffee table, secured by the Sergeant.',
+    desc: 'Crime scene at 11:30 PM. Body by the fireplace; broken glass, dried residue, and an opened Chateau Buena Vista 1958 bottle beside an ice bucket on the coffee table, secured by the Sergeant. On the sofa by the fireplace, a torn feather pillow with a scorched hole and scattered down are visible.',
     updates: [
       'Crime scene at 11:30 PM. The bucket on the coffee table holds lukewarm water without a single ice cube, proving drinks were served hours before the gunshot noise.'
     ]
   }, {
     imageAsset: 'assets/examine_foto.webp',
-    caption: 'Sergeant-secured photo: coffee table with ice bucket, broken glass, and opened bottle by the fireplace.'
+    caption: 'Sergeant-secured photo: coffee table with ice bucket, broken glass, opened bottle, and scorched feather pillow by the fireplace.'
   }),
   candado_cadena: ev('candado_cadena', {
     name: 'Suite 304 Chain Latch',

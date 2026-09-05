@@ -42,7 +42,28 @@ export function hasPendingTrialPresent(ctrl: TrialController): boolean {
 }
 
 export function getTrialPresentPrompt(ctrl: TrialController): string | null {
-  return pending.get(ctrl)?.opening?.prompt ?? null;
+  const p = pending.get(ctrl);
+  if (!p) return null;
+  if (p.opening) return p.opening.prompt ?? null;
+  if (p.followUp) return p.followUp.prompt ?? null;
+  return null;
+}
+
+function rebindOpeningScript(ctrl: TrialController, p: PresentPending): void {
+  const active = getActiveTrial(ctrl.script, ctrl.deps.state.trialDay).openingPresent;
+  if (active) p.opening = active;
+}
+
+function rebindFollowUpScript(ctrl: TrialController, p: PresentPending): void {
+  const rule = currentContradiction(ctrl);
+  if (rule?.followUp) p.followUp = rule.followUp;
+}
+
+export function rebindTrialPresentScript(ctrl: TrialController): void {
+  const p = pending.get(ctrl);
+  if (!p) return;
+  if (p.opening) rebindOpeningScript(ctrl, p);
+  if (p.followUp) rebindFollowUpScript(ctrl, p);
 }
 
 export function afterTrialIntro(ctrl: TrialController): void {

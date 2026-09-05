@@ -44,5 +44,15 @@ export const SUITE304_HOTSPOTS_EN: Hotspot[] = [
       { speaker: 'SARGENTO', text: 'Large wicker basket with white sheets splattered with soot. Botija hid here.', pose: 'pazguato_sweat' },
       { speaker: 'DEFENSA', text: '(Panic, not murder.)', pose: 'donramon_sweat', unlockLocation: 'hotel_terraza' }
     ]
+  },
+  {
+    id: 'hotspot_almohada',
+    label: 'Sofa Pillow',
+    x: 64, y: 54, w: 20, h: 26,
+    dialogue: [
+      { speaker: 'DEFENSA', text: 'Look at this through a magnifying glass! This feather pillow has a blackened hole and down scattered all over the sofa. Whoever fired here pressed the barrel against the pillow to drown the flash sound.', pose: 'donramon_point' },
+      { speaker: 'CHAPULIN', text: '¡Lo sospeché desde un principio! They used a feather pillow as a homemade silencer to muffle the blast!', pose: 'chapulin_point' },
+      { speaker: 'SARGENTO', text: 'Gee... you are right, counselor. I thought the deceased had a pillow fight before getting shot.', pose: 'pazguato_sweat' }
+    ]
   }
 ];

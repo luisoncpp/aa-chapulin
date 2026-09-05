@@ -1,1266 +1,1236 @@
 # Caso 4: El Juicio del Botija — Crimen en el Gran Hotel
-*(Turnabout at the Grand Hotel)*
 
-Documento de diseño narrativo, guión de diálogos y especificación técnica para el **Episodio 4** de **El Chapulín Colorado: Ace Attorney**.
+*Turnabout at the Grand Hotel*
 
-**Duración objetivo:** ~2 horas (6 fases: 3 días de investigación + 3 días de juicio, ~20 min cada una).
+**Revisión narrativa 2. Especificación objetivo, pendiente de implementación.** Sustituye el diseño narrativo anterior. El juego existente todavía ejecuta otra versión: este documento no certifica que sus guiones, imágenes, pruebas o rutas estén migrados.
 
----
+> **Documento completo, pendiente de implementación y de dos validaciones visuales.** Cubre las secciones 1–18: diseño, cronología, pruebas, tres investigaciones, tres juicios, clímax, epílogo, progresión, assets, matriz de información, duración y migración técnica. Antes de implementar hay que dibujar el cierre de cadena en sus tres estados y la geometría del anillo (§15). El presupuesto de duración de §17 no está medido.
 
-## 1. Resumen General del Caso (Case Synopsis)
+Contiene spoilers completos. La comunicación con el usuario debe limitarse al estado del trabajo y su alcance, salvo que pida conocer la trama.
 
-La noche del **24 de octubre**, el aristocrático y decadente **Gran Hotel Buena Vista**, enclavado en las colinas de las afueras, celebra su gala anual de otoño con selectos huéspedes de la alta sociedad, diplomáticos, apostadores y coleccionistas.
+## 1. Objetivo y reglas de diseño
 
-A las **11:15 PM**, un estruendo seco y metálico retumba por el tiro vertical de las tuberías de calefacción del ala oeste. Huéspedes y empleados acuden alarmados al tercer piso. La puerta de la señorial **Suite Presidencial 304** está bloqueada por dentro con un pesado cerrojo de cadena de latón macizo. Al forzar la puerta con auxilio de la palanca de servicio del personal, encuentran tendido en la alfombra el cadáver del inquilino, registrado bajo el nombre falso de *"Sr. Gómez"*: nada menos que el temido gángster **El Cuajinais**, con su inconfundible cicatriz en la mejilla izquierda, muerto aparentemente por un impacto de bala calibre .38 en pleno pecho.
+Episodio de aproximadamente dos horas, con tres investigaciones y tres juicios. Se conservan el hotel, Botija, el reparto y las mecánicas de examen del Acta y señalamiento. Se reescriben las deducciones, los testimonios y su distribución. El presupuesto de duración aparece en §17; requiere comprobación jugando.
 
-Las altas ventanas de la suite permanecen atrancadas por dentro, a quince metros sobre un precipicio de rosales espinosos. No hay salida visible. Y dentro de la habitación, oculto en el cesto de mimbre de la lavandería, la policía encuentra temblando a **Gordon Botija Pompa y Pompa ("El Botija")**, ex-carterista reformado que labora como fontanero y encargado de mantenimiento del hotel. En sus palmas y mangas negras hay **residuos negros de carbón y hollín**, en su cinto una llave inglesa manchada y en su bolsillo la billetera de piel de cocodrilo del difunto con $200 pesos intactos.
+La primera impresión es un homicidio dentro de una habitación cerrada con cadena. El primer turnabout demuestra en juicio que Botija fue encerrado con alguien que ya había muerto. El segundo demuestra que un encargo de equipaje que el acusado contó desde el comienzo formaba parte del traslado del cadáver.
 
-Para el implacable fiscal **Super Sam** (*"Time is money!"*), el litigio es un *"open-and-shut case"*: un vulgar ajuste de cuentas entre antiguos compinches del bajo mundo por el robo del legendario **Collar de Lágrimas de Cleopatra**, desaparecido meses atrás del Museo de Marsella.
+La complejidad procede de interpretar de nuevo hechos conocidos. No procede de ocultar información que los protagonistas ya tienen. Las fichas describen observaciones; las conclusiones se verbalizan después de la acción del jugador. Una sospecha anticipada del jugador es válida. Un monólogo que resuelve por él la siguiente pregunta es un defecto.
 
-La angustiada camarera en jefe del hotel y devota esposa del acusado, **María Expropiación Petronila Lascuráin y Torquemada de Botija ("La Chimoltrufia")**, armada con su plumero y un mar de lágrimas, clama por auxilio en los pasillos: *"¡Oh! Y ahora, ¿quién podrá defender a mi Botijita?!"*.
+Reglas obligatorias:
 
-A la desesperada llamada acude **El Chapulín Colorado**, acompañado de su infatigable defensor de oficio: el sagaz y empobrecido **Don Ramón (Lic. Monchito)**, quien arrastra ya 16 meses de renta acumulada y no puede permitirse perder a su vecino fontanero.
+- No tratar dinero dentro de una cartera robada como prueba contra el robo.
+- No calcular una hora por hielo derretido ni deducir temperatura de una fotografía.
+- No identificar personas por la suma de pesos del montacargas.
+- No afirmar un minuto de muerte, de manipulación del cierre o de disparo que ninguna prueba acredita.
+- No exigir que el jugador refute una afirmación verdadera. Cada presentación tiene una declaración concreta y falsa que contradice.
+- No convertir móvil, acceso u oportunidad en prueba suficiente de autoría.
+- No obligar a presentar todos los objetos. Cada prueba sí debe cumplir una función y cada pista sospechosa debe resolverse.
+- No repetir el uso de refranes como trampa final del Caso 3. Hay dos bromas de refranes, ajenas a la solución.
+- No presentar datos nuevos indispensables durante la confesión final.
+- No mantener a Botija acusado simplemente porque la defensa aún no identificó a otro culpable. Cada jornada explicita la hipótesis de la fiscalía y su sustento pendiente.
 
-Lo que aparenta ser una ejecución a quemarropa dentro de un cuarto cerrado hermético se convierte en una apasionante partida de ajedrez criminal. Detrás de la escena yace un sofisticado plan urdido por el aristócrata de fachada y estafador internacional **Rufino Rufián ("Conde de Montemayor")**: una muerte por envenenamiento en el piso inferior tras hacer bajar a la víctima a la Suite 204, el traslado del cadáver en un baúl de viaje mediante el montacargas de servicio, un disparo post-mortem sofocado con una almohada de plumas de la suite para encubrir el veneno, la salida cerrando la puerta con la llave de Cuajinais tomada de la mesita, el posterior bloqueo exterior de la puerta traccionando el cerrojo de cadena con un sedal de pescar a través de la rendija aprovechando que Botija la dejó emparejada, y una detonación acústica de fogueo con mecha lenta retardada conectada a la válvula de purga de las tuberías para forjar una coartada perfecta.
+## 2. Sinopsis y verdad del autor
 
----
+La noche del 24 de octubre, durante la gala del Gran Hotel Buena Vista, un estruendo sacude las tuberías del ala oeste. A las 23:20, el Sargento y los empleados fuerzan la cadena de la Suite 304. Encuentran muerto al huésped registrado como Sr. Gómez, en realidad El Cuajinais. Tiene una herida de bala y junto a él hay un revólver. Botija se esconde en el cesto de ropa con la billetera de la víctima.
 
-## 2. Personajes (Dramatis Personae)
+Botija trabaja como fontanero. Esa noche, por falta de personal, aceptó también dos encargos remunerados: llevar una botella de la cava a la 204 y trasladar un baúl de la 204 a la 304. Cuenta ambos trabajos desde el comienzo. Discute con Cuajinais porque este pretende reclutarlo otra vez para sus negocios delictivos; teme que la Chimoltrufia crea que aceptó.
 
-| Personaje | Rol en el Caso | Perfil Canónico y Comportamiento | Sprites / Poses Clave |
-|---|---|---|---|
-| **Don Ramón (Lic. Monchito)** | Abogado Defensor | Sagaz, callejero y sarcástico. Carga con 16 meses de renta impagada. Defiende a Botija con uñas y dientes sabiendo que si su vecino cae preso, la Chimoltrufia demolerá la vecindad a escobazos. Frases: *"¡Con permisito, dijo Monchito!"*, *"¡Yo le voy al Necaxa!"*, *"¡Chanfle!"*. | `donramon_idle`, `donramon_point`, `donramon_slam`, `donramon_shock`, `donramon_sweat`, `donramon_panic` |
-| **El Chapulín Colorado** | Co-defensor / Investigador | Apoyo moral y deducciones laterales. Emplea sus *Antenitas de Vinil*, *Pastillas de Chiquitolina* y su repertorio de refranes enredados, que funcionan como respiro cómico y certera intuición jurídica. Frases: *"¡Que no panda el cúnico!"*, *"¡No contaban con mi astucia!"*, *"¡Síganme los buenos!"*, *"¡Se aprovechan de mi nobleza!"*, *"¡Lo sospeché desde un principio!"*. | `chapulin_idle`, `chapulin_point`, `chapulin_slam`, `chapulin_panic` |
-| **Super Sam** | Fiscal Acusador | *"Time is money!"*. Obsesionado con el cierre de la bolsa de Nueva York. Empuña fajos de dólares, azota calculadoras contra el estrado y amenaza con descontar la quincena al Sargento por cada objeción rechazada. Frases: *"Time is money!"*, *"Objection!"*, *"What?!"*. | `supersam_idle`, `supersam_point`, `supersam_slam`, `supersam_sweat`, `supersam_breakdown` |
-| **El Sargento (Refugio Pazguato)** | Policía Investigador (Aliado) | Detective bonachón, leal, mal pagado y despistado. Canónico del Caso 3 (`pazguato_*`): extremadamente alto, espigado y de cuello largo (estilo Rubén Aguirre), con espeso bigote caído de herradura y kepis torcido. Asustado por los recortes de Super Sam, coopera a escondidas con Don Ramón. | `pazguato_idle`, `pazguato_saludo`, `pazguato_sweat`, `pazguato_decidido` |
-| **Gordon Botija Pompa y Pompa ("El Botija")** | **Acusado** | Corpulento, obeso y de cara redonda. Barba negra cerrada tupida, gorra plana celeste/gris y vestimenta completa negra con tenis blancos. Ex-asaltante reformado que labora reparando cañerías; rompe en llanto infantil ante la idea de la cárcel y el sufrimiento de su adorada Chimoltrufia. | `botija_idle`, `botija_nervioso`, `botija_llorando`, `botija_aliviado` |
-| **María Expropiación Petronila Lascuráin y Torquemada de Botija ("La Chimoltrufia")** | Camarera en jefe / Testigo | Feroz, temperamental, desgarbada y de cuello largo. Peinado erizado y desaliñado en coleta (sin tubos), pecas y chimuela. Defiende con furia a su esposo con su plumero. Atiende la recepción el Día 3. Frases: *"¡Como digo una cosa, digo otra!"*, *"¡Ay, qué la canción!"*. | `chimoltrufia_idle`, `chimoltrufia_confundida`, `chimoltrufia_shock` |
-| **Don Cecilio Buenavista** | Dueño y gerente del Gran Hotel / Testigo | Anciano distinguido, exquisito y patológicamente miope con lentes de fondo de botella que confunden a la gente con estatuas. Celoso de las cinco estrellas del hotel. Frase: *"¡Cielos santos!"*. | `cecilio_idle`, `cecilio_ciego`, `cecilio_escandalo`, `cecilio_shock` |
-| **Maruja ("La Sirena del Hotel")** | Huésped distinguida / Testigo | Sofisticada y seductora dama de la Suite 303. Traje de noche escotado verde esmeralda, estola de plumas, abanico y su distintivo peinado esponjado, cardado y rizado pelirrojo cobrizo encendido. | `maruja_idle`, `maruja_coqueta`, `maruja_abanico`, `maruja_nerviosa`, `maruja_shock` |
-| **Aquiles Esquivel Madrazo ("El Chómpiras")** | Botones y operador de elevador / Testigo | Amigo íntimo de Botija. Canónico del Caso 2 (`chompiras_*`): sombrero bombín negro abollado y remendado, playera a rayas beige/blancas, saco raído y bigotito recortado. Ingenuo y distraído (*"¡Tómelo por el lado amable!"*). | `chompiras_idle`, `chompiras_nervous`, `chompiras_relieved` |
-| **Rufino Rufián ("Conde de Montemayor")** | Huésped de la Suite 204 / **Verdadero Culpable** | Falso aristócrata internacional, perito en timos y venenos. Frac impecable, bigote fino engominado, monóculo de oro y anillo con sello nobiliario. Asesinó a Cuajinais envenenándolo en la 204 y montó el cuarto cerrado en la 304. | `rufino_smug`, `rufino_monocle`, `rufino_sweat`, `rufino_panic`, `rufino_breakdown` |
-| **El Cuajinais** | **Víctima** | Notorio criminal con cicatriz en la mejilla izquierda. Traje de lana marrón y sombrero gángster. Llegó al hotel como "Sr. Gómez" con revólver .38 y resguardo de telegrama para extorsionar a Rufino. Murió envenenado con cianuro a las 9:50 PM. | — (Fotografías y silueta pericial) |
-| **El Juez** | Juez Presidente de la Corte | Magistrado veterano de la serie, solemne y amante de las comodidades de lujo, sensible al protocolo aristocrático pero inquebrantable ante la lógica jurídica. | `judge_neutral`, `judge_gavel`, `judge_thinking`, `judge_shock` |
-
-### 2.1 Descripciones Físicas Detalladas (Guía para Generación de Assets y Sprites)
-
-Esta subsección fija la apariencia visual canónica exacta para modelar, generar prompts y renderizar los sprites de personajes del Caso 4:
-
-1. **Gordon Botija Pompa y Pompa ("El Botija")** *(Actor: Édgar Vivar)*
-   - **Complexión y porte:** Muy corpulento, obeso (~120 kg), de gran circunferencia abdominal y rostro ancho y redondo.
-   - **Vestimenta canónica:** Siempre viste enteramente de negro: suéter / camiseta holgada de manga larga negra y pantalones negros anchos de corte recto. En los pies calza tenis deportivos blancos. Durante el caso lleva enganchada al cinto una llave inglesa de mantenimiento, y en la escena sus palmas y mangas terminan manchadas de hollín negro y azufre mineral de la caldera.
-   - **Gorra:** Gorra plana clásica / boina (*flat cap / ivy cap*) de color azul celeste claro (o gris claro deslavado), notoriamente pequeña respecto a su cabeza, apoyada hacia atrás sobre la coronilla.
-   - **Barba y bigote:** Barba negra completa, tupida, densa y bien delimitada que recorre mandíbula, mentón y papada contorneando la redondez facial, unida a un bigote corto y poblado.
-   - **Cabello:** Cabello negro corto asomando bajo el borde de la gorra, con patillas anchas integradas en la barba.
-
-2. **Maruja ("La Sirena del Hotel")** *(Actriz: María Antonieta de las Nieves)*
-   - **Peinado distintivo (Rasgo clave):** Melena sumamente voluminosa, cardada, esponjada y rizada/ondulada formando una silueta redondeada y amplia que enmarca el rostro. Color **pelirrojo cobrizo encendido (rojo anaranjado)** muy vistoso.
-   - **Vestimenta:** Traje de noche largo y ceñido con escote pronunciado en tono **verde esmeralda brillante / satín**.
-   - **Accesorios de sprite:** Estola de plumas suaves descansando sobre hombros y cuello; abanico de mano a juego en tono verde/dorado para poses de coquetería y tensión (`maruja_abanico`).
-   - **Rostro y porte:** Dama glamorosa de alta sociedad, pestañas marcadas, labios rojos y expresión coqueta que vira al pánico al descubrirse el complot.
-
-3. **Aquiles Esquivel Madrazo ("El Chómpiras")** *(Actor: Roberto Gómez Bolaños — Canon Caso 2)*
-   - **Complexión y porte:** Delgado, desgarbado, de estatura baja y postura cabizbaja, humilde y encorvada; junta las manos en actitud de súplica ingenua. Reutiliza los sprites base de `src/case/case2/` (`chompiras_idle`, `chompiras_nervous`, `chompiras_relieved`).
-   - **Sombrero:** Sombrerito negro tipo bombín / fedora viejo, abollado, deshilachado en los bordes y con remiendos visibles.
-   - **Rostro y cabello:** Cabello negro lacio despeinado que asoma desordenado bajo el sombrero; rostro demacrado con bigotito fino recortado y sombra de barba descuidada de varios días.
-   - **Vestimenta:** Saco o chaqueta vieja y holgada de color gris oscuro / negro con parches en los codos, combinada con playera interior de cuello redondo a rayas horizontales beige/marrón claro y blanco.
-
-4. **El Sargento (Refugio Pazguato)** *(Actor: Rubén Aguirre — Canon Caso 3)*
-   - **Complexión y físico:** Extremadamente alto, espigado y enjuto, con un cuello largo y delgado muy característico y porte torpe/desgarbado. Reutiliza los sprites base de `src/case/case3/` (`pazguato_idle`, `pazguato_saludo`, `pazguato_sweat`, `pazguato_decidido`).
-   - **Rostro:** Cara alargada y delgada, ojos caídos y soñolientos con ojeras suaves; luce un **bigote negro muy poblado, espeso y caído** (estilo herradura/walrus).
-   - **Gorra:** Gorra de plato policial azul marino reglamentaria con visera negra brillante y escudo dorado metálico, calzada ligeramente torcida hacia un lado.
-   - **Uniforme:** Guerrera policial azul marino abotonada con botones dorados; placa dorada del D.F. en el pecho izquierdo, libreta de notas sobresaliendo del bolsillo superior, correa de cuero marrón cruzada al torso (*tahalí*) y cinturón con cartuchera y tolete/macana de madera.
-
-5. **María Expropiación Petronila Lascuráin y Torquemada ("La Chimoltrufia")** *(Actriz: Florinda Meza — Caricatura Canónica)*
-   - **Complexión y rostro:** Silueta delgada, huesuda y desgarbada (*lanky*), cuello largo, mejillas con pecas y **dientes frontales faltantes (chimuela)**.
-   - **Cabello (Bloqueo de identidad vs Doña Florinda):** Cabello castaño oscuro alborotado, rebelde, erizado y recogido en una coleta desaliñada; **sin tubos ni rulos** para diferenciarla radicalmente de Doña Florinda.
-   - **Atuendo:** Vestido estampado modesto de diario (flores amarillas/naranjas sobre fondo oscuro) cubierto por un delantal color crema desgastado con bolsillos; empuña un plumero de limpieza.
-
-6. **Rufino Rufián ("Conde de Montemayor")**
-   - **Porte y rostro:** Porte aristocrático altivo, estirado y despectivo. Bigote fino, recto y engominado en las puntas; **monóculo circular de oro** sujeto en su ojo derecho.
-   - **Vestimenta:** Frac negro impecable de gala con solapas de seda, chaleco marfil, camisa de cuello palomita con corbatín blanco; en el dedo anular luce un **anillo nobiliario con sello heráldico de oro**.
-
-7. **Don Cecilio Buenavista**
-   - **Rostro y mirada:** Anciano distinguido con pelo cano y peinado impecable; porta **anteojos de armazón redondo con lentes extremadamente gruesos ("fondo de botella")** que distorsionan cómicamente sus ojos.
-   - **Vestimenta:** Traje sastre formal de tres piezas en tono gris perla o azul oscuro, corbata sobria y pañuelo de seda en el bolsillo, correspondiente a un refinado gerente hotelero.
-
-8. **El Cuajinais (Víctima / "Sr. Gómez")**
-   - **Rostro:** Rostro curtido y ceñudo de criminal peligroso con una **notoria y profunda cicatriz en la mejilla izquierda**.
-   - **Vestimenta:** Traje de lana marrón de corte clásico gángster de época, camisa clara, corbata oscura y sombrero fedora de ala ancha.
-
-9. **Don Ramón (Lic. Monchito)**
-   - **Rostro y complexión:** Delgado, demacrado, de tez cetrina y bigote ralo; cejas pobladas y expresivas que transmiten desesperación y astucia callejera.
-   - **Vestimenta:** Traje raído y desgastado de abogado de oficio, camiseta modesta debajo, su clásico **gorrito arrugado de mezclilla azul** y la insignia dorada de abogado abollada en la solapa.
-
-10. **El Chapulín Colorado**
-    - **Complexión y traje:** Ágil y delgado. Uniforme completo de mallas y camiseta rojas con el escudo del corazón amarillo y letras "CH" rojas en el pecho, calzoncillo amarillo y zapatillas rojas. En la cabeza porta las dos **Antenitas de Vinil** amarillas con base roja.
-
-11. **Super Sam**
-    - **Porte y vestimenta:** Héroe/fiscal de caricatura satírica estadounidense. Traje con sombrero de copa a rayas rojas y blancas, traje azul con estrellas, capa corta; siempre empuñando una calculadora de bolsillo o bolsas de dólares con el signo `$`.
-
-12. **El Juez**
-    - **Aspecto:** Anciano venerable de pelo y bigote cano abundante, expresión solemne; viste toga negra amplia sobre camisa blanca de cuello estricto y empuña su mazo judicial (*gavel*) de madera noble.
-
----
-
-## 3. Cronología Real de los Hechos (Timeline)
-
-> **Reglas de Coherencia Física y Mecánica:**
-> 1. **Ductos y Tuberías de Calefacción:** La red vertical de vapor del ala oeste del hotel conecta en línea recta la caldera del sótano con la válvula de purga del radiador de la Suite 204 (habitación de Rufino) y el radiador de la Suite 304 (suite de Cuajinais). Cualquier detonación en la válvula de purga de la 204 reverbera con fuerza idéntica en el radiador de la 304 como si fuera un disparo in situ.
-> 2. **El Cerrojo de Cadena y el Cuarto Cerrado:** El cerrojo de latón de la 304 desliza su perno en un riel horizontal abierto hacia la jamba. Con la puerta emparejada o abierta escasos 4 cm, pasar un sedal de pescar de nylon fino por la rendija y sujetar el perno permite **traccionar y correr el perno desde afuera** a lo largo del riel horizontal hasta dejar la puerta atrancada "por dentro", recuperando luego el hilo desde el pasillo exterior sin pisar la alfombra.
-> 3. **El Montacargas de Servicio y el Baúl:** El montacargas de equipaje comunica el sótano, piso 2, piso 3 y la azotea. Su bitácora automática registra los llamados manuales y el tonelaje de carga:
->    - A las **10:20 PM** registra **carga pesada (~175 kg: Rufino ~75 kg + baúl ~20 kg + cadáver de Cuajinais ~80 kg)** desde el piso 2 (Suite 204) hasta el piso 3 (Suite 304).
->    - A las **10:25 PM** registra **carga ligera (~95 kg: Rufino ~75 kg + baúl vacío ~20 kg)** desde el piso 3 a la azotea, probando matemáticamente que se descargó un bulto de ~80 kg en el tercer piso.
-> 4. **El Vino y el Cianuro:** El *Chateau Buena Vista 1958* es una reserva exclusiva privada de Rufino Rufián. Rufino inyectó cianuro de potasio líquido a través de la cúpula del sello de lacre rojo mediante una aguja hipodérmica, y volvió a alisar la perforación calentando la cera con su anillo nobiliario de oro. La botella descorchada y la copa envenenada fueron subidas junto con el cuerpo a la Suite 304 para simular que Cuajinais bebió allí. En la Cava subterránea permanece la botella gemela sin alterar y la lista de pedidos exclusivos de Rufino.
-> 5. **El Hielo de la Cubeta:** Cuajinais ordenó a room service a las 9:30 PM una cubeta con hielo para enfriar una botella de refresco/agua mineral. Al fotografiar la escena a las 11:30 PM, el hielo derretido a temperatura ambiente demuestra que la bebida llevaba servida dos horas y no quince minutos.
-> 6. **El Revólver .38 y Custodia Pericial:** El revólver .38 de cañón corto traído por Cuajinais fue usado por Rufino a las 10:22 PM en la Suite 304 para disparar un tiro post-mortem en el pecho a través de la almohada de plumas de la suite (sofocando el sonido del estruendo y simulando una ejecución por arma de fuego). Inmediatamente después, Rufino arrojó el revólver por el tiro de cenizas de la chimenea hacia la caldera del sótano, donde el Sargento lo rescata más tarde entre el carbón. Dicha arma queda bajo **custodia pericial de la fiscalía en poder del Sargento Refugio Pazguato** (por lo que no ingresa al inventario del jugador como prueba manipulable por la defensa).
-> 7. **El Telegrama y la Taquilla:** El resguardo de la oficina de telégrafos demuestra que Cuajinais envió un mensaje exigiendo los $50,000 en efectivo por el Collar de Cleopatra al "Conde de Montemayor". Cuajinais guardó el resguardo en la taquilla #42 de la terminal de autobuses antes de subir al hotel.
-> 8. **Coartada de Baccarat y Cronología de la Mecha:** Rufino jugó en la mesa de baccarat entre las 10:30 PM y las 11:30 PM. Sin embargo, la boleta oficial y el croupier certifican un **receso sellado de 15 minutos (11:10 a 11:25 PM)** para "tomar aire fresco". En esos 15 minutos:
->    - A las **11:12 PM**, Rufino bajó a la Suite 204 a encender la mecha lenta de 3 minutos conectada al cartucho de fogueo en la válvula de purga del radiador.
->    - A las **11:14 PM**, Rufino subió a la Suite 304, vio la puerta emparejada dejada por Botija, pasó el sedal de pescar por la rendija y traccionó el cerrojo de cadena deslizándolo en su riel horizontal para bloquear la habitación por dentro desde afuera. Rufino bajó de inmediato a paso veloz hacia el salón de juegos.
->    - A las **11:15 PM**, la mecha lenta alcanza el cartucho de fogueo en la 204 y detona en la tubería mientras Rufino ya va bajando al baccarat.
->    - A las **11:18 PM**, Rufino reaparece ostentosamente en la mesa de juego a la vista de los apostadores antes de terminar su receso a las 11:25 PM.
-
-```mermaid
-timeline
-    title Cronología del Crimen en el Gran Hotel (24 de Octubre)
-    8:30 PM : El Cuajinais llega al hotel como "Sr. Gómez", se aloja en la Suite 304. Deja el resguardo de su telegrama de extorsión en la taquilla de la estación. Porta un revólver .38 de cañón corto para exigir a Rufino $50,000 pesos por el Collar de Cleopatra.
-    9:00 PM : Maruja comenta en el bar con Rufino sobre la llegada del misterioso "Sr. Gómez" de la cicatriz. Rufino comprende que su antiguo socio viene a extorsionarlo y urde un plan de eliminación inmediata.
-    9:20 PM : Rufino prepara en su Suite 204 una botella de su cava privada (Chateau Buena Vista 1958). Inyecta cianuro con una aguja hipodérmica a través del sello de lacre rojo y disimula la punzada con el calor de su anillo sello de oro.
-    9:30 PM : Rufino invita a Cuajinais a su Suite 204 con el pretexto de pagarle. Cuajinais pide una cubeta con hielo por teléfono a room service y baja de la Suite 304 a la Suite 204.
-    9:50 PM : Cuajinais brinda con el vino tinto en la Suite 204, sufre asfixia fulminante por cianuro de potasio y muere a los pocos minutos.
-    10:00 PM : Rufino revisa la billetera de Cuajinais buscando la llave de la taquilla; al no hallarla a simple vista, la arroja junto al cadáver con los $200 intactos. Rufino se apodera del revólver .38 de cañón corto.
-    10:15 PM : Rufino introduce el cadáver de Cuajinais dentro de su gran baúl de viaje de cuero inglés forrado de terciopelo.
-    10:20 PM : Rufino transporta el baúl con el cuerpo en el montacargas de servicio desde el piso 2 (Suite 204) al piso 3 (Suite 304). Bitácora registra carga pesada (~175 kg).
-    10:22 PM : En la Suite 304, Rufino saca el cuerpo y lo coloca junto a la chimenea; deposita la copa rota, la botella descorchada y la billetera. Coloca la almohada de plumas de la suite sobre el pecho del cadáver y le dispara un tiro post-mortem con el revólver .38 de cañón corto para sofocar el estruendo y enmascarar el veneno.
-    10:23 PM : Rufino arroja el revólver .38 por el ducto de cenizas de la chimenea hacia la caldera del sótano (donde el Sargento lo recuperará bajo custodia pericial).
-    10:24 PM : Rufino sale de la Suite 304 cerrando la puerta con la llave de la suite de Cuajinais que tomó de la mesita antes de dirigirse al baccarat.
-    10:25 PM : Rufino toma el montacargas con el baúl ya vacío. Bitácora registra carga ligera (~95 kg) del piso 3 a la azotea. Esconde el baúl detrás del motor del montacargas.
-    10:30 PM : Rufino baja al salón de juegos y se sienta a la mesa de baccarat para labrarse una coartada pública.
-    10:45 PM : En el sótano, la caldera de carbón se atora de hollín. Don Cecilio ordena al fontanero Gordon Botija limpiar el tiro y destapar la válvula de purga del radiador de la Suite 304 que frena el vapor.
-    11:10 PM : Botija concluye de raspar el hollín de la caldera en el sótano, quedando con las manos y mangas cubiertas de tizne mineral y azufre. Rufino solicita un receso de 15 minutos en el baccarat (11:10 a 11:25 PM).
-    11:12 PM : Botija sube a la Suite 304, abre con su llave maestra de mantenimiento y deja la puerta emparejada mientras revisa la válvula de purga del radiador. En paralelo, Rufino baja a su Suite 204 y conecta un cartucho de fogueo con mecha lenta de 3 minutos en la válvula de purga de su radiador.
-    11:13 PM : En la penumbra de la 304, Botija tropieza con el cadáver; atónito, levanta la billetera de la alfombra para identificarlo y se paraliza del susto.
-    11:14 PM : Botija escucha pasos en el pasillo exterior (Rufino acercándose y Maruja regresando a su suite 303). Aterrado de que lo inculpen por sus antecedentes, Botija se oculta en el cesto de mimbre con la billetera en la mano. Afuera, Rufino ve la puerta emparejada por Botija, pasa un sedal de pescar por la rendija, tracciona el cerrojo de cadena corriendo el perno en el riel horizontal hasta bloquearlo por dentro, retira el hilo y huye escaleras abajo hacia el baccarat.
-    11:15 PM : El cartucho de fogueo en la Suite 204 detona dentro de la tubería de hierro. La onda retumba por el radiador de la 304 como un tiro a quemarropa in situ, mientras Rufino ya va bajando al salón de baccarat.
-    11:18 PM : Rufino reingresa a la mesa de baccarat a la vista de los apostadores, consumando su coartada.
-    11:20 PM : Don Cecilio, el Sargento y los empleados derriban la puerta atrancada. Hallan a Cuajinais muerto y a Botija dentro del cesto con las manos negras y la billetera. Arresto inmediato.
-```
-
----
-
-## 4. Catálogo del Acta del Juicio (Court Record)
-
-Alineado con la norma arquitectónica de la serie, **las 15 pruebas específicas del caso poseen al menos una ranura de presentación obligatoria durante las sesiones del tribunal**; la `insignia_abogado` es una **constante de la serie** presente desde el inicio en el inventario que no requiere ranura obligatoria (totalizando 16 entradas en el catálogo):
-
-| # | ID | Nombre | Descripción Inicial | Actualizaciones (`updates`) / Directiva (`updateEvidence`) | Presentación Obligatoria en Juicio | ¿Examinable a fondo? |
-|---|---|---|---|---|---|:---:|
-| 1 | `insignia_abogado` | Insignia de Abogado | Chapa profesional del Licenciado Monchito. Abollada y empeñada tres veces para pagar la renta, pero legalmente válida. | — | **Constante de la serie** (no requiere presentación obligatoria) | No |
-| 2 | `informe_policial` | Informe Policial del Sargento | La víctima murió de un disparo calibre .38 en el pecho en la Suite 304 a las 11:15 PM. Habitación cerrada con cerrojo de cadena interior. | **D1 (Stage 1):** La fijación de las 11:15 PM se basó sólo en el estruendo de las tuberías sin prueba médica forense.<br>**D2 (Stage 2):** El deceso a las 11:15 choca frontalmente con la autopsia toxicológica. | **D1-T1** (vs hora oficial de la carátula fijada por estruendo acústico sin examen médico) | No |
-| 3 | `foto_crimen` | Fotografía de la Suite 304 | Escena del crimen a las 11:30 PM. El cuerpo yace junto a la chimenea; sobre la alfombra y la mesita yacen la copa rota con residuos secos y la botella descorchada de *Chateau Buena Vista 1958* junto a la cubeta de hielo, aseguradas por el Sargento. | **D1 (Stage 1):** Al ampliar la cubeta, se observa agua templada sin un solo témpano de hielo flotando. | **D1-T1** (Present & Point: hielo derretido en la cubeta) | **Sí (`examine_foto`)** |
-| 4 | `candado_cadena` | Cerrojo de Cadena de la 304 | Mecanismo de seguridad de la puerta. Riel horizontal de latón con perno deslizante. En el canto exterior hay un rasguño fresco y un sedal de pescar de nylon. | — | **D1-T2** (vs puerta imposible de cerrar desde afuera) | **Sí (`examine_cadena`)** |
-| 5 | `plano_hotel` | Plano de Tuberías y Suites | Sección arquitectónica del ala oeste. Demuestra que el radiador y chimenea de la 304 comparten tiro directo y cavidad con la Suite 204. | **D2 (Stage 1):** Muestra el acceso del tubo de purga de vapor de la Suite 204 al radiador superior. | **D2-T2** (Present & Point: tiro vertical de tuberías) | **Sí (`examine_plano`)** |
-| 6 | `residuos_manos` | Análisis de Manos de Botija | Polvo negro tomado de las manos y ropa negra de Botija. Calificado inicialmente por Super Sam como "pólvora fresca de disparo". | **D2 (Stage 1):** Peritaje químico corregido: 98% hollín mineral y azufre de la caldera de carbón, sin trazas de nitratos balísticos. | **D2-T1** (vs prueba de disparo balístico de Super Sam) | No |
-| 7 | `billetera_cuajinais` | Billetera de la Víctima | Billetera de piel de cocodrilo hallada en manos de Botija. Contiene $200 pesos íntegros, credencial del "Sr. Gómez" y un forro secreto descosido. | **D3 (Stage 1):** Guarda en su forro secreto la llave de la taquilla #42 de la terminal de autobuses. | **D1-T2** (refuta acusación de Super Sam: dinero intacto descarta robo con violencia) | No |
-| 8 | `informe_forense` | Autopsia Toxicológica | Reporte patológico oficial: el disparo en el pecho fue post-mortem (sin reacción vital ni hemorragia interna). Causa real: **asfixia por cianuro potásico** a las 9:50 PM. | — | **D2-T1 / Giro 1** (demuestra falsa hora de muerte y disparo post-mortem) | No |
-| 9 | `casquillo_fogueo` | Casquillo de Fogueo Quemado | Casquillo calibre .38 detonado sin proyectil, hallado dentro de la válvula de purga del radiador de la Suite 204. Restos de mecha lenta de azufre. | — | **D2-T2** (artificio acústico del disparo retardado en tuberías) | No |
-| 10 | `registro_montacargas` | Bitácora del Montacargas | Registro del ascensor de carga: a las 10:20 PM carga pesada (~175 kg: piso 2 a piso 3); a las 10:25 PM carga ligera (~95 kg: piso 3 a azotea). | — | **D3-T1** (traslado vertical: demuestra descarga de bulto de 80 kg en piso 3) | No |
-| 11 | `copa_vino` | Copa Rota de Vino | Copa de cristal fino con restos de vino tinto *Chateau Buena Vista 1958*. Sedimento analizado dio positivo letal a cianuro de potasio. | — | **D3-T2** (prueba de la ingesta de veneno en el vino servido) | No |
-| 12 | `botella_vino` | Botella Chateau Buena Vista 1958 | Botella de gran reserva privada de Rufino. Corcho extraído intacto. En la cúpula del sello de lacre rojo hay un micro-orificio de aguja disimulado con cera fundida. | — | **Clímax** (Present & Point: punzada de aguja en el lacre) | **Sí (`examine_botella`)** |
-| 13 | `boleta_baccarat` | Boleta de Baccarat de Rufino | Boleta de apuestas del salón de juegos. Acredita juego de 10:30 PM a 11:30 PM, pero incluye un **receso sellado de 15 min (11:10 a 11:25 PM)**. | — | **D3-T1** (ruptura de la coartada pública de Rufino) | No |
-| 14 | `baul_etiquetas` | Baúl de Viaje con Ruedas | Baúl de cuero inglés hallado oculto en el cuarto de máquinas de la azotea. En su forro de terciopelo se hallaron fibras de lana del traje de Cuajinais y carbón. | — | **D3-T2** (vehículo del traslado del cadáver al tercer piso) | No |
-| 15 | `sello_lacre` | Anillo Sello de Oro | Anillo con escudo heráldico propiedad de Rufino Rufián. Hallado en la basura de la 204; presenta rastros microscópicos de cera roja fundida en el relieve. | — | **Clímax** (Prueba de Gracia contra el falso Conde) | No |
-| 16 | `nota_amenaza` | Resguardo de Telegrama de Extorsión | Recibo oficial de telégrafos hallado en la taquilla de Cuajinais: *"Conde de Montemayor: o pagas mis $50,000 del collar de Cleopatra o la policía sabrá todo. Habitación 304."* | — | **D3-T1 / Giro 2** (apertura del juicio: móvil y extorsión real) | **Sí (`examine_nota`)** |
-
-> **Nota sobre el Revólver .38:** El arma traída por la víctima e incautada en la caldera no figura como ítem en el inventario del jugador porque permanece legalmente bajo **custodia pericial de la fiscalía en poder del Sargento Pazguato** durante todo el procedimiento judicial.
-
----
-
-## 5. Estructura General del Episodio (6 Fases / ~2 Horas)
-
-```mermaid
-flowchart TD
-    subgraph D1I [Día 1 - Investigación: El Cuarto Cerrado - 25 de Octubre, Mañana]
-        A1[Centro de Detención: Botija llora y entrega billetera_cuajinais] --> A2[Gran Vestíbulo: Don Cecilio entrega plano_hotel]
-        A2 --> A3[Suite 304: Sargento entrega informe_policial y foto_crimen con copa y botella aseguradas]
-        A3 --> A4[Terraza Bar: Maruja entrega candado_cadena con sedal tras interrogarla]
-    end
-    subgraph D1T [Día 1 - Juicio: La Farsa del Encierro - 25 de Octubre, Tarde]
-        B1[T1 El Sargento: El hallazgo y el cesto de mimbre] --> B2[Presentar foto_crimen: Present & Point cubeta derretida]
-        B2 --> B2b[Presentar informe_policial: 11:15 PM fijada por estruendo acústico sin examen médico]
-        B2b --> B3[T2 Don Cecilio: La cadena imposible de correr desde fuera]
-        B3 --> B4[Presentar candado_cadena: Tracción del sedal por la rendija]
-        B4 --> B5[Super Sam objeta acusando de robo --> Presentar billetera_cuajinais: Dinero intacto descarta robo]
-        B5 --> B6[Cierre: El cerrojo se montó desde el pasillo; aplazamiento a Día 2]
-    end
-    subgraph D2I [Día 2 - Investigación: Ecos en la Tubería - 26 de Octubre, Mañana]
-        C1[Sótano / Calderas: Sargento entrega residuos_manos; revólver .38 queda bajo custodia pericial] --> C2[Suite 204: Rufino presume; radiador entrega casquillo_fogueo]
-        C2 --> C3[Terraza Bar: ROTACIÓN - Chómpiras entrega registro_montacargas con pesos 175kg vs 95kg]
-        C3 --> C4[Delegación: Sargento entrega autopsia informe_forense]
-    end
-    subgraph D2T [Día 2 - Juicio: GIRO 1 - La Falsa Hora - 26 de Octubre, Tarde]
-        E1[T1 Super Sam y Sargento: La supuesta pólvora en manos de Botija] --> E2[Presentar residuos_manos: Es hollín de caldera, no pólvora]
-        E2 --> E3[GIRO 1: Presentar informe_forense - Muerte por cianuro a las 9:50 PM]
-        E3 --> E4[T2 Maruja: El estruendo ensordecedor de las 11:15 PM]
-        E4 --> E5[Presentar plano_hotel: Present & Point tiro vertical y casquillo_fogueo]
-        E5 --> E6[Cierre: El estruendo fue un fogueo diferido; búsqueda del envenenador]
-    end
-    subgraph D3I [Día 3 - Investigación: El Veneno de la Cava - 27 de Octubre, Mañana]
-        F1[Cava del Sótano: Aseguramiento de copa_vino, botella_vino y reserva privada] --> F2[Gran Vestíbulo: ROTACIÓN - Chimoltrufia entrega boleta_baccarat y sello_lacre]
-        F2 --> F3[Azotea y Máquinas: Chómpiras muestra baul_etiquetas con lana de la víctima]
-        F3 --> F4[Centro de Detención: Con llave secreta se abre taquilla y entregan nota_amenaza]
-    end
-    subgraph D3T [Día 3 - Juicio: GIRO 2 y Clímax - 27 de Octubre, Tarde]
-        G1[Apertura: GIRO 2 - Presentar nota_amenaza: Cuajinais vino a extorsionar a Rufino] --> G2[T1 Rufino: Mi coartada continua en el baccarat]
-        G2 --> G3[Presentar boleta_baccarat: Receso de 15 min quiebra coartada continua]
-        G3 --> G3b[Presentar registro_montacargas: Demostración de pesos 175kg a la 304 vs 95kg a azotea]
-        G3b --> G4[T2 Rufino: Yo jamás subí al tercer piso ni toqué al occiso]
-        G4 --> G5[Presentar baul_etiquetas y copa_vino: Traslado del cadáver en el baúl]
-        G5 --> G6[CLÍMAX: Presentar botella_vino y Present & Point aguja en el lacre]
-        G6 --> G7[Prueba de Gracia: Presentar sello_lacre del falso Conde]
-        G7 --> G8[Breakdown de Rufino Rufián, Confesión y Veredicto INOCENTE]
-    end
-    D1I --> D1T --> D2I --> D2T --> D3I --> D3T
-```
-
----
-
-## 6. Mecánicas Nuevas (Especificación Técnica)
-
-### 6.1 Examen Profundo de Pruebas en el Acta (`Court Record Deep Examination`)
-
-En el Caso 4, cinco pruebas contienen información pericial detallada, espacial o textual que no cabe en la descripción resumida del inventario. Al seleccionarlas en el Acta del Juicio, se ilumina el botón interactivo `#btn-evidence-examine` (*"Examinar Detalle"*):
-
-```typescript
-// src/types/Private/evidence.ts
-export interface EvidenceItem {
-  id: EvidenceId;
-  name: string;
-  icon: string;
-  desc: string;
-  updatedDesc?: string;
-  updates?: string[];
-  /** Indica si la prueba abre una vista detallada interactiva con hotspots propios. */
-  detailedView?: {
-    imageAsset: string;
-    caption: string;
-    clickableZones?: {
-      id: string;
-      x: number; // porcentaje 0-100
-      y: number;
-      width: number;
-      height: number;
-      tooltip: string;
-      discoveryDialogue: DialogueLine[];
-    }[];
-  };
-}
-```
-
-Las 5 pruebas examinables a fondo son:
-1. **`foto_crimen` (`examine_foto`):** Al inspeccionar la mesita ratona, la ampliación sobre la cubeta de hielo revela agua templada líquida sin témpanos flotando, evidenciando un servicio de más de dos horas de antigüedad, junto a la botella descorchada y la copa rota en el suelo.
-2. **`candado_cadena` (`examine_cadena`):** Al rotar la placa de latón, se aprecia la ranura de deslizamiento horizontal, el raspón exterior sobre la jamba y el cabo de nylon transparente de pesca de 0.35 mm enganchado en el borde del perno, permitiendo traccionar la cadena desde afuera.
-3. **`plano_hotel` (`examine_plano`):** Muestra el corte arquitectónico transversal del ala oeste, revelando el tiro común de chimenea y la línea vertical de purga de vapor que une los radiadores de la Suite 204 y la Suite 304 con la caldera del sótano.
-4. **`botella_vino` (`examine_botella`):** Enfoque macroscópico del gollete de la botella descorchada. La cúpula de lacre rojo revela una punzada milimétrica de aguja hipodérmica resellada con cera derretida.
-5. **`nota_amenaza` (`examine_nota`):** Muestra el formulario oficial de Telégrafos Nacionales con el matasellos de la terminal de autobuses (8:15 PM del 24 de octubre), el destinatario "Conde de Montemayor" y la exigencia de $50,000 pesos por el Collar de Cleopatra.
-
-### 6.2 Señalamiento de Detalles en Pantalla Durante el Juicio (`Present & Point`)
-
-Durante momentos de contradicción física insoslayable, el tribunal exige señalar visualmente la anomalía sobre el documento gráfico presentado:
-
-```typescript
-// src/types/Private/trial.ts
-export interface PointTargetContradiction {
-  targetEvidenceId: EvidenceId;
-  promptQuestion: string;
-  zones: {
-    id: string;
-    bounds: [number, number, number, number]; // [minX, minY, maxX, maxY] en %
-    isCorrect: boolean;
-    failureDialogue: DialogueLine[];
-  }[];
-  successDialogue: DialogueLine[];
-}
-```
-
-- **Fallo:** Descuenta 1 punto de salud (`penalty`), reproduce el sonido `damage` y ejecuta el bloque `failureDialogue` correspondiente a la zona errónea seleccionada (o amonestación judicial genérica).
-- **Acierto:** Detona el sonido `realization`, despliega el cut-in `¡TOMA ESO!`, reproduce `objection` y ejecuta el bloque `successDialogue`, abriendo el monólogo de refutación de Don Ramón.
-
-#### Especificación Técnica de las 3 Instancias de `Present & Point`:
-
-1. **Instancia 1 — `foto_crimen` (Día 1 — Juicio, Contradicción en `d1_t1_3b`):**
-   - **`targetEvidenceId`**: `'foto_crimen'`
-   - **`promptQuestion`**: *"¡Señale el elemento gráfico que desmiente que el servicio estuviera recién servido a las 11:15 PM!"*
-   - **Zona correcta**:
-     - `id`: `'cubeta_hielo_derretido'`
-     - `bounds`: `[50, 14, 88, 82]` (cubeta metálica completa sobre la mesita, incluido el agua templada del interior; el WebP generado ocupa casi todo el tercio derecho, no un parche en el costado)
-     - `isCorrect`: `true`
-   - **Zona incorrecta / `failureDialogue`**:
-     ```typescript
-     failureDialogue: [
-       { speaker: 'DEFENSA', pose: 'donramon_sweat', text: '¡Mire fijamente aquí, señor Juez! ¿Acaso no ve... eh... una mancha sospechosa?' },
-       { speaker: 'JUEZ', pose: 'judge_thinking', text: 'Licenciado Monchito, señalar ese punto no aporta nada sobre la hora del servicio.', sfx: 'damage' },
-       { speaker: 'SUPER SAM', pose: 'supersam_slam', text: 'Time is money! ¡Deje de señalar fantasmas y pague la penalización!' }
-     ]
-     ```
-
-2. **Instancia 2 — `plano_hotel` (Día 2 — Juicio, Contradicción en `d2_t2_4`):**
-   - **`targetEvidenceId`**: `'plano_hotel'`
-   - **`promptQuestion`**: *"¡Señale el conducto exacto donde se propagó la onda sonora del disparo de las 11:15 PM!"*
-   - **Zona correcta**:
-     - `id`: `'tuberia_vapor_vertical'`
-     - `bounds`: `[40, 18, 62, 74]` (tiro vertical de vapor y radiadores 204↔304 sobre `examine_plano.webp`, sin las habitaciones laterales ni la boca de la caldera)
-     - `isCorrect`: `true`
-   - **Zona incorrecta / `failureDialogue`**:
-     ```typescript
-     failureDialogue: [
-       { speaker: 'DEFENSA', pose: 'donramon_panic', text: '¡Por este sector del edificio es por donde viajó el estruendo... creo!' },
-       { speaker: 'JUEZ', pose: 'judge_shock', text: '¡Pero Licenciado, ese sector no tiene conexión directa de vapor con la Suite 304!', sfx: 'damage' },
-       { speaker: 'SUPER SAM', pose: 'supersam_point', text: '¡Pura desorientación arquitectónica! ¡Menos diez dólares a su honorario!' }
-     ]
-     ```
-
-3. **Instancia 3 — `botella_vino` (Día 3 — Juicio, Clímax contra Rufino Rufián):**
-   - **`targetEvidenceId`**: `'botella_vino'`
-   - **`promptQuestion`**: *"¡Señale el punto exacto por donde penetró el cianuro en la botella sellada!"*
-   - **Zona correcta**:
-     - `id`: `'cupula_sello_lacre'`
-     - `bounds`: `[42, 2, 58, 30]` (cúpula y goteos del sello de lacre rojo, con la micro-punzada de aguja en el centro de la tapa)
-     - `isCorrect`: `true`
-   - **Zona incorrecta / `failureDialogue`**:
-     ```typescript
-     failureDialogue: [
-       { speaker: 'DEFENSA', pose: 'donramon_sweat', text: '¡El veneno entró exactamente por este lado de la botella!' },
-       { speaker: 'JUEZ', pose: 'judge_thinking', text: 'El vidrio está perfectamente intacto y sellado en esa zona, Licenciado.', sfx: 'damage' },
-       { speaker: 'RUFINO', pose: 'rufino_smug', text: '¡Qué ignorancia! Mis botellas de reserva privada no presentan la más mínima fisura en el cristal.' }
-     ]
-     ```
-
-### 6.3 Rotación Dinámica de Personajes y Convención de Locaciones por Día
-
-Para respetar la arquitectura y evitar bloqueos (*softlocks*), la sustitución de residentes en un mismo escenario se rige por la convención de IDs con sufijo de día (`_d2`, `_d3`) cuando cambia el elenco o el estado del escenario:
-
-- **Terraza / Bar "El Chapuzón":**
-  - **Día 1 (`hotel_terraza`):** Reside **Maruja** (`maruja_idle`). Tras agotar sus temas y obtener el cerrojo de cadena, se completa la jornada.
-  - **Día 2 (`hotel_terraza_d2`):** Maruja se retira a su suite. En la barra aparece **El Chómpiras** (`chompiras_idle`), quien revela los movimientos y pesos de la bitácora del montacargas.
-- **Gran Vestíbulo / Recepción:**
-  - **Días 1 y 2 (`hotel_lobby`):** Atendido por el gerente **Don Cecilio Buenavista** (`cecilio_idle`).
-  - **Día 3 (`hotel_lobby_d3`):** Don Cecilio se ausenta urgentemente a la ciudad para atender a los inversionistas, a la junta directiva y a la prensa ante el escándalo de reputación del hotel. El mostrador es asumido por **La Chimoltrufia** (`chimoltrufia_idle`), quien entrega las pruebas rescatadas del basurero de la 204.
-- **Centro de Detención:**
-  - **Día 1 (`detention`):** Botija desesperado entrega la billetera de la víctima.
-  - **Día 3 (`detention_d3`):** Con la llave secreta hallada en el forro descosido, se recupera el resguardo del telegrama de extorsión.
-
-### 6.4 Pruebas Requeridas por Día (`checkTrialReadiness`)
-
-Cumpliendo rigurosamente con la lección de arquitectura `trial-gating-is-inventory-only.md`, **la última locación visitada en cada día de investigación entrega al menos una prueba obligatoria de `requiredEvidence`**:
-
-| Día | `requiredEvidence` | Última Locación Obligatoria | Prueba que Sella el Día |
-|---|---|---|---|
-| **Día 1** | `informe_policial`, `foto_crimen`, `plano_hotel`, `billetera_cuajinais`, `candado_cadena` | `hotel_terraza` | `candado_cadena` (entregada por Maruja tras agotar su diálogo) |
-| **Día 2** | `residuos_manos`, `casquillo_fogueo`, `registro_montacargas`, `informe_forense` | `delegacion` | `informe_forense` (entregada por el Sargento al recibir la autopsia) |
-| **Día 3** | `copa_vino`, `botella_vino`, `boleta_baccarat`, `baul_etiquetas`, `sello_lacre`, `nota_amenaza` | `detention_d3` | `nota_amenaza` (entregada al abrir la taquilla con la llave secreta) |
-
-### 6.5 Directivas de Actualización de Inventario (`updateEvidence`) en el Motor
-
-Conforme a la regla arquitectónica documentada en `docs/lessons-learned/court-record-description-updates.md`, una segunda invocación de `addEvidence` sobre un ítem preexistente en el inventario es un *no-op* silencioso que no genera alertas visuales ni actualiza el texto en el Acta del Juicio.
-
-Para reflejar el avance de la investigación o los descubrimientos periciales en el juicio, el motor implementa la directiva `updateEvidence?: EvidenceId` en la estructura de datos `DialogueLine` ([[src/types/Private/script.ts]]). Al emitirse una línea con este campo:
-1. `DialogueFlow.ts` ejecuta `gameState.updateEvidence(evidenceId)`.
-2. El `GameStateManager` avanza el estado del ítem a su descripción revisada (`updatedDesc` o el siguiente estadio en el arreglo `updates[]`).
-3. La interfaz emite un banner flotante (`#game-notification`) con el mensaje *"Acta del Juicio actualizada"* y detona el efecto de sonido `realization`.
-4. Si el jugador alcanzara la línea de actualización antes de registrar el ítem en su inventario, el motor lo ingresa directamente en su estado actualizado para no condicionar el orden de exploración.
-
-#### Catálogo de Directivas `updateEvidence` del Caso 4:
-
-| # | `EvidenceId` | Fase / Disparador del Script | Texto Actualizado en el Acta (`updatedDesc`) |
-|---|---|---|---|
-| 1 | `foto_crimen` | **Día 1 — Juicio (D1-T1):** Tras resolver el señalamiento (`Present & Point`) del agua derretida en la cubeta sobre la mesita ratona. | *"Escena del crimen a las 11:30 PM. La cubeta sobre la mesita contiene agua templada sin un solo témpano de hielo flotando, demostrando que el servicio de bebidas se entregó horas antes del estruendo."* |
-| 2a | `informe_policial` *(Stage 1)* | **Día 1 — Juicio (D1-T1):** Tras presentar `informe_policial` para refutar la hora oficial de la carátula basada únicamente en el estruendo de tuberías. | *"Informe preliminar del Sargento. La hora de muerte fijada (11:15 PM) se asentó únicamente por el estruendo escuchado desde el pasillo a través de las tuberías de vapor, sin examen médico forense in situ."* |
-| 2b | `informe_policial` *(Stage 2)* | **Día 2 — Juicio (D2-T1):** Al revelar el **Giro 1** presentando la autopsia toxicológica (`informe_forense`). | *"Informe policial preliminar refutado: la autopsia médico-legal certificó que la víctima falleció por asfixia por cianuro de potasio a las 9:50 PM; el impacto de bala a las 11:15 PM fue post-mortem."* |
-| 3 | `residuos_manos` | **Día 2 — Juicio (D2-T1):** Tras presentar `residuos_manos` para demoler la imputación de pólvora sostenida por Super Sam. | *"Peritaje químico corregido de las manos y ropa negra de Botija: 98% de hollín mineral de carbón y azufre de la caldera; 0% de pólvora o nitratos balísticos. Descarta disparo de arma de fuego."* |
-| 4 | `plano_hotel` | **Día 2 — Juicio (D2-T2):** Tras resolver el señalamiento del conducto de vapor vertical y presentar el `casquillo_fogueo`. | *"Plano arquitectónico del ala oeste. Confirma la conexión directa del tiro vertical de tuberías de purga de vapor entre la Suite 204 y la Suite 304, conducto por el cual reverberó la detonación acústica de fogueo."* |
-| 5 | `billetera_cuajinais` | **Día 3 — Investigación (Locación 4):** Al dialogar con Botija en el centro de detención tras descoser el forro secreto en el laboratorio. | *"Billetera de piel de cocodrilo con $200 intactos. El peritaje químico descosió el forro secreto y extrajo la llave de la taquilla #42 de la terminal de autobuses."* |
-
----
-
-## 7. Guión Detallado: Día 1 — Investigación (El Cuarto Cerrado)
-
-### Locación 1: Centro de Detención (`detention`, `bg_detention.webp`)
-- **Personajes**: Gordon Botija Pompa y Pompa (`botija_nervioso`, `botija_llorando`), El Chapulín Colorado (`chapulin_idle`), Don Ramón (`donramon_idle`).
-- **Música**: `detention_center`.
-
-```dialogue
-[ENTRADA AL CENTRO DE DETENCIÓN]
-NARRADOR: 25 de octubre, 9:00 AM. Centro de Detención Preventiva.
-DEFENSA (donramon_idle): ¡Buenos días, vecino! Aquí está el Licenciado Monchito en persona, listo para sacarte de este atolladero.
-BOTIJA (botija_llorando): ¡Don Ramón! ¡Dígame que no me van a refundir en las Islas Marías! ¡Yo soy un hombre de bien, se lo juro por los ojos zarcos de mi Chimoltrufia adorada!
-CHAPULIN (chapulin_idle): ¡Calma, no te sulfures! ¡Que no panda el cúnico! ¡El Chapulín Colorado acude para velar por los inocentes y desamparados!
-BOTIJA (botija_nervioso): Gracias, Chapulín... pero con mis ciento veinte kilos, de desamparado tengo muy poco. ¡Mire mis manos, Don Ramón! ¡El fiscal gringo jura que disparé un trabuco!
-DEFENSA (donramon_sweat): (Tiene las manos más negras que llanta de tractor... Esto pinta más feo que mi recibo de la renta de dieciséis meses.)
-```
-
-#### Opciones de Diálogo (Talk con Botija):
-1. **"¿Por qué estabas en la Suite 304?"**
-   - **Botija**: *"A las 10:45 PM estuve raspando el hollín del tiro de la caldera en el sótano hasta las 11:10 PM. Apenas me limpié un poco, Don Cecilio me mandó a revisar el baño de la Suite 304 porque la válvula de purga del radiador estaba silbando vapor hirviendo. Subí con mi ropa de trabajo y mi llave inglesa a las 11:12 PM. Abrí la puerta con mi llave maestra de mantenimiento y la dejé emparejada para que circulara el aire... ¡y en eso vi al Cuajinais tirado en la alfombra junto a la chimenea!"*
-   - **Don Ramón**: *"¿Y por qué te metiste al canasto de la ropa sucia?"*
-   - **Botija**: *"¡Por puro pánico, Don Ramón! A las 11:14 PM escuché pasos en el pasillo exterior. Pensé: 'Si me pescan aquí con mis antecedentes de carterista, me clavan el difunto'. ¡Y mire nomás qué puntería tuvieron!"*
-2. **"Sobre la billetera del Cuajinais"**
-   - **Botija**: *"A las 11:13 PM la vi tirada en la alfombra junto al cuerpo. La levanté con curiosidad para ver la credencial y cerciorarme de si era el Cuajinais... ¡y en eso oí los pasos, me metí al cesto y a las 11:15 PM sonó un trallazo como cañón en la tubería! Se me quedó en la bolsa del pantalón del puro susto, ¡pero no le toqué un solo centavo!"*
-   - **Se añade al acta**: `billetera_cuajinais`.
-3. **"¿Tú pasaste la cadena de la puerta?"**
-   - **Botija**: *"¡Jamás en la vida! Yo abrí con mi llave maestra y dejé la puerta sólo emparejada para trabajar. Si yo hubiera querido atrincherarme, ¡le echo llave con cerrojo doble y pongo un ropero enfrente, no me escondo entre sábanas que huelen a cloro!"*
-   - **Se desbloquea locación**: `hotel_lobby`.
-
----
-
-### Locación 2: Gran Vestíbulo del Hotel (`hotel_lobby`, `bg_hotel_lobby.webp`)
-- **Personajes**: Don Cecilio Buenavista (`cecilio_idle`, `cecilio_ciego`), Don Ramón (`donramon_panic`), El Chapulín Colorado (`chapulin_point`).
-- **Música**: `investigation`.
-
-```dialogue
-[ENTRADA AL GRAN HOTEL]
-NARRADOR: 25 de octubre, 10:30 AM. Gran Vestíbulo del Hotel Buena Vista.
-CECILIO (cecilio_ciego): ¡Sea muy bienvenido a nuestro ilustre establecimiento, distinguido caballero de frac! Permítame guardar su sombrero de copa.
-DEFENSA (donramon_panic): ¡Oiga, Don Cecilio! ¡Póngase los anteojos! ¡No soy ningún conde, soy Don Ramón! ¡Y esto no es sombrero de copa, es mi gorrito de mezclilla arrugado!
-CECILIO (cecilio_escandalo): ¡Cielos santos! ¡Un menesteroso invadiendo la alfombra persa de mi lobby de cinco estrellas! ¡Llamaré al botones!
-CHAPULIN (chapulin_point): ¡Detenga su ademán, noble hostelero! ¡El Chapulín Colorado investiga el trágico suceso de anoche en el tercer piso!
-CECILIO (cecilio_idle): ¡Ah, el deplorable espectáculo del inquilino de la cicatriz! Perturbó el reposo del Conde de Montemayor y de toda la planta noble.
-```
-
-#### Opciones de Diálogo (Talk con Cecilio):
-1. **"El escándalo de anoche"**: Don Cecilio confirma que a las 11:15 PM oyó un estampido como trueno desde el tercer piso. Subió con el Sargento y encontraron la puerta trabada con la cadena interior.
-2. **"El plano del edificio"** → **Se añade al acta**: `plano_hotel`.
-   - Cecilio: *"Tome usted el esquema del inmueble. Fue construido en 1920 con hierro macizo y tiros verticales de vapor."*
-   - **Se habilita botón examinar detalle** en `plano_hotel`.
-- **Se desbloquea locación**: `hotel_suite`.
-
----
-
-### Locación 3: Suite Presidencial 304 (`hotel_suite`, `bg_hotel_suite.webp`)
-- **Personajes**: El Sargento Refugio Pazguato (`pazguato_saludo`, `pazguato_sweat`), Don Ramón (`donramon_idle`), Chapulín (`chapulin_idle`).
-- **Música**: `suspense`.
-
-```dialogue
-[ENTRADA A LA SUITE DEL CRIMEN]
-NARRADOR: 25 de octubre, 11:45 AM. Suite Presidencial 304.
-SARGENTO (pazguato_saludo): ¡A la orden de la justicia, mi Licenciado! Sargento Refugio Pazguato custodiando la escena del crimen.
-DEFENSA (donramon_idle): ¿Super Sam no anda por aquí contando dólares?
-SARGENTO (pazguato_sweat): No, fue a la casa de cambio a redondear centavos. ¡Pero si me sorprende cooperando con la defensa, me descuenta el aguinaldo de los próximos tres años!
-CHAPULIN (chapulin_idle): ¡No temas, leal custodio del orden! ¡La nobleza de tu deber te protege!
-```
-
-#### Puntos de Interés (Hotspots):
-1. **Silueta en la alfombra (`hotspot_cuerpo`)**:
-   - Mancha seca junto a la chimenea. Sobre la alfombra y la mesita yacen la copa rota con residuos secos y la botella descorchada de *Chateau Buena Vista 1958* junto a la cubeta de hielo, aseguradas bajo cadena de custodia por el Sargento para su posterior remisión a análisis químico.
-   - El Sargento entrega las actuaciones preliminares y la toma fotográfica de la escena tomada a las 11:30 PM.
-   - **Se añade al acta**: `informe_policial` y `foto_crimen`.
-   - **Al examinar `foto_crimen` a fondo**: sobre la mesita, junto a la botella descorchada y la copa rota en el suelo, la cubeta de hielo revela agua templada sin un solo bloque congelado flotando.
-2. **Marco de la puerta y cerradura (`hotspot_puerta`)**:
-   - El marco de madera de caoba está astillado donde la policía empujó la puerta.
-   - El Sargento comenta: *"El cerrojo de cadena estaba puesto en su riel interior. Sin embargo, cuando forzamos la jamba, la señorita Maruja de la suite contigua vio caer algo metálico y lo recogió del suelo del pasillo."*
-3. **Radiador de hierro (`hotspot_radiador`)**:
-   - Tubería gruesa vertical que baja hacia el piso 2. Huele amargamente a humo de combustión y azufre concentrado.
-4. **Cesto de lavandería (`hotspot_cesto`)**:
-   - Gran cesto de mimbre con sábanas blancas salpicadas de tizne donde se ocultó Botija.
-- **Se desbloquea locación**: `hotel_terraza`.
-
----
-
-### Locación 4: Terraza & Bar "El Chapuzón" (`hotel_terraza`, `bg_hotel_bar.webp`)
-- **Personajes**: Maruja (`maruja_idle`, `maruja_abanico`, `maruja_nerviosa`), Don Ramón (`donramon_sweat`), El Chapulín Colorado (`chapulin_panic`).
-- **Música**: `investigation`.
-
-```dialogue
-[ENTRADA A LA TERRAZA DEL BAR]
-NARRADOR: 25 de octubre, 1:15 PM. Terraza Bar "El Chapuzón".
-MARUJA (maruja_abanico): Caramba... ¿Qué tenemos por aquí? Un caballero con sombrero de pescador y un muchacho enfundado en terciopelo encarnado.
-CHAPULIN (chapulin_panic): ¡Chanfle! ¡Es una muñeca de sololoy de carne y hueso!
-DEFENSA (donramon_sweat): Señora o señorita... Soy el abogado defensor de Gordon Botija.
-MARUJA (maruja_coqueta): Puedes llamarme Maruja, Licenciado... Aunque si pretendes salvar a ese gigante que despachó al pobre Gómez, temo que estás gastando pólvora en infiernitos.
-CHAPULIN (chapulin_idle): ¡Tranquila, primorosa dama! Porque más vale pájaro en mano... que verlo madrugar volando.
-DEFENSA (donramon_idle): ¡No, Chapulín! Al que madruga Dios le ayuda, y más vale pájaro en mano que ver un ciento volando.
-CHAPULIN (chapulin_idle): Bueno... la idea es esa.
-MARUJA (maruja_abanico): Qué graciosos son...
-```
-
-#### Opciones de Diálogo (Talk con Maruja):
-1. **"¿Qué escuchó anoche en el pasillo?"**
-   - Maruja declara que estaba en su Suite 303 contigua descansando de una migraña. A las 11:15 PM oyó una detonación brutal que cimbró las paredes. Al salir al pasillo, vio a Don Cecilio tratando de empujar la puerta de la 304.
-2. **"Sobre la víctima (Sr. Gómez)"**
-   - Asegura que apenas lo conocía de vista cuando se cruzaron en la recepción por la tarde.
-   - Don Ramón observa que Maruja luce nerviosa cuando se le menciona al difunto Cuajinais.
-3. **"El objeto del pasillo"**
-   - Maruja: *"Cuando el Sargento y los mozos embistieron la puerta a las 11:20 PM, saltó hacia la alfombra del pasillo el cerrojo de cadena. Yo lo levanté porque traía enredado un alambre brillante muy raro... Pensé que era bisutería, pero se los entrego si les sirve de algo."*
-   - **Se añade al acta**: `candado_cadena`.
-   - **Al examinar `candado_cadena` a fondo**: se aprecia el rasguño metálico fresco y un largo sedal de nylon de pescar sujeto al perno para traccionarlo por la rendija desde el exterior.
-
-> **¡Gating Cumplido!** La obtención de `candado_cadena` en `hotel_terraza` completa las 5 pruebas requeridas del Día 1 (`informe_policial`, `foto_crimen`, `plano_hotel`, `billetera_cuajinais`, `candado_cadena`) y activa el botón `#btn-inv-trial` para marchar a la Corte.
-
----
-
-## 8. Guión Detallado: Día 1 — Juicio (La Farsa del Encierro)
-
-```dialogue
-[APERTURA DEL JUICIO - 25 DE OCTUBRE, 3:00 PM]
-JUEZ (judge_gavel): ¡Silencio en este tribunal! Se abre la vista preliminar contra el ciudadano Gordon Botija Pompa y Pompa por el delito de homicidio calificado y robo. [sfx: gavel, bgm: trial]
-SUPER SAM (supersam_slam): Time is money, Your Honor! ¡Este proceso no requiere más de diez minutos de deliberación! [sfx: desk_slam]
-SUPER SAM (supersam_point): El inculpado fue sorprendido en flagrancia dentro de un cuarto cerrado por dentro con cadena de latón, con las manos empapadas en pólvora y la billetera del occiso en su bolsillo. ¡Pido sentencia condenatoria antes del cierre de Wall Street!
-DEFENSA (donramon_slam): ¡PROTESTO! ¡Con permisito, dijo Monchito! [sfx: desk_slam]
-DEFENSA (donramon_point): ¡La defensa demostrará que esa supuesta recámara hermética fue un truco de magia montado por un tercero para inculpar a un humilde fontanero!
-```
-
-### Testimonio 1: El Sargento — "El Hallazgo en la Suite 304"
-- **Testigo**: El Sargento Refugio Pazguato (`pazguato_idle`). **BGM**: `cross_exam_moderato`.
-
-```dialogue
-[TESTIMONIO D1-T1: EL SARGENTO]
-SARGENTO (d1_t1_1): A las 11:15 PM en punto escuchamos un disparo de arma de fuego procedente del tercer piso.
-SARGENTO (d1_t1_2): Al subir con la gerencia, encontramos la puerta de la Suite 304 trabada por dentro con la cadena de seguridad.
-SARGENTO (d1_t1_3): Tras forzar la entrada, vimos el cuerpo sin vida y la cubeta con vino recién servida junto al cadáver.
-SARGENTO (d1_t1_4): Oculto en el cesto de la ropa estaba el acusado, con las manos tiznadas y la billetera de la víctima.
-```
-
-#### Fase de Presión (Press):
-
-```dialogue
-[PRESIÓN D1-T1-1]
-DEFENSA (donramon_point): ¿Cómo está tan seguro del minutero exacto, Sargento?
-SARGENTO (pazguato_saludo): ¡Porque miré mi reloj de pulso reglamentario en cuanto sonó el trallazo metálico en las tuberías!
-DEFENSA (donramon_idle): De modo que las 11:15 PM es cuando usted oyó el ruido... no necesariamente cuando ocurrió el disparo.
-SUPER SAM (supersam_slam): Objection! Time is money! ¡Ruido de balazo y hora de disparo son la misma cosa aquí y en Manhattan!
-
-[PRESIÓN D1-T1-2]
-DEFENSA (donramon_point): ¿La puerta abría algo o estaba completamente sellada?
-SARGENTO (pazguato_sweat): Abría apenas unos cuatro centímetros... lo justo para ver el perno dorado de la cadena atrancado en el riel de latón.
-DEFENSA (donramon_idle): Cuatro centímetros... suficiente para meter la mano... o un hilo.
-SUPER SAM (supersam_point): ¡Nadie tiene manos de papel para colarse por cuatro centímetros, letrado!
-
-[PRESIÓN D1-T1-3]
-DEFENSA (donramon_point): ¿Y afirma usted que el vino y el hielo estaban recién puestos en la mesita?
-SARGENTO (pazguato_saludo): ¡Totalmente! La fotografía oficial que tomé a las 11:30 PM documenta la escena intacta quince minutos después del crimen.
-JUEZ (judge_thinking): El Sargento afirma que el servicio de bebidas estaba fresco... Esto debe constar en autos.
-```
-
-*(La declaración `d1_t1_3` cambia a `d1_t1_3b`: "La escena estaba fresca a las 11:30 PM: la cubeta con hielo y el vino acababan de servirse en la suite.")*
-
-```dialogue
-[PRESIÓN D1-T1-3B]
-DEFENSA (donramon_sweat): Sargento, insisto: ¿observó con atención los témpanos dentro de esa cubeta antes de dar por sentado que estaban recién servidos?
-SARGENTO (pazguato_sweat): Bueno, mi Licenciado... Con el alboroto del fiambre, la chimenea y el Botija metido en el cesto, yo vi el balde de metal reluciente y di por hecho que los cubitos estaban recién salidos del congelador.
-SUPER SAM (supersam_slam): Time is money! ¡Un balde de hielo es un balde de hielo! ¡Deje de marear la perdiz con cubitos de agua y presente una contradicción si la tiene!
-
-[PRESIÓN D1-T1-4]
-DEFENSA (donramon_point): ¿Revisó si faltaba dinero o si la billetera estaba abierta cuando atraparon a Botija?
-SARGENTO (pazguato_saludo): La billetera estaba cerrada. La abrí en presencia del fiscal y tenía doscientos pesos en billetes de curso legal... intactos.
-DEFENSA (donramon_idle): (Doscientos pesos enteros... Un ladrón se habría llevado los billetes antes de esconderse.)
-SUPER SAM (supersam_point): ¡No intente justificarlo! ¡Botija no tuvo tiempo de vaciarla porque llegamos en diez segundos!
-```
-
-#### Contradicción en `d1_t1_3b`:
-- **Presentar**: `foto_crimen` (prueba gráfica admisible para señalamiento).
-- **Se activa mecánica Señalar Detalle (`Present & Point`)**:
-  - Pregunta del tribunal: *"¡Señale el elemento gráfico que desmiente que el servicio estuviera recién servido a las 11:15 PM!"*
-  - **Zona correcta**: La cubeta de metal sobre la mesita ratona (`id`: `'cubeta_hielo_derretido'`, `bounds`: `[50, 14, 88, 82]`).
-  - **Zona incorrecta / Fallo**: Si se señala fuera de la cubeta, se activa el `failureDialogue` y se descuenta 1 punto de salud (`penalty`).
-- **Diálogo de éxito**:
-
-```dialogue
-DEFENSA (donramon_point): ¡Mire con aumento la cubeta de la mesita, señor Juez! [cutin: objection_protesto, sfx: whoosh, bgm: objection]
-JUEZ (judge_shock): ¿La cubeta metálica? Pero si sólo contiene líquido...
-DEFENSA (donramon_slam): ¡Exacto! ¡Es agua líquida a temperatura ambiente! ¡No queda ni una raspadura de hielo! [sfx: desk_slam, updateEvidence: foto_crimen]
-SUPER SAM (supersam_sweat): What?! ¡¿Y qué tienen que ver los hielos con el plomo caliente de una bala?!
-DEFENSA (donramon_point): ¡Un bloque de cubos de hielo en un balde tarda entre dos y tres horas en derretirse por completo a temperatura de habitación! Si el servicio hubiera subido a las 11:15 PM, ¡a las 11:30 PM los hielos estarían casi completos!
-JUEZ (judge_thinking): Es un razonamiento incontestable... La cubeta fue llevada a esa recámara mucho antes de las once de la noche.
-```
-
-#### Objeción del Fiscal y Ranura Obligatoria para `informe_policial`:
-
-```dialogue
-SUPER SAM (supersam_slam): Objection! ¡Puras pamplinas termodinámicas! [sfx: desk_slam]
-SUPER SAM (supersam_point): ¡Aunque el agua estuviera tibia, la carátula oficial de la policía fija taxativamente las 11:15 PM como el minuto exacto del homicidio por arma de fuego! ¡Contra un parte policial sellado, los cubitos de hielo no tienen valor probatorio!
-JUEZ (judge_thinking): El señor Fiscal plantea una cuestión de primer orden formal. El acta preliminar de las autoridades goza de fe pública respecto a la hora del deceso. Licenciado Monchito, ¿tiene alguna prueba documental en sus manos que desacredite formalmente la certeza de la hora registrada en ese reporte?
-DEFENSA (donramon_slam): ¡Por supuesto, señor Juez! ¡La propia carátula de las autoridades desmiente la certeza médica de ese horario! [cutin: objection_protesto, sfx: desk_slam]
-```
-
-- **Presentar**: `informe_policial`.
-
-```dialogue
-DEFENSA (donramon_point): ¡Examinen detenidamente la carátula del informe policial redactado por el Sargento! [cutin: objection_toma_eso, sfx: whoosh, bgm: objection]
-JUEZ (judge_shock): ¿El informe policial preliminar?
-DEFENSA (donramon_slam): ¡Lean con lupa la casilla de "Hora del Crimen"! El Sargento anotó las 11:15 PM basándose única y exclusivamente en el estruendo escuchado desde el pasillo a través de las tuberías de vapor. ¡No hubo ningún médico forense presente certificando signos vitales, temperatura corporal ni rigidez cadavérica a esa hora!
-SARGENTO (pazguato_sweat): Es verdad, mi Licenciado... Con el susto del trallazo en los tubos, dimos por hecho que el disparo fatal acababa de sonar. No teníamos forense a esa hora en el hotel para revisar el cuerpo... [updateEvidence: informe_policial]
-DEFENSA (donramon_point): ¡De modo que las 11:15 PM es la hora de un sonido en el edificio, no la hora médica en que murió Cuajinais!
-SUPER SAM (supersam_sweat): What?!
-JUEZ (judge_thinking): ¡Cielos santos! La carátula policial carece de sustento biológico. La hora del asesinato queda formalmente en entredicho.
-SUPER SAM (supersam_slam): ¡Irrelevant! ¡Aunque la hora médica esté pendiente, nadie pudo entrar a disparar antes ni después porque la puerta tenía la cadena echada por dentro! [sfx: desk_slam]
-```
-
----
-
-### Testimonio 2: Don Cecilio Buenavista — "La Cadena de Seguridad"
-- **Testigo**: Don Cecilio Buenavista (`cecilio_idle`, `cecilio_ciego`). **BGM**: `cross_exam_allegro`.
-
-```dialogue
-[TESTIMONIO D1-T2: DON CECILIO]
-CECILIO (d1_t2_1): Yo mismo empujé con el hombro la pesada puerta de roble de la suite tras oír el tiroteo.
-CECILIO (d1_t2_2): La hoja se detuvo en seco a los cuatro centímetros porque la cadena de latón estaba firme en su carril.
-CECILIO (d1_t2_3): Ese mecanismo es inviolable desde el exterior; requiere forzosamente que una mano humana deslice el perno desde adentro.
-CECILIO (d1_t2_4): Como el Botija era el único viviente dentro de la alcoba, ¡sólo él pudo atrancar la puerta para proteger su botín!
-```
-
-#### Fase de Presión (Press):
-
-```dialogue
-[PRESIÓN D1-T2-1]
-DEFENSA (donramon_point): ¿No intentó abrir con su llave maestra de la gerencia primero?
-CECILIO (cecilio_idle): La cerradura ordinaria de llave estaba descorrida... Lo que frenaba el acceso era pura y exclusivamente la cadena de seguridad interior.
-SUPER SAM (supersam_point): ¡Exacto! ¡Cerradura abierta pero cadena trabada por dentro por el asesino!
-
-[PRESIÓN D1-T2-2]
-DEFENSA (donramon_point): ¿Y qué se podía distinguir exactamente por esa rendija de cuatro centímetros?
-CECILIO (cecilio_ciego): Mis ojos no son de águila imperial, distinguido letrado, pero alcancé a percibir en la penumbra el cesto de mimbre y la silueta del occiso cerca del fuego.
-DEFENSA (donramon_sweat): (Cuatro centímetros de rendija... más que suficiente para pasar un sedal de pescar.)
-
-[PRESIÓN D1-T2-3]
-DEFENSA (donramon_point): ¿Está usted absolutamente convencido de que nadie pudo manipular ese cerrojo desde el exterior del pasillo?
-CECILIO (cecilio_escandalo): ¡Completamente, señor letrado! La chapa de latón macizo no tiene hendiduras exteriores y el perno corre por la cara interna. A menos que el homicida fuera un fantasma o poseyera poderes de telequinesis, ¡nadie puede empujar ese perno desde el pasillo!
-DEFENSA (donramon_idle): (Un fantasma no... pero alguien con paciencia, un buen hilo y dos dedos de frente, sin duda alguna...)
-
-[PRESIÓN D1-T2-4]
-DEFENSA (donramon_point): ¿A qué botín se refiere usted con tanta ligereza, Don Cecilio?
-CECILIO (cecilio_idle): ¡A la billetera de piel de cocodrilo del infortunado señor Gómez, por supuesto! ¡Un humilde fontanero no puede resistir la tentación del lujo!
-DEFENSA (donramon_slam): ¡Cuidado con difamar a la clase trabajadora, don Cecilio, que el Botija tiene las manos tiznadas pero honradas!
-```
-
-#### Contradicción en `d1_t2_3`:
-- **Presentar**: `candado_cadena`.
-
-```dialogue
-DEFENSA (donramon_slam): ¡PROTESTO! ¡Examine este cerrojo recuperado del pasillo exterior, Don Cecilio! [cutin: objection_protesto, sfx: desk_slam, bgm: objection]
-CECILIO (cecilio_ciego): Permítame limpiar mis cristales... ¡Válgame Dios, qué bonito dije de bisutería!
-DEFENSA (donramon_point): ¡No es ningún dije! ¡Es la base del cerrojo de cadena! En el perno corredizo hay una raspadura fresca y un sedal de pescar de nylon transparente.
-JUEZ (judge_shock): ¿Un sedal de pesca?
-DEFENSA (donramon_point): ¡Cualquier persona parada en el pasillo exterior puede pasar un sedal de pescar por la rendija de la puerta emparejada, sujetar el perno y tirar del hilo desde afuera para traccionar y correr el perno a lo largo del riel horizontal hasta calzarlo en el tope interior, soltando luego el sedal para recuperarlo y dejar la habitación bloqueada por dentro!
-CHAPULIN (chapulin_point): ¡Exactamente! ¡No contaban con mi astucia! ¡Cualquiera desde el corredor pudo montar el falso cuarto cerrado y dejar a mi cliente atrapado adentro!
-```
-
-#### Objeción del Fiscal y Presentación de la Billetera:
-
-```dialogue
-SUPER SAM (supersam_slam): Objection! ¡Puras filigranas teóricas de pescador de domingo! [sfx: desk_slam]
-SUPER SAM (supersam_point): Aunque un duende hubiera corrido ese cerrojo con un hilito de nylon, ¿cómo explica la defensa el móvil criminal? ¡Gordon Botija fue capturado con la billetera de piel de cocodrilo de la víctima en su propio bolsillo! ¡Entró a desvalijar al señor Gómez!
-JUEZ (judge_gavel): Ciertamente... El señor Fiscal plantea una cuestión de primer orden. La presencia de la billetera en manos del encausado sugiere un móvil de robo con violencia. Licenciado Monchito, ¿tiene alguna prueba en su poder que refute ese móvil de robo?
-DEFENSA (donramon_slam): ¡La defensa tiene la prueba irrefutable de que Botija jamás tuvo la intención de robar un solo centavo! [cutin: objection_protesto, sfx: desk_slam]
-```
-
-- **Presentar**: `billetera_cuajinais`.
-
-```dialogue
-DEFENSA (donramon_point): ¡Examine con atención el contenido de la billetera del difunto, señor Juez! [cutin: objection_toma_eso, sfx: whoosh, bgm: objection]
-JUEZ (judge_shock): ¿La billetera del señor Gómez? Pero si contiene... ¡doscientos pesos intactos en billetes de curso legal!
-DEFENSA (donramon_point): ¡Exacto! ¡Doscientos pesos íntegros sin que falte una sola moneda! Si Gordon Botija hubiera entrado con el propósito criminal de robar, ¿se habría guardado la cartera con el dinero adentro para que sirviera de prueba en su bolsillo, en lugar de llevarse los billetes y tirar la billetera por la ventana? ¡El dinero intacto descarta por completo el móvil de robo con violencia!
-SUPER SAM (supersam_sweat): What?! ¡Pero tenía las manos llenas de pólvora negra!
-JUEZ (judge_thinking): Es un argumento de peso... Ningún carterista profesional deja el dinero intacto en la billetera de su víctima. La defensa ha demostrado que la cadena pudo correrse desde el pasillo y que el móvil de robo es insostenible. Sin embargo, el enigma de los residuos negros en las manos de Botija y el estampido de bala de las 11:15 PM exigen respuesta pericial. ¡Se suspende la sesión hasta mañana! [sfx: gavel]
-```
-
----
-
-## 9. Guión Detallado: Día 2 — Investigación (Ecos en la Tubería)
-
-### Locación 1: Sótano y Sala de Calderas (`hotel_sotano`, `bg_hotel_sotano.webp`)
-- **Personajes**: El Sargento Refugio Pazguato (`pazguato_decidido`, `pazguato_saludo`), Don Ramón (`donramon_idle`).
-- **Música**: `suspense`.
-
-```dialogue
-[ENTRADA AL SÓTANO]
-NARRADOR: 26 de octubre, 9:30 AM. Sala de calderas en el sótano del Gran Hotel.
-SARGENTO (pazguato_decidido): ¡Mi Licenciado! Me escabullí mientras Super Sam fiscalizaba los tickets de la cafetería.
-DEFENSA (donramon_idle): ¿Qué arrojó el laboratorio sobre las manos de Botija?
-SARGENTO (pazguato_saludo): ¡Mire el dictamen del químico! Llevé los hisopos en mi bolsa del lonche.
-```
-- **Se añade al acta**: `residuos_manos` (revela 98% hollín de carbón y azufre mineral de caldera; 0% nitratos balísticos).
-- **Inspección de la caldera**: Entre las cenizas del tiro de la chimenea que baja de los pisos superiores, el Sargento recupera un revólver .38 de cañón corto con una bala percutida y olor a pólvora vieja. Rufino lo arrojó por el tiro de la 304 tras dispararle al cadáver a través de la almohada de plumas.
-- **Aclaración Pericial**: El revólver .38 de cañón corto queda formalmente confiscado bajo **custodia pericial de la fiscalía en poder del Sargento Refugio Pazguato** para peritajes balísticos, por lo que no ingresa al inventario de la defensa.
-- **Se desbloquea locación**: `hotel_suite204`.
-
----
-
-### Locación 2: Suite 204 — Habitación de Rufino Rufián (`hotel_suite204`, `bg_hotel_suite204.webp`)
-- **Personajes**: Rufino Rufián (`rufino_smug`, `rufino_monocle`), Don Ramón (`donramon_idle`), Chapulín (`chapulin_idle`).
-- **Música**: `investigation`.
-
-```dialogue
-[ENTRADA A LA SUITE 204]
-NARRADOR: 26 de octubre, 11:00 AM. Suite 204, situada directamente bajo la escena del crimen.
-RUFINO (rufino_monocle): Vaya... ¿Quién franqueó el acceso a la plebe a mis aposentos nobiliarios?
-DEFENSA (donramon_idle): Venimos a revisar las tuberías del edificio, caballero.
-RUFINO (rufino_smug): Lamento desilusionarlo, leguleyo. Mi velada de anoche a las 11:15 PM transcurrió en el salón de baccarat cosechando victorias frente a distinguidos diplomáticos.
-CHAPULIN (chapulin_idle): (Este señor habla como si trajera una patata caliente en el cogote...)
-```
-
-#### Puntos de Interés (Hotspots):
-1. **Radiador de la 204 (`hotspot_radiador204`)**:
-   - Don Ramón inspecciona la válvula de purga desenroscada del radiador. En su cavidad interna descubre un casquillo detonado calibre .38 con restos de mecha lenta de azufre quemada.
-   - **Se añade al acta**: `casquillo_fogueo`.
-2. **Armario y maletas (`hotspot_armario`)**:
-   - Rufino guarda celosamente un maletín de piel cerrado con llave (donde oculta el Collar de Cleopatra).
-- **Se desbloquea locación**: `hotel_terraza_d2`.
-
----
-
-### Locación 3: Terraza & Bar "El Chapuzón" (`hotel_terraza_d2`, `bg_hotel_bar.webp`) — ROTACIÓN DE PERSONAJE
-- **Personaje anterior (Día 1)**: Maruja (ausente, retirada a su alcoba).
-- **Nuevo personaje (Día 2)**: **Aquiles Esquivel Madrazo ("El Chómpiras")** (`chompiras_idle`, `chompiras_nervous`, `chompiras_relieved`).
-- **Música**: `investigation`.
-
-```dialogue
-[ENTRADA A LA TERRAZA - DÍA 2]
-NARRADOR: 26 de octubre, 1:00 PM. Terraza Bar. Maruja no está; en la barra, un botones desgarbado sorbe un refresco de naranja con popote.
-CHOMPIRAS (chompiras_nervous): ¡Ay, Madrecita mía! ¡No me pegue con el mazo, que de niño me caí de una barda y me quedó tierna la cabeza!
-DEFENSA (donramon_shock): ¡¿Chómpiras?! ¡¿Qué demonios haces tú trabajando en este palacio de millonarios?!
-CHOMPIRAS (chompiras_nervous): ¡Don Ramón! ¡Qué milagro que no lo veo huyendo de la renta de los dieciséis meses! Estoy chambeando de botones y elevadorista del montacargas. ¡Tómelo por el lado amable!
-CHAPULIN (chapulin_idle): ¡Alabado sea el trabajo honesto! Dime, buen amigo: ¿qué movimientos extraños viste anoche en los elevadores?
-```
-
-#### Opciones de Diálogo (Talk con Chómpiras):
-1. **"El montacargas de servicio"**
-   - Chómpiras declara que la bitácora automática registró a las **10:20 PM carga pesada (~175 kg: Rufino + baúl + cadáver)** operada desde el piso 2 (Suite 204) hasta el piso 3 (Suite 304). Luego, a las **10:25 PM**, registró **carga ligera (~95 kg: Rufino + baúl vacío)** del piso 3 subiendo directo a la azotea.
-   - **Se añade al acta**: `registro_montacargas`.
-2. **"¿Viste al Conde de Montemayor?"**
-   - Chómpiras lo vio caminar apurado hacia el salón de juegos alrededor de las 10:30 PM oliendo a cera caliente y tabaco fino.
-- **Se desbloquea locación**: `delegacion`.
-
----
-
-### Locación 4: Delegación de Policía (`delegacion`, `bg_delegacion.webp`)
-- **Personajes**: El Sargento Refugio Pazguato (`pazguato_saludo`, `pazguato_sweat`), Don Ramón (`donramon_idle`, `donramon_shock`).
-- **Música**: `investigation`.
-
-```dialogue
-[ENTRADA A LA DELEGACIÓN]
-NARRADOR: 26 de octubre, 3:30 PM. Delegación Central de Policía.
-SARGENTO (pazguato_saludo): ¡Mi Licenciado! ¡Acaba de salir del horno el protocolo de autopsia toxicológica de la capital!
-DEFENSA (donramon_idle): Desembucha, Sargento, que la corte sesiona en media hora.
-SARGENTO (pazguato_sweat): ¡Se va a caer para atrás! La herida de bala en el pecho no tiene quemadura cutánea ni coágulos en los pulmones... ¡El Cuajinais ya no respiraba cuando el proyectil le atravesó la ropa!
-DEFENSA (donramon_shock): ¡Chanfle! ¿No respiraba? ¿Me estás diciendo que le dispararon a un fiambre?
-```
-- **Se añade al acta**: `informe_forense` (muerte por asfixia celular por **cianuro potásico** entre las 9:30 y 10:00 PM; el disparo fue post-mortem).
-
-> **¡Gating Cumplido!** La entrega de `informe_forense` en la delegación completa las 4 pruebas del Día 2 (`residuos_manos`, `casquillo_fogueo`, `registro_montacargas`, `informe_forense`) y abre la puerta del tribunal.
-
----
-
-## 10. Guión Detallado: Día 2 — Juicio (GIRO 1: La Falsa Hora)
-
-```dialogue
-[APERTURA DEL JUICIO - 26 DE OCTUBRE, 4:00 PM]
-JUEZ (judge_gavel): Se reanuda la audiencia. La fiscalía basa su acusación en que los restos de pólvora en las manos del encausado lo señalan como el autor material del tiro de las 11:15 PM. [sfx: gavel]
-SUPER SAM (supersam_point): Yes, Your Honor! Gunpowder residue on both hands! ¡Gordon Botija detonó el arma homicida a las 11:15 de la noche!
-DEFENSA (donramon_slam): ¡PROTESTO! ¡Yo le voy al Necaxa y a la verdad científica! [cutin: objection_protesto, sfx: desk_slam, bgm: objection]
-```
-
-### Testimonio 1: Super Sam y El Sargento — "Las Manos Tiznadas de Botija"
-- **Testigos**: Super Sam (`supersam_point`) y El Sargento (`pazguato_idle`). **BGM**: `cross_exam_moderato`.
-
-```dialogue
-[TESTIMONIO D2-T1: SUPER SAM Y EL SARGENTO]
-SUPER SAM (d2_t1_1): Las evidencias físicas son indiscutibles: el acusado estaba dentro de la habitación del crimen.
-SUPER SAM (d2_t1_2): El polvo negro en sus palmas y mangas es pólvora balística producida por accionar un arma de fuego.
-SARGENTO (d2_t1_3): El impacto en el pecho de la víctima provocó la muerte instantánea al momento de oírse la detonación.
-SUPER SAM (d2_t1_4): A las 11:15 PM se consumó el asesinato; cualquier otra teoría es una pérdida intolerable de dólares.
-```
-
-#### Fase de Presión (Press):
-
-```dialogue
-[PRESIÓN D2-T1-1]
-DEFENSA (donramon_point): ¡Un momento, señor Fiscal! El señor Botija no estaba en esa suite por gusto propio ni para delinquir. ¡Acudió por órdenes de Don Cecilio para purgar la tubería de vapor del radiador!
-SUPER SAM (supersam_slam): Objection! Time is money! ¡Las órdenes laborales no son salvoconducto para asesinar clientes! ¡Estar presente en el cuarto en el segundo del crimen es el 99% de la culpabilidad!
-JUEZ (judge_thinking): Es verdad que Botija tenía orden de mantenimiento, pero la fiscalía sostiene que aprovechó el momento para jalar el gatillo.
-
-[PRESIÓN D2-T1-2]
-DEFENSA (donramon_sweat): ¿Y bajo qué criterio científico afirma la fiscalía que ese tizne negro en las manos de Botija es pólvora balística?
-SUPER SAM (supersam_point): Simple logic, defense! Polvo negro adherido a la piel y mangas tras un tiro de bala. ¿Qué otra cosa va a ser? ¡En Nueva York no perdemos el tiempo con microscopios cuando el indicio salta a la vista!
-SARGENTO (pazguato_sweat): Bueno, mi Licenciado... Don Sam me ordenó redactar la carátula basándome en una simple inspección ocular a ojo de buen cubero...
-
-[PRESIÓN D2-T1-3]
-DEFENSA (donramon_point): Sargento Pazguato, ¿está la policía completamente segura de que el disparo en el pecho fue lo que acabó con la vida de Cuajinais?
-SARGENTO (pazguato_sweat): Bueno... El señor Gómez tenía el agujero en la camisa y la sangre seca. Al oír el trallazo a las 11:15 PM y encontrarlo tieso, dimos por hecho que el plomo lo fulminó... pero el laboratorio central tardó en enviar los análisis químicos de los tejidos...
-SUPER SAM (supersam_slam): ¡Irrelevant! ¡Un balazo en el corazón mata a cualquiera! ¡No intente desviar la atención con tratados de anatomía!
-
-[PRESIÓN D2-T1-4]
-DEFENSA (donramon_slam): Fiscal Sam, condenar a un inocente por ahorrarse diez minutos de juicio sería una monstruosidad judicial.
-SUPER SAM (supersam_point): Time is money, defense! ¡Las pruebas circunstanciales son aplastantes! ¡Cadáver reciente, cuarto cerrado, manos negras y estruendo de bala a las 11:15 PM! ¡Pido veredicto inmediato antes de que caigan mis acciones en bolsa!
-```
-
-#### Contradicción 1 en `d2_t1_2`:
-- **Presentar**: `residuos_manos`.
-
-```dialogue
-DEFENSA (donramon_point): ¡Lo que Botija tiene en sus manos no contiene un solo grano de pólvora, señor Fiscal! [cutin: objection_toma_eso, sfx: whoosh, bgm: objection]
-SUPER SAM (supersam_sweat): What?!
-DEFENSA (donramon_slam): ¡Es carbón mineral, tizne y azufre de la chimenea de la caldera central que estuvo destapando por órdenes de Don Cecilio antes de subir al tercer piso! [updateEvidence: residuos_manos]
-SUPER SAM (supersam_sweat): But... but the gunshot at 11:15 PM! ¡El estruendo del disparo lo oyó todo el hotel!
-DEFENSA (donramon_point): ¡Y aquí se derrumba la farsa de la fiscalía! [sfx: desk_slam, bgm: suspense]
-```
-
-#### GIRO 1: Presentación de la Autopsia Toxicológica
-- **Presentar**: `informe_forense`.
-
-```dialogue
-DEFENSA (donramon_point): ¡La víctima, El Cuajinais, NO murió a las 11:15 de la noche! [cutin: objection_protesto, sfx: whoosh, bgm: objection]
-JUEZ (judge_shock): ¡¿CÓMO DICE?!
-DEFENSA (donramon_slam): El informe patológico forense dictamina que el disparo fue ejecutado sobre un cadáver frío. ¡La causa real de la muerte fue asfixia celular provocada por cianuro de potasio ingerido antes de las diez de la noche! [updateEvidence: informe_policial]
-SUPER SAM (supersam_breakdown): OH NOOO! ¡Two hours earlier?! ¡Mis honorarios se devaluaron un cincuenta por ciento! [sfx: damage]
-JUEZ (judge_thinking): ¡Cielos santos! Si la víctima ya era un cadáver a las diez de la noche... ¿qué demonios fue el estruendo de bala que todos escucharon a las 11:15 PM?
-```
-
----
-
-### Testimonio 2: Maruja — "El Estampido de las 11:15 PM"
-- **Testigo**: Maruja (`maruja_idle`, `maruja_abanico`). **BGM**: `cross_exam_allegro`.
-
-```dialogue
-[TESTIMONIO D2-T2: MARUJA]
-MARUJA (d2_t2_1): Yo me encontraba recostada en mi alcoba de la Suite 303 a las 11:15 en punto.
-MARUJA (d2_t2_2): El estrépito fue aterrador; la vibración sacudió con fuerza la pared que comparte tuberías con la 304.
-MARUJA (d2_t2_3): Conozco el timbre metálico de un revólver .38; el sonido nació directamente dentro de la habitación contigua.
-MARUJA (d2_t2_4): Si el tiro sonó en ese segundo exacto, el asesino forzosamente tuvo que estar dentro jalando el gatillo.
-```
-
-#### Fase de Presión (Press):
-
-```dialogue
-[PRESIÓN D2-T2-1]
-DEFENSA (donramon_point): Señorita Maruja, ¿dónde se encontraba usted exactamente minutos antes de las 11:15 PM?
-MARUJA (maruja_abanico): Acababa de subir por la escalera principal tras tomar una infusión de azahar en la terraza del bar. Entré a mi Suite 303 y me recosté en el diván porque me aquejaba una migraña pertinaz.
-SUPER SAM (supersam_point): ¡Ubicación perfecta para ser testigo presencial del balazo!
-
-[PRESIÓN D2-T2-2]
-DEFENSA (donramon_point): Dice que la vibración sacudió la pared. ¿Qué elemento de la habitación tembló con más fuerza?
-MARUJA (maruja_nerviosa): ¡El radiador de calefacción! Es de hierro forjado y retumbó como campana de catedral al recibir el estrépito.
-DEFENSA (donramon_idle): (El radiador de hierro forjado... conectado en línea recta vertical con el piso inferior.)
-
-[PRESIÓN D2-T2-3]
-DEFENSA (donramon_point): Conoce el timbre de un revólver .38... ¿El estruendo viajó libremente por el aire o resonó con eco metálico encapsulado?
-MARUJA (maruja_coqueta): Qué oído tan fino tiene, Licenciado... Ahora que lo pienso, sonó con un retumbar hueco y metálico, como si el cañón hubiera disparado dentro de una campana de hierro.
-SUPER SAM (supersam_slam): ¡Poesía acústica! ¡Un disparo es un disparo, Your Honor!
-
-[PRESIÓN D2-T2-4]
-DEFENSA (donramon_point): Señorita Maruja, ¿vio usted con sus propios ojos al tirador dentro de la 304 jalando el gatillo?
-MARUJA (maruja_abanico): No me hacía falta mirar, Licenciado... El estampido fue tan ensordecedor y cimbró tan pegado a mi tabique divisorio, que cualquier alma viva juraría que la bala salió de esa recámara. ¿Dónde más podría haber sido?
-DEFENSA (donramon_idle): (Ese es el truco maestro... Si la detonación parece salir de la habitación, todos asumen que el asesino estaba adentro jalando el gatillo.)
-```
-
-#### Contradicción en `d2_t2_4`:
-- **Presentar**: `plano_hotel`.
-- **Se activa mecánica Señalar Detalle (`Present & Point`)**:
-  - Pregunta del tribunal: *"¡Señale el conducto exacto donde se propagó la onda sonora del disparo de las 11:15 PM!"*
-  - **Zona correcta**: La conexión vertical de vapor entre el radiador de la Suite 204 y el radiador de la Suite 304 (`id`: `'tuberia_vapor_vertical'`, `bounds`: `[40, 18, 62, 74]`).
-  - **Zona incorrecta / Fallo**: Si se señala fuera del conducto vertical, se activa el `failureDialogue` y se descuenta 1 punto de salud (`penalty`).
-- **Presentar enseguida**: `casquillo_fogueo`.
-
-```dialogue
-DEFENSA (donramon_point): ¡El estruendo de las 11:15 PM no fue el asesinato de Cuajinais! ¡Fue una trampa acústica fabricada con este casquillo de fogueo con mecha lenta, detonado dentro del tubo de purga de la Suite 204! [cutin: objection_protesto, sfx: whoosh, bgm: objection, updateEvidence: plano_hotel]
-MARUJA (maruja_shock): ¡¿La Suite 204?! ¡Pero si esa es la recámara del Conde de Montemayor!
-JUEZ (judge_shock): ¡¿El ilustre Conde de Montemayor involucrado en un artificio pirotécnico?!
-DEFENSA (donramon_slam): ¡El verdadero asesino envenenó al Cuajinais con cianuro antes de las diez, le disparó un tiro a través de la almohada de plumas de la suite para sofocar el estruendo y simular muerte por bala, armó una detonación acústica retardada para labrarse una coartada pública a las 11:15 PM y dejó encerrado a mi cliente para que cargara con el muerto!
-SUPER SAM (supersam_sweat): Objection! ¡Usted no ha probado quién preparó ese veneno ni qué relación guardaba el Conde con el difunto!
-JUEZ (judge_gavel): La gravedad de esta revelación exige abrir la investigación sobre la procedencia del veneno y las actividades de la Suite 204. ¡Se levanta la sesión hasta la jornada final! [sfx: gavel]
-```
-
----
-
-## 11. Guión Detallado: Día 3 — Investigación (El Veneno de la Cava)
-
-### Locación 1: Cava de Vinos del Gran Hotel (`hotel_cava`, `bg_hotel_cava.webp`)
-- **Personajes**: El Sargento Refugio Pazguato (`pazguato_decidido`, `pazguato_saludo`), Don Ramón (`donramon_idle`).
-- **Música**: `suspense`.
-
-```dialogue
-[ENTRADA A LA CAVA]
-NARRADOR: 27 de octubre, 9:00 AM. Cava subterránea del Gran Hotel Buena Vista.
-SARGENTO (pazguato_decidido): ¡Mi Licenciado! Allanamos la reserva privada de vinos franceses con orden del juez.
-DEFENSA (donramon_idle): ¿Qué encontraron sobre el Chateau Buena Vista 1958?
-SARGENTO (pazguato_saludo): En el casillero exclusivo del Conde hallamos la botella gemela intacta y la lista de pedidos privados a su nombre. Y del laboratorio central nos devolvieron la copa rota y la botella envenenada aseguradas el primer día en la Suite 304.
-```
-- **Se añade al acta**: `copa_vino` y `botella_vino`.
-- **Al examinar `botella_vino` a fondo**: la cúpula de lacre rojo revela una punzada milimétrica de aguja hipodérmica resellada con calor.
-- **Se desbloquea locación**: `hotel_lobby_d3`.
-
----
-
-### Locación 2: Gran Vestíbulo (`hotel_lobby_d3`, `bg_hotel_lobby.webp`) — ROTACIÓN DE PERSONAJE
-- **Personaje anterior (Días 1 y 2)**: Don Cecilio Buenavista (ausente en la ciudad atendiendo la crisis financiera y mediática con los inversionistas y la prensa).
-- **Nuevo personaje (Día 3)**: **María Expropiación Petronila Lascuráin y Torquemada de Botija ("La Chimoltrufia")** (`chimoltrufia_idle`, `chimoltrufia_confundida`, `chimoltrufia_shock`).
-- **Música**: `investigation`.
-
-```dialogue
-[ENTRADA AL GRAN VESTÍBULO - DÍA 3]
-NARRADOR: 27 de octubre, 11:00 AM. Don Cecilio viajó de urgencia a la capital para calmar a los accionistas; La Chimoltrufia atiende el mostrador empuñando un plumero con fiereza.
-CHIMOLTRUFIA (chimoltrufia_confundida): ¡Ay, qué la canción! ¡Como digo una cosa, digo otra! ¡A mí nadie me viene a decir que mi Botijita envenenó a ningún cristiano, porque mi Botija no sabe ni hervir un pocillo de café sin quemar el peltre!
-CHAPULIN (chapulin_idle): ¡Sosiéguese, doña Chimoltrufia! ¡Se aprovechan de su nobleza!
-DEFENSA (donramon_idle): ¿Limpiaste hoy temprano la suite de Rufino Rufián?
-CHIMOLTRUFIA (chimoltrufia_idle): ¡Claro que sí, Don Ramón! Ese catrín relamido se fue al juzgado dejando el cesto de la basura repleto. Encontré este anillo de oro manchado de cera roja... ¡y una boleta del salón de baccarat! Creía que lo iba a tirar al incinerador, ¡pero yo tengo ojo de perito valuador!
-```
-- **Se añade al acta**: `boleta_baccarat` (revela el receso sellado de 15 minutos: 11:10 a 11:25 PM) y `sello_lacre`.
-- **Se desbloquea locación**: `hotel_azotea`.
-
----
-
-### Locación 3: Azotea y Cuarto de Máquinas (`hotel_azotea`, `bg_hotel_azotea.webp`)
-- **Personajes**: El Chómpiras (`chompiras_idle`, `chompiras_nervous`, `chompiras_relieved`), Don Ramón (`donramon_point`).
-- **Música**: `investigation`.
-
-```dialogue
-[ENTRADA A LA AZOTEA]
-NARRADOR: 27 de octubre, 1:30 PM. Azotea del hotel, junto a la maquinaria del montacargas.
-CHOMPIRAS (chompiras_nervous): ¡Don Ramón! Estaba barriendo las telarañas del cuarto del motor del montacargas... ¡y mire lo que descubrí detrás del generador!
-DEFENSA (donramon_point): ¡El baúl inglés de Rufino Rufián!
-```
-- Inspección del baúl: En el forro de terciopelo azul se detectan fibras de lana marrón del traje de Cuajinais y polvo de carbón del montacargas. El cuerpo fue subido a la 304 dentro de este baúl a las 10:20 PM.
-- **Se añade al acta**: `baul_etiquetas`.
-- **Se desbloquea locación**: `detention_d3`.
-
----
-
-### Locación 4: Centro de Detención (`detention_d3`, `bg_detention.webp`)
-- **Personajes**: Gordon Botija (`botija_aliviado`), Don Ramón (`donramon_idle`), El Sargento (`pazguato_saludo`).
-- **Música**: `detention_center`.
-
-```dialogue
-[ENTRADA A DETENCIÓN - DÍA 3]
-NARRADOR: 27 de octubre, 3:30 PM. Centro de Detención Preventiva.
-DEFENSA (donramon_idle): Botija, el químico descosió el forro secreto de la billetera de Cuajinais y halló una llavecita de taquilla de la estación de autobuses. El Sargento fue a abrirla de inmediato. [updateEvidence: billetera_cuajinais]
-BOTIJA (botija_aliviado): ¿Y qué guardaba el Cuajinais ahí, Don Ramón?
-SARGENTO (pazguato_saludo): ¡El resguardo oficial de un telegrama de extorsión!
-```
-- **Se añade al acta**: `nota_amenaza` (Nombre: `Resguardo de Telegrama de Extorsión`).
-- **Al examinar `nota_amenaza` a fondo**: telegrama enviado por Cuajinais exigiendo a Rufino los $50,000 en efectivo por el Collar de Cleopatra bajo amenaza de delatarlo a la policía.
-
-> **¡Gating Cumplido!** Con las 6 pruebas del Día 3 aseguradas (`copa_vino`, `botella_vino`, `boleta_baccarat`, `baul_etiquetas`, `sello_lacre`, `nota_amenaza`), se destraba el juicio final.
-
----
-
-## 12. Guión Detallado: Día 3 — Juicio (GIRO 2 y Clímax)
-
-```dialogue
-[APERTURA DEL JUICIO - 27 DE OCTUBRE, 4:00 PM]
-JUEZ (judge_gavel): ¡Se abre la última sesión plenaria! Comparece en estrados el señor Rufino Rufián, huésped de la Suite 204. [sfx: gavel, bgm: trial]
-RUFINO (rufino_smug): Protesto enérgicamente por este atropello a mi alcurnia y reputación. Mi estancia en el baccarat entre las 10:30 y las 11:30 PM ha sido certificada por la gerencia.
-SUPER SAM (supersam_slam): Time is money! ¡No podemos molestar a un noble inversionista sin un móvil probado!
-DEFENSA (donramon_slam): ¡La defensa demostrará que el supuesto conde es un peligroso timador y que la víctima vino al hotel a cobrarle una cuenta mortal! [cutin: objection_protesto, sfx: desk_slam, bgm: objection]
-```
-
-### GIRO 2: El Chantaje del Collar de Cleopatra
-- **Presentar**: `nota_amenaza` (`Resguardo de Telegrama de Extorsión`).
-
-```dialogue
-DEFENSA (donramon_point): ¡Lean este resguardo de telegrama hallado en la taquilla de la víctima! [cutin: objection_toma_eso, sfx: whoosh, bgm: objection]
-JUEZ (judge_shock): *"Conde de Montemayor: o pagas mis $50,000 del collar de Cleopatra o la policía sabrá todo. Habitación 304."*
-DEFENSA (donramon_slam): ¡El Cuajinais no fue víctima de un robo casual por un fontanero! ¡Vino al Gran Hotel a extorsionar a Rufino Rufián por el botín del Museo de Marsella!
-RUFINO (rufino_sweat): ¡Calumnias de un plebeyo ignorante! ¿Dónde están sus pruebas de que yo abandoné el salón de juegos?
-```
-
----
-
-### Testimonio 1: Rufino Rufián — "Mi Coartada Inquebrantable en el Baccarat"
-- **Testigo**: Rufino Rufián (`rufino_monocle`, `rufino_sweat`). **BGM**: `cross_exam_presto`.
-
-```dialogue
-[TESTIMONIO D3-T1: RUFINO RUFIÁN]
-RUFINO (d3_t1_1): Desconozco absolutamente a ese maleante de cicatriz y sus presuntas extorsiones.
-RUFINO (d3_t1_2): Mi noche transcurrió de manera ininterrumpida en la mesa de baccarat de 10:30 a 11:30 PM ante testigos de honor.
-RUFINO (d3_t1_3): Jamás toqué el montacargas de servicio del personal; mi estatus me prohíbe operar maquinaria rústica.
-RUFINO (d3_t1_4): A las 11:15 PM, cuando se oyó la detonación, yo me encontraba apostando sobre el paño verde.
-```
-
-#### Fase de Presión (Press):
-
-```dialogue
-[PRESIÓN D3-T1-1]
-DEFENSA (donramon_point): ¿Asegura que no conocía al difunto señor Gómez ni a su alias de El Cuajinais?
-RUFINO (rufino_monocle): Por favor, leguleyo. Un Conde de Montemayor sólo alterna con ministros plenipotenciarios y duquesas europeas. No tengo tratos con bribones de barriada.
-SUPER SAM (supersam_point): ¡A gentleman of high society! ¡Una acusación infame contra el capital internacional!
-
-[PRESIÓN D3-T1-2]
-DEFENSA (donramon_point): ¿Afirma bajo juramento que no se levantó de su asiento en la mesa de baccarat ni un solo segundo en toda esa hora?
-RUFINO (rufino_smug): Por supuesto. Un aristócrata de mi categoría jamás interrumpe una racha afortunada en el paño verde. Sesenta minutos continuos de juego limpio de 10:30 a 11:30 PM ante la atenta mirada de diplomáticos y del propio croupier.
-DEFENSA (donramon_idle): (Sesenta minutos continuos sin despegarse del paño verde... Habrá que ver si los registros oficiales de apuestas dicen lo mismo.)
-
-[PRESIÓN D3-T1-3]
-DEFENSA (donramon_point): Dice que no usó el montacargas... pero ese elevador de equipaje tiene paradas directas junto a su Suite 204 y la Suite 304.
-RUFINO (rufino_monocle): ¡Insensateces! Operar palancas grasientas es labor de peones y lacayos. Un noble no ensucia sus puños de encaje con maquinaria de servicio.
-DEFENSA (donramon_idle): (A menos que necesite transportar un fardo de ochenta kilos sin cruzarse con nadie por las escaleras...)
-
-[PRESIÓN D3-T1-4]
-DEFENSA (donramon_point): A las 11:15 PM exactamente, ¿qué hacía usted?
-RUFINO (rufino_smug): Estaba doblando mi apuesta en la banca y recogiendo fichas de marfil. Si el edificio crujió por las tuberías, apenas mereció una mirada despectiva de mis distinguidos contertulios.
-SUPER SAM (supersam_slam): Coartada de hierro a prueba de balas, Your Honor!
-```
-
-#### Contradicción en `d3_t1_2`:
-- **Presentar**: `boleta_baccarat`.
-
-```dialogue
-DEFENSA (donramon_point): ¡Mienta con más elegancia, falso conde! ¡Miren el reverso de esta boleta de baccarat certificada por el croupier! [cutin: objection_protesto, sfx: whoosh, bgm: objection]
-RUFINO (rufino_panic): ¡¿Cómo?!
-DEFENSA (donramon_slam): De 10:30 a 11:30 PM hay sesenta minutos... ¡pero a las 11:10 PM usted solicitó un RECESO de quince minutos para tomar aire fresco!
-JUEZ (judge_shock): ¡Un receso sellado entre las 11:10 y las 11:25 PM!
-DEFENSA (donramon_point): ¡En esos quince minutos bajó a su Suite 204 a las 11:12 PM a encender la mecha lenta en la tubería; a las 11:14 PM subió al tercer piso, vio la puerta emparejada por Botija, pasó el sedal por la rendija y traccionó el cerrojo de cadena para bloquear la recámara por dentro desde afuera; y bajó apresurado hacia el baccarat antes de que a las 11:15 PM estallara el cartucho de fogueo en la tubería!
-SUPER SAM (supersam_sweat): What a scheme!
-RUFINO (rufino_sweat): ¡Pamplinas! ¡Aunque me haya tomado quince minutos de receso, eso no prueba nada! El difunto murió antes de las diez de la noche según su forense. ¡Yo jamás subí al tercer piso ni toqué el montacargas rústico del hotel para transportar a nadie a la Suite 304!
-SUPER SAM (supersam_point): Yes! ¡No hay registro alguno de que el Conde haya puesto un pie en la Suite 304!
-DEFENSA (donramon_slam): ¡Pues la maquinaria del hotel tiene memoria matemática y no olvida los kilogramos de un muerto! [cutin: objection_protesto, sfx: desk_slam]
-```
-
-#### Contradicción contra la negativa de subir al tercer piso (`d3_t1_3`):
-- **Presentar**: `registro_montacargas`.
-
-```dialogue
-DEFENSA (donramon_point): ¡Examinen la bitácora automática del montacargas de servicio, señor Juez! [cutin: objection_toma_eso, sfx: whoosh, bgm: objection]
-JUEZ (judge_shock): ¿La bitácora de tonelaje del montacargas?
-DEFENSA (donramon_point): ¡A las 10:20 PM, el ascensor fue accionado desde el segundo piso —donde está la Suite 204 de Rufino— marcando una carga pesada de 175 kilogramos hasta detenerse en el tercer piso!
-RUFINO (rufino_panic): ¡¿175 kilogramos?!
-DEFENSA (donramon_slam): ¡Hagamos cuentas claras! Rufino pesa 75 kilos, su gran baúl de viaje de cuero inglés pesa 20 kilos... ¡y el cuerpo inerte de Cuajinais pesaba exactamente 80 kilos! ¡75 más 20 más 80 da exactamente 175 kilogramos transportados a la Suite 304!
-JUEZ (judge_thinking): ¡Cielos santos! ¿Y qué ocurrió cinco minutos después?
-DEFENSA (donramon_point): A las 10:25 PM, el montacargas sube del tercer piso directo a la azotea... ¡pero marcando únicamente 95 kilogramos! Rufino de 75 kilos y el baúl vacío de 20 kilos. ¡Los 80 kilos del cadáver fueron descargados en el tercer piso!
-SUPER SAM (supersam_sweat): What an equation! ¡El bulto humano se quedó en la 304!
-RUFINO (rufino_panic): ¡Mentira! ¡Una calumnia de números! ¡Nadie me vio en esa suite ni tocando a ese maleante!
-```
-
----
-
-### Testimonio 2: Rufino Rufián — "Yo Jamás Subí al Tercer Piso ni Toqué al Occiso"
-- **Testigo**: Rufino Rufián (`rufino_sweat`, `rufino_panic`). **BGM**: `cross_exam_presto`.
-
-```dialogue
-[TESTIMONIO D3-T2: RUFINO ACORRALADO]
-RUFINO (d3_t2_1): Es absurdo sugerir que yo cargué un cadáver por los pasillos sin ser visto por los conserjes.
-RUFINO (d3_t2_2): Jamás pisé la Suite 304 en toda la noche del 24 de octubre.
-RUFINO (d3_t2_3): El difunto jamás estuvo en mi presencia ni tuvo contacto con mis pertenencias de viaje.
-RUFINO (d3_t2_4): Y el vino envenenado de mi reserva privada jamás salió de mi bodega con el sello alterado.
-```
-
-#### Fase de Presión (Press):
-
-```dialogue
-[PRESIÓN D3-T2-1]
-DEFENSA (donramon_point): Nadie ha dicho que usted cargara el cadáver en brazos por los pasillos a la vista de los conserjes.
-RUFINO (rufino_smug): Cualquier traslado entre habitaciones habría alertado a los botones. Nadie me vio transportar ningún bulto.
-DEFENSA (donramon_idle): Claro que nadie lo vio... porque usó el tiro interior del montacargas de servicio directo entre suites.
-
-[PRESIÓN D3-T2-2]
-DEFENSA (donramon_point): ¿Sostiene que jamás pisó la Suite 304 en toda la noche del 24 de octubre?
-RUFINO (rufino_monocle): Jamás. La planta noble de huéspedes de honor termina en el segundo piso; el tercer nivel está reservado a inquilinos de paso sin linaje.
-SUPER SAM (supersam_point): ¡El testigo no tenía motivo alguno para subir al piso tres!
-
-[PRESIÓN D3-T2-3]
-DEFENSA (donramon_point): ¿Asegura categóricamente que el difunto jamás estuvo en su presencia ni tuvo contacto con sus pertenencias de viaje?
-RUFINO (rufino_panic): ¡Jamás en la vida! Mis pertenencias de cuero inglés importado permanecieron resguardadas en mis aposentos privados de la 204, sin contacto alguno con maleantes callejeros de poca monta.
-DEFENSA (donramon_idle): (Muy seguro de su equipaje de cuero inglés... Veamos si su baúl dice lo mismo.)
-
-[PRESIÓN D3-T2-4]
-DEFENSA (donramon_point): Y sobre la botella de vino de su reserva... ¿cómo explica que una botella exclusiva suya estuviera en la escena?
-RUFINO (rufino_sweat): Pudo haber sido sustraída de la cava por cualquier empleado infiel. Pero insisto: el lacre de mis botellas es inviolable sin quebrar la cera de la corona.
-DEFENSA (donramon_idle): (Inviolable a golpes... pero permeable a una aguja médica.)
-```
-
-#### Contradicción en `d3_t2_3`:
-- **Presentar**: `baul_etiquetas`.
-
-```dialogue
-DEFENSA (donramon_slam): ¡PROTESTO! ¡Dentro de su baúl de viaje hallado en la azotea se encontraron hebras de lana del traje de Cuajinais y polvo de carbón del montacargas! [cutin: objection_protesto, sfx: desk_slam, bgm: pursuit]
-RUFINO (rufino_panic): ¡E-Ese baúl... ese baúl pudo haber sido robado por cualquier botones descalzo!
-DEFENSA (donramon_point): ¡Y para completar el cuadro, presentamos la copa de vino hallada junto al cadáver!
-```
-- **Presentar**: `copa_vino` (acredita que Cuajinais ingirió cianuro del vino tinto Chateau Buena Vista 1958 servido por Rufino).
-
----
-
-### Clímax: El Sello de Lacre y la Aguja Hipodérmica (Sin Auto-spoiler)
-
-```dialogue
-RUFINO (rufino_panic): ¡Pamplinas! ¡Nadie en esta sala puede demostrar científicamente cómo entró el cianuro a esa botella si el corcho estaba sellado con mi lacre intacto! [sfx: desk_slam, bgm: pursuit]
-JUEZ (judge_gavel): ¡Silencio en la sala! Licenciado Monchito: el testigo desafía a este tribunal. ¿Tiene la defensa en sus manos la prueba material que demuestra cómo se inoculó el veneno sin violar el corcho?
-DEFENSA (donramon_slam): ¡La defensa tiene la prueba decisiva que destruirá la coartada del falso conde! [cutin: objection_protesto, sfx: desk_slam]
-```
-
-*(El jugador debe seleccionar la prueba en el inventario; Don Ramón no nombra el objeto antes de tiempo).*
-
-- **Presentar**: `botella_vino`.
-- **Se activa mecánica Señalar Detalle (`Present & Point`)**:
-  - Pregunta del tribunal: *"¡Señale el punto exacto por donde penetró el cianuro en la botella sellada!"*
-  - **Zona correcta**: La cúpula superior del sello de lacre rojo sobre el cuello de la botella (`id`: `'cupula_sello_lacre'`, `bounds`: `[42, 2, 58, 30]`, el micro-orificio de aguja disimulado con calor).
-  - **Zona incorrecta / Fallo**: Si se señala el cuerpo de la botella, la etiqueta o el cristal, se activa el `failureDialogue` y se descuenta 1 punto de salud (`penalty`).
-
-```dialogue
-DEFENSA (donramon_point): ¡Miren con lente de aumento la cabeza de este sello de lacre rojo! ¡Ahí está la marca de una aguja hipodérmica! [cutin: objection_toma_eso, sfx: whoosh, bgm: pursuit]
-JUEZ (judge_shock): ¡Un orificio milimétrico disimulado con cera fundida!
-DEFENSA (donramon_slam): ¡Usted no descorchó la botella! Inyectó el cianuro líquido a través del corcho virgen y luego usó un objeto metálico caliente para sellar la punzada con la propia cera derretida.
-JUEZ (judge_thinking): Pero... ¿con qué objeto específico calentó y estampó esa cera?
-DEFENSA (donramon_point): ¡Con la misma joya que tiró al basurero de su suite creyendo que nadie la encontraría!
-```
-
-- **Presentar Prueba de Gracia**: `sello_lacre`.
-
----
-
-### Colapso de Rufino Rufián y Veredicto
-
-```dialogue
-[BREAKDOWN DE RUFINO RUFIÁN]
-RUFINO (rufino_panic): ¡NOOOOO! ¡Maldito seas, picapleitos de vecindad! [sfx: damage, bgm: pursuit]
-NARRADOR: (A Rufino se le desprende el monóculo de oro, que se estrella contra el estrado. Desesperado, se jala el bigote postizo hasta arrancárselo de cuajo y arroja el frac al suelo entre estertores de rabia.)
-RUFINO (rufino_breakdown): ¡Ese cerdo del Cuajinais me iba a delatar! ¡Robamos juntos el Collar de Cleopatra en Marsella y vino a exigirme cincuenta mil pesos en efectivo o traería a la policía a mi puerta!
-RUFINO (rufino_breakdown): ¡Iba a matarme! ¡Sólo le ofrecí una copa en mi suite para que durmiera eternamente! ¡Y ese infeliz fontanero gordo subió a destapar las tuberías en el momento perfecto para ser mi chivo expiatorio!
-SUPER SAM (supersam_breakdown): OH NOOO! ¡A criminal swindler! ¡Mis inversiones en bonos nobiliarios cayeron a cero! [sfx: damage]
-JUEZ (judge_gavel): ¡Se acabó la farsa! Habiendo quedado demostrado el autor intelectual, material y la mecánica de la trampa pirotécnica... [sfx: gavel]
-JUEZ (judge_gavel): ¡Declaro al ciudadano Gordon Botija Pompa y Pompa... INOCENTE de todos los cargos! [cutin: objection_inocente, sfx: whoosh, bgm: victory]
-NARRADOR: (Cae confeti tricolor sobre el estrado de la defensa. Botija abraza a la Chimoltrufia elevándola por los aires entre lágrimas y risas estruendosas.)
-BOTIJA (botija_aliviado): ¡Soy libre, mi cielo! ¡Soy libre!
-CHIMOLTRUFIA (chimoltrufia_confundida): ¡Como digo una cosa digo otra, pero hoy te preparo una cazuela de chicharrón en salsa verde con triple tortilla!
-CHAPULIN (chapulin_point): ¡No contaban con mi astucia!
-```
-
----
-
-## 13. Epílogo: Sala de Espera de la Corte (`bg_waiting_room.webp`)
-
-```dialogue
-[EPÍLOGO]
-NARRADOR: 27 de octubre, 6:00 PM. Sala de espera de la corte.
-BOTIJA (botija_aliviado): Don Ramón... Chapulín... No tengo cómo pagarles. Me salvaron de pudrirme en el penal.
-DEFENSA (donramon_idle): Con que no vuelvas a esconderte en canastos de sábanas ajenas me doy por bien pagado, Botija.
-SARGENTO (pazguato_saludo): ¡Mi Licenciado! Super Sam me cesó formalmente por insubordinación balística, pero Don Cecilio me acaba de nombrar Director General de Seguridad del Gran Hotel.
-DEFENSA (donramon_shock): ¡¿Y hay buena paga?!
-SARGENTO (pazguato_decidido): ¡Sueldo fijo, uniforme de gala y barra libre de refrescos en la terraza!
-CHOMPIRAS (chompiras_relieved): ¡Tómelo por el lado amable, Don Ramón! Ahora cuando visite el hotel puede pedir fiado en el restaurante de postines.
-CHAPULIN (chapulin_idle): ¿Saben una cosa, mis amigos? Al final de la jornada... a caballo regalado no le entran moscas si no abre el colmillo.
-DEFENSA (donramon_sweat): ...Chapulín, acabas de mezclar el caballo del colmillo con la boca cerrada de las moscas.
-CHAPULIN (chapulin_point): ¡Bueno, la idea es esa! ¡Lo sospeché desde un principio! ¡Síganme los buenos!
-[FIN DEL CASO 4]
-```
-
----
-
-## 14. Escalera de Sospecha (por qué ningún testigo es sospechoso "de entrada")
-
-El caso cuida meticulosamente que la defensa **no dispare acusaciones gratuitas**:
-
-1. **Día 1 de Juicio:** La defensa ataca exclusivamente la física del cerrojo de cadena, la debilidad acústica de la carátula policial y el deshielo de la cubeta. Don Ramón jamás afirma que Don Cecilio o Maruja sean criminales; demuestra que la cadena fue corrida desde el pasillo mediante tracción de sedal y que el vino fue servido mucho antes.
-2. **Día 2 de Juicio:** Se ataca la hora y causa biológica de muerte mediante la autopsia. Se prueba que el disparo de las 11:15 PM fue una trampa pirotécnica detonada por control diferido en la tubería común de la 204. No se acusa a Rufino de homicidio, sino que el tribunal abre investigación sobre las actividades de su suite.
-3. **Día 3 de Juicio:** La sospecha sobre Rufino emerge de forma irrebatible a través de las pruebas científicas: el resguardo del telegrama por el Collar de Cleopatra (Giro 2), la rotura de su coartada por el receso de 15 minutos en el baccarat, el uso del montacargas con su baúl de viaje (carga pesada de 175 kg vs ligera de 95 kg) y la micro-perforación en el lacre de su vino privado.
-
-### Tabla de Descarte Inapelable:
-
-| Requisito del Crimen | Botija | Chómpiras | Maruja | Don Cecilio | Rufino Rufián |
-|---|:---:|:---:|:---:|:---:|:---:|
-| Acceso a la Cava y a la reserva Chateau 1958 | ✗ | ✗ | ✗ | ✓ | **✓ (propietario)** |
-| Manejo de jeringa y cianuro potásico | ✗ | ✗ | ✗ | ✗ | **✓** |
-| Móvil del Collar de Cleopatra ($50,000) | ✗ | ✗ | ✗ | ✗ | **✓** |
-| Acceso a la válvula de purga de la Suite 204 | ✗ | ✗ | ✗ | ✗ | **✓ (huésped)** |
-| Coartada con receso de 15 min (11:10 a 11:25) | ✗ | ✗ | ✗ | ✗ | **✓** |
-| Posesión del anillo sello de oro fundidor | ✗ | ✗ | ✗ | ✗ | **✓** |
-
----
-
-## 15. Auditoría de Cabos Sueltos (Zero Loose Ends)
-
-| Elemento Sembrado | Dónde se Siembra | Dónde y Cómo se Resuelve |
-|---|---|---|
-| Rasguño y sedal de pescar en la puerta | D1 Terraza (`candado_cadena`) | D1-T2: Demuestra la manipulación de la cadena por tracción desde el pasillo exterior. |
-| Hielo derretido a temperatura ambiente | D1 Suite 304 (`foto_crimen`) | D1-T1: Revela que el servicio se entregó a las 9:30 PM y no a las 11:15 PM. |
-| Hora 11:15 PM fijada en carátula | D1 Suite 304 (`informe_policial`) | D1-T1: Demuestra que la hora fue fijada por estruendo acústico de tuberías sin comprobación médica. |
-| Billetera con $200 intactos | D1 Detención (`billetera_cuajinais`) | D1-T2: Desmiente el móvil de robo con violencia imputado a Botija por Super Sam. |
-| Residuos negros en manos de Botija | D1 Detención y reporte inicial | D2-T1 (`residuos_manos`): Peritaje confirma hollín de caldera y azufre, no pólvora. |
-| Revólver .38 de cañón corto con una bala percutida | D2 Sótano (cenizas de caldera) | D2/D3: Rufino lo arrojó por el tiro tras disparar al cadáver con almohada; queda bajo custodia pericial. |
-| Casquillo quemado con mecha en radiador | D2 Suite 204 (`casquillo_fogueo`) | D2-T2: Prueba la detonación de fogueo acústico diferido en la tubería vertical. |
-| Disparo en el pecho sin hemorragia | D1 Fotografía del cuerpo | D2-T1 (`informe_forense`): Demuestra que el deceso fue por cianuro a las 9:50 PM. |
-| Movimiento nocturno del montacargas | D2 Terraza (Chómpiras) | D3-T1 (`registro_montacargas`): Ubica carga de 175 kg a las 10:20 y 95 kg a las 10:25 (bulto de 80 kg en piso 3). |
-| Olor a almendras en el sedimento | D3 Cava (`copa_vino`) | D3-T2: Confirma el veneno ingerido en el vino tinto Chateau Buena Vista. |
-| Baúl inglés oculto en la azotea | D3 Azotea (`baul_etiquetas`) | D3-T2: Fibras de lana de Cuajinais y carbón prueban el traslado del cuerpo. |
-| Receso de 15 minutos en el baccarat | D3 Vestíbulo (`boleta_baccarat`) | D3-T1: Quiebra la coartada de Rufino entre las 11:10 y las 11:25 PM. |
-| Resguardo de telegrama de extorsión | D3 Detención (`nota_amenaza`) | D3 Apertura / Giro 2: Expone el móvil del robo del Collar de Cleopatra. |
-| Punzada microscópica en el corcho | D3 Cava (`botella_vino`) | Clímax: Señalamiento (`Present & Point`) del método de inyección de cianuro. |
-| Anillo con restos de lacre rojo | D3 Vestíbulo (`sello_lacre`) | Clímax: Prueba de gracia que vincula a Rufino con el resello térmico. |
-
----
-
-## 16. Guía de Estilo: Fidelidad de las Frases y Refranes
-
-### Frases Canónicas del Elenco:
-- **Don Ramón:** *"¡Con permisito, dijo Monchito!"*, *"¡Yo le voy al Necaxa!"*, *"¡Chanfle!"*.
-- **El Chapulín Colorado:** *"¡Que no panda el cúnico!"*, *"¡No contaban con mi astucia!"*, *"¡Síganme los buenos!"*, *"¡Se aprovechan de mi nobleza!"*, *"¡Lo sospeché desde un principio!"*.
-- **La Chimoltrufia:** *"¡Como digo una cosa, digo otra!"*, *"¡Ay, qué la canción!"*.
-- **El Chómpiras:** *"¡Tómelo por el lado amable!"*.
-- **Don Cecilio Buenavista:** *"¡Cielos santos!"*.
-- **Super Sam:** *"Time is money!"*, *"Objection!"*, *"What?!"*.
-
-### Los Refranes Mezclados del Chapulín:
-1. **Día 1 (Terraza Bar):**
-   > *"Más vale pájaro en mano... que verlo madrugar volando."*
-   *(Fusión de: "Más vale pájaro en mano que ciento volando" y "Al que madruga, Dios le ayuda".)*
-2. **Día 3 (Epílogo):**
-   > *"A caballo regalado... no le entran moscas si no abre el colmillo."*
-   *(Fusión de: "A caballo regalado no se le mira el colmillo" y "En boca cerrada no entran moscas".)*
-
----
-
-## 17. Requisitos de Assets
-
-### Fondos Requeridos:
-
-#### Fondos Nuevos del Gran Hotel (7) — Formato `.webp` optimizado (1536×1024, recorte `cover` a 960×540):
-1. `bg_hotel_lobby.webp`: Gran vestíbulo art-déco con alfombra roja persa, candelabro de cristal, mostrador de recepción y casillero de llaves.
-2. `bg_hotel_suite.webp`: Suite Presidencial 304; chimenea de mármol, radiador de hierro forjado, mesita ratona y ventana alta con cortinajes.
-3. `bg_hotel_bar.webp`: Terraza Bar "El Chapuzón"; barra de maderas finas, taburetes de cuero, vista a los jardines y mesas con sombrillas.
-4. `bg_hotel_sotano.webp`: Sala de calderas; tuberías remachadas de vapor, manómetros antiguos, chimenea con carbón y cenicero industrial.
-5. `bg_hotel_suite204.webp`: Suite 204 de Rufino; sobria y señorial, perchero con frac, armario de roble y radiador con llave de purga.
-6. `bg_hotel_cava.webp`: Cava subterránea; anaqueles de roble repletos de botellas añejas con telarañas y casilleros privados con candado.
-7. `bg_hotel_azotea.webp`: Azotea del hotel; maquinaria del montacargas, cables de acero, tiro de chimeneas y horizonte nocturno.
-
-#### Fondos Reutilizados de Episodios Previos (6+1):
-- `bg_detention.webp`: Centro de detención preventiva (visitas a Botija).
-- `bg_courtroom.webp`: Sala principal del tribunal (plano general de la corte).
-- `bg_waiting_room.webp`: Sala de espera de la corte (epílogo del caso).
-- `bg_defense.webp`: Estrado de la defensa (cámara de Don Ramón y El Chapulín).
-- `bg_witness.webp`: Estrado de testigos (cámara de declaraciones y careos).
-- `bg_judge.webp`: Estrado del Juez (cámara de veredictos y llamados al orden).
-- `bg_delegacion.webp`: Delegación de policía (reutilizado del Caso 3 para la entrega pericial del Sargento).
-
-### Sprites de Personajes:
-- **Gordon Botija Pompa y Pompa:** `botija_idle`, `botija_nervioso`, `botija_llorando`, `botija_aliviado`.
-- **Don Cecilio Buenavista:** `cecilio_idle`, `cecilio_ciego`, `cecilio_escandalo`, `cecilio_shock`.
-- **Maruja:** `maruja_idle`, `maruja_coqueta`, `maruja_abanico`, `maruja_nerviosa`, `maruja_shock`.
-- **La Chimoltrufia:** `chimoltrufia_idle`, `chimoltrufia_confundida`, `chimoltrufia_shock`.
-- **Aquiles Esquivel Madrazo ("El Chómpiras"):** `chompiras_idle`, `chompiras_nervous`, `chompiras_relieved`.
-- **Rufino Rufián:** `rufino_smug`, `rufino_monocle`, `rufino_sweat`, `rufino_panic`, `rufino_breakdown`.
-
-### Audio y BGM:
-- Pistas de la banda sonora: `trial`, `cross_exam_moderato`, `cross_exam_allegro`, `cross_exam_presto`, `objection`, `pursuit`, `victory`, `detention_center`, `suspense`, `investigation`.
-- SFX: `gavel`, `desk_slam`, `whoosh`, `realization`, `damage`.
-
----
-
-## 18. Notas de Implementación
-
-1. **Estructuras de Datos (`src/types/Private/`):**
-   - `EvidenceItem.detailedView` para el visor de inspección profunda en el inventario.
-   - `PointTargetContradiction` para el señalamiento interactivo en juicio (`Present & Point`), con soporte para coordenadas numéricas porcentuales exactas (`bounds: [minX, minY, maxX, maxY]`) y secuencias de `failureDialogue` por zona o genéricas.
-   - Pipeline de actualización reactiva del inventario mediante la directiva `updateEvidence` en `DialogueLine` ([[src/types/Private/script.ts]]), conforme a las reglas arquitectónicas de `docs/lessons-learned/court-record-description-updates.md`.
-   - Poses canónicas registradas en `src/types/Private/character.ts` y `src/types/Private/script.ts`:
-     - Chimoltrufia: `chimoltrufia_idle`, `chimoltrufia_confundida`, `chimoltrufia_shock`.
-     - Chómpiras: `chompiras_idle`, `chompiras_nervous`, `chompiras_relieved`.
-     - Chapulín: `chapulin_idle`, `chapulin_point`, `chapulin_slam`, `chapulin_panic` (sin referencias a `chapulin_thinking`).
-2. **Controladores del Motor (`src/engine/Private/`):**
-   - `ModalManager.ts`: Soporte para ampliar imágenes de pruebas y gestionar clics en zonas específicas.
-   - `TrialController.ts`: Verificación de coordenadas porcentuales para señalamientos gráficos (`Present & Point`).
-   - `InvestigationController.ts`: Enrutamiento condicional y gestión de locaciones por día:
-     - `hotel_terraza` (Día 1 con Maruja) vs `hotel_terraza_d2` (Día 2 con Chómpiras).
-     - `hotel_lobby` (Días 1 y 2 con Don Cecilio) vs `hotel_lobby_d3` (Día 3 con La Chimoltrufia).
-     - `detention` (Día 1) vs `detention_d3` (Día 3).
-3. **Auditoría de Integridad:**
-   - Cumplimiento verificado: las 15 pruebas específicas del caso tienen ranura de presentación obligatoria en el tribunal; `insignia_abogado` es constante de la serie en el inventario.
-   - Cierre de días verificado: la última locación de cada día entrega la prueba requerida de `requiredEvidence`.
-   - Custodia pericial del revólver .38 de cañón corto en manos del Sargento Pazguato, documentada sin cabos sueltos.
+Rufino Rufián, supuesto Conde de Montemayor y huésped de la 204, robó con Cuajinais el Collar de Cleopatra. La víctima le exige su parte por telegrama. Rufino la invita a su habitación, altera el vino antes de servirlo y la envenena. El instrumento está oculto en su anillo: un accesorio de ficción cuya estructura será visible y examinable antes del clímax. No se explica cómo fabricar ese instrumento ni un efecto pirotécnico real.
+
+Rufino utiliza el encargo de equipaje para que Botija lleve el cadáver sin saberlo. Recibe el baúl cerrado en la 304, prepara allí la escena y dispara sobre el cuerpo para simular una muerte por bala. La almohada amortigua el tiro, sin volverlo completamente silencioso. El arma permanece en la habitación; se elimina su caída por un conducto de cenizas.
+
+Después convoca expresamente a Botija para revisar el baño de la 304. Deja preparado un efecto de fogueo retardado en la 204 y acciona desde el corredor un lazo instalado antes en el cierre, cuando el fontanero ya trabaja dentro. Rufino llega a la mesa de baccarat antes del estruendo. Su presencia a las 23:15 es real.
+
+El ruido provoca el descubrimiento. Botija sale del baño, reconoce el cadáver, recoge la billetera para comprobar su identidad y se esconde por miedo a sus antecedentes. El plan no requiere que se esconda: su presencia dentro basta para hacerlo parecer responsable. La cartera agrava la apariencia de culpabilidad, pero no fue plantada por Rufino.
+
+El primer montaje incrimina por disparo. Si la investigación descubre el veneno, Rufino pretende señalar al mismo empleado que transportó la bebida. Su error material es no advertir que un fragmento del instrumento quedó retenido en el cierre, y que ese cierre sale de la habitación en el bolso de una invitada antes de que la víctima beba. Al final del segundo juicio admite haber ocultado el cuerpo, pero niega el envenenamiento. La tercera jornada debe distinguir esos dos actos.
+
+## 3. Reparto y continuidad visual
+
+| Personaje | Función y evolución | Representación que se conserva |
+| --- | --- | --- |
+| Don Ramón, Lic. Monchito | Defiende un relato incómodo sin exigir que su cliente parezca impecable. Convierte el encargo verdadero en la vía para reconstruir el crimen. | Delgado, bigote ralo, traje raído, gorrito azul e insignia abollada. Familia donramon. Renta de 16 meses, mencionada con moderación. |
+| El Chapulín Colorado | Formula preguntas laterales sobre usos, recorridos y apariencias. Apoyo emocional y dos refranes mezclados; ninguna trampa lingüística final. | Mallas rojas, corazón CH, antenitas amarillas. Poses idle, point, slam y panic. No inventar chapulin_thinking. |
+| Super Sam | Fiscal con prejuicios de clase y obsesión económica. Abandona teorías refutadas y formula alternativas apoyadas en hechos. | Sombrero y traje estadounidense, dólares, calculadora. Familia supersam. |
+| El Sargento, Refugio Pazguato | Investigador aliado y honesto. Distingue observaciones de inferencias, conserva las pruebas y solicita los exámenes que el jugador justifica. | Alto, espigado, cuello largo, bigote de herradura y kepis torcido. Speaker SARGENTO, sprites pazguato. |
+| Gordon Botija Pompa y Pompa | Acusado. Cuenta sus trabajos, su discusión y su ocultamiento desde el inicio. La vergüenza por el pasado no se usa para esconder media cronología. | Muy corpulento, barba negra completa, gorra celeste/gris, ropa negra y tenis blancos. Familia botija. |
+| La Chimoltrufia | Esposa y camarera en jefe. Participa al inicio, conoce los registros laborales y acompaña a Botija antes del juicio final. | Delgada, cuello largo, pecas, chimuela, coleta desaliñada sin rulos, vestido y delantal. Poses idle, confundida y shock. |
+| Don Cecilio Buenavista | Gerente. Su información fiable es documental. Su miopía afecta las identificaciones visuales de manera consistente. | Anciano distinguido, lentes gruesos, traje de tres piezas. Familia cecilio. |
+| Maruja | Huésped de la 303 con una deuda de juego. Presencia entregas y la apertura del vino. Su reserva se explica por esa deuda, no por un homicidio oculto. | Cabello pelirrojo cobrizo voluminoso, vestido verde, estola y abanico. Familia maruja. |
+| El Chómpiras | Botones y operador del montacargas. Es competente en ese trabajo. Ayuda a seguir un envío registrado y acompaña su inspección. | Bombín abollado, saco raído, camiseta a rayas beige, bigotito. Sprites chompiras_idle, chompiras_nervous y chompiras_relieved. |
+| Rufino Rufián | Huésped, participante de la reunión y después investigado. Admite hechos públicos; cambia de defensa cuando las pruebas lo obligan. | Frac, monóculo y bigote fino real. Anillo de cabeza giratoria, presente desde su primera aparición. No añadir un bigote postizo al final. |
+| El Cuajinais | Víctima y antiguo socio de Rufino. Su extorsión explica la reunión y el móvil. | Traje de lana marrón, cicatriz en mejilla izquierda, fotografías periciales. |
+| El Juez | Exige distinguir posibilidad, corroboración y prueba de una afirmación. Autoriza investigación de ambos implicados al cambiar los hechos. | Familia judge del juego. |
+
+En investigación se usan poses de pie. Los golpes de mesa corresponden al tribunal. La derrota de Rufino no exige nuevos sprites: se desprende el monóculo, pierde la compostura y deja de hablar como aristócrata. El Sargento conserva su empleo para futuros episodios.
+
+## 4. Espacio, accesos y cronología única
+
+### 4.1 Plano canónico
+
+La 304 tiene una sala de estar y un baño separado por puerta interior. Botija entra y pasa al baño por el recibidor sin atravesar la zona donde yace el cuerpo, parcialmente oculta por un biombo. El plano y la inspección de la escena deben permitir entenderlo antes de que se utilice como explicación.
+
+El montacargas desemboca en corredores de servicio, nunca dentro de las habitaciones. Las personas lo operan desde fuera y usan las escaleras. La cabina transporta solo equipaje; esta regla figura en un cartel y se demuestra durante la investigación. Las únicas entradas transitables a la 304 son puerta y ventanas. Las ventanas están atrancadas y no ofrecen una ruta de escape. Las tuberías transmiten sonido.
+
+El cierre de cadena tiene un perno deslizante. La lámina de examen muestra la placa desmontada y el recorrido de un lazo preparado desde dentro, no una mano que mágicamente ata un mecanismo a través de una rendija. Queda un fragmento roto en un borde de la placa; otro tramo se recupera en el pasillo. Nunca afirmar que Rufino recuperó todo el hilo.
+
+La reconstrucción visual del cierre tendrá un esquema de tres estados: preparación interior con puerta abierta; puerta emparejada y lazo accesible desde el pasillo; cadena enganchada tras la tracción. La pieza deberá poder dibujarse con la misma geometría en los tres estados. Si el dibujo no permite ese recorrido, se corrige el mecanismo antes de generar el asset o implementar el puzle.
+
+### 4.2 Cronología del 24 de octubre
+
+Las horas de autor no se convierten automáticamente en hechos judiciales.
+
+| Hora | Hecho real | Fuente y alcance para el jugador |
+| --- | --- | --- |
+| 20:30 | Cuajinais se registra en la 304. | Libro de recepción. |
+| 20:40 | Envía desde el hotel el telegrama dirigido a Rufino. Se entrega y se archiva copia. | Registro y acuse. No existe taquilla ni llave secreta. |
+| 21:15 | Cecilio autoriza sacar la botella V58-17. Rufino está en recepción. | Libro de cava. El examen visual del lacre no certifica que no exista una perforación diminuta. |
+| 21:20 | Botija recoge la botella. Cecilio sigue con Rufino, que lleva su anillo. | Entrega registrada y testimonio del gerente. |
+| 21:20 a 21:25 | Maruja acompaña a Rufino hasta la 204. Botija lleva allí la botella. | Maruja presencia la entrega, el anillo permanece con Rufino y este firma la recepción. |
+| 21:26 en adelante | Botija vuelve al servicio con Chómpiras. No vuelve a tocar esa botella ni recibe el anillo. | Chómpiras y registro de tareas. Maruja sale a buscar a Cuajinais por su deuda. |
+| 21:30 a 21:35 | Rufino altera el vino en privado. | Hora de autor; no se presenta como minuto certificado. |
+| Alrededor de 21:40 | Maruja llega con Cuajinais. Él extrae el cierre, se lo regala como recuerdo y bebe. Ella se retira con el cierre en el bolso. | Testimonio referido a una ronda registrada. El cierre sale de la habitación antes del primer sorbo y no vuelve a manos de Rufino. No cubre el periodo previo de Rufino a solas. |
+| Alrededor de 21:45 | Cuajinais muere. Rufino toma de su chaqueta la llave de la 304. | La autopsia no certifica este minuto. |
+| 22:10 | Rufino encierra el cuerpo en el baúl B-17, coloca una faja de equipaje numerada y solicita el porte. | No hay testigo del embalaje; sí de la entrega cerrada. |
+| 22:20 | Botija despacha B-17 desde planta 2 a planta 3, carga aproximada de 100 kg. | Bitácora sin pasajeros, etiqueta y orden de porte. |
+| 22:23 | Rufino recibe B-17 en la 304 y firma. Botija comprueba que la faja sigue entera antes de irse. | Recibo y relato de Botija, corroborado por Chómpiras desde el acceso de servicio. |
+| 22:25 a 22:35 | Rufino descarga el cuerpo, lleva copa y botella, dispara sobre el cadáver y prepara el lazo del cierre. | Peritajes y admisión parcial posterior. No fijar el minuto del tiro real. |
+| 22:40 | B-17 llega a la azotea, unos 20 kg. Chómpiras lo registra para almacenamiento. | Mismo número de equipaje. La diferencia sugiere descarga, no identifica su contenido. |
+| 22:45 | Rufino entrega a Cecilio una orden manuscrita: revisar el baño de la 304 a las 23:05, asignado a Botija. | Original firmado y recepción personal. No se atribuye una voz por una extensión telefónica. |
+| Antes de 23:05 | Rufino deja dispuesto un efecto retardado de la gala en el radiador de la 204. | Restos y ensayo posterior de su funcionamiento. No se enseña a fabricarlo ni se deduce una hora exacta por la mecha. |
+| 23:05 | Botija abre con su llave maestra, deja la puerta emparejada y empieza la reparación en el baño. | Orden y observación de Maruja. |
+| Entre 23:05 y 23:10 | Rufino cierra desde el pasillo con el lazo preparado y va al salón de juego. | Reconstrucción de intervalo; no hay observación del minuto exacto. |
+| 23:10 a 23:25 | Rufino juega a la vista de los presentes. | Registro de rondas y testigos. Coartada verdadera. |
+| 23:15 | Suena el efecto en la tubería. | Testigos y efecto recuperado. Margen de funcionamiento compatible con llegada previa al salón. |
+| 23:20 | Se fuerza la cadena; se encuentra a Botija y el cadáver. | Acta y testigos. |
+| 23:30 | El Sargento fotografía y precinta escena y objetos. | Registro de custodia. |
+
+**Ventana forense única:** el informe complementario del día 1 fija un intervalo amplio de muerte entre 20:30 y 22:00, incluido el margen de su estimación. No se afina en el día 2. El relato de Maruja aporta después una observación de la víctima con vida alrededor de 21:40. La conclusión relevante es que la muerte precede al porte de 22:20 y a la entrada de 23:05; nunca es que un laboratorio haya identificado las 21:45 exactas.
+
+Esta precisión es un dato pericial del mundo narrativo, no una lección de medicina. El texto debe explicar en lenguaje llano que la herida carece de reacción vital: el cuerpo ya había muerto cuando recibió el disparo. No usar ausencia de quemadura como demostración aislada de muerte previa.
+
+### 4.3 Custodia y posibilidades reales
+
+La llave ordinaria de la 304 queda en la mesita tras el montaje. Botija usa la maestra, no esa llave. La cerradura ordinaria está abierta al forzar la cadena. Se registra todo en informe_policial.
+
+La botella abierta y la copa se recogen en la escena a las 23:30 y quedan precintadas; se abren solo para exámenes registrados. El cierre extraído tiene otra cadena: Maruja lo guardó como recuerdo antes del primer sorbo, lo entrega al Sargento durante el día 1 y se inventaría como anexo de informe_policial, con hora y firma. Esa cadena tiene un hueco declarado: el cierre pasa unas quince horas en el bolso de la testigo antes de llegar al archivo policial. Lo que garantiza es que no volvió a la 204 ni a manos del detenido. La posibilidad restante, la de quien lo guardó, la cierra el fragmento retenido en el canal; ningún análisis fecha por sí solo un orificio. Rufino no manipula evidencia en juicio. Después de su admisión del día 2, el juez ordena su custodia, el registro de la 204 y la incautación de sus efectos personales. El anillo queda separado de botella y muestras. No se le deja volver libremente al hotel para destruirlo.
+
+No se descarta a un personaje por no pertenecer a la lista de testigos. El caso investiga intervenciones acreditadas. La ausencia de evidencia de un cómplice no se convierte en una afirmación de imposibilidad universal.
+
+## 5. Acta del Juicio y estados de información
+
+Son 18 entradas, incluida la insignia. Dos IDs nuevos propuestos son orden_servicios y toxicologia_vino. Los nombres visibles pueden ser más cortos que sus títulos periciales. La tabla fija contenido y función, no textos que deban copiarse enteros en una ficha pequeña.
+
+| ID | Obtención | Descripción inicial permitida | Evolución y función |
+| --- | --- | --- | --- |
+| insignia_abogado | Inicio | Insignia abollada del Lic. Monchito. | Constante; no requiere presentación. |
+| informe_policial | D1, 304 | Hallazgo a las 23:20 después del estruendo de las 23:15; herida de bala, arma, llave en mesita y Botija dentro. Causa inicial pendiente de examen complementario. | Tres entradas en `updates[]`: D1 anexa el cierre entregado por Maruja con hora y firma; D1 en juicio separa la hora del ruido de la hora de muerte; D2 añade la comparación del arma con el proyectil y la almohada, y el padrón que registra el revólver a nombre del difunto. El contador es lineal: un cuarto `[ACTUALIZAR]` se descartaría sin efecto. |
+| foto_crimen | D1, 304 | Imagen de las 23:30 con cuerpo, almohada perforada, traje desgarrado, copa, botella y llave. | D1 muestra objeto que amortiguó el tiro; D2 permite comparar el retal. La cubeta es ambientación. |
+| candado_cadena | D1, terraza al final | Placa con perno, fibras retenidas y tramo recuperado del corredor; esquema de recorrido. | Present & Point D1. Permite cierre exterior preparado, no atribuye autor. |
+| plano_hotel | D1, recepción | Baño y sala de la 304, corredores, paradas externas del montacargas y ramal 204–304. | Present & Point D2; excluye un acceso humano por tuberías. |
+| billetera_cuajinais | D1, detención | Cartera con credencial del Sr. Gómez y $200, recogida por Botija según su relato. Inventariada por policía. | Identidad y apariencia incriminatoria. Sin llave oculta ni argumento de inocencia por dinero intacto. |
+| orden_servicios | D1, recepción | Libro del turno: botella V58-17 a la 204, porte B-17 a la 304 y mantenimiento de 23:05. Incluye horas de entrega y recepción. | Tres entradas en `updates[]`, en este orden fijo: D1 anexa el folio manuscrito original de Rufino; D2 incorpora los recibos del porte; D3 adjunta la certificación de entrega del vino ante Maruja. Ninguna es condicional. |
+| informe_forense | D1, juicio | Ampliación solicitada: herida sin reacción vital; ventana 20:30–22:00; causa en análisis. | Presentación del primer giro. La ventana no cambia después. |
+| residuos_manos | D2, sótano | Muestras compatibles con hollín y trabajo de caldera; no apoyan la imputación inicial de residuos de disparo. | Debilita indicio, sin declarar imposible tocar o disparar un arma. Se incorpora a discusión del peritaje. |
+| casquillo_fogueo | D2, 204 | Conjunto asegurado de efecto sonoro sin proyectil, con dispositivo retardado perteneciente al material de gala. | Presentación D2. Ficha describe prueba de funcionamiento y límites, no instrucciones de armado. |
+| registro_montacargas | D2, terraza | Varias filas de equipaje; número B-17, 2→3 con 100 kg, 3→azotea con 20 kg. Cabina sin pasajeros. | Señalar fila D2 y relacionar con recibos. No escribir “cadáver” ni nombres como sumandos. |
+| baul_etiquetas | D2, azotea | B-17, faja rota, retal enganchado compatible con el desgarro de la foto. Talón de faja numerada firmado por Botija y Chómpiras en la entrega, y recibos. | Apoya hipótesis de traslado. La confirmación se produce con respuesta de Rufino a su recepción documentada. |
+| toxicologia_vino | Final D2, delegación | Mismo agente tóxico en víctima y vino de la copa; vía de ingestión compatible. No identifica al administrador. | Fija nueva causa. D3 añade el hallazgo del agente en el interior del cierre y el examen separado del anillo, sin decir por qué marca entró ni anunciar encaje. |
+| copa_vino | Final D2, delegación | Fragmentos asegurados junto al cuerpo y muestra analizada. | Vincula vino servido y tóxico; no identifica por sí sola a quien lo sirvió. |
+| botella_vino | D3, cava | V58-17, abierta; el cierre no viaja con ella: llega del anexo policial con su propia custodia. Vista ampliada del cierre con dos marcas de trazo distinto, pendientes de análisis. La ficha no dice cuál es cuál: eso se mira en la lámina. | Clímax: señalar el canal. La numeración vincula el ejemplar con la cadena de entrega y la custodia del cierre con el momento anterior al sorbo. |
+| boleta_baccarat | D3, recepción | Registro de rondas que confirma a Rufino entre 23:10 y 23:25. | Introducción D3: coartada verdadera del ruido, no del envenenamiento. Sin receso oculto. |
+| nota_amenaza | D3, recepción | Copia y acuse del telegrama entregado a Rufino: pago del Collar de Cleopatra o denuncia. | Contradice ausencia de deuda. Se actualiza con acta de recuperación del collar del maletín incautado. |
+| sello_lacre | Final D3, delegación | Anillo de Rufino, cabeza giratoria, cavidad, conducto y extremo metálico truncado. Vistas y análisis independientes. | Última prueba: encaje físico específico y residuos. La cera ordinaria no lo incrimina. |
+
+Las descripciones iniciales no usan “prueba definitiva”, “demuestra que el asesino” ni identifican la solución de un señalamiento. Los resultados de laboratorio explican qué observar; no dicen qué inventario seleccionar después.
+
+Los nuevos estados se aplican con updateEvidence. Las actualizaciones de un objeto ya obtenido no pueden cerrar por sí solas un día porque el motor comprueba posesión, no el estadio de cada ficha. Los IDs de cierre son distintos y se fijan en §14.
+
+## 6. Convenciones de guion y acciones
+
+Los bloques de diálogo siguientes fijan las líneas dramáticas, testimonios, presiones, preguntas y cierres. Los temas resumidos en tablas fijan sus hechos obligatorios y su función; al convertirlos a guion no se pueden introducir nuevas pistas o soluciones sin actualizar la matriz de información.
+
+- [ENTREGAR id] equivale a addEvidence en una línea de diálogo.
+- [ACTUALIZAR id] equivale a updateEvidence con un siguiente texto definido.
+- [ABRIR ubicación] equivale a unlockLocation al completar el tema obligatorio.
+- Presionar es gratuito. Ninguna prueba ya válida exige presionar una paráfrasis para habilitar la misma contradicción.
+- Señalar una zona incorrecta o presentar una prueba incorrecta cuesta un punto y permite reintentar con la pregunta visible. No se revela la respuesta al fallar.
+- Una contradicción admite un followUp. Para aceptar pruebas en órdenes diferentes se usan dos declaraciones con rutas expresas, no una bifurcación inexistente según el ítem elegido.
+- La última línea de éxito de D1-T2 y D2-T2 precede al aplazamiento. No adelantar modo ni borrar el resultado de la deducción.
+- El clímax usa stages. La última successDialogue completa la demostración antes del veredicto.
+
+Se emplean los sprites existentes del reparto. Las indicaciones [pausa] significan un cambio de línea y una reacción breve; no introducir esperas obligatorias largas.
+
+
+## 7. Día 1: investigación — el encierro
+
+### 7.1 Detención, 25 de octubre, 09:00
+
+Ubicación detention. Música detention_center. Botija es residente; Chimoltrufia aparece en la entrada con Don Ramón y Chapulín.
+
+~~~dialogue
+CHIMOLTRUFIA: ¡Díganle que hable! Desde anoche nomás me dice que no se preocupe. ¡Y eso es lo que más me preocupa!
+BOTIJA: No quería que me vieras aquí otra vez.
+DEFENSA: Entonces ayúdanos a que sea la última. Empieza por el principio, aunque no te haga quedar bonito.
+CHAPULIN: ¡Que no panda el cúnico! Nosotros venimos a escucharte.
+BOTIJA: Pues van a tener que sentarse. Esa noche me mandaron por todo el hotel.
+~~~
+
+Temas en este orden; los dos primeros están disponibles, el tercero exige haber oído ambos.
+
+| Tema | Conversación obligatoria |
+| --- | --- |
+| “Los encargos de la gala” | Botija llevó una botella cerrada a la 204, un baúl cerrado a la 304 y revisó el baño de la 304 a las 23:05. Recibió instrucciones del hotel y propinas por suplir al personal. Rufino recibió botella y equipaje. No vio qué había dentro del baúl. |
+| “Cuajinais y la billetera” | Reconoció al hombre al salir del baño después del estruendo. Miró su credencial, guardó la cartera al asustarse y se escondió. Había discutido con él por la tarde. El Sargento aporta el inventario de la cartera, no el detenido un objeto que conservara tras el arresto. [ENTREGAR billetera_cuajinais]. |
+| “La puerta que dejaste” | Abrió con la maestra, dejó la puerta emparejada y entró al baño. No accionó la cadena. La sala estaba en penumbra detrás del biombo. Recuerda un golpe leve de puerta mientras corría el agua, pero no vio a nadie. [ABRIR hotel_lobby]. |
+
+~~~dialogue
+DEFENSA: El dinero seguía dentro. Eso no prueba que no la robaras.
+BOTIJA: Ya sé cómo se ve.
+DEFENSA: Por eso necesito saber cómo pasó, no cómo te gustaría que sonara.
+BOTIJA: Me dio miedo. Pensé que si me encontraban cerca del Cuajinais iban a creer que andábamos juntos otra vez.
+CHIMOLTRUFIA: A mí me hubieras dicho.
+BOTIJA: Me daba más miedo que tú también lo creyeras.
+CHAPULIN: Pues ya lo dijiste. Ahora podemos empezar por ahí.
+~~~
+
+La explicación de la discusión queda planteada y Botija confirma que rechazó un trabajo; su conversación con Chimoltrufia tendrá desarrollo, no una nueva coartada secreta.
+
+### 7.2 Recepción, 10:00
+
+Ubicación hotel_lobby. Música investigation. Cecilio reside; Rufino está terminando un trámite al entrar la defensa. Así se establece su presencia sin presentarlo como villano.
+
+~~~dialogue
+CECILIO: Su recibo, señor conde. Y esta vez he contado las cifras con los anteojos puestos.
+RUFINO: Una precaución que su hotel debería convertir en costumbre.
+DEFENSA: Buscamos los trabajos que hizo Botija durante la gala.
+RUFINO: A mí me llevó una botella y me ayudó con un baúl. Deje constancia de que trabajó puntualmente.
+CHAPULIN: ¿Ese anillo también sirve para firmar?
+RUFINO: Para sellar correspondencia. La cabeza gira para proteger el relieve.
+NARRADOR: Rufino vuelve la cabeza del anillo hacia la palma y recoge el recibo.
+RUFINO: Estaré a disposición del tribunal.
+~~~
+
+Su observación sobre el anillo describe una característica visible. No hay primer plano amenazante, música de culpable ni mención de venenos.
+
+Hotspots: libro de servicios, plano en mostrador, programa de la gala. El programa muestra la existencia de efectos sonoros escénicos gestionados por el hotel; no anuncia dónde se usaron ni señala al usuario de uno.
+
+Temas:
+
+- “Las tres órdenes”: el jugador lee las filas de vino, porte y mantenimiento. Cecilio distingue el libro de turno de los originales firmados, archivados por folio. Entrega orden_servicios al completar la lectura. Explica que el portero de servicio registra recepción de equipaje. El acceso a los originales no se niega: se pueden solicitar los folios concretos cuando haga falta cotejar firmas.
+- “Por dónde se llega a la 304”: entregar plano_hotel. Puerta exterior, biombo, acceso al baño y corredores de servicio. El montacargas no constituye un acceso directo a suites.
+- “Quién solicitó el trabajo”: tema obligatorio. Cecilio saca del archivo el folio original del mantenimiento y lo anexa: papel de la 204, letra y firma de Rufino, entregado en mano a las 22:45, con el nombre de Botija escrito por el propio solicitante y la hora 23:05. [ACTUALIZAR orden_servicios]. Nadie lo trata como sospecha: quien paga una suite pide servicios y eso no demuestra homicidio.
+- “El ruido”: Cecilio oyó un gran estampido y subió. La hora viene del reloj del salón, no de un diagnóstico.
+
+Tras plano, libro y folio se abre hotel_suite. El anexo del folio se produce siempre aquí y nunca como recompensa opcional: el estadio de una ficha es un contador lineal (`EvidenceProgress.advanceEvidenceStage`), así que una actualización condicional desplazaría los textos de las jornadas siguientes y la última se descartaría en silencio. Ningún documento se retiene con excusas de archivo; tenerlo desde el día 1 no adelanta ninguna deducción.
+
+Broma breve al despedirse:
+
+~~~dialogue
+CECILIO: Les ruego darse prisa. Tengo a los huéspedes esperando una explicación.
+CHAPULIN: Vísteme despacio, que no por mucho madrugar tengo prisa...
+DEFENSA: Chapulín, ni siquiera nos estamos vistiendo.
+CHAPULIN: No, espéreme: no por mucho vestirse amanece más temprano... Bueno, la idea es esa.
+~~~
+
+### 7.3 Suite 304, 11:00
+
+Ubicación hotel_suite. Música suspense. Sargento residente.
+
+~~~dialogue
+SARGENTO: Antes de que entren: cada objeto tiene su número. Si mueven uno, me avisan.
+DEFENSA: ¿Y esto?
+SARGENTO: Mi lista de cosas que no debo perder.
+CHAPULIN: ¿Y dónde apunta si pierde la lista?
+SARGENTO: No me complique el procedimiento, Chapulín.
+DEFENSA: Vamos por lo que vio, Sargento. Lo que cree que pasó lo discutimos después.
+~~~
+
+Hotspots y resultados:
+
+| Hotspot | Observación e interacción |
+| --- | --- |
+| Cuerpo y mesita | Posición del cadáver en foto, llave ordinaria, copa rota y botella abierta. El cierre no está en la habitación; el inventario lo hace constar sin explicar todavía por qué. [ENTREGAR informe_policial] y [ENTREGAR foto_crimen]. La hora 23:30 corresponde a la fotografía. |
+| Almohada | Orificio, tela ennegrecida y plumas. El jugador solicita cotejo con herida y proyectil. La consulta es obligatoria para acceder al tema de cierre de escena. No decir aún “tiro post mortem”. |
+| Recibidor y baño | Se muestra la línea de paso. Desde el baño no se ve la zona del cadáver. El biombo no tapa una puerta secreta. |
+| Cierre arrancado | Fragmento de fibra en placa y tramo recogido del pasillo. Sargento explica que llevará la pieza a la terraza para que Maruja confirme cómo se encontró. |
+| Radiador | Ramal hacia la 204 y olor de combustión que justifica seguir las tuberías al día siguiente. No se permite diagnosticar autor o clase exacta de efecto solo por olor. |
+| Cesto | Ropa con tizne compatible con el trabajo. Humor breve sobre la incomodidad de esconderse, sin burlarse de la posibilidad de condena. |
+| Cubeta | Agua y botella de mineral. Es servicio ordinario de la habitación. No se llama pista, no se mide el tiempo. |
+
+Tema final “Solicitar el cotejo”: se desbloquea tras examinar cuerpo y almohada. El Sargento remite la pregunta al forense y avisa que la ampliación puede llegar durante la audiencia. Se abre hotel_terraza después de dejar asentada la solicitud.
+
+~~~dialogue
+DEFENSA: Quiero comparar esta almohada con la herida. No me basta con que ambas tengan un agujero.
+SARGENTO: Lo pediré por escrito. El primer parte salió antes de que terminaran esos exámenes.
+CHAPULIN: Más vale preguntar ahora que...
+DEFENSA: Con un refrán por mañana tenemos, Chapulín.
+CHAPULIN: Iba a decir “equivocarnos después”.
+DEFENSA: Ah. Pues sí.
+~~~
+
+Esta última réplica no cuenta como una tercera mezcla ni participa en ningún puzle.
+
+### 7.4 Terraza, 12:00
+
+Ubicación hotel_terraza. Música investigation. Maruja residente, Sargento presente al final.
+
+~~~dialogue
+MARUJA: Si vienen por el ruido, les contestaré. Si vienen a preguntarme cuánto perdí en las mesas, eso no tiene relación.
+DEFENSA: Yo todavía no había preguntado nada.
+MARUJA: Así ahorramos tiempo.
+CHAPULIN: El fiscal estaría encantado con usted.
+NARRADOR: Al abrir el bolso para buscar el abanico, algo suena como un puñado de dados.
+MARUJA: Corchos. De cada cena que valió la pena. No pienso disculparme por eso.
+CHAPULIN: Yo guardo tapitas de refresco, pero nadie me invita a cenar.
+~~~
+
+La colección es un rasgo de la testigo, presentado como broma. No lleva música de pista ni primer plano.
+
+Temas: vio entrar a Botija antes del estruendo; después oyó la puerta forzada; había estado en la 204 por un asunto de juego. Se reserva el detalle íntimo de la deuda, no niega la visita ni inventa un romance. No reconoce calibres por el oído. Si se pregunta por ruidos anteriores, menciona un golpe apagado durante la fiesta sin asegurar su causa.
+
+Tema obligatorio “El recuerdo de esa noche”, disponible tras el tema de la visita a la 204. Maruja comprende que uno de esos corchos pertenece al servicio que se está investigando y lo entrega. La escena no anuncia su importancia futura.
+
+~~~dialogue
+MARUJA: Antes de que sigan... este es de anoche. Me lo dio el señor Gómez cuando abrió la botella.
+DEFENSA: ¿Se lo dio él?
+MARUJA: Lo sacó, me lo puso en la mano y después se sirvió. Yo me fui con él en el bolso.
+SARGENTO: Entonces salió de esa habitación antes que usted y antes de que él bebiera.
+NARRADOR: El Sargento lo embolsa, lo numera y anota la hora de entrega.
+SARGENTO: Queda como anexo de mi informe. Con mi firma y la suya.
+CHAPULIN: ¿Y eso para qué sirve?
+SARGENTO: Para que dentro de un mes nadie discuta dónde estuvo.
+[ACTUALIZAR informe_policial]
+~~~
+
+Nadie examina todavía el cierre ni menciona una perforación. La única afirmación que queda asentada es de custodia: dónde estuvo y desde cuándo.
+
+El tema final requiere haber preguntado por entrada, ruido y visita, y haber entregado el cierre. El Sargento registra cómo se encontró la placa, entrega candado_cadena y habilita el juicio. Maruja no se lleva nada de la escena del crimen: el cierre lo recibió en la 204 la noche anterior, antes de que existiera una investigación, y lo entrega en cuanto entiende de qué botella se trata.
+
+Al examinar la placa, la ficha muestra trayectoria y fibras. Los protagonistas no explican la solución completa antes de la presentación.
+
+## 8. Día 1: juicio — la muerte anterior
+
+### 8.1 Apertura, 25 de octubre, 15:00
+
+~~~dialogue
+JUEZ: Se abre la audiencia por la muerte del huésped de la Suite 304.
+SUPER SAM: Un muerto, un arma y un hombre encerrado con ambos. Time is money, Your Honor. Empecemos por ahí.
+DEFENSA: Empecemos también por cómo entró ese hombre. Fue enviado a trabajar.
+SUPER SAM: Una orden de trabajo explica el acceso. No explica el cadáver.
+JUEZ: Ambas observaciones son pertinentes. Escucharemos primero cómo se encontró la puerta.
+~~~
+
+### 8.2 D1-T1, Cecilio: “La única persona dentro”
+
+~~~dialogue
+d1_t1_1 CECILIO: Tras el estruendo fui a la 304 con el Sargento.
+d1_t1_2 CECILIO: La cerradura de llave estaba abierta, pero la cadena impedía entrar.
+d1_t1_3 CECILIO: Ese perno solo puede deslizarlo alguien situado dentro de la habitación.
+d1_t1_4 CECILIO: Puesto que Botija era el único vivo que encontramos dentro, tuvo que ser él quien echó la cadena.
+~~~
+
+Presiones:
+
+- 1: Cecilio distingue lo oído de lo visto. No identifica al tirador.
+- 2: se aclara que la hoja quedó detenida por la cadena, no por un mueble ni por una segunda cerradura.
+- 3: describe la placa y admite que su conclusión depende de que nadie hubiera preparado el mecanismo antes. La declaración original sigue siendo atacable; no hace falta desbloquear una copia.
+- 4: Super Sam sostiene que el hallazgo merece explicación, pero reconoce que el testigo no vio la mano que accionó el cierre.
+
+Contradicción válida sobre 3 o 4: candado_cadena. PointTarget puerta_lazo.
+
+Pregunta: “¿Qué recorrido permite accionar este cierre desde el corredor después de prepararlo?”
+
+~~~dialogue
+DEFENSA: ¡PROTESTO! La posición de la cadena nos dice cómo estaba cuando llegaron. No quién la dejó así.
+CECILIO: Pero el perno está en la cara interior.
+DEFENSA: Y aquí hay un hilo que pasa por él y continúa hacia el canto de la puerta.
+CHAPULIN: El trozo del pasillo y el de la placa pertenecen al mismo recorrido.
+DEFENSA: Con la puerta abierta se prepara el lazo. Después se puede tirar desde fuera. El fragmento atrapado muestra por qué no desapareció todo.
+JUEZ: Entonces alguien pudo intervenir después de entrar el acusado.
+DEFENSA: Sí. Eso es lo que demuestra esta pieza. Todavía no sabemos quién.
+SUPER SAM: Ni demuestra que Botija no pudiera haberla echado él.
+DEFENSA: Correcto. Por eso todavía nos falta revisar el supuesto homicidio.
+~~~
+
+Fallo del señalamiento:
+
+~~~dialogue
+JUEZ: Ese punto no muestra una conexión con el corredor. Examine el recorrido completo.
+DEFENSA: Tendré que comprobarlo desde el otro lado de la placa.
+~~~
+
+No se identifica la zona correcta ni se inventa una técnica alternativa al fallar.
+
+### 8.3 D1-T2, Sargento: “La secuencia que asenté”
+
+El testimonio se pronuncia antes de recibir la ampliación. Sus afirmaciones de causalidad quedan identificadas como la reconstrucción inicial del parte, no como peritajes que el policía sabe falsos.
+
+~~~dialogue
+d1_t2_1 SARGENTO: A las 23:15 oímos el estruendo. A las 23:20 abrimos la habitación.
+d1_t2_2 SARGENTO: La víctima tenía una herida en el pecho y encontramos un revólver junto al cuerpo.
+d1_t2_3 SARGENTO: Mi reconstrucción inicial fue que esa bala causó la muerte al sonar el estruendo.
+d1_t2_4 SARGENTO: Esa fue la secuencia con la que relacioné a Botija con el homicidio.
+~~~
+
+Presionar 1 aclara la diferencia entre ruido y apertura. Presionar 2 revisa el arma y la almohada. Presionar 3 o 4 entrega una sola ampliación recibida por la secretaría de la corte; repetir la presión permite releerla y no crea una nueva revelación.
+
+~~~dialogue
+SARGENTO: La secretaría acaba de recibir la ampliación que solicitamos esta mañana.
+JUEZ: Incorpórese a las dos partes antes de continuar.
+NARRADOR: La ficha distingue la reacción de los tejidos, el intervalo de muerte y los análisis aún pendientes.
+[ENTREGAR informe_forense]
+SARGENTO: Ese fue mi parte inicial. Ahora hay que cotejarlo con lo que encontró el forense.
+~~~
+
+La ficha explica “sin reacción vital” en lenguaje corriente. No reproduce antes de jugar la exclamación que define el giro.
+
+Contradicción sobre 3 o 4: informe_forense.
+
+~~~dialogue
+DEFENSA: ¡PROTESTO! Esa secuencia no puede sostenerse con la ampliación.
+SUPER SAM: Explíquelo.
+DEFENSA: La herida no presenta reacción vital. El cuerpo ya había muerto cuando recibió esa bala.
+JUEZ: ¿Está diciendo que dispararon contra un cadáver?
+DEFENSA: Sí. Y el intervalo del informe termina a las diez de la noche, incluido su margen. Botija entró a trabajar a las once y cinco.
+[ACTUALIZAR informe_policial]
+BOTIJA: ¿Entonces... cuando yo entré...?
+DEFENSA: Ya estaba muerto.
+[pausa; música objection]
+SUPER SAM: Eso cambia la causa del caso. Pero el disparo sí existió.
+JUEZ: ¿Qué objeto de la escena permite explicar que hubiera otro tiro menos perceptible?
+~~~
+
+FollowUp: foto_crimen. Pregunta visible: “¿Qué objeto pudo amortiguar el disparo real?” Se acepta informe_policial también si su ficha ya incluye la inspección explícita de la almohada; ambas pruebas conducen al mismo resultado y no requieren bifurcación.
+
+~~~dialogue
+DEFENSA: La almohada perforada. El arma se apoyó contra ella.
+SARGENTO: Pedimos la comparación precisamente por ese orificio. Incorporaré el resultado balístico cuando termine.
+DEFENSA: No digo que fuera silencioso. Digo que todavía no podemos confundir ese tiro con el estruendo que oyó todo el hotel.
+JUEZ: Queda descartado que la bala causara la muerte a las 23:15.
+SUPER SAM: La fiscalía retira esa reconstrucción. Pero el acusado estuvo antes con una bebida destinada al huésped y discutió con él.
+DEFENSA: Una discusión tampoco identifica una causa de muerte.
+SUPER SAM: De acuerdo. Por eso pido toxicología y reconstrucción del servicio, no que ignoremos la autopsia.
+JUEZ: Se amplía la investigación. La hora del ruido deja de ser la hora del homicidio.
+~~~
+
+**Turnabout 1 completo.** El aplazamiento ocurre después de la reacción de Botija y la reformulación de la investigación. No se identifica el veneno hasta el resultado del segundo día. Nadie afirma aún que el cadáver vino de otra habitación.
+
+
+## 9. Día 2: investigación — los servicios del hotel
+
+### 9.1 Sótano, 26 de octubre, 09:00
+
+Ubicación hotel_sotano. Música suspense. Sargento residente.
+
+~~~dialogue
+SARGENTO: La comparación del arma ya está. El proyectil procede del revólver de la habitación.
+DEFENSA: Bien. Ya sabemos qué hizo el agujero. Nos falta saber qué hizo el ruido.
+SARGENTO: También llegaron los análisis de las manos. El hollín coincide con el trabajo de caldera; no respalda lo que supusimos al detenerlo.
+[ENTREGAR residuos_manos]
+[ACTUALIZAR informe_policial]
+CHAPULIN: ¿Y el conducto que sube?
+SARGENTO: Pueden seguirlo en el plano. El hotel autorizó revisar el ramal bajo la 304.
+~~~
+
+Hotspots:
+
+- Conducto: comparar con plano_hotel; marca la 204 como siguiente revisión. No genera una explicación completa de un artefacto aún no encontrado.
+- Inventario de la gala: registro de material de efectos sonoros, con un conjunto pendiente de devolución. Acceso de personal y huéspedes encargados de la gala; no exclusividad inventada de Rufino. Se adjunta al informe.
+- Banco de mantenimiento: fichas de trabajo que corroboran que Botija estuvo ocupado con Chómpiras después de entregar la botella. Su contenido se conserva para el juicio final.
+- Cenizas: carbón ordinario. El revólver no aparece aquí.
+
+Tema “Seguir el ramal” se abre después de examinar conducto e inventario. [ABRIR hotel_suite204].
+
+### 9.2 Suite 204, 10:00
+
+Ubicación hotel_suite204. Rufino residente durante visita autorizada y supervisada por el Sargento.
+
+~~~dialogue
+RUFINO: Antes de que conviertan mis aposentos en taller: el señor Gómez estuvo aquí. No voy a negar una visita que registró medio hotel.
+DEFENSA: Botija dice que le entregó el vino en esta puerta.
+RUFINO: Y me pidió que firmara. Lo hice.
+CHAPULIN: ¿Y el baúl?
+RUFINO: Se lo presté a mi invitado. Tenía cosas que llevar a su habitación.
+DEFENSA: Empecemos por esa visita.
+~~~
+
+Temas:
+
+- “La reunión”: Rufino habla de un negocio y afirma que Cuajinais se marchó vivo. No admite extorsión. La defensa registra su versión sin acusarlo aún.
+- “La botella”: la recibió cerrada, la dejó en la mesa y su invitado la abrió. Maruja estuvo presente al abrirla. El periodo entre entrega y apertura todavía requiere reconstrucción.
+- “El baúl”: reconoce propiedad B-17 y que firmó salida y recepción. Explica que ayudó a acomodar cosas del invitado. Esta explicación quedará expuesta a contraste.
+- “Objetos de su reserva”: el anillo gira para proteger el relieve. La pregunta recuerda un rasgo ya visto; no habilita incautación arbitraria antes de que exista motivo.
+
+Hotspots:
+
+- Radiador: el jugador encuentra restos de un efecto, llama al Sargento y presencia su registro. [ENTREGAR casquillo_fogueo]. Se remite a un ensayo seguro documentado por peritos; los personajes no manipulan un artefacto desconocido.
+- Mesa: espacio donde se sirvió vino, marcas ordinarias de copas; no una mancha que identifique químicamente al muerto por inspección visual.
+- Armario: maletín cerrado. Rufino dice que contiene valores. Se registra su existencia sin anunciar “aquí está el collar”. Su apertura posterior requiere el motivo investigado y la orden que se dictará al terminar D2.
+- Recibo de equipaje: número B-17 y destinos. Preguntar por ese número habilita el tema con el operador.
+
+~~~dialogue
+DEFENSA: ¿No le preocupa que hayan encontrado un efecto en su radiador?
+RUFINO: Me preocupa que alguien haya usado mi habitación. Hubo personal entrando y saliendo toda la noche.
+SARGENTO: Voy a registrar también esos accesos.
+DEFENSA: Hágalo. No basta con encontrarlo en una habitación para saber quién lo dejó.
+~~~
+
+[ABRIR hotel_terraza_d2] después de registrar efecto y recibo. La sospecha sobre las actividades de la 204 es legítima; la autoría sigue abierta.
+
+### 9.3 Terraza con Chómpiras, 11:00
+
+Ubicación hotel_terraza_d2. Maruja ya completó sus temas del día 1. Música investigation.
+
+~~~dialogue
+CHOMPIRAS: ¿Van a revisar el montacargas? Si me suben el sueldo según lo que carga, hoy sí me alcanza.
+DEFENSA: Buscamos un envío con este número.
+CHOMPIRAS: Entonces no hay pierde. Los huéspedes cambian de nombre; las maletas llevan su etiqueta.
+CHAPULIN: ¿Y tú subes dentro?
+CHOMPIRAS: ¡No! La cabina es para carga. Uno manda el bulto y sube por la escalera.
+~~~
+
+El jugador examina una lámina con varias filas. B-17 aparece dos veces con cargas diferentes; otros números y recorridos son envíos normales. Las marcas impresas permiten seguir una etiqueta sin depender del color.
+
+Temas progresivos:
+
+1. “Cómo funciona”: operador externo, llamada manual y registro de carga; no pasajeros ocultos en la masa medida.
+2. “Seguir B-17”: disponible después de examinar el número. El jugador obtiene registro_montacargas. Chómpiras confirma el baúl de Rufino y la intervención de Botija. No suma 100 y 20 ni dice qué llevaba.
+3. “Recepción en la 304”: entrega cerrada a Rufino y faja numerada entera. Chómpiras acompaña a Botija por el acceso de servicio y firma como testigo del porte. [ACTUALIZAR orden_servicios].
+4. “Dónde terminó”: ambos consultan el destino azotea y deciden inspeccionarlo. [ABRIR hotel_azotea].
+
+Si se pregunta por la diferencia de peso:
+
+~~~dialogue
+CHOMPIRAS: Algo descargaron. Yo apunté lo que marcaba la báscula, no lo que había dentro.
+DEFENSA: Entonces tendremos que mirar el baúl.
+CHAPULIN: ¿Lo guardaron o se perdió?
+CHOMPIRAS: Se guardó. Para eso apunto los números, aunque luego nadie me crea.
+~~~
+
+### 9.4 Azotea, 12:00
+
+Ubicación hotel_azotea. Chómpiras y Sargento acompañan la inspección. El baúl está donde el registro indica. No se encuentra barriendo por casualidad.
+
+Hotspots:
+
+- Etiqueta B-17: cotejo con bitácora y recibo; confirma el mismo objeto.
+- Faja rota: el número coincide con el talón firmado de entrega. Su rotura demuestra apertura posterior a esa entrega, no identifica por sí sola el contenido.
+- Forro: retal marrón enganchado; el jugador puede consultar la fotografía del traje en el Acta. La ficha ofrece ambas formas a escala comparable, sin llamarlo prueba de un cadáver.
+- Compartimiento principal: dimensiones compatibles con la hipótesis que el jugador podrá formular. No se añade un pasaje secreto dentro del baúl.
+- Motor: confirma procedimiento y prohibición de pasajeros, sin una nueva avería que altere convenientemente los pesos.
+
+~~~dialogue
+SARGENTO: Fotografiaré el forro antes de recoger nada.
+DEFENSA: Incluya ese retal.
+CHOMPIRAS: ¿Por un pedacito de tela?
+DEFENSA: Primero conservamos lo que hay. Después veremos qué significa.
+[ENTREGAR baul_etiquetas]
+~~~
+
+El retal se compara con el desgarro de la ropa custodiada. El informe registra correspondencia de bordes y tejido, no la frase “Botija transportó el cadáver”. Puede indicar contacto de esa prenda con el interior; admite que la prenda pudo estar separada del cuerpo. Esta limitación importa en juicio.
+
+Tema final “Cotejar el porte” exige etiqueta, faja y forro. El Sargento organiza los resultados para la delegación. [ABRIR delegacion].
+
+### 9.5 Delegación, 14:00
+
+Ubicación delegacion. Sargento residente. Es la escena final obligatoria del día.
+
+Se revisa el relato inicial de Botija, no se inventa una visita del detenido a otra localización. El jugador comprueba que las firmas y destinos coinciden con lo que dijo desde el principio. La confirmación pericial del funcionamiento del efecto se añade a casquillo_fogueo y su ensayo no identifica al usuario.
+
+La escena tiene dos temas: “Cotejar firmas y destinos”, que cierra la revisión del porte, y “El resultado del laboratorio”, obligatorio y disponible tras el anterior, que contiene el diálogo siguiente y las dos entregas. **Ninguna prueba requerida se entrega en el intro de una escena**: el motor solo recalcula la disponibilidad del juicio al terminar un hotspot o un tema (`InvestigationController.checkInvestigationProgress`), de modo que un identificador entregado en la entrada dejaría el botón del juicio deshabilitado hasta la siguiente acción.
+
+~~~dialogue
+SARGENTO: Tenemos la toxicología. El agente encontrado en la víctima aparece también en el vino de esta copa.
+[ENTREGAR copa_vino]
+DEFENSA: ¿El análisis identifica quién lo puso?
+SARGENTO: No. Identifica lo que había y la vía compatible de ingestión.
+CHAPULIN: ¿Y la hora?
+SARGENTO: Sigue siendo el intervalo del primer informe. No se ha vuelto un reloj más preciso.
+DEFENSA: Entonces toca reconstruir quién tuvo la botella.
+[ENTREGAR toxicologia_vino]
+~~~
+
+La entrega final requiere haber completado la lectura del porte y oído el alcance del análisis. El juicio se habilita al cerrarse ese tema, no al cerrarse el intro.
+
+## 10. Día 2: juicio — lo que llevó Botija
+
+### 10.1 Apertura, 26 de octubre, 16:00
+
+~~~dialogue
+SUPER SAM: La toxicología identifica una intoxicación. El acusado llevó el vino y había discutido con la víctima. Esa es la hipótesis que la fiscalía va a contrastar hoy.
+DEFENSA: Entre la entrega y el servicio hubo otras personas y otro lugar.
+JUEZ: Escucharemos a quien vio abrir la botella. También debemos aclarar por qué la sala oyó un disparo a una hora distinta de la muerte.
+~~~
+
+### 10.2 D2-T1, Maruja: “La copa y el estruendo”
+
+~~~dialogue
+d2_t1_1 MARUJA: Vi a Botija entregar la botella en la puerta de la 204; Rufino firmó el recibo.
+d2_t1_2 MARUJA: Volví después con Gómez. Él mismo sacó el cierre y se sirvió una copa.
+d2_t1_3 MARUJA: Más tarde, el estruendo nació dentro de la 304; estaba junto a la pared y lo sentí allí.
+d2_t1_4 MARUJA: Por eso tenía que haber alguien dentro de esa habitación accionando un arma a las 23:15.
+~~~
+
+Presiones:
+
+- 1: Maruja acompañó a Rufino desde recepción, vio el anillo en su mano y observó la entrega. Botija se retiró sin entrar; no hubo préstamo del anillo ni otra entrega de objetos.
+- 2: salió a buscar a Cuajinais porque necesitaba hablar de una deuda de juego. Reconoce que dejó a Rufino solo con la botella entre ambas visitas. Cuajinais insistió en abrirla personalmente y le regaló el cierre, que ella guardó antes de que él bebiera y entregó al Sargento al día siguiente. El asunto de su deuda queda explicado aquí; no se promete otro misterio personal.
+- 3: vibró sobre todo el radiador. Aclara que no vio humo ni un tirador dentro de la 304.
+- 4: el hecho observado fue el ruido, y la presencia de un tirador es su inferencia. Sigue siendo esa inferencia la declaración atacable; no se sustituye por “no vi a nadie”, que sería verdadero.
+
+Se admite cualquiera de estas rutas, expresadas como contradicciones independientes:
+
+| Declaración | Presentación | Señalamiento | FollowUp |
+| --- | --- | --- | --- |
+| d2_t1_3 | plano_hotel | ramal_204_304: “¿Qué conexión permite que un ruido de otra habitación llegue hasta la 304?” | casquillo_fogueo: “¿Qué objeto acredita que se produjo allí un efecto sin proyectil?” |
+| d2_t1_4 | casquillo_fogueo | Ninguno en la primera presentación. | plano_hotel con ramal_204_304: “¿Cómo llegó ese sonido hasta la habitación señalada por la testigo?” |
+
+No aceptar un ítem incorrecto solo por pertenecer al día. No exigir la primera ruta si el jugador eligió la otra deducción válida.
+
+~~~dialogue
+DEFENSA: ¡PROTESTO! Usted oyó el efecto aquí arriba, pero el objeto que lo produjo estaba conectado al ramal inferior.
+MARUJA: ¿Un piso más abajo?
+SARGENTO: En la 204. El conjunto no dispara un proyectil y funciona con retardo. El ensayo está registrado.
+DEFENSA: Por eso no hacía falta un tirador en la 304 a esa hora.
+JUEZ: La coartada del momento del ruido no descarta una intervención anterior.
+SUPER SAM: De acuerdo. Eso explica la alarma. No identifica quién alteró el vino antes de servirlo.
+DEFENSA: Tampoco convierte al repartidor en el único que pudo hacerlo. La testigo dejó al huésped solo con la botella.
+MARUJA: Sí. Ese intervalo yo no lo vi.
+~~~
+
+Tras la refutación, la fiscalía preserva lo verdadero del testimonio: Cuajinais abrió y bebió. No se desacredita a Maruja por equivocarse sobre la transmisión del sonido.
+
+### 10.3 D2-T2, Chómpiras: “Un porte de equipaje”
+
+~~~dialogue
+d2_t2_1 CHOMPIRAS: Registré B-17 saliendo de la planta 2 y después entrando en el almacén de la azotea.
+d2_t2_2 CHOMPIRAS: Botija hizo el porte hasta la 304 y Rufino lo recibió allí.
+d2_t2_3 CHOMPIRAS: Vi salir y llegar un baúl cerrado. Ese envío contenía únicamente equipaje, no a una persona.
+d2_t2_4 CHOMPIRAS: La faja seguía entera al recibirlo Rufino. Yo firmé el talón junto a Botija.
+~~~
+
+Presiones:
+
+- 1: exige precisar la parada intermedia; no inventa un trayecto directo 2→azotea. Ambas filas están disponibles desde la investigación.
+- 2: identifica al receptor por observación cercana y recibo. No apela a su estatura o categoría social.
+- 3: Chómpiras admite que no vio el interior; comprobó ausencia de pasajeros visibles y cierre externo. Su conclusión sobre el contenido excede esa observación.
+- 4: confirma número y faja. La faja se rompe después de que Rufino recibe el envío. Botija no dispone de un intervalo oculto dentro de la cabina.
+
+Contradicción sobre 3: registro_montacargas, con señalamiento fila_B17_descarga.
+
+Pregunta: “¿Qué trayecto obliga a investigar una descarga antes de llegar al almacén?”
+
+~~~dialogue
+DEFENSA: ¡UN MOMENTO! Hay dos cargas distintas para el mismo baúl.
+CHOMPIRAS: Cien kilos al subir al tercero. Veinte cuando llegó a la azotea.
+DEFENSA: Eso indica una descarga de unos ochenta kilos en la planta 3.
+SUPER SAM: Ochenta kilos de cualquier cosa. No puede ponerle nombre a un peso.
+DEFENSA: Tiene razón. Necesitamos relacionar el interior con la víctima.
+JUEZ: Presente ese vínculo.
+~~~
+
+FollowUp: baul_etiquetas. Su ficha contiene el cotejo con foto_crimen.
+
+~~~dialogue
+DEFENSA: Este retal estaba enganchado en el forro. Sus bordes corresponden al desgarro del traje de Cuajinais.
+SARGENTO: La comparación está documentada. Demuestra contacto de la prenda con ese interior.
+SUPER SAM: También pudo guardar ropa en el baúl.
+DEFENSA: Sí. Pero tenemos una víctima que ya había muerto, un porte posterior, ese contacto, una descarga y un receptor identificado.
+CHAPULIN: Y el lugar donde se descargó es el mismo donde encontraron el cuerpo.
+DEFENSA: La defensa propone que B-17 llevó el cadáver. Pido al receptor que explique qué sacó de él.
+JUEZ: Señor Rufino, su recepción y la apertura posterior están documentadas. Responda.
+RUFINO: Yo... no quería que el hotel se viera envuelto en aquello.
+SUPER SAM: ¿En qué?
+RUFINO: Lo encontré muerto en mi habitación. Me asusté. Lo puse dentro y pedí que subieran el baúl.
+[pausa; música suspense]
+BOTIJA: ¿Yo lo llevé?
+RUFINO: Usted llevó un baúl. No tenía por qué saber lo demás.
+BOTIJA: Don Ramón...
+DEFENSA: Tu encargo era real. Lo que no te dijeron fue qué estabas llevando.
+[cutin: objection_toma_eso; música objection]
+~~~
+
+**Turnabout 2.** La inferencia del jugador precede a la admisión. Los kilos no demostraron por sí solos la identidad; la respuesta confirma el traslado y el papel del acusado. Esta admisión intermedia no identifica aún al envenenador.
+
+~~~dialogue
+JUEZ: La escena de la 304 se preparó después del traslado.
+RUFINO: ¡Pero yo no lo envenené! La botella la trajo ese hombre. Cuando comprendí lo que ocurría, pensé que me acusarían a mí.
+SUPER SAM: Usted admite ocultar el cadáver. La fiscalía investigará también su intervención.
+DEFENSA: Y nosotros examinaremos esa botella, desde su salida de la cava hasta el momento en que se abrió.
+JUEZ: Ordénese el registro de la 204 y la custodia de los objetos relacionados. El señor Rufino queda a disposición del tribunal.
+SARGENTO: Registraré por separado sus efectos personales y las muestras del vino.
+~~~
+
+El Sargento incauta el anillo entre los efectos personales y documenta su estado esa tarde. El maletín de la 204 queda sellado para examen. Rufino no vuelve a limpiar su habitación durante la noche. Las acusaciones de montaje y de homicidio se distinguen; no se considera que admitir una implique automáticamente la otra.
+
+
+## 11. Día 3: investigación — quién alteró el vino
+
+La pregunta de la jornada no es quién odiaba a la víctima. Es en qué momento pudo entrar el tóxico en una botella que llegó cerrada y se abrió delante de una testigo. El jugador reúne primero la respuesta material y después el móvil.
+
+### 11.1 Cava, 27 de octubre, 09:00
+
+Ubicación hotel_cava. Música suspense. Sargento residente. Cecilio abre el libro de la cava y se retira: sus hechos ya están en el Acta y no se le pide repetirlos.
+
+~~~dialogue
+SARGENTO: Traje todo lo que tenemos de esa botella. Incluido el cierre que nos entregó la señorita Maruja.
+DEFENSA: ¿Desde cuándo lo tiene usted?
+SARGENTO: Desde el mediodía siguiente al hallazgo. Con hora, folio y las dos firmas.
+DEFENSA: Entonces ese pedazo de corcho estuvo fuera del hotel desde antes de que el hombre bebiera.
+SARGENTO: Estuvo en un bolso y luego en mi archivo. Nadie más lo tocó.
+CHAPULIN: ¿Y qué le vamos a preguntar a un corcho?
+DEFENSA: Por dónde entró lo que mató al señor Gómez.
+~~~
+
+Hotspots y resultados:
+
+| Hotspot | Observación e interacción |
+| --- | --- |
+| Libro de cava | Salida de V58-17 a las 21:15, autorización de Cecilio y numeración del ejemplar. El folio va cerrado con un sello de lacre estampado por el huésped que pidió la botella, con un escudo nobiliario. Coincide con el recibo de entrega y con la botella custodiada. No existe una segunda botella del mismo lote en circulación esa noche. |
+| Botella precintada | Ejemplar abierto recogido en la 304. [ENTREGAR botella_vino]. El Acta incorpora sus vistas ampliadas, incluida la del cierre conservado aparte. |
+| Cierre conservado | Vista a escala: la huella ancha del sacacorchos y, separado de ella, un canal fino que atraviesa el corcho de extremo a extremo. Cerca del borde exterior hay retenida una inclusión metálica diminuta. |
+| Lacre del cuello | Restos del sello original. Bajo aumento, un punto de cera refundida sobre el sello, no una rotura. Se describe lo que se ve; no se nombra qué lo produjo. |
+| Estantería | Ambientación y una broma breve sobre precios. Ninguna pista escondida en las cajas. |
+
+~~~dialogue
+CHAPULIN: Tiene dos agujeros.
+SARGENTO: Uno es del sacacorchos. El otro no sé de qué es.
+DEFENSA: Yo tampoco. Anótelo como está y que lo analicen por dentro.
+SARGENTO: ¿También lo que quedó atrapado en el borde?
+DEFENSA: También. Sin decirnos todavía a qué se parece.
+~~~
+
+Nadie menciona un anillo, una aguja ni un instrumento concreto. La observación queda abierta y el jugador puede sospechar antes que los personajes.
+
+Tema final “Pedir el análisis del canal”: exige haber examinado libro, botella y cierre. El Sargento cursa la solicitud y avisa de que el resultado llegará a la delegación por la tarde. [ABRIR hotel_lobby_d3].
+
+### 11.2 Recepción, 10:30
+
+Ubicación hotel_lobby_d3. Música investigation. La Chimoltrufia sustituye a Cecilio en el mostrador. La sustitución es legítima: los hechos de Cecilio ya están asentados en orden_servicios, plano_hotel y su testimonio del día 1; no queda ninguna información obtenible solo de él.
+
+~~~dialogue
+CHIMOLTRUFIA: Me pusieron en el mostrador porque no hay quien atienda y porque yo sí sé dónde está cada papel.
+DEFENSA: ¿Y Don Cecilio?
+CHIMOLTRUFIA: Contestando a los periodistas. Con los anteojos puestos, eso sí.
+DEFENSA: Necesitamos folios originales, no el libro de turno.
+CHIMOLTRUFIA: Pues eso es lo único bueno de llevar catorce años aquí. Dígame cuáles.
+~~~
+
+Temas:
+
+| Tema | Conversación obligatoria |
+| --- | --- |
+| “Los folios de esa noche” | Tema obligatorio, requisito del último tema de la escena. Chimoltrufia localiza la certificación de entrega del vino firmada ante Maruja y la adjunta. [ACTUALIZAR orden_servicios]. De paso confirma sobre el folio manuscrito que ya está en el Acta desde el día 1 que fue el propio huésped quien lo entregó en mano, no una llamada ni un recado. |
+| “El salón de juego” | Rondas firmadas por los jugadores entre 23:10 y 23:25. [ENTREGAR boleta_baccarat]. Don Ramón acepta en voz alta que esa coartada es verdadera y que el ruido no fue obra de quien estaba en la mesa. |
+| “El telegrama de esa noche” | Copia de archivo y acuse de recepción firmado a las 20:50. Texto: reclamación de una parte del Collar de Cleopatra y amenaza de acudir a la policía. [ENTREGAR nota_amenaza]. |
+| “Lo que dicen en el hotel” | Disponible tras los otros tres temas, mediante `condition(flags)`, para que el jugador no llegue al juicio final sin la boleta ni el telegrama. Chimoltrufia cuenta que el personal ya condenó a su marido por su expediente. Prepara la escena de la detención. [ABRIR detention_d3]. |
+
+~~~dialogue
+DEFENSA: Esta boleta confirma que el señor Rufián estaba jugando cuando sonó el estruendo.
+CHAPULIN: ¿Entonces perdimos?
+DEFENSA: No. Perdimos una idea que nunca tuvimos. Nosotros ya sabemos que a esa hora el muerto llevaba horas muerto.
+CHIMOLTRUFIA: ¿Y de qué le sirve a mi Botija?
+DEFENSA: De que ya nadie tiene que estar dentro de esa habitación a las once y cuarto. Ni él.
+~~~
+
+La boleta entra al Acta como dato favorable a un tercero. Presentarla no es una trampa: delimita qué cubre esa coartada y qué no.
+
+### 11.3 Detención, 12:00
+
+Ubicación detention_d3. Música detention_center. Botija residente; Chimoltrufia lo acompaña. Escena de personaje: no aparece ninguna coartada nueva ni un dato ocultado hasta ahora.
+
+~~~dialogue
+BOTIJA: Ya me contaron. Que subí un baúl con un muerto adentro.
+DEFENSA: Sí.
+BOTIJA: Y yo firmé el recibo. Con mi nombre.
+CHAPULIN: Firmaste un trabajo. Eso es lo que te dieron a firmar.
+BOTIJA: Toda la vida quise un trabajo donde me pidieran firmar.
+CHIMOLTRUFIA: Y lo tienes. Lo que pasa es que te lo usaron.
+~~~
+
+Temas:
+
+| Tema | Conversación obligatoria |
+| --- | --- |
+| “Después de la botella” | Repasa sus tareas desde las 21:26: caldera con Chómpiras, dos avisos de planta y el porte de las 22:20. Coincide con las fichas del sótano y con el testimonio del botones. No estuvo solo en ningún tramo largo. |
+| “El anillo” | Nunca lo tuvo en la mano ni se lo prestaron. Recuerda que el huésped giró la cabeza del anillo al firmar. Es un recuerdo, no una acusación. |
+| “Lo que te da vergüenza” | Botija habla de su expediente, del miedo a que su mujer creyera que había vuelto al oficio y de por qué escondió la cartera. Chimoltrufia responde. Ninguna de las dos cosas cambia una prueba. |
+
+~~~dialogue
+CHIMOLTRUFIA: Yo nunca creí que hubieras matado a nadie.
+BOTIJA: Pero sí creíste que había aceptado el trabajo del Cuajinais.
+CHIMOLTRUFIA: Lo pensé dos días. Y me dio más coraje pensarlo que preguntártelo.
+BOTIJA: Le dije que no. Le dije que no delante de todo el pasillo.
+DEFENSA: Eso lo oyó gente. Y por eso el fiscal cree que discutieron por dinero.
+BOTIJA: Discutimos porque no quise. Es la primera vez que me acusan de algo por decir que no.
+~~~
+
+[ABRIR delegacion_d3] al terminar los tres temas.
+
+### 11.4 Delegación, 14:00
+
+Ubicación delegacion_d3. Música suspense. Sargento residente. Es la escena final obligatoria del día y la única que entrega el último identificador exigido por el juicio.
+
+Primero, en el tema “El maletín incautado”, el telegrama justifica abrir lo que se selló la tarde anterior:
+
+~~~dialogue
+SARGENTO: Con el telegrama, el juez autorizó abrir el maletín de la 204.
+NARRADOR: Dentro, envuelto en un pañuelo de hotel, está el Collar de Cleopatra.
+DEFENSA: Denunciado como robado hace once meses.
+SARGENTO: Levanté acta y lo adjunté al expediente del telegrama.
+[ACTUALIZAR nota_amenaza]
+CHAPULIN: Entonces el muerto venía a cobrar.
+DEFENSA: Venía a cobrar. Eso explica una reunión. Todavía no explica una copa.
+~~~
+
+Tema obligatorio “Quién tuvo cada cosa”. El Sargento lee la cadena de posesión ya documentada, sin testigos nuevos. Estos hechos deben quedar asentados antes del juicio, porque el clímax se apoya en ellos:
+
+- 21:15–21:20, cava y recepción: Cecilio está con Rufino, que lleva el anillo puesto y sella con él la autorización de la cava.
+- 21:20, entrega: Botija recoge la botella cerrada y sube. No recibe ningún otro objeto.
+- 21:25, puerta de la 204: Maruja presencia la entrega y la firma de recepción. El anillo sigue en la mano de Rufino.
+- 21:26, servicio: Botija se retira con Chómpiras y no vuelve a esa planta hasta el porte.
+- 21:30–21:40: Maruja sale y deja a Rufino solo con la botella cerrada.
+- 21:40: Cuajinais extrae el cierre, se lo da a Maruja y bebe. El cierre sale del hotel esa noche en el bolso de ella.
+- Día 2, cierre de audiencia: el Sargento incauta los efectos personales de Rufino, incluido el anillo, y los guarda separados de las muestras.
+
+Después, dentro del mismo tema obligatorio, llegan los resultados y el examen del anillo. La entrega de sello_lacre ocurre al cerrarse ese tema, nunca en el intro de la escena:
+
+~~~dialogue
+SARGENTO: El laboratorio encontró el mismo agente dentro del cierre, no en su superficie.
+DEFENSA: ¿Metido en el corcho?
+SARGENTO: Metido. Y lo que quedó retenido en el borde es metal, no corcho.
+DEFENSA: El informe no dice por cuál de las dos marcas entró. Eso lo enseñaremos nosotros.
+[ACTUALIZAR toxicologia_vino]
+DEFENSA: Quiero que examinen por separado los efectos que incautó ayer.
+SARGENTO: Ya los tengo aquí. Este es el anillo del señor Rufián.
+NARRADOR: La cabeza gira sobre un eje. Debajo hay una cavidad, un conducto fino y una punta metálica cuyo extremo está partido.
+[ENTREGAR sello_lacre]
+SARGENTO: El informe describe la pieza y los residuos del conducto. No dice si esa punta encaja con nada.
+DEFENSA: No tiene que decirlo. Eso lo vamos a comparar delante del juez.
+~~~
+
+Las fichas de sello_lacre y toxicologia_vino describen geometría, residuos y escalas. Ninguna afirma el encaje ni nombra al usuario. El jugador dispone desde aquí de las dos vistas que necesitará en el clímax.
+
+Se habilita el juicio al terminar este diálogo.
+
+## 12. Día 3: juicio — la coartada verdadera y la explicación falsa
+
+### 12.1 Apertura, 27 de octubre, 16:00
+
+~~~dialogue
+JUEZ: Recapitulemos lo probado. La muerte se produjo por un tóxico en el vino, dentro de la ventana de la autopsia.
+JUEZ: El disparo y el estruendo fueron un montaje posterior a la muerte, según la autopsia y el traslado ya acreditados.
+SUPER SAM: Y sigue en pie una pregunta que la defensa no ha contestado: quién alteró esa botella. El acusado la llevó en las manos.
+DEFENSA: También llevó un baúl sin saber qué había dentro. Que uno cargue una cosa no dice qué le hicieron a esa cosa.
+JUEZ: La defensa reconoce que el señor Rufián estaba en el salón de juego a las 23:15.
+DEFENSA: Lo reconoce. Esa coartada es verdadera y no la vamos a discutir. Solo cubre el ruido, y el ruido no mató a nadie.
+SUPER SAM: Entonces la fiscalía mantiene su hipótesis: el vino salió alterado de las manos que lo transportaron.
+JUEZ: Escucharemos al señor Rufián sobre su propia intervención.
+~~~
+
+La boleta se lee en el acta sin exigir presentación. No hay openingPresent en esta jornada: obligar a presentar una prueba que nadie contradice sería un trámite. La coartada se admite para acotar el terreno de la discusión.
+
+### 12.2 D3-T1, Rufino: “Mi parte en esta desgracia”
+
+~~~dialogue
+d3_t1_1 RUFINO: Encontré al señor Gómez muerto en mi habitación y perdí el juicio por un momento.
+d3_t1_2 RUFINO: Lo llevé arriba dentro de mi baúl, preparé la escena y disparé sobre un hombre que ya estaba muerto. Ayer admití lo primero; hoy admito lo demás, porque no pienso cargar con lo que no hice.
+d3_t1_3 RUFINO: Pero la botella llegó de fuera. Yo la recibí cerrada, de manos de ese empleado.
+d3_t1_4 RUFINO: Y no pedí que subiera él al baño. Yo solicité un fontanero; el hotel eligió a cuál mandaba.
+~~~
+
+Presiones:
+
+- 1: no precisa la hora en que lo encontró. Su relato sigue siendo compatible con la ventana forense, así que la presión no produce una contradicción; sí deja claro que él sitúa la muerte antes del porte.
+- 2: el revólver era del propio Gómez, que lo llevaba encima. El Sargento confirma que el padrón registra esa arma a nombre del difunto y que por eso quedó en la habitación. El cabo del arma se cierra aquí, con un dato documentado y no con una promesa de peritaje.
+- 3: admite que estuvo solo con la botella cerrada entre la entrega y la llegada de su invitado. Lo dice como quien no ve el problema.
+- 4: insiste en que la asignación del empleado fue decisión del hotel y que él ni siquiera conocía su nombre.
+
+Contradicción sobre d3_t1_4: orden_servicios, con señalamiento sobre el folio manuscrito.
+
+PointTarget orden_manuscrita. Pregunta: “¿Qué parte de esta solicitud elige a un empleado concreto?”
+
+| Zona | Contenido | Correcta |
+| --- | --- | --- |
+| sello_recepcion | Sello del mostrador y hora de registro. | No |
+| firma_rufino | Firma del solicitante. | No |
+| nombre_empleado | “Que suba el fontanero Botija” escrito de puño y letra del solicitante. | Sí |
+| hora_servicio | “23:05” en el cuerpo del texto. | No |
+
+~~~dialogue
+DEFENSA: ¡PROTESTO! El hotel no eligió a nadie. El nombre está escrito aquí, de su puño y letra.
+RUFINO: Un hotel copia lo que dicta el huésped.
+CECILIO: Ese papel me lo entregó usted en la mano. Yo solo lo archivé.
+DEFENSA: Pidió a un hombre concreto, por su nombre, para que estuviera dentro de esa habitación a una hora concreta.
+JUEZ: ¿Con qué finalidad?
+DEFENSA: Con la de que lo encontraran ahí. Usted no improvisó un montaje: eligió a quién se lo colgaba.
+RUFINO: Elegí al que estaba disponible.
+SUPER SAM: Your Honor, elegir un empleado no es envenenar a un huésped. La fiscalía mantiene que el vino llegó alterado.
+DEFENSA: Y por eso vamos a hablar de la botella. Pero que conste quién escribió ese nombre.
+JUEZ: Consta.
+~~~
+
+Fallo del señalamiento:
+
+~~~dialogue
+JUEZ: Esa parte no designa a nadie. Busque dónde se elige a la persona que debía subir.
+~~~
+
+No hay followUp en este testimonio: la deducción termina en un hecho documental y la fiscalía conserva su hipótesis. La jornada todavía no ha identificado al envenenador.
+
+### 12.3 D3-T2, Rufino: “Una reunión de negocios”
+
+El juez ordena un segundo testimonio sobre su relación con la víctima. Es materia distinta de la anterior, no una repetición de posiciones ya derribadas.
+
+~~~dialogue
+d3_t2_1 RUFINO: Conocí al señor Gómez hace años, en asuntos de importación.
+d3_t2_2 RUFINO: Aquella noche subió a proponerme una inversión y se marchó por su propio pie.
+d3_t2_3 RUFINO: No le debía nada. No tenía ningún interés personal en su muerte.
+d3_t2_4 RUFINO: Ni siquiera esperaba su visita. Supe que estaba en el hotel cuando lo vi entrar en mi habitación.
+~~~
+
+Presiones:
+
+- 1: describe negocios vagos y evita el nombre real de la víctima. No aporta ni quita hechos.
+- 2: ya está refutado que se marchara por su pie; lo reformula como “se marchó de mi vista”. La presión sirve para que el tribunal recuerde qué queda de ese relato.
+- 3: repite que su fortuna es propia y que la palabra deuda le resulta ofensiva.
+- 4: sostiene que nadie le anunció esa visita.
+
+Contradicción sobre d3_t2_4: nota_amenaza, con señalamiento sobre el telegrama.
+
+PointTarget telegrama_acuse. Pregunta: “¿Qué parte de este documento acredita que el destinatario lo tuvo en la mano?”
+
+| Zona | Contenido | Correcta |
+| --- | --- | --- |
+| encabezado_hora | Depósito a las 20:40 desde el propio hotel. | No |
+| linea_exigencia | “Mi parte del collar o hablo con la policía”. | No |
+| firma_remitente | Firma del remitente. | No |
+| acuse_recepcion | Recibo firmado por el destinatario a las 20:50. | Sí |
+
+~~~dialogue
+DEFENSA: ¡PROTESTO! Usted firmó el acuse cincuenta minutos antes de esa visita que no esperaba.
+RUFINO: Firmo docenas de papeles al día.
+DEFENSA: Este exige el pago de un collar robado bajo amenaza de denuncia. No se firma sin leerlo.
+SARGENTO: Y el collar apareció ayer en el maletín que incautamos en su habitación. Levanté acta.
+JUEZ: ¿Reconoce esa joya?
+RUFINO: Reconozco que es mía.
+DEFENSA: Está denunciada como robada hace once meses. El hombre que venía a cobrar su parte apareció muerto dentro de un baúl suyo.
+[pausa; música objection]
+SUPER SAM: Un móvil. Ahora sí tenemos un móvil.
+SUPER SAM: Pero un móvil no es un método, Your Honor. El acusado siguió siendo quien tocó esa botella.
+DEFENSA: De acuerdo. Entonces hablemos de la botella.
+JUEZ: Que la defensa exponga cómo se alteró ese vino. Es lo último que queda por resolver en este proceso.
+~~~
+
+Al terminar el segundo testimonio no hay aplazamiento: la audiencia entra directamente en el clímax.
+
+## 13. Clímax, veredicto y epílogo
+
+El clímax usa dos stages con presentación y señalamiento. No usa choices: el motor ejecuta las elecciones después del último stage, y una pregunta de opción múltiple detrás de la comparación material bajaría el punto más alto de la escena. Cada prompt aparece en el HUD y sigue visible al abrir el Acta.
+
+### 13.1 Entrada al clímax
+
+~~~dialogue
+SUPER SAM: Hechos, Your Honor. El vino salió cerrado de la cava, lo transportó el acusado y minutos después mató a un hombre.
+SUPER SAM: El señor Rufián ocultó un cadáver por cobardía. Eso es un delito distinto. La copa la sirvió otro.
+RUFINO: Yo recibí una botella sellada. La dejé sobre la mesa y no volví a tocarla hasta que mi invitado la abrió.
+DEFENSA: Esa botella se abrió delante de una testigo, con el lacre puesto. Nadie discute eso.
+JUEZ: Entonces, licenciado, el tribunal necesita saber cómo entra un tóxico en una botella cerrada.
+DEFENSA: Está contestado desde ayer. Lo que pasa es que la respuesta estaba dentro de un corcho.
+[música pursuit]
+~~~
+
+### 13.2 Stage 1: por dónde entró el tóxico
+
+- presentTarget: botella_vino.
+- prompt: “¿Qué muestra el cierre de la V58-17 que no pudo hacer un sacacorchos?”
+- pointTarget cierre_canal, sobre la vista ampliada del cierre.
+
+| Zona | Contenido | Correcta |
+| --- | --- | --- |
+| huella_sacacorchos | Perforación ancha y astillada del tirabuzón. | No |
+| canal_fino | Canal recto y limpio que atraviesa el corcho de extremo a extremo, con una inclusión metálica retenida junto al borde exterior. | Sí |
+| marca_lote | Numeración impresa del ejemplar. | No |
+| borde_lacre | Restos de cera del sello. | No |
+
+Fallo del señalamiento:
+
+~~~dialogue
+JUEZ: Ese rastro corresponde a la apertura ordinaria. Busque una vía que el tirabuzón no pudo abrir.
+~~~
+
+Éxito:
+
+~~~dialogue
+DEFENSA: ¡TOMA ESO! Un canal que atraviesa el corcho entero, y el laboratorio encontró el mismo tóxico dentro de él.
+JUEZ: ¿Está diciendo que envenenaron el vino sin abrir la botella?
+DEFENSA: A través del cierre, con algo fino y rígido. Después basta un punto de cera sobre el sello para que nadie vea la entrada.
+SUPER SAM: ¿Y quién nos dice que ese agujero no se hizo después, para fabricar esta historia?
+DEFENSA: La custodia. Ese corcho salió de la 204 en el bolso de la señorita Maruja antes de que la víctima bebiera.
+MARUJA: Me lo regaló él mismo. Lo entregué al Sargento al día siguiente, en cuanto supe de qué botella se trataba.
+SARGENTO: Desde ese mediodía está en mi archivo, con hora y dos firmas.
+SUPER SAM: Entonces hubo quince horas en un bolso particular. Su cadena empieza tarde, counselor.
+DEFENSA: Empieza tarde y lo admito. Lo que sí prueba es que el cierre no volvió a esa habitación ni pasó por las manos del acusado, que a esa hora ya estaba detenido.
+JUEZ: Queda abierta una posibilidad sobre quien lo guardó.
+DEFENSA: Queda. Y no la voy a cerrar con la palabra de nadie, sino con lo que se quedó atrapado dentro del canal.
+JUEZ: El tribunal acepta el método y reserva la mano.
+SUPER SAM: Y esa mano cargaba herramientas. Un fontanero lleva encima cosas finas y rígidas todo el día. Tuvo la botella cinco minutos.
+BOTIJA: Yo la llevé pegada al pecho, señor.
+SUPER SAM: Cinco minutos son cinco minutos, Your Honor.
+DEFENSA: Entonces comparemos ese canal con lo que quedó dentro.
+~~~
+
+La acusación contra Botija sigue viva al terminar el stage 1, y además queda planteada en voz alta la única alternativa que el método no cierra: que la perforación la hiciera después quien guardó el cierre. El stage 2 la resuelve con la custodia del anillo, no con un argumento de confianza.
+
+### 13.3 Stage 2: con qué se hizo
+
+- presentTarget: sello_lacre.
+- prompt: “¿Qué parte del anillo corresponde al fragmento retenido en el canal?”
+- pointTarget anillo_fractura, sobre la lámina de comparación a escala.
+
+| Zona | Contenido | Correcta |
+| --- | --- | --- |
+| cabeza_relieve | Cabeza giratoria con el escudo del falso condado. | No |
+| cavidad_interior | Hueco bajo la cabeza, con residuos del conducto. | No |
+| conducto | Canal interno que comunica la cavidad con la punta. | No |
+| extremo_truncado | Punta metálica partida, con superficie de fractura reciente. | Sí |
+
+Fallo del señalamiento:
+
+~~~dialogue
+JUEZ: Esa parte explica cómo funciona la pieza. El tribunal pidió qué parte falta en ella.
+~~~
+
+Éxito:
+
+~~~dialogue
+DEFENSA: ¡PROTESTO! A esta punta le falta un pedazo. Y el pedazo que falta se quedó dentro del corcho.
+SARGENTO: Las dos superficies de rotura están fotografiadas a la misma escala. Coinciden borde con borde.
+SARGENTO: Y la rotura es reciente. El perito dice que una punta así se parte al forzarla contra el vidrio del cuello.
+DEFENSA: Por eso quedó dentro del corcho. Quien lo hizo no lo supo hasta hoy.
+DEFENSA: El conducto conserva residuos del mismo agente que mató al señor Gómez.
+SUPER SAM: ...Un anillo.
+DEFENSA: Un anillo que sirve para sellar lacre. Por eso nadie se extraña de que tenga cera. Lo que no se explica con cera es una punta hueca.
+JUEZ: ¿Y quién tenía esa pieza esa noche?
+DEFENSA: A las nueve y cuarto selló con él la autorización de la cava. La cera sigue en el folio, con su escudo.
+CECILIO: Ese sello lo estampó delante de mí. Por eso ese folio lleva lacre y no una firma más.
+MARUJA: Y yo se lo vi puesto en la puerta de la 204, cuando firmó el recibo del vino.
+DEFENSA: Botija nunca lo tuvo y nadie declara habérselo prestado esa noche.
+SARGENTO: Yo se lo incauté ayer por la tarde, cuando el tribunal ordenó su custodia. No hubo una noche para deshacerse de él.
+DEFENSA: Y ahí se cierra lo que quedó abierto hace un momento: quien guardó el cierre nunca tuvo este anillo, y la pieza que dejó ese fragmento lleva bajo custodia desde ayer.
+JUEZ: El tribunal da por resuelta esa posibilidad.
+DEFENSA: Señor Rufián: usted quedó solo con una botella cerrada, y el pedazo que le falta a su anillo estaba dentro de ese corcho.
+[cutin: objection_toma_eso; música objection]
+RUFINO: ...
+NARRADOR: El monóculo se desprende y queda colgando de su cadena.
+RUFINO: ¡Ese cierre debía irse a la basura! ¡Se lo dio a ella! ¡Se lo dio a ella delante de mí como si fuera un caramelo!
+[pose rufino_breakdown; sfx desk_slam]
+~~~
+
+Esta es la última successDialogue del clímax y precede al veredicto sin ninguna pregunta intermedia.
+
+Cecilio y Maruja están en la sala desde sus propios testimonios y sus dos líneas confirman hechos ya asentados: la cadena de posesión se leyó en delegacion_d3 y consta en orden_servicios. No es una procesión de testigos nuevos en la réplica final; si al implementar resultara pesado, esas confirmaciones las lee el Sargento del expediente.
+
+### 13.4 Confesión y veredicto
+
+La confesión aporta motivo y emoción. No aporta ningún hecho indispensable para la demostración: todo lo necesario ya está probado.
+
+~~~dialogue
+RUFINO: El collar lo planeé yo. Él solo abrió una vitrina y desde entonces se creyó mi socio.
+RUFINO: Once meses cobrando. Y esa noche llegó a mi hotel a poner precio a mi apellido.
+JUEZ: Su apellido es falso.
+RUFINO: Por eso valía tanto.
+DEFENSA: ¿Y el fontanero?
+RUFINO: Un hombre con expediente, con llave maestra y con una discusión oída por medio pasillo. Lo escribí en un papel y el hotel me lo subió.
+BOTIJA: Me eligió porque nadie me iba a creer.
+RUFINO: Lo elegí porque era barato.
+CHIMOLTRUFIA: ¡Míreme cuando diga eso!
+JUEZ: Bastante he oído. Este tribunal dicta su fallo.
+~~~
+
+Veredicto:
+
+~~~dialogue
+JUEZ: Gordon Botija Pompa y Pompa, este tribunal lo declara NO CULPABLE.
+[cutin: objection_inocente; música victory; confeti en la cámara del veredicto]
+JUEZ: El acusado responderá en vía administrativa por haber tomado y no entregado la cartera del difunto. No por su muerte.
+BOTIJA: Sí, señor. Eso sí lo hice.
+JUEZ: Se ordena procesar a Rufino Rufián por homicidio, encubrimiento y receptación del Collar de Cleopatra.
+JUEZ: El tribunal deja constancia del trabajo del sargento Refugio Pazguato, que solicitó los exámenes que corrigieron su propio parte.
+SUPER SAM: Un fiscal eficiente reconoce sus pérdidas y cierra la posición, Your Honor. Time is money.
+DEFENSA: Es lo más bonito que le he oído decir.
+[fundido a negro antes del corte de ubicación]
+~~~
+
+El confeti pertenece a la cámara del veredicto. El paso a la sala de espera se hace con fundido a negro, no con un salto directo de fondo.
+
+### 13.5 Epílogo
+
+Sala de espera de la corte, 27 de octubre, 18:00. Cada línea estampa su fondo. Botija y la Chimoltrufia son el centro; el Sargento conserva su plaza en la policía.
+
+~~~dialogue
+NARRADOR: Sala de espera de la corte.
+BOTIJA: Nunca había salido de un juzgado por mi propio pie.
+CHIMOLTRUFIA: Pues acostúmbrate, porque de esta casa no te vuelves a ir ni a la esquina sin avisar.
+SARGENTO: Don Cecilio me ofreció jefe de seguridad del hotel. Con uniforme de gala.
+DEFENSA: ¿Y qué le contestó?
+SARGENTO: Que en la policía me dejan pedir análisis. En el hotel solo me dejarían abrir puertas.
+CHOMPIRAS: Yo le guardé el puesto al Botija. Y el montacargas ya tiene cartel nuevo: “solo equipaje”.
+BOTIJA: Ese cartel ya estaba.
+CHOMPIRAS: Ahora está en grande.
+CHAPULIN: Yo lo sospeché desde un principio. Como dice el dicho: camarón que se duerme no lo dejes para mañana.
+DEFENSA: ...Chapulín.
+CHAPULIN: Espere: no dejes para mañana el camarón que se lo lleva la corriente... Bueno, la idea es esa.
+CHIMOLTRUFIA: A mí me pareció bonito.
+DEFENSA: A mí me parece que ya nos podemos ir.
+BOTIJA: Don Ramón. Lo del pago...
+DEFENSA: Arréglame la llave del lavadero y quedamos a mano. Lleva dieciséis meses goteando, igual que mi casero.
+[fundido a negro; placa de caso completo]
+~~~
+
+Es la segunda y última mezcla de refranes del episodio. No participa en ninguna deducción.
+
+## 14. Progresión y prevención de bloqueos
+
+El motor comprueba **solo inventario** para habilitar cada juicio: `checkTrialReadiness` recorre `requiredEvidence` y verifica posesión, sin mirar ubicaciones visitadas ni temas oídos (`GameStateCaseRules.resolveRequiredEvidence`, `GameStateManager`). Por eso la última ubicación obligatoria de cada jornada debe entregar un identificador nuevo, y ninguna lista puede apoyarse en un `updateEvidence`.
+
+| Jornada | Campo del script | requiredEvidence | Último identificador y dónde se entrega |
+| --- | --- | --- | --- |
+| D1 | `CaseScript.requiredEvidence` | informe_policial, foto_crimen, billetera_cuajinais, orden_servicios, plano_hotel, candado_cadena | candado_cadena, en hotel_terraza tras el tema final |
+| D2 | `adjournment.requiredEvidence` | residuos_manos, casquillo_fogueo, registro_montacargas, baul_etiquetas, copa_vino, toxicologia_vino | toxicologia_vino, en delegacion tras oír el alcance del análisis |
+| D3 | `adjournment.next.requiredEvidence` | botella_vino, boleta_baccarat, nota_amenaza, sello_lacre | sello_lacre, en delegacion_d3 tras la cadena de posesión |
+
+Reglas de gating:
+
+- informe_forense se entrega dentro del juicio del día 1; nunca aparece en una lista de requeridos.
+- Las actualizaciones enriquecen fichas, no abren jornadas. Cada ficha declara en §5 tantas entradas de `updates[]` como `[ACTUALIZAR]` recibe, y en el mismo orden: informe_policial tres (D1 anexo, D1 juicio, D2 balística), orden_servicios tres (D1, D2, D3), nota_amenaza y toxicologia_vino una cada una en D3.
+- Cada ubicación se abre con `unlockLocation` desde el tema obligatorio de la anterior: detention → hotel_lobby → hotel_suite → hotel_terraza; hotel_sotano → hotel_suite204 → hotel_terraza_d2 → hotel_azotea → delegacion; hotel_cava → hotel_lobby_d3 → detention_d3 → delegacion_d3.
+- Un tema con un solo requisito usa `unlockedByTalk` o `unlockedByHotspot`. Los temas que exigen dos o tres requisitos usan el predicado `condition(flags)` sobre las banderas `talk_<id>` y `examined_<id>`: declarar los dos campos juntos NO es una conjunción, porque `isTalkOptionUnlocked` los evalúa como alternativa y basta cumplir uno. Ningún tema exige un orden que el jugador no pueda deducir del diálogo anterior.
+- `ClimaxStage.requiredUpdateStage` existe y el Caso 3 lo usa, pero aquí no hace falta: las dos pruebas del clímax llegan completas desde la investigación del día 3.
+
+Prevención de bloqueos por rotación de reparto:
+
+- Un residente solo se sustituye cuando sus hechos ya están en el Acta o en un tema obligatorio cumplido. Cecilio agota los suyos en D1 (orden_servicios, plano_hotel, ruido) antes de que Chimoltrufia ocupe el mostrador en D3; Maruja agota los suyos en D1, incluido el cierre, antes de que Chómpiras ocupe la terraza en D2.
+- La sustitución se hace siempre con una ubicación nueva de sufijo de día (hotel_terraza_d2, hotel_lobby_d3, detention_d3, delegacion_d3), nunca mutando el objeto de escena existente.
+- Cecilio y Maruja siguen apareciendo en sala; los hechos que aportan en juicio ya están asentados como prueba antes de necesitarse.
+
+## 15. Ubicaciones, residentes y assets
+
+| Ubicación | Día | Fondo | Residente | Entrega principal |
+| --- | --- | --- | --- | --- |
+| detention | 1 | bg_detention | Botija | billetera_cuajinais |
+| hotel_lobby | 1 | bg_hotel_lobby | Cecilio (Rufino de paso) | orden_servicios, plano_hotel |
+| hotel_suite | 1 | bg_hotel_suite | Sargento | informe_policial, foto_crimen |
+| hotel_terraza | 1 | bg_hotel_bar | Maruja (Sargento al final) | anexo del cierre, candado_cadena |
+| hotel_sotano | 2 | bg_hotel_sotano | Sargento | residuos_manos |
+| hotel_suite204 | 2 | bg_hotel_suite204 | Rufino, con el Sargento | casquillo_fogueo |
+| hotel_terraza_d2 | 2 | bg_hotel_bar | Chómpiras | registro_montacargas |
+| hotel_azotea | 2 | bg_hotel_azotea | Chómpiras y Sargento | baul_etiquetas |
+| delegacion | 2 | bg_delegacion | Sargento | copa_vino, toxicologia_vino |
+| hotel_cava | 3 | bg_hotel_cava | Sargento | botella_vino |
+| hotel_lobby_d3 | 3 | bg_hotel_lobby | Chimoltrufia | boleta_baccarat, nota_amenaza |
+| detention_d3 | 3 | bg_detention | Botija y Chimoltrufia | ninguna; escena de personaje |
+| delegacion_d3 | 3 | bg_delegacion | Sargento | sello_lacre |
+
+Los siete fondos del hotel y los de detención, delegación y tribunal ya existen. delegacion_d3 es una escena nueva sobre un fondo existente. No se requieren sprites nuevos: la derrota de Rufino se resuelve con rufino_breakdown y el monóculo caído se narra.
+
+Láminas de examen (`detailedView`) nuevas o revisadas:
+
+| Lámina | Prueba | Uso |
+| --- | --- | --- |
+| Cierre de cadena, tres estados | candado_cadena | Preparación interior, puerta emparejada con lazo accesible, cadena enganchada. La misma geometría en los tres dibujos. |
+| Plano con baño, biombo y corredores | plano_hotel | Señalamiento ramal_204_304 y comprensión del recorrido interior de la 304. |
+| Bitácora del montacargas | registro_montacargas | Filas con número, trayecto y carga; marcas impresas legibles sin depender del color. |
+| Folio manuscrito de mantenimiento | orden_servicios | Señalamiento sobre el nombre escrito a mano. |
+| Telegrama con acuse | nota_amenaza | Señalamiento sobre el recibo firmado. |
+| Cierre extraído a escala | botella_vino | Huella del sacacorchos, canal fino e inclusión metálica. |
+| Anillo y comparación de fractura | sello_lacre | Vistas del anillo abierto y de las dos superficies de rotura a la misma escala. |
+
+Reglas de assets:
+
+- Las coordenadas de `PointZone` son porcentajes `[minX, minY, maxX, maxY]` medidos sobre la lámina generada de 960×540. No se reutilizan las coordenadas de la versión anterior: cambian los dibujos.
+- Un hotspot delimita un objeto, no una pared. Ninguno supera el 20% de la superficie de la escena salvo que el objeto pintado ocupe realmente eso, y ninguno baja del 8% de ancho para que siga siendo pulsable. La versión anterior del juego tiene la cava resuelta con un único hotspot de 90×72 —el 65% de la pantalla— y el armario de la 204 al 41%: son botones de continuar disfrazados de examinar, y enseñan al jugador que fuera de esa caja no hay nada que mirar. No reproducirlos.
+- Una escena con un solo objeto que mirar no necesita modo examinar: si al medir los hotspots queda uno solo y enorme, el contenido va en un tema de conversación y la escena se ahorra el examen.
+- La geometría del cierre debe poder dibujarse en los tres estados antes de implementar el puzle. Si el dibujo no sostiene el recorrido, se corrige el mecanismo, no la lámina.
+- El anillo es ficción material: el jugador debe entender su forma por las vistas, no por una explicación técnica de funcionamiento aparecida al señalar.
+- Ningún asset se genera en esta especificación. La validación visual del cierre y del anillo queda pendiente.
+
+## 16. Matriz de información, alcance y cabos sueltos
+
+Cada presentación ataca una afirmación concreta y falsa. La tercera columna es lo que la prueba **no** demuestra; el guion no puede excederla.
+
+| Momento | Prueba | Afirmación refutada | Alcance |
+| --- | --- | --- | --- |
+| D1-T1 | candado_cadena | “Solo alguien dentro pudo echar la cadena” | Prueba una posibilidad de cierre exterior; no identifica autor |
+| D1-T2 | informe_forense | “La bala causó la muerte al sonar el estruendo” | Fija muerte anterior; no dice quién ni con qué |
+| D1-T2 (followUp) | foto_crimen | “Un disparo así se habría oído antes” | Explica amortiguación; no fija la hora del tiro |
+| D2-T1 | plano_hotel + casquillo_fogueo | “El estruendo nació dentro de la 304” | Explica el ruido; no identifica quién montó el efecto |
+| D2-T2 | registro_montacargas | “Ese envío contenía únicamente equipaje” | Obliga a investigar una descarga; no nombra el contenido |
+| D2-T2 (followUp) | baul_etiquetas | “El baúl nunca tocó a la víctima” | Acredita contacto de la prenda; la identidad la confirma la admisión de Rufino |
+| D3-T1 | orden_servicios | “El hotel eligió al empleado” | Acredita elección deliberada; no acredita envenenamiento |
+| D3-T2 | nota_amenaza | “No esperaba esa visita y no le debía nada” | Acredita móvil y deuda; no acredita autoría |
+| Clímax 1 | botella_vino | “Una botella sellada no pudo alterarse” | Acredita el método; la custodia excluye la 204 y al detenido, no a quien guardó el cierre; no identifica la mano |
+| Clímax 2 | sello_lacre | “Cualquier herramienta fina explica ese canal” | Identifica el instrumento por encaje de fractura y residuos y cierra la posibilidad abierta en el stage 1; no excluye que existan otras herramientas finas ni fija el minuto de la perforación |
+
+Acusación vigente al terminar cada jornada:
+
+| Fin de | Hipótesis de la fiscalía | Qué le falta |
+| --- | --- | --- |
+| D1 | Botija mató por otro medio, aprovechando su acceso | Una causa de muerte |
+| D2 | Botija alteró la botella que transportó | Cómo se altera una botella cerrada |
+| D3 | Rufino envenenó, eligió al chivo expiatorio y montó la escena | Nada: método, instrumento, posesión y móvil quedan probados |
+
+Cabos sueltos y dónde se cierran:
+
+- Revólver: era de la víctima, registrado en el padrón; por eso quedó en la habitación (presión 2 de D3-T1).
+- Billetera y los $200: Botija la tomó para identificar al muerto y se asienta como falta administrativa en el veredicto. Nunca se usa como prueba de inocencia.
+- Deuda de juego de Maruja: explicada en su presión del día 2; no esconde otro misterio.
+- Cierre del corcho: custodia desde antes del sorbo con su hueco de quince horas declarado en sala, análisis del canal y encaje en el clímax.
+- Collar de Cleopatra: recuperado en delegacion_d3 y adjuntado a nota_amenaza; se nombra en el veredicto.
+- Maletín de la 204: sellado al cerrar D2, abierto con el telegrama.
+- Inventario de material de gala: explica el origen del efecto sin atribuirlo por exclusividad.
+- residuos_manos: cierra la imputación por pólvora sin declarar imposible disparar.
+- Llave ordinaria de la 304 en la mesita: parte del montaje; Botija entró con la maestra.
+- Cubeta de hielo: servicio ordinario. No se mide ni se usa como reloj.
+
+Conocimiento obligatorio antes del clímax: método del cierre observado en la cava, custodia y posesión del anillo leídas en la cadena de delegacion_d3 (§11.4), y las dos láminas accesibles desde el Acta. Las confirmaciones de Cecilio y Maruja en el clímax repiten esa cadena en voz alta; no la sustituyen. Es opcional preguntar por la diferencia de peso en D2 y por el anillo en la escena de la detención. El tema del pasado de Botija es obligatorio: cierra §11.3 y abre delegacion_d3.
+
+## 17. Presupuesto de duración y validación
+
+Las cifras son un presupuesto de diseño, no una medición. El texto de este documento fija la estructura y las líneas indispensables; el guion final será más extenso.
+
+| Bloque | Minutos estimados |
+| --- | --- |
+| D1 investigación (4 escenas) | 20 |
+| D1 juicio (2 testimonios) | 16 |
+| D2 investigación (5 escenas) | 22 |
+| D2 juicio (2 testimonios) | 18 |
+| D3 investigación (4 escenas) | 18 |
+| D3 juicio (2 testimonios) | 16 |
+| Clímax, veredicto y epílogo | 12 |
+| Total | 122 |
+
+Banda esperada de 110 a 135 minutos según lectura y fallos. La validación es jugada, no calculada: una partida completa sin conocimiento previo, midiendo cada bloque y anotando dónde el jugador relee o se detiene. No se alarga con esperas, repeticiones de temas ni diálogo de relleno; si falta duración, se añade investigación con decisiones, no líneas.
+
+## 18. Migración técnica, documentación y QA
+
+El motor no necesita lógica nueva. Todos los esquemas de guion existen ya en `src/types/Private/script.ts`, pero sí hay que ampliar la unión cerrada `EvidenceId` de `src/types/Private/evidence.ts` con orden_servicios y toxicologia_vino, o nada compila:
+
+- Dos testimonios por jornada y encadenamiento por `AdjournmentDefinition.next`.
+- Una `ContradictionRule` con un `followUp` como máximo, y `PointTargetContradiction` en regla, followUp o stage.
+- `ClimaxDefinition.stages` con `presentTarget`, `prompt`, `pointTarget` y `successDialogue`; `verdict` y `epilogue` aparte.
+- `detailedView` muestra imágenes y tooltips; no ejecuta diálogo de descubrimiento.
+
+Trabajo de implementación pendiente:
+
+- Reescribir los guiones de `src/case/case4/Private/` en español y su par `_en`, incluida la escena nueva delegacion_d3 y su registro en el índice del caso.
+- Ampliar `EvidenceId` en `src/types/Private/evidence.ts` y actualizar `EvidenceCatalogCase4Es.ts` y `EvidenceCatalogCase4En.ts` con las 18 fichas y sus arrays `updates[]` completos. Revisar colisiones de nombre de archivo de icono con casos anteriores.
+- Actualizar `tests/case/Case4Trial.test.ts`, `tests/case/Case4Hotspots.test.ts` y `tests/engine/TrialFollowUp.test.ts`; añadir cobertura de las dos rutas de D2-T1, del gating por jornada y de los cuatro señalamientos nuevos.
+- Regenerar las láminas de examen y medir de nuevo las zonas sobre el WebP producido.
+
+Documentación a actualizar **cuando la implementación exista**, no antes: las filas de Chimoltrufia y Chómpiras en el glosario describen todavía la versión vigente del juego; `docs/flows/present-point-flow.md` y `docs/flows/evidence-examine-flow.md` deben recoger los nuevos señalamientos; `docs/architecture/case-scripting.md` solo cambia si aparece una escena o un campo nuevo.
+
+Este documento sustituye el diseño narrativo anterior del Caso 4 y deja obsoleto el plan de reconstrucción `docs/plans/case-4-reconstruccion-narrativa-privada.md`, que se conserva como registro del diagnóstico.
+
+Validaciones pendientes antes de implementar: el dibujo del cierre en tres estados y la geometría del anillo. La coherencia horaria de los §§11–13 se cotejó contra la cronología de §4.2 al redactarlos; cualquier ajuste posterior de horas debe repetir ese cotejo.

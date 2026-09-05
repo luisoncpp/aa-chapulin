@@ -64,7 +64,11 @@ export const CASE4_TESTIMONY_4: Testimony = {
         evidence: ['plano_hotel'],
         pointTarget: CASE4_PLANO_POINT_TARGET,
         successDialogue: CASE4_D2_T2_PLANO_SUCCESS,
-        followUp: { evidence: ['casquillo_fogueo'], successDialogue: CASE4_D2_T2_CASQUILLO_SUCCESS }
+        followUp: {
+          evidence: ['casquillo_fogueo'],
+          prompt: '¿Qué objeto produjo la falsa detonación acústica de las 11:15 PM?',
+          successDialogue: CASE4_D2_T2_CASQUILLO_SUCCESS
+        }
       }
     }
   ]

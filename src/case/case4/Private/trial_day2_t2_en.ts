@@ -3,12 +3,22 @@
  * Case 4 Trial Day 2 — Testimony 4 (English).
  */
 
-import type { DialogueLine, Testimony } from '../../../types/index.js';
-import { CASE4_PLANO_POINT_TARGET } from './trial_day2_success.js';
+import type { DialogueLine, PointTargetContradiction, Testimony } from '../../../types/index.js';
 
-const PLANO_POINT_EN = {
-  ...CASE4_PLANO_POINT_TARGET,
-  promptQuestion: 'Point to the exact conduit where the sound wave from the 11:15 PM gunshot propagated!'
+const PLANO_FAILURE_EN: DialogueLine[] = [
+  { speaker: 'DEFENSA', pose: 'donramon_panic', text: 'Through this section of the building is where the blast traveled... I think!' },
+  { speaker: 'JUEZ', pose: 'judge_shock', text: 'But counselor, that section has no direct steam connection to Suite 304!', sfx: 'damage' },
+  { speaker: 'SUPER SAM', pose: 'supersam_point', text: 'Pure architectural disorientation! Minus ten dollars from your fee!' }
+];
+
+const CASE4_PLANO_POINT_TARGET_EN: PointTargetContradiction = {
+  targetEvidenceId: 'plano_hotel',
+  promptQuestion: 'Point to the exact conduit where the sound wave from the 11:15 PM gunshot propagated!',
+  imageAsset: 'assets/examine_plano.webp',
+  zones: [
+    { id: 'tuberia_vapor_vertical', bounds: [40, 18, 62, 74], isCorrect: true, failureDialogue: [] },
+    { id: 'plano_resto', bounds: [0, 0, 100, 100], isCorrect: false, failureDialogue: PLANO_FAILURE_EN }
+  ]
 };
 
 const T4_PLANO_EN: DialogueLine[] = [
@@ -16,7 +26,7 @@ const T4_PLANO_EN: DialogueLine[] = [
 ];
 
 const T4_CASQUILLO_EN: DialogueLine[] = [
-  { speaker: 'DEFENSA', text: 'It was an acoustic trap built with this slow-fuse blank cartridge, detonated inside Suite 204\'s purge pipe!', pose: 'donramon_slam', sfx: 'desk_slam' },
+  { speaker: 'DEFENSA', text: 'It was an acoustic trap built with this slow-fuse blank cartridge, detonated inside Suite 204\'s purge pipe!', pose: 'donramon_point', cutin: 'objection_toma_eso', sfx: 'whoosh', bgm: 'objection' },
   { speaker: 'MARUJA', text: 'Suite 204?! But that\'s the Count of Montemayor\'s chamber!', pose: 'maruja_shock' },
   { speaker: 'JUEZ', text: 'The illustrious Count of Montemayor involved in a pyrotechnic device?!', pose: 'judge_shock' },
   { speaker: 'DEFENSA', text: 'The real killer poisoned Cuajinais with cyanide before ten, shot him through a feather pillow to muffle the blast and simulate bullet death, set a delayed acoustic detonation for a public alibi at 11:15 PM, and locked my client inside to carry the corpse!', pose: 'donramon_point' },
@@ -78,9 +88,13 @@ export const CASE4_TESTIMONY_4_EN: Testimony = {
       ],
       contradiction: {
         evidence: ['plano_hotel'],
-        pointTarget: PLANO_POINT_EN,
+        pointTarget: CASE4_PLANO_POINT_TARGET_EN,
         successDialogue: T4_PLANO_EN,
-        followUp: { evidence: ['casquillo_fogueo'], successDialogue: T4_CASQUILLO_EN }
+        followUp: {
+          evidence: ['casquillo_fogueo'],
+          prompt: 'What object produced the fake acoustic gunshot at 11:15 PM?',
+          successDialogue: T4_CASQUILLO_EN
+        }
       }
     }
   ]

@@ -61,7 +61,11 @@ export const CASE4_TESTIMONY_6_EN: Testimony = {
       contradiction: {
         evidence: ['baul_etiquetas'],
         successDialogue: T6_BAUL_EN,
-        followUp: { evidence: ['copa_vino'], successDialogue: T6_COPA_EN }
+        followUp: {
+          evidence: ['copa_vino'],
+          prompt: 'What proof links the victim\'s poisoning to the fake count?',
+          successDialogue: T6_COPA_EN
+        }
       }
     },
     {

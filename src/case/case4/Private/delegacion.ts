@@ -36,7 +36,7 @@ export const CASE4_DELEGACION: InvestigationScene = {
       label: '¿Causa real de la muerte?',
       dialogue: [
         { speaker: 'SARGENTO', text: 'Asfixia celular por cianuro de potasio entre las 9:30 y las 10:00 PM. El disparo de las 11:15 fue post-mortem.', pose: 'pazguato_decidido' },
-        { speaker: 'DEFENSA', text: '(Giro 1... La falsa hora de muerte. Mañana lo destrozamos en el tribunal.)', pose: 'donramon_point' }
+        { speaker: 'DEFENSA', text: '(Giro 1... La falsa hora de muerte. En un rato lo destrozamos en el tribunal.)', pose: 'donramon_point' }
       ]
     }
   ]

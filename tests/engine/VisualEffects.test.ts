@@ -96,6 +96,13 @@ describe('VisualEffects Subsystem', () => {
     expect(firstPiece.style.backgroundColor).toBeDefined();
   });
 
+  it('maps Case 4 trial speakers onto the witness camera', () => {
+    expect(VisualEffects.inferTrialBackground('BOTIJA')).toBe('assets/bg_witness.webp');
+    expect(VisualEffects.inferTrialBackground('CECILIO')).toBe('assets/bg_witness.webp');
+    expect(VisualEffects.inferTrialBackground('MARUJA')).toBe('assets/bg_witness.webp');
+    expect(VisualEffects.inferTrialBackground('RUFINO')).toBe('assets/bg_witness.webp');
+  });
+
   it('displays slide-in notification toast and hides after timeout', () => {
     VisualEffects.showNotification(dom.gameNotificationEl, '¡Prueba encontrada!');
     expect(dom.gameNotificationEl.textContent).toBe('¡Prueba encontrada!');

@@ -46,6 +46,22 @@ describe('EngineDebugBootstrap', () => {
     window.location = originalLocation;
   });
 
+  it('loads case 4 from the query string', () => {
+    const originalLocation = window.location;
+    delete (window as { location?: Location }).location;
+    window.location = { search: '?case=4', hash: '' } as Location;
+
+    const actions = { caseId: null as CaseId | null };
+    applyDebugUrlParams({
+      setLanguage: () => undefined,
+      loadCase: (caseId) => { actions.caseId = caseId; },
+      startTrialDebug: () => undefined
+    });
+
+    expect(actions.caseId).toBe('case4');
+    window.location = originalLocation;
+  });
+
   it('does nothing when location is missing', () => {
     const originalLocation = window.location;
     delete (window as { location?: Location }).location;

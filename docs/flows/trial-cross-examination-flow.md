@@ -19,7 +19,7 @@ Operational guide for courtroom litigation, cross-examinations, evidence present
 1. `fadeThroughBlack` covers the investigation plate.
 2. While covered, `gameState.mode` switches to `'TRIAL'`, HUD hides investigation controls, and the first intro shot (`bg`, pose, furniture) is painted so the reveal is already the courtroom.
 3. After the reveal, `queueDialogue` of the active day's intro (`getActiveTrial(script, trialDay).intro` via [[src/engine/Private/TrialDayRouter.ts]]).
-4. On intro complete, `startTestimony('testimony1')` is invoked.
+4. On intro complete: if `getActiveTrial(...).openingPresent` is set ([[src/engine/Private/TrialPresent.ts]]), open the Court Record in presentation mode. Correct evidence plays `successDialogue` then `startTestimony('testimony1')`; wrong evidence is a penalty and the Acta reopens. Otherwise `startTestimony('testimony1')` runs immediately.
 
 ### Testimony Looping & Pressing
 1. `startTestimony(testimonyKey)` sets `currentTestimony`, resets `currentStatementIdx = 0`, starts BGM (`cross_exam_moderato` or `cross_exam_allegro`), and renders statement 0.
@@ -35,10 +35,12 @@ Operational guide for courtroom litigation, cross-examinations, evidence present
 ### Presenting Evidence & Contradiction Evaluation
 1. Player clicks "📜 Presentar" (`#btn-trial-present`) on HUD or inside Court Record modal.
 2. Player selects an item and clicks "¡Presentar Prueba!".
-3. Modal closes; `handlePresentEvidence(selectedEvidenceId)` hides trial controls and checks `stmt.contradiction`:
+3. Modal closes; `handlePresentEvidence(selectedEvidenceId)` hides trial controls and checks opening present, pending `followUp`, then `stmt.contradiction`:
    - **Correct Evidence**:
-     1. Queues `stmt.contradiction.successDialogue` (displays `¡PROTESTO!` or `¡TOMA ESO!`, desk slams, realization sound, BGM switches to `objection` or `pursuit`).
-     2. On finish callback:
+     1. If the matched rule has `pointTarget`, open `#present-point-overlay` first ([[docs/flows/present-point-flow.md]]). Parent `successDialogue` waits for a correct click.
+     2. Queues `successDialogue` (displays `¡PROTESTO!` or `¡TOMA ESO!`, desk slams, realization sound, BGM switches to `objection` or `pursuit`).
+     3. If `followUp` is set, reopen the Acta for `followUp.evidence` (wrong = penalty; correct may also `pointTarget` then `followUp.successDialogue`).
+     4. On finish callback:
         - If finishing Testimony 1 -> launches `testimony2` (re-reveals trial controls upon statement render).
         - If finishing Testimony 2: no pending `adjournment` for this day → `startClimax()`. Otherwise fade back to investigation (`adjournment.nextLocation`; Case 3 day 2 goes to the office, day 3 to the storeroom).
    - **Incorrect Evidence**:
@@ -54,8 +56,8 @@ Operational guide for courtroom litigation, cross-examinations, evidence present
 2. Court Record opens in presentation mode (`isTrialPresent: true`). If closed by the player, advancing dialogue (Click / Space / Enter) or clicking the top HUD Court Record button (`#btn-court-record`) reopens the Court Record in presentation mode (`isTrialPresent: true`) **only while a present is still required**. After the last correct present (no `choices`) or the last correct choice, `isAwaitingEvidence()` is false: idle clicks during confetti or the lobby fade must not reopen the Acta. If the current `ClimaxStage` has `prompt`, that question stays on `#climax-present-prompt` even after the Acta is closed, and inside `#court-record-present-prompt` when it is open.
 3. Player presents a `presentTarget` for the current climax stage (`climax.stages` when set; otherwise `climax.presentTarget`):
    - Wrong item: penalty and incorrect-clue toast; Court Record stays open on the same stage. If that penalty sets health to 0, queue the guilty (`CULPABLE`) game-over lines and restart the trial instead of reopening the Court Record.
-   - Correct item on a non-final stage: queues that stage's `successDialogue`, then opens the Court Record again.
-   - Correct item on the final stage without `choices`: queues `script.trial.climax.verdict`, then confetti and optional epilogue as below.
+   - Correct item on a non-final stage: if the stage has `pointTarget`, Present & Point first; then queues that stage's `successDialogue`, then opens the Court Record again.
+   - Correct item on the final stage without `choices`: queues `stage.successDialogue`, then `climax.verdict` with confetti and optional epilogue. Case 1 has no `stages` array, so this is `verdict` only.
    - Correct item on the final stage with `choices` (Case 2): queues that stage's `successDialogue` (wax mold + judge question), then opens `#choice-prompt-modal`. Wrong choice: penalty + `failDialogue`, same prompt reopens. A wrong choice that exhausts health queues the guilty game-over lines and restarts the trial. Correct choice: `successDialogue`, then next prompt or verdict on the last one.
    - Case 1 is one stage (`antenitas_vinil` or `bolsa_dolares`). Case 2 is three presents then two choices.
 4. After the Not Guilty line (from `verdict` or last choice `successDialogue`):

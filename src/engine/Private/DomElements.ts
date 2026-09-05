@@ -58,7 +58,19 @@ export interface DomElements {
   btnStartGame: HTMLButtonElement;
   btnStartCase2?: HTMLButtonElement;
   btnStartCase3?: HTMLButtonElement;
+  btnStartCase4?: HTMLButtonElement;
   btnStartTrialDebug?: HTMLButtonElement;
+  btnEvidenceExamine?: HTMLButtonElement;
+  btnCloseExamine?: HTMLButtonElement;
+  evidenceExamineModalEl?: HTMLElement;
+  evidenceExamineTitleEl?: HTMLElement;
+  evidenceExamineCaptionEl?: HTMLElement;
+  evidenceExamineImageEl?: HTMLImageElement;
+  evidenceExamineZonesEl?: HTMLElement;
+  presentPointOverlayEl?: HTMLElement;
+  presentPointPromptEl?: HTMLElement;
+  presentPointStageEl?: HTMLElement;
+  presentPointImageEl?: HTMLImageElement;
   btnCourtRecord: HTMLButtonElement;
   btnCloseRecord: HTMLButtonElement;
   btnInvExamine: HTMLButtonElement;
@@ -74,7 +86,12 @@ export interface DomElements {
   btnNextStatement: HTMLButtonElement;
 }
 
+function opt<T extends HTMLElement>(id: string): T | undefined {
+  return (document.getElementById(id) as T) || undefined;
+}
+
 // @Section(DOM Element Cache)
+// fallow-ignore-next-line complexity
 export function getDomElements(): DomElements {
   return {
     gameScreen: document.getElementById('game-screen')!,
@@ -120,17 +137,29 @@ export function getDomElements(): DomElements {
     btnLangToggleEl: document.getElementById('btn-lang-toggle') as HTMLButtonElement,
     btnLangSplashEl: document.getElementById('btn-lang-splash') as HTMLButtonElement,
     btnSaveGame: document.getElementById('btn-save-game') as HTMLButtonElement,
-    btnHistory: (document.getElementById('btn-history') as HTMLButtonElement) || undefined,
-    btnCloseHistory: (document.getElementById('btn-close-history') as HTMLButtonElement) || undefined,
-    historyModalEl: document.getElementById('history-modal') || undefined,
-    historyListEl: document.getElementById('history-list') || undefined,
+    btnHistory: opt<HTMLButtonElement>('btn-history'),
+    btnCloseHistory: opt<HTMLButtonElement>('btn-close-history'),
+    historyModalEl: opt('history-modal'),
+    historyListEl: opt('history-list'),
     btnLoadGame: document.getElementById('btn-load-game') as HTMLButtonElement,
     btnContinueGame: document.getElementById('btn-continue-game') as HTMLButtonElement,
     gameNotificationEl: document.getElementById('game-notification')!,
     btnStartGame: document.getElementById('btn-start-game') as HTMLButtonElement,
     btnStartCase2: document.getElementById('btn-start-case2') as HTMLButtonElement,
     btnStartCase3: document.getElementById('btn-start-case3') as HTMLButtonElement,
-    btnStartTrialDebug: (document.getElementById('btn-start-trial-debug') as HTMLButtonElement) || undefined,
+    btnStartCase4: opt<HTMLButtonElement>('btn-start-case4'),
+    btnStartTrialDebug: opt<HTMLButtonElement>('btn-start-trial-debug'),
+    btnEvidenceExamine: opt<HTMLButtonElement>('btn-evidence-examine'),
+    btnCloseExamine: opt<HTMLButtonElement>('btn-close-examine'),
+    evidenceExamineModalEl: opt('evidence-examine-modal'),
+    evidenceExamineTitleEl: opt('evidence-examine-title'),
+    evidenceExamineCaptionEl: opt('evidence-examine-caption'),
+    evidenceExamineImageEl: opt<HTMLImageElement>('evidence-examine-image'),
+    evidenceExamineZonesEl: opt('evidence-examine-zones'),
+    presentPointOverlayEl: opt('present-point-overlay'),
+    presentPointPromptEl: opt('present-point-prompt'),
+    presentPointStageEl: opt('present-point-stage'),
+    presentPointImageEl: opt<HTMLImageElement>('present-point-image'),
     btnCourtRecord: document.getElementById('btn-court-record') as HTMLButtonElement,
     btnCloseRecord: document.getElementById('btn-close-record') as HTMLButtonElement,
     btnInvExamine: document.getElementById('btn-inv-examine') as HTMLButtonElement,

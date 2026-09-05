@@ -33,7 +33,11 @@ const TRIAL_SPEAKER_BACKGROUNDS: Record<string, string> = {
   BARRIGA: 'assets/bg_witness.webp',
   NONO: 'assets/bg_witness.webp',
   CHIMOLTRUFIA: 'assets/bg_witness.webp',
-  SARGENTO: 'assets/bg_witness.webp'
+  SARGENTO: 'assets/bg_witness.webp',
+  BOTIJA: 'assets/bg_witness.webp',
+  CECILIO: 'assets/bg_witness.webp',
+  MARUJA: 'assets/bg_witness.webp',
+  RUFINO: 'assets/bg_witness.webp'
 };
 
 function isDefenseSpeaker(speaker: string): boolean {
@@ -52,9 +56,7 @@ export class VisualEffects {
     charSpriteEl.classList.remove('hidden');
   }
 
-  public static hideCharacter(charSpriteEl: HTMLImageElement): void {
-    charSpriteEl.classList.add('hidden');
-  }
+  public static hideCharacter(charSpriteEl: HTMLImageElement): void { charSpriteEl.classList.add('hidden'); }
 
   // @Section(Courtroom Furniture Staging)
   public static setFurniture(
@@ -106,7 +108,6 @@ export class VisualEffects {
     return null;
   }
 
-  /** Background, furniture, and stage frame are one composition. */
   public static updateStagingForLine(
     dom: DomElements,
     line: DialogueLine,
@@ -187,7 +188,6 @@ export class VisualEffects {
     containerEl.replaceChildren();
     containerEl.classList.add('hidden');
   }
-
   public static showNotification(notifEl: HTMLElement, msg: string): void {
     notifEl.textContent = msg;
     notifEl.classList.remove('hidden');

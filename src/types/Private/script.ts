@@ -96,6 +96,24 @@ export type PoseName =
   | 'chimoltrufia_idle'
   | 'chimoltrufia_confundida'
   | 'chimoltrufia_shock'
+  | 'botija_idle'
+  | 'botija_nervioso'
+  | 'botija_llorando'
+  | 'botija_aliviado'
+  | 'cecilio_idle'
+  | 'cecilio_ciego'
+  | 'cecilio_escandalo'
+  | 'cecilio_shock'
+  | 'maruja_idle'
+  | 'maruja_coqueta'
+  | 'maruja_abanico'
+  | 'maruja_nerviosa'
+  | 'maruja_shock'
+  | 'rufino_smug'
+  | 'rufino_monocle'
+  | 'rufino_sweat'
+  | 'rufino_panic'
+  | 'rufino_breakdown'
   | null;
 
 export type CutinName =
@@ -167,9 +185,37 @@ export interface InvestigationScene {
 }
 
 // @Section(Trial & Testimony Schema)
+export interface PointZone {
+  id: string;
+  bounds: [number, number, number, number];
+  isCorrect: boolean;
+  failureDialogue: DialogueLine[];
+}
+
+export interface PointTargetContradiction {
+  targetEvidenceId: EvidenceId;
+  promptQuestion: string;
+  imageAsset?: string;
+  zones: PointZone[];
+}
+
+export interface ContradictionFollowUp {
+  evidence: EvidenceId[];
+  successDialogue: DialogueLine[];
+  pointTarget?: PointTargetContradiction;
+}
+
 export interface ContradictionRule {
   evidence: EvidenceId[];
   successDialogue: DialogueLine[];
+  pointTarget?: PointTargetContradiction;
+  followUp?: ContradictionFollowUp;
+}
+
+export interface OpeningPresent {
+  evidence: EvidenceId[];
+  successDialogue: DialogueLine[];
+  prompt?: string;
 }
 
 export interface Statement {
@@ -202,6 +248,7 @@ export interface ClimaxStage {
   prompt?: string;
   /** Minimum evidence update stage required before an id is accepted at this stage. */
   requiredUpdateStage?: Partial<Record<EvidenceId, number>>;
+  pointTarget?: PointTargetContradiction;
 }
 
 export interface ChoiceOption {
@@ -232,12 +279,14 @@ export interface TrialScript {
   testimony1: Testimony;
   testimony2: Testimony;
   climax: ClimaxDefinition;
+  openingPresent?: OpeningPresent;
 }
 
 export interface TrialDayScript {
   intro: DialogueLine[];
   testimony1: Testimony;
   testimony2: Testimony;
+  openingPresent?: OpeningPresent;
 }
 
 export interface AdjournmentDefinition {

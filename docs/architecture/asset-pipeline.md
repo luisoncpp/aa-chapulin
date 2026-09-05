@@ -1,6 +1,6 @@
 # Asset Pipeline Architecture
 
-Technical guide for [[process_assets.py]], [[process_case2_assets.py]], and [[verify_assets.py]], configured in [[pipeline.group.md]].
+Technical guide for [[process_assets.py]], [[process_case2_assets.py]], [[process_case3_assets.py]], [[process_case4_assets.py]], and [[verify_assets.py]], configured in [[pipeline.group.md]].
 
 ## Overview
 
@@ -9,10 +9,10 @@ The asset pipeline automates the extraction, transparency keying, cropping, and 
 ```mermaid
 flowchart LR
     Raw[AI Grid Generation] --> Process[process_assets.py]
-    Raw2[Case 2 Raw Sheets] --> Process2[process_case2_assets.py]
+    Raw2[Case 2-4 Raw Sheets] --> ProcessN[process_case2/3/4_assets.py]
     Process --> Chroma[Magenta Chroma-Keying]
-    Process2 --> Chroma
-    Chroma --> Slicing[2x2 / 4x3 Grid Cropping]
+    ProcessN --> Chroma
+    Chroma --> Slicing[2x2 / 4x3 / 4x4 Grid Cropping]
     Slicing --> Assets[assets/ Directory]
     
     Assets --> Verify[verify_assets.py]
@@ -48,6 +48,9 @@ Case 2 art lives in [[tools/raw/]] and is processed separately so [[process_asse
 
 ### Case 3 ([[process_case3_assets.py]])
 Same chroma pipeline as Case 2. Sheets in [[tools/raw/]]: Chapatín, Pazguato, Aniceto, Barriga, Ñoño, Chimoltrufia, plus extra cells for `chapatin_conmovido` and `aniceto_breakdown`. `anchor_standing_bust` scales a crop that exceeds 512 before flooring it; pasting a 1024 1x1 pose onto 512 without that scale zoom-crops the bust (head fills the stage, limbs shear). Barriga's main 2×2 is idle / vendado. Shock and enojado are cells (1,0) and (0,1) of `barriga_injured_poses_raw.png`, locked to the vendado wheelchair crop — not the idle fedora sheet. Chimoltrufia’s idle lock is the caricature (messy hair, gap teeth, no rollers) — not Doña Florinda. After slicing, **every** `plain`-frame bust (all six characters, not a subset) runs through `anchor_standing_bust` so the opaque hem sits 5px above the 512 canvas floor. Flooring only Chapatín and Pazguato left Ñoño with ~50px of transparency under the shirt; `plain` lines the **canvas** to the dialogue box, so that padding reads as a clipped floating waist. Generation prompts must put the waist cut on the **cell floor** (magenta on top/sides only). Do not float the bust in a central 60% safe area. That rule is for full-body action sheets, not Ace Attorney busts. Evidence: `case3_evidence_icons_raw.png` is a **4×3** card grid (not 4×4 — that row count cuts through the painted icons and leaves white dividers in the court-record PNGs). Cells (0,0) and (1,0) are unused (shared badge + a draft informe). `case3_evidence_icons_b_raw.png` is 3×2. `informe_barriga.webp` is then overwritten from `informe_barriga_icon_raw.png` (1×1, no card drop boxes) because the B-sheet cell nests a second magenta frame. `informe_medico.webp` is Case 1 art (Alma Negra's coin sack) and must not be reused. `insignia_abogado.webp` stays the shared Case 1 file. Aniceto's base pose is `aniceto_idle` (identity lock); his silk handkerchief never sits at his neck in any pose, because it is the gag in `ataduras_bodega`. Backgrounds: `bg_cabina.webp`, `bg_kermes.webp`, `bg_despacho.webp`, `bg_clinica.webp`, `bg_bodega.webp`, `bg_delegacion.webp`. Detention reuses `bg_detention.webp`.
+
+### Case 4 ([[process_case4_assets.py]])
+Same chroma pipeline. Sheets in [[tools/raw/]]: Botija, Cecilio, Maruja, Rufino 2×2s plus `maruja_shock_raw.png` and `rufino_breakdown_raw.png` (1×1 full poses). Identity locks: Botija idle (tiny sky-blue flat cap, full black beard, all-black plumber clothes, wrench); Cecilio idle (bottle-bottom glasses, pearl-grey three-piece); Maruja idle (copper-red teased hair, emerald satin, cream stole — never pink); Rufino smug (black tailcoat, ivory vest, white bow tie, gold monocle, waxed mustache — not Aniceto's grey cravat). After slicing, **every** Case 4 `plain` bust runs through `anchor_standing_bust`. Evidence: `case4_evidence_icons_raw.png` is a **4×4** grid; cell (3,3) is unused. The Acta id `foto_crimen` is shared with Case 1, so the hotel polaroid icon is `foto_suite304.webp` (catalog `icon` override). Never overwrite Case 1 `foto_crimen.webp`. `insignia_abogado.webp` stays the Case 1 file. Backgrounds cover-crop to 1536×1024: `bg_hotel_lobby`, `bg_hotel_suite`, `bg_hotel_bar`, `bg_hotel_sotano`, `bg_hotel_suite204`, `bg_hotel_cava`, `bg_hotel_azotea`. Deep-examine plates export at 960×540: `examine_foto`, `examine_cadena`, `examine_plano`, `examine_botella`, `examine_nota`. Detention / courtroom / `bg_delegacion` / `bg_waiting_room` are reused. See [[tools/case4_hotspot_notes.md]] for painted-object percent guesses after cover crop.
 
 ### 3. Asset Naming Conventions & Format
 

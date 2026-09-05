@@ -130,6 +130,7 @@
                 <button id="btn-start-game" class="splash-btn">🔍 CASO 1: EL ESCUADRÓN COLORADO</button>
                 <button id="btn-start-case2" class="splash-btn">🔍 CASO 2: EL JUICIO DEL CHÓMPIRAS</button>
                 <button id="btn-start-case3" class="splash-btn">🔍 CASO 3: LA NOCHE DEL GRITO</button>
+                <button id="btn-start-case4" class="splash-btn">🔍 CASO 4: CRIMEN EN EL GRAN HOTEL</button>
             </div>
         </div>
 
@@ -149,8 +150,36 @@
                         <img id="evidence-icon-preview" src="" alt="Item" class="hidden">
                         <h3 id="evidence-title">Selecciona una prueba</h3>
                         <p id="evidence-description">Haz clic en cualquier objeto para ver sus detalles y contradicciones.</p>
+                        <button id="btn-evidence-examine" class="menu-btn" style="display:none; width: 100%;">Examinar Detalle</button>
                         <button id="btn-modal-present" class="menu-btn present-action" style="display:none; width: 100%;">¡Presentar Prueba!</button>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Deep evidence examine (photos, blueprints, notes) -->
+        <div id="evidence-examine-modal" class="game-modal hidden">
+            <div class="modal-window evidence-examine-window">
+                <div class="modal-header">
+                    <h2 id="evidence-examine-title">Examinar Detalle</h2>
+                    <button id="btn-close-examine" class="close-btn">X</button>
+                </div>
+                <p id="evidence-examine-caption"></p>
+                <div id="evidence-examine-stage">
+                    <img id="evidence-examine-image" alt="Detalle de prueba">
+                    <div id="evidence-examine-zones"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Present & Point overlay during trial -->
+        <div id="present-point-overlay" class="game-modal hidden">
+            <div class="modal-window evidence-examine-window">
+                <div class="modal-header">
+                    <h2 id="present-point-prompt"></h2>
+                </div>
+                <div id="present-point-stage">
+                    <img id="present-point-image" alt="Señalar detalle">
                 </div>
             </div>
         </div>

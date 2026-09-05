@@ -28,6 +28,7 @@ export const UI_ES: UiTranslations = {
   talkModalTitle: 'CONVERSAR',
   moveModalTitle: 'DESPLAZARSE',
   currentLocationBadge: 'Actual',
+  btnEvidenceExamine: 'Examinar Detalle',
 
   hudAudioToggleTitle: 'Activar/Desactivar Sonido',
   hudSaveTitle: 'Guardar Partida (Save Game)',
@@ -44,6 +45,7 @@ export const UI_ES: UiTranslations = {
   btnStartGame: '🔍 CASO 1: EL ESCUADRÓN COLORADO',
   btnStartCase2: '🔍 CASO 2: EL JUICIO DEL CHÓMPIRAS',
   btnStartCase3: '🔍 CASO 3: LA NOCHE DEL GRITO',
+  btnStartCase4: '🔍 CASO 4: CRIMEN EN EL GRAN HOTEL',
   btnStartTrialDebug: '⚖️ MODO DEBUG: INICIAR EN JUICIO',
   btnContinue: '📂 CONTINUAR PARTIDA (CONTINUE)',
   langToggleLabel: '🌐 Idioma: Español',

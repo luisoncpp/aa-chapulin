@@ -70,6 +70,7 @@ export function setupDomHarness(): DomElements {
         <button id="btn-start-game">COMENZAR</button>
         <button id="btn-start-case2">CASO 2</button>
         <button id="btn-start-case3">CASO 3</button>
+        <button id="btn-start-case4">CASO 4</button>
         <button id="btn-start-trial-debug">MODO DEBUG</button>
       </div>
       <div id="court-record-modal" class="game-modal hidden">
@@ -79,7 +80,29 @@ export function setupDomHarness(): DomElements {
         <img id="evidence-icon-preview" src="" alt="Item" class="hidden">
         <h3 id="evidence-title"></h3>
         <p id="evidence-description"></p>
+        <button id="btn-evidence-examine" style="display:none;">Examinar Detalle</button>
         <button id="btn-modal-present" style="display:none;">¡Presentar!</button>
+      </div>
+      <div id="evidence-examine-modal" class="game-modal hidden">
+        <div class="modal-window">
+          <div class="modal-header">
+            <h2 id="evidence-examine-title">Examinar Detalle</h2>
+            <button id="btn-close-examine" class="close-btn">X</button>
+          </div>
+          <p id="evidence-examine-caption"></p>
+          <div id="evidence-examine-stage">
+            <img id="evidence-examine-image" alt="Detalle">
+            <div id="evidence-examine-zones"></div>
+          </div>
+        </div>
+      </div>
+      <div id="present-point-overlay" class="game-modal hidden">
+        <div class="modal-window">
+          <h2 id="present-point-prompt"></h2>
+          <div id="present-point-stage">
+            <img id="present-point-image" alt="Señalar">
+          </div>
+        </div>
       </div>
       <div id="talk-options-modal" class="game-modal hidden">
         <button id="btn-close-talk">X</button>

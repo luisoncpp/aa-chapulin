@@ -27,7 +27,8 @@ export class UiLanguageUpdater {
       [dom.btnPrevStatement, t.btnPrev],
       [dom.btnPress, t.btnPress],
       [dom.btnTrialPresent, t.btnPresent],
-      [dom.btnNextStatement, t.btnNext]
+      [dom.btnNextStatement, t.btnNext],
+      [dom.btnEvidenceExamine, t.btnEvidenceExamine]
     ];
     for (const [btn, label] of mappings) {
       if (btn) btn.textContent = label;
@@ -51,6 +52,7 @@ export class UiLanguageUpdater {
     if (dom.btnStartGame) dom.btnStartGame.textContent = t.btnStartGame;
     if (dom.btnStartCase2) dom.btnStartCase2.textContent = t.btnStartCase2;
     if (dom.btnStartCase3) dom.btnStartCase3.textContent = t.btnStartCase3;
+    if (dom.btnStartCase4) dom.btnStartCase4.textContent = t.btnStartCase4;
     if (dom.btnStartTrialDebug) dom.btnStartTrialDebug.textContent = t.btnStartTrialDebug;
     fillCaseCompleteCopy(dom, lang);
     if (dom.btnCourtRecord) {

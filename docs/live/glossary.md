@@ -45,6 +45,8 @@ Domain terminology and project-specific concepts for **El Chapulín Colorado: Ac
 | **Don Cecilio Buenavista** | Case 4 witness: Gran Hotel owner/manager; severely nearsighted and easily confused. | [[docs/specs/case-4-el-caso-del-hotel-buena-vista.md]] |
 | **Maruja** | Case 4 witness: glamorous guest ("La Sirena del Hotel") staying in Suite 303. | [[docs/specs/case-4-el-caso-del-hotel-buena-vista.md]] |
 | **El Cuajinais** | Case 4 victim: mobster with the scar on his cheek, checked in as "Sr. Gómez" to extort Rufino. | [[docs/specs/case-4-el-caso-del-hotel-buena-vista.md]] |
+| **La Chimoltrufia** | Case 4 day-3 hotel desk: replaces Don Cecilio at `hotel_lobby_d3`; delivers baccarat slip and wax-seal ring from the Suite 204 trash. | [[docs/specs/case-4-el-caso-del-hotel-buena-vista.md]], [[docs/lessons-learned/location-cast-rotation.md]] |
+| **El Chómpiras** (bellhop) | Case 4 day-2 terrace (`hotel_terraza_d2`): reveals freight-elevator log weights; day 3 shows the roof trunk. | [[docs/specs/case-4-el-caso-del-hotel-buena-vista.md]] |
 
 ## Audio & Engine Terminology
 

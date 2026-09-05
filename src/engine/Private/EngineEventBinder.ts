@@ -7,8 +7,10 @@
 import type { SoundEngine } from '../../audio/index.js';
 import type { DomElements } from './DomElements.js';
 import { closeHistoryModal, isAnyModalOpen } from './HistoryModal.js';
+import { bindEvidenceExamine } from './EvidenceExamine.js';
 import type { InvestigationController } from './InvestigationController.js';
 import { ModalManager } from './ModalManager.js';
+import { bindPresentPoint } from './PresentPoint.js';
 import type { TrialController } from './TrialController.js';
 
 export interface EventBinderConfig {
@@ -19,6 +21,7 @@ export interface EventBinderConfig {
   onStartGame: () => void;
   onStartCase2?: () => void;
   onStartCase3?: () => void;
+  onStartCase4?: () => void;
   onStartTrialDebug?: () => void;
   onAdvance: () => void;
   onOpenCourtRecord: (isTrialPresent: boolean) => void;
@@ -36,6 +39,8 @@ export class EngineEventBinder {
     EngineEventBinder.bindSaveAndLoad(config);
     EngineEventBinder.bindDialogueAdvance(config);
     EngineEventBinder.bindCourtRecord(config);
+    bindEvidenceExamine(config.dom);
+    bindPresentPoint(config.dom);
     EngineEventBinder.bindHistory(config);
     EngineEventBinder.bindInvestigation(config);
     EngineEventBinder.bindTrial(config);
@@ -43,13 +48,16 @@ export class EngineEventBinder {
 
   // @Section(Audio & Splash Bindings)
   private static bindStartAndAudio(config: EventBinderConfig): void {
-    const { dom, soundEngine, onStartGame, onStartCase2, onStartCase3, onStartTrialDebug, onToggleLanguage } = config;
+    const { dom, soundEngine, onStartGame, onStartCase2, onStartCase3, onStartCase4, onStartTrialDebug, onToggleLanguage } = config;
     dom.btnStartGame?.addEventListener('click', /*onStartClick*/ () => onStartGame());
     dom.btnStartCase2?.addEventListener('click', /*onStartCase2Click*/ () => {
       onStartCase2?.();
     });
     dom.btnStartCase3?.addEventListener('click', /*onStartCase3Click*/ () => {
       onStartCase3?.();
+    });
+    dom.btnStartCase4?.addEventListener('click', /*onStartCase4Click*/ () => {
+      onStartCase4?.();
     });
     dom.btnStartTrialDebug?.addEventListener('click', /*onStartTrialDebugClick*/ () => {
       onStartTrialDebug?.();

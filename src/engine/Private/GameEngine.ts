@@ -99,6 +99,7 @@ export class GameEngine {
       onStartGame: () => this.startGame('case1'),
       onStartCase2: () => this.startGame('case2'),
       onStartCase3: () => this.startGame('case3'),
+      onStartCase4: () => this.startGame('case4'),
       onStartTrialDebug: () => this.startTrialDebug(),
       onAdvance: () => this.handleAdvance(),
       onOpenCourtRecord: (isTrial) => this.openCourtRecord(isTrial),
@@ -143,21 +144,12 @@ export class GameEngine {
     launchTrial(this.host(), day);
   }
 
+  public saveGame(storage?: Storage): boolean { return persistSave(this.host(), storage); }
+  public loadGame(storage?: Storage): boolean { return persistLoad(this.host(), storage); }
+  public updateContinueButton(storage?: Storage): void { persistContinue(this.host(), storage); }
+
   private handleAdjournment(location: LocationId): void {
     handleAdjournment(this.investigation, location, /*flashEl=*/ this.dom.flashEl);
-  }
-
-  // @Section(Save & Load Management)
-  public saveGame(storage?: Storage): boolean {
-    return persistSave(this.host(), storage);
-  }
-
-  public loadGame(storage?: Storage): boolean {
-    return persistLoad(this.host(), storage);
-  }
-
-  public updateContinueButton(storage?: Storage): void {
-    persistContinue(this.host(), storage);
   }
 
   // @Section(Dialogue Flow & Queue)

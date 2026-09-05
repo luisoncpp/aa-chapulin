@@ -31,6 +31,7 @@ export interface UiTranslations {
   talkModalTitle: string;
   moveModalTitle: string;
   currentLocationBadge: string;
+  btnEvidenceExamine: string;
 
   // HUD Elements
   hudAudioToggleTitle: string;
@@ -49,6 +50,7 @@ export interface UiTranslations {
   btnStartGame: string;
   btnStartCase2: string;
   btnStartCase3: string;
+  btnStartCase4: string;
   btnStartTrialDebug: string;
   btnContinue: string;
   langToggleLabel: string;

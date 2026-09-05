@@ -8,6 +8,7 @@ import { i18n } from '../../i18n/index.js';
 import type { GameStateManager } from '../../state/index.js';
 import type { EvidenceId, LocationId, TalkOption, ChoicePrompt } from '../../types/index.js';
 import type { DomElements } from './DomElements.js';
+import { syncExamineButton } from './EvidenceExamine.js';
 
 export interface CourtRecordConfig {
   dom: DomElements;
@@ -67,7 +68,9 @@ export class ModalManager {
       const firstId = state.inventory[0];
       ModalManager.selectEvidence(dom, state, firstId);
       onSelect(firstId);
+      return;
     }
+    syncExamineButton(dom, null);
   }
 
   public static selectEvidence(dom: DomElements, state: GameStateManager, id: EvidenceId): void {
@@ -77,6 +80,7 @@ export class ModalManager {
     dom.evidenceDescEl.textContent = state.getEvidenceDesc(id);
     dom.evidenceIconPreviewEl.src = item.icon;
     dom.evidenceIconPreviewEl.classList.remove('hidden');
+    syncExamineButton(dom, item);
   }
 
   public static closeCourtRecord(dom: DomElements): void {

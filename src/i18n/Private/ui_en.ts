@@ -28,6 +28,7 @@ export const UI_EN: UiTranslations = {
   talkModalTitle: 'TALK',
   moveModalTitle: 'MOVE',
   currentLocationBadge: 'Current',
+  btnEvidenceExamine: 'Examine Detail',
 
   hudAudioToggleTitle: 'Toggle Audio Mute',
   hudSaveTitle: 'Save Game',
@@ -44,6 +45,7 @@ export const UI_EN: UiTranslations = {
   btnStartGame: '🔍 CASE 1: THE COLORADO SQUAD',
   btnStartCase2: '🔍 CASE 2: TURNABOUT OF THE TWO-FACED THIEF',
   btnStartCase3: '🔍 CASE 3: TURNABOUT OF THE GOLDEN VOICE',
+  btnStartCase4: '🔍 CASE 4: MURDER AT THE GRAND HOTEL',
   btnStartTrialDebug: '⚖️ DEBUG MODE: START IN TRIAL',
   btnContinue: '📂 CONTINUE GAME',
   langToggleLabel: '🌐 Language: English',

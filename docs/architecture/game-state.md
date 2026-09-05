@@ -79,6 +79,7 @@ Contains the master catalog defined in [[src/state/Private/EvidenceCatalog.ts#Ev
 - Case 2 day 1: `palanca_rota`, `informe_boveda`, `reloj_pendulo`, `aroma_dulce`, `plano_hacienda`, `caja_generador`.
 - Case 2 day 2 (`adjournment.requiredEvidence`): `multa_transito`, `registro_postal`, `lata_grasa`, `antenitas_vinil`, `frasco_valeriana`, `molde_cera`.
 - Case 3 lists live in [[src/case/case3/Private/progress.ts]] — day 1: `lentes_barriga`, `informe_barriga`, `marcas_carrito`, `microfono_cabina`, `microfono_oro`, `cinta_salud`, `ventana_cabina`, `programa_kermes`; day 2: `bitacora_transmision`, `receta_nono`, `libro_verde`; day 3: `ataduras_bodega`, `cinta_sketch`, `cartucho_corte`, `boleta_empeno`.
+- Case 4 lists are in [[docs/architecture/case-scripting.md#Case 4 trial gating (checkTrialReadiness)]]; catalog isolation in [[src/state/Private/EvidenceCatalogCase4.ts]] via `getEvidenceCatalog(lang, 'case4')` (16 items, no Case 1/2/3 leakage). Staged updates: `informe_policial` (2), `foto_crimen`, `plano_hotel`, `residuos_manos`, `billetera_cuajinais` (1 each).
 - **Invariant:** readiness is inventory-only — it never checks which locations were visited. So the last location of every investigation day must hand over at least one required item, or the trial unlocks before the player has seen scenes the trial script assumes. Case 3 moves `programa_kermes` to the plaza (day 1) and puts detention before the precinct (day 3) for exactly this reason.
 
 ### 6. Debug Trial State Setup (`populateTrialEvidence`)

@@ -41,7 +41,36 @@ export type EvidenceId =
   | 'ataduras_bodega'
   | 'cartucho_corte'
   | 'cinta_sketch'
-  | 'boleta_empeno';
+  | 'boleta_empeno'
+  | 'informe_policial'
+  | 'candado_cadena'
+  | 'plano_hotel'
+  | 'residuos_manos'
+  | 'billetera_cuajinais'
+  | 'informe_forense'
+  | 'casquillo_fogueo'
+  | 'registro_montacargas'
+  | 'copa_vino'
+  | 'botella_vino'
+  | 'boleta_baccarat'
+  | 'baul_etiquetas'
+  | 'sello_lacre'
+  | 'nota_amenaza';
+
+export interface EvidenceExamineZone {
+  id: string;
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  tooltip: string;
+}
+
+export interface EvidenceDetailedView {
+  imageAsset: string;
+  caption: string;
+  clickableZones?: EvidenceExamineZone[];
+}
 
 export interface EvidenceItem {
   id: EvidenceId;
@@ -50,6 +79,7 @@ export interface EvidenceItem {
   desc: string;
   updatedDesc?: string;
   updates?: string[];
+  detailedView?: EvidenceDetailedView;
 }
 
 export type EvidenceCatalogMap = Record<EvidenceId, EvidenceItem>;

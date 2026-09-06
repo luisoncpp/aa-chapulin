@@ -1,6 +1,6 @@
-// @Architecture(descriptionShort="Case 4 Suite 204 hotspot geometry and shell casing", type="data", icon="layers")
+// @Architecture(descriptionShort="Case 4 Suite 204 hotspot geometry and effect", type="data", icon="layers")
 /**
- * Hotspots for Suite 204 — day 2 investigation.
+ * Hotspots for Suite 204 — day 2 investigation (spec §9.2).
  */
 
 import type { Hotspot } from '../../../types/index.js';
@@ -9,20 +9,36 @@ export const SUITE204_HOTSPOTS: Hotspot[] = [
   {
     id: 'hotspot_radiador204',
     label: 'Radiador de la 204',
-    x: 62, y: 46, w: 26, h: 48,
+    x: 64, y: 47, w: 24, h: 53,
     dialogue: [
-      { speaker: 'DEFENSA', text: 'La válvula de purga del radiador está desenroscada...', pose: 'donramon_point' },
-      { speaker: 'DEFENSA', text: '¡Dentro de la cavidad hay un casquillo calibre .38 con restos de mecha lenta de azufre quemada!', pose: 'donramon_shock', sfx: 'realization', addEvidence: 'casquillo_fogueo' },
-      { speaker: 'RUFINO', text: '¡Pamplinas! ¡Eso lo plantó un fontanero resentido!', pose: 'rufino_smug' }
+      { speaker: 'DEFENSA', text: 'Restos de un efecto en el radiador. Sargento: regístrelo delante de nosotros.', pose: 'donramon_point' },
+      { speaker: 'SARGENTO', text: 'Queda registrado. Ensayo seguro documentado por peritos; nosotros no manipulamos artefactos desconocidos.', pose: 'pazguato_decidido', addEvidence: 'casquillo_fogueo' }
+    ]
+  },
+  {
+    id: 'hotspot_mesa',
+    label: 'Mesa',
+    x: 5, y: 67, w: 30, h: 33,
+    dialogue: [
+      { speaker: 'DEFENSA', text: 'Espacio donde se sirvió vino, marcas ordinarias de copas.', pose: 'donramon_idle' },
+      { speaker: 'SARGENTO', text: 'Ninguna mancha identifica químicamente a nadie por inspección visual.', pose: 'pazguato_sweat' }
     ]
   },
   {
     id: 'hotspot_armario',
-    label: 'Armario y Maletas',
-    x: 6, y: 8, w: 52, h: 78,
+    label: 'Armario',
+    x: 16, y: 0, w: 46, h: 67,
     dialogue: [
-      { speaker: 'RUFINO', text: '¡Apartense de mis pertenencias nobiliarias! Ese maletín contiene joyas de incalculable valor.', pose: 'rufino_monocle' },
-      { speaker: 'DEFENSA', text: '(Cerrado con llave. Muy celoso de ese maletín...)', pose: 'donramon_sweat', unlockLocation: 'hotel_terraza_d2' }
+      { speaker: 'RUFINO', text: 'Ese maletín contiene valores.', pose: 'rufino_monocle' },
+      { speaker: 'SARGENTO', text: 'Queda registrada su existencia. Su apertura posterior requerirá el motivo y la orden.', pose: 'pazguato_saludo' }
+    ]
+  },
+  {
+    id: 'hotspot_recibo',
+    label: 'Recibo de Equipaje',
+    x: 15, y: 72, w: 9, h: 9,
+    dialogue: [
+      { speaker: 'DEFENSA', text: 'Número B-17 y destinos. Con este número preguntamos al operador.', pose: 'donramon_point' }
     ]
   }
 ];

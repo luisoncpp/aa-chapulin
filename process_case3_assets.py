@@ -4,6 +4,7 @@
 import os
 import shutil
 
+import numpy as np
 from PIL import Image
 
 from process_assets import (
@@ -105,6 +106,38 @@ def process_evidence_grid(sheet_name: str, cells: list, cols: int, rows: int) ->
             cleaned, min_area_fraction=0.12, drop_boxes=drops
         )
         save_evidence_icon(filtered, name)
+
+
+def process_unlabeled_evidence_grid(
+    sheet_name: str, cells: list, grid: tuple[int, int]
+) -> None:
+    """Extract image-only cells without removing their lower artwork."""
+    path = find_asset_file(sheet_name)
+    if not os.path.exists(path):
+        print(f"Warning: Evidence sheet not found {path}")
+        return
+    img = Image.open(path)
+    cols, rows = grid
+    cw, ch = img.width // cols, img.height // rows
+    for col, row, name in cells:
+        cell = img.crop((col * cw, row * ch, (col + 1) * cw, (row + 1) * ch))
+        cleaned = remove_bg_magenta_vectorized(cell, threshold=165.0, despill_depth=4)
+        cleaned = clean_edges_vectorized(cleaned, depth=4)
+        cleaned = remove_grid_dividers(cleaned)
+        filtered = extract_primary_components_fast(cleaned, min_area_fraction=0.12)
+        save_evidence_icon(filtered, name)
+
+
+def remove_grid_dividers(img: Image.Image) -> Image.Image:
+    """Remove full-width white separators without trimming icon artwork."""
+    arr = np.array(img)
+    opaque = arr[:, :, 3] > 0
+    white = np.all(arr[:, :, :3] >= 220, axis=2)
+    row_dividers = (opaque & white).sum(axis=1) >= int(arr.shape[1] * 0.8)
+    col_dividers = (opaque & white).sum(axis=0) >= int(arr.shape[0] * 0.8)
+    arr[row_dividers, :, 3] = 0
+    arr[:, col_dividers, 3] = 0
+    return Image.fromarray(arr, mode="RGBA")
 
 
 # Every plain-frame bust. Magenta under the waist becomes a gap above the

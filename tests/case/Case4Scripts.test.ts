@@ -46,28 +46,28 @@ describe('Case 4 El Caso del Hotel Buena Vista', () => {
   const es = getCaseScript('es', 'case4') as CaseScript;
   const en = getCaseScript('en', 'case4') as CaseScript;
 
-  it('starts at detention with twelve investigation scenes', () => {
+  it('starts at detention with thirteen investigation scenes', () => {
     expect(es.id).toBe('case4');
     expect(es.startLocation).toBe('detention');
     expect(Object.keys(es.investigation)).toEqual(Object.keys(en.investigation));
-    expect(Object.keys(es.investigation)).toHaveLength(12);
+    expect(Object.keys(es.investigation)).toHaveLength(13);
     expect(es.investigation.hotel_terraza_d2).toBeDefined();
     expect(es.investigation.detention_d3).toBeDefined();
     expect(es.investigation.hotel_lobby_d3).toBeDefined();
+    expect(es.investigation.delegacion_d3).toBeDefined();
   });
 
-  it('requires the five day-1, four day-2, and six day-3 clues', () => {
+  it('requires six day-1, six day-2, and four day-3 clues', () => {
     expect(es.requiredEvidence).toEqual([
-      'informe_policial', 'foto_crimen', 'plano_hotel',
-      'billetera_cuajinais', 'candado_cadena'
+      'informe_policial', 'foto_crimen', 'billetera_cuajinais',
+      'orden_servicios', 'plano_hotel', 'candado_cadena'
     ]);
     expect(es.adjournment?.requiredEvidence).toEqual([
-      'residuos_manos', 'casquillo_fogueo',
-      'registro_montacargas', 'informe_forense'
+      'residuos_manos', 'casquillo_fogueo', 'registro_montacargas',
+      'baul_etiquetas', 'copa_vino', 'toxicologia_vino'
     ]);
     expect(es.adjournment?.next?.requiredEvidence).toEqual([
-      'copa_vino', 'botella_vino', 'boleta_baccarat',
-      'baul_etiquetas', 'sello_lacre', 'nota_amenaza'
+      'botella_vino', 'boleta_baccarat', 'nota_amenaza', 'sello_lacre'
     ]);
     expect(es.debugUnlockLocations).toEqual([
       'detention', 'hotel_lobby', 'hotel_suite', 'hotel_terraza'
@@ -79,17 +79,34 @@ describe('Case 4 El Caso del Hotel Buena Vista', () => {
     expect(es.adjournment?.unlockLocations).toEqual(['hotel_sotano']);
     expect(es.adjournment?.next?.nextLocation).toBe('hotel_cava');
     expect(es.adjournment?.next?.unlockLocations).toEqual(['hotel_cava']);
-    expect(es.trial.climax.stages?.length).toBeGreaterThan(0);
+    expect(es.trial.climax.stages?.length).toBe(2);
   });
 
   it('closes every investigation day on a location that yields a required clue', () => {
-    const expectedLast = ['hotel_terraza', 'delegacion', 'detention_d3'];
+    const expectedLast = ['hotel_terraza', 'delegacion', 'delegacion_d3'];
     days(es).forEach((day, idx) => {
       const last = lastLocationOfDay(es, day.entry);
       expect(last).toBe(expectedLast[idx]);
       const yielded = evidenceFrom(sceneLines(es, last));
       expect(day.required.some((id) => yielded.includes(id))).toBe(true);
     });
+  });
+
+  it('chains day-3 scenes cava to delegacion_d3', () => {
+    expect(lastLocationOfDay(es, 'hotel_cava')).toBe('delegacion_d3');
+  });
+
+  it('never delivers a required clue in a scene intro', () => {
+    const required = new Set([
+      ...es.requiredEvidence,
+      ...es.adjournment!.requiredEvidence,
+      ...es.adjournment!.next!.requiredEvidence
+    ]);
+    for (const [loc, scene] of Object.entries(es.investigation)) {
+      for (const line of scene.intro as DialogueLine[]) {
+        if (line.addEvidence) expect(required.has(line.addEvidence), `${loc} intro`).toBe(false);
+      }
+    }
   });
 
   it('keeps English hotspot geometry in lockstep', () => {
@@ -101,6 +118,18 @@ describe('Case 4 El Caso del Hotel Buena Vista', () => {
         es.investigation[loc].hotspots.map(geom)
       );
     }
+  });
+
+  it('never names the ring in a climax present prompt', () => {
+    // The ring is the stage-2 reveal ("...Un anillo."); the HUD present question
+    // must not hand it to the player. The pointTarget question fires after the
+    // present lands, so it may name it.
+    ([['es', es], ['en', en]] as const).forEach(([lang, script]) => {
+      script.trial.climax.stages?.forEach((stage, idx) => {
+        expect(/anillo|ring/i.test(stage.prompt ?? ''), `${lang} stage ${idx} prompt`).toBe(false);
+      });
+    });
+    expect(/anillo/i.test(es.trial.climax.stages![1].pointTarget!.promptQuestion)).toBe(true);
   });
 
   it('catalogs every debug evidence id when case4 catalog exists', () => {

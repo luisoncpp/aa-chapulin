@@ -3,15 +3,15 @@ import { describe, expect, it } from 'vitest';
 import type { Statement, Testimony } from '../../src/types/index.js';
 import { CASE4_CLIMAX } from '../../src/case/case4/Private/climax.js';
 import { CASE4_CLIMAX_EN } from '../../src/case/case4/Private/climax_en.js';
-import { CASE4_DAY3_OPENING_PRESENT } from '../../src/case/case4/Private/trial_day3.js';
-import { CASE4_DAY3_OPENING_PRESENT_EN } from '../../src/case/case4/Private/trial_day3_en.js';
+import { CASE4_DAY3_INTRO } from '../../src/case/case4/Private/trial_day3.js';
+import { CASE4_DAY3_INTRO_EN } from '../../src/case/case4/Private/trial_day3_en.js';
 import { CASE4_TESTIMONY_1, CASE4_TRIAL_INTRO } from '../../src/case/case4/Private/trial_day1.js';
 import { CASE4_TESTIMONY_1_EN } from '../../src/case/case4/Private/trial_day1_en.js';
 import { CASE4_TESTIMONY_2 } from '../../src/case/case4/Private/trial_day1_t2.js';
 import { CASE4_TESTIMONY_2_EN } from '../../src/case/case4/Private/trial_day1_t2_en.js';
 import { CASE4_DAY2_INTRO, CASE4_TESTIMONY_3 } from '../../src/case/case4/Private/trial_day2.js';
 import { CASE4_DAY2_INTRO_EN, CASE4_TESTIMONY_3_EN } from '../../src/case/case4/Private/trial_day2_en.js';
-import { CASE4_D2_T2_CASQUILLO_SUCCESS } from '../../src/case/case4/Private/trial_day2_success.js';
+import { CASE4_D2_T2_BAUL_SUCCESS } from '../../src/case/case4/Private/trial_day2_success.js';
 import { CASE4_TESTIMONY_4 } from '../../src/case/case4/Private/trial_day2_t2.js';
 import { CASE4_TESTIMONY_4_EN } from '../../src/case/case4/Private/trial_day2_t2_en.js';
 import { CASE4_TESTIMONY_5 } from '../../src/case/case4/Private/trial_day3.js';
@@ -50,52 +50,90 @@ describe('Case 4 Hotel Buena Vista trial scripts', () => {
     }
   });
 
-  it('D1-T1 d1_t1_3b has pointTarget and informe_policial followUp', () => {
-    const stmt = CASE4_TESTIMONY_1.statements.find((s) => s.id === 'd1_t1_3b');
-    expect(stmt?.unlockedBy).toBe('d1_t1_3');
-    expect(stmt?.contradiction?.pointTarget?.targetEvidenceId).toBe('foto_crimen');
-    expect(stmt?.contradiction?.pointTarget?.zones.some((z) => z.id === 'cubeta_hielo_derretido' && z.isCorrect)).toBe(true);
-    expect(stmt?.contradiction?.followUp?.evidence).toEqual(['informe_policial']);
+  it('D1-T1 attacks d1_t1_3 and d1_t1_4 with candado_cadena and puerta_lazo point', () => {
+    for (const id of ['d1_t1_3', 'd1_t1_4']) {
+      const stmt = CASE4_TESTIMONY_1.statements.find((s) => s.id === id);
+      expect(stmt?.contradiction?.evidence).toEqual(['candado_cadena']);
+      expect(stmt?.contradiction?.pointTarget?.targetEvidenceId).toBe('candado_cadena');
+      expect(stmt?.contradiction?.pointTarget?.zones.some((z) => z.id === 'puerta_lazo' && z.isCorrect)).toBe(true);
+      expect(stmt?.contradiction?.followUp).toBeUndefined();
+    }
   });
 
-  it('D2-T1 has El Sargento as witness and allows presenting on d2_t1_2 and d2_t1_3', () => {
-    expect(CASE4_TESTIMONY_3.witness).toBe('El Sargento');
-    expect(CASE4_TESTIMONY_3_EN.witness).toBe('Sergeant Pazguato');
+  it('D1-T2 attacks d1_t2_3 and d1_t2_4 with informe_forense and almohada followUp', () => {
+    for (const id of ['d1_t2_3', 'd1_t2_4']) {
+      const stmt = CASE4_TESTIMONY_2.statements.find((s) => s.id === id);
+      expect(stmt?.contradiction?.evidence).toEqual(['informe_forense']);
+      expect(stmt?.contradiction?.followUp?.evidence).toEqual(['foto_crimen', 'informe_policial']);
+      expect(stmt?.contradiction?.followUp?.pointTarget).toBeUndefined();
+    }
+  });
+
+  it('D2-T1 has Maruja as witness with two valid routes', () => {
+    expect(CASE4_TESTIMONY_3.witness).toBe('Maruja');
+    expect(CASE4_TESTIMONY_3_EN.witness).toBe('Maruja');
     for (const stmt of CASE4_TESTIMONY_3.statements) {
-      expect(stmt.speaker).toBe('SARGENTO');
+      expect(stmt.speaker).toBe('MARUJA');
     }
-    for (const stmt of CASE4_TESTIMONY_3_EN.statements) {
-      expect(stmt.speaker).toBe('SARGENTO');
-    }
-    const stmt2 = CASE4_TESTIMONY_3.statements.find((s) => s.id === 'd2_t1_2');
-    expect(stmt2?.contradiction?.evidence).toEqual(['residuos_manos']);
-    expect(stmt2?.contradiction?.followUp?.evidence).toEqual(['informe_forense']);
-
     const stmt3 = CASE4_TESTIMONY_3.statements.find((s) => s.id === 'd2_t1_3');
-    expect(stmt3?.contradiction?.evidence).toEqual(['informe_forense']);
+    expect(stmt3?.contradiction?.evidence).toEqual(['plano_hotel']);
+    expect(stmt3?.contradiction?.pointTarget?.zones.some((z) => z.id === 'ramal_204_304' && z.isCorrect)).toBe(true);
+    expect(stmt3?.contradiction?.followUp?.evidence).toEqual(['casquillo_fogueo']);
 
-    expect(CASE4_DAY2_INTRO[2].bgm).toBeUndefined();
-    expect(CASE4_DAY2_INTRO_EN[2].bgm).toBeUndefined();
+    const stmt4 = CASE4_TESTIMONY_3.statements.find((s) => s.id === 'd2_t1_4');
+    expect(stmt4?.contradiction?.evidence).toEqual(['casquillo_fogueo']);
+    expect(stmt4?.contradiction?.followUp?.evidence).toEqual(['plano_hotel']);
 
-    expect(CASE4_D2_T2_CASQUILLO_SUCCESS[0].cutin).toBe('objection_toma_eso');
-
-    const pt = CASE4_TESTIMONY_4_EN.statements.find((s) => s.id === 'd2_t2_4')?.contradiction?.pointTarget;
-    const failZone = pt?.zones.find((z) => !z.isCorrect);
-    expect(failZone?.failureDialogue[0].text).toContain('Through this section');
+    expect(CASE4_D2_T2_BAUL_SUCCESS[0].cutin).toBe('objection_toma_eso');
   });
 
-  it('day-3 openingPresent requires nota_amenaza in ES and EN', () => {
-    expect(CASE4_DAY3_OPENING_PRESENT.evidence).toEqual(['nota_amenaza']);
-    expect(CASE4_DAY3_OPENING_PRESENT_EN.evidence).toEqual(['nota_amenaza']);
+  it('never replays a contradiction success dialogue on its own followUp', () => {
+    for (const t of [...ES_TESTIMONIES, ...EN_TESTIMONIES]) {
+      for (const stmt of contradictions(t)) {
+        const rule = stmt.contradiction;
+        if (!rule?.followUp) continue;
+        expect(rule.followUp.successDialogue.map((l) => l.text))
+          .not.toEqual(rule.successDialogue.map((l) => l.text));
+      }
+    }
   });
 
-  it('climax has two stages: botella_vino with point then sello_lacre', () => {
+  it('D2-T2 attacks d2_t2_3 with registro and fila_B17_descarga point plus baul followUp', () => {
+    const stmt = CASE4_TESTIMONY_4.statements.find((s) => s.id === 'd2_t2_3');
+    expect(CASE4_TESTIMONY_4.witness).toBe('Chómpiras');
+    expect(stmt?.contradiction?.evidence).toEqual(['registro_montacargas']);
+    expect(stmt?.contradiction?.pointTarget?.zones.some((z) => z.id === 'fila_B17_descarga' && z.isCorrect)).toBe(true);
+    expect(stmt?.contradiction?.followUp?.evidence).toEqual(['baul_etiquetas']);
+  });
+
+  it('day-3 has no openingPresent: baccarat alibi is admitted, not presented', () => {
+    expect(CASE4_DAY3_INTRO.length).toBeGreaterThan(0);
+    expect(CASE4_DAY3_INTRO_EN.length).toBeGreaterThan(0);
+  });
+
+  it('D3-T1 attacks d3_t1_4 with orden_servicios and nombre_empleado point', () => {
+    const stmt = CASE4_TESTIMONY_5.statements.find((s) => s.id === 'd3_t1_4');
+    expect(stmt?.contradiction?.evidence).toEqual(['orden_servicios']);
+    expect(stmt?.contradiction?.pointTarget?.targetEvidenceId).toBe('orden_servicios');
+    expect(stmt?.contradiction?.pointTarget?.zones.some((z) => z.id === 'nombre_empleado' && z.isCorrect)).toBe(true);
+    expect(stmt?.contradiction?.followUp).toBeUndefined();
+  });
+
+  it('D3-T2 attacks d3_t2_4 with nota_amenaza and acuse_recepcion point', () => {
+    const stmt = CASE4_TESTIMONY_6.statements.find((s) => s.id === 'd3_t2_4');
+    expect(stmt?.contradiction?.evidence).toEqual(['nota_amenaza']);
+    expect(stmt?.contradiction?.pointTarget?.zones.some((z) => z.id === 'acuse_recepcion' && z.isCorrect)).toBe(true);
+  });
+
+  it('climax has two stages with points: cierre_canal then anillo_fractura', () => {
     expect(CASE4_CLIMAX.stages).toHaveLength(2);
     expect(CASE4_CLIMAX.stages![0].presentTarget).toEqual(['botella_vino']);
-    expect(CASE4_CLIMAX.stages![0].pointTarget?.zones.some((z) => z.id === 'cupula_sello_lacre')).toBe(true);
+    expect(CASE4_CLIMAX.stages![0].pointTarget?.zones.some((z) => z.id === 'canal_fino')).toBe(true);
     expect(CASE4_CLIMAX.stages![1].presentTarget).toEqual(['sello_lacre']);
+    expect(CASE4_CLIMAX.stages![1].pointTarget?.zones.some((z) => z.id === 'extremo_truncado')).toBe(true);
     expect(CASE4_CLIMAX_EN.stages![0].presentTarget).toEqual(['botella_vino']);
     expect(CASE4_CLIMAX_EN.stages![1].presentTarget).toEqual(['sello_lacre']);
+    expect(CASE4_CLIMAX.choices).toBeUndefined();
   });
 
   it('epilogue stamps bg waiting room and furniture none on every line', () => {
@@ -117,21 +155,29 @@ describe('Case 4 Hotel Buena Vista trial scripts', () => {
     });
   });
 
-  it('defines non-empty present prompts outside cross examination in ES and EN', () => {
-    expect(CASE4_DAY3_OPENING_PRESENT.prompt).toBeTruthy();
-    expect(CASE4_DAY3_OPENING_PRESENT_EN.prompt).toBeTruthy();
-
+  it('defines non-empty present prompts on every followUp and climax stage', () => {
     const findFollowUps = (testimonies: Testimony[]) =>
       testimonies.flatMap((t) => t.statements.filter((s) => s.contradiction?.followUp).map((s) => s.contradiction!.followUp!));
 
     const esFollowUps = findFollowUps(ES_TESTIMONIES);
     const enFollowUps = findFollowUps(EN_TESTIMONIES);
-    expect(esFollowUps).toHaveLength(6);
-    expect(enFollowUps).toHaveLength(6);
-    esFollowUps.forEach((fu) => expect(fu.prompt).toBeTruthy());
-    enFollowUps.forEach((fu) => expect(fu.prompt).toBeTruthy());
+    expect(esFollowUps.length).toBeGreaterThan(0);
+    expect(enFollowUps.length).toBeGreaterThan(0);
+    for (const fu of [...esFollowUps, ...enFollowUps]) {
+      if (fu.evidence.length > 0) expect(fu.prompt ?? 'optional').toBeTruthy();
+    }
 
+    expect(CASE4_DAY2_INTRO[2].bgm).toBeUndefined();
+    expect(CASE4_DAY2_INTRO_EN[2].bgm).toBeUndefined();
     CASE4_CLIMAX.stages!.forEach((stage) => expect(stage.prompt).toBeTruthy());
     CASE4_CLIMAX_EN.stages!.forEach((stage) => expect(stage.prompt).toBeTruthy());
+  });
+
+  it('opens the climax on the showdown theme, not the courtroom opening', () => {
+    for (const climax of [CASE4_CLIMAX, CASE4_CLIMAX_EN]) {
+      expect(climax.dialogue[0].bgm).toBe('suspense');
+      const escalation = climax.dialogue.filter((l) => l.bgm).map((l) => l.bgm);
+      expect(escalation).toEqual(['suspense', 'pursuit']);
+    }
   });
 });

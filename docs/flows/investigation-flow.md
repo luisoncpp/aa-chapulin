@@ -19,26 +19,33 @@ Operational guide for player actions during the crime scene investigation phase.
 4. `midiComposer.playTrack(scene.bgm)` transitions background music (`'investigation'` or `'suspense'`).
 5. `renderHotspots()` injects percentage-based clickable regions into `#hotspots-container` (`x,y,w,h` are of the 960×540 stage after `background-size: cover`, not of the raw background file).
 6. `resolveSceneIntro(scene, gameState)` checks whether an opening dialogue should play:
-   - On first visit (or when a conditional `SceneIntro` matches unplayed event flags), `gameState.markIntroPlayed(intro.id)` records completion and `queueDialogue(intro.dialogue)` presents opening dialogue. After trial adjournment, intro waits until `fadeThroughBlack` reveals the new plate.
+   - On first visit (or when a conditional `SceneIntro` matches unplayed event flags), `gameState.markIntroPlayed(intro.id)` records completion, investigation navigation (`#investigation-controls`) is hidden with `.hidden`, `isFirstTimeDialogue = true` blocks menu/hotspot interactions, and `queueDialogue(intro.dialogue)` presents opening dialogue. On dialogue completion, `.hidden` is removed from `#investigation-controls`, `isFirstTimeDialogue = false`, and `restoreSceneIdlePose()` restores the resident character pose. After trial adjournment, intro waits until `fadeThroughBlack` reveals the new plate before `queueCurrentIntro()` queues the dialogue.
    - On re-visits where no new event intro matches, opening dialogue is bypassed as in Ace Attorney games; the speaker tag and dialogue box are cleared, the resident character pose is restored from the scene's resolved `idlePose` (or hidden if `null`), and investigation navigation is immediately ready. Dialogue completions (intro, hotspot examination, and talk topics) similarly restore the resident character's `idlePose`.
 
 ### Examination & Hotspot Click
 1. Player clicks "🔍 Examinar" (`#btn-inv-examine`).
 2. `#hotspots-container` receives class `.visible-hotspots` (enabling pointer events on hotspots).
-3. Active character sprite is hidden (`hideCharacter()`) so the background is clear.
-4. Player moves cursor over a hotspot: `#examine-tooltip` updates position and text label.
-5. Player clicks hotspot:
+3. `#dialogue-box` and `#game-screen` receive class `.examine-mode` (shrunk 48px prompt plate, lowered controls dock).
+4. Investigation navigation (`#investigation-controls`) is hidden, and examine navigation (`#examine-nav` with "Volver" / Back button) is shown.
+5. Active character sprite is hidden (`hideCharacter()`) so the crime scene background is clear.
+6. Player moves the pointer during examine mode: `InvestigationController` compares the pointer coordinates with the 48px `#dialogue-box` rect and adds `examine-hud-hidden` while the pointer is over that frame. The plate remains click-through, so a hotspot underneath can still receive clicks. `#examine-tooltip` updates for the hotspot independently. Typewriter text blips stop while the plate is hidden.
+7. Player clicks hotspot:
    - SFX `'click'` plays.
-   - `exitExamineMode()` disables hotspot hover layer.
-   - If first-time inspection (`!gameState.isHotspotExamined(h.id)`):
-     - Investigation controls (`#investigation-controls`) remain hidden to prevent switching to talk/examine during active dialogue.
-     - Hotspot dialogue array is queued via `queueDialogue()`.
-     - Any `line.addEvidence` adds the item and shows `#game-notification` (`notifEvidenceAdded`) with realization SFX, same pattern as a new location.
-     - Any `line.updateEvidence` applies catalog `updatedDesc`. If the item was already owned, `#game-notification` shows `notifEvidenceUpdated`; if it was new, the add toast is used instead.
-     - On completion callback, `gameState.markHotspotExamined(h.id)` records completion, `#investigation-controls` is revealed, and `checkInvestigationProgress()` runs.
-   - If repeated inspection (`gameState.isHotspotExamined(h.id)`):
-     - Investigation controls (`#investigation-controls`) remain visible, allowing player to switch to talk or examine something else immediately.
-     - Hotspot dialogue array is queued via `queueDialogue()`.
+   - `#examine-tooltip` is hidden.
+   - `#hotspots-container` temporarily removes `.visible-hotspots` to prevent mid-dialogue re-triggers.
+   - `#dialogue-box` and `#game-screen` temporarily remove `.examine-mode` to display dialogue at full height (120px) with speaker tag and typewriter effects.
+   - `#examine-nav` and `#investigation-controls` are both hidden during dialogue playback.
+   - Hotspot dialogue array is queued via `queueDialogue()`.
+   - Any `line.addEvidence` adds the item and shows `#game-notification` (`notifEvidenceAdded`) with realization SFX.
+   - Any `line.updateEvidence` applies catalog `updatedDesc` and shows `#game-notification`.
+   - On dialogue completion callback:
+     - `gameState.markHotspotExamined(h.id)` records completion.
+     - `notifyNewlyUnlocked()` checks for newly unlocked talk topics.
+     - `checkInvestigationProgress()` updates trial button readiness.
+     - `startExamineMode()` is called to return/stay in examine mode (re-enabling hotspots, restoring examine-mode CSS, showing `#examine-nav`, and resetting the examine prompt).
+8. Player exits examine mode:
+   - Player clicks "Volver" (`#btn-examine-back`).
+   - `exitExamineMode()` deactivates examine mode, hides `#examine-nav`, reveals `#investigation-controls`, clears the examine prompt from the dialogue box, and restores the scene's resident character idle pose.
 
 
 ### Location Selection & Move Modal
@@ -53,11 +60,12 @@ Operational guide for player actions during the crime scene investigation phase.
 1. Player clicks "💬 Hablar" (`#btn-inv-talk`).
 2. `visibleTalkOptions(scene.talkOptions, gameState)` filters options, hiding any topics gated by `unlockedByTalk`, `unlockedByHotspot`, or `condition` whose requirements have not yet been satisfied.
 3. `#talk-options-modal` opens via `ModalManager.openTalkModal()` with buttons for each currently unlocked topic.
-4. Player clicks a topic: modal closes, topic dialogue queues, `gameState.markTalkCompleted(opt.id)` records completion, and evidence grants, description updates, or location unlocks are granted if scripted.
+4. Player clicks a topic: modal closes while dialogue plays, `#investigation-controls` is hidden and `isFirstTimeDialogue` is set (side buttons stay off-screen and Examinar/Hablar/Moverse stay blocked until the topic's `onComplete` runs), topic dialogue queues, `gameState.markTalkCompleted(opt.id)` records completion, and evidence grants, description updates, or location unlocks are granted if scripted.
 5. When dialogue line contains `line.unlockLocation`:
    - `gameState.unlockLocation(locId)` registers the location.
    - If newly unlocked, SFX `realization` plays and `#game-notification` displays `notifLocationUnlocked`.
 6. On dialogue completion callback (or hotspot examination completion), `notifyNewlyUnlocked()` checks if any previously locked topic in the scene became unlocked. If so, `realization` SFX plays, `#game-notification` displays `notifDialogueUnlocked(opt.label)`, and `checkInvestigationProgress()` runs.
+7. **Talk Modal Persistence**: If still in investigation mode and examine mode is not active, `openTalkMenu()` is automatically called upon dialogue completion to reopen `#talk-options-modal` with updated topics, allowing fluid sequential conversations. The player can dismiss the modal at any time using the close button (`X`) or switch to Court Record / other actions.
 
 ### Unlocking & Launching Trial
 1. `gameState.checkTrialReadiness()` in [[src/state/Private/GameStateManager.ts#Investigation Readiness]] checks `script.requiredEvidence` (day 1) or `adjournment.requiredEvidence` after Case 2 day-1 adjournment.

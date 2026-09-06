@@ -12,6 +12,8 @@ import { CASE4_DETENTION_D3 } from './Private/detention_d3.js';
 import { CASE4_DETENTION_D3_EN } from './Private/detention_d3_en.js';
 import { CASE4_DELEGACION } from './Private/delegacion.js';
 import { CASE4_DELEGACION_EN } from './Private/delegacion_en.js';
+import { CASE4_DELEGACION_D3 } from './Private/delegacion_d3.js';
+import { CASE4_DELEGACION_D3_EN } from './Private/delegacion_d3_en.js';
 import { CASE4_HOTEL_AZOTEA } from './Private/hotel_azotea.js';
 import { CASE4_HOTEL_AZOTEA_EN } from './Private/hotel_azotea_en.js';
 import { CASE4_HOTEL_CAVA } from './Private/hotel_cava.js';
@@ -60,7 +62,7 @@ interface Case4Parts {
   t3: Testimony;
   t4: Testimony;
   day3Intro: DialogueLine[];
-  day3Opening: OpeningPresent;
+  day3Opening?: OpeningPresent;
   t5: Testimony;
   t6: Testimony;
   climax: ClimaxDefinition;
@@ -91,9 +93,9 @@ function assembleCase4(parts: Case4Parts): CaseScript {
         requiredEvidence: CASE4_DAY3_EVIDENCE,
         trial: {
           intro: parts.day3Intro,
-          openingPresent: parts.day3Opening,
           testimony1: parts.t5,
-          testimony2: parts.t6
+          testimony2: parts.t6,
+          ...(parts.day3Opening ? { openingPresent: parts.day3Opening } : {})
         }
       }
     }
@@ -112,8 +114,10 @@ const SCENES_ES: CaseScript['investigation'] = {
   hotel_cava: CASE4_HOTEL_CAVA,
   hotel_lobby_d3: CASE4_HOTEL_LOBBY_D3,
   hotel_azotea: CASE4_HOTEL_AZOTEA,
-  detention_d3: CASE4_DETENTION_D3
+  detention_d3: CASE4_DETENTION_D3,
+  delegacion_d3: CASE4_DELEGACION_D3
 };
+
 
 const SCENES_EN: CaseScript['investigation'] = {
   detention: CASE4_DETENTION_EN,
@@ -127,7 +131,8 @@ const SCENES_EN: CaseScript['investigation'] = {
   hotel_cava: CASE4_HOTEL_CAVA_EN,
   hotel_lobby_d3: CASE4_HOTEL_LOBBY_D3_EN,
   hotel_azotea: CASE4_HOTEL_AZOTEA_EN,
-  detention_d3: CASE4_DETENTION_D3_EN
+  detention_d3: CASE4_DETENTION_D3_EN,
+  delegacion_d3: CASE4_DELEGACION_D3_EN
 };
 
 export const CASE_SCRIPT_CASE4_ES: CaseScript = assembleCase4({

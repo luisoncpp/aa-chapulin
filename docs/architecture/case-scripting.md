@@ -38,7 +38,7 @@ Each entry in a dialogue sequence supports the following optional and required f
 | `text` | string | Text string rendered via typewriter. |
 | `pose` | string \| null | Sprite key (e.g. `'donramon_idle'`, `'donramon_shock'`, `'chompiras_crying'`). If `null` during trial, defense defaults to `'donramon_idle'`. `donramon_slam` is a desk-contact pose for trial benches; investigation uses `donramon_shock`. Leftover slam tags remap to shock when mode is not `TRIAL`. |
 | `bg` | string | File path to switch the background image (`#scene-bg`). |
-| `bgm` | string | Track ID to switch soundtrack playback in `midiComposer`. |
+| `bgm` | string | Track ID to switch soundtrack playback in `midiComposer`. On a climax `dialogue[0]` it overrides the engine's `suspense` opener — see [[docs/lessons-learned/climax-bgm-line-override.md]]. |
 | `sfx` | string | SFX identifier to trigger procedural audio (`'gavel'`, `'desk_slam'`, `'whoosh'`, `'realization'`, `'damage'`, `'chipote'`, `'chicharra'`). |
 | `cutin` | string | Cut-in graphic key (`'objection_protesto'`, `'objection_un_momento'`, `'objection_toma_eso'`, `'objection_culpable'`, `'objection_inocente'`). |
 | `addEvidence` | string | Evidence ID to automatically add to the player's inventory with a progress notification (same toast + realization SFX as a new location). |
@@ -116,15 +116,19 @@ Optional `AdjournmentDefinition`: `nextLocation`, `unlockLocations`, next-day `r
 
 ## Case 4 Assembly (`case4`)
 
-Case 4 (`case4`) is specified in [[docs/specs/case-4-el-caso-del-hotel-buena-vista.md]]; scripts land in [[src/case/case4/index.ts]] when implemented. Investigation path:
+Case 4 (`case4`) is specified in [[docs/specs/case-4-el-caso-del-hotel-buena-vista.md]]; scripts land in [[src/case/case4/index.ts]]. Investigation path:
 
 | Day | Location chain | Notes |
 |-----|----------------|-------|
-| **1** | `detention` → `hotel_lobby` → `suite_304` → `hotel_terraza` | Maruja (`maruja_idle`) seals day with `candado_cadena`. |
-| **2** | `sotano` → `suite_204` → `hotel_terraza_d2` → `delegacion` | Terrace rotates to Chómpiras (`chompiras_idle`); precinct delivers `informe_forense`. |
-| **3** | `cava_sotano` → `hotel_lobby_d3` → `azotea` → `detention_d3` | Lobby rotates to Chimoltrufia (`chimoltrufia_idle`); detention revisit unlocks `nota_amenaza`. |
+| **1** | `detention` → `hotel_lobby` → `hotel_suite` → `hotel_terraza` | Terrace closes with the cork annex (`informe_policial` update) then `candado_cadena`. |
+| **2** | `hotel_sotano` → `hotel_suite204` → `hotel_terraza_d2` → `hotel_azotea` → `delegacion` | Terrace rotates to Chómpiras (`chompiras_idle`); precinct closes with `copa_vino` + `toxicologia_vino`. |
+| **3** | `hotel_cava` → `hotel_lobby_d3` → `detention_d3` → `delegacion_d3` | Lobby rotates to Chimoltrufia (`chimoltrufia_idle`); precinct closes with `sello_lacre`. |
 
 Day 1 reuses `detention`; day 3 revisits it as `detention_d3` (same gating pattern as Case 3). Cast rotation uses **new location ids** (`hotel_terraza_d2`, `hotel_lobby_d3`) instead of mutating the same scene — see [[docs/lessons-learned/location-cast-rotation.md]].
+
+**Localization is per-file, not per-field.** Every Case 4 scene, testimony and success block has a full `_en` twin holding its own English text; the English script is an adaptation of the Spanish spec, not a translation (spec §18). Two consequences worth preserving: an `_en` module must not reuse a Spanish `successDialogue`/`pointTarget` array, and spreading a Spanish `PointTargetContradiction` to override only `promptQuestion` silently inherits its Spanish `zones[].failureDialogue` — override `zones` too. `hotel_cava_en.ts` exists for this reason; the index no longer builds the English cellar by swapping hotspots onto the Spanish scene.
+
+The day-2 §10.3 closing beat (Rufino's "I did not poison him", the search order for Suite 204, Chapulín's send-off) is appended to `CASE4_D2_T2_BAUL_SUCCESS` so it plays before the adjournment, per the §6 rule that D1-T2 and D2-T2 end on their last success line.
 
 ### Case 4 script fields (beyond Case 3)
 
@@ -132,8 +136,8 @@ Day 1 reuses `detention`; day 3 revisits it as `detention_d3` (same gating patte
 |-------|-------|---------|
 | `pointTarget` | `ContradictionRule`, `ContradictionFollowUp`, `ClimaxStage` | After a correct present, opens `#present-point-overlay` so the player clicks a zone on the 640×360 plate ([[docs/flows/present-point-flow.md]]). Parent `successDialogue` plays only after a correct click. |
 | `followUp` | `ContradictionRule` | After the first present's success (and point, if any), reopen the Acta for `followUp.evidence`. Wrong item = penalty. Correct plays `followUp.successDialogue` (optional `followUp.pointTarget` first), then testimony 2 / adjourn / climax. |
-| `openingPresent` | `TrialScript` / `TrialDayScript` | After that day's intro, before testimony 1: Acta present (Case 4 day 3 `nota_amenaza`). Wrong = penalty then reopen; correct plays `successDialogue` then `startTestimony('testimony1')`. |
-| `detailedView` | `EvidenceItem` in [[src/state/Private/EvidenceCatalogCase4.ts]] | Five items expose `#btn-evidence-examine` in the Acta ([[docs/flows/evidence-examine-flow.md]]). |
+| `openingPresent` | `TrialScript` / `TrialDayScript` | After that day's intro, before testimony 1: Acta present. Unused in Case 4 day 3: the baccarat alibi is admitted, not presented. |
+| `detailedView` | `EvidenceItem` in [[src/state/Private/EvidenceCatalogCase4.ts]] | Eight items expose `#btn-evidence-examine` in the Acta ([[docs/flows/evidence-examine-flow.md]]). |
 
 ### Case 4 trial gating (`checkTrialReadiness`)
 
@@ -141,8 +145,10 @@ Readiness is inventory-only (see [[docs/lessons-learned/trial-gating-is-inventor
 
 | Day | `requiredEvidence` | Last location | Sealing item |
 |-----|-------------------|---------------|--------------|
-| **1** | `informe_policial`, `foto_crimen`, `plano_hotel`, `billetera_cuajinais`, `candado_cadena` | `hotel_terraza` | `candado_cadena` |
-| **2** | `residuos_manos`, `casquillo_fogueo`, `registro_montacargas`, `informe_forense` | `delegacion` | `informe_forense` |
-| **3** | `copa_vino`, `botella_vino`, `boleta_baccarat`, `baul_etiquetas`, `sello_lacre`, `nota_amenaza` | `detention_d3` | `nota_amenaza` |
+| **1** | `informe_policial`, `foto_crimen`, `billetera_cuajinais`, `orden_servicios`, `plano_hotel`, `candado_cadena` | `hotel_terraza` | `candado_cadena` |
+| **2** | `residuos_manos`, `casquillo_fogueo`, `registro_montacargas`, `baul_etiquetas`, `copa_vino`, `toxicologia_vino` | `delegacion` | `toxicologia_vino` |
+| **3** | `botella_vino`, `boleta_baccarat`, `nota_amenaza`, `sello_lacre` | `delegacion_d3` | `sello_lacre` |
 
-`getEvidenceCatalog(lang, 'case4')` returns the Case 4 map alone (16 entries including `insignia_abogado`); Case 1 `foto_crimen` text must not leak.
+`informe_forense` is delivered mid-trial on day 1 and never gates. Staged `updates[]` enrich cards, never days.
+
+`getEvidenceCatalog(lang, 'case4')` returns the Case 4 map alone (18 entries including `insignia_abogado`); Case 1 `foto_crimen` text must not leak.

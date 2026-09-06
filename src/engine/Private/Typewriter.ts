@@ -33,7 +33,7 @@ export class Typewriter {
     this.timer = setInterval(/*onCharTick*/ () => {
       if (this.typeIdx < this.fullText.length) {
         this.targetEl.textContent += this.fullText[this.typeIdx];
-        if (count % 2 === 0 && this.fullText[this.typeIdx] !== ' ') {
+        if (count % 2 === 0 && this.fullText[this.typeIdx] !== ' ' && this.canPlayTextBlip()) {
           this.soundEngine.playTextBlip();
         }
         this.typeIdx++;
@@ -72,5 +72,9 @@ export class Typewriter {
       this.onCompleteCallback = null;
       cb();
     }
+  }
+
+  private canPlayTextBlip(): boolean {
+    return getComputedStyle(this.targetEl).visibility !== 'hidden';
   }
 }

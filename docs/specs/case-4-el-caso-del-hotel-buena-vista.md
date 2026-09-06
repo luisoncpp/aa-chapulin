@@ -169,11 +169,20 @@ Se emplean los sprites existentes del reparto. Las indicaciones [pausa] signific
 Ubicación detention. Música detention_center. Botija es residente; Chimoltrufia aparece en la entrada con Don Ramón y Chapulín.
 
 ~~~dialogue
-CHIMOLTRUFIA: ¡Díganle que hable! Desde anoche nomás me dice que no se preocupe. ¡Y eso es lo que más me preocupa!
-BOTIJA: No quería que me vieras aquí otra vez.
-DEFENSA: Entonces ayúdanos a que sea la última. Empieza por el principio, aunque no te haga quedar bonito.
-CHAPULIN: ¡Que no panda el cúnico! Nosotros venimos a escucharte.
-BOTIJA: Pues van a tener que sentarse. Esa noche me mandaron por todo el hotel.
+NARRADOR: 25 de octubre, 9:00 de la mañana. Centro de Detención de la ciudad.
+CHIMOLTRUFIA: ¡Díganle que hable! Desde anoche nomás me repite que no me preocupe. Y como digo una cosa digo otra: ¡eso es lo que más me preocupa!
+BOTIJA: No quería que me vieras aquí otra vez, vieja.
+CHIMOLTRUFIA: ¡Pues ya me viste viéndote! Y no sé qué me duele más, si verte o que no me hables.
+DEFENSA: Con permisito, dijo Monchito. Licenciado Monchito, defensor de oficio y de necesidad.
+CHIMOLTRUFIA: ¿Y usted cuánto cobra?
+DEFENSA: Señora, yo llevo dieciséis meses sin pagarle la renta a mi casero. Cobrarle a usted sería una falta de respeto a mi profesión.
+CHAPULIN: ¡Y que no panda el cúnico! Nosotros venimos a escucharlo todo, hasta lo que no quiera contar.
+BOTIJA: ¿Y usted es de la policía?
+CHAPULIN: Soy el Chapulín Colorado.
+BOTIJA: Ah. Entonces sí estoy perdido.
+CHAPULIN: ¡Se aprovechan de mi nobleza!
+DEFENSA: Empieza por el principio, Botija. Y no me lo adornes: a mí se me defiende mejor lo feo que lo bonito.
+BOTIJA: Pues acomódense, porque esa noche me trajeron corriendo por todo el hotel. Y a mí correr no me luce.
 ~~~
 
 Temas en este orden; los dos primeros están disponibles, el tercero exige haber oído ambos.
@@ -185,13 +194,18 @@ Temas en este orden; los dos primeros están disponibles, el tercero exige haber
 | “La puerta que dejaste” | Abrió con la maestra, dejó la puerta emparejada y entró al baño. No accionó la cadena. La sala estaba en penumbra detrás del biombo. Recuerda un golpe leve de puerta mientras corría el agua, pero no vio a nadie. [ABRIR hotel_lobby]. |
 
 ~~~dialogue
-DEFENSA: El dinero seguía dentro. Eso no prueba que no la robaras.
+DEFENSA: El dinero seguía adentro. Eso no prueba nada: un ladrón nervioso también sabe no gastar.
 BOTIJA: Ya sé cómo se ve.
 DEFENSA: Por eso necesito saber cómo pasó, no cómo te gustaría que sonara.
-BOTIJA: Me dio miedo. Pensé que si me encontraban cerca del Cuajinais iban a creer que andábamos juntos otra vez.
-CHIMOLTRUFIA: A mí me hubieras dicho.
+BOTIJA: Me dio miedo. Pensé que si me hallaban junto al Cuajinais iban a creer que andábamos juntos otra vez.
+DEFENSA: ¿Y se te ocurrió meterte en el cesto de la ropa sucia?
+BOTIJA: Meterme se me ocurrió rapidísimo. Lo que no se me ocurrió fue cómo salir.
+CHAPULIN: ¡Yo también me habría escondido! Mis antenitas de vinil detectan la presencia de los enemigos... pero mis piernas opinan por su cuenta.
+CHIMOLTRUFIA: A mí me hubieras dicho, Botija.
 BOTIJA: Me daba más miedo que tú también lo creyeras.
-CHAPULIN: Pues ya lo dijiste. Ahora podemos empezar por ahí.
+CHIMOLTRUFIA: Pues fíjate que sí lo pensé. Y como digo una cosa digo otra: lo pensé llorando.
+CHAPULIN: Bueno, ya lo dijeron los dos. De ahí podemos empezar.
+DEFENSA: (Un hombre que le tiene más miedo a su mujer que a la horca. Ése no me está mintiendo.)
 ~~~
 
 La explicación de la discusión queda planteada y Botija confirma que rechazó un trabajo; su conversación con Chimoltrufia tendrá desarrollo, no una nueva coartada secreta.
@@ -201,14 +215,20 @@ La explicación de la discusión queda planteada y Botija confirma que rechazó 
 Ubicación hotel_lobby. Música investigation. Cecilio reside; Rufino está terminando un trámite al entrar la defensa. Así se establece su presencia sin presentarlo como villano.
 
 ~~~dialogue
-CECILIO: Su recibo, señor conde. Y esta vez he contado las cifras con los anteojos puestos.
-RUFINO: Una precaución que su hotel debería convertir en costumbre.
-DEFENSA: Buscamos los trabajos que hizo Botija durante la gala.
-RUFINO: A mí me llevó una botella y me ayudó con un baúl. Deje constancia de que trabajó puntualmente.
-CHAPULIN: ¿Ese anillo también sirve para firmar?
-RUFINO: Para sellar correspondencia. La cabeza gira para proteger el relieve.
-NARRADOR: Rufino vuelve la cabeza del anillo hacia la palma y recoge el recibo.
-RUFINO: Estaré a disposición del tribunal.
+NARRADOR: Gran Hotel Buena Vista. Recepción, 10:00 de la mañana.
+CECILIO: Su recibo, señor conde. Y esta vez conté las cifras con los anteojos puestos.
+RUFINO: Una precaución que este establecimiento debería elevar a costumbre.
+CECILIO: Buenos días. ¿En qué puedo servir a la señora y a su acompañante?
+DEFENSA: La señora soy yo, por lo visto.
+CECILIO: Le ruego mil perdones. A dos metros yo distingo colores, no personas.
+CHAPULIN: ¡Pues a mí me distinguió muy bien! ¡Rojo!
+DEFENSA: Licenciado Monchito, defensa. Venimos por los trabajos que hizo Botija durante la gala.
+RUFINO: A mí me subió una botella y me ayudó con un baúl. Que conste en su cuadernito que fue puntual: la puntualidad es la cortesía de los que no tienen otra.
+CHAPULIN: ¿Y ese anillote también sirve para firmar?
+RUFINO: Para sellar correspondencia, jovencito. La cabeza gira, para proteger el relieve.
+NARRADOR: Rufino vuelve la cabeza del anillo hacia la palma y recoge el recibo sin darle importancia.
+RUFINO: Estaré a disposición del tribunal. Uno colabora, aunque le arruinen las vacaciones.
+DEFENSA: (Conde, monóculo y anillo de oro. Y yo con una insignia abollada.)
 ~~~
 
 Su observación sobre el anillo describe una característica visible. No hay primer plano amenazante, música de culpable ni mención de venenos.
@@ -227,10 +247,11 @@ Tras plano, libro y folio se abre hotel_suite. El anexo del folio se produce sie
 Broma breve al despedirse:
 
 ~~~dialogue
-CECILIO: Les ruego darse prisa. Tengo a los huéspedes esperando una explicación.
+CECILIO: Les ruego darse prisa. Tengo el vestíbulo lleno de huéspedes esperando una explicación.
 CHAPULIN: Vísteme despacio, que no por mucho madrugar tengo prisa...
 DEFENSA: Chapulín, ni siquiera nos estamos vistiendo.
 CHAPULIN: No, espéreme: no por mucho vestirse amanece más temprano... Bueno, la idea es esa.
+CECILIO: Qué barbaridad. Y yo que creía que el problema eran mis anteojos.
 ~~~
 
 ### 7.3 Suite 304, 11:00
@@ -238,12 +259,17 @@ CHAPULIN: No, espéreme: no por mucho vestirse amanece más temprano... Bueno, l
 Ubicación hotel_suite. Música suspense. Sargento residente.
 
 ~~~dialogue
-SARGENTO: Antes de que entren: cada objeto tiene su número. Si mueven uno, me avisan.
-DEFENSA: ¿Y esto?
-SARGENTO: Mi lista de cosas que no debo perder.
+SARGENTO: ¡A sus órdenes, mi licenciado! Sargento Refugio Pazguato, de la policía... por ahora.
+DEFENSA: ¿Por ahora?
+SARGENTO: Es que el fiscal Super Sam me descuenta la quincena cada vez que dejo pasar a una defensa. Ya van dos.
+CHAPULIN: ¿Y entonces por qué nos deja pasar?
+SARGENTO: Porque llevo veinte años viéndoles la cara a los asesinos, y ese señor gordito no tiene esa cara. Tiene cara de que le duelen los pies.
+SARGENTO: Eso sí: aquí cada objeto tiene su número. Si mueven uno, me avisan.
+DEFENSA: ¿Y esa libreta?
+SARGENTO: Mi lista de las cosas que no debo perder.
 CHAPULIN: ¿Y dónde apunta si pierde la lista?
-SARGENTO: No me complique el procedimiento, Chapulín.
-DEFENSA: Vamos por lo que vio, Sargento. Lo que cree que pasó lo discutimos después.
+SARGENTO: ...No me complique el procedimiento, Chapulín.
+DEFENSA: Vamos por lo que usted vio, Sargento. Lo que usted cree que pasó lo discutimos al rato.
 ~~~
 
 Hotspots y resultados:
@@ -261,11 +287,13 @@ Hotspots y resultados:
 Tema final “Solicitar el cotejo”: se desbloquea tras examinar cuerpo y almohada. El Sargento remite la pregunta al forense y avisa que la ampliación puede llegar durante la audiencia. Se abre hotel_terraza después de dejar asentada la solicitud.
 
 ~~~dialogue
-DEFENSA: Quiero comparar esta almohada con la herida. No me basta con que ambas tengan un agujero.
-SARGENTO: Lo pediré por escrito. El primer parte salió antes de que terminaran esos exámenes.
-CHAPULIN: Más vale preguntar ahora que...
+DEFENSA: Quiero que comparen esta almohada con la herida. No me basta con que las dos tengan un agujero.
+SARGENTO: Lo pido por escrito ahora mismo. El primer parte salió antes de que terminaran esos exámenes.
+DEFENSA: ¿Y no le van a descontar otra quincena por eso?
+SARGENTO: Sí. Pero un parte mal hecho me lo descuentan de la conciencia, y ahí no hay quincena que alcance.
+CHAPULIN: ¡Más vale preguntar ahora que...!
 DEFENSA: Con un refrán por mañana tenemos, Chapulín.
-CHAPULIN: Iba a decir “equivocarnos después”.
+CHAPULIN: Iba a decir "equivocarnos después".
 DEFENSA: Ah. Pues sí.
 ~~~
 
@@ -273,16 +301,19 @@ Esta última réplica no cuenta como una tercera mezcla ni participa en ningún 
 
 ### 7.4 Terraza, 12:00
 
-Ubicación hotel_terraza. Música investigation. Maruja residente, Sargento presente al final.
+Ubicación hotel_terraza. Música terraza_bar. Maruja residente, Sargento presente al final.
 
 ~~~dialogue
-MARUJA: Si vienen por el ruido, les contestaré. Si vienen a preguntarme cuánto perdí en las mesas, eso no tiene relación.
+MARUJA: Si vienen por el ruido, les contesto. Si vienen a preguntarme cuánto perdí en las mesas, eso no tiene relación con nada.
 DEFENSA: Yo todavía no había preguntado nada.
-MARUJA: Así ahorramos tiempo.
-CHAPULIN: El fiscal estaría encantado con usted.
-NARRADOR: Al abrir el bolso para buscar el abanico, algo suena como un puñado de dados.
-MARUJA: Corchos. De cada cena que valió la pena. No pienso disculparme por eso.
-CHAPULIN: Yo guardo tapitas de refresco, pero nadie me invita a cenar.
+MARUJA: Por eso lo dije antes. Así ahorramos tiempo los tres.
+CHAPULIN: ¡Qué barbaridad! Contesta usted más rápido de lo que uno pregunta.
+MARUJA: Jovencito, en este hotel me dicen la Sirena. Y las sirenas cantan primero.
+DEFENSA: (Con esta señora me voy a quedar sin preguntas antes que sin renta.)
+NARRADOR: Al abrir el bolso para sacar el abanico, algo suena adentro como un puñado de dados.
+MARUJA: Corchos. Uno de cada cena que valió la pena. No pienso disculparme por eso.
+CHAPULIN: Yo guardo tapitas de refresco. Pero a mí nadie me invita a cenar.
+MARUJA: Pobrecito. Con ese traje yo tampoco lo invitaría.
 ~~~
 
 La colección es un rasgo de la testigo, presentado como broma. No lleva música de pista ni primer plano.
@@ -292,14 +323,16 @@ Temas: vio entrar a Botija antes del estruendo; después oyó la puerta forzada;
 Tema obligatorio “El recuerdo de esa noche”, disponible tras el tema de la visita a la 204. Maruja comprende que uno de esos corchos pertenece al servicio que se está investigando y lo entrega. La escena no anuncia su importancia futura.
 
 ~~~dialogue
-MARUJA: Antes de que sigan... este es de anoche. Me lo dio el señor Gómez cuando abrió la botella.
+MARUJA: Antes de que sigan... éste es de esa noche. Me lo dio el señor Gómez cuando destapó la botella.
 DEFENSA: ¿Se lo dio él?
-MARUJA: Lo sacó, me lo puso en la mano y después se sirvió. Yo me fui con él en el bolso.
-SARGENTO: Entonces salió de esa habitación antes que usted y antes de que él bebiera.
-NARRADOR: El Sargento lo embolsa, lo numera y anota la hora de entrega.
-SARGENTO: Queda como anexo de mi informe. Con mi firma y la suya.
-CHAPULIN: ¿Y eso para qué sirve?
-SARGENTO: Para que dentro de un mes nadie discuta dónde estuvo.
+MARUJA: Lo sacó, me lo puso en la mano como quien regala una flor, y luego se sirvió. Yo me fui con el corcho en el bolso.
+SARGENTO: Entonces ese cierre salió de la habitación antes que usted... y antes de que él bebiera.
+MARUJA: Lo guardé porque el caballero fue amable. Nadie me avisó que iba a convertirse en prueba.
+NARRADOR: El Sargento lo embolsa, lo numera y anota la hora de entrega con una letra minúscula y perfecta.
+SARGENTO: Queda como anexo de mi informe. Con mi firma y la de usted.
+CHAPULIN: ¿Y eso para qué sirve, Sargento? ¡Es un corcho!
+SARGENTO: Sirve para que dentro de un mes nadie pueda discutirme dónde estuvo este corcho. Porque va a estar escrito.
+DEFENSA: (Le van a descontar la quincena por embolsar un corcho. Y lo va a hacer de todos modos.)
 [ACTUALIZAR informe_policial]
 ~~~
 
@@ -314,20 +347,23 @@ Al examinar la placa, la ficha muestra trayectoria y fibras. Los protagonistas n
 ### 8.1 Apertura, 25 de octubre, 15:00
 
 ~~~dialogue
-JUEZ: Se abre la audiencia por la muerte del huésped de la Suite 304.
-SUPER SAM: Un muerto, un arma y un hombre encerrado con ambos. Time is money, Your Honor. Empecemos por ahí.
-DEFENSA: Empecemos también por cómo entró ese hombre. Fue enviado a trabajar.
-SUPER SAM: Una orden de trabajo explica el acceso. No explica el cadáver.
-JUEZ: Ambas observaciones son pertinentes. Escucharemos primero cómo se encontró la puerta.
+JUEZ: ¡Silencio en la sala! Se abre la audiencia por la muerte del huésped de la Suite 304. [sfx: gavel; bgm: trial]
+SUPER SAM: Un muerto, un arma y un hombre encerrado con los dos. Time is money, Your Honor: esta corte cobra por hora y yo también.
+SUPER SAM: ¡Y encima el acusado es fontanero! ¡Un señor que se gana la vida metiendo la mano donde no debe! [sfx: desk_slam]
+DEFENSA: ¡PROTESTO! ¡Con permisito, dijo Monchito! [sfx: desk_slam]
+DEFENSA: Ese hombre entró a esa suite porque el hotel lo mandó a trabajar. Con orden escrita y con hora.
+SUPER SAM: Una orden de trabajo explica la puerta, counselor. No explica el cadáver.
+DEFENSA: Todavía no. Pero explica por qué el único sospechoso de la fiscalía llegó armado con una llave de tuercas.
+JUEZ: Las dos observaciones son pertinentes. Escucharemos primero cómo se encontró esa puerta.
 ~~~
 
 ### 8.2 D1-T1, Cecilio: “La única persona dentro”
 
 ~~~dialogue
-d1_t1_1 CECILIO: Tras el estruendo fui a la 304 con el Sargento.
-d1_t1_2 CECILIO: La cerradura de llave estaba abierta, pero la cadena impedía entrar.
-d1_t1_3 CECILIO: Ese perno solo puede deslizarlo alguien situado dentro de la habitación.
-d1_t1_4 CECILIO: Puesto que Botija era el único vivo que encontramos dentro, tuvo que ser él quien echó la cadena.
+d1_t1_1 CECILIO: Después de aquel estruendo subí a la 304 con el Sargento. Treinta y un años sin un escándalo en mi hotel, señor juez. Treinta y uno.
+d1_t1_2 CECILIO: La cerradura de llave estaba abierta, pero la cadena no nos dejó entrar. Eso lo comprobé con la mano, no con la vista.
+d1_t1_3 CECILIO: Y ese perno, señores, únicamente puede deslizarlo alguien que esté dentro de la habitación.
+d1_t1_4 CECILIO: Como el señor Botija era el único vivo que hallamos ahí adentro, tuvo que echar la cadena él.
 ~~~
 
 Presiones:
@@ -342,22 +378,24 @@ Contradicción válida sobre 3 o 4: candado_cadena. PointTarget puerta_lazo.
 Pregunta: “¿Qué recorrido permite accionar este cierre desde el corredor después de prepararlo?”
 
 ~~~dialogue
-DEFENSA: ¡PROTESTO! La posición de la cadena nos dice cómo estaba cuando llegaron. No quién la dejó así.
-CECILIO: Pero el perno está en la cara interior.
-DEFENSA: Y aquí hay un hilo que pasa por él y continúa hacia el canto de la puerta.
-CHAPULIN: El trozo del pasillo y el de la placa pertenecen al mismo recorrido.
-DEFENSA: Con la puerta abierta se prepara el lazo. Después se puede tirar desde fuera. El fragmento atrapado muestra por qué no desapareció todo.
-JUEZ: Entonces alguien pudo intervenir después de entrar el acusado.
-DEFENSA: Sí. Eso es lo que demuestra esta pieza. Todavía no sabemos quién.
-SUPER SAM: Ni demuestra que Botija no pudiera haberla echado él.
-DEFENSA: Correcto. Por eso todavía nos falta revisar el supuesto homicidio.
+DEFENSA: ¡PROTESTO! ¡Esa cadena dice cómo estaba la puerta cuando ustedes llegaron, no quién la dejó así! [sfx: desk_slam]
+CECILIO: Pero el perno está del lado de adentro, licenciado. Eso hasta yo lo veo.
+DEFENSA: Pues véalo bien: por ese perno pasa un hilo, y el hilo sigue hasta el canto de la puerta.
+CHAPULIN: ¡Y el pedacito que recogieron en el pasillo es del mismo hilo! ¡Me vibraron las antenitas!
+DEFENSA: Sus antenitas y el inventario del Sargento, que para el caso opinan igual.
+DEFENSA: Con la puerta abierta se prepara el lazo. Después se jala desde el corredor y la cadena cae sola. Lo único que le salió mal al que lo hizo fue que un pedazo se quedó atorado.
+JUEZ: ¡Cáspita! ¿Entonces alguien pudo intervenir después de que entrara el acusado?
+DEFENSA: Pudo. Eso es lo que demuestra esta pieza. Quién fue, todavía no.
+SUPER SAM: ¡Y tampoco demuestra que el fontanero no la echara con su propia mano! [sfx: desk_slam]
+DEFENSA: Correcto, señor fiscal. Por eso ahora vamos a revisar su homicidio. Que ya se le está haciendo tarde.
 ~~~
 
 Fallo del señalamiento:
 
 ~~~dialogue
-JUEZ: Ese punto no muestra una conexión con el corredor. Examine el recorrido completo.
-DEFENSA: Tendré que comprobarlo desde el otro lado de la placa.
+JUEZ: Ese punto no conecta con el corredor, licenciado. Revise el recorrido completo.
+SUPER SAM: ¡Cada minuto de esta corte cuesta dinero, counselor! [sfx: desk_slam]
+DEFENSA: (Y cada equivocación me cuesta un pedazo de cliente. Otra vez, Monchito. Con calma.)
 ~~~
 
 No se identifica la zona correcta ni se inventa una técnica alternativa al fallar.
@@ -367,20 +405,22 @@ No se identifica la zona correcta ni se inventa una técnica alternativa al fall
 El testimonio se pronuncia antes de recibir la ampliación. Sus afirmaciones de causalidad quedan identificadas como la reconstrucción inicial del parte, no como peritajes que el policía sabe falsos.
 
 ~~~dialogue
-d1_t2_1 SARGENTO: A las 23:15 oímos el estruendo. A las 23:20 abrimos la habitación.
-d1_t2_2 SARGENTO: La víctima tenía una herida en el pecho y encontramos un revólver junto al cuerpo.
-d1_t2_3 SARGENTO: Mi reconstrucción inicial fue que esa bala causó la muerte al sonar el estruendo.
-d1_t2_4 SARGENTO: Esa fue la secuencia con la que relacioné a Botija con el homicidio.
+d1_t2_1 SARGENTO: A las 23:15 oímos el estruendo, mi señor juez. A las 23:20 abrimos la habitación a puros empujones.
+d1_t2_2 SARGENTO: La víctima tenía una herida en el pecho y junto al cuerpo había un revólver. Lo fotografié antes de tocarlo, que para eso me pagan. Poquito, pero me pagan.
+d1_t2_3 SARGENTO: Mi reconstrucción inicial fue que esa bala lo mató justo cuando sonó el estruendo.
+d1_t2_4 SARGENTO: Y con esa secuencia fue con la que relacioné al señor Botija con el homicidio.
 ~~~
 
 Presionar 1 aclara la diferencia entre ruido y apertura. Presionar 2 revisa el arma y la almohada. Presionar 3 o 4 entrega una sola ampliación recibida por la secretaría de la corte; repetir la presión permite releerla y no crea una nueva revelación.
 
 ~~~dialogue
-SARGENTO: La secretaría acaba de recibir la ampliación que solicitamos esta mañana.
-JUEZ: Incorpórese a las dos partes antes de continuar.
-NARRADOR: La ficha distingue la reacción de los tejidos, el intervalo de muerte y los análisis aún pendientes.
+SARGENTO: ¡Momentito, señor juez! La secretaría acaba de recibir la ampliación que pedimos ayer en la suite.
+SUPER SAM: ¿Usted mandó pedir exámenes extra? ¡Eso sale del presupuesto de la fiscalía! YOUR SALARY IS CUT!
+SARGENTO: Con ésta van tres quincenas, mi fiscal. A este paso voy a terminar trabajándole de gratis... o sea, igual que ahora.
+JUEZ: Incorpórese el documento a las dos partes antes de continuar.
+NARRADOR: El informe distingue la reacción de los tejidos, el intervalo de muerte y los análisis todavía pendientes.
 [ENTREGAR informe_forense]
-SARGENTO: Ese fue mi parte inicial. Ahora hay que cotejarlo con lo que encontró el forense.
+SARGENTO: Aquél era mi parte. Éste es el del forense. Y no dicen lo mismo.
 ~~~
 
 La ficha explica “sin reacción vital” en lenguaje corriente. No reproduce antes de jugar la exclamación que define el giro.
@@ -388,30 +428,33 @@ La ficha explica “sin reacción vital” en lenguaje corriente. No reproduce a
 Contradicción sobre 3 o 4: informe_forense.
 
 ~~~dialogue
-DEFENSA: ¡PROTESTO! Esa secuencia no puede sostenerse con la ampliación.
-SUPER SAM: Explíquelo.
-DEFENSA: La herida no presenta reacción vital. El cuerpo ya había muerto cuando recibió esa bala.
-JUEZ: ¿Está diciendo que dispararon contra un cadáver?
-DEFENSA: Sí. Y el intervalo del informe termina a las diez de la noche, incluido su margen. Botija entró a trabajar a las once y cinco.
+DEFENSA: ¡PROTESTO! ¡Esa secuencia se le cae con la ampliación, Sargento! [sfx: desk_slam]
+SUPER SAM: Explain yourself, counselor. Y rápido.
+DEFENSA: La herida no tiene reacción vital. En cristiano, señor juez: ese cuerpo ya estaba muerto cuando le entró la bala.
+JUEZ: ¡Cáspita! ¿Está usted diciendo que alguien le disparó a un muerto?
+DEFENSA: Eso digo. Y el informe cierra el intervalo de la muerte a las diez de la noche, con todo y su margen. Botija entró a trabajar a las once y cinco.
+CHAPULIN: ¡Llegó una hora y cinco minutos tarde para matarlo!
 [ACTUALIZAR informe_policial]
-BOTIJA: ¿Entonces... cuando yo entré...?
-DEFENSA: Ya estaba muerto.
+BOTIJA: Entonces... cuando yo entré al baño...
+DEFENSA: Ese hombre ya llevaba rato muerto detrás del biombo.
+BOTIJA: Y yo apretando una tuerca.
 [pausa; música objection]
-SUPER SAM: Eso cambia la causa del caso. Pero el disparo sí existió.
-JUEZ: ¿Qué objeto de la escena permite explicar que hubiera otro tiro menos perceptible?
+SUPER SAM: ...Grrr. Eso cambia la causa. ¡Pero el disparo existió! ¡Yo tengo aquí la bala, y las balas no se inventan!
+JUEZ: ¿Y qué objeto de esa habitación explicaría un tiro que nadie supo distinguir del estruendo?
 ~~~
 
 FollowUp: foto_crimen. Pregunta visible: “¿Qué objeto pudo amortiguar el disparo real?” Se acepta informe_policial también si su ficha ya incluye la inspección explícita de la almohada; ambas pruebas conducen al mismo resultado y no requieren bifurcación.
 
 ~~~dialogue
-DEFENSA: La almohada perforada. El arma se apoyó contra ella.
-SARGENTO: Pedimos la comparación precisamente por ese orificio. Incorporaré el resultado balístico cuando termine.
-DEFENSA: No digo que fuera silencioso. Digo que todavía no podemos confundir ese tiro con el estruendo que oyó todo el hotel.
+DEFENSA: ¡La almohada! Tiene el orificio y la tela ennegrecida: el arma se disparó apoyada contra ella.
+CHAPULIN: ¡Le pusieron almohada al muerto! ¡Y luego dicen que el raro soy yo!
+SARGENTO: Por ese orificio pedimos la comparación, mi licenciado. En cuanto salga la balística la incorporo.
+DEFENSA: No digo que fuera silencioso, señor juez. Digo que ese tiro no es el estruendo que oyó el hotel entero, y hasta hoy los estábamos cobrando como uno solo.
 JUEZ: Queda descartado que la bala causara la muerte a las 23:15.
-SUPER SAM: La fiscalía retira esa reconstrucción. Pero el acusado estuvo antes con una bebida destinada al huésped y discutió con él.
-DEFENSA: Una discusión tampoco identifica una causa de muerte.
-SUPER SAM: De acuerdo. Por eso pido toxicología y reconstrucción del servicio, no que ignoremos la autopsia.
-JUEZ: Se amplía la investigación. La hora del ruido deja de ser la hora del homicidio.
+SUPER SAM: ...La fiscalía retira esa reconstrucción. [sfx: desk_slam] ¡Pero el acusado le subió la bebida a la víctima y esa misma tarde se pelearon!
+DEFENSA: Un pleito no es una causa de muerte, señor fiscal. Si lo fuera, mi casero llevaría dieciséis meses tieso.
+SUPER SAM: Precisely! Por eso pido toxicología y reconstrucción del servicio. Un fiscal serio no ignora una autopsia: la vuelve a facturar.
+JUEZ: Se amplía la investigación. La hora del ruido deja de ser la hora del homicidio. [sfx: gavel]
 ~~~
 
 **Turnabout 1 completo.** El aplazamiento ocurre después de la reacción de Botija y la reformulación de la investigación. No se identifica el veneno hasta el resultado del segundo día. Nadie afirma aún que el cadáver vino de otra habitación.
@@ -424,13 +467,17 @@ JUEZ: Se amplía la investigación. La hora del ruido deja de ser la hora del ho
 Ubicación hotel_sotano. Música suspense. Sargento residente.
 
 ~~~dialogue
-SARGENTO: La comparación del arma ya está. El proyectil procede del revólver de la habitación.
+NARRADOR: 26 de octubre, 9:00. Sótano de calderas del Gran Hotel.
+SARGENTO: Ya salió la comparación del arma, mi licenciado. El proyectil sí es del revólver que estaba en la habitación.
 DEFENSA: Bien. Ya sabemos qué hizo el agujero. Nos falta saber qué hizo el ruido.
-SARGENTO: También llegaron los análisis de las manos. El hollín coincide con el trabajo de caldera; no respalda lo que supusimos al detenerlo.
+SARGENTO: También llegó lo de las manos del detenido. Lo que traía era tizne de caldera, del puro trabajo. No es lo que supusimos cuando lo arrestamos.
+CHAPULIN: ¡Entonces lo detuvieron por andar sucio!
+SARGENTO: Lo detuvimos por estar adentro, Chapulín. Lo de andar sucio nomás nos ayudó a convencernos.
+DEFENSA: Sargento, esa frase apúntela en su informe. Ahí es donde vale.
 [ENTREGAR residuos_manos]
 [ACTUALIZAR informe_policial]
-CHAPULIN: ¿Y el conducto que sube?
-SARGENTO: Pueden seguirlo en el plano. El hotel autorizó revisar el ramal bajo la 304.
+CHAPULIN: ¿Y ese tubo que sube hasta allá arriba?
+SARGENTO: Ése lo pueden seguir en el plano. El hotel ya nos autorizó revisar el ramal que pasa debajo de la 304.
 ~~~
 
 Hotspots:
@@ -444,14 +491,19 @@ Tema “Seguir el ramal” se abre después de examinar conducto e inventario. [
 
 ### 9.2 Suite 204, 10:00
 
-Ubicación hotel_suite204. Rufino residente durante visita autorizada y supervisada por el Sargento.
+Ubicación hotel_suite204. Música casa_clotilde, reutilizada del caso 2 por su tono excéntrico y refinado. Rufino residente durante visita autorizada y supervisada por el Sargento.
 
 ~~~dialogue
-RUFINO: Antes de que conviertan mis aposentos en taller: el señor Gómez estuvo aquí. No voy a negar una visita que registró medio hotel.
+RUFINO: Adelante, adelante. Y antes de que conviertan mis aposentos en taller de fontanería: sí, el señor Gómez estuvo aquí. No voy a negar una visita que vio medio hotel.
 DEFENSA: Botija dice que le entregó el vino en esta puerta.
-RUFINO: Y me pidió que firmara. Lo hice.
+RUFINO: Y me pidió una firma. Se la di. En mi familia se firma todo, hasta las condolencias.
+CHAPULIN: ¿Y su familia de dónde es?
+RUFINO: De Montemayor, jovencito.
+CHAPULIN: ¡Ah, yo tengo un primo en Montemayor!
+RUFINO: ...Lo dudo muchísimo.
+DEFENSA: (Nunca había visto a un conde defender su pueblo con tanta prisa.)
 CHAPULIN: ¿Y el baúl?
-RUFINO: Se lo presté a mi invitado. Tenía cosas que llevar a su habitación.
+RUFINO: Se lo presté a mi invitado. Tenía cosas que subir a su habitación, y uno es generoso con el equipaje ajeno.
 DEFENSA: Empecemos por esa visita.
 ~~~
 
@@ -470,24 +522,30 @@ Hotspots:
 - Recibo de equipaje: número B-17 y destinos. Preguntar por ese número habilita el tema con el operador.
 
 ~~~dialogue
-DEFENSA: ¿No le preocupa que hayan encontrado un efecto en su radiador?
-RUFINO: Me preocupa que alguien haya usado mi habitación. Hubo personal entrando y saliendo toda la noche.
-SARGENTO: Voy a registrar también esos accesos.
-DEFENSA: Hágalo. No basta con encontrarlo en una habitación para saber quién lo dejó.
+DEFENSA: ¿No le preocupa que hayan encontrado un artefacto de la gala en su radiador?
+RUFINO: Me preocupa que alguien haya usado mi habitación de bodega. Aquí entró y salió personal toda la noche: camareras, botones, fontaneros...
+CHAPULIN: ¡Y condes!
+RUFINO: El conde vive aquí, jovencito. Es distinto.
+SARGENTO: Voy a registrar también esos accesos. Todos, con nombre y hora.
+DEFENSA: Hágalo, Sargento. Encontrar una cosa en un cuarto no dice quién la dejó ahí. Si no, a mí me acusarían de las goteras de mi propia casa.
 ~~~
 
 [ABRIR hotel_terraza_d2] después de registrar efecto y recibo. La sospecha sobre las actividades de la 204 es legítima; la autoría sigue abierta.
 
 ### 9.3 Terraza con Chómpiras, 11:00
 
-Ubicación hotel_terraza_d2. Maruja ya completó sus temas del día 1. Música investigation.
+Ubicación hotel_terraza_d2. Maruja ya completó sus temas del día 1. Música terraza_bar.
 
 ~~~dialogue
-CHOMPIRAS: ¿Van a revisar el montacargas? Si me suben el sueldo según lo que carga, hoy sí me alcanza.
+CHOMPIRAS: ¡Licenciado! ¿Usted es el que va a sacar al Botija? Porque si no lo saca, me quedo sin quién me ayude con los baúles.
+DEFENSA: Lo voy a sacar. ¿Ustedes se conocen de antes?
+CHOMPIRAS: De antes de antes. Pero de eso ya no hablamos, ¿verdad? Ahora somos gente de uniforme.
+CHAPULIN: ¡Qué bonito es reformarse!
+CHOMPIRAS: Bonito sí. Bien pagado no.
 DEFENSA: Buscamos un envío con este número.
-CHOMPIRAS: Entonces no hay pierde. Los huéspedes cambian de nombre; las maletas llevan su etiqueta.
-CHAPULIN: ¿Y tú subes dentro?
-CHOMPIRAS: ¡No! La cabina es para carga. Uno manda el bulto y sube por la escalera.
+CHOMPIRAS: Entonces no hay pierde, mi licenciado. Los huéspedes se cambian de nombre a cada rato; las maletas no. La maleta trae su etiqueta y se acabó.
+CHAPULIN: ¿Y tú te subes adentro del montacargas?
+CHOMPIRAS: ¡Ay, no! La cabina es para carga. Uno manda el bulto y sube por la escalera, como los pobres.
 ~~~
 
 El jugador examina una lámina con varias filas. B-17 aparece dos veces con cargas diferentes; otros números y recorridos son envíos normales. Las marcas impresas permiten seguir una etiqueta sin depender del color.
@@ -502,10 +560,13 @@ Temas progresivos:
 Si se pregunta por la diferencia de peso:
 
 ~~~dialogue
-CHOMPIRAS: Algo descargaron. Yo apunté lo que marcaba la báscula, no lo que había dentro.
-DEFENSA: Entonces tendremos que mirar el baúl.
-CHAPULIN: ¿Lo guardaron o se perdió?
-CHOMPIRAS: Se guardó. Para eso apunto los números, aunque luego nadie me crea.
+CHOMPIRAS: Pues algo le sacaron, mi licenciado. Yo apunto lo que marca la báscula, no lo que va adentro.
+CHAPULIN: ¡Ochenta kilos! ¿Y qué cosa pesa ochenta kilos?
+CHOMPIRAS: Aquí, casi todo lo que vale la pena.
+DEFENSA: Entonces vamos a tener que mirar ese baúl.
+CHAPULIN: ¿Y lo guardaron o se perdió?
+CHOMPIRAS: Se guardó. Para eso apunto los números... aunque después nadie me crea nada.
+DEFENSA: Yo sí. Al fin y al cabo somos dos que apuntamos todo y a los que nadie les cree.
 ~~~
 
 ### 9.4 Azotea, 12:00
@@ -521,10 +582,14 @@ Hotspots:
 - Motor: confirma procedimiento y prohibición de pasajeros, sin una nueva avería que altere convenientemente los pesos.
 
 ~~~dialogue
-SARGENTO: Fotografiaré el forro antes de recoger nada.
-DEFENSA: Incluya ese retal.
-CHOMPIRAS: ¿Por un pedacito de tela?
-DEFENSA: Primero conservamos lo que hay. Después veremos qué significa.
+SARGENTO: Voy a fotografiar el forro antes de recoger nada. Foto, número y bolsa. En ese orden.
+DEFENSA: Y ese pedacito de tela enganchado, inclúyalo.
+CHOMPIRAS: ¿Tanto trabajo por un hilo?
+DEFENSA: Chómpiras, en mi oficio los hilos son lo único que se puede jalar.
+CHAPULIN: ¡En el mío también! Fíjese que a mis mallas...
+DEFENSA: No.
+CHAPULIN: ...que a mis mallas se les va deshilando la costura de atrás.
+DEFENSA: Sargento, fotografíe eso también. No vaya a ser.
 [ENTREGAR baul_etiquetas]
 ~~~
 
@@ -541,13 +606,18 @@ Se revisa el relato inicial de Botija, no se inventa una visita del detenido a o
 La escena tiene dos temas: “Cotejar firmas y destinos”, que cierra la revisión del porte, y “El resultado del laboratorio”, obligatorio y disponible tras el anterior, que contiene el diálogo siguiente y las dos entregas. **Ninguna prueba requerida se entrega en el intro de una escena**: el motor solo recalcula la disponibilidad del juicio al terminar un hotspot o un tema (`InvestigationController.checkInvestigationProgress`), de modo que un identificador entregado en la entrada dejaría el botón del juicio deshabilitado hasta la siguiente acción.
 
 ~~~dialogue
-SARGENTO: Tenemos la toxicología. El agente encontrado en la víctima aparece también en el vino de esta copa.
+SARGENTO: Llegó la toxicología, mi licenciado. Y ahora sí se me revolvió el estómago.
+DEFENSA: Dígalo de una vez.
+SARGENTO: Lo que mató al señor Gómez estaba también en el vino de esta copa.
 [ENTREGAR copa_vino]
-DEFENSA: ¿El análisis identifica quién lo puso?
-SARGENTO: No. Identifica lo que había y la vía compatible de ingestión.
+CHAPULIN: ¡Entonces no fue el balazo, ni el ruido, ni el baúl!
+DEFENSA: Fue la copa. Sargento, ¿el análisis dice quién lo puso ahí?
+SARGENTO: No, señor. Dice qué había y por dónde entró al cuerpo. Los nombres no vienen en el frasco.
 CHAPULIN: ¿Y la hora?
-SARGENTO: Sigue siendo el intervalo del primer informe. No se ha vuelto un reloj más preciso.
-DEFENSA: Entonces toca reconstruir quién tuvo la botella.
+SARGENTO: La misma ventana del primer informe. El laboratorio no se volvió relojero de la noche a la mañana.
+DEFENSA: Entonces nos toca a nosotros. Hay que reconstruir quién tuvo esa botella y en qué momento.
+CHAPULIN: ¡Síganme los buenos!
+DEFENSA: Chapulín, la botella está para el otro lado.
 [ENTREGAR toxicologia_vino]
 ~~~
 
@@ -558,18 +628,22 @@ La entrega final requiere haber completado la lectura del porte y oído el alcan
 ### 10.1 Apertura, 26 de octubre, 16:00
 
 ~~~dialogue
-SUPER SAM: La toxicología identifica una intoxicación. El acusado llevó el vino y había discutido con la víctima. Esa es la hipótesis que la fiscalía va a contrastar hoy.
-DEFENSA: Entre la entrega y el servicio hubo otras personas y otro lugar.
-JUEZ: Escucharemos a quien vio abrir la botella. También debemos aclarar por qué la sala oyó un disparo a una hora distinta de la muerte.
+JUEZ: Se reanuda la audiencia. [sfx: gavel; bgm: trial]
+SUPER SAM: New theory, Your Honor, y ésta viene con factura. La toxicología dice veneno. El acusado cargó el vino y traía pleito con el difunto.
+SUPER SAM: ¡Un fontanero envenenador! Ya me imagino el encabezado. Y los encabezados también cuestan dinero. [sfx: desk_slam]
+DEFENSA: ¡PROTESTO! Entre la entrega de esa botella y la copa que se sirvió hubo otro cuarto y otras manos.
+SUPER SAM: Prove it, counselor.
+DEFENSA: A eso vine. Ayer le desarmé una hipótesis; hoy vengo con tiempo para la segunda.
+JUEZ: Escucharemos a quien vio abrir esa botella. Y de paso quiero saber por qué esta sala oyó un disparo a una hora en la que ya no había a quién disparar.
 ~~~
 
 ### 10.2 D2-T1, Maruja: “La copa y el estruendo”
 
 ~~~dialogue
-d2_t1_1 MARUJA: Vi a Botija entregar la botella en la puerta de la 204; Rufino firmó el recibo.
-d2_t1_2 MARUJA: Volví después con Gómez. Él mismo sacó el cierre y se sirvió una copa.
-d2_t1_3 MARUJA: Más tarde, el estruendo nació dentro de la 304; estaba junto a la pared y lo sentí allí.
-d2_t1_4 MARUJA: Por eso tenía que haber alguien dentro de esa habitación accionando un arma a las 23:15.
+d2_t1_1 MARUJA: Vi al fontanero entregar la botella en la puerta de la 204. El señor conde firmó el recibo sin quitarse el monóculo.
+d2_t1_2 MARUJA: Después volví con el señor Gómez. Él mismo destapó la botella y se sirvió una copa. Insistió en destaparla él, como todos los hombres.
+d2_t1_3 MARUJA: Más tarde vino el estruendo, y ese estruendo nació dentro de la 304. Yo estaba pegada a esa pared y lo sentí en los huesos.
+d2_t1_4 MARUJA: Así que a las once y cuarto había alguien adentro de esa habitación accionando un arma. No hay de otra.
 ~~~
 
 Presiones:
@@ -589,14 +663,18 @@ Se admite cualquiera de estas rutas, expresadas como contradicciones independien
 No aceptar un ítem incorrecto solo por pertenecer al día. No exigir la primera ruta si el jugador eligió la otra deducción válida.
 
 ~~~dialogue
-DEFENSA: ¡PROTESTO! Usted oyó el efecto aquí arriba, pero el objeto que lo produjo estaba conectado al ramal inferior.
-MARUJA: ¿Un piso más abajo?
-SARGENTO: En la 204. El conjunto no dispara un proyectil y funciona con retardo. El ensayo está registrado.
-DEFENSA: Por eso no hacía falta un tirador en la 304 a esa hora.
-JUEZ: La coartada del momento del ruido no descarta una intervención anterior.
-SUPER SAM: De acuerdo. Eso explica la alarma. No identifica quién alteró el vino antes de servirlo.
-DEFENSA: Tampoco convierte al repartidor en el único que pudo hacerlo. La testigo dejó al huésped solo con la botella.
-MARUJA: Sí. Ese intervalo yo no lo vi.
+DEFENSA: ¡PROTESTO! ¡Usted sintió el estruendo en esa pared, señorita, pero la cosa que lo hizo no estaba en la 304! [sfx: desk_slam]
+MARUJA: ¿Cómo que no? Yo lo sentí aquí, en el brazo.
+DEFENSA: Lo sintió en el radiador. Y ese radiador viene de un piso más abajo.
+MARUJA: ...¿Un piso más abajo?
+SARGENTO: En la 204, señorita. El aparato no dispara bala: hace ruido, y trae retardo. El ensayo está registrado y firmado.
+CHAPULIN: ¡Las tuberías son bien chismosas, señor juez! ¡Lo que se dice abajo se oye arriba!
+JUEZ: ¡Cáspita! ¡Entonces no hacía falta ningún tirador dentro de la 304 a esa hora!
+JUEZ: Aunque eso tampoco descarta que alguien interviniera mucho antes.
+SUPER SAM: Fine. Eso explica el ruido. [sfx: desk_slam] ¡Pero el ruido no envenenó a nadie! ¡Todavía nadie me dice quién le puso algo a ese vino!
+DEFENSA: Tiene razón. Y por eso tampoco puede decirme que el único que pudo tocarlo fue el que lo cargó. Señorita: usted dejó al huésped de la 204 a solas con esa botella.
+MARUJA: ...Sí. Ese ratito yo no lo vi.
+DEFENSA: Nadie lo vio. Y ahí es justo donde la fiscalía dejó de contar.
 ~~~
 
 Tras la refutación, la fiscalía preserva lo verdadero del testimonio: Cuajinais abrió y bebió. No se desacredita a Maruja por equivocarse sobre la transmisión del sonido.
@@ -604,10 +682,10 @@ Tras la refutación, la fiscalía preserva lo verdadero del testimonio: Cuajinai
 ### 10.3 D2-T2, Chómpiras: “Un porte de equipaje”
 
 ~~~dialogue
-d2_t2_1 CHOMPIRAS: Registré B-17 saliendo de la planta 2 y después entrando en el almacén de la azotea.
-d2_t2_2 CHOMPIRAS: Botija hizo el porte hasta la 304 y Rufino lo recibió allí.
-d2_t2_3 CHOMPIRAS: Vi salir y llegar un baúl cerrado. Ese envío contenía únicamente equipaje, no a una persona.
-d2_t2_4 CHOMPIRAS: La faja seguía entera al recibirlo Rufino. Yo firmé el talón junto a Botija.
+d2_t2_1 CHOMPIRAS: Yo registré el B-17 saliendo de la planta 2 y luego entrando al almacén de la azotea. Con mi letra, que será fea pero es mía.
+d2_t2_2 CHOMPIRAS: El porte hasta la 304 lo hizo el Botija, y ahí mero se lo recibió el señor conde.
+d2_t2_3 CHOMPIRAS: Yo vi salir y llegar un baúl cerrado. Ahí nomás iba equipaje, señor juez. Una persona no, porque una persona se queja.
+d2_t2_4 CHOMPIRAS: Y la faja iba enterita cuando el conde lo recibió. Yo firmé el talón junto al Botija.
 ~~~
 
 Presiones:
@@ -622,44 +700,49 @@ Contradicción sobre 3: registro_montacargas, con señalamiento fila_B17_descarg
 Pregunta: “¿Qué trayecto obliga a investigar una descarga antes de llegar al almacén?”
 
 ~~~dialogue
-DEFENSA: ¡UN MOMENTO! Hay dos cargas distintas para el mismo baúl.
-CHOMPIRAS: Cien kilos al subir al tercero. Veinte cuando llegó a la azotea.
-DEFENSA: Eso indica una descarga de unos ochenta kilos en la planta 3.
-SUPER SAM: Ochenta kilos de cualquier cosa. No puede ponerle nombre a un peso.
-DEFENSA: Tiene razón. Necesitamos relacionar el interior con la víctima.
-JUEZ: Presente ese vínculo.
+DEFENSA: ¡UN MOMENTO! ¡El mismo baúl aparece pesado dos veces... y no pesa lo mismo! [sfx: desk_slam]
+CHOMPIRAS: A ver... cien kilos al subir al tercer piso. Veinte cuando llegó a la azotea.
+CHAPULIN: ¡Ochenta kilos de diferencia! ¡Es como si al baúl le hubiera dado hambre al revés!
+DEFENSA: En la planta 3 le sacaron ochenta kilos a ese baúl, señor juez.
+SUPER SAM: Eighty kilos of anything, counselor. Toallas. Botellas. Ladrillos. ¡Usted no le puede poner nombre a un peso! [sfx: desk_slam]
+DEFENSA: Ahí le doy la razón. Un peso no tiene nombre... hasta que uno le encuentra la ropa.
+JUEZ: Presente entonces ese vínculo, licenciado.
 ~~~
 
 FollowUp: baul_etiquetas. Su ficha contiene el cotejo con foto_crimen.
 
 ~~~dialogue
-DEFENSA: Este retal estaba enganchado en el forro. Sus bordes corresponden al desgarro del traje de Cuajinais.
-SARGENTO: La comparación está documentada. Demuestra contacto de la prenda con ese interior.
-SUPER SAM: También pudo guardar ropa en el baúl.
-DEFENSA: Sí. Pero tenemos una víctima que ya había muerto, un porte posterior, ese contacto, una descarga y un receptor identificado.
-CHAPULIN: Y el lugar donde se descargó es el mismo donde encontraron el cuerpo.
-DEFENSA: La defensa propone que B-17 llevó el cadáver. Pido al receptor que explique qué sacó de él.
-JUEZ: Señor Rufino, su recepción y la apertura posterior están documentadas. Responda.
-RUFINO: Yo... no quería que el hotel se viera envuelto en aquello.
-SUPER SAM: ¿En qué?
-RUFINO: Lo encontré muerto en mi habitación. Me asusté. Lo puse dentro y pedí que subieran el baúl.
+DEFENSA: ¡TOMA ESO! Este retal estaba enganchado en el forro del baúl. ¡Y sus bordes embonan con el desgarrón del traje del señor Gómez!
+SARGENTO: La comparación está documentada, señor juez. Las dos fotografías, a la misma escala.
+SUPER SAM: ¡El hombre pudo guardar su ropa ahí adentro! ¡La gente viaja con ropa!
+DEFENSA: Sí. Y casi siempre puesta. Contémoslo despacio: una víctima que ya estaba muerta antes de las diez, un baúl que sube a las 22:20, la tela de su traje enganchada adentro, y ochenta kilos que se esfuman en el tercer piso...
+CHAPULIN: ¡Y el tercer piso es donde apareció el muerto!
+DEFENSA: La defensa sostiene que el B-17 subió con el cadáver adentro. Y le pido al señor que lo recibió que nos diga qué le sacó. [sfx: desk_slam]
+JUEZ: Señor Rufián, su recepción y la apertura posterior están documentadas. Responda a este tribunal.
+RUFINO: Yo... yo no quería que el nombre de este hotel se viera envuelto en semejante...
+SUPER SAM: ¿En semejante QUÉ?
+RUFINO: ¡Lo encontré muerto en mi habitación! Me asusté. Lo metí en el baúl y pedí que lo subieran.
+NARRADOR: Un murmullo recorre la galería. El monóculo del conde tiembla, pero no llega a caerse.
 [pausa; música suspense]
-BOTIJA: ¿Yo lo llevé?
-RUFINO: Usted llevó un baúl. No tenía por qué saber lo demás.
-BOTIJA: Don Ramón...
-DEFENSA: Tu encargo era real. Lo que no te dijeron fue qué estabas llevando.
+BOTIJA: ...¿Yo lo subí? ¿Yo mandé ese baúl?
+RUFINO: Usted movió un baúl, buen hombre. No tenía por qué saber lo demás.
+BOTIJA: Don Ramón, yo revisé que la faja fuera enterita. Con estas manos.
+DEFENSA: Y firmaste el recibo, y avisaste que llegó completo. Botija: tu encargo era de verdad. Lo único falso era lo que iba adentro.
 [cutin: objection_toma_eso; música objection]
 ~~~
 
 **Turnabout 2.** La inferencia del jugador precede a la admisión. Los kilos no demostraron por sí solos la identidad; la respuesta confirma el traslado y el papel del acusado. Esta admisión intermedia no identifica aún al envenenador.
 
 ~~~dialogue
-JUEZ: La escena de la 304 se preparó después del traslado.
-RUFINO: ¡Pero yo no lo envenené! La botella la trajo ese hombre. Cuando comprendí lo que ocurría, pensé que me acusarían a mí.
-SUPER SAM: Usted admite ocultar el cadáver. La fiscalía investigará también su intervención.
-DEFENSA: Y nosotros examinaremos esa botella, desde su salida de la cava hasta el momento en que se abrió.
-JUEZ: Ordénese el registro de la 204 y la custodia de los objetos relacionados. El señor Rufino queda a disposición del tribunal.
-SARGENTO: Registraré por separado sus efectos personales y las muestras del vino.
+JUEZ: Queda claro que la escena de la 304 se preparó después del traslado.
+RUFINO: ¡Pero yo no lo envenené! ¡La botella la trajo ese hombre! Cuando comprendí lo que estaba pasando pensé que me culparían a mí... ¡a mí, que tengo escudo!
+DEFENSA: Y el escudo no le sirvió de nada, ¿verdad? Bienvenido al resto del mundo.
+SUPER SAM: Your Honor, el testigo acaba de confesar que escondió un cadáver. Eso me descuadra toda la hoja de cálculo. La fiscalía investigará también su intervención. [sfx: desk_slam]
+DEFENSA: Y la defensa va a seguir esa botella paso por paso: desde que salió de la cava hasta que alguien la destapó.
+JUEZ: Ordénese el registro de la Suite 204 y la custodia de los objetos relacionados. El señor Rufián queda a disposición de este tribunal. [sfx: gavel]
+SARGENTO: A la orden. Registro por separado sus efectos personales y las muestras del vino. Cada cosa en su bolsa y con su número.
+CHAPULIN: ¡Que no panda el cúnico, Botija! ¡Ya nomás falta una noche!
+BOTIJA: Es la tercera vez que me dicen eso. Pero es la primera vez que les creo.
 ~~~
 
 El Sargento incauta el anillo entre los efectos personales y documenta su estado esa tarde. El maletín de la 204 queda sellado para examen. Rufino no vuelve a limpiar su habitación durante la noche. Las acusaciones de montaje y de homicidio se distinguen; no se considera que admitir una implique automáticamente la otra.
@@ -674,13 +757,15 @@ La pregunta de la jornada no es quién odiaba a la víctima. Es en qué momento 
 Ubicación hotel_cava. Música suspense. Sargento residente. Cecilio abre el libro de la cava y se retira: sus hechos ya están en el Acta y no se le pide repetirlos.
 
 ~~~dialogue
-SARGENTO: Traje todo lo que tenemos de esa botella. Incluido el cierre que nos entregó la señorita Maruja.
+NARRADOR: 27 de octubre, 9:00. Cava del Gran Hotel Buena Vista.
+SARGENTO: Aquí le traje todo lo que tenemos de esa botella, mi licenciado. Hasta el corcho que nos dio la señorita Maruja.
 DEFENSA: ¿Desde cuándo lo tiene usted?
-SARGENTO: Desde el mediodía siguiente al hallazgo. Con hora, folio y las dos firmas.
-DEFENSA: Entonces ese pedazo de corcho estuvo fuera del hotel desde antes de que el hombre bebiera.
-SARGENTO: Estuvo en un bolso y luego en mi archivo. Nadie más lo tocó.
-CHAPULIN: ¿Y qué le vamos a preguntar a un corcho?
-DEFENSA: Por dónde entró lo que mató al señor Gómez.
+SARGENTO: Desde el mediodía siguiente al hallazgo. Con hora, folio y las dos firmas. Ahí donde lo ve, ese corcho tiene mejor papelería que yo.
+DEFENSA: Entonces ese pedazo de corcho salió del hotel antes de que el hombre bebiera.
+SARGENTO: Estuvo en un bolso y luego en mi archivo. Nadie más lo tocó, se lo firmo.
+CHAPULIN: ¿Y qué le vamos a preguntar a un corcho, Monchito? ¡Los corchos no hablan!
+DEFENSA: Éste sí. Le vamos a preguntar por dónde entró lo que mató al señor Gómez.
+CHAPULIN: ...Ay. Ya me dio cosa el corcho.
 ~~~
 
 Hotspots y resultados:
@@ -694,11 +779,14 @@ Hotspots y resultados:
 | Estantería | Ambientación y una broma breve sobre precios. Ninguna pista escondida en las cajas. |
 
 ~~~dialogue
-CHAPULIN: Tiene dos agujeros.
-SARGENTO: Uno es del sacacorchos. El otro no sé de qué es.
-DEFENSA: Yo tampoco. Anótelo como está y que lo analicen por dentro.
-SARGENTO: ¿También lo que quedó atrapado en el borde?
-DEFENSA: También. Sin decirnos todavía a qué se parece.
+CHAPULIN: ¡Tiene dos agujeros! Uno gordo y uno flaquito.
+SARGENTO: El gordo es del sacacorchos. El flaquito... ése no sé de qué es.
+DEFENSA: Yo tampoco. Y a mí las cosas que no sé me quitan más el sueño que el casero.
+SARGENTO: ¿Entonces lo anoto como está?
+DEFENSA: Como está. Y que lo analicen por dentro, no por fuera.
+SARGENTO: ¿También ese puntito que se quedó atorado en el borde?
+DEFENSA: También. Pero que el informe diga qué es, no a qué se parece. Yo no quiero adivinanzas: quiero un análisis.
+CHAPULIN: (Me están vibrando las antenitas. Aunque a lo mejor es el frío de la cava.)
 ~~~
 
 Nadie menciona un anillo, una aguja ni un instrumento concreto. La observación queda abierta y el jugador puede sospechar antes que los personajes.
@@ -710,11 +798,14 @@ Tema final “Pedir el análisis del canal”: exige haber examinado libro, bote
 Ubicación hotel_lobby_d3. Música investigation. La Chimoltrufia sustituye a Cecilio en el mostrador. La sustitución es legítima: los hechos de Cecilio ya están asentados en orden_servicios, plano_hotel y su testimonio del día 1; no queda ninguna información obtenible solo de él.
 
 ~~~dialogue
-CHIMOLTRUFIA: Me pusieron en el mostrador porque no hay quien atienda y porque yo sí sé dónde está cada papel.
+CHIMOLTRUFIA: Me pusieron en el mostrador porque no hay quién atienda. Y porque yo sí sé dónde está cada papel de este hotel.
 DEFENSA: ¿Y Don Cecilio?
-CHIMOLTRUFIA: Contestando a los periodistas. Con los anteojos puestos, eso sí.
-DEFENSA: Necesitamos folios originales, no el libro de turno.
-CHIMOLTRUFIA: Pues eso es lo único bueno de llevar catorce años aquí. Dígame cuáles.
+CHIMOLTRUFIA: Contestándoles a los periodistas. Con los anteojos puestos, eso sí. Ya le dijo "señorita" a dos fotógrafos.
+CHAPULIN: A mí me dijo señora.
+CHIMOLTRUFIA: No se sienta mal, joven, que a mí me dijo "muchacho".
+DEFENSA: Señora, necesitamos folios originales. No el libro de turno.
+CHIMOLTRUFIA: Ay, licenciado, ¿usted cree que yo estoy para andar de secretaria con mi marido encerrado? Y como digo una cosa digo otra: dígame cuáles y se los saco en dos minutos.
+DEFENSA: (Catorce años en este mostrador. Es la única persona del hotel que sabe dónde está todo.)
 ~~~
 
 Temas:
@@ -727,11 +818,14 @@ Temas:
 | “Lo que dicen en el hotel” | Disponible tras los otros tres temas, mediante `condition(flags)`, para que el jugador no llegue al juicio final sin la boleta ni el telegrama. Chimoltrufia cuenta que el personal ya condenó a su marido por su expediente. Prepara la escena de la detención. [ABRIR detention_d3]. |
 
 ~~~dialogue
-DEFENSA: Esta boleta confirma que el señor Rufián estaba jugando cuando sonó el estruendo.
-CHAPULIN: ¿Entonces perdimos?
-DEFENSA: No. Perdimos una idea que nunca tuvimos. Nosotros ya sabemos que a esa hora el muerto llevaba horas muerto.
-CHIMOLTRUFIA: ¿Y de qué le sirve a mi Botija?
-DEFENSA: De que ya nadie tiene que estar dentro de esa habitación a las once y cuarto. Ni él.
+DEFENSA: Esta boleta confirma que el señor Rufián estaba en la mesa de baccarat cuando sonó el estruendo.
+CHAPULIN: ¡Ay, no! ¿Entonces perdimos?
+DEFENSA: No, Chapulín. Perdimos una idea que nunca tuvimos.
+CHAPULIN: Ah, bueno. Ésas son las que menos duelen.
+DEFENSA: Nosotros ya sabemos que a las once y cuarto el muerto llevaba horas muerto.
+CHIMOLTRUFIA: ¿Y eso de qué le sirve a mi Botija?
+DEFENSA: De que ya nadie tenía que estar dentro de esa habitación a esa hora. Ni el conde... ni su marido.
+CHIMOLTRUFIA: Pues bendito papelito. Como digo una cosa digo otra: el boleto de un jugador me va a salvar al mío.
 ~~~
 
 La boleta entra al Acta como dato favorable a un tercero. Presentarla no es una trampa: delimita qué cubre esa coartada y qué no.
@@ -743,10 +837,13 @@ Ubicación detention_d3. Música detention_center. Botija residente; Chimoltrufi
 ~~~dialogue
 BOTIJA: Ya me contaron. Que subí un baúl con un muerto adentro.
 DEFENSA: Sí.
-BOTIJA: Y yo firmé el recibo. Con mi nombre.
-CHAPULIN: Firmaste un trabajo. Eso es lo que te dieron a firmar.
+BOTIJA: Y yo firmé el recibo. Con mi nombre y con mi letra.
+CHAPULIN: Firmaste un trabajo. Eso fue lo que te dieron a firmar.
 BOTIJA: Toda la vida quise un trabajo donde me pidieran firmar.
-CHIMOLTRUFIA: Y lo tienes. Lo que pasa es que te lo usaron.
+CHIMOLTRUFIA: Y lo tuviste. Lo que pasa es que te lo usaron.
+CHAPULIN: ¡Que no panda el cúnico! Todavía nos queda una audiencia.
+BOTIJA: ...¿Usted siempre habla así?
+CHAPULIN: Siempre. Y siempre me entienden. Tarde, pero me entienden.
 ~~~
 
 Temas:
@@ -775,13 +872,14 @@ Ubicación delegacion_d3. Música suspense. Sargento residente. Es la escena fin
 Primero, en el tema “El maletín incautado”, el telegrama justifica abrir lo que se selló la tarde anterior:
 
 ~~~dialogue
-SARGENTO: Con el telegrama, el juez autorizó abrir el maletín de la 204.
-NARRADOR: Dentro, envuelto en un pañuelo de hotel, está el Collar de Cleopatra.
-DEFENSA: Denunciado como robado hace once meses.
-SARGENTO: Levanté acta y lo adjunté al expediente del telegrama.
+SARGENTO: Con el telegrama en la mano, el juez autorizó abrir el maletín de la 204.
+NARRADOR: Dentro, envuelto en un pañuelo del hotel, está el Collar de Cleopatra.
+CHAPULIN: ¡Ay, qué barbaridad! ¿Y eso es de verdad?
+SARGENTO: Denunciado como robado hace once meses, joven. Levanté acta y lo adjunté al expediente del telegrama.
+DEFENSA: Once meses guardado en un pañuelo de hotel. Con eso yo pagaba la renta hasta el año que viene. Y la del año pasado.
 [ACTUALIZAR nota_amenaza]
 CHAPULIN: Entonces el muerto venía a cobrar.
-DEFENSA: Venía a cobrar. Eso explica una reunión. Todavía no explica una copa.
+DEFENSA: Venía a cobrar. Eso explica una reunión, Chapulín. Todavía no explica una copa.
 ~~~
 
 Tema obligatorio “Quién tuvo cada cosa”. El Sargento lee la cadena de posesión ya documentada, sin testigos nuevos. Estos hechos deben quedar asentados antes del juicio, porque el clímax se apoya en ellos:
@@ -797,17 +895,19 @@ Tema obligatorio “Quién tuvo cada cosa”. El Sargento lee la cadena de poses
 Después, dentro del mismo tema obligatorio, llegan los resultados y el examen del anillo. La entrega de sello_lacre ocurre al cerrarse ese tema, nunca en el intro de la escena:
 
 ~~~dialogue
-SARGENTO: El laboratorio encontró el mismo agente dentro del cierre, no en su superficie.
+SARGENTO: El laboratorio encontró el mismo agente dentro del cierre. Adentro, mi licenciado. No en la cascarita.
 DEFENSA: ¿Metido en el corcho?
-SARGENTO: Metido. Y lo que quedó retenido en el borde es metal, no corcho.
-DEFENSA: El informe no dice por cuál de las dos marcas entró. Eso lo enseñaremos nosotros.
+SARGENTO: Metido. Y lo que quedó atorado en el borde es metal. Metal, no corcho.
+CHAPULIN: ¡Un corcho con metal adentro! ¡Como las tortas del mercado!
+DEFENSA: El informe no dice por cuál de las dos marcas entró. Eso lo vamos a enseñar nosotros.
 [ACTUALIZAR toxicologia_vino]
-DEFENSA: Quiero que examinen por separado los efectos que incautó ayer.
-SARGENTO: Ya los tengo aquí. Este es el anillo del señor Rufián.
-NARRADOR: La cabeza gira sobre un eje. Debajo hay una cavidad, un conducto fino y una punta metálica cuyo extremo está partido.
+DEFENSA: Sargento, quiero que examinen por separado los efectos que incautó ayer.
+SARGENTO: Ya los tengo aquí, cada uno en su bolsa. Éste es el anillo del señor Rufián.
+NARRADOR: La cabeza gira sobre un eje. Debajo hay una cavidad, un conducto fino y una punta metálica con el extremo partido.
 [ENTREGAR sello_lacre]
-SARGENTO: El informe describe la pieza y los residuos del conducto. No dice si esa punta encaja con nada.
-DEFENSA: No tiene que decirlo. Eso lo vamos a comparar delante del juez.
+SARGENTO: El informe describe la pieza y los residuos del conducto. Pero no dice si esa punta encaja con nada.
+DEFENSA: No tiene que decirlo. Eso lo comparamos mañana, delante del juez.
+CHAPULIN: (Ya no me vibran las antenitas. Ahora me gritan.)
 ~~~
 
 Las fichas de sello_lacre y toxicologia_vino describen geometría, residuos y escalas. Ninguna afirma el encaje ni nombra al usuario. El jugador dispone desde aquí de las dos vistas que necesitará en el clímax.
@@ -819,13 +919,16 @@ Se habilita el juicio al terminar este diálogo.
 ### 12.1 Apertura, 27 de octubre, 16:00
 
 ~~~dialogue
-JUEZ: Recapitulemos lo probado. La muerte se produjo por un tóxico en el vino, dentro de la ventana de la autopsia.
-JUEZ: El disparo y el estruendo fueron un montaje posterior a la muerte, según la autopsia y el traslado ya acreditados.
-SUPER SAM: Y sigue en pie una pregunta que la defensa no ha contestado: quién alteró esa botella. El acusado la llevó en las manos.
-DEFENSA: También llevó un baúl sin saber qué había dentro. Que uno cargue una cosa no dice qué le hicieron a esa cosa.
+JUEZ: Se abre la última sesión de este proceso. Recapitulemos lo probado. [sfx: gavel; bgm: trial]
+JUEZ: La muerte se produjo por un tóxico en el vino, dentro de la ventana de la autopsia.
+JUEZ: El disparo y el estruendo fueron un montaje posterior a la muerte, conforme a la autopsia y al traslado ya acreditados.
+SUPER SAM: Y sigue en pie la pregunta que la defensa no me ha contestado en tres días: ¿quién le puso algo a esa botella? El acusado la cargó con sus dos manos. [sfx: desk_slam]
+DEFENSA: También cargó un baúl sin saber lo que iba adentro. Que uno cargue una cosa no dice qué le hicieron a esa cosa, señor fiscal.
+SUPER SAM: Poetry, counselor. La poesía no cotiza.
 JUEZ: La defensa reconoce que el señor Rufián estaba en el salón de juego a las 23:15.
-DEFENSA: Lo reconoce. Esa coartada es verdadera y no la vamos a discutir. Solo cubre el ruido, y el ruido no mató a nadie.
-SUPER SAM: Entonces la fiscalía mantiene su hipótesis: el vino salió alterado de las manos que lo transportaron.
+DEFENSA: Lo reconoce, señor juez. Esa coartada es verdadera y no la vamos a discutir. Sólo que cubre el ruido... y el ruido no mató a nadie.
+SUPER SAM: Entonces la fiscalía mantiene su cuenta: el vino salió alterado de las manos que lo transportaron.
+DEFENSA: (Tercer día, Monchito. Ya nomás falta la botella. Nada más la botella.)
 JUEZ: Escucharemos al señor Rufián sobre su propia intervención.
 ~~~
 
@@ -834,10 +937,10 @@ La boleta se lee en el acta sin exigir presentación. No hay openingPresent en e
 ### 12.2 D3-T1, Rufino: “Mi parte en esta desgracia”
 
 ~~~dialogue
-d3_t1_1 RUFINO: Encontré al señor Gómez muerto en mi habitación y perdí el juicio por un momento.
-d3_t1_2 RUFINO: Lo llevé arriba dentro de mi baúl, preparé la escena y disparé sobre un hombre que ya estaba muerto. Ayer admití lo primero; hoy admito lo demás, porque no pienso cargar con lo que no hice.
-d3_t1_3 RUFINO: Pero la botella llegó de fuera. Yo la recibí cerrada, de manos de ese empleado.
-d3_t1_4 RUFINO: Y no pedí que subiera él al baño. Yo solicité un fontanero; el hotel eligió a cuál mandaba.
+d3_t1_1 RUFINO: Encontré al señor Gómez muerto en mi habitación y perdí la cabeza un momento. A un hombre de mi apellido no lo educan para eso.
+d3_t1_2 RUFINO: Lo subí dentro de mi baúl, preparé la escena y disparé sobre un hombre que ya estaba muerto. Ayer admití lo primero; hoy admito lo demás, porque no pienso cargar con lo que no hice.
+d3_t1_3 RUFINO: Pero la botella llegó de afuera. Yo la recibí cerrada, de las manos de ese empleado.
+d3_t1_4 RUFINO: Y yo no pedí que subiera él al baño. Solicité un fontanero. A cuál mandaban lo decidió el hotel.
 ~~~
 
 Presiones:
@@ -859,22 +962,24 @@ PointTarget orden_manuscrita. Pregunta: “¿Qué parte de esta solicitud elige 
 | hora_servicio | “23:05” en el cuerpo del texto. | No |
 
 ~~~dialogue
-DEFENSA: ¡PROTESTO! El hotel no eligió a nadie. El nombre está escrito aquí, de su puño y letra.
-RUFINO: Un hotel copia lo que dicta el huésped.
-CECILIO: Ese papel me lo entregó usted en la mano. Yo solo lo archivé.
+DEFENSA: ¡PROTESTO! ¡El hotel no eligió a nadie! ¡El nombre está escrito aquí, de su puño y letra! [sfx: desk_slam]
+RUFINO: Un hotel copia lo que le dicta el huésped.
+CECILIO: Usted perdone, señor conde, pero ese papel me lo puso en la mano usted mismo. Yo sólo lo archivé. Y para archivar sí veo perfectamente.
 DEFENSA: Pidió a un hombre concreto, por su nombre, para que estuviera dentro de esa habitación a una hora concreta.
-JUEZ: ¿Con qué finalidad?
-DEFENSA: Con la de que lo encontraran ahí. Usted no improvisó un montaje: eligió a quién se lo colgaba.
-RUFINO: Elegí al que estaba disponible.
-SUPER SAM: Your Honor, elegir un empleado no es envenenar a un huésped. La fiscalía mantiene que el vino llegó alterado.
-DEFENSA: Y por eso vamos a hablar de la botella. Pero que conste quién escribió ese nombre.
+JUEZ: ¿Con qué finalidad, licenciado?
+DEFENSA: Con la de que lo encontraran ahí. Usted no improvisó ningún montaje: usted escogió a quién se lo iba a colgar.
+RUFINO: Escogí al que estaba disponible.
+DEFENSA: Escogió al que tenía expediente.
+SUPER SAM: Your Honor, escoger a un empleado no es envenenar a un huésped. La fiscalía mantiene que el vino llegó alterado. [sfx: desk_slam]
+DEFENSA: Y por eso vamos a hablar de la botella. Pero que conste en actas quién escribió ese nombre.
 JUEZ: Consta.
 ~~~
 
 Fallo del señalamiento:
 
 ~~~dialogue
-JUEZ: Esa parte no designa a nadie. Busque dónde se elige a la persona que debía subir.
+JUEZ: Esa parte no designa a nadie, licenciado. Busque dónde se escoge a la persona que debía subir.
+SUPER SAM: Take your time, counselor. Yo cobro por hora.
 ~~~
 
 No hay followUp en este testimonio: la deducción termina en un hecho documental y la fiscalía conserva su hipótesis. La jornada todavía no ha identificado al envenenador.
@@ -884,10 +989,10 @@ No hay followUp en este testimonio: la deducción termina en un hecho documental
 El juez ordena un segundo testimonio sobre su relación con la víctima. Es materia distinta de la anterior, no una repetición de posiciones ya derribadas.
 
 ~~~dialogue
-d3_t2_1 RUFINO: Conocí al señor Gómez hace años, en asuntos de importación.
+d3_t2_1 RUFINO: Conocí al señor Gómez hace años, en asuntos de importación. Gente de tránsito, ya me entiende usted.
 d3_t2_2 RUFINO: Aquella noche subió a proponerme una inversión y se marchó por su propio pie.
-d3_t2_3 RUFINO: No le debía nada. No tenía ningún interés personal en su muerte.
-d3_t2_4 RUFINO: Ni siquiera esperaba su visita. Supe que estaba en el hotel cuando lo vi entrar en mi habitación.
+d3_t2_3 RUFINO: Yo no le debía nada a ese hombre. Ni tenía el menor interés personal en su muerte.
+d3_t2_4 RUFINO: Y ni siquiera esperaba su visita. Supe que estaba en este hotel cuando lo vi entrar en mi habitación.
 ~~~
 
 Presiones:
@@ -909,18 +1014,19 @@ PointTarget telegrama_acuse. Pregunta: “¿Qué parte de este documento acredit
 | acuse_recepcion | Recibo firmado por el destinatario a las 20:50. | Sí |
 
 ~~~dialogue
-DEFENSA: ¡PROTESTO! Usted firmó el acuse cincuenta minutos antes de esa visita que no esperaba.
+DEFENSA: ¡PROTESTO! ¡Usted firmó el acuse cincuenta minutos antes de esa visita que según usted no esperaba! [sfx: desk_slam]
 RUFINO: Firmo docenas de papeles al día.
-DEFENSA: Este exige el pago de un collar robado bajo amenaza de denuncia. No se firma sin leerlo.
-SARGENTO: Y el collar apareció ayer en el maletín que incautamos en su habitación. Levanté acta.
+DEFENSA: Éste exige el pago de un collar robado bajo amenaza de denuncia. Ése no se firma sin leerlo. Ni usted ni nadie.
+SARGENTO: Y el collar apareció ayer en el maletín que incautamos en su habitación, señor juez. Levanté acta.
 JUEZ: ¿Reconoce esa joya?
 RUFINO: Reconozco que es mía.
-DEFENSA: Está denunciada como robada hace once meses. El hombre que venía a cobrar su parte apareció muerto dentro de un baúl suyo.
+DEFENSA: Está denunciada como robada hace once meses. Y el hombre que venía a cobrar su parte apareció muerto dentro de un baúl suyo.
 [pausa; música objection]
-SUPER SAM: Un móvil. Ahora sí tenemos un móvil.
-SUPER SAM: Pero un móvil no es un método, Your Honor. El acusado siguió siendo quien tocó esa botella.
-DEFENSA: De acuerdo. Entonces hablemos de la botella.
-JUEZ: Que la defensa exponga cómo se alteró ese vino. Es lo último que queda por resolver en este proceso.
+SUPER SAM: ...Un móvil. Ahora sí tenemos un móvil. [sfx: desk_slam]
+SUPER SAM: ¡Pero un móvil no es un método, Your Honor! ¡El que tocó esa botella sigue siendo el acusado!
+DEFENSA: De acuerdo, señor fiscal. Entonces hablemos de la botella.
+CHAPULIN: ¡Ya era hora! Llevo tres días cargando con ella.
+JUEZ: Que la defensa exponga cómo se alteró ese vino. Es lo último que le queda por resolver a este proceso.
 ~~~
 
 Al terminar el segundo testimonio no hay aplazamiento: la audiencia entra directamente en el clímax.
@@ -932,12 +1038,13 @@ El clímax usa dos stages con presentación y señalamiento. No usa choices: el 
 ### 13.1 Entrada al clímax
 
 ~~~dialogue
-SUPER SAM: Hechos, Your Honor. El vino salió cerrado de la cava, lo transportó el acusado y minutos después mató a un hombre.
-SUPER SAM: El señor Rufián ocultó un cadáver por cobardía. Eso es un delito distinto. La copa la sirvió otro.
+SUPER SAM: Facts, Your Honor. Hechos. El vino salió cerrado de la cava, lo transportó el acusado y un rato después mató a un hombre. [sfx: desk_slam]
+SUPER SAM: El señor Rufián escondió un cadáver por cobarde. Eso es otro delito y va en otra factura. ¡La copa la sirvió alguien más!
 RUFINO: Yo recibí una botella sellada. La dejé sobre la mesa y no volví a tocarla hasta que mi invitado la abrió.
-DEFENSA: Esa botella se abrió delante de una testigo, con el lacre puesto. Nadie discute eso.
-JUEZ: Entonces, licenciado, el tribunal necesita saber cómo entra un tóxico en una botella cerrada.
-DEFENSA: Está contestado desde ayer. Lo que pasa es que la respuesta estaba dentro de un corcho.
+DEFENSA: Esa botella se abrió delante de una testigo, con el lacre puesto. Eso no lo discute nadie.
+JUEZ: Entonces, licenciado, este tribunal necesita saber cómo entra un tóxico en una botella cerrada.
+CHAPULIN: ¡Ay, Monchito! ¿Y ahora quién podrá defendernos?
+DEFENSA: Nosotros mismos, Chapulín. Señor juez: eso está contestado desde ayer. Lo que pasa es que la respuesta venía dentro de un corcho.
 [música pursuit]
 ~~~
 
@@ -957,28 +1064,31 @@ DEFENSA: Está contestado desde ayer. Lo que pasa es que la respuesta estaba den
 Fallo del señalamiento:
 
 ~~~dialogue
-JUEZ: Ese rastro corresponde a la apertura ordinaria. Busque una vía que el tirabuzón no pudo abrir.
+JUEZ: Ese rastro corresponde a la apertura ordinaria, licenciado. Busque una vía que el tirabuzón no pudo abrir.
+SUPER SAM: ¡Y búsquela rápido! Time is money!
 ~~~
 
 Éxito:
 
 ~~~dialogue
-DEFENSA: ¡TOMA ESO! Un canal que atraviesa el corcho entero, y el laboratorio encontró el mismo tóxico dentro de él.
-JUEZ: ¿Está diciendo que envenenaron el vino sin abrir la botella?
-DEFENSA: A través del cierre, con algo fino y rígido. Después basta un punto de cera sobre el sello para que nadie vea la entrada.
-SUPER SAM: ¿Y quién nos dice que ese agujero no se hizo después, para fabricar esta historia?
-DEFENSA: La custodia. Ese corcho salió de la 204 en el bolso de la señorita Maruja antes de que la víctima bebiera.
-MARUJA: Me lo regaló él mismo. Lo entregué al Sargento al día siguiente, en cuanto supe de qué botella se trataba.
-SARGENTO: Desde ese mediodía está en mi archivo, con hora y dos firmas.
-SUPER SAM: Entonces hubo quince horas en un bolso particular. Su cadena empieza tarde, counselor.
-DEFENSA: Empieza tarde y lo admito. Lo que sí prueba es que el cierre no volvió a esa habitación ni pasó por las manos del acusado, que a esa hora ya estaba detenido.
+DEFENSA: ¡TOMA ESO! ¡Un canal que atraviesa el corcho de lado a lado! ¡Y el laboratorio encontró el mismo tóxico metido ahí adentro! [sfx: desk_slam]
+JUEZ: ¡Cáspita! ¿Está usted diciendo que envenenaron el vino sin abrir la botella?
+DEFENSA: A través del cierre, señor juez. Con algo fino y rígido. Después basta un puntito de cera sobre el sello para que nadie vea por dónde entró.
+CHAPULIN: ¡Como cuando uno le pica el jugo a la bolsita sin abrirla!
+JUEZ: ...Sorprendentemente claro.
+SUPER SAM: ¿Y quién me dice que ese agujero no se hizo después, para fabricarme esta historia? [sfx: desk_slam]
+DEFENSA: La custodia, señor fiscal. Ese corcho salió de la 204 en el bolso de la señorita Maruja antes de que la víctima bebiera.
+MARUJA: Me lo regaló él mismo. Se lo entregué al Sargento al día siguiente, en cuanto supe de qué botella se trataba.
+SARGENTO: Desde ese mediodía está en mi archivo. Con hora y dos firmas.
+SUPER SAM: Entonces hubo quince horas dentro de un bolso particular. Su cadena empieza tarde, counselor.
+DEFENSA: Empieza tarde y lo admito. Lo que sí prueba es que ese cierre no volvió a esa habitación ni pasó por las manos del acusado, que a esa hora ya estaba detenido.
 JUEZ: Queda abierta una posibilidad sobre quien lo guardó.
-DEFENSA: Queda. Y no la voy a cerrar con la palabra de nadie, sino con lo que se quedó atrapado dentro del canal.
+DEFENSA: Queda. Y no la pienso cerrar con la palabra de nadie, sino con lo que se quedó atrapado dentro del canal.
 JUEZ: El tribunal acepta el método y reserva la mano.
-SUPER SAM: Y esa mano cargaba herramientas. Un fontanero lleva encima cosas finas y rígidas todo el día. Tuvo la botella cinco minutos.
-BOTIJA: Yo la llevé pegada al pecho, señor.
-SUPER SAM: Cinco minutos son cinco minutos, Your Honor.
-DEFENSA: Entonces comparemos ese canal con lo que quedó dentro.
+SUPER SAM: ¡Y esa mano cargaba herramientas! Un fontanero trae encima cosas finas y rígidas todo el santo día. ¡Y tuvo la botella cinco minutos!
+BOTIJA: Yo la llevé pegadita al pecho, señor. Como se lleva a un niño.
+SUPER SAM: Five minutes are five minutes, Your Honor.
+DEFENSA: Entonces comparemos ese canal con lo que se quedó adentro.
 ~~~
 
 La acusación contra Botija sigue viva al terminar el stage 1, y además queda planteada en voz alta la única alternativa que el método no cierra: que la perforación la hiciera después quien guardó el cierre. El stage 2 la resuelve con la custodia del anillo, no con un argumento de confianza.
@@ -986,7 +1096,8 @@ La acusación contra Botija sigue viva al terminar el stage 1, y además queda p
 ### 13.3 Stage 2: con qué se hizo
 
 - presentTarget: sello_lacre.
-- prompt: “¿Qué parte del anillo corresponde al fragmento retenido en el canal?”
+- prompt: “¿Qué prueba explica el fragmento que se quedó dentro del canal?” (no nombra el anillo: la pieza se revela al presentar).
+- promptQuestion del pointTarget: “¿Qué parte del anillo corresponde al fragmento retenido en el canal?”
 - pointTarget anillo_fractura, sobre la lámina de comparación a escala.
 
 | Zona | Contenido | Correcta |
@@ -999,32 +1110,33 @@ La acusación contra Botija sigue viva al terminar el stage 1, y además queda p
 Fallo del señalamiento:
 
 ~~~dialogue
-JUEZ: Esa parte explica cómo funciona la pieza. El tribunal pidió qué parte falta en ella.
+JUEZ: Esa parte explica cómo funciona la pieza, licenciado. Este tribunal le preguntó qué parte le falta.
 ~~~
 
 Éxito:
 
 ~~~dialogue
-DEFENSA: ¡PROTESTO! A esta punta le falta un pedazo. Y el pedazo que falta se quedó dentro del corcho.
-SARGENTO: Las dos superficies de rotura están fotografiadas a la misma escala. Coinciden borde con borde.
+DEFENSA: ¡PROTESTO! ¡A esta punta le falta un pedazo! Y el pedazo que le falta se quedó dentro del corcho. [sfx: desk_slam]
+SARGENTO: Las dos superficies de rotura están fotografiadas a la misma escala, señor juez. Coinciden borde con borde.
 SARGENTO: Y la rotura es reciente. El perito dice que una punta así se parte al forzarla contra el vidrio del cuello.
 DEFENSA: Por eso quedó dentro del corcho. Quien lo hizo no lo supo hasta hoy.
-DEFENSA: El conducto conserva residuos del mismo agente que mató al señor Gómez.
+DEFENSA: Y el conducto conserva residuos del mismo agente que mató al señor Gómez.
 SUPER SAM: ...Un anillo.
-DEFENSA: Un anillo que sirve para sellar lacre. Por eso nadie se extraña de que tenga cera. Lo que no se explica con cera es una punta hueca.
+SUPER SAM: [pausa] Mi calculadora no tiene una tecla para esto.
+DEFENSA: Un anillo que sirve para sellar lacre. Por eso a nadie le extraña que tenga cera. Lo que no se explica con cera es una punta hueca.
 JUEZ: ¿Y quién tenía esa pieza esa noche?
-DEFENSA: A las nueve y cuarto selló con él la autorización de la cava. La cera sigue en el folio, con su escudo.
+DEFENSA: A las nueve y cuarto selló con ella la autorización de la cava. La cera sigue en el folio, con su escudo y todo.
 CECILIO: Ese sello lo estampó delante de mí. Por eso ese folio lleva lacre y no una firma más.
 MARUJA: Y yo se lo vi puesto en la puerta de la 204, cuando firmó el recibo del vino.
-DEFENSA: Botija nunca lo tuvo y nadie declara habérselo prestado esa noche.
-SARGENTO: Yo se lo incauté ayer por la tarde, cuando el tribunal ordenó su custodia. No hubo una noche para deshacerse de él.
+DEFENSA: Botija nunca lo tuvo, y nadie ha declarado habérselo prestado esa noche.
+SARGENTO: Yo se lo incauté ayer por la tarde, cuando el tribunal ordenó su custodia. No hubo una sola noche para deshacerse de él.
 DEFENSA: Y ahí se cierra lo que quedó abierto hace un momento: quien guardó el cierre nunca tuvo este anillo, y la pieza que dejó ese fragmento lleva bajo custodia desde ayer.
 JUEZ: El tribunal da por resuelta esa posibilidad.
-DEFENSA: Señor Rufián: usted quedó solo con una botella cerrada, y el pedazo que le falta a su anillo estaba dentro de ese corcho.
+DEFENSA: Señor Rufián: usted se quedó solo con una botella cerrada... y el pedazo que le falta a su anillo estaba dentro de ese corcho.
 [cutin: objection_toma_eso; música objection]
 RUFINO: ...
 NARRADOR: El monóculo se desprende y queda colgando de su cadena.
-RUFINO: ¡Ese cierre debía irse a la basura! ¡Se lo dio a ella! ¡Se lo dio a ella delante de mí como si fuera un caramelo!
+RUFINO: ¡Ese cierre debía irse a la basura! ¡Se lo dio a ella! ¡SE LO DIO A ELLA DELANTE DE MÍ, COMO SI FUERA UN CARAMELO!
 [pose rufino_breakdown; sfx desk_slam]
 ~~~
 
@@ -1037,15 +1149,16 @@ Cecilio y Maruja están en la sala desde sus propios testimonios y sus dos líne
 La confesión aporta motivo y emoción. No aporta ningún hecho indispensable para la demostración: todo lo necesario ya está probado.
 
 ~~~dialogue
-RUFINO: El collar lo planeé yo. Él solo abrió una vitrina y desde entonces se creyó mi socio.
-RUFINO: Once meses cobrando. Y esa noche llegó a mi hotel a poner precio a mi apellido.
+RUFINO: El collar lo planeé yo. Él nada más abrió una vitrina y desde entonces se creyó mi socio.
+RUFINO: Once meses cobrando. Y esa noche llegó a mi hotel a ponerle precio a mi apellido.
 JUEZ: Su apellido es falso.
 RUFINO: Por eso valía tanto.
 DEFENSA: ¿Y el fontanero?
-RUFINO: Un hombre con expediente, con llave maestra y con una discusión oída por medio pasillo. Lo escribí en un papel y el hotel me lo subió.
-BOTIJA: Me eligió porque nadie me iba a creer.
-RUFINO: Lo elegí porque era barato.
+RUFINO: Un hombre con expediente, con llave maestra y con un pleito que oyó medio pasillo. Lo escribí en un papel y el hotel me lo subió.
+BOTIJA: Me escogió porque nadie me iba a creer.
+RUFINO: Lo escogí porque era barato.
 CHIMOLTRUFIA: ¡Míreme cuando diga eso!
+SUPER SAM: La fiscalía retira los cargos contra el acusado, Your Honor. Y solicita que las tres audiencias se le carguen a la cuenta del conde.
 JUEZ: Bastante he oído. Este tribunal dicta su fallo.
 ~~~
 
@@ -1126,7 +1239,7 @@ Prevención de bloqueos por rotación de reparto:
 | hotel_sotano | 2 | bg_hotel_sotano | Sargento | residuos_manos |
 | hotel_suite204 | 2 | bg_hotel_suite204 | Rufino, con el Sargento | casquillo_fogueo |
 | hotel_terraza_d2 | 2 | bg_hotel_bar | Chómpiras | registro_montacargas |
-| hotel_azotea | 2 | bg_hotel_azotea | Chómpiras y Sargento | baul_etiquetas |
+| hotel_azotea | 2 | bg_hotel_azotea_day | Chómpiras y Sargento | baul_etiquetas |
 | delegacion | 2 | bg_delegacion | Sargento | copa_vino, toxicologia_vino |
 | hotel_cava | 3 | bg_hotel_cava | Sargento | botella_vino |
 | hotel_lobby_d3 | 3 | bg_hotel_lobby | Chimoltrufia | boleta_baccarat, nota_amenaza |
@@ -1225,6 +1338,7 @@ El motor no necesita lógica nueva. Todos los esquemas de guion existen ya en `s
 Trabajo de implementación pendiente:
 
 - Reescribir los guiones de `src/case/case4/Private/` en español y su par `_en`, incluida la escena nueva delegacion_d3 y su registro en el índice del caso.
+- Este documento es el único spec del caso y fija el guion en español; no existe una versión inglesa del spec y no debe crearse. La versión inglesa se escribe directamente en los archivos `_en`, adaptando y no traduciendo: las mezclas de refranes de Chapulín necesitan dos refranes ingleses que se crucen igual de mal y terminen en su fórmula de rendirse, y los latiguillos en inglés de Super Sam (“Time is money”, “counselor”) pierden el contraste bilingüe en un guion inglés, así que su carácter se traslada al vocabulario financiero, no a la lengua. Los identificadores, horas, ids de zona y estructura de escenas son idénticos en ambos idiomas.
 - Ampliar `EvidenceId` en `src/types/Private/evidence.ts` y actualizar `EvidenceCatalogCase4Es.ts` y `EvidenceCatalogCase4En.ts` con las 18 fichas y sus arrays `updates[]` completos. Revisar colisiones de nombre de archivo de icono con casos anteriores.
 - Actualizar `tests/case/Case4Trial.test.ts`, `tests/case/Case4Hotspots.test.ts` y `tests/engine/TrialFollowUp.test.ts`; añadir cobertura de las dos rutas de D2-T1, del gating por jornada y de los cuatro señalamientos nuevos.
 - Regenerar las láminas de examen y medir de nuevo las zonas sobre el WebP producido.

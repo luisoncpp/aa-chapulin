@@ -40,4 +40,12 @@ describe('examine HUD does not occlude hotspot hit-testing', () => {
     expect(examineBottom).toBeLessThan(idleBottom);
     expect(examineBottom).toBeGreaterThan(examineBoxH);
   });
+
+  it('hides the examine plate through its tracked HUD hover state', () => {
+    expect(css).toMatch(
+      /#dialogue-box\.examine-mode\.examine-hud-hidden\s*\{[^}]*visibility:\s*hidden/,
+    );
+    expect(css).not.toContain('.hotspot-area:hover) #dialogue-box.examine-mode');
+    expect(css).not.toContain('data-examine-plate-overlap');
+  });
 });

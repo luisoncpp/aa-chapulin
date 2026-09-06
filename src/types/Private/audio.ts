@@ -26,6 +26,7 @@ export type TrackName =
   | 'investigation'
   | 'investigation_core'
   | 'restaurante'
+  | 'terraza_bar'
   | 'callejon_postal'
   | 'casa_clotilde'
   | 'suspense'

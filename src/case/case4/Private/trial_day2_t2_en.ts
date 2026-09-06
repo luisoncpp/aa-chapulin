@@ -1,101 +1,112 @@
-// @Architecture(descriptionShort="English Case 4 day-2 Maruja testimony", type="data", icon="layers")
-/**
- * Case 4 Trial Day 2 — Testimony 4 (English).
- */
+// @Architecture(descriptionShort="English Case 4 day-2 Chómpiras testimony", type="data", icon="layers")
+/** Case 4 Trial Day 2 — Testimony 4, Chómpiras, English. */
 
 import type { DialogueLine, PointTargetContradiction, Testimony } from '../../../types/index.js';
+import { CASE4_REGISTRO_POINT_TARGET } from './trial_day2_success.js';
 
-const PLANO_FAILURE_EN: DialogueLine[] = [
-  { speaker: 'DEFENSA', pose: 'donramon_panic', text: 'Through this section of the building is where the blast traveled... I think!' },
-  { speaker: 'JUEZ', pose: 'judge_shock', text: 'But counselor, that section has no direct steam connection to Suite 304!', sfx: 'damage' },
-  { speaker: 'SUPER SAM', pose: 'supersam_point', text: 'Pure architectural disorientation! Minus ten dollars from your fee!' }
-];
-
-const CASE4_PLANO_POINT_TARGET_EN: PointTargetContradiction = {
-  targetEvidenceId: 'plano_hotel',
-  promptQuestion: 'Point to the exact conduit where the sound wave from the 11:15 PM gunshot propagated!',
-  imageAsset: 'assets/examine_plano.webp',
+const REGISTRO_EN: PointTargetContradiction = {
+  ...CASE4_REGISTRO_POINT_TARGET,
+  promptQuestion: 'Which run forces us to investigate an unloading before the store?',
   zones: [
-    { id: 'tuberia_vapor_vertical', bounds: [40, 18, 62, 74], isCorrect: true, failureDialogue: [] },
-    { id: 'plano_resto', bounds: [0, 0, 100, 100], isCorrect: false, failureDialogue: PLANO_FAILURE_EN }
+    { id: 'fila_B17_descarga', bounds: [4, 40, 96, 57], isCorrect: true, failureDialogue: [] },
+    { id: 'registro_resto', bounds: [0, 0, 100, 100], isCorrect: false, failureDialogue: [
+      { speaker: 'JUEZ', pose: 'judge_thinking', text: 'That row is ordinary freight. Point to the run that forces us to investigate an unloading.', sfx: 'damage' }
+    ] }
   ]
 };
 
-const T4_PLANO_EN: DialogueLine[] = [
-  { cutin: 'objection_protesto', speaker: 'DEFENSA', text: 'The 11:15 PM blast was NOT Cuajinais\'s murder!', sfx: 'whoosh', bgm: 'objection', pose: 'donramon_point', updateEvidence: 'plano_hotel' }
+const REGISTRO_SUCCESS_EN: DialogueLine[] = [
+  { cutin: 'objection_un_momento', speaker: 'DEFENSA', text: 'HOLD IT! The same trunk is weighed twice... and it does not weigh the same!', sfx: 'desk_slam', bgm: 'objection', pose: 'donramon_slam' },
+  { speaker: 'CHOMPIRAS', text: 'Let me see... a hundred kilos going up to the third floor. Twenty when it reached the roof.', pose: 'chompiras_nervous' },
+  { speaker: 'CHAPULIN', text: 'Eighty kilos of difference! It is as if the trunk got hungry backwards!', pose: 'chapulin_point' },
+  { speaker: 'DEFENSA', text: 'On the third floor, eighty kilos came out of that trunk, Your Honor.', pose: 'donramon_point' },
+  { speaker: 'SUPER SAM', text: 'Eighty kilos of anything, counselor. Towels. Bottles. Bricks. You cannot put a name on a weight!', pose: 'supersam_slam', sfx: 'desk_slam' },
+  { speaker: 'DEFENSA', text: 'There I grant you the point. A weight has no name... until you find its clothes.', pose: 'donramon_idle' },
+  { speaker: 'JUEZ', text: 'Then present that link, counselor.', pose: 'judge_thinking' }
 ];
 
-const T4_CASQUILLO_EN: DialogueLine[] = [
-  { speaker: 'DEFENSA', text: 'It was an acoustic trap built with this slow-fuse blank cartridge, detonated inside Suite 204\'s purge pipe!', pose: 'donramon_point', cutin: 'objection_toma_eso', sfx: 'whoosh', bgm: 'objection' },
-  { speaker: 'MARUJA', text: 'Suite 204?! But that\'s the Count of Montemayor\'s chamber!', pose: 'maruja_shock' },
-  { speaker: 'JUEZ', text: 'The illustrious Count of Montemayor involved in a pyrotechnic device?!', pose: 'judge_shock' },
-  { speaker: 'DEFENSA', text: 'The real killer poisoned Cuajinais with cyanide before ten, shot him through a feather pillow to muffle the blast and simulate bullet death, set a delayed acoustic detonation for a public alibi at 11:15 PM, and locked my client inside to carry the corpse!', pose: 'donramon_point' },
-  { speaker: 'SUPER SAM', text: 'Objection! You haven\'t proven who prepared that poison or what relation the Count had to the deceased!', pose: 'supersam_sweat' },
-  { speaker: 'JUEZ', text: 'The gravity of this revelation demands investigating the poison\'s origin and Suite 204\'s activities. Court is adjourned until the final day!', pose: 'judge_gavel', sfx: 'gavel' }
+/** Spec §10.3 closing: follows the turnabout and precedes the day-2 adjournment. */
+const AFTERMATH_EN: DialogueLine[] = [
+  { speaker: 'JUEZ', text: 'It is now clear that the 304 scene was staged after the move.', pose: 'judge_thinking' },
+  { speaker: 'RUFINO', text: 'But I did not poison him! That man brought the bottle! When I understood what was happening I thought they would blame me... me, a man with a coat of arms!', pose: 'rufino_panic' },
+  { speaker: 'DEFENSA', text: 'And the coat of arms did you no good at all, did it? Welcome to the rest of the world.', pose: 'donramon_idle' },
+  { speaker: 'SUPER SAM', text: 'Your Honor, the witness has just confessed to hiding a corpse. That throws my whole spreadsheet out. The prosecution will investigate his part as well.', pose: 'supersam_slam', sfx: 'desk_slam' },
+  { speaker: 'DEFENSA', text: 'And the defense will follow that bottle step by step: from the moment it left the cellar to the moment somebody uncorked it.', pose: 'donramon_point' },
+  { speaker: 'JUEZ', text: 'Order the search of Suite 204 and the custody of all related objects. Mr. Rufián remains at the disposal of this court.', pose: 'judge_gavel', sfx: 'gavel' },
+  { speaker: 'SARGENTO', text: 'At once. I log his personal effects and the wine samples separately. Each thing in its bag and with its number.', pose: 'pazguato_decidido' },
+  { speaker: 'CHAPULIN', text: 'Do not lose your keep, Botija! Only one night to go!', pose: 'chapulin_point' },
+  { speaker: 'BOTIJA', text: 'That is the third time somebody tells me that. But it is the first time I believe it.', pose: 'botija_aliviado' }
+];
+
+const BAUL_SUCCESS_EN: DialogueLine[] = [
+  { cutin: 'objection_toma_eso', speaker: 'DEFENSA', text: 'TAKE THAT! This swatch was snagged on the trunk lining. And its edges fit the tear in Mr. Gómez\'s suit!', sfx: 'whoosh', bgm: 'objection', pose: 'donramon_point' },
+  { speaker: 'SARGENTO', text: 'The comparison is documented, Your Honor. Both photographs, at the same scale.', pose: 'pazguato_saludo' },
+  { speaker: 'SUPER SAM', text: 'The man could have kept his clothes in there! People travel with clothes!', pose: 'supersam_point' },
+  { speaker: 'DEFENSA', text: 'Yes. And almost always wearing them. Let us count it slowly: a victim already dead before ten, a trunk going up at 22:20, the cloth of his suit snagged inside, and eighty kilos vanishing on the third floor...', pose: 'donramon_idle' },
+  { speaker: 'CHAPULIN', text: 'And the third floor is where the dead man turned up!', pose: 'chapulin_point' },
+  { speaker: 'DEFENSA', text: 'The defense holds that B-17 went up with the body inside. And I ask the gentleman who received it to tell us what he took out.', cutin: 'objection_toma_eso', sfx: 'desk_slam', bgm: 'objection', pose: 'donramon_slam' },
+  { speaker: 'JUEZ', text: 'Mr. Rufián, your reception and the later opening are documented. Answer this court.', pose: 'judge_gavel', sfx: 'gavel' },
+  { speaker: 'RUFINO', text: 'I... I did not want the name of this hotel dragged into such a...', pose: 'rufino_panic' },
+  { speaker: 'SUPER SAM', text: 'Such a WHAT?', pose: 'supersam_point' },
+  { speaker: 'RUFINO', text: 'I found him dead in my room! I panicked. I put him in the trunk and asked for it to be taken up.', pose: 'rufino_sweat' },
+  { speaker: 'NARRADOR', text: 'A murmur runs through the gallery. The count\'s monocle trembles, but does not quite fall.', bgm: 'suspense' },
+  { speaker: 'BOTIJA', text: '...I took him up? I sent that trunk?', pose: 'botija_nervioso' },
+  { speaker: 'RUFINO', text: 'You moved a trunk, my good man. You had no reason to know the rest.', pose: 'rufino_sweat' },
+  { speaker: 'BOTIJA', text: 'Don Ramón, I checked that the strap was whole. With these hands.', pose: 'botija_llorando' },
+  { speaker: 'DEFENSA', text: 'And you signed the receipt, and you reported it arrived intact. Botija: your job was real. The only false thing was what rode inside.', cutin: 'objection_toma_eso', sfx: 'whoosh', bgm: 'objection', pose: 'donramon_idle' },
+  ...AFTERMATH_EN
 ];
 
 export const CASE4_TESTIMONY_4_EN: Testimony = {
-  title: 'Testimony: The 11:15 PM Blast',
-  witness: 'Maruja',
+  title: 'Testimony: A luggage freight',
+  witness: 'Chómpiras',
   bgm: 'cross_exam_allegro',
   statements: [
     {
       id: 'd2_t2_1',
-      speaker: 'MARUJA',
-      pose: 'maruja_idle',
-      text: 'I was reclining in my Suite 303 chamber at exactly 11:15.',
+      speaker: 'CHOMPIRAS',
+      pose: 'chompiras_idle',
+      text: 'I logged B-17 leaving floor 2 and later entering the rooftop store. In my own handwriting, which may be ugly but is mine.',
       pressText: [
         { speaker: 'DEFENSA', text: 'HOLD IT!', cutin: 'objection_un_momento', sfx: 'whoosh', pose: 'donramon_point' },
-        { speaker: 'DEFENSA', text: 'Señorita Maruja, where were you exactly minutes before 11:15 PM?', pose: 'donramon_idle' },
-        { speaker: 'MARUJA', text: 'I had just come up the main stairs after orange-blossom tea on the bar terrace. I entered Suite 303 and lay on the divan because a stubborn migraine afflicted me.', pose: 'maruja_abanico' },
-        { speaker: 'SUPER SAM', text: 'Perfect location to witness the gunshot firsthand!', pose: 'supersam_point' }
+        { speaker: 'CHOMPIRAS', text: 'To be precise about the middle stop: no direct 2-to-roof run. Both rows stand since the investigation.', pose: 'chompiras_nervous' }
       ]
     },
     {
       id: 'd2_t2_2',
-      speaker: 'MARUJA',
-      pose: 'maruja_idle',
-      text: 'The blast was terrifying; the vibration shook hard the wall sharing pipes with 304.',
+      speaker: 'CHOMPIRAS',
+      pose: 'chompiras_idle',
+      text: 'The freight up to 304 was worked by Botija, and the count took delivery right there.',
       pressText: [
         { speaker: 'DEFENSA', text: 'HOLD IT!', cutin: 'objection_un_momento', sfx: 'whoosh', pose: 'donramon_point' },
-        { speaker: 'DEFENSA', text: 'You say the vibration shook the wall. What room element trembled hardest?', pose: 'donramon_idle' },
-        { speaker: 'MARUJA', text: 'The heating radiator! It\'s wrought iron and rang like a cathedral bell when the blast hit.', pose: 'maruja_nerviosa' },
-        { speaker: 'DEFENSA', text: '(The wrought-iron radiator... connected in a straight vertical line with the floor below.)', pose: 'donramon_idle' }
+        { speaker: 'CHOMPIRAS', text: 'I name him by close sight and receipt. Nothing about height or rank.', pose: 'chompiras_idle' }
       ]
     },
     {
       id: 'd2_t2_3',
-      speaker: 'MARUJA',
-      pose: 'maruja_idle',
-      text: 'I know the metallic ring of a .38 revolver; the sound was born directly inside the adjoining room.',
+      speaker: 'CHOMPIRAS',
+      pose: 'chompiras_idle',
+      text: 'I saw a sealed trunk leave and arrive. Only luggage rode in there, Your Honor. Not a person, because a person complains.',
       pressText: [
         { speaker: 'DEFENSA', text: 'HOLD IT!', cutin: 'objection_un_momento', sfx: 'whoosh', pose: 'donramon_point' },
-        { speaker: 'DEFENSA', text: 'You know a .38\'s ring... Did the blast travel freely through air or echo with encapsulated metallic resonance?', pose: 'donramon_idle' },
-        { speaker: 'MARUJA', text: 'What fine hearing you have, counselor... Now that I think, it sounded with a hollow metallic rumble, as if the barrel fired inside an iron bell.', pose: 'maruja_coqueta' },
-        { speaker: 'SUPER SAM', text: 'Acoustic poetry! A shot is a shot, Your Honor!', pose: 'supersam_slam', sfx: 'desk_slam' }
-      ]
+        { speaker: 'CHOMPIRAS', text: 'I admit I saw no inside; I checked no visible passengers and an outer seal. My conclusion outruns that sight.', pose: 'chompiras_nervous' }
+      ],
+      contradiction: {
+        evidence: ['registro_montacargas'],
+        pointTarget: REGISTRO_EN,
+        successDialogue: REGISTRO_SUCCESS_EN,
+        followUp: { evidence: ['baul_etiquetas'], successDialogue: BAUL_SUCCESS_EN }
+      }
     },
     {
       id: 'd2_t2_4',
-      speaker: 'MARUJA',
-      pose: 'maruja_idle',
-      text: 'If the shot sounded at that exact second, the killer had to be inside pulling the trigger.',
+      speaker: 'CHOMPIRAS',
+      pose: 'chompiras_idle',
+      text: 'And the strap was whole when the count received it. I signed the stub beside Botija.',
       pressText: [
         { speaker: 'DEFENSA', text: 'HOLD IT!', cutin: 'objection_un_momento', sfx: 'whoosh', pose: 'donramon_point' },
-        { speaker: 'DEFENSA', text: 'Señorita Maruja, did you see the shooter inside 304 pulling the trigger with your own eyes?', pose: 'donramon_idle' },
-        { speaker: 'MARUJA', text: 'I didn\'t need to look, counselor... The blast was so deafening and shook so close to my dividing wall that any living soul would swear the bullet came from that chamber. Where else could it have been?', pose: 'maruja_abanico' },
-        { speaker: 'DEFENSA', text: '(That\'s the master trick... If the detonation seems to come from the room, everyone assumes the killer was inside pulling the trigger.)', pose: 'donramon_idle' }
-      ],
-      contradiction: {
-        evidence: ['plano_hotel'],
-        pointTarget: CASE4_PLANO_POINT_TARGET_EN,
-        successDialogue: T4_PLANO_EN,
-        followUp: {
-          evidence: ['casquillo_fogueo'],
-          prompt: 'What object produced the fake acoustic gunshot at 11:15 PM?',
-          successDialogue: T4_CASQUILLO_EN
-        }
-      }
+        { speaker: 'CHOMPIRAS', text: 'Number and strap confirmed. The strap breaks after Rufino takes delivery. Botija holds no hidden cabin stretch.', pose: 'chompiras_idle' }
+      ]
     }
   ]
 };

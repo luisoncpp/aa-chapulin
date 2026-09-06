@@ -7,22 +7,21 @@
 
 import type { EvidenceId, LocationId } from '../../../types/index.js';
 
-/** `candado_cadena` closes the day at the terrace bar. */
+/** `candado_cadena` closes day 1 at the terrace. */
 export const CASE4_DAY1_EVIDENCE: EvidenceId[] = [
-  'informe_policial', 'foto_crimen', 'plano_hotel',
-  'billetera_cuajinais', 'candado_cadena'
+  'informe_policial', 'foto_crimen', 'billetera_cuajinais',
+  'orden_servicios', 'plano_hotel', 'candado_cadena'
 ];
 
-/** `informe_forense` closes the day at the precinct. */
+/** `toxicologia_vino` closes day 2 at the precinct. */
 export const CASE4_DAY2_EVIDENCE: EvidenceId[] = [
-  'residuos_manos', 'casquillo_fogueo',
-  'registro_montacargas', 'informe_forense'
+  'residuos_manos', 'casquillo_fogueo', 'registro_montacargas',
+  'baul_etiquetas', 'copa_vino', 'toxicologia_vino'
 ];
 
-/** `nota_amenaza` closes the day at detention on day 3. */
+/** `sello_lacre` closes day 3 at delegacion_d3. */
 export const CASE4_DAY3_EVIDENCE: EvidenceId[] = [
-  'copa_vino', 'botella_vino', 'boleta_baccarat',
-  'baul_etiquetas', 'sello_lacre', 'nota_amenaza'
+  'botella_vino', 'boleta_baccarat', 'nota_amenaza', 'sello_lacre'
 ];
 
 export const CASE4_DEBUG_EVIDENCE: EvidenceId[] = [

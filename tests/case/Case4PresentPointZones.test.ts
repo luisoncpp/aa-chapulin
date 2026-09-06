@@ -1,8 +1,11 @@
-// @Architecture(descriptionShort="Pins Case 4 Present-and-Point boxes to painted examine plates", type="test", icon="layers")
+// @Architecture(descriptionShort="Pins Case 4 Present-and-Point boxes to spec plates", type="test", icon="layers")
 import { describe, expect, it } from 'vitest';
-import { CASE4_CLIMAX_BOTTLE_POINT } from '../../src/case/case4/Private/climax_stage_success.js';
-import { CASE4_FOTO_POINT_TARGET } from '../../src/case/case4/Private/trial_day1_success.js';
-import { CASE4_PLANO_POINT_TARGET } from '../../src/case/case4/Private/trial_day2_success.js';
+import { CASE4_CLIMAX_BOTTLE_POINT, CASE4_ANILLO_POINT_TARGET } from '../../src/case/case4/Private/climax_stage_success.js';
+import { CASE4_CADENA_POINT_TARGET } from '../../src/case/case4/Private/trial_day1_success.js';
+import { CASE4_TESTIMONY_3_EN } from '../../src/case/case4/Private/trial_day2_en.js';
+import { CASE4_TESTIMONY_4_EN } from '../../src/case/case4/Private/trial_day2_t2_en.js';
+import { CASE4_PLANO_POINT_TARGET, CASE4_REGISTRO_POINT_TARGET } from '../../src/case/case4/Private/trial_day2_success.js';
+import { CASE4_ORDEN_POINT_TARGET, CASE4_TELEGRAMA_POINT_TARGET } from '../../src/case/case4/Private/trial_day3_success.js';
 import { findHitZone, isInsideBounds } from '../../src/engine/Private/PresentPoint.js';
 import type { PointTargetContradiction } from '../../src/types/index.js';
 
@@ -17,31 +20,62 @@ function hitsCorrect(target: PointTargetContradiction, x: number, y: number): bo
 }
 
 describe('Case 4 Present & Point zones vs examine plates', () => {
-  it('covers the ice bucket including melted water, not only a side-wall patch', () => {
-    expect(correctBounds(CASE4_FOTO_POINT_TARGET)).toEqual([50, 14, 88, 82]);
-    // Water surface / rim (the melted-ice clue) sits above the old spec box [56,46,76,70].
-    expect(hitsCorrect(CASE4_FOTO_POINT_TARGET, 66, 28)).toBe(true);
-    expect(hitsCorrect(CASE4_FOTO_POINT_TARGET, 56, 22)).toBe(true);
-    expect(hitsCorrect(CASE4_FOTO_POINT_TARGET, 82, 40)).toBe(true);
-    expect(hitsCorrect(CASE4_FOTO_POINT_TARGET, 66, 58)).toBe(true);
-    expect(hitsCorrect(CASE4_FOTO_POINT_TARGET, 36, 50)).toBe(false);
-    expect(hitsCorrect(CASE4_FOTO_POINT_TARGET, 18, 45)).toBe(false);
+  it('points the chain loop route from corridor to edge', () => {
+    expect(correctBounds(CASE4_CADENA_POINT_TARGET)).toEqual([31, 18, 68, 68]);
+    expect(hitsCorrect(CASE4_CADENA_POINT_TARGET, 60, 35)).toBe(true);
+    expect(hitsCorrect(CASE4_CADENA_POINT_TARGET, 10, 80)).toBe(false);
+    expect(isInsideBounds([31, 18, 68, 68], 32, 22)).toBe(true);
   });
 
   it('covers the labeled vertical steam stack, not the side rooms or boiler fire', () => {
-    expect(correctBounds(CASE4_PLANO_POINT_TARGET)).toEqual([40, 18, 62, 74]);
-    expect(hitsCorrect(CASE4_PLANO_POINT_TARGET, 48, 48)).toBe(true);
-    expect(hitsCorrect(CASE4_PLANO_POINT_TARGET, 56, 50)).toBe(true);
-    expect(hitsCorrect(CASE4_PLANO_POINT_TARGET, 50, 30)).toBe(true);
+    expect(correctBounds(CASE4_PLANO_POINT_TARGET)).toEqual([35, 14, 53, 85]);
+    expect(hitsCorrect(CASE4_PLANO_POINT_TARGET, 44, 48)).toBe(true);
+    expect(hitsCorrect(CASE4_PLANO_POINT_TARGET, 50, 42)).toBe(true);
+    expect(hitsCorrect(CASE4_PLANO_POINT_TARGET, 56, 50)).toBe(false);
     expect(hitsCorrect(CASE4_PLANO_POINT_TARGET, 20, 20)).toBe(false);
+    expect(hitsCorrect(CASE4_PLANO_POINT_TARGET, 72, 50)).toBe(false);
     expect(hitsCorrect(CASE4_PLANO_POINT_TARGET, 50, 88)).toBe(false);
   });
 
-  it('covers the red wax dome including the needle hole, not the bottle label', () => {
-    expect(correctBounds(CASE4_CLIMAX_BOTTLE_POINT)).toEqual([42, 2, 58, 30]);
-    expect(hitsCorrect(CASE4_CLIMAX_BOTTLE_POINT, 50, 10)).toBe(true);
-    expect(hitsCorrect(CASE4_CLIMAX_BOTTLE_POINT, 50, 26)).toBe(true);
-    expect(hitsCorrect(CASE4_CLIMAX_BOTTLE_POINT, 50, 55)).toBe(false);
-    expect(isInsideBounds([42, 2, 58, 30], 44, 4)).toBe(true);
+  it('keeps both English plan moments on the same cutaway ramal', () => {
+    const routeA = CASE4_TESTIMONY_3_EN.statements.find((s) => s.id === 'd2_t1_3');
+    const routeB = CASE4_TESTIMONY_3_EN.statements.find((s) => s.id === 'd2_t1_4');
+    expect(routeA?.contradiction?.pointTarget?.zones.find((z) => z.isCorrect)?.bounds).toEqual([35, 14, 53, 85]);
+    expect(routeB?.contradiction?.followUp?.pointTarget?.zones.find((z) => z.isCorrect)?.bounds).toEqual([35, 14, 53, 85]);
+  });
+
+  it('points the B-17 discharge rows on the freight log', () => {
+    expect(correctBounds(CASE4_REGISTRO_POINT_TARGET)).toEqual([4, 40, 96, 57]);
+    expect(hitsCorrect(CASE4_REGISTRO_POINT_TARGET, 8, 42)).toBe(true);
+    expect(hitsCorrect(CASE4_REGISTRO_POINT_TARGET, 94, 56)).toBe(true);
+    expect(hitsCorrect(CASE4_REGISTRO_POINT_TARGET, 10, 10)).toBe(false);
+
+    const english = CASE4_TESTIMONY_4_EN.statements.find((s) => s.id === 'd2_t2_3');
+    expect(english?.contradiction?.pointTarget?.zones.find((z) => z.isCorrect)?.bounds)
+      .toEqual([4, 40, 96, 57]);
+  });
+
+  it('points the handwritten employee name on the folio', () => {
+    expect(correctBounds(CASE4_ORDEN_POINT_TARGET)).toEqual([18, 58, 80, 82]);
+    expect(hitsCorrect(CASE4_ORDEN_POINT_TARGET, 50, 70)).toBe(true);
+    expect(hitsCorrect(CASE4_ORDEN_POINT_TARGET, 50, 10)).toBe(false);
+  });
+
+  it('points the signed receipt on the telegram', () => {
+    expect(correctBounds(CASE4_TELEGRAMA_POINT_TARGET)).toEqual([10, 64, 94, 86]);
+    expect(hitsCorrect(CASE4_TELEGRAMA_POINT_TARGET, 70, 74)).toBe(true);
+    expect(hitsCorrect(CASE4_TELEGRAMA_POINT_TARGET, 20, 50)).toBe(false);
+  });
+
+  it('points the fine channel through the cork', () => {
+    expect(correctBounds(CASE4_CLIMAX_BOTTLE_POINT)).toEqual([34, 48, 70, 79]);
+    expect(hitsCorrect(CASE4_CLIMAX_BOTTLE_POINT, 50, 55)).toBe(true);
+    expect(hitsCorrect(CASE4_CLIMAX_BOTTLE_POINT, 50, 10)).toBe(false);
+  });
+
+  it('points the truncated tip on the ring plate', () => {
+    expect(correctBounds(CASE4_ANILLO_POINT_TARGET)).toEqual([50, 37, 80, 88]);
+    expect(hitsCorrect(CASE4_ANILLO_POINT_TARGET, 66, 70)).toBe(true);
+    expect(hitsCorrect(CASE4_ANILLO_POINT_TARGET, 20, 20)).toBe(false);
   });
 });

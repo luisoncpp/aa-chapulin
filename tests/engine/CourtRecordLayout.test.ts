@@ -37,6 +37,7 @@ describe('court record evidence grid layout', () => {
     expect(cssProp(label, '-webkit-line-clamp')).toBe('2');
     expect(cssProp(label, 'line-clamp')).toBe('2');
   });
+
 });
 
 describe('court record evidence detail pane', () => {

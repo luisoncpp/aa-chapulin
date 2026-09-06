@@ -55,7 +55,9 @@ export type EvidenceId =
   | 'boleta_baccarat'
   | 'baul_etiquetas'
   | 'sello_lacre'
-  | 'nota_amenaza';
+  | 'nota_amenaza'
+  | 'orden_servicios'
+  | 'toxicologia_vino';
 
 export interface EvidenceExamineZone {
   id: string;

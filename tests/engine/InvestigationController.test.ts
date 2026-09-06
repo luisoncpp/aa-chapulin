@@ -151,14 +151,71 @@ describe('InvestigationController', () => {
     hotspotArea.dispatchEvent(new Event('mouseleave'));
     expect(dom.examineTooltipEl.classList.contains('hidden')).toBe(true);
 
-    // Click triggers hotspot interaction, plays quiet click sound (not realization chime), and exits examine mode
+    // Click triggers hotspot interaction, plays quiet click sound (not realization chime), and stays in examine mode after completion
     const clickSpy = vi.spyOn(soundEngineInstance, 'playClick');
     const realizationSpy = vi.spyOn(soundEngineInstance, 'playRealization');
     hotspotArea.click();
     expect(clickSpy).toHaveBeenCalledTimes(1);
     expect(realizationSpy).not.toHaveBeenCalled();
-    expect(controller.isExamineActive).toBe(false);
+    expect(controller.isExamineActive).toBe(true);
+    expect(dom.hotspotsContainerEl.classList.contains('visible-hotspots')).toBe(true);
+    expect(dom.examineNavEl.classList.contains('hidden')).toBe(false);
+    expect(dom.investigationNavEl.classList.contains('hidden')).toBe(true);
     expect(queuedDialogues.length).toBeGreaterThan(1);
+  });
+
+  it('hides the examine HUD while the pointer is over its frame, without hotspot state', () => {
+    controller.startInvestigation('museum');
+    controller.startExamineMode();
+    vi.spyOn(dom.dialogueBoxEl, 'getBoundingClientRect').mockReturnValue({
+      left: 100, right: 900, top: 450, bottom: 498, width: 800, height: 48,
+      x: 100, y: 450, toJSON: () => ({})
+    });
+
+    dom.gameScreen.dispatchEvent(new MouseEvent('pointermove', { clientX: 500, clientY: 470 }));
+    expect(dom.dialogueBoxEl.classList.contains('examine-hud-hidden')).toBe(true);
+
+    dom.gameScreen.dispatchEvent(new MouseEvent('pointermove', { clientX: 500, clientY: 300 }));
+    expect(dom.dialogueBoxEl.classList.contains('examine-hud-hidden')).toBe(false);
+  });
+
+  it('stays in examine mode across multiple hotspot examinations until exitExamineMode is called', () => {
+    controller.startInvestigation('museum');
+    controller.startExamineMode();
+    expect(controller.isExamineActive).toBe(true);
+    expect(dom.charSpriteEl.classList.contains('hidden')).toBe(true);
+
+    const firstHotspot = dom.hotspotsContainerEl.children[0] as HTMLElement;
+    const secondHotspot = dom.hotspotsContainerEl.children[1] as HTMLElement;
+    expect(firstHotspot).toBeDefined();
+    expect(secondHotspot).toBeDefined();
+
+    // Click first hotspot: dialogue completes and player stays in examine mode
+    firstHotspot.click();
+    expect(state.isHotspotExamined('pedestal')).toBe(true);
+    expect(controller.isExamineActive).toBe(true);
+    expect(dom.hotspotsContainerEl.classList.contains('visible-hotspots')).toBe(true);
+    expect(dom.examineNavEl.classList.contains('hidden')).toBe(false);
+    expect(dom.investigationNavEl.classList.contains('hidden')).toBe(true);
+    expect(dom.charSpriteEl.classList.contains('hidden')).toBe(true);
+
+    // Immediately click second hotspot without clicking examine button again
+    secondHotspot.click();
+    expect(state.isHotspotExamined('armor')).toBe(true);
+    expect(controller.isExamineActive).toBe(true);
+    expect(dom.hotspotsContainerEl.classList.contains('visible-hotspots')).toBe(true);
+    expect(dom.examineNavEl.classList.contains('hidden')).toBe(false);
+    expect(dom.investigationNavEl.classList.contains('hidden')).toBe(true);
+    expect(dom.charSpriteEl.classList.contains('hidden')).toBe(true);
+
+    // Click "Volver" to exit examine mode
+    controller.exitExamineMode();
+    expect(controller.isExamineActive).toBe(false);
+    expect(dom.hotspotsContainerEl.classList.contains('visible-hotspots')).toBe(false);
+    expect(dom.examineNavEl.classList.contains('hidden')).toBe(true);
+    expect(dom.investigationNavEl.classList.contains('hidden')).toBe(false);
+    expect(dom.charSpriteEl.src).toContain('assets/florinda_idle.webp');
+    expect(dom.charSpriteEl.classList.contains('hidden')).toBe(false);
   });
 
   it('hides navigation and prevents talking or examining during first-time hotspot dialogue until completed', () => {
@@ -175,6 +232,8 @@ describe('InvestigationController', () => {
     });
 
     manualController.startInvestigation('museum');
+    expect(completeCallback).toBeDefined();
+    completeCallback!();
     expect(state.isHotspotExamined('pedestal')).toBe(false);
 
     // Enter examine and click first hotspot (pedestal)
@@ -182,8 +241,9 @@ describe('InvestigationController', () => {
     const hotspotArea = dom.hotspotsContainerEl.children[0] as HTMLElement;
     hotspotArea.click();
 
-    // First-time dialogue is active: investigation nav must be hidden
+    // First-time dialogue is active: navigation must be hidden
     expect(dom.investigationNavEl.classList.contains('hidden')).toBe(true);
+    expect(dom.examineNavEl.classList.contains('hidden')).toBe(true);
     expect(manualController.isFirstTimeDialogue).toBe(true);
     expect(state.isHotspotExamined('pedestal')).toBe(false);
 
@@ -199,40 +259,111 @@ describe('InvestigationController', () => {
     expect(completeCallback).toBeDefined();
     completeCallback!();
 
-    // Now dialogue is completed: hotspot marked examined and nav restored
+    // Now dialogue is completed: hotspot marked examined and examine mode is restored
     expect(state.isHotspotExamined('pedestal')).toBe(true);
     expect(manualController.isFirstTimeDialogue).toBe(false);
+    expect(manualController.isExamineActive).toBe(true);
+    expect(dom.examineNavEl.classList.contains('hidden')).toBe(false);
+    expect(dom.investigationNavEl.classList.contains('hidden')).toBe(true);
+
+    // Exiting examine mode restores the main investigation navigation
+    manualController.exitExamineMode();
+    expect(manualController.isExamineActive).toBe(false);
     expect(dom.investigationNavEl.classList.contains('hidden')).toBe(false);
   });
 
-  it('allows choosing to talk or investigate something else during repeated hotspot dialogue', () => {
-    state.markHotspotExamined('pedestal');
-    expect(state.isHotspotExamined('pedestal')).toBe(true);
+  it('hides investigation navigation while a talk topic dialogue plays', () => {
+    let completeCallback: (() => void) | undefined;
+    const manualController = new InvestigationController({
+      dom,
+      state,
+      script: CASE_SCRIPT,
+      soundEngine: soundEngineInstance,
+      midiComposer: midiComposerInstance,
+      onQueueDialogue: (_dlg, cb) => {
+        completeCallback = cb;
+      }
+    });
 
-    controller.startInvestigation('museum');
-    controller.startExamineMode();
-    const hotspotArea = dom.hotspotsContainerEl.children[0] as HTMLElement;
-    hotspotArea.click();
+    manualController.startInvestigation('museum');
+    completeCallback!();
+    manualController.openTalkMenu();
+    (dom.talkListEl.children[0] as HTMLButtonElement).click();
 
-    // Repeated dialogue: investigation nav remains visible and isFirstTimeDialogue is false
+    // Side buttons stay hidden and secondary menus stay blocked during the conversation
+    expect(dom.investigationNavEl.classList.contains('hidden')).toBe(true);
+    expect(manualController.isFirstTimeDialogue).toBe(true);
+    manualController.openMoveMenu();
+    expect(dom.moveLocationsModalEl.classList.contains('hidden')).toBe(true);
+
+    completeCallback!();
     expect(dom.investigationNavEl.classList.contains('hidden')).toBe(false);
-    expect(controller.isFirstTimeDialogue).toBe(false);
-
-    // Player CAN open talk menu
-    controller.openTalkMenu();
-    expect(dom.talkOptionsModalEl.classList.contains('hidden')).toBe(false);
+    expect(manualController.isFirstTimeDialogue).toBe(false);
   });
 
-  it('opens talk menu modal and handles conversation option', () => {
-    controller.startInvestigation('museum');
-    controller.openTalkMenu();
+  it('reopens talk menu with updated topics after talk dialogue finishes', () => {
+    let completeCallback: (() => void) | undefined;
+    const manualController = new InvestigationController({
+      dom,
+      state,
+      script: CASE_SCRIPT,
+      soundEngine: soundEngineInstance,
+      midiComposer: midiComposerInstance,
+      onQueueDialogue: (_dlg, cb) => {
+        completeCallback = cb;
+      }
+    });
+
+    manualController.startInvestigation('museum');
+    expect(completeCallback).toBeDefined();
+    completeCallback!();
+    manualController.openTalkMenu();
 
     expect(dom.talkOptionsModalEl.classList.contains('hidden')).toBe(false);
+    const initialCount = dom.talkListEl.children.length;
+    const firstOption = dom.talkListEl.children[0] as HTMLButtonElement;
+
+    // Player selects topic: modal closes while dialogue is being read
+    firstOption.click();
+    expect(dom.talkOptionsModalEl.classList.contains('hidden')).toBe(true);
+    expect(completeCallback).toBeDefined();
+
+    // Dialogue finishes: talk modal reopens with updated topics
+    completeCallback!();
+    expect(dom.talkOptionsModalEl.classList.contains('hidden')).toBe(false);
+    expect(dom.talkListEl.children.length).toBeGreaterThanOrEqual(initialCount);
+
+    // Player can close the reopened talk modal
+    ModalManager.closeTalkModal(dom);
+    expect(dom.talkOptionsModalEl.classList.contains('hidden')).toBe(true);
+  });
+
+  it('does not reopen talk menu if mode changed away from investigation', () => {
+    let completeCallback: (() => void) | undefined;
+    const manualController = new InvestigationController({
+      dom,
+      state,
+      script: CASE_SCRIPT,
+      soundEngine: soundEngineInstance,
+      midiComposer: midiComposerInstance,
+      onQueueDialogue: (_dlg, cb) => {
+        completeCallback = cb;
+      }
+    });
+
+    manualController.startInvestigation('museum');
+    expect(completeCallback).toBeDefined();
+    completeCallback!();
+    manualController.openTalkMenu();
+
     const firstOption = dom.talkListEl.children[0] as HTMLButtonElement;
     firstOption.click();
-
     expect(dom.talkOptionsModalEl.classList.contains('hidden')).toBe(true);
-    expect(queuedDialogues.length).toBeGreaterThan(1);
+
+    // Simulate mode change before dialogue callback
+    state.mode = 'TRIAL';
+    completeCallback!();
+    expect(dom.talkOptionsModalEl.classList.contains('hidden')).toBe(true);
   });
 
   it('gracefully handles openTalkMenu when scene has no options', () => {
@@ -332,5 +463,75 @@ describe('InvestigationController', () => {
     expect(dom.btnInvTrial.classList.contains('disabled')).toBe(false);
     expect(dom.btnInvTrial.disabled).toBe(false);
     expect(dom.btnInvTrial.classList.contains('pulse-glow')).toBe(true);
+  });
+
+  it('hides side navigation buttons during initial intro dialogue and restores them when completed', () => {
+    let completeCallback: (() => void) | undefined;
+    const manualController = new InvestigationController({
+      dom,
+      state,
+      script: CASE_SCRIPT,
+      soundEngine: soundEngineInstance,
+      midiComposer: midiComposerInstance,
+      onQueueDialogue: (_dlg, cb) => {
+        completeCallback = cb;
+      }
+    });
+
+    manualController.startInvestigation('museum');
+
+    // During intro dialogue: side navigation buttons must be hidden and isFirstTimeDialogue true
+    expect(dom.investigationNavEl.classList.contains('hidden')).toBe(true);
+    expect(manualController.isFirstTimeDialogue).toBe(true);
+
+    // Attempting to talk, examine, or move during intro dialogue is blocked
+    manualController.openTalkMenu();
+    expect(dom.talkOptionsModalEl.classList.contains('hidden')).toBe(true);
+    manualController.startExamineMode();
+    expect(manualController.isExamineActive).toBe(false);
+    manualController.openMoveMenu();
+    expect(dom.moveLocationsModalEl.classList.contains('hidden')).toBe(true);
+
+    // Complete the intro dialogue
+    expect(completeCallback).toBeDefined();
+    completeCallback!();
+
+    // After intro dialogue completes: side buttons are visible, isFirstTimeDialogue false, and idle pose restored
+    expect(dom.investigationNavEl.classList.contains('hidden')).toBe(false);
+    expect(manualController.isFirstTimeDialogue).toBe(false);
+    expect(dom.charSpriteEl.src).toContain('assets/florinda_idle.webp');
+    expect(dom.charSpriteEl.classList.contains('hidden')).toBe(false);
+  });
+
+  it('hides side navigation buttons during deferred intro dialogue (adjournment)', () => {
+    let completeCallback: (() => void) | undefined;
+    const manualController = new InvestigationController({
+      dom,
+      state,
+      script: CASE_SCRIPT,
+      soundEngine: soundEngineInstance,
+      midiComposer: midiComposerInstance,
+      onQueueDialogue: (_dlg, cb) => {
+        completeCallback = cb;
+      }
+    });
+
+    // Start with deferred intro
+    manualController.startInvestigation('museum', /*deferIntro=*/ true);
+    expect(dom.investigationNavEl.classList.contains('hidden')).toBe(true);
+    expect(manualController.isFirstTimeDialogue).toBe(true);
+
+    // Now trigger queueCurrentIntro when screen is revealed
+    manualController.queueCurrentIntro();
+    expect(dom.investigationNavEl.classList.contains('hidden')).toBe(true);
+    expect(manualController.isFirstTimeDialogue).toBe(true);
+
+    // Complete the deferred intro dialogue
+    expect(completeCallback).toBeDefined();
+    completeCallback!();
+
+    expect(dom.investigationNavEl.classList.contains('hidden')).toBe(false);
+    expect(manualController.isFirstTimeDialogue).toBe(false);
+    expect(dom.charSpriteEl.src).toContain('assets/florinda_idle.webp');
   });
 });

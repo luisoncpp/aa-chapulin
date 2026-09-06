@@ -4,19 +4,21 @@
  * Helper functions for [[./InvestigationController.ts]].
  */
 
-import type { MidiMusicComposer } from '../../audio/index.js';
+import type { MidiMusicComposer, SoundEngine } from '../../audio/index.js';
 import type { GameStateManager } from '../../state/index.js';
-import type {
-  DialogueLine,
-  GameFlags,
-  InvestigationScene,
-  LocationId,
-  PoseName,
-  SceneIntro
-} from '../../types/index.js';
+import type { CaseScript, DialogueLine, GameFlags, InvestigationScene, LocationId, PoseName, SceneIntro } from '../../types/index.js';
 import type { DomElements } from './DomElements.js';
 import { VisualEffects } from './VisualEffects.js';
 import { prepareSceneVisuals } from './VisualWarmup.js';
+
+export interface InvestigationControllerDeps {
+  dom: DomElements;
+  state: GameStateManager;
+  script: CaseScript;
+  soundEngine: SoundEngine;
+  midiComposer: MidiMusicComposer;
+  onQueueDialogue: (dialogue: DialogueLine[], onComplete?: () => void) => void;
+}
 
 export interface ResolvedIntro {
   id: string;

@@ -1,58 +1,68 @@
-// @Architecture(descriptionShort="English Suite 304 hotspot geometry and evidence", type="data", icon="layers")
-/**
- * Hotspots for Presidential Suite 304 — day 1 investigation (English).
- */
+// @Architecture(descriptionShort="English Suite 304 hotspot geometry", type="data", icon="layers")
+/** Hotspots for Suite 304 — day 1, English. Same geometry as Spanish. */
 
 import type { Hotspot } from '../../../types/index.js';
 
 export const SUITE304_HOTSPOTS_EN: Hotspot[] = [
   {
     id: 'hotspot_cuerpo',
-    label: 'Silhouette by the Fireplace',
-    x: 28, y: 72, w: 36, h: 26,
+    label: 'Body and Side Table',
+    x: 29, y: 81, w: 70, h: 19,
     dialogue: [
-      { speaker: 'SARGENTO', text: 'Here lay the deceased by the fireplace. The broken glass, uncorked bottle, and ice bucket remain in police custody.', pose: 'pazguato_saludo' },
-      { speaker: 'DEFENSA', text: 'And the preliminary report?', pose: 'donramon_idle' },
-      { speaker: 'SARGENTO', text: 'At your service! Police report and official photograph taken at 11:30 PM.', pose: 'pazguato_sweat', addEvidence: 'informe_policial' },
-      { speaker: 'SARGENTO', text: 'The photo documents the scene intact fifteen minutes after the blast.', pose: 'pazguato_saludo', addEvidence: 'foto_crimen' }
-    ]
-  },
-  {
-    id: 'hotspot_puerta',
-    label: 'Door Frame',
-    x: 2, y: 6, w: 24, h: 68,
-    dialogue: [
-      { speaker: 'SARGENTO', text: 'The mahogany frame is splintered where we forced the door. The security chain was on its interior rail.', pose: 'pazguato_idle' },
-      { speaker: 'DEFENSA', text: 'And what did Miss Maruja see?', pose: 'donramon_point' },
-      { speaker: 'SARGENTO', text: 'She said something metallic fell into the hall when we forced the jamb. She picked it up from the floor.', pose: 'pazguato_sweat' }
-    ]
-  },
-  {
-    id: 'hotspot_radiador',
-    label: 'Cast-Iron Radiator',
-    x: 34, y: 42, w: 16, h: 36,
-    dialogue: [
-      { speaker: 'DEFENSA', text: 'Thick pipe running down to the second floor. Smells of combustion smoke and concentrated sulfur.', pose: 'donramon_idle' },
-      { speaker: 'CHAPULIN', text: '¡No contaban con mi astucia! That pipe connects to the basement!', pose: 'chapulin_point' }
-    ]
-  },
-  {
-    id: 'hotspot_cesto',
-    label: 'Laundry Basket',
-    x: 86, y: 52, w: 14, h: 32,
-    dialogue: [
-      { speaker: 'SARGENTO', text: 'Large wicker basket with white sheets splattered with soot. Botija hid here.', pose: 'pazguato_sweat' },
-      { speaker: 'DEFENSA', text: '(Panic, not murder.)', pose: 'donramon_sweat', unlockLocation: 'hotel_terraza' }
+      { speaker: 'SARGENTO', text: 'Body position in photo, ordinary key, broken glass, open bottle. The cork is not in the room; the inventory notes it with no explanation yet.', pose: 'pazguato_saludo' },
+      { speaker: 'SARGENTO', text: 'Take the report and the photo. Hour 23:30 belongs to the photograph.', pose: 'pazguato_saludo', addEvidence: 'informe_policial' },
+      { speaker: 'DEFENSA', text: '(The photo pins everything down. We will request the rest.)', pose: 'donramon_idle', addEvidence: 'foto_crimen' }
     ]
   },
   {
     id: 'hotspot_almohada',
-    label: 'Sofa Pillow',
-    x: 64, y: 54, w: 20, h: 26,
+    label: 'Pillow',
+    x: 34, y: 84, w: 20, h: 15,
     dialogue: [
-      { speaker: 'DEFENSA', text: 'Look at this through a magnifying glass! This feather pillow has a blackened hole and down scattered all over the sofa. Whoever fired here pressed the barrel against the pillow to drown the flash sound.', pose: 'donramon_point' },
-      { speaker: 'CHAPULIN', text: '¡Lo sospeché desde un principio! They used a feather pillow as a homemade silencer to muffle the blast!', pose: 'chapulin_point' },
-      { speaker: 'SARGENTO', text: 'Gee... you are right, counselor. I thought the deceased had a pillow fight before getting shot.', pose: 'pazguato_sweat' }
+      { speaker: 'DEFENSA', text: 'Hole, scorched cloth, feathers. Sergeant: I want this compared with the wound and the bullet.', pose: 'donramon_point' },
+      { speaker: 'SARGENTO', text: 'I will request it in writing. No conclusions in advance.', pose: 'pazguato_saludo' }
+    ]
+  },
+  {
+    id: 'hotspot_recibidor',
+    label: 'Entry and Bathroom',
+    x: 18, y: 4, w: 13, h: 75,
+    dialogue: [
+      { speaker: 'SARGENTO', text: 'Path line: entry to bathroom without crossing the body zone, partly hidden by the screen.', pose: 'pazguato_idle' },
+      { speaker: 'DEFENSA', text: '(From the bathroom the body zone is unseen. The screen hides no secret door.)', pose: 'donramon_idle' }
+    ]
+  },
+  {
+    id: 'hotspot_cierre',
+    label: 'Torn Latch',
+    x: 5, y: 20, w: 10, h: 34,
+    dialogue: [
+      { speaker: 'SARGENTO', text: 'Fiber fragment on the plate and a length from the corridor. I will take the piece to the terrace for Maruja to confirm how it was found.', pose: 'pazguato_idle' }
+    ]
+  },
+  {
+    id: 'hotspot_radiador',
+    label: 'Radiator',
+    x: 37, y: 40, w: 14, h: 37,
+    dialogue: [
+      { speaker: 'DEFENSA', text: 'Branch toward 204 and a smell of combustion. Tomorrow we follow the pipes.', pose: 'donramon_idle' },
+      { speaker: 'SARGENTO', text: 'Smell diagnoses no author nor exact effect. It only justifies following the branch.', pose: 'pazguato_sweat' }
+    ]
+  },
+  {
+    id: 'hotspot_cesto',
+    label: 'Hamper',
+    x: 87, y: 53, w: 13, h: 31,
+    dialogue: [
+      { speaker: 'SARGENTO', text: 'Clothes with work-compatible grime. An uncomfortable hiding place, nothing more.', pose: 'pazguato_idle' }
+    ]
+  },
+  {
+    id: 'hotspot_cubeta',
+    label: 'Bucket',
+    x: 67, y: 72, w: 15, h: 21,
+    dialogue: [
+      { speaker: 'SARGENTO', text: 'Water and a mineral bottle. Ordinary room service.', pose: 'pazguato_idle' }
     ]
   }
 ];

@@ -57,6 +57,8 @@ describe('EvidenceExamine', () => {
     expect(dom.evidenceExamineZonesEl?.children).toHaveLength(1);
     const zone = dom.evidenceExamineZonesEl!.children[0] as HTMLElement;
     expect(zone.style.left).toBe('40%');
+    expect(zone.title).toBe('La cabeza es blanda.');
+    expect(zone.getAttribute('aria-label')).toBe('La cabeza es blanda.');
     zone.click();
     expect(dom.gameNotificationEl.textContent).toContain('blanda');
     expect(dom.evidenceExamineCaptionEl?.textContent).toContain('blanda');

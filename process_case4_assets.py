@@ -10,6 +10,7 @@ from process_case3_assets import (
     floor_standing_busts,
     process_evidence_grid,
     process_full_pose,
+    process_unlabeled_evidence_grid,
 )
 
 os.makedirs(DEST_DIR, exist_ok=True)
@@ -44,6 +45,19 @@ EV = [
     (2, 3, "nota_amenaza.webp"),
 ]
 
+# 1×1 replacements for rewrite icons (and two new ids). Overwrite 4×4 cells of the same name.
+SOLO_ICONS = [
+    ("orden_servicios_icon_raw.png", "orden_servicios.webp"),
+    ("toxicologia_vino_icon_raw.png", "toxicologia_vino.webp"),
+    ("foto_suite304_icon_raw.png", "foto_suite304.webp"),
+    ("casquillo_fogueo_icon_raw.png", "casquillo_fogueo.webp"),
+    ("sello_lacre_icon_raw.png", "sello_lacre.webp"),
+    ("candado_cadena_icon_raw.png", "candado_cadena.webp"),
+    ("registro_montacargas_icon_raw.png", "registro_montacargas.webp"),
+    ("informe_forense_icon_raw.png", "informe_forense.webp"),
+    ("botella_vino_icon_raw.png", "botella_vino.webp"),
+]
+
 BGS = [
     ("bg_hotel_lobby.jpg", "bg_hotel_lobby.webp"),
     ("bg_hotel_suite.jpg", "bg_hotel_suite.webp"),
@@ -52,6 +66,7 @@ BGS = [
     ("bg_hotel_suite204.jpg", "bg_hotel_suite204.webp"),
     ("bg_hotel_cava.jpg", "bg_hotel_cava.webp"),
     ("bg_hotel_azotea.jpg", "bg_hotel_azotea.webp"),
+    ("bg_hotel_azotea_day.png", "bg_hotel_azotea_day.webp"),
 ]
 
 EXAMINE = [
@@ -60,13 +75,26 @@ EXAMINE = [
     ("examine_plano.jpg", "examine_plano.webp"),
     ("examine_botella.jpg", "examine_botella.webp"),
     ("examine_nota.jpg", "examine_nota.webp"),
+    ("examine_orden.jpg", "examine_orden.webp"),
+    ("examine_registro.jpg", "examine_registro.webp"),
+    ("examine_sello.jpg", "examine_sello.webp"),
 ]
 
 FLOOR_BUSTS = [name for _sheet, names in SHEETS for name in names] + [
     "maruja_shock", "rufino_breakdown",
 ]
 
-BG_SIZE = (1536, 1024)
+SOLO_ICONS = [
+    ("orden_servicios_icon_raw.png", "orden_servicios.webp"),
+    ("toxicologia_vino_icon_raw.png", "toxicologia_vino.webp"),
+    ("foto_suite304_icon_raw.png", "foto_suite304.webp"),
+    ("casquillo_fogueo_icon_raw.png", "casquillo_fogueo.webp"),
+    ("sello_lacre_icon_raw.png", "sello_lacre.webp"),
+    ("candado_cadena_icon_raw.png", "candado_cadena.webp"),
+    ("registro_montacargas_icon_raw.png", "registro_montacargas.webp"),
+    ("informe_forense_icon_raw.png", "informe_forense.webp"),
+    ("botella_vino_icon_raw.png", "botella_vino.webp"),
+]
 EXAMINE_SIZE = (960, 540)
 
 
@@ -103,8 +131,10 @@ def run_case4() -> None:
     process_full_pose("rufino_breakdown_raw.png", "rufino_breakdown")
     # Every plain bust: floor_standing_busts → anchor_standing_bust (canvas hem).
     floor_standing_busts(FLOOR_BUSTS)
-    # 4×4 card grid; cell (3,3) is unused magenta.
-    process_evidence_grid("case4_evidence_icons_raw.png", EV, 4, 4)
+    # 4×4 image-only grid; preserve lower artwork and remove only separators.
+    process_unlabeled_evidence_grid("case4_evidence_icons_raw.png", EV, (4, 4))
+    for raw, out in SOLO_ICONS:
+        process_evidence_grid(raw, [(0, 0, out)], 1, 1)
     export_plates(BGS, BG_SIZE)
     export_plates(EXAMINE, EXAMINE_SIZE)
     print("\nCase 4 assets saved.")

@@ -1,99 +1,76 @@
-// @Architecture(descriptionShort="Case 4 day-1 courtroom intro and Sargento testimony", type="data", icon="layers")
+// @Architecture(descriptionShort="Case 4 day-1 courtroom intro and Cecilio testimony", type="data", icon="layers")
 /**
- * Case 4 Trial Day 1 — Opening and Testimony 1 (El Sargento).
+ * Case 4 Trial Day 1 — Opening (§8.1) and Testimony 1, Cecilio (§8.2).
  */
 
 import type { DialogueLine, Testimony } from '../../../types/index.js';
-import {
-  CASE4_D1_T1_FOLLOWUP_SUCCESS, CASE4_D1_T1_POINT_SUCCESS, CASE4_D1_T1_POINT_TARGET
-} from './trial_day1_success.js';
+import { CASE4_CADENA_POINT_TARGET, CASE4_D1_T1_POINT_SUCCESS } from './trial_day1_success.js';
 
 export const CASE4_TRIAL_INTRO: DialogueLine[] = [
-  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_gavel', text: '¡Silencio en este tribunal! Se abre la vista preliminar contra el ciudadano Gordon Botija Pompa y Pompa por el delito de homicidio calificado y robo.', sfx: 'gavel', bgm: 'trial' },
-  { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_slam', text: 'Time is money, Your Honor! ¡Este proceso no requiere más de diez minutos de deliberación!', sfx: 'desk_slam' },
-  { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_point', text: 'El inculpado fue sorprendido en flagrancia dentro de un cuarto cerrado por dentro con cadena de latón, con las manos empapadas en pólvora y la billetera del occiso en su bolsillo. ¡Pido sentencia condenatoria antes del cierre de Wall Street!' },
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_gavel', text: '¡Silencio en la sala! Se abre la audiencia por la muerte del huésped de la Suite 304.', sfx: 'gavel', bgm: 'trial' },
+  { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_idle', text: 'Un muerto, un arma y un hombre encerrado con los dos. Time is money, Your Honor: esta corte cobra por hora y yo también.' },
+  { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_slam', text: '¡Y encima el acusado es fontanero! ¡Un señor que se gana la vida metiendo la mano donde no debe!', sfx: 'desk_slam' },
   { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_slam', text: '¡PROTESTO! ¡Con permisito, dijo Monchito!', sfx: 'desk_slam' },
-  { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_point', text: '¡La defensa demostrará que esa supuesta recámara hermética fue un truco de magia montado por un tercero para inculpar a un humilde fontanero!' }
+  { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_point', text: 'Ese hombre entró a esa suite porque el hotel lo mandó a trabajar. Con orden escrita y con hora.' },
+  { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_point', text: 'Una orden de trabajo explica la puerta, counselor. No explica el cadáver.' },
+  { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_idle', text: 'Todavía no. Pero explica por qué el único sospechoso de la fiscalía llegó armado con una llave de tuercas.' },
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_neutral', text: 'Las dos observaciones son pertinentes. Escucharemos primero cómo se encontró esa puerta.' }
 ];
 
 export const CASE4_TESTIMONY_1: Testimony = {
-  title: 'Testimonio: El Hallazgo en la Suite 304',
-  witness: 'El Sargento',
+  title: 'Testimonio: La única persona dentro',
+  witness: 'Don Cecilio Buenavista',
   bgm: 'cross_exam_moderato',
   statements: [
     {
       id: 'd1_t1_1',
-      speaker: 'SARGENTO',
-      pose: 'pazguato_idle',
-      text: 'A las 11:15 PM en punto escuchamos un disparo de arma de fuego procedente del tercer piso.',
+      speaker: 'CECILIO',
+      pose: 'cecilio_idle',
+      text: 'Después de aquel estruendo subí a la 304 con el Sargento. Treinta y un años sin un escándalo en mi hotel, señor juez. Treinta y uno.',
       pressText: [
         { speaker: 'DEFENSA', text: '¡UN MOMENTO!', cutin: 'objection_un_momento', sfx: 'whoosh', pose: 'donramon_point' },
-        { speaker: 'DEFENSA', text: '¿Cómo está tan seguro del minutero exacto, Sargento?', pose: 'donramon_idle' },
-        { speaker: 'SARGENTO', text: '¡Porque miré mi reloj de pulso reglamentario en cuanto sonó el trallazo metálico en las tuberías!', pose: 'pazguato_saludo' },
-        { speaker: 'DEFENSA', text: 'De modo que las 11:15 PM es cuando usted oyó el ruido... no necesariamente cuando ocurrió el disparo.', pose: 'donramon_idle' },
-        { speaker: 'SUPER SAM', text: 'Objection! Time is money! ¡Ruido de balazo y hora de disparo son la misma cosa aquí y en Manhattan!', pose: 'supersam_slam', sfx: 'desk_slam' }
+        { speaker: 'CECILIO', text: 'Oí el estruendo; lo que vi fue la puerta después. No identifico a ningún tirador.', pose: 'cecilio_ciego' }
       ]
     },
     {
       id: 'd1_t1_2',
-      speaker: 'SARGENTO',
-      pose: 'pazguato_idle',
-      text: 'Al subir con la gerencia, encontramos la puerta de la Suite 304 trabada por dentro con la cadena de seguridad.',
+      speaker: 'CECILIO',
+      pose: 'cecilio_idle',
+      text: 'La cerradura de llave estaba abierta, pero la cadena no nos dejó entrar. Eso lo comprobé con la mano, no con la vista.',
       pressText: [
         { speaker: 'DEFENSA', text: '¡UN MOMENTO!', cutin: 'objection_un_momento', sfx: 'whoosh', pose: 'donramon_point' },
-        { speaker: 'DEFENSA', text: '¿La puerta abría algo o estaba completamente sellada?', pose: 'donramon_idle' },
-        { speaker: 'SARGENTO', text: 'Abría apenas unos cuatro centímetros... lo justo para ver el perno dorado de la cadena atrancado en el riel de latón.', pose: 'pazguato_sweat' },
-        { speaker: 'DEFENSA', text: 'Cuatro centímetros... suficiente para meter la mano... o un hilo.', pose: 'donramon_idle' },
-        { speaker: 'SUPER SAM', text: '¡Nadie tiene manos de papel para colarse por cuatro centímetros, letrado!', pose: 'supersam_point' }
+        { speaker: 'CECILIO', text: 'La hoja quedó detenida por la cadena, no por un mueble ni por una segunda cerradura.', pose: 'cecilio_idle' }
       ]
     },
     {
       id: 'd1_t1_3',
-      speaker: 'SARGENTO',
-      pose: 'pazguato_idle',
-      text: 'Tras forzar la entrada, vimos el cuerpo sin vida y la cubeta con vino recién servida junto al cadáver.',
+      speaker: 'CECILIO',
+      pose: 'cecilio_idle',
+      text: 'Y ese perno, señores, únicamente puede deslizarlo alguien que esté dentro de la habitación.',
       pressText: [
         { speaker: 'DEFENSA', text: '¡UN MOMENTO!', cutin: 'objection_un_momento', sfx: 'whoosh', pose: 'donramon_point' },
-        { speaker: 'DEFENSA', text: '¿Y afirma usted que el vino y el hielo estaban recién puestos en la mesita?', pose: 'donramon_idle' },
-        { speaker: 'SARGENTO', text: '¡Totalmente! La fotografía oficial que tomé a las 11:30 PM documenta la escena intacta quince minutos después del crimen.', pose: 'pazguato_saludo' },
-        { speaker: 'JUEZ', text: 'El Sargento afirma que el servicio de bebidas estaba fresco... Esto debe constar en autos.', pose: 'judge_thinking' }
-      ]
-    },
-    {
-      id: 'd1_t1_3b',
-      speaker: 'SARGENTO',
-      pose: 'pazguato_sweat',
-      text: 'La escena estaba fresca a las 11:30 PM: la cubeta con hielo y el vino acababan de servirse en la suite.',
-      unlockedBy: 'd1_t1_3',
-      pressText: [
-        { speaker: 'DEFENSA', text: '¡UN MOMENTO!', cutin: 'objection_un_momento', sfx: 'whoosh', pose: 'donramon_point' },
-        { speaker: 'DEFENSA', text: 'Sargento, insisto: ¿observó con atención los témpanos dentro de esa cubeta antes de dar por sentado que estaban recién servidos?', pose: 'donramon_sweat' },
-        { speaker: 'SARGENTO', text: 'Bueno, mi Licenciado... Con el alboroto del fiambre, la chimenea y el Botija metido en el cesto, yo vi el balde de metal reluciente y di por hecho que los cubitos estaban recién salidos del congelador.', pose: 'pazguato_sweat' },
-        { speaker: 'SUPER SAM', text: 'Time is money! ¡Un balde de hielo es un balde de hielo! ¡Deje de marear la perdiz con cubitos de agua y presente una contradicción si la tiene!', pose: 'supersam_slam', sfx: 'desk_slam' }
+        { speaker: 'CECILIO', text: 'Describo la placa como la vi. Mi conclusión depende de que nadie hubiera preparado el mecanismo antes.', pose: 'cecilio_ciego' }
       ],
       contradiction: {
-        evidence: ['foto_crimen'],
-        pointTarget: CASE4_D1_T1_POINT_TARGET,
-        successDialogue: CASE4_D1_T1_POINT_SUCCESS,
-        followUp: {
-          evidence: ['informe_policial'],
-          prompt: '¿Tiene alguna prueba documental que desacredite la hora registrada en el reporte policial?',
-          successDialogue: CASE4_D1_T1_FOLLOWUP_SUCCESS
-        }
+        evidence: ['candado_cadena'],
+        pointTarget: CASE4_CADENA_POINT_TARGET,
+        successDialogue: CASE4_D1_T1_POINT_SUCCESS
       }
     },
     {
       id: 'd1_t1_4',
-      speaker: 'SARGENTO',
-      pose: 'pazguato_idle',
-      text: 'Oculto en el cesto de la ropa estaba el acusado, con las manos tiznadas y la billetera de la víctima.',
+      speaker: 'CECILIO',
+      pose: 'cecilio_idle',
+      text: 'Como el señor Botija era el único vivo que hallamos ahí adentro, tuvo que echar la cadena él.',
       pressText: [
         { speaker: 'DEFENSA', text: '¡UN MOMENTO!', cutin: 'objection_un_momento', sfx: 'whoosh', pose: 'donramon_point' },
-        { speaker: 'DEFENSA', text: '¿Revisó si faltaba dinero o si la billetera estaba abierta cuando atraparon a Botija?', pose: 'donramon_idle' },
-        { speaker: 'SARGENTO', text: 'La billetera estaba cerrada. La abrí en presencia del fiscal y tenía doscientos pesos en billetes de curso legal... intactos.', pose: 'pazguato_saludo' },
-        { speaker: 'DEFENSA', text: '(Doscientos pesos enteros... Un ladrón se habría llevado los billetes antes de esconderse.)', pose: 'donramon_idle' },
-        { speaker: 'SUPER SAM', text: '¡No intente justificarlo! ¡Botija no tuvo tiempo de vaciarla porque llegamos en diez segundos!', pose: 'supersam_point' }
-      ]
+        { speaker: 'SUPER SAM', text: 'El hallazgo merece explicación, aunque el testigo no vio la mano que accionó el cierre.', pose: 'supersam_point' }
+      ],
+      contradiction: {
+        evidence: ['candado_cadena'],
+        pointTarget: CASE4_CADENA_POINT_TARGET,
+        successDialogue: CASE4_D1_T1_POINT_SUCCESS
+      }
     }
   ]
 };

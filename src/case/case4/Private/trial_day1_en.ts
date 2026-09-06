@@ -1,126 +1,93 @@
-// @Architecture(descriptionShort="English Case 4 day-1 intro and Sargento testimony", type="data", icon="layers")
-/**
- * Case 4 Trial Day 1 — Opening and Testimony 1 (English).
- */
+// @Architecture(descriptionShort="English Case 4 day-1 intro and testimony", type="data", icon="layers")
+/** Case 4 Trial Day 1 — Opening and Testimony 1, Cecilio, English. */
 
-import type { DialogueLine, Testimony } from '../../../types/index.js';
-import { CASE4_FOTO_POINT_TARGET } from './trial_day1_success.js';
+import type { DialogueLine, PointTargetContradiction, Testimony } from '../../../types/index.js';
+import { CASE4_CADENA_POINT_TARGET } from './trial_day1_success.js';
+void CASE4_CADENA_POINT_TARGET;
 
 export const CASE4_TRIAL_INTRO_EN: DialogueLine[] = [
-  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_gavel', text: 'Silence in this court! The preliminary hearing against Gordon Botija Pompa y Pompa for aggravated homicide and robbery is now in session.', sfx: 'gavel', bgm: 'trial' },
-  { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_slam', text: 'Time is money, Your Honor! This trial needs no more than ten minutes of deliberation!', sfx: 'desk_slam' },
-  { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_point', text: 'The defendant was caught red-handed inside a room locked from within with a brass chain, gunpowder on his hands, and the victim\'s wallet in his pocket. I demand conviction before Wall Street closes!' },
-  { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_slam', text: 'OBJECTION! ¡Con permisito, dijo Monchito!', sfx: 'desk_slam' },
-  { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_point', text: 'The defense will prove that this so-called sealed room was a magic trick staged by a third party to frame a humble plumber!' }
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_gavel', text: 'Order in this court! This hearing opens over the death of the Suite 304 guest.', sfx: 'gavel', bgm: 'trial' },
+  { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_idle', text: 'One dead man, one gun, one man locked in with both. Time is money, Your Honor: this court bills by the hour, and so do I.' },
+  { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_slam', text: 'And on top of it the defendant is a plumber! A man who earns his living putting his hand where it does not belong!', sfx: 'desk_slam' },
+  { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_slam', text: 'OBJECTION! Pardon me, said Monchito!', sfx: 'desk_slam' },
+  { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_point', text: 'That man walked into that suite because the hotel sent him to work. With a written order and an hour on it.' },
+  { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_point', text: 'A work order explains the door, counselor. It does not explain the corpse.' },
+  { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_idle', text: 'Not yet. But it explains why the prosecution\'s only suspect showed up armed with a pipe wrench.' },
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_neutral', text: 'Both observations stand. We will first hear how that door was found.' }
 ];
 
-const FOTO_POINT_EN = {
-  ...CASE4_FOTO_POINT_TARGET,
-  promptQuestion: 'Point to the graphic detail that disproves the drinks were freshly served at 11:15 PM!'
+const POINT_EN: PointTargetContradiction = {
+  ...CASE4_CADENA_POINT_TARGET,
+  promptQuestion: 'What route lets this latch be worked from the corridor after preparing it?',
+  zones: [
+    { id: 'puerta_lazo', bounds: [31, 18, 68, 68], isCorrect: true, failureDialogue: [] },
+    { id: 'cadena_resto', bounds: [0, 0, 100, 100], isCorrect: false, failureDialogue: [
+      { speaker: 'JUEZ', pose: 'judge_thinking', text: 'That point does not connect to the corridor, counselor. Review the whole route.', sfx: 'damage' },
+      { speaker: 'SUPER SAM', pose: 'supersam_slam', text: 'And every minute of this court costs money, counselor!', sfx: 'desk_slam' },
+      { speaker: 'DEFENSA', pose: 'donramon_sweat', text: '(And every mistake costs me a piece of my client. Again, Monchito. Slowly.)' }
+    ] }
+  ]
 };
 
-const T1_POINT_SUCCESS_EN: DialogueLine[] = [
-  { cutin: 'objection_protesto', speaker: 'DEFENSA', text: 'Your Honor, look closely at the bucket on the side table!', sfx: 'whoosh', bgm: 'objection', pose: 'donramon_point' },
-  { speaker: 'JUEZ', text: 'The metal bucket? But it only contains liquid...', pose: 'judge_shock' },
-  { speaker: 'DEFENSA', text: 'Exactly! Room-temperature water! Not a single sliver of ice left!', sfx: 'desk_slam', pose: 'donramon_slam', updateEvidence: 'foto_crimen' },
-  { speaker: 'SUPER SAM', text: 'What?! What do ice cubes have to do with a hot lead bullet?!', pose: 'supersam_sweat' },
-  { speaker: 'DEFENSA', text: 'A bucket of ice cubes takes two to three hours to melt completely at room temperature! If service arrived at 11:15 PM, by 11:30 PM the ice would still be almost intact!', pose: 'donramon_point' },
-  { speaker: 'JUEZ', text: 'That reasoning is irrefutable... The bucket was brought to that room long before eleven at night.', pose: 'judge_thinking' },
-  { speaker: 'SUPER SAM', text: 'Objection! Pure thermodynamic nonsense!', pose: 'supersam_slam', sfx: 'desk_slam' },
-  { speaker: 'SUPER SAM', text: 'Even if the water were lukewarm, the official police report fixes 11:15 PM as the exact minute of death by firearm! Against a sealed police report, ice cubes have no probative value!', pose: 'supersam_point' },
-  { speaker: 'JUEZ', text: 'The Prosecutor raises a formal point of first order. The preliminary report enjoys public faith regarding time of death. Counselor Monchito, do you have documentary proof that formally discredits the hour on that report?', pose: 'judge_thinking' },
-  { speaker: 'DEFENSA', text: 'Of course, Your Honor! The authorities\' own cover sheet discredits the medical certainty of that time!', cutin: 'objection_protesto', sfx: 'desk_slam', pose: 'donramon_slam' }
-];
-
-const T1_FOLLOWUP_EN: DialogueLine[] = [
-  { cutin: 'objection_toma_eso', speaker: 'DEFENSA', text: 'Examine carefully the cover sheet of the police report drafted by the Sergeant!', sfx: 'whoosh', bgm: 'objection', pose: 'donramon_point' },
-  { speaker: 'JUEZ', text: 'The preliminary police report?', pose: 'judge_shock' },
-  { speaker: 'DEFENSA', text: 'Read the "Time of Crime" box with a magnifying glass! The Sergeant noted 11:15 PM based solely on the blast heard from the hallway through the steam pipes. No forensic doctor was present certifying vital signs, body temperature, or rigor mortis at that hour!', pose: 'donramon_slam', sfx: 'desk_slam' },
-  { speaker: 'SARGENTO', text: 'It\'s true, mi Licenciado... With the scare of the blast in the pipes, we assumed the fatal shot had just sounded. We had no forensic examiner at the hotel to examine the body...', pose: 'pazguato_sweat', updateEvidence: 'informe_policial' },
-  { speaker: 'DEFENSA', text: 'So 11:15 PM is the time of a sound in the building, not the medical time Cuajinais died!', pose: 'donramon_point' },
-  { speaker: 'SUPER SAM', text: 'What?!', pose: 'supersam_sweat' },
-  { speaker: 'JUEZ', text: 'Good heavens! The police cover sheet lacks biological support. The time of murder is formally in doubt.', pose: 'judge_thinking' },
-  { speaker: 'SUPER SAM', text: 'Irrelevant! Even if the medical time is pending, nobody could enter to shoot before or after because the door had the chain latched from inside!', pose: 'supersam_slam', sfx: 'desk_slam' }
+const T1_SUCCESS_EN: DialogueLine[] = [
+  { cutin: 'objection_protesto', speaker: 'DEFENSA', text: 'OBJECTION! That chain tells us how the door stood when you arrived, not who left it that way!', sfx: 'desk_slam', bgm: 'objection', pose: 'donramon_slam' },
+  { speaker: 'CECILIO', text: 'But the bolt is on the inside face, counselor. Even I can see that.', pose: 'cecilio_ciego' },
+  { speaker: 'DEFENSA', text: 'Then look closer: a thread runs through that bolt, and the thread continues to the edge of the door.', pose: 'donramon_point' },
+  { speaker: 'CHAPULIN', text: 'And the little piece they picked up in the corridor is the same thread! My antennae tingled!', pose: 'chapulin_point' },
+  { speaker: 'DEFENSA', text: 'His antennae and the Sergeant\'s inventory, which for our purposes agree.', pose: 'donramon_idle' },
+  { speaker: 'DEFENSA', text: 'With the door open you prepare the loop. Then you pull from the corridor and the chain drops by itself. The only thing that went wrong for whoever did it was one piece snagging.', pose: 'donramon_point' },
+  { speaker: 'JUEZ', text: 'Good gracious! Then someone could have acted after the defendant went in?', pose: 'judge_shock' },
+  { speaker: 'DEFENSA', text: 'They could. That is what this piece proves. Who did it, not yet.', pose: 'donramon_idle' },
+  { speaker: 'SUPER SAM', text: 'And it does not prove the plumber did not slide it with his own hand!', pose: 'supersam_slam', sfx: 'desk_slam' },
+  { speaker: 'DEFENSA', text: 'Correct, prosecutor. So now we review your homicide. It is running late.', pose: 'donramon_idle' }
 ];
 
 export const CASE4_TESTIMONY_1_EN: Testimony = {
-  title: 'Testimony: The Discovery in Suite 304',
-  witness: 'El Sargento',
+  title: 'Testimony: The Only Person Inside',
+  witness: 'Don Cecilio Buenavista',
   bgm: 'cross_exam_moderato',
   statements: [
     {
       id: 'd1_t1_1',
-      speaker: 'SARGENTO',
-      pose: 'pazguato_idle',
-      text: 'At exactly 11:15 PM we heard a gunshot from the third floor.',
+      speaker: 'CECILIO',
+      pose: 'cecilio_idle',
+      text: 'After that bang I went up to 304 with the Sergeant. Thirty-one years without a scandal in my hotel, Your Honor. Thirty-one.',
       pressText: [
         { speaker: 'DEFENSA', text: 'HOLD IT!', cutin: 'objection_un_momento', sfx: 'whoosh', pose: 'donramon_point' },
-        { speaker: 'DEFENSA', text: 'How can you be so sure of the exact minute, Sergeant?', pose: 'donramon_idle' },
-        { speaker: 'SARGENTO', text: 'Because I checked my regulation wristwatch the moment the metallic blast rang through the pipes!', pose: 'pazguato_saludo' },
-        { speaker: 'DEFENSA', text: 'So 11:15 PM is when you heard the noise... not necessarily when the shot occurred.', pose: 'donramon_idle' },
-        { speaker: 'SUPER SAM', text: 'Objection! Time is money! Gunshot noise and time of shooting are the same thing here and in Manhattan!', pose: 'supersam_slam', sfx: 'desk_slam' }
+        { speaker: 'CECILIO', text: 'I heard the bang; what I saw was the door later. I name no shooter.', pose: 'cecilio_ciego' }
       ]
     },
     {
       id: 'd1_t1_2',
-      speaker: 'SARGENTO',
-      pose: 'pazguato_idle',
-      text: 'Going up with management, we found Suite 304\'s door locked from within with the security chain.',
+      speaker: 'CECILIO',
+      pose: 'cecilio_idle',
+      text: 'The key lock stood open, but the chain would not let us in. I checked that with my hand, not with my eyes.',
       pressText: [
         { speaker: 'DEFENSA', text: 'HOLD IT!', cutin: 'objection_un_momento', sfx: 'whoosh', pose: 'donramon_point' },
-        { speaker: 'DEFENSA', text: 'Did the door open at all, or was it completely sealed?', pose: 'donramon_idle' },
-        { speaker: 'SARGENTO', text: 'It opened barely four centimeters... just enough to see the golden chain bolt jammed in the brass rail.', pose: 'pazguato_sweat' },
-        { speaker: 'DEFENSA', text: 'Four centimeters... enough to slip in a hand... or a thread.', pose: 'donramon_idle' },
-        { speaker: 'SUPER SAM', text: 'Nobody has paper-thin hands to squeeze through four centimeters, counselor!', pose: 'supersam_point' }
+        { speaker: 'CECILIO', text: 'The leaf stopped on the chain, not on furniture nor a second lock.', pose: 'cecilio_idle' }
       ]
     },
     {
       id: 'd1_t1_3',
-      speaker: 'SARGENTO',
-      pose: 'pazguato_idle',
-      text: 'After forcing entry, we saw the lifeless body and a bucket of freshly served wine beside the corpse.',
+      speaker: 'CECILIO',
+      pose: 'cecilio_idle',
+      text: 'And that bolt, gentlemen, can only be slid by someone who is inside the room.',
       pressText: [
         { speaker: 'DEFENSA', text: 'HOLD IT!', cutin: 'objection_un_momento', sfx: 'whoosh', pose: 'donramon_point' },
-        { speaker: 'DEFENSA', text: 'And you claim the wine and ice were freshly placed on the table?', pose: 'donramon_idle' },
-        { speaker: 'SARGENTO', text: 'Absolutely! The official photograph I took at 11:30 PM documents the scene intact fifteen minutes after the crime.', pose: 'pazguato_saludo' },
-        { speaker: 'JUEZ', text: 'The Sergeant claims the drink service was fresh... This must go on the record.', pose: 'judge_thinking' }
-      ]
-    },
-    {
-      id: 'd1_t1_3b',
-      speaker: 'SARGENTO',
-      pose: 'pazguato_sweat',
-      text: 'The scene was fresh at 11:30 PM: the bucket with ice and wine had just been served in the suite.',
-      unlockedBy: 'd1_t1_3',
-      pressText: [
-        { speaker: 'DEFENSA', text: 'HOLD IT!', cutin: 'objection_un_momento', sfx: 'whoosh', pose: 'donramon_point' },
-        { speaker: 'DEFENSA', text: 'Sergeant, I insist: did you carefully observe the ice cubes in that bucket before assuming they were freshly served?', pose: 'donramon_sweat' },
-        { speaker: 'SARGENTO', text: 'Well, mi Licenciado... With the commotion, the fireplace, and Botija in the hamper, I saw the shiny metal bucket and assumed the cubes had just left the freezer.', pose: 'pazguato_sweat' },
-        { speaker: 'SUPER SAM', text: 'Time is money! An ice bucket is an ice bucket! Stop chasing water cubes and present a contradiction if you have one!', pose: 'supersam_slam', sfx: 'desk_slam' }
+        { speaker: 'CECILIO', text: 'I describe the plate as I saw it. My conclusion needs nobody to have rigged it before.', pose: 'cecilio_ciego' }
       ],
-      contradiction: {
-        evidence: ['foto_crimen'],
-        pointTarget: FOTO_POINT_EN,
-        successDialogue: T1_POINT_SUCCESS_EN,
-        followUp: {
-          evidence: ['informe_policial'],
-          prompt: 'Do you have documentary proof that discredits the time in the police report?',
-          successDialogue: T1_FOLLOWUP_EN
-        }
-      }
+      contradiction: { evidence: ['candado_cadena'], pointTarget: POINT_EN, successDialogue: T1_SUCCESS_EN }
     },
     {
       id: 'd1_t1_4',
-      speaker: 'SARGENTO',
-      pose: 'pazguato_idle',
-      text: 'Hidden in the laundry hamper was the defendant, with stained hands and the victim\'s wallet.',
+      speaker: 'CECILIO',
+      pose: 'cecilio_idle',
+      text: 'Since Mr. Botija was the only living soul we found in there, he must have slid the chain himself.',
       pressText: [
         { speaker: 'DEFENSA', text: 'HOLD IT!', cutin: 'objection_un_momento', sfx: 'whoosh', pose: 'donramon_point' },
-        { speaker: 'DEFENSA', text: 'Did you check whether money was missing or the wallet was open when they caught Botija?', pose: 'donramon_idle' },
-        { speaker: 'SARGENTO', text: 'The wallet was closed. I opened it before the prosecutor and it held two hundred pesos in legal tender... intact.', pose: 'pazguato_saludo' },
-        { speaker: 'DEFENSA', text: '(Two hundred pesos whole... A thief would have taken the bills before hiding.)', pose: 'donramon_idle' },
-        { speaker: 'SUPER SAM', text: 'Don\'t try to justify it! Botija had no time to empty it because we arrived in ten seconds!', pose: 'supersam_point' }
-      ]
+        { speaker: 'SUPER SAM', text: 'The finding wants explaining, though the witness saw no hand work the latch.', pose: 'supersam_point' }
+      ],
+      contradiction: { evidence: ['candado_cadena'], pointTarget: POINT_EN, successDialogue: T1_SUCCESS_EN }
     }
   ]
 };

@@ -68,4 +68,17 @@ describe('Typewriter Subsystem', () => {
     vi.advanceTimersByTime(200);
     expect(completed).toBe(false);
   });
+
+  it('does not chirp while the dialogue target is hidden', () => {
+    const blipSpy = vi.spyOn(soundEngineInstance, 'playTextBlip');
+    const hiddenHud = document.createElement('div');
+    hiddenHud.style.visibility = 'hidden';
+    hiddenHud.appendChild(targetEl);
+    document.body.appendChild(hiddenHud);
+
+    typewriter.start('Hidden prompt');
+    vi.advanceTimersByTime(28 * 20);
+
+    expect(blipSpy).not.toHaveBeenCalled();
+  });
 });

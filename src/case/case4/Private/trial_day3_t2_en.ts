@@ -1,84 +1,80 @@
-// @Architecture(descriptionShort="English Case 4 day-3 Rufino cornered testimony", type="data", icon="layers")
-/**
- * Case 4 Trial Day 3 — Testimony 6 (English).
- */
+// @Architecture(descriptionShort="English Case 4 day-3 business testimony", type="data", icon="layers")
+/** Case 4 Trial Day 3 — Testimony 6, business, English. Straight to climax. */
 
-import type { DialogueLine, Testimony } from '../../../types/index.js';
+import type { DialogueLine, PointTargetContradiction, Testimony } from '../../../types/index.js';
+import { CASE4_TELEGRAMA_POINT_TARGET } from './trial_day3_success.js';
 
-const T6_BAUL_EN: DialogueLine[] = [
-  { cutin: 'objection_protesto', speaker: 'DEFENSA', text: 'OBJECTION! Inside your travel trunk found on the roof were wool fibers from Cuajinais\'s suit and coal dust from the freight elevator!', sfx: 'desk_slam', bgm: 'pursuit', pose: 'donramon_slam' },
-  { speaker: 'RUFINO', text: 'Th-That trunk... that trunk could have been stolen by any barefoot bellhop!', pose: 'rufino_panic' },
-  { speaker: 'DEFENSA', text: 'And to complete the picture, we present the wine glass found beside the corpse!', pose: 'donramon_point' }
-];
+const TELEGRAM_EN: PointTargetContradiction = {
+  ...CASE4_TELEGRAMA_POINT_TARGET,
+  promptQuestion: 'Which part of this paper proves the addressee held it?',
+  zones: [
+    { id: 'acuse_recepcion', bounds: [10, 64, 94, 86], isCorrect: true, failureDialogue: [] },
+    { id: 'telegrama_resto', bounds: [0, 0, 100, 100], isCorrect: false, failureDialogue: [
+      { speaker: 'JUEZ', pose: 'judge_thinking', text: 'That part proves no receipt. Look for the signature of the man who took it.', sfx: 'damage' }
+    ] }
+  ]
+};
 
-const T6_COPA_EN: DialogueLine[] = [
-  { cutin: 'objection_toma_eso', speaker: 'DEFENSA', text: 'This glass proves Cuajinais ingested cyanide from the Chateau Buena Vista 1958 served by the fake count!', sfx: 'whoosh', bgm: 'pursuit', pose: 'donramon_point' },
-  { speaker: 'RUFINO', text: 'Nonsense! Nobody in this courtroom can scientifically prove how cyanide entered that bottle if the cork was sealed with my wax intact!', pose: 'rufino_panic', sfx: 'desk_slam' },
-  { speaker: 'JUEZ', text: 'Silence in the court! Counselor Monchito: the witness challenges this tribunal. Does the defense hold material proof showing how the poison was injected without breaking the cork?', pose: 'judge_gavel', sfx: 'gavel' },
-  { speaker: 'DEFENSA', text: 'The defense holds the decisive proof that will destroy the fake count\'s alibi!', cutin: 'objection_protesto', sfx: 'desk_slam', pose: 'donramon_slam' }
+const T6_SUCCESS_EN: DialogueLine[] = [
+  { cutin: 'objection_protesto', speaker: 'DEFENSA', text: 'OBJECTION! You signed that receipt fifty minutes before the visit you supposedly never expected!', sfx: 'desk_slam', bgm: 'objection', pose: 'donramon_slam' },
+  { speaker: 'RUFINO', text: 'I sign dozens of papers a day.', pose: 'rufino_sweat' },
+  { speaker: 'DEFENSA', text: 'This one demands payment for a stolen necklace under threat of report. That one nobody signs unread. Not you, not anyone.', pose: 'donramon_point' },
+  { speaker: 'SARGENTO', text: 'And the necklace turned up yesterday in the briefcase we seized in his room, Your Honor. I logged it.', pose: 'pazguato_decidido' },
+  { speaker: 'JUEZ', text: 'Do you know that jewel?', pose: 'judge_thinking' },
+  { speaker: 'RUFINO', text: 'I grant it is mine.', pose: 'rufino_sweat' },
+  { speaker: 'DEFENSA', text: 'It stands reported stolen eleven months ago. And the man who came to collect his share turned up dead inside a trunk of yours.', pose: 'donramon_point', bgm: 'objection' },
+  { speaker: 'SUPER SAM', text: '...A motive. Now we do have a motive.', pose: 'supersam_slam', sfx: 'desk_slam' },
+  { speaker: 'SUPER SAM', text: 'But a motive is no method, Your Honor! The man who touched that bottle is still the defendant!', pose: 'supersam_sweat' },
+  { speaker: 'DEFENSA', text: 'Agreed, prosecutor. Then let us talk about the bottle.', pose: 'donramon_idle' },
+  { speaker: 'CHAPULIN', text: 'About time! I have been carrying it for three days.', pose: 'chapulin_idle' },
+  { speaker: 'JUEZ', text: 'Let the defense show how that wine was dosed. It is the last thing this trial has left to resolve.', pose: 'judge_gavel', sfx: 'gavel' }
 ];
 
 export const CASE4_TESTIMONY_6_EN: Testimony = {
-  title: 'Testimony: I Never Went to the Third Floor or Touched the Deceased',
+  title: 'Testimony: A business meeting',
   witness: 'Rufino Rufián',
   bgm: 'cross_exam_presto',
   statements: [
     {
       id: 'd3_t2_1',
       speaker: 'RUFINO',
-      pose: 'rufino_sweat',
-      text: 'It is absurd to suggest I carried a corpse through the hallways without being seen by concierges.',
+      pose: 'rufino_smug',
+      text: 'I met Mr. Gómez years ago, in import business. Men in transit, if you follow me.',
       pressText: [
         { speaker: 'DEFENSA', text: 'HOLD IT!', cutin: 'objection_un_momento', sfx: 'whoosh', pose: 'donramon_point' },
-        { speaker: 'DEFENSA', text: 'Nobody said you carried the corpse in your arms through the hallways in plain sight.', pose: 'donramon_idle' },
-        { speaker: 'RUFINO', text: 'Any transfer between rooms would have alerted the bellboys. Nobody saw me transporting any bundle.', pose: 'rufino_smug' },
-        { speaker: 'DEFENSA', text: 'Of course nobody saw you... because you used the interior service freight shaft direct between suites.', pose: 'donramon_idle' }
+        { speaker: 'RUFINO', text: 'Vague import business. Nothing to add or take.', pose: 'rufino_monocle' }
       ]
     },
     {
       id: 'd3_t2_2',
       speaker: 'RUFINO',
-      pose: 'rufino_sweat',
-      text: 'I never set foot in Suite 304 all night on October 24th.',
+      pose: 'rufino_smug',
+      text: 'That night he came up to pitch an investment and left on his own feet.',
       pressText: [
         { speaker: 'DEFENSA', text: 'HOLD IT!', cutin: 'objection_un_momento', sfx: 'whoosh', pose: 'donramon_point' },
-        { speaker: 'DEFENSA', text: 'You maintain you never set foot in Suite 304 all night on October 24th?', pose: 'donramon_idle' },
-        { speaker: 'RUFINO', text: 'Never. The noble guest floor ends on the second level; the third level is reserved for passing tenants without lineage.', pose: 'rufino_monocle' },
-        { speaker: 'SUPER SAM', text: 'The witness had no reason to go to the third floor!', pose: 'supersam_point' }
+        { speaker: 'RUFINO', text: 'He left my sight. That is what I meant.', pose: 'rufino_sweat' }
       ]
     },
     {
       id: 'd3_t2_3',
       speaker: 'RUFINO',
-      pose: 'rufino_panic',
-      text: 'The deceased was never in my presence nor had contact with my travel belongings.',
+      pose: 'rufino_smug',
+      text: 'I owed that man nothing. Nor did I hold the slightest personal interest in his death.',
       pressText: [
         { speaker: 'DEFENSA', text: 'HOLD IT!', cutin: 'objection_un_momento', sfx: 'whoosh', pose: 'donramon_point' },
-        { speaker: 'DEFENSA', text: 'Do you categorically swear the deceased was never in your presence nor had contact with your travel belongings?', pose: 'donramon_idle' },
-        { speaker: 'RUFINO', text: 'Never in my life! My imported English leather belongings remained secured in my private Suite 204 quarters, without any contact with low-class street thugs.', pose: 'rufino_panic' },
-        { speaker: 'DEFENSA', text: '(Very sure of his English leather luggage... Let\'s see if his trunk agrees.)', pose: 'donramon_idle' }
-      ],
-      contradiction: {
-        evidence: ['baul_etiquetas'],
-        successDialogue: T6_BAUL_EN,
-        followUp: {
-          evidence: ['copa_vino'],
-          prompt: 'What proof links the victim\'s poisoning to the fake count?',
-          successDialogue: T6_COPA_EN
-        }
-      }
+        { speaker: 'RUFINO', text: 'My fortune is my own and the word debt offends me.', pose: 'rufino_monocle' }
+      ]
     },
     {
       id: 'd3_t2_4',
       speaker: 'RUFINO',
-      pose: 'rufino_sweat',
-      text: 'And the poisoned wine from my private reserve never left my cellar with the seal altered.',
+      pose: 'rufino_smug',
+      text: 'And I did not even expect his visit. I learned he was in this hotel when I saw him walk into my room.',
       pressText: [
         { speaker: 'DEFENSA', text: 'HOLD IT!', cutin: 'objection_un_momento', sfx: 'whoosh', pose: 'donramon_point' },
-        { speaker: 'DEFENSA', text: 'And about the wine bottle from your reserve... how do you explain an exclusive bottle of yours at the crime scene?', pose: 'donramon_idle' },
-        { speaker: 'RUFINO', text: 'It could have been stolen from the cellar by any unfaithful employee. But I insist: my bottles\' wax seal is inviolable without breaking the crown wax.', pose: 'rufino_sweat' },
-        { speaker: 'DEFENSA', text: '(Inviolable to blows... but permeable to a medical needle.)', pose: 'donramon_idle' }
-      ]
+        { speaker: 'RUFINO', text: 'Nobody announced that visit to me.', pose: 'rufino_monocle' }
+      ],
+      contradiction: { evidence: ['nota_amenaza'], pointTarget: TELEGRAM_EN, successDialogue: T6_SUCCESS_EN }
     }
   ]
 };

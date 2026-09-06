@@ -1,7 +1,7 @@
-// @Architecture(descriptionShort="Case 4 day 3 detention visit yielding extortion note", type="data", icon="layers")
+// @Architecture(descriptionShort="Case 4 day 3 detention visit with Botija talks", type="data", icon="layers")
 /**
- * Case 4 Day 3 — Centro de Detención (`detention_d3`).
- * LAST location of day 3: `nota_amenaza` gates trial readiness (spec §6.4).
+ * Case 4 Day 3 — Detención (`detention_d3`), 12:00. Spec §11.3.
+ * Escena de personaje: ninguna entrega; abre delegacion_d3 al terminar.
  */
 
 import type { InvestigationScene } from '../../../types/index.js';
@@ -12,41 +12,67 @@ export const CASE4_DETENTION_D3: InvestigationScene = {
   bg: 'assets/bg_detention.webp',
   bgm: 'detention_center',
   speaker: 'NARRADOR',
-  idlePose: 'botija_aliviado',
+  idlePose: 'botija_nervioso',
   intro: [
-    { speaker: 'NARRADOR', text: '27 de octubre, 3:30 PM. Centro de Detención Preventiva.' },
-    { speaker: 'DEFENSA', text: 'Botija, el químico descosió el forro secreto de la billetera de Cuajinais y halló una llavecita de taquilla de la estación de autobuses. El Sargento fue a abrirla de inmediato.', pose: 'donramon_idle', updateEvidence: 'billetera_cuajinais' },
-    { speaker: 'BOTIJA', text: '¿Y qué guardaba el Cuajinais ahí, Don Ramón?', pose: 'botija_aliviado' },
-    { speaker: 'SARGENTO', text: '¡El resguardo oficial de un telegrama de extorsión!', pose: 'pazguato_saludo', addEvidence: 'nota_amenaza' },
-    { speaker: 'CHAPULIN', text: '¡No contaban con mi astucia! ¡El Cuajinais vino a cobrarle al falso conde!', pose: 'chapulin_point' },
-    { speaker: 'DEFENSA', text: '(Giro 2... Con esto destrozamos la coartada de Rufino en el juicio final.)', pose: 'donramon_point' }
+    { speaker: 'NARRADOR', text: '27 de octubre, 12:00 PM. Centro de Detención Preventiva.' },
+    { speaker: 'BOTIJA', text: 'Ya me contaron. Que subí un baúl con un muerto adentro.', pose: 'botija_nervioso' },
+    { speaker: 'DEFENSA', text: 'Sí.', pose: 'donramon_idle' },
+    { speaker: 'BOTIJA', text: 'Y yo firmé el recibo. Con mi nombre y con mi letra.', pose: 'botija_llorando' },
+    { speaker: 'CHAPULIN', text: 'Firmaste un trabajo. Eso fue lo que te dieron a firmar.', pose: 'chapulin_point' },
+    { speaker: 'BOTIJA', text: 'Toda la vida quise un trabajo donde me pidieran firmar.', pose: 'botija_nervioso' },
+    { speaker: 'CHIMOLTRUFIA', text: 'Y lo tuviste. Lo que pasa es que te lo usaron.', pose: 'chimoltrufia_idle' },
+    { speaker: 'CHAPULIN', text: '¡Que no panda el cúnico! Todavía nos queda una audiencia.', pose: 'chapulin_idle' },
+    { speaker: 'BOTIJA', text: '...¿Usted siempre habla así?', pose: 'botija_nervioso' },
+    { speaker: 'CHAPULIN', text: 'Siempre. Y siempre me entienden. Tarde, pero me entienden.', pose: 'chapulin_idle' }
   ],
   hotspots: [
     {
       id: 'botija_spot',
       label: 'Gordon Botija',
-      x: 32, y: 10, w: 36, h: 58,
+      x: 20, y: 10, w: 60, h: 65,
       dialogue: [
-        { speaker: 'BOTIJA', text: '¡Gracias, Don Ramón! ¡Ya casi puedo oler los churros de la esquina!', pose: 'botija_aliviado' }
+        { speaker: 'BOTIJA', text: 'Pregunten lo que quieran. Ya no escondo nada.', pose: 'botija_nervioso' }
       ]
     },
     {
       id: 'phone_spot',
       label: 'Cristal de Visitas',
-      x: 86, y: 16, w: 12, h: 40,
+      x: 88, y: 15, w: 10, h: 45,
       dialogue: [
-        { speaker: 'DEFENSA', text: 'Todavía ni un recado del fiscal. Debe estar contando monedas.', pose: 'donramon_idle' }
+        { speaker: 'DEFENSA', text: 'El fiscal sigue sin mandar recados.', pose: 'donramon_idle' }
       ]
     }
   ],
   talkOptions: [
     {
-      id: 'about_telegram',
-      label: 'Sobre el telegrama de extorsión',
+      id: 'despues_botella',
+      label: 'Después de la botella',
       dialogue: [
-        { speaker: 'SARGENTO', text: '"Conde de Montemayor: o pagas mis $50,000 del collar de Cleopatra o la policía sabrá todo. Habitación 304."', pose: 'pazguato_decidido' },
-        { speaker: 'BOTIJA', text: '¡Ese Cuajinais era un bribón, pero no merecía morir envenenado!', pose: 'botija_aliviado' },
-        { speaker: 'DEFENSA', text: '(El móvil real: extorsión, no robo. Mañana lo presentamos en la apertura del juicio.)', pose: 'donramon_point' }
+        { speaker: 'BOTIJA', text: 'Desde las 21:26: caldera con Chómpiras, dos avisos de planta y el porte de las 22:20.', pose: 'botija_nervioso' },
+        { speaker: 'DEFENSA', text: '(Coincide con las fichas del sótano y el testimonio del botones. No estuvo solo en ningún tramo largo.)', pose: 'donramon_idle' }
+      ]
+    },
+    {
+      id: 'el_anillo',
+      label: 'El anillo',
+      dialogue: [
+        { speaker: 'BOTIJA', text: 'Nunca lo tuve en la mano ni me lo prestaron. Recuerdo que el huésped giró la cabeza del anillo al firmar.', pose: 'botija_nervioso' },
+        { speaker: 'DEFENSA', text: '(Un recuerdo, no una acusación.)', pose: 'donramon_idle' }
+      ]
+    },
+    {
+      id: 'verguenza',
+      label: 'Lo que te da vergüenza',
+      condition: (flags) => Boolean(flags.talk_despues_botella) && Boolean(flags.talk_el_anillo),
+      dialogue: [
+        { speaker: 'BOTIJA', text: 'Me da vergüenza mi expediente, y que mi mujer creyera que había vuelto al oficio. Por eso escondí la cartera.', pose: 'botija_llorando' },
+        { speaker: 'CHIMOLTRUFIA', text: 'Yo nunca creí que hubieras matado a nadie.', pose: 'chimoltrufia_idle' },
+        { speaker: 'BOTIJA', text: 'Pero sí creíste que había aceptado el trabajo del Cuajinais.', pose: 'botija_nervioso' },
+        { speaker: 'CHIMOLTRUFIA', text: 'Lo pensé dos días. Y me dio más coraje pensarlo que preguntártelo.', pose: 'chimoltrufia_confundida' },
+        { speaker: 'BOTIJA', text: 'Le dije que no. Le dije que no delante de todo el pasillo.', pose: 'botija_nervioso' },
+        { speaker: 'DEFENSA', text: 'Eso lo oyó gente. Y por eso el fiscal cree que discutieron por dinero.', pose: 'donramon_idle' },
+        { speaker: 'BOTIJA', text: 'Discutimos porque no quise. Es la primera vez que me acusan de algo por decir que no.', pose: 'botija_llorando' },
+        { speaker: 'DEFENSA', text: 'Vamos a la delegación a cerrar la cadena.', pose: 'donramon_point', unlockLocation: 'delegacion_d3' }
       ]
     }
   ]

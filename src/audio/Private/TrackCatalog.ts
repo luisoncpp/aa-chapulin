@@ -15,6 +15,7 @@ import {
   restauranteTrack
 } from './tracks/InvestigationTracks.js';
 import { crossExamPrestoTrack, kermesTrack } from './tracks/Case3Tracks.js';
+import { terrazaBarTrack } from './tracks/TerrazaBarTrack.js';
 
 export const TRACK_CATALOG: TrackCatalogMap = {
   // @Section(Courtroom & Cross-Examination Tracks)
@@ -31,6 +32,7 @@ export const TRACK_CATALOG: TrackCatalogMap = {
   investigation: investigationTrack,
   investigation_core: investigationCoreTrack,
   restaurante: restauranteTrack,
+  terraza_bar: terrazaBarTrack,
   callejon_postal: callejonPostalTrack,
   casa_clotilde: casaClotildeTrack,
   suspense: suspenseTrack,

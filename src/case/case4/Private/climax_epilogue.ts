@@ -1,6 +1,7 @@
 // @Architecture(descriptionShort="Case 4 waiting-room epilogue dialogue", type="data", icon="layers")
 /**
- * Case 4 epilogue — Sala de Espera de la Corte.
+ * Case 4 epilogue — Sala de Espera de la Corte, 18:00 (spec §13.5).
+ * Segunda y última mezcla de refranes; no participa en deducciones.
  */
 
 import type { DialogueLine } from '../../../types/index.js';
@@ -8,27 +9,39 @@ import type { DialogueLine } from '../../../types/index.js';
 const WAITING_ROOM = 'assets/bg_waiting_room.webp';
 
 export const CASE4_EPILOGUE: DialogueLine[] = [
-  { bg: WAITING_ROOM, furniture: 'none', speaker: 'NARRADOR', text: '27 de octubre, 6:00 PM. Sala de espera de la corte.' },
-  { bg: WAITING_ROOM, furniture: 'none', speaker: 'BOTIJA', text: 'Don Ramón... Chapulín... No tengo cómo pagarles. Me salvaron de pudrirme en el penal.', pose: 'botija_aliviado' },
-  { bg: WAITING_ROOM, furniture: 'none', speaker: 'DEFENSA', text: 'Con que no vuelvas a esconderte en canastos de sábanas ajenas me doy por bien pagado, Botija.', pose: 'donramon_idle' },
-  { bg: WAITING_ROOM, furniture: 'none', speaker: 'SARGENTO', text: '¡Mi Licenciado! Super Sam me cesó formalmente por insubordinación balística, pero Don Cecilio me acaba de nombrar Director General de Seguridad del Gran Hotel.', pose: 'pazguato_saludo' },
-  { bg: WAITING_ROOM, furniture: 'none', speaker: 'DEFENSA', text: '¡¿Y hay buena paga?!', pose: 'donramon_shock' },
-  { bg: WAITING_ROOM, furniture: 'none', speaker: 'SARGENTO', text: '¡Sueldo fijo, uniforme de gala y barra libre de refrescos en la terraza!', pose: 'pazguato_decidido' },
-  { bg: WAITING_ROOM, furniture: 'none', speaker: 'CHOMPIRAS', text: '¡Tómelo por el lado amable, Don Ramón! Ahora cuando visite el hotel puede pedir fiado en el restaurante de postines.', pose: 'chompiras_relieved' },
-  { bg: WAITING_ROOM, furniture: 'none', speaker: 'CHAPULIN', text: '¿Saben una cosa, mis amigos? Al final de la jornada... a caballo regalado no le entran moscas si no abre el colmillo.', pose: 'chapulin_idle' },
-  { bg: WAITING_ROOM, furniture: 'none', speaker: 'DEFENSA', text: '...Chapulín, acabas de mezclar el caballo del colmillo con la boca cerrada de las moscas.', pose: 'donramon_sweat' },
-  { bg: WAITING_ROOM, furniture: 'none', speaker: 'CHAPULIN', text: '¡Bueno, la idea es esa! ¡Lo sospeché desde un principio! ¡Síganme los buenos!', pose: 'chapulin_point' }
+  { bg: WAITING_ROOM, furniture: 'none', speaker: 'NARRADOR', text: 'Sala de espera de la corte.' },
+  { bg: WAITING_ROOM, furniture: 'none', speaker: 'BOTIJA', text: 'Nunca había salido de un juzgado por mi propio pie.', pose: 'botija_aliviado' },
+  { bg: WAITING_ROOM, furniture: 'none', speaker: 'CHIMOLTRUFIA', text: 'Pues acostúmbrate, porque de esta casa no te vuelves a ir ni a la esquina sin avisar.', pose: 'chimoltrufia_idle' },
+  { bg: WAITING_ROOM, furniture: 'none', speaker: 'SARGENTO', text: 'Don Cecilio me ofreció jefe de seguridad del hotel. Con uniforme de gala.', pose: 'pazguato_saludo' },
+  { bg: WAITING_ROOM, furniture: 'none', speaker: 'DEFENSA', text: '¿Y qué le contestó?', pose: 'donramon_idle' },
+  { bg: WAITING_ROOM, furniture: 'none', speaker: 'SARGENTO', text: 'Que en la policía me dejan pedir análisis. En el hotel solo me dejarían abrir puertas.', pose: 'pazguato_decidido' },
+  { bg: WAITING_ROOM, furniture: 'none', speaker: 'CHOMPIRAS', text: 'Yo le guardé el puesto al Botija. Y el montacargas ya tiene cartel nuevo: “solo equipaje”.', pose: 'chompiras_relieved' },
+  { bg: WAITING_ROOM, furniture: 'none', speaker: 'BOTIJA', text: 'Ese cartel ya estaba.', pose: 'botija_aliviado' },
+  { bg: WAITING_ROOM, furniture: 'none', speaker: 'CHOMPIRAS', text: 'Ahora está en grande.', pose: 'chompiras_idle' },
+  { bg: WAITING_ROOM, furniture: 'none', speaker: 'CHAPULIN', text: 'Yo lo sospeché desde un principio. Como dice el dicho: camarón que se duerme no lo dejes para mañana.', pose: 'chapulin_idle' },
+  { bg: WAITING_ROOM, furniture: 'none', speaker: 'DEFENSA', text: '...Chapulín.', pose: 'donramon_sweat' },
+  { bg: WAITING_ROOM, furniture: 'none', speaker: 'CHAPULIN', text: 'Espere: no dejes para mañana el camarón que se lo lleva la corriente... Bueno, la idea es esa.', pose: 'chapulin_point' },
+  { bg: WAITING_ROOM, furniture: 'none', speaker: 'CHIMOLTRUFIA', text: 'A mí me pareció bonito.', pose: 'chimoltrufia_idle' },
+  { bg: WAITING_ROOM, furniture: 'none', speaker: 'DEFENSA', text: 'A mí me parece que ya nos podemos ir.', pose: 'donramon_idle' },
+  { bg: WAITING_ROOM, furniture: 'none', speaker: 'BOTIJA', text: 'Don Ramón. Lo del pago...', pose: 'botija_nervioso' },
+  { bg: WAITING_ROOM, furniture: 'none', speaker: 'DEFENSA', text: 'Arréglame la llave del lavadero y quedamos a mano. Lleva dieciséis meses goteando, igual que mi casero.', pose: 'donramon_idle' }
 ];
 
 export const CASE4_EPILOGUE_EN: DialogueLine[] = [
-  { bg: WAITING_ROOM, furniture: 'none', speaker: 'NARRADOR', text: 'October 27th, 6:00 PM. Court waiting room.' },
-  { bg: WAITING_ROOM, furniture: 'none', speaker: 'BOTIJA', text: 'Don Ramón... Chapulín... I have no way to pay you. You saved me from rotting in jail.', pose: 'botija_aliviado' },
-  { bg: WAITING_ROOM, furniture: 'none', speaker: 'DEFENSA', text: 'As long as you don\'t hide in other people\'s laundry hampers again, I consider myself paid, Botija.', pose: 'donramon_idle' },
-  { bg: WAITING_ROOM, furniture: 'none', speaker: 'SARGENTO', text: 'Mi Licenciado! Super Sam formally fired me for ballistic insubordination, but Don Cecilio just named me General Security Director of the Grand Hotel.', pose: 'pazguato_saludo' },
-  { bg: WAITING_ROOM, furniture: 'none', speaker: 'DEFENSA', text: 'And does it pay well?!', pose: 'donramon_shock' },
-  { bg: WAITING_ROOM, furniture: 'none', speaker: 'SARGENTO', text: 'Fixed salary, dress uniform, and free soft drinks at the terrace bar!', pose: 'pazguato_decidido' },
-  { bg: WAITING_ROOM, furniture: 'none', speaker: 'CHOMPIRAS', text: 'Look on the bright side, Don Ramón! Now when you visit the hotel you can run a tab at the fancy restaurant.', pose: 'chompiras_relieved' },
-  { bg: WAITING_ROOM, furniture: 'none', speaker: 'CHAPULIN', text: 'Know what, my friends? At the end of the day... don\'t look a gift horse in the mouth if it doesn\'t open its fangs.', pose: 'chapulin_idle' },
-  { bg: WAITING_ROOM, furniture: 'none', speaker: 'DEFENSA', text: '...Chapulín, you just mixed the horse\'s fangs with flies and closed mouths.', pose: 'donramon_sweat' },
-  { bg: WAITING_ROOM, furniture: 'none', speaker: 'CHAPULIN', text: 'Well, that\'s the idea! I suspected it from the start! Follow me, good people!', pose: 'chapulin_point' }
+  { bg: WAITING_ROOM, furniture: 'none', speaker: 'NARRADOR', text: 'Court waiting room.' },
+  { bg: WAITING_ROOM, furniture: 'none', speaker: 'BOTIJA', text: 'I had never walked out of a courtroom on my own two feet.', pose: 'botija_aliviado' },
+  { bg: WAITING_ROOM, furniture: 'none', speaker: 'CHIMOLTRUFIA', text: 'Get used to it, because you are not leaving this house for the corner without telling me.', pose: 'chimoltrufia_idle' },
+  { bg: WAITING_ROOM, furniture: 'none', speaker: 'SARGENTO', text: 'Don Cecilio offered me hotel security chief. With a dress uniform.', pose: 'pazguato_saludo' },
+  { bg: WAITING_ROOM, furniture: 'none', speaker: 'DEFENSA', text: 'And what did you answer?', pose: 'donramon_idle' },
+  { bg: WAITING_ROOM, furniture: 'none', speaker: 'SARGENTO', text: 'That on the force they let me request lab tests. At the hotel they would only let me open doors.', pose: 'pazguato_decidido' },
+  { bg: WAITING_ROOM, furniture: 'none', speaker: 'CHOMPIRAS', text: 'I kept Botija’s job. And the freight lift has a new sign: “luggage only”.', pose: 'chompiras_relieved' },
+  { bg: WAITING_ROOM, furniture: 'none', speaker: 'BOTIJA', text: 'That sign was already there.', pose: 'botija_aliviado' },
+  { bg: WAITING_ROOM, furniture: 'none', speaker: 'CHOMPIRAS', text: 'Now it is in large print.', pose: 'chompiras_idle' },
+  { bg: WAITING_ROOM, furniture: 'none', speaker: 'CHAPULIN', text: 'I suspected it from the start. As the saying goes: you snooze, you lose, so don’t put off the shrimp.', pose: 'chapulin_idle' },
+  { bg: WAITING_ROOM, furniture: 'none', speaker: 'DEFENSA', text: '...Chapulín.', pose: 'donramon_sweat' },
+  { bg: WAITING_ROOM, furniture: 'none', speaker: 'CHAPULIN', text: 'Wait: don’t put off till tomorrow the shrimp the current takes away... Well, that’s the idea.', pose: 'chapulin_point' },
+  { bg: WAITING_ROOM, furniture: 'none', speaker: 'CHIMOLTRUFIA', text: 'I thought it was sweet.', pose: 'chimoltrufia_idle' },
+  { bg: WAITING_ROOM, furniture: 'none', speaker: 'DEFENSA', text: 'I think we can go now.', pose: 'donramon_idle' },
+  { bg: WAITING_ROOM, furniture: 'none', speaker: 'BOTIJA', text: 'Don Ramón. About the payment...', pose: 'botija_nervioso' },
+  { bg: WAITING_ROOM, furniture: 'none', speaker: 'DEFENSA', text: 'Fix my laundry tap and we are even. It has dripped sixteen months, same as my landlord.', pose: 'donramon_idle' }
 ];

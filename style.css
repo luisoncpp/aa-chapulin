@@ -508,6 +508,12 @@ body {
     pointer-events: none;
 }
 
+/* The controller tracks pointer coordinates because this plate stays
+   click-through, allowing hotspots underneath it to receive the click. */
+#dialogue-box.examine-mode.examine-hud-hidden {
+    visibility: hidden;
+}
+
 #dialogue-box.examine-mode #speaker-tag {
     top: -14px;
     padding: 1px 10px;
@@ -1051,11 +1057,23 @@ body {
     position: absolute;
     cursor: pointer;
     box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    appearance: none;
+    -webkit-appearance: none;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    border: 1px dashed rgba(0, 255, 204, 0.45);
+    border-radius: 2px;
+    transition: background 0.12s ease, border-color 0.12s ease;
 }
 
-.examine-zone:hover {
-    outline: 2px solid #00ffcc;
-    background: rgba(0, 255, 204, 0.12);
+.examine-zone:hover,
+.examine-zone:focus-visible {
+    border-color: #00ffcc;
+    background: rgba(0, 255, 204, 0.18);
+    outline: none;
 }
 
 #present-point-stage {

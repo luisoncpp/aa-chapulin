@@ -56,6 +56,8 @@ function buildExamineZone(dom: DomElements, zone: EvidenceExamineZone): HTMLButt
   const el = document.createElement('button');
   el.type = 'button';
   el.className = 'examine-zone';
+  el.title = zone.tooltip;
+  el.setAttribute('aria-label', zone.tooltip);
   el.style.left = `${zone.x}%`;
   el.style.top = `${zone.y}%`;
   el.style.width = `${zone.width}%`;

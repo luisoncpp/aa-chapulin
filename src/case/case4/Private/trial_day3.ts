@@ -1,87 +1,77 @@
-// @Architecture(descriptionShort="Case 4 day-3 intro and Rufino baccarat testimony", type="data", icon="layers")
+// @Architecture(descriptionShort="Case 4 day-3 intro and Rufino maintenance testimony", type="data", icon="layers")
 /**
- * Case 4 Trial Day 3 — Opening (GIRO 2) and Testimony 5 (Rufino Rufián).
+ * Case 4 Trial Day 3 — Opening (§12.1, no openingPresent) and Testimony 5 (§12.2).
  */
 
-import type { DialogueLine, OpeningPresent, Testimony } from '../../../types/index.js';
-import {
-  CASE4_D3_T1_BOLETA_SUCCESS, CASE4_D3_T1_REGISTRO_FOLLOWUP, CASE4_DAY3_OPENING_PRESENT_SUCCESS
-} from './trial_day3_success.js';
+import type { DialogueLine, Testimony } from '../../../types/index.js';
+import { CASE4_D3_T1_ORDEN_SUCCESS, CASE4_ORDEN_POINT_TARGET } from './trial_day3_success.js';
 
 export const CASE4_DAY3_INTRO: DialogueLine[] = [
-  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_gavel', text: '¡Se abre la última sesión plenaria! Comparece en estrados el señor Rufino Rufián, huésped de la Suite 204.', sfx: 'gavel', bgm: 'trial' },
-  { bg: 'assets/bg_courtroom.webp', speaker: 'RUFINO', pose: 'rufino_smug', text: 'Protesto enérgicamente por este atropello a mi alcurnia y reputación. Mi estancia en el baccarat entre las 10:30 y las 11:30 PM ha sido certificada por la gerencia.' },
-  { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_slam', text: 'Time is money! ¡No podemos molestar a un noble inversionista sin un móvil probado!', sfx: 'desk_slam' },
-  { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_slam', text: '¡La defensa demostrará que el supuesto conde es un peligroso timador y que la víctima vino al hotel a cobrarle una cuenta mortal!', cutin: 'objection_protesto', sfx: 'desk_slam', bgm: 'objection' }
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_gavel', text: 'Se abre la última sesión de este proceso. Recapitulemos lo probado.', sfx: 'gavel', bgm: 'trial' },
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_neutral', text: 'La muerte se produjo por un tóxico en el vino, dentro de la ventana de la autopsia.' },
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_neutral', text: 'El disparo y el estruendo fueron un montaje posterior a la muerte, conforme a la autopsia y al traslado ya acreditados.' },
+  { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_slam', text: 'Y sigue en pie la pregunta que la defensa no me ha contestado en tres días: ¿quién le puso algo a esa botella? El acusado la cargó con sus dos manos.', sfx: 'desk_slam' },
+  { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_idle', text: 'También cargó un baúl sin saber lo que iba adentro. Que uno cargue una cosa no dice qué le hicieron a esa cosa, señor fiscal.' },
+  { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_point', text: 'Poetry, counselor. La poesía no cotiza.' },
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_neutral', text: 'La defensa reconoce que el señor Rufián estaba en el salón de juego a las 23:15.' },
+  { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_idle', text: 'Lo reconoce, señor juez. Esa coartada es verdadera y no la vamos a discutir. Sólo que cubre el ruido... y el ruido no mató a nadie.' },
+  { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_point', text: 'Entonces la fiscalía mantiene su cuenta: el vino salió alterado de las manos que lo transportaron.' },
+  { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_sweat', text: '(Tercer día, Monchito. Ya nomás falta la botella. Nada más la botella.)' },
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_neutral', text: 'Escucharemos al señor Rufián sobre su propia intervención.' }
 ];
 
-export const CASE4_DAY3_OPENING_PRESENT: OpeningPresent = {
-  evidence: ['nota_amenaza'],
-  prompt: '¿Qué prueba demuestra el móvil de extorsión entre la víctima y Rufino?',
-  successDialogue: CASE4_DAY3_OPENING_PRESENT_SUCCESS
-};
+/** Spec §12.1: sin openingPresent; la boleta se lee sin presentar. */
+export const CASE4_DAY3_OPENING_PRESENT: undefined = undefined;
 
 export const CASE4_TESTIMONY_5: Testimony = {
-  title: 'Testimonio: Mi Coartada Inquebrantable en el Baccarat',
+  title: 'Testimonio: Mi parte en esta desgracia',
   witness: 'Rufino Rufián',
   bgm: 'cross_exam_presto',
   statements: [
     {
       id: 'd3_t1_1',
       speaker: 'RUFINO',
-      pose: 'rufino_monocle',
-      text: 'Desconozco absolutamente a ese maleante de cicatriz y sus presuntas extorsiones.',
+      pose: 'rufino_smug',
+      text: 'Encontré al señor Gómez muerto en mi habitación y perdí la cabeza un momento. A un hombre de mi apellido no lo educan para eso.',
       pressText: [
         { speaker: 'DEFENSA', text: '¡UN MOMENTO!', cutin: 'objection_un_momento', sfx: 'whoosh', pose: 'donramon_point' },
-        { speaker: 'DEFENSA', text: '¿Asegura que no conocía al difunto señor Gómez ni a su alias de El Cuajinais?', pose: 'donramon_idle' },
-        { speaker: 'RUFINO', text: 'Por favor, leguleyo. Un Conde de Montemayor sólo alterna con ministros plenipotenciarios y duquesas europeas. No tengo tratos con bribones de barriada.', pose: 'rufino_monocle' },
-        { speaker: 'SUPER SAM', text: '¡A gentleman of high society! ¡Una acusación infame contra el capital internacional!', pose: 'supersam_point' }
+        { speaker: 'RUFINO', text: 'No preciso la hora en que lo encontré. Su relato sigue siendo compatible con la ventana forense.', pose: 'rufino_sweat' }
       ]
     },
     {
       id: 'd3_t1_2',
       speaker: 'RUFINO',
       pose: 'rufino_smug',
-      text: 'Mi noche transcurrió de manera ininterrumpida en la mesa de baccarat de 10:30 a 11:30 PM ante testigos de honor.',
+      text: 'Lo subí dentro de mi baúl, preparé la escena y disparé sobre un hombre que ya estaba muerto. Ayer admití lo primero; hoy admito lo demás, porque no pienso cargar con lo que no hice.',
       pressText: [
         { speaker: 'DEFENSA', text: '¡UN MOMENTO!', cutin: 'objection_un_momento', sfx: 'whoosh', pose: 'donramon_point' },
-        { speaker: 'DEFENSA', text: '¿Afirma bajo juramento que no se levantó de su asiento en la mesa de baccarat ni un solo segundo en toda esa hora?', pose: 'donramon_idle' },
-        { speaker: 'RUFINO', text: 'Por supuesto. Un aristócrata de mi categoría jamás interrumpe una racha afortunada en el paño verde. Sesenta minutos continuos de juego limpio de 10:30 a 11:30 PM ante la atenta mirada de diplomáticos y del propio croupier.', pose: 'rufino_smug' },
-        { speaker: 'DEFENSA', text: '(Sesenta minutos continuos sin despegarse del paño verde... Habrá que ver si los registros oficiales de apuestas dicen lo mismo.)', pose: 'donramon_idle' }
-      ],
-      contradiction: {
-        evidence: ['boleta_baccarat'],
-        successDialogue: CASE4_D3_T1_BOLETA_SUCCESS,
-        followUp: {
-          evidence: ['registro_montacargas'],
-          prompt: '¿Qué registro del hotel demuestra el traslado del cadáver al tercer piso?',
-          successDialogue: CASE4_D3_T1_REGISTRO_FOLLOWUP
-        }
-      }
+        { speaker: 'SARGENTO', text: 'El revólver era del propio Gómez, que lo llevaba encima. El padrón registra esa arma a nombre del difunto y por eso quedó en la habitación.', pose: 'pazguato_saludo' }
+      ]
     },
     {
       id: 'd3_t1_3',
       speaker: 'RUFINO',
-      pose: 'rufino_monocle',
-      text: 'Jamás toqué el montacargas de servicio del personal; mi estatus me prohíbe operar maquinaria rústica.',
+      pose: 'rufino_smug',
+      text: 'Pero la botella llegó de afuera. Yo la recibí cerrada, de las manos de ese empleado.',
       pressText: [
         { speaker: 'DEFENSA', text: '¡UN MOMENTO!', cutin: 'objection_un_momento', sfx: 'whoosh', pose: 'donramon_point' },
-        { speaker: 'DEFENSA', text: 'Dice que no usó el montacargas... pero ese elevador de equipaje tiene paradas directas junto a su Suite 204 y la Suite 304.', pose: 'donramon_idle' },
-        { speaker: 'RUFINO', text: '¡Insensateces! Operar palancas grasientas es labor de peones y lacayos. Un noble no ensucia sus puños de encaje con maquinaria de servicio.', pose: 'rufino_monocle' },
-        { speaker: 'DEFENSA', text: '(A menos que necesite transportar un fardo de ochenta kilos sin cruzarse con nadie por las escaleras...)', pose: 'donramon_idle' }
+        { speaker: 'RUFINO', text: 'Admito que estuve solo con la botella cerrada entre la entrega y la llegada de mi invitado. Lo digo como quien no ve el problema.', pose: 'rufino_sweat' }
       ]
     },
     {
       id: 'd3_t1_4',
       speaker: 'RUFINO',
       pose: 'rufino_smug',
-      text: 'A las 11:15 PM, cuando se oyó la detonación, yo me encontraba apostando sobre el paño verde.',
+      text: 'Y yo no pedí que subiera él al baño. Solicité un fontanero. A cuál mandaban lo decidió el hotel.',
       pressText: [
         { speaker: 'DEFENSA', text: '¡UN MOMENTO!', cutin: 'objection_un_momento', sfx: 'whoosh', pose: 'donramon_point' },
-        { speaker: 'DEFENSA', text: 'A las 11:15 PM exactamente, ¿qué hacía usted?', pose: 'donramon_idle' },
-        { speaker: 'RUFINO', text: 'Estaba doblando mi apuesta en la banca y recogiendo fichas de marfil. Si el edificio crujió por las tuberías, apenas mereció una mirada despectiva de mis distinguidos contertulios.', pose: 'rufino_smug' },
-        { speaker: 'SUPER SAM', text: 'Coartada de hierro a prueba de balas, Your Honor!', pose: 'supersam_slam', sfx: 'desk_slam' }
-      ]
+        { speaker: 'RUFINO', text: 'La asignación del empleado fue decisión del hotel. Yo ni siquiera conocía su nombre.', pose: 'rufino_monocle' }
+      ],
+      contradiction: {
+        evidence: ['orden_servicios'],
+        pointTarget: CASE4_ORDEN_POINT_TARGET,
+        successDialogue: CASE4_D3_T1_ORDEN_SUCCESS
+      }
     }
   ]
 };

@@ -1,72 +1,81 @@
-// @Architecture(descriptionShort="Case 4 day-1 Cecilio testimony and adjournment", type="data", icon="layers")
+// @Architecture(descriptionShort="Case 4 day-1 Sargento testimony and turnabout", type="data", icon="layers")
 /**
- * Case 4 Trial Day 1 — Testimony 2 (Don Cecilio Buenavista).
+ * Case 4 Trial Day 1 — Testimony 2, Sargento (§8.3).
+ * La ampliación se entrega presionando (3 o 4) y la contradicción usa informe_forense.
  */
 
-import type { Testimony } from '../../../types/index.js';
-import { CASE4_D1_T2_CHAIN_SUCCESS, CASE4_D1_T2_WALLET_SUCCESS } from './trial_day1_success.js';
+import type { DialogueLine, Testimony } from '../../../types/index.js';
+import { CASE4_D1_T2_ALMOHADA_SUCCESS, CASE4_D1_T2_FORENSE_SUCCESS } from './trial_day1_success.js';
+
+const AMPLIACION_PRESS: DialogueLine[] = [
+  { speaker: 'SARGENTO', text: '¡Momentito, señor juez! La secretaría acaba de recibir la ampliación que pedimos ayer en la suite.', pose: 'pazguato_saludo' },
+  { speaker: 'SUPER SAM', text: '¿Usted mandó pedir exámenes extra? ¡Eso sale del presupuesto de la fiscalía! YOUR SALARY IS CUT!', pose: 'supersam_slam', sfx: 'desk_slam' },
+  { speaker: 'SARGENTO', text: 'Con ésta van tres quincenas, mi fiscal. A este paso voy a terminar trabajándole de gratis... o sea, igual que ahora.', pose: 'pazguato_sweat' },
+  { speaker: 'JUEZ', text: 'Incorpórese el documento a las dos partes antes de continuar.', pose: 'judge_gavel', sfx: 'gavel' },
+  { speaker: 'NARRADOR', text: 'El informe distingue la reacción de los tejidos, el intervalo de muerte y los análisis todavía pendientes.' },
+  { speaker: 'SARGENTO', text: 'Aquél era mi parte. Éste es el del forense. Y no dicen lo mismo.', pose: 'pazguato_decidido', addEvidence: 'informe_forense' }
+];
 
 export const CASE4_TESTIMONY_2: Testimony = {
-  title: 'Testimonio: La Cadena de Seguridad',
-  witness: 'Don Cecilio Buenavista',
+  title: 'Testimonio: La secuencia que asenté',
+  witness: 'El Sargento',
   bgm: 'cross_exam_allegro',
   statements: [
     {
       id: 'd1_t2_1',
-      speaker: 'CECILIO',
-      pose: 'cecilio_idle',
-      text: 'Yo mismo empujé con el hombro la pesada puerta de roble de la suite tras oír el tiroteo.',
+      speaker: 'SARGENTO',
+      pose: 'pazguato_idle',
+      text: 'A las 23:15 oímos el estruendo, mi señor juez. A las 23:20 abrimos la habitación a puros empujones.',
       pressText: [
         { speaker: 'DEFENSA', text: '¡UN MOMENTO!', cutin: 'objection_un_momento', sfx: 'whoosh', pose: 'donramon_point' },
-        { speaker: 'DEFENSA', text: '¿No intentó abrir con su llave maestra de la gerencia primero?', pose: 'donramon_idle' },
-        { speaker: 'CECILIO', text: 'La cerradura ordinaria de llave estaba descorrida... Lo que frenaba el acceso era pura y exclusivamente la cadena de seguridad interior.', pose: 'cecilio_idle' },
-        { speaker: 'SUPER SAM', text: '¡Exacto! ¡Cerradura abierta pero cadena trabada por dentro por el asesino!', pose: 'supersam_point' }
+        { speaker: 'SARGENTO', text: 'Una cosa es el ruido y otra la apertura. Entre ambas pasaron cinco minutos.', pose: 'pazguato_saludo' }
       ]
     },
     {
       id: 'd1_t2_2',
-      speaker: 'CECILIO',
-      pose: 'cecilio_idle',
-      text: 'La hoja se detuvo en seco a los cuatro centímetros porque la cadena de latón estaba firme en su carril.',
+      speaker: 'SARGENTO',
+      pose: 'pazguato_idle',
+      text: 'La víctima tenía una herida en el pecho y junto al cuerpo había un revólver. Lo fotografié antes de tocarlo, que para eso me pagan. Poquito, pero me pagan.',
       pressText: [
         { speaker: 'DEFENSA', text: '¡UN MOMENTO!', cutin: 'objection_un_momento', sfx: 'whoosh', pose: 'donramon_point' },
-        { speaker: 'DEFENSA', text: '¿Y qué se podía distinguir exactamente por esa rendija de cuatro centímetros?', pose: 'donramon_idle' },
-        { speaker: 'CECILIO', text: 'Mis ojos no son de águila imperial, distinguido letrado, pero alcancé a percibir en la penumbra el cesto de mimbre y la silueta del occiso cerca del fuego.', pose: 'cecilio_ciego' },
-        { speaker: 'DEFENSA', text: '(Cuatro centímetros de rendija... más que suficiente para pasar un sedal de pescar.)', pose: 'donramon_sweat' }
+        { speaker: 'SARGENTO', text: 'Revisemos el arma y la almohada cuando llegue la ampliación. De momento constan como halladas.', pose: 'pazguato_sweat' }
       ]
     },
     {
       id: 'd1_t2_3',
-      speaker: 'CECILIO',
-      pose: 'cecilio_idle',
-      text: 'Ese mecanismo es inviolable desde el exterior; requiere forzosamente que una mano humana deslice el perno desde adentro.',
+      speaker: 'SARGENTO',
+      pose: 'pazguato_idle',
+      text: 'Mi reconstrucción inicial fue que esa bala lo mató justo cuando sonó el estruendo.',
       pressText: [
-        { speaker: 'DEFENSA', text: '¡UN MOMENTO!', cutin: 'objection_un_momento', sfx: 'whoosh', pose: 'donramon_point' },
-        { speaker: 'DEFENSA', text: '¿Está usted absolutamente convencido de que nadie pudo manipular ese cerrojo desde el exterior del pasillo?', pose: 'donramon_idle' },
-        { speaker: 'CECILIO', text: '¡Completamente, señor letrado! La chapa de latón macizo no tiene hendiduras exteriores y el perno corre por la cara interna. A menos que el homicida fuera un fantasma o poseyera poderes de telequinesis, ¡nadie puede empujar ese perno desde el pasillo!', pose: 'cecilio_escandalo' },
-        { speaker: 'DEFENSA', text: '(Un fantasma no... pero alguien con paciencia, un buen hilo y dos dedos de frente, sin duda alguna...)', pose: 'donramon_idle' }
+        ...AMPLIACION_PRESS
       ],
       contradiction: {
-        evidence: ['candado_cadena'],
-        successDialogue: CASE4_D1_T2_CHAIN_SUCCESS,
+        evidence: ['informe_forense'],
+        successDialogue: CASE4_D1_T2_FORENSE_SUCCESS,
         followUp: {
-          evidence: ['billetera_cuajinais'],
-          prompt: '¿Tiene alguna prueba en su poder que refute el móvil de robo?',
-          successDialogue: CASE4_D1_T2_WALLET_SUCCESS
+          evidence: ['foto_crimen', 'informe_policial'],
+          prompt: '¿Qué objeto pudo amortiguar el disparo real?',
+          successDialogue: CASE4_D1_T2_ALMOHADA_SUCCESS
         }
       }
     },
     {
       id: 'd1_t2_4',
-      speaker: 'CECILIO',
-      pose: 'cecilio_idle',
-      text: 'Como el Botija era el único viviente dentro de la alcoba, ¡sólo él pudo atrancar la puerta para proteger su botín!',
+      speaker: 'SARGENTO',
+      pose: 'pazguato_idle',
+      text: 'Y con esa secuencia fue con la que relacioné al señor Botija con el homicidio.',
       pressText: [
-        { speaker: 'DEFENSA', text: '¡UN MOMENTO!', cutin: 'objection_un_momento', sfx: 'whoosh', pose: 'donramon_point' },
-        { speaker: 'DEFENSA', text: '¿A qué botín se refiere usted con tanta ligereza, Don Cecilio?', pose: 'donramon_idle' },
-        { speaker: 'CECILIO', text: '¡A la billetera de piel de cocodrilo del infortunado señor Gómez, por supuesto! ¡Un humilde fontanero no puede resistir la tentación del lujo!', pose: 'cecilio_idle' },
-        { speaker: 'DEFENSA', text: '¡Cuidado con difamar a la clase trabajadora, don Cecilio, que el Botija tiene las manos tiznadas pero honradas!', pose: 'donramon_slam', sfx: 'desk_slam' }
-      ]
+        ...AMPLIACION_PRESS
+      ],
+      contradiction: {
+        evidence: ['informe_forense'],
+        successDialogue: CASE4_D1_T2_FORENSE_SUCCESS,
+        followUp: {
+          evidence: ['foto_crimen', 'informe_policial'],
+          prompt: '¿Qué objeto pudo amortiguar el disparo real?',
+          successDialogue: CASE4_D1_T2_ALMOHADA_SUCCESS
+        }
+      }
     }
   ]
 };

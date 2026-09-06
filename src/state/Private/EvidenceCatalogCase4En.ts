@@ -1,6 +1,8 @@
 // @Architecture(descriptionShort="Case 4 court record items in English", type="catalog", icon="database")
 /**
  * English Case 4 evidence catalog — merged when getEvidenceCatalog(lang, 'case4').
+ * Adaptation (not literal translation): Chapulin proverb mixes need two English
+ * proverbs crossed just as badly; Super Sam keeps financial vocabulary, not Spanish.
  */
 
 import type { EvidenceId, EvidenceItem } from '../../types/index.js';
@@ -24,103 +26,132 @@ function ev(
 export const CASE4_EVIDENCE_EN: Record<string, EvidenceItem> = {
   insignia_abogado: ev('insignia_abogado', {
     name: "Attorney's Badge",
-    desc: "Licenciado Monchito's professional badge. Dented and pawned three times to pay rent, but still legally valid."
+    desc: "Dented badge of Lic. Monchito."
   }),
   informe_policial: ev('informe_policial', {
-    name: "Sergeant's Police Report",
-    desc: 'Victim died from a .38 chest shot in Suite 304 at 11:15 PM. Room locked with an interior chain latch.',
+    name: 'Police Report',
+    desc: 'Discovery at 23:20 after the 23:15 bang: bullet wound, gun, key on the side table, and Botija inside. Cause pending further examination.',
     updates: [
-      "Preliminary report: time of death (11:15 PM) was set only from hallway noise through steam pipes, with no on-site forensic exam.",
-      'Preliminary report refuted: legal autopsy certified death by potassium cyanide asphyxia at 9:50 PM; the 11:15 PM gunshot was post-mortem.'
+      'Annex: cork handed in by Maruja, with time of delivery and both signatures.',
+      'The time of the noise (23:15) is not the time of death: further examination pending.',
+      'Ballistic comparison of gun, bullet, and pillow; registry records the revolver under the dead man’s name.'
     ]
   }),
   foto_crimen: ev('foto_crimen', {
-    name: 'Suite 304 Photograph',
+    name: 'Crime Photo',
     icon: 'assets/foto_suite304.webp',
-    desc: 'Crime scene at 11:30 PM. Body by the fireplace; broken glass, dried residue, and an opened Chateau Buena Vista 1958 bottle beside an ice bucket on the coffee table, secured by the Sergeant. On the sofa by the fireplace, a torn feather pillow with a scorched hole and scattered down are visible.',
-    updates: [
-      'Crime scene at 11:30 PM. The bucket on the coffee table holds lukewarm water without a single ice cube, proving drinks were served hours before the gunshot noise.'
-    ]
+    desc: '23:30 image: body, pierced pillow, torn suit, glass, bottle, and key on the table.'
   }, {
     imageAsset: 'assets/examine_foto.webp',
-    caption: 'Sergeant-secured photo: coffee table with ice bucket, broken glass, opened bottle, and scorched feather pillow by the fireplace.'
+    caption: 'Suite 304 table: secured glass and bottle, ordinary key, pierced pillow.'
   }),
   candado_cadena: ev('candado_cadena', {
-    name: 'Suite 304 Chain Latch',
-    desc: 'Door security mechanism. Horizontal brass rail with sliding bolt. Fresh scratch on the outer edge and a nylon fishing line.'
+    name: 'Chain Latch',
+    desc: 'Plate with sliding bolt, trapped fibers, and a length recovered from the corridor; route diagram.'
   }, {
     imageAsset: 'assets/examine_cadena.webp',
-    caption: 'Brass latch plate: sliding slot, jamb scratch, and nylon fishing line hooked on the bolt.'
+    caption: 'Removed plate: inner bolt, loop route prepared from inside, broken fragment on the edge.'
   }),
   plano_hotel: ev('plano_hotel', {
-    name: 'Pipes & Suites Blueprint',
-    desc: 'West wing architectural section. Shows Suite 304 radiator and fireplace share a direct flue and cavity with Suite 204.',
-    updates: [
-      'West wing blueprint. Confirms direct vertical steam-bleed piping between Suites 204 and 304—the conduit that carried the blank-cartridge detonation.'
-    ]
+    name: 'Hotel Floor Plan',
+    desc: 'Suite 304 bath and sitting room, corridors, outer freight-elevator stops, and the 204–304 branch.'
   }, {
     imageAsset: 'assets/examine_plano.webp',
-    caption: 'West wing cross-section: shared chimney flue and vertical steam bleed between Suites 204 and 304.'
-  }),
-  residuos_manos: ev('residuos_manos', {
-    name: "Botija's Hand Residue Analysis",
-    desc: 'Black powder from Botija\'s hands and black work clothes. Super Sam initially called it "fresh gunshot residue".',
-    updates: [
-      'Corrected chemical analysis: 98% coal-boiler soot and sulfur; 0% gunpowder or ballistic nitrates. Rules out firing a firearm.'
-    ]
+    caption: 'West wing plan: Suite 304 with bath and screen; the lift serves service corridors.'
   }),
   billetera_cuajinais: ev('billetera_cuajinais', {
-    name: "Victim's Wallet",
-    desc: 'Crocodile-skin wallet found in Botija\'s hands. Holds intact $200, "Mr. Gómez" ID, and a ripped secret lining.',
+    name: "Cuajinais's Wallet",
+    desc: 'Wallet with the Mr. Gómez ID and $200, picked up by Botija by his own account. Inventoried by police.'
+  }),
+  orden_servicios: ev('orden_servicios', {
+    name: 'Service Logbook',
+    icon: 'assets/orden_servicios.webp',
+    desc: 'Shift log: bottle V58-17 to 204, trunk B-17 to 304, and 23:05 maintenance. Includes delivery and receipt times.',
     updates: [
-      'Crocodile wallet with $200 intact. Forensics unstitched the secret lining and recovered locker key #42 from the bus terminal.'
+      'Rufino’s original handwritten folio: Suite 304 bathroom check at 23:05, assigned to Botija, handed over in person.',
+      'B-17 freight receipts: sealed delivery and signed reception.',
+      'Certification of the wine delivery witnessed by Maruja.'
     ]
+  }, {
+    imageAsset: 'assets/examine_orden.webp',
+    caption: 'Handwritten folio: maintenance request naming the employee and the hour.'
   }),
   informe_forense: ev('informe_forense', {
-    name: 'Toxicology Autopsy',
-    desc: 'Official pathology report: chest shot was post-mortem (no vital reaction or internal bleeding). True cause: potassium cyanide asphyxia at 9:50 PM.'
+    name: 'Forensic Report',
+    icon: 'assets/informe_forense.webp',
+    desc: 'Supplement: wound with no vital reaction; death window between 20:30 and 22:00; cause under analysis.'
+  }),
+  residuos_manos: ev('residuos_manos', {
+    name: 'Hand Residue Samples',
+    icon: 'assets/residuos_manos.webp',
+    desc: 'Samples consistent with soot and boiler work; do not support the initial gunshot-residue charge.'
   }),
   casquillo_fogueo: ev('casquillo_fogueo', {
-    name: 'Burned Blank Cartridge',
-    desc: '.38 blank casing without projectile, found inside Suite 204 radiator bleed valve. Traces of slow-burning sulfur fuse.'
+    name: 'Blank Effect Set',
+    icon: 'assets/casquillo_fogueo.webp',
+    desc: 'Secured sound-effect set with no projectile, timer device from the gala stock.'
   }),
   registro_montacargas: ev('registro_montacargas', {
     name: 'Freight Elevator Log',
-    desc: 'Service lift record: 10:20 PM heavy load (~175 kg, floor 2 to 3); 10:25 PM light load (~95 kg, floor 3 to roof).'
-  }),
-  copa_vino: ev('copa_vino', {
-    name: 'Broken Wine Glass',
-    desc: 'Fine crystal with Chateau Buena Vista 1958 red wine residue. Sediment tested positive for lethal potassium cyanide.'
-  }),
-  botella_vino: ev('botella_vino', {
-    name: 'Chateau Buena Vista 1958 Bottle',
-    desc: "Rufino's private reserve bottle. Cork removed intact. Red wax seal dome hides a needle pinhole patched with melted wax."
+    icon: 'assets/registro_montacargas.webp',
+    desc: 'Several luggage rows: B-17 leaves floor 2 at 10:20 PM for floor 3 at 100 kg, and reaches the roof from floor 3 at 10:40 PM at 20 kg. No passengers in the cabin.'
   }, {
-    imageAsset: 'assets/examine_botella.webp',
-    caption: 'Opened bottle neck: red wax seal dome with a hair-thin needle puncture resealed with melted wax.'
-  }),
-  boleta_baccarat: ev('boleta_baccarat', {
-    name: "Rufino's Baccarat Slip",
-    desc: 'Casino betting slip. Shows play from 10:30 PM to 11:30 PM, including a stamped 15-minute recess (11:10 to 11:25 PM).'
+    imageAsset: 'assets/examine_registro.webp',
+    caption: 'Logbook: B-17 twice with different loads; printed marks, legible.'
   }),
   baul_etiquetas: ev('baul_etiquetas', {
-    name: 'Wheeled Travel Trunk',
-    desc: 'English leather trunk hidden in the roof machine room. Velvet lining held Cuajinais suit wool fibers and coal dust.'
+    name: 'Trunk B-17',
+    icon: 'assets/baul_etiquetas.webp',
+    desc: 'B-17 with broken strap, swatch matching the photo tear, and numbered strap stub signed at delivery.'
   }),
-  sello_lacre: ev('sello_lacre', {
-    name: 'Gold Wax Seal Ring',
-    desc: "Heraldic signet ring belonging to Rufino Rufián. Found in Suite 204 trash; microscopic traces of melted red wax in the relief."
+  toxicologia_vino: ev('toxicologia_vino', {
+    name: 'Wine Toxicology',
+    icon: 'assets/toxicologia_vino.webp',
+    desc: 'Same toxic agent in the victim and the glass wine; ingestion route consistent. Does not name who dosed it.',
+    updates: [
+      'Agent found inside the cork, plus separate examination of the ring, with no fit announced.'
+    ]
+  }),
+  copa_vino: ev('copa_vino', {
+    name: 'Wine Glass',
+    icon: 'assets/copa_vino.webp',
+    desc: 'Fragments secured beside the body, plus analyzed sample.'
+  }),
+  botella_vino: ev('botella_vino', {
+    name: 'Bottle V58-17',
+    icon: 'assets/botella_vino.webp',
+    desc: 'V58-17, opened; the cork does not travel with it: police annex custody with its own chain. Enlarged cork view with two different marks, pending analysis.'
+  }, {
+    imageAsset: 'assets/examine_botella.webp',
+    caption: 'Cork kept apart: wide corkscrew track and a fine channel through it, metal inclusion on the rim.'
+  }),
+  boleta_baccarat: ev('boleta_baccarat', {
+    name: 'Baccarat Slip',
+    icon: 'assets/boleta_baccarat.webp',
+    desc: 'Round log confirming Rufino between 23:10 and 23:25.'
   }),
   nota_amenaza: ev('nota_amenaza', {
-    name: 'Extortion Telegram Receipt',
-    desc: 'Official telegraph receipt from Cuajinais\' locker: "Count of Montemayor: pay my $50,000 for Cleopatra\'s necklace or police learn everything. Room 304."'
+    name: "Cuajinais's Telegram",
+    desc: 'Filed copy and receipt of the telegram delivered to Rufino: Cleopatra Necklace payment or report.',
+    updates: [
+      'Recovery record of the necklace from the seized briefcase.'
+    ]
   }, {
     imageAsset: 'assets/examine_nota.webp',
-    caption: 'National Telegraphs form with bus-terminal postmark (8:15 PM, October 24).',
+    caption: 'Telegram with receipt signed by the addressee.',
     clickableZones: [
-      { id: 'destinatario_conde', x: 18, y: 28, width: 64, height: 10, tooltip: 'Addressee: Count of Montemayor' },
-      { id: 'monto_extorsion', x: 22, y: 48, width: 28, height: 8, tooltip: 'Demand: $50,000 for Cleopatra\'s necklace' },
-      { id: 'habitacion_304', x: 58, y: 62, width: 22, height: 8, tooltip: 'Room 304' }
+      { id: 'encabezado_hora', x: 79, y: 13, width: 20, height: 24, tooltip: 'Filed from the hotel itself' },
+      { id: 'linea_exigencia', x: 14, y: 47, width: 63, height: 18, tooltip: 'Payment demand under threat of report' },
+      { id: 'firma_remitente', x: 23, y: 66, width: 16, height: 7, tooltip: 'Sender signature' },
+      { id: 'acuse_recepcion', x: 4, y: 76, width: 55, height: 16, tooltip: 'Receipt signed by the addressee' }
     ]
+  }),
+  sello_lacre: ev('sello_lacre', {
+    name: "Rufino's Ring",
+    icon: 'assets/sello_lacre.webp',
+    desc: "Rufino's ring: swivel head, cavity, channel, truncated metal tip. Independent views and analysis."
+  }, {
+    imageAsset: 'assets/examine_sello.webp',
+    caption: 'Open ring: crest head, cavity, fine channel, broken tip.'
   })
 };

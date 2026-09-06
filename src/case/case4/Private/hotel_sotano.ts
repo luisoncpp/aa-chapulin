@@ -1,6 +1,6 @@
 // @Architecture(descriptionShort="Case 4 day 2 basement boiler room with Sargento", type="data", icon="layers")
 /**
- * Case 4 Day 2 — Sótano y Sala de Calderas (`hotel_sotano`).
+ * Case 4 Day 2 — Sótano (`hotel_sotano`), 09:00. Spec §9.1.
  */
 
 import type { InvestigationScene } from '../../../types/index.js';
@@ -14,23 +14,32 @@ export const CASE4_HOTEL_SOTANO: InvestigationScene = {
   speaker: 'NARRADOR',
   idlePose: 'pazguato_idle',
   intro: [
-    { speaker: 'NARRADOR', text: '26 de octubre, 9:30 AM. Sala de calderas en el sótano del Gran Hotel.' },
-    { speaker: 'SARGENTO', text: '¡Mi Licenciado! Me escabullí mientras Super Sam fiscalizaba los tickets de la cafetería.', pose: 'pazguato_decidido' },
-    { speaker: 'DEFENSA', text: '¿Qué arrojó el laboratorio sobre las manos de Botija?', pose: 'donramon_idle' },
-    { speaker: 'SARGENTO', text: '¡Mire el dictamen del químico! Llevé los hisopos en mi bolsa del lonche.', pose: 'pazguato_saludo', addEvidence: 'residuos_manos' },
-    { speaker: 'DEFENSA', text: '¿Y qué dice?', pose: 'donramon_point' },
-    { speaker: 'SARGENTO', text: 'Novecientos noventa y ocho por ciento hollín mineral de carbón y azufre de caldera. Cero por ciento de pólvora o nitratos balísticos.', pose: 'pazguato_sweat' },
-    { speaker: 'CHAPULIN', text: '¡No contaban con mi astucia! ¡Eso es del trabajo honesto en la caldera, no de un trabuco!', pose: 'chapulin_point' }
+    { speaker: 'NARRADOR', text: '26 de octubre, 9:00. Sótano de calderas del Gran Hotel.' },
+    { speaker: 'SARGENTO', text: 'Ya salió la comparación del arma, mi licenciado. El proyectil sí es del revólver que estaba en la habitación.', pose: 'pazguato_saludo' },
+    { speaker: 'DEFENSA', text: 'Bien. Ya sabemos qué hizo el agujero. Nos falta saber qué hizo el ruido.', pose: 'donramon_idle' },
+    { speaker: 'SARGENTO', text: 'También llegó lo de las manos del detenido. Lo que traía era tizne de caldera, del puro trabajo. No es lo que supusimos cuando lo arrestamos.', pose: 'pazguato_sweat' },
+    { speaker: 'CHAPULIN', text: '¡Entonces lo detuvieron por andar sucio!', pose: 'chapulin_idle' },
+    { speaker: 'SARGENTO', text: 'Lo detuvimos por estar adentro, Chapulín. Lo de andar sucio nomás nos ayudó a convencernos.', pose: 'pazguato_sweat' },
+    { speaker: 'DEFENSA', text: 'Sargento, esa frase apúntela en su informe. Ahí es donde vale.', pose: 'donramon_idle' },
+    { speaker: 'SARGENTO', text: 'Y la comparación con la almohada y el padrón del revólver ya quedaron en el parte.', pose: 'pazguato_saludo', updateEvidence: 'informe_policial' },
+    { speaker: 'CHAPULIN', text: '¿Y ese tubo que sube hasta allá arriba?', pose: 'chapulin_point' },
+    { speaker: 'SARGENTO', text: 'Ése lo pueden seguir en el plano. El hotel ya nos autorizó revisar el ramal que pasa debajo de la 304.', pose: 'pazguato_idle' }
   ],
   hotspots: SOTANO_HOTSPOTS,
   talkOptions: [
     {
-      id: 'about_revolver',
-      label: 'Sobre el revólver en las cenizas',
-      unlockedByHotspot: 'hotspot_caldera',
+      id: 'muestras_manos',
+      label: 'Las muestras de manos',
       dialogue: [
-        { speaker: 'SARGENTO', text: 'Olor a pólvora vieja y una bala percutida. Alguien lo arrojó por el tiro de la chimenea que baja de la Suite 304.', pose: 'pazguato_decidido' },
-        { speaker: 'DEFENSA', text: '(Disparo post-mortem a través de la almohada... pero eso lo dirá el forense.)', pose: 'donramon_idle', unlockLocation: 'hotel_suite204' }
+        { speaker: 'SARGENTO', text: 'Muestras compatibles con hollín y trabajo de caldera; no apoyan la imputación inicial de residuos de disparo.', pose: 'pazguato_saludo', addEvidence: 'residuos_manos' }
+      ]
+    },
+    {
+      id: 'seguir_ramal',
+      label: 'Seguir el ramal',
+      condition: (flags) => Boolean(flags.examined_hotspot_conducto) && Boolean(flags.examined_hotspot_inventario),
+      dialogue: [
+        { speaker: 'SARGENTO', text: 'El ramal lleva a la 204. La revisamos con autorización y bajo supervisión.', pose: 'pazguato_decidido', unlockLocation: 'hotel_suite204' }
       ]
     }
   ]

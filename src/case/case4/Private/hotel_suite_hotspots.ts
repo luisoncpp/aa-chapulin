@@ -1,6 +1,9 @@
 // @Architecture(descriptionShort="Case 4 Suite 304 hotspot geometry and evidence", type="data", icon="layers")
 /**
- * Hotspots for Suite Presidencial 304 — day 1 investigation.
+ * Hotspots for Suite Presidencial 304 — day 1 investigation (spec §7.3).
+ * Boxes shrink to painted objects on the 960x540 cover crop:
+ * door plaque/latch (left), radiator fins (center), laundry basket (right),
+ * body outline/table (foreground), pillow implied via body hotspot dialogue.
  */
 
 import type { Hotspot } from '../../../types/index.js';
@@ -8,51 +11,63 @@ import type { Hotspot } from '../../../types/index.js';
 export const SUITE304_HOTSPOTS: Hotspot[] = [
   {
     id: 'hotspot_cuerpo',
-    label: 'Silueta junto a la Chimenea',
-    x: 28, y: 72, w: 36, h: 26,
+    label: 'Cuerpo y Mesita',
+    x: 29, y: 81, w: 70, h: 19,
     dialogue: [
-      { speaker: 'SARGENTO', text: 'Aquí yacía el occiso junto a la chimenea. La copa rota, la botella descorchada y la cubeta de hielo quedaron aseguradas bajo cadena de custodia.', pose: 'pazguato_saludo' },
-      { speaker: 'DEFENSA', text: '¿Y las actuaciones preliminares?', pose: 'donramon_idle' },
-      { speaker: 'SARGENTO', text: '¡A sus órdenes! Informe policial y fotografía oficial tomada a las 11:30 PM.', pose: 'pazguato_sweat', addEvidence: 'informe_policial' },
-      { speaker: 'SARGENTO', text: 'La toma fotográfica documenta la escena intacta quince minutos después del estruendo.', pose: 'pazguato_saludo', addEvidence: 'foto_crimen' }
-    ]
-  },
-  {
-    id: 'hotspot_puerta',
-    label: 'Marco de la Puerta',
-    x: 2, y: 6, w: 24, h: 68,
-    dialogue: [
-      { speaker: 'SARGENTO', text: 'El marco de caoba está astillado donde empujamos la puerta. El cerrojo de cadena estaba en su riel interior.', pose: 'pazguato_idle' },
-      { speaker: 'DEFENSA', text: '¿Y qué vio la señorita Maruja?', pose: 'donramon_point' },
-      { speaker: 'SARGENTO', text: 'Dijo que al forzar la jamba cayó algo metálico al pasillo. Ella lo recogió del suelo.', pose: 'pazguato_sweat' }
-    ]
-  },
-  {
-    id: 'hotspot_radiador',
-    label: 'Radiador de Hierro',
-    x: 34, y: 42, w: 16, h: 36,
-    dialogue: [
-      { speaker: 'DEFENSA', text: 'Tubería gruesa que baja hacia el piso 2. Huele a humo de combustión y azufre concentrado.', pose: 'donramon_idle' },
-      { speaker: 'CHAPULIN', text: '¡No contaban con mi astucia! ¡Esa tubería conecta con el sótano!', pose: 'chapulin_point' }
-    ]
-  },
-  {
-    id: 'hotspot_cesto',
-    label: 'Cesto de Lavandería',
-    x: 86, y: 52, w: 14, h: 32,
-    dialogue: [
-      { speaker: 'SARGENTO', text: 'Gran cesto de mimbre con sábanas blancas salpicadas de tizne. Aquí se ocultó Botija.', pose: 'pazguato_sweat' },
-      { speaker: 'DEFENSA', text: '(Se metió de pánico... pero no mató a nadie.)', pose: 'donramon_sweat', unlockLocation: 'hotel_terraza' }
+      { speaker: 'SARGENTO', text: 'Posición del cadáver en foto, llave ordinaria, copa rota y botella abierta. El cierre no está en la habitación; el inventario lo hace constar sin explicar todavía por qué.', pose: 'pazguato_saludo' },
+      { speaker: 'SARGENTO', text: 'Tome el parte y la foto. La hora 23:30 corresponde a la fotografía.', pose: 'pazguato_saludo', addEvidence: 'informe_policial' },
+      { speaker: 'DEFENSA', text: '(La foto lo fija todo en su sitio. Ya pediremos lo que falte.)', pose: 'donramon_idle', addEvidence: 'foto_crimen' }
     ]
   },
   {
     id: 'hotspot_almohada',
-    label: 'Almohada del Sofá',
-    x: 64, y: 54, w: 20, h: 26,
+    label: 'Almohada',
+    x: 34, y: 84, w: 20, h: 15,
     dialogue: [
-      { speaker: 'DEFENSA', text: '¡Miren esto con lupa! Esta almohada de plumas tiene un agujero ennegrecido y plumón regado por todo el sofá. Quien haya disparado aquí pegó el cañón a la almohada para ahogar el sonido del fogonazo.', pose: 'donramon_point' },
-      { speaker: 'CHAPULIN', text: '¡Lo sospeché desde un principio! ¡Usaron una almohada de plumas como silenciador casero para sofocar el estruendo!', pose: 'chapulin_point' },
-      { speaker: 'SARGENTO', text: 'Caray... tiene usted razón, mi Licenciado. Yo pensé que el difunto había tenido una pelea de almohadas antes de que le dieran el plomazo.', pose: 'pazguato_sweat' }
+      { speaker: 'DEFENSA', text: 'Orificio, tela ennegrecida y plumas. Sargento: quiero el cotejo de esto con la herida y el proyectil.', pose: 'donramon_point' },
+      { speaker: 'SARGENTO', text: 'Lo pediré por escrito. Sin anticipar conclusiones.', pose: 'pazguato_saludo' }
+    ]
+  },
+  {
+    id: 'hotspot_recibidor',
+    label: 'Recibidor y Baño',
+    x: 18, y: 4, w: 13, h: 75,
+    dialogue: [
+      { speaker: 'SARGENTO', text: 'Línea de paso: del recibidor al baño sin atravesar la zona del cuerpo, parcialmente oculta por el biombo.', pose: 'pazguato_idle' },
+      { speaker: 'DEFENSA', text: '(Desde el baño no se ve la zona del cadáver. El biombo no tapa ninguna puerta secreta.)', pose: 'donramon_idle' }
+    ]
+  },
+  {
+    id: 'hotspot_cierre',
+    label: 'Cierre Arrancado',
+    x: 5, y: 20, w: 10, h: 34,
+    dialogue: [
+      { speaker: 'SARGENTO', text: 'Fragmento de fibra en la placa y tramo recogido del pasillo. Llevaré la pieza a la terraza para que Maruja confirme cómo se encontró.', pose: 'pazguato_idle' }
+    ]
+  },
+  {
+    id: 'hotspot_radiador',
+    label: 'Radiador',
+    x: 37, y: 40, w: 14, h: 37,
+    dialogue: [
+      { speaker: 'DEFENSA', text: 'Ramal hacia la 204 y olor de combustión. Habrá que seguir las tuberías mañana.', pose: 'donramon_idle' },
+      { speaker: 'SARGENTO', text: 'El olor no diagnostica autor ni clase exacta de efecto. Solo justifica seguir el ramal.', pose: 'pazguato_sweat' }
+    ]
+  },
+  {
+    id: 'hotspot_cesto',
+    label: 'Cesto',
+    x: 87, y: 53, w: 13, h: 31,
+    dialogue: [
+      { speaker: 'SARGENTO', text: 'Ropa con tizne compatible con el trabajo. Incómodo escondite, sin más.', pose: 'pazguato_idle' }
+    ]
+  },
+  {
+    id: 'hotspot_cubeta',
+    label: 'Cubeta',
+    x: 67, y: 72, w: 15, h: 21,
+    dialogue: [
+      { speaker: 'SARGENTO', text: 'Agua y botella de mineral. Servicio ordinario de la habitación.', pose: 'pazguato_idle' }
     ]
   }
 ];

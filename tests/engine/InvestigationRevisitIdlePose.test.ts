@@ -133,7 +133,7 @@ describe('Investigation Scene Revisit Idle Pose', () => {
       expect(dom.charSpriteEl.classList.contains('hidden')).toBe(true);
     });
 
-    it('restores resident idle pose after hotspot dialogue finishes', () => {
+    it('keeps character sprite hidden in examine mode and restores resident idle pose on exiting examine mode', () => {
       controller.startInvestigation('museum');
       controller.startExamineMode();
       expect(dom.charSpriteEl.classList.contains('hidden')).toBe(true);
@@ -141,7 +141,12 @@ describe('Investigation Scene Revisit Idle Pose', () => {
       const pedestalHotspot = dom.hotspotsContainerEl.children[0] as HTMLElement;
       pedestalHotspot.click();
 
-      // Dialogue completed via onQueueDialogue callback: should restore florinda_idle
+      // Dialogue completed via onQueueDialogue callback: player stays in examine mode
+      expect(controller.isExamineActive).toBe(true);
+      expect(dom.charSpriteEl.classList.contains('hidden')).toBe(true);
+
+      // Exiting examine mode restores resident idle pose
+      controller.exitExamineMode();
       expect(dom.charSpriteEl.src).toContain('assets/florinda_idle.webp');
       expect(dom.charSpriteEl.classList.contains('hidden')).toBe(false);
     });

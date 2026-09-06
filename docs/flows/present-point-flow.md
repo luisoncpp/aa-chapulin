@@ -29,11 +29,27 @@ Player presents the matching evidence during cross-examination, a `followUp` pre
 | Evidence catalog for image fallback | Trial present pending flags in `TrialPresent` |
 | Click position vs 640×360 stage | `gameOver` / trial restart at 0 health |
 
-## 5. Side Effects
+## 5. Case 4 Point Targets
+
+| Moment | Target | Correct zone |
+|--------|--------|--------------|
+| D1-T1 | `candado_cadena` | `puerta_lazo` |
+| D2-T1 route A | `plano_hotel` | `ramal_204_304` |
+| D2-T2 | `registro_montacargas` | `fila_B17_descarga` |
+| D3-T1 | `orden_servicios` | `nombre_empleado` |
+| D3-T2 | `nota_amenaza` | `acuse_recepcion` |
+| Climax 1 | `botella_vino` | `canal_fino` |
+| Climax 2 | `sello_lacre` | `extremo_truncado` |
+
+D2-T1 route B reverses the first two rows (present `casquillo_fogueo`, follow up `plano_hotel`). The plan target is calibrated to the vertical `RAMAL 204–304` cutaway at `[35, 14, 53, 85]`; the right-side Suite 304 inset is not clickable for this contradiction.
+
+The D2-T2 freight-log target is calibrated to both highlighted B-17 rows at `[4, 40, 96, 57]`, including the time column and the full row width on `assets/examine_registro.webp`.
+
+## 6. Side Effects
 
 - Overlay is a `.game-modal`, so it must hide during fail dialogue or Space/Enter cannot advance.
 - Authors overlay bounds on the generated `examine_*.webp` (Case 4 plates are already 16:9, so letterboxing is not the usual miss). Regression: [[tests/case/Case4PresentPointZones.test.ts]].
 
-## 6. Related Modules
+## 7. Related Modules
 
 [[src/engine/Private/PresentPoint.ts]], [[src/engine/Private/TrialPresent.ts]], [[src/engine/Private/TrialClimaxPresent.ts]], [[docs/architecture/case-scripting.md#Case 4 script fields (beyond Case 3)]]

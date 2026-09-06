@@ -10,43 +10,94 @@ describe('Case 4 investigation hotspot geometry', () => {
   const es = getCaseScript('es', 'case4');
   const en = getCaseScript('en', 'case4');
 
-  it('places boxes on the 16:9 cover crop of each hotel background', () => {
-    expect(es.investigation.hotel_lobby.hotspots.map(geom)).toEqual([
-      { id: 'hotspot_recepcion', x: 46, y: 40, w: 44, h: 42 },
-      { id: 'hotspot_candelabro', x: 42, y: 8, w: 16, h: 20 }
-    ]);
-    expect(es.investigation.hotel_suite.hotspots.map(geom)).toEqual([
-      { id: 'hotspot_cuerpo', x: 28, y: 72, w: 36, h: 26 },
-      { id: 'hotspot_puerta', x: 2, y: 6, w: 24, h: 68 },
-      { id: 'hotspot_radiador', x: 34, y: 42, w: 16, h: 36 },
-      { id: 'hotspot_cesto', x: 86, y: 52, w: 14, h: 32 },
-      { id: 'hotspot_almohada', x: 64, y: 54, w: 20, h: 26 }
-    ]);
-    expect(es.investigation.hotel_terraza.hotspots.map(geom)).toEqual([
-      { id: 'hotspot_barra', x: 2, y: 36, w: 60, h: 40 }
-    ]);
-    expect(es.investigation.hotel_sotano.hotspots.map(geom)).toEqual([
-      { id: 'hotspot_caldera', x: 54, y: 32, w: 38, h: 52 }
-    ]);
-    expect(es.investigation.hotel_suite204.hotspots.map(geom)).toEqual([
-      { id: 'hotspot_radiador204', x: 62, y: 46, w: 26, h: 48 },
-      { id: 'hotspot_armario', x: 6, y: 8, w: 52, h: 78 }
-    ]);
-    expect(es.investigation.hotel_cava.hotspots.map(geom)).toEqual([
-      { id: 'hotspot_estanteria', x: 8, y: 16, w: 90, h: 72 }
-    ]);
-    expect(es.investigation.hotel_azotea.hotspots.map(geom)).toEqual([
-      { id: 'hotspot_baul', x: 38, y: 52, w: 22, h: 34 }
-    ]);
+  it('places every box on the painted object in the cover-cropped scene', () => {
+    const expected: Record<string, ReturnType<typeof geom>[]> = {
+      detention: [
+        { id: 'botija_spot', x: 20, y: 10, w: 60, h: 65 },
+        { id: 'phone_spot', x: 88, y: 15, w: 10, h: 45 }
+      ],
+      hotel_lobby: [
+        { id: 'hotspot_libro', x: 52, y: 58, w: 15, h: 16 },
+        { id: 'hotspot_plano', x: 64, y: 58, w: 27, h: 24 },
+        { id: 'hotspot_programa', x: 47, y: 53, w: 8, h: 15 }
+      ],
+      hotel_suite: [
+        { id: 'hotspot_cuerpo', x: 29, y: 81, w: 70, h: 19 },
+        { id: 'hotspot_almohada', x: 34, y: 84, w: 20, h: 15 },
+        { id: 'hotspot_recibidor', x: 18, y: 4, w: 13, h: 75 },
+        { id: 'hotspot_cierre', x: 5, y: 20, w: 10, h: 34 },
+        { id: 'hotspot_radiador', x: 37, y: 40, w: 14, h: 37 },
+        { id: 'hotspot_cesto', x: 87, y: 53, w: 13, h: 31 },
+        { id: 'hotspot_cubeta', x: 67, y: 72, w: 15, h: 21 }
+      ],
+      hotel_terraza: [
+        { id: 'hotspot_barra', x: 0, y: 43, w: 67, h: 36 },
+        { id: 'hotspot_sombrillas', x: 58, y: 12, w: 42, h: 35 }
+      ],
+      hotel_sotano: [
+        { id: 'hotspot_conducto', x: 38, y: 0, w: 17, h: 60 },
+        { id: 'hotspot_inventario', x: 5, y: 23, w: 30, h: 32 },
+        { id: 'hotspot_banco', x: 6, y: 59, w: 41, h: 31 },
+        { id: 'hotspot_cenizas', x: 50, y: 71, w: 50, h: 29 }
+      ],
+      hotel_suite204: [
+        { id: 'hotspot_radiador204', x: 64, y: 47, w: 24, h: 53 },
+        { id: 'hotspot_mesa', x: 5, y: 67, w: 30, h: 33 },
+        { id: 'hotspot_armario', x: 16, y: 0, w: 46, h: 67 },
+        { id: 'hotspot_recibo', x: 15, y: 72, w: 9, h: 9 }
+      ],
+      delegacion: [
+        { id: 'hotspot_expediente', x: 10, y: 24, w: 18, h: 32 }
+      ],
+      hotel_cava: [
+        { id: 'hotspot_libro', x: 0, y: 63, w: 28, h: 20 },
+        { id: 'hotspot_botella', x: 40, y: 47, w: 12, h: 42 },
+        { id: 'hotspot_cierre', x: 50, y: 83, w: 8, h: 8 },
+        { id: 'hotspot_lacre', x: 41, y: 45, w: 11, h: 12 },
+        { id: 'hotspot_estanteria', x: 70, y: 0, w: 30, h: 65 }
+      ],
+      hotel_lobby_d3: [
+        { id: 'hotspot_libro_d3', x: 52, y: 58, w: 15, h: 16 },
+        { id: 'hotspot_plano_d3', x: 64, y: 58, w: 27, h: 24 }
+      ],
+      detention_d3: [
+        { id: 'botija_spot', x: 20, y: 10, w: 60, h: 65 },
+        { id: 'phone_spot', x: 88, y: 15, w: 10, h: 45 }
+      ],
+      delegacion_d3: [
+        { id: 'hotspot_maletin', x: 73, y: 17, w: 11, h: 9 }
+      ],
+      hotel_terraza_d2: [
+        { id: 'hotspot_lamina', x: 14, y: 49, w: 24, h: 18 },
+        { id: 'hotspot_sombrillas2', x: 58, y: 12, w: 42, h: 35 }
+      ],
+      hotel_azotea: [
+        { id: 'hotspot_etiqueta', x: 41, y: 63, w: 8, h: 11 },
+        { id: 'hotspot_faja', x: 44, y: 54, w: 8, h: 43 },
+        { id: 'hotspot_forro', x: 38, y: 86, w: 20, h: 12 },
+        { id: 'hotspot_compartimiento', x: 38, y: 54, w: 18, h: 9 },
+        { id: 'hotspot_motor', x: 32, y: 8, w: 43, h: 45 }
+      ]
+    };
+
+    for (const [location, hotspots] of Object.entries(expected)) {
+      expect(es.investigation[location].hotspots.map(geom), location).toEqual(hotspots);
+    }
   });
 
-  it('reuses day-rotated lobby and terrace geometry', () => {
-    expect(es.investigation.hotel_lobby_d3.hotspots.map(geom)).toEqual(
-      es.investigation.hotel_lobby.hotspots.map(geom)
-    );
-    expect(es.investigation.hotel_terraza_d2.hotspots.map(geom)).toEqual(
-      es.investigation.hotel_terraza.hotspots.map(geom)
-    );
+  it('uses the daytime rooftop plate in both languages', () => {
+    expect(es.investigation.hotel_azotea.bg).toBe('assets/bg_hotel_azotea_day.webp');
+    expect(en.investigation.hotel_azotea.bg).toBe('assets/bg_hotel_azotea_day.webp');
+  });
+
+  it('keeps audited boxes inside the stage and tappable', () => {
+    for (const [loc, scene] of Object.entries(es.investigation)) {
+      for (const h of scene.hotspots) {
+        expect(h.x + h.w, `${loc}:${h.id}`).toBeLessThanOrEqual(100);
+        expect(h.y + h.h, `${loc}:${h.id}`).toBeLessThanOrEqual(100);
+        expect(h.w, h.id).toBeGreaterThanOrEqual(8);
+      }
+    }
   });
 
   it('keeps Spanish and English geometry identical', () => {

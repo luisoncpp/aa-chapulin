@@ -71,10 +71,14 @@ Modularized into private track collections under `src/audio/Private/tracks/`:
 7. `investigation_core` (120 BPM, 128 steps) - Tense D Minor underground vault / crime scene investigation with driving 16th pedal bass and knee-slaps ([[src/audio/Private/tracks/InvestigationTracks.ts]])
 8. `restaurante` (116 BPM, 128 steps) - Gentle F Major café bossa/jazz for Doña Florinda's restaurant and Jirafales banter ([[src/audio/Private/tracks/InvestigationTracks.ts]])
 9. `callejon_postal` (104 BPM, 128 steps) - Lazy G Major swinging walk for Don Jaimito's Tangamandapio postal cart ([[src/audio/Private/tracks/InvestigationTracks.ts]])
-10. `casa_clotilde` (98 BPM, 128 steps) - Eccentric G Minor gothic-romantic botanical lab theme for Doña Clotilde ([[src/audio/Private/tracks/InvestigationTracks.ts]])
+10. `casa_clotilde` (98 BPM, 128 steps) - Eccentric G Minor gothic-romantic theme for Doña Clotilde's Case 2 laboratory and Rufino's Case 4 Suite 204, in both languages ([[src/audio/Private/tracks/InvestigationTracks.ts]])
 11. `detention_center` (70 BPM, 128 steps) - Somber Bb Minor jailer's elegy for visitor room interviews ([[src/audio/Private/tracks/AtmosphereTracks.ts]])
 12. `suspense` (116 BPM, 128 steps) - D Minor final-showdown habanera for the climax verdict dilemma: staccato tango heartbeat groove, Dm-Bb-A7 harmonic minor pressure, and chromatic turnaround ([[src/audio/Private/tracks/AtmosphereTracks.ts]])
 13. `victory` (136 BPM, 128 steps) - Celebratory G Major case resolution march ("¡Síganme los buenos!") ([[src/audio/Private/tracks/AtmosphereTracks.ts]])
+
+### Terraza Bar
+
+`terraza_bar` in [[src/audio/Private/tracks/TerrazaBarTrack.ts]] plays at both Case 4 terrace locations in Spanish and English. Its 256 steps form 16 bars at 108 BPM, about 36 seconds. A minor lounge harmony, syncopated chords, sparse percussion, and four melodic phrases give the bar its own theme. Scene `bgm` selection uses the existing investigation audio flow.
 
 ## Invariants & Design Rules
 

@@ -1,34 +1,40 @@
 // @Architecture(descriptionShort="Case 4 climax, breakdown, verdict, and epilogue", type="data", icon="layers")
 /**
- * Case 4 Final Climax, Verdict, and Waiting-Room Epilogue.
+ * Case 4 Final Climax, Verdict, and Waiting-Room Epilogue (spec §13).
+ * Sin choices: dos stages con present + point, luego verdict y epílogo.
  */
 
 import type { ClimaxDefinition } from '../../../types/index.js';
 import { CASE4_EPILOGUE } from './climax_epilogue.js';
 import {
-  CASE4_CLIMAX_BOTTLE_POINT, CASE4_CLIMAX_STAGE1_SUCCESS,
-  CASE4_CLIMAX_STAGE2_SUCCESS, CASE4_CLIMAX_VERDICT
+  CASE4_ANILLO_POINT_TARGET, CASE4_CIERRE_POINT_TARGET,
+  CASE4_CLIMAX_STAGE1_SUCCESS, CASE4_CLIMAX_STAGE2_SUCCESS, CASE4_CLIMAX_VERDICT
 } from './climax_stage_success.js';
 
 const WAITING_ROOM_BG = 'assets/bg_waiting_room.webp';
 
 export const CASE4_CLIMAX: ClimaxDefinition = {
   dialogue: [
-    { speaker: 'RUFINO', text: '¡Pamplinas! ¡Nadie en esta sala puede demostrar científicamente cómo entró el cianuro a esa botella si el corcho estaba sellado con mi lacre intacto!', pose: 'rufino_panic', sfx: 'desk_slam', bgm: 'pursuit' },
-    { speaker: 'JUEZ', text: '¡Silencio en la sala! Licenciado Monchito: el testigo desafía a este tribunal. ¿Tiene la defensa en sus manos la prueba material que demuestra cómo se inoculó el veneno sin violar el corcho?', pose: 'judge_gavel', sfx: 'gavel' },
-    { speaker: 'DEFENSA', text: '¡La defensa tiene la prueba decisiva que destruirá la coartada del falso conde!', cutin: 'objection_protesto', sfx: 'desk_slam', pose: 'donramon_slam' }
+    { speaker: 'SUPER SAM', text: 'Facts, Your Honor. Hechos. El vino salió cerrado de la cava, lo transportó el acusado y un rato después mató a un hombre.', pose: 'supersam_slam', sfx: 'desk_slam', bgm: 'suspense' },
+    { speaker: 'SUPER SAM', text: 'El señor Rufián escondió un cadáver por cobarde. Eso es otro delito y va en otra factura. ¡La copa la sirvió alguien más!', pose: 'supersam_idle' },
+    { speaker: 'RUFINO', text: 'Yo recibí una botella sellada. La dejé sobre la mesa y no volví a tocarla hasta que mi invitado la abrió.', pose: 'rufino_smug' },
+    { speaker: 'DEFENSA', text: 'Esa botella se abrió delante de una testigo, con el lacre puesto. Eso no lo discute nadie.', pose: 'donramon_idle' },
+    { speaker: 'JUEZ', text: 'Entonces, licenciado, este tribunal necesita saber cómo entra un tóxico en una botella cerrada.', pose: 'judge_thinking' },
+    { speaker: 'CHAPULIN', text: '¡Ay, Monchito! ¿Y ahora quién podrá defendernos?', pose: 'chapulin_panic' },
+    { speaker: 'DEFENSA', text: 'Nosotros mismos, Chapulín. Señor juez: eso está contestado desde ayer. Lo que pasa es que la respuesta venía dentro de un corcho.', pose: 'donramon_point', bgm: 'pursuit' }
   ],
   presentTarget: ['botella_vino'],
   stages: [
     {
       presentTarget: ['botella_vino'],
-      prompt: '¿Qué prueba material demuestra cómo se inoculó el veneno sin violar el corcho?',
-      pointTarget: CASE4_CLIMAX_BOTTLE_POINT,
+      prompt: '¿Qué muestra el cierre de la V58-17 que no pudo hacer un sacacorchos?',
+      pointTarget: CASE4_CIERRE_POINT_TARGET,
       successDialogue: CASE4_CLIMAX_STAGE1_SUCCESS
     },
     {
       presentTarget: ['sello_lacre'],
-      prompt: '¿Con qué objeto específico se derritió y estampó el sello de lacre?',
+      prompt: '¿Qué prueba explica el fragmento que se quedó dentro del canal?',
+      pointTarget: CASE4_ANILLO_POINT_TARGET,
       successDialogue: CASE4_CLIMAX_STAGE2_SUCCESS
     }
   ],

@@ -69,7 +69,6 @@ const STAGE2_EN: DialogueLine[] = [
   { speaker: 'JUEZ', text: 'The court holds that possibility resolved.', pose: 'judge_gavel', sfx: 'gavel' },
   { speaker: 'DEFENSA', text: 'Mr. Rufián: you were left alone with a sealed bottle... and the piece missing from your ring was inside that cork.', pose: 'donramon_point', cutin: 'objection_toma_eso', sfx: 'whoosh', bgm: 'objection' },
   { speaker: 'RUFINO', text: '...', pose: 'rufino_panic' },
-  { speaker: 'NARRADOR', text: 'The monocle slips and hangs from its chain.' },
   { speaker: 'RUFINO', text: 'That cork belonged in the trash! He gave it to her! HE GAVE IT TO HER RIGHT IN FRONT OF ME, LIKE A PIECE OF CANDY!', pose: 'rufino_breakdown', sfx: 'desk_slam' }
 ];
 

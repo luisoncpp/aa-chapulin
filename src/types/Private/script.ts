@@ -128,6 +128,8 @@ export type FurnitureType = 'podium' | 'bench' | 'none';
 export interface DialogueLine {
   speaker?: SpeakerName;
   text: string;
+  /** Render this UI instruction immediately without typewriter audio. */
+  instant?: boolean;
   pose?: PoseName;
   bg?: string;
   bgm?: TrackName;

@@ -115,6 +115,10 @@ describe('InvestigationController', () => {
     controller.currentLocationCharPose = 'florinda_idle';
     controller.startExamineMode();
 
+    expect(queuedDialogues.at(-1)?.[0]).toMatchObject({
+      text: '🔍 Mueve el cursor y haz clic sobre los objetos para investigar.',
+      instant: true
+    });
     expect(controller.isExamineActive).toBe(true);
     expect(dom.hotspotsContainerEl.classList.contains('visible-hotspots')).toBe(true);
     expect(dom.dialogueBoxEl.classList.contains('examine-mode')).toBe(true);

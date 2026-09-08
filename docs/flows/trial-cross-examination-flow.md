@@ -17,7 +17,7 @@ Operational guide for courtroom litigation, cross-examinations, evidence present
 
 ### Courtroom Initialization
 1. `fadeThroughBlack` covers the investigation plate.
-2. While covered, `gameState.mode` switches to `'TRIAL'`, HUD hides investigation controls, and the first intro shot (`bg`, pose, furniture) is painted so the reveal is already the courtroom.
+2. While covered, `gameState.mode` switches to `'TRIAL'`, HUD hides investigation controls, and the first intro shot (`bg`, pose, furniture) is painted. If its images are still decoding, the shared fade waits for that atomic stage commit before revealing, so the reveal is already the courtroom.
 3. After the reveal, `queueDialogue` of the active day's intro (`getActiveTrial(script, trialDay).intro` via [[src/engine/Private/TrialDayRouter.ts]]).
 4. On intro complete: if `getActiveTrial(...).openingPresent` is set ([[src/engine/Private/TrialPresent.ts]]), open the Court Record in presentation mode. If `openingPresent.prompt` is defined, the question is displayed on `#climax-present-prompt` and `#court-record-present-prompt` while awaiting evidence. Correct evidence plays `successDialogue` then `startTestimony('testimony1')`; wrong evidence is a penalty and the Acta reopens. Otherwise `startTestimony('testimony1')` runs immediately.
 

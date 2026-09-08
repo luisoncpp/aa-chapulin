@@ -109,9 +109,9 @@ export class TrialController {
     );
   }
 
-  private enterCourtroom(): void {
+  private enterCourtroom(): void | Promise<void> {
     this.phase = 'TESTIMONY';
-    paintCourtroomPlate(this.deps, this.script);
+    return paintCourtroomPlate(this.deps, this.script);
   }
 
   public startTestimony(testimonyKey: 'testimony1' | 'testimony2'): void {

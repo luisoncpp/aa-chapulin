@@ -20,7 +20,7 @@ const POINT_EN: PointTargetContradiction = {
   ...CASE4_CADENA_POINT_TARGET,
   promptQuestion: 'What route lets this latch be worked from the corridor after preparing it?',
   zones: [
-    { id: 'puerta_lazo', bounds: [31, 18, 68, 68], isCorrect: true, failureDialogue: [] },
+    { id: 'puerta_lazo', bounds: [48, 38, 62, 67], isCorrect: true, failureDialogue: [] },
     { id: 'cadena_resto', bounds: [0, 0, 100, 100], isCorrect: false, failureDialogue: [
       { speaker: 'JUEZ', pose: 'judge_thinking', text: 'That point does not connect to the corridor, counselor. Review the whole route.', sfx: 'damage' },
       { speaker: 'SUPER SAM', pose: 'supersam_slam', text: 'And every minute of this court costs money, counselor!', sfx: 'desk_slam' },

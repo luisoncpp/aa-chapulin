@@ -136,7 +136,11 @@ export class InvestigationController {
     VisualEffects.hideFurniture(this.dom.courtFurnitureContainerEl);
 
     this.dom.speakerBoxEl.textContent = i18n.t.examineTitle;
-    this.onQueueDialogue([{ speaker: i18n.t.examineTitle, text: i18n.t.examinePrompt }]);
+    this.onQueueDialogue([{
+      speaker: i18n.t.examineTitle,
+      text: i18n.t.examinePrompt,
+      instant: true
+    }]);
   }
 
   public exitExamineMode(): void {

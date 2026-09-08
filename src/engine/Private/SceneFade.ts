@@ -9,13 +9,19 @@ export const SCENE_FADE_MS = 500;
 
 export function fadeThroughBlack(
   flashEl: HTMLElement,
-  onCovered: () => void,
+  onCovered: () => void | Promise<void>,
   onRevealed: () => void
 ): void {
   coverWithBlack(flashEl);
   setTimeout(/*swapWhileCovered*/ () => {
-    onCovered();
-    uncoverFromBlack(flashEl, onRevealed);
+    const plateReady = onCovered();
+    if (!plateReady) {
+      uncoverFromBlack(flashEl, onRevealed);
+      return;
+    }
+    void plateReady.then(/*revealWhenReady*/ () => {
+      uncoverFromBlack(flashEl, onRevealed);
+    });
   }, /*delayInMs=*/ SCENE_FADE_MS);
 }
 

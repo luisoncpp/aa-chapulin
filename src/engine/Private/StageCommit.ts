@@ -30,7 +30,7 @@ export function presentDialogueVisuals(
   dom: DomElements,
   line: DialogueLine,
   isTrialMode: boolean
-): void {
+): void | Promise<void> {
   const generation = ++commitGeneration;
   const pose = VisualEffects.resolveEffectivePose(line, isTrialMode);
   if (!pose) VisualEffects.hideCharacter(dom.charSpriteEl);
@@ -40,10 +40,10 @@ export function presentDialogueVisuals(
     VisualEffects.updateStagingForLine(dom, line, isTrialMode);
   };
   const waits = collectLineUrls(dom, line, isTrialMode).map(decodeUrl);
-  scheduleCommit(waits, apply);
+  return scheduleCommit(waits, apply);
 }
 
-function scheduleCommit(waits: Array<Promise<void> | null>, apply: () => void): void {
+function scheduleCommit(waits: Array<Promise<void> | null>, apply: () => void): void | Promise<void> {
   const pending = waits.filter((wait): wait is Promise<void> => wait !== null);
   if (pending.length === 0) {
     apply();
@@ -51,6 +51,7 @@ function scheduleCommit(waits: Array<Promise<void> | null>, apply: () => void): 
     return;
   }
   idle = Promise.all(pending).then(apply);
+  return idle;
 }
 
 // fallow-ignore-next-line complexity

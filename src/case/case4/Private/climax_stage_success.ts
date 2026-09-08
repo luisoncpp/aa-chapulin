@@ -74,7 +74,6 @@ export const CASE4_CLIMAX_STAGE2_SUCCESS: DialogueLine[] = [
   { speaker: 'JUEZ', text: 'El tribunal da por resuelta esa posibilidad.', pose: 'judge_gavel', sfx: 'gavel' },
   { speaker: 'DEFENSA', text: 'Señor Rufián: usted se quedó solo con una botella cerrada... y el pedazo que le falta a su anillo estaba dentro de ese corcho.', pose: 'donramon_point', cutin: 'objection_toma_eso', sfx: 'whoosh', bgm: 'objection' },
   { speaker: 'RUFINO', text: '...', pose: 'rufino_panic' },
-  { speaker: 'NARRADOR', text: 'El monóculo se desprende y queda colgando de su cadena.' },
   { speaker: 'RUFINO', text: '¡Ese cierre debía irse a la basura! ¡Se lo dio a ella! ¡SE LO DIO A ELLA DELANTE DE MÍ, COMO SI FUERA UN CARAMELO!', pose: 'rufino_breakdown', sfx: 'desk_slam' }
 ];
 

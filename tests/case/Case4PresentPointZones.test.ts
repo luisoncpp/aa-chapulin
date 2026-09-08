@@ -21,10 +21,10 @@ function hitsCorrect(target: PointTargetContradiction, x: number, y: number): bo
 
 describe('Case 4 Present & Point zones vs examine plates', () => {
   it('points the chain loop route from corridor to edge', () => {
-    expect(correctBounds(CASE4_CADENA_POINT_TARGET)).toEqual([31, 18, 68, 68]);
-    expect(hitsCorrect(CASE4_CADENA_POINT_TARGET, 60, 35)).toBe(true);
+    expect(correctBounds(CASE4_CADENA_POINT_TARGET)).toEqual([48, 38, 62, 67]);
+    expect(hitsCorrect(CASE4_CADENA_POINT_TARGET, 54, 50)).toBe(true);
     expect(hitsCorrect(CASE4_CADENA_POINT_TARGET, 10, 80)).toBe(false);
-    expect(isInsideBounds([31, 18, 68, 68], 32, 22)).toBe(true);
+    expect(isInsideBounds([48, 38, 62, 67], 50, 42)).toBe(true);
   });
 
   it('covers the labeled vertical steam stack, not the side rooms or boiler fire', () => {

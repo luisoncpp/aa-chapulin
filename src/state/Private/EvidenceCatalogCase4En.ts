@@ -41,9 +41,6 @@ export const CASE4_EVIDENCE_EN: Record<string, EvidenceItem> = {
     name: 'Crime Photo',
     icon: 'assets/foto_suite304.webp',
     desc: '23:30 image: body, pierced pillow, torn suit, glass, bottle, and key on the table.'
-  }, {
-    imageAsset: 'assets/examine_foto.webp',
-    caption: 'Suite 304 table: secured glass and bottle, ordinary key, pierced pillow.'
   }),
   candado_cadena: ev('candado_cadena', {
     name: 'Chain Latch',

@@ -44,6 +44,15 @@ export class Typewriter {
     }, /*delayInMs=*/ 28);
   }
 
+  public showImmediately(text: string): void {
+    this.stop();
+    this.fullText = text;
+    this.typeIdx = text.length;
+    this.onCompleteCallback = null;
+    this.targetEl.textContent = text;
+    fitDialogueFontSize(this.targetEl, text);
+  }
+
   // @Section(Immediate Completion)
   public completeImmediately(): void {
     if (!this.isTyping) return;

@@ -22,13 +22,13 @@ describe('Case 4 investigation hotspot geometry', () => {
         { id: 'hotspot_programa', x: 47, y: 53, w: 8, h: 15 }
       ],
       hotel_suite: [
-        { id: 'hotspot_cuerpo', x: 29, y: 81, w: 70, h: 19 },
-        { id: 'hotspot_almohada', x: 34, y: 84, w: 20, h: 15 },
-        { id: 'hotspot_recibidor', x: 18, y: 4, w: 13, h: 75 },
-        { id: 'hotspot_cierre', x: 5, y: 20, w: 10, h: 34 },
-        { id: 'hotspot_radiador', x: 37, y: 40, w: 14, h: 37 },
-        { id: 'hotspot_cesto', x: 87, y: 53, w: 13, h: 31 },
-        { id: 'hotspot_cubeta', x: 67, y: 72, w: 15, h: 21 }
+        { id: 'hotspot_cuerpo', x: 54, y: 56, w: 35, h: 38 },
+        { id: 'hotspot_almohada', x: 68, y: 64, w: 15, h: 17 },
+        { id: 'hotspot_recibidor', x: 10, y: 4, w: 29, h: 64 },
+        { id: 'hotspot_cierre', x: 2, y: 28, w: 9, h: 21 },
+        { id: 'hotspot_radiador', x: 72, y: 27, w: 14, h: 26 },
+        { id: 'hotspot_cesto', x: 84, y: 43, w: 15, h: 29 },
+        { id: 'hotspot_cubeta', x: 89, y: 77, w: 11, h: 22 }
       ],
       hotel_terraza: [
         { id: 'hotspot_barra', x: 0, y: 43, w: 67, h: 36 },

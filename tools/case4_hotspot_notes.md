@@ -1,6 +1,6 @@
 # Case 4 hotspot notes (stage percentages)
 
-Boxes below are **percentages of the 960×540 investigation stage** after CSS `background-size: cover` + center on the 1536×1024 (3:2) plates. Cover is width-fitted: ~80px (~7.8125% of plate height) cropped equally from top and bottom. X matches plate X. Convert plate-Y with `stageY = (plateY - 7.8125) / 84.375 * 100`.
+Boxes below are **percentages of the 960×540 investigation stage** after CSS `background-size: cover` + center. Legacy Case 4 plates are 1536×1024 (3:2) and use the cover conversion below. Suite 304 is the approved 1536×864 (16:9) plate, so its coordinates map directly to the full rendered image.
 
 Spanish and English copies use **identical** `id, x, y, w, h`. Examine-plate Present & Point bounds are percent of the 960×540 `examine_*.webp`.
 
@@ -12,15 +12,15 @@ Measured 2026-09-05 on rewritten plates.
 - `hotspot_plano` / `hotspot_plano_d3`: `64, 58, 27, 24` — FLOOR PLAN sheet
 - `hotspot_programa`: `47, 53, 8, 15` — GALA PROGRAM card (not the hallway)
 
-## `bg_hotel_suite.webp` (Suite 304)
+## `bg_hotel_suite.webp` (Suite 304, 16:9)
 
-- `hotspot_cuerpo`: `29, 81, 70, 19` — body and side-table evidence along the lower scene
-- `hotspot_almohada`: `34, 84, 20, 15` — pierced pillow (not the ice bucket)
-- `hotspot_recibidor`: `18, 4, 13, 75` — foyer/bathroom through the open door
-- `hotspot_cierre`: `5, 20, 10, 34` — damaged latch on the door leaf
-- `hotspot_radiador`: `37, 40, 14, 37`
-- `hotspot_cesto`: `87, 53, 13, 31`
-- `hotspot_cubeta`: `67, 72, 15, 21`
+- `hotspot_cuerpo`: `54, 56, 35, 38` — body outline and side-table evidence (key, bottle, shards)
+- `hotspot_almohada`: `68, 64, 15, 17` — pierced pillow; rendered after the body/table region
+- `hotspot_recibidor`: `10, 4, 29, 64` — hall and bathroom through the open doors on the left
+- `hotspot_cierre`: `2, 28, 9, 21` — door hole and damaged latch on the left door leaf
+- `hotspot_radiador`: `72, 27, 14, 26`
+- `hotspot_cesto`: `84, 43, 15, 29`
+- `hotspot_cubeta`: `89, 77, 11, 22`
 
 ## `bg_hotel_bar.webp` (`hotel_terraza`, `hotel_terraza_d2`)
 
@@ -67,7 +67,7 @@ Measured 2026-09-05 on rewritten plates.
 
 | File | Target | Box |
 |------|--------|-----|
-| `examine_cadena.webp` | Corridor-reachable loop (EMPAREJADA) | `[31, 18, 68, 68]` |
+| `examine_cadena.webp` | Corridor-reachable loop (EMPAREJADA) | `[48, 38, 62, 67]` |
 | `examine_plano.webp` | RAMAL 204–304 in the vertical cutaway | `[35, 14, 53, 85]` |
 | `examine_registro.webp` | Boxed B-17 rows | `[18, 38, 86, 54]` |
 | `examine_orden.webp` | Handwritten GORDON BOTIJA | `[18, 58, 80, 82]` |

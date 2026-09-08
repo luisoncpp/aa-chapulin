@@ -23,6 +23,29 @@ describe('SceneFade', () => {
     expect(dom.flashEl.classList.contains('hidden')).toBe(true);
   });
 
+  it('waits for the covered plate before revealing it', async () => {
+    const dom = setupDomHarness();
+    let releasePlate!: () => void;
+    const plateReady = new Promise<void>((resolve) => {
+      releasePlate = resolve;
+    });
+    const revealed = vi.fn();
+
+    fadeThroughBlack(
+      dom.flashEl,
+      /*paintPlate*/ () => plateReady,
+      revealed
+    );
+
+    vi.advanceTimersByTime(SCENE_FADE_MS * 2);
+    expect(revealed).not.toHaveBeenCalled();
+
+    releasePlate();
+    await plateReady;
+    vi.advanceTimersByTime(SCENE_FADE_MS);
+    expect(revealed).toHaveBeenCalledTimes(1);
+  });
+
   it('stays black after fadeToBlack', () => {
     const dom = setupDomHarness();
     const covered = vi.fn();

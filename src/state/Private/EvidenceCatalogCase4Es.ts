@@ -41,9 +41,6 @@ export const CASE4_EVIDENCE_ES: Record<string, EvidenceItem> = {
     name: 'Foto del Crimen',
     icon: 'assets/foto_suite304.webp',
     desc: 'Imagen de las 23:30: cuerpo, almohada perforada, traje desgarrado, copa, botella y llave en la mesita.'
-  }, {
-    imageAsset: 'assets/examine_foto.webp',
-    caption: 'Mesa de la 304: copa y botella aseguradas, llave ordinaria y almohada perforada.'
   }),
   candado_cadena: ev('candado_cadena', {
     name: 'Cierre de Cadena',

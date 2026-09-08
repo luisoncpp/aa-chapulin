@@ -10,7 +10,7 @@ export const CASE4_CADENA_POINT_TARGET: PointTargetContradiction = {
   promptQuestion: '¿Qué recorrido permite accionar este cierre desde el corredor después de prepararlo?',
   imageAsset: 'assets/examine_cadena.webp',
   zones: [
-    { id: 'puerta_lazo', bounds: [31, 18, 68, 68], isCorrect: true, failureDialogue: [] },
+    { id: 'puerta_lazo', bounds: [48, 38, 62, 67], isCorrect: true, failureDialogue: [] },
     { id: 'cadena_resto', bounds: [0, 0, 100, 100], isCorrect: false, failureDialogue: [
       { speaker: 'JUEZ', pose: 'judge_thinking', text: 'Ese punto no conecta con el corredor, licenciado. Revise el recorrido completo.', sfx: 'damage' },
       { speaker: 'SUPER SAM', pose: 'supersam_slam', text: '¡Cada minuto de esta corte cuesta dinero, counselor!', sfx: 'desk_slam' },

@@ -3,7 +3,6 @@ import { describe, expect, it } from 'vitest';
 import { getEvidenceCatalog } from '../../src/state/index.js';
 
 const EXAMINE_IDS = [
-  'foto_crimen',
   'candado_cadena',
   'plano_hotel',
   'botella_vino',
@@ -54,8 +53,7 @@ describe('Case4EvidenceCatalog', () => {
       expect(item?.detailedView?.imageAsset, id).toMatch(/^assets\/examine_/);
       expect(item?.detailedView?.caption, id).toBeTruthy();
     }
-    expect(catalog.foto_crimen?.detailedView?.imageAsset).toBe('assets/examine_foto.webp');
-    expect(catalog.foto_crimen?.detailedView?.clickableZones).toBeUndefined();
+    expect(catalog.foto_crimen?.detailedView).toBeUndefined();
     expect(catalog.nota_amenaza?.detailedView?.clickableZones).toHaveLength(4);
   });
 

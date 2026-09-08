@@ -28,8 +28,9 @@ Operational guide for player actions during the crime scene investigation phase.
 3. `#dialogue-box` and `#game-screen` receive class `.examine-mode` (shrunk 48px prompt plate, lowered controls dock).
 4. Investigation navigation (`#investigation-controls`) is hidden, and examine navigation (`#examine-nav` with "Volver" / Back button) is shown.
 5. Active character sprite is hidden (`hideCharacter()`) so the crime scene background is clear.
-6. Player moves the pointer during examine mode: `InvestigationController` compares the pointer coordinates with the 48px `#dialogue-box` rect and adds `examine-hud-hidden` while the pointer is over that frame. The plate remains click-through, so a hotspot underneath can still receive clicks. `#examine-tooltip` updates for the hotspot independently. Typewriter text blips stop while the plate is hidden.
-7. Player clicks hotspot:
+6. The examine prompt is rendered immediately (without the dialogue typewriter or text-blip SFX) because it is a persistent interaction hint, not spoken dialogue.
+7. Player moves the pointer during examine mode: `InvestigationController` compares the pointer coordinates with the 48px `#dialogue-box` rect and adds `examine-hud-hidden` while the pointer is over that frame. The plate remains click-through, so a hotspot underneath can still receive clicks. `#examine-tooltip` updates for the hotspot independently. Typewriter text blips stop while the plate is hidden.
+8. Player clicks hotspot:
    - SFX `'click'` plays.
    - `#examine-tooltip` is hidden.
    - `#hotspots-container` temporarily removes `.visible-hotspots` to prevent mid-dialogue re-triggers.
@@ -43,7 +44,7 @@ Operational guide for player actions during the crime scene investigation phase.
      - `notifyNewlyUnlocked()` checks for newly unlocked talk topics.
      - `checkInvestigationProgress()` updates trial button readiness.
      - `startExamineMode()` is called to return/stay in examine mode (re-enabling hotspots, restoring examine-mode CSS, showing `#examine-nav`, and resetting the examine prompt).
-8. Player exits examine mode:
+9. Player exits examine mode:
    - Player clicks "Volver" (`#btn-examine-back`).
    - `exitExamineMode()` deactivates examine mode, hides `#examine-nav`, reveals `#investigation-controls`, clears the examine prompt from the dialogue box, and restores the scene's resident character idle pose.
 

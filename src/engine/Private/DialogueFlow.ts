@@ -86,7 +86,11 @@ export class DialogueFlow {
     this.grantEvidenceIfPresent(line.addEvidence);
     this.updateEvidenceIfPresent(line.updateEvidence);
     this.unlockLocationIfPresent(line.unlockLocation);
-    this.deps.typewriter.start(line.text || '');
+    if (line.instant) {
+      this.deps.typewriter.showImmediately(line.text || '');
+    } else {
+      this.deps.typewriter.start(line.text || '');
+    }
     this.refreshAdvanceArrow();
   }
 

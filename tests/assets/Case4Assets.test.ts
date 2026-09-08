@@ -62,17 +62,23 @@ describe('Case 4 visual assets', () => {
     expect(src).toContain('process_evidence_grid');
     expect(src).toContain('process_unlabeled_evidence_grid');
     expect(src).toContain('case4_evidence_icons_raw.png');
-    expect(src).toMatch(
-      /process_unlabeled_evidence_grid\(\s*"case4_evidence_icons_raw\.png"\s*,\s*EV\s*,\s*\(\s*4\s*,\s*4\s*\)\s*\)/,
-    );
+    expect(src).toContain('process_unlabeled_evidence_grid("case4_evidence_icons_raw.png", grid_items, (4, 4))');
     expect(src).toContain('bg_hotel_lobby.jpg');
+    expect(src).toContain('bg_hotel_suite_v5.png');
     expect(src).toContain('bg_hotel_azotea_day.png');
-    expect(src).toContain('examine_foto.jpg');
+    expect(src).toContain('examine_foto_v3.png');
+    expect(src).toContain('cover_crop(source, (112, 84))');
     expect(src).toContain('examine_orden.jpg');
     expect(src).toContain('orden_servicios_icon_raw.png');
     expect(src).toContain('maruja_shock_raw.png');
     expect(src).toContain('rufino_breakdown_raw.png');
-    expect(src).toContain('foto_suite304_icon_raw.png');
+    expect(src).toContain('PHOTO_ICON_SOURCE');
+    expect(src).not.toContain('foto_suite304_icon_raw.png');
+    expect(src).toContain('argparse');
+    expect(src).toContain('--only');
+    expect(src).toContain('parse_selected_assets');
+    expect(src).toContain('all_output_stems');
+    expect(src).toContain('pair_outputs');
 
     const sharedPipeline = fs.readFileSync(path.join(ROOT, 'process_case3_assets.py'), 'utf8');
     expect(sharedPipeline).toContain('remove_grid_dividers');

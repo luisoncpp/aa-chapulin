@@ -14,25 +14,28 @@ import { setupDomHarness } from '../fakes/DomHarness.js';
 describe('DialogueFlow', () => {
   let dom: DomElements;
   let state: GameStateManager;
+  let soundEngine: SoundEngine;
+  let typewriter: Typewriter;
   let flow: DialogueFlow;
 
   beforeEach(() => {
     vi.useFakeTimers();
     dom = setupDomHarness();
     state = new GameStateManager();
-    const soundEngine = new SoundEngine();
+    soundEngine = new SoundEngine();
     soundEngine.init(new FakeAudioContext() as unknown as AudioContext);
     const midi = new MidiMusicComposer(soundEngine);
     const investigation = new InvestigationController({
       dom, state, script: CASE_SCRIPT, soundEngine, midiComposer: midi, onQueueDialogue: () => {}
     });
+    typewriter = new Typewriter(dom.dialogueTextEl, soundEngine);
     flow = new DialogueFlow({
       dom,
       state,
       getScript: () => CASE_SCRIPT,
       soundEngine,
       midiComposer: midi,
-      typewriter: new Typewriter(dom.dialogueTextEl, soundEngine),
+      typewriter,
       investigation,
       history: new DialogueHistory()
     });
@@ -83,6 +86,22 @@ describe('DialogueFlow', () => {
   it('hides the advance arrow for cross-examination statements rendered outside the queue', () => {
     flow.renderDialogueLine({ speaker: 'TRIPASECA', text: 'Yo lo vi.' });
     expect(dom.dialogueArrowEl.classList.contains('hidden')).toBe(true);
+  });
+
+  it('renders instant lines without starting the typewriter or chirping', () => {
+    const blipSpy = vi.spyOn(soundEngine, 'playTextBlip');
+
+    flow.renderDialogueLine({
+      speaker: 'CHAPULÍN',
+      text: '🔍 Mueve el cursor y haz clic sobre los objetos para investigar.',
+      instant: true
+    });
+
+    expect(dom.dialogueTextEl.textContent).toBe(
+      '🔍 Mueve el cursor y haz clic sobre los objetos para investigar.'
+    );
+    expect(blipSpy).not.toHaveBeenCalled();
+    expect(typewriter.isTyping).toBe(false);
   });
 
   it('clears the speaker tag when a line omits speaker', () => {

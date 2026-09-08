@@ -4,7 +4,7 @@ Operational guide for deep inspection of Court Record items (Case 4).
 
 ## 1. Trigger
 
-Player opens the Acta (`#btn-court-record` or trial Present), selects an inventory item that defines `detailedView`, and clicks **Examinar Detalle** (`#btn-evidence-examine`).
+Player opens the Acta (`#btn-court-record` or trial Present), selects an inventory item that defines `detailedView`, and clicks **Examinar Detalle** (`#btn-evidence-examine`). Items without `detailedView` show only their normal Court Record entry.
 
 ## 2. Entry Point
 
@@ -29,9 +29,10 @@ Player opens the Acta (`#btn-court-record` or trial Present), selects an invento
 
 ## 5. Case 4 Examine Items
 
+Only the items below expose **Examinar Detalle**. Other Case 4 evidence, including `foto_crimen`, intentionally has no `detailedView`.
+
 | ID | Asset |
 |----|-------|
-| `foto_crimen` | `assets/examine_foto.webp` |
 | `candado_cadena` | `assets/examine_cadena.webp` |
 | `plano_hotel` | `assets/examine_plano.webp` |
 | `botella_vino` | `assets/examine_botella.webp` |

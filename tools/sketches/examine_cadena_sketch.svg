@@ -1,0 +1,187 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1440" height="810" viewBox="0 0 1440 810" role="img" aria-labelledby="title desc">
+<title id="title">Examine cadena: boceto de continuidad, puerta 304</title>
+<desc id="desc">Corrected interior views: no suite number on the inside. Hinges at left; knob, slide plate and frame anchor at right. The door swings inward toward the viewer, with the hinge axis fixed at left and the free edge advancing into the room. The first door is open, the middle door is half open, and the third is closed with its chain engaged. The same door group and hardware are projected together. Each chain has ten equal links and a centerline length of 180 drawing units. The rope stays on the same latch edge, with retained fibers shown in the last state. Flat-color sketch for regeneration; annotations are not final game artwork.</desc>
+
+<defs>
+ <style>
+ .ink{stroke:#30251f;stroke-width:3;stroke-linejoin:round;stroke-linecap:round}
+ .fine{stroke:#30251f;stroke-width:1.8;stroke-linejoin:round;stroke-linecap:round}
+ .guide{fill:none;stroke:#24747a;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+ .rope{fill:none;stroke:#f4d799;stroke-width:3.7;stroke-linejoin:round;stroke-linecap:round}
+ text{font-family:Arial,sans-serif;fill:#30251f}
+ .note{font-size:17px;fill:#5a5146}
+ .small{font-size:13px;font-weight:700;letter-spacing:.6px}
+ </style>
+ <marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0 0 6 3 0 6" fill="none" stroke="#24747a" stroke-width="1.4"/></marker>
+ <clipPath id="scene-clip"><rect width="400" height="500" rx="2"/></clipPath>
+ <g id="screw" class="fine"><circle r="3.2" fill="#e9c477"/><path d="M-1.5 1.5 1.5-1.5"/></g>
+ <g id="rail" class="ink">
+  <rect x="84" y="145" width="76" height="48" rx="5" fill="#b38945"/>
+  <path d="M88 149H155V156H88Z" fill="#d5ae63" stroke="none"/>
+  <path d="M98 165H142A8 8 0 1 1 142 181H98Z" fill="#49392a"/>
+  <path d="M99 170H143" fill="none" stroke="#e0b66a" stroke-width="2"/>
+  <use xlink:href="#screw" x="92" y="153"/><use xlink:href="#screw" x="152" y="153"/>
+  <use xlink:href="#screw" x="92" y="186"/><use xlink:href="#screw" x="152" y="186"/>
+ </g>
+ <g id="door" class="ink">
+  <path d="M70-10H384V511H70Z" fill="#79502e"/>
+  <path d="M70-10H80V511H70Z" fill="#a27542"/>
+  <path d="M162 26H350V319H162Z" fill="#50391f"/>
+  <path d="M170 34H342V311H170Z" fill="#6a4728"/>
+  <path d="M174 38H339V309" fill="none" stroke="#996c3c" stroke-width="2"/>
+  <path d="M96 365H352V471H96Z" fill="#50391f"/>
+  <path d="M104 373H344V463H104Z" fill="#6a4728"/>
+  <path d="M81 340H382" fill="none" stroke="#bb8950" stroke-width="3"/>
+
+
+
+  <use xlink:href="#rail"/>
+  <rect x="100" y="272" width="25" height="82" rx="8" fill="#b38945"/>
+  <use xlink:href="#screw" x="112.5" y="280"/><use xlink:href="#screw" x="112.5" y="345"/>
+  <path d="M112 325a3 3 0 1 0-2 0l-1 8h5l-1-8" fill="#30251f" stroke-width="1.3"/>
+  <ellipse cx="112" cy="301" rx="17" ry="18" fill="#91652d"/>
+  <ellipse cx="107" cy="299" rx="14" ry="17" fill="#d9ae5c"/>
+  <path d="M103 288Q97 294 102 303" fill="none" stroke="#f4d38c" stroke-width="3"/>
+ </g>
+ <g id="corridor" class="ink">
+  <rect width="400" height="500" fill="#d7ad69" stroke="none"/>
+  <path d="M55 0 125 95V421L55 464Z" fill="#b58045"/>
+  <path d="M56 293 125 322V421L55 464Z" fill="#705036"/>
+  <path d="M56 299 125 327M77 309V449M103 321V432" fill="none"/>
+  <path d="M55 464 125 420H400V500H55Z" fill="#b3804c"/>
+  <path d="M71 469 129 429H262L319 500H68Z" fill="#a6533d"/>
+  <path d="M79 474 132 436H256" fill="none" stroke="#e1b76a" stroke-width="3"/>
+  <path d="M67 108V128Q82 139 84 121M72 106 76 84 87 87 96 111Z" fill="#f8d889"/>
+  <path d="M111 145 121 151V306L111 302Z" fill="#755333"/>
+ </g>
+ <g id="frame" class="ink">
+  <path d="M0 0H57V500H0Z" fill="#d2ab6c" stroke="none"/>
+  <path d="M12 0H57V500H12Z" fill="#6b482b"/>
+  <path d="M20 0H46V500H20Z" fill="#916637"/>
+  <path d="M47 0H57V500H47Z" fill="#463423"/>
+  <rect x="32" y="148" width="24" height="53" rx="8" fill="#b38945"/>
+  <use xlink:href="#screw" x="44" y="155"/><use xlink:href="#screw" x="44" y="194"/>
+  <ellipse cx="44" cy="173" rx="5" ry="8" fill="#403125"/>
+ </g>
+ <g id="pin" class="ink"><ellipse rx="7" ry="8" fill="#e3ba69"/><ellipse rx="3" ry="4" fill="#57402a" stroke-width="1.5"/></g>
+</defs>
+
+<rect width="1440" height="810" fill="#f5ecd9"/>
+<path d="M28 28H1412V782H28Z" fill="none" stroke="#b9a98b" stroke-width="1.5"/>
+<text x="48" y="61" font-size="28" font-weight="700">Puerta 304 · Cierre de cadena</text>
+<text x="1391" y="58" text-anchor="end" class="small" fill="#24747a">BOCETO PARA REGENERACIÓN · 16:9</text>
+
+
+<text x="48" y="110" font-size="23" font-weight="700">1. Preparación interior</text><text x="48" y="134" class="note">Abre hacia dentro de la habitación</text>
+<g transform="translate(48 152)"><rect x="-3" y="-3" width="406" height="506" rx="3" fill="#30251f"/><g clip-path="url(#scene-clip)"><g transform="translate(400 0) scale(-1 1)">
+<use xlink:href="#corridor"/><use xlink:href="#frame"/>
+<g transform="matrix(0.68 -0.12 0 1 121.59999999999998 45.6)"><use xlink:href="#door"/></g>
+<g class="ink" fill="none">
+<ellipse cx="51.20" cy="178.60" rx="11.2" ry="4" transform="rotate(36.92 51.20 178.60)" stroke="#30251f" stroke-width="5"/>
+<ellipse cx="51.20" cy="178.60" rx="11.2" ry="4" transform="rotate(36.92 51.20 178.60)" stroke="#d4b66f" stroke-width="2.6"/>
+<ellipse cx="65.92" cy="188.85" rx="11.2" ry="2.6" transform="rotate(32.65 65.92 188.85)" stroke="#30251f" stroke-width="5"/>
+<ellipse cx="65.92" cy="188.85" rx="11.2" ry="2.6" transform="rotate(32.65 65.92 188.85)" stroke="#d4b66f" stroke-width="2.6"/>
+<ellipse cx="81.49" cy="197.92" rx="11.2" ry="4" transform="rotate(27.66 81.49 197.92)" stroke="#30251f" stroke-width="5"/>
+<ellipse cx="81.49" cy="197.92" rx="11.2" ry="4" transform="rotate(27.66 81.49 197.92)" stroke="#d4b66f" stroke-width="2.6"/>
+<ellipse cx="97.89" cy="205.51" rx="11.2" ry="2.6" transform="rotate(21.86 97.89 205.51)" stroke="#30251f" stroke-width="5"/>
+<ellipse cx="97.89" cy="205.51" rx="11.2" ry="2.6" transform="rotate(21.86 97.89 205.51)" stroke="#d4b66f" stroke-width="2.6"/>
+<ellipse cx="114.79" cy="211.22" rx="11.2" ry="4" transform="rotate(15.35 114.79 211.22)" stroke="#30251f" stroke-width="5"/>
+<ellipse cx="114.79" cy="211.22" rx="11.2" ry="4" transform="rotate(15.35 114.79 211.22)" stroke="#d4b66f" stroke-width="2.6"/>
+<ellipse cx="132.53" cy="214.90" rx="11.2" ry="2.6" transform="rotate(8.05 132.53 214.90)" stroke="#30251f" stroke-width="5"/>
+<ellipse cx="132.53" cy="214.90" rx="11.2" ry="2.6" transform="rotate(8.05 132.53 214.90)" stroke="#d4b66f" stroke-width="2.6"/>
+<ellipse cx="150.44" cy="216.24" rx="11.2" ry="4" transform="rotate(0.41 150.44 216.24)" stroke="#30251f" stroke-width="5"/>
+<ellipse cx="150.44" cy="216.24" rx="11.2" ry="4" transform="rotate(0.41 150.44 216.24)" stroke="#d4b66f" stroke-width="2.6"/>
+<ellipse cx="168.35" cy="215.16" rx="11.2" ry="2.6" transform="rotate(-7.24 168.35 215.16)" stroke="#30251f" stroke-width="5"/>
+<ellipse cx="168.35" cy="215.16" rx="11.2" ry="2.6" transform="rotate(-7.24 168.35 215.16)" stroke="#d4b66f" stroke-width="2.6"/>
+<ellipse cx="186.09" cy="211.73" rx="11.2" ry="4" transform="rotate(-14.58 186.09 211.73)" stroke="#30251f" stroke-width="5"/>
+<ellipse cx="186.09" cy="211.73" rx="11.2" ry="4" transform="rotate(-14.58 186.09 211.73)" stroke="#d4b66f" stroke-width="2.6"/>
+<ellipse cx="203.16" cy="206.19" rx="11.2" ry="2.6" transform="rotate(-21.21 203.16 206.19)" stroke="#30251f" stroke-width="5"/>
+<ellipse cx="203.16" cy="206.19" rx="11.2" ry="2.6" transform="rotate(-21.21 203.16 206.19)" stroke="#d4b66f" stroke-width="2.6"/>
+</g>
+<g transform="matrix(0.68 -0.12 0 1 121.59999999999998 45.6)"><use xlink:href="#pin" x="132" y="173"/>
+<path d="M135 173Q144 158 130 161Q124 167 132 177L85 188 69 192" stroke="#30251f" stroke-width="6" fill="none"/><path d="M135 173Q144 158 130 161Q124 167 132 177L85 188 69 192" class="rope"/>
+</g>
+<path d="M168.51999999999998 229.32 154.51999999999998 246.32V340Q154.51999999999998 360 143.51999999999998 347V249.32L165.51999999999998 226.32" stroke="#30251f" stroke-width="6" fill="none"/><path d="M168.51999999999998 229.32 154.51999999999998 246.32V340Q154.51999999999998 360 143.51999999999998 347V249.32L165.51999999999998 226.32" class="rope"/>
+</g>
+<rect x="45" y="391" width="105" height="29" rx="4" fill="#f5ecd9"/><text x="56" y="411" class="small">PASILLO</text><path d="M150 405H248.8" class="guide" marker-end="url(#arrow)"/>
+<rect x="30" y="232" width="159" height="48" rx="4" fill="#f5ecd9"/><text x="41" y="252" class="small">LAZO EN EL CANTO</text><text x="41" y="270" font-size="13">Mismo lado del pomo</text>
+<path d="M189 258H249.48000000000002" class="guide"/>
+</g></g>
+<text x="517" y="110" font-size="23" font-weight="700">2. Puerta medio abierta</text><text x="517" y="134" class="note">Hoja hacia el observador; pasillo al fondo</text>
+<g transform="translate(517 152)"><rect x="-3" y="-3" width="406" height="506" rx="3" fill="#30251f"/><g clip-path="url(#scene-clip)"><g transform="translate(400 0) scale(-1 1)">
+<use xlink:href="#corridor"/><use xlink:href="#frame"/>
+<g transform="matrix(0.76 -0.08 0 1 91.2 30.400000000000002)"><use xlink:href="#door"/></g>
+<g class="ink" fill="none">
+<ellipse cx="49.46" cy="180.22" rx="11.2" ry="4" transform="rotate(51.93 49.46 180.22)" stroke="#30251f" stroke-width="5"/>
+<ellipse cx="49.46" cy="180.22" rx="11.2" ry="4" transform="rotate(51.93 49.46 180.22)" stroke="#d4b66f" stroke-width="2.6"/>
+<ellipse cx="61.11" cy="193.96" rx="11.2" ry="2.6" transform="rotate(47.26 61.11 193.96)" stroke="#30251f" stroke-width="5"/>
+<ellipse cx="61.11" cy="193.96" rx="11.2" ry="2.6" transform="rotate(47.26 61.11 193.96)" stroke="#d4b66f" stroke-width="2.6"/>
+<ellipse cx="73.95" cy="206.47" rx="11.2" ry="4" transform="rotate(40.94 73.95 206.47)" stroke="#30251f" stroke-width="5"/>
+<ellipse cx="73.95" cy="206.47" rx="11.2" ry="4" transform="rotate(40.94 73.95 206.47)" stroke="#d4b66f" stroke-width="2.6"/>
+<ellipse cx="88.40" cy="217.26" rx="11.2" ry="2.6" transform="rotate(32.03 88.40 217.26)" stroke="#30251f" stroke-width="5"/>
+<ellipse cx="88.40" cy="217.26" rx="11.2" ry="2.6" transform="rotate(32.03 88.40 217.26)" stroke="#d4b66f" stroke-width="2.6"/>
+<ellipse cx="104.48" cy="225.16" rx="11.2" ry="4" transform="rotate(19.62 104.48 225.16)" stroke="#30251f" stroke-width="5"/>
+<ellipse cx="104.48" cy="225.16" rx="11.2" ry="4" transform="rotate(19.62 104.48 225.16)" stroke="#d4b66f" stroke-width="2.6"/>
+<ellipse cx="122.04" cy="228.84" rx="11.2" ry="2.6" transform="rotate(3.60 122.04 228.84)" stroke="#30251f" stroke-width="5"/>
+<ellipse cx="122.04" cy="228.84" rx="11.2" ry="2.6" transform="rotate(3.60 122.04 228.84)" stroke="#d4b66f" stroke-width="2.6"/>
+<ellipse cx="140.04" cy="227.27" rx="11.2" ry="4" transform="rotate(-13.39 140.04 227.27)" stroke="#30251f" stroke-width="5"/>
+<ellipse cx="140.04" cy="227.27" rx="11.2" ry="4" transform="rotate(-13.39 140.04 227.27)" stroke="#d4b66f" stroke-width="2.6"/>
+<ellipse cx="156.71" cy="220.97" rx="11.2" ry="2.6" transform="rotate(-27.34 156.71 220.97)" stroke="#30251f" stroke-width="5"/>
+<ellipse cx="156.71" cy="220.97" rx="11.2" ry="2.6" transform="rotate(-27.34 156.71 220.97)" stroke="#d4b66f" stroke-width="2.6"/>
+<ellipse cx="171.90" cy="211.19" rx="11.2" ry="4" transform="rotate(-37.63 171.90 211.19)" stroke="#30251f" stroke-width="5"/>
+<ellipse cx="171.90" cy="211.19" rx="11.2" ry="4" transform="rotate(-37.63 171.90 211.19)" stroke="#d4b66f" stroke-width="2.6"/>
+<ellipse cx="185.32" cy="199.33" rx="11.2" ry="2.6" transform="rotate(-44.87 185.32 199.33)" stroke="#30251f" stroke-width="5"/>
+<ellipse cx="185.32" cy="199.33" rx="11.2" ry="2.6" transform="rotate(-44.87 185.32 199.33)" stroke="#d4b66f" stroke-width="2.6"/>
+</g>
+<g transform="matrix(0.76 -0.08 0 1 91.2 30.400000000000002)"><use xlink:href="#pin" x="132" y="173"/>
+<path d="M135 173Q144 158 130 161Q124 167 132 177L85 188 69 192" stroke="#30251f" stroke-width="6" fill="none"/><path d="M135 173Q144 158 130 161Q124 167 132 177L85 188 69 192" class="rope"/>
+</g>
+<path d="M143.64 216.88 129.64 233.88V340Q129.64 360 118.63999999999999 347V236.88L140.64 213.88" stroke="#30251f" stroke-width="6" fill="none"/><path d="M143.64 216.88 129.64 233.88V340Q129.64 360 118.63999999999999 347V236.88L140.64 213.88" class="rope"/>
+</g>
+<rect x="45" y="391" width="105" height="29" rx="4" fill="#f5ecd9"/><text x="56" y="411" class="small">PASILLO</text><path d="M150 405H273.6" class="guide" marker-end="url(#arrow)"/>
+<rect x="30" y="232" width="159" height="48" rx="4" fill="#f5ecd9"/><text x="41" y="252" class="small">LAZO EN EL CANTO</text><text x="41" y="270" font-size="13">Mismo lado del pomo</text>
+<path d="M189 258H274.36" class="guide"/>
+</g></g>
+<text x="986" y="110" font-size="23" font-weight="700">3. Cadena enganchada</text><text x="986" y="134" class="note">Antes de forzar la placa</text>
+<g transform="translate(986 152)"><rect x="-3" y="-3" width="406" height="506" rx="3" fill="#30251f"/><g clip-path="url(#scene-clip)"><g transform="translate(400 0) scale(-1 1)">
+<use xlink:href="#corridor"/><use xlink:href="#frame"/>
+<path d="M57 0H70V500H57Z" fill="#342b24"/>
+<g transform="matrix(1 0 0 1 0 0)"><use xlink:href="#door"/></g>
+<g class="ink" fill="none">
+<ellipse cx="45.51" cy="182.08" rx="11.2" ry="4" transform="rotate(80.27 45.51 182.08)" stroke="#30251f" stroke-width="5"/>
+<ellipse cx="45.51" cy="182.08" rx="11.2" ry="4" transform="rotate(80.27 45.51 182.08)" stroke="#d4b66f" stroke-width="2.6"/>
+<ellipse cx="48.75" cy="199.78" rx="11.2" ry="2.6" transform="rotate(78.89 48.75 199.78)" stroke="#30251f" stroke-width="5"/>
+<ellipse cx="48.75" cy="199.78" rx="11.2" ry="2.6" transform="rotate(78.89 48.75 199.78)" stroke="#d4b66f" stroke-width="2.6"/>
+<ellipse cx="52.53" cy="217.38" rx="11.2" ry="4" transform="rotate(76.69 52.53 217.38)" stroke="#30251f" stroke-width="5"/>
+<ellipse cx="52.53" cy="217.38" rx="11.2" ry="4" transform="rotate(76.69 52.53 217.38)" stroke="#d4b66f" stroke-width="2.6"/>
+<ellipse cx="57.23" cy="234.71" rx="11.2" ry="2.6" transform="rotate(72.39 57.23 234.71)" stroke="#30251f" stroke-width="5"/>
+<ellipse cx="57.23" cy="234.71" rx="11.2" ry="2.6" transform="rotate(72.39 57.23 234.71)" stroke="#d4b66f" stroke-width="2.6"/>
+<ellipse cx="64.20" cy="251.11" rx="11.2" ry="4" transform="rotate(57.29 64.20 251.11)" stroke="#30251f" stroke-width="5"/>
+<ellipse cx="64.20" cy="251.11" rx="11.2" ry="4" transform="rotate(57.29 64.20 251.11)" stroke="#d4b66f" stroke-width="2.6"/>
+<ellipse cx="77.86" cy="251.03" rx="11.2" ry="2.6" transform="rotate(-57.49 77.86 251.03)" stroke="#30251f" stroke-width="5"/>
+<ellipse cx="77.86" cy="251.03" rx="11.2" ry="2.6" transform="rotate(-57.49 77.86 251.03)" stroke="#d4b66f" stroke-width="2.6"/>
+<ellipse cx="84.82" cy="234.54" rx="11.2" ry="4" transform="rotate(-72.46 84.82 234.54)" stroke="#30251f" stroke-width="5"/>
+<ellipse cx="84.82" cy="234.54" rx="11.2" ry="4" transform="rotate(-72.46 84.82 234.54)" stroke="#d4b66f" stroke-width="2.6"/>
+<ellipse cx="89.52" cy="217.16" rx="11.2" ry="2.6" transform="rotate(-76.72 89.52 217.16)" stroke="#30251f" stroke-width="5"/>
+<ellipse cx="89.52" cy="217.16" rx="11.2" ry="2.6" transform="rotate(-76.72 89.52 217.16)" stroke="#d4b66f" stroke-width="2.6"/>
+<ellipse cx="93.30" cy="199.50" rx="11.2" ry="4" transform="rotate(-78.91 93.30 199.50)" stroke="#30251f" stroke-width="5"/>
+<ellipse cx="93.30" cy="199.50" rx="11.2" ry="4" transform="rotate(-78.91 93.30 199.50)" stroke="#d4b66f" stroke-width="2.6"/>
+<ellipse cx="96.54" cy="181.76" rx="11.2" ry="2.6" transform="rotate(-80.29 96.54 181.76)" stroke="#30251f" stroke-width="5"/>
+<ellipse cx="96.54" cy="181.76" rx="11.2" ry="2.6" transform="rotate(-80.29 96.54 181.76)" stroke="#d4b66f" stroke-width="2.6"/>
+</g>
+<g transform="matrix(1 0 0 1 0 0)"><use xlink:href="#pin" x="98" y="173"/>
+<path d="M99 178 85 188 77 200M81 196 73 198M81 196 77 207M81 196 85 203" class="rope"/>
+</g>
+<circle cx="83" cy="196" r="17" class="guide"/><path d="M98 207 226 309" class="guide"/><circle cx="291" cy="358" r="79" fill="#f4e4bd" stroke="#24747a" stroke-width="2"/><path d="M238 311H326V348L314 354 326 361V376H238Z" fill="#cba35d" class="ink"/><path d="M240 331H299V350H240" fill="#423326" class="ink"/><path d="M290 345 315 356 331 379M320 365 340 370M324 371 326 393M327 375 344 385M315 356 311 379" class="rope"/>
+</g>
+<text x="109" y="413" text-anchor="middle" class="small">FIBRAS RETENIDAS</text>
+</g></g>
+<path d="M48 683H1392" stroke="#b9a98b"/>
+<text x="48" y="712" font-size="18" font-weight="700">Continuidad para el dibujo final</text>
+<text x="48" y="740" class="note">Pomo y cierre a la derecha; bisagras a la izquierda.</text>
+<text x="48" y="764" class="note">El número 304 está solo en la cara exterior.</text>
+<text x="517" y="740" class="note">10 eslabones iguales en los tres estados.</text>
+<text x="517" y="764" class="note">La hoja abre hacia dentro; la placa gira con ella.</text>
+<text x="986" y="740" class="note">Pasillo al fondo; alfombra solo a nivel del suelo.</text>
+<text x="986" y="764" class="note">Color plano, sombras simples, contornos de tinta.</text>
+</svg>

@@ -7,6 +7,7 @@ import type { DialogueLine, Testimony } from '../../../types/index.js';
 import { CASE4_CADENA_POINT_TARGET, CASE4_D1_T1_POINT_SUCCESS } from './trial_day1_success.js';
 
 export const CASE4_TRIAL_INTRO: DialogueLine[] = [
+  { bg: 'assets/bg_waiting_room.webp', furniture: 'none', speaker: 'NARRADOR', text: '25 de octubre, 3:00 PM. Tribunal Superior - Sala de Espera.', bgm: 'trial' },
   { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_gavel', text: '¡Silencio en la sala! Se abre la audiencia por la muerte del huésped de la Suite 304.', sfx: 'gavel', bgm: 'trial' },
   { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_idle', text: 'Un muerto, un arma y un hombre encerrado con los dos. Time is money, Your Honor: esta corte cobra por hora y yo también.' },
   { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_slam', text: '¡Y encima el acusado es fontanero! ¡Un señor que se gana la vida metiendo la mano donde no debe!', sfx: 'desk_slam' },

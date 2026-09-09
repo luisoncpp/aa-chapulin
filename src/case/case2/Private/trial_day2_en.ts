@@ -6,6 +6,7 @@
 import type { DialogueLine, Testimony } from '../../../types/index.js';
 
 export const CASE2_DAY2_INTRO_EN: DialogueLine[] = [
+  { bg: 'assets/bg_waiting_room.webp', furniture: 'none', speaker: 'NARRADOR', text: 'August 30, 3:00 PM. High Court - Waiting Room.', bgm: 'trial' },
   { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_gavel', text: 'This court resumes in the matter of the Golden Chanfle.', sfx: 'gavel', bgm: 'trial' },
   { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_slam', text: 'Time is money! Your Honor, the prosecution has confirmed Mr. Peterete has an ironclad alibi at the time of the blackout.', sfx: 'desk_slam' },
   { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_point', text: 'He was at the post office with the mailman dispatching parcels. The defendant remains the only viable suspect!' },

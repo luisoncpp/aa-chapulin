@@ -7,6 +7,7 @@ import type { DialogueLine, Testimony } from '../../../types/index.js';
 import { CASE4_D3_T1_ORDEN_SUCCESS, CASE4_ORDEN_POINT_TARGET } from './trial_day3_success.js';
 
 export const CASE4_DAY3_INTRO: DialogueLine[] = [
+  { bg: 'assets/bg_waiting_room.webp', furniture: 'none', speaker: 'NARRADOR', text: '27 de octubre, 4:00 PM. Tribunal Superior - Sala de Espera.', bgm: 'trial' },
   { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_gavel', text: 'Se abre la última sesión de este proceso. Recapitulemos lo probado.', sfx: 'gavel', bgm: 'trial' },
   { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_neutral', text: 'La muerte se produjo por un tóxico en el vino, dentro de la ventana de la autopsia.' },
   { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_neutral', text: 'El disparo y el estruendo fueron un montaje posterior a la muerte, conforme a la autopsia y al traslado ya acreditados.' },

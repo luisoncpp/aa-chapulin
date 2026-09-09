@@ -76,3 +76,35 @@ describe('climax present prompt layout', () => {
     expect(cssProp(modal, 'flex-shrink')).toBe('0');
   });
 });
+
+describe('conversation menu layout', () => {
+  const css = fs.readFileSync(path.resolve(__dirname, '../../style.css'), 'utf-8');
+  const html = fs.readFileSync(path.resolve(__dirname, '../../index.html'), 'utf-8');
+  const list = cssRule(css, '#talk-options-list');
+  const moveList = cssRule(css, '#move-locations-list');
+  const modalStyle = html.match(/id="talk-options-modal"[\s\S]*?<div class="modal-window" style="([^"]+)"/)?.[1] ?? '';
+  const moveModalStyle = html.match(/id="move-locations-modal"[\s\S]*?<div class="modal-window" style="([^"]+)"/)?.[1] ?? '';
+
+  it('lets the conversation window grow with its topics', () => {
+    expect(modalStyle).toContain('height: auto');
+    expect(modalStyle).toContain('max-height: calc(100% - 32px)');
+  });
+
+  it('scrolls the topic list after the window reaches the game screen height', () => {
+    expect(cssProp(list, 'min-height')).toBe('0');
+    expect(cssProp(list, 'overflow-x')).toBe('clip');
+    expect(cssProp(list, 'overflow-y')).toBe('auto');
+  });
+
+  it('keeps the lifted first topic button inside the scroll container', () => {
+    expect(cssProp(list, 'padding-top')).toBe('2px');
+  });
+
+  it('lets the move window grow and scroll when many locations are available', () => {
+    expect(moveModalStyle).toContain('height: auto');
+    expect(moveModalStyle).toContain('max-height: calc(100% - 32px)');
+    expect(cssProp(moveList, 'min-height')).toBe('0');
+    expect(cssProp(moveList, 'overflow-x')).toBe('clip');
+    expect(cssProp(moveList, 'overflow-y')).toBe('auto');
+  });
+});

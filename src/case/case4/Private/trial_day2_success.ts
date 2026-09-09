@@ -10,7 +10,7 @@ export const CASE4_PLANO_POINT_TARGET: PointTargetContradiction = {
   promptQuestion: '¿Cómo llegó ese sonido hasta la habitación señalada por la testigo?',
   imageAsset: 'assets/examine_plano.webp',
   zones: [
-    { id: 'ramal_204_304', bounds: [35, 14, 53, 85], isCorrect: true, failureDialogue: [] },
+    { id: 'ramal_204_304', bounds: [42, 14, 50, 88], isCorrect: true, failureDialogue: [] },
     { id: 'plano_resto', bounds: [0, 0, 100, 100], isCorrect: false, failureDialogue: [
       { speaker: 'DEFENSA', pose: 'donramon_panic', text: '¡Por este sector del edificio es por donde viajó el estruendo... creo!' },
       { speaker: 'JUEZ', pose: 'judge_shock', text: '¡Pero Licenciado, ese sector no tiene conexión directa con la Suite 304!', sfx: 'damage' },

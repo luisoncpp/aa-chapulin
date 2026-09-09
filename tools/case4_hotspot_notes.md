@@ -67,8 +67,8 @@ Measured 2026-09-05 on rewritten plates.
 
 | File | Target | Box |
 |------|--------|-----|
-| `examine_cadena.webp` | Corridor-reachable loop (EMPAREJADA) | `[48, 38, 62, 67]` |
-| `examine_plano.webp` | RAMAL 204–304 in the vertical cutaway | `[35, 14, 53, 85]` |
+| `examine_cadena.webp` | Corridor-reachable loop (EMPAREJADA) | `[49, 40, 63, 68]` |
+| `examine_plano.webp` | RAMAL 204–304 in the centered vertical cutaway | `[42, 14, 50, 88]` |
 | `examine_registro.webp` | Boxed B-17 rows | `[18, 38, 86, 54]` |
 | `examine_orden.webp` | Handwritten GORDON BOTIJA | `[18, 58, 80, 82]` |
 | `examine_nota.webp` | Signed RECIBÍ | `[10, 64, 94, 86]` |

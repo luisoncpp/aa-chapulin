@@ -68,7 +68,7 @@ describe('TrialController', () => {
     expect(dom.bgEl.style.backgroundImage).toContain('bg_museum.webp');
     vi.advanceTimersByTime(SCENE_FADE_MS);
     expect(state.mode).toBe('TRIAL');
-    expect(dom.bgEl.style.backgroundImage).toContain('bg_judge.webp');
+    expect(dom.bgEl.style.backgroundImage).toContain('bg_waiting_room.webp');
     expect(queuedDialogues).toHaveLength(0);
     vi.advanceTimersByTime(SCENE_FADE_MS);
     expect(queuedDialogues).toHaveLength(1);

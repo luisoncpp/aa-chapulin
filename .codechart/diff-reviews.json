@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "reviews": [
+    {
+      "diffId": "paste:5194f5b1",
+      "reviewedPaths": [
+        "src/case/case1/Private/climax_en.ts",
+        "src/case/case1/Private/climax.ts",
+        "src/case/case1/Private/investigation_en.ts",
+        "src/case/case1/Private/investigation.ts",
+        "src/case/case1/Private/progress.ts",
+        "src/case/case1/Private/trial_en.ts",
+        "src/case/case1/Private/trial.ts",
+        "src/case/case1/index.ts",
+        "src/case/case2/Private/clotilde_en.ts",
+        "src/case/case2/Private/trial_day2.ts",
+        "src/case/case2/Private/postal.ts",
+        "src/case/case2/Private/trial_day2_t2_en.ts",
+        "src/case/case2/Private/trial_day1.ts",
+        "src/case/case2/Private/progress.ts",
+        "src/case/case2/Private/clotilde.ts",
+        "src/case/case2/Private/detention.ts",
+        "src/case/case2/Private/trial_day1_t2_en.ts",
+        "src/case/case2/Private/boveda_en.ts",
+        "src/case/case2/Private/climax_choices_en.ts",
+        "src/case/case2/Private/restaurante_en.ts",
+        "src/case/case2/Private/climax_shared.ts",
+        "src/case/case2/Private/climax_en.ts",
+        "src/case/case2/Private/climax_choices.ts",
+        "src/case/case2/index.ts",
+        "src/case/case2/Private/postal_en.ts",
+        "src/case/case2/Private/trial_day2_t2.ts",
+        "src/case/case2/Private/climax.ts",
+        "src/case/case2/Private/restaurante.ts",
+        "src/case/case2/Private/detention_en.ts",
+        "src/case/case2/Private/trial_day1_en.ts",
+        "src/case/case2/Private/trial_day2_en.ts",
+        "src/case/case2/Private/trial_day1_t2.ts",
+        "src/case/case2/Private/boveda.ts"
+      ]
+    }
+  ]
+}

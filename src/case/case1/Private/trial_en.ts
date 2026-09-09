@@ -8,6 +8,7 @@ import type { DialogueLine, Testimony } from '../../../types/index.js';
 
 // @Section(Courtroom Intro Dialogue - English)
 export const TRIAL_INTRO_EN: DialogueLine[] = [
+  { bg: 'assets/bg_waiting_room.webp', furniture: 'none', speaker: 'NARRADOR', text: 'August 22, 9:00 AM. High Court - Waiting Room.', bgm: 'trial' },
   { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_gavel', text: 'Order in the court! The high court session is now in session.', sfx: 'gavel', bgm: 'trial' },
   { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_neutral', text: 'Is the prosecution ready to present its charges?' },
   { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_slam', text: 'Time is money, Your Honor! The prosecution is more than ready to wrap up this case in record time.', sfx: 'desk_slam' },

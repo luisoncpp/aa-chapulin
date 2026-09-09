@@ -6,6 +6,7 @@
 import type { DialogueLine, Testimony } from '../../../types/index.js';
 
 export const CASE3_TRIAL_INTRO_EN: DialogueLine[] = [
+  { bg: 'assets/bg_waiting_room.webp', furniture: 'none', speaker: 'NARRADOR', text: 'September 16, 6:00 PM. High Court - Waiting Room.', bgm: 'trial' },
   { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_gavel', text: 'Silence in the court! The trial of Doctor Chapatín is now in session.', sfx: 'gavel', bgm: 'trial' },
   { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_slam', text: 'Time is money, Your Honor! Two thousand witnesses heard the victim scream the defendant\'s name!', sfx: 'desk_slam' },
   { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_point', text: 'And three minutes later they found him on top of the body! I want a verdict before my lunch hour!' },

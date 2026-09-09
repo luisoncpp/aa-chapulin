@@ -5,6 +5,7 @@ import type { DialogueLine, PointTargetContradiction, Testimony } from '../../..
 import { CASE4_PLANO_POINT_TARGET } from './trial_day2_success.js';
 
 export const CASE4_DAY2_INTRO_EN: DialogueLine[] = [
+  { bg: 'assets/bg_waiting_room.webp', furniture: 'none', speaker: 'NARRADOR', text: 'October 26, 4:00 PM. High Court - Waiting Room.', bgm: 'trial' },
   { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_gavel', text: 'Court resumes.', sfx: 'gavel', bgm: 'trial' },
   { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_point', text: 'New theory, Your Honor, and this one comes with an invoice. Toxicology says poison. The defendant carried the wine and had a quarrel with the deceased.' },
   { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_slam', text: 'A poisoning plumber! I can already see the headline. And headlines cost money too.', sfx: 'desk_slam' },
@@ -47,7 +48,7 @@ const PLANO_EN: PointTargetContradiction = {
   ...CASE4_PLANO_POINT_TARGET,
   promptQuestion: 'How did that sound reach the room the witness named?',
   zones: [
-    { id: 'ramal_204_304', bounds: [35, 14, 53, 85], isCorrect: true, failureDialogue: [] },
+    { id: 'ramal_204_304', bounds: [42, 14, 50, 88], isCorrect: true, failureDialogue: [] },
     { id: 'plano_resto', bounds: [0, 0, 100, 100], isCorrect: false, failureDialogue: [
       { speaker: 'DEFENSA', pose: 'donramon_panic', text: 'The bang travelled through this part of the building... I think!' },
       { speaker: 'JUEZ', pose: 'judge_shock', text: 'But counselor, that section has no direct link to Suite 304!', sfx: 'damage' },

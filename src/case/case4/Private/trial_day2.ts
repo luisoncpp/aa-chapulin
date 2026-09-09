@@ -10,6 +10,7 @@ import {
 } from './trial_day2_success.js';
 
 export const CASE4_DAY2_INTRO: DialogueLine[] = [
+  { bg: 'assets/bg_waiting_room.webp', furniture: 'none', speaker: 'NARRADOR', text: '26 de octubre, 4:00 PM. Tribunal Superior - Sala de Espera.', bgm: 'trial' },
   { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_gavel', text: 'Se reanuda la audiencia.', sfx: 'gavel', bgm: 'trial' },
   { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_point', text: 'New theory, Your Honor, y ésta viene con factura. La toxicología dice veneno. El acusado cargó el vino y traía pleito con el difunto.' },
   { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_slam', text: '¡Un fontanero envenenador! Ya me imagino el encabezado. Y los encabezados también cuestan dinero.', sfx: 'desk_slam' },

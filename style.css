@@ -909,6 +909,23 @@ body {
     margin-top: 20px;
 }
 
+#talk-options-list {
+    min-height: 0;
+    overflow-x: clip;
+    overflow-y: auto;
+    padding-top: 2px;
+    padding-right: 4px;
+    scrollbar-width: thin;
+}
+
+#move-locations-list {
+    min-height: 0;
+    overflow-x: clip;
+    overflow-y: auto;
+    padding-right: 4px;
+    scrollbar-width: thin;
+}
+
 .talk-btn {
     text-align: left;
     padding: 10px 16px;

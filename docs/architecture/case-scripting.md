@@ -68,6 +68,8 @@ Hotspot `x,y,w,h` are percentages of the 960×540 `#game-screen`, not of the JPE
 
 ### 3. Testimony & Cross-Examination Schema ([[src/case/case1/Private/trial.ts]])
 
+Every trial-day `intro` begins with a narrator line using `assets/bg_waiting_room.webp` and `furniture: 'none'`. That line records the scheduled date, time, and `Tribunal Superior - Sala de Espera` / `High Court - Waiting Room`; the following judge line cuts into the courtroom. This keeps trial entry consistent with investigation location introductions without adding a new engine state.
+
 ```typescript
 testimony: {
   title: string;

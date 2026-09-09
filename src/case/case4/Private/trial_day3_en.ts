@@ -6,6 +6,7 @@ import { CASE4_ORDEN_POINT_TARGET } from './trial_day3_success.js';
 void CASE4_ORDEN_POINT_TARGET;
 
 export const CASE4_DAY3_INTRO_EN: DialogueLine[] = [
+  { bg: 'assets/bg_waiting_room.webp', furniture: 'none', speaker: 'NARRADOR', text: 'October 27, 4:00 PM. High Court - Waiting Room.', bgm: 'trial' },
   { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_gavel', text: 'The final session of this trial is open. Let us recap what stands proven.', sfx: 'gavel', bgm: 'trial' },
   { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_neutral', text: 'Death came by a toxin in the wine, inside the autopsy window.' },
   { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_neutral', text: 'The shot and the bang were staging after death, in keeping with the autopsy and the proven freight.' },

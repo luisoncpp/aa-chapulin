@@ -49,8 +49,13 @@ export function startGame(host: LaunchHost, caseId: CaseId = 'case1'): void {
   hideCaseComplete(host.dom);
   host.markStarted();
   loadCase(host, caseId);
-  host.state.beginNewCase(host.getScript());
+  if (caseId === 'case0') host.state.beginTrialOnlyCase(host.getScript());
+  else host.state.beginNewCase(host.getScript());
   dismissSplash(host.dom, host.soundEngine);
+  if (caseId === 'case0') {
+    host.trial.startTrial();
+    return;
+  }
   host.investigation.startInvestigation(host.getScript().startLocation);
 }
 
@@ -59,7 +64,7 @@ export function startTrialDebug(host: LaunchHost, day?: TrialDay): void {
   hideCaseComplete(host.dom);
   host.markStarted();
   loadCase(host, host.state.caseId);
-  host.state.beginNewCase(host.getScript());
+  if (host.state.caseId !== 'case0') host.state.beginNewCase(host.getScript());
   dismissSplash(host.dom, host.soundEngine);
   const targetDay = day ?? host.state.trialDay;
   while (host.state.trialDay < targetDay) {
@@ -68,6 +73,7 @@ export function startTrialDebug(host: LaunchHost, day?: TrialDay): void {
     host.state.beginNextTrialDay(adj);
     host.state.applyProgressionRules(host.getScript());
   }
-  host.state.populateTrialEvidence();
+  if (host.state.caseId === 'case0') host.state.beginTrialOnlyCase(host.getScript());
+  else host.state.populateTrialEvidence();
   host.trial.startTrial();
 }

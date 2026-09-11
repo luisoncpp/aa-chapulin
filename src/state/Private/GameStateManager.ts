@@ -103,6 +103,14 @@ export class GameStateManager {
     return this.getEvidenceUpdateStage(evidenceId) > 0;
   }
 
+  public isEvidenceExamined(evidenceId: EvidenceId): boolean {
+    return Boolean(this.flags[`examined_evidence_${evidenceId}`]);
+  }
+
+  public markEvidenceExamined(evidenceId: EvidenceId): void {
+    if (this.allEvidence[evidenceId]) this.flags[`examined_evidence_${evidenceId}`] = true;
+  }
+
   // fallow-ignore-next-line complexity
   public updateEvidence(evidenceId: EvidenceId): boolean {
     const item = this.allEvidence[evidenceId];
@@ -178,6 +186,14 @@ export class GameStateManager {
     this.debugUnlockLocations.forEach(/*unlockEach*/ (loc) => {
       this.unlockLocation(loc);
     });
+    this.flags.ready_for_trial = true;
+    this.mode = 'TRIAL';
+  }
+
+  /** Starts a courtroom-only case without consuming any future evidence updates. */
+  public beginTrialOnlyCase(script: CaseScript): void {
+    this.beginNewCase(script);
+    script.debugEvidence.forEach((item) => this.addEvidence(item));
     this.flags.ready_for_trial = true;
     this.mode = 'TRIAL';
   }

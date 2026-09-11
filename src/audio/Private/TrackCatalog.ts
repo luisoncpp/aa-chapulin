@@ -37,6 +37,7 @@ export const TRACK_CATALOG: TrackCatalogMap = {
   casa_clotilde: casaClotildeTrack,
   suspense: suspenseTrack,
   victory: victoryTrack,
+  epilogue: victoryTrack,
   detention_center: detentionCenterTrack,
   kermes: kermesTrack
 };

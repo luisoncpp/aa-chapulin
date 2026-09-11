@@ -48,6 +48,7 @@ export interface UiTranslations {
   splashSubtitle: string;
   splashTip: string;
   btnStartGame: string;
+  btnStartCase0: string;
   btnStartCase2: string;
   btnStartCase3: string;
   btnStartCase4: string;
@@ -69,6 +70,7 @@ export interface UiTranslations {
   notifTrialReady: string;
   notifWitnessAddedStatement: string;
   pressHint: string;
+  trialExamineRequired: string;
   notifIncorrectClue: string;
   notifGameSaved: string;
   notifGameLoaded: string;

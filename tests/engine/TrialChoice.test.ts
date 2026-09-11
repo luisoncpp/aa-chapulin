@@ -86,4 +86,19 @@ describe('TrialChoice', () => {
     pending[0]!();
     expect(dom.confettiContainerEl.children.length).toBe(80);
   });
+
+  it('advances Case 0 to the next climax stage after its inter-stage choice', () => {
+    const ctx = makeCtx(getCaseScript('es', 'case0').trial.climax);
+    ctx.stageIdx = 0;
+    const idx = resolveClimaxChoice(
+      { climax: ctx.climax, choiceIdx: 0, optionId: 'calma' },
+      ctx,
+      vi.fn()
+    );
+    expect(idx).toBeNull();
+    expect(ctx.setStageIdx).toHaveBeenCalledWith(1);
+    expect(ctx.onOpenCourtRecord).not.toHaveBeenCalled();
+    pending[0]!();
+    expect(ctx.onOpenCourtRecord).toHaveBeenCalledWith(true);
+  });
 });

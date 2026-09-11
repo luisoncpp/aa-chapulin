@@ -8,6 +8,8 @@ import type { CaseId, EvidenceCatalogMap, Language } from '../../types/index.js'
 import { CASE2_EVIDENCE_EN, CASE2_EVIDENCE_ES } from './EvidenceCatalogCase2.js';
 import { CASE3_EVIDENCE_EN, CASE3_EVIDENCE_ES } from './EvidenceCatalogCase3.js';
 import { CASE4_EVIDENCE_EN, CASE4_EVIDENCE_ES } from './EvidenceCatalogCase4.js';
+import { CASE0_EVIDENCE_EN } from './EvidenceCatalogCase0En.js';
+import { CASE0_EVIDENCE_ES } from './EvidenceCatalogCase0Es.js';
 
 // @Section(Spanish Evidence Catalog)
 // fallow-ignore-next-line unused-export
@@ -126,6 +128,9 @@ export const EVIDENCE_CATALOG_EN: EvidenceCatalogMap = {
 export const EVIDENCE_CATALOG: EvidenceCatalogMap = EVIDENCE_CATALOG_ES;
 
 export function getEvidenceCatalog(lang: Language = 'es', caseId?: CaseId): EvidenceCatalogMap {
+  if (caseId === 'case0') {
+    return (lang === 'en' ? CASE0_EVIDENCE_EN : CASE0_EVIDENCE_ES) as EvidenceCatalogMap;
+  }
   if (caseId === 'case3') {
     return (lang === 'en' ? CASE3_EVIDENCE_EN : CASE3_EVIDENCE_ES) as EvidenceCatalogMap;
   }

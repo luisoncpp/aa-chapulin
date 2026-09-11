@@ -8,11 +8,14 @@ import type { CaseId, EvidenceId, GameFlags, GameMode, Language, LocationId, Tri
 
 export interface TrialStateSnapshot {
   phase: 'IDLE' | 'TESTIMONY' | 'CLIMAX';
+  testimonyIndex?: number | null;
+  /** Legacy v1 field retained so existing browser saves can be restored. */
   testimonyKey?: 'testimony1' | 'testimony2' | null;
   statementIdx: number;
   trialDay?: TrialDay;
   climaxStageIdx?: number;
   climaxChoiceIdx?: number;
+  climaxResolved?: boolean;
   pressedStatementIds?: string[];
 }
 
@@ -107,6 +110,9 @@ export class SaveManager {
     if (!d.flags || typeof d.flags !== 'object') return false;
     if (d.unlockedLocations !== undefined && !Array.isArray(d.unlockedLocations)) return false;
     if (d.language !== 'es' && d.language !== 'en') return false;
+    if (d.trial?.testimonyIndex !== undefined &&
+        (d.trial.testimonyIndex !== null &&
+          (!Number.isInteger(d.trial.testimonyIndex) || d.trial.testimonyIndex < 0))) return false;
     return true;
   }
 }

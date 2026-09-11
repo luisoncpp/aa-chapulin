@@ -85,7 +85,7 @@ export class VisualEffects {
   }
 
   public static inferTrialBackground(speaker?: string): string | null {
-    if (!speaker || speaker === 'NARRADOR') return null;
+    if (!speaker || speaker === 'NARRADOR' || speaker === 'MODO EXAMINAR' || speaker === 'EXAMINE MODE') return null;
     return TRIAL_SPEAKER_BACKGROUNDS[speaker] ?? 'assets/bg_witness.webp';
   }
 

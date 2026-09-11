@@ -50,6 +50,7 @@ export class UiLanguageUpdater {
     if (dom.btnHistory) dom.btnHistory.title = t.hudHistoryTitle;
     if (dom.btnContinueGame) dom.btnContinueGame.textContent = t.btnContinue;
     if (dom.btnStartGame) dom.btnStartGame.textContent = t.btnStartGame;
+    if (dom.btnStartCase0) dom.btnStartCase0.textContent = t.btnStartCase0;
     if (dom.btnStartCase2) dom.btnStartCase2.textContent = t.btnStartCase2;
     if (dom.btnStartCase3) dom.btnStartCase3.textContent = t.btnStartCase3;
     if (dom.btnStartCase4) dom.btnStartCase4.textContent = t.btnStartCase4;

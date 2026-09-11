@@ -56,6 +56,7 @@ export interface DomElements {
   btnContinueGame?: HTMLButtonElement;
   gameNotificationEl: HTMLElement;
   btnStartGame: HTMLButtonElement;
+  btnStartCase0?: HTMLButtonElement;
   btnStartCase2?: HTMLButtonElement;
   btnStartCase3?: HTMLButtonElement;
   btnStartCase4?: HTMLButtonElement;
@@ -145,6 +146,7 @@ export function getDomElements(): DomElements {
     btnContinueGame: document.getElementById('btn-continue-game') as HTMLButtonElement,
     gameNotificationEl: document.getElementById('game-notification')!,
     btnStartGame: document.getElementById('btn-start-game') as HTMLButtonElement,
+    btnStartCase0: opt<HTMLButtonElement>('btn-start-case0'),
     btnStartCase2: document.getElementById('btn-start-case2') as HTMLButtonElement,
     btnStartCase3: document.getElementById('btn-start-case3') as HTMLButtonElement,
     btnStartCase4: opt<HTMLButtonElement>('btn-start-case4'),

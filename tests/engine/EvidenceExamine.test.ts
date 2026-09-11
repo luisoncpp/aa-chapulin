@@ -13,7 +13,7 @@ describe('EvidenceExamine', () => {
   beforeEach(() => {
     dom = setupDomHarness();
     state = new GameStateManager();
-    bindEvidenceExamine(dom);
+    bindEvidenceExamine(dom, (id) => state.markEvidenceExamined(id));
     state.addEvidence('chipote_chillon');
     state.allEvidence.chipote_chillon.detailedView = {
       imageAsset: 'assets/examine_chipote.webp',
@@ -64,5 +64,18 @@ describe('EvidenceExamine', () => {
     expect(dom.evidenceExamineCaptionEl?.textContent).toContain('blanda');
     dom.btnCloseExamine!.click();
     expect(dom.evidenceExamineModalEl?.classList.contains('hidden')).toBe(true);
+  });
+
+  it('records the selected evidence as examined when its detail view opens', () => {
+    ModalManager.openCourtRecord({
+      dom,
+      state,
+      isTrialPresent: /*isTrialPresent=*/ false,
+      onSelect: () => {}
+    });
+    (dom.evidenceListEl.children[1] as HTMLElement).click();
+    expect(state.isEvidenceExamined('chipote_chillon')).toBe(false);
+    dom.btnEvidenceExamine!.click();
+    expect(state.isEvidenceExamined('chipote_chillon')).toBe(true);
   });
 });

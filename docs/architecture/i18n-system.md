@@ -4,6 +4,8 @@ Provides comprehensive runtime localization support for **Spanish** (`es`) and *
 
 ## Module Boundaries
 
+Case 0 has independent Spanish and English script/catalog modules. Changing language reloads the active `caseId` script and evidence catalog without changing trial index or progression state; the tutorial splash label is localized in both UI dictionaries.
+
 ```mermaid
 graph TD
     Engine[Presentation & GameEngine] -->|setLanguage| I18n[I18nService]

@@ -14,13 +14,21 @@ export function restoreTrialFromSnapshot(ctrl: TrialController, snapshot?: Trial
   ctrl.deps.dom.hotspotsContainerEl.innerHTML = '';
   ctrl.deps.dom.locationBannerEl.textContent = i18n.t.locationCourtroom;
   ctrl.resetPressedState(snapshot?.pressedStatementIds);
+  ctrl.climaxResolved = false;
   if (snapshot?.phase === 'CLIMAX') {
-    restoreClimaxFromSnapshot(ctrl, snapshot.climaxStageIdx ?? 0, snapshot.climaxChoiceIdx ?? null);
+    restoreClimaxFromSnapshot(
+      ctrl,
+      snapshot.climaxStageIdx ?? 0,
+      snapshot.climaxChoiceIdx ?? null,
+      snapshot.climaxResolved ?? false
+    );
     return;
   }
-  if (snapshot?.phase === 'TESTIMONY' && snapshot.testimonyKey) {
+  const testimonyIndex = snapshot?.testimonyIndex ??
+    (snapshot?.testimonyKey === 'testimony2' ? 1 : snapshot?.testimonyKey === 'testimony1' ? 0 : null);
+  if (snapshot?.phase === 'TESTIMONY' && testimonyIndex !== null && testimonyIndex !== undefined) {
     if (snapshot.trialDay) ctrl.deps.state.trialDay = snapshot.trialDay;
-    ctrl.startTestimony(snapshot.testimonyKey);
+    ctrl.startTestimony(testimonyIndex);
     ctrl.currentStatementIdx = snapshot.statementIdx || 0;
     ctrl.renderCurrentStatement();
     return;

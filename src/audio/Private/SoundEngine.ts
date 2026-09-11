@@ -86,6 +86,7 @@ export class SoundEngine {
       case 'damage': return this.playDamage();
       case 'chipote': return this.playChipoteSqueak();
       case 'chicharra': return this.playChicharra();
+      case 'bell': return this.playBell();
       case 'click': return this.playClick();
       default: return this.playTextBlip();
     }
@@ -146,5 +147,10 @@ export class SoundEngine {
   public playChicharra(): void {
     if (!this.canPlay()) return;
     NoveltySfx.playChicharra(this.ctx!, this.sfxGain!);
+  }
+
+  public playBell(): void {
+    if (!this.canPlay()) return;
+    NoveltySfx.playBell(this.ctx!, this.sfxGain!);
   }
 }

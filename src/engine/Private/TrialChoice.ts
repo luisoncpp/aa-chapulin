@@ -87,6 +87,13 @@ export function resolveClimaxChoice(
     });
     return choiceIdx + 1;
   }
+  if (climax.choicesAfterStage != null && climax.stages && climax.choicesAfterStage < climax.stages.length - 1) {
+    ctx.setStageIdx(climax.choicesAfterStage + 1);
+    ctx.onQueueDialogue(prompt.successDialogue, /*openNextPresent*/ () => {
+      ctx.onOpenCourtRecord(/*isTrialPresent=*/ true);
+    });
+    return null;
+  }
   queueClimaxCelebration(prompt.successDialogue, climax, ctx);
   return null;
 }

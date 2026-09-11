@@ -4,6 +4,10 @@ Technical guide for the presentation and game engine deep module ([[src/engine/i
 
 ## Overview
 
+### Courtroom-only cases
+
+`EngineLaunch.startGame` has a dedicated Case 0 branch. It calls `GameStateManager.beginTrialOnlyCase`, grants the initial evidence without advancing `updates[]`, sets `mode = 'TRIAL'`, and starts `TrialController` directly. Normal cases continue through investigation startup; URL debug parsing accepts `case=0`.
+
 The `src/engine/` module is organized into encapsulated deep module components with a thin public interface ([[src/engine/index.ts]]):
 
 ```mermaid
@@ -53,7 +57,7 @@ flowchart TD
    - Updates `#character-sprite` poses with continuous idle floating/breathing animation (`characterBreathe`). `donramon_slam` on a non-trial line resolves to `donramon_shock` so the desk-contact silhouette is never staged on a location plate. Pose `src`, background URL, furniture `src`, and `applyStageFrame` commit together after `Image.decode` ([[src/engine/Private/StageCommit.ts]]); a pending generation is dropped if the player advances again.
    - Dynamically stages courtroom foreground furniture (`#court-furniture-sprite`): shows `court_podium.webp` during witness testimonies, `court_bench.webp` when defense or prosecution speaks in court (`bg_defense.webp`, `bg_courtroom.webp`), and hides furniture during judge lines, investigation scenes, and waiting-room epilogue lines (`bg_waiting_room.webp`).
    - `updateStagingForLine(dom, line, isTrialMode)` resolves background, furniture **and** stage geometry in one unified step, ensuring camera angle and furniture consistency across rapid speaker turns.
-   - Automatically hides character sprites when narrator is speaking, or during active examine mode.
+   - Automatically hides character sprites when narrator is speaking, or during active examine mode. Tutorial instruction labels hide the character for that line without inferring a new witness background, preventing an empty witness stand during Case 0 coaching.
 
 4. **Stage Composition Frames** ([[src/engine/Private/StageLayout.ts#Frame Resolution]]):
    - `STAGE_FRAMES` is the single source of truth for character size and character-to-furniture contact. Four frames: `plain`, `bench-stand`, `bench-slam`, `podium`.

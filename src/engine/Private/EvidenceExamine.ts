@@ -4,13 +4,19 @@
  */
 
 import { i18n } from '../../i18n/index.js';
-import type { EvidenceDetailedView, EvidenceExamineZone, EvidenceItem } from '../../types/index.js';
+import type { EvidenceDetailedView, EvidenceExamineZone, EvidenceId, EvidenceItem } from '../../types/index.js';
 import type { DomElements } from './DomElements.js';
 import { VisualEffects } from './VisualEffects.js';
 
 let activeView: EvidenceDetailedView | null = null;
+let activeEvidenceId: EvidenceId | null = null;
+let onEvidenceExamined: (evidenceId: EvidenceId) => void = () => undefined;
 
-export function bindEvidenceExamine(dom: DomElements): void {
+export function bindEvidenceExamine(
+  dom: DomElements,
+  markExamined: (evidenceId: EvidenceId) => void = () => undefined
+): void {
+  onEvidenceExamined = markExamined;
   dom.btnEvidenceExamine?.addEventListener('click', /*openExamine*/ (e) => {
     e.stopPropagation();
     if (activeView) openExamineModal(dom, activeView);
@@ -23,6 +29,7 @@ export function bindEvidenceExamine(dom: DomElements): void {
 
 export function syncExamineButton(dom: DomElements, item: EvidenceItem | null): void {
   activeView = item?.detailedView ?? null;
+  activeEvidenceId = item?.id ?? null;
   const btn = dom.btnEvidenceExamine;
   if (!btn) return;
   btn.style.display = activeView ? 'block' : 'none';
@@ -34,6 +41,7 @@ function closeExamineModal(dom: DomElements): void {
 }
 
 function openExamineModal(dom: DomElements, view: EvidenceDetailedView): void {
+  if (activeEvidenceId) onEvidenceExamined(activeEvidenceId);
   if (dom.evidenceExamineTitleEl) {
     dom.evidenceExamineTitleEl.textContent = i18n.t.btnEvidenceExamine;
   }

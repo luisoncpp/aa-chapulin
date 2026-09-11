@@ -65,6 +65,7 @@ function assembleCase3(parts: Case3Parts): CaseScript {
     investigation: parts.scenes,
     trial: {
       intro: parts.intro,
+      testimonies: [parts.t1, parts.t2],
       testimony1: parts.t1,
       testimony2: parts.t2,
       climax: parts.climax
@@ -73,12 +74,12 @@ function assembleCase3(parts: Case3Parts): CaseScript {
       nextLocation: 'despacho_barriga',
       unlockLocations: ['despacho_barriga'],
       requiredEvidence: CASE3_DAY2_EVIDENCE,
-      trial: { intro: parts.day2Intro, testimony1: parts.t3, testimony2: parts.t4 },
+      trial: { intro: parts.day2Intro, testimonies: [parts.t3, parts.t4], testimony1: parts.t3, testimony2: parts.t4 },
       next: {
         nextLocation: 'bodega_radio',
         unlockLocations: ['bodega_radio'],
         requiredEvidence: CASE3_DAY3_EVIDENCE,
-        trial: { intro: parts.day3Intro, testimony1: parts.t5, testimony2: parts.t6 }
+        trial: { intro: parts.day3Intro, testimonies: [parts.t5, parts.t6], testimony1: parts.t5, testimony2: parts.t6 }
       }
     }
   };

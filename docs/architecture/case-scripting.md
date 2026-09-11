@@ -2,6 +2,8 @@
 
 Technical guide for [[src/case/index.ts]], configured in [[src/case/case.group.md]].
 
+Case 0 is a courtroom-only script: `investigation` is empty, `startLocation` is `courtroom`, and the launch layer enters `TRIAL` without calling investigation startup. It is registered alongside Cases 1–4 and has no `adjournment`. Its intro opens in the waiting room, where Chapulín teaches dialogue advance and cross-examination before the courtroom opening and `openingPresent` tutorial. Testimony 2's success dialogue includes the recessed waiting-room conversation, then resumes in court to deliver `maletin_cobranza` and `tarjeta_enciclopedias` before testimony 3.
+
 ## Overview
 
 Narrative lives in `CaseScript` objects. `getCaseScript(lang, caseId)` in [[src/case/index.ts]] returns Case 1 (`case1`), Case 2 (`case2`), Case 3 (`case3`), or Case 4 (`case4` when scripted); default `CASE_SCRIPT` is still Case 1 Spanish. Each script has `id`, `startLocation`, `requiredEvidence`, `debugEvidence`, `debugUnlockLocations`, `investigation`, `trial`, and optional `adjournment` ([[src/types/Private/script.ts]]). Case 3 lives in nested module [[src/case/case3/index.ts]]; Case 4 will live in [[src/case/case4/index.ts]].
@@ -37,6 +39,7 @@ Each entry in a dialogue sequence supports the following optional and required f
 | `speaker` | string | Speaker label displayed in the nameplate (e.g. `'DEFENSA'`, `'DON RAMON'`, `'CHAPULIN'`, `'SUPER SAM'`, `'JUEZ'`, `'TRIPASECA'`, `'FLORINDA'`, `'NARRADOR'`). |
 | `text` | string | Text string rendered via typewriter. |
 | `pose` | string \| null | Sprite key (e.g. `'donramon_idle'`, `'donramon_shock'`, `'chompiras_crying'`). If `null` during trial, defense defaults to `'donramon_idle'`. `donramon_slam` is a desk-contact pose for trial benches; investigation uses `donramon_shock`. Leftover slam tags remap to shock when mode is not `TRIAL`. |
+| `requiresExamine` | string \| null | On a contradiction rule, the evidence id that must have been opened with `EXAMINE DETAIL` before the matching present is accepted. |
 | `bg` | string | File path to switch the background image (`#scene-bg`). |
 | `bgm` | string | Track ID to switch soundtrack playback in `midiComposer`. On a climax `dialogue[0]` it overrides the engine's `suspense` opener — see [[docs/lessons-learned/climax-bgm-line-override.md]]. |
 | `sfx` | string | SFX identifier to trigger procedural audio (`'gavel'`, `'desk_slam'`, `'whoosh'`, `'realization'`, `'damage'`, `'chipote'`, `'chicharra'`). |
@@ -44,7 +47,7 @@ Each entry in a dialogue sequence supports the following optional and required f
 | `addEvidence` | string | Evidence ID to automatically add to the player's inventory with a progress notification (same toast + realization SFX as a new location). |
 | `updateEvidence` | string | Advances one Court Record description stage (`updates[]` or legacy `updatedDesc`). Missing items are added first. |
 
-Statements may set `unlockedBy` to another statement id; [[src/engine/Private/StatementUnlock.ts]] keeps those lines out of the visible cross-exam list until that id is pressed.
+Statements may set `unlockedBy` to another statement id; [[src/engine/Private/StatementUnlock.ts]] keeps those lines out of the visible cross-exam list until that id is pressed. Instruction-only speakers (`NARRADOR`, `MODO EXAMINAR`, and `EXAMINE MODE`) do not infer a witness camera, so the last courtroom shot remains visible while the instruction is read.
 
 ### 2. Investigation Scene Schema ([[src/case/case1/Private/investigation.ts]], [[src/case/case2/index.ts]])
 
@@ -68,7 +71,9 @@ Hotspot `x,y,w,h` are percentages of the 960×540 `#game-screen`, not of the JPE
 
 ### 3. Testimony & Cross-Examination Schema ([[src/case/case1/Private/trial.ts]])
 
-Every trial-day `intro` begins with a narrator line using `assets/bg_waiting_room.webp` and `furniture: 'none'`. That line records the scheduled date, time, and `Tribunal Superior - Sala de Espera` / `High Court - Waiting Room`; the following judge line cuts into the courtroom. This keeps trial entry consistent with investigation location introductions without adding a new engine state.
+`TrialScript.testimonies` and `TrialDayScript.testimonies` are ordered arrays. The controller advances from index `i` to `i + 1` after a successful contradiction and only enters adjournment/climax when the array is exhausted. Existing scripts expose optional `testimony1`/`testimony2` aliases for compatibility with older consumers; new cases must use the array.
+
+Every trial-day `intro` begins with a narrator line using `assets/bg_waiting_room.webp` and `furniture: 'none'`. That line records the scheduled date, time, and `Tribunal Superior - Sala de Espera` / `High Court - Waiting Room`. Most cases then cut directly to the judge; Case 0 instead plays its full pre-trial lobby dialogue before entering court. This keeps trial entry consistent with investigation location introductions without adding a new engine state.
 
 ```typescript
 testimony: {
@@ -78,6 +83,10 @@ testimony: {
   statements: Statement[];
 }
 ```
+
+Case 0 uses three entries in that array. Each entry has exactly one resolving contradiction; a second proof is represented by `followUp`. Its second testimony is the intentional exception for alternate entry points: `c0_t2_2` and `c0_t2_3` both map to the same `foto_patio` contradiction because both assert that the school bell rang, so either statement starts the same examine-detail and Present & Point sequence.
+
+Its climax uses `choicesAfterStage: 0` so the single multiple-choice prompt appears after the plancha Present & Point and before the savings-tin stage. Existing cases leave this field unset and retain their final-stage choice behavior.
 
 ### 4. Climax Schema ([[src/case/case1/Private/climax.ts]], [[src/case/case2/Private/climax.ts]])
 

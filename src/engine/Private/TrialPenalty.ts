@@ -30,14 +30,14 @@ export function applyPenaltyEffects(deps: PenaltyHost): void {
 export function queuePenaltyDialogue(deps: PenaltyHost, onResume: () => void): void {
   const isEn = i18n.getLanguage() === 'en';
   const lines: DialogueLine[] = [
-    { cutin: 'objection_protesto', speaker: 'DEFENSA', text: isEn ? 'OBJECTION!' : '¡PROTESTO!', sfx: 'whoosh', pose: 'chapulin_point' },
+    { cutin: 'objection_protesto', speaker: 'DEFENSA', text: isEn ? 'OBJECTION!' : '¡PROTESTO!', sfx: 'whoosh', pose: 'donramon_point' },
     { speaker: 'SUPER SAM', text: i18n.t.penaltyProsecutionText, pose: 'supersam_point' },
     { speaker: 'JUEZ', text: i18n.t.penaltyJudgeText, pose: 'judge_gavel', sfx: 'gavel' }
   ];
   if (deps.state.gameOver) {
     lines.push(
       { speaker: 'JUEZ', pose: 'judge_gavel', text: i18n.t.gameOverJudgeText, sfx: 'gavel' },
-      { speaker: 'DEFENSA', pose: 'chapulin_panic', text: i18n.t.gameOverDefenseText }
+      { speaker: 'DEFENSA', pose: 'donramon_panic', text: i18n.t.gameOverDefenseText }
     );
   }
   deps.onQueueDialogue(lines, /*onComplete*/ onResume);

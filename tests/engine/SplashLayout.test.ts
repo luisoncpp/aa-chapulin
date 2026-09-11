@@ -62,6 +62,7 @@ function splashStackHeight(css: string): number {
 
 describe('splash layout fits the 960x540 stage', () => {
   const css = fs.readFileSync(path.resolve(__dirname, '../../style.css'), 'utf-8');
+  const html = fs.readFileSync(path.resolve(__dirname, '../../index.html'), 'utf-8');
   const overlay = cssRule(css, '#start-splash-overlay');
   const langCorner = cssRule(css, '.splash-lang-corner');
 
@@ -76,5 +77,15 @@ describe('splash layout fits the 960x540 stage', () => {
 
   it('sizes the stacked splash content to fit 540px with Continue visible', () => {
     expect(splashStackHeight(css)).toBeLessThanOrEqual(STAGE_H);
+  });
+
+  it('groups the case buttons into the intended three-row menu', () => {
+    const rows = html.match(/<div class="splash-case-row(?: splash-case-row-single)?">[\s\S]*?<\/div>/g) ?? [];
+    expect(rows).toHaveLength(3);
+    expect(rows[0]).toContain('btn-start-case0');
+    expect(rows[0]).toContain('btn-start-game');
+    expect(rows[1]).toContain('btn-start-case2');
+    expect(rows[1]).toContain('btn-start-case3');
+    expect(rows[2]).toContain('btn-start-case4');
   });
 });

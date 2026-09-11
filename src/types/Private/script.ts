@@ -109,6 +109,15 @@ export type PoseName =
   | 'maruja_abanico'
   | 'maruja_nerviosa'
   | 'maruja_shock'
+  | 'toribio_idle'
+  | 'toribio_nervioso'
+  | 'toribio_llorando'
+  | 'toribio_aliviado'
+  | 'casimiro_amable'
+  | 'casimiro_catalogo'
+  | 'casimiro_sweat'
+  | 'casimiro_panic'
+  | 'casimiro_breakdown'
   | 'rufino_smug'
   | 'rufino_monocle'
   | 'rufino_sweat'
@@ -212,6 +221,8 @@ export interface ContradictionRule {
   evidence: EvidenceId[];
   successDialogue: DialogueLine[];
   pointTarget?: PointTargetContradiction;
+  /** Evidence that must be opened in the Acta before it can be presented. */
+  requiresExamine?: EvidenceId;
   followUp?: ContradictionFollowUp;
 }
 
@@ -274,21 +285,27 @@ export interface ClimaxDefinition {
   verdict: DialogueLine[];
   stages?: ClimaxStage[];
   choices?: ChoicePrompt[];
+  /** Opens the shared choices after this zero-based stage instead of after the final stage. */
+  choicesAfterStage?: number;
   epilogue?: ClimaxEpilogue;
 }
 
 export interface TrialScript {
   intro: DialogueLine[];
-  testimony1: Testimony;
-  testimony2: Testimony;
+  testimonies: Testimony[];
+  /** Legacy aliases retained for existing integrations and v1 saves. */
+  testimony1?: Testimony;
+  testimony2?: Testimony;
   climax: ClimaxDefinition;
   openingPresent?: OpeningPresent;
 }
 
 export interface TrialDayScript {
   intro: DialogueLine[];
-  testimony1: Testimony;
-  testimony2: Testimony;
+  testimonies: Testimony[];
+  /** Legacy aliases retained for existing integrations and v1 saves. */
+  testimony1?: Testimony;
+  testimony2?: Testimony;
   openingPresent?: OpeningPresent;
 }
 

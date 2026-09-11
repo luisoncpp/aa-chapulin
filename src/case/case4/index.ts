@@ -78,6 +78,7 @@ function assembleCase4(parts: Case4Parts): CaseScript {
     investigation: parts.scenes,
     trial: {
       intro: parts.intro,
+      testimonies: [parts.t1, parts.t2],
       testimony1: parts.t1,
       testimony2: parts.t2,
       climax: parts.climax
@@ -86,15 +87,14 @@ function assembleCase4(parts: Case4Parts): CaseScript {
       nextLocation: 'hotel_sotano',
       unlockLocations: ['hotel_sotano'],
       requiredEvidence: CASE4_DAY2_EVIDENCE,
-      trial: { intro: parts.day2Intro, testimony1: parts.t3, testimony2: parts.t4 },
+    trial: { intro: parts.day2Intro, testimonies: [parts.t3, parts.t4], testimony1: parts.t3, testimony2: parts.t4 },
       next: {
         nextLocation: 'hotel_cava',
         unlockLocations: ['hotel_cava'],
         requiredEvidence: CASE4_DAY3_EVIDENCE,
         trial: {
           intro: parts.day3Intro,
-          testimony1: parts.t5,
-          testimony2: parts.t6,
+          testimonies: [parts.t5, parts.t6], testimony1: parts.t5, testimony2: parts.t6,
           ...(parts.day3Opening ? { openingPresent: parts.day3Opening } : {})
         }
       }

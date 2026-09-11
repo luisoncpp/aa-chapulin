@@ -43,10 +43,12 @@ describe('TrialPenalty', () => {
   it('queues Spanish protesto lines, then English objection when language is en', () => {
     queuePenaltyDialogue(host(), /*onResume*/ () => {});
     expect(queued[0][0].text).toBe('¡PROTESTO!');
+    expect(queued[0][0]).toMatchObject({ speaker: 'DEFENSA', pose: 'donramon_point' });
 
     i18n.setLanguage('en');
     queuePenaltyDialogue(host(), /*onResume*/ () => {});
     expect(queued[1][0].text).toBe('OBJECTION!');
+    expect(queued[1][0]).toMatchObject({ speaker: 'DEFENSA', pose: 'donramon_point' });
     expect(queued[1]).toHaveLength(3);
   });
 
@@ -56,6 +58,8 @@ describe('TrialPenalty', () => {
     queuePenaltyDialogue(host(), /*onResume*/ () => {});
     expect(queued[0].some((line) => line.text === i18n.t.gameOverJudgeText)).toBe(true);
     expect(queued[0].some((line) => line.text === i18n.t.gameOverDefenseText)).toBe(true);
+    expect(queued[0].find((line) => line.text === i18n.t.gameOverDefenseText))
+      .toMatchObject({ speaker: 'DEFENSA', pose: 'donramon_panic' });
   });
 
   it('restarts after game-over instead of continuing the current prompt', () => {

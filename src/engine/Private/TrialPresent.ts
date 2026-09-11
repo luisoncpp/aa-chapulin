@@ -7,6 +7,7 @@ import type {
   ContradictionFollowUp, ContradictionRule, DialogueLine, EvidenceId, OpeningPresent,
   PointTargetContradiction
 } from '../../types/index.js';
+import { i18n } from '../../i18n/index.js';
 import { closePresentPoint, startPresentPoint } from './PresentPoint.js';
 import { visibleStatements } from './StatementUnlock.js';
 import { getActiveTrial } from './TrialDayRouter.js';
@@ -71,7 +72,7 @@ export function afterTrialIntro(ctrl: TrialController): void {
   pending.set(ctrl, {});
   const opening = getActiveTrial(ctrl.script, ctrl.deps.state.trialDay).openingPresent;
   if (!opening) {
-    ctrl.startTestimony('testimony1');
+    ctrl.startTestimony(0);
     return;
   }
   slot(ctrl).opening = opening;
@@ -104,7 +105,7 @@ function tryOpeningPresent(ctrl: TrialController, evidenceId: EvidenceId): boole
   delete slot(ctrl).opening;
   ctrl.hideControls();
   ctrl.deps.onQueueDialogue(opening.successDialogue, /*startT1*/ () => {
-    ctrl.startTestimony('testimony1');
+    ctrl.startTestimony(0);
   });
   return true;
 }
@@ -131,11 +132,24 @@ function presentCurrentContradiction(ctrl: TrialController, evidenceId: Evidence
     onPresentPenalty(ctrl);
     return;
   }
+  if (rule.requiresExamine && !ctrl.deps.state.isEvidenceExamined(rule.requiresExamine)) {
+    queueExamineRequirement(ctrl);
+    return;
+  }
   beginRuleSuccess(ctrl, {
     successDialogue: rule.successDialogue,
     pointTarget: rule.pointTarget,
     afterDone: () => afterContradictionSuccess(ctrl, rule)
   });
+}
+
+function queueExamineRequirement(ctrl: TrialController): void {
+  ctrl.hideControls();
+  const speaker = i18n.getLanguage() === 'en' ? 'EXAMINE MODE' : 'MODO EXAMINAR';
+  ctrl.deps.onQueueDialogue(
+    [{ speaker, text: i18n.t.trialExamineRequired, instant: true }],
+    reopenRecord(ctrl)
+  );
 }
 
 function afterContradictionSuccess(ctrl: TrialController, rule: ContradictionRule): void {

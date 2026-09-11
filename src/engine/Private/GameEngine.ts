@@ -26,6 +26,7 @@ import {
 } from './EnginePersistence.js';
 import { InvestigationController } from './InvestigationController.js';
 import { ModalManager } from './ModalManager.js';
+import { rebindPresentPointScript } from './PresentPoint.js';
 import { TrialController } from './TrialController.js';
 import { Typewriter } from './Typewriter.js';
 import { UiLanguageUpdater } from './UiLanguageUpdater.js';
@@ -97,6 +98,7 @@ export class GameEngine {
       dom: this.dom, soundEngine: this.soundEngine,
       investigation: this.investigation, trial: this.trial,
       onStartGame: () => this.startGame('case1'),
+      onStartCase0: () => this.startGame('case0'),
       onStartCase2: () => this.startGame('case2'),
       onStartCase3: () => this.startGame('case3'),
       onStartCase4: () => this.startGame('case4'),
@@ -127,6 +129,7 @@ export class GameEngine {
     this.state.applyProgressionRules(this.script);
     this.investigation.setScript(this.script);
     this.trial.setScript(this.script);
+    rebindPresentPointScript(this.script);
     UiLanguageUpdater.updateUi(this.dom, lang);
     applyClimaxPresentPrompt(this.dom, this.trial.getPresentPrompt());
   }

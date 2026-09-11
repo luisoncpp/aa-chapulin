@@ -4,6 +4,10 @@ import { getCaseScript } from '../../src/case/index.js';
 import type { CaseId, CaseScript, DialogueLine, TrialDayScript } from '../../src/types/index.js';
 
 const expectedOpenings: Record<CaseId, { es: string[]; en: string[] }> = {
+  case0: {
+    es: ['13 de julio, 09:45. Sala de espera del tribunal.'],
+    en: ['July 13, 9:45 AM. High Court - Waiting Room.']
+  },
   case1: {
     es: ['22 de agosto, 9:00 AM. Tribunal Superior - Sala de Espera.'],
     en: ['August 22, 9:00 AM. High Court - Waiting Room.']
@@ -51,12 +55,12 @@ function trialDays(script: CaseScript): TrialDayScript[] {
   return days;
 }
 
-function expectLobbyOpening(line: DialogueLine, text: string): void {
+function expectLobbyOpening(line: DialogueLine, text: string, bgm: 'suspense' | 'trial'): void {
   expect(line).toMatchObject({
     bg: 'assets/bg_waiting_room.webp',
     furniture: 'none',
     speaker: 'NARRADOR',
-    bgm: 'trial',
+    bgm,
     text
   });
 }
@@ -71,11 +75,9 @@ describe('trial lobby openings', () => {
 
         expect(intros).toHaveLength(expected.length);
         intros.forEach((intro, index) => {
-          expectLobbyOpening(intro[0], expected[index]);
-          expect(intro[1]).toMatchObject({
-            bg: 'assets/bg_judge.webp',
-            speaker: 'JUEZ'
-          });
+          expectLobbyOpening(intro[0], expected[index], caseId === 'case0' ? 'suspense' : 'trial');
+          const firstCourtroomJudge = intro.find((line) => line.bg === 'assets/bg_judge.webp');
+          expect(firstCourtroomJudge).toMatchObject({ speaker: 'JUEZ' });
         });
       });
     });

@@ -37,6 +37,15 @@ Implemented in [[src/case/case3/index.ts]] (nested deep module). Spec: [[docs/sp
 - **Art:** [[process_case3_assets.py]]; BGM `kermes` and `cross_exam_presto`. All Case 3 `plain` busts (including Ñoño) floor-anchor onto the dialogue box; Case 3 owns `informe_barriga.png` (not Case 1's `informe_medico.png`).
 - **Tests:** [[tests/case/Case3Scripts.test.ts]], [[tests/engine/StatementUnlock.test.ts]], [[tests/state/EvidenceUpdateStages.test.ts]].
 
+### Playable Content: Case 0 ("El Primer Juicio del Lic. Monchito")
+
+Implemented as the courtroom-only tutorial specified in [[docs/specs/case-0-el-primer-juicio-de-monchito.md]]. The splash tutorial button, `?case=0`, and `?case=0&trial` enter the trial directly at `courtroom`.
+
+- **Runtime:** `TrialScript.testimonies` is now the authoritative variable-length schema; Cases 1–4 retain legacy `testimony1`/`testimony2` aliases for existing integrations and v1 saves. Case 0 seeds exactly seven Court Record entries without consuming staged updates.
+- **Content:** Three Casimiro cross-examinations, opening badge present, two Present & Point moments, two gated climax stages, choice prompt, verdict, and waiting-room epilogue are implemented in [[src/case/case0/index.ts]]. Spanish and English catalogs are isolated in [[src/state/Private/EvidenceCatalogCase0Es.ts]] and [[src/state/Private/EvidenceCatalogCase0En.ts]].
+- **Art:** Generated raw sheets live in `tools/raw/case0/`; deterministic production extraction is [[process_case0_assets.py]]. Output includes Toribio and Casimiro poses, eight unlabeled object-only evidence icons, the bilingual-referenced `examine_informe_lesiones.webp` with `foto_nazario.webp`, six examine plates, two point plates, and the Case 0-only `bg_waiting_room_case0.webp` newspaper variant.
+- **Tests:** [[tests/case/Case0Scripts.test.ts]], [[tests/case/Case0PresentPointZones.test.ts]], [[tests/state/Case0EvidenceCatalog.test.ts]], [[tests/assets/Case0Assets.test.ts]], [[tests/engine/Case0TrialFlow.test.ts]], and [[tests/engine/SaveTestimonyMigration.test.ts]].
+
 ---
 
 ## Release zip (Netlify)

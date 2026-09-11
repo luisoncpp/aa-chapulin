@@ -21,6 +21,7 @@ export const CASE_SCRIPT_CASE1_ES: CaseScript = {
   investigation: INVESTIGATION_SCENES,
   trial: {
     intro: TRIAL_INTRO,
+    testimonies: [TESTIMONY_1, TESTIMONY_2],
     testimony1: TESTIMONY_1,
     testimony2: TESTIMONY_2,
     climax: CLIMAX_DATA
@@ -36,6 +37,7 @@ export const CASE_SCRIPT_CASE1_EN: CaseScript = {
   investigation: INVESTIGATION_SCENES_EN,
   trial: {
     intro: TRIAL_INTRO_EN,
+    testimonies: [TESTIMONY_1_EN, TESTIMONY_2_EN],
     testimony1: TESTIMONY_1_EN,
     testimony2: TESTIMONY_2_EN,
     climax: CLIMAX_DATA_EN

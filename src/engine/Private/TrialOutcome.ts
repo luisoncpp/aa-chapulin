@@ -4,13 +4,15 @@
  */
 
 import { ModalManager } from './ModalManager.js';
-import { applyAdjournment, shouldAdjourn } from './TrialDayRouter.js';
+import { applyAdjournment, getActiveTrial, shouldAdjourn } from './TrialDayRouter.js';
 import { applyPenaltyEffects, queuePenaltyDialogue } from './TrialPenalty.js';
 import { maybeQueuePressHint } from './TrialPressFlow.js';
 import type { TrialController } from './TrialController.js';
 
 export function advanceAfterContradiction(ctrl: TrialController): void {
-  if (ctrl.getTestimonyKey() === 'testimony1') return ctrl.startTestimony('testimony2');
+  const current = ctrl.getTestimonyIndex();
+  const testimonies = getActiveTrial(ctrl.script, ctrl.deps.state.trialDay).testimonies;
+  if (current !== null && current + 1 < testimonies.length) return ctrl.startTestimony(current + 1);
   if (shouldAdjourn(ctrl.script, ctrl.deps.state.trialDay)) return adjournToInvestigation(ctrl);
   ctrl.startClimax();
 }

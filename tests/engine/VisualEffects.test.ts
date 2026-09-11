@@ -103,6 +103,11 @@ describe('VisualEffects Subsystem', () => {
     expect(VisualEffects.inferTrialBackground('RUFINO')).toBe('assets/bg_witness.webp');
   });
 
+  it('does not move the courtroom camera for tutorial instruction labels', () => {
+    expect(VisualEffects.inferTrialBackground('MODO EXAMINAR')).toBeNull();
+    expect(VisualEffects.inferTrialBackground('EXAMINE MODE')).toBeNull();
+  });
+
   it('displays slide-in notification toast and hides after timeout', () => {
     VisualEffects.showNotification(dom.gameNotificationEl, '¡Prueba encontrada!');
     expect(dom.gameNotificationEl.textContent).toBe('¡Prueba encontrada!');

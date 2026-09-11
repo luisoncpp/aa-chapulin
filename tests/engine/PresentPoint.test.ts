@@ -10,6 +10,7 @@ import {
   percentFromStageClick,
   POINT_STAGE_HEIGHT,
   POINT_STAGE_WIDTH,
+  rebindPresentPointScript,
   resolvePointClick,
   resolvePointImage
 } from '../../src/engine/Private/PresentPoint.js';
@@ -134,5 +135,15 @@ describe('PresentPoint overlay flow', () => {
     });
     stage.dispatchEvent(new MouseEvent('click', { clientX: 384, clientY: 180, bubbles: true }));
     expect(queued.some((d) => d.some((l) => l.text.includes('cubeta')))).toBe(true);
+  });
+
+  it('rebinds the active point prompt when the case script language changes', () => {
+    controller.handlePresentEvidence('chipote_chillon');
+    const englishScript = JSON.parse(JSON.stringify(controller.script)) as CaseScript;
+    englishScript.trial.testimony1!.statements[1].contradiction!.pointTarget!.promptQuestion = 'Where is the melted ice?';
+
+    rebindPresentPointScript(englishScript);
+
+    expect(dom.presentPointPromptEl?.textContent).toBe('Where is the melted ice?');
   });
 });

@@ -46,8 +46,15 @@ export function warmTrialVisuals(script: CaseScript, trialDay: TrialDay): void {
   const urls = new Set<string>(COURTROOM_URLS);
   const trial = getActiveTrial(script, trialDay);
   addLines(trial.intro, urls);
-  addTestimony(trial.testimony1, urls);
-  addTestimony(trial.testimony2, urls);
+  for (const testimony of trial.testimonies) addTestimony(testimony, urls);
+  addLines(trial.openingPresent?.successDialogue, urls);
+  addLines(script.trial.climax.dialogue, urls);
+  addLines(script.trial.climax.verdict, urls);
+  addLines(script.trial.climax.epilogue?.dialogue, urls);
+  for (const stage of script.trial.climax.stages ?? []) {
+    addLines(stage.successDialogue, urls);
+    if (stage.pointTarget?.imageAsset) urls.add(stage.pointTarget.imageAsset);
+  }
   warmUrls([...urls]);
 }
 
@@ -56,6 +63,15 @@ function addTestimony(testimony: Testimony | undefined, urls: Set<string>): void
   if (!testimony?.statements) return;
   for (const statement of testimony.statements) {
     if (statement.pose) urls.add(`assets/${statement.pose}.webp`);
+    addLines(statement.pressText, urls);
+    const contradiction = statement.contradiction;
+    if (!contradiction) continue;
+    addLines(contradiction.successDialogue, urls);
+    if (contradiction.pointTarget?.imageAsset) urls.add(contradiction.pointTarget.imageAsset);
+    if (contradiction.followUp) {
+      addLines(contradiction.followUp.successDialogue, urls);
+      if (contradiction.followUp.pointTarget?.imageAsset) urls.add(contradiction.followUp.pointTarget.imageAsset);
+    }
   }
 }
 

@@ -114,6 +114,25 @@ export class NoveltySfx {
     osc.stop(t + 0.46);
   }
 
+  public static playBell(ctx: AudioContext, dest: GainNode): void {
+    const t = ctx.currentTime;
+    const freqs = [1046.5, 1318.51];
+
+    freqs.forEach((freq, idx) => {
+      const startTime = t + idx * 0.18;
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, startTime);
+      gain.gain.setValueAtTime(0.3, startTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.3);
+      osc.connect(gain);
+      gain.connect(dest);
+      osc.start(startTime);
+      osc.stop(startTime + 0.31);
+    });
+  }
+
   // @Section(Harmonic Chords)
   public static playChord(
     ctx: AudioContext,

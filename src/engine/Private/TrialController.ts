@@ -46,9 +46,8 @@ export class TrialController {
   public currentStatementIdx = 0;
   public climaxStageIdx = 0;
   public climaxChoiceIdx: number | null = null;
-  // fallow-ignore-next-line unused-class-member
   public climaxResolved = false;
-  private testimonyKey: 'testimony1' | 'testimony2' | null = null;
+  private testimonyIndex: number | null = null;
   private readonly pressedStatementIds = new Set<string>();
   private failedPresentCount = 0;
   script: CaseScript;
@@ -61,11 +60,11 @@ export class TrialController {
   }
 
   public clearActiveTestimony(): void {
-    this.testimonyKey = null;
+    this.testimonyIndex = null;
     this.currentTestimony = null;
   }
 
-  public getTestimonyKey(): 'testimony1' | 'testimony2' | null { return this.testimonyKey; }
+  public getTestimonyIndex(): number | null { return this.testimonyIndex; }
 
   hideControls(): void { this.deps.dom.trialNavEl.classList.add('hidden'); }
 
@@ -76,9 +75,13 @@ export class TrialController {
 
   public getTrialSnapshot(): TrialStateSnapshot {
     return {
-      phase: this.phase, testimonyKey: this.testimonyKey, statementIdx: this.currentStatementIdx,
+      phase: this.phase,
+      testimonyIndex: this.testimonyIndex,
+      testimonyKey: this.testimonyIndex === 0 ? 'testimony1' : this.testimonyIndex === 1 ? 'testimony2' : null,
+      statementIdx: this.currentStatementIdx,
       trialDay: this.deps.state.trialDay, climaxStageIdx: this.climaxStageIdx,
       climaxChoiceIdx: this.climaxChoiceIdx ?? undefined,
+      climaxResolved: this.climaxResolved,
       pressedStatementIds: [...this.pressedStatementIds]
     };
   }
@@ -114,15 +117,26 @@ export class TrialController {
     return paintCourtroomPlate(this.deps, this.script);
   }
 
-  public startTestimony(testimonyKey: 'testimony1' | 'testimony2'): void {
+  public startTestimony(testimonyIndex: number | 'testimony1' | 'testimony2'): void {
+    const normalizedIndex = typeof testimonyIndex === 'number'
+      ? testimonyIndex
+      : testimonyIndex === 'testimony1' ? 0 : 1;
     this.phase = 'TESTIMONY';
-    this.testimonyKey = testimonyKey;
-    this.currentTestimony = getActiveTrial(this.script, this.deps.state.trialDay)[testimonyKey];
+    this.testimonyIndex = normalizedIndex;
+    this.currentTestimony = this.resolveTestimony(normalizedIndex);
+    if (!this.currentTestimony) return;
     this.currentStatementIdx = 0;
     this.failedPresentCount = 0;
     this.deps.midiComposer.playTrack(this.currentTestimony.bgm);
     VisualEffects.showNotification(this.deps.dom.gameNotificationEl, this.currentTestimony.title);
     this.renderCurrentStatement();
+  }
+
+  private resolveTestimony(index: number): Testimony | null {
+    const trial = getActiveTrial(this.script, this.deps.state.trialDay);
+    if (index === 0 && trial.testimony1) return trial.testimony1;
+    if (index === 1 && trial.testimony2) return trial.testimony2;
+    return trial.testimonies[index] ?? null;
   }
 
   public renderCurrentStatement(): void {
@@ -189,8 +203,8 @@ export class TrialController {
       return;
     }
     if (this.phase !== 'TESTIMONY') return;
-    if (this.testimonyKey) {
-      this.currentTestimony = getActiveTrial(this.script, this.deps.state.trialDay)[this.testimonyKey];
+    if (this.testimonyIndex !== null) {
+      this.currentTestimony = this.resolveTestimony(this.testimonyIndex);
       this.renderCurrentStatement();
     }
     rebindTrialPresentScript(this);

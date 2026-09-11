@@ -61,9 +61,20 @@ function openClimaxPresent(
 export function restoreClimaxFromSnapshot(
   ctrl: ClimaxControllerPort,
   stageIdx: number,
-  choiceIdx: number | null
+  choiceIdx: number | null,
+  climaxResolved = false
 ): void {
+  if (climaxResolved) {
+    ctrl.climaxStageIdx = stageIdx;
+    ctrl.climaxChoiceIdx = choiceIdx;
+    ctrl.climaxResolved = true;
+    ctrl.phase = 'CLIMAX';
+    ctrl.currentTestimony = null;
+    ctrl.hideControls();
+    return;
+  }
   restoreClimaxSession({ ...buildClimaxCtx(ctrl), stageIdx, choiceIdx });
+  ctrl.climaxResolved = false;
 }
 
 export function startClimaxPhase(ctrl: ClimaxControllerPort, replayOpening: boolean): void {
@@ -88,7 +99,12 @@ export function resolveClimaxChoiceFromController(ctrl: ClimaxControllerPort, op
     buildClimaxCtx(ctrl),
     (id) => ctrl.handleSelectChoice(id)
   );
-  if (ctrl.climaxChoiceIdx == null) ctrl.climaxResolved = true;
+  if (ctrl.climaxChoiceIdx == null) {
+    const climax = ctrl.script.trial.climax;
+    const advancesToStage = climax.choicesAfterStage != null &&
+      climax.stages != null && climax.choicesAfterStage < climax.stages.length - 1;
+    ctrl.climaxResolved = !advancesToStage;
+  }
 }
 
 export function rebindClimaxChoiceModal(ctrl: ClimaxControllerPort): void {

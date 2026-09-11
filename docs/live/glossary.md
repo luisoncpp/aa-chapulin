@@ -15,7 +15,7 @@ Domain terminology and project-specific concepts for **El Chapulín Colorado: Ac
 | **Contradicción (Contradiction)** | A direct conflict between a witness statement and factual evidence in the Court Record. | [[src/case/case1/Private/trial.ts]] |
 | **Penalización (Penalty)** | A strike deducted from the defense's 5-point health bar upon presenting incorrect evidence during trial (cross-examination, climax present, or climax choice). Reaching 0 health triggers a Game Over ("Culpable") and restarts the trial. | [[src/state/Private/GameStateManager.ts#Penalty & Health]] |
 | **Cut-in** | Full-screen animated graphic overlay (e.g. `¡PROTESTO!`, `¡UN MOMENTO!`, `¡TOMA ESO!`, `¡CULPABLE!`, `¡INOCENTE!`) accompanying major dramatic legal shouts and verdicts. | [[src/engine/Private/VisualEffects.ts#Dramatic Cut-in Overlays]] |
-| **Sala de espera (Waiting Room)** | Lobby outside the courtroom used for the Case 2 post-verdict epilogue (`bg_waiting_room.jpg`), not a trial camera angle. | [[src/engine/Private/TrialClimax.ts]], [[src/case/case2/Private/climax.ts]] |
+| **Sala de espera (Waiting Room)** | Lobby outside the courtroom used by post-verdict epilogues, not a trial camera angle. Cases 2–4 reuse `bg_waiting_room.webp`; Case 0 uses `bg_waiting_room_case0.webp` because its epilogue requires an open newspaper. | [[src/engine/Private/TrialClimax.ts]], [[src/case/case0/Private/climax.ts]] |
 
 ## El Chapulín Colorado Lore & Case Items
 

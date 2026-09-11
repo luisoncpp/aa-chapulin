@@ -13,6 +13,7 @@ export type SFXName =
   | 'damage'
   | 'chipote'
   | 'chicharra'
+  | 'bell'
   | 'click'
   | 'text';
 
@@ -31,6 +32,7 @@ export type TrackName =
   | 'casa_clotilde'
   | 'suspense'
   | 'victory'
+  | 'epilogue'
   | 'detention_center'
   | 'kermes'
   | 'cross_exam_presto';

@@ -67,6 +67,7 @@ export function setupDomHarness(): DomElements {
       <div id="start-splash-overlay">
         <button id="btn-lang-splash">IDIOMA</button>
         <button id="btn-continue-game" class="hidden">CONTINUAR</button>
+        <button id="btn-start-case0">CASO 0</button>
         <button id="btn-start-game">COMENZAR</button>
         <button id="btn-start-case2">CASO 2</button>
         <button id="btn-start-case3">CASO 3</button>

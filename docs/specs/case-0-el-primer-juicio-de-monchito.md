@@ -2,7 +2,7 @@
 
 *Turnabout Rookie*
 
-**Especificación objetivo, pendiente de implementación.** Ningún guion, asset, prueba ni ruta de este documento existe todavía en el juego. Codename interno: `case-0`.
+**Especificación implementada.** El guion, assets, pruebas y ruta `case-0` descritos aquí están integrados; la validación manual de duración, curva de salud y ajuste visual de zonas queda como auditoría de aceptación.
 
 > **Documento completo.** Cubre las secciones 1–16: objetivo pedagógico, sinopsis, reparto, cronología, Acta, guion íntegro del juicio (tres testimonios y clímax de dos etapas), epílogo, cobertura de mecánicas, progresión, assets, migración técnica y validación. Es el único caso **sin investigación**: se juega íntegramente en el tribunal, como los casos introductorios de Ace Attorney. **Requiere un refactor del motor** para admitir más de dos testimonios por jornada (§15.2).
 
@@ -20,7 +20,7 @@ La complejidad objetivo es la de un caso introductorio de Ace Attorney: un solo 
 
 Reglas obligatorias:
 
-- **Solo juicio.** No hay escenas de investigación, ni hotspots, ni movimiento entre locaciones, ni `adjournment`. El caso arranca en modo `TRIAL`.
+- **Solo juicio.** No hay escenas de investigación, ni hotspots, ni movimiento entre locaciones, ni `adjournment`. El caso arranca en modo `TRIAL`. Las escenas de sala de espera (pre-juicio y receso) son diálogos puros con fondo `bg_waiting_room` integrados al flujo de juicio.
 - **Cada mecánica se enseña una vez, con una acción del jugador, antes de volver a exigirla.** La secuencia canónica está en §13 y define el orden de los testimonios.
 - **La enseñanza es diegética.** El Chapulín Colorado acompaña a Don Ramón como asesor y explica qué botón sirve para qué. Las láminas de instrucción pura (`MODO TUTORIAL`) se imprimen con `instant: true`, sin chirridos de máquina de escribir (ver [[docs/lessons-learned/examine-prompt-no-chirp.md]]).
 - **La primera presentación errónea no se castiga en serio.** El primer fallo descuenta un punto y el Chapulín explica por qué; a partir de ahí la penalización es la normal. El riesgo de Game Over está medido en §14 y es lo primero que se valida jugando.
@@ -107,21 +107,54 @@ Las descripciones iniciales no dicen "prueba definitiva" ni nombran la solución
 - El clímax usa `stages`. La última `successDialogue` completa la demostración antes del `verdict` (ver [[docs/lessons-learned/climax-final-stage-success-then-verdict.md]]).
 - La primera línea de diálogo del clímax fija `bgm` explícitamente porque sobrescribe el `suspense` del motor (ver [[docs/lessons-learned/climax-bgm-line-override.md]]).
 
-## 7. Apertura, 13 de julio, 10:00
+## 7. Pre-juicio y Apertura (13 de julio)
 
-Fondo `bg_courtroom`. Enseña: avance de diálogo, apertura del Acta, `openingPresent` y examen a detalle.
+### 7.1 Pre-juicio: Sala de espera del tribunal (09:45)
+
+Fondo `bg_waiting_room`. Cada línea estampa la locación (`bg: bg_waiting_room; furniture: none`) para aislarla de las cámaras de sala (ver [[docs/lessons-learned/trial-waiting-room-epilogue-staging.md]]). Enseña: avance de diálogo, ambientación y la relación entre Monchito, Toribio y el Chapulín antes de entrar al tribunal.
+
+~~~dialogue
+NARRADOR: 13 de julio, 09:45. Sala de espera del tribunal. [bg: bg_waiting_room; furniture: none; bgm: suspense]
+MODO TUTORIAL: Haz clic o presiona ESPACIO para avanzar el diálogo.
+TORIBIO: ¡Licenciado! ¡Licenciado Monchito! ¡Por su madrecita santa, dígame la verdad! ¿Me van a mandar a las Islas Marías? [bg: bg_waiting_room; furniture: none; pose: toribio_llorando]
+DEFENSA: ¡Cálmate, Toribio, cálmate! ¡No te me achicopales antes de tiempo! Con el Licenciado Monchito en la defensa estás en las mejores manos... [bg: bg_waiting_room; furniture: none; pose: donramon_idle]
+DEFENSA: (Aunque la verdad es que me tiemblan las corvas... Primera vez que piso este juzgado de corbata y no porque me citó el casero.) [bg: bg_waiting_room; furniture: none; pose: donramon_sweat]
+TORIBIO: ¡Es que yo soy inocente, licenciado! Yo nomás salí a la hielería por mi barra para las paletas. Cuando regresé a mi cuarto, ¡don Nazario ya estaba tirado como fardo! [bg: bg_waiting_room; furniture: none; pose: toribio_nervioso]
+DEFENSA: Te creo, muchacho, te creo. Pero allá adentro hay un fiscal güero que cobra por palabra y que dice que en once minutos te refunde en el bote. [bg: bg_waiting_room; furniture: none; pose: donramon_idle]
+TORIBIO: ¡Ay, mamacita linda! ¡¿Y ahora quién podrá defenderme?! [bg: bg_waiting_room; furniture: none; pose: toribio_llorando]
+CHAPULIN: ¡YOOOOO! [bg: bg_waiting_room; furniture: none; pose: chapulin_idle; sfx: whoosh]
+TORIBIO: ¡¿El Chapulín Colorado?! [bg: bg_waiting_room; furniture: none; pose: toribio_nervioso]
+CHAPULIN: ¡No contaban con mi astucia! ¡Que no panda el cúnico! Mis antenitas de vinil detectaron una sobredosis de pánico procesal en este pasillo. [bg: bg_waiting_room; furniture: none; pose: chapulin_idle]
+DEFENSA: ¡Chapulín! ¡Menos mal que llegas! Oye... ¿tú de veras sabes de juicios y leyes? [bg: bg_waiting_room; furniture: none; pose: donramon_shock]
+CHAPULIN: ¡Claro que sí! He leído la Constitución... bueno, hojeé la portada en un puesto de periódicos, ¡pero tengo un sentido de la justicia incorruptible! [bg: bg_waiting_room; furniture: none; pose: chapulin_point]
+CHAPULIN: Además, vengo como tu asesor legal. Tú eres el abogado de banqueta y yo soy el cerebro táctico de la operación. [bg: bg_waiting_room; furniture: none; pose: chapulin_idle]
+DEFENSA: Pues más te vale que ese cerebro funcione rápido, porque como pierda este juicio, me quedo sin cliente y con catorce meses de renta encima. [bg: bg_waiting_room; furniture: none; pose: donramon_sweat]
+CHAPULIN: ¡Tranquilo, Monchito! La clave de un juicio es simple: el testigo del fiscal va a soltar su versión. Tú debes escuchar cada frase con calma. [bg: bg_waiting_room; furniture: none; pose: chapulin_idle]
+CHAPULIN: Si algo no te cuadra, ¡le exiges que aclare! Y si de plano descubres que está mintiendo con descaro, ¡le zampas una prueba en la cara! [bg: bg_waiting_room; furniture: none; pose: chapulin_point]
+TORIBIO: ¡Oiga, licenciado! Acuérdese de revisar su saco... No se le vaya a olvidar la placa esa que le dieron, no sea que no lo dejen pasar los guardias. [bg: bg_waiting_room; furniture: none; pose: toribio_nervioso]
+DEFENSA: ¡Ah, la insignia! La traigo bien guardada en el bolsillo... un poquito abollada de cuando se me cayó al drenaje, pero charolea bonito. [bg: bg_waiting_room; furniture: none; pose: donramon_idle]
+CHAPULIN: ¡Tenla lista! El señor juez siempre pide acreditar la personalidad jurídica antes de dar el primer martillazo. [bg: bg_waiting_room; furniture: none; pose: chapulin_point]
+NARRADOR: Se escucha el timbre de la sala de audiencias. [bg: bg_waiting_room; furniture: none; sfx: bell]
+ALGUACIL: ¡Atención en el pasillo! Causa penal número cero: El pueblo contra Toribio Pantoja. Pasen a la sala las partes. [bg: bg_waiting_room; furniture: none]
+TORIBIO: ¡Ya nos llaman! ¡Se me están congelando las corvas más que mis paletas de limón! [bg: bg_waiting_room; furniture: none; pose: toribio_nervioso]
+DEFENSA: Respira hondo, Toribio. Entra tú primero... (A ver si abriendo la puerta despacito no se nota cómo me tiemblan las rodillas). [bg: bg_waiting_room; furniture: none; pose: donramon_idle]
+CHAPULIN: ¡Síganme los buenos! ¡A la victoria de la justicia! [bg: bg_waiting_room; furniture: none; pose: chapulin_point]
+~~~
+
+### 7.2 Apertura en la sala de audiencias (10:00)
+
+Fondo `bg_courtroom`. Enseña: apertura del Acta, `openingPresent` y examen a detalle.
 
 ~~~dialogue
 JUEZ: ¡Silencio en la sala! Se abre la audiencia por el asalto al cobrador Nazario Cuenca. [sfx: gavel; bgm: trial]
-MODO TUTORIAL: Haz clic o presiona ESPACIO para avanzar el diálogo.
 SUPER SAM: Your Honor, este caso lo resolví en once minutos. ELEVEN! Un muchacho que debía dos meses de renta, un cobrador en el suelo y un maletín que voló. Time is money.
 JUEZ: ¿La defensa está lista? ...¿La defensa está presente?
 DEFENSA: ¡Aquí, aquí! Perdón, señor juez, es que la puerta de la sala pesa más que mi cliente.
 CHAPULIN: ¡No contaban con mi asesoría legal! [pose: chapulin_idle]
 DEFENSA: (Catorce meses de renta atrasada, Monchito. Si ganas esto, comes.)
 JUEZ: Antes de comenzar, la corte debe verificar que quien ocupa el estrado de la defensa es un litigante autorizado.
-CHAPULIN: ¡Eso quiere decir que te pide tu credencial! Abre el ACTA DEL JUICIO con el botón de arriba y preséntale la prueba que te identifica.
-MODO TUTORIAL: Abre el ACTA DEL JUICIO (📁) y presenta una prueba con el botón PRESENTAR.
+CHAPULIN: ¡Eso quiere decir que te pide tu credencial! La prueba que te identifica está en el ACTA DEL JUICIO.
+MODO TUTORIAL: En esta apertura, el ACTA DEL JUICIO se abrirá sola. Cuando se abra, selecciona la insignia y pulsa el botón ¡Presentar Prueba!
 ~~~
 
 `openingPresent`: `insignia_abogado`. Pregunta visible: "¿Qué acredita a la defensa ante esta corte?".
@@ -129,10 +162,12 @@ MODO TUTORIAL: Abre el ACTA DEL JUICIO (📁) y presenta una prueba con el botó
 ~~~dialogue
 DEFENSA: ¡Mi insignia! Está un poquito abollada, señor juez, pero yo también.
 JUEZ: Queda acreditada la defensa. [sfx: gavel]
-CHAPULIN: ¡Muy bien! Así se presenta una prueba: se abre el Acta, se escoge y se aprieta PRESENTAR.
-CHAPULIN: Nomás una cosita: allá afuera, presentar la prueba equivocada le cuesta credibilidad a tu defensa. Ese corazoncito de arriba es lo que te queda.
+CHAPULIN: ¡Muy bien! La corte abrió el Acta automáticamente. Seleccionaste la insignia y pulsaste el botón ¡Presentar Prueba!
+CHAPULIN: Durante el interrogatorio, pulsa 📜 PRESENTAR para abrir el Acta. Allí elige una prueba y pulsa el botón ¡Presentar Prueba!
+CHAPULIN: El corazón amarillo del botón ACTA DEL JUICIO abre el Acta.
+CHAPULIN: Una prueba equivocada apaga uno de los cinco signos de exclamación verdes de la barra de arriba.
 DEFENSA: ¿Y si se me acaba?
-CHAPULIN: Entonces el señor juez decide sin ti. Y el señor juez tiene hambre.
+CHAPULIN: Si se apagan todos, pierdes el juicio y tienes que empezarlo de nuevo.
 SUPER SAM: ¡Objection to the tutorial! ¡Esto lleva cuatro minutos y nadie ha facturado nada!
 JUEZ: La fiscalía expondrá su teoría. Después escucharemos al único testigo del caso.
 SUPER SAM: Sencillo, Your Honor. El acusado vive en la vivienda 4. El cobrador fue golpeado en la vivienda 4. El acusado estaba en la vivienda 4 cuando llegó la policía. Three for three! [sfx: desk_slam]
@@ -141,8 +176,8 @@ DEFENSA: Mi cliente estaba ahí porque ahí vive, señor fiscal. Con ese razonam
 JUEZ: La corte también quiere saber por qué la víctima no declara.
 SUPER SAM: Amnesia, Your Honor. Del golpe. Muy inconveniente para mi presupuesto.
 JUEZ: Entonces el peso de este juicio lo carga un solo testigo. La corte le recuerda a la defensa que **presionar** una declaración no cuesta nada, y que **presentar** una prueba sí. Úselas en consecuencia.
-CHAPULIN: Y una más, Monchito: en el Acta, algunas pruebas traen el botón EXAMINAR DETALLE. Ahí se ven las cosas de cerquita. Échale un ojo al recibo antes de empezar.
-MODO TUTORIAL: Selecciona una prueba en el ACTA y usa EXAMINAR DETALLE para verla de cerca.
+CHAPULIN: Y una más, Monchito: antes de presentar la Foto del Patio, selecciónala en el ACTA y pulsa EXAMINAR DETALLE para verla de cerca.
+MODO TUTORIAL: Hazlo antes de presentar la foto: la vista ampliada te ayudará a encontrar el detalle correcto.
 ~~~
 
 El tutorial de examen a detalle es opcional aquí y no bloquea: si el jugador no lo usa, T2 lo vuelve obligatorio con una pregunta concreta.
@@ -223,13 +258,12 @@ Presiones:
 - **3:** repite la simultaneidad. Super Sam la adopta como su nueva tesis.
 - **4:** describe el patio, el lavadero y el tendedero. Sostiene que desde ahí no pudo confundirse.
 
-**Contradicción sobre 3:** `foto_patio`, con `pointTarget`.
+**Contradicción sobre 2 o 3:** `foto_patio`, con `pointTarget`. Ambas declaraciones afirman que sonó la campana de la escuela, así que presentar la foto desde cualquiera de las dos debe iniciar la misma secuencia de examen a detalle y señalamiento.
 
-Pregunta visible del señalamiento: "¿Qué hay en la escuela de enfrente el día 12 de julio?". Zona correcta: `campanario_vacio`. Zonas incorrectas: `lavadero`, `tendedero`, `puerta_4`, `carrito_paletas`.
+Pregunta visible del señalamiento: "Señala en la imagen: ¿qué hay en la escuela de enfrente el día 12 de julio?". Zona correcta: `campanario_vacio`. Zonas incorrectas: `lavadero`, `tendedero`, `puerta_4`, `carrito_paletas`.
 
 ~~~dialogue
 DEFENSA: ¡PROTESTO! ¡Esa campana no sonó, ni ese día ni el anterior! [sfx: desk_slam; cutin: objection_protesto]
-MODO TUTORIAL: Señala el punto de la imagen que contradice la declaración.
 ~~~
 
 Fallo del señalamiento:
@@ -260,12 +294,44 @@ JUEZ: Se decreta un receso de veinte minutos. El alguacil revisará el maletín 
 CASIMIRO: ¡Mi maletín es propiedad de la empresa! ¡Tomo octavo, "inviolabilidad"! [pose: casimiro_panic]
 ~~~
 
-**Segundo turnabout.** El receso no cambia de modo ni de fondo: es una transición de diálogo con fundido corto, no un salto de modo (ver [[docs/lessons-learned/mode-fade-and-case-complete.md]]).
+**Segundo turnabout.** El receso transcurre en la sala de espera (`bg_waiting_room`) como escena de diálogo dentro del modo juicio, sin salto al modo investigación ni cambio de modo de juego (ver [[docs/lessons-learned/mode-fade-and-case-complete.md]] y [[docs/lessons-learned/trial-waiting-room-epilogue-staging.md]]).
 
 ## 10. Receso y entrega de pruebas
 
+### 10.1 Receso en la sala de espera (11:30)
+
+Fondo `bg_waiting_room`. Cada línea estampa la locación (`bg: bg_waiting_room; furniture: none`) para aislarla de las cámaras de sala (ver [[docs/lessons-learned/trial-waiting-room-epilogue-staging.md]]). Enseña: recapitulación a mitad del juicio, consolidación de la teoría del caso y la función de guardado manual (`MODO TUTORIAL`).
+
 ~~~dialogue
-NARRADOR: Veinte minutos después. El alguacil deposita sobre el estrado el maletín de muestras del testigo. [bgm: suspense]
+NARRADOR: 11:30. Sala de espera del tribunal. [bg: bg_waiting_room; furniture: none; bgm: suspense]
+TORIBIO: ¡Licenciado Monchito! ¡Estuvo colosal! ¡Le dio hasta por debajo de la lengua al señor de las enciclopedias! [bg: bg_waiting_room; furniture: none; pose: toribio_aliviado]
+TORIBIO: ¡Cuando le demostró que la campana no tenía badajo ni campana ni nada, casi se le caen los dos relojes de la impresión! [bg: bg_waiting_room; furniture: none; pose: toribio_aliviado]
+DEFENSA: ¡Uff! No cantes victoria todavía, chamaco... Mira cómo me sudan las manos. Si no fuera por la foto del patio, el señor juez ya te tenía con un pie en el penal. [bg: bg_waiting_room; furniture: none; pose: donramon_sweat]
+CHAPULIN: ¡Todos mis movimientos estuvieron fríamente calculados! Bueno, casi todos, porque al principio yo también pensé que la campana sonaba bonito. [bg: bg_waiting_room; furniture: none; pose: chapulin_idle]
+CHAPULIN: Pero fíjense bien: logramos desmontar la hora del testigo, pero todavía no sabemos qué hacía ese hombre en la vecindad ni por qué se puso tan nervioso con su maletín de muestras. [bg: bg_waiting_room; furniture: none; pose: chapulin_point]
+DEFENSA: ¡Eso es lo mero bueno! Ese tipo no vende enciclopedias, Chapulín. Yo conozco a los vendedores de a pie: te engatusan con un cuento, te ofrecen abonos chiquitos y te sonríen aunque les eches al perro. [bg: bg_waiting_room; furniture: none; pose: donramon_idle]
+DEFENSA: Este señor no... este señor andaba midiendo chapas. Lo dijo él solito: "la vivienda 4 tenía la chapa floja". [bg: bg_waiting_room; furniture: none; pose: donramon_point]
+TORIBIO: ¡Es verdad! Hace tres días lo vi merodeando por mi ventana. Me dijo que andaba ofreciendo el tomo de "Cerrajería moderna". ¡Y yo de tarugo casi le pido que me compusiera el cerrojo! [bg: bg_waiting_room; furniture: none; pose: toribio_nervioso]
+CHAPULIN: ¡Mis antenitas de vinil nunca fallan! Ese sujeto andaba buscando una presa fácil. Si el alguacil encuentra algo sospechoso en ese portafolio de muestras, la fiscalía tendrá que cambiar de blanco. [bg: bg_waiting_room; furniture: none; pose: chapulin_idle]
+DEFENSA: Ojalá... porque ese fiscal gringo ya me tiene harto con su "time is money". A mí el único money que me interesa es el de mis honorarios para pagar la renta al casero. [bg: bg_waiting_room; furniture: none; pose: donramon_idle]
+TORIBIO: Si salgo libre de aquí, licenciado, le juro que le surto paletas de grosella y de limón todos los domingos por un año entero. [bg: bg_waiting_room; furniture: none; pose: toribio_aliviado]
+DEFENSA: (Grosella no paga los catorce meses de renta, pero por lo menos no me voy a morir de calor este verano...) [bg: bg_waiting_room; furniture: none; pose: donramon_idle]
+CHAPULIN: ¡Oye, Monchito! Antes de que se nos acaben los veinte minutos del receso... ¿ya te aseguraste de tener todo en orden? [bg: bg_waiting_room; furniture: none; pose: chapulin_point]
+DEFENSA: ¿Mis apuntes del caso? Sí, los tengo aquí anotados en la envoltura de una torta de jamón. [bg: bg_waiting_room; furniture: none; pose: donramon_idle]
+CHAPULIN: ¡No hablo de tortas! Hablo de registrar tus avances para no tener que empezar de cero si te entra la chiripiorca. [bg: bg_waiting_room; furniture: none; pose: chapulin_panic]
+MODO TUTORIAL: Puedes guardar tu partida en cualquier momento pulsando el botón 💾 GUARDAR en la barra superior. Si deseas retomar el juicio más adelante o asegurar tu progreso antes de una decisión difícil, pulsa 📂 CARGAR desde la pantalla principal.
+DEFENSA: ¡Mira qué chulada! Si la vida real tuviera botón de guardar, no se me habrían acumulado catorce meses de deuda. [bg: bg_waiting_room; furniture: none; pose: donramon_idle]
+NARRADOR: El timbre del tribunal suena dos veces. Los veinte minutos de receso han concluido. [bg: bg_waiting_room; furniture: none; sfx: bell]
+CHAPULIN: ¡Se acabó el recreo! Ahora sí viene lo bueno: el alguacil ya debe tener abierto ese maletín de cartón. [bg: bg_waiting_room; furniture: none; pose: chapulin_point]
+DEFENSA: Vamos para adentro, Toribio. Agárrate fuerte, que a ese vendedor de enciclopedias le vamos a leer la cartilla completa. [bg: bg_waiting_room; furniture: none; pose: donramon_idle]
+~~~
+
+### 10.2 Reanudación en la sala y entrega de pruebas
+
+Fondo `bg_courtroom`. Transición tras el receso y entrada de las dos nuevas piezas del Acta.
+
+~~~dialogue
+NARRADOR: Veinte minutos después. De vuelta en la sala, el alguacil deposita sobre el estrado el maletín de muestras del testigo. [bgm: suspense]
 JUEZ: Que conste en acta lo que se encontró dentro.
 NARRADOR: Tres tomos con el lomo roto, una tarjeta de presentación y un maletín de cobranza vacío.
 [ENTREGAR maletin_cobranza]
@@ -341,12 +407,11 @@ DEFENSA: Voy a demostrar dos cosas, señor juez: con qué golpearon a Don Nazari
 
 ### 12.1 Etapa 1: con qué se golpeó al cobrador
 
-`presentTarget`: `plancha_carbon`. `requiredUpdateStage`: `{ informe_lesiones: 2 }`, satisfecho por la penúltima línea de §11, que no es condicional. `prompt`: "¿Qué objeto de la vivienda 4 explica esa lesión?". `pointTarget` sobre la lámina de la plancha: zona correcta `mango_tizne`; zonas incorrectas `base`, `carbon`, `repisa`, `pared`.
+`presentTarget`: `plancha_carbon`. `requiredUpdateStage`: `{ informe_lesiones: 2 }`, satisfecho por la penúltima línea de §11, que no es condicional. `prompt`: "¿Qué objeto de la vivienda 4 explica esa lesión?". `pointTarget` sobre la lámina de la plancha: zona correcta `mango_tizne`; zonas incorrectas `base`, `carbon`, `repisa`, `pared`. Pregunta visible antes de hacer clic: "Señala en la imagen el detalle que delata a quien la usó."
 
 ~~~dialogue
 DEFENSA: ¡TOMA ESO! [sfx: desk_slam; cutin: objection_toma_eso]
 DEFENSA: La plancha de carbón de la repisa. Base plana, borde recto, seis kilos. El calco encaja con ella.
-MODO TUTORIAL: Señala el detalle de la imagen que delata a quien la usó.
 DEFENSA: ¡Aquí! ¡El mango! ¡Tizne fresco justo donde se agarra, y la plancha guardada con el asa hacia la pared!
 CHAPULIN: ¡Nadie guarda una plancha al revés... más que quien nunca la ha usado para planchar!
 TORIBIO: Yo la pongo con el asa para afuera, licenciado. Siempre. Es lo único que heredé de mi mamá. [pose: toribio_llorando]
@@ -409,20 +474,20 @@ El confeti va en la cámara del veredicto, antes de cualquier corte de locación
 
 ## 13. Epílogo
 
-`epilogue.bg`: `bg_waiting_room`. Cada línea estampa la locación, porque las cámaras de tribunal se disparan en cualquier línea sin `bg` (ver [[docs/lessons-learned/trial-waiting-room-epilogue-staging.md]]).
+`epilogue.bg`: `bg_waiting_room_case0`. Esta variante exclusiva del Caso 0 muestra el periódico abierto requerido por el cierre. Cada línea estampa la locación, porque las cámaras de tribunal se disparan en cualquier línea sin `bg` (ver [[docs/lessons-learned/trial-waiting-room-epilogue-staging.md]]).
 
 ~~~dialogue
-NARRADOR: Sala de espera del tribunal. [bg: bg_waiting_room; bgm: epilogue]
-TORIBIO: Licenciado, no tengo con qué pagarle. Nomás traigo esto. [bg: bg_waiting_room]
-DEFENSA: ¿Catorce paletas? [bg: bg_waiting_room]
-TORIBIO: Trece. Una se derritió en el juzgado. [bg: bg_waiting_room]
-DEFENSA: (Trece paletas y catorce meses de renta. Vamos empatados.) [bg: bg_waiting_room]
-CHAPULIN: ¡No te desanimes, Monchito! Todo abogado empieza con un cliente que le paga en especie. [bg: bg_waiting_room]
-DEFENSA: Y termina con un casero que le cobra en efectivo. [bg: bg_waiting_room]
-NARRADOR: En el suelo, un periódico abierto: "ROBAN LA CHICHARRA PARALIZADORA DE ORO DEL MUSEO DE LAS CURIOSIDADES". [bg: bg_waiting_room]
-CHAPULIN: ...Chanfle. [bg: bg_waiting_room; pose: chapulin_idle]
-DEFENSA: ¿Y ése quién lo va a defender? [bg: bg_waiting_room]
-CHAPULIN: Ahí está el detalle. [bg: bg_waiting_room]
+NARRADOR: Sala de espera del tribunal. [bg: bg_waiting_room_case0; bgm: epilogue]
+TORIBIO: Licenciado, no tengo con qué pagarle. Nomás traigo esto. [bg: bg_waiting_room_case0]
+DEFENSA: ¿Catorce paletas? [bg: bg_waiting_room_case0]
+TORIBIO: Trece. Una se derritió en el juzgado. [bg: bg_waiting_room_case0]
+DEFENSA: (Trece paletas y catorce meses de renta. Vamos empatados.) [bg: bg_waiting_room_case0]
+CHAPULIN: ¡No te desanimes, Monchito! Todo abogado empieza con un cliente que le paga en especie. [bg: bg_waiting_room_case0]
+DEFENSA: Y termina con un casero que le cobra en efectivo. [bg: bg_waiting_room_case0]
+NARRADOR: En el suelo, un periódico abierto: "ROBAN LA CHICHARRA PARALIZADORA DE ORO DEL MUSEO DE LAS CURIOSIDADES". [bg: bg_waiting_room_case0]
+CHAPULIN: ...Chanfle. [bg: bg_waiting_room_case0; pose: chapulin_idle]
+DEFENSA: ¿Y ése quién lo va a defender? [bg: bg_waiting_room_case0]
+CHAPULIN: Ahí está el detalle. [bg: bg_waiting_room_case0]
 ~~~
 
 El epílogo **no** resuelve nada del Caso 1 ni nombra a Tripaseca.
@@ -433,16 +498,16 @@ Orden canónico de enseñanza. Cada fila indica la primera vez que el jugador ej
 
 | # | Mecánica | Primera aparición | Obligatoria |
 | --- | --- | --- | --- |
-| 1 | Avance de diálogo | §7 apertura | Sí |
-| 2 | Abrir el Acta del Juicio | §7 apertura | Sí |
-| 3 | Presentar (`openingPresent`) | §7, `insignia_abogado` | Sí |
-| 4 | Barra de credibilidad y penalización | §7 explicada; §8 primer costo real | Explicada |
-| 5 | Examinar Detalle | §7 sugerido; §9 exigido vía `foto_patio` | Sí en §9 |
+| 1 | Avance de diálogo | §7.1 pre-juicio | Sí |
+| 2 | Abrir el Acta del Juicio | §7.2 apertura | Sí |
+| 3 | Presentar (`openingPresent`) | §7.2, `insignia_abogado` | Sí |
+| 4 | Barra de credibilidad y penalización | §7.2 explicada; §8 primer costo real | Explicada |
+| 5 | Examinar Detalle | §7.2 sugerido; §9 exigido vía `foto_patio` | Sí en §9 |
 | 6 | Navegar declaraciones | §8 | Sí |
 | 7 | Presionar | §8, declaración 1 | Sí (entrega el dato de la chapa) |
 | 8 | Presentar contradicción | §8, declaración 3 | Sí |
 | 9 | `followUp` | §8, declaración 2 | Sí |
-| 10 | Cut-ins (`PROTESTO`, `UN MOMENTO`, `TOMA ESO`) | §7, §9, §11, §12 | Automáticas |
+| 10 | Cut-ins (`PROTESTO`, `UN MOMENTO`, `TOMA ESO`) | §7.2, §9, §11, §12 | Automáticas |
 | 11 | Present & Point | §9, `foto_patio` | Sí |
 | 12 | `updateEvidence` visible en el Acta | §8, §11 y §12.1 | Automática |
 | 13 | Segunda ronda de contrainterrogatorio completa | §11 | Sí |
@@ -450,7 +515,7 @@ Orden canónico de enseñanza. Cada fila indica la primera vez que el jugador ej
 | 15 | `requiredUpdateStage` | §12.1 y §12.2 | Sí |
 | 16 | Choice prompt | §12.1 | Sí |
 | 17 | Veredicto, cut-in de inocencia y epílogo | §12.3, §13 | Automáticos |
-| 18 | Guardar y cargar | Ofrecerlo en el receso de §10 con una lámina `MODO TUTORIAL` | No |
+| 18 | Guardar y cargar | §10.1 receso con una lámina `MODO TUTORIAL` | No |
 | 19 | Cambio de idioma | Botón del HUD, sin lámina propia | No |
 
 No se enseñan mecánicas de investigación: el caso no tiene modo `INVESTIGATION`.
@@ -461,7 +526,7 @@ Mitigación en este orden, decidida al validar:
 
 1. Diálogo de coaching en cada fallo, que reencuadra la pregunta sin dar la respuesta (ya escrito para los señalamientos).
 2. Si sigue habiendo Game Over frecuente, **restaurar un punto de salud al inicio de cada testimonio** en este caso. Es un cambio de motor pequeño, acotado a `startTestimony`, y debe quedar limitado a `case0` para no aflojar los casos 1–4.
-3. Último recurso: reducir presentaciones obligatorias. No se añade salud inicial, porque el HUD de cinco corazones es el mismo que verá en el Caso 1.
+3. Último recurso: reducir presentaciones obligatorias. No se añade salud inicial, porque el HUD de cinco signos de exclamación verdes es el mismo que verá en el Caso 1.
 
 ## 15. Progresión, assets y migración técnica
 
@@ -510,11 +575,11 @@ El motor tampoco puede hoy ejecutar un caso sin investigación:
 | `toribio_idle`, `toribio_nervioso`, `toribio_llorando`, `toribio_aliviado` | Sprites | `toribio_idle` es el candado de identidad de la familia (ver [[docs/lessons-learned/supersam-pose-identity-lock.md]]). |
 | `casimiro_amable`, `casimiro_catalogo`, `casimiro_sweat`, `casimiro_panic`, `casimiro_breakdown` | Sprites | `casimiro_amable` es el candado de identidad. Los dos relojes de pulsera deben verse en las cinco poses. |
 | `parte_detencion`, `informe_lesiones`, `recibo_hielo`, `foto_patio`, `plancha_carbon`, `lata_ahorros`, `maletin_cobranza`, `tarjeta_enciclopedias` | Iconos del Acta | Rejilla de iconos; cuidar el recorte de filas (ver [[docs/lessons-learned/court-record-evidence-grid-rows.md]] y [[docs/lessons-learned/court-record-unlabeled-icon-grid.md]]). |
-| `examine_recibo_hielo`, `examine_foto_patio`, `examine_plancha`, `examine_lata` | Láminas 960×540 | El icono del Acta debe derivar de la lámina, no de una escena distinta (ver [[docs/lessons-learned/court-record-icon-matches-examine.md]]). |
+| `examine_recibo_hielo`, `examine_foto_patio`, `examine_plancha`, `examine_lata`, `examine_informe_lesiones` | Láminas 960×540 | El icono del Acta debe derivar de la lámina, no de una escena distinta; Spanish and English catalogs share the final injury plate and its embedded Nazario photo. |
 | `point_foto_patio`, `point_plancha` | Láminas de señalamiento | Las zonas se miden **sobre la WebP generada**, nunca sobre la descripción del spec (ver [[docs/lessons-learned/present-point-cover-crop.md]] y [[docs/lessons-learned/examine-zones-are-native-buttons.md]]). |
-| `foto_nazario` | Foto pericial | Se usa solo dentro de la lámina de `informe_lesiones`. |
+| `foto_nazario` | Foto pericial | Se usa solo dentro de la lámina de `informe_lesiones`; preserve this identity when regenerating that plate. |
 
-Fondos reutilizados: `bg_courtroom`, `bg_defense`, `bg_judge`, `bg_witness`, `bg_waiting_room`. No se generan fondos nuevos.
+Fondos reutilizados: `bg_courtroom`, `bg_defense`, `bg_judge`, `bg_witness`, `bg_waiting_room` para otros casos. Caso 0 añade `bg_waiting_room_case0`, generado con el periódico abierto del epílogo.
 
 Pipeline: `process_case0_assets.py`, siguiendo el patrón de `process_case4_assets.py`, y verificación en `verify_assets.py`.
 

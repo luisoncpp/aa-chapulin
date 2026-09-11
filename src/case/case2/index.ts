@@ -41,6 +41,7 @@ export const CASE_SCRIPT_CASE2_ES: CaseScript = {
   },
   trial: {
     intro: CASE2_TRIAL_INTRO,
+    testimonies: [CASE2_TESTIMONY_1, CASE2_TESTIMONY_2],
     testimony1: CASE2_TESTIMONY_1,
     testimony2: CASE2_TESTIMONY_2,
     climax: CASE2_CLIMAX
@@ -51,6 +52,7 @@ export const CASE_SCRIPT_CASE2_ES: CaseScript = {
     requiredEvidence: CASE2_DAY2_EVIDENCE,
     trial: {
       intro: CASE2_DAY2_INTRO,
+      testimonies: [CASE2_TESTIMONY_3, CASE2_TESTIMONY_4],
       testimony1: CASE2_TESTIMONY_3,
       testimony2: CASE2_TESTIMONY_4
     }
@@ -72,6 +74,7 @@ export const CASE_SCRIPT_CASE2_EN: CaseScript = {
   },
   trial: {
     intro: CASE2_TRIAL_INTRO_EN,
+    testimonies: [CASE2_TESTIMONY_1_EN, CASE2_TESTIMONY_2_EN],
     testimony1: CASE2_TESTIMONY_1_EN,
     testimony2: CASE2_TESTIMONY_2_EN,
     climax: CASE2_CLIMAX_EN
@@ -82,6 +85,7 @@ export const CASE_SCRIPT_CASE2_EN: CaseScript = {
     requiredEvidence: CASE2_DAY2_EVIDENCE,
     trial: {
       intro: CASE2_DAY2_INTRO_EN,
+      testimonies: [CASE2_TESTIMONY_3_EN, CASE2_TESTIMONY_4_EN],
       testimony1: CASE2_TESTIMONY_3_EN,
       testimony2: CASE2_TESTIMONY_4_EN
     }

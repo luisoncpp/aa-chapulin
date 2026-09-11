@@ -17,7 +17,7 @@ Player presents the matching evidence during cross-examination, a `followUp` pre
 2. `#present-point-overlay` opens with `promptQuestion` on `#present-point-prompt`.
 3. `#present-point-image` loads `pointTarget.imageAsset`, else `detailedView.imageAsset`, else `assets/examine_<id>.webp`.
 4. Player clicks `#present-point-stage`. The click is converted to percent of the **640×360 stage** (same box as overlay CSS). `zones[].bounds` are `[minX, minY, maxX, maxY]` percent. A catch-all incorrect zone must not steal a correct hotspot: correct zones are tested first.
-5. **Miss:** hide the overlay, `takePenalty()`, play that zone's `failureDialogue` (or the first incorrect zone's lines if the click hit empty space). After those lines, **reopen** the overlay. Health 0 queues guilty lines and restarts the trial.
+5. **Miss:** hide the overlay, `takePenalty()`, play that zone's `failureDialogue` (or the first incorrect zone's lines if the click hit empty space). Case 0 uses a judge/prosecutor/Chapulín coaching exchange here so the retry explains the interaction without revealing the target. After those lines, **reopen** the overlay. Health 0 queues guilty lines and restarts the trial.
 6. **Hit (`isCorrect`):** hide the overlay, `realization` SFX, then queue the **parent** `successDialogue` (`contradiction` / `followUp` / climax `stage`). Cut-ins live in that dialogue, not in the overlay.
 7. Optional `followUp` then reopens the Acta. Climax continues its stage flow (next present, choices, or `successDialogue` then `verdict`).
 

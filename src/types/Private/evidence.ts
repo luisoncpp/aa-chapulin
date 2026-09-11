@@ -7,6 +7,14 @@
 // @Section(Evidence Identifiers & Items)
 export type EvidenceId =
   | 'insignia_abogado'
+  | 'parte_detencion'
+  | 'informe_lesiones'
+  | 'recibo_hielo'
+  | 'foto_patio'
+  | 'plancha_carbon'
+  | 'lata_ahorros'
+  | 'maletin_cobranza'
+  | 'tarjeta_enciclopedias'
   | 'chipote_chillon'
   | 'pastillas_chiquitolina'
   | 'antenitas_vinil'

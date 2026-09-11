@@ -3,7 +3,7 @@
  * After a matching present, the player clicks a zone on a 640×360 evidence plate.
  */
 
-import type { EvidenceItem, PointTargetContradiction, PointZone } from '../../types/index.js';
+import type { CaseScript, EvidenceItem, PointTargetContradiction, PointZone } from '../../types/index.js';
 import { applyPenaltyEffects, queuePenaltyOrRestart, type PenaltyHost } from './TrialPenalty.js';
 import type { DomElements } from './DomElements.js';
 import { ModalManager } from './ModalManager.js';
@@ -83,6 +83,14 @@ export function startPresentPoint(config: PresentPointStart): void {
   showOverlay(config.deps.dom, config.pointTarget, config.deps);
 }
 
+export function rebindPresentPointScript(script: CaseScript): void {
+  if (!active) return;
+  const target = findPointTarget(script, active.pointTarget.targetEvidenceId);
+  if (!target) return;
+  active = { ...active, pointTarget: target };
+  showOverlay(active.deps.dom, target, active.deps);
+}
+
 // fallow-ignore-next-line unused-export -- tests/engine/PresentPoint.test.ts
 export function resolvePointClick(xPct: number, yPct: number): void {
   if (!active) return;
@@ -148,4 +156,31 @@ function failureLines(target: PointTargetContradiction, hit: PointZone | null) {
   if (hit && !hit.isCorrect && hit.failureDialogue.length > 0) return hit.failureDialogue;
   const firstWrong = target.zones.find((z) => !z.isCorrect);
   return firstWrong?.failureDialogue ?? [];
+}
+
+function findPointTarget(script: CaseScript, evidenceId: string): PointTargetContradiction | null {
+  const testimonyTargets = [
+    ...script.trial.testimonies,
+    script.trial.testimony1,
+    script.trial.testimony2
+  ].filter((testimony): testimony is NonNullable<typeof testimony> => Boolean(testimony))
+    .flatMap(pointTargetsInTestimony);
+  const climaxTargets = script.trial.climax.stages?.flatMap((stage) => stage.pointTarget ? [stage.pointTarget] : []) ?? [];
+  return [...testimonyTargets, ...climaxTargets]
+    .find((target) => target.targetEvidenceId === evidenceId) ?? null;
+}
+
+function pointTargetsInTestimony(
+  testimony: NonNullable<CaseScript['trial']['testimonies'][number]>
+): PointTargetContradiction[] {
+  return testimony.statements.flatMap((statement) => [
+    ...pointTargetsInRule(statement.contradiction),
+    ...pointTargetsInRule(statement.contradiction?.followUp)
+  ]);
+}
+
+function pointTargetsInRule(
+  rule: { pointTarget?: PointTargetContradiction } | undefined
+): PointTargetContradiction[] {
+  return rule?.pointTarget ? [rule.pointTarget] : [];
 }

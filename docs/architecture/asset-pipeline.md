@@ -67,6 +67,14 @@ python process_case4_assets.py bg_hotel_suite,botija_idle
 
 Selectors use the final asset name without its directory and may include `.webp`. Character poses, icons, backgrounds, and examine plates can be selected independently. The selector validates names before processing and leaves all unselected files untouched.
 
+### Case 0 ([[process_case0_assets.py]])
+
+Case 0 raw generation is kept under `tools/raw/case0/`. `process_case0_assets.py` slices the two 2×2 character sheets, cleans the isolated breakdown pose, extracts the 4×2 evidence grid, and cover-crops examination/background sources into deterministic WebPs. The regenerated `examine_lata_raw.png` contains one soot/grease mark on the lid and no fingerprint or ridge pattern; `waiting_room_newspaper_raw.png` produces the Case 0-only `bg_waiting_room_case0.webp` variant with the epilogue newspaper. The eight evidence icons are object-only; catalog/UI labels provide all readable language.
+
+**Asset consistency rule:** a Court Record `icon` must depict the same evidence identity as its `detailedView.imageAsset`, and both Spanish and English catalogs must reference the same final plate when the art is language-neutral. Whenever an examine or point plate changes, remeasure its clickable/point zones against the final WebP and update the corresponding bilingual geometry tests. The shared `bg_waiting_room.webp` remains unchanged for other cases; only Case 0 uses the newspaper variant.
+
+The asset verifier scans both `src/case` and case-specific evidence catalogs so `icon`, `detailedView.imageAsset`, point plates, poses, cut-ins, and backgrounds cannot silently drift from `assets/`.
+
 ### 3. Asset Naming Conventions & Format
 
 All runtime production assets in `assets/` use **WebP (`quality=85`)** to minimize payload footprint (~90% size reduction vs uncompressed PNG/JPEG), while raw AI generator sheets in `tools/raw/*.png` and intermediate processing remain strictly **lossless PNG / uncompressed float32 NumPy arrays**.

@@ -4,6 +4,10 @@ Technical guide for [[src/state/index.ts]], configured in [[src/state/state.grou
 
 ## Overview
 
+### Case 0 initialization
+
+Courtroom-only cases use `beginTrialOnlyCase`. This is separate from `populateTrialEvidence`: the latter advances all evidence stages for debug convenience, while Case 0 begins with seven unadvanced Court Record entries and receives later evidence and updates from dialogue.
+
 The `GameStateManager` class ([[src/state/Private/GameStateManager.ts]]) is the single source of truth for the game's logical progression, inventory management, penalty/health meters, and investigation state.
 
 ```mermaid
@@ -29,6 +33,8 @@ classDiagram
         +updateEvidence(evidenceId) boolean
         +hasEvidence(evidenceId) boolean
         +isEvidenceUpdated(evidenceId) boolean
+        +isEvidenceExamined(evidenceId) boolean
+        +markEvidenceExamined(evidenceId) void
         +getEvidenceDesc(evidenceId) string
         +takePenalty() boolean
         +resetHealth() void
@@ -56,6 +62,7 @@ Contains the master catalog defined in [[src/state/Private/EvidenceCatalog.ts#Ev
 - Array of active evidence IDs currently held by the player.
 - Initialized with `['insignia_abogado']`.
 - Updated via `addEvidence(evidenceId)` in [[src/state/Private/GameStateManager.ts#Inventory Operations]] which prevents duplicate additions.
+- Evidence detail views mark `examined_evidence_<id>` in `flags`; `isEvidenceExamined` lets a trial rule require that the player inspect an item before presenting it. Because the flag is part of `flags`, it survives save/load and is cleared by `beginNewCase`.
 - Optional catalog fields `updatedDesc` (legacy one-shot) and `updates[]` (ordered stages). `updateEvidence` advances `evidenceUpdateStage` one step and saturates. `getEvidenceDesc` returns `updates[stage-1] ?? updatedDesc ?? desc`. A dialogue `updateEvidence` line still adds a missing item first.
 - `beginNewCase` clears flags (including update flags). `populateTrialEvidence` also applies `updateEvidence` so debug trial shows the revised text. Saves persist the flags with the rest of `flags`.
 

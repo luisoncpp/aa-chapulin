@@ -136,4 +136,19 @@ describe('TrialController snapshot and setScript', () => {
     expect(dom.choicePromptModalEl.classList.contains('hidden')).toBe(false);
     expect(openedRecord).toBe(false);
   });
+
+  it('persists and restores a completed climax marker', () => {
+    controller.phase = 'CLIMAX';
+    controller.climaxStageIdx = 1;
+    controller.climaxResolved = true;
+    const snapshot = controller.getTrialSnapshot();
+    expect(snapshot.climaxResolved).toBe(true);
+
+    controller.climaxResolved = false;
+    controller.restoreTrialSnapshot({
+      phase: 'CLIMAX', statementIdx: 0, climaxStageIdx: 1, climaxResolved: true
+    });
+    expect(controller.climaxResolved).toBe(true);
+    expect(controller.isAwaitingEvidence()).toBe(false);
+  });
 });

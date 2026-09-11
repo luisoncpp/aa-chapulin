@@ -65,7 +65,7 @@ export function presentClimaxEvidence(
   const climax = ctrl.script.trial.climax;
   const deps = climaxRunDeps(ctrl);
   const stageIdx = ctrl.climaxStageIdx;
-  if (!climaxStageMatches({ climax, stageIdx, evidenceId }, deps.state.getEvidenceUpdateStage)) {
+  if (!climaxStageMatches({ climax, stageIdx, evidenceId }, (id) => deps.state.getEvidenceUpdateStage(id))) {
     applyWrongClimaxPresent(deps, stageIdx);
     return;
   }
@@ -116,6 +116,12 @@ function isFinalClimaxStage(climax: ClimaxDefinition, stageIdx: number): boolean
 function continueMatchedClimaxStage(matched: MatchedStage, deps: ClimaxRunDeps): ClimaxSession {
   const { climax, stageIdx, stage } = matched;
   if (!isFinalClimaxStage(climax, stageIdx)) {
+    if (climax.choicesAfterStage === stageIdx && climax.choices?.length) {
+      deps.onQueueDialogue(stage.successDialogue, /*openFirstChoice*/ () => {
+        openClimaxChoice(choiceOpenSession(deps, climax, 0, matched.onChoiceSelect));
+      });
+      return { stageIdx, choiceIdx: 0 };
+    }
     deps.onQueueDialogue(stage.successDialogue, /*openNextPresent*/ () => {
       deps.onOpenCourtRecord(/*isTrialPresent=*/ true);
     });
@@ -126,7 +132,7 @@ function continueMatchedClimaxStage(matched: MatchedStage, deps: ClimaxRunDeps):
 
 function finishFinalClimaxStage(matched: MatchedStage, deps: ClimaxRunDeps): ClimaxSession {
   const { climax, stageIdx, stage, onChoiceSelect } = matched;
-  if (climax.choices && climax.choices.length > 0) {
+  if (climax.choices && climax.choices.length > 0 && climax.choicesAfterStage == null) {
     deps.onQueueDialogue(stage.successDialogue, /*openFirstChoice*/ () => {
       openClimaxChoice(choiceOpenSession(deps, climax, 0, onChoiceSelect));
     });

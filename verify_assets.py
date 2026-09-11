@@ -14,7 +14,8 @@ from scipy import ndimage
 
 # @Section(Asset Reference Regex Scanner)
 sources = []
-for root, _, files in os.walk('src/case'):
+for source_root in ('src/case', 'src/state/Private'):
+  for root, _, files in os.walk(source_root):
     for f in files:
         if f.endswith('.ts'):
             with open(os.path.join(root, f), 'r', encoding='utf-8') as src:
@@ -29,6 +30,7 @@ script_content = "\n".join(sources)
 poses = set(re.findall(r'pose:\s*["\']([^"\']+)["\']', script_content))
 cutins = set(re.findall(r'cutin:\s*["\']([^"\']+)["\']', script_content))
 bgs = set(re.findall(r'assets/([^"\']+\.(?:webp|jpg|png))', script_content))
+bgs.discard('${id}.webp')
 
 print(f"Referenced poses ({len(poses)}): {poses}")
 print(f"Referenced cutins ({len(cutins)}): {cutins}")
@@ -61,6 +63,18 @@ if missing_assets:
     sys.exit(1)
 else:
     print('All referenced assets and furniture exist on disk.')
+
+# Case 0 plates are deliberately fixed-size because Present & Point geometry
+# is measured in the browser against the final production WebP.
+for filename in (
+    'examine_recibo_hielo.webp', 'examine_foto_patio.webp',
+    'examine_plancha.webp', 'examine_lata.webp', 'examine_informe_lesiones.webp',
+    'point_foto_patio.webp', 'point_plancha.webp'
+):
+    path = os.path.join('assets', filename)
+    if os.path.exists(path) and Image.open(path).size != (960, 540):
+        print(f'ERROR: {filename} must be 960x540, got {Image.open(path).size}')
+        sys.exit(1)
 
 # @Section(Sprite Cleanliness Quality Check)
 cleanliness_errors = []

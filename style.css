@@ -124,9 +124,21 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     width: 100%;
-    max-width: 440px;
+    max-width: 620px;
+}
+
+.splash-case-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    width: 100%;
+}
+
+.splash-case-row-single {
+    grid-template-columns: minmax(0, 1fr);
+    width: 72%;
 }
 
 .splash-btn {
@@ -135,13 +147,26 @@ body {
     border: 2px solid #ffd700;
     color: #ffffff;
     font-family: 'VT323', monospace;
-    font-size: 22px;
-    padding: 6px 20px;
+    min-height: 50px;
+    font-size: 19px;
+    line-height: 1.05;
+    padding: 7px 14px;
     cursor: pointer;
     border-radius: 6px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.2);
     transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, border-color 0.15s ease;
     flex-shrink: 0;
+}
+
+.splash-btn-tutorial {
+    background: linear-gradient(180deg, #087f78 0%, #06433f 100%);
+    border-color: #00ffcc;
+}
+
+.splash-btn-tutorial:hover {
+    background: linear-gradient(180deg, #0ca89e 0%, #07665f 100%);
+    border-color: #b8fff1;
+    box-shadow: 0 0 18px rgba(0, 255, 204, 0.55), 0 6px 12px rgba(0, 0, 0, 0.7);
 }
 
 .splash-btn:hover {
@@ -825,6 +850,27 @@ body {
     height: 64px;
     object-fit: contain;
     image-rendering: pixelated;
+}
+
+@media (max-width: 620px) {
+    .splash-case-row {
+        gap: 7px;
+    }
+
+    .splash-btn {
+        font-size: 16px;
+        padding: 6px 8px;
+    }
+
+    .splash-case-row-single {
+        width: 100%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .splash-character img {
+        animation: none;
+    }
 }
 
 .evidence-card p {

@@ -47,6 +47,8 @@ Each entry in a dialogue sequence supports the following optional and required f
 | `addEvidence` | string | Evidence ID to automatically add to the player's inventory with a progress notification (same toast + realization SFX as a new location). |
 | `updateEvidence` | string | Advances one Court Record description stage (`updates[]` or legacy `updatedDesc`). Missing items are added first. |
 
+To show a full-screen illustration mid-dialogue (Case 0's `cartapacio` definition inside the third press of testimony 1), stamp `bg` with a 960×540 plate plus `furniture: 'none'` on **every** line of the aside and speak them as `NARRADOR` (no `pose`, so no sprite covers the plate). The next line without `bg` restores the speaker camera.
+
 Statements may set `unlockedBy` to another statement id; [[src/engine/Private/StatementUnlock.ts]] keeps those lines out of the visible cross-exam list until that id is pressed. Instruction-only speakers (`NARRADOR`, `MODO EXAMINAR`, and `EXAMINE MODE`) do not infer a witness camera, so the last courtroom shot remains visible while the instruction is read.
 
 ### 2. Investigation Scene Schema ([[src/case/case1/Private/investigation.ts]], [[src/case/case2/index.ts]])

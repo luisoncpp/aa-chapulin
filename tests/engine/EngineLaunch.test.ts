@@ -61,6 +61,12 @@ describe('EngineLaunch', () => {
     expect(startInvestigation).toHaveBeenCalledTimes(1);
   });
 
+  it('stages Case 0 under the splash instead of adding a second launch fade', () => {
+    startGame(host, 'case0');
+
+    expect(startTrial).toHaveBeenCalledWith(/*skipFade=*/ true);
+  });
+
   it('starts trial debug once and ignores a second call after launch', () => {
     startTrialDebug(host);
     expect(startTrial).toHaveBeenCalledTimes(1);

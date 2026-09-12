@@ -206,7 +206,26 @@ Presiones:
 
 - **1:** enumera las puertas que tocó y admite que nadie le compró nada. Menciona de paso que la vivienda 4 "tenía la chapa muy floja, cosa que un servidor nota profesionalmente". El Chapulín remarca que presionar salió gratis. Este dato se cobra en el clímax.
 - **2:** distingue el golpe del grito y sostiene la hora. Todavía no se le pregunta cómo la sabe.
-- **3:** rectifica a la baja: "salir corriendo, sí; el cartapacio... lo vi de reojo". La declaración original **sigue siendo la atacable**; no se desbloquea una copia.
+- **3:** presión larga. El Chapulín no conoce la palabra, la corte se detiene a definirla y recién después rectifica el testigo: "salir corriendo, sí; el cartapacio... lo vi de reojo". La declaración original **sigue siendo la atacable**; no se desbloquea una copia.
+
+~~~dialogue
+DEFENSA: ¡UN MOMENTO! [sfx: whoosh; cutin: objection_un_momento]
+CHAPULIN: ¿Cartapa... qué? [pose: chapulin_idle]
+CASIMIRO: ...cio. [pose: casimiro_amable]
+CHAPULIN: ¡Chanfle! [pose: chapulin_panic]
+JUEZ: La corte advierte que el término no es del dominio común. Se ilustrará para el acta. [pose: judge_thinking]
+JUEZ: Un cartapacio es una carpeta de fuelle: se abre como acordeón, lleva un separador por cada asunto y se cierra con un cordón elástico y un broche. [pose: judge_neutral]
+[LÁMINA assets/examine_maletin_cobranza.webp]
+NARRADOR: Lámina ilustrativa: cartapacio de fuelle. Plegado ocupa lo mismo que un tomo; abierto guarda un papel por cada puerta.
+NARRADOR: Los cobradores lo usan porque el dinero va en un bolsillo y la lista de rentas en los demás.
+[FIN LÁMINA]
+CHAPULIN: ¡Ah! ¡Entonces no es un maletín, es una carpeta con acordeón! [pose: chapulin_point]
+JUEZ: Queda ilustrado el término. Continúe, testigo. [sfx: gavel]
+CASIMIRO: Salir corriendo, sí; el cartapacio... lo vi de reojo. [pose: casimiro_sweat]
+~~~
+
+La lámina ocupa la pantalla completa: cada línea del inciso lleva `bg` + `furniture: 'none'` y habla `NARRADOR` sin `pose`, para que ningún sprite tape la imagen. La línea siguiente sin `bg` devuelve la cámara al testigo. En inglés el chiste se parte sobre *accordion file* ("An accor... what?" / "...dion file.").
+
 - **4:** confirma que él hizo la llamada y que la policía llegó a las 14:15. Super Sam celebra la puntualidad del testigo sin notar el problema.
 
 **Contradicción sobre 3:** `parte_detencion`. Pregunta visible: "¿Qué traía el acusado encima cuando lo detuvieron?".

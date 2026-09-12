@@ -28,3 +28,12 @@ When generating a waist-up pose:
 - After chroma-key, run `anchor_standing_bust` on the whole sheet's pose list, not an allowlist of names.
 - Anchor from the visible alpha bound (`alpha > 32`) and alpha-composite onto the canvas. Faint edge pixels otherwise leave a visible gap after WebP encoding.
 - Slam / desk-contact poses are the exception: they keep the waist notch and palms, not this floor-hem.
+
+### 5. The Idle Breathing Float Must Hang Below Contact, Not Above It
+Baseline alignment only fixes the *rest* pose; `characterBreathe` then animates around it. Anchoring the cycle at rest (`0% → 0`, `50% → -3px`) means the sprite is at the gold line for one instant per cycle and lifted off it for the rest — the gap reads as the bust bobbing away from the box.
+
+Anchor the cycle at its **peak** instead: `50%` holds the contact offset and `0%/100%` sinks the hem *into* the plate. Two constraints bound this:
+- The peak, not the rest pose, must equal the contact offset.
+- Total travel (peak to trough) must not exceed the dialogue box's **3px solid border** (`#dialogue-box`), or the dip carries the hem into the translucent interior where it shows through the text area.
+
+The contact offset is **2px**, not 0: `characterBaseline: 0.25` rounds short of the gold trim on the rendered plate, so the cycle runs `2px → 5px`. Derive it from a zoomed screenshot of the hem, not from the percentage — the residual gap is a single pixel at a time and takes several passes to close by eye. Any change to the border width has to be mirrored in the keyframe amplitude. Desk-contact poses are unaffected — `[data-stage-contact="true"]` already kills the animation.

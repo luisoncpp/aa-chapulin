@@ -244,9 +244,14 @@ body {
     animation: none;
 }
 
+/* The cycle is anchored at its PEAK, not its rest pose: at 50% the sprite sits on the
+   dialogue box edge, and the rest of the cycle sinks it *into* the plate rather than
+   lifting it off. The peak is 2px, not 0: the baseline percentage rounds short of the gold
+   trim, so the offset is measured off the rendered plate. Travel stays at the box's 3px
+   solid border, so the dip never reaches the translucent interior. */
 @keyframes characterBreathe {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-3px); }
+    0%, 100% { transform: translateY(5px); }
+    50% { transform: translateY(2px); }
 }
 
 /* Courtroom Foreground Furniture (Witness Podium / Defense Bench)

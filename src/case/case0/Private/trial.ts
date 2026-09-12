@@ -22,6 +22,22 @@ const tutorialPress: DialogueLine[] = [
   { speaker: 'CASIMIRO', pose: 'casimiro_amable', text: 'La vivienda 4 tenía la chapa muy floja, cosa que un servidor nota profesionalmente.' }
 ];
 
+const CARTAPACIO_PLATE = 'assets/examine_maletin_cobranza.webp';
+
+/** Press aside: the court pauses to define "cartapacio" and shows the object for the record. */
+const CASE0_CARTAPACIO_LESSON: DialogueLine[] = [
+  { speaker: 'DEFENSA', pose: 'donramon_point', cutin: 'objection_un_momento', sfx: 'whoosh', text: '¡UN MOMENTO!' },
+  { speaker: 'CHAPULÍN', pose: 'chapulin_idle', text: '¿Cartapa... qué?' },
+  { speaker: 'CASIMIRO', pose: 'casimiro_amable', text: '...cio.' },
+  { speaker: 'CHAPULÍN', pose: 'chapulin_panic', text: '¡Chanfle!' },
+  { speaker: 'JUEZ', pose: 'judge_thinking', text: 'La corte advierte que el término no es del dominio común. Se ilustrará para el acta.' },
+  { speaker: 'JUEZ', pose: 'judge_neutral', text: 'Un cartapacio es una carpeta de fuelle: se abre como acordeón, lleva un separador por cada asunto y se cierra con un cordón elástico y un broche.' },
+  { speaker: 'NARRADOR', bg: CARTAPACIO_PLATE, furniture: 'none', text: 'Lámina ilustrativa: cartapacio de fuelle. Plegado ocupa lo mismo que un tomo; abierto guarda un papel por cada puerta.' },
+  { speaker: 'NARRADOR', bg: CARTAPACIO_PLATE, furniture: 'none', text: 'Los cobradores lo usan porque el dinero va en un bolsillo y la lista de rentas en los demás.' },
+  { speaker: 'CHAPULÍN', pose: 'chapulin_point', text: '¡Ah! ¡Entonces no es un maletín, es una carpeta con acordeón!' },
+  { speaker: 'JUEZ', pose: 'judge_gavel', sfx: 'gavel', text: 'Queda ilustrado el término. Continúe, testigo.' }
+];
+
 export const CASE0_TESTIMONY_1: Testimony = {
   title: 'Testimonio: Lo que vi desde el patio', witness: 'Casimiro Lengua', bgm: 'cross_exam_moderato', statements: [
     { id: 'c0_t1_1', speaker: 'CASIMIRO', pose: 'casimiro_catalogo', text: 'Ese mediodía yo hacía mi ronda de ventas en la vecindad, tomo por tomo, puerta por puerta.', pressText: tutorialPress },
@@ -30,7 +46,7 @@ export const CASE0_TESTIMONY_1: Testimony = {
       { speaker: 'CASIMIRO', pose: 'casimiro_sweat', text: 'Distinguí el golpe del grito. La hora la sostengo: fue la una en punto.' }
     ] },
     { id: 'c0_t1_3', speaker: 'CASIMIRO', pose: 'casimiro_amable', text: 'Me asomé desde el patio y vi salir corriendo al acusado con el cartapacio del cobrador en la mano.', pressText: [
-      { speaker: 'DEFENSA', pose: 'donramon_point', cutin: 'objection_un_momento', sfx: 'whoosh', text: '¡UN MOMENTO!' },
+      ...CASE0_CARTAPACIO_LESSON,
       { speaker: 'CASIMIRO', pose: 'casimiro_sweat', text: 'Salir corriendo, sí; el cartapacio... lo vi de reojo.' }
     ], contradiction: {
       evidence: ['parte_detencion'],

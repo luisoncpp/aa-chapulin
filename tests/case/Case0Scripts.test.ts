@@ -269,6 +269,23 @@ describe('Case 0 — El Primer Juicio de Don Ramón', () => {
     }
   });
 
+  it('defines the accordion file on a full-screen plate during the third press', () => {
+    for (const lang of ['es', 'en'] as const) {
+      const press = getCaseScript(lang, 'case0').trial.testimonies[0].statements[2].pressText!;
+      const plateLines = press.filter((line) => line.bg === 'assets/examine_maletin_cobranza.webp');
+      const judgeOpening = press.findIndex((line) => line.speaker === 'JUEZ');
+
+      expect(press.slice(1, 4).map((line) => line.speaker)).toEqual(['CHAPULÍN', 'CASIMIRO', 'CHAPULÍN']);
+      expect(judgeOpening).toBeGreaterThan(3);
+      expect(press.indexOf(plateLines[0])).toBeGreaterThan(judgeOpening);
+      expect(plateLines).not.toHaveLength(0);
+      expect(plateLines.every((line) => line.speaker === 'NARRADOR' && !line.pose)).toBe(true);
+      expect(plateLines.every((line) => line.furniture === 'none')).toBe(true);
+      expect(press.at(-1)).toMatchObject({ speaker: 'CASIMIRO' });
+      expect(press.at(-1)?.bg).toBeUndefined();
+    }
+  });
+
   it('ensures dialogues and prompts are clearly phrased without awkward idioms', () => {
     const es = getCaseScript('es', 'case0');
     const en = getCaseScript('en', 'case0');

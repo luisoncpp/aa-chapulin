@@ -41,6 +41,7 @@ SINGLE_PLATE_SOURCES = {
 }
 SINGLE_ICON_SOURCES = {"maletin_cobranza_icon_raw.png": "maletin_cobranza"}
 SAVINGS_CLUE_CONTRACT = "single soot/grease mark; no fingerprint or ridge pattern"
+NERVOUS_HEM_ROWS = 3
 
 
 def selected_outputs() -> set[str] | None:
@@ -59,6 +60,21 @@ def selected_outputs() -> set[str] | None:
     return selected
 
 
+def seal_nervous_apron_hem(image: Image.Image) -> Image.Image:
+    repaired = image.copy()
+    alpha = repaired.getchannel("A")
+    visible_rows = [
+        y for y in range(repaired.height)
+        if any(alpha.getpixel((x, y)) > 32 for x in range(repaired.width))
+    ]
+    for y in range(visible_rows[-1] - NERVOUS_HEM_ROWS + 1, visible_rows[-1] + 1):
+        visible = [x for x in range(repaired.width) if repaired.getpixel((x, y))[3] > 32]
+        for x in range(visible[0], visible[-1] + 1):
+            red, green, blue, _ = repaired.getpixel((x, visible_rows[-4]))
+            repaired.putpixel((x, y), (red, green, blue, 255))
+    return repaired
+
+
 def process_pose(image: Image.Image, name: str) -> None:
     cleaned = remove_bg_magenta_vectorized(image, threshold=165.0, despill_depth=4)
     cleaned = clean_edges_vectorized(cleaned, depth=5)
@@ -66,6 +82,8 @@ def process_pose(image: Image.Image, name: str) -> None:
     # Despilling can erase the lowest semi-transparent hem pixels. Anchor after it so the
     # saved WebP, not just the intermediate image, meets the dialogue border.
     final = anchor_standing_bust(despill_final(filtered))
+    if name == "toribio_nervioso":
+        final = seal_nervous_apron_hem(final)
     final.save(Path(DEST_DIR) / f"{name}.webp", "WEBP", quality=85, method=6)
     print(f"[OK] {name}.webp {final.size}")
 

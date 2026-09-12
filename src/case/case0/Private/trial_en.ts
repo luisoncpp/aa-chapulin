@@ -16,6 +16,22 @@ export const CASE0_TRIAL_INTRO_EN: DialogueLine[] = [
   { speaker: 'EXAMINE MODE', text: 'For this opening, the COURT RECORD will open by itself. When it does, select the badge and press the Present Evidence! button.', instant: true }
 ];
 
+const CARTAPACIO_PLATE_EN = 'assets/examine_maletin_cobranza.webp';
+
+/** Press aside: the court pauses to define the accordion file and shows the object for the record. */
+const CASE0_CARTAPACIO_LESSON_EN: DialogueLine[] = [
+  { speaker: 'DEFENSA', pose: 'donramon_point', cutin: 'objection_un_momento', sfx: 'whoosh', text: 'HOLD IT!' },
+  { speaker: 'CHAPULÍN', pose: 'chapulin_idle', text: 'An accor... what?' },
+  { speaker: 'CASIMIRO', pose: 'casimiro_amable', text: '...dion file.' },
+  { speaker: 'CHAPULÍN', pose: 'chapulin_panic', text: 'Good grief!' },
+  { speaker: 'JUEZ', pose: 'judge_thinking', text: 'The court notes that the term is not common knowledge. It will be illustrated for the record.' },
+  { speaker: 'JUEZ', pose: 'judge_neutral', text: 'An accordion file is a pleated folder: it opens like a bellows, carries one divider per matter, and closes with an elastic cord and a clasp.' },
+  { speaker: 'NARRADOR', bg: CARTAPACIO_PLATE_EN, furniture: 'none', text: 'Illustration for the record: a pleated accordion file. Folded it takes up no more than a book; opened it holds one sheet per door.' },
+  { speaker: 'NARRADOR', bg: CARTAPACIO_PLATE_EN, furniture: 'none', text: 'Rent collectors use them because the money rides in one pocket and the rent list in all the others.' },
+  { speaker: 'CHAPULÍN', pose: 'chapulin_point', text: 'Oh! So it is not a briefcase, it is a folder with a bellows!' },
+  { speaker: 'JUEZ', pose: 'judge_gavel', sfx: 'gavel', text: 'The term is illustrated. Continue, witness.' }
+];
+
 export const CASE0_TESTIMONY_1_EN: Testimony = {
   title: 'Testimony: What I saw from the courtyard', witness: 'Casimiro Lengua', bgm: 'cross_exam_moderato', statements: [
     { id: 'c0_t1_1', speaker: 'CASIMIRO', pose: 'casimiro_catalogo', text: 'That noon I made my sales round through the neighborhood, volume by volume, door by door.', pressText: [
@@ -28,7 +44,7 @@ export const CASE0_TESTIMONY_1_EN: Testimony = {
       { speaker: 'CASIMIRO', pose: 'casimiro_sweat', text: 'I distinguished the blow from the cry. The time was one o’clock.' }
     ] },
     { id: 'c0_t1_3', speaker: 'CASIMIRO', pose: 'casimiro_amable', text: 'I looked into the courtyard and saw the defendant run out with the collector’s accordion file in his hand.', pressText: [
-      { speaker: 'DEFENSA', pose: 'donramon_point', cutin: 'objection_un_momento', sfx: 'whoosh', text: 'HOLD IT!' },
+      ...CASE0_CARTAPACIO_LESSON_EN,
       { speaker: 'CASIMIRO', pose: 'casimiro_sweat', text: 'Run out, yes; the file... I saw it from the corner of my eye.' }
     ], contradiction: {
       evidence: ['parte_detencion'],

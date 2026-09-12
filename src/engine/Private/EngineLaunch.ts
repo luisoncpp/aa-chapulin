@@ -53,7 +53,7 @@ export function startGame(host: LaunchHost, caseId: CaseId = 'case1'): void {
   else host.state.beginNewCase(host.getScript());
   dismissSplash(host.dom, host.soundEngine);
   if (caseId === 'case0') {
-    host.trial.startTrial();
+    host.trial.startTrial(/*skipFade=*/ true);
     return;
   }
   host.investigation.startInvestigation(host.getScript().startLocation);

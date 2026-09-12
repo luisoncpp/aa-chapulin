@@ -29,3 +29,25 @@ describe('character sprite downscaling', () => {
     expect(cssRule(css, '#evidence-icon-preview')).toMatch(/image-rendering:\s*pixelated/);
   });
 });
+
+describe('idle breathing float against the dialogue plate', () => {
+  const css = fs.readFileSync(path.resolve(__dirname, '../../style.css'), 'utf-8');
+  const offsets = /@keyframes characterBreathe \{((?:[^{}]*\{[^{}]*\})*)[^{}]*\}/.exec(css)![1]
+    .matchAll(/translateY\((-?\d+(?:\.\d+)?)(?:px)?\)/g);
+  const travel = [...offsets].map(match => Number(match[1]));
+
+  // Downward is positive. The contact offset is measured against the rendered plate, not
+  // derived from the baseline percentage: `plain` rounds to a whole pixel and lands short
+  // of the gold trim.
+  const CONTACT_OFFSET_PX = 2;
+
+  it('touches the dialogue box at the top of the cycle instead of only at rest', () => {
+    // The peak (50%) is the contact offset, so no keyframe lifts the sprite off the trim.
+    expect(Math.min(...travel)).toBe(CONTACT_OFFSET_PX);
+  });
+
+  it('never dips past the solid border into the translucent interior', () => {
+    const border = Number(/border:\s*(\d+)px solid/.exec(cssRule(css, '#dialogue-box'))![1]);
+    expect(Math.max(...travel) - Math.min(...travel)).toBeLessThanOrEqual(border);
+  });
+});

@@ -21,7 +21,7 @@ Domain terminology and project-specific concepts for **El Chapulín Colorado: Ac
 
 | Term | Definition | Catalog Reference |
 |------|------------|-------------------|
-| **Don Ramón (Lic. Monchito)** | The defense lawyer: an improvised, street-smart public defender taking Chapulín's case to clear his client and pay his 14 months of rent. | [[src/case/case1/Private/trial.ts]], [[src/case/case1/Private/investigation.ts]] |
+| **Don Ramón (Abogado Defensor)** | The defense lawyer: an improvised, street-smart public defender taking Chapulín's case to clear his client and pay his 14 months of rent. Occasionally refers to himself with his playful catchphrase "Con permisito, dijo Monchito". | [[src/case/case1/Private/trial.ts]], [[src/case/case1/Private/investigation.ts]] |
 | **El Chapulín Colorado** | The defendant: a bumbling yet noble superhero framed for stealing the Golden Chicharra. | [[src/case/case1/Private/investigation.ts]] |
 | **Super Sam** | The prosecutor: an eccentric hero obsessed with capitalism and speed ("Time is money!"), wielding bags of dollars. | [[src/case/case1/Private/trial.ts]] |
 | **El Tripaseca** | The prosecution witness and true culprit: a notorious gangster trying to frame Chapulín. | [[src/case/case1/Private/trial.ts]] |
@@ -46,6 +46,7 @@ Domain terminology and project-specific concepts for **El Chapulín Colorado: Ac
 | **Maruja** | Case 4 witness: glamorous guest ("La Sirena del Hotel") staying in Suite 303. | [[docs/specs/case-4-el-caso-del-hotel-buena-vista.md]] |
 | **El Cuajinais** | Case 4 victim: mobster with the scar on his cheek, checked in as "Sr. Gómez" to extort Rufino. | [[docs/specs/case-4-el-caso-del-hotel-buena-vista.md]] |
 | **La Chimoltrufia** | Case 4 day-3 hotel desk: replaces Don Cecilio at `hotel_lobby_d3`; files the wine delivery certification, baccarat slip, and telegram copy. | [[docs/specs/case-4-el-caso-del-hotel-buena-vista.md]], [[docs/lessons-learned/location-cast-rotation.md]] |
+| **Cartapacio de Cobranza** | Case 0 stolen item: Don Nazario's accordion file (cartapacio de fuelle) holding the rent list, one pocket per house. Folds flat, which is why it fits among the volumes in Casimiro's sample case — a rigid briefcase would not. `EvidenceId` stays `maletin_cobranza`. | [[src/state/Private/EvidenceCatalogCase0Es.ts]], [[docs/specs/case-0-el-primer-juicio-de-monchito.md]] |
 | **El Chómpiras** (bellhop) | Case 4 day-2 terrace (`hotel_terraza_d2`): logs freight-elevator B-17 weights; accompanies the day-2 roof trunk inspection. | [[docs/specs/case-4-el-caso-del-hotel-buena-vista.md]] |
 
 ## Audio & Engine Terminology

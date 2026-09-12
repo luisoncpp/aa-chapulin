@@ -21,7 +21,7 @@ export const CASE4_HOTEL_LOBBY: InvestigationScene = {
     { speaker: 'DEFENSA', text: 'La señora soy yo, por lo visto.', pose: 'donramon_sweat' },
     { speaker: 'CECILIO', text: 'Le ruego mil perdones. A dos metros yo distingo colores, no personas.', pose: 'cecilio_ciego' },
     { speaker: 'CHAPULIN', text: '¡Pues a mí me distinguió muy bien! ¡Rojo!', pose: 'chapulin_idle' },
-    { speaker: 'DEFENSA', text: 'Licenciado Monchito, defensa. Venimos por los trabajos que hizo Botija durante la gala.', pose: 'donramon_idle' },
+    { speaker: 'DEFENSA', text: 'Don Ramón, defensa. Venimos por los trabajos que hizo Botija durante la gala.', pose: 'donramon_idle' },
     { speaker: 'RUFINO', text: 'A mí me subió una botella y me ayudó con un baúl. Que conste en su cuadernito que fue puntual: la puntualidad es la cortesía de los que no tienen otra.', pose: 'rufino_monocle' },
     { speaker: 'CHAPULIN', text: '¿Y ese anillote también sirve para firmar?', pose: 'chapulin_point' },
     { speaker: 'RUFINO', text: 'Para sellar correspondencia, jovencito. La cabeza gira, para proteger el relieve.', pose: 'rufino_smug' },

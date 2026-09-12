@@ -17,7 +17,7 @@ export const CASE4_DAY3_INTRO: DialogueLine[] = [
   { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_neutral', text: 'La defensa reconoce que el señor Rufián estaba en el salón de juego a las 23:15.' },
   { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_idle', text: 'Lo reconoce, señor juez. Esa coartada es verdadera y no la vamos a discutir. Sólo que cubre el ruido... y el ruido no mató a nadie.' },
   { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_point', text: 'Entonces la fiscalía mantiene su cuenta: el vino salió alterado de las manos que lo transportaron.' },
-  { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_sweat', text: '(Tercer día, Monchito. Ya nomás falta la botella. Nada más la botella.)' },
+  { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_sweat', text: '(Tercer día, Don Ramón. Ya nomás falta la botella. Nada más la botella.)' },
   { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_neutral', text: 'Escucharemos al señor Rufián sobre su propia intervención.' }
 ];
 

@@ -20,7 +20,7 @@ export const CABINA_HOTSPOTS: Hotspot[] = [
     label: 'Piso y Silueta de Tiza',
     x: 50, y: 60, w: 42, h: 32,
     dialogue: [
-      { speaker: 'CHAPULIN', text: '¡Mire, Monchito! ¡A estos lentes les falta un ojo!', pose: 'chapulin_point' },
+      { speaker: 'CHAPULIN', text: '¡Mire, Don Ramón! ¡A estos lentes les falta un ojo!', pose: 'chapulin_point' },
       { speaker: 'DEFENSA', text: 'Falta el cristal derecho... y en toda esta cabina no hay ni un pedacito de vidrio. Interesante.', pose: 'donramon_idle', sfx: 'realization', addEvidence: 'lentes_barriga' }
     ]
   },

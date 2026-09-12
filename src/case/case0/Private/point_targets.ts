@@ -4,13 +4,13 @@ import type { DialogueLine, PointTargetContradiction } from '../../../types/inde
 const FOTO_FAILURE_ES: DialogueLine[] = [
   { speaker: 'JUEZ', pose: 'judge_shock', text: 'Ese punto no dice nada sobre una campanada, licenciado.' },
   { speaker: 'SUPER SAM', pose: 'supersam_slam', sfx: 'desk_slam', text: '¡Un peso menos de credibilidad para la defensa! ¡Y van!' },
-  { speaker: 'CHAPULÍN', pose: 'chapulin_point', text: 'Calma, Monchito. Vuelve a mirar la foto: la escuela está al fondo, y lo que le falta es lo que importa.' }
+  { speaker: 'CHAPULÍN', pose: 'chapulin_point', text: 'Calma, Don Ramón. Vuelve a mirar la foto: la escuela está al fondo, y lo que le falta es lo que importa.' }
 ];
 
 const PLANCHA_FAILURE_ES: DialogueLine[] = [
   { speaker: 'JUEZ', pose: 'judge_shock', text: 'Ese detalle no demuestra quién usó la plancha.' },
   { speaker: 'SUPER SAM', pose: 'supersam_slam', sfx: 'desk_slam', text: '¡Otro peso menos de credibilidad! La defensa debe señalar un detalle material.' },
-  { speaker: 'CHAPULÍN', pose: 'chapulin_point', text: 'Calma, Monchito. Mira la plancha completa y busca lo que no debería estar ahí.' }
+  { speaker: 'CHAPULÍN', pose: 'chapulin_point', text: 'Calma, Don Ramón. Mira la plancha completa y busca lo que no debería estar ahí.' }
 ];
 
 export const CASE0_FOTO_POINT_TARGET: PointTargetContradiction = {
@@ -34,7 +34,7 @@ export const CASE0_FOTO_POINT_TARGET_EN: PointTargetContradiction = {
     failureDialogue: [
       { speaker: 'JUEZ', pose: 'judge_shock', text: 'That spot says nothing about a bell, counselor.' },
       { speaker: 'SUPER SAM', pose: 'supersam_slam', sfx: 'desk_slam', text: 'Another point of credibility for the defense! It must identify a material detail.' },
-      { speaker: 'CHAPULÍN', pose: 'chapulin_point', text: 'Stay calm, Monchito. Look at the school in the background, and find what is missing.' }
+      { speaker: 'CHAPULÍN', pose: 'chapulin_point', text: 'Stay calm, Don Ramón. Look at the school in the background, and find what is missing.' }
     ]
   }))
 };
@@ -60,7 +60,7 @@ export const CASE0_PLANCHA_POINT_TARGET_EN: PointTargetContradiction = {
     failureDialogue: [
       { speaker: 'JUEZ', pose: 'judge_shock', text: 'That detail does not show who used the iron.' },
       { speaker: 'SUPER SAM', pose: 'supersam_slam', sfx: 'desk_slam', text: 'Another point of credibility lost! The defense must identify a material detail.' },
-      { speaker: 'CHAPULÍN', pose: 'chapulin_point', text: 'Stay calm, Monchito. Look at the whole iron and find what should not be there.' }
+      { speaker: 'CHAPULÍN', pose: 'chapulin_point', text: 'Stay calm, Don Ramón. Look at the whole iron and find what should not be there.' }
     ]
   }))
 };

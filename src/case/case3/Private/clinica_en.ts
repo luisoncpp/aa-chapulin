@@ -17,7 +17,7 @@ export const CASE3_CLINICA_EN: InvestigationScene = {
     { speaker: 'NONO', text: 'My daddy\'s still asleep... They say maybe he wakes up, and maybe he doesn\'t.', pose: 'nono_nervioso' },
     { speaker: 'DEFENSA', text: 'Young Ñoño, were you at the console all night?', pose: 'donramon_idle' },
     { speaker: 'NONO', text: 'Yes! The whole night! Every second! I didn\'t move an inch!', pose: 'nono_nervioso' },
-    { speaker: 'CHAPULIN', text: '(Monchito, that boy said "every second" and even his cheeks started sweating.)', pose: 'chapulin_idle' },
+    { speaker: 'CHAPULIN', text: '(Don Ramón, that boy said "every second" and even his cheeks started sweating.)', pose: 'chapulin_idle' },
     { speaker: 'FLORINDA', text: 'Poor child. He\'s been sitting here since the night before last without a bite. Rabble or not, no boy should see his father like that.', pose: 'florinda_idle' }
   ],
   hotspots: [

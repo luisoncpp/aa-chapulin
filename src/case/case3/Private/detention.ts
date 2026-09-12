@@ -14,7 +14,7 @@ export const CASE3_DETENTION: InvestigationScene = {
   idlePose: 'chapatin_idle',
   intro: [
     { speaker: 'NARRADOR', text: '16 de septiembre, 9:00 AM. Centro de Detención de la Ciudad.' },
-    { speaker: 'DEFENSA', text: 'Buenos días, doctor. Soy el Licenciado Monchito, su abogado defensor.', pose: 'donramon_idle' },
+    { speaker: 'DEFENSA', text: 'Buenos días, doctor. Soy Don Ramón, su abogado defensor.', pose: 'donramon_idle' },
     { speaker: 'CHAPATIN', text: '¡Yo no pedí abogado! ¡Los abogados son como las radiografías: carísimos y nunca se entiende nada!', pose: 'chapatin_enojado' },
     { speaker: 'CHAPULIN', text: '¡Calma, doctorcito! ¡Que no panda el cúnico! Venimos a ayudarlo.', pose: 'chapulin_idle' },
     { speaker: 'CHAPATIN', text: '¡Y usted quién es, el del disfraz!', pose: 'chapatin_bolsa', sfx: 'chipote' },
@@ -58,7 +58,7 @@ export const CASE3_DETENTION: InvestigationScene = {
         { speaker: 'CHAPATIN', text: 'No le importa.', pose: 'chapatin_enojado' },
         { speaker: 'DEFENSA', text: 'Doctor, con todo respeto, eso es exactamente lo que lo va a mandar veinte años a la cárcel.', pose: 'donramon_point' },
         { speaker: 'CHAPATIN', text: 'Entonces me voy veinte años. Un médico que suelta la lengua no es médico, es chismoso.', pose: 'chapatin_idle' },
-        { speaker: 'CHAPULIN', text: '(Monchito... está encubriendo a alguien.)', pose: 'chapulin_idle' },
+        { speaker: 'CHAPULIN', text: '(Don Ramón... está encubriendo a alguien.)', pose: 'chapulin_idle' },
         { speaker: 'DEFENSA', text: '(Y ese alguien es su paciente. Apunte, Chapulín: la coartada existe, pero está bajo secreto profesional.)', pose: 'donramon_sweat' }
       ]
     },

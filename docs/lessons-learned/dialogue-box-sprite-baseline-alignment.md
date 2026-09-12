@@ -26,4 +26,5 @@ When generating a waist-up pose:
 - The shirt hem / waist cut sits on the **bottom of the cell**, with about 5px of magenta below it.
 - Magenta padding belongs above the hair and beside the hands, not under the torso.
 - After chroma-key, run `anchor_standing_bust` on the whole sheet's pose list, not an allowlist of names.
+- Anchor from the visible alpha bound (`alpha > 32`) and alpha-composite onto the canvas. Faint edge pixels otherwise leave a visible gap after WebP encoding.
 - Slam / desk-contact poses are the exception: they keep the waist notch and palms, not this floor-hem.

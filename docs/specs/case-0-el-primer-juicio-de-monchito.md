@@ -1,4 +1,4 @@
-# Caso 0: El Primer Juicio del Lic. Monchito — Tutorial
+# Caso 0: El Primer Juicio de Don Ramón — Tutorial
 
 *Turnabout Rookie*
 
@@ -24,6 +24,7 @@ Reglas obligatorias:
 - **Cada mecánica se enseña una vez, con una acción del jugador, antes de volver a exigirla.** La secuencia canónica está en §13 y define el orden de los testimonios.
 - **La enseñanza es diegética.** El Chapulín Colorado acompaña a Don Ramón como asesor y explica qué botón sirve para qué. Las láminas de instrucción pura (`MODO TUTORIAL`) se imprimen con `instant: true`, sin chirridos de máquina de escribir (ver [[docs/lessons-learned/examine-prompt-no-chirp.md]]).
 - **La primera presentación errónea no se castiga en serio.** El primer fallo descuenta un punto y el Chapulín explica por qué; a partir de ahí la penalización es la normal. El riesgo de Game Over está medido en §14 y es lo primero que se valida jugando.
+- **Lo robado es un cartapacio de fuelle, no un segundo maletín.** Un portafolio rígido no cabe dentro de otro, y el jugador ve las dos láminas. El cartapacio se vacía, se pliega y se mete entre los tomos del maletín de muestras; además explica el fajo de papeles del hallazgo, sostiene el broche que el anexo del parte describe y justifica el "se sentía ligerito" de la presión 3 de T3. El `EvidenceId` sigue siendo `maletin_cobranza`.
 - **No hay víctima muerta.** El cobrador sobrevive con amnesia del episodio. El tono es de vecindad y la apuesta emocional es la renta de Don Ramón y el changarro del acusado, no un cadáver.
 - **La víctima amnésica es el motivo declarado de que exista un único testigo.** No se usa como comodín para ocultar hechos que la corte ya tiene.
 - **No se exige refutar una afirmación verdadera.** Cada presentación contradice una frase concreta y falsa, citada en el guion.
@@ -34,19 +35,21 @@ Reglas obligatorias:
 
 ## 2. Sinopsis y verdad del autor
 
-El 12 de julio, en una vecindad del Distrito Federal, el cobrador de rentas **Don Nazario Cuenca** es golpeado por la espalda dentro de la vivienda 4 y despojado de su maletín de cobranza. Sobrevive, pero no recuerda nada del día. El inquilino de la vivienda 4, **Toribio Pantoja**, paletero de veinte años, es detenido a los diez minutos de encontrar el cuerpo: debía dos meses de renta y estaba parado junto a la víctima cuando llegó la policía.
+El 12 de julio, en una vecindad del Distrito Federal, el cobrador de rentas **Don Nazario Cuenca** es golpeado por la espalda dentro de la vivienda 4 y despojado de su cartapacio de cobranza. Sobrevive, pero no recuerda nada del día. El inquilino de la vivienda 4, **Toribio Pantoja**, paletero de veinte años, es detenido a los diez minutos de encontrar el cuerpo: debía dos meses de renta y estaba parado junto a la víctima cuando llegó la policía.
 
-La verdad: **Casimiro Lengua**, que se presenta como vendedor de enciclopedias a domicilio, llevaba semanas usando su maletín de muestras para reconocer puertas con chapa vencida. Entró a la vivienda 4 —cuya chapa está rota desde marzo— a buscar la lata de ahorros del paletero. La sacó de abajo del catre y la dejó sobre la mesa. Don Nazario lo sorprendió al entrar a cobrar. Casimiro lo golpeó por detrás con la plancha de carbón que estaba en la repisa, tomó el maletín de cobranza, devolvió la plancha a su sitio y se sentó a esperar en el patio.
+La verdad: **Casimiro Lengua**, que se presenta como vendedor de enciclopedias a domicilio, llevaba semanas usando su maletín de muestras para reconocer puertas con chapa vencida. Entró a la vivienda 4 —cuya chapa está rota desde marzo— a buscar la lata de ahorros del paletero. La sacó de abajo del catre y la dejó sobre la mesa. Don Nazario lo sorprendió al entrar a cobrar. Casimiro lo golpeó por detrás con la plancha de carbón que estaba en la repisa, tomó el cartapacio de cobranza, devolvió la plancha a su sitio y se sentó a esperar en el patio.
 
-Cuando Toribio volvió de la hielería y gritó, Casimiro apareció "corriendo" y declaró haberlo visto salir con el maletín. Su cálculo es que la corte fije el golpe a la una en punto, cinco minutos antes de que empiece la coartada verificable del acusado.
+Se echó el dinero de la cobranza a la bolsa y **se quedó con el cartapacio y su lista de rentas**: para un hombre que vive de reconocer puertas, esa lista dice quién pagó, quién debe y en qué casa hay efectivo. Es la razón por la que no lo tiró y por la que el alguacil lo encuentra al día siguiente entre sus tomos de muestra.
 
-Sus tres errores materiales: describió el maletín al agente veinticinco minutos antes de la hora en que después dirá que se lo encontró; la plancha quedó acomodada con el asa hacia la pared y con tizne fresco en el mango; y la lata de ahorros quedó sobre la mesa, con el mismo tizne en la tapa.
+Cuando Toribio volvió de la hielería y gritó, Casimiro apareció "corriendo" y declaró haberlo visto salir con el cartapacio. Su cálculo es que la corte fije el golpe a la una en punto, cinco minutos antes de que empiece la coartada verificable del acusado.
+
+Sus tres errores materiales: describió el cartapacio al agente veinticinco minutos antes de la hora en que después dirá que se lo encontró; la plancha quedó acomodada con el asa hacia la pared y con tizne fresco en el mango; y la lata de ahorros quedó sobre la mesa, con el mismo tizne en la tapa.
 
 ## 3. Reparto
 
 | Personaje | Función | Representación |
 | --- | --- | --- |
-| Don Ramón, **Lic. Monchito** | Defensa. Es su primer juicio: no sabe los nombres de los trámites y lo compensa con calle. La renta atrasada aquí es de **14 meses**, cifra que el Caso 1 hereda. | Familia `donramon`. Poses existentes. |
+| Don Ramón | Defensa. Es su primer juicio: no sabe los nombres de los trámites y lo compensa con calle. La renta atrasada aquí es de **14 meses**, cifra que el Caso 1 hereda. | Familia `donramon`. Poses existentes. |
 | **El Chapulín Colorado** | Asesor de la defensa y **voz del tutorial**. Explica los controles y valida los aciertos. No aporta pruebas ni resuelve deducciones. | Familia `chapulin`: `chapulin_idle`, `chapulin_point`, `chapulin_slam`, `chapulin_panic`. |
 | **Super Sam** | Fiscal. Aquí no es un rival astuto: es un rival apresurado. Su tesis es "el que debe renta y está junto al golpeado, lo dio". Abandona cada teoría refutada al instante y con escándalo. En el testimonio 3 se vuelve, por conveniencia presupuestal, el primer aliado de la defensa. | Familia `supersam`. |
 | **El Juez** | Explicita las reglas del juicio para el jugador: qué es presionar, qué cuesta una presentación temeraria, qué se considera acreditado. | Familia `judge`. |
@@ -67,12 +70,12 @@ Las horas de autor no son hechos judiciales. La columna derecha dice qué puede 
 | 13:00 | Don Nazario inicia su ronda de cobranza en la vecindad. | Lista de rentas dentro de `maletin_cobranza`. |
 | 13:05 a 13:55 | Toribio espera en la hielería a que partan el bloque. El hielero le sella el recibo a la entrada y a la salida. | `recibo_hielo`: **dos** sellos con hora. Es la coartada verificable. |
 | 13:15 | Casimiro entra a la vivienda 4, saca la lata de ahorros de abajo del catre y la pone sobre la mesa. | `lata_ahorros`, hallada sobre la mesa. Su significado se acredita en el clímax. |
-| 13:20 | Don Nazario entra a cobrar y lo sorprende. Casimiro lo golpea por detrás con la plancha de carbón, toma el maletín y **devuelve la plancha a la repisa**. | `informe_lesiones` y `plancha_carbon`. La hora exacta no se acredita nunca; solo el intervalo. |
-| 13:30 | Casimiro guarda el maletín vacío dentro de su maletín de muestras y se sienta en el patio. | Se descubre en el receso del juicio. |
+| 13:20 | Don Nazario entra a cobrar y lo sorprende. Casimiro lo golpea por detrás con la plancha de carbón, toma el cartapacio y **devuelve la plancha a la repisa**. | `informe_lesiones` y `plancha_carbon`. La hora exacta no se acredita nunca; solo el intervalo. |
+| 13:30 | Casimiro vacía el cartapacio, lo pliega y lo mete entre los tomos de su maletín de muestras. Luego se sienta en el patio. | Se descubre en el receso del juicio. |
 | 14:00 | Pasa el camión del hielo y toca dos veces el claxon. Es el sonido con el que la vecindad marca la hora. | `foto_patio` y dicho del hielero citado en el parte. |
 | 14:05 | Toribio regresa con la barra, encuentra a Don Nazario en el suelo y grita. | Su relato desde el inicio. |
 | 14:10 | Casimiro llega "corriendo" al patio y dice haber llamado a la policía. | Su declaración. |
-| 14:15 | Detención de Toribio. Inventario: barra de hielo, 40 centavos, recibo de hielería. **Sin maletín.** En el mismo acto, Casimiro le describe al agente el maletín: color, broche y que lo llevaba en la mano izquierda. | `parte_detencion`. Es la pieza que hunde el testimonio 3. |
+| 14:15 | Detención de Toribio. Inventario: barra de hielo, 40 centavos, recibo de hielería. **Sin el cartapacio.** En el mismo acto, Casimiro le describe al agente el cartapacio: color, broche y que lo llevaba en la mano izquierda. | `parte_detencion`. Es la pieza que hunde el testimonio 3. |
 | 14:40 | La patrulla se retira con el detenido. | `parte_detencion`. |
 | 16:00 | Don Nazario despierta en la clínica sin recuerdo del episodio. | `informe_lesiones`. |
 
@@ -84,14 +87,14 @@ Nueve entradas. Las siete de origen "Corte" están en el Acta antes de la primer
 
 | ID | Obtención | Descripción inicial permitida | Función |
 | --- | --- | --- | --- |
-| `insignia_abogado` | Inicio | Insignia abollada del Lic. Monchito. Primera vez que la usa. | Constante. Se presenta una vez, en el tutorial de la apertura, y nunca más. |
-| `parte_detencion` | Inicio | Parte del 12 de julio: detención a las 14:15 en el patio. Inventario del detenido: barra de hielo, 40 centavos, recibo de hielería. Chapa de la vivienda 4 vencida desde marzo. Maletín de cobranza no localizado. **Anexo: descripción del maletín aportada por el testigo Lengua a las 14:15.** | Se presenta dos veces, en T1 y en T3, contra declaraciones distintas. Un solo `[ACTUALIZAR]`, en T3. |
-| `informe_lesiones` | Inicio | Don Nazario Cuenca: golpe único en la región occipital, objeto pesado de base plana. Ventana del golpe entre 13:00 y 14:00. Amnesia del episodio; sin aptitud para declarar. | `updates[]` en orden fijo: (1) en el `followUp` de T1, el golpe vino **desde atrás y arriba**; (2) al cierre de T3, el calco de la lesión es compatible con base plana de plancha de carbón. Contador lineal: un tercer `[ACTUALIZAR]` se descartaría (ver [[docs/lessons-learned/investigation-gating-and-evidence-stages.md]]). |
+| `insignia_abogado` | Inicio | Insignia abollada de Don Ramón. Primera vez que la usa. | Constante. Se presenta una vez, en el tutorial de la apertura, y nunca más. |
+| `parte_detencion` | Inicio | Parte del 12 de julio: detención a las 14:15 en el patio. Inventario del detenido: barra de hielo, 40 centavos, recibo de hielería. Chapa de la vivienda 4 vencida desde marzo. Cartapacio de cobranza no localizado. **Anexo: descripción del cartapacio aportada por el testigo Lengua a las 14:15.** | Se presenta dos veces, en T1 y en T3, contra declaraciones distintas. Un solo `[ACTUALIZAR]`, en T3. |
+| `informe_lesiones` | Inicio | Don Nazario Cuenca: golpe único en la región occipital, objeto pesado de base plana. Ventana del golpe entre 13:00 y 14:00. Amnesia del episodio; sin aptitud para declarar. | `updates[]` en orden fijo: (1) en el `followUp` de T1, el golpe vino **desde atrás y arriba**; (2) al cierre de T3, el calco de la lesión es compatible con una base plana, borde recto y unos seis kilos. **Ni la ficha, ni los `updates`, ni la lámina, ni el pie de lámina nombran o dibujan la plancha**: identificar el objeto es la deducción de la etapa 1 del clímax, y el informe está en el Acta desde la apertura. Contador lineal: un tercer `[ACTUALIZAR]` se descartaría (ver [[docs/lessons-learned/investigation-gating-and-evidence-stages.md]]). |
 | `recibo_hielo` | Inicio | Recibo de la Hielería La Nevada. Dos sellos de hora: entrada 13:05, salida 13:55. Firma del hielero. | Coartada. `detailedView`: la lámina permite ver que son dos sellos distintos y no uno repetido. |
 | `foto_patio` | Inicio | Fotografía del patio de la vecindad tomada a las 14:30 desde la puerta de la vivienda 4. Se ve el lavadero, el tendedero y, al fondo, la escuela de la acera de enfrente. | `detailedView`: **en el campanario hay andamios y el hueco de la campana está vacío**. Objetivo de Present & Point en T2. |
 | `plancha_carbon` | Inicio | Plancha de carbón recogida de la repisa de la vivienda 4. Tizne fresco en el mango. Guardada con el asa hacia la pared. | Objetivo de Present & Point en el clímax, etapa 1. `detailedView` con dos vistas: la repisa como se encontró y el mango. |
 | `lata_ahorros` | Inicio | Lata de dulces con los ahorros del acusado: 40 pesos completos. Hallada **sobre la mesa** de la vivienda 4. | Ficha inicial deliberadamente anodina: el dinero está intacto y eso parece descartar robo. Un `[ACTUALIZAR]` al cierre de la etapa 1 del clímax añade el tizne en la tapa. Prueba final. |
-| `maletin_cobranza` | Receso, tras T2 | Maletín de cobranza de Don Nazario, vacío, hallado dentro del maletín de muestras del testigo. Contiene la lista de rentas de la vecindad. | `[ENTREGAR]` en el receso. Detona T3; no se presenta. |
+| `maletin_cobranza` | Receso, tras T2 | Cartapacio de fuelle de Don Nazario, plegado y sin el dinero de la cobranza, hallado entre los tomos de muestra del testigo. Conserva la lista de rentas de la vecindad, con un separador por vivienda. | `[ENTREGAR]` en el receso. Detona T3; no se presenta. El `EvidenceId` sigue siendo `maletin_cobranza` por compatibilidad de assets y saves. |
 | `tarjeta_enciclopedias` | Receso, tras T2 | Tarjeta de presentación del testigo: "Enciclopedias El Saber Universal, S.A.". La sociedad está disuelta desde 1971. Sin hoja de ruta, sin pedidos, tres tomos de muestra con el lomo roto. | `followUp` de T3. |
 
 Las descripciones iniciales no dicen "prueba definitiva" ni nombran la solución de un señalamiento (ver [[docs/lessons-learned/climax-stage-prompt-spoils-answer.md]]). La lámina de `foto_patio` muestra el andamio; la ficha corta no lo menciona, para que el hallazgo ocurra en el examen y no en la lista. La ficha de `lata_ahorros` no insinúa que la mesa sea el dato raro: eso lo dice Toribio en el clímax.
@@ -111,13 +114,13 @@ Las descripciones iniciales no dicen "prueba definitiva" ni nombran la solución
 
 ### 7.1 Pre-juicio: Sala de espera del tribunal (09:45)
 
-Fondo `bg_waiting_room`. Cada línea estampa la locación (`bg: bg_waiting_room; furniture: none`) para aislarla de las cámaras de sala (ver [[docs/lessons-learned/trial-waiting-room-epilogue-staging.md]]). Enseña: avance de diálogo, ambientación y la relación entre Monchito, Toribio y el Chapulín antes de entrar al tribunal.
+Fondo `bg_waiting_room`. Cada línea estampa la locación (`bg: bg_waiting_room; furniture: none`) para aislarla de las cámaras de sala (ver [[docs/lessons-learned/trial-waiting-room-epilogue-staging.md]]). Enseña: avance de diálogo, ambientación y la relación entre Don Ramón, Toribio y el Chapulín antes de entrar al tribunal.
 
 ~~~dialogue
 NARRADOR: 13 de julio, 09:45. Sala de espera del tribunal. [bg: bg_waiting_room; furniture: none; bgm: suspense]
 MODO TUTORIAL: Haz clic o presiona ESPACIO para avanzar el diálogo.
-TORIBIO: ¡Licenciado! ¡Licenciado Monchito! ¡Por su madrecita santa, dígame la verdad! ¿Me van a mandar a las Islas Marías? [bg: bg_waiting_room; furniture: none; pose: toribio_llorando]
-DEFENSA: ¡Cálmate, Toribio, cálmate! ¡No te me achicopales antes de tiempo! Con el Licenciado Monchito en la defensa estás en las mejores manos... [bg: bg_waiting_room; furniture: none; pose: donramon_idle]
+TORIBIO: ¡Licenciado! ¡Licenciado Don Ramón! ¡Por su madrecita santa, dígame la verdad! ¿Me van a mandar a las Islas Marías? [bg: bg_waiting_room; furniture: none; pose: toribio_llorando]
+DEFENSA: ¡Cálmate, Toribio, cálmate! ¡No te me achicopales antes de tiempo! Con el Licenciado Don Ramón en la defensa estás en las mejores manos... [bg: bg_waiting_room; furniture: none; pose: donramon_idle]
 DEFENSA: (Aunque la verdad es que me tiemblan las corvas... Primera vez que piso este juzgado de corbata y no porque me citó el casero.) [bg: bg_waiting_room; furniture: none; pose: donramon_sweat]
 TORIBIO: ¡Es que yo soy inocente, licenciado! Yo nomás salí a la hielería por mi barra para las paletas. Cuando regresé a mi cuarto, ¡don Nazario ya estaba tirado como fardo! [bg: bg_waiting_room; furniture: none; pose: toribio_nervioso]
 DEFENSA: Te creo, muchacho, te creo. Pero allá adentro hay un fiscal güero que cobra por palabra y que dice que en once minutos te refunde en el bote. [bg: bg_waiting_room; furniture: none; pose: donramon_idle]
@@ -129,7 +132,7 @@ DEFENSA: ¡Chapulín! ¡Menos mal que llegas! Oye... ¿tú de veras sabes de jui
 CHAPULIN: ¡Claro que sí! He leído la Constitución... bueno, hojeé la portada en un puesto de periódicos, ¡pero tengo un sentido de la justicia incorruptible! [bg: bg_waiting_room; furniture: none; pose: chapulin_point]
 CHAPULIN: Además, vengo como tu asesor legal. Tú eres el abogado de banqueta y yo soy el cerebro táctico de la operación. [bg: bg_waiting_room; furniture: none; pose: chapulin_idle]
 DEFENSA: Pues más te vale que ese cerebro funcione rápido, porque como pierda este juicio, me quedo sin cliente y con catorce meses de renta encima. [bg: bg_waiting_room; furniture: none; pose: donramon_sweat]
-CHAPULIN: ¡Tranquilo, Monchito! La clave de un juicio es simple: el testigo del fiscal va a soltar su versión. Tú debes escuchar cada frase con calma. [bg: bg_waiting_room; furniture: none; pose: chapulin_idle]
+CHAPULIN: ¡Tranquilo, Don Ramón! La clave de un juicio es simple: el testigo del fiscal va a soltar su versión. Tú debes escuchar cada frase con calma. [bg: bg_waiting_room; furniture: none; pose: chapulin_idle]
 CHAPULIN: Si algo no te cuadra, ¡le exiges que aclare! Y si de plano descubres que está mintiendo con descaro, ¡le zampas una prueba en la cara! [bg: bg_waiting_room; furniture: none; pose: chapulin_point]
 TORIBIO: ¡Oiga, licenciado! Acuérdese de revisar su saco... No se le vaya a olvidar la placa esa que le dieron, no sea que no lo dejen pasar los guardias. [bg: bg_waiting_room; furniture: none; pose: toribio_nervioso]
 DEFENSA: ¡Ah, la insignia! La traigo bien guardada en el bolsillo... un poquito abollada de cuando se me cayó al drenaje, pero charolea bonito. [bg: bg_waiting_room; furniture: none; pose: donramon_idle]
@@ -147,11 +150,11 @@ Fondo `bg_courtroom`. Enseña: apertura del Acta, `openingPresent` y examen a de
 
 ~~~dialogue
 JUEZ: ¡Silencio en la sala! Se abre la audiencia por el asalto al cobrador Nazario Cuenca. [sfx: gavel; bgm: trial]
-SUPER SAM: Your Honor, este caso lo resolví en once minutos. ELEVEN! Un muchacho que debía dos meses de renta, un cobrador en el suelo y un maletín que voló. Time is money.
+SUPER SAM: Your Honor, este caso lo resolví en once minutos. ELEVEN! Un muchacho que debía dos meses de renta, un cobrador en el suelo y un cartapacio de cobranza que voló. Time is money.
 JUEZ: ¿La defensa está lista? ...¿La defensa está presente?
 DEFENSA: ¡Aquí, aquí! Perdón, señor juez, es que la puerta de la sala pesa más que mi cliente.
 CHAPULIN: ¡No contaban con mi asesoría legal! [pose: chapulin_idle]
-DEFENSA: (Catorce meses de renta atrasada, Monchito. Si ganas esto, comes.)
+DEFENSA: (Catorce meses de renta atrasada, Don Ramón. Si ganas esto, comes.)
 JUEZ: Antes de comenzar, la corte debe verificar que quien ocupa el estrado de la defensa es un litigante autorizado.
 CHAPULIN: ¡Eso quiere decir que te pide tu credencial! La prueba que te identifica está en el ACTA DEL JUICIO.
 MODO TUTORIAL: En esta apertura, el ACTA DEL JUICIO se abrirá sola. Cuando se abra, selecciona la insignia y pulsa el botón ¡Presentar Prueba!
@@ -176,7 +179,7 @@ DEFENSA: Mi cliente estaba ahí porque ahí vive, señor fiscal. Con ese razonam
 JUEZ: La corte también quiere saber por qué la víctima no declara.
 SUPER SAM: Amnesia, Your Honor. Del golpe. Muy inconveniente para mi presupuesto.
 JUEZ: Entonces el peso de este juicio lo carga un solo testigo. La corte le recuerda a la defensa que **presionar** una declaración no cuesta nada, y que **presentar** una prueba sí. Úselas en consecuencia.
-CHAPULIN: Y una más, Monchito: antes de presentar la Foto del Patio, selecciónala en el ACTA y pulsa EXAMINAR DETALLE para verla de cerca.
+CHAPULIN: Y una más, Don Ramón: antes de presentar la Foto del Patio, selecciónala en el ACTA y pulsa EXAMINAR DETALLE para verla de cerca.
 MODO TUTORIAL: Hazlo antes de presentar la foto: la vista ampliada te ayudará a encontrar el detalle correcto.
 ~~~
 
@@ -195,7 +198,7 @@ JUEZ: Su testimonio, por favor. Únicamente lo que percibió.
 ~~~dialogue
 c0_t1_1 CASIMIRO: Ese mediodía yo hacía mi ronda de ventas en la vecindad, tomo por tomo, puerta por puerta.
 c0_t1_2 CASIMIRO: A la una en punto oí un golpe seco y un grito dentro de la vivienda 4.
-c0_t1_3 CASIMIRO: Me asomé desde el patio y vi salir corriendo al acusado con el maletín del cobrador en la mano.
+c0_t1_3 CASIMIRO: Me asomé desde el patio y vi salir corriendo al acusado con el cartapacio del cobrador en la mano.
 c0_t1_4 CASIMIRO: Corrí a la tienda de la esquina, llamé a la policía y regresé a cuidar al pobre señor. Once minutos, si me permite la precisión.
 ~~~
 
@@ -203,19 +206,19 @@ Presiones:
 
 - **1:** enumera las puertas que tocó y admite que nadie le compró nada. Menciona de paso que la vivienda 4 "tenía la chapa muy floja, cosa que un servidor nota profesionalmente". El Chapulín remarca que presionar salió gratis. Este dato se cobra en el clímax.
 - **2:** distingue el golpe del grito y sostiene la hora. Todavía no se le pregunta cómo la sabe.
-- **3:** rectifica a la baja: "salir corriendo, sí; el maletín... lo vi de reojo". La declaración original **sigue siendo la atacable**; no se desbloquea una copia.
+- **3:** rectifica a la baja: "salir corriendo, sí; el cartapacio... lo vi de reojo". La declaración original **sigue siendo la atacable**; no se desbloquea una copia.
 - **4:** confirma que él hizo la llamada y que la policía llegó a las 14:15. Super Sam celebra la puntualidad del testigo sin notar el problema.
 
 **Contradicción sobre 3:** `parte_detencion`. Pregunta visible: "¿Qué traía el acusado encima cuando lo detuvieron?".
 
 ~~~dialogue
-DEFENSA: ¡PROTESTO! ¡Ese maletín no aparece en ninguna parte de este expediente! [sfx: desk_slam; cutin: objection_protesto]
+DEFENSA: ¡PROTESTO! ¡Ese cartapacio no aparece en ninguna parte de este expediente! [sfx: desk_slam; cutin: objection_protesto]
 DEFENSA: El parte de la detención dice qué traía mi cliente a las 14:15: una barra de hielo, cuarenta centavos y un recibo de hielería.
-DEFENSA: Del maletín de cobranza, señor juez, nada. Ni en sus manos, ni en su vivienda, ni en la vecindad completa.
-CASIMIRO: Bueno... uno dice "con el maletín" por decir. Es una figura retórica. Sinécdoque, si me permite. [pose: casimiro_sweat]
+DEFENSA: Del cartapacio de cobranza, señor juez, nada. Ni en sus manos, ni en su vivienda, ni en la vecindad completa.
+CASIMIRO: Bueno... uno dice "con el cartapacio" por decir. Es una figura retórica. Sinécdoque, si me permite. Del latín *charta*, por cierto. [pose: casimiro_sweat]
 CHAPULIN: ¡Chanfle! ¿Y el grito también fue una sinécdoque?
 JUEZ: ¡Cáspita! Testigo, la corte no le pidió literatura.
-SUPER SAM: ¡Irrelevante! ¡El muchacho tuvo cuarenta minutos para esconder ese maletín donde quisiera! [sfx: desk_slam]
+SUPER SAM: ¡Irrelevante! ¡El muchacho tuvo cuarenta minutos para esconder ese cartapacio donde quisiera! [sfx: desk_slam]
 JUEZ: La corte concede que un objeto no localizado no acredita nada por sí solo. Pero entonces esa hora se vuelve decisiva. Defensa, ¿tiene algo sobre la una en punto?
 ~~~
 
@@ -235,7 +238,7 @@ JUEZ: ¡Cáspita! ¿Está diciendo que el acusado no pudo dar ese golpe?
 DEFENSA: Estoy diciendo que quien lo dio estaba parado más alto o lo tomó desprevenido por la espalda. Y a la una en punto mi cliente estaba formado por hielo.
 SUPER SAM: ...Grrr. ¡Entonces el testigo se equivocó de reloj! ¡Ajuste la hora y el caso sigue igual! [sfx: desk_slam]
 JUEZ: Se le concede a la fiscalía. Testigo, va a explicar a esta corte **cómo** sabe que era la una en punto.
-CHAPULIN: Ahí está el detalle, Monchito. Nos acaban de regalar el segundo testimonio.
+CHAPULIN: Ahí está el detalle, Don Ramón. Nos acaban de regalar el segundo testimonio.
 ~~~
 
 **Primer turnabout.** La coartada del acusado queda acreditada para la una en punto; la ventana del golpe sigue abierta hasta las 14:00, así que el caso no se cae todavía.
@@ -271,7 +274,7 @@ Fallo del señalamiento:
 ~~~dialogue
 JUEZ: Ese punto no dice nada sobre una campanada, licenciado.
 SUPER SAM: ¡Un peso menos de credibilidad para la defensa! ¡Y van! [sfx: desk_slam]
-CHAPULIN: Calma, Monchito. Vuelve a mirar la foto: la escuela está al fondo, y lo que le falta es lo que importa.
+CHAPULIN: Calma, Don Ramón. Vuelve a mirar la foto: la escuela está al fondo, y lo que le falta es lo que importa.
 ~~~
 
 Éxito:
@@ -288,7 +291,7 @@ CASIMIRO: ¡Yo no moví nada! ¡Yo estaba vendiendo! [pose: casimiro_panic]
 [pausa]
 JUEZ: ¡Cáspita! ¡Esta corte ya no tiene ningún testigo del momento del asalto!
 SUPER SAM: ¡Un momento! ¡UN MOMENTO! [sfx: desk_slam; cutin: objection_un_momento]
-SUPER SAM: Si este señor no oyó el golpe a la una... ¿cómo sabía que el cobrador traía un maletín? ¡Eso no lo publiqué yo! ¡Eso no salió en el periódico!
+SUPER SAM: Si este señor no oyó el golpe a la una... ¿cómo sabía que el cobrador traía un cartapacio de cobranza? ¡Eso no lo publiqué yo! ¡Eso no salió en el periódico!
 DEFENSA: (Señor fiscal, es lo primero útil que dice usted en toda la mañana.)
 JUEZ: Se decreta un receso de veinte minutos. El alguacil revisará el maletín de muestras del testigo. [sfx: gavel]
 CASIMIRO: ¡Mi maletín es propiedad de la empresa! ¡Tomo octavo, "inviolabilidad"! [pose: casimiro_panic]
@@ -304,7 +307,7 @@ Fondo `bg_waiting_room`. Cada línea estampa la locación (`bg: bg_waiting_room;
 
 ~~~dialogue
 NARRADOR: 11:30. Sala de espera del tribunal. [bg: bg_waiting_room; furniture: none; bgm: suspense]
-TORIBIO: ¡Licenciado Monchito! ¡Estuvo colosal! ¡Le dio hasta por debajo de la lengua al señor de las enciclopedias! [bg: bg_waiting_room; furniture: none; pose: toribio_aliviado]
+TORIBIO: ¡Licenciado Don Ramón! ¡Estuvo colosal! ¡Le dio hasta por debajo de la lengua al señor de las enciclopedias! [bg: bg_waiting_room; furniture: none; pose: toribio_aliviado]
 TORIBIO: ¡Cuando le demostró que la campana no tenía badajo ni campana ni nada, casi se le caen los dos relojes de la impresión! [bg: bg_waiting_room; furniture: none; pose: toribio_aliviado]
 DEFENSA: ¡Uff! No cantes victoria todavía, chamaco... Mira cómo me sudan las manos. Si no fuera por la foto del patio, el señor juez ya te tenía con un pie en el penal. [bg: bg_waiting_room; furniture: none; pose: donramon_sweat]
 CHAPULIN: ¡Todos mis movimientos estuvieron fríamente calculados! Bueno, casi todos, porque al principio yo también pensé que la campana sonaba bonito. [bg: bg_waiting_room; furniture: none; pose: chapulin_idle]
@@ -316,7 +319,7 @@ CHAPULIN: ¡Mis antenitas de vinil nunca fallan! Ese sujeto andaba buscando una 
 DEFENSA: Ojalá... porque ese fiscal gringo ya me tiene harto con su "time is money". A mí el único money que me interesa es el de mis honorarios para pagar la renta al casero. [bg: bg_waiting_room; furniture: none; pose: donramon_idle]
 TORIBIO: Si salgo libre de aquí, licenciado, le juro que le surto paletas de grosella y de limón todos los domingos por un año entero. [bg: bg_waiting_room; furniture: none; pose: toribio_aliviado]
 DEFENSA: (Grosella no paga los catorce meses de renta, pero por lo menos no me voy a morir de calor este verano...) [bg: bg_waiting_room; furniture: none; pose: donramon_idle]
-CHAPULIN: ¡Oye, Monchito! Antes de que se nos acaben los veinte minutos del receso... ¿ya te aseguraste de tener todo en orden? [bg: bg_waiting_room; furniture: none; pose: chapulin_point]
+CHAPULIN: ¡Oye, Don Ramón! Antes de que se nos acaben los veinte minutos del receso... ¿ya te aseguraste de tener todo en orden? [bg: bg_waiting_room; furniture: none; pose: chapulin_point]
 DEFENSA: ¿Mis apuntes del caso? Sí, los tengo aquí anotados en la envoltura de una torta de jamón. [bg: bg_waiting_room; furniture: none; pose: donramon_idle]
 CHAPULIN: ¡No hablo de tortas! Hablo de registrar tus avances para no tener que empezar de cero si te entra la chiripiorca. [bg: bg_waiting_room; furniture: none; pose: chapulin_panic]
 MODO TUTORIAL: Puedes guardar tu partida en cualquier momento pulsando el botón 💾 GUARDAR en la barra superior. Si deseas retomar el juicio más adelante o asegurar tu progreso antes de una decisión difícil, pulsa 📂 CARGAR desde la pantalla principal.
@@ -333,22 +336,22 @@ Fondo `bg_courtroom`. Transición tras el receso y entrada de las dos nuevas pie
 ~~~dialogue
 NARRADOR: Veinte minutos después. De vuelta en la sala, el alguacil deposita sobre el estrado el maletín de muestras del testigo. [bgm: suspense]
 JUEZ: Que conste en acta lo que se encontró dentro.
-NARRADOR: Tres tomos con el lomo roto, una tarjeta de presentación y un maletín de cobranza vacío.
+NARRADOR: Entre los tomos del lomo roto, plegado y sin un centavo, un cartapacio de fuelle lleno de papeles: la lista de rentas de la vecindad, separador por separador.
 [ENTREGAR maletin_cobranza]
 [ENTREGAR tarjeta_enciclopedias]
 SUPER SAM: Your Honor... la fiscalía solicita autorización para tomarle declaración a este testigo en calidad de investigado. Y solicita que el tiempo del receso se le cargue a la defensa.
 JUEZ: Autorizada la primera. Denegada la segunda.
-JUEZ: Señor Lengua, va a explicar a esta corte cómo llegó ese maletín a su portafolio. Y le advierto que ahora cada palabra suya se asienta en su contra.
-CHAPULIN: ¡Y ahora sí, Monchito, el testigo va a testificar de su propio caso!
+JUEZ: Señor Lengua, va a explicar a esta corte cómo llegó ese cartapacio a su maletín de muestras. Y le advierto que ahora cada palabra suya se asienta en su contra.
+CHAPULIN: ¡Y ahora sí, Don Ramón, el testigo va a testificar de su propio caso!
 DEFENSA: (Tres testimonios en un día. Y yo que venía nomás por la renta.)
 ~~~
 
-## 11. Testimonio 3, Casimiro: "Cómo llegó ese maletín a mi portafolio"
+## 11. Testimonio 3, Casimiro: "Cómo llegó ese cartapacio a mi maletín"
 
 Enseña: una segunda ronda completa de contrainterrogatorio contra un testigo que ya perdió credibilidad, y un `followUp` que no depende de una lámina sino de un documento.
 
 ~~~dialogue
-c0_t3_1 CASIMIRO: Yo no robé nada, señor juez. Ese maletín me lo encontré tirado en el callejón de la vecindad.
+c0_t3_1 CASIMIRO: Yo no robé nada, señor juez. Ese cartapacio me lo encontré tirado en el callejón de la vecindad.
 c0_t3_2 CASIMIRO: Lo levanté a las tres menos veinte, cuando la patrulla ya se había llevado al muchacho.
 c0_t3_3 CASIMIRO: Y jamás lo abrí. Lo iba a entregar en la delegación en cuanto terminara mi jornada.
 c0_t3_4 CASIMIRO: Porque ese día yo trabajé como cualquier otro: mi ronda completa, puerta por puerta, tomo por tomo.
@@ -356,25 +359,25 @@ c0_t3_4 CASIMIRO: Porque ese día yo trabajé como cualquier otro: mi ronda comp
 
 Presiones:
 
-- **1:** describe el callejón con lujo de detalle y se ofrece a dibujarlo. Nadie más vio ahí un maletín.
+- **1:** describe el callejón con lujo de detalle y se ofrece a dibujarlo. Nadie más vio ahí un cartapacio.
 - **2:** sostiene la hora y vuelve a mirar sus dos relojes. El Chapulín señala que es la tercera hora exacta que da hoy.
 - **3:** se le escapa que "de todos modos ya venía vacío, se sentía ligerito". El Juez le hace notar que acaba de decir que jamás lo abrió. Casimiro alega peritaje sensorial.
 - **4:** enumera de nuevo su ronda. Insiste en que es un profesional del ramo editorial con veinte años de trayectoria.
 
-**Contradicción sobre 2:** `parte_detencion`. Pregunta visible: "¿A qué hora describió el testigo ese maletín?".
+**Contradicción sobre 2:** `parte_detencion`. Pregunta visible: "¿A qué hora describió el testigo ese cartapacio?".
 
 ~~~dialogue
-DEFENSA: ¡PROTESTO! ¡Usted describió ese maletín veinticinco minutos antes de encontrarlo! [sfx: desk_slam; cutin: objection_protesto]
+DEFENSA: ¡PROTESTO! ¡Usted describió ese cartapacio veinticinco minutos antes de encontrarlo! [sfx: desk_slam; cutin: objection_protesto]
 DEFENSA: Aquí está, en el anexo del parte: a las 14:15, usted le dijo al agente de qué color era, cómo era el broche y en cuál mano lo llevaba.
 DEFENSA: Y usted acaba de declarar que lo levantó del callejón a las 14:40.
 CASIMIRO: ...Eso lo asentó mal el agente. Los agentes escriben con muchas faltas. [pose: casimiro_sweat]
 SUPER SAM: ¡Ese agente es MI agente y escribe como los ángeles! ¡Le pago por palabra! [sfx: desk_slam]
 CHAPULIN: ¡Nadie contaba con la caligrafía!
-JUEZ: ¡Cáspita! Testigo, o vio ese maletín antes, o lo describió sin verlo. Escoja.
-CASIMIRO: Lo... lo deduje. Un cobrador siempre trae maletín. Es inferencia lógica. Tomo cuarto. [pose: casimiro_panic]
+JUEZ: ¡Cáspita! Testigo, o vio ese cartapacio antes, o lo describió sin verlo. Escoja.
+CASIMIRO: Lo... lo deduje. Un cobrador siempre trae cartapacio. Es inferencia lógica. Tomo cuarto. [pose: casimiro_panic]
 DEFENSA: También dedujo el color, el broche y la mano izquierda.
 [ACTUALIZAR parte_detencion]
-DEFENSA: Ese maletín lo vio de cerca, señor juez. A la una y veinte de la tarde, dentro de la vivienda 4.
+DEFENSA: Ese cartapacio lo vio de cerca, señor juez. A la una y veinte de la tarde, dentro de la vivienda 4.
 SUPER SAM: ¡Un momento, counselor! ¡Que se defienda con su trabajo! ¡Si el señor estuvo vendiendo toda la tarde, alguien le habrá comprado algo!
 ~~~
 
@@ -387,6 +390,7 @@ DEFENSA: Sin hoja de ruta. Sin un solo pedido. Tres tomos de muestra con el lomo
 CHAPULIN: ¡Y usted que se acordaba del tomo octavo!
 CASIMIRO: ¡Uno se prepara! ¡Uno estudia el producto! [pose: casimiro_panic]
 DEFENSA: Usted no toca puertas para vender, señor Lengua. Las toca para saber cuáles se abren solas.
+DEFENSA: Y por eso no tiró el cartapacio, señor juez. El dinero se lo echó a la bolsa; los papeles se los quedó. Esa lista dice quién pagó, quién debe y en qué casa hay efectivo. Ése es el único catálogo que este señor sabe leer. [sfx: desk_slam]
 DEFENSA: Y de la vivienda 4 usted mismo dijo, cuando lo presioné esta mañana, que tenía "la chapa muy floja, cosa que un servidor nota profesionalmente".
 JUEZ: La corte ordena que se le tome declaración en calidad de investigado y que permanezca en el estrado. [sfx: gavel]
 [ACTUALIZAR informe_lesiones]
@@ -449,7 +453,7 @@ TORIBIO: Debajo del catre, licenciado. Envuelta en un trapo. Desde que entré a 
 DEFENSA: Alguien la sacó de abajo del catre y la puso sobre la mesa. Y la tapa tiene el mismo tizne que el mango de la plancha.
 CHAPULIN: ¡La misma mano en las dos cosas!
 DEFENSA: Ese hombre entró por la lata, señor juez. Estaba con ella en las manos cuando el cobrador abrió la puerta.
-DEFENSA: Y no se llevó los cuarenta pesos porque a las 13:20 ya tenía en el suelo a un señor de metro ochenta y un maletín de cobranza a los pies. Cambió de negocio a media faena.
+DEFENSA: Y no se llevó los cuarenta pesos porque a las 13:20 ya tenía en el suelo a un señor de metro ochenta y un cartapacio de cobranza a los pies. Cambió de negocio a media faena.
 CASIMIRO: ¡ERA UN VIEJO CON UN MALETÍN LLENO! [sfx: desk_slam; pose: casimiro_breakdown]
 CASIMIRO: ¡Y ese muchacho no tenía nada! ¡Nada! ¡Una lata con cuarenta pesos y la plancha de su mamá!
 NARRADOR: Los tomos se le caen del maletín. Por primera vez, el testigo no mira sus relojes.
@@ -466,15 +470,15 @@ JUEZ: ¡INOCENTE! [cutin: objection_inocente; bgm: victory]
 NARRADOR: Cae confeti sobre el estrado de la defensa.
 TORIBIO: ¡Licenciado! ¡Licenciado, gané! ...¿ganamos? [pose: toribio_aliviado]
 DEFENSA: Ganó usted. Yo nomás hablé.
-CHAPULIN: ¡Y de aquí en adelante ya sabes cómo se hace, Monchito: se presiona gratis, se presenta con cuidado y se mira todo de cerquita!
-JUEZ: Se ordena la detención de Casimiro Lengua y la devolución del maletín de cobranza. Se cierra la audiencia. [sfx: gavel]
+CHAPULIN: ¡Y de aquí en adelante ya sabes cómo se hace, Don Ramón: se presiona gratis, se presenta con cuidado y se mira todo de cerquita!
+JUEZ: Se ordena la detención de Casimiro Lengua y la devolución del cartapacio de cobranza. Se cierra la audiencia. [sfx: gavel]
 ~~~
 
 El confeti va en la cámara del veredicto, antes de cualquier corte de locación (ver [[docs/lessons-learned/verdict-celebration-before-location-cut.md]]).
 
 ## 13. Epílogo
 
-`epilogue.bg`: `bg_waiting_room_case0`. Esta variante exclusiva del Caso 0 muestra el periódico abierto requerido por el cierre. Cada línea estampa la locación, porque las cámaras de tribunal se disparan en cualquier línea sin `bg` (ver [[docs/lessons-learned/trial-waiting-room-epilogue-staging.md]]).
+`epilogue.bg`: `bg_waiting_room_case0`. Esta variante exclusiva del Caso 0 muestra el periódico abierto sobre el banco izquierdo, fuera de la oclusión de personajes y diálogo. Cada línea estampa la locación, porque las cámaras de tribunal se disparan en cualquier línea sin `bg` (ver [[docs/lessons-learned/trial-waiting-room-epilogue-staging.md]]).
 
 ~~~dialogue
 NARRADOR: Sala de espera del tribunal. [bg: bg_waiting_room_case0; bgm: epilogue]
@@ -482,9 +486,9 @@ TORIBIO: Licenciado, no tengo con qué pagarle. Nomás traigo esto. [bg: bg_wait
 DEFENSA: ¿Catorce paletas? [bg: bg_waiting_room_case0]
 TORIBIO: Trece. Una se derritió en el juzgado. [bg: bg_waiting_room_case0]
 DEFENSA: (Trece paletas y catorce meses de renta. Vamos empatados.) [bg: bg_waiting_room_case0]
-CHAPULIN: ¡No te desanimes, Monchito! Todo abogado empieza con un cliente que le paga en especie. [bg: bg_waiting_room_case0]
+CHAPULIN: ¡No te desanimes, Don Ramón! Todo abogado empieza con un cliente que le paga en especie. [bg: bg_waiting_room_case0]
 DEFENSA: Y termina con un casero que le cobra en efectivo. [bg: bg_waiting_room_case0]
-NARRADOR: En el suelo, un periódico abierto: "ROBAN LA CHICHARRA PARALIZADORA DE ORO DEL MUSEO DE LAS CURIOSIDADES". [bg: bg_waiting_room_case0]
+NARRADOR: Sobre el banco, un periódico abierto: "ROBAN LA CHICHARRA PARALIZADORA DE ORO DEL MUSEO DE LAS CURIOSIDADES". [bg: bg_waiting_room_case0]
 CHAPULIN: ...Chanfle. [bg: bg_waiting_room_case0; pose: chapulin_idle]
 DEFENSA: ¿Y ése quién lo va a defender? [bg: bg_waiting_room_case0]
 CHAPULIN: Ahí está el detalle. [bg: bg_waiting_room_case0]
@@ -577,6 +581,8 @@ El motor tampoco puede hoy ejecutar un caso sin investigación:
 | `parte_detencion`, `informe_lesiones`, `recibo_hielo`, `foto_patio`, `plancha_carbon`, `lata_ahorros`, `maletin_cobranza`, `tarjeta_enciclopedias` | Iconos del Acta | Rejilla de iconos; cuidar el recorte de filas (ver [[docs/lessons-learned/court-record-evidence-grid-rows.md]] y [[docs/lessons-learned/court-record-unlabeled-icon-grid.md]]). |
 | `examine_recibo_hielo`, `examine_foto_patio`, `examine_plancha`, `examine_lata`, `examine_informe_lesiones` | Láminas 960×540 | El icono del Acta debe derivar de la lámina, no de una escena distinta; Spanish and English catalogs share the final injury plate and its embedded Nazario photo. |
 | `point_foto_patio`, `point_plancha` | Láminas de señalamiento | Las zonas se miden **sobre la WebP generada**, nunca sobre la descripción del spec (ver [[docs/lessons-learned/present-point-cover-crop.md]] y [[docs/lessons-learned/examine-zones-are-native-buttons.md]]). |
+| `maletin_cobranza`, `examine_maletin_cobranza` | Icono del Acta y lámina | Cartapacio de fuelle de 1972: cartón prensado o cuero gastado, cordón elástico, broche metálico y pestañas rotuladas a mano en tinta, una por vivienda. **Nada de nailon, cierre de cremallera ni pestañas de color.** El icono deriva de la lámina (ver [[docs/lessons-learned/court-record-icon-matches-examine.md]]), así que la lámina se dibuja primero. El Acta permite examinarlo en detalle aunque la prueba no se presente nunca. |
+| `examine_informe_lesiones` | Lámina 960×540 | Cuatro paneles: foto pericial de Nazario, diagrama de la lesión occipital, **el calco medido a escala** (contorno rectangular de esquinas redondeadas, borde recto, cotas y estimación de ≈6 kg) y la impresión de base plana. **Ningún panel dibuja la plancha de carbón ni ningún objeto identificable**: la lámina se ve desde la apertura y dibujar el arma anula la etapa 1 del clímax (ver [[docs/lessons-learned/climax-stage-prompt-spoils-answer.md]]). |
 | `foto_nazario` | Foto pericial | Se usa solo dentro de la lámina de `informe_lesiones`; preserve this identity when regenerating that plate. |
 
 Fondos reutilizados: `bg_courtroom`, `bg_defense`, `bg_judge`, `bg_witness`, `bg_waiting_room` para otros casos. Caso 0 añade `bg_waiting_room_case0`, generado con el periódico abierto del epílogo.

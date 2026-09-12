@@ -6,11 +6,11 @@ import { CASE0_LOBBY_INTRO, CASE0_T2_RECESS_AND_RESUMPTION } from './trial_lobby
 export const CASE0_TRIAL_INTRO: DialogueLine[] = [
   ...CASE0_LOBBY_INTRO,
   { bg: 'assets/bg_judge.webp', furniture: 'none', speaker: 'JUEZ', pose: 'judge_gavel', text: '¡Silencio en la sala! Se abre la audiencia por el asalto al cobrador Nazario Cuenca.', sfx: 'gavel', bgm: 'trial' },
-  { speaker: 'SUPER SAM', pose: 'supersam_idle', text: 'Your Honor, este caso lo resolví en once minutos. ELEVEN! Un muchacho que debía dos meses de renta, un cobrador en el suelo y un maletín que voló. Time is money.' },
+  { speaker: 'SUPER SAM', pose: 'supersam_idle', text: 'Your Honor, este caso lo resolví en once minutos. ELEVEN! Un muchacho que debía dos meses de renta, un cobrador en el suelo y un cartapacio de cobranza que voló. Time is money.' },
   { speaker: 'JUEZ', pose: 'judge_neutral', text: '¿La defensa está lista? ...¿La defensa está presente?' },
   { speaker: 'DEFENSA', pose: 'donramon_idle', text: '¡Aquí, aquí! Perdón, señor juez, es que la puerta de la sala pesa más que mi cliente.' },
   { speaker: 'CHAPULÍN', pose: 'chapulin_idle', text: '¡No contaban con mi asesoría legal!' },
-  { speaker: 'DEFENSA', pose: 'donramon_idle', text: '(Catorce meses de renta atrasada, Monchito. Si ganas esto, comes.)' },
+  { speaker: 'DEFENSA', pose: 'donramon_idle', text: '(Catorce meses de renta atrasada, Don Ramón. Si ganas esto, comes.)' },
   { speaker: 'JUEZ', pose: 'judge_neutral', text: 'Antes de comenzar, la corte debe verificar que quien ocupa el estrado de la defensa es un litigante autorizado.' },
   { speaker: 'CHAPULÍN', pose: 'chapulin_point', text: '¡Eso quiere decir que te pide tu credencial! La prueba que te identifica está en el ACTA DEL JUICIO.' },
   { speaker: 'MODO EXAMINAR', text: 'En esta apertura, el ACTA DEL JUICIO se abrirá sola. Cuando se abra, selecciona la insignia y pulsa el botón ¡Presentar Prueba!', instant: true }
@@ -29,15 +29,15 @@ export const CASE0_TESTIMONY_1: Testimony = {
       { speaker: 'DEFENSA', pose: 'donramon_point', cutin: 'objection_un_momento', sfx: 'whoosh', text: '¡UN MOMENTO!' },
       { speaker: 'CASIMIRO', pose: 'casimiro_sweat', text: 'Distinguí el golpe del grito. La hora la sostengo: fue la una en punto.' }
     ] },
-    { id: 'c0_t1_3', speaker: 'CASIMIRO', pose: 'casimiro_amable', text: 'Me asomé desde el patio y vi salir corriendo al acusado con el maletín del cobrador en la mano.', pressText: [
+    { id: 'c0_t1_3', speaker: 'CASIMIRO', pose: 'casimiro_amable', text: 'Me asomé desde el patio y vi salir corriendo al acusado con el cartapacio del cobrador en la mano.', pressText: [
       { speaker: 'DEFENSA', pose: 'donramon_point', cutin: 'objection_un_momento', sfx: 'whoosh', text: '¡UN MOMENTO!' },
-      { speaker: 'CASIMIRO', pose: 'casimiro_sweat', text: 'Salir corriendo, sí; el maletín... lo vi de reojo.' }
+      { speaker: 'CASIMIRO', pose: 'casimiro_sweat', text: 'Salir corriendo, sí; el cartapacio... lo vi de reojo.' }
     ], contradiction: {
       evidence: ['parte_detencion'],
       successDialogue: [
-        { speaker: 'DEFENSA', pose: 'donramon_slam', cutin: 'objection_protesto', sfx: 'desk_slam', text: '¡PROTESTO! ¡Ese maletín no aparece en ninguna parte de este expediente!', bgm: 'objection' },
-        { speaker: 'DEFENSA', pose: 'donramon_point', text: 'El informe de detención dice que a las 14:15 mi cliente llevaba una barra de hielo, cuarenta centavos y un recibo. Del maletín, nada.' },
-        { speaker: 'CASIMIRO', pose: 'casimiro_sweat', text: 'Uno dice “con el maletín” por decir. Es una figura retórica. Sinécdoque, si me permite.' },
+        { speaker: 'DEFENSA', pose: 'donramon_slam', cutin: 'objection_protesto', sfx: 'desk_slam', text: '¡PROTESTO! ¡Ese cartapacio no aparece en ninguna parte de este expediente!', bgm: 'objection' },
+        { speaker: 'DEFENSA', pose: 'donramon_point', text: 'El informe de detención dice que a las 14:15 mi cliente llevaba una barra de hielo, cuarenta centavos y un recibo. Del cartapacio de cobranza, nada.' },
+        { speaker: 'CASIMIRO', pose: 'casimiro_sweat', text: 'Uno dice “con el cartapacio” por decir. Es una figura retórica. Sinécdoque, si me permite. Del latín charta, por cierto.' },
         { speaker: 'CHAPULÍN', pose: 'chapulin_point', text: '¡Chanfle! ¿Y el grito también fue una sinécdoque?' },
         { speaker: 'JUEZ', pose: 'judge_shock', text: 'La corte concede que un objeto no localizado no acredita nada por sí solo. Pero esa hora se vuelve decisiva.' }
       ],
@@ -52,7 +52,7 @@ export const CASE0_TESTIMONY_1: Testimony = {
           { speaker: 'JUEZ', pose: 'judge_shock', text: 'La ventana del golpe sigue abierta, pero a la una en punto el acusado estaba haciendo fila en la hielería.' },
           { speaker: 'SUPER SAM', pose: 'supersam_slam', sfx: 'desk_slam', text: '¡Entonces el testigo se equivocó de reloj! ¡Ajuste la hora y el caso sigue igual!' },
           { speaker: 'JUEZ', pose: 'judge_neutral', text: 'Testigo, va a explicar cómo sabe que era la una en punto.' },
-          { speaker: 'CHAPULÍN', pose: 'chapulin_point', text: 'Ahí está el detalle, Monchito. Nos acaban de regalar el segundo testimonio.' }
+          { speaker: 'CHAPULÍN', pose: 'chapulin_point', text: 'Ahí está el detalle, Don Ramón. Nos acaban de regalar el segundo testimonio.' }
         ]
       }
     }},
@@ -73,7 +73,7 @@ const CASE0_T2_BELL_CONTRADICTION: ContradictionRule = {
     { speaker: 'TORIBIO', pose: 'toribio_nervioso', text: 'Yo venía atrás del camión, licenciado. Llegué a las dos y cinco y ahí estaba el señor Nazario en el suelo.' },
     { speaker: 'CASIMIRO', pose: 'casimiro_panic', text: '¡Yo no moví nada! ¡Yo estaba vendiendo!' },
     { speaker: 'JUEZ', pose: 'judge_shock', text: 'Esta corte ya no tiene ningún testigo del momento del asalto.' },
-    { speaker: 'SUPER SAM', pose: 'supersam_slam', cutin: 'objection_un_momento', sfx: 'desk_slam', text: '¡UN MOMENTO! Si no oyó el golpe a la una, ¿cómo sabía que el cobrador traía un maletín?' },
+    { speaker: 'SUPER SAM', pose: 'supersam_slam', cutin: 'objection_un_momento', sfx: 'desk_slam', text: '¡UN MOMENTO! Si no oyó el golpe a la una, ¿cómo sabía que el cobrador traía un cartapacio de cobranza?' },
     { speaker: 'JUEZ', pose: 'judge_gavel', text: 'Se decreta un receso de veinte minutos. El alguacil revisará el maletín de muestras del testigo.', sfx: 'gavel' },
     { speaker: 'CASIMIRO', pose: 'casimiro_panic', text: '¡Mi maletín es propiedad de la empresa! ¡Tomo octavo, "inviolabilidad"!' },
     ...CASE0_T2_RECESS_AND_RESUMPTION
@@ -102,8 +102,8 @@ export const CASE0_TESTIMONY_2: Testimony = {
 };
 
 export const CASE0_TESTIMONY_3: Testimony = {
-  title: 'Testimonio: Cómo llegó ese maletín a mi portafolio', witness: 'Casimiro Lengua', bgm: 'cross_exam_presto', statements: [
-    { id: 'c0_t3_1', speaker: 'CASIMIRO', pose: 'casimiro_amable', text: 'Yo no robé nada, señor juez. Ese maletín me lo encontré tirado en el callejón de la vecindad.', pressText: [
+  title: 'Testimonio: Cómo llegó ese cartapacio a mi maletín', witness: 'Casimiro Lengua', bgm: 'cross_exam_presto', statements: [
+    { id: 'c0_t3_1', speaker: 'CASIMIRO', pose: 'casimiro_amable', text: 'Yo no robé nada, señor juez. Ese cartapacio me lo encontré tirado en el callejón de la vecindad.', pressText: [
       { speaker: 'DEFENSA', pose: 'donramon_point', cutin: 'objection_un_momento', sfx: 'whoosh', text: '¡UN MOMENTO!' },
       { speaker: 'CASIMIRO', pose: 'casimiro_catalogo', text: 'El callejón tiene una puerta verde y una canaleta rota. Puedo dibujarlo.' }
     ] },
@@ -112,28 +112,29 @@ export const CASE0_TESTIMONY_3: Testimony = {
       { speaker: 'CHAPULÍN', pose: 'chapulin_point', text: '¡Es la tercera hora exacta que da hoy!' }
     ], contradiction: {
       evidence: ['parte_detencion'], successDialogue: [
-        { speaker: 'DEFENSA', pose: 'donramon_slam', cutin: 'objection_protesto', sfx: 'desk_slam', text: '¡PROTESTO! ¡Usted describió ese maletín veinticinco minutos antes de encontrarlo!', bgm: 'objection' },
+        { speaker: 'DEFENSA', pose: 'donramon_slam', cutin: 'objection_protesto', sfx: 'desk_slam', text: '¡PROTESTO! ¡Usted describió ese cartapacio veinticinco minutos antes de encontrarlo!', bgm: 'objection' },
         { speaker: 'DEFENSA', pose: 'donramon_point', text: 'En el anexo del informe de detención, a las 14:15, usted describió el color, el broche y que el sospechoso lo llevaba en la mano izquierda.' },
         { speaker: 'DEFENSA', pose: 'donramon_point', text: '¡Y usted acaba de declarar que se lo encontró a las 14:40!', updateEvidence: 'parte_detencion' },
-        { speaker: 'CASIMIRO', pose: 'casimiro_sweat', text: 'Lo deduje. Un cobrador siempre trae maletín. Es inferencia lógica.' },
+        { speaker: 'CASIMIRO', pose: 'casimiro_sweat', text: 'Lo deduje. Un cobrador siempre trae cartapacio. Es inferencia lógica.' },
         { speaker: 'SUPER SAM', pose: 'supersam_slam', sfx: 'desk_slam', text: '¡Ese agente es MI agente y escribe como los ángeles!' },
-        { speaker: 'JUEZ', pose: 'judge_shock', text: 'O vio ese maletín antes, o lo describió sin verlo. Escoja.' }
+        { speaker: 'JUEZ', pose: 'judge_shock', text: 'O vio ese cartapacio antes, o lo describió sin verlo. Escoja.' }
       ], followUp: {
         evidence: ['tarjeta_enciclopedias'], prompt: '¿Qué dice el oficio del testigo sobre su presencia en la vecindad?', successDialogue: [
           { speaker: 'DEFENSA', pose: 'donramon_slam', cutin: 'objection_toma_eso', sfx: 'desk_slam', text: '¡Este señor no vende enciclopedias!', bgm: 'pursuit' },
           { speaker: 'DEFENSA', pose: 'donramon_point', text: 'La sociedad está disuelta desde 1971. No hay hoja de ruta, ni un solo pedido, y los tomos tienen el lomo roto.' },
           { speaker: 'CASIMIRO', pose: 'casimiro_panic', text: '¡Uno se prepara! ¡Uno estudia el producto!' },
           { speaker: 'DEFENSA', pose: 'donramon_point', text: 'Usted no toca puertas para vender. Las toca para saber cuáles se abren solas.' },
+          { speaker: 'DEFENSA', pose: 'donramon_slam', sfx: 'desk_slam', text: 'Y por eso no tiró el cartapacio, señor juez. El dinero se lo echó a la bolsa; los papeles se los quedó. Esa lista dice quién pagó, quién debe y en qué casa hay efectivo. Ése es el único catálogo que este señor sabe leer.' },
           { speaker: 'JUEZ', pose: 'judge_gavel', text: 'La corte ordena que se le tome declaración en calidad de investigado y que permanezca en el estrado.', sfx: 'gavel' },
           { speaker: 'NARRADOR', text: 'La secretaría incorpora el peritaje complementario: el calco corresponde a un objeto de base plana, borde recto y unos seis kilos.', updateEvidence: 'informe_lesiones' },
           { speaker: 'SUPER SAM', pose: 'supersam_point', text: 'La fiscalía necesita saber con qué golpearon al cobrador y por qué entró a la vivienda 4.' },
-          { speaker: 'CHAPULÍN', pose: 'chapulin_point', text: '¡Nadie contaba con que el maletín trajera un tutorial de culpables!' }
+          { speaker: 'CHAPULÍN', pose: 'chapulin_point', text: '¡Nadie contaba con que el cartapacio trajera un tutorial de culpables!' }
         ]
       }
     }},
     { id: 'c0_t3_3', speaker: 'CASIMIRO', pose: 'casimiro_amable', text: 'Y jamás lo abrí. Lo iba a entregar en la delegación en cuanto terminara mi jornada.', pressText: [
       { speaker: 'DEFENSA', pose: 'donramon_point', cutin: 'objection_un_momento', sfx: 'whoosh', text: '¡UN MOMENTO!' },
-      { speaker: 'CASIMIRO', pose: 'casimiro_sweat', text: 'De todos modos ya venía vacío, se sentía ligerito.' }
+      { speaker: 'CASIMIRO', pose: 'casimiro_sweat', text: 'De todos modos ya venía plegado y vacío, se sentía ligerito.' }
     ] },
     { id: 'c0_t3_4', speaker: 'CASIMIRO', pose: 'casimiro_catalogo', text: 'Porque ese día yo trabajé como cualquier otro: mi ronda completa, puerta por puerta, tomo por tomo.', pressText: [
       { speaker: 'DEFENSA', pose: 'donramon_point', cutin: 'objection_un_momento', sfx: 'whoosh', text: '¡UN MOMENTO!' },
@@ -162,8 +163,8 @@ export const CASE0_OPENING_PRESENT: OpeningPresent = {
     { speaker: 'JUEZ', pose: 'judge_thinking', text: 'La corte también quiere saber por qué la víctima no declara.' },
     { speaker: 'SUPER SAM', pose: 'supersam_point', text: 'Amnesia, Your Honor. Del golpe. Muy inconveniente para mi presupuesto.' },
     { speaker: 'JUEZ', pose: 'judge_neutral', text: 'Entonces el peso de este juicio lo carga un solo testigo. La defensa puede presionar sin gastar credibilidad, pero presentar una prueba sí cuesta. Úselas en consecuencia.' },
-    { speaker: 'CHAPULÍN', pose: 'chapulin_point', text: 'Y una más, Monchito: antes de presentar la Foto del Patio, selecciónala en el ACTA y pulsa EXAMINAR DETALLE para verla de cerca.' },
-    { speaker: 'MODO EXAMINAR', text: 'Hazlo antes de presentar la foto: la vista ampliada te ayudará a encontrar el detalle correcto.', instant: true },
+    { speaker: 'CHAPULÍN', pose: 'chapulin_point', text: 'Y una más, Don Ramón: antes de presentar la Foto del Patio, selecciónala en el ACTA y pulsa EXAMINAR DETALLE para verla de cerca.' },
+    { speaker: 'MODO EXAMINAR', text: 'Si una prueba tiene EXAMINAR DETALLE, mírala de cerca antes de presentarla: la vista ampliada te ayudará a encontrar el detalle correcto.', instant: true },
     { speaker: 'JUEZ', pose: 'judge_neutral', text: 'Testigo, diga su nombre y su ocupación.' },
     { speaker: 'CASIMIRO', pose: 'casimiro_catalogo', text: 'Casimiro Lengua, para servirle: distribuidor autorizado de Enciclopedias El Saber Universal. Del latín encyclopaedia, “instrucción en círculo”.' },
     { speaker: 'JUEZ', pose: 'judge_neutral', text: 'Su testimonio, por favor. Únicamente lo que percibió.' }

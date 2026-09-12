@@ -20,7 +20,7 @@ export const CASE4_CLIMAX: ClimaxDefinition = {
     { speaker: 'RUFINO', text: 'Yo recibí una botella sellada. La dejé sobre la mesa y no volví a tocarla hasta que mi invitado la abrió.', pose: 'rufino_smug' },
     { speaker: 'DEFENSA', text: 'Esa botella se abrió delante de una testigo, con el lacre puesto. Eso no lo discute nadie.', pose: 'donramon_idle' },
     { speaker: 'JUEZ', text: 'Entonces, licenciado, este tribunal necesita saber cómo entra un tóxico en una botella cerrada.', pose: 'judge_thinking' },
-    { speaker: 'CHAPULIN', text: '¡Ay, Monchito! ¿Y ahora quién podrá defendernos?', pose: 'chapulin_panic' },
+    { speaker: 'CHAPULIN', text: '¡Ay, Don Ramón! ¿Y ahora quién podrá defendernos?', pose: 'chapulin_panic' },
     { speaker: 'DEFENSA', text: 'Nosotros mismos, Chapulín. Señor juez: eso está contestado desde ayer. Lo que pasa es que la respuesta venía dentro de un corcho.', pose: 'donramon_point', bgm: 'pursuit' }
   ],
   presentTarget: ['botella_vino'],

@@ -23,7 +23,7 @@ export const CASE3_DETENTION_D3_EN: InvestigationScene = {
     { speaker: 'CHAPATIN', text: '...would have wrists raw. Knees scraped. Throat shredded from screaming. I examined that gentleman that very night, young man: not a trace of a scrape. Not one.', pose: 'chapatin_enojado' },
     { speaker: 'DEFENSA', text: 'Then why didn\'t you say so before?', pose: 'donramon_shock' },
     { speaker: 'CHAPATIN', text: 'Because nobody asked me! Everyone was too busy cuffing me!', pose: 'chapatin_idle' },
-    { speaker: 'CHAPULIN', text: 'Monchito! Now we\'ve got something!', pose: 'chapulin_point' },
+    { speaker: 'CHAPULIN', text: 'Don Ramón! Now we\'ve got something!', pose: 'chapulin_point' },
     { speaker: 'DEFENSA', text: 'We\'ve got the how, Chapulín. We still need WHO. And for that I need the sergeant\'s night in the garbage to have been worth something.', pose: 'donramon_idle', unlockLocation: 'delegacion_d3' }
   ],
   hotspots: [

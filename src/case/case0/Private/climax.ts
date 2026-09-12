@@ -69,11 +69,10 @@ export const CASE0_CLIMAX: ClimaxDefinition = {
   verdict: [
     { speaker: 'JUEZ', pose: 'judge_gavel', text: 'Por lo escuchado hoy, este tribunal declara al acusado Toribio Pantoja...', sfx: 'gavel' },
     { speaker: 'JUEZ', pose: 'judge_gavel', text: '¡INOCENTE!', cutin: 'objection_inocente', bgm: 'victory' },
-    { speaker: 'NARRADOR', text: 'Cae confeti sobre el estrado de la defensa.' },
     { speaker: 'TORIBIO', pose: 'toribio_aliviado', text: '¡Licenciado! ¡Licenciado, gané! ...¿ganamos?' },
         { speaker: 'DEFENSA', pose: 'donramon_idle', text: 'Ganó usted. Yo nomás hablé.' },
     { speaker: 'CHAPULÍN', pose: 'chapulin_idle', text: 'Se presiona gratis, se presenta con cuidado y se mira todo de cerquita.' },
-    { speaker: 'JUEZ', pose: 'judge_gavel', text: 'Se ordena la detención de Casimiro Lengua y la devolución del maletín. Se cierra la audiencia.', sfx: 'gavel' }
+    { speaker: 'JUEZ', pose: 'judge_gavel', text: 'Se ordena la detención de Casimiro Lengua y la devolución del cartapacio de cobranza. Se cierra la audiencia.', sfx: 'gavel' }
   ],
   epilogue: {
     bg: EPILOGUE_BG,
@@ -85,7 +84,7 @@ export const CASE0_CLIMAX: ClimaxDefinition = {
       { speaker: 'DEFENSA', pose: 'donramon_idle', text: '(Trece paletas y catorce meses de renta. Vamos empatados.)', bg: EPILOGUE_BG },
       { speaker: 'CHAPULÍN', pose: 'chapulin_idle', text: 'Todo abogado empieza con un cliente que le paga en especie.', bg: EPILOGUE_BG },
       { speaker: 'DEFENSA', pose: 'donramon_idle', text: 'Y termina con un casero que le cobra en efectivo.', bg: EPILOGUE_BG },
-      { speaker: 'NARRADOR', text: 'En el suelo, un periódico abierto: “ROBAN LA CHICHARRA PARALIZADORA DE ORO DEL MUSEO DE LAS CURIOSIDADES”.', bg: EPILOGUE_BG },
+      { speaker: 'NARRADOR', text: 'Sobre el banco, un periódico abierto: “ROBAN LA CHICHARRA PARALIZADORA DE ORO DEL MUSEO DE LAS CURIOSIDADES”.', bg: EPILOGUE_BG },
       { speaker: 'CHAPULÍN', pose: 'chapulin_idle', text: '...Chanfle.', bg: EPILOGUE_BG },
       { speaker: 'DEFENSA', pose: 'donramon_point', text: '¿Y a ese quién lo va a defender?', bg: EPILOGUE_BG },
       { speaker: 'CHAPULÍN', pose: 'chapulin_idle', text: 'Ahí está el detalle.', bg: EPILOGUE_BG }

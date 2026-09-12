@@ -16,7 +16,7 @@ const ICONS = [
 ];
 const PLATES = [
   'examine_recibo_hielo', 'examine_foto_patio', 'examine_plancha', 'examine_lata',
-  'examine_informe_lesiones', 'point_foto_patio', 'point_plancha', 'bg_waiting_room_case0'
+  'examine_informe_lesiones', 'examine_maletin_cobranza', 'point_foto_patio', 'point_plancha', 'bg_waiting_room_case0'
 ];
 
 function expectWebp(stem: string): void {
@@ -40,6 +40,8 @@ describe('Case 0 visual assets', () => {
     expect(processor).toContain('casimiro_breakdown_raw.png');
     expect(processor).toContain('evidence_icons_raw.png');
     expect(processor).toContain('waiting_room_newspaper_raw.png');
+    expect(processor).toContain('examine_maletin_cobranza_raw.png');
+    expect(processor).toContain('maletin_cobranza_icon_raw.png');
     expect(processor).toContain('fingerprint');
     expect(processor).toContain('cover_crop');
     expect(processor).toContain('--only');
@@ -48,5 +50,7 @@ describe('Case 0 visual assets', () => {
     expect(fs.existsSync(path.join(ROOT, 'tools/raw/case0/examine_lata_raw.png'))).toBe(true);
     expect(fs.existsSync(path.join(ROOT, 'tools/raw/case0/evidence_icons_raw.png'))).toBe(true);
     expect(fs.existsSync(path.join(ROOT, 'tools/raw/case0/waiting_room_newspaper_raw.png'))).toBe(true);
+    expect(fs.existsSync(path.join(ROOT, 'tools/raw/case0/examine_maletin_cobranza_raw.png'))).toBe(true);
+    expect(fs.existsSync(path.join(ROOT, 'tools/raw/case0/maletin_cobranza_icon_raw.png'))).toBe(true);
   });
 });

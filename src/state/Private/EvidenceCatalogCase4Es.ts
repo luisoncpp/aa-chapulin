@@ -26,7 +26,7 @@ function ev(
 export const CASE4_EVIDENCE_ES: Record<string, EvidenceItem> = {
   insignia_abogado: ev('insignia_abogado', {
     name: 'Insignia de Abogado',
-    desc: 'Insignia abollada del Lic. Monchito.'
+    desc: 'Insignia abollada de Don Ramón.'
   }),
   informe_policial: ev('informe_policial', {
     name: 'Informe Policial',

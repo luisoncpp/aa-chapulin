@@ -36,7 +36,7 @@ function collectPointFailureLines(lines: DialogueLine[], target?: PointTargetCon
   for (const zone of target?.zones ?? []) lines.push(...zone.failureDialogue);
 }
 
-describe('Case 0 — El Primer Juicio de Monchito', () => {
+describe('Case 0 — El Primer Juicio de Don Ramón', () => {
   it('is a courtroom-only script with three testimony rounds', () => {
     const script = getCaseScript('es', 'case0');
     expect(script.startLocation).toBe('courtroom');
@@ -220,6 +220,28 @@ describe('Case 0 — El Primer Juicio de Monchito', () => {
       const epilogue = getCaseScript(lang, 'case0').trial.climax.epilogue;
       expect(epilogue?.bg).toBe('assets/bg_waiting_room_case0.webp');
       expect(epilogue?.dialogue.every((line) => line.bg === epilogue.bg)).toBe(true);
+    }
+  });
+
+  it('places the epilogue newspaper on the bench in both languages', () => {
+    for (const lang of ['es', 'en'] as const) {
+      const epilogue = getCaseScript(lang, 'case0').trial.climax.epilogue!;
+      const newspaperLine = epilogue.dialogue.find((line) =>
+        lang === 'es' ? line.text.includes('periódico') : line.text.includes('newspaper')
+      );
+
+      expect(newspaperLine?.text).toMatch(/banco|bench/i);
+      expect(newspaperLine?.text).not.toMatch(/suelo|floor/i);
+    }
+  });
+
+  it('does not narrate the visible confetti during the verdict', () => {
+    for (const lang of ['es', 'en'] as const) {
+      const verdictText = getCaseScript(lang, 'case0').trial.climax.verdict
+        .map((line) => line.text)
+        .join(' ');
+
+      expect(verdictText).not.toMatch(/confeti|confetti/i);
     }
   });
 

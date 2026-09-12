@@ -25,7 +25,7 @@ const POINT_EN: PointTargetContradiction = {
     { id: 'cadena_resto', bounds: [0, 0, 100, 100], isCorrect: false, failureDialogue: [
       { speaker: 'JUEZ', pose: 'judge_thinking', text: 'That point does not connect to the corridor, counselor. Review the whole route.', sfx: 'damage' },
       { speaker: 'SUPER SAM', pose: 'supersam_slam', text: 'And every minute of this court costs money, counselor!', sfx: 'desk_slam' },
-      { speaker: 'DEFENSA', pose: 'donramon_sweat', text: '(And every mistake costs me a piece of my client. Again, Monchito. Slowly.)' }
+      { speaker: 'DEFENSA', pose: 'donramon_sweat', text: '(And every mistake costs me a piece of my client. Again, Don Ramón. Slowly.)' }
     ] }
   ]
 };

@@ -17,7 +17,7 @@ export const CASE3_CLINICA: InvestigationScene = {
     { speaker: 'NONO', text: 'Mi papi sigue dormido... Dicen que a lo mejor despierta, y a lo mejor no.', pose: 'nono_nervioso' },
     { speaker: 'DEFENSA', text: 'Joven Ñoño, ¿usted estuvo toda la noche en la consola?', pose: 'donramon_idle' },
     { speaker: 'NONO', text: '¡Sí! ¡Toda! ¡Todita! ¡No me moví ni un segundito!', pose: 'nono_nervioso' },
-    { speaker: 'CHAPULIN', text: '(Monchito, ese muchacho dijo "todita" y le sudaron hasta los cachetes.)', pose: 'chapulin_idle' },
+    { speaker: 'CHAPULIN', text: '(Don Ramón, ese muchacho dijo "todita" y le sudaron hasta los cachetes.)', pose: 'chapulin_idle' },
     { speaker: 'FLORINDA', text: 'Pobre criatura. Lleva aquí sentado desde anteanoche sin probar bocado. Chusma o no chusma, un muchacho no debería ver a su papá así.', pose: 'florinda_idle' }
   ],
   hotspots: [

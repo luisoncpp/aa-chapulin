@@ -39,7 +39,7 @@ export const CASE2_CLIMAX = assembleCase2Climax({
     { speaker: 'SUPER SAM', text: 'Stop right there! ¡Si el señor Peterete es el ladrón, exijo que la defensa presente en este instante el Chanfle de Oro!', pose: 'supersam_point', sfx: 'desk_slam' },
     { speaker: 'JUEZ', text: 'Es la regla de oro del tribunal: para condenar al autor intelectual, debemos ubicar el cuerpo del delito. ¿Tiene la defensa esa prueba decisiva?', pose: 'judge_thinking' },
     { speaker: 'DEFENSA', text: '(Es el momento decisivo. El oro no está en los bolsillos de Peterete... pero estuvo en el carrito todo este tiempo...)', pose: 'donramon_idle' },
-    { speaker: 'CHAPULIN', text: '¡Monchito! ¡Mis antenitas de vinil me dicen que el culpable disfrazó el tesoro a la vista de todos!', pose: 'chapulin_point' }
+    { speaker: 'CHAPULIN', text: '¡Don Ramón! ¡Mis antenitas de vinil me dicen que el culpable disfrazó el tesoro a la vista de todos!', pose: 'chapulin_point' }
   ],
   goldReveal: GOLD_REVEAL,
   chompirasAsleep: CHOMPIRAS_ASLEEP,
@@ -55,7 +55,7 @@ export const CASE2_CLIMAX = assembleCase2Climax({
     { speaker: 'DEFENSA', text: '¡Je, je! ¡No hay de queso nomás de papa! Y ahora que demostré mi talento legal...', pose: 'donramon_idle' },
     { speaker: 'NARRADOR', text: '(De pronto, pasos pesados en el pasillo... ¡es el Señor Barriga con su portafolio!)', sfx: 'realization' },
     { speaker: 'DEFENSA', text: '¡¡¡CHANFLE!!! ¡¡¡EL SEÑOR BARRIGA VIENE POR LOS 14 MESES DE RENTA!!!', pose: 'donramon_panic' },
-    { speaker: 'CHAPULIN', text: '¡Toma, Monchito! ¡Tómate una Pastilla de Chiquitolina y escóndete en mi bolsillo!', pose: 'chapulin_idle' },
+    { speaker: 'CHAPULIN', text: '¡Toma, Don Ramón! ¡Tómate una Pastilla de Chiquitolina y escóndete en mi bolsillo!', pose: 'chapulin_idle' },
     { speaker: 'DEFENSA', text: '¡Con permisito, dijo Monchitooooo!', pose: 'donramon_point' }
   ]
 });

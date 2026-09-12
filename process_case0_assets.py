@@ -33,8 +33,13 @@ PLATE_NAMES = [
 ]
 SINGLE_PLATE_SOURCES = {
     "examine_lata_raw.png": ("examine_lata", (960, 540)),
+    "examine_maletin_cobranza_raw.png": ("examine_maletin_cobranza", (960, 540)),
+    # Overrides the contact-sheet cell: that cell drew the charcoal iron, which is
+    # the answer to climax stage 1. foto_nazario still derives from the sheet.
+    "examine_informe_lesiones_raw.png": ("examine_informe_lesiones", (960, 540)),
     "waiting_room_newspaper_raw.png": ("bg_waiting_room_case0", (1536, 1024)),
 }
+SINGLE_ICON_SOURCES = {"maletin_cobranza_icon_raw.png": "maletin_cobranza"}
 SAVINGS_CLUE_CONTRACT = "single soot/grease mark; no fingerprint or ridge pattern"
 
 
@@ -58,7 +63,9 @@ def process_pose(image: Image.Image, name: str) -> None:
     cleaned = remove_bg_magenta_vectorized(image, threshold=165.0, despill_depth=4)
     cleaned = clean_edges_vectorized(cleaned, depth=5)
     filtered = extract_primary_components_fast(cleaned, min_area_fraction=0.08)
-    final = despill_final(anchor_standing_bust(filtered))
+    # Despilling can erase the lowest semi-transparent hem pixels. Anchor after it so the
+    # saved WebP, not just the intermediate image, meets the dialogue border.
+    final = anchor_standing_bust(despill_final(filtered))
     final.save(Path(DEST_DIR) / f"{name}.webp", "WEBP", quality=85, method=6)
     print(f"[OK] {name}.webp {final.size}")
 
@@ -84,6 +91,8 @@ def process_icons(selected: set[str] | None) -> None:
     with Image.open(path) as sheet:
         cell_w, cell_h = sheet.width // 4, sheet.height // 2
         for index, name in enumerate(ICON_NAMES):
+            if name in SINGLE_ICON_SOURCES.values():
+                continue
             if selected is not None and name not in selected:
                 continue
             row, col = divmod(index, 4)
@@ -93,6 +102,15 @@ def process_icons(selected: set[str] | None) -> None:
             filtered = extract_primary_components_fast(cleaned, min_area_fraction=0.08)
             save_evidence_icon(filtered, f"{name}.webp")
             print(f"[OK] {name}.webp")
+
+
+def process_single_icons(selected: set[str] | None) -> None:
+    for filename, name in SINGLE_ICON_SOURCES.items():
+        if selected is not None and name not in selected:
+            continue
+        with Image.open(RAW_DIR / filename) as image:
+            save_evidence_icon(image.convert("RGBA"), f"{name}.webp")
+        print(f"[OK] {name}.webp")
 
 
 def cover_crop(image: Image.Image, size: tuple[int, int]) -> Image.Image:
@@ -109,13 +127,13 @@ def process_plates(selected: set[str] | None) -> None:
     path = RAW_DIR / "examine_contact_sheet_raw.png"
     with Image.open(path) as sheet:
         cell_w, cell_h = sheet.width // 3, sheet.height // 2
-        # Contact-sheet order: receipt, courtyard, iron / tin, injury, briefcase.
+        # Contact-sheet order: receipt, courtyard, iron / tin, injury, old briefcase.
         source_cells = [
-            (0, 0), (1, 0), (2, 0), (0, 1), (1, 1), (2, 1),
+            (0, 0), (1, 0), (2, 0), (0, 1), (1, 1),
         ]
         names = [
             "examine_recibo_hielo", "examine_foto_patio", "examine_plancha",
-            "examine_lata", "examine_informe_lesiones", "examine_maletin_cobranza",
+            "examine_lata", "examine_informe_lesiones",
         ]
         rendered: dict[str, Image.Image] = {}
         for name, (col, row) in zip(names, source_cells):
@@ -146,9 +164,10 @@ def process_single_plates(selected: set[str] | None) -> None:
 def main() -> None:
     selected = selected_outputs()
     process_poses(selected)
-    process_icons(selected)
     process_plates(selected)
     process_single_plates(selected)
+    process_icons(selected)
+    process_single_icons(selected)
 
 
 if __name__ == "__main__":

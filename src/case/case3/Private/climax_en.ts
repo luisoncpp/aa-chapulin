@@ -59,7 +59,7 @@ const EPILOGUE: DialogueLine[] = [
   { bg: WAITING_ROOM, furniture: 'none', speaker: 'SARGENTO', text: '¡Mi Licenciado! The prosecutor docked my paycheck again! Says it was for "olfactory insubordination" over the trash!', pose: 'pazguato_decidido' },
   { bg: WAITING_ROOM, furniture: 'none', speaker: 'BARRIGA', text: 'Sergeant, the station needs a night watchman. An honest one. Interested?', pose: 'barriga_vendado' },
   { bg: WAITING_ROOM, furniture: 'none', speaker: 'SARGENTO', text: '¡A sus órdenes! And do you pay... with money?', pose: 'pazguato_saludo' },
-  { bg: WAITING_ROOM, furniture: 'none', speaker: 'BARRIGA', text: 'With money, Sergeant. And speaking of money, Licenciado Monchito...', pose: 'barriga_vendado' },
+  { bg: WAITING_ROOM, furniture: 'none', speaker: 'BARRIGA', text: 'With money, Sergeant. And speaking of money, Don Ramón...', pose: 'barriga_vendado' },
   { bg: WAITING_ROOM, furniture: 'none', speaker: 'DEFENSA', text: 'Me?! I just saved the life of the man who was going to...!', pose: 'donramon_panic' },
   { bg: WAITING_ROOM, furniture: 'none', speaker: 'BARRIGA', text: 'Fifteen months of rent, Don Ramón. FIFTEEN.', pose: 'barriga_enojado', sfx: 'desk_slam' },
   { bg: WAITING_ROOM, furniture: 'none', speaker: 'DEFENSA', text: '...What if I deduct it from my fees?', pose: 'donramon_sweat' },
@@ -67,7 +67,7 @@ const EPILOGUE: DialogueLine[] = [
   { bg: WAITING_ROOM, furniture: 'none', speaker: 'DEFENSA', text: '¡CHANFLE!', pose: 'donramon_panic' },
   { bg: WAITING_ROOM, furniture: 'none', speaker: 'NARRADOR', text: '(From the hallway speaker, the station opens again. A young, shaky voice clears its throat.)' },
   { bg: WAITING_ROOM, furniture: 'none', speaker: 'NONO', text: '"Muy buenas noches tengan todos ustedes... Aquí XEVC, La Voz de la Vecindad..."' },
-  { bg: WAITING_ROOM, furniture: 'none', speaker: 'CHAPULIN', text: 'You know what, Monchito? El que a hierro mata... acaba con la casa llena de fierros.', pose: 'chapulin_idle' },
+  { bg: WAITING_ROOM, furniture: 'none', speaker: 'CHAPULIN', text: 'You know what, Don Ramón? El que a hierro mata... acaba con la casa llena de fierros.', pose: 'chapulin_idle' },
   { bg: WAITING_ROOM, furniture: 'none', speaker: 'DEFENSA', text: '...That\'s not how the saying goes, Chapulín.', pose: 'donramon_idle' },
   { bg: WAITING_ROOM, furniture: 'none', speaker: 'CHAPULIN', text: 'I know! But if I say it right, next time we catch nobody! ¡Síganme los buenos!', pose: 'chapulin_point' }
 ];
@@ -76,9 +76,9 @@ const VERDICT_LINES = CASE3_CLIMAX_CHOICES_EN[1].successDialogue;
 
 export const CASE3_CLIMAX_EN: ClimaxDefinition = assembleCase3Climax({
   dialogue: [
-    { speaker: 'JUEZ', text: 'Licenciado Monchito, this court no longer debates whether your client is innocent. It debates who is guilty. And for that we need four things: when it was recorded, where, who could record it, and why.', bgm: 'suspense', pose: 'judge_thinking' },
-    { speaker: 'DEFENSA', text: '(Four nails, Monchito. One by one, and miss none.)', pose: 'donramon_idle' },
-    { speaker: 'CHAPULIN', text: '¡Ánimo, Monchito! ¡Que no panda el cúnico!', pose: 'chapulin_point' }
+    { speaker: 'JUEZ', text: 'Licenciado Don Ramón, this court no longer debates whether your client is innocent. It debates who is guilty. And for that we need four things: when it was recorded, where, who could record it, and why.', bgm: 'suspense', pose: 'judge_thinking' },
+    { speaker: 'DEFENSA', text: '(Four nails, Don Ramón. One by one, and miss none.)', pose: 'donramon_idle' },
+    { speaker: 'CHAPULIN', text: '¡Ánimo, Don Ramón! ¡Que no panda el cúnico!', pose: 'chapulin_point' }
   ],
   stage1: STAGE1,
   stage2: STAGE2,

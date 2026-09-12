@@ -66,11 +66,10 @@ export const CASE0_CLIMAX_EN: ClimaxDefinition = {
   verdict: [
     { speaker: 'JUEZ', pose: 'judge_gavel', text: 'For what was heard today, this court finds the defendant Toribio Pantoja...', sfx: 'gavel' },
     { speaker: 'JUEZ', pose: 'judge_gavel', text: 'NOT GUILTY!', cutin: 'objection_inocente', bgm: 'victory' },
-    { speaker: 'NARRADOR', text: 'Confetti falls over the defense bench.' },
     { speaker: 'TORIBIO', pose: 'toribio_aliviado', text: 'Counselor! I won! ...Did we win?' },
         { speaker: 'DEFENSA', pose: 'donramon_idle', text: 'You won. I just talked.' },
     { speaker: 'CHAPULÍN', pose: 'chapulin_idle', text: 'Pressing is free, presenting takes care, and every detail matters.' },
-    { speaker: 'JUEZ', pose: 'judge_gavel', text: 'Casimiro Lengua is remanded, and the briefcase is returned. Court is adjourned.', sfx: 'gavel' }
+    { speaker: 'JUEZ', pose: 'judge_gavel', text: 'Casimiro Lengua is remanded, and the collection file is returned. Court is adjourned.', sfx: 'gavel' }
   ],
   epilogue: {
     bg: EPILOGUE_BG,
@@ -82,7 +81,7 @@ export const CASE0_CLIMAX_EN: ClimaxDefinition = {
       { speaker: 'DEFENSA', pose: 'donramon_idle', text: '(Thirteen paletas and fourteen months of rent. We are even.)', bg: EPILOGUE_BG },
       { speaker: 'CHAPULÍN', pose: 'chapulin_idle', text: 'Every lawyer starts with a client who pays in kind.', bg: EPILOGUE_BG },
       { speaker: 'DEFENSA', pose: 'donramon_idle', text: 'And ends with a landlord who wants cash.', bg: EPILOGUE_BG },
-      { speaker: 'NARRADOR', text: 'An open newspaper lies on the floor: “GOLDEN PARALYZING CHICHARRA STOLEN FROM THE MUSEUM OF CURIOSITIES.”', bg: EPILOGUE_BG },
+      { speaker: 'NARRADOR', text: 'An open newspaper lies on the bench: “GOLDEN PARALYZING CHICHARRA STOLEN FROM THE MUSEUM OF CURIOSITIES.”', bg: EPILOGUE_BG },
       { speaker: 'CHAPULÍN', pose: 'chapulin_idle', text: '...Chanfle.', bg: EPILOGUE_BG },
       { speaker: 'DEFENSA', pose: 'donramon_point', text: 'Who will defend that one?', bg: EPILOGUE_BG },
       { speaker: 'CHAPULÍN', pose: 'chapulin_idle', text: 'That is the detail.', bg: EPILOGUE_BG }

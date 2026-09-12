@@ -19,7 +19,7 @@ export const CASE3_DELEGACION: InvestigationScene = {
     { speaker: 'SARGENTO', text: 'Aquí traigo la bitácora de transmisión, mi Licenciado. Ahí apunta la consola todo lo que sale al aire, solita.', pose: 'pazguato_decidido', addEvidence: 'bitacora_transmision' },
     { speaker: 'DEFENSA', text: '...Sargento. Aquí dice que a las 23:03 salió al aire un CORTE DE ESTACIÓN AUTOMÁTICO. Cartucho tres.', pose: 'donramon_shock' },
     { speaker: 'SARGENTO', text: 'Sí, ¿verdad? Yo también le entendí re\' poquito.', pose: 'pazguato_sweat' },
-    { speaker: 'CHAPULIN', text: '¡Monchito! ¡Eso quiere decir que a las 11:03 la consola no estaba transmitiendo a nadie... estaba tocando una grabación!', pose: 'chapulin_point' },
+    { speaker: 'CHAPULIN', text: '¡Don Ramón! ¡Eso quiere decir que a las 11:03 la consola no estaba transmitiendo a nadie... estaba tocando una grabación!', pose: 'chapulin_point' },
     { speaker: 'DEFENSA', text: '¡CHANFLE! ¡El grito que oyó toda la plaza estaba enlatado!', pose: 'donramon_panic', sfx: 'realization', updateEvidence: 'microfono_cabina' }
   ],
   hotspots: [

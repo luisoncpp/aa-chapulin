@@ -18,7 +18,7 @@ export const CASE4_HOTEL_CAVA_EN: InvestigationScene = {
     { speaker: 'SARGENTO', text: 'Since noon the day after the discovery. With hour, folio, and both signatures. As you see it there, that cork has better paperwork than I do.', pose: 'pazguato_decidido' },
     { speaker: 'DEFENSA', text: 'Then that piece of cork left the hotel before the man drank.', pose: 'donramon_idle' },
     { speaker: 'SARGENTO', text: 'It was in a purse and then in my archive. Nobody else touched it, I will sign to that.', pose: 'pazguato_idle' },
-    { speaker: 'CHAPULIN', text: 'And what are we going to ask a cork, Monchito? Corks do not talk!', pose: 'chapulin_idle' },
+    { speaker: 'CHAPULIN', text: 'And what are we going to ask a cork, Don Ramón? Corks do not talk!', pose: 'chapulin_idle' },
     { speaker: 'DEFENSA', text: 'This one does. We are going to ask it how the thing that killed Mr. Gómez got in.', pose: 'donramon_point' },
     { speaker: 'CHAPULIN', text: '...Oh. Now the cork gives me the creeps.', pose: 'chapulin_panic' }
   ],

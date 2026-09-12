@@ -39,7 +39,7 @@ export const CASE2_CLIMAX_EN = assembleCase2Climax({
     { speaker: 'SUPER SAM', text: 'Stop right there! If Mr. Peterete is the thief, I demand the defense present the Golden Chanfle this instant!', pose: 'supersam_point', sfx: 'desk_slam' },
     { speaker: 'JUEZ', text: 'It is the golden rule of this court: to convict the mastermind we must locate the corpus delicti. Does the defense have that decisive proof?', pose: 'judge_thinking' },
     { speaker: 'DEFENSA', text: '(This is the decisive moment. The gold is not in Peterete\'s pockets... but it sat in the mail cart the whole time...)', pose: 'donramon_idle' },
-    { speaker: 'CHAPULIN', text: 'Monchito! My vinyl antennae say the culprit disguised the treasure in plain sight!', pose: 'chapulin_point' }
+    { speaker: 'CHAPULIN', text: 'Don Ramón! My vinyl antennae say the culprit disguised the treasure in plain sight!', pose: 'chapulin_point' }
   ],
   goldReveal: GOLD_REVEAL,
   chompirasAsleep: CHOMPIRAS_ASLEEP,
@@ -55,7 +55,7 @@ export const CASE2_CLIMAX_EN = assembleCase2Climax({
     { speaker: 'DEFENSA', text: 'Heh heh! No cheese, only potatoes! And now that I have proven my legal talent...', pose: 'donramon_idle' },
     { speaker: 'NARRADOR', text: '(Suddenly, heavy footsteps in the hall... it is Señor Barriga with his briefcase!)', sfx: 'realization' },
     { speaker: 'DEFENSA', text: 'CHANFLE!!! SEÑOR BARRIGA IS HERE FOR THE 14 MONTHS OF RENT!!!', pose: 'donramon_panic' },
-    { speaker: 'CHAPULIN', text: 'Here, Monchito! Take a Chiquitolina Pill and hide in my pocket!', pose: 'chapulin_idle' },
+    { speaker: 'CHAPULIN', text: 'Here, Don Ramón! Take a Chiquitolina Pill and hide in my pocket!', pose: 'chapulin_idle' },
     { speaker: 'DEFENSA', text: 'Excuse me, said Monchitooooo!', pose: 'donramon_point' }
   ]
 });

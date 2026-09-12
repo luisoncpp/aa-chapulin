@@ -16,7 +16,7 @@ export const CASE4_DAY3_INTRO_EN: DialogueLine[] = [
   { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_neutral', text: 'The defense grants Mr. Rufián stood at the gaming tables at 23:15.' },
   { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_idle', text: 'It grants it, Your Honor. That alibi is true and we will not dispute it. Only it covers the noise... and the noise killed nobody.' },
   { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_point', text: 'Then the prosecution keeps its account: the wine left dosed from the hands that carried it.' },
-  { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_sweat', text: '(Third day, Monchito. Only the bottle left. Nothing but the bottle.)' },
+  { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_sweat', text: '(Third day, Don Ramón. Only the bottle left. Nothing but the bottle.)' },
   { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_neutral', text: 'We will hear Mr. Rufián on his own part in this.' }
 ];
 

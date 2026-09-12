@@ -15,7 +15,7 @@ export const CASE4_DETENTION_EN: InvestigationScene = {
     { speaker: 'CHIMOLTRUFIA', text: 'Tell him to talk! Since last night all he does is repeat that I should not worry. And like I say one thing I say another: that is exactly what worries me!', pose: 'chimoltrufia_confundida' },
     { speaker: 'BOTIJA', text: 'I did not want you seeing me in here again, old girl.', pose: 'botija_llorando' },
     { speaker: 'CHIMOLTRUFIA', text: 'Well, you already saw me seeing you! And I do not know what hurts more, looking at you or you not talking to me.', pose: 'chimoltrufia_shock' },
-    { speaker: 'DEFENSA', text: 'Pardon me, said Monchito. Licenciado Monchito, public defender by trade and by necessity.', pose: 'donramon_idle' },
+    { speaker: 'DEFENSA', text: 'Pardon me, said Monchito. Don Ramón, public defender by trade and by necessity.', pose: 'donramon_idle' },
     { speaker: 'CHIMOLTRUFIA', text: 'And how much do you charge?', pose: 'chimoltrufia_confundida' },
     { speaker: 'DEFENSA', text: 'Ma\'am, I am sixteen months behind on my own rent. Charging you would be an insult to my profession.', pose: 'donramon_sweat' },
     { speaker: 'CHAPULIN', text: 'And do not lose your keep! We came to hear all of it, even the parts he would rather not tell.', pose: 'chapulin_idle' },

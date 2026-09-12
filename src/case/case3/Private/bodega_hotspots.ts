@@ -11,7 +11,7 @@ export const BODEGA_HOTSPOTS: Hotspot[] = [
     label: 'Ataduras en el Piso',
     x: 58, y: 72, w: 36, h: 22,
     dialogue: [
-      { speaker: 'CHAPULIN', text: '¡Monchito! ¡El nudo de la mordaza está por delante, del lado izquierdo!', pose: 'chapulin_point' },
+      { speaker: 'CHAPULIN', text: '¡Don Ramón! ¡El nudo de la mordaza está por delante, del lado izquierdo!', pose: 'chapulin_point' },
       { speaker: 'DEFENSA', text: 'Si a usted lo amordaza alguien parado a sus espaldas, ¿dónde le queda el nudo?', pose: 'donramon_idle' },
       { speaker: 'CHAPULIN', text: '¡Atrás! ¡Todos mis movimientos están fríamente calculados!', pose: 'chapulin_idle' },
       { speaker: 'DEFENSA', text: '(Adelante y a la izquierda. Como se amarra uno la corbata frente al espejo.)', pose: 'donramon_sweat', sfx: 'realization', addEvidence: 'ataduras_bodega' }

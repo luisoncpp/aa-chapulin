@@ -23,7 +23,7 @@ function ev(
 export const CASE3_EVIDENCE_ES: Record<string, EvidenceItem> = {
   insignia_abogado: ev('insignia_abogado', {
     name: 'Insignia de Abogado',
-    desc: 'La chapa del Licenciado Monchito. Sigue abollada, y ahora también empeñada dos veces.'
+    desc: 'La chapa de Don Ramón. Sigue abollada, y ahora también empeñada dos veces.'
   }),
   informe_barriga: ev('informe_barriga', {
     name: 'Informe Médico de Barriga',
@@ -111,7 +111,7 @@ export const CASE3_EVIDENCE_ES: Record<string, EvidenceItem> = {
 export const CASE3_EVIDENCE_EN: Record<string, EvidenceItem> = {
   insignia_abogado: ev('insignia_abogado', {
     name: "Attorney's Badge",
-    desc: 'The badge of Licenciado Monchito. Still dented, and now pawned twice over.'
+    desc: 'The badge of Don Ramón. Still dented, and now pawned twice over.'
   }),
   informe_barriga: ev('informe_barriga', {
     name: "Barriga's Medical Report",

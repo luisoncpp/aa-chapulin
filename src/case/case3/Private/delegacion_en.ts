@@ -19,7 +19,7 @@ export const CASE3_DELEGACION_EN: InvestigationScene = {
     { speaker: 'SARGENTO', text: 'Here\'s the transmission log, mi Licenciado. The console writes down everything that goes on air — by itself.', pose: 'pazguato_decidido', addEvidence: 'bitacora_transmision' },
     { speaker: 'DEFENSA', text: '...Sergeant. It says at 23:03 an AUTOMATIC STATION ID cut aired. Cartridge three.', pose: 'donramon_shock' },
     { speaker: 'SARGENTO', text: 'Yeah, right? I barely understood it either.', pose: 'pazguato_sweat' },
-    { speaker: 'CHAPULIN', text: 'Monchito! That means at 11:03 the console wasn\'t broadcasting anyone live... it was playing a recording!', pose: 'chapulin_point' },
+    { speaker: 'CHAPULIN', text: 'Don Ramón! That means at 11:03 the console wasn\'t broadcasting anyone live... it was playing a recording!', pose: 'chapulin_point' },
     { speaker: 'DEFENSA', text: '¡CHANFLE! The scream the whole plaza heard was canned!', pose: 'donramon_panic', sfx: 'realization', updateEvidence: 'microfono_cabina' }
   ],
   hotspots: [

@@ -20,7 +20,7 @@ const CABINA_HOTSPOTS_EN: Hotspot[] = [
     label: 'Floor & Chalk Outline',
     x: 50, y: 60, w: 42, h: 32,
     dialogue: [
-      { speaker: 'CHAPULIN', text: 'Look, Monchito! These glasses are missing an eye!', pose: 'chapulin_point' },
+      { speaker: 'CHAPULIN', text: 'Look, Don Ramón! These glasses are missing an eye!', pose: 'chapulin_point' },
       { speaker: 'DEFENSA', text: 'The right lens is gone... and there isn\'t a single shard of glass in this booth. Interesting.', pose: 'donramon_idle', sfx: 'realization', addEvidence: 'lentes_barriga' }
     ]
   },

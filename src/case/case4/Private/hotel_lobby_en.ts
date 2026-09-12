@@ -18,7 +18,7 @@ export const CASE4_HOTEL_LOBBY_EN: InvestigationScene = {
     { speaker: 'DEFENSA', text: 'I appear to be the lady.', pose: 'donramon_sweat' },
     { speaker: 'CECILIO', text: 'A thousand pardons. At two meters I make out colors, not people.', pose: 'cecilio_ciego' },
     { speaker: 'CHAPULIN', text: 'Well, he made me out perfectly! Red!', pose: 'chapulin_idle' },
-    { speaker: 'DEFENSA', text: 'Licenciado Monchito, for the defense. We came about the jobs Botija worked during the gala.', pose: 'donramon_idle' },
+    { speaker: 'DEFENSA', text: 'Don Ramón, for the defense. We came about the jobs Botija worked during the gala.', pose: 'donramon_idle' },
     { speaker: 'RUFINO', text: 'He carried up a bottle and helped me with a trunk. Note in your little pad that he was punctual: punctuality is the courtesy of those with no other.', pose: 'rufino_monocle' },
     { speaker: 'CHAPULIN', text: 'And does that big ring sign papers too?', pose: 'chapulin_point' },
     { speaker: 'RUFINO', text: 'For sealing correspondence, young man. The head turns, to protect the relief.', pose: 'rufino_smug' },

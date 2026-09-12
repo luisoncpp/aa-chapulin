@@ -14,7 +14,7 @@ export const CASE3_DETENTION_EN: InvestigationScene = {
   idlePose: 'chapatin_idle',
   intro: [
     { speaker: 'NARRADOR', text: 'September 16, 9:00 AM. City Detention Center.' },
-    { speaker: 'DEFENSA', text: 'Good morning, Doctor. I\'m Licenciado Monchito, your defense attorney.', pose: 'donramon_idle' },
+    { speaker: 'DEFENSA', text: 'Good morning, Doctor. I\'m Don Ramón, your defense attorney.', pose: 'donramon_idle' },
     { speaker: 'CHAPATIN', text: 'I didn\'t ask for a lawyer! Lawyers are like X-rays: expensive and nobody understands them!', pose: 'chapatin_enojado' },
     { speaker: 'CHAPULIN', text: 'Easy, little doctor! ¡Que no panda el cúnico! We\'re here to help.', pose: 'chapulin_idle' },
     { speaker: 'CHAPATIN', text: 'And who are you, the one in the costume?!', pose: 'chapatin_bolsa', sfx: 'chipote' },
@@ -58,7 +58,7 @@ export const CASE3_DETENTION_EN: InvestigationScene = {
         { speaker: 'CHAPATIN', text: 'None of your business.', pose: 'chapatin_enojado' },
         { speaker: 'DEFENSA', text: 'Doctor, with all respect, that\'s exactly what will send you to prison for twenty years.', pose: 'donramon_point' },
         { speaker: 'CHAPATIN', text: 'Then I\'ll go twenty years. A doctor who talks is not a doctor — he\'s a gossip.', pose: 'chapatin_idle' },
-        { speaker: 'CHAPULIN', text: '(Monchito... he\'s covering for someone.)', pose: 'chapulin_idle' },
+        { speaker: 'CHAPULIN', text: '(Don Ramón... he\'s covering for someone.)', pose: 'chapulin_idle' },
         { speaker: 'DEFENSA', text: '(And that someone is his patient. Note it, Chapulín: the alibi exists, but it\'s under professional secrecy.)', pose: 'donramon_sweat' }
       ]
     },

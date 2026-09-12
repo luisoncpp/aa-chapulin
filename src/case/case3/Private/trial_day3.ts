@@ -58,7 +58,7 @@ export const CASE3_TESTIMONY_5: Testimony = {
       unlockedBy: 'stmt5_3',
       pressText: [
         { speaker: 'DEFENSA', text: '(Una sola persona sabía del faltante. Una sola persona vio la combinación. Y esa persona apareció amarrada.)', pose: 'donramon_idle' },
-        { speaker: 'CHAPULIN', text: '(¡Monchito! ¡Pero si esa persona es la víctima número dos!)', pose: 'chapulin_idle' },
+        { speaker: 'CHAPULIN', text: '(¡Don Ramón! ¡Pero si esa persona es la víctima número dos!)', pose: 'chapulin_idle' },
         { speaker: 'DEFENSA', text: '(Por eso mismo, Chapulín. Por eso a nadie se le ocurrió mirarla.)', pose: 'donramon_idle' }
       ]
     },

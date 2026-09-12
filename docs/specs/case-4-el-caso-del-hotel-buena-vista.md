@@ -49,7 +49,7 @@ El primer montaje incrimina por disparo. Si la investigación descubre el veneno
 
 | Personaje | Función y evolución | Representación que se conserva |
 | --- | --- | --- |
-| Don Ramón, Lic. Monchito | Defiende un relato incómodo sin exigir que su cliente parezca impecable. Convierte el encargo verdadero en la vía para reconstruir el crimen. | Delgado, bigote ralo, traje raído, gorrito azul e insignia abollada. Familia donramon. Renta de 16 meses, mencionada con moderación. |
+| Don Ramón | Defiende un relato incómodo sin exigir que su cliente parezca impecable. Convierte el encargo verdadero en la vía para reconstruir el crimen. | Delgado, bigote ralo, traje raído, gorrito azul e insignia abollada. Familia donramon. Renta de 16 meses, mencionada con moderación. |
 | El Chapulín Colorado | Formula preguntas laterales sobre usos, recorridos y apariencias. Apoyo emocional y dos refranes mezclados; ninguna trampa lingüística final. | Mallas rojas, corazón CH, antenitas amarillas. Poses idle, point, slam y panic. No inventar chapulin_thinking. |
 | Super Sam | Fiscal con prejuicios de clase y obsesión económica. Abandona teorías refutadas y formula alternativas apoyadas en hechos. | Sombrero y traje estadounidense, dólares, calculadora. Familia supersam. |
 | El Sargento, Refugio Pazguato | Investigador aliado y honesto. Distingue observaciones de inferencias, conserva las pruebas y solicita los exámenes que el jugador justifica. | Alto, espigado, cuello largo, bigote de herradura y kepis torcido. Speaker SARGENTO, sprites pazguato. |
@@ -123,7 +123,7 @@ Son 18 entradas, incluida la insignia. Dos IDs nuevos propuestos son orden_servi
 
 | ID | Obtención | Descripción inicial permitida | Evolución y función |
 | --- | --- | --- | --- |
-| insignia_abogado | Inicio | Insignia abollada del Lic. Monchito. | Constante; no requiere presentación. |
+| insignia_abogado | Inicio | Insignia abollada de Don Ramón. | Constante; no requiere presentación. |
 | informe_policial | D1, 304 | Hallazgo a las 23:20 después del estruendo de las 23:15; herida de bala, arma, llave en mesita y Botija dentro. Causa inicial pendiente de examen complementario. | Tres entradas en `updates[]`: D1 anexa el cierre entregado por Maruja con hora y firma; D1 en juicio separa la hora del ruido de la hora de muerte; D2 añade la comparación del arma con el proyectil y la almohada, y el padrón que registra el revólver a nombre del difunto. El contador es lineal: un cuarto `[ACTUALIZAR]` se descartaría sin efecto. |
 | foto_crimen | D1, 304 | Imagen de las 23:30 con cuerpo, almohada perforada, traje desgarrado, copa, botella y llave. | D1 muestra objeto que amortiguó el tiro; D2 permite comparar el retal. La cubeta es ambientación. |
 | candado_cadena | D1, terraza al final | Placa con perno, fibras retenidas y tramo recuperado del corredor; esquema de recorrido. | Present & Point D1. Permite cierre exterior preparado, no atribuye autor. |
@@ -173,7 +173,7 @@ NARRADOR: 25 de octubre, 9:00 de la mañana. Centro de Detención de la ciudad.
 CHIMOLTRUFIA: ¡Díganle que hable! Desde anoche nomás me repite que no me preocupe. Y como digo una cosa digo otra: ¡eso es lo que más me preocupa!
 BOTIJA: No quería que me vieras aquí otra vez, vieja.
 CHIMOLTRUFIA: ¡Pues ya me viste viéndote! Y no sé qué me duele más, si verte o que no me hables.
-DEFENSA: Con permisito, dijo Monchito. Licenciado Monchito, defensor de oficio y de necesidad.
+DEFENSA: Con permisito, dijo Monchito. Don Ramón, defensor de oficio y de necesidad.
 CHIMOLTRUFIA: ¿Y usted cuánto cobra?
 DEFENSA: Señora, yo llevo dieciséis meses sin pagarle la renta a mi casero. Cobrarle a usted sería una falta de respeto a mi profesión.
 CHAPULIN: ¡Y que no panda el cúnico! Nosotros venimos a escucharlo todo, hasta lo que no quiera contar.
@@ -222,7 +222,7 @@ CECILIO: Buenos días. ¿En qué puedo servir a la señora y a su acompañante?
 DEFENSA: La señora soy yo, por lo visto.
 CECILIO: Le ruego mil perdones. A dos metros yo distingo colores, no personas.
 CHAPULIN: ¡Pues a mí me distinguió muy bien! ¡Rojo!
-DEFENSA: Licenciado Monchito, defensa. Venimos por los trabajos que hizo Botija durante la gala.
+DEFENSA: Don Ramón, defensa. Venimos por los trabajos que hizo Botija durante la gala.
 RUFINO: A mí me subió una botella y me ayudó con un baúl. Que conste en su cuadernito que fue puntual: la puntualidad es la cortesía de los que no tienen otra.
 CHAPULIN: ¿Y ese anillote también sirve para firmar?
 RUFINO: Para sellar correspondencia, jovencito. La cabeza gira, para proteger el relieve.
@@ -395,7 +395,7 @@ Fallo del señalamiento:
 ~~~dialogue
 JUEZ: Ese punto no conecta con el corredor, licenciado. Revise el recorrido completo.
 SUPER SAM: ¡Cada minuto de esta corte cuesta dinero, counselor! [sfx: desk_slam]
-DEFENSA: (Y cada equivocación me cuesta un pedazo de cliente. Otra vez, Monchito. Con calma.)
+DEFENSA: (Y cada equivocación me cuesta un pedazo de cliente. Otra vez, Don Ramón. Con calma.)
 ~~~
 
 No se identifica la zona correcta ni se inventa una técnica alternativa al fallar.
@@ -763,7 +763,7 @@ DEFENSA: ¿Desde cuándo lo tiene usted?
 SARGENTO: Desde el mediodía siguiente al hallazgo. Con hora, folio y las dos firmas. Ahí donde lo ve, ese corcho tiene mejor papelería que yo.
 DEFENSA: Entonces ese pedazo de corcho salió del hotel antes de que el hombre bebiera.
 SARGENTO: Estuvo en un bolso y luego en mi archivo. Nadie más lo tocó, se lo firmo.
-CHAPULIN: ¿Y qué le vamos a preguntar a un corcho, Monchito? ¡Los corchos no hablan!
+CHAPULIN: ¿Y qué le vamos a preguntar a un corcho, Don Ramón? ¡Los corchos no hablan!
 DEFENSA: Éste sí. Le vamos a preguntar por dónde entró lo que mató al señor Gómez.
 CHAPULIN: ...Ay. Ya me dio cosa el corcho.
 ~~~
@@ -928,7 +928,7 @@ SUPER SAM: Poetry, counselor. La poesía no cotiza.
 JUEZ: La defensa reconoce que el señor Rufián estaba en el salón de juego a las 23:15.
 DEFENSA: Lo reconoce, señor juez. Esa coartada es verdadera y no la vamos a discutir. Sólo que cubre el ruido... y el ruido no mató a nadie.
 SUPER SAM: Entonces la fiscalía mantiene su cuenta: el vino salió alterado de las manos que lo transportaron.
-DEFENSA: (Tercer día, Monchito. Ya nomás falta la botella. Nada más la botella.)
+DEFENSA: (Tercer día, Don Ramón. Ya nomás falta la botella. Nada más la botella.)
 JUEZ: Escucharemos al señor Rufián sobre su propia intervención.
 ~~~
 
@@ -1043,7 +1043,7 @@ SUPER SAM: El señor Rufián escondió un cadáver por cobarde. Eso es otro deli
 RUFINO: Yo recibí una botella sellada. La dejé sobre la mesa y no volví a tocarla hasta que mi invitado la abrió.
 DEFENSA: Esa botella se abrió delante de una testigo, con el lacre puesto. Eso no lo discute nadie.
 JUEZ: Entonces, licenciado, este tribunal necesita saber cómo entra un tóxico en una botella cerrada.
-CHAPULIN: ¡Ay, Monchito! ¿Y ahora quién podrá defendernos?
+CHAPULIN: ¡Ay, Don Ramón! ¿Y ahora quién podrá defendernos?
 DEFENSA: Nosotros mismos, Chapulín. Señor juez: eso está contestado desde ayer. Lo que pasa es que la respuesta venía dentro de un corcho.
 [música pursuit]
 ~~~

@@ -98,7 +98,7 @@ export const INVESTIGATION_SCENES_EN: Record<LocationId, InvestigationScene> = {
     idlePose: 'chapulin_idle',
     intro: [
       { speaker: 'CHAPULIN', text: 'Oh! And now, who can defend me?!', pose: 'chapulin_panic', sfx: 'text' },
-      { speaker: 'DEFENSA', text: 'None other than Licenciado Monchito! I mean... Don Ramón! I shall take your defense in court to save you from the clink and earn a few pesos!' },
+      { speaker: 'DEFENSA', text: 'None other than Licenciado Don Ramón! I shall take your defense in court to save you from the clink and earn a few pesos!' },
       { speaker: 'CHAPULIN', text: 'Follow me, good guys! I mean... what a relief! I was already getting used to the bread and water diet.', pose: 'chapulin_idle' }
     ],
     hotspots: [

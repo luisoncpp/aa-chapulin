@@ -32,6 +32,10 @@ describe('court record evidence grid layout', () => {
     expect(cssProp(grid, 'overflow-y')).toBe('auto');
   });
 
+  it('leaves headroom for a lifted first-row card hover border', () => {
+    expect(cssProp(grid, 'padding-top')).toBe('2px');
+  });
+
   it('wraps evidence names on two lines instead of a single ellipsis', () => {
     expect(cssProp(label, 'white-space')).not.toBe('nowrap');
     expect(cssProp(label, '-webkit-line-clamp')).toBe('2');

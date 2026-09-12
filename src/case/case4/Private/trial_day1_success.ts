@@ -14,7 +14,7 @@ export const CASE4_CADENA_POINT_TARGET: PointTargetContradiction = {
     { id: 'cadena_resto', bounds: [0, 0, 100, 100], isCorrect: false, failureDialogue: [
       { speaker: 'JUEZ', pose: 'judge_thinking', text: 'Ese punto no conecta con el corredor, licenciado. Revise el recorrido completo.', sfx: 'damage' },
       { speaker: 'SUPER SAM', pose: 'supersam_slam', text: '¡Cada minuto de esta corte cuesta dinero, counselor!', sfx: 'desk_slam' },
-      { speaker: 'DEFENSA', pose: 'donramon_sweat', text: '(Y cada equivocación me cuesta un pedazo de cliente. Otra vez, Monchito. Con calma.)' }
+      { speaker: 'DEFENSA', pose: 'donramon_sweat', text: '(Y cada equivocación me cuesta un pedazo de cliente. Otra vez, Don Ramón. Con calma.)' }
     ] }
   ]
 };

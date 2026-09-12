@@ -62,7 +62,7 @@ timeline
 ### Objetos y Pruebas (Evidence)
 
 1. **Insignia de Abogado (`insignia_abogado`)**:
-   - *Descripción*: La chapa oficial del Licenciado Monchito. Demuestra su condición de letrado defensor (aunque esté algo abollada).
+   - *Descripción*: La chapa oficial de Don Ramón. Demuestra su condición de letrado defensor (aunque esté algo abollada).
 2. **Chanfle de Oro (`chanfle_oro`)**:
    - *Descripción*: Reliquia de oro puro macizo de 5 kg con incrustaciones de esmeraldas. Desaparecida de la caja fuerte de la hacienda.
 3. **Reloj de Péndulo Dañado (`reloj_pendulo`)**:
@@ -146,10 +146,10 @@ flowchart TD
 [ENTRADA AL CENTRO DE DETENCIÓN]
 NARRADOR: 29 de Agosto, 10:00 AM. Centro de Detención de la Ciudad.
 DEFENSA (donramon_idle): Bueno, aquí estamos. Según la policía, el sospechoso es un peligroso asaltante internacional...
-CHAPULIN (chapulin_idle): ¡Calma, Monchito! ¡Que no panda el cúnico! Mis antenitas de vinil me dicen que el acusado es una persona totalmente inofensiva... o muy despistada.
+CHAPULIN (chapulin_idle): ¡Calma, Don Ramón! ¡Que no panda el cúnico! Mis antenitas de vinil me dicen que el acusado es una persona totalmente inofensiva... o muy despistada.
 CHOMPIRAS (chompiras_crying): ¡Buaaaa! ¡Yo no fui, jefecito! ¡Yo no me robé ningún chanfle de nada! ¡Lo único que me he robado en mi vida son dos panes de dulce y ya los devolví mordidos!
 DEFENSA (donramon_sweat): (Vaya facha de genio criminal... se parece a mí cuando llega el casero.)
-DEFENSA (donramon_point): A ver, muchacho, cálmate. Soy el Licenciado Monchito, tu abogado defensor, y vengo con el Chapulín Colorado.
+DEFENSA (donramon_point): A ver, muchacho, cálmate. Soy Don Ramón, tu abogado defensor, y vengo con el Chapulín Colorado.
 CHOMPIRAS (chompiras_relieved): ¡El Chapulín Colorado! ¡No contaban con mi astucia! Digo... ¡con la suya!
 ```
 
@@ -461,7 +461,7 @@ PETERETE (peterete_panic): ¡P-pero la policía revisó al sospechoso y no habí
 SUPER SAM (supersam_point): Stop right there! ¡Si el señor Peterete es el ladrón, exijo que la defensa presente en este instante el Chanfle de Oro!
 JUEZ (judge_thinking): Es la regla de oro del tribunal: para condenar al autor intelectual, debemos ubicar el cuerpo del delito. ¿Tiene la defensa esa prueba decisiva?
 DEFENSA (donramon_idle): (Es el momento decisivo. El oro no está en los bolsillos de Peterete... pero estuvo en el carrito todo este tiempo...)
-CHAPULIN (chapulin_point): ¡Monchito! ¡Mis antenitas de vinil me dicen que el culpable disfrazó el tesoro a la vista de todos!
+CHAPULIN (chapulin_point): ¡Don Ramón! ¡Mis antenitas de vinil me dicen que el culpable disfrazó el tesoro a la vista de todos!
 ```
 
 #### Elección de Prueba Clímax 1: El Oro
@@ -497,7 +497,7 @@ PETERETE (peterete_panic): ¡P-pero la caja fuerte se abrió con llave! ¡Yo dev
 DEFENSA (donramon_point): ¡PROTESTO! ¡Usted no necesitaba la llave original, porque fabricó un DUPLICADO! [cutin: objection_protesto, sfx: whoosh]
 DEFENSA (donramon_slam): ¡Encontramos este 'Molde de Cera' en la basura de Doña Clotilde! ¡Tiene la huella exacta de la llave maestra! [sfx: desk_slam]
 PETERETE (peterete_smug): ¡Bah! Doña Clotilde dijo que fue un hombre misterioso con bufanda y sombrero. ¡Podría ser cualquiera!
-JUEZ (judge_idle): Licenciado Monchito, ¿qué nos indica el testimonio de Doña Clotilde sobre la identidad del comprador?
+JUEZ (judge_idle): Licenciado Don Ramón, ¿qué nos indica el testimonio de Doña Clotilde sobre la identidad del comprador?
 ```
 
 #### Elección Múltiple 1: Lo importante del testimonio
@@ -557,7 +557,7 @@ JIRAFALES (jirafales_idle): Ha sido una cátedra de deducción aristotélica, Do
 DEFENSA (donramon_idle): ¡Je, je! ¡No hay de queso nomás de papa! Y ahora que demostré mi talento legal...
 NARRADOR: (De pronto, se escuchan pasos pesados en el pasillo... ¡es el Señor Barriga con su portafolio!) [sfx: realization]
 DEFENSA (donramon_panic): ¡¡¡CHANFLE!!! ¡¡¡EL SEÑOR BARRIGA VIENE POR LOS 14 MESES DE RENTA!!!
-CHAPULIN (chapulin_idle): ¡Toma, Monchito! ¡Tómate una 'Pastilla de Chiquitolina' y escóndete en mi bolsillo!
+CHAPULIN (chapulin_idle): ¡Toma, Don Ramón! ¡Tómate una 'Pastilla de Chiquitolina' y escóndete en mi bolsillo!
 DEFENSA (donramon_point): ¡Con permisito, dijo Monchitooooo!
 [FIN DEL CASO 2]
 ```

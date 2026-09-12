@@ -37,7 +37,7 @@ Implemented in [[src/case/case3/index.ts]] (nested deep module). Spec: [[docs/sp
 - **Art:** [[process_case3_assets.py]]; BGM `kermes` and `cross_exam_presto`. All Case 3 `plain` busts (including Ñoño) floor-anchor onto the dialogue box; Case 3 owns `informe_barriga.png` (not Case 1's `informe_medico.png`).
 - **Tests:** [[tests/case/Case3Scripts.test.ts]], [[tests/engine/StatementUnlock.test.ts]], [[tests/state/EvidenceUpdateStages.test.ts]].
 
-### Playable Content: Case 0 ("El Primer Juicio del Lic. Monchito")
+### Playable Content: Case 0 ("El Primer Juicio de Don Ramón")
 
 Implemented as the courtroom-only tutorial specified in [[docs/specs/case-0-el-primer-juicio-de-monchito.md]]. The splash tutorial button, `?case=0`, and `?case=0&trial` enter the trial directly at `courtroom`.
 

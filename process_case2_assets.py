@@ -49,6 +49,7 @@ BGS = [
 STANDING_CANVAS = 512
 STANDING_HEM_MARGIN = 5
 STANDING_SIDE_MARGIN = 8
+VISIBLE_ALPHA = 32
 
 
 def _fit_bust_to_canvas(cropped: Image.Image) -> Image.Image:
@@ -64,7 +65,8 @@ def _fit_bust_to_canvas(cropped: Image.Image) -> Image.Image:
 
 def anchor_standing_bust(img: Image.Image) -> Image.Image:
     """Sit the opaque hem on the canvas floor so the plain stage meets the dialogue box."""
-    bbox = img.getbbox()
+    alpha = img.getchannel("A").point(lambda value: 255 if value > VISIBLE_ALPHA else 0)
+    bbox = alpha.getbbox()
     if not bbox:
         return img
     cropped = _fit_bust_to_canvas(img.crop(bbox))
@@ -73,7 +75,7 @@ def anchor_standing_bust(img: Image.Image) -> Image.Image:
     oy = STANDING_CANVAS - STANDING_HEM_MARGIN - cropped.height
     if oy < 0:
         oy = 0
-    canvas.paste(cropped, (ox, oy), cropped)
+    canvas.alpha_composite(cropped, dest=(ox, oy))
     return canvas
 
 

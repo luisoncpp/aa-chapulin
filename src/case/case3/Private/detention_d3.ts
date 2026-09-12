@@ -24,7 +24,7 @@ export const CASE3_DETENTION_D3: InvestigationScene = {
     { speaker: 'CHAPATIN', text: '...tendría las muñecas en carne viva. Y las rodillas raspadas. Y la garganta hecha trizas de gritar. Yo revisé a ese señor esa misma noche, jovencito: no tenía ni el rastro de una rozadura. Ni una.', pose: 'chapatin_enojado' },
     { speaker: 'DEFENSA', text: '¿Y por qué no lo dijo antes?', pose: 'donramon_shock' },
     { speaker: 'CHAPATIN', text: '¡Porque nadie me preguntó! ¡Todos estaban muy ocupados esposándome!', pose: 'chapatin_idle' },
-    { speaker: 'CHAPULIN', text: '¡Monchito! ¡Ya tenemos con qué!', pose: 'chapulin_point' },
+    { speaker: 'CHAPULIN', text: '¡Don Ramón! ¡Ya tenemos con qué!', pose: 'chapulin_point' },
     { speaker: 'DEFENSA', text: 'Tenemos cómo, Chapulín. Todavía nos falta demostrar QUIÉN. Y para eso necesito que al sargento le haya servido de algo la noche que se pasó en la basura.', pose: 'donramon_idle', unlockLocation: 'delegacion_d3' }
   ],
   hotspots: [

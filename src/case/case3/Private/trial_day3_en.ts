@@ -65,7 +65,7 @@ export const CASE3_TESTIMONY_5_EN: Testimony = {
         { speaker: 'DEFENSA', text: 'HOLD IT!', cutin: 'objection_un_momento', sfx: 'whoosh', pose: 'donramon_point' },
         { speaker: 'BARRIGA', text: 'I told him at eight that night, in my office, while I put the Green Book in the safe. I remember clearly because he held the door while I dialed the combination.', pose: 'barriga_vendado' },
         { speaker: 'DEFENSA', text: '(One person knew about the shortage. One person saw the combination. And that person turned up tied.)', pose: 'donramon_idle' },
-        { speaker: 'CHAPULIN', text: '(Monchito! But that person is victim number two!)', pose: 'chapulin_panic' },
+        { speaker: 'CHAPULIN', text: '(Don Ramón! But that person is victim number two!)', pose: 'chapulin_panic' },
         { speaker: 'DEFENSA', text: '(Exactly why, Chapulín. Exactly why nobody thought to look.)', pose: 'donramon_point' }
       ]
     },

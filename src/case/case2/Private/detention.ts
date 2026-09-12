@@ -15,10 +15,10 @@ export const CASE2_DETENTION: InvestigationScene = {
   intro: [
     { speaker: 'NARRADOR', text: '29 de Agosto, 10:00 AM. Centro de Detención de la Ciudad.' },
     { speaker: 'DEFENSA', text: 'Bueno, aquí estamos. Según la policía, el sospechoso es un peligroso asaltante internacional...', pose: 'donramon_idle' },
-    { speaker: 'CHAPULIN', text: '¡Calma, Monchito! ¡Que no panda el cúnico! Mis antenitas de vinil me dicen que el acusado es inofensivo... o muy despistado.', pose: 'chapulin_idle' },
+    { speaker: 'CHAPULIN', text: '¡Calma, Don Ramón! ¡Que no panda el cúnico! Mis antenitas de vinil me dicen que el acusado es inofensivo... o muy despistado.', pose: 'chapulin_idle' },
     { speaker: 'CHOMPIRAS', text: '¡Buaaaa! ¡Yo no fui, jefecito! ¡Yo no me robé ningún chanfle de nada! ¡Lo único que me he robado son dos panes de dulce y ya los devolví mordidos!', pose: 'chompiras_crying' },
     { speaker: 'DEFENSA', text: '(Vaya facha de genio criminal... se parece a mí cuando llega el casero.)', pose: 'donramon_sweat' },
-    { speaker: 'DEFENSA', text: 'A ver, muchacho, cálmate. Soy el Licenciado Monchito, tu abogado defensor, y vengo con el Chapulín Colorado.', pose: 'donramon_point', addEvidence: 'chanfle_oro' },
+    { speaker: 'DEFENSA', text: 'A ver, muchacho, cálmate. Soy Don Ramón, tu abogado defensor, y vengo con el Chapulín Colorado.', pose: 'donramon_point', addEvidence: 'chanfle_oro' },
     { speaker: 'CHOMPIRAS', text: '¡El Chapulín Colorado! ¡No contaban con mi astucia! Digo... ¡con la suya!', pose: 'chompiras_relieved' }
   ],
   hotspots: [

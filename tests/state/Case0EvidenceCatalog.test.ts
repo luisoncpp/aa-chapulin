@@ -17,6 +17,7 @@ describe('Case 0 evidence', () => {
     expect(catalog.foto_patio.detailedView?.imageAsset).toBe('assets/examine_foto_patio.webp');
     expect(catalog.plancha_carbon.detailedView?.imageAsset).toBe('assets/examine_plancha.webp');
     expect(catalog.lata_ahorros.detailedView?.imageAsset).toBe('assets/examine_lata.webp');
+    expect(catalog.maletin_cobranza.detailedView?.imageAsset).toBe('assets/examine_maletin_cobranza.webp');
   });
 
   it('exposes the Nazario injury plate in both language catalogs', () => {
@@ -24,6 +25,8 @@ describe('Case 0 evidence', () => {
     for (const catalog of catalogs) {
       expect(catalog.informe_lesiones.detailedView?.imageAsset).toBe('assets/examine_informe_lesiones.webp');
       expect(catalog.informe_lesiones.detailedView?.caption).toBeTruthy();
+      expect(catalog.maletin_cobranza.detailedView?.imageAsset).toBe('assets/examine_maletin_cobranza.webp');
+      expect(catalog.maletin_cobranza.detailedView?.caption).toBeTruthy();
     }
   });
 

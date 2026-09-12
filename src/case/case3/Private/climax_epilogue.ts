@@ -18,7 +18,7 @@ export const CASE3_EPILOGUE: DialogueLine[] = [
   { bg: WAITING_ROOM, furniture: 'none', speaker: 'SARGENTO', text: '¡Mi Licenciado! ¡El fiscal me descontó la quincena otra vez! ¡Dice que fue por "insubordinación olfativa" por lo de la basura!', pose: 'pazguato_decidido' },
   { bg: WAITING_ROOM, furniture: 'none', speaker: 'BARRIGA', text: 'Sargento, la estación necesita velador. Y velador honrado. ¿Le interesa?', pose: 'barriga_vendado' },
   { bg: WAITING_ROOM, furniture: 'none', speaker: 'SARGENTO', text: '¡A sus órdenes! ¿Y paga usted... con dinero?', pose: 'pazguato_saludo' },
-  { bg: WAITING_ROOM, furniture: 'none', speaker: 'BARRIGA', text: 'Con dinero, sargento. Y ya que estamos hablando de dinero, Licenciado Monchito...', pose: 'barriga_vendado' },
+  { bg: WAITING_ROOM, furniture: 'none', speaker: 'BARRIGA', text: 'Con dinero, sargento. Y ya que estamos hablando de dinero, Don Ramón...', pose: 'barriga_vendado' },
   { bg: WAITING_ROOM, furniture: 'none', speaker: 'DEFENSA', text: '¡¿Yo?! ¡Si yo acabo de salvarle la vida al hombre que lo iba a...!', pose: 'donramon_panic' },
   { bg: WAITING_ROOM, furniture: 'none', speaker: 'BARRIGA', text: 'Quince meses de renta, Don Ramón. QUINCE.', pose: 'barriga_enojado', sfx: 'desk_slam' },
   { bg: WAITING_ROOM, furniture: 'none', speaker: 'DEFENSA', text: '...¿Y si se los descuento de los honorarios?', pose: 'donramon_sweat' },
@@ -26,7 +26,7 @@ export const CASE3_EPILOGUE: DialogueLine[] = [
   { bg: WAITING_ROOM, furniture: 'none', speaker: 'DEFENSA', text: '¡CHANFLE!', pose: 'donramon_panic' },
   { bg: WAITING_ROOM, furniture: 'none', speaker: 'NARRADOR', text: '(En la bocina del pasillo se oye la estación abriendo de nuevo. Es una voz joven, temblorosa, que se aclara la garganta.)' },
   { bg: WAITING_ROOM, furniture: 'none', speaker: 'NONO', text: '"Muy buenas noches tengan todos ustedes... Aquí XEVC, La Voz de la Vecindad..."' },
-  { bg: WAITING_ROOM, furniture: 'none', speaker: 'CHAPULIN', text: '¿Sabe qué, Monchito? El que a hierro mata... acaba con la casa llena de fierros.', pose: 'chapulin_idle' },
+  { bg: WAITING_ROOM, furniture: 'none', speaker: 'CHAPULIN', text: '¿Sabe qué, Don Ramón? El que a hierro mata... acaba con la casa llena de fierros.', pose: 'chapulin_idle' },
   { bg: WAITING_ROOM, furniture: 'none', speaker: 'DEFENSA', text: '...No es así el dicho, Chapulín.', pose: 'donramon_idle' },
   { bg: WAITING_ROOM, furniture: 'none', speaker: 'CHAPULIN', text: '¡Ya lo sé! ¡Pero si lo digo bien, la próxima vez no atrapamos a nadie! ¡Síganme los buenos!', pose: 'chapulin_point' }
 ];

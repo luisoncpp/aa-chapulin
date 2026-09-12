@@ -11,7 +11,7 @@ const BODEGA_HOTSPOTS_EN: Hotspot[] = [
     label: 'Bonds on the Floor',
     x: 58, y: 72, w: 36, h: 22,
     dialogue: [
-      { speaker: 'CHAPULIN', text: 'Monchito! The gag knot is in front, on the left side!', pose: 'chapulin_point' },
+      { speaker: 'CHAPULIN', text: 'Don Ramón! The gag knot is in front, on the left side!', pose: 'chapulin_point' },
       { speaker: 'DEFENSA', text: 'If someone gags you from behind, where does the knot land?', pose: 'donramon_idle' },
       { speaker: 'CHAPULIN', text: 'In back! ¡Todos mis movimientos están fríamente calculados!', pose: 'chapulin_idle' },
       { speaker: 'DEFENSA', text: '(Front and left. Like tying your own tie in a mirror.)', pose: 'donramon_sweat', sfx: 'realization', addEvidence: 'ataduras_bodega' }

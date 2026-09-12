@@ -20,7 +20,7 @@ export const CASE4_HOTEL_CAVA: InvestigationScene = {
     { speaker: 'SARGENTO', text: 'Desde el mediodía siguiente al hallazgo. Con hora, folio y las dos firmas. Ahí donde lo ve, ese corcho tiene mejor papelería que yo.', pose: 'pazguato_decidido' },
     { speaker: 'DEFENSA', text: 'Entonces ese pedazo de corcho salió del hotel antes de que el hombre bebiera.', pose: 'donramon_idle' },
     { speaker: 'SARGENTO', text: 'Estuvo en un bolso y luego en mi archivo. Nadie más lo tocó, se lo firmo.', pose: 'pazguato_idle' },
-    { speaker: 'CHAPULIN', text: '¿Y qué le vamos a preguntar a un corcho, Monchito? ¡Los corchos no hablan!', pose: 'chapulin_idle' },
+    { speaker: 'CHAPULIN', text: '¿Y qué le vamos a preguntar a un corcho, Don Ramón? ¡Los corchos no hablan!', pose: 'chapulin_idle' },
     { speaker: 'DEFENSA', text: 'Éste sí. Le vamos a preguntar por dónde entró lo que mató al señor Gómez.', pose: 'donramon_point' },
     { speaker: 'CHAPULIN', text: '...Ay. Ya me dio cosa el corcho.', pose: 'chapulin_panic' }
   ],

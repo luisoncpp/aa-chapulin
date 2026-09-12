@@ -100,7 +100,7 @@ export const CASE4_CLIMAX_EN: ClimaxDefinition = {
     { speaker: 'RUFINO', text: 'I received a sealed bottle. I set it on the table and touched it no more until my guest opened it.', pose: 'rufino_smug' },
     { speaker: 'DEFENSA', text: 'That bottle was opened in front of a witness, seal intact. Nobody disputes that.', pose: 'donramon_idle' },
     { speaker: 'JUEZ', text: 'Then, counselor, this court needs to know how a toxin enters a sealed bottle.', pose: 'judge_thinking' },
-    { speaker: 'CHAPULIN', text: 'Oh, Monchito! And now, who can defend us?', pose: 'chapulin_panic' },
+    { speaker: 'CHAPULIN', text: 'Oh, Don Ramón! And now, who can defend us?', pose: 'chapulin_panic' },
     { speaker: 'DEFENSA', text: 'We can, Chapulín. Your Honor: it has been answered since yesterday. The trouble is the answer came inside a cork.', pose: 'donramon_point', bgm: 'pursuit' }
   ],
   presentTarget: ['botella_vino'],

@@ -88,7 +88,7 @@ timeline
 
 | # | ID | Nombre | Descripción inicial | Actualizaciones (`updates`) | Se presenta en |
 |---|---|---|---|---|---|
-| 1 | `insignia_abogado` | Insignia de Abogado | La chapa del Licenciado Monchito. Sigue abollada, y ahora también empeñada dos veces. | — | Constante de la serie |
+| 1 | `insignia_abogado` | Insignia de Abogado | La chapa de Don Ramón. Sigue abollada, y ahora también empeñada dos veces. | — | Constante de la serie |
 | 2 | `informe_barriga` | Informe Médico de Barriga | Contusión en la sien derecha con una marca octagonal. En el cabello y el cuello hay **fibras rojas de lana**. Coma profundo. | — | D1-T1 (alt.) |
 | 3 | `lentes_barriga` | Lentes Rotos de Barriga | Armazón hallado junto a la víctima. **Le falta el cristal derecho** y en la Cabina B no hay ni una esquirla de vidrio. | **D2:** el cristal apareció bajo el escritorio del despacho, sobre el tapete de lana roja. | D1-T1 |
 | 4 | `microfono_oro` | Micrófono de Oro | Trofeo de bronce macizo de 4 kg con base octagonal. Hallado sobre la mesa de la consola (el sargento lo movió antes de fotografiarlo). Arma del delito. | **D2:** su pedestal de terciopelo está vacío en el despacho; es el premio por los **25 años al aire de Aniceto Rebollar**. · **D3:** estuvo empeñado desde junio y fue **desempeñado el 3 de septiembre pagando $12,000 en efectivo**. | Clímax E4 (alt.) |
@@ -180,7 +180,7 @@ Reglas:
 2. La declaración desbloqueada se inserta en su **posición declarada** dentro del arreglo, para que el testimonio se lea natural al releerlo.
 3. Al desbloquear: notificación `#game-notification` con *"El testigo ha añadido una declaración"*, `sfx: realization`, y el cursor salta a la declaración nueva.
 4. El `Set` de presionadas vive en el snapshot de `TrialController` (`pressedStatementIds`) para sobrevivir a guardar/cargar y al cambio de idioma.
-5. **Anti-atasco:** si el jugador acumula 2 presentaciones fallidas en un testimonio que tiene declaraciones ocultas, el Chapulín suelta una pista de una línea (*"¡Monchito! ¡A ese testigo hay que exprimirlo, no nomás oírlo!"*). No hay penalización por presionar.
+5. **Anti-atasco:** si el jugador acumula 2 presentaciones fallidas en un testimonio que tiene declaraciones ocultas, el Chapulín suelta una pista de una línea (*"¡Don Ramón! ¡A ese testigo hay que exprimirlo, no nomás oírlo!"*). No hay penalización por presionar.
 6. Toda declaración con `unlockedBy` lleva **`text` de ciclo** (lo que el testigo repite al avanzar/retroceder) **y** el interludio al presionar la declaración padre. El interludio no sustituye a `text`.
 
 ### 6.2 Descripciones de prueba en varias etapas (`updates`)
@@ -263,7 +263,7 @@ export interface AdjournmentDefinition {
 ```dialogue
 [ENTRADA AL CENTRO DE DETENCIÓN]
 NARRADOR: 16 de septiembre, 9:00 AM. Centro de Detención de la Ciudad.
-DEFENSA (donramon_idle): Buenos días, doctor. Soy el Licenciado Monchito, su abogado defensor.
+DEFENSA (donramon_idle): Buenos días, doctor. Soy Don Ramón, su abogado defensor.
 CHAPATIN (chapatin_enojado): ¡Yo no pedí abogado! ¡Los abogados son como las radiografías: carísimos y nunca se entiende nada!
 CHAPULIN (chapulin_idle): ¡Calma, doctorcito! ¡Que no panda el cúnico! Venimos a ayudarlo.
 CHAPATIN (chapatin_bolsa): ¡Y usted quién es, el del disfraz! [sfx: chipote]
@@ -281,7 +281,7 @@ DEFENSA (donramon_sweat): (Ochenta años, dos kilos de mal humor y una bolsa de 
    - **Chapatín**: *"No le importa."*
    - **Don Ramón**: *"Doctor, con todo respeto, eso es exactamente lo que lo va a mandar veinte años a la cárcel."*
    - **Chapatín**: *"Entonces me voy veinte años. Un médico que suelta la lengua no es médico, es chismoso."*
-   - **Chapulín**: *"(Monchito... está encubriendo a alguien.)"*
+   - **Chapulín**: *"(Don Ramón... está encubriendo a alguien.)"*
    - **Don Ramón**: *"(Y ese alguien es su paciente. Apunte, Chapulín: la coartada existe, pero está bajo secreto profesional.)"*
 3. **"Sobre su pleito con el Señor Barriga"**
    - **Chapatín**: *"Me quería subir la renta del consultorio un cuarenta por ciento. Le grité. Él me gritó. Nos gritamos. Así llevamos once años y ninguno se ha muerto... hasta anoche."*
@@ -310,7 +310,7 @@ CHAPULIN (chapulin_idle): ¡Ese es el espíritu! ¡Síganme los buenos!
    - **Se añade al acta**: `microfono_oro`.
 2. **Piso y silueta de tiza (`hotspot_piso`)**
    - Linóleo gris, sin una sola gota de sangre ni esquirla de vidrio. Junto a la silueta, un armazón de lentes.
-   - **Chapulín**: *"¡Mire, Monchito! ¡A estos lentes les falta un ojo!"*
+   - **Chapulín**: *"¡Mire, Don Ramón! ¡A estos lentes les falta un ojo!"*
    - **Don Ramón**: *"Falta el cristal derecho... y en toda esta cabina no hay ni un pedacito de vidrio. Interesante."*
    - **Se añade al acta**: `lentes_barriga`.
 3. **Micrófono de la cabina (`hotspot_micro`)**
@@ -499,7 +499,7 @@ NARRADOR: 17 de septiembre, 12:00 PM. Clínica del Doctor Chapatín — la más 
 NONO (nono_nervioso): Mi papi sigue dormido... Dicen que a lo mejor despierta, y a lo mejor no.
 DEFENSA (donramon_idle): Joven Ñoño, ¿usted estuvo toda la noche en la consola?
 NONO (nono_nervioso): ¡Sí! ¡Toda! ¡Todita! ¡No me moví ni un segundito!
-CHAPULIN (chapulin_idle): (Monchito, ese muchacho dijo "todita" y le sudaron hasta los cachetes.)
+CHAPULIN (chapulin_idle): (Don Ramón, ese muchacho dijo "todita" y le sudaron hasta los cachetes.)
 FLORINDA (florinda_idle): Pobre criatura. Lleva aquí sentado desde anteanoche sin probar bocado. Chusma o no chusma, un muchacho no debería ver a su papá así.
 ```
 
@@ -524,7 +524,7 @@ DEFENSA (donramon_idle): No, gracias, sargento. ¿Qué recogió usted de la cabi
 SARGENTO (pazguato_decidido): Aquí traigo la bitácora de transmisión, mi Licenciado. Ahí apunta la consola todo lo que sale al aire, solita.
 DEFENSA (donramon_shock): ...Sargento. Aquí dice que a las 23:03 salió al aire un CORTE DE ESTACIÓN AUTOMÁTICO. Cartucho tres.
 SARGENTO (pazguato_sweat): Sí, ¿verdad? Yo también le entendí re' poquito.
-CHAPULIN (chapulin_point): ¡Monchito! ¡Eso quiere decir que a las 11:03 la consola no estaba transmitiendo a nadie... estaba tocando una grabación!
+CHAPULIN (chapulin_point): ¡Don Ramón! ¡Eso quiere decir que a las 11:03 la consola no estaba transmitiendo a nadie... estaba tocando una grabación!
 DEFENSA (donramon_panic): ¡CHANFLE! ¡El grito que oyó toda la plaza estaba enlatado!
 ```
 
@@ -636,7 +636,7 @@ SARGENTO (pazguato_decidido): ...Sí, mi fiscal. Aunque tenga que meterme al bot
 
 #### Puntos de Interés:
 1. **Ataduras en el piso (`hotspot_ataduras`)**: el pañuelo de seda y el cable de micrófono, tal como quedaron. → **Se añade al acta**: `ataduras_bodega`.
-   - **Chapulín**: *"¡Monchito! ¡El nudo de la mordaza está por delante, del lado izquierdo!"*
+   - **Chapulín**: *"¡Don Ramón! ¡El nudo de la mordaza está por delante, del lado izquierdo!"*
    - **Don Ramón**: *"Si a usted lo amordaza alguien parado a sus espaldas, ¿dónde le queda el nudo?"*
    - **Chapulín**: *"¡Atrás! ¡Todos mis movimientos están fríamente calculados!"*
    - **Don Ramón**: *"(Adelante y a la izquierda. Como se amarra uno la corbata frente al espejo.)"*
@@ -667,7 +667,7 @@ DEFENSA (donramon_point): Doctor, necesito su opinión profesional sobre una cos
 CHAPATIN (chapatin_enojado): ...tendría las muñecas en carne viva. Y las rodillas raspadas. Y la garganta hecha trizas de gritar. Yo revisé a ese señor esa misma noche, jovencito: no tenía ni el rastro de una rozadura. Ni una.
 DEFENSA (donramon_shock): ¿Y por qué no lo dijo antes?
 CHAPATIN (chapatin_idle): ¡Porque nadie me preguntó! ¡Todos estaban muy ocupados esposándome!
-CHAPULIN (chapulin_point): ¡Monchito! ¡Ya tenemos con qué!
+CHAPULIN (chapulin_point): ¡Don Ramón! ¡Ya tenemos con qué!
 DEFENSA (donramon_idle): Tenemos cómo, Chapulín. Todavía nos falta demostrar QUIÉN. Y para eso necesito que al sargento le haya servido de algo la noche que se pasó en la basura.
 ```
 
@@ -734,7 +734,7 @@ BARRIGA (stmt5_4): Y esa persona es inocente: a esa persona también la atacaron
   - **Texto de ciclo**: *"Se lo dije a las ocho, en mi despacho, mientras él me detenía la puerta y yo marcaba la combinación."*
   - **Barriga**: *"Se lo dije a las ocho de la noche, en mi despacho, mientras guardaba el Libro Verde en la caja fuerte. Me acuerdo clarito porque él me detuvo la puerta mientras yo marcaba la combinación."*
   - **Don Ramón** *(bajito)*: *"(Una sola persona sabía del faltante. Una sola persona vio la combinación. Y esa persona apareció amarrada.)"*
-  - **Chapulín**: *"(¡Monchito! ¡Pero si esa persona es la víctima número dos!)"*
+  - **Chapulín**: *"(¡Don Ramón! ¡Pero si esa persona es la víctima número dos!)"*
   - **Don Ramón**: *"(Por eso mismo, Chapulín. Por eso a nadie se le ocurrió mirarla.)"*
 - **CONTRADICCIÓN en `stmt5_4`** ("a esa persona también la atacaron"):
   - **Presentar**: `ataduras_bodega`.
@@ -801,9 +801,9 @@ JUEZ (judge_gavel): ¡ORDEN! La corte exige que la defensa demuestre, con prueba
 
 ```dialogue
 [DILEMA FINAL DEL CLÍMAX]
-JUEZ (judge_thinking): Licenciado Monchito, este tribunal ya no discute si su cliente es inocente. Discute quién es culpable. Y para eso hacen falta cuatro cosas: cuándo se grabó, dónde se grabó, quién podía grabarlo y por qué. [bgm: suspense]
-DEFENSA (donramon_idle): (Cuatro clavos, Monchito. Uno por uno, y sin fallar ninguno.)
-CHAPULIN (chapulin_point): ¡Ánimo, Monchito! ¡Que no panda el cúnico!
+JUEZ (judge_thinking): Licenciado Don Ramón, este tribunal ya no discute si su cliente es inocente. Discute quién es culpable. Y para eso hacen falta cuatro cosas: cuándo se grabó, dónde se grabó, quién podía grabarlo y por qué. [bgm: suspense]
+DEFENSA (donramon_idle): (Cuatro clavos, Don Ramón. Uno por uno, y sin fallar ninguno.)
+CHAPULIN (chapulin_point): ¡Ánimo, Don Ramón! ¡Que no panda el cúnico!
 ```
 
 #### Etapa 1 — ¿CUÁNDO se grabó el grito?
@@ -944,15 +944,17 @@ CHAPATIN (chapatin_idle): Nada. Ya me pagaron con tres días de cárcel y un abo
 SARGENTO (pazguato_decidido): ¡Mi Licenciado! ¡El fiscal me descontó la quincena otra vez! ¡Dice que fue por "insubordinación olfativa" por lo de la basura!
 BARRIGA (barriga_vendado): Sargento, la estación necesita velador. Y velador honrado. ¿Le interesa?
 SARGENTO (pazguato_saludo): ¡A sus órdenes! ¿Y paga usted... con dinero?
-BARRIGA (barriga_vendado): Con dinero, sargento. Y ya que estamos hablando de dinero, Licenciado Monchito...
+BARRIGA (barriga_vendado): Con dinero, sargento. Y ya que estamos hablando de dinero, Don Ramón...
 DEFENSA (donramon_panic): ¡¿Yo?! ¡Si yo acabo de salvarle la vida al hombre que lo iba a...!
 BARRIGA (barriga_enojado): Quince meses de renta, Don Ramón. QUINCE. [sfx: desk_slam]
 DEFENSA (donramon_sweat): ...¿Y si se los descuento de los honorarios?
-BARRIGA (barriga_vendado): ¿Cuáles honorarios? ¡Si el doctor no le pagó!
+BARRIGA (barriga_vendado): ¿Cuáles honorarios? Si el Chapulín dijo que ustedes cobraban en satisfacciones.
+DEFENSA (donramon_shock): ¡¡¡CHAPULÍN!!!
+CHAPULIN (chapulin_point): ¡Síganme los buenos! [sfx: whoosh]
 DEFENSA (donramon_panic): ¡CHANFLE!
 NARRADOR: (En la bocina del pasillo se oye la estación abriendo de nuevo. Es una voz joven, temblorosa, que se aclara la garganta.)
-NONO (voz en la bocina): "Muy buenas noches tengan todos ustedes... Aquí XEVC, La Voz de la Vecindad..."
-CHAPULIN (chapulin_idle): ¿Sabe qué, Monchito? El que a hierro mata... acaba con la casa llena de fierros.
+NONO: "Muy buenas noches tengan todos ustedes... Aquí XEVC, La Voz de la Vecindad..."
+CHAPULIN (chapulin_idle): ¿Sabe qué, Don Ramón? El que a hierro mata... acaba con la casa llena de fierros.
 DEFENSA (donramon_idle): ...No es así el dicho, Chapulín.
 CHAPULIN (chapulin_point): ¡Ya lo sé! ¡Pero si lo digo bien, la próxima vez no atrapamos a nadie! ¡Síganme los buenos!
 [FIN DEL CASO 3]

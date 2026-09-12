@@ -802,6 +802,7 @@ body {
     gap: 12px;
     overflow-x: clip;
     overflow-y: auto;
+    padding-top: 2px;
     padding-right: 4px;
     scrollbar-width: thin;
 }

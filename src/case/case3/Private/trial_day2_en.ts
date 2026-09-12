@@ -4,13 +4,15 @@
  */
 
 import type { DialogueLine, Testimony } from '../../../types/index.js';
+import { CASE3_CALL_ANICETO_EN, CASE3_CALL_NONO_EN } from './witness_calls_en.js';
 
 export const CASE3_DAY2_INTRO_EN: DialogueLine[] = [
   { bg: 'assets/bg_waiting_room.webp', furniture: 'none', speaker: 'NARRADOR', text: 'September 17, 6:00 PM. High Court - Waiting Room.', bgm: 'trial' },
   { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_gavel', text: 'Session resumes. The office search confirmed what the defense said: the assault happened there.', sfx: 'gavel', bgm: 'trial' },
   { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_slam', text: 'Correction, Your Honor! It confirms WHERE it happened, not WHO did it!', sfx: 'desk_slam' },
   { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_point', text: 'The defendant had from 10:40 to 11:03! Time enough to be money!' },
-  { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_slam', text: 'The defense calls the console operator of XEVC.', sfx: 'desk_slam' }
+  { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_slam', text: 'The defense calls the console operator of XEVC.', sfx: 'desk_slam' },
+  ...CASE3_CALL_NONO_EN
 ];
 
 const T3_SUCCESS: DialogueLine[] = [
@@ -25,7 +27,8 @@ const T3_SUCCESS: DialogueLine[] = [
   { speaker: 'DEFENSA', text: 'It means two things, Mr. Prosecutor. One: nobody knows when Señor Barriga was really attacked. And two, the ugly one...', pose: 'donramon_idle' },
   { speaker: 'DEFENSA', text: 'Someone recorded a cry for help in the victim\'s voice BEFORE the victim needed it! This wasn\'t a quarrel, Your Honor — this was rehearsed!', sfx: 'desk_slam', pose: 'donramon_slam' },
   { speaker: 'JUEZ', text: 'Premeditation! Someone planned this hours ahead!', pose: 'judge_shock' },
-  { speaker: 'SUPER SAM', text: 'And that someone had a recording booth all night! THE DEFENDANT! I call the other victim, Don Aniceto Rebollar!', pose: 'supersam_point' }
+  { speaker: 'SUPER SAM', text: 'And that someone had a recording booth all night! THE DEFENDANT! I call the other victim, Don Aniceto Rebollar!', pose: 'supersam_point' },
+  ...CASE3_CALL_ANICETO_EN
 ];
 
 export const CASE3_TESTIMONY_3_EN: Testimony = {

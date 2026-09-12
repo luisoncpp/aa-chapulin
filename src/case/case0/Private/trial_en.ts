@@ -2,6 +2,7 @@
 import type { ContradictionRule, DialogueLine, OpeningPresent, Testimony } from '../../../types/index.js';
 import { CASE0_FOTO_POINT_TARGET_EN } from './point_targets.js';
 import { CASE0_LOBBY_INTRO_EN, CASE0_T2_RECESS_AND_RESUMPTION_EN } from './trial_lobby_en.js';
+import { CASE0_WITNESS_CALL_T1_EN, CASE0_WITNESS_RECALL_T2_EN } from './witness_calls_en.js';
 
 export const CASE0_TRIAL_INTRO_EN: DialogueLine[] = [
   ...CASE0_LOBBY_INTRO_EN,
@@ -66,7 +67,8 @@ export const CASE0_TESTIMONY_1_EN: Testimony = {
           { speaker: 'JUEZ', pose: 'judge_shock', text: 'The impact window remains open, but at one o’clock sharp the defendant was in line at the ice shop.' },
           { speaker: 'SUPER SAM', pose: 'supersam_slam', sfx: 'desk_slam', text: 'Then the witness got the clock wrong! Move the time and the case survives!' },
           { speaker: 'JUEZ', pose: 'judge_neutral', text: 'Witness, explain how you know it was exactly one.' },
-          { speaker: 'CHAPULÍN', pose: 'chapulin_point', text: 'There it is, Don Ramón. We have just been given the second testimony.' }
+          { speaker: 'CHAPULÍN', pose: 'chapulin_point', text: 'There it is, Don Ramón. We have just been given the second testimony.' },
+          ...CASE0_WITNESS_RECALL_T2_EN
         ]
       }
     }},
@@ -177,10 +179,8 @@ export const CASE0_OPENING_PRESENT_EN: OpeningPresent = {
     { speaker: 'JUEZ', pose: 'judge_thinking', text: 'This court also wants to know why the victim is not testifying.' },
     { speaker: 'SUPER SAM', pose: 'supersam_point', text: 'Amnesia, Your Honor. From the blow. Very inconvenient for my budget.' },
     { speaker: 'JUEZ', pose: 'judge_neutral', text: 'Then this trial rests on a single witness. Pressing costs no credibility, but presenting evidence does. Use them accordingly.' },
-    { speaker: 'CHAPULÍN', pose: 'chapulin_point', text: 'One more thing, Don Ramón: before presenting the Courtyard Photo, select it in the COURT RECORD and click EXAMINE DETAIL to view it up close.' },
+    { speaker: 'CHAPULÍN', pose: 'chapulin_point', text: 'One more thing, Don Ramón: some pieces of evidence hide details. Select them in the COURT RECORD and click EXAMINE DETAIL to view them up close.' },
     { speaker: 'EXAMINE MODE', text: 'If a piece of evidence offers EXAMINE DETAIL, inspect it before presenting: the enlarged view will help you find the correct detail.', instant: true },
-    { speaker: 'JUEZ', pose: 'judge_neutral', text: 'Witness, state your name and occupation.' },
-    { speaker: 'CASIMIRO', pose: 'casimiro_catalogo', text: 'Casimiro Lengua, at your service: authorized distributor for The Universal Knowledge Encyclopedias. From the Latin encyclopaedia, “instruction in a circle”.' },
-    { speaker: 'JUEZ', pose: 'judge_neutral', text: 'Your testimony, please. Only what you perceived.' }
+    ...CASE0_WITNESS_CALL_T1_EN
   ]
 };

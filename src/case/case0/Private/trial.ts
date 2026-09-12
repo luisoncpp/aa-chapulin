@@ -2,6 +2,7 @@
 import type { ContradictionRule, DialogueLine, OpeningPresent, Testimony } from '../../../types/index.js';
 import { CASE0_FOTO_POINT_TARGET } from './point_targets.js';
 import { CASE0_LOBBY_INTRO, CASE0_T2_RECESS_AND_RESUMPTION } from './trial_lobby.js';
+import { CASE0_WITNESS_CALL_T1, CASE0_WITNESS_RECALL_T2 } from './witness_calls.js';
 
 export const CASE0_TRIAL_INTRO: DialogueLine[] = [
   ...CASE0_LOBBY_INTRO,
@@ -68,7 +69,8 @@ export const CASE0_TESTIMONY_1: Testimony = {
           { speaker: 'JUEZ', pose: 'judge_shock', text: 'La ventana del golpe sigue abierta, pero a la una en punto el acusado estaba haciendo fila en la hielería.' },
           { speaker: 'SUPER SAM', pose: 'supersam_slam', sfx: 'desk_slam', text: '¡Entonces el testigo se equivocó de reloj! ¡Ajuste la hora y el caso sigue igual!' },
           { speaker: 'JUEZ', pose: 'judge_neutral', text: 'Testigo, va a explicar cómo sabe que era la una en punto.' },
-          { speaker: 'CHAPULÍN', pose: 'chapulin_point', text: 'Ahí está el detalle, Don Ramón. Nos acaban de regalar el segundo testimonio.' }
+          { speaker: 'CHAPULÍN', pose: 'chapulin_point', text: 'Ahí está el detalle, Don Ramón. Nos acaban de regalar el segundo testimonio.' },
+          ...CASE0_WITNESS_RECALL_T2
         ]
       }
     }},
@@ -179,10 +181,8 @@ export const CASE0_OPENING_PRESENT: OpeningPresent = {
     { speaker: 'JUEZ', pose: 'judge_thinking', text: 'La corte también quiere saber por qué la víctima no declara.' },
     { speaker: 'SUPER SAM', pose: 'supersam_point', text: 'Amnesia, Your Honor. Del golpe. Muy inconveniente para mi presupuesto.' },
     { speaker: 'JUEZ', pose: 'judge_neutral', text: 'Entonces el peso de este juicio lo carga un solo testigo. La defensa puede presionar sin gastar credibilidad, pero presentar una prueba sí cuesta. Úselas en consecuencia.' },
-    { speaker: 'CHAPULÍN', pose: 'chapulin_point', text: 'Y una más, Don Ramón: antes de presentar la Foto del Patio, selecciónala en el ACTA y pulsa EXAMINAR DETALLE para verla de cerca.' },
+    { speaker: 'CHAPULÍN', pose: 'chapulin_point', text: 'Y una más, Don Ramón: algunas pruebas esconden detalles. Selecciónalas en el ACTA y pulsa EXAMINAR DETALLE para verlas de cerca.' },
     { speaker: 'MODO EXAMINAR', text: 'Si una prueba tiene EXAMINAR DETALLE, mírala de cerca antes de presentarla: la vista ampliada te ayudará a encontrar el detalle correcto.', instant: true },
-    { speaker: 'JUEZ', pose: 'judge_neutral', text: 'Testigo, diga su nombre y su ocupación.' },
-    { speaker: 'CASIMIRO', pose: 'casimiro_catalogo', text: 'Casimiro Lengua, para servirle: distribuidor autorizado de Enciclopedias El Saber Universal. Del latín encyclopaedia, “instrucción en círculo”.' },
-    { speaker: 'JUEZ', pose: 'judge_neutral', text: 'Su testimonio, por favor. Únicamente lo que percibió.' }
+    ...CASE0_WITNESS_CALL_T1
   ]
 };

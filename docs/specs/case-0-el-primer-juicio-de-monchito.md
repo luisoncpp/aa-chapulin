@@ -107,6 +107,7 @@ Las descripciones iniciales no dicen "prueba definitiva" ni nombran la solución
 - Presionar es gratuito y siempre produce contenido: ninguna contradicción exige presionar una paráfrasis para habilitarse.
 - Presentar una prueba incorrecta o señalar una zona incorrecta cuesta un punto, muestra la pregunta otra vez y **no revela la respuesta**.
 - Cada testimonio tiene **una** contradicción resolutoria y a lo sumo un `followUp`. El `followUp` y la contradicción encolan diálogos distintos y nunca comparten el mismo arreglo (ver [[docs/lessons-learned/contradiction-followup-plays-twice.md]]).
+- Ningún testimonio arranca en seco: el bloque de diálogo que lo precede es el **llamado al estrado** (la fiscalía llama al testigo; la primera vez la corte le toma nombre y ocupación, después basta un recordatorio de que sigue bajo protesta) y **termina siempre en una línea del `JUEZ`** que ordena declarar. Ese bloque es la `successDialogue` de la apertura para el primer testimonio, y la `successDialogue` resolutoria del testimonio anterior para los siguientes.
 - El clímax usa `stages`. La última `successDialogue` completa la demostración antes del `verdict` (ver [[docs/lessons-learned/climax-final-stage-success-then-verdict.md]]).
 - La primera línea de diálogo del clímax fija `bgm` explícitamente porque sobrescribe el `suspense` del motor (ver [[docs/lessons-learned/climax-bgm-line-override.md]]).
 
@@ -179,21 +180,23 @@ DEFENSA: Mi cliente estaba ahí porque ahí vive, señor fiscal. Con ese razonam
 JUEZ: La corte también quiere saber por qué la víctima no declara.
 SUPER SAM: Amnesia, Your Honor. Del golpe. Muy inconveniente para mi presupuesto.
 JUEZ: Entonces el peso de este juicio lo carga un solo testigo. La corte le recuerda a la defensa que **presionar** una declaración no cuesta nada, y que **presentar** una prueba sí. Úselas en consecuencia.
-CHAPULIN: Y una más, Don Ramón: antes de presentar la Foto del Patio, selecciónala en el ACTA y pulsa EXAMINAR DETALLE para verla de cerca.
-MODO TUTORIAL: Hazlo antes de presentar la foto: la vista ampliada te ayudará a encontrar el detalle correcto.
+CHAPULIN: Y una más, Don Ramón: algunas pruebas esconden detalles. Selecciónalas en el ACTA y pulsa EXAMINAR DETALLE para verlas de cerca.
+MODO TUTORIAL: Si una prueba tiene EXAMINAR DETALLE, mírala de cerca antes de presentarla: la vista ampliada te ayudará a encontrar el detalle correcto.
+SUPER SAM: La fiscalía llama al estrado a su único testigo: el señor Casimiro Lengua. Y que suba de prisa, Your Honor, que cada escalón me cuesta dinero. [pose: supersam_point]
+CASIMIRO: Voy subiendo, voy subiendo. Al estrado, del latín *stratum*: "lo que se extiende". [pose: casimiro_amable]
+DEFENSA: (Este señor le pone nota al pie hasta a los escalones. De aquí salgo con barba.) [pose: donramon_sweat]
+JUEZ: Testigo, diga su nombre y su ocupación. [pose: judge_neutral]
+CASIMIRO: Casimiro Lengua, para servirle: distribuidor autorizado de Enciclopedias El Saber Universal. Del latín *encyclopaedia*, "instrucción en círculo". [pose: casimiro_catalogo]
+JUEZ: Su testimonio, por favor. Únicamente lo que percibió. [pose: judge_neutral]
 ~~~
 
-El tutorial de examen a detalle es opcional aquí y no bloquea: si el jugador no lo usa, T2 lo vuelve obligatorio con una pregunta concreta.
+El tutorial de examen a detalle es opcional aquí y no bloquea: si el jugador no lo usa, T2 lo vuelve obligatorio con una pregunta concreta. La lección enseña el mecanismo en general y **no puede nombrar la prueba objetivo**: decir "la Foto del Patio" adelanta la respuesta de la contradicción (misma regla que [[docs/lessons-learned/climax-stage-prompt-spoils-answer.md]]).
 
 ## 8. Testimonio 1, Casimiro: "Lo que vi desde el patio"
 
 Enseña: navegación de declaraciones, Presionar, Presentar con penalización, y `followUp`.
 
-~~~dialogue
-JUEZ: Testigo, diga su nombre y su ocupación.
-CASIMIRO: Casimiro Lengua, para servirle: distribuidor autorizado de Enciclopedias El Saber Universal. Del latín *encyclopaedia*, "instrucción en círculo". [pose: casimiro_catalogo]
-JUEZ: Su testimonio, por favor. Únicamente lo que percibió.
-~~~
+El llamado al estrado y la toma de nombre y ocupación cierran la apertura de §7.2; este testimonio arranca justo después de esa orden del Juez.
 
 ~~~dialogue
 c0_t1_1 CASIMIRO: Ese mediodía yo hacía mi ronda de ventas en la vecindad, tomo por tomo, puerta por puerta.
@@ -258,6 +261,11 @@ DEFENSA: Estoy diciendo que quien lo dio estaba parado más alto o lo tomó desp
 SUPER SAM: ...Grrr. ¡Entonces el testigo se equivocó de reloj! ¡Ajuste la hora y el caso sigue igual! [sfx: desk_slam]
 JUEZ: Se le concede a la fiscalía. Testigo, va a explicar a esta corte **cómo** sabe que era la una en punto.
 CHAPULIN: Ahí está el detalle, Don Ramón. Nos acaban de regalar el segundo testimonio.
+SUPER SAM: ¡La fiscalía vuelve a llamar al estrado al señor Lengua! Mismo testigo, mismo estrado, cero gastos de traslado. ¡Eso es eficiencia! [sfx: desk_slam; pose: supersam_slam]
+CASIMIRO: Si un servidor no se ha bajado, señor fiscal. [pose: casimiro_amable]
+SUPER SAM: Entonces considérese llamado desde donde está. Time is money. [pose: supersam_point]
+DEFENSA: (Con permisito, dijo Monchito. El mismo señor, pero ahora me va a explicar esa hora.) [pose: donramon_idle]
+JUEZ: Señor Lengua, sigue usted bajo protesta de decir verdad. Proceda con su nuevo testimonio. [sfx: gavel; pose: judge_gavel]
 ~~~
 
 **Primer turnabout.** La coartada del acusado queda acreditada para la una en punto; la ventana del golpe sigue abierta hasta las 14:00, así que el caso no se cae todavía.
@@ -265,6 +273,8 @@ CHAPULIN: Ahí está el detalle, Don Ramón. Nos acaban de regalar el segundo te
 ## 9. Testimonio 2, Casimiro: "Cómo sé que era la una"
 
 Enseña: examen a detalle obligatorio y **Present & Point**.
+
+El nuevo llamado al estrado cierra el `followUp` de §8: como el testigo es el mismo, no se le vuelve a tomar nombre y ocupación, solo se le recuerda que sigue bajo protesta.
 
 ~~~dialogue
 c0_t2_1 CASIMIRO: Un servidor no se equivoca de hora. Traigo dos relojes, uno por brazo, y los sincronizo cada mañana.
@@ -360,10 +370,17 @@ NARRADOR: Entre los tomos del lomo roto, plegado y sin un centavo, un cartapacio
 [ENTREGAR tarjeta_enciclopedias]
 SUPER SAM: Your Honor... la fiscalía solicita autorización para tomarle declaración a este testigo en calidad de investigado. Y solicita que el tiempo del receso se le cargue a la defensa.
 JUEZ: Autorizada la primera. Denegada la segunda.
-JUEZ: Señor Lengua, va a explicar a esta corte cómo llegó ese cartapacio a su maletín de muestras. Y le advierto que ahora cada palabra suya se asienta en su contra.
 CHAPULIN: ¡Y ahora sí, Don Ramón, el testigo va a testificar de su propio caso!
 DEFENSA: (Tres testimonios en un día. Y yo que venía nomás por la renta.)
+SUPER SAM: ¡La fiscalía llama al estrado... a su propio testigo! ¡Por tercera vez, Your Honor! A este paso voy a tener que facturarle al tribunal las horas extra. [sfx: desk_slam; pose: supersam_slam]
+CASIMIRO: Un servidor no se ha bajado del estrado, señor fiscal. Ni un renglón. [pose: casimiro_sweat]
+JUEZ: Para el acta, y en su nueva calidad: repita su nombre y su ocupación. [pose: judge_neutral]
+CASIMIRO: ¿Otra vez? ...Casimiro Lengua. Distribuidor autorizado de... de... de tomos surtidos. [pose: casimiro_panic]
+CHAPULIN: ¡Chanfle! ¡Se le acabó el latín! [pose: chapulin_point]
+JUEZ: Señor Lengua, explique a esta corte cómo llegó ese cartapacio a su maletín de muestras. Y le advierto que ahora cada palabra suya se asienta en su contra. [sfx: gavel; pose: judge_gavel]
 ~~~
+
+El tercer llamado sí vuelve a tomar nombre y ocupación, porque el testigo declara ahora en calidad de investigado, y el remate deja sin latinajos su presentación de oficio.
 
 ## 11. Testimonio 3, Casimiro: "Cómo llegó ese cartapacio a mi maletín"
 

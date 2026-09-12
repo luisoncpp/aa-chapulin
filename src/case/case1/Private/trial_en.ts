@@ -14,7 +14,14 @@ export const TRIAL_INTRO_EN: DialogueLine[] = [
   { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_slam', text: 'Time is money, Your Honor! The prosecution is more than ready to wrap up this case in record time.', sfx: 'desk_slam' },
   { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_point', text: 'The defendant was caught red-handed with the assault weapon at the scene of the crime. I demand a guilty verdict in 3 minutes!' },
   { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_slam', text: 'The defense is ready, Your Honor! And we shall prove the innocence of El Chapulín Colorado!', sfx: 'desk_slam' },
-  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_neutral', text: 'Very well. Let the prosecution call its key witness to the stand.' }
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_neutral', text: 'Very well. Let the prosecution call its key witness to the stand.' },
+  { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_point', text: 'The prosecution calls its star witness! And make it snappy, every minute in this courtroom is money out of my pocket!' },
+  { bg: 'assets/bg_witness.webp', speaker: 'TRIPASECA', pose: 'tripaseca_smug', text: 'Easy there, counselor. A man of my standing walks to the stand at his own pace.' },
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_neutral', text: 'Witness, state your name and your occupation.' },
+  { bg: 'assets/bg_witness.webp', speaker: 'TRIPASECA', pose: 'tripaseca_smug', text: 'They call me El Tripaseca, Your Honor. Honest businessman: I buy low, and I sell... whatever is not nailed down.' },
+  { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_idle', text: 'Honest businessman? I have seen more honest faces on the post office wall.' },
+  { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_slam', text: 'Objection! This witness is a model citizen, and he is testifying for FREE! That makes him twice as credible!', sfx: 'desk_slam' },
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_gavel', text: 'The testimony is admitted. Witness, tell this court what you saw that night.', sfx: 'gavel' }
 ];
 
 // @Section(Testimony 1: Assault Weapon - English)
@@ -55,7 +62,13 @@ export const TESTIMONY_1_EN: Testimony = {
           { speaker: 'DEFENSA', text: 'The Medical Report proves Alma Negra suffered severe head trauma from an impact with DENSE METAL COINS!', sfx: 'realization', pose: 'donramon_slam' },
           { speaker: 'TRIPASECA', text: 'Gulp! W-wait a second!', pose: 'tripaseca_sweat' },
           { speaker: 'SUPER SAM', text: 'Wait! Nobody mentioned the guard had such a thick skull!', pose: 'supersam_slam', sfx: 'desk_slam' },
-          { speaker: 'JUEZ', text: 'Indeed... it is impossible for that toy mallet to knock out a seasoned pirate. Witness, explain this at once!', pose: 'judge_gavel', sfx: 'gavel' }
+          { speaker: 'JUEZ', text: 'Indeed... it is impossible for that toy mallet to knock out a seasoned pirate. Witness, explain this at once!', pose: 'judge_gavel', sfx: 'gavel' },
+          { speaker: 'SUPER SAM', text: 'Your Honor! The prosecution requests that the witness restate his account. And quickly, the meter is running!', pose: 'supersam_sweat' },
+          { speaker: 'JUEZ', text: 'Granted. The witness will remain on the stand and deliver a fresh testimony.', pose: 'judge_neutral' },
+          { speaker: 'TRIPASECA', text: 'Again? Are you going to ask me my name all over again too?', pose: 'tripaseca_sweat' },
+          { speaker: 'DEFENSA', text: 'We already know your name, Mr. Tripaseca. It is your story that changes every five minutes.', pose: 'donramon_point' },
+          { speaker: 'TRIPASECA', text: 'Ahem... a man remembers better with time, does he not?', pose: 'tripaseca_smug' },
+          { speaker: 'JUEZ', text: 'Then remember carefully. Witness, testify as to how the thief entered the museum and how he escaped.', pose: 'judge_gavel', sfx: 'gavel' }
         ]
       }
     },

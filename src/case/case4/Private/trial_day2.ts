@@ -8,6 +8,7 @@ import {
   CASE4_D2_T1_CASQUILLO_HALF, CASE4_D2_T1_PLANO_HALF,
   CASE4_D2_T1_RUTA_A_SUCCESS, CASE4_D2_T1_RUTA_B_SUCCESS, CASE4_PLANO_POINT_TARGET
 } from './trial_day2_success.js';
+import { CASE4_CALL_MARUJA } from './witness_calls.js';
 
 export const CASE4_DAY2_INTRO: DialogueLine[] = [
   { bg: 'assets/bg_waiting_room.webp', furniture: 'none', speaker: 'NARRADOR', text: '26 de octubre, 4:00 PM. Tribunal Superior - Sala de Espera.', bgm: 'trial' },
@@ -17,7 +18,8 @@ export const CASE4_DAY2_INTRO: DialogueLine[] = [
   { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_slam', text: '¡PROTESTO! Entre la entrega de esa botella y la copa que se sirvió hubo otro cuarto y otras manos.', sfx: 'desk_slam' },
   { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_point', text: 'Prove it, counselor.' },
   { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_idle', text: 'A eso vine. Ayer le desarmé una hipótesis; hoy vengo con tiempo para la segunda.' },
-  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_neutral', text: 'Escucharemos a quien vio abrir esa botella. Y de paso quiero saber por qué esta sala oyó un disparo a una hora en la que ya no había a quién disparar.' }
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_neutral', text: 'Escucharemos a quien vio abrir esa botella. Y de paso quiero saber por qué esta sala oyó un disparo a una hora en la que ya no había a quién disparar.' },
+  ...CASE4_CALL_MARUJA
 ];
 
 export const CASE4_TESTIMONY_3: Testimony = {

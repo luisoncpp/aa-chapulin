@@ -176,19 +176,21 @@ describe('Case 0 — El Primer Juicio de Don Ramón', () => {
     const cases = [
       {
         lang: 'es' as const,
-        evidenceName: 'foto del patio',
+        examineLabel: 'examinar detalle',
+        spoilerEvidenceName: 'foto del patio',
         action: 'Señala en la imagen',
         staleOptionalEvidence: 'recibo'
       },
       {
         lang: 'en' as const,
-        evidenceName: 'courtyard photo',
+        examineLabel: 'examine detail',
+        spoilerEvidenceName: 'courtyard photo',
         action: 'Point to the image',
         staleOptionalEvidence: 'receipt'
       }
     ];
 
-    for (const { lang, evidenceName, action, staleOptionalEvidence } of cases) {
+    for (const { lang, examineLabel, spoilerEvidenceName, action, staleOptionalEvidence } of cases) {
       const script = getCaseScript(lang, 'case0');
       const openingText = script.trial.openingPresent!.successDialogue.map((line) => line.text).join(' ');
       const pointTargets = [
@@ -207,7 +209,9 @@ describe('Case 0 — El Primer Juicio de Don Ramón', () => {
         ...script.trial.climax.stages![0].successDialogue
       ];
 
-      expect(openingText.toLowerCase()).toContain(evidenceName);
+      expect(openingText.toLowerCase()).toContain(examineLabel);
+      // The lesson teaches the mechanic; naming the target evidence would spoil the contradiction.
+      expect(openingText.toLowerCase()).not.toContain(spoilerEvidenceName);
       expect(openingText.toLowerCase()).not.toContain(staleOptionalEvidence);
       expect(pointTargets.every((target) => target.promptQuestion.includes(action))).toBe(true);
       expect(pointText.every((text) => !text.includes(action))).toBe(true);

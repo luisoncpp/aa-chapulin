@@ -3,6 +3,7 @@
 
 import type { DialogueLine, PointTargetContradiction, Testimony } from '../../../types/index.js';
 import { CASE4_ORDEN_POINT_TARGET } from './trial_day3_success.js';
+import { CASE4_CALL_RUFINO_EN, CASE4_RECALL_RUFINO_EN } from './witness_calls_en.js';
 void CASE4_ORDEN_POINT_TARGET;
 
 export const CASE4_DAY3_INTRO_EN: DialogueLine[] = [
@@ -17,7 +18,8 @@ export const CASE4_DAY3_INTRO_EN: DialogueLine[] = [
   { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_idle', text: 'It grants it, Your Honor. That alibi is true and we will not dispute it. Only it covers the noise... and the noise killed nobody.' },
   { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_point', text: 'Then the prosecution keeps its account: the wine left dosed from the hands that carried it.' },
   { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_sweat', text: '(Third day, Don Ramón. Only the bottle left. Nothing but the bottle.)' },
-  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_neutral', text: 'We will hear Mr. Rufián on his own part in this.' }
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_neutral', text: 'We will hear Mr. Rufián on his own part in this.' },
+  ...CASE4_CALL_RUFINO_EN
 ];
 
 export const CASE4_DAY3_OPENING_PRESENT_EN: undefined = undefined;
@@ -45,7 +47,8 @@ const T5_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'DEFENSA', text: 'You picked the one with a record.', pose: 'donramon_point' },
   { speaker: 'SUPER SAM', text: 'Your Honor, picking a clerk is not poisoning a guest. The prosecution holds that the wine arrived dosed.', pose: 'supersam_slam', sfx: 'desk_slam' },
   { speaker: 'DEFENSA', text: 'And that is why we are going to talk about the bottle. But let the record show who wrote that name.', pose: 'donramon_idle' },
-  { speaker: 'JUEZ', text: 'So recorded.', pose: 'judge_gavel', sfx: 'gavel' }
+  { speaker: 'JUEZ', text: 'So recorded.', pose: 'judge_gavel', sfx: 'gavel' },
+  ...CASE4_RECALL_RUFINO_EN
 ];
 
 export const CASE4_TESTIMONY_5_EN: Testimony = {

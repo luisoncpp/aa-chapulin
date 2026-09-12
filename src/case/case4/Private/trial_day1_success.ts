@@ -4,6 +4,7 @@
  */
 
 import type { DialogueLine, PointTargetContradiction } from '../../../types/index.js';
+import { CASE4_CALL_SARGENTO } from './witness_calls.js';
 
 export const CASE4_CADENA_POINT_TARGET: PointTargetContradiction = {
   targetEvidenceId: 'candado_cadena',
@@ -36,7 +37,8 @@ export const CASE4_D1_T1_POINT_SUCCESS: DialogueLine[] = [
   { speaker: 'JUEZ', text: '¡Cáspita! ¿Entonces alguien pudo intervenir después de que entrara el acusado?', pose: 'judge_shock' },
   { speaker: 'DEFENSA', text: 'Pudo. Eso es lo que demuestra esta pieza. Quién fue, todavía no.', pose: 'donramon_idle' },
   { speaker: 'SUPER SAM', text: '¡Y tampoco demuestra que el fontanero no la echara con su propia mano!', pose: 'supersam_slam', sfx: 'desk_slam' },
-  { speaker: 'DEFENSA', text: 'Correcto, señor fiscal. Por eso ahora vamos a revisar su homicidio. Que ya se le está haciendo tarde.', pose: 'donramon_idle' }
+  { speaker: 'DEFENSA', text: 'Correcto, señor fiscal. Por eso ahora vamos a revisar su homicidio. Que ya se le está haciendo tarde.', pose: 'donramon_idle' },
+  ...CASE4_CALL_SARGENTO
 ];
 
 // fallow-ignore-next-line unused-export

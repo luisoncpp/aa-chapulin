@@ -4,6 +4,7 @@
  */
 
 import type { DialogueLine } from '../../../types/index.js';
+import { CASE3_RECALL_ANICETO } from './witness_calls.js';
 
 export const CASE3_T5_SUCCESS: DialogueLine[] = [
   { cutin: 'objection_protesto', speaker: 'DEFENSA', text: '¡PROTESTO! ¡Señor Juez, antes de continuar quiero que conste algo!', sfx: 'whoosh', bgm: 'objection', pose: 'donramon_point' },
@@ -19,5 +20,6 @@ export const CASE3_T5_SUCCESS: DialogueLine[] = [
   { speaker: 'BARRIGA', text: 'No... No, no, no. Licenciado, usted no entiende. Yo a ese hombre le confié las cuentas veinticinco años.', pose: 'barriga_shock' },
   { speaker: 'DEFENSA', text: 'Lo sé, señor Barriga. Por eso le confió también el secreto. Y por eso... es el único que pudo usarlo.', pose: 'donramon_idle' },
   { speaker: 'SUPER SAM', text: '¡OBJECTION! ¡La fiscalía no permitirá que se linche a una víctima con un nudo mal hecho! ¡Que el señor Rebollar suba a defenderse!', pose: 'supersam_slam', sfx: 'desk_slam' },
-  { speaker: 'ANICETO', text: 'Con mucho gusto, señor fiscal. Con muchísimo gusto.', pose: 'aniceto_sweat' }
+  { speaker: 'ANICETO', text: 'Con mucho gusto, señor fiscal. Con muchísimo gusto.', pose: 'aniceto_sweat' },
+  ...CASE3_RECALL_ANICETO
 ];

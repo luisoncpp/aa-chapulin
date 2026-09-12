@@ -75,6 +75,13 @@ Hotspot `x,y,w,h` are percentages of the 960×540 `#game-screen`, not of the JPE
 
 `TrialScript.testimonies` and `TrialDayScript.testimonies` are ordered arrays. The controller advances from index `i` to `i + 1` after a successful contradiction and only enters adjournment/climax when the array is exhausted. Existing scripts expose optional `testimony1`/`testimony2` aliases for compatibility with older consumers; new cases must use the array.
 
+**Calling the witness to the stand.** A cross-examination must never start cold. The dialogue block that plays immediately before a testimony ends with the witness being called: the prosecution summons them, the court takes their **name and occupation**, a character beat lands, and a final `JUEZ` line orders the testimony to begin. A witness who already testified earlier in the case gets a shorter recall beat instead of a second identity interrogation. The engine resolves that preceding block as:
+
+- testimony index 0 of a day → `openingPresent.successDialogue` when the day has one, otherwise `intro`;
+- testimony index *i* > 0 → the resolving `contradiction.followUp.successDialogue` (or `contradiction.successDialogue`) of testimony *i − 1*.
+
+Two invariants hold for every block, in both languages, and are asserted by `tests/case/WitnessCallToStand.test.ts`: the block contains a line spoken by `statements[0].speaker`, and its **last** line is spoken by `JUEZ`. Appending to a success dialogue therefore means the judge's order is what hands control to the cross-examination. Cases 0, 3 and 4 keep these blocks in `Private/witness_calls.ts` / `witness_calls_en.ts` because the host files were near the 200-line limit; Cases 1 and 2 inline them.
+
 Every trial-day `intro` begins with a narrator line using `assets/bg_waiting_room.webp` and `furniture: 'none'`. That line records the scheduled date, time, and `Tribunal Superior - Sala de Espera` / `High Court - Waiting Room`. Most cases then cut directly to the judge; Case 0 instead plays its full pre-trial lobby dialogue before entering court. This keeps trial entry consistent with investigation location introductions without adding a new engine state.
 
 ```typescript

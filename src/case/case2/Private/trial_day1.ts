@@ -13,7 +13,14 @@ export const CASE2_TRIAL_INTRO: DialogueLine[] = [
   { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_point', text: 'El acusado fue sorprendido in fraganti dentro de la bóveda a las 10:00 PM con la herramienta del delito en sus manos. ¡Exijo un veredicto de culpabilidad en 3 minutos!' },
   { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_slam', text: '¡PROTESTO! ¡La defensa demostrará que todo este caso es un vil montaje!', sfx: 'desk_slam' },
   { bg: 'assets/bg_defense.webp', speaker: 'CHAPULIN', pose: 'chapulin_point', text: '¡Síganme los buenos! ¡No permitiremos que condenen a un inocente!' },
-  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_neutral', text: 'Que pase al estrado el primer testigo de la fiscalía.' }
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_neutral', text: 'Que pase al estrado el primer testigo de la fiscalía.' },
+  { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_point', text: 'La fiscalía llama a la señora Florinda Corcuera Villalpando viuda de Matalascallando. ¡Y le ruego ser breve: cada minuto de esta corte cuesta dinero!' },
+  { bg: 'assets/bg_witness.webp', speaker: 'FLORINDA', pose: 'florinda_fanning', text: 'Con su permiso. Una no acostumbra rebajarse a estos ambientes, pero el deber es el deber.' },
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_neutral', text: 'Testigo, diga su nombre y su ocupación.' },
+  { bg: 'assets/bg_witness.webp', speaker: 'FLORINDA', pose: 'florinda_idle', text: 'Doña Florinda, encargada del restaurante de la hacienda del Profesor Jirafales. Y madre de un niño de excelente familia, por si a alguien le interesa.' },
+  { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_sweat', text: '(Con permisito, dijo Monchito... ojalá hoy no me reconozca.)' },
+  { bg: 'assets/bg_witness.webp', speaker: 'FLORINDA', pose: 'florinda_angry', text: '¡Usted! ¡Chusma, chusma! ¿Ahora resulta que es licenciado?' },
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_gavel', text: 'En esta sala no se cachetea a nadie. Testigo, proceda con su testimonio.', sfx: 'gavel' }
 ];
 
 const T1_SUCCESS: DialogueLine[] = [
@@ -25,7 +32,14 @@ const T1_SUCCESS: DialogueLine[] = [
   { speaker: 'JUEZ', text: '¡Cáspita! ¿Significa que la energía se cortó tres cuartos de hora antes?', pose: 'judge_shock' },
   { speaker: 'DEFENSA', text: '¡Exacto! Quien restableció la corriente reprogramó el reloj digital a las 10:00 PM. ¡El robo comenzó a las 9:15 PM en completa oscuridad!', pose: 'donramon_idle' },
   { speaker: 'FLORINDA', text: '¡Ay, Dios mío! ¡¿Entonces a las 9:15 PM ya estaban robando la hacienda?!', pose: 'florinda_shock' },
-  { speaker: 'SUPER SAM', text: 'Grrr... Un simple desfase horario no exime al acusado de haber reventado la caja. ¡Llamo al estrado al señor Peterete!', pose: 'supersam_sweat' }
+  { speaker: 'SUPER SAM', text: 'Grrr... Un simple desfase horario no exime al acusado de haber reventado la caja. ¡Llamo al estrado al señor Peterete!', pose: 'supersam_sweat' },
+  { speaker: 'PETERETE', text: 'Con la venia de esta honorable corte. Siempre es un placer colaborar con la justicia.', pose: 'peterete_smug' },
+  { speaker: 'JUEZ', text: 'Testigo, diga su nombre y su ocupación.', pose: 'judge_neutral' },
+  { speaker: 'PETERETE', text: 'Peterete: licenciado en leyes, perito valuador y jefe de seguridad de la hacienda. Tres títulos, señoría, todos legítimos.', pose: 'peterete_smug' },
+  { speaker: 'DEFENSA', text: 'Tres títulos. Yo tengo catorce meses de renta atrasada y no por eso ando presumiendo.', pose: 'donramon_idle' },
+  { speaker: 'CHAPULIN', text: '¡Mis antenitas de vinil están vibrando! Y eso significa una de dos cosas...', pose: 'chapulin_idle' },
+  { speaker: 'CHAPULIN', text: '...o hay un villano cerca, o se me volvieron a mojar.', pose: 'chapulin_panic' },
+  { speaker: 'JUEZ', text: 'La corte tomará nota de sus antenitas. Testigo, rinda su testimonio.', pose: 'judge_gavel', sfx: 'gavel' }
 ];
 
 export const CASE2_TESTIMONY_1: Testimony = {

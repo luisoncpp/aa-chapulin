@@ -4,6 +4,7 @@
  */
 
 import type { DialogueLine, PointTargetContradiction } from '../../../types/index.js';
+import { CASE4_CALL_CHOMPIRAS } from './witness_calls.js';
 
 export const CASE4_PLANO_POINT_TARGET: PointTargetContradiction = {
   targetEvidenceId: 'plano_hotel',
@@ -60,7 +61,8 @@ export const CASE4_D2_T1_RUTA_A_SUCCESS: DialogueLine[] = [
   { speaker: 'SUPER SAM', text: 'Fine. Eso explica el ruido. ¡Pero el ruido no envenenó a nadie! ¡Todavía nadie me dice quién le puso algo a ese vino!', pose: 'supersam_slam', sfx: 'desk_slam' },
   { speaker: 'DEFENSA', text: 'Tiene razón. Y por eso tampoco puede decirme que el único que pudo tocarlo fue el que lo cargó. Señorita: usted dejó al huésped de la 204 a solas con esa botella.', pose: 'donramon_idle' },
   { speaker: 'MARUJA', text: '...Sí. Ese ratito yo no lo vi.', pose: 'maruja_nerviosa' },
-  { speaker: 'DEFENSA', text: 'Nadie lo vio. Y ahí es justo donde la fiscalía dejó de contar.', pose: 'donramon_point' }
+  { speaker: 'DEFENSA', text: 'Nadie lo vio. Y ahí es justo donde la fiscalía dejó de contar.', pose: 'donramon_point' },
+  ...CASE4_CALL_CHOMPIRAS
 ];
 
 export const CASE4_D2_T1_RUTA_B_SUCCESS: DialogueLine[] = CASE4_D2_T1_RUTA_A_SUCCESS;

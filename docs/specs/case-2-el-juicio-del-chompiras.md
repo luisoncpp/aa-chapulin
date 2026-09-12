@@ -134,6 +134,12 @@ flowchart TD
     D2_INV --> D2_TRI
 ```
 
+### Convención: llamado al estrado
+
+Ningún testimonio arranca en seco. Cada interrogatorio va precedido por un **llamado al estrado**: la fiscalía (o la corte) convoca al testigo, el juez le toma **nombre y ocupación**, cae un gag de personaje y el bloque **cierra siempre con una línea del `JUEZ`** ordenando rendir el testimonio. Un testigo que ya declaró no repite la identificación: recibe un **retorno** más breve, donde el juez le recuerda que sigue bajo juramento.
+
+Ese bloque vive al final del diálogo que precede al testimonio: la apertura del día (`CASE2_TRIAL_INTRO`, `CASE2_DAY2_INTRO`) para el primer testimonio de cada jornada, y el éxito de la contradicción anterior para los siguientes. Al editar esos diálogos hay que conservar la línea final del juez.
+
 ---
 
 ## 6. Guión Detallado: Día 1 — Investigación
@@ -241,6 +247,15 @@ SUPER SAM (supersam_point): El acusado fue sorprendido in fraganti dentro de la 
 DEFENSA (donramon_slam): ¡PROTESTO! ¡La defensa demostrará que todo este caso es un vil montaje! [sfx: desk_slam]
 CHAPULIN (chapulin_point): ¡Síganme los buenos! ¡No permitiremos que condenen a un inocente!
 JUEZ (judge_neutral): Que pase al estrado el primer testigo de la fiscalía.
+
+[LLAMADO AL ESTRADO: DOÑA FLORINDA]
+SUPER SAM (supersam_point): La fiscalía llama a la señora Florinda Corcuera Villalpando viuda de Matalascallando. ¡Y le ruego ser breve: cada minuto de esta corte cuesta dinero!
+FLORINDA (florinda_fanning): Con su permiso. Una no acostumbra rebajarse a estos ambientes, pero el deber es el deber.
+JUEZ (judge_neutral): Testigo, diga su nombre y su ocupación.
+FLORINDA (florinda_idle): Doña Florinda, encargada del restaurante de la hacienda del Profesor Jirafales. Y madre de un niño de excelente familia, por si a alguien le interesa.
+DEFENSA (donramon_sweat): (Con permisito, dijo Monchito... ojalá hoy no me reconozca.)
+FLORINDA (florinda_angry): ¡Usted! ¡Chusma, chusma! ¿Ahora resulta que es licenciado?
+JUEZ (judge_gavel): En esta sala no se cachetea a nadie. Testigo, proceda con su testimonio. [sfx: gavel]
 ```
 
 ---
@@ -279,6 +294,15 @@ JUEZ (judge_shock): ¡Cáspita! ¿Significa que la energía se cortó tres cuart
 DEFENSA (donramon_idle): ¡Exacto! Y el reloj digital del pasillo, que no tiene pila de respaldo, también quedó sin hora durante el corte. Quien restableció la corriente lo reprogramó fijándolo en las 10:00 PM para fabricar una hora falsa del crimen. ¡El robo comenzó a las 9:15 PM en completa oscuridad!
 FLORINDA (florinda_shock): ¡Ay, Dios mío! ¡¿Entonces a las 9:15 PM ya estaban robando la hacienda?!
 SUPER SAM (supersam_sweat): Grrr... Un simple desfase horario no exime al acusado de haber reventado la caja de caudales con su palanca. ¡Llamo al estrado al jefe de seguridad, el señor Peterete!
+
+[LLAMADO AL ESTRADO: EL PETERETE]
+PETERETE (peterete_smug): Con la venia de esta honorable corte. Siempre es un placer colaborar con la justicia.
+JUEZ (judge_neutral): Testigo, diga su nombre y su ocupación.
+PETERETE (peterete_smug): Peterete: licenciado en leyes, perito valuador y jefe de seguridad de la hacienda. Tres títulos, señoría, todos legítimos.
+DEFENSA (donramon_idle): Tres títulos. Yo tengo catorce meses de renta atrasada y no por eso ando presumiendo.
+CHAPULIN (chapulin_idle): ¡Mis antenitas de vinil están vibrando! Y eso significa una de dos cosas...
+CHAPULIN (chapulin_panic): ...o hay un villano cerca, o se me volvieron a mojar.
+JUEZ (judge_gavel): La corte tomará nota de sus antenitas. Testigo, rinda su testimonio. [sfx: gavel]
 ```
 
 ---
@@ -387,6 +411,14 @@ JUEZ (judge_gavel): Se reanuda la sesión en el caso del Chanfle de Oro. [sfx: g
 SUPER SAM (supersam_slam): Time is money! Your Honor, la fiscalía ha comprobado que el señor Peterete tiene una coartada de hierro a la hora del corte de luz. [sfx: desk_slam]
 SUPER SAM (supersam_point): Estaba en la oficina postal con el cartero despachando encomiendas. ¡El acusado sigue siendo el único sospechoso viable!
 DEFENSA (donramon_slam): ¡La defensa exige que el señor Peterete vuelva al banquillo de los testigos! [sfx: desk_slam]
+
+[LLAMADO AL ESTRADO: EL PETERETE (RETORNO)]
+JUEZ (judge_neutral): Concedido. La corte llama de nuevo al estrado al señor Peterete.
+PETERETE (peterete_smug): Otra vez aquí. ¿También quiere mi nombre y mi ocupación, señoría? Son los mismos de ayer.
+JUEZ (judge_thinking): Sigue usted bajo juramento, testigo. Eso también es lo mismo de ayer.
+DEFENSA (donramon_idle): Con permisito, dijo Monchito. Hoy vengo a preguntarle por su coartada, no por sus títulos.
+SUPER SAM (supersam_slam): ¡Y que sea rápido! Time is money, y llevamos dos días sin facturar un veredicto. [sfx: desk_slam]
+JUEZ (judge_gavel): Testigo, declare ante esta corte dónde estuvo a las 9:15 PM. [sfx: gavel]
 ```
 
 ---
@@ -419,6 +451,13 @@ SUPER SAM (supersam_sweat): Hey! ¡Mis dólares son 100% auténticos!
 DEFENSA (donramon_slam): ¡Esta 'Multa de Tránsito' oficial y el 'Registro Postal' demuestran que a las 9:30 PM el carrito estaba abandonado en el callejón y no había ningún cartero para recibirle nada! [sfx: desk_slam]
 DEFENSA (donramon_point): ¡Usted mismo fue al carrito abandonado y estampó un sello falso en el registro para fabricarse una coartada, sin que nadie lo viera!
 PETERETE (peterete_sweat): ¡G-grrrk! ¡Maldito cartero holgazán!
+
+[LLAMADO AL ESTRADO: EL PETERETE (SEGUNDO RETORNO)]
+SUPER SAM (supersam_sweat): Your Honor... la fiscalía retira la coartada postal. Pero el acusado sigue siendo el único que estuvo dentro de la bóveda.
+JUEZ (judge_thinking): Testigo, no se baje del estrado. Esta corte todavía no ha terminado con usted.
+PETERETE (peterete_sweat): ¿Otra vez? Señoría, ya declaré dos veces. Mi nombre no ha cambiado en las últimas tres horas.
+DEFENSA (donramon_point): Su nombre no. Su historia sí, y van dos.
+JUEZ (judge_gavel): Testifique ahora sobre la bóveda: explique a esta corte cómo salió de ahí el Chanfle de Oro. [sfx: gavel]
 ```
 
 ---

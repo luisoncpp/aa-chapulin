@@ -1,5 +1,6 @@
 // @Architecture(descriptionShort="Case 0 lobby scenes before and during trial", type="data", icon="layers")
 import type { DialogueLine } from '../../../types/index.js';
+import { CASE0_WITNESS_RECALL_T3 } from './witness_calls.js';
 
 const WAITING_ROOM = 'assets/bg_waiting_room.webp';
 const JUDGE = 'assets/bg_judge.webp';
@@ -59,7 +60,7 @@ export const CASE0_T2_RECESS_AND_RESUMPTION: DialogueLine[] = [
   { speaker: 'NARRADOR', text: 'El alguacil entrega a la defensa la tarjeta de Enciclopedias El Saber Universal.', addEvidence: 'tarjeta_enciclopedias' },
   { speaker: 'SUPER SAM', pose: 'supersam_slam', text: 'Your Honor... la fiscalía solicita autorización para tomarle declaración a este testigo en calidad de investigado. Y solicita que el tiempo del receso se le cargue a la defensa.', sfx: 'desk_slam' },
   { speaker: 'JUEZ', pose: 'judge_neutral', text: 'Autorizada la primera. Denegada la segunda.' },
-  { speaker: 'JUEZ', pose: 'judge_neutral', text: 'Señor Lengua, va a explicar a esta corte cómo llegó ese cartapacio a su maletín de muestras. Y le advierto que ahora cada palabra suya se asienta en su contra.' },
   { speaker: 'CHAPULIN', pose: 'chapulin_point', text: '¡Y ahora sí, Don Ramón, el testigo va a testificar de su propio caso!' },
-  { speaker: 'DEFENSA', pose: 'donramon_idle', text: '(Tres testimonios en un día. Y yo que venía nomás por la renta.)' }
+  { speaker: 'DEFENSA', pose: 'donramon_idle', text: '(Tres testimonios en un día. Y yo que venía nomás por la renta.)' },
+  ...CASE0_WITNESS_RECALL_T3
 ];

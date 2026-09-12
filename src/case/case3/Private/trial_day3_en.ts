@@ -4,12 +4,14 @@
  */
 
 import type { DialogueLine, Testimony } from '../../../types/index.js';
+import { CASE3_CALL_BARRIGA_EN, CASE3_RECALL_ANICETO_EN } from './witness_calls_en.js';
 
 export const CASE3_DAY3_INTRO_EN: DialogueLine[] = [
   { bg: 'assets/bg_waiting_room.webp', furniture: 'none', speaker: 'NARRADOR', text: 'September 18, 6:00 PM. High Court - Waiting Room.', bgm: 'trial' },
   { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_gavel', text: 'Session resumes. The court has been informed the victim regained consciousness.', sfx: 'gavel', bgm: 'trial' },
   { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_slam', text: 'And the prosecution calls him to the stand at once! Let the victim point to his attacker and we go to lunch!', sfx: 'desk_slam' },
-  { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_idle', text: '(Let him talk. That\'s exactly what I need.)' }
+  { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_idle', text: '(Let him talk. That\'s exactly what I need.)' },
+  ...CASE3_CALL_BARRIGA_EN
 ];
 
 const T5_SUCCESS: DialogueLine[] = [
@@ -27,7 +29,8 @@ const T5_SUCCESS: DialogueLine[] = [
   { speaker: 'BARRIGA', text: 'No... No, no, no. Counselor, you don\'t understand. I trusted that man with the books for twenty-five years.', pose: 'barriga_shock' },
   { speaker: 'DEFENSA', text: 'I know, Señor Barriga. That\'s why you also trusted him with the secret. And that\'s why... he\'s the only one who could use it.', pose: 'donramon_idle' },
   { speaker: 'SUPER SAM', text: 'OBJECTION! The prosecution will not allow a victim to be lynched over a bad knot! Let Mr. Rebollar take the stand!', pose: 'supersam_slam', sfx: 'desk_slam' },
-  { speaker: 'ANICETO', text: 'With pleasure, Mr. Prosecutor. With great pleasure.', pose: 'aniceto_sweat' }
+  { speaker: 'ANICETO', text: 'With pleasure, Mr. Prosecutor. With great pleasure.', pose: 'aniceto_sweat' },
+  ...CASE3_RECALL_ANICETO_EN
 ];
 
 export const CASE3_TESTIMONY_5_EN: Testimony = {

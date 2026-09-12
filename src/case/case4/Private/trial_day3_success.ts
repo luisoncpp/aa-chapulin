@@ -4,6 +4,7 @@
  */
 
 import type { DialogueLine, PointTargetContradiction } from '../../../types/index.js';
+import { CASE4_RECALL_RUFINO } from './witness_calls.js';
 
 export const CASE4_ORDEN_POINT_TARGET: PointTargetContradiction = {
   targetEvidenceId: 'orden_servicios',
@@ -41,7 +42,8 @@ export const CASE4_D3_T1_ORDEN_SUCCESS: DialogueLine[] = [
   { speaker: 'DEFENSA', text: 'Escogió al que tenía expediente.', pose: 'donramon_point' },
   { speaker: 'SUPER SAM', text: 'Your Honor, escoger a un empleado no es envenenar a un huésped. La fiscalía mantiene que el vino llegó alterado.', pose: 'supersam_slam', sfx: 'desk_slam' },
   { speaker: 'DEFENSA', text: 'Y por eso vamos a hablar de la botella. Pero que conste en actas quién escribió ese nombre.', pose: 'donramon_idle' },
-  { speaker: 'JUEZ', text: 'Consta.', pose: 'judge_gavel', sfx: 'gavel' }
+  { speaker: 'JUEZ', text: 'Consta.', pose: 'judge_gavel', sfx: 'gavel' },
+  ...CASE4_RECALL_RUFINO
 ];
 
 export const CASE4_D3_T2_NOTA_SUCCESS: DialogueLine[] = [

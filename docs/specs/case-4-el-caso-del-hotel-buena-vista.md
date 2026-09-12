@@ -156,6 +156,7 @@ Los bloques de diálogo siguientes fijan las líneas dramáticas, testimonios, p
 - Presionar es gratuito. Ninguna prueba ya válida exige presionar una paráfrasis para habilitar la misma contradicción.
 - Señalar una zona incorrecta o presentar una prueba incorrecta cuesta un punto y permite reintentar con la pregunta visible. No se revela la respuesta al fallar.
 - Una contradicción admite un followUp. Para aceptar pruebas en órdenes diferentes se usan dos declaraciones con rutas expresas, no una bifurcación inexistente según el ítem elegido.
+- Ningún testimonio empieza en seco. El bloque que lo precede termina siempre con el llamado al estrado: la fiscalía llama al testigo, el juez le pide nombre y ocupación, cae un remate de carácter y la última línea es del JUEZ ordenando declarar. Ese bloque es el `intro` (u `openingPresent.successDialogue`) en el primer testimonio de la jornada, y el `successDialogue` de la contradicción que resolvió el testimonio anterior en el segundo. Un testigo que ya declaró recibe un rellamado corto, sin repetir el interrogatorio de identidad.
 - La última línea de éxito de D1-T2 y D2-T2 precede al aplazamiento. No adelantar modo ni borrar el resultado de la deducción.
 - El clímax usa stages. La última successDialogue completa la demostración antes del veredicto.
 
@@ -357,6 +358,19 @@ DEFENSA: Todavía no. Pero explica por qué el único sospechoso de la fiscalía
 JUEZ: Las dos observaciones son pertinentes. Escucharemos primero cómo se encontró esa puerta.
 ~~~
 
+Llamado al estrado de Cecilio, cierre de la apertura:
+
+~~~dialogue
+SUPER SAM: La fiscalía llama al estrado al gerente del Gran Hotel Buena Vista. Y que sea rápido: esta corte cobra por hora y el testigo camina despacio.
+CECILIO: ¿Aquí? Con permiso... muy buenas tardes, señor juez.
+SUPER SAM: Yo soy el fiscal. El juez está allá arriba.
+CECILIO: ¡Ah! Pues tiene usted una voz muy autoritaria para estar tan abajo.
+JUEZ: Testigo, diga su nombre y su ocupación.
+CECILIO: Cecilio Buenavista, propietario y gerente del Gran Hotel Buena Vista. Treinta y un años al frente de esa recepción, señor juez.
+DEFENSA: (Treinta y un años viendo entrar gente. Lástima que nunca de cerca.)
+JUEZ: Proceda con su testimonio. Únicamente lo que percibió aquella noche. [sfx: gavel]
+~~~
+
 ### 8.2 D1-T1, Cecilio: “La única persona dentro”
 
 ~~~dialogue
@@ -388,6 +402,18 @@ JUEZ: ¡Cáspita! ¿Entonces alguien pudo intervenir después de que entrara el 
 DEFENSA: Pudo. Eso es lo que demuestra esta pieza. Quién fue, todavía no.
 SUPER SAM: ¡Y tampoco demuestra que el fontanero no la echara con su propia mano! [sfx: desk_slam]
 DEFENSA: Correcto, señor fiscal. Por eso ahora vamos a revisar su homicidio. Que ya se le está haciendo tarde.
+~~~
+
+El mismo bloque de éxito continúa con el llamado al estrado del Sargento:
+
+~~~dialogue
+SUPER SAM: Con gusto, counselor. La fiscalía llama al agente que levantó la escena. ¡Sargento, al estrado, y sin cobrar viáticos! [sfx: desk_slam]
+SARGENTO: ¡A sus órdenes! Vine caminando desde la delegación, mi fiscal. Viáticos ya no me quedan.
+JUEZ: Diga su nombre y su ocupación, testigo.
+SARGENTO: Refugio Pazguato, sargento de la delegación tercera. Aunque todos me dicen el Sargento, y así está bien: se tarda uno menos.
+CHAPULIN: ¡Yo le digo Sargento y él me dice el rojo! ¡Ya nos entendemos!
+DEFENSA: Sargento, usted fue el primero en escribir lo que pasó en esa habitación. Cuéntelo tal como lo escribió.
+JUEZ: Proceda. Su parte, y sólo su parte. [sfx: gavel]
 ~~~
 
 Fallo del señalamiento:
@@ -637,6 +663,19 @@ DEFENSA: A eso vine. Ayer le desarmé una hipótesis; hoy vengo con tiempo para 
 JUEZ: Escucharemos a quien vio abrir esa botella. Y de paso quiero saber por qué esta sala oyó un disparo a una hora en la que ya no había a quién disparar.
 ~~~
 
+Llamado al estrado de Maruja, cierre de la apertura:
+
+~~~dialogue
+SUPER SAM: La fiscalía llama a la huésped de la 303. Y le advierto, señorita: el tiempo de esta corte no se abanica.
+MARUJA: Ya voy, ya voy. Nadie se muere por esperar a una dama.
+MARUJA: ...Perdón. Hoy esa frase me salió peor que otras veces.
+JUEZ: Diga su nombre y su ocupación ante este tribunal.
+MARUJA: Maruja. Y en el Buena Vista me dicen la Sirena del Hotel.
+JUEZ: Eso es un apodo, señorita. Le pregunté su ocupación.
+MARUJA: Huésped, señor juez. Llevo cuatro meses de huésped. Si eso no es una ocupación, no sé qué lo sea.
+JUEZ: Queda asentado. Cuente a esta corte lo que vio aquella noche. [sfx: gavel]
+~~~
+
 ### 10.2 D2-T1, Maruja: “La copa y el estruendo”
 
 ~~~dialogue
@@ -675,6 +714,19 @@ SUPER SAM: Fine. Eso explica el ruido. [sfx: desk_slam] ¡Pero el ruido no enven
 DEFENSA: Tiene razón. Y por eso tampoco puede decirme que el único que pudo tocarlo fue el que lo cargó. Señorita: usted dejó al huésped de la 204 a solas con esa botella.
 MARUJA: ...Sí. Ese ratito yo no lo vi.
 DEFENSA: Nadie lo vio. Y ahí es justo donde la fiscalía dejó de contar.
+~~~
+
+El mismo bloque de éxito continúa con el llamado al estrado del Chómpiras:
+
+~~~dialogue
+JUEZ: Entonces contemos nosotros. ¿Quién movió el equipaje de aquella noche?
+SUPER SAM: El botones, Your Honor. La fiscalía lo llama al estrado. Y que conste que este testigo no me cuesta un centavo: ya lo paga el hotel.
+CHOMPIRAS: ¿Yo? Ay, señor juez, si yo nomás subo y bajo cosas...
+JUEZ: Su nombre y su ocupación, testigo.
+CHOMPIRAS: El Chómpiras, para servirle. Botones y operador del montacargas del Gran Hotel Buena Vista. Con uniforme y todo, mírelo.
+DEFENSA: Y con libreta. Que es lo que a esta corte le ha hecho falta.
+CHOMPIRAS: Ésa sí la traigo, mi licenciado. Fea, pero completita.
+JUEZ: Proceda con su testimonio. [sfx: gavel]
 ~~~
 
 Tras la refutación, la fiscalía preserva lo verdadero del testimonio: Cuajinais abrió y bebió. No se desacredita a Maruja por equivocarse sobre la transmisión del sonido.
@@ -932,7 +984,21 @@ DEFENSA: (Tercer día, Don Ramón. Ya nomás falta la botella. Nada más la bote
 JUEZ: Escucharemos al señor Rufián sobre su propia intervención.
 ~~~
 
-La boleta se lee en el acta sin exigir presentación. No hay openingPresent en esta jornada: obligar a presentar una prueba que nadie contradice sería un trámite. La coartada se admite para acotar el terreno de la discusión.
+Llamado al estrado de Rufino, cierre de la apertura:
+
+~~~dialogue
+SUPER SAM: Pase al estrado el huésped de la Suite 204.
+RUFINO: Con mucho gusto. Uno colabora, aunque le arruinen las vacaciones.
+JUEZ: Se le recuerda al testigo que declara bajo juramento. Diga su nombre y su ocupación.
+RUFINO: Rufino Rufián y Montemayor, conde de Montemayor. De ocupación, ninguna: administro lo que heredé.
+DEFENSA: (Bajo juramento. Lo dijo enterito, sin tragar saliva, mirando al juez.)
+CHAPULIN: (Yo también tengo un primo en Montemayor. Y no es conde de nada.)
+JUEZ: Queda asentado, señor conde. Exponga su intervención en estos hechos. [sfx: gavel]
+~~~
+
+Aquí es donde el título falso entra en actas. La impostura del Conde de Montemayor deja de ser una pose de hotel y pasa a ser una mentira bajo juramento ante el tribunal, dicha sin vacilar y consentida por el juez, que a partir de ese momento lo trata de “señor conde”. No es un gag: es el acto que marca hasta dónde está dispuesto a llegar el estafador, y el aparte de la defensa lo señala para el jugador sin resolverlo. El rellamado de D3-T2 no vuelve a pedirle nombre ni ocupación a propósito, para que en el acta conste una sola versión, la falsa.
+
+La boleta se lee en el acta sin exigir presentación. No hay openingPresent en esta jornada: el llamado al estrado cierra el `intro` del día 3, porque obligar a presentar una prueba que nadie contradice sería un trámite. La coartada se admite para acotar el terreno de la discusión.
 
 ### 12.2 D3-T1, Rufino: “Mi parte en esta desgracia”
 
@@ -984,9 +1050,21 @@ SUPER SAM: Take your time, counselor. Yo cobro por hora.
 
 No hay followUp en este testimonio: la deducción termina en un hecho documental y la fiscalía conserva su hipótesis. La jornada todavía no ha identificado al envenenador.
 
+El mismo bloque de éxito continúa con el rellamado de Rufino:
+
+~~~dialogue
+SUPER SAM: Y ya que consta, Your Honor, que el testigo se quede donde está. Bajar y volver a subir ese estrado cuesta tiempo, y el tiempo...
+DEFENSA: Es dinero. Ya nos lo sabemos, señor fiscal.
+JUEZ: Este tribunal vuelve a llamar al estrado al señor Rufián. Continúa bajo el mismo juramento. [sfx: gavel]
+RUFINO: ¿Otra vez mi nombre y mi ocupación, señoría?
+JUEZ: No hace falta. Esta corte se quedó con el primero.
+DEFENSA: Y con el segundo también. Ahora díganos qué eran usted y el señor Gómez el uno del otro antes de que ninguno pisara ese hotel.
+JUEZ: Responda a la defensa, señor Rufián. Declare sobre esa relación. [sfx: gavel]
+~~~
+
 ### 12.3 D3-T2, Rufino: “Una reunión de negocios”
 
-El juez ordena un segundo testimonio sobre su relación con la víctima. Es materia distinta de la anterior, no una repetición de posiciones ya derribadas.
+El juez ordena un segundo testimonio sobre su relación con la víctima. Es materia distinta de la anterior, no una repetición de posiciones ya derribadas. Por ser testigo ya presentado recibe un rellamado corto: no se repite el interrogatorio de identidad y el título falso queda en pie tal como se asentó en §12.1.
 
 ~~~dialogue
 d3_t2_1 RUFINO: Conocí al señor Gómez hace años, en asuntos de importación. Gente de tránsito, ya me entiende usted.

@@ -1,5 +1,6 @@
 // @Architecture(descriptionShort="English Case 0 lobby scenes before and during trial", type="data", icon="layers")
 import type { DialogueLine } from '../../../types/index.js';
+import { CASE0_WITNESS_RECALL_T3_EN } from './witness_calls_en.js';
 
 const WAITING_ROOM = 'assets/bg_waiting_room.webp';
 const JUDGE = 'assets/bg_judge.webp';
@@ -59,7 +60,7 @@ export const CASE0_T2_RECESS_AND_RESUMPTION_EN: DialogueLine[] = [
   { speaker: 'NARRADOR', text: 'The bailiff gives the defense the Universal Knowledge Encyclopedias card.', addEvidence: 'tarjeta_enciclopedias' },
   { speaker: 'SUPER SAM', pose: 'supersam_slam', text: 'Your Honor... the prosecution asks to question this witness as a suspect. And to charge the recess time to the defense.', sfx: 'desk_slam' },
   { speaker: 'JUEZ', pose: 'judge_neutral', text: 'The first request is granted. The second is denied.' },
-  { speaker: 'JUEZ', pose: 'judge_neutral', text: 'Mr. Lengua, explain to this court how that accordion file reached your sample case. From now on, every word is on the record against you.' },
   { speaker: 'CHAPULIN', pose: 'chapulin_point', text: 'Now, Don Ramón, the witness has to testify about his own case!' },
-  { speaker: 'DEFENSA', pose: 'donramon_idle', text: '(Three testimonies in one day. I only came here for the rent.)' }
+  { speaker: 'DEFENSA', pose: 'donramon_idle', text: '(Three testimonies in one day. I only came here for the rent.)' },
+  ...CASE0_WITNESS_RECALL_T3_EN
 ];

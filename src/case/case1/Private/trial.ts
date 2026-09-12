@@ -14,7 +14,14 @@ export const TRIAL_INTRO: DialogueLine[] = [
   { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_slam', text: 'Time is money, Your Honor! La fiscalía está más que lista para liquidar este caso en tiempo récord.', sfx: 'desk_slam' },
   { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_point', text: 'El acusado fue atrapado in fraganti con el arma agresora en la escena del crimen. ¡Exijo veredicto culpable en 3 minutos!' },
   { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_slam', text: '¡La defensa está lista, Su Señoría! ¡Y demostraremos la inocencia del Chapulín Colorado!', sfx: 'desk_slam' },
-  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_neutral', text: 'Muy bien. Que el testigo principal de la fiscalía pase al estrado.' }
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_neutral', text: 'Muy bien. Que el testigo principal de la fiscalía pase al estrado.' },
+  { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_point', text: '¡La fiscalía llama a su testigo estrella! ¡Y que camine rápido, que cada minuto en esta sala me cuesta dinero!' },
+  { bg: 'assets/bg_witness.webp', speaker: 'TRIPASECA', pose: 'tripaseca_smug', text: 'Cálmese, licenciado. Un hombre de mi categoría sube al estrado a su propio ritmo.' },
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_neutral', text: 'Testigo, diga su nombre y su ocupación.' },
+  { bg: 'assets/bg_witness.webp', speaker: 'TRIPASECA', pose: 'tripaseca_smug', text: 'Me dicen el Tripaseca, señoría. Comerciante honrado: compro barato y vendo... lo que se deje.' },
+  { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_idle', text: "¿Honrado? Yo he visto caras más honradas en los carteles de 'Se busca'." },
+  { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_slam', text: '¡Objeción! ¡Este testigo es un ciudadano ejemplar y además declara GRATIS! ¡Eso lo hace doblemente creíble!', sfx: 'desk_slam' },
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_gavel', text: 'Se admite el testimonio. Testigo, declare lo que vio esa noche.', sfx: 'gavel' }
 ];
 
 // @Section(Testimony 1: Assault Weapon)
@@ -55,7 +62,13 @@ export const TESTIMONY_1: Testimony = {
           { speaker: 'DEFENSA', text: '¡El Informe Médico demuestra que Alma Negra sufrió un traumatismo por un impacto con MONEDAS METÁLICAS DENSAS!', sfx: 'realization', pose: 'donramon_slam' },
           { speaker: 'TRIPASECA', text: '¡Glup! ¡E-esperen un segundo!', pose: 'tripaseca_sweat' },
           { speaker: 'SUPER SAM', text: 'Wait! ¡Nadie mencionó que el guardia tuviera la cabeza tan dura!', pose: 'supersam_slam', sfx: 'desk_slam' },
-          { speaker: 'JUEZ', text: 'Ciertamente... es imposible que ese martillo de juguete noqueara a un pirata curtido. ¡Testigo, aclare esto de inmediato!', pose: 'judge_gavel', sfx: 'gavel' }
+          { speaker: 'JUEZ', text: 'Ciertamente... es imposible que ese martillo de juguete noqueara a un pirata curtido. ¡Testigo, aclare esto de inmediato!', pose: 'judge_gavel', sfx: 'gavel' },
+          { speaker: 'SUPER SAM', text: '¡Su Señoría! La fiscalía solicita que el testigo reformule su declaración. ¡Y de prisa, que el reloj sigue corriendo!', pose: 'supersam_sweat' },
+          { speaker: 'JUEZ', text: 'Concedido. El testigo permanece en el estrado y rendirá una nueva declaración.', pose: 'judge_neutral' },
+          { speaker: 'TRIPASECA', text: '¿Otra vez? ¿Y me van a volver a preguntar mi nombre?', pose: 'tripaseca_sweat' },
+          { speaker: 'DEFENSA', text: 'Su nombre ya nos lo sabemos, señor Tripaseca. Es su versión la que cambia cada cinco minutos.', pose: 'donramon_point' },
+          { speaker: 'TRIPASECA', text: 'Ejem... uno recuerda mejor con el tiempo, ¿no?', pose: 'tripaseca_smug' },
+          { speaker: 'JUEZ', text: 'Recuerde con cuidado, entonces. Testigo, declare cómo entró y cómo escapó el ladrón del museo.', pose: 'judge_gavel', sfx: 'gavel' }
         ]
       }
     },

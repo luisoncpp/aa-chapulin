@@ -10,7 +10,13 @@ export const CASE2_DAY2_INTRO: DialogueLine[] = [
   { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_gavel', text: 'Se reanuda la sesión en el caso del Chanfle de Oro.', sfx: 'gavel', bgm: 'trial' },
   { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_slam', text: 'Time is money! Your Honor, la fiscalía ha comprobado que el señor Peterete tiene una coartada de hierro a la hora del corte de luz.', sfx: 'desk_slam' },
   { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_point', text: 'Estaba en la oficina postal con el cartero despachando encomiendas. ¡El acusado sigue siendo el único sospechoso viable!' },
-  { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_slam', text: '¡La defensa exige que el señor Peterete vuelva al banquillo de los testigos!', sfx: 'desk_slam' }
+  { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_slam', text: '¡La defensa exige que el señor Peterete vuelva al banquillo de los testigos!', sfx: 'desk_slam' },
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_neutral', text: 'Concedido. La corte llama de nuevo al estrado al señor Peterete.' },
+  { bg: 'assets/bg_witness.webp', speaker: 'PETERETE', pose: 'peterete_smug', text: 'Otra vez aquí. ¿También quiere mi nombre y mi ocupación, señoría? Son los mismos de ayer.' },
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_thinking', text: 'Sigue usted bajo juramento, testigo. Eso también es lo mismo de ayer.' },
+  { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_idle', text: 'Con permisito, dijo Monchito. Hoy vengo a preguntarle por su coartada, no por sus títulos.' },
+  { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_slam', text: '¡Y que sea rápido! Time is money, y llevamos dos días sin facturar un veredicto.', sfx: 'desk_slam' },
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_gavel', text: 'Testigo, declare ante esta corte dónde estuvo a las 9:15 PM.', sfx: 'gavel' }
 ];
 
 const T3_SUCCESS: DialogueLine[] = [
@@ -19,7 +25,12 @@ const T3_SUCCESS: DialogueLine[] = [
   { speaker: 'SUPER SAM', text: 'Hey! ¡Mis dólares son 100% auténticos!', pose: 'supersam_sweat' },
   { speaker: 'DEFENSA', text: '¡Esta Multa de Tránsito y el Registro Postal demuestran que a las 9:30 PM el carrito estaba abandonado y no había cartero para recibirle nada!', sfx: 'desk_slam', pose: 'donramon_slam' },
   { speaker: 'DEFENSA', text: '¡Usted mismo estampó un sello falso en el registro para fabricarse una coartada!', pose: 'donramon_point' },
-  { speaker: 'PETERETE', text: '¡G-grrrk! ¡Maldito cartero holgazán!', pose: 'peterete_sweat' }
+  { speaker: 'PETERETE', text: '¡G-grrrk! ¡Maldito cartero holgazán!', pose: 'peterete_sweat' },
+  { speaker: 'SUPER SAM', text: 'Your Honor... la fiscalía retira la coartada postal. Pero el acusado sigue siendo el único que estuvo dentro de la bóveda.', pose: 'supersam_sweat' },
+  { speaker: 'JUEZ', text: 'Testigo, no se baje del estrado. Esta corte todavía no ha terminado con usted.', pose: 'judge_thinking' },
+  { speaker: 'PETERETE', text: '¿Otra vez? Señoría, ya declaré dos veces. Mi nombre no ha cambiado en las últimas tres horas.', pose: 'peterete_sweat' },
+  { speaker: 'DEFENSA', text: 'Su nombre no. Su historia sí, y van dos.', pose: 'donramon_point' },
+  { speaker: 'JUEZ', text: 'Testifique ahora sobre la bóveda: explique a esta corte cómo salió de ahí el Chanfle de Oro.', pose: 'judge_gavel', sfx: 'gavel' }
 ];
 
 export const CASE2_TESTIMONY_3: Testimony = {

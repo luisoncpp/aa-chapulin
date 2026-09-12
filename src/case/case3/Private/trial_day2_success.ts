@@ -4,6 +4,7 @@
  */
 
 import type { DialogueLine } from '../../../types/index.js';
+import { CASE3_CALL_ANICETO } from './witness_calls.js';
 
 export const CASE3_T3_SUCCESS: DialogueLine[] = [
   { cutin: 'objection_protesto', speaker: 'DEFENSA', text: '¡PROTESTO! ¡Ese grito NO entró por ningún micrófono!', sfx: 'whoosh', bgm: 'objection', pose: 'donramon_point' },
@@ -16,5 +17,6 @@ export const CASE3_T3_SUCCESS: DialogueLine[] = [
   { speaker: 'DEFENSA', text: 'Significa dos cosas, señor fiscal. Una: nadie sabe a qué hora atacaron realmente al Señor Barriga. Y dos, la fea...', pose: 'donramon_idle' },
   { speaker: 'DEFENSA', text: '¡Alguien grabó un grito de auxilio con la voz de la víctima ANTES de que la víctima lo necesitara! ¡Esto no fue un pleito, señor Juez: esto se ensayó!', sfx: 'desk_slam', pose: 'donramon_slam' },
   { speaker: 'JUEZ', text: '¡Premeditación! ¡Alguien planeó esto con horas de anticipación!', pose: 'judge_shock' },
-  { speaker: 'SUPER SAM', text: '¡Y ese alguien tuvo una cabina de grabación toda la noche a su disposición! ¡EL ACUSADO! ¡Llamo a declarar a la otra víctima, don Aniceto Rebollar!', pose: 'supersam_point' }
+  { speaker: 'SUPER SAM', text: '¡Y ese alguien tuvo una cabina de grabación toda la noche a su disposición! ¡EL ACUSADO! ¡Llamo a declarar a la otra víctima, don Aniceto Rebollar!', pose: 'supersam_point' },
+  ...CASE3_CALL_ANICETO
 ];

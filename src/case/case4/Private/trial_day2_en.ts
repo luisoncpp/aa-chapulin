@@ -3,6 +3,7 @@
 
 import type { DialogueLine, PointTargetContradiction, Testimony } from '../../../types/index.js';
 import { CASE4_PLANO_POINT_TARGET } from './trial_day2_success.js';
+import { CASE4_CALL_CHOMPIRAS_EN, CASE4_CALL_MARUJA_EN } from './witness_calls_en.js';
 
 export const CASE4_DAY2_INTRO_EN: DialogueLine[] = [
   { bg: 'assets/bg_waiting_room.webp', furniture: 'none', speaker: 'NARRADOR', text: 'October 26, 4:00 PM. High Court - Waiting Room.', bgm: 'trial' },
@@ -12,7 +13,8 @@ export const CASE4_DAY2_INTRO_EN: DialogueLine[] = [
   { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_slam', text: 'OBJECTION! Between the delivery of that bottle and the glass that was poured stood another room and other hands.', sfx: 'desk_slam' },
   { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_point', text: 'Prove it, counselor.' },
   { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_idle', text: 'That is what I came for. Yesterday I took one hypothesis apart; today I have time for the second.' },
-  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_neutral', text: 'We will hear whoever saw that bottle opened. And I want to know why this room heard a shot at an hour when there was nobody left to shoot.' }
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_neutral', text: 'We will hear whoever saw that bottle opened. And I want to know why this room heard a shot at an hour when there was nobody left to shoot.' },
+  ...CASE4_CALL_MARUJA_EN
 ];
 
 const PLANO_HALF_EN: DialogueLine[] = [
@@ -41,7 +43,8 @@ const RUTA_EN: DialogueLine[] = [
   { speaker: 'SUPER SAM', text: 'Fine. That explains the noise. But the noise poisoned nobody! Still nobody is telling me who put something in that wine!', pose: 'supersam_slam', sfx: 'desk_slam' },
   { speaker: 'DEFENSA', text: 'You are right. And that is why you cannot tell me the only man who could touch it was the man who carried it. Miss: you left the guest of 204 alone with that bottle.', pose: 'donramon_idle' },
   { speaker: 'MARUJA', text: '...Yes. That little while I did not see.', pose: 'maruja_nerviosa' },
-  { speaker: 'DEFENSA', text: 'Nobody saw it. And that is exactly where the prosecution stopped counting.', pose: 'donramon_point' }
+  { speaker: 'DEFENSA', text: 'Nobody saw it. And that is exactly where the prosecution stopped counting.', pose: 'donramon_point' },
+  ...CASE4_CALL_CHOMPIRAS_EN
 ];
 
 const PLANO_EN: PointTargetContradiction = {

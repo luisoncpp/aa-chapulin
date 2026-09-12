@@ -5,6 +5,7 @@
 
 import type { DialogueLine, Testimony } from '../../../types/index.js';
 import { CASE4_CADENA_POINT_TARGET, CASE4_D1_T1_POINT_SUCCESS } from './trial_day1_success.js';
+import { CASE4_CALL_CECILIO } from './witness_calls.js';
 
 export const CASE4_TRIAL_INTRO: DialogueLine[] = [
   { bg: 'assets/bg_waiting_room.webp', furniture: 'none', speaker: 'NARRADOR', text: '25 de octubre, 3:00 PM. Tribunal Superior - Sala de Espera.', bgm: 'trial' },
@@ -15,7 +16,8 @@ export const CASE4_TRIAL_INTRO: DialogueLine[] = [
   { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_point', text: 'Ese hombre entró a esa suite porque el hotel lo mandó a trabajar. Con orden escrita y con hora.' },
   { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_point', text: 'Una orden de trabajo explica la puerta, counselor. No explica el cadáver.' },
   { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_idle', text: 'Todavía no. Pero explica por qué el único sospechoso de la fiscalía llegó armado con una llave de tuercas.' },
-  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_neutral', text: 'Las dos observaciones son pertinentes. Escucharemos primero cómo se encontró esa puerta.' }
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_neutral', text: 'Las dos observaciones son pertinentes. Escucharemos primero cómo se encontró esa puerta.' },
+  ...CASE4_CALL_CECILIO
 ];
 
 export const CASE4_TESTIMONY_1: Testimony = {

@@ -5,6 +5,7 @@
 
 import type { DialogueLine, Testimony } from '../../../types/index.js';
 import { CASE3_T1_SUCCESS } from './trial_day1_success.js';
+import { CASE3_CALL_SARGENTO } from './witness_calls.js';
 
 export const CASE3_TRIAL_INTRO: DialogueLine[] = [
   { bg: 'assets/bg_waiting_room.webp', furniture: 'none', speaker: 'NARRADOR', text: '16 de septiembre, 6:00 PM. Tribunal Superior - Sala de Espera.', bgm: 'trial' },
@@ -14,7 +15,8 @@ export const CASE3_TRIAL_INTRO: DialogueLine[] = [
   { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_slam', text: '¡PROTESTO! ¡Con permisito, dijo Monchito!', sfx: 'desk_slam' },
   { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_point', text: 'La defensa sostiene que en esa cabina no se cometió ningún crimen.' },
   { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_shock', text: '¿Cómo que no...? ¡Si ahí estaba la víctima!' },
-  { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_idle', text: 'Ahí estaba la víctima, señor Juez. Que no es lo mismo.' }
+  { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_idle', text: 'Ahí estaba la víctima, señor Juez. Que no es lo mismo.' },
+  ...CASE3_CALL_SARGENTO
 ];
 
 export const CASE3_TESTIMONY_1: Testimony = {

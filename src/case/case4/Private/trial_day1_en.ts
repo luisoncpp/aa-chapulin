@@ -3,6 +3,7 @@
 
 import type { DialogueLine, PointTargetContradiction, Testimony } from '../../../types/index.js';
 import { CASE4_CADENA_POINT_TARGET } from './trial_day1_success.js';
+import { CASE4_CALL_CECILIO_EN, CASE4_CALL_SARGENTO_EN } from './witness_calls_en.js';
 void CASE4_CADENA_POINT_TARGET;
 
 export const CASE4_TRIAL_INTRO_EN: DialogueLine[] = [
@@ -14,7 +15,8 @@ export const CASE4_TRIAL_INTRO_EN: DialogueLine[] = [
   { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_point', text: 'That man walked into that suite because the hotel sent him to work. With a written order and an hour on it.' },
   { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_point', text: 'A work order explains the door, counselor. It does not explain the corpse.' },
   { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_idle', text: 'Not yet. But it explains why the prosecution\'s only suspect showed up armed with a pipe wrench.' },
-  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_neutral', text: 'Both observations stand. We will first hear how that door was found.' }
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_neutral', text: 'Both observations stand. We will first hear how that door was found.' },
+  ...CASE4_CALL_CECILIO_EN
 ];
 
 const POINT_EN: PointTargetContradiction = {
@@ -40,7 +42,8 @@ const T1_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'JUEZ', text: 'Good gracious! Then someone could have acted after the defendant went in?', pose: 'judge_shock' },
   { speaker: 'DEFENSA', text: 'They could. That is what this piece proves. Who did it, not yet.', pose: 'donramon_idle' },
   { speaker: 'SUPER SAM', text: 'And it does not prove the plumber did not slide it with his own hand!', pose: 'supersam_slam', sfx: 'desk_slam' },
-  { speaker: 'DEFENSA', text: 'Correct, prosecutor. So now we review your homicide. It is running late.', pose: 'donramon_idle' }
+  { speaker: 'DEFENSA', text: 'Correct, prosecutor. So now we review your homicide. It is running late.', pose: 'donramon_idle' },
+  ...CASE4_CALL_SARGENTO_EN
 ];
 
 export const CASE4_TESTIMONY_1_EN: Testimony = {

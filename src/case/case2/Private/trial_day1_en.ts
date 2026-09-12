@@ -13,7 +13,14 @@ export const CASE2_TRIAL_INTRO_EN: DialogueLine[] = [
   { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_point', text: 'The defendant was caught red-handed in the vault at 10:00 PM with the crime tool in his hands. I demand a guilty verdict in 3 minutes!' },
   { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_slam', text: 'OBJECTION! The defense will prove this entire case is a frame-up!', sfx: 'desk_slam' },
   { bg: 'assets/bg_defense.webp', speaker: 'CHAPULIN', pose: 'chapulin_point', text: 'Follow the good guys! We will not let an innocent man be condemned!' },
-  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_neutral', text: 'Call the prosecution\'s first witness.' }
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_neutral', text: 'Call the prosecution\'s first witness.' },
+  { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_point', text: 'The prosecution calls Mrs. Florinda Corcuera Villalpando, widow of Matalascallando. And please be brief: every minute of this court costs money!' },
+  { bg: 'assets/bg_witness.webp', speaker: 'FLORINDA', pose: 'florinda_fanning', text: 'If I must. One is not accustomed to lowering oneself to these surroundings, but duty is duty.' },
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_neutral', text: 'Witness, state your name and occupation.' },
+  { bg: 'assets/bg_witness.webp', speaker: 'FLORINDA', pose: 'florinda_idle', text: 'Doña Florinda, manager of the restaurant at Professor Jirafales\'s hacienda. And mother of a boy from a very fine family, in case anyone cares.' },
+  { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_sweat', text: '(Excuse me, said Monchito... please let her not recognize me today.)' },
+  { bg: 'assets/bg_witness.webp', speaker: 'FLORINDA', pose: 'florinda_angry', text: 'You! Riffraff! Riffraff! Since when are YOU a lawyer?' },
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_gavel', text: 'Nobody gets slapped in this courtroom. Witness, proceed with your testimony.', sfx: 'gavel' }
 ];
 
 const T1_SUCCESS: DialogueLine[] = [
@@ -25,7 +32,14 @@ const T1_SUCCESS: DialogueLine[] = [
   { speaker: 'JUEZ', text: 'Good heavens! The power was cut three quarters of an hour earlier?', pose: 'judge_shock' },
   { speaker: 'DEFENSA', text: 'Exactly! Whoever restored power reprogrammed the digital clock to 10:00 PM. The theft began at 9:15 PM in total darkness!', pose: 'donramon_idle' },
   { speaker: 'FLORINDA', text: 'Oh my! Then at 9:15 PM they were already robbing the hacienda?!', pose: 'florinda_shock' },
-  { speaker: 'SUPER SAM', text: 'Grrr... A time gap does not excuse the defendant from cracking the safe. I call Mr. Peterete!', pose: 'supersam_sweat' }
+  { speaker: 'SUPER SAM', text: 'Grrr... A time gap does not excuse the defendant from cracking the safe. I call Mr. Peterete!', pose: 'supersam_sweat' },
+  { speaker: 'PETERETE', text: 'With this honorable court\'s permission. It is always a pleasure to assist justice.', pose: 'peterete_smug' },
+  { speaker: 'JUEZ', text: 'Witness, state your name and occupation.', pose: 'judge_neutral' },
+  { speaker: 'PETERETE', text: 'Peterete: attorney at law, certified appraiser, and chief of security of the hacienda. Three titles, Your Honor, every one of them genuine.', pose: 'peterete_smug' },
+  { speaker: 'DEFENSA', text: 'Three titles. I have fourteen months of unpaid rent and you don\'t see me bragging.', pose: 'donramon_idle' },
+  { speaker: 'CHAPULIN', text: 'My vinyl antennae are vibrating! And that means one of two things...', pose: 'chapulin_idle' },
+  { speaker: 'CHAPULIN', text: '...either there is a villain nearby, or I got them wet again.', pose: 'chapulin_panic' },
+  { speaker: 'JUEZ', text: 'The court will make note of the antennae. Witness, give your testimony.', pose: 'judge_gavel', sfx: 'gavel' }
 ];
 
 export const CASE2_TESTIMONY_1_EN: Testimony = {

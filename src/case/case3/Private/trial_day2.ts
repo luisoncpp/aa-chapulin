@@ -5,13 +5,15 @@
 
 import type { DialogueLine, Testimony } from '../../../types/index.js';
 import { CASE3_T3_SUCCESS } from './trial_day2_success.js';
+import { CASE3_CALL_NONO } from './witness_calls.js';
 
 export const CASE3_DAY2_INTRO: DialogueLine[] = [
   { bg: 'assets/bg_waiting_room.webp', furniture: 'none', speaker: 'NARRADOR', text: '17 de septiembre, 6:00 PM. Tribunal Superior - Sala de Espera.', bgm: 'trial' },
   { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_gavel', text: 'Se reanuda la sesión. El registro del despacho confirmó lo que dijo la defensa: ahí se cometió la agresión.', sfx: 'gavel', bgm: 'trial' },
   { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_slam', text: 'Correction, Your Honor! ¡Confirma que ahí se cometió, no QUIÉN la cometió!', sfx: 'desk_slam' },
   { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_point', text: '¡El acusado tuvo desde las 10:40 hasta las 11:03! ¡Time enough to be money!' },
-  { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_slam', text: 'La defensa llama al operador de la consola de XEVC.', sfx: 'desk_slam' }
+  { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_slam', text: 'La defensa llama al operador de la consola de XEVC.', sfx: 'desk_slam' },
+  ...CASE3_CALL_NONO
 ];
 
 export const CASE3_TESTIMONY_3: Testimony = {

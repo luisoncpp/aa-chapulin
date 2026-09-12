@@ -4,6 +4,7 @@
  */
 
 import type { DialogueLine, Testimony } from '../../../types/index.js';
+import { CASE3_CALL_CHIMOLTRUFIA_EN, CASE3_CALL_SARGENTO_EN } from './witness_calls_en.js';
 
 export const CASE3_TRIAL_INTRO_EN: DialogueLine[] = [
   { bg: 'assets/bg_waiting_room.webp', furniture: 'none', speaker: 'NARRADOR', text: 'September 16, 6:00 PM. High Court - Waiting Room.', bgm: 'trial' },
@@ -14,7 +15,8 @@ export const CASE3_TRIAL_INTRO_EN: DialogueLine[] = [
   { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_point', text: 'The defense maintains that no crime was committed in that booth.' },
   { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_shock', text: 'How do you mean no...? The victim was right there!' },
   { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_idle', text: 'The victim was there, Your Honor. That is not the same thing.' },
-  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_neutral', text: 'Call the prosecution\'s first witness.' }
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_neutral', text: 'Call the prosecution\'s first witness.' },
+  ...CASE3_CALL_SARGENTO_EN
 ];
 
 const T1_SUCCESS: DialogueLine[] = [
@@ -26,7 +28,8 @@ const T1_SUCCESS: DialogueLine[] = [
   { speaker: 'DEFENSA', text: 'And more: the medical report lists RED WOOL FIBERS in the victim\'s hair and neck. Cabina B\'s floor is gray linoleum. Not one red thread there!', pose: 'donramon_point' },
   { speaker: 'SUPER SAM', text: 'Grrr... That proves nothing! They could have fallen earlier!', pose: 'supersam_sweat' },
   { speaker: 'DEFENSA', text: 'Fibers from the blow, Mr. Prosecutor? Señor Barriga was struck lying on red wool. Then they laid him on gray linoleum.', pose: 'donramon_idle' },
-  { speaker: 'JUEZ', text: 'If that\'s true, someone moved the victim... but how? That man weighs as much as two men!', pose: 'judge_thinking' }
+  { speaker: 'JUEZ', text: 'If that\'s true, someone moved the victim... but how? That man weighs as much as two men!', pose: 'judge_thinking' },
+  ...CASE3_CALL_CHIMOLTRUFIA_EN
 ];
 
 export const CASE3_TESTIMONY_1_EN: Testimony = {

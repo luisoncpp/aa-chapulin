@@ -5,6 +5,7 @@
 
 import type { DialogueLine, Testimony } from '../../../types/index.js';
 import { CASE4_D3_T1_ORDEN_SUCCESS, CASE4_ORDEN_POINT_TARGET } from './trial_day3_success.js';
+import { CASE4_CALL_RUFINO } from './witness_calls.js';
 
 export const CASE4_DAY3_INTRO: DialogueLine[] = [
   { bg: 'assets/bg_waiting_room.webp', furniture: 'none', speaker: 'NARRADOR', text: '27 de octubre, 4:00 PM. Tribunal Superior - Sala de Espera.', bgm: 'trial' },
@@ -18,7 +19,8 @@ export const CASE4_DAY3_INTRO: DialogueLine[] = [
   { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_idle', text: 'Lo reconoce, señor juez. Esa coartada es verdadera y no la vamos a discutir. Sólo que cubre el ruido... y el ruido no mató a nadie.' },
   { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_point', text: 'Entonces la fiscalía mantiene su cuenta: el vino salió alterado de las manos que lo transportaron.' },
   { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_sweat', text: '(Tercer día, Don Ramón. Ya nomás falta la botella. Nada más la botella.)' },
-  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_neutral', text: 'Escucharemos al señor Rufián sobre su propia intervención.' }
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_neutral', text: 'Escucharemos al señor Rufián sobre su propia intervención.' },
+  ...CASE4_CALL_RUFINO
 ];
 
 /** Spec §12.1: sin openingPresent; la boleta se lee sin presentar. */

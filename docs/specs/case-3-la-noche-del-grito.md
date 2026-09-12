@@ -252,6 +252,26 @@ export interface AdjournmentDefinition {
 >
 > Dos ajustes del Caso 3 salen de esta regla: `programa_kermes` se entrega en la **plaza** (día 1) y no en la clínica, porque si no las 7 pruebas caerían todas en la Cabina B y la plaza —donde se siembra la manía de dicción de Aniceto, el mecanismo del clímax— quedaría saltable; y el día 3 visita el **Centro de Detención antes que la Delegación**, para que las dos pruebas de la Delegación cierren el día y el peritaje del doctor (que Don Ramón cita en el estrado durante el GIRO 2) no se pueda omitir.
 
+### 6.5 Llamado al estrado antes de cada testimonio
+
+Ningún testimonio arranca en seco. **Todo** testimonio va precedido por un bloque de "llamado al estrado" ([[src/case/case3/Private/witness_calls.ts]]): la fiscalía (o la defensa) llama al testigo, la corte le toma **nombre y ocupación** para el acta, cae un gag de carácter, y el bloque **termina siempre en una línea de `JUEZ`** que ordena rendir el testimonio.
+
+Reglas:
+
+1. El bloque se **agrega al final** del diálogo que el motor reproduce justo antes del testimonio: `intro` del día para el primer testimonio, y el `successDialogue` de la contradicción anterior (o su `followUp`) para los siguientes.
+2. El bloque debe contener al menos una línea **del propio testigo** y cerrar en `JUEZ`. Es contrato verificado por [[tests/case/WitnessCallToStand.test.ts]]; si se reordenan líneas, la última tiene que seguir siendo la del Juez.
+3. **Testigo que vuelve**: no se le vuelve a tomar la identidad. Aniceto, en su segunda comparecencia (día 3), recibe un *recall* corto — "el testigo ya está identificado en actas" — bajo el mismo juramento.
+4. El llamado hereda la cámara del diálogo que lo precede: las líneas no llevan `bg` propio, salvo que el bloque anfitrión ya venga plantando locación.
+
+| Bloque | Testimonio | Se agrega a |
+|---|---|---|
+| `CASE3_CALL_SARGENTO` | D1-T1 El Sargento | `CASE3_TRIAL_INTRO` |
+| `CASE3_CALL_CHIMOLTRUFIA` | D1-T2 La Chimoltrufia | `CASE3_T1_SUCCESS` |
+| `CASE3_CALL_NONO` | D2-T1 Ñoño | `CASE3_DAY2_INTRO` |
+| `CASE3_CALL_ANICETO` | D2-T2 Don Aniceto | `CASE3_T3_SUCCESS` |
+| `CASE3_CALL_BARRIGA` | D3-T1 Señor Barriga | `CASE3_DAY3_INTRO` |
+| `CASE3_RECALL_ANICETO` | D3-T2 Don Aniceto (recall) | `CASE3_T5_SUCCESS` |
+
 ---
 
 ## 7. Guión Detallado: Día 1 — Investigación
@@ -381,6 +401,16 @@ DEFENSA (donramon_slam): ¡PROTESTO! ¡Con permisito, dijo Monchito! [sfx: desk_
 DEFENSA (donramon_point): La defensa sostiene que en esa cabina no se cometió ningún crimen.
 JUEZ (judge_shock): ¿Cómo que no...? ¡Si ahí estaba la víctima!
 DEFENSA (donramon_idle): Ahí estaba la víctima, señor Juez. Que no es lo mismo.
+
+[LLAMADO AL ESTRADO - EL SARGENTO]
+SUPER SAM (supersam_point): ¡La fiscalía llama a su primer testigo: el oficial que levantó la escena! ¡Y que suba corriendo, que cada minuto de este tribunal cuesta dinero!
+SARGENTO (pazguato_saludo): ¡A sus órdenes, mi fiscal! Ya voy, ya voy...
+JUEZ (judge_neutral): Testigo, diga su nombre completo y su ocupación para el acta.
+SARGENTO (pazguato_saludo): Policía Preventiva, señor Juez, grado de sargento. Y mi nombre completo es Sargento Refu...
+SUPER SAM (supersam_slam): ¡STOP! ¡Su nombre completo dura once segundos y once segundos cuestan dinero! ¡Anote "el Sargento" y siga! [sfx: desk_slam]
+SARGENTO (pazguato_sweat): Ahí está, señor Juez. Por eso todos me dicen nomás "el Sargento": es más barato.
+DEFENSA (donramon_idle): (Pobre hombre. A mí me descuentan la renta; a él le descuentan hasta el nombre.)
+JUEZ (judge_gavel): Queda asentado. Sargento, rinda su testimonio. [sfx: gavel]
 ```
 
 ### Testimonio 1: El Sargento — "El hallazgo en la Cabina B"
@@ -420,6 +450,16 @@ DEFENSA (donramon_point): Y hay más. El informe médico reporta FIBRAS ROJAS DE
 SUPER SAM (supersam_sweat): Grrr... ¡Eso no prueba nada! ¡Pudieron caérsele antes!
 DEFENSA (donramon_idle): ¿Las fibras del golpe, señor fiscal? Al Señor Barriga lo golpearon tirado sobre lana roja. Y después lo acostaron en linóleo gris.
 JUEZ (judge_thinking): Si eso es cierto, alguien trasladó a la víctima... ¿pero cómo? ¡Ese hombre pesa lo que dos hombres!
+
+[LLAMADO AL ESTRADO - LA CHIMOLTRUFIA]
+SUPER SAM (supersam_sweat): La fiscalía llama a su segunda testigo. Ella estaba en ese pasillo y ella va a desmentir al Licenciado. ¡Y sea breve, señora: time is money!
+CHIMOLTRUFIA (chimoltrufia_idle): ¡Ay, sí! Fíjese que yo soy bien breve... aunque también soy bien platicadora.
+JUEZ (judge_neutral): Señora, para el acta: su nombre y su ocupación.
+CHIMOLTRUFIA (chimoltrufia_confundida): La Chimoltrufia, para servirle. Y soy locutora de horóscopos de la XEVC... bueno, ayudante de locutora. Bueno, la que hace el café. ¡Como digo una cosa, digo otra!
+JUEZ (judge_thinking): ...¿Y cuál de las tres le anoto?
+CHIMOLTRUFIA (chimoltrufia_idle): Las tres, mi Juez. Total, una sola me pagan.
+DEFENSA (donramon_sweat): (Chanfle. Esta señora se contradice con la que habló antes... y la que habló antes era ella.)
+JUEZ (judge_gavel): Queda asentado... lo que haya quedado. Testigo, proceda con su testimonio. [sfx: gavel]
 ```
 
 ### Testimonio 2: La Chimoltrufia — "El pasillo durante el Grito"
@@ -542,6 +582,15 @@ JUEZ (judge_gavel): Se reanuda la sesión. El registro del despacho confirmó lo
 SUPER SAM (supersam_slam): Correction, Your Honor! ¡Confirma que ahí se cometió, no QUIÉN la cometió! [sfx: desk_slam]
 SUPER SAM (supersam_point): ¡El acusado tuvo desde las 10:40 hasta las 11:03! ¡Time enough to be money!
 DEFENSA (donramon_slam): La defensa llama al operador de la consola de XEVC. [sfx: desk_slam]
+
+[LLAMADO AL ESTRADO - ÑOÑO]
+SUPER SAM (supersam_slam): ¡Objection! ¡Si la defensa lo llama en un minuto, la fiscalía lo llama en treinta segundos! ¡Que suba el muchacho! [sfx: desk_slam]
+JUEZ (judge_neutral): Suba el testigo. Diga su nombre y su ocupación.
+NONO (nono_nervioso): Ñoño, señor Juez... hijo del señor Barriga. Y soy el operador de la consola de la XEVC.
+JUEZ (judge_thinking): ¿Y cuál de las dos le anoto como ocupación: operador, o hijo de la víctima?
+NONO (nono_llorando): Las dos me están saliendo muy mal, señor Juez.
+DEFENSA (donramon_idle): (Ay, muchacho. Yo tengo una hija de tu edad y esa cara me la sé de memoria.)
+JUEZ (judge_gavel): La corte tomará su declaración con paciencia. Proceda, joven. [sfx: gavel]
 ```
 
 ### Testimonio 1: Ñoño — "Yo estaba en la consola"
@@ -579,6 +628,15 @@ DEFENSA (donramon_idle): Significa dos cosas, señor fiscal. Una: nadie sabe a q
 DEFENSA (donramon_slam): ¡Alguien grabó un grito de auxilio con la voz de la víctima ANTES de que la víctima lo necesitara! ¡Esto no fue un pleito, señor Juez: esto se ensayó! [sfx: desk_slam]
 JUEZ (judge_shock): ¡Premeditación! ¡Alguien planeó esto con horas de anticipación!
 SUPER SAM (supersam_point): ¡Y ese alguien tuvo una cabina de grabación toda la noche a su disposición! ¡EL ACUSADO! ¡Llamo a declarar a la otra víctima, don Aniceto Rebollar!
+
+[LLAMADO AL ESTRADO - DON ANICETO]
+JUEZ (judge_neutral): Que pase el testigo. Diga su nombre y su ocupación para el acta.
+ANICETO (aniceto_idle): Aniceto Rebollar, locutor titular de la XEVC. Veinticinco años al aire, señor Juez, sin faltar una noche.
+SUPER SAM (supersam_point): ¡The star announcer! ¡El de la voz de oro! ¡Míster Re-BÓ-llar!
+ANICETO (aniceto_idle): Rebollár, señor fiscal. Aguda. Termina en erre, y toda palabra terminada en erre carga la fuerza al final. "Re-BÓ-llar" lo dicen los que leen de corrido sin entender lo que leen.
+SUPER SAM (supersam_sweat): ...Grrr.
+CHAPULIN (chapulin_idle): ¡Chanfle! Al fiscal le acaban de descontar una sílaba.
+JUEZ (judge_gavel): Señor Rebollar, con la dicción que usted guste: rinda su testimonio. [sfx: gavel]
 ```
 
 ### Testimonio 2: Don Aniceto Rebollar — "Lo que sufrí en la bodega"
@@ -715,11 +773,21 @@ DEFENSA (donramon_idle): Que la voz de ese cartucho, sargento, nunca fue la del 
 JUEZ (judge_gavel): Se reanuda la sesión. La corte ha sido informada de que la víctima recuperó el conocimiento. [sfx: gavel, bgm: trial]
 SUPER SAM (supersam_slam): ¡Y la fiscalía lo llama de inmediato al estrado! ¡Que la víctima señale a su agresor y nos vamos a comer! [sfx: desk_slam]
 DEFENSA (donramon_idle): (Que hable. Es justo lo que necesito.)
+
+[LLAMADO AL ESTRADO - SEÑOR BARRIGA]
+JUEZ (judge_neutral): Que pase la víctima. La corte autoriza que declare sentado.
+NARRADOR: (Dos enfermeros empujan la silla de ruedas hasta el estrado. La sala entera se queda callada.)
+BARRIGA (barriga_vendado): Buenas tardes. Perdonen que no me ponga de pie.
+JUEZ (judge_neutral): Nadie se lo pide, señor. Para el acta: su nombre y su ocupación.
+BARRIGA (barriga_vendado): Barriga. Dueño y director de la radiodifusora XEVC... y casero, señor Juez. Aunque hoy vengo nomás de víctima.
+DEFENSA (donramon_sweat): (De todos los estrados del mundo, me tenía que tocar interrogar al mío.)
+JUEZ (judge_gavel): La corte agradece su esfuerzo, señor Barriga. Rinda su testimonio. [sfx: gavel]
 ```
 
 ### Testimonio 1: Señor Barriga — "El nombre que nunca dije"
 - **Testigo**: Señor Barriga en silla de ruedas (`barriga_vendado`). **BGM**: `cross_exam_moderato`.
 - **Nota de tono**: Barriga es un testigo **honesto**. Todo lo que dice es verdad. Su error no es mentir: es confiar.
+- **Nota de pose**: el llamado al estrado ya lo trae en silla de ruedas, así que **desde su primera línea** y hasta el epílogo todas sus poses son de la familia de herido (`barriga_vendado`, `barriga_shock`); `barriga_idle` no aparece en el día 3 (§17).
 
 ```dialogue
 [DECLARACIÓN DEL TESTIGO]
@@ -756,6 +824,14 @@ BARRIGA (barriga_shock): No... No, no, no. Licenciado, usted no entiende. Yo a e
 DEFENSA (donramon_idle): Lo sé, señor Barriga. Por eso le confió también el secreto. Y por eso... es el único que pudo usarlo.
 SUPER SAM (supersam_slam): ¡OBJECTION! ¡La fiscalía no permitirá que se linche a una víctima con un nudo mal hecho! ¡Que el señor Rebollar suba a defenderse! [sfx: desk_slam]
 ANICETO (aniceto_sweat): Con mucho gusto, señor fiscal. Con muchísimo gusto.
+
+[LLAMADO AL ESTRADO - DON ANICETO (RECALL)]
+JUEZ (judge_neutral): El tribunal llama de nuevo al estrado a don Aniceto Rebollar. El testigo ya está identificado en actas.
+ANICETO (aniceto_sweat): Identificado, sí. Aunque hoy me llaman con otro tono, y el tono también queda en actas.
+SUPER SAM (supersam_point): ¡Mismo testigo, mismo juramento, mismo minuto! ¡La fiscalía no paga horas extras!
+DEFENSA (donramon_idle): Don Aniceto, yo no vine a quitarle sus veinticinco años. Vine a que me explique una noche.
+ANICETO (aniceto_sweat): Una noche. Naturalmente. Pregunte, Licenciado: yo hablo bonito hasta cuando me acusan.
+JUEZ (judge_gavel): Bajo el mismo juramento, señor Rebollar. Rinda su nuevo testimonio. [sfx: gavel]
 ```
 
 ### Testimonio 2: Don Aniceto Rebollar — "Veinticinco años de voz"
@@ -996,7 +1072,7 @@ Ninguna pista se introduce sin pagar. Verificación pieza por pieza:
 
 | Elemento sembrado | Dónde se siembra | Dónde se cobra |
 |---|---|---|
-| Manía de Aniceto de corregir la dicción | D1 Plaza (chiste) y D2 Despacho (repetición) | Clímax: no puede dejar pasar *"el Chango del Ocho"* |
+| Manía de Aniceto de corregir la dicción | D1 Plaza (chiste), D2 Despacho (repetición) y D2-T2 llamado al estrado (corrige a Super Sam: *"Rebollár, aguda"*) | Clímax: no puede dejar pasar *"el Chango del Ocho"* |
 | Refranes mal citados del Chapulín | D1 Plaza, D2 Despacho, Epílogo | Clímax: el hábito se aplica a la frase del sketch, no a un refrán popular |
 | Sketch "El Casero Cascarrabias" | D3 Bodega (`cinta_sketch`) y D1 (el Juez lo menciona de pasada) | Clímax etapa 3 |
 | Ventilador descompuesto / cuña de la ventana | D1 Cabina B (`ventana_cabina`) | D3-T2: derrumba "la cabina es hermética" |
@@ -1033,7 +1109,7 @@ Ninguna pista se introduce sin pagar. Verificación pieza por pieza:
 | **La Chimoltrufia** | *"¡Como digo una cosa, digo otra!"*, *"¡Ay, qué la canción!"* | La primera se usa como muletilla real, no como chiste aislado: sus declaraciones **se contradicen de verdad**. |
 | **Señor Barriga** | *"¡Tenía que ser el Chavo del Ocho!"* | Es la frase del sketch imitado **y** la trampa del clímax. Debe aparecer idéntica en los tres lugares. |
 | **Doctor Chapatín** | No tiene muletilla fija. Su firma es **conductual**: la bolsa de papel como arma y la furia ante cualquier mención de su edad. | No inventarle catchphrases. Escribirlo por comportamiento, no por frase. |
-| **El Sargento** (Sargento Refugio Pazguato) | *"¡A sus órdenes, mi Licenciado!"*, *"Es que otra vez me descontaron del sueldo."* | Personaje nuevo: en la serie y en el juego todos lo llaman "el Sargento" / "Sargento". Se presenta con su nombre completo una sola vez al inicio pero su nombre común es "el Sargento". |
+| **El Sargento** (Sargento Refugio Pazguato) | *"¡A sus órdenes, mi Licenciado!"*, *"Es que otra vez me descontaron del sueldo."* | Personaje nuevo: en la serie y en el juego todos lo llaman "el Sargento" / "Sargento". Su nombre completo **se dice una sola vez en todo el caso**, en la Cabina B del día 1 ([[src/case/case3/Private/cabina.ts]]). Por eso en el llamado al estrado Super Sam lo corta a media sílaba (*"Sargento Refu..."*) en lugar de repetirlo: el gag sólo funciona si el nombre ya se gastó antes y no se vuelve a gastar. |
 | **Don Aniceto Rebollar** | *"Muy buenas noches tengan todos ustedes..."* | Locución impecable **siempre**, hasta en el colapso. |
 
 ### Los dos refranes mal citados del Chapulín (intocables)

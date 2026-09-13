@@ -44,3 +44,13 @@ Vitest covers state, contradictions, investigation, engine, i18n, and Case 1/2 s
 ## Phase 5: Episode 4 (IMPLEMENTED — catalog & platform hooks)
 
 **Case 4: "Crimen en el Gran Hotel — El Caso del Hotel Buena Vista"** — spec [[docs/specs/case-4-el-caso-del-hotel-buena-vista.md]]. **Implemented in this phase:** isolated evidence catalog ([[src/state/Private/EvidenceCatalogCase4.ts]]), `detailedView` / `pointTarget` types, Present & Point and Acta examine DOM/CSS, splash `#btn-start-case4`, i18n `btnStartCase4`, debug `?case=4`. **Pending:** bilingual scripts in [[src/case/case4/index.ts]], trial/investigation content, asset pipeline for hotel cast and examine plates.
+
+## Phase 6: Series Arc — Case 1 rebuild & Case 5 finale (PROPOSED, not approved)
+
+Connects the five episodes under one through-line without modifying cases 0, 2, 3 or 4, which stay byte-identical. Three planning docs, spoiler-gated:
+
+1. [[docs/plans/arco-general-el-tomo-trece.md]] — canonical arc, non-modification contract, and the four loose ends the existing specs already contain. Read this first; the two case plans depend on it.
+2. [[docs/plans/case-1-reconstruccion-narrativa.md]] — rebuilds Case 1 (today 67 lines, one trial day, no turnabout) into two investigations and two trials with the mechanics invented for Cases 3 and 4. Replaces [[docs/specs/case-1-turnabout-red-grasshopper.md]] under the same filename and `caseId`.
+3. [[docs/plans/case-5-el-tomo-trece.md]] — new final episode, three days, Don Ramón in the dock and El Chapulín as defense counsel. No new engine work expected beyond archived cross-case Court Record entries.
+
+No implementation has started and no approval has been given.

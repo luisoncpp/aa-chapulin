@@ -974,6 +974,7 @@ body {
     min-height: 0;
     overflow-x: clip;
     overflow-y: auto;
+    padding-top: 2px;
     padding-right: 4px;
     scrollbar-width: thin;
 }
@@ -1147,4 +1148,48 @@ body {
 
 #present-point-stage {
     cursor: crosshair;
+}
+
+/* Acta del Juicio — tab bar (rendered only when the case declares profiles) */
+.record-tabs {
+    display: flex;
+    gap: 6px;
+    padding: 0 12px 6px;
+}
+
+.record-tab {
+    flex: 1;
+    font-family: inherit;
+    font-size: 14px;
+    letter-spacing: 1px;
+    padding: 6px 4px;
+    color: #bbb;
+    background: #202b3c;
+    border: 2px solid #556;
+    border-radius: 6px 6px 0 0;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.record-tab:hover {
+    color: #fff;
+    border-color: #ffd700;
+}
+
+.record-tab.active {
+    color: #10161f;
+    background: #ffd700;
+    border-color: #ffd700;
+}
+
+.evidence-card .profile-role {
+    font-size: 11px;
+    color: #9fb0c9;
+    margin-top: 1px;
+}
+
+#evidence-details .profile-role-line {
+    font-size: 13px;
+    color: #9fb0c9;
+    margin: -4px 0 6px;
 }

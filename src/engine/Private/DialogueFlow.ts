@@ -6,7 +6,9 @@
 import type { MidiMusicComposer, SoundEngine } from '../../audio/index.js';
 import { i18n } from '../../i18n/index.js';
 import type { GameStateManager } from '../../state/index.js';
-import type { CaseScript, DialogueLine, EvidenceId, LocationId, SFXName } from '../../types/index.js';
+import type {
+  CaseScript, DialogueLine, EvidenceId, LocationId, ProfileId, SFXName
+} from '../../types/index.js';
 import type { DialogueHistory, HistoryEntry } from './DialogueHistory.js';
 import type { DomElements } from './DomElements.js';
 import type { InvestigationController } from './InvestigationController.js';
@@ -85,6 +87,8 @@ export class DialogueFlow {
     this.applyLineSpeakerAndPose(line);
     this.grantEvidenceIfPresent(line.addEvidence);
     this.updateEvidenceIfPresent(line.updateEvidence);
+    this.grantProfileIfPresent(line.addProfile);
+    this.updateProfileIfPresent(line.updateProfile);
     this.unlockLocationIfPresent(line.unlockLocation);
     if (line.instant) {
       this.deps.typewriter.showImmediately(line.text || '');
@@ -132,6 +136,24 @@ export class DialogueFlow {
     if (!alreadyHeld || !updated) return;
     const item = this.deps.state.allEvidence[evidenceId];
     this.showProgressNotification(i18n.t.notifEvidenceUpdated(item.name));
+  }
+
+  private grantProfileIfPresent(profileId?: ProfileId): void {
+    if (!profileId) return;
+    if (!this.deps.state.addProfile(profileId)) return;
+    const item = this.deps.state.profiles.catalog[profileId];
+    if (item) this.showProgressNotification(i18n.t.notifEvidenceAdded(item.name));
+  }
+
+  // fallow-ignore-next-line complexity
+  private updateProfileIfPresent(profileId?: ProfileId): void {
+    if (!profileId) return;
+    const alreadyHeld = this.deps.state.hasProfile(profileId);
+    if (!alreadyHeld) this.grantProfileIfPresent(profileId);
+    const updated = this.deps.state.updateProfile(profileId);
+    if (!alreadyHeld || !updated) return;
+    const item = this.deps.state.profiles.catalog[profileId];
+    if (item) this.showProgressNotification(i18n.t.notifEvidenceUpdated(item.name));
   }
 
   // fallow-ignore-next-line complexity

@@ -1,7 +1,7 @@
 // @Architecture(descriptionShort="Controls testimony statements, pressing, and contradictions", type="controller", icon="panel")
 import type { MidiMusicComposer, SoundEngine } from '../../audio/index.js';
 import type { GameStateManager, TrialStateSnapshot } from '../../state/index.js';
-import type { CaseScript, DialogueLine, EvidenceId, LocationId, Statement, Testimony } from '../../types/index.js';
+import type { CaseScript, DialogueLine, EvidenceId, ProfileId, LocationId, Statement, Testimony } from '../../types/index.js';
 import type { DomElements } from './DomElements.js';
 import {
   indexInVisible,
@@ -19,6 +19,7 @@ import {
   afterTrialIntro, getTrialPresentPrompt, handleTestimonyPresent,
   hasPendingTrialPresent, rebindTrialPresentScript
 } from './TrialPresent.js';
+import { handleProfilePresent, isAwaitingProfile } from './ProfilePresent.js';
 import { isPresentPointOpen } from './PresentPoint.js';
 import { visibleStatements } from './StatementUnlock.js';
 import { restoreTrialFromSnapshot } from './TrialRestore.js';
@@ -177,6 +178,12 @@ export class TrialController {
       this.renderCurrentStatement();
     });
   }
+
+  public handlePresentProfile(profileId: ProfileId): void {
+    handleProfilePresent(this, profileId);
+  }
+
+  public isAwaitingProfile(): boolean { return isAwaitingProfile(this); }
 
   public handlePresentEvidence(evidenceId: EvidenceId): void {
     if (this.phase === 'CLIMAX') return handleClimaxEvidencePresent(this, evidenceId);

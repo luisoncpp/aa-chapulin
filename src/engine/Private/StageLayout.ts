@@ -114,6 +114,15 @@ function isSurfaceContactPose(pose: PoseName): boolean {
   return !!pose && pose.includes('slam');
 }
 
+/**
+ * Poses of a body lying on furniture the sprite itself paints (Alma Negra in the clinic
+ * bed). The idle float would lift bed and patient together, reading as a hovering bed
+ * rather than as breathing, so these suppress it exactly like a planted-palms frame.
+ */
+function isRestingPose(pose?: PoseName): boolean {
+  return !!pose && pose.endsWith('_inconsciente');
+}
+
 export function resolveStageFrame(furniture: FurnitureType, pose: PoseName): StageFrameId {
   if (furniture === 'podium') return 'podium';
   if (furniture !== 'bench') return 'plain';
@@ -130,7 +139,7 @@ export function applyStageFrame(
   const style = gameScreenEl.style;
   const height = frame.characterHeight * characterHeightScale(pose);
   gameScreenEl.dataset.stageFrame = frameId;
-  gameScreenEl.dataset.stageContact = String(frame.surfaceContact);
+  gameScreenEl.dataset.stageContact = String(frame.surfaceContact || isRestingPose(pose));
   style.setProperty('--char-height', toPercent(height));
   style.setProperty('--char-baseline', toPercent(frame.characterBaseline));
   style.setProperty('--char-layer', String(frame.characterLayer));

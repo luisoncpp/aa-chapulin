@@ -6,7 +6,7 @@
 import type { MidiMusicComposer } from '../../audio/index.js';
 import { i18n } from '../../i18n/index.js';
 import type {
-  CaseScript, ClimaxDefinition, ClimaxStage, DialogueLine, EvidenceId, Testimony
+  CaseScript, ClimaxDefinition, ClimaxStage, DialogueLine, EvidenceId, ProfileId, Testimony
 } from '../../types/index.js';
 import type { DomElements } from './DomElements.js';
 import { startPresentPoint } from './PresentPoint.js';
@@ -50,6 +50,45 @@ export function getClimaxStages(climax: ClimaxDefinition): ClimaxStage[] {
   return [{ presentTarget: climax.presentTarget, successDialogue: climax.verdict }];
 }
 
+export function currentClimaxStage(ctrl: ClimaxControllerPort): ClimaxStage {
+  const stages = getClimaxStages(ctrl.script.trial.climax);
+  const idx = Math.min(Math.max(ctrl.climaxStageIdx, 0), stages.length - 1);
+  return stages[idx];
+}
+
+/**
+ * Person-shaped climax stage (spec §13.1). A wrong person costs a point and
+ * repeats the question without revealing the answer.
+ */
+export function presentClimaxProfile(ctrl: ClimaxControllerPort, profileId: ProfileId): void {
+  if (ctrl.climaxChoiceIdx != null) return;
+  ctrl.hideControls();
+  const climax = ctrl.script.trial.climax;
+  const deps = climaxRunDeps(ctrl);
+  const stageIdx = ctrl.climaxStageIdx;
+  const stage = getClimaxStages(climax)[stageIdx];
+  if (!stage?.profileTarget?.includes(profileId)) {
+    applyWrongClimaxProfile(deps, stage?.failDialogue);
+    return;
+  }
+  continueOrPoint(ctrl, { climax, stageIdx, stage, onChoiceSelect: (id) => ctrl.handleSelectChoice(id) }, deps);
+}
+
+function applyWrongClimaxProfile(deps: ClimaxRunDeps, failDialogue?: DialogueLine[]): void {
+  applyPenaltyEffects(deps);
+  queuePenaltyOrRestart(deps, /*onContinue*/ () => {
+    const reopen = /*reopenOnProfiles*/ () => {
+      VisualEffects.showNotification(deps.dom.gameNotificationEl, i18n.t.notifIncorrectProfile);
+      deps.onOpenCourtRecord(/*isTrialPresent=*/ true);
+    };
+    if (!failDialogue?.length) {
+      reopen();
+      return;
+    }
+    deps.onQueueDialogue(failDialogue, reopen);
+  });
+}
+
 function applyClimaxSession(ctrl: ClimaxControllerPort, result: ClimaxSession): void {
   ctrl.climaxStageIdx = result.stageIdx;
   ctrl.climaxChoiceIdx = result.choiceIdx;
@@ -66,7 +105,7 @@ export function presentClimaxEvidence(
   const deps = climaxRunDeps(ctrl);
   const stageIdx = ctrl.climaxStageIdx;
   if (!climaxStageMatches({ climax, stageIdx, evidenceId }, (id) => deps.state.getEvidenceUpdateStage(id))) {
-    applyWrongClimaxPresent(deps, stageIdx);
+    applyWrongClimaxPresent(deps, getClimaxStages(climax)[stageIdx]?.failDialogue);
     return;
   }
   continueOrPoint(ctrl, { climax, stageIdx, stage: getClimaxStages(climax)[stageIdx], onChoiceSelect: (id) => ctrl.handleSelectChoice(id) }, deps);
@@ -94,19 +133,25 @@ function climaxStageMatches(
   const stages = getClimaxStages(session.climax);
   const idx = Math.min(Math.max(session.stageIdx, 0), stages.length - 1);
   const stage = stages[idx];
-  if (!stage.presentTarget.includes(session.evidenceId)) return false;
+  if (!stage.presentTarget?.includes(session.evidenceId)) return false;
   const minStage = stage.requiredUpdateStage?.[session.evidenceId];
   if (minStage != null && getUpdateStage(session.evidenceId) < minStage) return false;
   return true;
 }
 
-function applyWrongClimaxPresent(deps: ClimaxRunDeps, stageIdx: number): ClimaxSession {
+function applyWrongClimaxPresent(deps: ClimaxRunDeps, failDialogue?: DialogueLine[]): void {
   applyPenaltyEffects(deps);
   queuePenaltyOrRestart(deps, /*onContinue*/ () => {
-    VisualEffects.showNotification(deps.dom.gameNotificationEl, i18n.t.notifIncorrectClue);
-    deps.onOpenCourtRecord(/*isTrialPresent=*/ true);
+    const reopen = /*reopenRecord*/ () => {
+      VisualEffects.showNotification(deps.dom.gameNotificationEl, i18n.t.notifIncorrectClue);
+      deps.onOpenCourtRecord(/*isTrialPresent=*/ true);
+    };
+    if (!failDialogue?.length) {
+      reopen();
+      return;
+    }
+    deps.onQueueDialogue(failDialogue, reopen);
   });
-  return { stageIdx, choiceIdx: null };
 }
 
 function isFinalClimaxStage(climax: ClimaxDefinition, stageIdx: number): boolean {

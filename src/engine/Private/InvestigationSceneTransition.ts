@@ -8,6 +8,7 @@ import type { MidiMusicComposer, SoundEngine } from '../../audio/index.js';
 import type { GameStateManager } from '../../state/index.js';
 import type { CaseScript, DialogueLine, GameFlags, InvestigationScene, LocationId, PoseName, SceneIntro } from '../../types/index.js';
 import type { DomElements } from './DomElements.js';
+import { applyStageFrame } from './StageLayout.js';
 import { VisualEffects } from './VisualEffects.js';
 import { prepareSceneVisuals } from './VisualWarmup.js';
 
@@ -63,6 +64,10 @@ export function resolveSceneIdlePose(
 export function applySceneIdlePose(dom: DomElements, idlePose: PoseName | null): void {
   if (idlePose) {
     VisualEffects.setPose(dom.charSpriteEl, idlePose);
+    // The idle pose outlives the dialogue that staged it, so the frame must be
+    // re-projected here too: otherwise the resting pose keeps the breathing float
+    // left behind by the previous line.
+    applyStageFrame(dom.gameScreen, 'plain', /*pose=*/ idlePose);
     return;
   }
   VisualEffects.hideCharacter(dom.charSpriteEl);

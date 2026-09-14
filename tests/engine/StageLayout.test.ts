@@ -146,6 +146,15 @@ describe('StageLayout composition frames', () => {
     expect(dom.gameScreen.style.getPropertyValue('--furniture-baseline')).toBe('0.00%');
   });
 
+  it('suppresses the idle float for a body lying in the clinic bed', () => {
+    const dom = setupDomHarness();
+    applyStageFrame(dom.gameScreen, 'plain', 'almanegra_inconsciente');
+    expect(dom.gameScreen.dataset.stageContact).toBe('true');
+
+    applyStageFrame(dom.gameScreen, 'plain', 'almanegra_vendado');
+    expect(dom.gameScreen.dataset.stageContact).toBe('false');
+  });
+
   it('stages Doctor Chapatín shorter so the witness podium is not swallowed', () => {
     const dom = setupDomHarness();
     applyStageFrame(dom.gameScreen, 'podium', 'chapatin_enojado');

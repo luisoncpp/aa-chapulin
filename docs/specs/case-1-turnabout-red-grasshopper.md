@@ -1,6 +1,6 @@
 # Caso 1: El Juicio del Chapulín Colorado — La Chicharra de Oro
 
-> **Estado: reescritura completa (propuesta).** Sustituye la versión de 67 líneas de este mismo archivo, conservando `caseId` (`case1`), nombre de archivo y los `EvidenceId` heredados. El código vigente en [[src/case/case1/]] todavía implementa la versión anterior (una jornada, tres contradicciones en línea recta); la versión antigua sigue disponible en el historial de git. Esta reescritura ejecuta [[docs/plans/case-1-reconstruccion-narrativa.md]] con tres ajustes aprobados por el autor: **90 minutos** en lugar de 70–85, **tres testigos distintos en el estrado** en lugar de uno solo recurrente, y un **Acta de Personajes** (mecánica nueva, §6).
+> **Estado: implementada.** El guion, la mecánica y las pruebas de esta reescritura viven ya en [[src/case/case1/index.ts]]; la versión anterior (una jornada, tres contradicciones en línea recta) sigue disponible en el historial de git. **Falta únicamente el arte de §18** —tres fondos, la familia Alma Negra, seis láminas, cinco iconos de prueba y siete de persona— y el recorrido cronometrado de §22. Mientras no exista ese arte, las cajas de los dos señalamientos son estimaciones: hay que volver a medirlas sobre el WebP generado ([[docs/lessons-learned/present-point-cover-crop.md]]). Esta reescritura ejecuta [[docs/plans/case-1-reconstruccion-narrativa.md]] con tres ajustes aprobados por el autor: **90 minutos** en lugar de 70–85, **tres testigos distintos en el estrado** en lugar de uno solo recurrente, y un **Acta de Personajes** (mecánica nueva, §6).
 
 Configurado en [[src/case/case.group.md]]. Dirección de arte: [[docs/specs/artistic-direction.md]].
 
@@ -103,12 +103,12 @@ Las horas de autor **no son hechos judiciales**: la columna derecha dice hasta d
 
 ## 5. Acta del Juicio — Pruebas
 
-Trece entradas. Doce se presentan durante los contrainterrogatorios y el clímax; `insignia_abogado` sólo en el `openingPresent` del día 1. Los `EvidenceId` marcados *(heredado)* ya existen en [[src/state/Private/EvidenceCatalog.ts]] y **no se renombran**: en particular la fotografía es `foto_crimen`, no `foto_sospechoso`.
+Trece entradas. Doce se presentan durante los contrainterrogatorios y el clímax; `insignia_abogado` no se presenta nunca en este caso: la insignia sólo se pide en el tutorial (Caso 0), y repetirlo en cada juicio corta el ritmo. Los `EvidenceId` marcados *(heredado)* ya existen en [[src/state/Private/EvidenceCatalog.ts]] y **no se renombran**: en particular la fotografía es `foto_crimen`, no `foto_sospechoso`.
 
 | ID | Obtención | Descripción inicial permitida | Ranura de presentación |
 |---|---|---|---|
-| `insignia_abogado` *(heredado)* | Inicio | Insignia abollada de Don Ramón. Constante de la serie. | `openingPresent` del día 1. Nunca más. |
-| `parte_detencion` **(nueva en Caso 1)** | D1 detención | Parte del 21 de agosto: detención a las 21:07 en la sala 2. Inventario del detenido: un Chipote Chillón, una caja de Pastillas de Chiquitolina, unas Antenitas de Vinil y tres pesos. **Chicharra no localizada.** Museo revisado pieza por pieza. Vehículos del predio: sin registrar. | D1-T1 contradicción. Un `[ACTUALIZAR]` en el `followUp` de D2-T2. |
+| `insignia_abogado` *(heredado)* | Inicio | Insignia abollada de Don Ramón. Constante de la serie. | Ninguna. Sólo se presenta en el tutorial (Caso 0). |
+| `parte_detencion` **(nueva en Caso 1)** | D1 detención | Informe policial del 21 de agosto: detención a las 21:07 en la sala 2. Inventario del detenido: un Chipote Chillón, una caja de Pastillas de Chiquitolina, unas Antenitas de Vinil y tres pesos. **Chicharra no localizada.** Museo revisado pieza por pieza. Vehículos del predio: sin registrar. | D1-T1 contradicción. Un `[ACTUALIZAR]` en el `followUp` de D2-T2. |
 | `chipote_chillon` *(heredado)* | D1 detención | Mazo de vinil suave y goma hueca. Al apretarlo emite un chillido. | D1-T1 `followUp`. |
 | `pastillas_chiquitolina` *(heredado)* | D1 detención | Píldoras que reducen a quien las toma al tamaño de un ratón durante quince minutos. Reducen también lo que la persona lleva puesto o en la mano. | D2-T2 `followUp`. |
 | `antenitas_vinil` *(heredado)* | D1 detención | Detectan la presencia del enemigo. Vibraron a las 20:45 del 21 de agosto. | Clímax, etapa 2. |
@@ -148,8 +148,8 @@ Una segunda pestaña dentro del Acta del Juicio con las fichas de las personas d
 ### 6.1 Reglas de producto
 
 1. **Invisible si está vacía.** La barra de pestañas se renderiza **sólo si** `profiles.length > 0`. Los Casos 0, 2, 3 y 4 no declaran perfiles, así que su Acta se ve exactamente igual que hoy: un solo panel, sin pestañas. Esto es parte del contrato de no modificación de [[docs/plans/arco-general-el-tomo-trece.md]].
-2. **Visible pero no presentable durante el contrainterrogatorio.** En un contrainterrogatorio normal el jugador puede abrir la pestaña de Personajes y leer las fichas, pero la tarjeta de un personaje **no muestra el botón `¡Presentar Prueba!`**. Abrir el Acta con `📜 PRESENTAR` y quedarse en esa pestaña no consume salud: simplemente no hay botón que pulsar.
-3. **Presentable sólo cuando la corte lo pide.** Cuando el prompt activo espera una persona (`profileTarget`), el Acta se abre **directamente en la pestaña de Personajes**, las tarjetas de prueba quedan sin botón de presentar, y el botón de la ficha dice **`¡Señalar a esta persona!`**. Una persona equivocada cuesta un punto de salud, repite la pregunta y **no revela la respuesta**.
+2. **Visible pero no presentable durante el contrainterrogatorio.** En un contrainterrogatorio normal el jugador puede abrir el Acta y cambiar a la pestaña de Personajes para leer las fichas, pero la tarjeta de un personaje **no muestra el botón `¡Presentar Prueba!`**. Abrir el Acta con `📜 PRESENTAR` y quedarse en esa pestaña no consume salud: simplemente no hay botón que pulsar.
+3. **Presentación enfocada.** Cuando hay un prompt activo, la barra de pestañas se oculta y el Acta muestra directamente la lista del tipo solicitado: pruebas para `evidence` / `presentTarget`, o Personajes para `profileTarget`. En el segundo caso el botón de la ficha dice **`¡Señalar a esta persona!`**. Una persona equivocada cuesta un punto de salud, repite la pregunta y **no revela la respuesta**.
 4. **Las fichas se actualizan durante el caso**, con el mismo contador lineal que las pruebas.
 
 ### 6.2 Esquema
@@ -205,7 +205,7 @@ Todas se entregan en el Día 1 salvo `perfil_almanegra`. Icono: recorte de busto
 | `perfil_supersam` | D1 juicio, apertura | *"Fiscal. Cobra por caso cerrado. Cerró éste en cinco minutos. Hoy subió al estrado sin su bolsa de dólares al hombro."* | **1** (D1, giro 1): *"Se negó a decir dónde estuvo su bolsa de lona la noche del 21 y pidió el aplazamiento él mismo."* |
 | `perfil_tripaseca` | D1 juicio, llamado al estrado | *"Testigo estrella. Comerciante: compra barato y vende lo que se deje. Dice que pasaba por el callejón de carga cerca de las nueve."* | **3.** (1) D1-T2: *"Describió el sonido del golpe como 'un costalazo de fierros'."* (2) D1-T2, giro: *"Dijo haber visto al acusado **parado sobre el pedestal de la vitrina**. Nadie le preguntó cómo sabía que había un pedestal."* (3) D2-T2: *"Sabe que la chapa de la puerta de carga está vencida desde marzo."* |
 | `perfil_florinda` | D1 museo | *"Curadora del Museo de las Curiosidades. Única llave de la puerta principal. Cerró a las 20:40 con el Profesor Jirafales de testigo."* | **1** (D1-T1): *"Llegó a las 21:05 y vio al acusado de pie junto al velador. Es lo único que vio."* |
-| `perfil_jirafales` | D1 museo | *"Conferencista invitado. Dio la charla de las 20:00 sobre la Chicharra. Lleva minutario de todo lo que hace."* | — |
+| `perfil_jirafales` | D1 museo | *"Conferencista invitado y viejo conocido de la vecindad de Don Ramón. Dio la charla de las 20:00 sobre la Chicharra. Lleva minutario de todo lo que hace."* | — |
 | `perfil_almanegra` | D2 clínica | *"Velador del museo. Víctima. Despertó al segundo día. Fractura occipital. Habla como pirata porque, dice, lo fue."* | **1** (D2-T1): *"Su ronda está escrita en una libreta que cuelga de un clavo, a la vista de cualquier visitante."* |
 
 ### 6.5 Ranuras de presentación de persona en el Caso 1
@@ -278,7 +278,7 @@ La comprobación es **sólo de inventario**: nunca mira qué locaciones se visit
 | `updates[]` de descripción | `informe_medico` (2), `parte_detencion` (1), `foto_crimen` (1) | Media |
 | `detailedView` | `vitrina_rota`, `rejilla_ducto`, `foto_crimen`, `bolsa_dolares`, `ficha_museo` | Media |
 | Present & Point | Señalamiento 1 (D2-T2) y 2 (D2-T3) | Baja; ya se enseñó en el Caso 0 |
-| `openingPresent` | Día 1 (`insignia_abogado`), Día 2 (`perfil_almanegra`) | Baja |
+| `openingPresent` | Sólo Día 2 (`perfil_almanegra`); el día 1 entra directo al Testimonio 1 | Baja |
 | **Acta de Personajes** | 7 fichas; 2 ranuras de señalamiento de persona | **Mecánica nueva** (§6) |
 | Aplazamiento (`adjournment`) | Día 1 → Día 2 | Primera vez en orden de juego |
 | Clímax multietapa | 4 etapas | Media |
@@ -341,7 +341,7 @@ DEFENSA: ¿Sellada? [pose: donramon_idle]
 CHAPULIN: Sellada de fábrica. Doce pastillas, doce. Es que la caja anterior se me acabó en junio, por una gotera. [pose: chapulin_idle]
 DEFENSA: No pregunté. [pose: donramon_sweat]
 CHAPULIN: Es que fue una gotera muy injusta. [pose: chapulin_panic]
-NARRADOR: El alguacil entrega a Don Ramón una copia del parte de detención.
+NARRADOR: El alguacil entrega a Don Ramón una copia del informe de detención.
 DEFENSA: (Detenido a las nueve con siete. Chipote, pastillas, antenitas y tres pesos. De la chicharra de oro... nada.) [pose: donramon_idle]
 DEFENSA: (Revisaron el museo pieza por pieza y tampoco apareció. Y los vehículos del predio: "sin registrar". Sin registrar, dice.) [pose: donramon_shock]
 [ENTREGAR parte_detencion]
@@ -378,11 +378,12 @@ FLORINDA: ¡USTED! ¿Usted qué hace aquí? [pose: florinda_angry]
 DEFENSA: Soy el abogado del acusado. [pose: donramon_sweat]
 FLORINDA: ¡Chusma, chusma! ¡Vámonos, profesor, no vaya a ser contagioso! [pose: florinda_angry]
 JIRAFALES: Doña Florinda, por favor. Toda persona tiene derecho a una defensa. Eso está en los libros. [pose: jirafales_idle]
-DEFENSA: Gracias, profesor. ¿Y usted es...? [pose: donramon_idle]
-JIRAFALES: Profesor Inocencio Jirafales, conferencista invitado. Anoche di la charla de las ocho: "La Chicharra Paralizadora: mito y metalurgia". [pose: jirafales_smoking]
-DEFENSA: ¿Y a qué hora terminó? [pose: donramon_idle]
+JIRAFALES: Y además es un vecino, Doña Florinda. Buenos días, Don Ramón. [pose: jirafales_smoking]
+DEFENSA: ¡Profesor Jirafales! ¿Usted por aquí? [pose: donramon_idle]
+JIRAFALES: Anoche di aquí la charla de las ocho: "La Chicharra Paralizadora: mito y metalurgia". [pose: jirafales_smoking]
+DEFENSA: (Que no saque lo de la renta, que no saque lo de la renta...) ¿Y a qué hora terminó, profesor? [pose: donramon_sweat]
 JIRAFALES: A las ocho treinta con cuatro segundos. Traigo minutario. [pose: jirafales_idle]
-DEFENSA: (Este señor le pone hora hasta a los segundos. De algo me va a servir.) [pose: donramon_idle]
+DEFENSA: (Sigue igual que siempre: le pone hora hasta a los segundos. De algo me va a servir.) [pose: donramon_idle]
 [ENTREGAR-PERFIL perfil_florinda]
 [ENTREGAR-PERFIL perfil_jirafales]
 ~~~
@@ -506,14 +507,14 @@ JIRAFALES: Licenciado, si de veras quiere ayudar a su cliente, vaya a la clínic
 
 ---
 
-### 9.3 Locación 3: Clínica (`clinica`, `bg_clinica.webp`)
+### 9.3 Locación 3: Clínica (`clinica`, `bg_clinica_cuarto6.webp`)
 
-- **Personajes:** sólo `almanegra_inconsciente` (pose acostada, sin diálogo).
+- **Personajes:** ninguno como sprite persistente; Alma Negra está pintado en el fondo para que Examinar no lo oculte.
 - **Música:** `detention_center` (mismo criterio que el Caso 3 para una víctima en coma).
 
 ~~~dialogue
-NARRADOR: 22 de agosto, 12:00 PM. Clínica municipal, cuarto 6. [bg: bg_clinica; furniture: none; bgm: detention_center]
-NARRADOR: En la cama hay un hombre enorme, con parche en el ojo y la cabeza vendada. No se mueve. [pose: almanegra_inconsciente]
+NARRADOR: 22 de agosto, 12:00 PM. Clínica municipal, cuarto 6. [bg: bg_clinica_cuarto6; furniture: none; bgm: detention_center]
+NARRADOR: En la cama hay un hombre enorme, con parche en el ojo y la cabeza vendada. No se mueve.
 DEFENSA: Con que éste es Alma Negra. Parece que lo bajaron de un galeón. [pose: donramon_idle]
 DEFENSA: (Un metro noventa y dos. Con las botas, más. Y a mi cliente le calculo un metro sesenta parado de puntitas.) [pose: donramon_shock]
 ~~~
@@ -570,19 +571,9 @@ SUPER SAM: Your Honor, este caso lo cerré en cinco minutos. FIVE! Un museo cerr
 SUPER SAM: Time is money, y este juicio ya me está costando dinero. [pose: supersam_point]
 DEFENSA: ¡PROTESTO! ¡Con permisito, dijo Monchito! [sfx: desk_slam; cutin: objection_protesto; pose: donramon_slam]
 DEFENSA: Mi cliente estaba adentro porque entró a ayudar, señor juez. Si eso es delito, aquí la mitad de la sala tendría que estar esposada. [pose: donramon_point]
-JUEZ: La corte verificará primero que quien ocupa el estrado de la defensa es litigante autorizado. [pose: judge_neutral]
-~~~
-
-**`openingPresent`: `insignia_abogado`.** Pregunta visible: *"¿Qué acredita a la defensa ante esta corte?"*
-
-~~~dialogue
-DEFENSA: Aquí está, señor juez. [pose: donramon_idle]
-JUEZ: ...La corte observa que la insignia está más abollada que la última vez. [pose: judge_thinking]
-DEFENSA: Es que la última vez también gané, señor juez. [pose: donramon_idle]
-JUEZ: Queda acreditada la defensa. [sfx: gavel; pose: judge_gavel]
+JUEZ: Queda asentado, licenciado. Fiscalía, exponga su teoría. [pose: judge_neutral]
 [ENTREGAR-PERFIL perfil_supersam]
 DEFENSA: (Fiscal Super Sam. Cobra por caso cerrado y hoy subió al estrado sin su bolsa de dólares al hombro. Nunca lo había visto sin ella. Lo apunto, aunque sea por chismoso.) [pose: donramon_idle]
-JUEZ: Fiscalía, exponga su teoría. [pose: judge_neutral]
 SUPER SAM: Simple, Your Honor. El acusado golpeó al velador, reventó la vitrina y se llevó la chicharra. Three steps, one criminal. [pose: supersam_point]
 JUEZ: Entonces esta corte quiere una respuesta clara a una sola pregunta antes que a ninguna otra: **¿con qué se golpeó a ese hombre?** [pose: judge_thinking]
 SUPER SAM: ¡Con el garrote de hule que traía en la mano! ¡La curadora lo vio! [pose: supersam_slam; sfx: desk_slam]
@@ -666,10 +657,10 @@ Pregunta visible: *"¿Qué traía encima el acusado sesenta segundos después?"*
 ~~~dialogue
 DEFENSA: ¡PROTESTO! [sfx: desk_slam; cutin: objection_protesto; pose: donramon_slam]
 DEFENSA: Señor juez, la señora llegó a las nueve y cinco. La policía detuvo a mi cliente a las nueve con siete. [pose: donramon_point]
-DEFENSA: Dos minutos. Y en el parte de detención está, renglón por renglón, todo lo que traía encima: un chipote de vinil, una caja de pastillas, unas antenitas y tres pesos. [pose: donramon_idle]
+DEFENSA: Dos minutos. Y en el informe de detención está, renglón por renglón, todo lo que traía encima: un chipote de vinil, una caja de pastillas, unas antenitas y tres pesos. [pose: donramon_idle]
 DEFENSA: De un kilo doscientos de oro macizo que cabe en las dos manos... **nada**. [pose: donramon_slam; sfx: desk_slam]
 FLORINDA: Pues... pues la escondió. [pose: florinda_shock]
-DEFENSA: ¿Dónde, señora? El mismo parte dice que revisaron el museo pieza por pieza esa noche. Cuatrocientas doce piezas y ni rastro. [pose: donramon_point]
+DEFENSA: ¿Dónde, señora? El mismo informe dice que revisaron el museo pieza por pieza esa noche. Cuatrocientas doce piezas y ni rastro. [pose: donramon_point]
 SUPER SAM: ¡Tuvo dos minutos! ¡En dos minutos yo cierro un caso! [pose: supersam_slam; sfx: desk_slam]
 DEFENSA: En dos minutos usted cierra un caso, señor fiscal. Yo no dudo de su velocidad: dudo de la de mi cliente. [pose: donramon_idle]
 JUEZ: La corte concede que un objeto no localizado no acredita por sí solo la inocencia. [pose: judge_thinking]
@@ -893,7 +884,7 @@ NARRADOR: Una camioneta de redilas bajo una lona encerada. Sin placas, delante n
 DEFENSA: Sin placas. Ni adelante ni atrás, ni calcomanía, ni número de motor legible. [pose: donramon_shock]
 CHAPULIN: ¿Entonces de quién es? [pose: chapulin_idle]
 DEFENSA: De nadie, joven. Ése es el chiste de quitarle las placas a una camioneta. [pose: donramon_idle]
-DEFENSA: (Y en el parte de detención lo dice clarito: "vehículos del predio, sin registrar". Nadie la abrió. Nadie la tocó.) [pose: donramon_sweat]
+DEFENSA: (Y en el informe de detención lo dice clarito: "vehículos del predio, sin registrar". Nadie la abrió. Nadie la tocó.) [pose: donramon_sweat]
 CHAPULIN: ¿Y si la abrimos nosotros? [pose: chapulin_point]
 DEFENSA: Con la orden del juez en la mano, joven. Que yo seré pobre pero no tonto. [pose: donramon_idle]
 ~~~
@@ -1141,14 +1132,11 @@ JUEZ: Ayer esta corte pidió dos cosas: por dónde entró el ladrón y por dónd
 JUEZ: La defensa pide llamar a un testigo propio. Es la primera vez en este juicio. [pose: judge_thinking]
 JUEZ: Antes de permitirlo, esta corte necesita saber **a quién** va a llamar y por qué esa persona está en condiciones de declarar. [pose: judge_neutral]
 CHAPULIN: ¡Don Ramón! ¡Esa respuesta no es una prueba, es una persona! [pose: chapulin_point]
-CHAPULIN: Abra el ACTA DEL JUICIO y cámbiese a la pestaña de **PERSONAS**. Ahí están las fichas de toda la gente del caso. [pose: chapulin_idle]
 ~~~
 
 **`openingPresent` (persona): `perfil_almanegra`.** Pregunta visible: *"¿A quién llama la defensa, y por qué puede declarar?"*
 
 > La petición ocurre **en esta apertura**, no la noche anterior. Don Ramón decide llamar a Alma en `clinica_d2` a las 12:00 (§11.3), cuando la ve despierta y el médico ya firmó el alta. El "anoche" de la línea siguiente es el despertar de Alma, no un anuncio de la defensa.
-
-> **MODO TUTORIAL (`instant: true`):** *Cuando la corte pide una PERSONA, el Acta se abre sola en la pestaña PERSONAS y el botón dice **¡Señalar a esta persona!**. Durante un contrainterrogatorio normal puedes leer las fichas, pero no presentarlas.*
 
 ~~~dialogue
 DEFENSA: A Alma Negra, señor juez. El velador. La víctima. [pose: donramon_point]
@@ -1293,7 +1281,7 @@ c1_d2t2_4 TRIPASECA: Agarró la chicharra y se echó a correr para el vestíbulo
 ~~~dialogue
 DEFENSA: ¡UN MOMENTO! ¿Usted le dijo eso a la policía la noche del veintiuno? [sfx: whoosh; pose: donramon_point]
 TRIPASECA: Se lo dije al señor fiscal en persona. [pose: tripaseca_smug]
-DEFENSA: Qué curioso: en el parte de detención no aparece una sola línea sobre la puerta de carga. [pose: donramon_idle]
+DEFENSA: Qué curioso: en el informe de detención no aparece una sola línea sobre la puerta de carga. [pose: donramon_idle]
 SUPER SAM: ¡Es que el caso ya estaba resuelto! ¡Uno no escribe lo que ya no hace falta! [pose: supersam_sweat]
 DEFENSA: Uno escribe **todo**, señor fiscal. Para eso le pagan. [pose: donramon_idle]
 JUEZ: La corte le pide a la fiscalía que se abstenga de decidir qué hace falta. [pose: judge_neutral]
@@ -1394,10 +1382,10 @@ DEFENSA: Señor juez: el ladrón no rompió la vitrina. El ladrón **creció** d
 NARRADOR: Silencio. Después, el escándalo. [sfx: realization]
 SUPER SAM: ¡¡UN MOMENTO!! ¡¡UN MOMENTO!! [sfx: desk_slam; cutin: objection_un_momento; pose: supersam_slam]
 SUPER SAM: ¡Your Honor! ¡¿Y QUIÉN, en toda esta ciudad, carga pastillas que encogen a la gente?! [pose: supersam_point]
-SUPER SAM: ¡EL ACUSADO! ¡Vienen listadas en su propio parte de detención! ¡La defensa acaba de acusar a su propio cliente! [pose: supersam_slam; sfx: desk_slam]
+SUPER SAM: ¡EL ACUSADO! ¡Vienen listadas en su propio informe de detención! ¡La defensa acaba de acusar a su propio cliente! [pose: supersam_slam; sfx: desk_slam]
 CHAPULIN: ¡Chanfle! ¡Don Ramón, creo que nos ganamos solitos! [pose: chapulin_panic]
 DEFENSA: (Calma. Calma, Don Ramón. Esto ya lo viste venir desde el patio, esta mañana.) [pose: donramon_sweat]
-DEFENSA: ...Señor fiscal, le agradezco que haya traído usted el parte de detención. Me ahorra el viaje. [pose: donramon_idle]
+DEFENSA: ...Señor fiscal, le agradezco que haya traído usted el informe de detención. Me ahorra el viaje. [pose: donramon_idle]
 [ACTUALIZAR parte_detencion]
 DEFENSA: Porque el parte trae un anexo de laboratorio que la fiscalía no leyó. [pose: donramon_point]
 DEFENSA: La caja de pastillas que traía mi cliente venía **sellada de fábrica**. Doce pastillas de doce. Con el precinto entero. [pose: donramon_slam; sfx: desk_slam]
@@ -1919,7 +1907,7 @@ La defensa **nunca** abre señalando personas. Cada bloque ataca **un hecho**. L
 | Podía estar dentro **sin ser visto** | ✗ | ✗ | ✗ | ✗ (es el velador) | ✓ |
 | Conocía la medida de la rejilla | ✗ | ✗ | ✗ | ✗ | ✓ |
 | Tenía acceso a Pastillas de Chiquitolina sin tocar la caja sellada del acusado | ✗ | ✗ | ✗ | ✗ | ✓ |
-| Traía un saco denso de moneda metálica | ✗ (parte de detención) | ✗ | ✗ | ✗ | ✓ |
+| Traía un saco denso de moneda metálica | ✗ (informe de detención) | ✗ | ✗ | ✗ | ✓ |
 | Casimir crema con raya | ✗ | ✗ | ✗ (gris) | ✗ (uniforme) | ✓ |
 | Calzaba 42 | ✗ (38) | ✗ | ✓ | ✓ | ✓ |
 
@@ -1973,7 +1961,7 @@ Tres hilos salen abiertos por decisión de serie y, por decisión del autor, **s
 | "El Tomo Trece" | El Juez pregunta qué es, la fiscalía objeta que es irrelevante para el veredicto y el Juez **le concede la razón en pantalla**. | Queda resuelto *procesalmente*: la corte explica por qué no lo va a resolver. No es un olvido del guion, es una decisión del juez. |
 | Quién escribió la ficha | El Juez la admite en autos **como prueba de un tercero no identificado**, y lo dice con esas palabras al resolver. Los dos rastros que apuntarían a su autor —el membrete de "El Saber Universal, S. A." y el defecto de la "s" caída— se mencionan dos veces en total (el membrete al hallar la tarjeta en el patio, ambos dentro de la lámina) y siempre como descripción física del objeto, nunca como argumento. | La tarjeta ya hizo todo su trabajo probatorio: acredita que los datos se vendieron. Quién los vendió es otro expediente. Nadie invoca el membrete ni la "s" como argumento: son textura de objeto, del mismo rango que el tizne o el listón del expediente. |
 
-**Cobertura de pruebas:** las 13 entradas del Acta tienen al menos una ranura; `insignia_abogado` es constante de la serie y su única ranura es el `openingPresent` del día 1. Las 4 actualizaciones de descripción cambian el valor probatorio de su prueba. Las 7 fichas de persona: 2 se presentan y 5 se leen; ninguna existe sólo de adorno, porque la pestaña es el árbol de descarte de §15.1.
+**Cobertura de pruebas:** las 12 entradas presentables del Acta tienen al menos una ranura; `insignia_abogado` es constante de la serie y no tiene ranura en este caso: se presenta únicamente en el tutorial (Caso 0). Las 4 actualizaciones de descripción cambian el valor probatorio de su prueba. Las 7 fichas de persona: 2 se presentan y 5 se leen; ninguna existe sólo de adorno, porque la pestaña es el árbol de descarte de §15.1.
 
 ---
 
@@ -2038,15 +2026,18 @@ Repetir este bloque **completo** en cada prompt de generación. No se hereda por
 
 ---
 
-### 18.1 Fondos nuevos (3)
+### 18.1 Fondos nuevos (4)
+
+> Lista de trabajo lista para el generador, con el mapeo archivo → módulo que lo referencia: [[docs/specs/case-1-asset-manifest.md]].
 
 | Archivo | Escena | Dirección de arte detallada |
 |---|---|---|
 | `bg_museo_sala2.webp` | Sala 2 del Museo de las Curiosidades, escena del crimen | Sala de museo provinciano mexicano de los setenta, a media mañana. Luz diurna apagada entra por el ventanuco esmerilado y se mezcla con dos lámparas de pared color ámbar. Muros verde botella con zoclo de madera oscura, piso de loseta ajedrezada crema y negro. **Al centro-derecha, una vitrina de cristal reventada** sobre un pedestal de madera barnizada a la altura de la cintura, con el marco metálico doblado **hacia afuera** y una alfombra de esquirlas de vidrio en abanico hacia la puerta de la izquierda. **En el muro del fondo, al ras del zoclo, una rejilla metálica pequeña (18 × 24 cm)** con malla de rombos y cuatro tornillos pintados del color del muro. **En primer plano izquierdo, una jaula de latón volcada** con un perico disecado adentro. Al fondo a la izquierda, un ventanuco alto y angosto de vidrio esmerilado. Cinta amarilla de policía cruzada en el vano. Vitrinas menores con curiosidades absurdas al fondo (un huarache gigante, un molcajete con placa). Sin personajes, sin texto legible. |
 | `bg_patio_carga.webp` | Patio de carga trasero del museo, mañana | Patio de servicio de día nublado. Barda de tabique de dos metros con vidrios rotos encementados en la corona, **salvo un tramo de metro y medio donde faltan**. Piso de cemento agrietado con hierba en las juntas. **A la derecha, una camioneta de redilas de los años cincuenta cubierta con una lona encerada verde olivo, sin placas** (defensas vacías, sin marco de placa). Junto a su llanta trasera, contra la barda, **una bolsa de lona gruesa color crudo, vacía y arrugada**, con un sello estampado en tinta verde. A la izquierda, una **puerta metálica de dos hojas** color gris plomo, entreabierta, con la chapa floja y sin marcas de palanca. Al ras del suelo junto a la puerta, la cara exterior de la misma rejilla de la sala 2. Tambo de basura oxidado en el callejón del fondo. Sin personajes, sin texto legible salvo el sello de la bolsa, ilegible por lejanía. |
 | `bg_pasillo_espejo.webp` | Pasillo del espejo veneciano, une vestíbulo y puerta de carga | Pasillo largo de museo visto en perspectiva de un punto de fuga. Piso de loseta ajedrezada crema y negro. **En el muro largo de la derecha, un espejo veneciano de tres metros con marco tallado dorado envejecido**, que refleja el pasillo completo. Al fondo del pasillo, **la puerta de carga abierta**, con un rectángulo de luz de día y la silueta recortada de una **caja de redilas** de camioneta. En el muro alto de la izquierda, cerca del vestíbulo, **una caja metálica gris de cámara de seguridad atornillada al muro, apuntando hacia el espejo**, con un cable que baja por el muro. Junto a ella, clavada con tachuelas, una hoja de papel con una cuadrícula de fechas y palomitas. Lámparas de pared ámbar. Sin personajes, sin texto legible. |
+| `bg_clinica_cuarto6.webp` | Clínica municipal, cuarto 6, día 1 | Cuarto clínico municipal modesto de los setenta, con paredes verde pálido y cama de hospital blanca. **Alma Negra está inconsciente en la cama, pintado como parte del fondo**, con parche y venda visible en la nuca para que el hotspot siga visible cuando Examinar oculta sprites. **A los pies de la cama, una carpeta de cartón atada con listón**. **Junto a la cama, una silla con rosario y bolsa del mandado con tejido a medias**. Sin UI ni personajes de pie. |
 
-**Fondos reutilizados:** `bg_detention.webp`, `bg_clinica.webp` (clínica, ambas visitas), `bg_courtroom.webp`, `bg_defense.webp`, `bg_judge.webp`, `bg_witness.webp`, `bg_waiting_room.webp`. `bg_museum.webp` (el actual) se conserva para la carátula/splash del caso; la sala 2 jugable pasa a `bg_museo_sala2.webp`.
+**Fondos reutilizados:** `bg_detention.webp`, `bg_clinica.webp` (clínica, visita 2), `bg_courtroom.webp`, `bg_defense.webp`, `bg_judge.webp`, `bg_witness.webp`, `bg_waiting_room.webp`. `bg_museum.webp` (el actual) se conserva para la carátula/splash del caso; la sala 2 jugable pasa a `bg_museo_sala2.webp`.
 
 ---
 
@@ -2061,7 +2052,7 @@ Alma Negra **nunca aparece sano** en el episodio: inconsciente el día 1, vendad
 | `almanegra_vendado` | **Candado de identidad.** Estrado día 2, clínica, epílogo | Busto hasta la cintura. **Cabeza envuelta en venda blanca de gasa**, con un nudo al lado y el parche del ojo **por encima de la venda**. Sentado en silla de ruedas: se ven los mangos cromados del respaldo detrás de los hombros. Expresión serena y un poco aturdida. Una mano apoyada en el aro de la rueda. |
 | `almanegra_shock` | Reacciones en el estrado | Misma silueta vendada y misma silla. Ojo derecho muy abierto, cejas altas, boca abierta en grito, el torso echado hacia adelante y una mano levantada. |
 | `almanegra_sweat` | Presiones incómodas | Misma silueta vendada. Ceño apretado, dos gotas de sudor cómicas en la sien, la mano en la nuca vendada. |
-| `almanegra_inconsciente` | Clínica, día 1 (locación) | **Hoja aparte, celda 1 × 1 de cuerpo completo**, no busto. Acostado boca arriba en una cama de hospital blanca, sábana hasta el pecho, cabeza vendada, parche puesto, brazos a los costados. Ojo cerrado. La pose es **más ancha que alta**: debe **escalarse** dentro del lienzo de 512, nunca recortarse ([[docs/lessons-learned/oversized-full-pose-anchor.md]]). |
+| `almanegra_inconsciente` | Sprite heredado de apoyo | **Hoja aparte, celda 1 × 1 de cuerpo completo**, no busto. La clínica del día 1 ya no depende de esta pose para el examen: la víctima está pintada en `bg_clinica_cuarto6.webp` para que el hotspot del vendaje siga visible cuando el motor oculta sprites. |
 
 **Sprites reutilizados sin cambios:** `donramon_idle / slam / shock / point / sweat / panic`, `chapulin_idle / point / panic / slam`, `supersam_idle / slam / point / sweat / breakdown`, `judge_neutral / gavel / shock / thinking`, `florinda_idle / angry / crying / shock`, `jirafales_idle / smoking / angry`, `tripaseca_smug / sweat / panic / breakdown`.
 

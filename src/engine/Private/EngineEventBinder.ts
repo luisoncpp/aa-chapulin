@@ -28,6 +28,7 @@ export interface EventBinderConfig {
   onOpenCourtRecord: (isTrialPresent: boolean) => void;
   onOpenHistory?: () => void;
   onPresentFromModal: () => void;
+  onPresentProfileFromModal: () => void;
   onToggleLanguage?: () => void;
   onSaveGame?: () => void;
   onLoadGame?: () => void;
@@ -113,7 +114,7 @@ export class EngineEventBinder {
 
   // @Section(Court Record Bindings)
   private static bindCourtRecord(config: EventBinderConfig): void {
-    const { dom, onOpenCourtRecord, onPresentFromModal } = config;
+    const { dom, onOpenCourtRecord, onPresentFromModal, onPresentProfileFromModal } = config;
     dom.btnCourtRecord.addEventListener('click', /*onOpenRecordClick*/ (e) => {
       e.stopPropagation();
       onOpenCourtRecord(/*isTrialPresent=*/ false);
@@ -125,6 +126,15 @@ export class EngineEventBinder {
     dom.presentBtnEl.addEventListener('click', /*onPresentClick*/ (e) => {
       e.stopPropagation();
       onPresentFromModal();
+    });
+    dom.presentProfileBtnEl.addEventListener('click', /*onPresentProfileClick*/ (e) => {
+      e.stopPropagation();
+      onPresentProfileFromModal();
+    });
+    document.addEventListener('keydown', /*onCloseRecordKeyDown*/ (e) => {
+      if (e.code !== 'Escape' || dom.courtRecordModalEl.classList.contains('hidden')) return;
+      if (dom.evidenceExamineModalEl && !dom.evidenceExamineModalEl.classList.contains('hidden')) return;
+      ModalManager.closeCourtRecord(dom);
     });
   }
 

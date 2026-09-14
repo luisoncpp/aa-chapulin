@@ -24,6 +24,11 @@ export type {
   EvidenceExamineZone
 } from './Private/evidence.js';
 
+// @Section(Character Record Types)
+export type { ProfileId, ProfileCatalogMap } from './Private/profile.js';
+// fallow-ignore-next-line unused-type
+export type { ProfileItem } from './Private/profile.js';
+
 // @Section(Game State Types)
 export type {
   Language,

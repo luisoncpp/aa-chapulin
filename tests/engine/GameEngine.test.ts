@@ -43,7 +43,7 @@ describe('GameEngine Coordinator', () => {
     expect(soundEngineInstance.initialized).toBe(true);
     vi.advanceTimersByTime(400);
     expect(dom.startSplashOverlayEl.classList.contains('hidden')).toBe(true);
-    expect(state.currentLocation).toBe('museum');
+    expect(state.currentLocation).toBe('detention');
 
     // Duplicate start click is safely ignored
     expect(() => document.getElementById('btn-start-game')?.click()).not.toThrow();
@@ -57,7 +57,7 @@ describe('GameEngine Coordinator', () => {
       midiComposer: midiComposerInstance
     });
     unstartedEngine.handleAdvance();
-    expect(state.currentLocation).toBe('museum');
+    expect(state.currentLocation).toBe('detention');
   });
 
   it('advances dialogue step by step on handleAdvance', () => {
@@ -207,7 +207,33 @@ describe('GameEngine Coordinator', () => {
       engine.handleAdvance(); // skips typewriter
       engine.handleAdvance(); // advances line
     }
-    // Now testimony 1 is active -> trial controls are revealed
+    // The intro runs through the witness call before T1
+    for (let i = 0; i < 60 && dom.trialNavEl.classList.contains('hidden'); i++) {
+      engine.handleAdvance();
+    }
+    expect(dom.trialNavEl.classList.contains('hidden')).toBe(false);
+  });
+
+  it('closes the characters tab with Escape without losing cross-examination controls', () => {
+    engine.startTrialDebug();
+    vi.advanceTimersByTime(SCENE_FADE_MS * 2);
+
+    for (let i = 0; i < CASE_SCRIPT.trial.intro.length; i++) {
+      engine.handleAdvance();
+      engine.handleAdvance();
+    }
+    for (let i = 0; i < 60 && dom.trialNavEl.classList.contains('hidden'); i++) {
+      engine.handleAdvance();
+    }
+
+    dom.btnCourtRecord.click();
+    dom.tabProfilesEl.click();
+    expect(dom.courtRecordModalEl.classList.contains('hidden')).toBe(false);
+    expect(dom.tabProfilesEl.classList.contains('active')).toBe(true);
+
+    document.dispatchEvent(new KeyboardEvent('keydown', { code: 'Escape' }));
+
+    expect(dom.courtRecordModalEl.classList.contains('hidden')).toBe(true);
     expect(dom.trialNavEl.classList.contains('hidden')).toBe(false);
   });
 
@@ -328,50 +354,41 @@ describe('GameEngine Coordinator', () => {
 
     // Start investigation in English -> English location banner
     engine.startGame();
-    expect(dom.locationBannerEl.textContent).toContain('Museum');
+    expect(dom.locationBannerEl.textContent).toContain('Detention');
 
     // Toggle back to Spanish
     engine.toggleLanguage();
     expect(state.language).toBe('es');
     expect(dom.btnInvExamine.textContent).toContain('Examinar');
-    expect(dom.locationBannerEl.textContent).toContain('Museo');
+    expect(dom.locationBannerEl.textContent).toContain('Detención');
   });
 
-  it('unlocks detention location and shows notification when Florinda mentions El Chapulin', () => {
+  it('unlocks the museum and notifies once the detention topics are exhausted', () => {
     engine.startGame();
     vi.advanceTimersByTime(400);
 
-    expect(state.unlockedLocations).toEqual(['museum']);
+    expect(state.unlockedLocations).toEqual(['detention']);
 
     // Advance opening dialogue
-    for (let i = 0; i < CASE_SCRIPT.investigation.museum.intro.length; i++) {
+    for (let i = 0; i < CASE_SCRIPT.investigation.detention.intro.length; i++) {
       engine.handleAdvance();
       engine.handleAdvance();
     }
 
-    // Complete required opening topic to unlock "about_suspect"
-    state.markTalkCompleted('about_crime');
+    // The third topic is gated on the two that hand over the arrest evidence
+    state.markTalkCompleted('noche_21');
+    state.markTalkCompleted('pertenencias');
 
-    // Open talk menu and choose "Sobre el sospechoso detenido"
     document.getElementById('btn-inv-talk')?.click();
-    const suspectBtn = dom.talkListEl.children[1] as HTMLButtonElement;
-    expect(suspectBtn.textContent).toContain('sospechoso');
-    suspectBtn.click();
+    const museumTopic = dom.talkListEl.children[2] as HTMLButtonElement;
+    expect(museumTopic.textContent).toContain('museo');
+    museumTopic.click();
 
-    // Advance through the dialogue:
-    // Line 1: Super Sam
-    engine.handleAdvance();
-    expect(state.unlockedLocations).toEqual(['museum']);
-
-    // Line 2: Florinda mentions Chapulin in the parrot cage (unlocks detention)
-    engine.handleAdvance(); // advance to line 2
-    expect(state.unlockedLocations).toEqual(['museum', 'detention']);
-    expect(dom.gameNotificationEl.textContent).toContain('Centro de Detención');
-
-    // Line 3: Monchito thought
-    engine.handleAdvance(); // finish typewriter
-    engine.handleAdvance(); // advance to line 3
-    expect(state.unlockedLocations).toEqual(['museum', 'detention']);
+    for (let i = 0; i < 40 && !state.isLocationUnlocked('museo_sala2'); i++) {
+      engine.handleAdvance();
+    }
+    expect(state.unlockedLocations).toEqual(['detention', 'museo_sala2']);
+    expect(dom.gameNotificationEl.textContent).toContain('Museo');
   });
 
   it('starts Case 2 investigation at the detention center', () => {
@@ -420,7 +437,8 @@ describe('GameEngine Coordinator', () => {
     }
 
     expect(dom.courtRecordModalEl.classList.contains('hidden')).toBe(false);
-    expect(dom.presentBtnEl.style.display).toBe('block');
+    // Climax stage 1 asks for a PERSON, so the Acta opens on the profiles tab.
+    expect(dom.presentProfileBtnEl.style.display).toBe('block');
 
     // Player closes court record modal
     dom.btnCloseRecord.click();
@@ -429,7 +447,7 @@ describe('GameEngine Coordinator', () => {
     // Player advances dialogue -> should reopen court record with present option
     engine.handleAdvance();
     expect(dom.courtRecordModalEl.classList.contains('hidden')).toBe(false);
-    expect(dom.presentBtnEl.style.display).toBe('block');
+    expect(dom.presentProfileBtnEl.style.display).toBe('block');
   });
 
   it('shows present button when opening court record from top bar during climax', () => {
@@ -449,7 +467,26 @@ describe('GameEngine Coordinator', () => {
     // Player opens court record from top HUD button
     dom.btnCourtRecord.click();
     expect(dom.courtRecordModalEl.classList.contains('hidden')).toBe(false);
-    expect(dom.presentBtnEl.style.display).toBe('block');
+    expect(dom.presentProfileBtnEl.style.display).toBe('block');
+  });
+
+  it('does not restore a closed climax prompt when the language changes', () => {
+    engine.startTrialDebug();
+    vi.advanceTimersByTime(SCENE_FADE_MS * 2);
+
+    const trial = (engine as unknown as { trial: { startClimax: () => void } }).trial;
+    trial.startClimax();
+    while (!dom.dialogueBoxEl.classList.contains('hidden') && dom.courtRecordModalEl.classList.contains('hidden')) {
+      engine.handleAdvance();
+    }
+
+    dom.btnCloseRecord.click();
+    expect(dom.climaxPresentPromptEl.classList.contains('hidden')).toBe(true);
+
+    engine.toggleLanguage();
+
+    expect(dom.climaxPresentPromptEl.classList.contains('hidden')).toBe(true);
+    expect(dom.courtRecordPresentPromptEl.classList.contains('hidden')).toBe(true);
   });
 });
 

@@ -24,7 +24,7 @@ Successfully refactored monolithic JavaScript files into type-safe deep modules 
 
 ## Phase 2: Automated Testing Suite (IN PROGRESS)
 
-Vitest covers state, contradictions, investigation, engine, i18n, and Case 1/2 scripts. Remaining: raise branch coverage to 90%, `npx fallow audit`, browser playtest of Case 2.
+Vitest covers state, contradictions, investigation, engine, i18n, the character record, save migration, and Case 1/2 scripts. Remaining: raise branch coverage to 90%, `npx fallow audit`, browser playtest of Case 2.
 
 ## Phase 3: Episode 2 & Gameplay Extensions
 
@@ -45,12 +45,12 @@ Vitest covers state, contradictions, investigation, engine, i18n, and Case 1/2 s
 
 **Case 4: "Crimen en el Gran Hotel — El Caso del Hotel Buena Vista"** — spec [[docs/specs/case-4-el-caso-del-hotel-buena-vista.md]]. **Implemented in this phase:** isolated evidence catalog ([[src/state/Private/EvidenceCatalogCase4.ts]]), `detailedView` / `pointTarget` types, Present & Point and Acta examine DOM/CSS, splash `#btn-start-case4`, i18n `btnStartCase4`, debug `?case=4`. **Pending:** bilingual scripts in [[src/case/case4/index.ts]], trial/investigation content, asset pipeline for hotel cast and examine plates.
 
-## Phase 6: Series Arc — Case 1 rebuild & Case 5 finale (PROPOSED, not approved)
+## Phase 6: Series Arc — Case 1 rebuild & Case 5 finale (IN PROGRESS)
 
 Connects the five episodes under one through-line without modifying cases 0, 2, 3 or 4, which stay byte-identical. Three planning docs, spoiler-gated:
 
 1. [[docs/plans/arco-general-el-tomo-trece.md]] — canonical arc, non-modification contract, and the four loose ends the existing specs already contain. Read this first; the two case plans depend on it.
-2. [[docs/plans/case-1-reconstruccion-narrativa.md]] — rebuilds Case 1 (today 67 lines, one trial day, no turnabout) into two investigations and two trials with the mechanics invented for Cases 3 and 4. Replaces [[docs/specs/case-1-turnabout-red-grasshopper.md]] under the same filename and `caseId`.
+2. [[docs/plans/case-1-reconstruccion-narrativa.md]] — rebuilds Case 1 into two investigations and two trials with the mechanics invented for Cases 3 and 4. Replaces [[docs/specs/case-1-turnabout-red-grasshopper.md]] under the same filename and `caseId`. **Implemented:** the full bilingual rewrite ([[src/case/case1/index.ts]]), the isolated Case 1 catalogue pair, the Acta de Personajes ([[docs/flows/character-record-flow.md]]), conditional hotspots, save schema v2 with a v1 migration, and the test suites for all of it. **Pending:** the art called for in spec §18 — three backgrounds, the Alma Negra sprite family, six examine plates, five evidence icons and seven profile icons — plus a timed playthrough against the 85–95 minute target.
 3. [[docs/plans/case-5-el-tomo-trece.md]] — new final episode, three days, Don Ramón in the dock and El Chapulín as defense counsel. No new engine work expected beyond archived cross-case Court Record entries.
 
-No implementation has started and no approval has been given.
+Case 1 is implemented and green against the test suite; Case 5 has not started.

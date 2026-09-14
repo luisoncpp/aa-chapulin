@@ -67,6 +67,24 @@ export function rebindTrialPresentScript(ctrl: TrialController): void {
   if (p.followUp) rebindFollowUpScript(ctrl, p);
 }
 
+/** The opening slot the court is waiting on, if any. Used by [[./ProfilePresent.ts]]. */
+export function getPendingOpening(ctrl: TrialController): OpeningPresent | undefined {
+  return pending.get(ctrl)?.opening;
+}
+
+/** Accepts the opening present and moves on to the day's first testimony. */
+export function resolveOpeningPresent(ctrl: TrialController, opening: OpeningPresent): void {
+  delete slot(ctrl).opening;
+  ctrl.hideControls();
+  ctrl.deps.onQueueDialogue(opening.successDialogue, /*startT1*/ () => {
+    ctrl.startTestimony(0);
+  });
+}
+
+export function openingPenalty(ctrl: TrialController): void {
+  onPresentPenalty(ctrl, reopenRecord(ctrl));
+}
+
 export function afterTrialIntro(ctrl: TrialController): void {
   closePresentPoint(ctrl.deps.dom);
   pending.set(ctrl, {});
@@ -98,22 +116,18 @@ function penaltyHost(ctrl: TrialController): PenaltyHost {
 function tryOpeningPresent(ctrl: TrialController, evidenceId: EvidenceId): boolean {
   const opening = pending.get(ctrl)?.opening;
   if (!opening) return false;
-  if (!opening.evidence.includes(evidenceId)) {
+  if (!opening.evidence?.includes(evidenceId)) {
     onPresentPenalty(ctrl, reopenRecord(ctrl));
     return true;
   }
-  delete slot(ctrl).opening;
-  ctrl.hideControls();
-  ctrl.deps.onQueueDialogue(opening.successDialogue, /*startT1*/ () => {
-    ctrl.startTestimony(0);
-  });
+  resolveOpeningPresent(ctrl, opening);
   return true;
 }
 
 function tryFollowUpPresent(ctrl: TrialController, evidenceId: EvidenceId): boolean {
   const followUp = pending.get(ctrl)?.followUp;
   if (!followUp) return false;
-  if (!followUp.evidence.includes(evidenceId)) {
+  if (!followUp.evidence?.includes(evidenceId)) {
     onPresentPenalty(ctrl, reopenRecord(ctrl));
     return true;
   }
@@ -128,7 +142,7 @@ function tryFollowUpPresent(ctrl: TrialController, evidenceId: EvidenceId): bool
 
 function presentCurrentContradiction(ctrl: TrialController, evidenceId: EvidenceId): void {
   const rule = currentContradiction(ctrl);
-  if (!rule?.evidence.includes(evidenceId)) {
+  if (!rule?.evidence?.includes(evidenceId)) {
     onPresentPenalty(ctrl);
     return;
   }

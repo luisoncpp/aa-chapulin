@@ -86,10 +86,13 @@ describe('TrialClimax waiting-room epilogue', () => {
     expect(dom.dialogueBoxEl.classList.contains('hidden')).toBe(true);
   });
 
-  it('treats Case 1 as a single present stage and Case 2 as three with choices', () => {
+  it('treats Case 1 as four stages and Case 2 as three with choices', () => {
     const case1 = getCaseScript('es', 'case1').trial.climax;
-    expect(case1.stages).toBeUndefined();
+    expect(case1.stages).toHaveLength(4);
     expect(case1.choices).toBeUndefined();
+    // Stage 1 asks for a person, not an exhibit (spec §13.1).
+    expect(case1.stages?.[0].profileTarget).toEqual(['perfil_tripaseca']);
+    expect(case1.stages?.[0].presentTarget).toBeUndefined();
     const case2 = getCaseScript('es', 'case2').trial.climax;
     expect(case2.stages).toHaveLength(3);
     expect(case2.choices).toHaveLength(2);
@@ -97,8 +100,14 @@ describe('TrialClimax waiting-room epilogue', () => {
     expect(case2.stages?.[2].successDialogue.some((l) => l.text.includes('Molde de Cera'))).toBe(true);
   });
 
-  it('fires confetti after Case 1 verdict when there is no epilogue', () => {
-    const climax = getCaseScript('es', 'case1').trial.climax;
+  it('fires confetti after a verdict when the case has no epilogue', () => {
+    // Every shipped case now ends on an epilogue, so the no-epilogue branch
+    // is exercised with a minimal synthetic climax.
+    const climax = {
+      dialogue: [],
+      presentTarget: ['insignia_abogado' as const],
+      verdict: [{ speaker: 'NARRADOR', text: '¡INOCENTE!' }]
+    };
     expect(climax.epilogue).toBeUndefined();
     queueClimaxVictory(climax, {
       dom,

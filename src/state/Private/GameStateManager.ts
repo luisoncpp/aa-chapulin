@@ -12,6 +12,7 @@ import type {
   GameMode,
   Language,
   LocationId,
+  ProfileId,
   TrialDay
 } from '../../types/index.js';
 import { getEvidenceCatalog } from './EvidenceCatalog.js';
@@ -22,6 +23,7 @@ import {
   type EvidenceStageMap
 } from './EvidenceProgress.js';
 import { applyCaseProgressionRules, beginNextTrialDayState } from './GameStateCaseRules.js';
+import { ProfileInventory } from './ProfileInventory.js';
 import { exportGameState, restoreGameState } from './GameStatePersistence.js';
 import { type SaveData, type TrialStateSnapshot } from './SaveManager.js';
 
@@ -46,6 +48,15 @@ export class GameStateManager {
   public inventory: EvidenceId[] = ['insignia_abogado'];
   public flags: GameFlags = { ready_for_trial: false };
   public evidenceUpdateStage: EvidenceStageMap = {};
+  /** Acta de Personajes. Empty for every case that declares no profiles. */
+  public readonly profiles = new ProfileInventory();
+  public debugProfiles: ProfileId[] = [];
+
+  // @Section(Character Record Operations)
+  public addProfile(id: ProfileId): boolean { return this.profiles.add(id); }
+  public updateProfile(id: ProfileId): boolean { return this.profiles.update(id); }
+  public hasProfile(id: ProfileId): boolean { return this.profiles.has(id); }
+  public getProfileDesc(id: ProfileId): string { return this.profiles.getDesc(id); }
 
   // @Section(Hotspot & Progress Tracking)
   public isHotspotExamined(hotspotId: string): boolean {
@@ -134,6 +145,7 @@ export class GameStateManager {
   public setLanguage(lang: Language): void {
     this.language = lang;
     this.allEvidence = getEvidenceCatalog(lang, this.caseId);
+    this.profiles.setCatalog(lang, this.caseId);
   }
 
   // @Section(Penalty & Health)
@@ -160,6 +172,8 @@ export class GameStateManager {
     this.flags = { ready_for_trial: false };
     this.evidenceUpdateStage = {};
     this.allEvidence = getEvidenceCatalog(this.language, script.id);
+    this.profiles.clear();
+    this.profiles.setCatalog(this.language, script.id);
     this.resetHealth();
     this.applyProgressionRules(script);
   }
@@ -186,6 +200,7 @@ export class GameStateManager {
     this.debugUnlockLocations.forEach(/*unlockEach*/ (loc) => {
       this.unlockLocation(loc);
     });
+    this.profiles.saturate(this.debugProfiles);
     this.flags.ready_for_trial = true;
     this.mode = 'TRIAL';
   }

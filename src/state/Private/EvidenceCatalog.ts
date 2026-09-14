@@ -10,6 +10,8 @@ import { CASE3_EVIDENCE_EN, CASE3_EVIDENCE_ES } from './EvidenceCatalogCase3.js'
 import { CASE4_EVIDENCE_EN, CASE4_EVIDENCE_ES } from './EvidenceCatalogCase4.js';
 import { CASE0_EVIDENCE_EN } from './EvidenceCatalogCase0En.js';
 import { CASE0_EVIDENCE_ES } from './EvidenceCatalogCase0Es.js';
+import { CASE1_EVIDENCE_EN } from './EvidenceCatalogCase1En.js';
+import { CASE1_EVIDENCE_ES } from './EvidenceCatalogCase1Es.js';
 
 // @Section(Spanish Evidence Catalog)
 // fallow-ignore-next-line unused-export
@@ -127,15 +129,15 @@ export const EVIDENCE_CATALOG_EN: EvidenceCatalogMap = {
 // fallow-ignore-next-line unused-export
 export const EVIDENCE_CATALOG: EvidenceCatalogMap = EVIDENCE_CATALOG_ES;
 
+const ISOLATED_CATALOGS: Partial<Record<CaseId, Record<Language, EvidenceCatalogMap>>> = {
+  case0: { es: CASE0_EVIDENCE_ES as EvidenceCatalogMap, en: CASE0_EVIDENCE_EN as EvidenceCatalogMap },
+  case1: { es: CASE1_EVIDENCE_ES, en: CASE1_EVIDENCE_EN },
+  case3: { es: CASE3_EVIDENCE_ES as EvidenceCatalogMap, en: CASE3_EVIDENCE_EN as EvidenceCatalogMap },
+  case4: { es: CASE4_EVIDENCE_ES as EvidenceCatalogMap, en: CASE4_EVIDENCE_EN as EvidenceCatalogMap }
+};
+
 export function getEvidenceCatalog(lang: Language = 'es', caseId?: CaseId): EvidenceCatalogMap {
-  if (caseId === 'case0') {
-    return (lang === 'en' ? CASE0_EVIDENCE_EN : CASE0_EVIDENCE_ES) as EvidenceCatalogMap;
-  }
-  if (caseId === 'case3') {
-    return (lang === 'en' ? CASE3_EVIDENCE_EN : CASE3_EVIDENCE_ES) as EvidenceCatalogMap;
-  }
-  if (caseId === 'case4') {
-    return (lang === 'en' ? CASE4_EVIDENCE_EN : CASE4_EVIDENCE_ES) as EvidenceCatalogMap;
-  }
+  const isolated = caseId ? ISOLATED_CATALOGS[caseId] : undefined;
+  if (isolated) return isolated[lang];
   return lang === 'en' ? EVIDENCE_CATALOG_EN : EVIDENCE_CATALOG_ES;
 }

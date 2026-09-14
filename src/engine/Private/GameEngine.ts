@@ -8,7 +8,9 @@ import { midiComposer as defaultMidiComposer, soundEngine as defaultSoundEngine,
 import { CASE_SCRIPT as defaultCaseScript, getCaseScript } from '../../case/index.js';
 import { i18n } from '../../i18n/index.js';
 import { gameState as defaultGameState, type GameStateManager } from '../../state/index.js';
-import type { CaseId, CaseScript, DialogueLine, EvidenceId, Language, LocationId } from '../../types/index.js';
+import type {
+  CaseId, CaseScript, DialogueLine, EvidenceId, Language, LocationId, ProfileId
+} from '../../types/index.js';
 import { handleAdjournment } from './AdjournmentHandler.js';
 import { applyClimaxPresentPrompt } from './ClimaxPresentPrompt.js';
 import { DialogueFlow } from './DialogueFlow.js';
@@ -52,6 +54,7 @@ export class GameEngine {
   private readonly storage?: Storage;
   private hasStarted = false;
   private selectedEvidenceId: EvidenceId | null = null;
+  private selectedProfileId: ProfileId | null = null;
 
   constructor(deps: GameEngineDeps = {}) {
     this.dom = deps.dom ?? getDomElements();
@@ -107,6 +110,7 @@ export class GameEngine {
       onOpenCourtRecord: (isTrial) => this.openCourtRecord(isTrial),
       onOpenHistory: () => openHistoryModal(this.dom, this.dialogue.getHistory()),
       onPresentFromModal: () => this.handlePresentFromModal(),
+      onPresentProfileFromModal: () => this.handlePresentProfileFromModal(),
       onToggleLanguage: () => this.toggleLanguage(),
       onSaveGame: () => this.saveGame(),
       onLoadGame: () => this.loadGame(),
@@ -131,7 +135,8 @@ export class GameEngine {
     this.trial.setScript(this.script);
     rebindPresentPointScript(this.script);
     UiLanguageUpdater.updateUi(this.dom, lang);
-    applyClimaxPresentPrompt(this.dom, this.trial.getPresentPrompt());
+    const isCourtRecordOpen = !this.dom.courtRecordModalEl.classList.contains('hidden');
+    applyClimaxPresentPrompt(this.dom, isCourtRecordOpen ? this.trial.getPresentPrompt() : null);
   }
 
   public toggleLanguage(): void {
@@ -181,11 +186,21 @@ export class GameEngine {
   // @Section(Evidence Presentation Handling)
   private openCourtRecord(isTrialPresent: boolean): void {
     const shouldPresent = isTrialPresent || this.trial.isAwaitingEvidence();
+    const isProfilePresent = shouldPresent && this.trial.isAwaitingProfile();
     applyClimaxPresentPrompt(this.dom, shouldPresent ? this.trial.getPresentPrompt() : null);
     ModalManager.openCourtRecord({
-      dom: this.dom, state: this.state, isTrialPresent: shouldPresent,
-      onSelect: (id) => { this.selectedEvidenceId = id; }
+      dom: this.dom, state: this.state, isTrialPresent: shouldPresent, isProfilePresent,
+      onSelect: (id) => { this.selectedEvidenceId = id; },
+      onSelectProfile: (id) => { this.selectedProfileId = id; }
     });
+  }
+
+  private handlePresentProfileFromModal(): void {
+    if (!this.selectedProfileId) return;
+    const profileId = this.selectedProfileId;
+    ModalManager.closeCourtRecord(this.dom);
+    applyClimaxPresentPrompt(this.dom, null);
+    this.trial.handlePresentProfile(profileId);
   }
 
   private handlePresentFromModal(): void {

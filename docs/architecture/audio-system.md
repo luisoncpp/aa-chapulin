@@ -85,3 +85,4 @@ Modularized into private track collections under `src/audio/Private/tracks/`:
 - **Autoplay Handling**: Audio is muted by default until the player interacts with the start splash overlay or document, avoiding browser console autoplay warnings.
 - **Node Cleanup**: Oscillators and buffer sources call `.stop()` and are garbage-collected automatically once their envelopes finish.
 - **Seamless Switching**: Calling `playTrack()` clears existing playback timers before starting a new track.
+- **Narrative Cue Switching**: Dialogue lines can override the active testimony loop with `objection` at a successful contradiction and `pursuit` at a follow-up turnabout. The cue belongs on the first line of the queued reveal dialogue so the dramatic transition happens before the explanation continues.

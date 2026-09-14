@@ -4,7 +4,7 @@ import { MidiMusicComposer, SoundEngine } from '../../src/audio/index.js';
 import { CASE_SCRIPT, getCaseScript } from '../../src/case/index.js';
 import type { DomElements } from '../../src/engine/Private/DomElements.js';
 import { InvestigationController } from '../../src/engine/Private/InvestigationController.js';
-import { resolveSceneIdlePose } from '../../src/engine/Private/InvestigationSceneTransition.js';
+import { applySceneIdlePose, resolveSceneIdlePose } from '../../src/engine/Private/InvestigationSceneTransition.js';
 import { GameStateManager } from '../../src/state/index.js';
 import type { InvestigationScene } from '../../src/types/index.js';
 import { FakeAudioContext } from '../fakes/FakeAudioContext.js';
@@ -113,13 +113,13 @@ describe('Investigation Scene Revisit Idle Pose', () => {
 
   describe('InvestigationController Revisit & Staging Behavior', () => {
     it('restores florinda_idle when revisiting museum after visiting detention', () => {
-      controller.startInvestigation('museum');
+      controller.startInvestigation('museo_sala2');
       state.unlockLocation('detention');
       controller.startInvestigation('detention');
       expect(dom.charSpriteEl.src).toContain('assets/chapulin_idle.webp');
 
       // Re-visit museum: should show florinda_idle, not Monchito or Chapulín
-      controller.startInvestigation('museum');
+      controller.startInvestigation('museo_sala2');
       expect(dom.charSpriteEl.src).toContain('assets/florinda_idle.webp');
       expect(dom.charSpriteEl.classList.contains('hidden')).toBe(false);
     });
@@ -134,7 +134,7 @@ describe('Investigation Scene Revisit Idle Pose', () => {
     });
 
     it('keeps character sprite hidden in examine mode and restores resident idle pose on exiting examine mode', () => {
-      controller.startInvestigation('museum');
+      controller.startInvestigation('museo_sala2');
       controller.startExamineMode();
       expect(dom.charSpriteEl.classList.contains('hidden')).toBe(true);
 
@@ -152,7 +152,7 @@ describe('Investigation Scene Revisit Idle Pose', () => {
     });
 
     it('restores resident idle pose after talk option dialogue finishes', () => {
-      controller.startInvestigation('museum');
+      controller.startInvestigation('museo_sala2');
       controller.openTalkMenu();
 
       const modal = dom.talkOptionsModalEl;
@@ -163,8 +163,17 @@ describe('Investigation Scene Revisit Idle Pose', () => {
       }
     });
 
+    it('suppresses the breathing float when the resident idle pose is lying in bed', () => {
+      dom.gameScreen.dataset.stageContact = 'false';
+      applySceneIdlePose(dom, 'almanegra_inconsciente');
+      expect(dom.gameScreen.dataset.stageContact).toBe('true');
+
+      applySceneIdlePose(dom, 'florinda_idle');
+      expect(dom.gameScreen.dataset.stageContact).toBe('false');
+    });
+
     it('restores resident idle pose on exiting examine mode without clicking hotspots', () => {
-      controller.startInvestigation('museum');
+      controller.startInvestigation('museo_sala2');
       controller.startExamineMode();
       expect(dom.charSpriteEl.classList.contains('hidden')).toBe(true);
 

@@ -1,6 +1,8 @@
 // @Architecture(descriptionShort="Unit tests for court record, talk modal, and health HUD UI", type="test", icon="dialog")
 import { describe, expect, it, beforeEach } from 'vitest';
 import type { DomElements } from '../../src/engine/Private/DomElements.js';
+import { selectEvidence } from '../../src/engine/Private/CourtRecordTabs.js';
+import { applyClimaxPresentPrompt } from '../../src/engine/Private/ClimaxPresentPrompt.js';
 import { ModalManager } from '../../src/engine/Private/ModalManager.js';
 import { GameStateManager } from '../../src/state/index.js';
 import type { EvidenceId, TalkOption } from '../../src/types/index.js';
@@ -70,16 +72,19 @@ describe('ModalManager Subsystem', () => {
     expect(dom.evidenceDescEl.textContent).toContain('Arma supuestamente letal');
 
     state.updateEvidence('chipote_chillon');
-    ModalManager.selectEvidence(dom, state, 'chipote_chillon');
+    selectEvidence(dom, state, 'chipote_chillon');
     expect(dom.evidenceDescEl.textContent).toContain('chillido');
 
     // Invalid id selection does nothing
-    expect(() => ModalManager.selectEvidence(dom, state, 'invalid_item' as any)).not.toThrow();
+    expect(() => selectEvidence(dom, state, 'invalid_item' as any)).not.toThrow();
   });
 
   it('closes court record modal', () => {
+    applyClimaxPresentPrompt(dom, '¿Qué debe presentar la defensa?');
     ModalManager.closeCourtRecord(dom);
     expect(dom.courtRecordModalEl.classList.contains('hidden')).toBe(true);
+    expect(dom.climaxPresentPromptEl.classList.contains('hidden')).toBe(true);
+    expect(dom.courtRecordPresentPromptEl.classList.contains('hidden')).toBe(true);
   });
 
   it('renders talk options and handles option selection', () => {

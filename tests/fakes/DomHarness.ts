@@ -77,12 +77,18 @@ export function setupDomHarness(): DomElements {
       <div id="court-record-modal" class="game-modal hidden">
         <button id="btn-close-record">X</button>
         <p id="court-record-present-prompt" class="hidden"></p>
+        <div id="court-record-tabs" class="record-tabs hidden">
+          <button id="tab-evidence" class="record-tab active">PRUEBAS</button>
+          <button id="tab-profiles" class="record-tab">PERSONAS</button>
+        </div>
         <div id="evidence-grid"></div>
         <img id="evidence-icon-preview" src="" alt="Item" class="hidden">
         <h3 id="evidence-title"></h3>
+        <p id="evidence-role-line" class="hidden"></p>
         <p id="evidence-description"></p>
         <button id="btn-evidence-examine" style="display:none;">Examinar Detalle</button>
         <button id="btn-modal-present" style="display:none;">¡Presentar!</button>
+        <button id="btn-modal-present-profile" style="display:none;">¡Señalar a esta persona!</button>
       </div>
       <div id="evidence-examine-modal" class="game-modal hidden">
         <div class="modal-window">

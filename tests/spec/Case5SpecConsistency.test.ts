@@ -64,7 +64,7 @@ describe('Case 5 specification consistency', () => {
 
   it('keeps detailed-view totals and target shapes implementation-ready', () => {
     expect(SPEC).toContain('`detailedView` | 16 pruebas');
-    expect(SPEC).toContain('16 bases, 18 archivos localizados');
+    expect(SPEC).toContain('16 bases, 29 archivos localizados');
     expect(SPEC).not.toMatch(/(?:profileTarget|presentTarget): (?!\[)/);
   });
 
@@ -103,7 +103,7 @@ describe('Case 5 specification consistency', () => {
 
   it('keeps the permanent seal history compatible with the opening routine', () => {
     expect(SPEC).not.toContain('Cuarenta y una aperturas desde 1971');
-    expect(SPEC).toContain('más de doscientas cincuenta aperturas desde 1971');
+    expect(SPEC.toLowerCase()).toContain('más de doscientas cincuenta aperturas desde 1971');
   });
 
   it('localizes every examine asset whose readable prose carries an argument', () => {

@@ -211,8 +211,8 @@ Las horas de autor **no son hechos judiciales**: la columna derecha dice hasta d
 | 28 ago | Caso 2 | El frasco de valeriana y el molde de cera de «un cliente misterioso» que nunca se identificó. Panel C. |
 | 15 sep | Caso 3 | La boleta del Monte de Piedad: **$12,000 en efectivo el 3 de septiembre**, doce días antes del crimen, pagados por Aniceto para desempeñar el micrófono. Panel D. Documenta un gasto de preparación, no un cobro. |
 | 24–27 oct | Caso 4 | El acta del Collar de Cleopatra: botín impune cuyo reparto nunca se pagó. Panel E. |
-| 28 nov | — | Notificación al síndico. Diecisiete meses de renta en un sobre amarillo. |
-| 1 dic | Caso 5 | — |
+| 29 nov | — | Notificación al síndico. Diecisiete meses de renta en un sobre amarillo. |
+| 4 dic | Caso 5 | — |
 
 ---
 
@@ -227,12 +227,12 @@ Veintitrés entradas. **Todas tienen al menos una ranura de presentación** (§2
 | ID | Obtención | Descripción inicial permitida | Ranura |
 |---|---|---|---|
 | `insignia_abogado` *(heredado)* | Inicio | Insignia abollada de Don Ramón. Se le cayó al drenaje en julio. Hoy la trae otro. | D1 `openingPresent`. |
-| `parte_detencion` *(heredado, icono nuevo)* | D1 celda | Parte del 1 de diciembre: detención de Ramón Valdés a las 21:40 en la vecindad. Inventario: una insignia de abogado, tres pesos, una libreta y un recibo de renta a su nombre por diecisiete mensualidades. **Anexo: hoja de relevo de custodia del Archivo, con las firmas de entrada y salida de los dos pares de custodios.** | D1-T2 contradicción. |
+| `parte_detencion` *(heredado, icono nuevo)* | D1 celda | Parte del 4 de diciembre: detención de Ramón Valdés a las 21:40 en la vecindad. Inventario: una insignia de abogado, tres pesos, una libreta y un recibo de renta a su nombre por diecisiete mensualidades. **Anexo: hoja de relevo de custodia del Archivo, con las firmas de entrada y salida de los dos pares de custodios.** | D1-T2 contradicción. |
 | `esquina_tarjeta` **(nueva)** | D1 celda | Fotografía pericial del fragmento hallado en la mano derecha del occiso: esquina de cartulina crema, mecanografiada, con un domicilio incompleto. `detailedView`. | D1-T2 `followUp`. |
 | `informe_forense` **(nueva)** | D1 pasillo 7 | Casimiro Lengua: golpe único en región occipital. Objeto pesado, **canto recto de cuatro centímetros**, sin aristas vivas. Temperatura tomada a las 18:40; intervalo estimado **17:00–17:30**. `updates[]` de **2 etapas**. | D1-T1 contradicción. |
 | `tomo_caido` **(nueva)** | D1 pasillo 7 | Tomo XI de *El Saber Universal*, edición económica, encuadernado en tela. Hallado a un metro del cuerpo, con sangre en el canto del lomo. **En la guarda, un sello de tinta violeta.** `detailedView`. | D3-T3 `followUp`. |
 | `estante_consulta` **(nueva)** | D1 pasillo 7 | Estante de consulta del pasillo 7. Veinticuatro ranuras numeradas; la colección de *El Saber Universal* donada al Archivo en 1971. `detailedView`. **Tablero del Señalamiento 2.** | Clímax E3 + **Señ. 2**. |
-| `libro_visitas` **(nueva)** | D1 vestíbulo | Libro de visitas del público, hoja del 1 de diciembre. Catorce firmas. La última: *R. Valdés, 16:40 / 16:58*. `detailedView`. | D1-T1 `followUp`. |
+| `libro_visitas` **(nueva)** | D1 vestíbulo | Libro de visitas del público, hoja del 4 de diciembre. Catorce firmas. La última: *R. Valdés, 16:40 / 16:58*. `detailedView`. | D1-T1 `followUp`. |
 | `plano_archivo` **(nueva)** | D1 vestíbulo | Plano de protección civil del Archivo Judicial, clavado con tachuelas junto al mostrador. Marca dos accesos, la escalera de servicio y el hueco del montacargas. `detailedView`. | D1-T3 `followUp`. |
 | `expediente_casimiro` **(nueva)** | D1 pasillo 7 | Expediente de apelación del occiso, hallado **abierto sobre la mesa de consulta, en la foja 214**. En esa foja está pegada, como prueba decomisada en julio, una tarjeta de presentación. | D1-T3 contradicción. |
 
@@ -240,12 +240,12 @@ Veintitrés entradas. **Todas tienen al menos una ranura de presentación** (§2
 
 | ID | Obtención | Descripción inicial permitida | Ranura |
 |---|---|---|---|
-| `recibo_renta` **(nueva)** | D2 vecindad | Recibo del Señor Barriga, 28 de noviembre, por diecisiete mensualidades. Concepto escrito de su puño: **«recibí de tercero no identificado, a cuenta del inquilino»**. | D2-T1 `followUp`. |
+| `recibo_renta` **(nueva)** | D2 vecindad | Recibo del Señor Barriga, 29 de noviembre, por diecisiete mensualidades. Concepto escrito de su puño: **«recibí de tercero no identificado, a cuenta del inquilino»**. | D2-T1 `followUp`. |
 | `nota_mecanografiada` **(nueva)** | D2 vecindad | Media cuartilla mecanografiada que venía en el sobre amarillo. Tres renglones en tercera persona y fórmula de oficio. Sin firma. `detailedView`. | D2-T1 contradicción. |
-| `acuse_notificacion` **(nueva)** | D2 correspondencia | Acuse del oficio 4471, entregado el 28 de noviembre en la sindicatura de la quiebra 114/1971. El asiento transcribe el asunto completo, **con el nombre del interno que promovió la diligencia**. Rubricado. `detailedView`. | D3-T3 contradicción. |
+| `acuse_notificacion` **(nueva)** | D2 correspondencia | Acuse del oficio 4471, entregado el 29 de noviembre en la sindicatura de la quiebra 114/1971. El asiento transcribe el asunto completo, **con el nombre del interno que promovió la diligencia**. Rubricado. `detailedView`. | D3-T3 contradicción. |
 | `credencial_sindico` **(nueva)** | D2 despacho | Credencial expedida por el juzgado Séptimo: *Fulgencio Berrondo, síndico, quiebra 114/1971*. **Vigente hasta la conclusión del concurso. Sin límite de horario. Acceso al depósito de bienes de la masa.** `detailedView`. | Clímax E2. |
 | `inventario_1971` **(nueva)** | D2 despacho | Inventario de la masa concursal, 14 de octubre de 1971. Cuarenta y siete partidas. Partida 12: *cedulario, 11,400 tarjetas*. Partida 41: *máquina de escribir Olivetti Lexikon 80*. Partida 44: *ejemplares de lujo sin vender, 210*. `detailedView`. | D3-T1 contradicción. |
-| `libro_peritos` **(nueva)** | D2 juicio, por orden del Juez | Libro de peritos y auxiliares de la justicia, hoja del 1 de diciembre. Tres asientos. Dos columnas: **hora de entrada** y **hora de devolución de gafete**. `detailedView`. | D2-T2 `followUp`; **D4-T1 contradicción**. |
+| `libro_peritos` **(nueva)** | D2 juicio, por orden del Juez | Libro de peritos y auxiliares de la justicia, hoja del 4 de diciembre. Tres asientos. Dos columnas: **hora de entrada** y **hora de devolución de gafete**. `detailedView`. | D2-T2 `followUp`; **D4-T1 contradicción**. |
 | `expediente_serie` **(nueva)** | D2 delegación | Extracto certificado de cinco expedientes de este año, compilado por la policía judicial. Cinco paneles: A (12 jul), B (21 ago), C (28 ago), D (15 sep), E (24 oct). `detailedView`. **Tablero del Señalamiento 1.** | D2-T2 contradicción + **Señ. 1**; D3-T2 `followUp`. |
 
 ### 5.3 Bloque C — La masa concursal (día 3)
@@ -255,14 +255,14 @@ Veintitrés entradas. **Todas tienen al menos una ranura de presentación** (§2
 | `huacal_9` **(nueva)** | D3 bodega | Huacal de madera, quiebra 114/1971. En la tapa, **más de doscientas cincuenta tiras de sello encabalgadas**, cada una rubricada y fechada por el síndico. `detailedView`. | D3-T1 `followUp`. |
 | `fichero_cedulario` **(nueva)** | D3 bodega | Cedulario de once mil cuatrocientas siete tarjetas físicas en nueve cajones de madera. **Ordenado por calle, no por nombre.** Cada tarjeta trae domicilio, ingreso declarado, objetos de valor declarados, puntualidad de pago y estado de la chapa; las bajas permanecen archivadas con marca de inactividad. | D4-T1 `followUp`. |
 | `maquina_escribir` **(nueva)** | D3 bodega | Olivetti Lexikon 80, partida 41 del inventario de 1971. Cinta bicolor gastada hasta la tela. Nunca ha salido de esta bodega. `updates[]` de **2 etapas**. `detailedView`. | Clímax E5, con `requiredUpdateStage: { maquina_escribir: 2 }`. |
-| `oficio_diligencia` **(nueva)** | D3 fiscalía | Oficio 4471 de la fiscalía, 26 de noviembre: ordena la diligencia del 1 de diciembre a las 17:00 en el Archivo Judicial. Al calce, la lista de distribución. | D3-T2 contradicción. |
+| `oficio_diligencia` **(nueva)** | D3 fiscalía | Oficio 4471 de la fiscalía, 26 de noviembre: ordena la diligencia del 4 de diciembre a las 17:00 en el Archivo Judicial. Al calce, la lista de distribución. | D3-T2 contradicción. |
 | `efectos_casimiro` **(nueva)** | D3 penal | Efectos del occiso. Dos piezas: su libreta de pasta negra, escrita con letra de catálogo, y la copia al carbón del oficio que dirigió al ministerio público el 8 de noviembre. `detailedView` de dos paneles. | D3 `openingPresent`. |
 
 ### 5.4 Bloque D — El día 4 y el clímax
 
 | ID | Obtención | Descripción inicial permitida | Ranura |
 |---|---|---|---|
-| `bitacora_caldera` **(nueva)** | D4 calderas | Bitácora de mantenimiento del Archivo. Tubo reventado el 30 de noviembre en el muro del pasillo 7; caldera y dos secadores al máximo del 30 de noviembre al 4 de diciembre. Adjunta, la tira del **termógrafo**. `detailedView`. | D4 `openingPresent`. |
+| `bitacora_caldera` **(nueva)** | D4 calderas | Bitácora de mantenimiento del Archivo. Tubo reventado el 3 de diciembre en el muro del pasillo 7; caldera y dos secadores al máximo del 3 al 7 de diciembre. Adjunta, la tira del **termógrafo**. `detailedView`. | D4 `openingPresent`. |
 | `ficha_domicilio` **(nueva)** | Clímax E4, por orden del Juez | Tarjeta del cedulario correspondiente a la vecindad de Don Ramón. Levantada en 1969 y **actualizada en agosto de este año**. Le falta la esquina inferior derecha. `detailedView`. | Clímax E4. |
 
 ### 5.5 Etapas de descripción (`updates[]`)
@@ -303,7 +303,7 @@ Regla heredada intacta: **durante un contrainterrogatorio la tarjeta de persona 
 | `perfil_nicanor` | D1 vestíbulo | *«Conserje del Archivo Judicial. Treinta y un años. Encontró el cuerpo a las 17:35, subiendo a cerrar el pasillo.»* | **1** (D1-T3): *«Sacude el Tomo XI los lunes. El sábado del crimen vio el estante completo.»* |
 | `perfil_genoveva` | D2 juicio | *«Encargada de la ventanilla de peritos y auxiliares. Lleva el segundo libro del edificio. Contesta lo que se le pregunta y nada más.»* | **1** (D4-T1): *«Escribe la hora cuando le devuelven el gafete. No ve la puerta del patio y el reglamento no la obliga.»* |
 | `perfil_sargento` | D1 pasillo 7 | *«Policía judicial. Pidió los análisis, no movió nada y lo asentó todo. Dice que aprendió en septiembre.»* | — |
-| `perfil_barriga` | D2 vecindad | *«Casero del acusado. Diecisiete años cobrándole. Recibió diecisiete meses en efectivo el 28 de noviembre y expidió recibo.»* | — |
+| `perfil_barriga` | D2 vecindad | *«Casero del acusado. Diecisiete años cobrándole. Recibió diecisiete meses en efectivo el 29 de noviembre y expidió recibo.»* | — |
 | `perfil_chompiras` | D3 bodega | *«Cargador del Archivo. Absuelto en agosto del robo del Chanfle de Oro. Es el primer trabajo fijo que tiene y no piensa perderlo.»* | **1** (D3-T1): *«Ayuda a destapar el huacal 9 desde septiembre y lo ha visto abierto seis o siete veces.»* |
 
 ### 6.2 Ranuras de señalamiento de persona
@@ -438,7 +438,7 @@ La comprobación es **sólo de inventario**: nunca mira qué locaciones se visit
 
 ---
 
-## 10. Guion: Día 1 — Investigación (3 de diciembre)
+## 10. Guion: Día 1 — Investigación (6 de diciembre)
 
 Ruta obligatoria: `celda_c5` → `archivo_vestibulo` → `archivo_pasillo7`.
 
@@ -448,7 +448,7 @@ Ruta obligatoria: `celda_c5` → `archivo_vestibulo` → `archivo_pasillo7`.
 - **Música:** `detention_center`.
 
 ~~~dialogue
-NARRADOR: 3 de diciembre, 8:40 AM. Centro de Detención de la Ciudad. [bg: bg_detention; furniture: none; bgm: detention_center]
+NARRADOR: 6 de diciembre, 8:40 AM. Centro de Detención de la Ciudad. [bg: bg_detention; furniture: none; bgm: detention_center]
 DON RAMÓN: ...Buenos días, joven. [pose: donramon_idle]
 DEFENSA: ¡Don Ramón! ¡Que no panda el cúnico! ¡Vine en cuanto me avisaron! [pose: chapulin_point]
 DON RAMÓN: Tardaste once horas. [pose: donramon_idle]
@@ -483,7 +483,7 @@ DEFENSA: (Tres fichas en el Acta de Personajes. Mi cliente, yo, y el pobre seño
 
 #### Opciones de diálogo (Talk)
 
-**1. «¿Qué pasó el primero de diciembre?»**
+**1. «¿Qué pasó el cuatro de diciembre?»**
 
 ~~~dialogue
 DON RAMÓN: Me llegó un citatorio el lunes. Que el señor Lengua pedía que yo estuviera en una diligencia de su apelación. [pose: donramon_idle]
@@ -498,7 +498,7 @@ DON RAMÓN: Doce minutos, joven. Se los voy a contar completos, porque es lo ún
 
 ~~~dialogue
 [RELATO bg_archivo_pasillo7]
-NARRADOR: 1 de diciembre, 16:44. Pasillo 7 del Archivo Judicial. [bg: bg_archivo_pasillo7; furniture: none; bgm: suspense]
+NARRADOR: 4 de diciembre, 16:44. Pasillo 7 del Archivo Judicial. [bg: bg_archivo_pasillo7; furniture: none; bgm: suspense]
 CASIMIRO: Licenciado. Cuatro cuarenta y cuatro. Puntual usted, para ser de banqueta. [bg: bg_archivo_pasillo7; furniture: none; pose: casimiro_amable]
 DON RAMÓN: Señor Lengua. [bg: bg_archivo_pasillo7; furniture: none; pose: donramon_idle]
 CASIMIRO: No lo mandé llamar para pedirle perdón. Eso lo hacen los que tienen tiempo. [bg: bg_archivo_pasillo7; furniture: none; pose: casimiro_catalogo]
@@ -530,7 +530,7 @@ DON RAMÓN: Llevo veintiséis horas pensando. [pose: donramon_sweat]
 **2. «Enséñeme el parte de detención»**
 
 ~~~dialogue
-NARRADOR: El alguacil desliza por la ranura una copia del parte del 1 de diciembre. [sfx: click]
+NARRADOR: El alguacil desliza por la ranura una copia del parte del 4 de diciembre. [sfx: click]
 DEFENSA: (Detención a las nueve cuarenta de la noche. Inventario: una insignia de abogado, tres pesos, una libreta...) [pose: chapulin_idle]
 DEFENSA: (...y un recibo de renta a su nombre. Diecisiete mensualidades. Pagadas.) [pose: chapulin_panic]
 DEFENSA: ¡Don Ramón! ¡Aquí dice que usted pagó diecisiete meses de renta! [pose: chapulin_point]
@@ -570,7 +570,7 @@ DON RAMÓN: Yo sí contaba, joven. Es lo único con lo que cuento. [pose: donram
 - **Música:** `archivo` (§22).
 
 ~~~dialogue
-NARRADOR: 3 de diciembre, 10:15 AM. Archivo Judicial del Distrito, vestíbulo. [bg: bg_archivo_vestibulo; furniture: none; bgm: archivo]
+NARRADOR: 6 de diciembre, 10:15 AM. Archivo Judicial del Distrito, vestíbulo. [bg: bg_archivo_vestibulo; furniture: none; bgm: archivo]
 NARRADOR: Huele a papel viejo, a cera de piso y, desde hace tres días, a ropa secándose.
 NICANOR: Pásele despacito, joven, que acabo de encerar. [pose: nicanor_escoba]
 DEFENSA: ¡Buenos días! Vengo de parte de la defensa del licenciado Valdés. [pose: chapulin_point]
@@ -595,7 +595,7 @@ DEFENSA: (Un horno. Bueno. Por lo menos el muerto no se resfrió.) [pose: chapul
 
 ~~~dialogue
 NARRADOR: Sobre el mostrador, un libro de registro abierto, con una pluma atada a un cordel.
-DEFENSA: Hoja del primero de diciembre. Catorce firmas. [pose: chapulin_idle]
+DEFENSA: Hoja del cuatro de diciembre. Catorce firmas. [pose: chapulin_idle]
 NICANOR: Catorce. Yo las cuento dos veces: al cerrar y al día siguiente. [pose: nicanor_idle]
 DEFENSA: La última dice: «R. Valdés. Entrada cuatro cuarenta. Salida cuatro cincuenta y ocho.» [pose: chapulin_point]
 NICANOR: La hora de salida se la puse yo. Nadie sale de aquí sin que yo le ponga la hora. [pose: nicanor_idle]
@@ -684,7 +684,7 @@ NICANOR: Derechito. Como siempre. Ése es el único mueble de este edificio que 
 - El cuerpo ya no está. La silueta de gis y el tomo caído están **pintados en el fondo**, para que Examinar no los oculte.
 
 ~~~dialogue
-NARRADOR: 3 de diciembre, 11:40 AM. Pasillo 7, primer piso. Hace un calor absurdo para diciembre. [bg: bg_archivo_pasillo7; furniture: none; bgm: suspense]
+NARRADOR: 6 de diciembre, 11:40 AM. Pasillo 7, primer piso. Hace un calor absurdo para diciembre. [bg: bg_archivo_pasillo7; furniture: none; bgm: suspense]
 SARGENTO: ¡A sus órdenes, mi Licen...! [pose: pazguato_saludo]
 SARGENTO: ...ciado. [pose: pazguato_sweat]
 DEFENSA: ¡Sargento! [pose: chapulin_point]
@@ -786,14 +786,14 @@ SARGENTO: A sus órdenes, mi Licenciado. [pose: pazguato_saludo]
 
 ---
 
-## 11. Guion: Día 1 — Juicio (3 de diciembre, 14:00)
+## 11. Guion: Día 1 — Juicio (6 de diciembre, 14:00)
 
 Pregunta de la jornada, enunciada por el Juez en la apertura y contestada en el giro: **¿hubo alguien más dentro de ese edificio?**
 
 ### 11.1 Apertura y `openingPresent`
 
 ~~~dialogue
-NARRADOR: 3 de diciembre, 2:00 PM. Tribunal Superior, sala de audiencias. [bg: bg_courtroom; furniture: none; bgm: trial]
+NARRADOR: 6 de diciembre, 2:00 PM. Tribunal Superior, sala de audiencias. [bg: bg_courtroom; furniture: none; bgm: trial]
 JUEZ: ¡Silencio en la sala! Se abre la audiencia por el homicidio del señor Casimiro Lengua. [sfx: gavel; pose: judge_gavel]
 JUEZ: Acusado: Ramón Valdés, licenciado en derecho por... [pose: judge_neutral]
 DON RAMÓN: Por la calle, señor juez. [pose: donramon_idle]
@@ -804,7 +804,7 @@ SUPER SAM: Your Honor, la fiscalía va a ser breve, porque este caso ya me cost�
 SUPER SAM: Un edificio cerrado. Un libro con catorce firmas. Un muerto. Y en la mano del muerto, el domicilio del último hombre que subió. [pose: supersam_slam; sfx: desk_slam]
 SUPER SAM: Motive? El occiso iba a declarar mañana que las cuatro victorias de este señor entre agosto y octubre no fueron talento. Fueron información comprada. [pose: supersam_point]
 DON RAMÓN: ...¿Comprada con qué, señor fiscal? Llevo diecisiete meses sin pagar la renta. [pose: donramon_idle]
-SUPER SAM: ¡AH! ¡Pero la pagó! ¡El veintiocho de noviembre! ¡DIECISIETE MESES! ¡En efectivo! [pose: supersam_slam; sfx: desk_slam]
+SUPER SAM: ¡AH! ¡Pero la pagó! ¡El veintinueve de noviembre! ¡DIECISIETE MESES! ¡En efectivo! [pose: supersam_slam; sfx: desk_slam]
 NARRADOR: La galería estalla. El Juez golpea el mazo tres veces. [sfx: gavel]
 JUEZ: ¡ORDEN! [sfx: gavel; pose: judge_gavel]
 JUEZ: Antes de nada: esta corte no ve a nadie en el estrado de la defensa. [pose: judge_shock]
@@ -848,7 +848,7 @@ SUPER SAM: La fiscalía llama al conserje del Archivo Judicial, señor Nicanor T
 ~~~dialogue
 JUEZ: Antes de oírlo, que la secretaría ponga a la vista la fotografía pericial. Esta corte quiere saber de qué estamos hablando. [pose: judge_neutral]
 [LÁMINA assets/plate_foto_pericial.webp]
-NARRADOR: Pasillo 7, 19:05 del 1 de diciembre. El cuerpo boca abajo entre el estante y la mesa de consulta.
+NARRADOR: Pasillo 7, 19:05 del 4 de diciembre. El cuerpo boca abajo entre el estante y la mesa de consulta.
 NARRADOR: A un metro, un tomo encuadernado en tela con una mancha en el canto del lomo.
 NARRADOR: Sobre la mesa, un legajo abierto y una lámpara encendida. En el muro, un estante de veinticuatro ranuras.
 [FIN LÁMINA]
@@ -866,7 +866,7 @@ JUEZ: Consta. Su testimonio, por favor. Únicamente lo que percibió. [sfx: gave
 
 ~~~dialogue
 c5_d1t1_1 NICANOR: Yo abro a las ocho y cierro a las siete, y en medio no me muevo del mostrador más que para encerar.
-c5_d1t1_2 NICANOR: El primero de diciembre firmaron catorce personas. La última fue el licenciado Valdés, a las cuatro cuarenta.
+c5_d1t1_2 NICANOR: El cuatro de diciembre firmaron catorce personas. La última fue el licenciado Valdés, a las cuatro cuarenta.
 c5_d1t1_3 NICANOR: A las cinco menos dos bajó, firmó su salida, y la hora se la puse yo con mi pluma.
 c5_d1t1_4 NICANOR: Después de él no entró nadie y no salió nadie. A las cinco treinta y cinco subí a cerrar y ahí estaba el pobre señor.
 c5_d1t1_5 NICANOR: Por mi puerta no pasa nadie sin firmar. Treinta y un años, señor juez. Nunca ha pasado.
@@ -879,7 +879,7 @@ c5_d1t1_5 NICANOR: Por mi puerta no pasa nadie sin firmar. Treinta y un años, s
 ~~~dialogue
 DEFENSA: ¡UN MOMENTO! ¿Y cuándo encera usted? [sfx: whoosh; cutin: objection_un_momento; pose: chapulin_point]
 NICANOR: Los sábados de cuatro a cinco, joven. Digo, licenciado. Los sábados, porque no hay público. [pose: nicanor_idle]
-DEFENSA: ¡El primero de diciembre fue sábado! [pose: chapulin_panic]
+DEFENSA: ¡El cuatro de diciembre fue sábado! [pose: chapulin_panic]
 NICANOR: Y encere de cuatro a cinco, sin quitarle la vista a la puerta. Se encera de espaldas, pero se encera mirando. [pose: nicanor_escoba]
 JUEZ: ¿Se puede encerar mirando la puerta? [pose: judge_thinking]
 NICANOR: Señor juez, con todo respeto: yo puedo encerar dormido. [pose: nicanor_idle]
@@ -958,7 +958,7 @@ Pregunta visible: *«¿A quién no le exige firma ese libro?»*
 
 ~~~dialogue
 DEFENSA: ¡TOMA ESO! ¡El libro de visitas del público! [sfx: desk_slam; cutin: objection_toma_eso; pose: chapulin_slam]
-DEFENSA: Don Nicanor: el primero de diciembre, ¿entraron al edificio dos policías custodiando a un preso? [pose: chapulin_point]
+DEFENSA: Don Nicanor: el cuatro de diciembre, ¿entraron al edificio dos policías custodiando a un preso? [pose: chapulin_point]
 NICANOR: Pues claro. Y a las cinco entraron otros dos, de relevo. [pose: nicanor_idle]
 DEFENSA: ¿Y firmaron? [pose: chapulin_idle]
 NICANOR: Uniformados no firman, licenciado. Nunca han firmado. Ni ellos, ni el cartero, ni yo, ni la señorita de la ventanilla. [pose: nicanor_idle]
@@ -1220,6 +1220,7 @@ DEFENSA: Abierto en la foja doscientos catorce, señor juez. Y en la foja doscie
 JUEZ: Léala, licenciado. [sfx: gavel; pose: judge_gavel]
 DEFENSA: «Enciclopedias El Saber Universal, Sociedad Anónima.» Prueba decomisada al sentenciado en julio. [pose: chapulin_point]
 DEFENSA: Y al pie, de puño y letra del secretario: «sociedad disuelta desde 1971». [pose: chapulin_idle]
+DEFENSA: Don Nicanor sacude el Tomo XI cada lunes. El sábado del crimen vio el estante completo y el expediente abierto en esta foja. [pose: chapulin_point]
 [ACTUALIZAR-PERFIL perfil_casimiro]
 [ACTUALIZAR-PERFIL perfil_nicanor]
 JUEZ: ¿Y qué venía a hacer ese hombre aquí con una tarjeta de once años de muerta? [pose: judge_thinking]
@@ -1236,7 +1237,7 @@ Se encola como cierre de la `successDialogue` del `followUp` de D1-T3, antes del
 
 ~~~dialogue
 JUEZ: Esta corte va a ordenar algo muy simple. [sfx: gavel; bgm: objection; pose: judge_gavel]
-JUEZ: Fiscalía: el **libro de peritos y auxiliares de la justicia** del Archivo Judicial, hoja del primero de diciembre. Mañana a primera hora. [pose: judge_neutral]
+JUEZ: Fiscalía: el **libro de peritos y auxiliares de la justicia** del Archivo Judicial, hoja del cuatro de diciembre. Mañana a primera hora. [pose: judge_neutral]
 SUPER SAM: Your Honor, con todo respeto, ese libro es de trámite. Ahí firman valuadores. [pose: supersam_sweat]
 JUEZ: Señor fiscal: esta corte ha pasado cuatro horas oyendo que por una puerta no entró nadie. [pose: judge_thinking]
 JUEZ: Y lleva cuatro horas sin que nadie le diga quién entró por la otra. [sfx: gavel; pose: judge_gavel]
@@ -1257,7 +1258,7 @@ DON RAMÓN: (No, joven. El primer día no se gana. El primer día nada más no s
 
 ---
 
-## 12. Guion: Día 2 — Investigación (4 de diciembre)
+## 12. Guion: Día 2 — Investigación (7 de diciembre)
 
 Ruta obligatoria: `vecindad_c5` → `correspondencia` → `despacho_berrondo` → `delegacion_c5`.
 
@@ -1268,7 +1269,7 @@ Ruta obligatoria: `vecindad_c5` → `correspondencia` → `despacho_berrondo` �
 - Se reutiliza el fondo del despacho del Señor Barriga del Caso 3.
 
 ~~~dialogue
-NARRADOR: 4 de diciembre, 8:30 AM. Despacho del Señor Barriga, en la vecindad de la calle del Espanto. [bg: bg_despacho; furniture: none; bgm: investigation]
+NARRADOR: 7 de diciembre, 8:30 AM. Despacho del Señor Barriga, en la vecindad de la calle del Espanto. [bg: bg_despacho; furniture: none; bgm: investigation]
 BARRIGA: ¡Ay, no! ¡Otra vez no! ¡Ya sé para qué viene! [pose: barriga_enojado]
 DEFENSA: Yo no le he dicho nada. [pose: chapulin_idle]
 BARRIGA: ¡Es que cada vez que alguien de esta vecindad me toca la puerta es para pedirme prórroga! [pose: barriga_enojado]
@@ -1276,7 +1277,7 @@ DEFENSA: Vengo por lo contrario, señor Barriga. Vengo por una renta que **sí**
 BARRIGA: ...Ah. [pose: barriga_idle]
 BARRIGA: Ésa. [pose: barriga_shock]
 BARRIGA: Mire, joven. Yo llevo diecisiete años cobrándole al señor Ramón. Diecisiete. [pose: barriga_idle]
-BARRIGA: Y el veintiocho de noviembre encontré un sobre amarillo debajo de mi puerta con diecisiete meses adentro. [pose: barriga_shock]
+BARRIGA: Y el veintinueve de noviembre encontré un sobre amarillo debajo de mi puerta con diecisiete meses adentro. [pose: barriga_shock]
 BARRIGA: Yo me senté en el escalón y me estuve quieto diez minutos. [pose: barriga_idle]
 DEFENSA: ¿Por el gusto? [pose: chapulin_idle]
 BARRIGA: Por el susto. Cuando algo se arregla solo después de diecisiete años, uno sabe que algo se descompuso en otro lado. [pose: barriga_idle]
@@ -1361,12 +1362,12 @@ DEFENSA: (¿Y quién redacta oficios todo el día? Los juzgados.) [pose: chapuli
 - **Música:** `investigation_core`.
 
 ~~~dialogue
-NARRADOR: 4 de diciembre, 10:00 AM. Oficina de correspondencia del Juzgado Séptimo. [bg: bg_correspondencia; furniture: none; bgm: investigation_core]
+NARRADOR: 7 de diciembre, 10:00 AM. Oficina de correspondencia del Juzgado Séptimo. [bg: bg_correspondencia; furniture: none; bgm: investigation_core]
 NARRADOR: Cuatro mil oficios al mes entran y salen por una ventanilla de madera de setenta centímetros.
 CHIMOLTRUFIA: ¡Ay, qué la canción! ¡Si es el Chapulín Colorado! [pose: chimoltrufia_shock]
 DEFENSA: ¡Que no panda el cúnico, señorita! Vengo por un asunto oficial. [pose: chapulin_point]
 CHIMOLTRUFIA: Pues aquí todo es oficial. Bueno, casi todo. Como digo una cosa, digo otra. [pose: chimoltrufia_idle]
-DEFENSA: Necesito saber a quién se le avisó de una diligencia que iba a haber el primero de diciembre. [pose: chapulin_idle]
+DEFENSA: Necesito saber a quién se le avisó de una diligencia que iba a haber el cuatro de diciembre. [pose: chapulin_idle]
 CHIMOLTRUFIA: Uy, joven, por aquí pasan cuatro mil papeles al mes. [pose: chimoltrufia_confundida]
 CHIMOLTRUFIA: Yo me acuerdo de todos. [pose: chimoltrufia_idle]
 CHIMOLTRUFIA: Bueno, de ninguno. [pose: chimoltrufia_confundida]
@@ -1380,8 +1381,8 @@ DEFENSA: (...Voy a necesitar el libro.) [pose: chapulin_idle]
 
 ~~~dialogue
 NARRADOR: Un libro empastado en tela azul, con una columna de firmas garabateadas al margen de cada asiento.
-DEFENSA: Veintiocho de noviembre... veintiocho de noviembre... [pose: chapulin_idle]
-DEFENSA: ¡Aquí! «Oficio 4471. Diligencia de cotejo documental **promovida por el interno C. Lengua**. Archivo Judicial, 1 de diciembre, 17:00 horas.» [pose: chapulin_point]
+DEFENSA: Veintinueve de noviembre... veintinueve de noviembre... [pose: chapulin_idle]
+DEFENSA: ¡Aquí! «Oficio 4471. Diligencia de cotejo documental **promovida por el interno C. Lengua**. Archivo Judicial, 4 de diciembre, 17:00 horas.» [pose: chapulin_point]
 DEFENSA: «Entregado en: Sindicatura de la quiebra 114/1971.» [pose: chapulin_idle]
 DEFENSA: (Trae hasta el nombre del señor Lengua. Con todas sus letras.) [pose: chapulin_idle]
 DEFENSA: ¿Sindi... qué? [pose: chapulin_panic]
@@ -1392,7 +1393,7 @@ DEFENSA: (Y aquí al margen hay una rúbrica. Alguien recibió ese aviso y firm�
 [ENTREGAR acuse_notificacion]
 ~~~
 
-> **`detailedView` de `acuse_notificacion`** (`assets/examine_acuse.webp`): asiento de libro de acuses fotografiado de plano. Renglón mecanografiado con los datos del oficio 4471 y, al margen derecho, **una rúbrica manuscrita a tinta azul, enérgica y muy pequeña, con dos rayas bajo el trazo**. Fecha estampada con fechador de hule: *28 NOV*. Sin nombre impreso: sólo la rúbrica.
+> **`detailedView` de `acuse_notificacion`** (`assets/examine_acuse.webp`): asiento de libro de acuses fotografiado de plano. Renglón mecanografiado con los datos del oficio 4471 y, al margen derecho, **una rúbrica manuscrita a tinta azul, enérgica y muy pequeña, con dos rayas bajo el trazo**. Fecha estampada con fechador de hule: *29 NOV*. Sin nombre impreso: sólo la rúbrica.
 
 #### Hablar con la Chimoltrufia — el **segundo** tema desbloquea `despacho_berrondo`
 
@@ -1437,7 +1438,7 @@ DEFENSA: (Que no panda el cúnico, Chapulín. Que no panda.) [pose: chapulin_pan
 - La escena entera está escrita para que el jugador salga **con más simpatía por Berrondo que al entrar**. Es cortés, generoso, y contesta todo. Ningún personaje sospecha de él en pantalla.
 
 ~~~dialogue
-NARRADOR: 4 de diciembre, 11:30 AM. Donceles 14, segundo piso. Despacho del Lic. Fulgencio Berrondo. [bg: bg_despacho_berrondo; furniture: none; bgm: suspense]
+NARRADOR: 7 de diciembre, 11:30 AM. Donceles 14, segundo piso. Despacho del Lic. Fulgencio Berrondo. [bg: bg_despacho_berrondo; furniture: none; bgm: suspense]
 NARRADOR: Cuatro paredes de libros encuadernados en piel, del piso al techo, ordenados por tomo y por año.
 BERRONDO: Adelante, licenciado. Lo estaba esperando. [pose: berrondo_idle]
 DEFENSA: ¡¿A mí?! [pose: chapulin_panic]
@@ -1602,9 +1603,9 @@ DEFENSA: (Menos las antenitas. Las antenitas se me erizaron allá arriba y no s�
 - Cierra la jornada entregando `expediente_serie`.
 
 ~~~dialogue
-NARRADOR: 4 de diciembre, 3:00 PM. Delegación. Sobre el escritorio del Sargento hay cinco legajos atados con listón y un café frío. [bg: bg_delegacion; furniture: none; bgm: investigation]
+NARRADOR: 7 de diciembre, 3:00 PM. Delegación. Sobre el escritorio del Sargento hay cinco legajos atados con listón y un café frío. [bg: bg_delegacion; furniture: none; bgm: investigation]
 SARGENTO: ¡A sus órdenes, mi Licenciado! No dormí. [pose: pazguato_saludo]
-DEFENSA: Sargento, tiene usted cara de lunes. [pose: chapulin_idle]
+DEFENSA: Sargento, tiene usted cara de martes. [pose: chapulin_idle]
 SARGENTO: Es que anoche me puse a hacer una cosa que no me pidió nadie, y cuando uno hace eso a mi edad, amanece así. [pose: pazguato_decidido]
 ~~~
 
@@ -1648,18 +1649,18 @@ NARRADOR: Suena la campana del juzgado. [sfx: bell]
 
 ---
 
-## 13. Guion: Día 2 — Juicio (4 de diciembre, 16:00)
+## 13. Guion: Día 2 — Juicio (7 de diciembre, 16:00)
 
 Pregunta de la jornada: **¿quién pagó esa renta y por qué?**
 
 ### 13.1 Apertura, el segundo libro y `openingPresent` de persona
 
 ~~~dialogue
-NARRADOR: 4 de diciembre, 4:00 PM. Segunda audiencia. [bg: bg_courtroom; furniture: none; bgm: trial]
+NARRADOR: 7 de diciembre, 4:00 PM. Segunda audiencia. [bg: bg_courtroom; furniture: none; bgm: trial]
 JUEZ: Se reanuda la audiencia. Fiscalía: el libro que ordenó esta corte. [sfx: gavel; pose: judge_gavel]
 SUPER SAM: Aquí está, Your Honor. Y le advierto que es de una insignificancia absoluta. [pose: supersam_point]
 NARRADOR: El alguacil deposita sobre la mesa un libro empastado en hule negro, mucho más delgado que el otro.
-JUEZ: Léalo, señor secretario. Hoja del primero de diciembre. [pose: judge_neutral]
+JUEZ: Léalo, señor secretario. Hoja del cuatro de diciembre. [pose: judge_neutral]
 SECRETARIO: Tres asientos, señor juez. [pose: judge_neutral]
 SECRETARIO: Uno. Hermenegildo Rosas, perito valuador. Entrada nueve diez, gafete devuelto nueve cuarenta.
 SECRETARIO: Dos. Licenciado Fulgencio Berrondo, síndico de la quiebra 114 diagonal 1971. Entrada dieciséis cero cinco, gafete devuelto dieciséis cincuenta.
@@ -1703,12 +1704,12 @@ JUEZ: Nadie quiere venir, señor Barriga. Su testimonio. [sfx: gavel; pose: judg
 
 ---
 
-### 13.2 Testimonio 1 — Señor Barriga: *«El sobre del veintiocho»*
+### 13.2 Testimonio 1 — Señor Barriga: *«El sobre del veintinueve»*
 
 **BGM:** `cross_exam_moderato`.
 
 ~~~dialogue
-c5_d2t1_1 BARRIGA: El veintiocho de noviembre, a las nueve de la mañana, encontré un sobre amarillo debajo de mi puerta.
+c5_d2t1_1 BARRIGA: El veintinueve de noviembre, a las nueve de la mañana, encontré un sobre amarillo debajo de mi puerta.
 c5_d2t1_2 BARRIGA: Adentro venían diecisiete mensualidades en efectivo. Cuatro mil doscientos cincuenta pesos, en billetes nuevecitos.
 c5_d2t1_3 BARRIGA: Y venía una nota a máquina, diciéndome que expidiera el recibo y que no hacía falta contestar.
 c5_d2t1_4 BARRIGA: Hice el recibo esa misma mañana y se lo entregué al señor Ramón el lunes, en el patio, delante de dos vecinas.
@@ -1734,10 +1735,10 @@ DEFENSA: ¡UN MOMENTO! ¿Billetes nuevos? [sfx: whoosh; pose: chapulin_point]
 BARRIGA: Nuevecitos. De los de cien, con la banda del banco todavía puesta en dos fajos. [pose: barriga_shock]
 JUEZ: ¿Con banda de banco? [pose: judge_thinking]
 BARRIGA: Con banda. Yo la guardé porque tenía un número. Se la di al Sargento. [pose: barriga_idle]
-SARGENTO: Y yo la rastreé, señor juez. Retiro de ventanilla del veintisiete de noviembre. Cuenta a nombre de una sindicatura. [pose: pazguato_decidido]
+SARGENTO: Y yo la rastreé, señor juez. Retiro de ventanilla del veintiséis de noviembre. Cuenta a nombre de una sindicatura. [pose: pazguato_decidido]
 NARRADOR: Murmullo. [sfx: realization]
 BERRONDO: Señor juez, con la venia: ese retiro es mío y está declarado. [pose: berrondo_idle]
-BERRONDO: Retiré cinco mil pesos el veintisiete para pagar honorarios de un notario en efectivo, cosa fea pero corriente. [pose: berrondo_idle]
+BERRONDO: Retiré cinco mil pesos el veintiséis para pagar honorarios de un notario en efectivo, cosa fea pero corriente. [pose: berrondo_idle]
 BERRONDO: El notario extendió factura y la tengo aquí. ¿La agrego? [pose: berrondo_idle]
 JUEZ: ...Agréguela. [pose: judge_thinking]
 DEFENSA: (Contesta antes de que le pregunten. Y contesta bien.) [pose: chapulin_idle]
@@ -1806,7 +1807,7 @@ Pregunta visible: *«¿De quién dijo el testigo que recibía ese dinero?»*
 
 ~~~dialogue
 DEFENSA: ¡TOMA ESO! [sfx: desk_slam; cutin: objection_toma_eso; pose: chapulin_slam]
-DEFENSA: El recibo lo escribió el señor Barriga con su propia mano el veintiocho de noviembre. [pose: chapulin_point]
+DEFENSA: El recibo lo escribió el señor Barriga con su propia mano el veintinueve de noviembre. [pose: chapulin_point]
 DEFENSA: Y en el concepto puso, textualmente: «**Recibí de tercero no identificado, a cuenta del inquilino.**» [pose: chapulin_slam; sfx: desk_slam]
 JUEZ: ¡Cáspita! ¡El propio testigo asentó que el pagador era otro! [pose: judge_shock]
 BARRIGA: ¡Pues claro que lo asenté! ¡Yo seré casero, pero no soy mentiroso! [pose: barriga_enojado]
@@ -1849,7 +1850,7 @@ c5_d2t2_1 BERRONDO: Soy síndico de la quiebra 114 diagonal 1971, Enciclopedias 
 c5_d2t2_2 BERRONDO: Entre los bienes de esa masa hay un cedulario de once mil cuatrocientas tarjetas, inventariado, sellado y depositado en el sótano del Archivo Judicial.
 c5_d2t2_3 BERRONDO: Vendo copias de esa información a quien la pide y la paga. Es lícito, está declarado y pago impuestos por ello.
 c5_d2t2_4 BERRONDO: No conozco ni he conocido a ninguno de los sentenciados cuyos expedientes la defensa ha estado hojeando. Ni siquiera al occiso.
-c5_d2t2_5 BERRONDO: Y el primero de diciembre entré a las dieciséis cero cinco, revisé el huacal nueve y salí a las dieciséis cincuenta. Consta en el libro.
+c5_d2t2_5 BERRONDO: Y el cuatro de diciembre entré a las dieciséis cero cinco, revisé el huacal nueve y salí a las dieciséis cincuenta. Consta en el libro.
 ~~~
 
 #### Presiones
@@ -2035,7 +2036,7 @@ DON RAMÓN: (Y cuando no miente, es peor: quiere decir que lo que tiene es legal
 
 ---
 
-## 14. Guion: Día 3 — Investigación (5 de diciembre)
+## 14. Guion: Día 3 — Investigación (8 de diciembre)
 
 Ruta obligatoria: `bodega_masa` → `fiscalia_c5` → `penal_efectos`.
 
@@ -2045,7 +2046,7 @@ Ruta obligatoria: `bodega_masa` → `fiscalia_c5` → `penal_efectos`.
 - **Música:** `suspense`.
 
 ~~~dialogue
-NARRADOR: 5 de diciembre, 9:00 AM. Sótano del Archivo Judicial. Bodega de bienes en depósito. [bg: bg_bodega_masa; furniture: none; bgm: suspense]
+NARRADOR: 8 de diciembre, 9:00 AM. Sótano del Archivo Judicial. Bodega de bienes en depósito. [bg: bg_bodega_masa; furniture: none; bgm: suspense]
 NARRADOR: Catorce huacales de madera apilados de dos en dos, con las tapas encostradas de tiras de papel sellado.
 SARGENTO: Inspección judicial en el asunto 5.514. Presentes: la defensa, el suscrito y el síndico. Son las nueve horas con dos minutos. [pose: pazguato_decidido]
 BERRONDO: Buenos días, licenciado. Le traje café otra vez; hace frío aquí abajo. [pose: berrondo_idle]
@@ -2093,7 +2094,7 @@ BERRONDO: Más de doscientas cincuenta, licenciado. Más de doscientas cincuenta
 BERRONDO: Cada vez que se abre un depósito hay que sellarlo de nuevo, y el sello nuevo se pega encima del anterior, sin quitarlo. [pose: berrondo_definicion]
 BERRONDO: Es para que cualquiera pueda contar la historia del huacal sin abrirlo. [pose: berrondo_idle]
 DEFENSA: ¿Y la de hasta arriba? [pose: chapulin_point]
-BERRONDO: La de hasta arriba es mía y es del primero de diciembre. Ya lo declaré ayer bajo protesta. [pose: berrondo_idle]
+BERRONDO: La de hasta arriba es mía y es del cuatro de diciembre. Ya lo declaré ayer bajo protesta. [pose: berrondo_idle]
 DEFENSA: (Ya lo declaró. Antes de que se lo preguntaran. Otra vez.) [pose: chapulin_idle]
 SARGENTO: Mi Licenciado, ¿le fotografío la tapa entera? [pose: pazguato_decidido]
 DEFENSA: Fotografíemela, Sargento. Y cuéntelas usted también. [pose: chapulin_idle]
@@ -2110,9 +2111,9 @@ NARRADOR: La pila de tiras es el historial del depósito: cuántas veces se abri
 [FIN LÁMINA]
 ~~~
 
-> **`detailedView` de `huacal_9`** (`assets/examine_huacal9.webp`): tapa fotografiada en picado con luz rasante para que las capas de papel proyecten sombra. Más de doscientas cincuenta tiras encabalgadas, amarilleando hacia abajo. **La de hasta arriba es blanca y limpia, con fecha a mano: «1-XII»**, y bajo ella asoma una anterior con «1-XII» también, medio tapada. El pie de lámina **no menciona** que sean dos del mismo día: eso sólo se ve mirando.
+> **`detailedView` de `huacal_9`** (`assets/examine_huacal9.webp`): tapa fotografiada en picado con luz rasante para que las capas de papel proyecten sombra. Más de doscientas cincuenta tiras encabalgadas, amarilleando hacia abajo. **La de hasta arriba es blanca y limpia, con fecha a mano: «4-XII»**, y bajo ella asoma una anterior con «4-XII» también, medio tapada. El pie de lámina **no menciona** que sean dos del mismo día: eso sólo se ve mirando.
 
-> **Regla de justicia.** La segunda tira del 1 de diciembre —la que delata que el huacal se abrió **dos veces ese día**— está dibujada en la lámina desde el día 3 y **no se argumenta hasta el clímax, etapa 3**. Es la única pista del episodio que el jugador puede ver antes de tiempo, y verla no le sirve de nada hasta que exista la pregunta.
+> **Regla de justicia.** La segunda tira del 4 de diciembre —la que delata que el huacal se abrió **dos veces ese día**— está dibujada en la lámina desde el día 3 y **no se argumenta hasta el clímax, etapa 3**. Es la única pista del episodio que el jugador puede ver antes de tiempo, y verla no le sirve de nada hasta que exista la pregunta.
 
 **2. Cajones del cedulario (`hotspot_cajones`)**
 
@@ -2185,7 +2186,7 @@ BERRONDO: Como usted quiera. Que tenga buena mañana. [pose: berrondo_idle]
 - **Música:** `detention_center` (la única vez que suena fuera de una celda; el despacho del fiscal suena a celda a propósito).
 
 ~~~dialogue
-NARRADOR: 5 de diciembre, 11:20 AM. Despacho del agente del ministerio público Sam Sullivan. [bg: bg_fiscalia; furniture: none; bgm: detention_center]
+NARRADOR: 8 de diciembre, 11:20 AM. Despacho del agente del ministerio público Sam Sullivan. [bg: bg_fiscalia; furniture: none; bgm: detention_center]
 NARRADOR: Una calculadora de manivela, un cronómetro de bolsillo y, en un rincón, una bolsa de lona doblada y vacía.
 SUPER SAM: Counselor. [pose: supersam_idle]
 DEFENSA: Señor fiscal. [pose: chapulin_idle]
@@ -2222,7 +2223,7 @@ DEFENSA: (No. No me lo va a decir hoy. Y si se lo saco a la fuerza, deja de ser 
 
 ~~~dialogue
 SUPER SAM: Oficio 4471, del veintiséis de noviembre. Mío, firmado por mí, ordenado por mí. [pose: supersam_idle]
-DEFENSA: «Diligencia de cotejo documental. Archivo Judicial. Primero de diciembre, diecisiete horas.» [pose: chapulin_idle]
+DEFENSA: «Diligencia de cotejo documental. Archivo Judicial. Cuatro de diciembre, diecisiete horas.» [pose: chapulin_idle]
 DEFENSA: Y al calce, la lista de distribución: «c.c.p. Actuaría adscrita. c.c.p. Dirección del Archivo. c.c.p. **Sindicatura de la quiebra 114/1971**.» [pose: chapulin_point]
 SUPER SAM: Es un trámite, counselor. Se notifica a quien tiene interés jurídico. Lo hace la máquina, no el hombre. [pose: supersam_idle]
 DEFENSA: Señor fiscal, ¿usted sabía que ese oficio salía de aquí con esa lista? [pose: chapulin_point]
@@ -2258,7 +2259,7 @@ SUPER SAM: Time is money, counselor. Y hay días en que a uno le sale carísimo.
 - Cierra la jornada entregando `efectos_casimiro`.
 
 ~~~dialogue
-NARRADOR: 5 de diciembre, 2:40 PM. Penal del Distrito, bodega de efectos personales. [bg: bg_penal_efectos; furniture: none; bgm: suspense]
+NARRADOR: 8 de diciembre, 2:40 PM. Penal del Distrito, bodega de efectos personales. [bg: bg_penal_efectos; furniture: none; bgm: suspense]
 NARRADOR: Trescientas cajas de cartón numeradas en un estante metálico. En la etiqueta de la 214-J dice: LENGUA, CASIMIRO.
 SARGENTO: Caja doscientos catorce jota, mi Licenciado. Y fíjese en el número. [pose: pazguato_decidido]
 DEFENSA: Doscientos catorce. [pose: chapulin_idle]
@@ -2317,14 +2318,14 @@ SARGENTO: A sus órdenes, mi Licenciado. [pose: pazguato_saludo]
 
 ---
 
-## 15. Guion: Día 3 — Juicio (5 de diciembre, 16:00)
+## 15. Guion: Día 3 — Juicio (8 de diciembre, 16:00)
 
 Pregunta de la jornada: **¿quién sabía que ese hombre iba a estar ahí?**
 
 ### 15.1 Apertura y `openingPresent`
 
 ~~~dialogue
-NARRADOR: 5 de diciembre, 4:00 PM. Tercera audiencia. [bg: bg_courtroom; furniture: none; bgm: trial]
+NARRADOR: 8 de diciembre, 4:00 PM. Tercera audiencia. [bg: bg_courtroom; furniture: none; bgm: trial]
 JUEZ: Se reanuda la audiencia. Esta corte recibió el acta de la inspección judicial de esta mañana. [sfx: gavel; pose: judge_gavel]
 JUEZ: Consta que el huacal nueve contiene mobiliario, tres mil doscientos tomos, doscientos diez ejemplares de lujo, un cedulario de once mil cuatrocientas siete tarjetas y una máquina de escribir. [pose: judge_neutral]
 JUEZ: Consta también que todo ello está inventariado desde 1971 y que **nada de ello es robado**. [pose: judge_thinking]
@@ -2443,12 +2444,12 @@ DEFENSA: (Otra vez me corrigió. Y otra vez me dio un dato que no le pedí.) [po
 
 #### `followUp`: **`huacal_9`**
 
-Pregunta visible: *«¿Qué día de la semana fue el primero de diciembre?»*
+Pregunta visible: *«¿Qué día de la semana fue el cuatro de diciembre?»*
 
 ~~~dialogue
 DEFENSA: ¡TOMA ESO! [sfx: desk_slam; cutin: objection_toma_eso; pose: chapulin_slam]
 DEFENSA: Señor juez, el testigo declaró que ese huacal se destapa **los jueves**. [pose: chapulin_point]
-DEFENSA: El primero de diciembre fue **sábado**. [pose: chapulin_slam; sfx: desk_slam]
+DEFENSA: El cuatro de diciembre fue **sábado**. [pose: chapulin_slam; sfx: desk_slam]
 JUEZ: ¡Cáspita! [pose: judge_shock]
 CHOMPIRAS: ¡Ah, pues sí! ¡El sábado yo no fui! ¡Yo los sábados juego dominó! [pose: chompiras_nervous]
 DEFENSA: ¿Y entonces quién le destapó el huacal? [pose: chapulin_point]
@@ -2490,7 +2491,7 @@ SUPER SAM: Protesto decir verdad. Y le advierto a esta corte que le va a salir b
 
 ~~~dialogue
 c5_d3t2_1 SUPER SAM: Recibí el oficio del occiso el ocho de noviembre. Lo puse en un cajón y lo tuve dieciocho días.
-c5_d3t2_2 SUPER SAM: El veintiséis lo saqué, y fijé la diligencia para el sábado primero de diciembre a las cinco de la tarde, porque el sábado el traslado cuesta la mitad.
+c5_d3t2_2 SUPER SAM: El veintiséis lo saqué, y fijé la diligencia para el sábado cuatro de diciembre a las cinco de la tarde, porque el sábado el traslado cuesta la mitad.
 c5_d3t2_3 SUPER SAM: Nadie más supo de esa diligencia. Un oficio de la fiscalía no se publica en el periódico.
 c5_d3t2_4 SUPER SAM: Y ahora lo mío. El veintiuno de agosto de este año, alguien me pagó por llegar rápido a un museo y cerrar el caso en cinco minutos.
 c5_d3t2_5 SUPER SAM: Fue una vez. No tuvo nombre, no tuvo recibo y no se lo vendí a nadie. Fue un sobre, una hora y una bolsa de lona.
@@ -2643,7 +2644,7 @@ DEFENSA: (Y ahora sí. Ahora ya nada más queda el señor de la leontina.) [pose
 
 ---
 
-### 15.4 Testimonio 3 — Lic. Berrondo (en calidad de investigado): *«Lo que hice el primero de diciembre»*
+### 15.4 Testimonio 3 — Lic. Berrondo (en calidad de investigado): *«Lo que hice el cuatro de diciembre»*
 
 **BGM:** `cross_exam_grave`. Contiene la **segunda declaración `unlockedBy`** del caso.
 
@@ -2654,7 +2655,7 @@ BERRONDO: Con mucho gusto, señor juez. Y le agradezco que me lo ordene: así no
 
 ~~~dialogue
 c5_d3t3_1 BERRONDO: Comparezco en calidad de investigado, por decisión de esta corte, y no me opongo a ella.
-c5_d3t3_2 BERRONDO: El primero de diciembre entré por la ventanilla de peritos a las dieciséis cero cinco y recibí un gafete de visita.
+c5_d3t3_2 BERRONDO: El cuatro de diciembre entré por la ventanilla de peritos a las dieciséis cero cinco y recibí un gafete de visita.
 c5_d3t3_3 BERRONDO: Bajé al sótano, abrí el huacal nueve, lo revisé, lo cerré y sellé la tapa con mi rúbrica y la fecha del día.
 c5_d3t3_4 BERRONDO: A las dieciséis cincuenta devolví el gafete en la ventanilla y salí por el patio de maniobras, donde tengo el automóvil.
 c5_d3t3_5 BERRONDO: Nunca subí al primer piso. No supe que el occiso estuviera en ese edificio hasta que lo leí en el periódico del domingo.
@@ -2747,15 +2748,15 @@ Pregunta visible: *«¿Es verdad que nadie le avisó?»*
 
 ~~~dialogue
 DEFENSA: ¡PROTESTO! [sfx: desk_slam; cutin: objection_protesto; pose: chapulin_slam; bgm: objection]
-DEFENSA: Señor juez, el libro de acuses del juzgado, hoja del veintiocho de noviembre. [pose: chapulin_point]
-DEFENSA: «Oficio 4471. Diligencia de cotejo documental **promovida por el interno C. Lengua**. Archivo Judicial, primero de diciembre, diecisiete horas.» [pose: chapulin_idle]
+DEFENSA: Señor juez, el libro de acuses del juzgado, hoja del veintinueve de noviembre. [pose: chapulin_point]
+DEFENSA: «Oficio 4471. Diligencia de cotejo documental **promovida por el interno C. Lengua**. Archivo Judicial, cuatro de diciembre, diecisiete horas.» [pose: chapulin_idle]
 DEFENSA: «Entregado en: Sindicatura de la quiebra ciento catorce diagonal setenta y uno.» [pose: chapulin_idle]
 DEFENSA: Y al margen, señor juez, una rúbrica. [pose: chapulin_slam; sfx: desk_slam]
 NARRADOR: La sala entera se vuelve hacia el estrado. [sfx: realization]
 BERRONDO: ...... [pose: berrondo_idle]
 JUEZ: Licenciado Berrondo. ¿Es suya esa rúbrica? [pose: judge_neutral]
 BERRONDO: Es mía, señor juez. [pose: berrondo_idle]
-JUEZ: ¿Firmó usted de recibido el veintiocho de noviembre un oficio que decía el día, la hora, el lugar y el nombre? [pose: judge_shock]
+JUEZ: ¿Firmó usted de recibido el veintinueve de noviembre un oficio que decía el día, la hora, el lugar y el nombre? [pose: judge_shock]
 BERRONDO: Lo firmé. [pose: berrondo_idle]
 JUEZ: ¡¿Y acaba de declarar bajo protesta que nadie le avisó?! [sfx: gavel; pose: judge_gavel]
 BERRONDO: ...Acabo de declararlo. [pose: berrondo_sweat]
@@ -2765,7 +2766,7 @@ DEFENSA: ¡Se acuerda porque le dijo «señorita», y nadie le dice «señorita�
 BERRONDO: ......Firmo doscientos acuses al mes, señor juez. [pose: berrondo_sweat]
 DEFENSA: ¡Eso lo dijo el fiscal hace una hora y a él le costó la carrera! [pose: chapulin_point]
 BERRONDO: A mí me va a costar más, licenciado. [pose: berrondo_idle]
-BERRONDO: Rectifico mi declaración: sí se me notificó, el veintiocho de noviembre, y lo olvidé. [pose: berrondo_idle]
+BERRONDO: Rectifico mi declaración: sí se me notificó, el veintinueve de noviembre, y lo olvidé. [pose: berrondo_idle]
 BERRONDO: Es un olvido gravísimo en un hombre de mi oficio y no lo voy a excusar. [pose: berrondo_idle]
 JUEZ: Que se asiente la rectificación. [sfx: gavel; pose: judge_gavel]
 [ACTUALIZAR-PERFIL perfil_berrondo]
@@ -2832,7 +2833,7 @@ DEFENSA: (Y lo dice en serio. Eso es lo peor de todo: que lo dice en serio.) [po
 
 ---
 
-## 16. Guion: Día 4 — Investigación (6 de diciembre, madrugada)
+## 16. Guion: Día 4 — Investigación (9 de diciembre, madrugada)
 
 Jornada corta: dos locaciones, ~12 minutos. Ruta obligatoria: `celda_c5_d4` → `archivo_caldera`.
 
@@ -2842,7 +2843,7 @@ Jornada corta: dos locaciones, ~12 minutos. Ruta obligatoria: `celda_c5_d4` → 
 - **Música:** `detention_center`.
 
 ~~~dialogue
-NARRADOR: 6 de diciembre, 5:40 AM. Centro de Detención. Faltan diez horas para la sentencia. [bg: bg_detention; furniture: none; bgm: detention_center]
+NARRADOR: 9 de diciembre, 5:40 AM. Centro de Detención. Faltan diez horas para la sentencia. [bg: bg_detention; furniture: none; bgm: detention_center]
 DON RAMÓN: Joven, son las cinco cuarenta de la mañana. [pose: donramon_idle]
 DEFENSA: ¡No he dormido! [pose: chapulin_panic]
 DON RAMÓN: Se le nota en las antenitas. Las trae chuecas. [pose: donramon_idle]
@@ -2911,7 +2912,7 @@ DON RAMÓN: Ya pandó, joven. Ya pandó hace cuatro días. [pose: donramon_sweat
 - Cierra la jornada entregando `bitacora_caldera`.
 
 ~~~dialogue
-NARRADOR: 6 de diciembre, 7:20 AM. Sótano del Archivo Judicial, sala de calderas. [bg: bg_archivo_caldera; furniture: none; bgm: investigation_core]
+NARRADOR: 9 de diciembre, 7:20 AM. Sótano del Archivo Judicial, sala de calderas. [bg: bg_archivo_caldera; furniture: none; bgm: investigation_core]
 NARRADOR: Una caldera de hierro remachado, dos secadores industriales y un calor que empaña los anteojos.
 SARGENTO: ¡A sus órdenes, mi Licenciado! Llevo aquí desde las cuatro. [pose: pazguato_saludo]
 CHOMPIRAS: Y yo desde las cuatro y media, porque él tiene llave y yo tengo pata de cabra. [pose: chompiras_idle]
@@ -2927,7 +2928,7 @@ SARGENTO: Deme la primera. [pose: pazguato_decidido]
 NARRADOR: La caldera está a tope. Los dos secadores industriales apuntan a un ducto que sube por el muro.
 CHOMPIRAS: Ese ducto sube derechito al pasillo siete, licenciado. Lo pusieron así cuando el edificio era fábrica. [pose: chompiras_idle]
 DEFENSA: ¿Y llevan encendidos desde...? [pose: chapulin_idle]
-CHOMPIRAS: Desde el treinta de noviembre, que se reventó el tubo. Los apagaron anteayer. [pose: chompiras_idle]
+CHOMPIRAS: Desde el tres de diciembre, que se reventó el tubo. Los apagaron anteayer. [pose: chompiras_idle]
 DEFENSA: ¿Y qué temperatura hace arriba con esto puesto? [pose: chapulin_point]
 SARGENTO: Eso no hay que adivinarlo, mi Licenciado. Hay un aparato que lo apunta solo. [pose: pazguato_decidido]
 ~~~
@@ -2938,7 +2939,7 @@ SARGENTO: Eso no hay que adivinarlo, mi Licenciado. Hay un aparato que lo apunta
 NARRADOR: Atornillado al muro, un tambor de reloj con una tira de papel cuadriculado y una plumilla que raya una línea continua.
 SARGENTO: Termógrafo del Archivo, mi Licenciado. Lo pusieron en el sesenta y cuatro por la humedad y nadie lo ha mirado desde entonces. [pose: pazguato_idle]
 SARGENTO: Da una vuelta por semana y la tira se cambia los domingos. [pose: pazguato_decidido]
-DEFENSA: Enséñeme la tira del sábado primero de diciembre. [pose: chapulin_point]
+DEFENSA: Enséñeme la tira del sábado cuatro de diciembre. [pose: chapulin_point]
 NARRADOR: El Sargento desenrolla una tira de papel con una línea de tinta que sube y baja como una sierra.
 DEFENSA: Del treinta al cinco... la línea se va para arriba y se queda. [pose: chapulin_idle]
 SARGENTO: Treinta y un grados, mi Licenciado. Sostenidos. [pose: pazguato_decidido]
@@ -2948,7 +2949,7 @@ DEFENSA: (Once grados. Once grados de diferencia.) [pose: chapulin_panic]
 [ENTREGAR bitacora_caldera]
 ~~~
 
-> **`detailedView` de `bitacora_caldera`** (`assets/examine_termografo.webp`): dos paneles. Arriba, la hoja de la bitácora de mantenimiento con el asiento manuscrito del 30 de noviembre («tubo reventado, muro poniente pasillo 7; caldera y dos secadores al máximo»). Abajo, la **tira del termógrafo** desenrollada: cuadrícula de horas en el eje horizontal, grados en el vertical, y una línea de tinta que sube de 19 °C a 31 °C el día 30 y **se mantiene plana en 31 °C** durante los días siguientes. Marcado con lápiz por el perito, un punto sobre la línea a las 18:40 del día 1.
+> **`detailedView` de `bitacora_caldera`** (`assets/examine_termografo.webp`): dos paneles. Arriba, la hoja de la bitácora de mantenimiento con el asiento manuscrito del 3 de diciembre («tubo reventado, muro poniente pasillo 7; caldera y dos secadores al máximo»). Abajo, la **tira del termógrafo** desenrollada: cuadrícula de horas en el eje horizontal, grados en el vertical, y una línea de tinta que sube de 19 °C a 31 °C el día 3 y **se mantiene plana en 31 °C** durante los días siguientes. Marcado con lápiz por el perito, un punto sobre la línea a las 18:40 del día 4.
 
 #### Bloque de cierre de la jornada
 
@@ -2976,14 +2977,14 @@ DEFENSA: ¡Síganme los buenos! [pose: chapulin_point]
 
 ---
 
-## 17. Guion: Día 4 — Juicio (6 de diciembre, 16:00)
+## 17. Guion: Día 4 — Juicio (9 de diciembre, 16:00)
 
 Pregunta de la jornada: **¿quién estuvo en ese pasillo?** Es la última y la única que queda.
 
 ### 17.1 Apertura y GIRO 4 — *La ventana estaba mal*
 
 ~~~dialogue
-NARRADOR: 6 de diciembre, 4:00 PM. Cuarta y última audiencia. [bg: bg_courtroom; furniture: none; bgm: trial]
+NARRADOR: 9 de diciembre, 4:00 PM. Cuarta y última audiencia. [bg: bg_courtroom; furniture: none; bgm: trial]
 JUEZ: Se reanuda la audiencia. Esta corte anunció ayer que hoy dicta sentencia y lo sostiene. [sfx: gavel; pose: judge_gavel]
 JUEZ: Defensa: tiene usted la palabra y tiene usted una tarde. [pose: judge_neutral]
 DEFENSA: Señor juez, antes de llamar a mi testigo, la defensa tiene que rectificar una prueba. [pose: chapulin_idle]
@@ -2998,7 +2999,7 @@ JUEZ: Presente la defensa lo que tenga. [sfx: gavel; pose: judge_gavel]
 
 ~~~dialogue
 DEFENSA: ¡La bitácora de mantenimiento del Archivo, señor juez, y la tira del termógrafo del pasillo siete! [pose: chapulin_slam; sfx: desk_slam]
-DEFENSA: El treinta de noviembre reventó un tubo en el muro del pasillo siete. Pusieron la caldera y dos secadores al máximo y los dejaron cuatro días. [pose: chapulin_point]
+DEFENSA: El tres de diciembre reventó un tubo en el muro del pasillo siete. Pusieron la caldera y dos secadores al máximo y los dejaron cuatro días. [pose: chapulin_point]
 DEFENSA: El termógrafo del edificio, que lleva dieciocho años rayando la misma tira sin que nadie lo mire, registró **treinta y un grados sostenidos**. [pose: chapulin_idle]
 DEFENSA: Y el legista calculó la hora de la muerte con la tabla de una sala a **veinte**. [pose: chapulin_slam; sfx: desk_slam]
 JUEZ: ¡Cáspita! ¿Y eso qué significa? [pose: judge_shock]
@@ -3060,7 +3061,7 @@ JUEZ: Todo el mundo viene citado, señorita. Declare usted. [sfx: gavel; pose: j
 
 ~~~dialogue
 c5_d4t1_1 GENOVEVA: Mi ventanilla atiende a peritos, actuarios, notarios y síndicos. Es el único acceso de ese edificio que no es el público.
-c5_d4t1_2 GENOVEVA: El primero de diciembre atendí a tres personas, y las tres están en mi libro con su hora de entrada y su hora de salida.
+c5_d4t1_2 GENOVEVA: El cuatro de diciembre atendí a tres personas, y las tres están en mi libro con su hora de entrada y su hora de salida.
 c5_d4t1_3 GENOVEVA: Al licenciado Berrondo le entregué un gafete de visita a las dieciséis cero cinco y se lo recibí a las dieciséis cincuenta.
 c5_d4t1_4 GENOVEVA: La hora la escribo yo, con mi pluma, cuando me ponen el gafete en el mostrador. El reglamento me faculta para eso.
 c5_d4t1_5 GENOVEVA: Y lo que sale de la bodega de bienes sale con vale. Los vales los lleno yo y los archivo yo.
@@ -3087,7 +3088,7 @@ JUEZ: La corte apoya a la testigo. [pose: judge_neutral]
 ~~~dialogue
 DEFENSA: ¡UN MOMENTO! ¿Su libro se enmienda? [sfx: whoosh; pose: chapulin_point]
 GENOVEVA: Jamás. Si me equivoco, tacho con una raya, escribo al lado y firmo la tachadura. [pose: genoveva_idle]
-DEFENSA: ¿Y hay tachaduras el primero de diciembre? [pose: chapulin_idle]
+DEFENSA: ¿Y hay tachaduras el cuatro de diciembre? [pose: chapulin_idle]
 GENOVEVA: Ninguna. [pose: genoveva_idle]
 DEFENSA: (Ninguna tachadura. Y ella está segurísima.) [pose: chapulin_idle]
 DEFENSA: (Va a ser horrible.) [pose: chapulin_idle]
@@ -3179,7 +3180,7 @@ GENOVEVA: ...Con su rótulo exacto, señor. Es el reglamento. [pose: genoveva_id
 JUEZ: Señorita, ¿trae usted esos vales? [pose: judge_neutral]
 GENOVEVA: Traigo los del año, señor juez. Vienen citados. [pose: genoveva_reglamento]
 NARRADOR: La testigo saca de una carpeta de hule un fajo de papeletas rosas atadas con una liga. [bgm: suspense]
-JUEZ: El del veintiocho de noviembre. [sfx: gavel; pose: judge_gavel]
+JUEZ: El del veintinueve de noviembre. [sfx: gavel; pose: judge_gavel]
 GENOVEVA: ...Hay uno, señor juez. [pose: genoveva_sweat]
 GENOVEVA: «Veintiocho de noviembre. Huacal nueve. Cedulario.» [pose: genoveva_idle]
 GENOVEVA: «Cajón: **Donceles a Espanto**.» [pose: genoveva_shock]
@@ -3243,9 +3244,9 @@ BERRONDO: ...... [pose: berrondo_idle]
 SECRETARIO: ¡La representación social objeta! ¡El licenciado Berrondo auxilió a esta fiscalía durante tres días!
 JUEZ: La corte comparte la objeción **en principio**. Defensa, fundamente o retire. [pose: judge_neutral]
 DEFENSA: Con cuatro cosas, señor juez. Cuatro cosas que dijo él, delante de usted, sin que nadie se las sacara. [pose: chapulin_idle]
-DEFENSA: **Primera.** Firmó el veintiocho de noviembre un acuse que decía el día, la hora, el lugar y el nombre. [pose: chapulin_point]
-DEFENSA: **Segunda.** El veintiocho de noviembre, el mismo día, abrió con vale el cajón que va de Donceles a la calle del Espanto. [pose: chapulin_idle]
-DEFENSA: **Tercera.** El primero de diciembre estuvo dentro de ese edificio en una hora que ahora cae dentro de la ventana del perito. [pose: chapulin_point]
+DEFENSA: **Primera.** Firmó el veintinueve de noviembre un acuse que decía el día, la hora, el lugar y el nombre. [pose: chapulin_point]
+DEFENSA: **Segunda.** El veintinueve de noviembre, el mismo día, abrió con vale el cajón que va de Donceles a la calle del Espanto. [pose: chapulin_idle]
+DEFENSA: **Tercera.** El cuatro de diciembre estuvo dentro de ese edificio en una hora que ahora cae dentro de la ventana del perito. [pose: chapulin_point]
 DEFENSA: **Cuarta.** Y ayer declaró bajo protesta que nadie le había avisado, cuando su propia rúbrica decía lo contrario. [pose: chapulin_slam; sfx: desk_slam]
 BERRONDO: Señor juez, la cuarta la rectifiqué yo mismo y me disculpé. [pose: berrondo_sweat]
 DEFENSA: Se disculpó cuando le enseñé la rúbrica, licenciado. No antes. [pose: chapulin_idle]
@@ -3363,7 +3364,7 @@ NARRADOR: Silencio. [bgm: suspense]
 DEFENSA: Bajó al sótano. Abrió el huacal nueve por segunda vez esa tarde. Sacó un Tomo XI de lujo. [pose: chapulin_point]
 DEFENSA: Subió. Lo metió en la ranura once. Y volvió a bajar a sellar el huacal. [pose: chapulin_idle]
 SARGENTO: ¡Señor juez! ¡La fotografía de la tapa! [pose: pazguato_decidido]
-SARGENTO: ¡Hay **dos** tiras de sello con fecha del primero de diciembre, una encima de la otra! ¡Las conté anoche y no supe qué hacer con ellas! [pose: pazguato_decidido]
+SARGENTO: ¡Hay **dos** tiras de sello con fecha del cuatro de diciembre, una encima de la otra! ¡Las revisé anoche y no supe qué hacer con ellas! [pose: pazguato_decidido]
 JUEZ: ¡Que se asiente! [sfx: gavel; pose: judge_gavel]
 BERRONDO: ...Señor juez. [pose: berrondo_sweat]
 BERRONDO: Un estante incompleto es un desorden. [pose: berrondo_sweat]
@@ -3672,7 +3673,7 @@ DON RAMÓN: Inténtelo otra vez. [pose: donramon_idle]
 Cada línea estampa `bg: bg_waiting_room; furniture: none` ([[docs/lessons-learned/trial-waiting-room-epilogue-staging.md]]).
 
 ~~~dialogue
-NARRADOR: 6 de diciembre, 20:10. Sala de espera del tribunal. [bg: bg_waiting_room; furniture: none; bgm: epilogue]
+NARRADOR: 9 de diciembre, 20:10. Sala de espera del tribunal. [bg: bg_waiting_room; furniture: none; bgm: epilogue]
 BARRIGA: Señor Ramón. Tengo que decirle una cosa y no me va a gustar decirla. [bg: bg_waiting_room; furniture: none; pose: barriga_idle]
 DON RAMÓN: Dígala, señor Barriga. [bg: bg_waiting_room; furniture: none; pose: donramon_idle]
 BARRIGA: Los cuatro mil doscientos cincuenta pesos son prueba en un expediente penal. [bg: bg_waiting_room; furniture: none; pose: barriga_shock]
@@ -3799,15 +3800,15 @@ Este episodio cierra la serie: **nada queda abierto**, ni siquiera lo que los ca
 | El fragmento liso, sin arrugas, en la mano cerrada | D1 celda; D1-T2 presión 4 | **D1-T2 `followUp`** (fue colocado) y **clímax E4** (empata con la tarjeta) |
 | «Ojalá que no», dicho por Don Ramón al conserje | D1-T1 presión 3 | **Epílogo**: era la respuesta a lo que Casimiro le había dicho a las 16:56 |
 | El montacargas y el Chómpiras | D1 vestíbulo (`hotspot_carrito`) | **D3-T1**: una rutina de once años transmitida entre cargadores; el Chómpiras la conoce desde septiembre |
-| El billete con banda de banco | D2-T1 presión 2 | Rastreado al retiro del 27 de noviembre; la factura explica $750 y **el sobrante de $4,250 se cobra en el clímax E4** como dinero destinado a la renta |
+| El billete con banda de banco | D2-T1 presión 2 | Rastreado al retiro del 26 de noviembre; la factura explica $750 y **el sobrante de $4,250 se cobra en el clímax E4** como dinero destinado a la renta |
 | «Se ruega expedir el recibo **y conservarlo**» | D2 vecindad; D2-T1 presión 3 | **Clímax E4**: el recibo tenía que existir y ser hallable, porque es la mitad del marco |
 | La rúbrica del margen del acuse | D2 correspondencia; `detailedView` | **D3-T3 contradicción** |
 | «¿Iba a haber policía?» / «A las cinco cambian de turno» | D2 correspondencia (Chimoltrufia) | **Clímax E1, dato tercero**: cómo supo del relevo |
 | El campo «estado de la puerta» del cedulario | D2 despacho (lámina L4) | **Clímax E4**: la tarjeta de Don Ramón dice «chapa vencida. Se empuja» |
 | «Vender información no es delito» | D2 despacho; D2-T2 decl. 3; GIRO 2 | **Veredicto**: el Juez lo hace constar por escrito y da vista sin poder procesarlo |
 | Las siete altas del cedulario | D3 bodega (`hotspot_cajones`) | **D2-T2 contradicción / GIRO 2**: el fichero no está muerto, crece |
-| Las más de doscientas cincuenta tiras de sello encabalgadas | D3 bodega (`hotspot_huacal`, lámina L6, `detailedView`) | **Clímax E3**: dos tiras con fecha del 1 de diciembre |
-| «Los jueves» | D2-T2 presión 2 (Berrondo); D3-T1 decl. 2 (Chómpiras) | **D3-T1 `followUp`**: el 1 de diciembre fue sábado |
+| Las más de doscientas cincuenta tiras de sello encabalgadas | D3 bodega (`hotspot_huacal`, lámina L6, `detailedView`) | **Clímax E3**: dos tiras con fecha del 4 de diciembre |
+| «Los jueves» | D2-T2 presión 2 (Berrondo); D3-T1 decl. 2 (Chómpiras) | **D3-T1 `followUp`**: el 4 de diciembre fue sábado |
 | La edición de lujo con cantoneras de latón | D3-T1 contradicción (la corrige el propio Berrondo) | **Clímax E3** |
 | El cedulario ordenado por calle | D3 bodega; D4-T1 decl. 5 | **D4-T1 `followUp`** (el vale) y **clímax E4** (el acusado dicta su domicilio) |
 | «El gafete es del edificio, la credencial es del concurso» | D3-T3 presión 2 (lo dice Berrondo) | **Clímax E2** |
@@ -3959,16 +3960,16 @@ Las zonas de los dos señalamientos **se miden sobre el WebP ya generado**, nunc
 | `examine_libro_peritos.webp` | `libro_peritos` | Libro más pequeño, empastado en hule negro. Tres asientos. **Los encabezados impresos de las columnas son legibles y son el argumento del día 4: «HORA DE ENTRADA» y «HORA DE DEVOLUCIÓN DE GAFETE».** Ninguna tachadura. |
 | `examine_plano_archivo.webp` | `plano_archivo` | Plano de protección civil amarillento, con marcas de tachuela en las cuatro esquinas. Planta baja, primer piso y sótano en tres recuadros. Salidas en rojo. **La escalera de servicio dibujada como una línea de puntos que atraviesa los tres niveles.** Leyenda ilegible salvo tres rótulos: «ACCESO PÚBLICO», «PERITOS Y AUXILIARES», «PATIO DE MANIOBRAS». |
 | `examine_nota_renta.webp` | `nota_mecanografiada` | Media cuartilla de papel cebolla con luz rasante. Tres renglones mecanografiados, cinta bicolor gastada. **La ese, media línea abajo y medio grado a la izquierda.** Sin firma, sin membrete, sin fecha. Marca circular de liga en una esquina. Al lado, el sobre de manila abierto, sin timbres. |
-| `examine_acuse.webp` | `acuse_notificacion` | Asiento de libro de acuses, plano. Renglón mecanografiado con el oficio 4471 y el nombre del interno. Al margen derecho, **una rúbrica manuscrita a tinta azul, muy pequeña y enérgica, con dos rayas bajo el trazo**. Fechador de hule morado: *28 NOV*. |
+| `examine_acuse.webp` | `acuse_notificacion` | Asiento de libro de acuses, plano. Renglón mecanografiado con el oficio 4471 y el nombre del interno. Al margen derecho, **una rúbrica manuscrita a tinta azul, muy pequeña y enérgica, con dos rayas bajo el trazo**. Fechador de hule morado: *29 NOV*. |
 | `examine_credencial.webp` | `credencial_sindico` | Copia certificada de una credencial de cartulina: **fotografía en blanco y negro de un hombre mayor de traje oscuro y lentes de media luna**, sello seco en relieve del Juzgado Séptimo y tres renglones impresos legibles: *«Vigente hasta la conclusión del concurso»*, *«Sin límite de horario»*, *«Acceso al depósito de bienes de la masa»*. Segunda vista del reverso con firma de 1971. |
 | `examine_inventario.webp` | `inventario_1971` | Dos folios mecanografiados en papel revolución, grapados, con el membrete del juzgado. Columna de partidas numeradas. **Legibles y destacadas por su posición, no por un realce: la 12 (cedulario, 11,400 tarjetas), la 41 (máquina de escribir Olivetti Lexikon 80) y la 44 (ejemplares de lujo sin vender, 210).** Sin flechas ni círculos. |
 | `examine_expediente_serie.webp` | `expediente_serie` | **Tablero del Señalamiento 1.** Cinco paneles en fila sobre una mesa de peritajes, cada uno con su etiqueta de fecha escrita a máquina. **A (12 JUL):** tarjeta de presentación de «Enciclopedias El Saber Universal, S.A.». **B (21 AGO):** ficha de cartulina con seis renglones mecanografiados legibles. **C (28 AGO):** un frasco de vidrio ámbar con etiqueta de botica y un molde de cera agrietado. **D (15 SEP):** boleta de empeño del Monte de Piedad con la cifra «$12,000» y la palabra «EFECTIVO» legibles. **E (24 OCT):** acta mecanografiada con una fotografía grapada de un collar. Zonas: `panel_a`, `panel_b`, `panel_c`, `panel_d`, `panel_e`. **Sin flechas, sin círculos, sin realces: la lámina no puede señalar la respuesta.** |
 | `examine_tomo_caido.webp` | `tomo_caido` | Dos vistas. Izquierda: tomo cerrado de canto sobre mesa de peritajes, **tela verde oliva, tejuelo dorado «XI»**, mancha parda en el canto del lomo, regla testigo. Derecha: la guarda abierta con **un sello ovalado de tinta violeta, parcialmente corrido**: *«DONACIÓN DEL SÍNDICO DE LA QUIEBRA 114/1971 · 14-X-1971»*. |
 | `examine_estante_consulta.webp` | `estante_consulta` | **Tablero del Señalamiento 2.** Fotografía pericial en color desaturado del estante de consulta, de frente, con regla testigo apoyada abajo. Veinticuatro ranuras con **cartoncitos numerados escritos a mano**. Veintidós lomos de **tela verde oliva idénticos**, la **ranura 13 vacía y oscura**, y en la **ranura 11 un lomo distinto: media piel color vino con nervios y dos cantoneras de latón en el canto**, media pulgada más grueso que sus vecinos. Abajo, el zoclo con polvo. Zonas: `lomo_11`, `hueco_13`, `cartoncitos`, `tomo_i`, `zoclo`. **Ni una flecha, ni un círculo, ni un realce de color.** |
-| `examine_huacal9.webp` | `huacal_9` | Tapa de huacal fotografiada en picado con **luz rasante para que las capas de papel proyecten sombra**. Más de doscientas cincuenta tiras de sello engomado encabalgadas como escamas, amarilleando hacia abajo, cada una con rúbrica y fecha manuscritas. **La de hasta arriba es blanca y limpia, fechada «1-XII»; bajo ella asoma otra, también «1-XII», medio tapada.** El pie de lámina no lo comenta. |
+| `examine_huacal9.webp` | `huacal_9` | Tapa de huacal fotografiada en picado con **luz rasante para que las capas de papel proyecten sombra**. Más de doscientas cincuenta tiras de sello engomado encabalgadas como escamas, amarilleando hacia abajo, cada una con rúbrica y fecha manuscritas. **La de hasta arriba es blanca y limpia, fechada «4-XII»; bajo ella asoma otra, también «4-XII», medio tapada.** El pie de lámina no lo comenta. |
 | `examine_maquina.webp` | `maquina_escribir` | Dos vistas. Izquierda: Olivetti Lexikon 80 negra de tres cuartos sobre funda de hule, carro cromado, cinta bicolor gastada hasta la tela, con el número **41** pintado a plantilla en blanco en el costado. Derecha: **macro del abanico de barras de tipos**, con la barra de la **‘s’ minúscula visiblemente torcida hacia la izquierda** respecto de sus vecinas. |
 | `examine_ficha_domicilio.webp` | `ficha_domicilio` | Tarjeta de cedulario de cartulina crema, formato apaisado, fotografiada de plano. **Seis campos impresos con sus respuestas mecanografiadas, todos legibles**, con el texto exacto de §18.5. Las fechas «1969» y «VIII» anotadas a mano en el ángulo superior. **A la tarjeta le falta la esquina inferior derecha, con el mismo borde recto y limpio del fragmento.** Todas las eses, media línea abajo. |
-| `examine_termografo.webp` | `bitacora_caldera` | Dos paneles. Arriba: hoja de bitácora de mantenimiento con el asiento manuscrito del 30 de noviembre. Abajo: **tira de termógrafo desenrollada**, cuadrícula de horas en horizontal y grados en vertical, **línea de tinta que sube de 19 °C a 31 °C y se aplana**, con un punto a lápiz marcado por el perito. |
+| `examine_termografo.webp` | `bitacora_caldera` | Dos paneles. Arriba: hoja de bitácora de mantenimiento con el asiento manuscrito del 3 de diciembre. Abajo: **tira de termógrafo desenrollada**, cuadrícula de horas en horizontal y grados en vertical, **línea de tinta que sube de 19 °C a 31 °C y se aplana**, con un punto a lápiz marcado por el perito. |
 | `examine_efectos.webp` | `efectos_casimiro` | Dos paneles. Izquierda: **libreta de pasta negra abierta**, letra menuda y regular, márgenes trazados a regla, cinco puntos numerados legibles; **el punto cinco, más torcido que los otros cuatro**. Derecha: copia al carbón morada y traslúcida de un oficio, con sello de acuse fechado **8 NOV** y, encima, escrito a lápiz por otra mano: «pendiente». Al lado, dos relojes de pulsera parados. |
 
 **Variantes localizadas al inglés (13):** `examine_esquina_tarjeta_en.webp`, `examine_libro_visitas_en.webp`, `examine_libro_peritos_en.webp`, `examine_plano_archivo_en.webp`, `examine_nota_renta_en.webp`, `examine_acuse_en.webp`, `examine_credencial_en.webp`, `examine_inventario_en.webp`, `examine_expediente_serie_en.webp`, `examine_tomo_caido_en.webp`, `examine_ficha_domicilio_en.webp`, `examine_termografo_en.webp` y `examine_efectos_en.webp`. En todas, el texto legible sostiene un argumento y debe coincidir con el catálogo inglés; composición, defectos mecánicos, fechas y marcas físicas permanecen iguales. `examine_estante_consulta.webp`, `examine_huacal9.webp` y `examine_maquina.webp` se comparten porque sus marcas operativas son números, fechas o geometría, no prosa.
@@ -4028,19 +4029,19 @@ Este apartado manda sobre las cronologías, el guion, la tabla de descarte y la 
 |---|---|---|---|---|---|---|
 | **F1** | Cedulario levantado durante quince años y adquirido por tres pesos | A1 | 1956–1971; actualizado hasta 1982 | Familias → editorial → masa concursal | D2-T2; D3 bodega | **11,400 originales** en 1971; **11,407 físicas** en 1982 tras siete altas. Las once bajas permanecen archivadas y marcadas como inactivas, de modo que no reducen el conteo físico. |
 | **F2** | Venta de copias del cedulario | A1 | 1971–1982, once años | Compradores → Berrondo | D2-T2, GIRO 2 | Berrondo vende información. No prueba por sí sola qué ficha vendió ni un homicidio. |
-| **F3** | Asiento del libro de peritos | A1, A5 | 1 dic, 16:05 / 16:50 | Entrada / devolución de gafete | D2-T2, D4-T1 | Prueba entrada y devolución. **No prueba salida.** |
-| **F4** | Asiento del libro público | A2, A4 | 1 dic, 16:40 / 16:58 | Entrada / salida observada | D1-T1 | Coloca a Don Ramón fuera del edificio a las 16:58, salvo que regresara. |
-| **F5** | Relevo sin custodios | A8 | 17:00–17:15 | Reja desatendida | D1-T2 | Abre la oportunidad material. No coloca a una persona concreta. |
+| **F3** | Asiento del libro de peritos | A1, A5 | 4 dic, 16:05 / 16:50 | Entrada / devolución de gafete | D2-T2, D4-T1 | Prueba entrada y devolución. **No prueba salida.** |
+| **F4** | Asiento del libro público | A2, A4 | 4 dic, 16:40 / 16:58 | Entrada / salida observada | D1-T1 | Coloca a Don Ramón fuera del edificio a las 16:58, salvo que regresara. |
+| **F5** | Relevo sin custodios | A8 | 4 dic, 17:00–17:15 | Reja desatendida | D1-T2 | Abre la oportunidad material. No coloca a una persona concreta. |
 | **F6** | Ventana forense normal y corregida | A8 | 17:00–17:30 / 16:35–17:05 | 20 °C supuestos / 31 °C reales | GIRO 4 | La ventana corregida incluye a Don Ramón y Berrondo. La hora deja de atribuir autoría. |
 | **F7** | Libros visibles | A1, A8 | 17:35 | 23 en el estante + 1 en el suelo = 24 físicos | Clímax E3 | La colección publicada tuvo 23 tomos porque el XIII nunca existió. Una de las 24 copias físicas vino del huacal. |
-| **F8** | Tomo XI de lujo y dos sellos del 1 de diciembre | A1 | 17:05 | Sótano → ranura 11 | Clímax E3 | Prueba que alguien con acceso al huacal volvió a subir después del golpe. |
-| **F9** | Esquina colocada y tarjeta de domicilio rota | A1 | 17:02 / hallazgo E4 | Cedulario → mano de A3 | D1-T2, clímax E4 | El fragmento fue plantado y empata con la tarjeta. |
+| **F8** | Tomo XI de lujo y dos sellos del 4 de diciembre | A1 | 17:05 | Sótano → ranura 11 | Clímax E3 | Prueba que alguien con acceso al huacal volvió a subir después del golpe. |
+| **F9** | Esquina colocada y tarjeta de domicilio rota | A1 | 4 dic, 17:02 / hallazgo E4 | Cedulario → mano de A3 | D1-T2, clímax E4 | El fragmento fue plantado y empata con la tarjeta. |
 | **F10** | La misma `s` caída en cuatro documentos | A1 y máquina 41 | 1971–1982 | Máquina → documentos | Clímax E5 | Atribuye los documentos a la máquina. No atribuye por sí sola quién pulsó las teclas. |
 | **F11** | Panel A y panel B del expediente de serie | A1 / cliente del Caso 1 | Julio / agosto | Sociedad disuelta / ficha operativa | Señalamiento 1, GIRO 2 | Juntos justifican inspeccionar el cedulario. Los paneles C, D y E sólo dan contexto. |
 | **F12** | Boleta de empeño del Caso 3 | Aniceto → Monte de Piedad | 3 sep | **Aniceto pagó** $12,000 para desempeñar el micrófono | Lámina L5 | Es gasto de preparación. No es dinero recibido ni un pago de Berrondo. |
-| **F13** | Renta de Don Ramón | A1 → Barriga | 28 nov | $4,250 entregados en sobre | D2-T1, clímax E4 | Berrondo financia el marco y exige conservar el recibo. |
+| **F13** | Renta de Don Ramón | A1 → Barriga | 29 nov | $4,250 entregados en sobre | D2-T1, clímax E4 | Berrondo financia el marco y exige conservar el recibo. |
 | **F14** | Reparto del collar del Caso 4 | Rufino / Cuajinais | Octubre | Pago prometido y no realizado | Lámina L5, veredicto | Es contexto de botín. No prueba relación comercial con Berrondo. |
-| **F15** | Rutina de apertura del huacal | A1, empleados sucesivos, A6 | 1971–1982 | Síndico abre; empleado destapa acompañado | D3-T1 | La rutina tiene once años. Chómpiras sólo conoce su tramo desde septiembre. |
+| **F15** | Rutina de apertura del huacal | A1, empleados sucesivos, A6 | 1971–1982 | Síndico abre; empleado destapa acompañado | D3-T1 | La rutina tiene once años y dejó más de 250 tiras permanentes. Chómpiras sólo conoce su tramo desde septiembre. |
 
 ### 24.C Invariantes
 
@@ -4055,6 +4056,8 @@ Este apartado manda sobre las cronologías, el guion, la tabla de descarte y la 
 | **I7** | Cada etapa declarada de perfil tiene un comando de actualización obligatorio: Berrondo 3, Chómpiras 1. | Saltar etapas del Acta por actualizaciones faltantes. |
 | **I8** | Ninguna zona incorrecta puede responder válidamente la pregunta visible; cada fallo debe describir su propio panel con verdad. | Penalizar al jugador por leer correctamente el dinero o el producto. |
 | **I9** | El inventario histórico declara 11,400 tarjetas originales; el fichero actual contiene 11,407 físicas. Las once bajas permanecen archivadas con marca de inactividad. | Restar bajas del conteo físico o borrar el pago de las siete altas. |
+| **I10** | El crimen ocurre el sábado 4 de diciembre de 1982; las jornadas judiciales van del lunes 6 al jueves 9. La notificación y la renta son del lunes 29 de noviembre; el retiro, del viernes 26. | Asignar días de la semana imposibles o romper los intervalos de la cronología. |
+| **I11** | Dos aperturas mensuales durante once años producen más de 250 tiras permanentes; las dos tiras superiores son las del 4 de diciembre. | Reducir el historial del huacal a 41 aperturas o confundir el total con las tiras del crimen. |
 
 ---
 

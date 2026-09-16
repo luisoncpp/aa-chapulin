@@ -30,8 +30,8 @@ export const CASE1_CALL_ALMA_NEGRA_EN: DialogueLine[] = [
 
 export const CASE1_CALL_TRIPASECA_D2_T2_EN: DialogueLine[] = [
   { speaker: 'SUPER SAM', text: 'With pleasure, Your Honor! The prosecution recalls the witness Tripaseca!', pose: 'supersam_point', bgm: 'trial' },
-  { speaker: 'TRIPASECA', text: 'I never stepped down, counselor.', pose: 'tripaseca_smug' },
-  { speaker: 'SUPER SAM', text: 'Then consider yourself recalled where you sit! Time is money!', pose: 'supersam_slam', sfx: 'desk_slam' },
+  { speaker: 'TRIPASECA', text: 'I am on my way up, counselor. No need to rush.', pose: 'tripaseca_smug' },
+  { speaker: 'SUPER SAM', text: 'Then hurry up to the stand! Time is money!', pose: 'supersam_slam', sfx: 'desk_slam' },
   { speaker: 'JUEZ', text: 'Mr. Tripaseca, you remain under oath. Proceed.', sfx: 'gavel', pose: 'judge_gavel' }
 ];
 

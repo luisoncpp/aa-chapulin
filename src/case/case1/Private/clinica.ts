@@ -44,7 +44,7 @@ export const CASE1_CLINICA: InvestigationScene = {
       dialogue: [
         { speaker: 'NARRADOR', text: 'La venda deja ver el borde de la herida: un hundimiento ancho, sin cortes.' },
         { speaker: 'DEFENSA', text: '(Ancho y hundido. Como si le hubieran dejado caer encima un costal.)', pose: 'donramon_idle' },
-        { speaker: 'DEFENSA', text: '(Con el chipote de vinil ese, lo más que le sacas a un cráneo es un chiflido.)', pose: 'donramon_sweat' }
+        { speaker: 'DEFENSA', text: '(Con ese chipote, lo más que le sacas a un cráneo es un chiflido.)', pose: 'donramon_sweat' }
       ]
     },
     {

@@ -7,7 +7,7 @@
 
 import type { DialogueLine } from '../../../types/index.js';
 
-/** Cierra el `followUp` de D1-T1 y abre el primer testimonio del Tripaseca. */
+/** Cierra la contradicción de D1-T1 y abre el primer testimonio del Tripaseca. */
 export const CASE1_CALL_TRIPASECA_D1: DialogueLine[] = [
   { speaker: 'JUEZ', text: 'La testigo puede retirarse. Fiscalía, llame a su siguiente testigo.', pose: 'judge_neutral', bgm: 'trial' },
   { speaker: 'SUPER SAM', text: '¡Con gusto, Your Honor! La fiscalía llama al único hombre que vio todo con sus propios ojos: el señor conocido como El Tripaseca.', pose: 'supersam_point' },
@@ -34,8 +34,8 @@ export const CASE1_CALL_ALMA_NEGRA: DialogueLine[] = [
 /** Cierra el `followUp` de D2-T1 y vuelve a llamar al Tripaseca. */
 export const CASE1_CALL_TRIPASECA_D2_T2: DialogueLine[] = [
   { speaker: 'SUPER SAM', text: '¡Con gusto, Your Honor! ¡La fiscalía vuelve a llamar al estrado al testigo Tripaseca!', pose: 'supersam_point', bgm: 'trial' },
-  { speaker: 'TRIPASECA', text: 'Si yo no me he bajado, señor fiscal.', pose: 'tripaseca_smug' },
-  { speaker: 'SUPER SAM', text: '¡Entonces considérese llamado desde donde está! ¡Time is money!', pose: 'supersam_slam', sfx: 'desk_slam' },
+  { speaker: 'TRIPASECA', text: 'Ya voy subiendo, señor fiscal. Con calma, que no hay prisa.', pose: 'tripaseca_smug' },
+  { speaker: 'SUPER SAM', text: '¡Pues apúrese a subir! ¡Time is money!', pose: 'supersam_slam', sfx: 'desk_slam' },
   { speaker: 'JUEZ', text: 'Señor Tripaseca, sigue usted bajo protesta de decir verdad. Proceda.', sfx: 'gavel', pose: 'judge_gavel' }
 ];
 

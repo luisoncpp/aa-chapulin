@@ -1,7 +1,7 @@
 // @Architecture(descriptionShort="Spanish Court Record entries for Case 1", type="catalog", icon="database")
 /**
  * Acta del Juicio — Caso 1 (español). Spec §5.
- * Thirteen entries; isolated from Case 2 so `getEvidenceCatalog(lang, 'case1')`
+ * Fourteen entries; isolated from Case 2 so `getEvidenceCatalog(lang, 'case1')`
  * never leaks another case's exhibits.
  */
 
@@ -27,7 +27,7 @@ export const CASE1_EVIDENCE_ES: EvidenceCatalogMap = {
     id: 'chipote_chillon',
     name: 'Chipote Chillón',
     icon: 'assets/chipote_chillon.webp',
-    desc: 'Mazo de vinil suave y goma hueca. Al apretarlo emite un chillido. Doscientos gramos.'
+    desc: 'El mazo del acusado. Lo traía en la mano cuando lo detuvieron en la sala 2. Al apretarlo emite un chillido.'
   },
   pastillas_chiquitolina: {
     id: 'pastillas_chiquitolina',
@@ -101,13 +101,29 @@ export const CASE1_EVIDENCE_ES: EvidenceCatalogMap = {
     id: 'foto_crimen',
     name: 'Fotografía de la Cámara',
     icon: 'assets/foto_crimen.webp',
-    desc: 'Único cuadro de la cámara del vestíbulo, con hora impresa 21:00. Se ve una figura corriendo.',
+    desc: 'Único cuadro de la cámara del pasillo, con hora impresa 21:00. Se ve una figura corriendo.',
     updates: [
       'Bitácora del rollo: se cambia los lunes. El martes 21 quedaba un solo cuadro, y se disparó por movimiento a las 21:00.'
     ],
     detailedView: {
       imageAsset: 'assets/examine_foto_crimen.webp',
       caption: 'Único cuadro del rollo. Ampliación 8×. Hora impresa: 21:00.'
+    }
+  },
+  plano_pasillo: {
+    id: 'plano_pasillo',
+    name: 'Plano del Pasillo',
+    icon: 'assets/plano_pasillo.webp',
+    desc: 'Plano del pasillo de servicio del museo. Marca la puerta de carga, la cámara, el espejo y el paso a las salas.',
+    detailedView: {
+      imageAsset: 'assets/examine_plano_pasillo.webp',
+      caption: 'Plano del pasillo de servicio. Puerta, cámara, espejo y salas.',
+      clickableZones: [
+        { id: 'zona_patio', x: 26, y: 26, width: 20, height: 17, tooltip: 'Patio de carga' },
+        { id: 'zona_camara', x: 18, y: 68, width: 12, height: 16, tooltip: 'Cámara, junto al acceso' },
+        { id: 'zona_espejo', x: 77, y: 52, width: 8, height: 28, tooltip: 'Espejo al fondo del tramo' },
+        { id: 'zona_salas', x: 51, y: 26, width: 15, height: 26, tooltip: 'Paso a las salas' }
+      ]
     }
   },
   bitacora_ronda: {

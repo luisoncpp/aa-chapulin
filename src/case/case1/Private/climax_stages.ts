@@ -24,17 +24,20 @@ const STAGE_1_SUCCESS: DialogueLine[] = [
   { speaker: 'DEFENSA', text: 'Primera. Ayer declaró que vio a mi cliente "parado sobre el pedestal de la vitrina, ése de madera, como de la cintura de uno".', pose: 'donramon_point' },
   { speaker: 'DEFENSA', text: 'Ese pedestal no se ve desde el callejón. El ventanuco mide cuarenta centímetros, está a dos metros veinte y tiene el vidrio esmerilado.', pose: 'donramon_idle' },
   { speaker: 'DEFENSA', text: 'Segunda. Hoy declaró que la chapa de la puerta de carga está vencida "desde marzo". Con mes.', pose: 'donramon_point' },
-  { speaker: 'DEFENSA', text: 'Tercera. Ayer describió el sonido del golpe como "un costalazo de fierros", cuando en esa sala, según la fiscalía, sólo había un chipote de hule.', pose: 'donramon_slam', sfx: 'desk_slam' },
+  { speaker: 'DEFENSA', text: 'Tercera. Ayer describió el sonido del golpe como "un costalazo de fierros", cuando en esa sala, según la fiscalía, sólo había un chipote.', pose: 'donramon_slam', sfx: 'desk_slam' },
   { speaker: 'DEFENSA', text: 'Nadie describe así un golpe que no oyó de cerca. Nadie sabe un mes mirando una chapa. Y nadie mide un pedestal por un vidrio esmerilado.', pose: 'donramon_point' },
   { speaker: 'TRIPASECA', text: '¡Yo soy un comerciante honrado!', pose: 'tripaseca_panic' },
   { speaker: 'JUEZ', text: 'La corte permite a la defensa continuar.', sfx: 'gavel', pose: 'judge_gavel' },
   { speaker: 'JUEZ', text: 'Pero le advierto una cosa, licenciado: tres frases no son tres pruebas.', pose: 'judge_neutral' },
-  { speaker: 'JUEZ', text: 'Si usted sostiene que ese hombre se llevó la Chicharra Paralizadora de Oro, esta corte quiere saber dónde está esa pieza en este momento.', pose: 'judge_thinking' }
+  { speaker: 'JUEZ', text: 'Si usted sostiene que ese hombre se llevó la Chicharra Paralizadora de Oro, esta corte quiere saber dónde está esa pieza en este momento.', pose: 'judge_thinking' },
+  { speaker: 'CHAPULIN', text: '¡Mis antenitas! ¡Si el que se la llevó la trae encima, ellas lo señalan ahorita mismo!', pose: 'chapulin_point' },
+  { speaker: 'JUEZ', text: '¿Propone una demostración con esas antenitas, licenciado?', pose: 'judge_thinking' },
+  { speaker: 'DEFENSA', text: 'Propongo un instrumento, señor juez. Que el Acta diga con cuál.', pose: 'donramon_idle' }
 ];
 
 const STAGE_2_FAIL: DialogueLine[] = [
-  { speaker: 'JUEZ', pose: 'judge_thinking', text: 'Licenciado, esa prueba no le dice a esta corte dónde está la pieza en este momento.', sfx: 'damage' },
-  { speaker: 'JUEZ', pose: 'judge_neutral', text: 'La corte no le pidió un lugar ni una descripción. Le pidió con qué va usted a encontrarla, aquí y ahora.' }
+  { speaker: 'JUEZ', pose: 'judge_thinking', text: 'Licenciado, la ficha de la pieza describe lo robado, no lo encuentra.', sfx: 'damage' },
+  { speaker: 'JUEZ', pose: 'judge_neutral', text: 'La corte no pidió la descripción. Pidió el instrumento para localizarla aquí mismo.' }
 ];
 
 const STAGE_2_SUCCESS: DialogueLine[] = [
@@ -132,7 +135,7 @@ export const CASE1_CLIMAX_STAGES: ClimaxStage[] = [
   },
   {
     presentTarget: ['antenitas_vinil'],
-    prompt: '¿Qué puede decirle a esta corte, aquí y ahora, dónde está la Chicharra?',
+    prompt: '¿Con qué instrumento propone localizar la Chicharra aquí mismo, en esta sala?',
     failDialogue: STAGE_2_FAIL,
     successDialogue: STAGE_2_SUCCESS
   },

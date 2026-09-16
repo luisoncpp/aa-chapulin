@@ -19,18 +19,26 @@ describe('Case 1 investigation hotspot geometry', () => {
       { id: 'hotspot_ventana', x: 8, y: 0, w: 18, h: 20 }
     ]);
     expect(es.investigation.cuarto_camaras.hotspots.map(geom)).toEqual([
-      { id: 'hotspot_camara', x: 4, y: 3, w: 13, h: 20 },
-      { id: 'hotspot_foto', x: 4, y: 66, w: 20, h: 22 },
-      { id: 'hotspot_bitacora_rollo', x: 0, y: 23, w: 15, h: 28 },
-      { id: 'hotspot_espejo', x: 72, y: 0, w: 28, h: 90 }
+      { id: 'hotspot_camara', x: 76, y: 1, w: 13, h: 16 },
+      { id: 'hotspot_foto', x: 70, y: 75, w: 22, h: 21 },
+      { id: 'hotspot_bitacora_rollo', x: 88, y: 16, w: 11, h: 48 },
+      { id: 'hotspot_acceso_carga', x: 36, y: 18, w: 7, h: 30 },
+      { id: 'hotspot_muro_ciego', x: 66, y: 65, w: 16, h: 10 },
+      { id: 'hotspot_espejo', x: 49, y: 23, w: 21, h: 34 }
     ]);
     expect(es.investigation.clinica.hotspots.map(geom)).toEqual([
       { id: 'hotspot_expediente', x: 28, y: 72, w: 34, h: 19 },
       { id: 'hotspot_vendaje', x: 70, y: 24, w: 17, h: 23 },
       { id: 'hotspot_silla', x: 3, y: 33, w: 22, h: 45 }
     ]);
-    expect(es.investigation.patio_carga.hotspots.find((hotspot) => hotspot.id === 'hotspot_rejilla_exterior'))
-      .toMatchObject({ x: 22, y: 76, w: 17, h: 12 });
+    expect(es.investigation.patio_carga.hotspots.map(geom)).toEqual([
+      { id: 'hotspot_camioneta', x: 50, y: 24, w: 44, h: 49 },
+      { id: 'hotspot_guantera', x: 51, y: 35, w: 12, h: 27 },
+      { id: 'hotspot_bolsa', x: 86, y: 56, w: 14, h: 26 },
+      { id: 'hotspot_puerta', x: 3, y: 7, w: 21, h: 61 },
+      { id: 'hotspot_rejilla_exterior', x: 22, y: 74, w: 18, h: 8 },
+      { id: 'hotspot_barda', x: 28, y: 13, w: 22, h: 22 }
+    ]);
   });
 
   it('uses max coordinates for every Case 1 Present & Point zone', () => {
@@ -64,11 +72,11 @@ describe('Case 1 investigation hotspot geometry', () => {
     ]);
     expect(getPointZones(en, 'vitrina_rota')).toEqual(getPointZones(es, 'vitrina_rota'));
     expect(getPointZones(es, 'foto_crimen')).toEqual([
-      { id: 'emblema_pecho', bounds: [43, 30, 63, 50] },
-      { id: 'manos', bounds: [35, 50, 68, 67] },
-      { id: 'puerta_fondo', bounds: [25, 20, 45, 58] },
-      { id: 'marco_espejo', bounds: [0, 0, 100, 10] },
-      { id: 'piso_pasillo', bounds: [0, 68, 100, 100] },
+      { id: 'emblema_pecho', bounds: [42, 37, 53, 51] },
+      { id: 'manos', bounds: [32, 46, 64, 64] },
+      { id: 'marco_espejo', bounds: [0, 0, 18, 100] },
+      { id: 'piso_pasillo', bounds: [18, 60, 100, 100] },
+      { id: 'pasillo_reflejado', bounds: [18, 12, 100, 60] },
       { id: 'foto_resto', bounds: [0, 0, 100, 100] }
     ]);
     expect(getPointZones(en, 'foto_crimen')).toEqual(getPointZones(es, 'foto_crimen'));

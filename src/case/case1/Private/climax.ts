@@ -79,7 +79,7 @@ const CASE1_VERDICT: DialogueLine[] = [
   { speaker: 'JUEZ', text: 'Entró por una puerta abierta, con las manos vacías, a auxiliar a un hombre al que no conocía, y lo detuvieron por llegar tarde.', pose: 'judge_thinking' },
   { speaker: 'JUEZ', text: 'Esta corte dicta su veredicto.', sfx: 'gavel', pose: 'judge_gavel' },
   { speaker: 'NARRADOR', text: '¡INOCENTE!', cutin: 'objection_inocente', sfx: 'gavel', bgm: 'victory' },
-  { speaker: 'NARRADOR', text: 'Cae confeti sobre la sala de audiencias.' },
+  { speaker: 'NARRADOR', text: '', instant: true, confetti: true },
   { speaker: 'CHAPULIN', text: '¡SÍGANME LOS BUENOS!', pose: 'chapulin_point' },
   { speaker: 'DEFENSA', text: '¡Con permisito, dijo Monchito!', pose: 'donramon_point' },
   { speaker: 'FLORINDA', text: '...Gracias, licenciado. Gracias.', pose: 'florinda_crying' },

@@ -27,7 +27,7 @@ export const CASE1_EVIDENCE_EN: EvidenceCatalogMap = {
     id: 'chipote_chillon',
     name: 'Chipote Chillón (Squeaky Mallet)',
     icon: 'assets/chipote_chillon.webp',
-    desc: 'Mallet of soft vinyl over hollow rubber. Squeezing it produces a squeak. Two hundred grams.'
+    desc: "The defendant's mallet. He was holding it when they arrested him in gallery 2. Squeezing it produces a squeak."
   },
   pastillas_chiquitolina: {
     id: 'pastillas_chiquitolina',
@@ -101,13 +101,29 @@ export const CASE1_EVIDENCE_EN: EvidenceCatalogMap = {
     id: 'foto_crimen',
     name: 'Security Photograph',
     icon: 'assets/foto_crimen.webp',
-    desc: 'The single frame from the lobby camera, time-stamped 9:00 PM. A running figure is visible.',
+    desc: 'The single frame from the corridor camera, time-stamped 9:00 PM. A running figure is visible.',
     updates: [
       'Roll log: the film is changed on Mondays. On Tuesday the 21st a single frame was left, and it fired on motion at 9:00 PM.'
     ],
     detailedView: {
       imageAsset: 'assets/examine_foto_crimen.webp',
       caption: 'The roll’s only frame. 8× enlargement. Printed time: 21:00.'
+    }
+  },
+  plano_pasillo: {
+    id: 'plano_pasillo',
+    name: 'Corridor Plan',
+    icon: 'assets/plano_pasillo.webp',
+    desc: 'Plan of the museum service corridor. It marks the loading door, the camera, the mirror and the passage to the galleries.',
+    detailedView: {
+      imageAsset: 'assets/examine_plano_pasillo.webp',
+      caption: 'Service-corridor plan. Door, camera, mirror and galleries.',
+      clickableZones: [
+        { id: 'zona_patio', x: 26, y: 26, width: 20, height: 17, tooltip: 'Loading yard' },
+        { id: 'zona_camara', x: 18, y: 68, width: 12, height: 16, tooltip: 'Camera, beside the access' },
+        { id: 'zona_espejo', x: 77, y: 52, width: 8, height: 28, tooltip: 'Mirror at the end of the run' },
+        { id: 'zona_salas', x: 51, y: 26, width: 15, height: 26, tooltip: 'Passage to the galleries' }
+      ]
     }
   },
   bitacora_ronda: {

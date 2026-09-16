@@ -26,6 +26,7 @@ export type EvidenceId =
   | 'rejilla_ducto'
   | 'ficha_museo'
   | 'bitacora_ronda'
+  | 'plano_pasillo'
   | 'chanfle_oro'
   | 'reloj_pendulo'
   | 'informe_boveda'

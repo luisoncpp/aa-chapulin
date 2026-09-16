@@ -43,7 +43,7 @@ export const CASE1_CLINICA_EN: InvestigationScene = {
       dialogue: [
         { speaker: 'NARRADOR', text: 'The bandage leaves the edge of the wound visible: a wide depression with no cuts.' },
         { speaker: 'DEFENSA', text: '(Wide and sunken. As if someone had dropped a sack on him.)', pose: 'donramon_idle' },
-        { speaker: 'DEFENSA', text: '(With that vinyl mallet, the most you get out of a skull is a squeak.)', pose: 'donramon_sweat' }
+        { speaker: 'DEFENSA', text: '(With that chipote, the most you get out of a skull is a squeak.)', pose: 'donramon_sweat' }
       ]
     },
     {

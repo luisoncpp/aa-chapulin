@@ -8,7 +8,7 @@ import type { DialogueLine, PointTargetContradiction, Testimony } from '../../..
 
 const FAIL_PECHO: DialogueLine[] = [
   { speaker: 'JUEZ', pose: 'judge_thinking', text: 'Licenciado, la corte le pidió el pecho de ese hombre.', sfx: 'damage' },
-  { speaker: 'JUEZ', pose: 'judge_neutral', text: 'Lo que usted señala puede importar, y la corte se lo va a admitir más tarde. Ahora no es lo que le pregunté.' },
+  { speaker: 'JUEZ', pose: 'judge_neutral', text: 'Eso no resuelve lo que el testigo acaba de afirmar sobre las letras del emblema.' },
   { speaker: 'SUPER SAM', pose: 'supersam_point', text: '¡Otro punto menos! ¡A este paso la defensa me sale gratis!' },
   { speaker: 'CHAPULIN', pose: 'chapulin_idle', text: 'Don Ramón, acuérdese de lo que dijo el testigo: las dos letras. Mírelas de cerca.' }
 ];
@@ -18,11 +18,11 @@ const FOTO_POINT_TARGET: PointTargetContradiction = {
   promptQuestion: 'Señala en la lámina: ¿qué tiene de raro el pecho de ese hombre?',
   imageAsset: 'assets/examine_foto_crimen.webp',
   zones: [
-    { id: 'emblema_pecho', bounds: [43, 30, 63, 50], isCorrect: true, failureDialogue: [] },
-    { id: 'manos', bounds: [35, 50, 68, 67], isCorrect: false, failureDialogue: FAIL_PECHO },
-    { id: 'puerta_fondo', bounds: [25, 20, 45, 58], isCorrect: false, failureDialogue: FAIL_PECHO },
-    { id: 'marco_espejo', bounds: [0, 0, 100, 10], isCorrect: false, failureDialogue: FAIL_PECHO },
-    { id: 'piso_pasillo', bounds: [0, 68, 100, 100], isCorrect: false, failureDialogue: FAIL_PECHO },
+    { id: 'emblema_pecho', bounds: [42, 37, 53, 51], isCorrect: true, failureDialogue: [] },
+    { id: 'manos', bounds: [32, 46, 64, 64], isCorrect: false, failureDialogue: FAIL_PECHO },
+    { id: 'marco_espejo', bounds: [0, 0, 18, 100], isCorrect: false, failureDialogue: FAIL_PECHO },
+    { id: 'piso_pasillo', bounds: [18, 60, 100, 100], isCorrect: false, failureDialogue: FAIL_PECHO },
+    { id: 'pasillo_reflejado', bounds: [18, 12, 100, 60], isCorrect: false, failureDialogue: FAIL_PECHO },
     { id: 'foto_resto', bounds: [0, 0, 100, 100], isCorrect: false, failureDialogue: FAIL_PECHO }
   ]
 };
@@ -60,22 +60,22 @@ const CASE1_GIRO_2: DialogueLine[] = [
 
 const CASE1_D2_T3_SUCCESS: DialogueLine[] = [
   { speaker: 'DEFENSA', text: '¡AQUÍ! ¡El corazón del pecho, señor juez!', sfx: 'desk_slam', cutin: 'objection_toma_eso', pose: 'donramon_slam', bgm: 'objection' },
-  { speaker: 'DEFENSA', text: 'El testigo declaró "ce, hache". Pero en esta fotografía las letras dicen HACHE, CE.', pose: 'donramon_point' },
-  { speaker: 'NARRADOR', text: 'La ampliación llena la pantalla. El emblema se lee "HC".', sfx: 'realization', bgm: 'objection' },
+  { speaker: 'DEFENSA', text: 'El testigo declaró "ce, hache". Pero en esta fotografía las letras no están en ese orden.', pose: 'donramon_point' },
+  { speaker: 'NARRADOR', text: 'La ampliación llena la pantalla. El emblema muestra una H y una C reflejada.', sfx: 'realization', bgm: 'objection' },
   { speaker: 'JUEZ', text: '¡Cáspita! ¡Están al revés!', pose: 'judge_shock' },
   { speaker: 'SUPER SAM', text: '¡Está mal revelada! ¡Voltearon el negativo en el laboratorio!', pose: 'supersam_slam', sfx: 'desk_slam' },
-  { speaker: 'DEFENSA', text: 'El negativo está bien, señor fiscal. Lo que está al revés es la habitación.', pose: 'donramon_idle' },
-  { speaker: 'DEFENSA', text: 'Señor juez: esa cámara está atornillada mirando al muro del pasillo. Y en ese muro hay un espejo veneciano de tres metros.', pose: 'donramon_point' },
-  { speaker: 'DEFENSA', text: 'La cámara no fotografió el vestíbulo. Fotografió el espejo.', pose: 'donramon_slam', sfx: 'desk_slam' },
-  { speaker: 'JUEZ', text: 'Entonces todo lo que hay en esa foto...', pose: 'judge_shock' },
-  { speaker: 'DEFENSA', text: 'Está invertido. Las letras, y también la dirección.', pose: 'donramon_point' },
-  { speaker: 'DEFENSA', text: 'Ese hombre no corría hacia la puerta grande, señor juez. Corría en sentido contrario: venía entrando por la puerta de carga.', pose: 'donramon_slam', sfx: 'desk_slam', cutin: 'objection_toma_eso' },
+  { speaker: 'DEFENSA', text: 'El negativo está bien, señor fiscal. Lo que confundieron fue el espacio reflejado con un pasillo real.', pose: 'donramon_idle' },
+  { speaker: 'DEFENSA', text: 'Señor juez: esa cámara está junto al acceso y apunta al espejo que cierra el tramo recto.', pose: 'donramon_point' },
+  { speaker: 'DEFENSA', text: 'Usted colocó a mi cliente detrás de ese marco. Pero detrás hay una pared.', pose: 'donramon_slam', sfx: 'desk_slam' },
+  { speaker: 'JUEZ', text: 'Entonces, ¿dónde estaba?', pose: 'judge_shock' },
+  { speaker: 'DEFENSA', text: 'Aquí, delante del espejo. Corría hacia él, alejándose del acceso de carga.', pose: 'donramon_point' },
+  { speaker: 'DEFENSA', text: 'La foto no demuestra una salida. Demuestra que a las nueve cruzó la franja iluminada del pasillo interior.', pose: 'donramon_slam', sfx: 'desk_slam', cutin: 'objection_toma_eso' },
   { speaker: 'NARRADOR', text: 'Escándalo en la galería. El Juez tarda cuatro martillazos en callarla.', sfx: 'gavel' },
   { speaker: 'JUEZ', text: '¡ORDEN! ¡ORDEN!', sfx: 'gavel', pose: 'judge_gavel' },
   { speaker: 'DEFENSA', text: 'Y en la sala dos hay algo que dice lo mismo sin espejos de por medio, señor juez.', pose: 'donramon_point' },
-  { speaker: 'DEFENSA', text: 'La jaula del perico histórico quedó volcada justo en la línea que va de la puerta de carga al cuerpo del velador.', pose: 'donramon_idle' },
-  { speaker: 'DEFENSA', text: 'Y mi cliente declaró desde el primer día, antes de que nadie hablara de espejos, que tropezó con ella al entrar.', pose: 'donramon_point' },
-  { speaker: 'DEFENSA', text: 'El reflejo y la jaula cuentan la misma trayectoria: alguien entrando por el patio a las nueve en punto.', pose: 'donramon_slam', sfx: 'desk_slam' },
+  { speaker: 'DEFENSA', text: 'La jaula del perico histórico quedó volcada hacia dentro desde el acceso del pasillo a la sala dos.', pose: 'donramon_idle' },
+  { speaker: 'DEFENSA', text: 'Y mi cliente declaró desde el primer día, antes de que nadie hablara de espejos, que dobló al entrar y volvió a girar hacia las salas.', pose: 'donramon_point' },
+  { speaker: 'DEFENSA', text: 'La foto y la jaula cuentan la misma trayectoria: alguien avanzando hacia dentro a las nueve en punto.', pose: 'donramon_slam', sfx: 'desk_slam' },
   { speaker: 'FLORINDA', text: '¡Y me lo dejó apachurrado!', pose: 'florinda_crying' },
   { speaker: 'JUEZ', text: 'La corte lamenta lo del perico y agradece la corroboración.', pose: 'judge_thinking' },
   { speaker: 'DEFENSA', text: 'Y hay una cosa más, y ésta es la que le pido a la corte que no olvide.', pose: 'donramon_idle' },
@@ -89,16 +89,16 @@ const CASE1_D2_T3_SUCCESS: DialogueLine[] = [
   { speaker: 'TRIPASECA', text: '...Yo... yo vi lo que vi.', pose: 'tripaseca_sweat' },
   { speaker: 'SUPER SAM', text: '¡Your Honor! ¡Aunque entrara vacío, pudo agarrar la chicharra DESPUÉS!', pose: 'supersam_slam', sfx: 'desk_slam' },
   { speaker: 'JUEZ', text: '¿En siete minutos, con un hombre desmayado en el suelo y sin que aparezca la pieza? La corte empieza a cansarse, fiscalía.', pose: 'judge_neutral' },
-  { speaker: 'JUEZ', text: 'Defensa: si esa foto muestra el pasillo de carga, entonces muestra también el patio. ¿Qué más hay en ese reflejo?', pose: 'judge_thinking' }
+  { speaker: 'JUEZ', text: 'Defensa: si la puerta y el patio no están en la foto, ¿qué encontró al registrar ese acceso?', pose: 'judge_thinking' }
 ];
 
 const CASE1_D2_T3_FOLLOWUP: DialogueLine[] = [
-  { speaker: 'DEFENSA', text: 'Al fondo del reflejo, señor juez, hay un rectángulo de luz: la puerta de carga, abierta de par en par a las nueve de la noche.', pose: 'donramon_point', bgm: 'pursuit' },
-  { speaker: 'DEFENSA', text: 'Y contra esa luz se recorta la caja de redilas de una camioneta estacionada en el patio.', pose: 'donramon_idle' },
-  { speaker: 'DEFENSA', text: 'Una camioneta sin placas que lleva dos días ahí, porque nadie la registró jamás.', pose: 'donramon_slam', sfx: 'desk_slam' },
+  { speaker: 'DEFENSA', text: 'Una camioneta que la policía dejó sin revisar, señor juez.', pose: 'donramon_point', bgm: 'pursuit' },
+  { speaker: 'DEFENSA', text: 'Estaba en el patio de carga, junto al acceso por donde mi cliente entró.', pose: 'donramon_idle' },
+  { speaker: 'DEFENSA', text: 'Sin placas y cubierta con una lona encerada.', pose: 'donramon_slam', sfx: 'desk_slam' },
   { speaker: 'SUPER SAM', text: '¡Eso es...!', pose: 'supersam_sweat' },
   { speaker: 'DEFENSA', text: 'Eso es lo que pasa cuando un caso se cierra en cinco minutos, señor fiscal.', pose: 'donramon_idle' },
-  { speaker: 'DEFENSA', text: 'Esta mañana, con orden del juez, la defensa entró a ese patio. Y junto a la llanta trasera de esa camioneta encontró esto.', pose: 'donramon_point' },
+  { speaker: 'DEFENSA', text: 'Esta mañana, con orden del juez, la defensa revisó ese acceso. Y junto a la llanta trasera encontró esto.', pose: 'donramon_point' },
   { speaker: 'NARRADOR', text: 'Don Ramón levanta una bolsa de lona gruesa, vacía, con un sello estampado.', sfx: 'whoosh' },
   { speaker: 'JUEZ', text: 'Descríbala para el acta.', pose: 'judge_neutral' },
   { speaker: 'DEFENSA', text: 'Bolsa de lona de ochenta y dos por cincuenta. Vacía. Tiznada por fuera con el mismo tizne de la lona encerada de esa camioneta.', pose: 'donramon_idle' },
@@ -126,12 +126,12 @@ export const CASE1_TESTIMONY_5: Testimony = {
       id: 'c1_d2t3_1',
       speaker: 'TRIPASECA',
       pose: 'tripaseca_smug',
-      text: 'Cuando me bajé del tambo y salí corriendo, alcancé a verlo por el zaguán del vestíbulo.',
+      text: 'Cuando me bajé del tambo y salí corriendo, vi la foto que tomó la cámara del pasillo.',
       pressText: [
         { speaker: 'DEFENSA', text: '¡UN MOMENTO! ¿Le vio usted la cara?', sfx: 'whoosh', cutin: 'objection_un_momento', pose: 'donramon_point' },
-        { speaker: 'TRIPASECA', text: 'La cara no. Vi lo colorado.', pose: 'tripaseca_smug' },
-        { speaker: 'DEFENSA', text: '"Lo colorado".', pose: 'donramon_idle' },
-        { speaker: 'TRIPASECA', text: 'Lo colorado corriendo, licenciado. ¿Cuánta gente colorada anda corriendo de noche en esta ciudad?', pose: 'tripaseca_smug' },
+        { speaker: 'TRIPASECA', text: 'La cara no. Vi lo colorado en la foto.', pose: 'tripaseca_smug' },
+        { speaker: 'DEFENSA', text: '"Lo colorado en la foto".', pose: 'donramon_idle' },
+        { speaker: 'TRIPASECA', text: 'Lo colorado corriendo, licenciado. ¿Cuánta gente colorada sale en una foto de noche en esta ciudad?', pose: 'tripaseca_smug' },
         { speaker: 'DEFENSA', text: 'Últimamente, más de la que uno se imagina.', pose: 'donramon_sweat' }
       ]
     },
@@ -139,14 +139,14 @@ export const CASE1_TESTIMONY_5: Testimony = {
       id: 'c1_d2t3_2',
       speaker: 'TRIPASECA',
       pose: 'tripaseca_smug',
-      text: 'Iba derechito a la puerta grande, con la chicharra apretada contra el pecho. Se le veía el bulto.',
+      text: 'La cámara está junto al acceso. Y ahí viene él, desde el fondo, corriendo hacia ella. ¡Estaba saliendo!',
       pressText: [
-        { speaker: 'DEFENSA', text: '¡UN MOMENTO! ¿Cómo distinguió usted una chicharra contra un pecho, de noche y a treinta metros?', sfx: 'whoosh', cutin: 'objection_un_momento', pose: 'donramon_point' },
-        { speaker: 'TRIPASECA', text: 'Por el bulto. Se le hacía bulto.', pose: 'tripaseca_smug' },
-        { speaker: 'DEFENSA', text: '¿Bulto de qué tamaño?', pose: 'donramon_idle' },
-        { speaker: 'TRIPASECA', text: 'Pos... de chicharra.', pose: 'tripaseca_sweat' },
-        { speaker: 'JUEZ', text: 'La corte agradecería una medida y no una adivinanza.', pose: 'judge_thinking' },
-        { speaker: 'TRIPASECA', text: 'Es que yo no ando midiendo, señor juez. Yo ando vendiendo.', pose: 'tripaseca_smug' }
+        { speaker: 'DEFENSA', text: '¡UN MOMENTO! ¿Usted vio el pasillo, o interpretó la fotografía?', sfx: 'whoosh', cutin: 'objection_un_momento', pose: 'donramon_point' },
+        { speaker: 'TRIPASECA', text: 'La foto lo dice clarito. La cámara está en el acceso y él viene hacia ella.', pose: 'tripaseca_smug' },
+        { speaker: 'DEFENSA', text: '¿Y la chicharra?', pose: 'donramon_idle' },
+        { speaker: 'TRIPASECA', text: 'La traía contra el pecho. Ahí se le ve el bulto.', pose: 'tripaseca_smug' },
+        { speaker: 'JUEZ', text: 'La corte agradecería no confundir un bulto con una pieza de oro.', pose: 'judge_thinking' },
+        { speaker: 'TRIPASECA', text: 'Es que yo no ando pesando, señor juez. Yo ando vendiendo.', pose: 'tripaseca_smug' }
       ]
     },
     {
@@ -169,7 +169,7 @@ export const CASE1_TESTIMONY_5: Testimony = {
         successDialogue: CASE1_D2_T3_SUCCESS,
         followUp: {
           evidence: ['bolsa_dolares'],
-          prompt: '¿Qué se halló junto a esa camioneta que corresponda al arma del día uno?',
+          prompt: '¿Qué se halló al registrar el acceso de carga que corresponda al arma del día uno?',
           successDialogue: CASE1_D2_T3_FOLLOWUP
         }
       }

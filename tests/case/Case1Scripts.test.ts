@@ -48,12 +48,25 @@ function sceneLines(scene: InvestigationScene): DialogueLine[] {
 }
 
 describe('Case 1 script integrity', () => {
-  // `insignia_abogado` is a starting inventory fixture: only the Case 0 tutorial
-  // asks for it, so Case 1 carries it without a present slot.
+  it('triggers visible confetti on the verdict line instead of narrating it', () => {
+    for (const script of [es, en]) {
+      const verdictTexts = script.trial.climax.verdict.map((line) => line.text);
+      const confettiLine = script.trial.climax.verdict.find((line) => line.confetti);
+
+      expect(verdictTexts).not.toContain('Cae confeti sobre la sala de audiencias.');
+      expect(verdictTexts).not.toContain('Confetti rains down over the courtroom.');
+      expect(confettiLine).toEqual(expect.objectContaining({ confetti: true }));
+    }
+  });
+
+  // `insignia_abogado` and `chipote_chillon` are starting inventory fixtures.
+  // `plano_pasillo` is consult-only: the player reads it in the Acta, it is never presented.
   it('gives every Court Record entry at least one present slot', () => {
     const catalog = getEvidenceCatalog('es', 'case1');
     const presentable = presentableEvidence(es);
-    const ids = (Object.keys(catalog) as EvidenceId[]).filter((id) => id !== 'insignia_abogado');
+    const ids = (Object.keys(catalog) as EvidenceId[]).filter(
+      (id) => id !== 'insignia_abogado' && id !== 'plano_pasillo' && id !== 'chipote_chillon'
+    );
     for (const id of ids) {
       expect(presentable.has(id), `${id} has no present slot`).toBe(true);
     }
@@ -228,8 +241,8 @@ describe('Case 1 script integrity', () => {
       expect(verdictTrial).toEqual([]);
 
       const testimonies = allTestimonies(script);
-      const t1FollowUp = testimonies[0].statements[3].contradiction!.followUp!.successDialogue;
-      const t1Call = t1FollowUp.find((l) => l.text.includes('Fiscalía') || l.text.includes('Prosecution'));
+      const t1Success = testimonies[0].statements[3].contradiction!.successDialogue;
+      const t1Call = t1Success.find((l) => l.text.includes('Fiscalía') || l.text.includes('Prosecution'));
       expect(t1Call?.bgm).toBe('trial');
 
       const t3FollowUp = testimonies[2].statements[0].contradiction!.followUp!.successDialogue;
@@ -239,6 +252,20 @@ describe('Case 1 script integrity', () => {
       const t4FollowUp = testimonies[3].statements[2].contradiction!.followUp!.successDialogue;
       const t4Call = t4FollowUp.find((l) => l.text.includes('tercera vez') || l.text.includes('third time'));
       expect(t4Call?.bgm).toBe('trial');
+    }
+  });
+
+  it('does not have Tripaseca claiming he never stepped down on Day 2 T2 after Alma Negra testified', () => {
+    for (const script of [es, en]) {
+      const t3FollowUp = allTestimonies(script)[2].statements[0].contradiction!.followUp!.successDialogue;
+      const tripasecaLines = t3FollowUp
+        .filter((l) => l.speaker === 'TRIPASECA')
+        .map((l) => l.text);
+
+      for (const text of tripasecaLines) {
+        expect(text).not.toContain('no me he bajado');
+        expect(text).not.toContain('never stepped down');
+      }
     }
   });
 });

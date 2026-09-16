@@ -14,25 +14,25 @@ export const CASE1_CAMARAS_EN: InvestigationScene = {
   speaker: 'NARRADOR',
   idlePose: 'florinda_idle',
   intro: [
-    { speaker: 'NARRADOR', text: 'August 23rd, 11:00 AM. The corridor joining the lobby to the loading door. On the long wall, a three-metre Venetian mirror.', bg: 'assets/bg_pasillo_espejo.webp', furniture: 'none', bgm: 'suspense' },
+    { speaker: 'NARRADOR', text: 'August 23rd, 11:00 AM. An interior museum corridor. The loading access is off to one side; ahead, a Venetian mirror closes the straight run.', bg: 'assets/bg_pasillo_espejo.webp', furniture: 'none', bgm: 'suspense' },
     { speaker: 'FLORINDA', text: 'You two again.', pose: 'florinda_angry' },
     { speaker: 'DEFENSA', text: "Us again, ma'am. We come with the judge's order.", pose: 'donramon_idle' },
     { speaker: 'FLORINDA', text: '...Come in. But do not touch the mirror, it is from 1770 and it cost me three years of budget.', pose: 'florinda_idle' },
-    { speaker: 'CHAPULIN', text: 'What an enormous mirror! You can see the whole corridor!', pose: 'chapulin_point' },
-    { speaker: 'DEFENSA', text: '(You can see the whole corridor. Yes. You can see the whole corridor.)', pose: 'donramon_idle' }
+    { speaker: 'CHAPULIN', text: 'What an enormous mirror! It looks like the corridor keeps going!', pose: 'chapulin_point' },
+    { speaker: 'DEFENSA', text: '(From where the camera is, it does.)', pose: 'donramon_idle' }
   ],
   hotspots: [
     {
       id: 'hotspot_camara',
       label: 'Security camera',
-      x: 4, y: 3, w: 13, h: 20,
+      x: 76, y: 1, w: 13, h: 16,
       dialogue: [
-        { speaker: 'NARRADOR', text: 'A metal box bolted high on the lobby wall, aimed down the corridor.' },
+        { speaker: 'NARRADOR', text: 'A metal box bolted high beside the access, shifted to one side and aimed at the mirror.' },
         { speaker: 'DEFENSA', text: 'Is this the camera that took the photograph?', pose: 'donramon_idle' },
         { speaker: 'FLORINDA', text: 'That one. It fires by itself when something moves. It cost a fortune and it is useless.', pose: 'florinda_idle' },
-        { speaker: 'FLORINDA', text: 'Besides, it only catches what crosses the light at the far end. In the dark, in this corridor, it would not photograph an elephant.', pose: 'florinda_angry' },
-        { speaker: 'DEFENSA', text: '(So what sets that camera off is whatever moves against the loading door. As far as it is concerned, nothing else exists.)', pose: 'donramon_idle' },
-        { speaker: 'DEFENSA', text: '(It is bolted facing this way... which is to say, facing the mirror.)', pose: 'donramon_shock' },
+        { speaker: 'FLORINDA', text: 'Besides, it only covers one strip of the corridor. If you do not cross that lamp light, it would not photograph an elephant.', pose: 'florinda_angry' },
+        { speaker: 'DEFENSA', text: '(Tripaseca could leave along the wall and outside the frame. Whoever crossed that strip spent the last frame.)', pose: 'donramon_idle' },
+        { speaker: 'DEFENSA', text: '(It is bolted facing the mirror. The photo is not a direct view of the corridor.)', pose: 'donramon_shock' },
         { speaker: 'CHAPULIN', text: 'And why would anyone install a camera that looks at a mirror?', pose: 'chapulin_panic' },
         { speaker: 'FLORINDA', text: "Because the man who installed it was the treasurer's nephew and he could not even change a light bulb!", pose: 'florinda_angry' }
       ]
@@ -40,7 +40,7 @@ export const CASE1_CAMARAS_EN: InvestigationScene = {
     {
       id: 'hotspot_foto',
       label: 'Developing envelope',
-      x: 4, y: 66, w: 20, h: 22,
+      x: 70, y: 75, w: 22, h: 21,
       dialogue: [
         { speaker: 'NARRADOR', text: 'On the little table, beside the roll log, there is a sealed envelope from the laboratory.' },
         { speaker: 'DEFENSA', text: 'The famous photo should be in here. Before I open it, I want to know why they developed only one frame.', pose: 'donramon_idle' },
@@ -50,7 +50,7 @@ export const CASE1_CAMARAS_EN: InvestigationScene = {
     {
       id: 'hotspot_bitacora_rollo',
       label: 'Roll log',
-      x: 0, y: 23, w: 15, h: 28,
+      x: 88, y: 16, w: 11, h: 48,
       dialogue: [
         { speaker: 'NARRADOR', text: 'Nailed up beside the camera, a sheet with dates and checkmarks.' },
         { speaker: 'DEFENSA', text: '"Film change: Mondays." And the last change was Monday the 20th.', pose: 'donramon_idle' },
@@ -68,24 +68,46 @@ export const CASE1_CAMARAS_EN: InvestigationScene = {
       ]
     },
     {
+      id: 'hotspot_acceso_carga',
+      label: 'Door to the gallery',
+      x: 36, y: 18, w: 7, h: 30,
+      dialogue: [
+        { speaker: 'NARRADOR', text: 'A door off to one side. It does not close the run: you have to turn after coming in to see the mirror.' },
+        { speaker: 'DEFENSA', text: 'Does this one lead to the yard?', pose: 'donramon_idle' },
+        { speaker: 'FLORINDA', text: 'To the gallery. The galleries leave this corridor before you reach the glass.', pose: 'florinda_idle' },
+        { speaker: 'CHAPULIN', text: 'That is why the door is not in the photo!', pose: 'chapulin_point' },
+        { speaker: 'DEFENSA', text: '(Nor the yard. The frame is the reflection of this run, not a view of the street.)', pose: 'donramon_idle' }
+      ]
+    },
+    {
+      id: 'hotspot_muro_ciego',
+      label: 'Wall under the camera',
+      x: 66, y: 65, w: 16, h: 10,
+      dialogue: [
+        { speaker: 'NARRADOR', text: 'The bench runs along the wall, under the camera, outside the strip the lamp lights.' },
+        { speaker: 'DEFENSA', text: 'Does that camera see this?', pose: 'donramon_idle' },
+        { speaker: 'FLORINDA', text: 'If you do not cross the light, it would not photograph an elephant. That is why I say it is useless.', pose: 'florinda_angry' },
+        { speaker: 'DEFENSA', text: '(Hug this wall and you leave without spending the last frame.)', pose: 'donramon_shock' }
+      ]
+    },
+    {
       id: 'hotspot_espejo',
       label: 'Venetian mirror',
       condition: (flags) =>
         Boolean(flags.examined_hotspot_camara) &&
         Boolean(flags.examined_hotspot_foto) &&
         Boolean(flags.examined_hotspot_bitacora_rollo),
-      x: 72, y: 0, w: 28, h: 90,
+      x: 49, y: 23, w: 21, h: 34,
       dialogue: [
-        { speaker: 'NARRADOR', text: 'Three metres of antique glass in a carved frame. It reflects the entire corridor, end to end.' },
+        { speaker: 'NARRADOR', text: 'Three metres of antique glass in a carved frame. It stands at the end of the straight run, like another corridor.' },
         { speaker: 'DEFENSA', text: 'Doña Florinda, what can you see in this mirror from where the camera is?', pose: 'donramon_idle' },
-        { speaker: 'FLORINDA', text: 'The corridor, of course. From the lobby to the loading door.', pose: 'florinda_idle' },
-        { speaker: 'DEFENSA', text: 'Can you see the loading door in the mirror?', pose: 'donramon_shock' },
-        { speaker: 'FLORINDA', text: 'The whole of it. That is what annoys me: you can see the mess in the yard from the pretty entrance.', pose: 'florinda_angry' },
-        { speaker: 'CHAPULIN', text: 'Counselor! If the camera sees the mirror, and the mirror sees the loading door...!', pose: 'chapulin_point' },
-        { speaker: 'DEFENSA', text: '...then that camera never photographed the lobby.', pose: 'donramon_shock' },
-        { speaker: 'DEFENSA', text: '(And everything in that photo is backwards.)', pose: 'donramon_idle' },
-        { speaker: 'CHAPULIN', text: 'Backwards! Like when you comb your hair in the mirror and part it on the wrong side!', pose: 'chapulin_idle' },
-        { speaker: 'DEFENSA', text: 'Exactly like that, young man. Save it for the trial.', pose: 'donramon_point', unlockLocation: 'clinica_d2' }
+        { speaker: 'FLORINDA', text: 'The galleries leave this run, before the mirror. The thing at the back is the glass.', pose: 'florinda_idle' },
+        { speaker: 'CHAPULIN', text: 'But it looks like the corridor keeps going!', pose: 'chapulin_point' },
+        { speaker: 'DEFENSA', text: 'From where the camera is, it does.', pose: 'donramon_shock' },
+        { speaker: 'DEFENSA', text: 'Then whoever looks at the photo can mistake the reflected space for a real corridor.', pose: 'donramon_idle' },
+        { speaker: 'FLORINDA', text: 'The loading door is off to one side, counselor. You have to turn after coming in to reach this run.', pose: 'florinda_idle' },
+        { speaker: 'NARRADOR', text: 'Doña Florinda hands over a plan of the corridor, the one from when they installed the camera.', addEvidence: 'plano_pasillo' },
+        { speaker: 'DEFENSA', text: '(Door and yard outside the frame. What the camera preserves is the reflection.)', pose: 'donramon_point', unlockLocation: 'clinica_d2' }
       ]
     }
   ],

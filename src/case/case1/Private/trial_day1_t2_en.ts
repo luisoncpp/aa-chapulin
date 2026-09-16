@@ -52,7 +52,7 @@ const CASE1_D1_T2_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'DEFENSA', text: '¡PROTESTO!', sfx: 'desk_slam', cutin: 'objection_protesto', pose: 'donramon_slam', bgm: 'objection' },
   { speaker: 'DEFENSA', text: "Your Honor, the witness attributed that \"sackful of iron\" to my client's Chipote.", pose: 'donramon_point' },
   { speaker: 'DEFENSA', text: '"A sackful of iron." Loose metal, a great deal of it, inside something that can hold it.', pose: 'donramon_idle' },
-  { speaker: 'DEFENSA', text: 'But the Chipote is hollow vinyl and weighs two hundred grams. The report demands a heavy, dense object with no edges.', pose: 'donramon_slam', sfx: 'desk_slam', updateEvidence: 'informe_medico' },
+  { speaker: 'DEFENSA', text: 'But the Chipote squeaks when squeezed. The report demands a heavy, dense object with no edges.', pose: 'donramon_slam', sfx: 'desk_slam', updateEvidence: 'informe_medico' },
   { speaker: 'DEFENSA', text: 'With the urgent expansion I requested this morning: the wound impression corresponds to a flexible object that deformed on impact. And the trajectory runs downward and from behind.', pose: 'donramon_point' },
   { speaker: 'JUEZ', text: 'Flexible and heavy at once?', pose: 'judge_shock' },
   { speaker: 'DEFENSA', text: 'A sack, Your Honor. A sack full of metal coin.', pose: 'donramon_slam', sfx: 'desk_slam' },
@@ -109,7 +109,7 @@ export const CASE1_TESTIMONY_2_EN: Testimony = {
       id: 'c1_d1t2_3',
       speaker: 'TRIPASECA',
       pose: 'tripaseca_smug',
-      text: 'He raised the club and struck the watchman on the back of the head. One blow, but a good one.',
+      text: 'He raised the chipote and struck the watchman on the back of the head. One blow, but a good one.',
       pressText: [
         { speaker: 'DEFENSA', text: 'HOLD IT! Describe the blow. No embellishment.', sfx: 'whoosh', cutin: 'objection_un_momento', pose: 'donramon_point' },
         { speaker: 'TRIPASECA', text: 'Just one. Downward, to the back of the head. The big man never turned.', pose: 'tripaseca_smug' },
@@ -137,13 +137,13 @@ export const CASE1_TESTIMONY_2_EN: Testimony = {
       unlockedBy: 'c1_d1t2_3',
       speaker: 'TRIPASECA',
       pose: 'tripaseca_smug',
-      text: 'And that rubber club did not sound like a toy... look, I have heard blows in my life. It sounded like a sackful of iron.',
+      text: 'And that chipote did not sound like a toy... look, I have heard blows in my life. It sounded like a sackful of iron.',
       pressText: [
         { speaker: 'DEFENSA', text: 'HOLD IT! "A sackful of iron." Explain that to me.', sfx: 'whoosh', cutin: 'objection_un_momento', pose: 'donramon_point' },
-        { speaker: 'TRIPASECA', text: 'That club, counselor. It sounded like dropping a box of screws. Chink, chink, chink. Iron.', pose: 'tripaseca_smug' },
+        { speaker: 'TRIPASECA', text: 'That chipote, counselor. It sounded like dropping a box of screws. Chink, chink, chink. Iron.', pose: 'tripaseca_smug' },
         { speaker: 'DEFENSA', text: 'Iron?', pose: 'donramon_idle' },
         { speaker: 'TRIPASECA', text: 'Iron. And let the record show I only say what I heard.', pose: 'tripaseca_smug' },
-        { speaker: 'CHAPULIN', text: '(Don Ramón! My mallet does not go "chink chink chink"! My mallet goes "eeeek"!)', pose: 'chapulin_panic' },
+        { speaker: 'CHAPULIN', text: '(Don Ramón! My chipote does not go "chink chink chink"! My chipote goes "eeeek"!)', pose: 'chapulin_panic' },
         { speaker: 'DEFENSA', text: '(I heard it, young man. I heard it.)', pose: 'donramon_idle' }
       ],
       contradiction: {

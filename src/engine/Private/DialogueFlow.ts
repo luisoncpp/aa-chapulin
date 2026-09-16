@@ -84,6 +84,7 @@ export class DialogueFlow {
     if (line.bgm) this.deps.midiComposer.playTrack(line.bgm);
     if (line.sfx) this.triggerSFX(line.sfx);
     if (line.cutin) VisualEffects.showCutin(this.deps.dom, line.cutin);
+    if (line.confetti) VisualEffects.triggerConfetti(this.deps.dom.confettiContainerEl);
     this.applyLineSpeakerAndPose(line);
     this.grantEvidenceIfPresent(line.addEvidence);
     this.updateEvidenceIfPresent(line.updateEvidence);

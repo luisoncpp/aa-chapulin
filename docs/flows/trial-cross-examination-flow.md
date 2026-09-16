@@ -66,7 +66,7 @@ Case 0 is the courtroom-only entry: its splash/debug launch seeds the opening Co
    - Correct item on the final stage with `choices` (Case 2): queues that stage's `successDialogue` (wax mold + judge question), then opens `#choice-prompt-modal`. Wrong choice: penalty + `failDialogue`, same prompt reopens. A wrong choice that exhausts health queues the guilty game-over lines and restarts the trial. Correct choice: `successDialogue`, then next prompt or verdict on the last one.
    - Case 0 is two climax stages with one choice between them; Case 1 is one stage (`antenitas_vinil` or `bolsa_dolares`); Case 2 is three presents then two choices.
 4. After the Not Guilty line (from `verdict` or last choice `successDialogue`):
-   - `triggerConfetti()` fires as soon as the verdict queue finishes, while the judge camera is still up.
+   - A verdict line with `confetti: true` fires `triggerConfetti()` when that line is rendered, before subsequent celebration dialogue. The climax completion callback keeps the old end-of-queue trigger as a fallback for verdicts without an effect line.
    - If `climax.epilogue` exists (Case 2), [[src/engine/Private/TrialClimax.ts]] holds that courtroom shot, fades `#screen-flash` to black, swaps to `bg_waiting_room.jpg` (clears confetti, hides bench/sprites), fades in, then queues stamped epilogue lines (`furniture: 'none'`). Case 1 has no epilogue.
    - After the last Case 1 verdict click (following confetti) or the last Case 2 epilogue line, `fadeToBlack` stays covered and `#case-complete-overlay` reports that the case is finished.
 

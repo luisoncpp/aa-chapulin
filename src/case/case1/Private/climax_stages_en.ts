@@ -24,17 +24,20 @@ const STAGE_1_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'DEFENSA', text: 'First. Yesterday he testified that he saw my client "standing on the pedestal of the display case, the wooden one, about waist-high".', pose: 'donramon_point' },
   { speaker: 'DEFENSA', text: 'That pedestal cannot be seen from the alley. The window is forty centimetres wide, two metres twenty up, and the glass is frosted.', pose: 'donramon_idle' },
   { speaker: 'DEFENSA', text: 'Second. Today he testified that the loading door latch has been broken "since March". With the month.', pose: 'donramon_point' },
-  { speaker: 'DEFENSA', text: 'Third. Yesterday he described the sound of the blow as "a sackful of iron", when in that gallery, according to the prosecution, there was only a rubber mallet.', pose: 'donramon_slam', sfx: 'desk_slam' },
+  { speaker: 'DEFENSA', text: 'Third. Yesterday he described the sound of the blow as "a sackful of iron", when in that gallery, according to the prosecution, there was only a chipote.', pose: 'donramon_slam', sfx: 'desk_slam' },
   { speaker: 'DEFENSA', text: 'Nobody describes a blow that way unless he heard it up close. Nobody learns a month by looking at a latch. And nobody measures a pedestal through frosted glass.', pose: 'donramon_point' },
   { speaker: 'TRIPASECA', text: 'I am an honest trader!', pose: 'tripaseca_panic' },
   { speaker: 'JUEZ', text: 'The court permits the defense to continue.', sfx: 'gavel', pose: 'judge_gavel' },
   { speaker: 'JUEZ', text: 'But I warn you of one thing, counselor: three sentences are not three pieces of evidence.', pose: 'judge_neutral' },
-  { speaker: 'JUEZ', text: 'If you maintain that man took the Golden Paralyzing Chicharra, this court wants to know where that piece is at this moment.', pose: 'judge_thinking' }
+  { speaker: 'JUEZ', text: 'If you maintain that man took the Golden Paralyzing Chicharra, this court wants to know where that piece is at this moment.', pose: 'judge_thinking' },
+  { speaker: 'CHAPULIN', text: 'My antennae! If the one who took it is carrying it, they will point him out right now!', pose: 'chapulin_point' },
+  { speaker: 'JUEZ', text: 'Are you proposing a demonstration with those antennae, counselor?', pose: 'judge_thinking' },
+  { speaker: 'DEFENSA', text: 'I am proposing an instrument, Your Honor. Let the Record say which one.', pose: 'donramon_idle' }
 ];
 
 const STAGE_2_FAIL_EN: DialogueLine[] = [
-  { speaker: 'JUEZ', pose: 'judge_thinking', text: 'Counselor, that exhibit does not tell this court where the piece is at this moment.', sfx: 'damage' },
-  { speaker: 'JUEZ', pose: 'judge_neutral', text: 'The court asked for neither a place nor a description. It asked what you intend to find it with, here and now.' }
+  { speaker: 'JUEZ', pose: 'judge_thinking', text: 'Counselor, the card for the piece describes what was stolen; it does not find it.', sfx: 'damage' },
+  { speaker: 'JUEZ', pose: 'judge_neutral', text: 'The court asked for no description. It asked for the instrument to locate it right here.' }
 ];
 
 const STAGE_2_SUCCESS_EN: DialogueLine[] = [
@@ -132,7 +135,7 @@ export const CASE1_CLIMAX_STAGES_EN: ClimaxStage[] = [
   },
   {
     presentTarget: ['antenitas_vinil'],
-    prompt: 'What can tell this court, here and now, where the Chicharra is?',
+    prompt: 'What instrument does the defense propose to locate the Chicharra with, here in this room?',
     failDialogue: STAGE_2_FAIL_EN,
     successDialogue: STAGE_2_SUCCESS_EN
   },

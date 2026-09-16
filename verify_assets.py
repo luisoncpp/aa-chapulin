@@ -72,7 +72,7 @@ for filename in (
     'point_foto_patio.webp', 'point_plancha.webp',
     'examine_vitrina_rota.webp', 'examine_rejilla_ducto.webp',
     'examine_ficha_museo.webp', 'examine_ficha_museo_en.webp',
-    'examine_bolsa_dolares.webp', 'examine_foto_crimen.webp'
+    'examine_bolsa_dolares.webp', 'examine_foto_crimen.webp', 'examine_plano_pasillo.webp'
 ):
     path = os.path.join('assets', filename)
     if os.path.exists(path) and Image.open(path).size != (960, 540):

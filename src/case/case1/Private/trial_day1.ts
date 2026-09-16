@@ -11,7 +11,7 @@ import { CASE1_CALL_TRIPASECA_D1 } from './witness_calls.js';
 export const CASE1_TRIAL_INTRO: DialogueLine[] = [
   { bg: 'assets/bg_waiting_room.webp', furniture: 'none', speaker: 'NARRADOR', text: '22 de agosto, 2:00 PM. Tribunal Superior - Sala de Espera.', bgm: 'trial' },
   { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_gavel', text: '¡Silencio en la sala! Se abre la audiencia por el robo de la Chicharra Paralizadora de Oro y las lesiones al velador Alma Negra.', sfx: 'gavel', bgm: 'trial' },
-  { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_case1_slam', text: 'Your Honor, este caso lo cerré en cinco minutos. FIVE! Un museo cerrado con llave, un velador en el suelo, y adentro un señor vestido de grillo con un garrote en la mano.', sfx: 'desk_slam' },
+  { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_case1_slam', text: 'Your Honor, este caso lo cerré en cinco minutos. FIVE! Un museo cerrado con llave, un velador en el suelo, y adentro un señor vestido de grillo con el chipote en la mano.', sfx: 'desk_slam' },
   { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_point', text: 'Time is money, y este juicio ya me está costando dinero.' },
   { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_slam', text: '¡PROTESTO! ¡Con permisito, dijo Monchito!', sfx: 'desk_slam', cutin: 'objection_protesto' },
   { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_point', text: 'Mi cliente estaba adentro porque entró a ayudar, señor juez. Si eso es delito, aquí la mitad de la sala tendría que estar esposada.' },
@@ -19,7 +19,7 @@ export const CASE1_TRIAL_INTRO: DialogueLine[] = [
   { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_idle', text: '(Fiscal Super Sam. Cobra por caso cerrado y hoy subió al estrado sin su bolsa de dólares al hombro. Nunca lo había visto sin ella. Lo apunto, aunque sea por chismoso.)', addProfile: 'perfil_supersam' },
   { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_point', text: 'Simple, Your Honor. El acusado golpeó al velador, reventó la vitrina y se llevó la chicharra. Three steps, one criminal.' },
   { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_thinking', text: 'Entonces esta corte quiere una respuesta clara a una sola pregunta antes que a ninguna otra: ¿con qué se golpeó a ese hombre?' },
-  { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_case1_slam', text: '¡Con el garrote de hule que traía en la mano! ¡La curadora lo vio!', sfx: 'desk_slam' },
+  { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_case1_slam', text: '¡Con el chipote que traía en la mano! ¡La curadora lo vio!', sfx: 'desk_slam' },
   { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_point', text: 'La fiscalía llama al estrado a la señora Florinda Corcuera viuda de Matalascallando, curadora del museo.' },
   { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_neutral', text: 'Testigo, diga su nombre y su ocupación.' },
   { bg: 'assets/bg_witness.webp', speaker: 'FLORINDA', pose: 'florinda_angry', text: 'Florinda Corcuera viuda de Matalascallando, curadora del Museo de las Curiosidades. Y que conste que yo no quería venir a un lugar con tanta chusma.' },
@@ -29,7 +29,7 @@ export const CASE1_TRIAL_INTRO: DialogueLine[] = [
 const CASE1_D1_T1_SUCCESS: DialogueLine[] = [
   { speaker: 'DEFENSA', text: '¡PROTESTO!', sfx: 'desk_slam', cutin: 'objection_protesto', pose: 'donramon_slam', bgm: 'objection' },
   { speaker: 'DEFENSA', text: 'Señor juez, la señora llegó a las nueve y cinco. La policía detuvo a mi cliente a las nueve con siete.', pose: 'donramon_point' },
-  { speaker: 'DEFENSA', text: 'Dos minutos. Y en el informe de detención está, renglón por renglón, todo lo que traía encima: un chipote de vinil, una caja de pastillas, unas antenitas y tres pesos.', pose: 'donramon_idle' },
+  { speaker: 'DEFENSA', text: 'Dos minutos. Y en el informe de detención está, renglón por renglón, todo lo que traía encima: un chipote, una caja de pastillas, unas antenitas y tres pesos.', pose: 'donramon_idle' },
   { speaker: 'DEFENSA', text: 'De un kilo doscientos de oro macizo que cabe en las dos manos... nada.', pose: 'donramon_slam', sfx: 'desk_slam' },
   { speaker: 'FLORINDA', text: 'Pues... pues la escondió.', pose: 'florinda_shock' },
   { speaker: 'DEFENSA', text: '¿Dónde, señora? El mismo informe dice que revisaron el museo pieza por pieza esa noche. Cuatrocientas doce piezas y ni rastro.', pose: 'donramon_point' },
@@ -38,20 +38,8 @@ const CASE1_D1_T1_SUCCESS: DialogueLine[] = [
   { speaker: 'JUEZ', text: 'La corte concede que un objeto no localizado no acredita por sí solo la inocencia.', pose: 'judge_thinking' },
   { speaker: 'JUEZ', text: 'Pero también concede que la fiscalía no ha puesto esa chicharra en las manos de nadie. Por hoy, el robo queda en el aire.', sfx: 'gavel', pose: 'judge_gavel' },
   { speaker: 'SUPER SAM', text: '¡Da igual! ¡Aunque no se haya llevado nada, GOLPEÓ al velador! ¡La testigo lo vio con el arma en la mano!', pose: 'supersam_point' },
-  { speaker: 'JUEZ', text: 'Eso es cierto. Defensa: la corte quiere ver ese garrote.', pose: 'judge_neutral' }
-];
-
-const CASE1_D1_T1_FOLLOWUP: DialogueLine[] = [
-  { speaker: 'DEFENSA', text: 'Con mucho gusto, señor juez. Alguacil, si es tan amable de apretarlo.', pose: 'donramon_idle', bgm: 'pursuit' },
-  { speaker: 'NARRADOR', text: 'El alguacil aprieta el chipote chillón a media sala.', sfx: 'chipote' },
-  { speaker: 'NARRADOR', text: 'Un chillido de hule llena la sala de audiencias. En la galería alguien se ríe.', sfx: 'chipote' },
-  { speaker: 'JUEZ', text: '¡Orden! ¡ORDEN EN LA SALA!', sfx: 'gavel', pose: 'judge_shock' },
-  { speaker: 'DEFENSA', text: 'Vinil suave, hueco por dentro, doscientos gramos. Esto no fractura un cráneo, señor juez: lo despeina.', pose: 'donramon_point' },
-  { speaker: 'FLORINDA', text: '¡Pero yo lo vi con eso en la mano!', pose: 'florinda_crying' },
-  { speaker: 'DEFENSA', text: 'Y le creo, señora. Le creo todo. Usted vio a un hombre de pie con un juguete en la mano, y de ahí a "él lo golpeó" hay un brinco que dio la fiscalía, no usted.', pose: 'donramon_idle', updateProfile: 'perfil_florinda' },
-  { speaker: 'SUPER SAM', text: '¡Objection! ¡Que sea blando no prueba que no se haya usado! ¡A lo mejor le pegó muy fuerte!', pose: 'supersam_sweat' },
-  { speaker: 'JUEZ', text: 'La fiscalía tiene razón, aunque le cueste trabajo decirlo. Un objeto blando sigue siendo un objeto.', pose: 'judge_thinking' },
-  { speaker: 'JUEZ', text: 'La corte no va a descartar el chipote con un chiflido. Necesita un peritaje. Y necesita al testigo que sí vio el golpe.', sfx: 'gavel', pose: 'judge_gavel' },
+  { speaker: 'DEFENSA', text: 'Usted vio a un hombre de pie junto al cuerpo, señora, pero ya admitió que no presenció la agresión. Y de ahí a "él lo golpeó" hay un brinco que dio la fiscalía, no usted.', pose: 'donramon_idle', updateProfile: 'perfil_florinda' },
+  { speaker: 'JUEZ', text: 'Es verdad. La testigo no presenció el golpe. Para probar la agresión, la corte necesita al testigo que sí vio los hechos.', pose: 'judge_thinking' },
   ...CASE1_CALL_TRIPASECA_D1
 ];
 
@@ -97,7 +85,7 @@ export const CASE1_TESTIMONY_1: Testimony = {
       id: 'c1_d1t1_3',
       speaker: 'FLORINDA',
       pose: 'florinda_angry',
-      text: 'Abrí la puerta grande y ahí estaba mi velador tirado, y ese insecto colorado parado junto a él con el garrote en la mano.',
+      text: 'Abrí la puerta grande y ahí estaba mi velador tirado, y ese insecto colorado parado junto a él con el chipote en la mano.',
       pressText: [
         { speaker: 'DEFENSA', text: '¡UN MOMENTO! Señora, sea precisa: ¿parado junto a él, o encima de él?', sfx: 'whoosh', cutin: 'objection_un_momento', pose: 'donramon_point' },
         { speaker: 'FLORINDA', text: 'Parado junto a él. De pie, derechito, viendo hacia la puerta.', pose: 'florinda_idle' },
@@ -108,7 +96,7 @@ export const CASE1_TESTIMONY_1: Testimony = {
         { speaker: 'FLORINDA', text: '...No. Cuando yo llegué ya estaba en el suelo.', pose: 'florinda_idle' },
         { speaker: 'JUEZ', text: '¡Cáspita! Que quede asentado: la testigo no presenció la agresión.', sfx: 'gavel', pose: 'judge_shock' },
         { speaker: 'SUPER SAM', text: '¡Objection! ¡No hace falta ver caer el árbol para saber quién traía el hacha!', pose: 'supersam_case1_slam', sfx: 'desk_slam' },
-        { speaker: 'DEFENSA', text: 'Salvo que el hacha sea de hule, señor fiscal.', pose: 'donramon_idle' }
+        { speaker: 'DEFENSA', text: 'Salvo que el hacha sea de juguete, señor fiscal.', pose: 'donramon_idle' }
       ]
     },
     {
@@ -125,12 +113,7 @@ export const CASE1_TESTIMONY_1: Testimony = {
       ],
       contradiction: {
         evidence: ['parte_detencion'],
-        successDialogue: CASE1_D1_T1_SUCCESS,
-        followUp: {
-          evidence: ['chipote_chillon'],
-          prompt: '¿Qué es exactamente el objeto que la testigo vio en sus manos?',
-          successDialogue: CASE1_D1_T1_FOLLOWUP
-        }
+        successDialogue: CASE1_D1_T1_SUCCESS
       }
     }
   ]

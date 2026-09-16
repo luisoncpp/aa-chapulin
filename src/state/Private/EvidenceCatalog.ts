@@ -26,8 +26,8 @@ export const EVIDENCE_CATALOG_ES: EvidenceCatalogMap = {
     id: 'chipote_chillon',
     name: 'Chipote Chillón',
     icon: 'assets/chipote_chillon.webp',
-    desc: 'Arma supuestamente letal. Hecho de vinil suave y goma hueca.',
-    updatedDesc: 'Arma supuestamente letal. Vinil suave y hueco; al apretarlo emite un cómico chillido. Imposible fracturar un cráneo.'
+    desc: 'Arma supuestamente letal. El mazo del acusado.',
+    updatedDesc: 'Arma supuestamente letal. Al apretarlo emite un cómico chillido. Imposible fracturar un cráneo.'
   },
   pastillas_chiquitolina: {
     id: 'pastillas_chiquitolina',
@@ -46,7 +46,7 @@ export const EVIDENCE_CATALOG_ES: EvidenceCatalogMap = {
     id: 'informe_medico',
     name: 'Informe Médico de Alma Negra',
     icon: 'assets/informe_medico.webp',
-    desc: 'El guardia fue noqueado por un saco pesado con monedas metálicas, no por goma/vinil.'
+    desc: 'El guardia fue noqueado por un saco pesado con monedas metálicas, no por el chipote.'
   },
   foto_crimen: {
     id: 'foto_crimen',
@@ -82,8 +82,8 @@ export const EVIDENCE_CATALOG_EN: EvidenceCatalogMap = {
     id: 'chipote_chillon',
     name: 'Chipote Chillón (Squeaky Mallet)',
     icon: 'assets/chipote_chillon.webp',
-    desc: 'Supposedly lethal assault weapon. Made of soft vinyl and hollow rubber.',
-    updatedDesc: 'Supposedly lethal assault weapon. Soft hollow vinyl; squeezing it emits a silly squeak. Impossible to fracture a skull.'
+    desc: 'Supposedly lethal assault weapon.',
+    updatedDesc: 'Supposedly lethal assault weapon. Squeezing it emits a silly squeak. Impossible to fracture a skull.'
   },
   pastillas_chiquitolina: {
     id: 'pastillas_chiquitolina',
@@ -102,7 +102,7 @@ export const EVIDENCE_CATALOG_EN: EvidenceCatalogMap = {
     id: 'informe_medico',
     name: "Alma Negra's Medical Report",
     icon: 'assets/informe_medico.webp',
-    desc: 'The guard was knocked out by a heavy sack with metal coins, not rubber/vinyl.'
+    desc: 'The guard was knocked out by a heavy sack with metal coins, not by the chipote.'
   },
   foto_crimen: {
     id: 'foto_crimen',

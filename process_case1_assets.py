@@ -2,6 +2,7 @@
 """Extract the regenerated Case 1 raw art into runtime WebP assets."""
 
 import os
+import sys
 
 from PIL import Image
 
@@ -13,6 +14,11 @@ from process_assets import (
     remove_bg_magenta_vectorized,
 )
 from process_case2_assets import anchor_standing_bust, save_evidence_icon
+
+TOOLS_DIR = os.path.join(os.path.dirname(__file__), "tools")
+if TOOLS_DIR not in sys.path:
+    sys.path.insert(0, TOOLS_DIR)
+from case1_photo_plan_overlay import cover_crop, render_plano_pasillo, stamp_timestamp
 
 
 os.makedirs(DEST_DIR, exist_ok=True)
@@ -112,8 +118,27 @@ def process_plate(name: str) -> None:
     if not os.path.exists(source):
         print(f"Warning: Plate raw not found {source}")
         return
-    img = Image.open(source).convert("RGB").resize((960, 540), Image.Resampling.LANCZOS)
-    save_webp(img, name)
+    if name == "examine_foto_crimen":
+        img = stamp_timestamp(cover_crop(Image.open(source), (960, 540), top_ratio=0.32))
+        save_webp(img, name)
+        process_photo_icon(img)
+        return
+    save_webp(cover_crop(Image.open(source), (960, 540)), name)
+
+
+def process_photo_icon(plate: Image.Image | None = None) -> None:
+    if plate is None:
+        source = raw_path("examine_foto_crimen")
+        if not os.path.exists(source):
+            print(f"Warning: Photo raw not found {source}")
+            return
+        plate = stamp_timestamp(cover_crop(Image.open(source), (960, 540), top_ratio=0.32))
+    crop = plate.crop((280, 40, 720, 500)).resize((220, 154), Image.Resampling.LANCZOS)
+    canvas = Image.new("RGB", (256, 256), (34, 41, 52))
+    paper = Image.new("RGB", (236, 180), (232, 226, 210))
+    paper.paste(crop, (8, 8))
+    canvas.paste(paper, (10, 38))
+    save_webp(canvas, "foto_crimen")
 
 
 def process_card_plate(name: str, output: str) -> None:
@@ -142,7 +167,7 @@ def process_background(name: str) -> None:
     if not os.path.exists(source):
         print(f"Warning: Background raw not found {source}")
         return
-    save_webp(Image.open(source).convert("RGB"), name)
+    save_webp(cover_crop(Image.open(source), (960, 540)), name)
 
 
 def normalize_existing_plate(name: str) -> None:
@@ -153,22 +178,35 @@ def normalize_existing_plate(name: str) -> None:
     save_webp(img, name)
 
 
-def run_case1() -> None:
+def parse_selected() -> set[str] | None:
+    args = [a.removesuffix(".webp") for a in sys.argv[1:] if a != "--only"]
+    if "--only" not in sys.argv and not args:
+        return None
+    return set(args) if args else None
+
+
+def run_case1(selected: set[str] | None = None) -> None:
     print("=== CASE 1 ASSET PROCESSING ===")
-    process_alma_poses()
-    for name in PROFILE_IDS:
-        process_profile(name)
-    for name in EVIDENCE_ICONS:
-        process_icon(name)
+    want = lambda name: selected is None or name in selected
+    if selected is None:
+        process_alma_poses()
+        for name in PROFILE_IDS:
+            process_profile(name)
+        for name in EVIDENCE_ICONS:
+            process_icon(name)
+        process_card_plate("ficha_museo", "examine_ficha_museo")
+        process_card_plate("ficha_museo_en", "examine_ficha_museo_en")
+        normalize_existing_plate("examine_informe_lesiones")
     for name in PLATES:
-        process_plate(name)
-    process_card_plate("ficha_museo", "examine_ficha_museo")
-    process_card_plate("ficha_museo_en", "examine_ficha_museo_en")
+        if want(name) or (name == "examine_foto_crimen" and want("foto_crimen")):
+            process_plate(name)
+    if selected is None or "plano_pasillo" in selected or "examine_plano_pasillo" in selected:
+        render_plano_pasillo()
     for name in BGS:
-        process_background(name)
-    normalize_existing_plate("examine_informe_lesiones")
+        if want(name):
+            process_background(name)
     print("\nCase 1 assets saved.")
 
 
 if __name__ == "__main__":
-    run_case1()
+    run_case1(parse_selected())

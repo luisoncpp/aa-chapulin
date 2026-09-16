@@ -76,9 +76,9 @@ export const CASE1_MUSEO_EN: InvestigationScene = {
       x: 0, y: 58, w: 28, h: 31,
       dialogue: [
         { speaker: 'NARRADOR', text: 'A brass cage knocked over on the floor. Inside, a stuffed parrot with a permanent look of surprise.' },
-        { speaker: 'DEFENSA', text: 'Tipped inward into the gallery, with its back to the loading door. The feathers scattered further in.', pose: 'donramon_idle' },
+        { speaker: 'DEFENSA', text: 'Tipped inward from the corridor entrance into gallery two. The feathers scattered further in.', pose: 'donramon_idle' },
         { speaker: 'FLORINDA', text: 'That is Aristotle! Two hundred years of history and that grasshopper knocked him over with one shove!', pose: 'florinda_angry' },
-        { speaker: 'DEFENSA', text: '(If he knocked it over coming from the loading door, then he came in that way. That fits what he told me.)', pose: 'donramon_idle' }
+        { speaker: 'DEFENSA', text: '(If he knocked it over entering from the corridor, that fits the turns he told me about.)', pose: 'donramon_idle' }
       ]
     },
     {
@@ -112,7 +112,7 @@ export const CASE1_MUSEO_EN: InvestigationScene = {
       label: 'What did you see when you arrived?',
       dialogue: [
         { speaker: 'FLORINDA', text: 'A neighbour rang me at nine oh four. I ran, opened the big door with my key and...', pose: 'florinda_crying' },
-        { speaker: 'FLORINDA', text: 'There was my Alma Negra, down like a sack. And on top of him that red bug, still with the club in his hand.', pose: 'florinda_angry' },
+        { speaker: 'FLORINDA', text: 'There was my Alma Negra, down like a sack. And on top of him that red bug, still with the chipote in his hand.', pose: 'florinda_angry' },
         { speaker: 'DEFENSA', text: 'On top of him, or standing beside him?', pose: 'donramon_idle' },
         { speaker: 'FLORINDA', text: 'It is the same thing!', pose: 'florinda_angry' },
         { speaker: 'DEFENSA', text: '(It is not the same thing, Doña Florinda. But I will ask you that this afternoon, with the judge as witness.)', pose: 'donramon_idle' }

@@ -53,15 +53,15 @@ export const CASE1_DETENTION_EN: InvestigationScene = {
         { speaker: 'DEFENSA', text: 'How many stops?', pose: 'donramon_idle' },
         { speaker: 'CHAPULIN', text: 'Two. A traffic light and a lady who dropped her groceries.', pose: 'chapulin_idle' },
         { speaker: 'DEFENSA', text: '(Fifteen minutes between heroism, a traffic light and some groceries.)', pose: 'donramon_sweat' },
-        { speaker: 'CHAPULIN', text: 'I arrived at nine on the dot. The loading door was open. I pushed it and went in.', pose: 'chapulin_point' },
+        { speaker: 'CHAPULIN', text: 'I arrived at nine on the dot. The loading door was open. I pushed it, went in, and had to turn into the corridor.', pose: 'chapulin_point' },
         { speaker: 'DEFENSA', text: 'Open, or forced?', pose: 'donramon_idle' },
         { speaker: 'CHAPULIN', text: 'Open, counselor. Like when you push a door and the door says "come on in".', pose: 'chapulin_idle' },
         { speaker: 'DEFENSA', text: 'And in the yard? Nobody?', pose: 'donramon_idle' },
-        { speaker: 'CHAPULIN', text: 'Dark, counselor. A truck under a tarp. I was heading inside. I did not stop to greet the furniture.', pose: 'chapulin_idle' },
-        { speaker: 'CHAPULIN', text: 'Inside it was dark. I tripped over a cage, a stuffed parrot came down on me, and when I got up the watchman was at my feet and the prosecutor was at my neck.', pose: 'chapulin_panic' },
-        { speaker: 'DEFENSA', text: 'And the mallet?', pose: 'donramon_idle' },
+        { speaker: 'CHAPULIN', text: 'Dark, counselor. A truck under a tarp. I was heading inside, turning toward the galleries. I did not stop to greet the furniture.', pose: 'chapulin_idle' },
+        { speaker: 'CHAPULIN', text: 'Inside I turned again and tripped over a cage; a stuffed parrot came down on me, and when I got up the watchman was at my feet and the prosecutor was at my neck.', pose: 'chapulin_panic' },
+        { speaker: 'DEFENSA', text: 'And the chipote?', pose: 'donramon_idle' },
         { speaker: 'CHAPULIN', text: 'Hanging from my belt. I need my hands to run, counselor.', pose: 'chapulin_idle', addEvidence: 'antenitas_vinil' },
-        { speaker: 'CHAPULIN', text: 'When the cage hit me, the mallet flew off. I picked it up off the floor before standing.', pose: 'chapulin_panic', addEvidence: 'chipote_chillon' }
+        { speaker: 'CHAPULIN', text: 'When the cage hit me, the chipote flew off. I picked it up off the floor before standing.', pose: 'chapulin_panic', addEvidence: 'chipote_chillon' }
       ]
     },
     {

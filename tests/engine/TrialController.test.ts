@@ -134,15 +134,11 @@ describe('TrialController', () => {
     expect(queuedDialogues.some((d) => d.some((l) => l.text.includes('Time is money')))).toBe(true);
   });
 
-  it('progresses from testimony 1 to testimony 2 through contradiction and follow-up', () => {
+  it('progresses from testimony 1 to testimony 2 through contradiction', () => {
     controller.startTestimony('testimony1');
     controller.currentStatementIdx = 3;
 
     controller.handlePresentEvidence('parte_detencion');
-    // The resolving contradiction hands off to a follow-up present.
-    expect(courtRecordOpenedWithTrial).toBe(true);
-
-    controller.handlePresentEvidence('chipote_chillon');
     expect(controller.currentTestimony).toBe(CASE_SCRIPT.trial.testimony2);
     expect(midiComposerInstance.currentTrack).toBe('cross_exam_allegro');
   });
@@ -180,7 +176,7 @@ describe('TrialController', () => {
     controller.handlePresentEvidence('ficha_museo');
 
     expect(queuedDialogues.some((d) => d.some((l) => l.text.includes('¡INOCENTE!')))).toBe(true);
-    expect(dom.confettiContainerEl.children.length).toBe(80);
+    expect(queuedDialogues.flat().some((line) => line.confetti)).toBe(true);
   });
 
   it('handles climax submission: penalty and retry on incorrect item', () => {

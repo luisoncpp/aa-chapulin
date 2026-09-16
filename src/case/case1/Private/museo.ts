@@ -76,9 +76,9 @@ export const CASE1_MUSEO: InvestigationScene = {
       x: 0, y: 58, w: 28, h: 31,
       dialogue: [
         { speaker: 'NARRADOR', text: 'Una jaula de latón volcada en el piso. Adentro, un perico disecado con cara de sorpresa permanente.' },
-        { speaker: 'DEFENSA', text: 'Volcada hacia adentro de la sala, de espaldas a la puerta de carga. Las plumas se regaron tierra adentro.', pose: 'donramon_idle' },
+        { speaker: 'DEFENSA', text: 'Volcada hacia adentro desde el acceso del pasillo a la sala dos. Las plumas se regaron tierra adentro.', pose: 'donramon_idle' },
         { speaker: 'FLORINDA', text: '¡Es Aristóteles! ¡Doscientos años de historia y ese grillo lo tiró de un empujón!', pose: 'florinda_angry' },
-        { speaker: 'DEFENSA', text: '(Si la tiró viniendo de la puerta de carga, es que entró por ahí. Eso cuadra con lo que me contó.)', pose: 'donramon_idle' }
+        { speaker: 'DEFENSA', text: '(Si la tiró al entrar desde el pasillo, eso cuadra con los giros que me contó.)', pose: 'donramon_idle' }
       ]
     },
     {
@@ -112,7 +112,7 @@ export const CASE1_MUSEO: InvestigationScene = {
       label: '¿Qué vio usted cuando llegó?',
       dialogue: [
         { speaker: 'FLORINDA', text: 'Me habló un vecino a las nueve y cuatro. Corrí, abrí la puerta grande con mi llave y...', pose: 'florinda_crying' },
-        { speaker: 'FLORINDA', text: 'Ahí estaba mi Alma Negra, tirado como un fardo. Y encima de él ese insecto colorado, con el garrote todavía en la mano.', pose: 'florinda_angry' },
+        { speaker: 'FLORINDA', text: 'Ahí estaba mi Alma Negra, tirado como un fardo. Y encima de él ese insecto colorado, con el chipote todavía en la mano.', pose: 'florinda_angry' },
         { speaker: 'DEFENSA', text: '¿Encima de él, o de pie junto a él?', pose: 'donramon_idle' },
         { speaker: 'FLORINDA', text: '¡Es lo mismo!', pose: 'florinda_angry' },
         { speaker: 'DEFENSA', text: '(No es lo mismo, doña Florinda. Pero eso se lo pregunto esta tarde y con el juez de testigo.)', pose: 'donramon_idle' }

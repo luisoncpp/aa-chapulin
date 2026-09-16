@@ -21,7 +21,8 @@ export const CASE1_DAY2_EVIDENCE: EvidenceId[] = [
 export const CASE1_DEBUG_EVIDENCE: EvidenceId[] = [
   'insignia_abogado',
   ...CASE1_DAY1_EVIDENCE,
-  ...CASE1_DAY2_EVIDENCE
+  ...CASE1_DAY2_EVIDENCE,
+  'plano_pasillo'
 ];
 
 export const CASE1_DEBUG_PROFILES: ProfileId[] = [

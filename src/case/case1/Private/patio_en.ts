@@ -26,7 +26,7 @@ export const CASE1_PATIO_EN: InvestigationScene = {
     {
       id: 'hotspot_camioneta',
       label: 'Truck under a tarp',
-      x: 52, y: 27, w: 42, h: 48,
+      x: 50, y: 24, w: 44, h: 49,
       dialogue: [
         { speaker: 'NARRADOR', text: 'A stake-bed truck under a waxed tarp. No plates, front or back.' },
         { speaker: 'DEFENSA', text: 'No plates. Not front, not back, no sticker, no legible engine number.', pose: 'donramon_shock' },
@@ -41,7 +41,7 @@ export const CASE1_PATIO_EN: InvestigationScene = {
       id: 'hotspot_guantera',
       label: 'Truck glovebox',
       condition: (flags) => Boolean(flags.examined_hotspot_camioneta),
-      x: 52, y: 38, w: 12, h: 25,
+      x: 51, y: 35, w: 12, h: 27,
       dialogue: [
         { speaker: 'NARRADOR', text: 'Inside the glovebox: a rag, half a pack of cigarettes and a typewritten card.' },
         { speaker: 'DEFENSA', text: '...A card. Typed.', pose: 'donramon_idle' },
@@ -54,7 +54,7 @@ export const CASE1_PATIO_EN: InvestigationScene = {
     {
       id: 'hotspot_bolsa',
       label: 'Canvas bag by the rear tyre',
-      x: 83, y: 58, w: 15, h: 20,
+      x: 86, y: 56, w: 14, h: 26,
       dialogue: [
         { speaker: 'NARRADOR', text: 'Dumped between the tyre and the wall, a thick canvas bag, empty, with a stamped seal.' },
         { speaker: 'DEFENSA', text: "(Prosecutor's seal. \"Time is Money\".)", pose: 'donramon_shock' },
@@ -69,7 +69,7 @@ export const CASE1_PATIO_EN: InvestigationScene = {
     {
       id: 'hotspot_puerta',
       label: 'Loading door',
-      x: 0, y: 13, w: 29, h: 57,
+      x: 3, y: 7, w: 21, h: 61,
       dialogue: [
         { speaker: 'NARRADOR', text: 'A two-leaf metal door. The latch is loose and the bolt does not catch.' },
         { speaker: 'DEFENSA', text: 'Broken since March, the curator said.', pose: 'donramon_idle' },
@@ -81,7 +81,7 @@ export const CASE1_PATIO_EN: InvestigationScene = {
     {
       id: 'hotspot_rejilla_exterior',
       label: 'Duct grate, outer face',
-      x: 22, y: 76, w: 17, h: 12,
+      x: 22, y: 74, w: 18, h: 8,
       dialogue: [
         { speaker: 'NARRADOR', text: 'On the yard side, the gallery 2 duct grate, flush with the ground.' },
         { speaker: 'DEFENSA', text: 'The same grate as yesterday, seen from outside. Eighteen by twenty-four.', pose: 'donramon_idle' },
@@ -98,7 +98,7 @@ export const CASE1_PATIO_EN: InvestigationScene = {
       label: 'Yard wall',
       condition: (flags) =>
         Boolean(flags.examined_hotspot_guantera) && Boolean(flags.examined_hotspot_bolsa),
-      x: 42, y: 13, w: 21, h: 20,
+      x: 28, y: 13, w: 22, h: 22,
       dialogue: [
         { speaker: 'NARRADOR', text: 'A two-metre brick wall with broken glass cemented along the top... except for a metre and a half of it.' },
         { speaker: 'DEFENSA', text: 'The glass is missing here. And there is a shoe print in the plaster.', pose: 'donramon_point' },

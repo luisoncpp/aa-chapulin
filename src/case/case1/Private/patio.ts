@@ -26,7 +26,7 @@ export const CASE1_PATIO: InvestigationScene = {
     {
       id: 'hotspot_camioneta',
       label: 'Camioneta cubierta con lona',
-      x: 52, y: 27, w: 42, h: 48,
+      x: 50, y: 24, w: 44, h: 49,
       dialogue: [
         { speaker: 'NARRADOR', text: 'Una camioneta de redilas bajo una lona encerada. Sin placas, delante ni atrás.' },
         { speaker: 'DEFENSA', text: 'Sin placas. Ni adelante ni atrás, ni calcomanía, ni número de motor legible.', pose: 'donramon_shock' },
@@ -41,7 +41,7 @@ export const CASE1_PATIO: InvestigationScene = {
       id: 'hotspot_guantera',
       label: 'Guantera de la camioneta',
       condition: (flags) => Boolean(flags.examined_hotspot_camioneta),
-      x: 52, y: 38, w: 12, h: 25,
+      x: 51, y: 35, w: 12, h: 27,
       dialogue: [
         { speaker: 'NARRADOR', text: 'Dentro de la guantera: un trapo, media cajetilla de cigarros y una tarjeta mecanografiada.' },
         { speaker: 'DEFENSA', text: '...Una tarjeta. A máquina.', pose: 'donramon_idle' },
@@ -54,7 +54,7 @@ export const CASE1_PATIO: InvestigationScene = {
     {
       id: 'hotspot_bolsa',
       label: 'Bolsa de lona junto a la llanta',
-      x: 83, y: 58, w: 15, h: 20,
+      x: 86, y: 56, w: 14, h: 26,
       dialogue: [
         { speaker: 'NARRADOR', text: 'Tirada entre la llanta y la barda, una bolsa de lona gruesa, vacía, con un sello estampado.' },
         { speaker: 'DEFENSA', text: '(Sello de la Fiscalía. "Time is Money".)', pose: 'donramon_shock' },
@@ -69,7 +69,7 @@ export const CASE1_PATIO: InvestigationScene = {
     {
       id: 'hotspot_puerta',
       label: 'Puerta de carga',
-      x: 0, y: 13, w: 29, h: 57,
+      x: 3, y: 7, w: 21, h: 61,
       dialogue: [
         { speaker: 'NARRADOR', text: 'Una puerta metálica de dos hojas. La chapa está floja y el pestillo no engancha.' },
         { speaker: 'DEFENSA', text: 'Vencida desde marzo, dijo la curadora.', pose: 'donramon_idle' },
@@ -81,7 +81,7 @@ export const CASE1_PATIO: InvestigationScene = {
     {
       id: 'hotspot_rejilla_exterior',
       label: 'Rejilla, cara exterior',
-      x: 22, y: 76, w: 17, h: 12,
+      x: 22, y: 74, w: 18, h: 8,
       dialogue: [
         { speaker: 'NARRADOR', text: 'Del lado del patio, la rejilla del ducto de la sala 2, al ras del suelo.' },
         { speaker: 'DEFENSA', text: 'La misma rejilla de ayer, vista por fuera. Dieciocho por veinticuatro.', pose: 'donramon_idle' },
@@ -98,7 +98,7 @@ export const CASE1_PATIO: InvestigationScene = {
       label: 'Barda del patio',
       condition: (flags) =>
         Boolean(flags.examined_hotspot_guantera) && Boolean(flags.examined_hotspot_bolsa),
-      x: 42, y: 13, w: 21, h: 20,
+      x: 28, y: 13, w: 22, h: 22,
       dialogue: [
         { speaker: 'NARRADOR', text: 'Barda de tabique de dos metros, con vidrios rotos encementados arriba... salvo en un tramo de metro y medio.' },
         { speaker: 'DEFENSA', text: 'Aquí faltan los vidrios. Y hay una huella de zapato en el enjarre.', pose: 'donramon_point' },

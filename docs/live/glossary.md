@@ -31,7 +31,7 @@ Domain terminology and project-specific concepts for **El Chapulín Colorado: Ac
 | **Alma Negra** | Case 1 victim and day-2 witness: the museum's night watchman, an ex-sailor who speaks in nautical slang (*bodega de proa / de popa*, *grumete*) and never appears healthy — unconscious on day 1, bandaged in a wheelchair from day 2 on. His written round is what made the crime plannable. | [[src/case/case1/Private/clinica_d2.ts]], [[src/case/case1/Private/trial_day2.ts]] |
 | **Profesor Jirafales** | Case 1 guest lecturer (investigation only, never takes the stand); also the Case 2 judge and vault owner. A neighbor of Don Ramón from the vecindad — so is Doña Florinda, so nobody is surprised they know each other; the greeting is what shames her into letting the defense work. Times everything to the second and corrects El Chapulín's mangled proverbs. | [[src/case/case1/Private/museo.ts]] |
 
-| **Chipote Chillón** | Chapulín's soft vinyl squeaky hammer, erroneously accused of being the heavy blunt assault weapon. | [[src/state/Private/EvidenceCatalog.ts]] |
+| **Chipote Chillón** | Chapulín's squeaky hammer, erroneously accused of being the heavy blunt assault weapon. | [[src/state/Private/EvidenceCatalog.ts]] |
 | **Pastillas de Chiquitolina** | Shrinking pills used by the true culprit to enter the sealed museum display through an air vent. | [[src/state/Private/EvidenceCatalog.ts]] |
 | **Antenitas de Vinil** | Vinyl antennae that vibrate when detecting the presence of enemies, used to pinpoint the hidden loot. | [[src/state/Private/EvidenceCatalog.ts]] |
 | **Chicharra Paralizadora de Oro** | The stolen museum relic that immobilizes anyone nearby when sounded. | [[src/state/Private/EvidenceCatalog.ts]] |

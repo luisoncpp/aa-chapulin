@@ -147,6 +147,8 @@ export interface DialogueLine {
   text: string;
   /** Render this UI instruction immediately without typewriter audio. */
   instant?: boolean;
+  /** Trigger the celebration effect when this line is displayed. */
+  confetti?: boolean;
   pose?: PoseName;
   bg?: string;
   bgm?: TrackName;

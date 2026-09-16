@@ -98,7 +98,7 @@ export const CASE1_PATIO_EN: InvestigationScene = {
       label: 'Yard wall',
       condition: (flags) =>
         Boolean(flags.examined_hotspot_guantera) && Boolean(flags.examined_hotspot_bolsa),
-      x: 28, y: 13, w: 22, h: 22,
+      x: 26, y: 16, w: 34, h: 25,
       dialogue: [
         { speaker: 'NARRADOR', text: 'A two-metre brick wall with broken glass cemented along the top... except for a metre and a half of it.' },
         { speaker: 'DEFENSA', text: 'The glass is missing here. And there is a shoe print in the plaster.', pose: 'donramon_point' },

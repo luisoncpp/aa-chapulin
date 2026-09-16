@@ -4,28 +4,8 @@
  * GIRO 2 (§12.5), que entra directo al clímax.
  */
 
-import type { DialogueLine, PointTargetContradiction, Testimony } from '../../../types/index.js';
-
-const FAIL_PECHO: DialogueLine[] = [
-  { speaker: 'JUEZ', pose: 'judge_thinking', text: 'Licenciado, la corte le pidió el pecho de ese hombre.', sfx: 'damage' },
-  { speaker: 'JUEZ', pose: 'judge_neutral', text: 'Eso no resuelve lo que el testigo acaba de afirmar sobre las letras del emblema.' },
-  { speaker: 'SUPER SAM', pose: 'supersam_point', text: '¡Otro punto menos! ¡A este paso la defensa me sale gratis!' },
-  { speaker: 'CHAPULIN', pose: 'chapulin_idle', text: 'Don Ramón, acuérdese de lo que dijo el testigo: las dos letras. Mírelas de cerca.' }
-];
-
-const FOTO_POINT_TARGET: PointTargetContradiction = {
-  targetEvidenceId: 'foto_crimen',
-  promptQuestion: 'Señala en la lámina: ¿qué tiene de raro el pecho de ese hombre?',
-  imageAsset: 'assets/examine_foto_crimen.webp',
-  zones: [
-    { id: 'emblema_pecho', bounds: [42, 37, 53, 51], isCorrect: true, failureDialogue: [] },
-    { id: 'manos', bounds: [32, 46, 64, 64], isCorrect: false, failureDialogue: FAIL_PECHO },
-    { id: 'marco_espejo', bounds: [0, 0, 18, 100], isCorrect: false, failureDialogue: FAIL_PECHO },
-    { id: 'piso_pasillo', bounds: [18, 60, 100, 100], isCorrect: false, failureDialogue: FAIL_PECHO },
-    { id: 'pasillo_reflejado', bounds: [18, 12, 100, 60], isCorrect: false, failureDialogue: FAIL_PECHO },
-    { id: 'foto_resto', bounds: [0, 0, 100, 100], isCorrect: false, failureDialogue: FAIL_PECHO }
-  ]
-};
+import type { DialogueLine, Testimony } from '../../../types/index.js';
+import { CASE1_FOTO_POINT_TARGET } from './trial_day2_t3_points.js';
 
 /** GIRO 2: el museo no se estudió, se compró. Cierra el `followUp` de D2-T3. */
 const CASE1_GIRO_2: DialogueLine[] = [
@@ -59,14 +39,9 @@ const CASE1_GIRO_2: DialogueLine[] = [
 ];
 
 const CASE1_D2_T3_SUCCESS: DialogueLine[] = [
-  { speaker: 'DEFENSA', text: '¡AQUÍ! ¡El corazón del pecho, señor juez!', sfx: 'desk_slam', cutin: 'objection_toma_eso', pose: 'donramon_slam', bgm: 'objection' },
-  { speaker: 'DEFENSA', text: 'El testigo declaró "ce, hache". Pero en esta fotografía las letras no están en ese orden.', pose: 'donramon_point' },
-  { speaker: 'NARRADOR', text: 'La ampliación llena la pantalla. El emblema muestra una H y una C reflejada.', sfx: 'realization', bgm: 'objection' },
-  { speaker: 'JUEZ', text: '¡Cáspita! ¡Están al revés!', pose: 'judge_shock' },
-  { speaker: 'SUPER SAM', text: '¡Está mal revelada! ¡Voltearon el negativo en el laboratorio!', pose: 'supersam_slam', sfx: 'desk_slam' },
-  { speaker: 'DEFENSA', text: 'El negativo está bien, señor fiscal. Lo que confundieron fue el espacio reflejado con un pasillo real.', pose: 'donramon_idle' },
-  { speaker: 'DEFENSA', text: 'Señor juez: esa cámara está junto al acceso y apunta al espejo que cierra el tramo recto.', pose: 'donramon_point' },
-  { speaker: 'DEFENSA', text: 'Usted colocó a mi cliente detrás de ese marco. Pero detrás hay una pared.', pose: 'donramon_slam', sfx: 'desk_slam' },
+  { speaker: 'DEFENSA', text: 'El croquis coloca la cámara junto al acceso, apuntando al espejo que cierra el tramo recto.', pose: 'donramon_point', bgm: 'objection' },
+  { speaker: 'DEFENSA', text: 'Esa pintura está en el tramo que queda detrás de la cámara. Sólo aparece al fondo porque el espejo devuelve la escena.', pose: 'donramon_idle' },
+  { speaker: 'DEFENSA', text: 'Usted colocó a mi cliente detrás de ese marco. Pero detrás del Chapulín se ve una pintura, no el acceso de carga.', pose: 'donramon_slam', sfx: 'desk_slam' },
   { speaker: 'JUEZ', text: 'Entonces, ¿dónde estaba?', pose: 'judge_shock' },
   { speaker: 'DEFENSA', text: 'Aquí, delante del espejo. Corría hacia él, alejándose del acceso de carga.', pose: 'donramon_point' },
   { speaker: 'DEFENSA', text: 'La foto no demuestra una salida. Demuestra que a las nueve cruzó la franja iluminada del pasillo interior.', pose: 'donramon_slam', sfx: 'desk_slam', cutin: 'objection_toma_eso' },
@@ -80,7 +55,7 @@ const CASE1_D2_T3_SUCCESS: DialogueLine[] = [
   { speaker: 'JUEZ', text: 'La corte lamenta lo del perico y agradece la corroboración.', pose: 'judge_thinking' },
   { speaker: 'DEFENSA', text: 'Y hay una cosa más, y ésta es la que le pido a la corte que no olvide.', pose: 'donramon_idle' },
   { speaker: 'DEFENSA', text: 'Miren las manos.', pose: 'donramon_point' },
-  { speaker: 'NARRADOR', text: 'En la ampliación, las dos manos del hombre van abiertas y vacías, a la altura de la cintura, como corre cualquiera que corre.' },
+  { speaker: 'NARRADOR', text: '...', bg: 'assets/ampliacion_foto_crimen_manos.webp', furniture: 'none' },
   { speaker: 'DEFENSA', text: 'Las trae abiertas. Y vacías.', pose: 'donramon_slam', sfx: 'desk_slam' },
   { speaker: 'DEFENSA', text: 'A las nueve en punto de la noche del veintiuno, la única fotografía de este caso muestra a mi cliente entrando al museo con las manos vacías.', pose: 'donramon_point' },
   { speaker: 'CHAPULIN', text: '¡No contaban con mi astucia!', pose: 'chapulin_point' },
@@ -165,7 +140,7 @@ export const CASE1_TESTIMONY_5: Testimony = {
       ],
       contradiction: {
         evidence: ['foto_crimen'],
-        pointTarget: FOTO_POINT_TARGET,
+        pointTarget: CASE1_FOTO_POINT_TARGET,
         successDialogue: CASE1_D2_T3_SUCCESS,
         followUp: {
           evidence: ['bolsa_dolares'],

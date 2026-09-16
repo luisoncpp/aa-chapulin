@@ -65,6 +65,18 @@ describe('Case Scripts Narrative Integrity', () => {
     expect(innocentLine).toBeDefined();
   });
 
+  it('has Don Ramón read the museum card in both languages', () => {
+    for (const language of ['es', 'en'] as const) {
+      const climax = getCaseScript(language, 'case1').trial.climax;
+      const cardLines = climax.stages?.at(-1)?.successDialogue.filter((line) => (
+        line.bg?.includes('examine_ficha_museo')
+      ));
+
+      expect(cardLines?.length).toBeGreaterThan(0);
+      expect(cardLines?.every((line) => line.speaker === 'DEFENSA')).toBe(true);
+    }
+  });
+
   it('wires court-record description updates to catalog variants', () => {
     const camaras = CASE_SCRIPT.investigation.cuarto_camaras.hotspots;
     const rollLog = camaras.find((h) => h.id === 'hotspot_bitacora_rollo');

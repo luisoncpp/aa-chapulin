@@ -218,10 +218,13 @@ export interface PointZone {
 }
 
 export interface PointTargetContradiction {
+  id?: string;
   targetEvidenceId: EvidenceId;
   promptQuestion: string;
   imageAsset?: string;
   zones: PointZone[];
+  successDialogue?: DialogueLine[];
+  next?: PointTargetContradiction;
 }
 
 export interface ContradictionFollowUp {
@@ -279,6 +282,8 @@ export interface ClimaxStage {
   presentTarget?: EvidenceId[];
   /** Replaces `presentTarget` when the court demands a person instead of an exhibit. */
   profileTarget?: ProfileId[];
+  /** Optional dialogue played upon presenting the correct exhibit, before pointing begins. */
+  introDialogue?: DialogueLine[];
   /** Played when the player points at the wrong person or exhibit. */
   failDialogue?: DialogueLine[];
   successDialogue: DialogueLine[];

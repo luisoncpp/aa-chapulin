@@ -5,6 +5,7 @@
  */
 
 import type { ClimaxStage, DialogueLine } from '../../../types/index.js';
+import { CASE1_REJILLA_POINT_TARGET, STAGE_3_INTRO } from './climax_stage3_points.js';
 
 const STAGE_1_FAIL: DialogueLine[] = [
   { speaker: 'JUEZ', pose: 'judge_thinking', text: 'No, licenciado. Y esta corte le recuerda que no le preguntó de quién sospecha, sino a quién señalan las pruebas que usted mismo ha admitido.' },
@@ -77,23 +78,9 @@ const STAGE_3_FAIL: DialogueLine[] = [
 ];
 
 const STAGE_3_SUCCESS: DialogueLine[] = [
-  { speaker: 'DEFENSA', text: 'La rejilla del ducto de la sala dos, señor juez. Dieciocho por veinticuatro.', pose: 'donramon_idle' },
-  { speaker: 'DEFENSA', text: 'Los cuatro tornillos tienen la pintura entera: nadie la desatornilló nunca.', pose: 'donramon_point' },
-  { speaker: 'DEFENSA', text: 'Pero la esquina de abajo de la malla está doblada hacia arriba y acomodada de regreso. Por ahí no pasa un gato. Pasa un ratón.', pose: 'donramon_idle' },
-  { speaker: 'JUEZ', text: 'Eso ya lo estableció la defensa. ¿Qué hay de nuevo?', pose: 'judge_thinking' },
-  { speaker: 'DEFENSA', text: 'El labio interior del marco, señor juez. El que da a la sala.', pose: 'donramon_point' },
-  { speaker: 'DEFENSA', text: 'Todo el marco tiene polvo de años. El labio interior tiene el polvo limpio en dos rayitas paralelas, separadas por un centímetro y medio.', pose: 'donramon_idle' },
-  { speaker: 'JUEZ', text: '¿Y eso qué es?', pose: 'judge_shock' },
-  { speaker: 'DEFENSA', text: 'Una cinta métrica, señor juez. Alguien apoyó una cinta de un centímetro y medio de ancho en ese marco y midió el hueco.', pose: 'donramon_slam', sfx: 'desk_slam' },
-  { speaker: 'DEFENSA', text: 'Y lo midió desde adentro de la sala. Del lado del patio no hay una sola marca.', pose: 'donramon_point' },
-  { speaker: 'JUEZ', text: '¿La defensa sostiene que el testigo entró antes a medir esa rejilla?', pose: 'judge_shock' },
-  { speaker: 'DEFENSA', text: 'No, señor juez. Sostengo exactamente lo contrario, y le pido a la corte que se acuerde de esto dentro de un minuto.', pose: 'donramon_idle' },
-  { speaker: 'DEFENSA', text: 'Quien midió esa rejilla lo hizo de día, con boleto, de pie y sin ninguna prisa. Nadie saca una cinta métrica metido dentro de un ducto.', pose: 'donramon_point' },
-  { speaker: 'DEFENSA', text: 'Esas rayitas no son del hombre que se encogió. Son de otra persona, y a ésa llegamos al final.', pose: 'donramon_idle' },
-  { speaker: 'SUPER SAM', text: '¡Objection! ¡Entonces su rejilla no prueba absolutamente nada contra mi testigo!', pose: 'supersam_slam', sfx: 'desk_slam' },
-  { speaker: 'DEFENSA', text: 'La rejilla no, señor fiscal. Lo que se quedó atorado en ella, sí.', pose: 'donramon_idle' },
+  { speaker: 'DEFENSA', text: '¡AQUÍ! ¡Atorado en el alambre de la malla, del lado interior!', sfx: 'desk_slam', cutin: 'objection_toma_eso', pose: 'donramon_slam', bgm: 'objection' },
   { speaker: 'NARRADOR', text: 'Don Ramón levanta un sobrecito de papel encerado con una pinza.', sfx: 'whoosh' },
-  { speaker: 'DEFENSA', text: 'Atorado en la malla, del lado interior, un hilo de casimir crema con raya. De tres milímetros.', pose: 'donramon_point' },
+  { speaker: 'DEFENSA', text: 'Un hilo de casimir crema con raya, señor juez. De tres milímetros de largo.', pose: 'donramon_point' },
   { speaker: 'JUEZ', text: '¿Tres milímetros? Licenciado, eso no es un hilo. Eso es una pelusa.', pose: 'judge_thinking' },
   { speaker: 'DEFENSA', text: 'Para un hombre del tamaño de usted, señor juez, es una pelusa.', pose: 'donramon_idle' },
   { speaker: 'DEFENSA', text: 'Para un hombre del tamaño de un ratón, es media solapa.', pose: 'donramon_slam', sfx: 'desk_slam' },
@@ -123,7 +110,21 @@ const STAGE_3_SUCCESS: DialogueLine[] = [
   { speaker: 'JUEZ', text: 'La fiscalía lleva dos días solicitando momentos. Se le niega.', pose: 'judge_neutral' },
   { speaker: 'JUEZ', text: 'Y esta corte tiene una última pregunta, porque si no la contesta no va a dormir.', pose: 'judge_thinking' },
   { speaker: 'JUEZ', text: 'Señor Tripaseca: usted supo la medida de una rejilla, el mes de una chapa, la hora de un velador y el estado de un rollo de cámara.', pose: 'judge_neutral' },
-  { speaker: 'JUEZ', text: '¿De dónde sacó usted todo eso?', sfx: 'gavel', pose: 'judge_gavel' }
+  { speaker: 'JUEZ', text: '¿De dónde sacó usted todo eso?', sfx: 'gavel', pose: 'judge_gavel' },
+  { speaker: 'TRIPASECA', text: '¿Pues de dónde más, señor juez? ¡De aquí mero!', pose: 'tripaseca_smug' },
+  { speaker: 'TRIPASECA', text: 'Uno tiene su talento, ¿sabe? Fui muy observador. Me pasé semanas rondando el museo, estudiando cada rincón, calculando las medidas al milímetro...', pose: 'tripaseca_smug' },
+  { speaker: 'TRIPASECA', text: '¡Tengo una memoria privilegiada! Como quien dice, fotogénica... eh, ¡fotográfica! Me lo aprendí todo de memoria, sin apuntar nada. Es el arte del crimen.', pose: 'tripaseca_smug' },
+  { speaker: 'SUPER SAM', text: '¡Of course! ¡Time is money! ¡El trabajo duro rinde frutos! ¡Un criminal que estudia es un delincuente de calidad!', pose: 'supersam_point' },
+  { speaker: 'CHAPULIN', text: '¡Chanfle! ¡A mí se me olvida si al perro le tocaba croqueta o hueso, y este señor se memorizó un museo con medidas y todo!', pose: 'chapulin_panic' },
+  { speaker: 'DEFENSA', text: '(¿Estudiar? Pero si este tipo con trabajos terminó la primaria nocturna...)', pose: 'donramon_sweat' },
+  { speaker: 'DEFENSA', text: '¡PROTESTO!', sfx: 'desk_slam', cutin: 'objection_protesto', pose: 'donramon_slam', bgm: 'objection' },
+  { speaker: 'DEFENSA', text: '¡Mire nomás qué bonita vecindad! Señor juez, ¡no me haga reír que traigo los labios partidos!', pose: 'donramon_point' },
+  { speaker: 'DEFENSA', text: '¿El señor Tripaseca? ¿Observador meticuloso? ¡Por favor! Si una vez confundió un billete de cincuenta pesos con una envoltura de chicle y se lo echó a la boca.', pose: 'donramon_idle' },
+  { speaker: 'DEFENSA', text: '¡Este hombre no observó nada, no estudió nada y no memorizó nada!', pose: 'donramon_slam', sfx: 'desk_slam' },
+  { speaker: 'TRIPASECA', text: '¡Oiga! ¡Que me diga ratero se lo paso, pero que me diga burro no!', pose: 'tripaseca_sweat' },
+  { speaker: 'JUEZ', text: 'La corte coincide en que cuesta imaginar al testigo como un erudito de la arquitectura delictiva...', pose: 'judge_thinking' },
+  { speaker: 'JUEZ', text: 'Pero él ha declarado bajo juramento que lo memorizó todo por su cuenta. Si la defensa sostiene que no fue su memoria...', pose: 'judge_neutral' },
+  { speaker: 'JUEZ', text: '¿De dónde salió entonces toda esa información? Demuéstrelo con una prueba del Acta.', sfx: 'gavel', pose: 'judge_gavel' }
 ];
 
 export const CASE1_CLIMAX_STAGES: ClimaxStage[] = [
@@ -142,6 +143,8 @@ export const CASE1_CLIMAX_STAGES: ClimaxStage[] = [
   {
     presentTarget: ['rejilla_ducto'],
     prompt: '¿Qué prueba que el testigo estuvo dentro de esa sala?',
+    introDialogue: STAGE_3_INTRO,
+    pointTarget: CASE1_REJILLA_POINT_TARGET,
     failDialogue: STAGE_3_FAIL,
     successDialogue: STAGE_3_SUCCESS
   }

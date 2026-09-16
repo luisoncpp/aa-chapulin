@@ -113,7 +113,7 @@ export const CASE1_TESTIMONY_4_EN: Testimony = {
       id: 'c1_d2t2_3',
       speaker: 'TRIPASECA',
       pose: 'tripaseca_smug',
-      text: 'And once inside, he blew the case open with one swing. From outside, of course. Where else?',
+      text: 'The coveted chicharra was inside the case, but he was outside and only glass stood between them... so he kept it simple: wham!, smashed the glass with one swing.',
       pressText: [
         { speaker: 'DEFENSA', text: 'HOLD IT! Describe the swing at the display case.', sfx: 'whoosh', cutin: 'objection_un_momento', pose: 'donramon_point' },
         { speaker: 'TRIPASECA', text: 'Like this, from above, bang! And the glass went inward.', pose: 'tripaseca_smug' },

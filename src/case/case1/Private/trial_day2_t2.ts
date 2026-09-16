@@ -120,7 +120,7 @@ export const CASE1_TESTIMONY_4: Testimony = {
       id: 'c1_d2t2_3',
       speaker: 'TRIPASECA',
       pose: 'tripaseca_smug',
-      text: 'Y ya estando adentro, reventó la vitrina de un garrotazo. Desde afuera, se entiende. ¿De dónde si no?',
+      text: 'La codiciada chicharra estaba adentro de la vitrina, pero él estaba afuera y un vidrio lo separaba... así que no se complicó: ¡pum!, le reventó el cristal de un garrotazo.',
       pressText: [
         { speaker: 'DEFENSA', text: '¡UN MOMENTO! Descríbame el garrotazo a la vitrina.', sfx: 'whoosh', cutin: 'objection_un_momento', pose: 'donramon_point' },
         { speaker: 'TRIPASECA', text: 'Pues así, de arriba, ¡pum! Y el vidrio para adentro.', pose: 'tripaseca_smug' },

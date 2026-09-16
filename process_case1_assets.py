@@ -36,7 +36,8 @@ EVIDENCE_ICONS = [
 ]
 PLATES = [
     "examine_vitrina_rota", "examine_rejilla_ducto", "examine_bolsa_dolares",
-    "examine_foto_crimen"
+    "examine_foto_crimen", "ampliacion_foto_crimen_emblema",
+    "ampliacion_foto_crimen_manos"
 ]
 BGS = ["bg_museo_sala2", "bg_patio_carga", "bg_pasillo_espejo", "bg_clinica_cuarto6"]
 

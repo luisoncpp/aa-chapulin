@@ -53,7 +53,8 @@ export class MidiMusicComposer {
     this.queuedTrack = trackName;
     const track = TRACK_CATALOG[trackName];
     if (!track) return;
-    if (this.currentTrack === trackName && this.isPlaying) return;
+    const currentComposition = this.currentTrack ? TRACK_CATALOG[this.currentTrack] : null;
+    if (this.isPlaying && (this.currentTrack === trackName || currentComposition === track)) return;
 
     this.stop();
     this.startSequencer(trackName, track);
@@ -82,6 +83,7 @@ export class MidiMusicComposer {
     this.step++;
   }
 
+  // fallow-ignore-next-line complexity
   private playTrackVoices(track: TrackDefinition, idx: number, noteDuration: number): void {
     if (track.bass) this.playChannel(track.bass[idx], noteDuration * 1.5, { type: 'triangle', gainLevel: 0.35, filterFreq: 900 });
     if (track.lead) this.playChannel(track.lead[idx], noteDuration * 1.8, { type: 'square', gainLevel: 0.22, filterFreq: 3600, vibrato: true });

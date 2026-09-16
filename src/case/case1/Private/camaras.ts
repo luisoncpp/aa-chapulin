@@ -71,7 +71,7 @@ export const CASE1_CAMARAS: InvestigationScene = {
     {
       id: 'hotspot_acceso_carga',
       label: 'Puerta a la galería',
-      x: 36, y: 18, w: 7, h: 30,
+      x: 36, y: 13, w: 13, h: 50,
       dialogue: [
         { speaker: 'NARRADOR', text: 'Una puerta a un lado. No cierra el tramo: hay que doblar al entrar para ver el espejo.' },
         { speaker: 'DEFENSA', text: '¿Ésta da al patio?', pose: 'donramon_idle' },
@@ -83,7 +83,7 @@ export const CASE1_CAMARAS: InvestigationScene = {
     {
       id: 'hotspot_muro_ciego',
       label: 'Muro bajo la cámara',
-      x: 66, y: 65, w: 16, h: 10,
+      x: 72, y: 22, w: 17, h: 53,
       dialogue: [
         { speaker: 'NARRADOR', text: 'El banco corre pegado al muro, bajo la cámara, fuera de la franja que ilumina la lámpara.' },
         { speaker: 'DEFENSA', text: '¿Esto lo ve esa cámara?', pose: 'donramon_idle' },

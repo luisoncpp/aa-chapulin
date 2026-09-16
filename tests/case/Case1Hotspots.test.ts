@@ -22,8 +22,8 @@ describe('Case 1 investigation hotspot geometry', () => {
       { id: 'hotspot_camara', x: 76, y: 1, w: 13, h: 16 },
       { id: 'hotspot_foto', x: 70, y: 75, w: 22, h: 21 },
       { id: 'hotspot_bitacora_rollo', x: 88, y: 16, w: 11, h: 48 },
-      { id: 'hotspot_acceso_carga', x: 36, y: 18, w: 7, h: 30 },
-      { id: 'hotspot_muro_ciego', x: 66, y: 65, w: 16, h: 10 },
+      { id: 'hotspot_acceso_carga', x: 36, y: 13, w: 13, h: 50 },
+      { id: 'hotspot_muro_ciego', x: 72, y: 22, w: 17, h: 53 },
       { id: 'hotspot_espejo', x: 49, y: 23, w: 21, h: 34 }
     ]);
     expect(es.investigation.clinica.hotspots.map(geom)).toEqual([
@@ -37,7 +37,7 @@ describe('Case 1 investigation hotspot geometry', () => {
       { id: 'hotspot_bolsa', x: 86, y: 56, w: 14, h: 26 },
       { id: 'hotspot_puerta', x: 3, y: 7, w: 21, h: 61 },
       { id: 'hotspot_rejilla_exterior', x: 22, y: 74, w: 18, h: 8 },
-      { id: 'hotspot_barda', x: 28, y: 13, w: 22, h: 22 }
+      { id: 'hotspot_barda', x: 26, y: 16, w: 34, h: 25 }
     ]);
   });
 

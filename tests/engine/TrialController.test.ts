@@ -3,6 +3,7 @@ import { describe, expect, it, beforeEach, vi } from 'vitest';
 import { MidiMusicComposer, SoundEngine } from '../../src/audio/index.js';
 import { CASE_SCRIPT, getCaseScript } from '../../src/case/index.js';
 import type { DomElements } from '../../src/engine/Private/DomElements.js';
+import { resolvePointClick } from '../../src/engine/Private/PresentPoint.js';
 import { SCENE_FADE_MS } from '../../src/engine/Private/SceneFade.js';
 import { TrialController } from '../../src/engine/Private/TrialController.js';
 import { GameStateManager } from '../../src/state/index.js';
@@ -173,6 +174,9 @@ describe('TrialController', () => {
     controller.handlePresentProfile('perfil_tripaseca');
     controller.handlePresentEvidence('antenitas_vinil');
     controller.handlePresentEvidence('rejilla_ducto');
+    resolvePointClick(68, 50);
+    resolvePointClick(22, 38);
+    resolvePointClick(67, 63);
     controller.handlePresentEvidence('ficha_museo');
 
     expect(queuedDialogues.some((d) => d.some((l) => l.text.includes('¡INOCENTE!')))).toBe(true);

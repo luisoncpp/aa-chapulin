@@ -5,6 +5,7 @@
  */
 
 import type { ClimaxStage, DialogueLine } from '../../../types/index.js';
+import { CASE1_REJILLA_POINT_TARGET_EN, STAGE_3_INTRO_EN } from './climax_stage3_points_en.js';
 
 const STAGE_1_FAIL_EN: DialogueLine[] = [
   { speaker: 'JUEZ', pose: 'judge_thinking', text: 'No, counselor. And this court reminds you that it did not ask whom you suspect, but whom the evidence you yourself have entered points to.' },
@@ -77,21 +78,7 @@ const STAGE_3_FAIL_EN: DialogueLine[] = [
 ];
 
 const STAGE_3_SUCCESS_EN: DialogueLine[] = [
-  { speaker: 'DEFENSA', text: 'The gallery two duct grate, Your Honor. Eighteen by twenty-four.', pose: 'donramon_idle' },
-  { speaker: 'DEFENSA', text: 'All four screws have unbroken paint: nobody ever unscrewed it.', pose: 'donramon_point' },
-  { speaker: 'DEFENSA', text: 'But the bottom corner of the mesh is bent up and pushed back. Not a cat gets through there. A mouse does.', pose: 'donramon_idle' },
-  { speaker: 'JUEZ', text: 'The defense has established that already. What is new?', pose: 'judge_thinking' },
-  { speaker: 'DEFENSA', text: 'The inner lip of the frame, Your Honor. The one facing the gallery.', pose: 'donramon_point' },
-  { speaker: 'DEFENSA', text: 'The whole frame carries years of dust. The inner lip has the dust wiped clean in two parallel strips, a centimetre and a half apart.', pose: 'donramon_idle' },
-  { speaker: 'JUEZ', text: 'And what is that?', pose: 'judge_shock' },
-  { speaker: 'DEFENSA', text: 'A tape measure, Your Honor. Somebody rested a tape a centimetre and a half wide on that frame and measured the opening.', pose: 'donramon_slam', sfx: 'desk_slam' },
-  { speaker: 'DEFENSA', text: 'And he measured it from inside the gallery. On the yard side there is not a single mark.', pose: 'donramon_point' },
-  { speaker: 'JUEZ', text: 'Does the defense maintain that the witness came in earlier to measure that grate?', pose: 'judge_shock' },
-  { speaker: 'DEFENSA', text: 'No, Your Honor. I maintain exactly the opposite, and I ask the court to remember this in one minute.', pose: 'donramon_idle' },
-  { speaker: 'DEFENSA', text: 'Whoever measured that grate did it by day, with a ticket, standing up and in no hurry at all. Nobody pulls out a tape measure from inside a duct.', pose: 'donramon_point' },
-  { speaker: 'DEFENSA', text: 'Those strips are not from the man who shrank. They belong to another person, and we come to that one at the end.', pose: 'donramon_idle' },
-  { speaker: 'SUPER SAM', text: 'Objection! Then your grate proves absolutely nothing against my witness!', pose: 'supersam_slam', sfx: 'desk_slam' },
-  { speaker: 'DEFENSA', text: 'The grate does not, counselor. What was caught in it does.', pose: 'donramon_idle' },
+  { speaker: 'DEFENSA', text: 'RIGHT HERE! Caught on the wire of the mesh, on the inner side!', sfx: 'desk_slam', cutin: 'objection_toma_eso', pose: 'donramon_slam', bgm: 'objection' },
   { speaker: 'NARRADOR', text: 'Don Ramón lifts a small waxed-paper envelope with a pair of tweezers.', sfx: 'whoosh' },
   { speaker: 'DEFENSA', text: 'Caught in the mesh, on the inner side, a cream pinstriped worsted thread. Three millimetres long.', pose: 'donramon_point' },
   { speaker: 'JUEZ', text: 'Three millimetres? Counselor, that is not a thread. That is lint.', pose: 'judge_thinking' },
@@ -123,7 +110,21 @@ const STAGE_3_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'JUEZ', text: 'The prosecution has spent two days requesting moments. Denied.', pose: 'judge_neutral' },
   { speaker: 'JUEZ', text: 'And this court has one last question, because otherwise it will not sleep.', pose: 'judge_thinking' },
   { speaker: 'JUEZ', text: 'Mr. Tripaseca: you knew the size of a grate, the month of a latch, the hour of a watchman and the state of a camera roll.', pose: 'judge_neutral' },
-  { speaker: 'JUEZ', text: 'Where did you get all of that?', sfx: 'gavel', pose: 'judge_gavel' }
+  { speaker: 'JUEZ', text: 'Where did you get all of that?', sfx: 'gavel', pose: 'judge_gavel' },
+  { speaker: 'TRIPASECA', text: 'Where else, Your Honor? From right in here! (taps his temple)', pose: 'tripaseca_smug' },
+  { speaker: 'TRIPASECA', text: 'A man has his talents, you know? I was very observant. I spent weeks casing the museum, studying every corner, calculating the measurements to the millimetre...', pose: 'tripaseca_smug' },
+  { speaker: 'TRIPASECA', text: "I have a privileged memory! As they say, photogenic... uh, photographic! I learned it all by heart, without writing anything down. It's the art of crime.", pose: 'tripaseca_smug' },
+  { speaker: 'SUPER SAM', text: 'Of course! Time is money! Hard work pays off! A criminal who studies is a quality crook!', pose: 'supersam_point' },
+  { speaker: 'CHAPULIN', text: '¡Chanfle! I forget whether the dog gets kibble or a bone, and this man memorised a whole museum with measurements and all!', pose: 'chapulin_panic' },
+  { speaker: 'DEFENSA', text: '(Study? This guy could barely make it through night school...)', pose: 'donramon_sweat' },
+  { speaker: 'DEFENSA', text: '¡PROTESTO!', sfx: 'desk_slam', cutin: 'objection_protesto', pose: 'donramon_slam', bgm: 'objection' },
+  { speaker: 'DEFENSA', text: "Just look at this circus! Your Honor, don't make me laugh, my lips are chapped!", pose: 'donramon_point' },
+  { speaker: 'DEFENSA', text: 'Mr. Tripaseca? A meticulous observer? Please! He once mistook a fifty-peso note for a chewing gum wrapper and put it in his mouth.', pose: 'donramon_idle' },
+  { speaker: 'DEFENSA', text: 'This man observed nothing, studied nothing, and memorised nothing!', pose: 'donramon_slam', sfx: 'desk_slam' },
+  { speaker: 'TRIPASECA', text: "Hey! You can call me a thief, but don't you dare call me stupid!", pose: 'tripaseca_sweat' },
+  { speaker: 'JUEZ', text: 'The court agrees it is difficult to imagine the witness as a scholar of criminal architecture...', pose: 'judge_thinking' },
+  { speaker: 'JUEZ', text: 'However, he has testified under oath that he memorised it all on his own. If the defense contends it was not his memory...', pose: 'judge_neutral' },
+  { speaker: 'JUEZ', text: 'Where, then, did all of that information come from? Prove it with evidence from the Court Record.', sfx: 'gavel', pose: 'judge_gavel' }
 ];
 
 export const CASE1_CLIMAX_STAGES_EN: ClimaxStage[] = [
@@ -142,6 +143,8 @@ export const CASE1_CLIMAX_STAGES_EN: ClimaxStage[] = [
   {
     presentTarget: ['rejilla_ducto'],
     prompt: 'What proves the witness was inside that gallery?',
+    introDialogue: STAGE_3_INTRO_EN,
+    pointTarget: CASE1_REJILLA_POINT_TARGET_EN,
     failDialogue: STAGE_3_FAIL_EN,
     successDialogue: STAGE_3_SUCCESS_EN
   }

@@ -118,8 +118,8 @@ Catorce entradas. Once se presentan durante los contrainterrogatorios y el clím
 | `informe_medico` *(heredado)* | D1 clínica | Alma Negra: golpe único en la región occipital. Objeto pesado, denso, **sin aristas**. Coma. Sin aptitud para declarar. `updates[]` de **2 etapas**. | D1-T2 contradicción. |
 | `bolsa_dolares` *(heredado)* | D2 patio de carga | Bolsa de lona con el sello de la fiscalía, hallada **vacía** junto a la camioneta. Tizne de lona encerada y una moneda de plata atorada en la costura. `detailedView`. | D2-T3 `followUp`. |
 | `ficha_museo` **(nueva)** | D2 patio de carga | Tarjeta mecanografiada hallada en la guantera de una camioneta sin placas. Seis renglones. Impresa al reverso de una papelería de "Enciclopedias El Saber Universal, S.A.". `detailedView`. | Clímax, etapa 4. |
-| `foto_crimen` *(heredado)* | D2 cuarto de cámaras | Único cuadro de la cámara del pasillo, con hora impresa 21:00. Se ve una figura corriendo. `detailedView`. `updates[]` de **1 etapa**. | D2-T3 contradicción + **Señalamiento 2**. |
-| `plano_pasillo` **(nueva)** | D2 cuarto de cámaras (`hotspot_espejo`) | Plano del pasillo de servicio: puerta de carga, cámara, espejo y paso a las salas. `detailedView`. **No se presenta.** Sin flechas de marcha ni figura del acusado. | Consulta en el Acta |
+| `foto_crimen` *(heredado)* | D2 cuarto de cámaras | Único cuadro de la cámara del pasillo, con hora impresa 21:00. Se ve una figura corriendo. `detailedView`. `updates[]` de **1 etapa**. | D2-T3 contradicción + **Señalamiento 2 encadenado**: emblema, pintura y croquis. |
+| `plano_pasillo` **(nueva)** | D2 cuarto de cámaras (`hotspot_espejo`) | Plano del pasillo de servicio: puerta de carga, cámara, espejo y paso a las salas. `detailedView`. **No se presenta.** Sin flechas de marcha ni figura del acusado. | Consulta en el Acta + tablero del 3.er señalamiento encadenado de D2-T3 (ubicación de la pintura). |
 | `bitacora_ronda` **(nueva)** | D2 clínica | Libreta de rondas de Alma Negra, escrita de su puño y en jerga marinera. Cuelga de un clavo en la caseta del velador. | D2-T1 contradicción. |
 
 ### 5.1 Etapas de descripción (`updates[]`)
@@ -1036,9 +1036,9 @@ NARRADOR: Doña Florinda entrega un plano del pasillo, el de cuando instalaron l
 DEFENSA: (Puerta y patio fuera del encuadre. Lo que la cámara conserva es el reflejo.) [pose: donramon_point]
 ~~~
 
-> **`detailedView` de `plano_pasillo`** (`assets/examine_plano_pasillo.webp`). Croquis en planta del pasillo de servicio: patio y puerta a un lado, cámara desplazada junto al acceso, espejo al fondo del tramo recto, salas ramificadas antes del cristal. **Sin** flechas de marcha, **sin** figura del acusado, **sin** espacio virtual detrás del espejo. Se consulta en el Acta; no es el tablero del Señalamiento 2.
+> **`detailedView` de `plano_pasillo`** (`assets/examine_plano_pasillo.webp`). Croquis en planta del pasillo de servicio: patio y puerta a un lado, cámara desplazada junto al acceso, espejo al fondo del tramo recto, salas ramificadas antes del cristal. **Sin** flechas de marcha, **sin** figura del acusado, **sin** espacio virtual detrás del espejo. Se consulta en el Acta y sirve como lámina para el tercer paso del Señalamiento 2 encadenado (§12.4).
 
-> **Nota de diseño.** El descubrimiento del espejo ocurre **aquí**, en la investigación, y no en el estrado. Lo que el jugador no sabe todavía es **qué cambia** que la foto esté invertida: eso lo descubre al señalar el emblema en el juicio (§12.4). El caso nunca esconde un hecho; esconde su consecuencia.
+> **Nota de diseño.** El descubrimiento del espejo ocurre **aquí**, en la investigación, y no en el estrado. En el juicio el jugador cobra tres consecuencias encadenadas: primero señala el emblema invertido en la foto, después la pintura reflejada en la foto, y finalmente ubica la pintura en el croquis del pasillo (§12.4). El Acta queda disponible entre los señalamientos para consultar el croquis sin presentarlo.
 
 ---
 
@@ -1467,7 +1467,7 @@ SUPER SAM: ¡La fiscalía pide que se proyecte la ampliación! ¡Que se vea de u
 DEFENSA: (Gracias, señor fiscal. En serio.) [pose: donramon_idle]
 ~~~
 
-#### Contradicción resolutoria — declaración 3: **`foto_crimen`** + **Señalamiento 2**
+#### Contradicción resolutoria — declaración 3: **`foto_crimen`** + **Señalamiento 2 encadenado**
 
 Pregunta visible del presente: *"¿Qué muestra realmente esa fotografía?"*
 
@@ -1477,7 +1477,7 @@ DEFENSA: El testigo acaba de decirle a esta corte que en la foto se lee "ce, hac
 DEFENSA: Pido que la corte mire la ampliación conmigo, señor juez. Con calma, y de cerca. [pose: donramon_idle]
 ~~~
 
-**`pointTarget` sobre `assets/examine_foto_crimen.webp`.** Pregunta visible del señalamiento: *"Señala en la lámina: ¿qué tiene de raro el pecho de ese hombre?"* Cotas `[minX, minY, maxX, maxY]` medidas sobre el WebP de 960 × 540 ([[src/case/case1/Private/trial_day2_t3.ts]]).
+**`pointTarget` sobre `assets/examine_foto_crimen.webp`.** Pregunta visible del señalamiento: *"Señala en la lámina: ¿qué tiene de raro el pecho de ese hombre?"* Cotas `[minX, minY, maxX, maxY]` medidas sobre el WebP de 960 × 540 ([[src/case/case1/Private/trial_day2_t3_points.ts]]).
 
 | Zona | Correcta | Contenido | Cotas |
 |---|:--:|---|---|
@@ -1504,10 +1504,46 @@ DEFENSA: ¡AQUÍ! ¡El corazón del pecho, señor juez! [sfx: desk_slam; cutin: 
 DEFENSA: El testigo declaró "ce, hache". Pero en esta fotografía las letras no están en ese orden. [pose: donramon_point]
 NARRADOR: La ampliación llena la pantalla. El emblema muestra una H y una C reflejada. [sfx: realization; bgm: objection]
 JUEZ: ¡Cáspita! ¡Están al revés! [pose: judge_shock]
-SUPER SAM: ¡Está mal revelada! ¡Voltearon el negativo en el laboratorio! [pose: supersam_slam; sfx: desk_slam]
-DEFENSA: El negativo está bien, señor fiscal. Lo que confundieron fue el espacio reflejado con un pasillo real. [pose: donramon_idle]
-DEFENSA: Señor juez: esa cámara está junto al acceso y apunta al espejo que cierra el tramo recto. [pose: donramon_point]
-DEFENSA: Usted colocó a mi cliente detrás de ese marco. Pero detrás hay una pared. [pose: donramon_slam; sfx: desk_slam]
+SUPER SAM: ¡Es un reflejo del negativo! ¡Lo voltearon en el laboratorio! [pose: supersam_slam; sfx: desk_slam]
+DEFENSA: No es un reflejo provocado por el negativo, señor fiscal. La escena ya estaba reflejada cuando apretaron el obturador. [pose: donramon_idle]
+SUPER SAM: ¡Entonces pruébelo, Mister Defensa! ¡Time is money! [pose: supersam_point; sfx: desk_slam]
+~~~
+
+Segundo `pointTarget` sobre la misma lámina (`foto_pintura_espejo`). Pregunta: *"Señala en la foto la prueba de que fue tomada frente a un espejo."* El Acta se puede abrir para consultar `plano_pasillo`, sin presentar pruebas. La respuesta correcta es `pintura`, `[61, 18, 81, 41]`; el resto de la lámina falla y vuelve a abrir este mismo señalamiento.
+
+Éxito y transición al croquis:
+
+~~~dialogue
+DEFENSA: ¡La pintura que se ve detrás del Chapulín, señor juez! [pose: donramon_slam; sfx: desk_slam; cutin: objection_toma_eso; bgm: objection]
+JUEZ: ¿La pintura? [pose: judge_shock]
+JUEZ: Defensa: si esa pintura explica el reflejo... señale en el croquis del pasillo dónde se encuentra. [pose: judge_thinking]
+~~~
+
+Tercer `pointTarget` encadenado (`croquis_ubicacion_pintura`) sobre `assets/examine_plano_pasillo.webp`. Pregunta visible: *"Señala en el croquis dónde está ubicada la pintura."*
+
+| Zona | Correcta | Contenido | Cotas |
+|---|:--:|---|---|
+| `pared_fondo_pintura` | **Sí** | Extremo izquierdo del pasillo de servicio, en el muro detrás de la cámara. | `[14, 50, 21, 81]` |
+| `zona_camara` | No | Posición de la cámara junto al acceso. | `[18, 65, 30, 81]` |
+| `zona_espejo` | No | Espejo al fondo del tramo recto. | `[76, 50, 86, 80]` |
+| `zona_patio` | No | Patio de carga exterior. | `[25, 25, 48, 45]` |
+| `zona_salas` | No | Paso ramificado a las salas. | `[50, 25, 68, 52]` |
+| `resto_croquis` | No | Resto del plano. | `[0, 0, 100, 100]` |
+
+Fallo del señalamiento:
+
+~~~dialogue
+JUEZ: Licenciado, concéntrese en el plano del pasillo. ¿Dónde estaba esa pintura? [pose: judge_thinking; sfx: damage]
+SUPER SAM: ¡Wrong! ¡Mister Ramón está señalando a ciegas! [pose: supersam_point]
+CHAPULIN: Don Ramón, acuérdese: la cámara apuntaba al espejo. ¿Dónde tenía que estar la pintura para salir en el reflejo? [pose: chapulin_idle]
+~~~
+
+Éxito en el croquis y reanudación del juicio:
+
+~~~dialogue
+DEFENSA: El croquis coloca la cámara junto al acceso, apuntando al espejo que cierra el tramo recto. [pose: donramon_point]
+DEFENSA: Esa pintura está en el tramo que queda detrás de la cámara. Sólo aparece al fondo porque el espejo devuelve la escena. [pose: donramon_idle]
+DEFENSA: Usted colocó a mi cliente detrás de ese marco. Pero detrás del Chapulín se ve una pintura, no el acceso de carga. [pose: donramon_slam; sfx: desk_slam]
 JUEZ: Entonces, ¿dónde estaba? [pose: judge_shock]
 DEFENSA: Aquí, delante del espejo. Corría hacia él, alejándose del acceso de carga. [pose: donramon_point]
 DEFENSA: La foto no demuestra una salida. Demuestra que a las nueve cruzó la franja iluminada del pasillo interior. [pose: donramon_slam; sfx: desk_slam; cutin: objection_toma_eso]
@@ -1744,6 +1780,20 @@ JUEZ: La fiscalía lleva dos días solicitando momentos. Se le niega. [pose: jud
 JUEZ: Y esta corte tiene una última pregunta, porque si no la contesta no va a dormir. [pose: judge_thinking]
 JUEZ: Señor Tripaseca: usted supo la medida de una rejilla, el mes de una chapa, la hora de un velador y el estado de un rollo de cámara. [pose: judge_neutral]
 JUEZ: **¿De dónde sacó usted todo eso?** [sfx: gavel; pose: judge_gavel]
+TRIPASECA: ¿Pues de dónde más, señor juez? ¡De aquí mero! [pose: tripaseca_smug]
+TRIPASECA: Uno tiene su talento, ¿sabe? Fui muy observador. Me pasé semanas rondando el museo, estudiando cada rincón, calculando las medidas al milímetro... [pose: tripaseca_smug]
+TRIPASECA: ¡Tengo una memoria privilegiada! Como quien dice, fotogénica... eh, ¡fotográfica! Me lo aprendí todo de memoria, sin apuntar nada. Es el arte del crimen. [pose: tripaseca_smug]
+SUPER SAM: ¡Of course! ¡Time is money! ¡El trabajo duro rinde frutos! ¡Un criminal que estudia es un delincuente de calidad! [pose: supersam_point]
+CHAPULIN: ¡Chanfle! ¡A mí se me olvida si al perro le tocaba croqueta o hueso, y este señor se memorizó un museo con medidas y todo! [pose: chapulin_panic]
+DEFENSA: (¿Estudiar? Pero si este tipo con trabajos terminó la primaria nocturna...) [pose: donramon_sweat]
+DEFENSA: ¡PROTESTO! [sfx: desk_slam; cutin: objection_protesto; pose: donramon_slam; bgm: objection]
+DEFENSA: ¡Mire nomás qué bonita vecindad! Señor juez, ¡no me haga reír que traigo los labios partidos! [pose: donramon_point]
+DEFENSA: ¿El señor Tripaseca? ¿Observador meticuloso? ¡Por favor! Si una vez confundió un billete de cincuenta pesos con una envoltura de chicle y se lo echó a la boca. [pose: donramon_idle]
+DEFENSA: ¡Este hombre no observó nada, no estudió nada y no memorizó nada! [pose: donramon_slam; sfx: desk_slam]
+TRIPASECA: ¡Oiga! ¡Que me diga ratero se lo paso, pero que me diga burro no! [pose: tripaseca_sweat]
+JUEZ: La corte coincide en que cuesta imaginar al testigo como un erudito de la arquitectura delictiva... [pose: judge_thinking]
+JUEZ: Pero él ha declarado bajo juramento que lo memorizó todo por su cuenta. Si la defensa sostiene que no fue su memoria... [pose: judge_neutral]
+JUEZ: ¿De dónde salió entonces toda esa información? Demuéstrelo con una prueba del Acta. [sfx: gavel; pose: judge_gavel]
 ~~~
 
 ---
@@ -1765,15 +1815,15 @@ JUEZ: Léala completa, licenciado. Renglón por renglón. [sfx: gavel; bgm: susp
 
 ~~~dialogue
 [LÁMINA assets/examine_ficha_museo.webp]
-NARRADOR: Tarjeta de cartulina, mecanografiada, del tamaño de una ficha de biblioteca.
-NARRADOR: "Uno. Chapa puerta de carga: vencida desde marzo. Se empuja."
-NARRADOR: "Dos. Rejilla sala 2: 18 × 24. Malla floja en la esquina inferior. Da al patio."
-NARRADOR: "Tres. Velador: 20:45 bodega de proa. 21:00 bodega de popa. Copiado de su libreta; cuelga de un clavo en la caseta."
-NARRADOR: "Cuatro. Pastillas de chiquitolina: farmacia de Insurgentes, mostrador de atrás."
-NARRADOR: "Cinco. Rollo de cámara: se cambia los lunes. El martes queda un cuadro."
-NARRADOR: "Seis. Servicio de cierre incluido. 5 min."
-NARRADOR: Al reverso, un membrete impreso: "Enciclopedias El Saber Universal, S. A."
-NARRADOR: La máquina con la que se escribió tiene un defecto: todas las eses caen media línea por debajo del renglón.
+DEFENSA: Tarjeta de cartulina, mecanografiada, del tamaño de una ficha de biblioteca.
+DEFENSA: "Uno. Chapa puerta de carga: vencida desde marzo. Se empuja."
+DEFENSA: "Dos. Rejilla sala 2: 18 × 24. Malla floja en la esquina inferior. Da al patio."
+DEFENSA: "Tres. Velador: 20:45 bodega de proa. 21:00 bodega de popa. Copiado de su libreta; cuelga de un clavo en la caseta."
+DEFENSA: "Cuatro. Pastillas de chiquitolina: farmacia de Insurgentes, mostrador de atrás."
+DEFENSA: "Cinco. Rollo de cámara: se cambia los lunes. El martes queda un cuadro."
+DEFENSA: "Seis. Servicio de cierre incluido. 5 min."
+DEFENSA: Al reverso, un membrete impreso: "Enciclopedias El Saber Universal, S. A."
+DEFENSA: La máquina con la que se escribió tiene un defecto: todas las eses caen media línea por debajo del renglón.
 [FIN LÁMINA]
 ~~~
 
@@ -2081,7 +2131,7 @@ Todas a 960 × 540. **Las zonas de señalamiento se miden sobre el WebP ya gener
 | `examine_vitrina_rota.webp` | `vitrina_rota` | Fotografía pericial en color desaturado, con regla testigo de 30 cm en el piso. Se ven: el pedestal de madera vacío, el marco metálico **doblado hacia afuera**, la alfombra de vidrio **fuera de la huella de la vitrina** extendiéndose en abanico hacia la izquierda (puerta), la rejilla del muro del fondo y, en primer plano, la jaula volcada. **Tablero del Señalamiento 1** (zonas `cristal_afuera`, `pedestal`, `rejilla`, `jaula_perico`, `regla_testigo`). El marco doblado hacia afuera **se dibuja** en la lámina —es parte del argumento del éxito— pero **no es una zona clicable**: penalizar al jugador por señalar algo que la defensa usa como prueba sería mentirle. Sin flechas, sin círculos, sin anotaciones: la lámina **no** debe señalar la respuesta. |
 | `examine_rejilla_ducto.webp` | `rejilla_ducto` | Macro de la rejilla desde el lado de la sala. Malla de rombos, cuatro tornillos con la pintura verde intacta, la **esquina inferior de la malla doblada hacia arriba y vuelta a acomodar**. En el **labio interior del marco**, el polvo limpio en **dos rayitas paralelas separadas 1.5 cm**. Atorado en la malla, del lado interior, **un hilo de casimir crema con raya**. Cinta métrica del perito apoyada en el borde. |
 | `examine_foto_crimen.webp` | `foto_crimen` | Ampliación 8× en blanco y negro de grano grueso, con hora impresa "21:00" en la esquina inferior derecha y bordes de moldura tallada visibles (es el marco del espejo). Figura corriendo **de tres cuartos hacia la cámara** (nunca de espaldas: el pecho y las manos son el argumento), con capucha y capa: **emblema de corazón en el pecho con la C realmente invertida**, **las dos manos abiertas y vacías a la altura de la cintura**, **el Chipote Chillón colgado del cinturón**, **losetas ajedrezadas en el tercio inferior** (zona `piso_pasillo`), y al fondo el **interior reflejado** (cuadro colgado, no puerta ni camioneta). **Tablero del Señalamiento 2** (zonas `emblema_pecho`, `manos`, `marco_espejo`, `piso_pasillo`, `pasillo_reflejado`). El plano del pasillo **no** va en esta lámina. |
-| `examine_plano_pasillo.webp` | `plano_pasillo` | Croquis en planta del pasillo de servicio: patio y puerta a un lado, cámara junto al acceso, espejo al fondo, salas ramificadas antes del cristal. Sin flechas de marcha ni figura del acusado. Consulta en el Acta; no es tablero de señalamiento. |
+| `examine_plano_pasillo.webp` | `plano_pasillo` | Croquis en planta del pasillo de servicio: patio y puerta a un lado, cámara junto al acceso, espejo al fondo, salas ramificadas antes del cristal. Sin flechas de marcha ni figura del acusado. Consulta en el Acta y tablero del 3.er señalamiento encadenado de D2-T3 (zona `pared_fondo_pintura` `[14, 50, 21, 81]`). |
 | `examine_bolsa_dolares.webp` | `bolsa_dolares` | Bolsa de lona cruda abierta y volteada sobre una mesa de peritajes, con **sello estampado en tinta verde de la Fiscalía** parcialmente borroso, tizne negro graso en el exterior, la **costura del fondo reventada** y **una moneda de plata atorada de canto** en esa costura. Regla testigo al lado. |
 | `examine_ficha_museo.webp` | `ficha_museo` | Tarjeta de cartulina crema, tamaño ficha de biblioteca, fotografiada de plano con luz dura. **Seis renglones mecanografiados en español**, con el texto exacto de §13.4. Tipografía de máquina de escribir mecánica de los años sesenta, letras irregulares, cinta bicolor gastada. **Defecto obligatorio: todas las eses del texto están impresas media línea por debajo del renglón.** Esquina inferior doblada. A la derecha, una segunda vista del reverso con el membrete impreso **"Enciclopedias El Saber Universal, S. A."** en tipografía de imprenta de los años cincuenta. |
 | `examine_ficha_museo_en.webp` | `ficha_museo` (EN) | Variante localizada de la lámina anterior. Conserva composición, membrete y defecto de la "s" caída; sólo traduce al inglés los seis renglones legibles. Es la única lámina base que produce un segundo archivo. |
@@ -2271,7 +2321,7 @@ Sólo lo que los argumentos necesitan. Todo lo que no esté aquí es libre para 
 | 24 | Caja de pastillas sellada, doce de doce | A3 | 21:07 | — | — | `parte_detencion` etapa 1 | D2-T2 `followUp` | A3 no se encogió |
 | 25 | Chicharra en el forro del gabán | A1 | Desde 21:02 | completo | — | Clímax etapa 2 | Clímax etapa 2 | Posesión, **no autoría** |
 | 26 | Libreta de rondas colgada de un clavo en la caseta | A4 | — | — | — | `bitacora_ronda` | D2-T1 contradicción | La ronda era legible para cualquier visitante |
-| 27 | Plano del pasillo de servicio: puerta, cámara, espejo, ramal a las salas | A5 | — | — | — | `plano_pasillo` | Consulta en el Acta; no se presenta | Ubica el recinto **sin** dibujar la trayectoria ni el espacio virtual |
+| 27 | Plano del pasillo de servicio: puerta, cámara, espejo, ramal a las salas | A5 | — | — | — | `plano_pasillo` | Consulta en el Acta + tablero señalamiento pintura D2-T3 | Ubica el recinto **sin** dibujar la trayectoria ni el espacio virtual |
 
 ### 23.D Invariantes
 

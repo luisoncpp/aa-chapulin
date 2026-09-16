@@ -67,8 +67,8 @@ Case 0 is the courtroom-only entry: its splash/debug launch seeds the opening Co
    - Case 0 is two climax stages with one choice between them; Case 1 is one stage (`antenitas_vinil` or `bolsa_dolares`); Case 2 is three presents then two choices.
 4. After the Not Guilty line (from `verdict` or last choice `successDialogue`):
    - A verdict line with `confetti: true` fires `triggerConfetti()` when that line is rendered, before subsequent celebration dialogue. The climax completion callback keeps the old end-of-queue trigger as a fallback for verdicts without an effect line.
-   - If `climax.epilogue` exists (Case 2), [[src/engine/Private/TrialClimax.ts]] holds that courtroom shot, fades `#screen-flash` to black, swaps to `bg_waiting_room.jpg` (clears confetti, hides bench/sprites), fades in, then queues stamped epilogue lines (`furniture: 'none'`). Case 1 has no epilogue.
-   - After the last Case 1 verdict click (following confetti) or the last Case 2 epilogue line, `fadeToBlack` stays covered and `#case-complete-overlay` reports that the case is finished.
+   - If `climax.epilogue` exists, [[src/engine/Private/TrialClimax.ts]] holds that courtroom shot, fades `#screen-flash` to black, swaps to `bg_waiting_room.jpg` (clears confetti, hides bench/sprites), fades in, then queues stamped epilogue lines (`furniture: 'none'`). The `victory` → `epilogue` cue used by Case 1 continues the same catalog composition without resetting its sequencer position.
+   - After the last epilogue line, `fadeToBlack` stays covered and `#case-complete-overlay` reports that the case is finished.
 
 ## 4. Reads
 - Active trial day from `getActiveTrial(script, trialDay)` ([[src/engine/Private/TrialDayRouter.ts]]); walks `adjournment` / `adjournment.next` for days 2–3. Climax always `script.trial.climax`.

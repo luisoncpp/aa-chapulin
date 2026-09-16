@@ -4,7 +4,9 @@
  * paint without waiting on a CDN round trip.
  */
 
-import type { CaseScript, DialogueLine, InvestigationScene, Testimony, TrialDay } from '../../types/index.js';
+import type {
+  CaseScript, DialogueLine, InvestigationScene, PointTargetContradiction, Testimony, TrialDay
+} from '../../types/index.js';
 import { invalidateStagingCommit } from './StageCommit.js';
 import { warmUrls } from './ImageDecode.js';
 import { getActiveTrial } from './TrialDayRouter.js';
@@ -26,9 +28,16 @@ export function prepareSceneVisuals(scene: InvestigationScene): void {
 function warmSceneVisuals(scene: InvestigationScene): void {
   const urls = new Set<string>([scene.bg]);
   addIntro(scene.intro, urls);
-  for (const hotspot of scene.hotspots || []) addLines(hotspot.dialogue, urls);
-  for (const option of scene.talkOptions || []) addLines(option.dialogue, urls);
+  addSceneDialogues(scene.hotspots, urls);
+  addSceneDialogues(scene.talkOptions, urls);
   warmUrls([...urls]);
+}
+
+function addSceneDialogues(
+  options: InvestigationScene['hotspots'] | InvestigationScene['talkOptions'],
+  urls: Set<string>
+): void {
+  for (const option of options || []) addLines(option.dialogue, urls);
 }
 
 function addIntro(intro: InvestigationScene['intro'] | undefined, urls: Set<string>): void {
@@ -44,18 +53,33 @@ function addIntro(intro: InvestigationScene['intro'] | undefined, urls: Set<stri
 
 export function warmTrialVisuals(script: CaseScript, trialDay: TrialDay): void {
   const urls = new Set<string>(COURTROOM_URLS);
+  addTrialVisuals(script, trialDay, urls);
+  warmUrls([...urls]);
+}
+
+function addTrialVisuals(script: CaseScript, trialDay: TrialDay, urls: Set<string>): void {
   const trial = getActiveTrial(script, trialDay);
   addLines(trial.intro, urls);
-  for (const testimony of trial.testimonies) addTestimony(testimony, urls);
+  addTestimonies(trial.testimonies, urls);
   addLines(trial.openingPresent?.successDialogue, urls);
   addLines(script.trial.climax.dialogue, urls);
   addLines(script.trial.climax.verdict, urls);
   addLines(script.trial.climax.epilogue?.dialogue, urls);
-  for (const stage of script.trial.climax.stages ?? []) {
+  addClimaxStages(script.trial.climax.stages, urls);
+}
+
+function addTestimonies(testimonies: Testimony[], urls: Set<string>): void {
+  for (const testimony of testimonies) addTestimony(testimony, urls);
+}
+
+function addClimaxStages(
+  stages: CaseScript['trial']['climax']['stages'],
+  urls: Set<string>
+): void {
+  for (const stage of stages ?? []) {
     addLines(stage.successDialogue, urls);
-    if (stage.pointTarget?.imageAsset) urls.add(stage.pointTarget.imageAsset);
+    addPointTarget(stage.pointTarget, urls);
   }
-  warmUrls([...urls]);
 }
 
 // fallow-ignore-next-line complexity
@@ -67,12 +91,19 @@ function addTestimony(testimony: Testimony | undefined, urls: Set<string>): void
     const contradiction = statement.contradiction;
     if (!contradiction) continue;
     addLines(contradiction.successDialogue, urls);
-    if (contradiction.pointTarget?.imageAsset) urls.add(contradiction.pointTarget.imageAsset);
+    addPointTarget(contradiction.pointTarget, urls);
     if (contradiction.followUp) {
       addLines(contradiction.followUp.successDialogue, urls);
-      if (contradiction.followUp.pointTarget?.imageAsset) urls.add(contradiction.followUp.pointTarget.imageAsset);
+      addPointTarget(contradiction.followUp.pointTarget, urls);
     }
   }
+}
+
+function addPointTarget(target: PointTargetContradiction | undefined, urls: Set<string>): void {
+  if (!target) return;
+  if (target.imageAsset) urls.add(target.imageAsset);
+  addLines(target.successDialogue, urls);
+  addPointTarget(target.next, urls);
 }
 
 function addLines(lines: DialogueLine[] | undefined, urls: Set<string>): void {

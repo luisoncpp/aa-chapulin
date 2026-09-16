@@ -70,7 +70,7 @@ export const CASE1_CAMARAS_EN: InvestigationScene = {
     {
       id: 'hotspot_acceso_carga',
       label: 'Door to the gallery',
-      x: 36, y: 18, w: 7, h: 30,
+      x: 36, y: 13, w: 13, h: 50,
       dialogue: [
         { speaker: 'NARRADOR', text: 'A door off to one side. It does not close the run: you have to turn after coming in to see the mirror.' },
         { speaker: 'DEFENSA', text: 'Does this one lead to the yard?', pose: 'donramon_idle' },
@@ -82,7 +82,7 @@ export const CASE1_CAMARAS_EN: InvestigationScene = {
     {
       id: 'hotspot_muro_ciego',
       label: 'Wall under the camera',
-      x: 66, y: 65, w: 16, h: 10,
+      x: 72, y: 22, w: 17, h: 53,
       dialogue: [
         { speaker: 'NARRADOR', text: 'The bench runs along the wall, under the camera, outside the strip the lamp lights.' },
         { speaker: 'DEFENSA', text: 'Does that camera see this?', pose: 'donramon_idle' },

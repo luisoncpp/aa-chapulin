@@ -98,7 +98,7 @@ export const CASE1_PATIO: InvestigationScene = {
       label: 'Barda del patio',
       condition: (flags) =>
         Boolean(flags.examined_hotspot_guantera) && Boolean(flags.examined_hotspot_bolsa),
-      x: 28, y: 13, w: 22, h: 22,
+      x: 26, y: 16, w: 34, h: 25,
       dialogue: [
         { speaker: 'NARRADOR', text: 'Barda de tabique de dos metros, con vidrios rotos encementados arriba... salvo en un tramo de metro y medio.' },
         { speaker: 'DEFENSA', text: 'Aquí faltan los vidrios. Y hay una huella de zapato en el enjarre.', pose: 'donramon_point' },

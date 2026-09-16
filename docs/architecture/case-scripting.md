@@ -157,7 +157,7 @@ Climax, four stages ([[src/case/case1/Private/climax_stages.ts]] and [[src/case/
 |---|---|---|
 | 1 | Who stood on the pedestal? | `profileTarget: perfil_tripaseca` |
 | 2 | What instrument locates the Chicharra here in this room? | `antenitas_vinil` |
-| 3 | What proves he was inside the gallery? | `rejilla_ducto` |
+| 3 | What proves he was inside the gallery? | `rejilla_ducto` (**Pointing 3**: bent corner → tape measure marks → fabric thread) |
 | 4 | Where did his advance knowledge come from? | `ficha_museo` |
 
 Stage 2 asks for an *instrument*, not a place: phrased as "where is the Chicharra?" it would make `chicharra_oro` — the card for that very piece, sitting in the Acta — the literal answer and punish the player for giving it. The tail of stage 1 success plants the hypothesis (Chapulín offers the antennae, Don Ramón asks the Record to name the instrument) without naming the answer.
@@ -182,7 +182,7 @@ The day-2 §10.3 closing beat (Rufino's "I did not poison him", the search order
 
 | Field | Where | Purpose |
 |-------|-------|---------|
-| `pointTarget` | `ContradictionRule`, `ContradictionFollowUp`, `ClimaxStage` | After a correct present, opens `#present-point-overlay` so the player clicks a zone on the 640×360 plate ([[docs/flows/present-point-flow.md]]). Parent `successDialogue` plays only after a correct click. |
+| `pointTarget` | `ContradictionRule`, `ContradictionFollowUp`, `ClimaxStage` | After a correct present, opens `#present-point-overlay` so the player clicks a zone on the 640×360 plate ([[docs/flows/present-point-flow.md]]). Optional target `successDialogue` and `next` chain another deduction on the same plate; the parent success waits for the final correct click. Optional `id` preserves the active chained target across language changes. |
 | `followUp` | `ContradictionRule` | After the first present's success (and point, if any), reopen the Acta for `followUp.evidence`. Wrong item = penalty. Correct plays `followUp.successDialogue` (optional `followUp.pointTarget` first), then testimony 2 / adjourn / climax. |
 | `openingPresent` | `TrialScript` / `TrialDayScript` | After that day's intro, before testimony 1: Acta present. Unused in Case 1 day 1 (the badge is a Case 0 tutorial beat only; repeating it every trial kills the pacing) and Case 4 day 3 (the baccarat alibi is admitted, not presented). |
 | `detailedView` | `EvidenceItem` in [[src/state/Private/EvidenceCatalogCase4.ts]] | Eight items expose `#btn-evidence-examine` in the Acta ([[docs/flows/evidence-examine-flow.md]]). |

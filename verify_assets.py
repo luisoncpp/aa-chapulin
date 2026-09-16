@@ -64,15 +64,16 @@ if missing_assets:
 else:
     print('All referenced assets and furniture exist on disk.')
 
-# Case 0 plates are deliberately fixed-size because Present & Point geometry
-# is measured in the browser against the final production WebP.
+# Full-screen plates are fixed-size because the browser displays them against
+# the 960x540 stage and some carry measured Present & Point geometry.
 for filename in (
     'examine_recibo_hielo.webp', 'examine_foto_patio.webp',
     'examine_plancha.webp', 'examine_lata.webp', 'examine_informe_lesiones.webp',
     'point_foto_patio.webp', 'point_plancha.webp',
     'examine_vitrina_rota.webp', 'examine_rejilla_ducto.webp',
     'examine_ficha_museo.webp', 'examine_ficha_museo_en.webp',
-    'examine_bolsa_dolares.webp', 'examine_foto_crimen.webp', 'examine_plano_pasillo.webp'
+    'examine_bolsa_dolares.webp', 'examine_foto_crimen.webp', 'examine_plano_pasillo.webp',
+    'ampliacion_foto_crimen_emblema.webp', 'ampliacion_foto_crimen_manos.webp'
 ):
     path = os.path.join('assets', filename)
     if os.path.exists(path) and Image.open(path).size != (960, 540):

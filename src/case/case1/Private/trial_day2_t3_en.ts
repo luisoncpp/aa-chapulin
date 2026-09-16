@@ -4,28 +4,8 @@
  * TURNABOUT 2 (§12.5), which runs straight into the climax.
  */
 
-import type { DialogueLine, PointTargetContradiction, Testimony } from '../../../types/index.js';
-
-const FAIL_PECHO_EN: DialogueLine[] = [
-  { speaker: 'JUEZ', pose: 'judge_thinking', text: "Counselor, the court asked you for that man's chest.", sfx: 'damage' },
-  { speaker: 'JUEZ', pose: 'judge_neutral', text: 'That does not answer what the witness just claimed about the emblem letters.' },
-  { speaker: 'SUPER SAM', pose: 'supersam_point', text: 'Another point gone! At this rate the defense will be free of charge!' },
-  { speaker: 'CHAPULIN', pose: 'chapulin_idle', text: 'Don Ramón, remember what the witness said: the two letters. Look at them closely.' }
-];
-
-const FOTO_POINT_TARGET_EN: PointTargetContradiction = {
-  targetEvidenceId: 'foto_crimen',
-  promptQuestion: "Point at the plate: what is strange about that man's chest?",
-  imageAsset: 'assets/examine_foto_crimen.webp',
-  zones: [
-    { id: 'emblema_pecho', bounds: [42, 37, 53, 51], isCorrect: true, failureDialogue: [] },
-    { id: 'manos', bounds: [32, 46, 64, 64], isCorrect: false, failureDialogue: FAIL_PECHO_EN },
-    { id: 'marco_espejo', bounds: [0, 0, 18, 100], isCorrect: false, failureDialogue: FAIL_PECHO_EN },
-    { id: 'piso_pasillo', bounds: [18, 60, 100, 100], isCorrect: false, failureDialogue: FAIL_PECHO_EN },
-    { id: 'pasillo_reflejado', bounds: [18, 12, 100, 60], isCorrect: false, failureDialogue: FAIL_PECHO_EN },
-    { id: 'foto_resto', bounds: [0, 0, 100, 100], isCorrect: false, failureDialogue: FAIL_PECHO_EN }
-  ]
-};
+import type { DialogueLine, Testimony } from '../../../types/index.js';
+import { CASE1_FOTO_POINT_TARGET_EN } from './trial_day2_t3_points_en.js';
 
 const CASE1_GIRO_2_EN: DialogueLine[] = [
   { speaker: 'JUEZ', text: 'The court will recap before ruling, because this trial has turned over on it three times.', sfx: 'gavel', bgm: 'suspense', pose: 'judge_neutral' },
@@ -58,14 +38,9 @@ const CASE1_GIRO_2_EN: DialogueLine[] = [
 ];
 
 const CASE1_D2_T3_SUCCESS_EN: DialogueLine[] = [
-  { speaker: 'DEFENSA', text: 'HERE! The heart on his chest, Your Honor!', sfx: 'desk_slam', cutin: 'objection_toma_eso', pose: 'donramon_slam', bgm: 'objection' },
-  { speaker: 'DEFENSA', text: 'The witness testified "C, H". But in this photograph the letters are not in that order.', pose: 'donramon_point' },
-  { speaker: 'NARRADOR', text: 'The enlargement fills the screen. The emblem shows an H and a reflected C.', sfx: 'realization', bgm: 'objection' },
-  { speaker: 'JUEZ', text: 'Good gracious! They are reversed!', pose: 'judge_shock' },
-  { speaker: 'SUPER SAM', text: 'It was developed wrong! They flipped the negative at the laboratory!', pose: 'supersam_slam', sfx: 'desk_slam' },
-  { speaker: 'DEFENSA', text: 'The negative is fine, counselor. What you mistook was reflected space for a real corridor.', pose: 'donramon_idle' },
-  { speaker: 'DEFENSA', text: 'Your Honor: that camera is beside the access and points at the mirror closing the straight run.', pose: 'donramon_point' },
-  { speaker: 'DEFENSA', text: 'You placed my client behind that frame. But behind it there is a wall.', pose: 'donramon_slam', sfx: 'desk_slam' },
+  { speaker: 'DEFENSA', text: 'The sketch puts the camera beside the access, aimed at the mirror that closes the straight run.', pose: 'donramon_point', bgm: 'objection' },
+  { speaker: 'DEFENSA', text: 'That painting hangs along the stretch behind the camera. It appears at the back only because the mirror returns the scene.', pose: 'donramon_idle' },
+  { speaker: 'DEFENSA', text: 'You placed my client behind that frame. But behind the Chapulín is a painting, not the loading access.', pose: 'donramon_slam', sfx: 'desk_slam' },
   { speaker: 'JUEZ', text: 'Then where was he?', pose: 'judge_shock' },
   { speaker: 'DEFENSA', text: 'Here, in front of the mirror. Running toward it, away from the loading access.', pose: 'donramon_point' },
   { speaker: 'DEFENSA', text: 'The photo does not prove an exit. It proves that at nine he crossed the lit strip of the interior corridor.', pose: 'donramon_slam', sfx: 'desk_slam', cutin: 'objection_toma_eso' },
@@ -79,7 +54,7 @@ const CASE1_D2_T3_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'JUEZ', text: 'The court regrets the parrot and thanks you for the corroboration.', pose: 'judge_thinking' },
   { speaker: 'DEFENSA', text: 'And there is one more thing, and this is the one I ask the court not to forget.', pose: 'donramon_idle' },
   { speaker: 'DEFENSA', text: 'Look at the hands.', pose: 'donramon_point' },
-  { speaker: 'NARRADOR', text: "In the enlargement, the man's hands are open and empty, at waist height, the way anyone running runs." },
+  { speaker: 'NARRADOR', text: '...', bg: 'assets/ampliacion_foto_crimen_manos.webp', furniture: 'none' },
   { speaker: 'DEFENSA', text: 'They are open. And empty.', pose: 'donramon_slam', sfx: 'desk_slam' },
   { speaker: 'DEFENSA', text: 'At nine on the dot on the night of the twenty-first, the only photograph in this case shows my client coming into the museum with empty hands.', pose: 'donramon_point' },
   { speaker: 'CHAPULIN', text: '¡No contaban con mi astucia!', pose: 'chapulin_point' },
@@ -164,7 +139,7 @@ export const CASE1_TESTIMONY_5_EN: Testimony = {
       ],
       contradiction: {
         evidence: ['foto_crimen'],
-        pointTarget: FOTO_POINT_TARGET_EN,
+        pointTarget: CASE1_FOTO_POINT_TARGET_EN,
         successDialogue: CASE1_D2_T3_SUCCESS_EN,
         followUp: {
           evidence: ['bolsa_dolares'],

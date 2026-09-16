@@ -5,16 +5,15 @@
  */
 
 import type { SoundEngine } from '../../audio/index.js';
-import type { DomElements } from './DomElements.js';
 import { closeHistoryModal, isAnyModalOpen } from './HistoryModal.js';
 import { bindEvidenceExamine } from './EvidenceExamine.js';
+import { bindCourtRecordEvents, type CourtRecordEventConfig } from './CourtRecordEvents.js';
 import type { InvestigationController } from './InvestigationController.js';
 import { ModalManager } from './ModalManager.js';
 import { bindPresentPoint } from './PresentPoint.js';
 import type { TrialController } from './TrialController.js';
 
-export interface EventBinderConfig {
-  dom: DomElements;
+export interface EventBinderConfig extends CourtRecordEventConfig {
   soundEngine: SoundEngine;
   investigation: InvestigationController;
   trial: TrialController;
@@ -25,10 +24,7 @@ export interface EventBinderConfig {
   onStartCase4?: () => void;
   onStartTrialDebug?: () => void;
   onAdvance: () => void;
-  onOpenCourtRecord: (isTrialPresent: boolean) => void;
   onOpenHistory?: () => void;
-  onPresentFromModal: () => void;
-  onPresentProfileFromModal: () => void;
   onToggleLanguage?: () => void;
   onSaveGame?: () => void;
   onLoadGame?: () => void;
@@ -40,7 +36,7 @@ export class EngineEventBinder {
     EngineEventBinder.bindStartAndAudio(config);
     EngineEventBinder.bindSaveAndLoad(config);
     EngineEventBinder.bindDialogueAdvance(config);
-    EngineEventBinder.bindCourtRecord(config);
+    bindCourtRecordEvents(config);
     bindEvidenceExamine(config.dom, (id) => config.trial.deps.state.markEvidenceExamined(id));
     bindPresentPoint(config.dom);
     EngineEventBinder.bindHistory(config);
@@ -109,32 +105,6 @@ export class EngineEventBinder {
       // desync the dialogue the player is currently reading or scrolling.
       if (isAnyModalOpen()) return;
       if (e.code === 'Space' || e.code === 'Enter') onAdvance();
-    });
-  }
-
-  // @Section(Court Record Bindings)
-  private static bindCourtRecord(config: EventBinderConfig): void {
-    const { dom, onOpenCourtRecord, onPresentFromModal, onPresentProfileFromModal } = config;
-    dom.btnCourtRecord.addEventListener('click', /*onOpenRecordClick*/ (e) => {
-      e.stopPropagation();
-      onOpenCourtRecord(/*isTrialPresent=*/ false);
-    });
-    dom.btnCloseRecord.addEventListener('click', /*onCloseRecordClick*/ (e) => {
-      e.stopPropagation();
-      ModalManager.closeCourtRecord(dom);
-    });
-    dom.presentBtnEl.addEventListener('click', /*onPresentClick*/ (e) => {
-      e.stopPropagation();
-      onPresentFromModal();
-    });
-    dom.presentProfileBtnEl.addEventListener('click', /*onPresentProfileClick*/ (e) => {
-      e.stopPropagation();
-      onPresentProfileFromModal();
-    });
-    document.addEventListener('keydown', /*onCloseRecordKeyDown*/ (e) => {
-      if (e.code !== 'Escape' || dom.courtRecordModalEl.classList.contains('hidden')) return;
-      if (dom.evidenceExamineModalEl && !dom.evidenceExamineModalEl.classList.contains('hidden')) return;
-      ModalManager.closeCourtRecord(dom);
     });
   }
 

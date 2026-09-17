@@ -32,7 +32,13 @@ Operational guide for the procedural Web Audio API synthesizer, MIDI music track
      - **Lead**: Synthesizes square wave note through `bgmGain`.
      - **Chords**: Synthesizes sawtooth pad note through `bgmGain`.
      - **Drums**: Synthesizes Kick (sine sweep), Snare (noise buffer), or Hi-Hat (highpass noise).
-     - Loops seamlessly when `step % track.length` wraps around.
+   - Loops seamlessly when `step % track.length` wraps around.
+   - If a new cue resolves to a catalog alias of the currently playing `TrackDefinition`, the composer keeps the existing timer and step position. This preserves the victory composition while the verdict scene fades into a waiting-room epilogue.
+
+### Trial Reveal Cue
+1. A correct contradiction queues its `successDialogue`.
+2. The first reveal line carries `bgm: 'objection'`, switching away from the testimony loop before the objection is explained.
+3. If the contradiction has a follow-up turnabout, its first line carries `bgm: 'pursuit'` and takes over for the remainder of that reveal.
 
 ### On-Demand SFX Generation
 1. Game Engine calls specific SFX method (e.g. `playGavel()`):

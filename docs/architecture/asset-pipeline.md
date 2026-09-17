@@ -1,6 +1,6 @@
 # Asset Pipeline Architecture
 
-Technical guide for [[process_assets.py]], [[process_case2_assets.py]], [[process_case3_assets.py]], [[process_case4_assets.py]], and [[verify_assets.py]], configured in [[pipeline.group.md]].
+Technical guide for [[process_assets.py]], [[process_case1_assets.py]], [[process_case2_assets.py]], [[process_case3_assets.py]], [[process_case4_assets.py]], and [[verify_assets.py]], configured in [[pipeline.group.md]].
 
 ## Overview
 
@@ -9,7 +9,7 @@ The asset pipeline automates the extraction, transparency keying, cropping, and 
 ```mermaid
 flowchart LR
     Raw[AI Grid Generation] --> Process[process_assets.py]
-    Raw2[Case 2-4 Raw Sheets] --> ProcessN[process_case2/3/4_assets.py]
+    Raw2[Case 1-4 Raw Sheets] --> ProcessN[process_case1/2/3/4_assets.py]
     Process --> Chroma[Magenta Chroma-Keying]
     ProcessN --> Chroma
     Chroma --> Slicing[2x2 / 4x3 / 4x4 Grid Cropping]
@@ -39,6 +39,12 @@ The pipeline performs:
 - **Accurate Drop Boxes**: Speech bubbles and cross-cell neighbor bleed are dropped using calibrated bounding boxes that preserve character hair, hands, and hats.
 - Cut-ins are formatted as 2x2 grids (4 distinct shout placards).
 - Evidence items are extracted from a 4x2 icon grid (Case 1) or a 4×3 grid (Case 2).
+
+### Case 1 ([[process_case1_assets.py]])
+
+Case 1 raw art is kept under `tools/raw/case1/` and processed independently so the regenerated scene plates do not disturb shared or later-case assets. The processor exports the Alma Negra bust/full-body poses, seven flat profile icons, six evidence icons, seven 960×540 examine plates, two 960×540 courtroom enlargements from `foto_crimen`, the consult-only corridor plan `plano_pasillo`, and four scene backgrounds, including the day-1-only `bg_clinica_cuarto6.webp` whose baked patient keeps clinic hotspots visible while Examine hides sprites. It also normalizes the inherited `examine_informe_lesiones.webp` plate to the 960×540 detailed-view contract. Pass `--only examine_foto_crimen ampliacion_foto_crimen_emblema ampliacion_foto_crimen_manos` to regenerate the crime-photo family. Run it before [[verify_assets.py]] whenever Case 1 raw art changes.
+
+The `rejilla_ducto` Court Record icon is derived from the normalized `examine_rejilla_ducto` plate (a deterministic crop scaled to 128×128), so the thumbnail and `Examinar detalle` share one grate identity. Its separate `rejilla_ducto_raw.png` is not used for the runtime icon; `python process_case1_assets.py --only rejilla_ducto` regenerates only that thumbnail.
 
 ### Case 2 ([[process_case2_assets.py]])
 Case 2 art lives in [[tools/raw/]] and is processed separately so [[process_assets.py]] stays frozen:

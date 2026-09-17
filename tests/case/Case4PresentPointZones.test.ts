@@ -7,7 +7,7 @@ import { CASE4_TESTIMONY_3_EN } from '../../src/case/case4/Private/trial_day2_en
 import { CASE4_TESTIMONY_4_EN } from '../../src/case/case4/Private/trial_day2_t2_en.js';
 import { CASE4_PLANO_POINT_TARGET, CASE4_REGISTRO_POINT_TARGET } from '../../src/case/case4/Private/trial_day2_success.js';
 import { CASE4_ORDEN_POINT_TARGET, CASE4_TELEGRAMA_POINT_TARGET } from '../../src/case/case4/Private/trial_day3_success.js';
-import { findHitZone, isInsideBounds } from '../../src/engine/Private/PresentPoint.js';
+import { findHitZone, isInsideBounds } from '../../src/engine/Private/PresentPointGeometry.js';
 import type { PointTargetContradiction } from '../../src/types/index.js';
 
 function correctBounds(target: PointTargetContradiction): [number, number, number, number] {

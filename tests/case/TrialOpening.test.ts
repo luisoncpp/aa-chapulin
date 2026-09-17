@@ -9,8 +9,14 @@ const expectedOpenings: Record<CaseId, { es: string[]; en: string[] }> = {
     en: ['July 13, 9:45 AM. High Court - Waiting Room.']
   },
   case1: {
-    es: ['22 de agosto, 9:00 AM. Tribunal Superior - Sala de Espera.'],
-    en: ['August 22, 9:00 AM. High Court - Waiting Room.']
+    es: [
+      '22 de agosto, 2:00 PM. Tribunal Superior - Sala de Espera.',
+      '23 de agosto, 2:00 PM. Tribunal Superior - Sala de Espera.'
+    ],
+    en: [
+      'August 22, 2:00 PM. High Court - Waiting Room.',
+      'August 23, 2:00 PM. High Court - Waiting Room.'
+    ]
   },
   case2: {
     es: [

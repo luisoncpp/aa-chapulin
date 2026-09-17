@@ -81,7 +81,7 @@ Llamado al estrado completo (nombre y ocupación: comerciante honrado que "compr
 
 ### Día 2 — juicio: **T3, Tripaseca — "Cómo huyó el ladrón"**
 
-- Contradicción: **Foto del Sospechoso**. Señalamiento 2: el emblema del pecho. "HC" es "CH" al espejo; el sospechoso corría hacia el patio de carga, no hacia la puerta principal.
+- Contradicción: **Foto del Sospechoso**. Señalamiento 2 encadenado: el emblema del pecho ("HC" es "CH" al espejo), la pintura reflejada detrás del Chapulín, y la ubicación de la pintura en el croquis del pasillo (demostrando que corría alejándose del acceso de carga hacia el espejo).
 - `followUp`: si la foto es un reflejo, el fotografiado corría **hacia donde estaba estacionada una camioneta**. Presentar `bolsa_dolares`.
 
 ### Clímax — dos etapas

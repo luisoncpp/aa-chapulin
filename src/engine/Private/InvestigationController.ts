@@ -4,7 +4,7 @@ import { i18n } from '../../i18n/index.js';
 import type { GameStateManager } from '../../state/index.js';
 import type { CaseScript, DialogueLine, Hotspot, LocationId, PoseName, TalkOption } from '../../types/index.js';
 import type { DomElements } from './DomElements.js';
-import { renderHotspots } from './HotspotLayer.js';
+import { renderHotspots, visibleHotspots } from './HotspotLayer.js';
 import {
   applySceneIdlePose, buildMoveDestinations, resolveSceneIdlePose, resolveSceneIntro,
   setupScenePresentation, type InvestigationControllerDeps, type ResolvedIntro
@@ -92,7 +92,7 @@ export class InvestigationController {
 
   // @Section(Hotspot Rendering & Clicks)
   public renderHotspots(hotspots: Hotspot[]): void {
-    renderHotspots(hotspots, {
+    renderHotspots(visibleHotspots(hotspots, this.state.flags), {
       container: this.dom.hotspotsContainerEl,
       tooltipEl: this.dom.examineTooltipEl,
       isExamineActive: () => this.isExamineActive,
@@ -115,6 +115,7 @@ export class InvestigationController {
     this.onQueueDialogue(h.dialogue, /*onComplete*/ () => {
       this.isFirstTimeDialogue = false;
       this.state.markHotspotExamined(h.id);
+      this.renderHotspots(this.script.investigation[this.state.currentLocation]?.hotspots ?? []);
       this.notifyUnlockedTalk();
       this.checkInvestigationProgress();
       this.startExamineMode();

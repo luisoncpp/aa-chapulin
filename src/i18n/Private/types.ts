@@ -28,6 +28,10 @@ export interface UiTranslations {
   evidencePlaceholderTitle: string;
   evidencePlaceholderDesc: string;
   modalPresentBtn: string;
+  modalPresentProfileBtn: string;
+  tabEvidence: string;
+  tabProfiles: string;
+  notifIncorrectProfile: string;
   talkModalTitle: string;
   moveModalTitle: string;
   currentLocationBadge: string;

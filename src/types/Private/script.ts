@@ -6,6 +6,7 @@
 
 import type { SFXName, TrackName } from './audio.js';
 import type { EvidenceId } from './evidence.js';
+import type { ProfileId } from './profile.js';
 import type { CaseId, GameFlags, LocationId } from './state.js';
 
 // @Section(Dialogue & Visual Tags)
@@ -19,6 +20,8 @@ export type SpeakerName =
   | 'JUEZ'
   | 'TRIPASECA'
   | 'FLORINDA'
+  | 'ALMA NEGRA'
+  | 'JIRAFALES'
   | 'NARRADOR'
   | 'MODO EXAMINAR'
   | string;
@@ -42,6 +45,7 @@ export type PoseName =
   | 'donramon_panic'
   | 'supersam_idle'
   | 'supersam_slam'
+  | 'supersam_case1_slam'
   | 'supersam_point'
   | 'supersam_sweat'
   | 'supersam_breakdown'
@@ -123,6 +127,10 @@ export type PoseName =
   | 'rufino_sweat'
   | 'rufino_panic'
   | 'rufino_breakdown'
+  | 'almanegra_vendado'
+  | 'almanegra_shock'
+  | 'almanegra_sweat'
+  | 'almanegra_inconsciente'
   | null;
 
 export type CutinName =
@@ -139,6 +147,8 @@ export interface DialogueLine {
   text: string;
   /** Render this UI instruction immediately without typewriter audio. */
   instant?: boolean;
+  /** Trigger the celebration effect when this line is displayed. */
+  confetti?: boolean;
   pose?: PoseName;
   bg?: string;
   bgm?: TrackName;
@@ -146,6 +156,8 @@ export interface DialogueLine {
   cutin?: CutinName;
   addEvidence?: EvidenceId;
   updateEvidence?: EvidenceId;
+  addProfile?: ProfileId;
+  updateProfile?: ProfileId;
   unlockLocation?: LocationId;
   furniture?: FurnitureType;
 }
@@ -154,6 +166,8 @@ export interface DialogueLine {
 export interface Hotspot {
   id: string;
   label: string;
+  /** Hidden until this predicate passes; used to chain scene progression. */
+  condition?: (flags: GameFlags) => boolean;
   /** Percent of the 960×540 stage after background-size:cover. */
   x: number;
   y: number;
@@ -204,21 +218,28 @@ export interface PointZone {
 }
 
 export interface PointTargetContradiction {
+  id?: string;
   targetEvidenceId: EvidenceId;
   promptQuestion: string;
   imageAsset?: string;
   zones: PointZone[];
+  successDialogue?: DialogueLine[];
+  next?: PointTargetContradiction;
 }
 
 export interface ContradictionFollowUp {
-  evidence: EvidenceId[];
+  evidence?: EvidenceId[];
+  /** Replaces `evidence` when the court demands a person instead of an exhibit. */
+  profileTarget?: ProfileId[];
   successDialogue: DialogueLine[];
   pointTarget?: PointTargetContradiction;
   prompt?: string;
 }
 
 export interface ContradictionRule {
-  evidence: EvidenceId[];
+  evidence?: EvidenceId[];
+  /** Replaces `evidence` when the court demands a person instead of an exhibit. */
+  profileTarget?: ProfileId[];
   successDialogue: DialogueLine[];
   pointTarget?: PointTargetContradiction;
   /** Evidence that must be opened in the Acta before it can be presented. */
@@ -227,7 +248,9 @@ export interface ContradictionRule {
 }
 
 export interface OpeningPresent {
-  evidence: EvidenceId[];
+  evidence?: EvidenceId[];
+  /** Replaces `evidence` when the court demands a person instead of an exhibit. */
+  profileTarget?: ProfileId[];
   successDialogue: DialogueLine[];
   prompt?: string;
 }
@@ -256,7 +279,13 @@ export interface ClimaxEpilogue {
 }
 
 export interface ClimaxStage {
-  presentTarget: EvidenceId[];
+  presentTarget?: EvidenceId[];
+  /** Replaces `presentTarget` when the court demands a person instead of an exhibit. */
+  profileTarget?: ProfileId[];
+  /** Optional dialogue played upon presenting the correct exhibit, before pointing begins. */
+  introDialogue?: DialogueLine[];
+  /** Played when the player points at the wrong person or exhibit. */
+  failDialogue?: DialogueLine[];
   successDialogue: DialogueLine[];
   /** Question shown on the HUD and Court Record while this stage awaits a present. */
   prompt?: string;
@@ -322,6 +351,7 @@ export interface CaseScript {
   startLocation: LocationId;
   requiredEvidence: EvidenceId[];
   debugEvidence: EvidenceId[];
+  debugProfiles?: ProfileId[];
   debugUnlockLocations: LocationId[];
   investigation: Record<string, InvestigationScene>;
   trial: TrialScript;

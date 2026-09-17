@@ -112,7 +112,7 @@ describe('I18nService Subsystem', () => {
 
     // Investigation scenes
     expect(Object.keys(esScript.investigation)).toEqual(Object.keys(enScript.investigation));
-    expect(esScript.investigation.museum.hotspots.length).toBe(enScript.investigation.museum.hotspots.length);
+    expect(esScript.investigation.museo_sala2.hotspots.length).toBe(enScript.investigation.museo_sala2.hotspots.length);
     expect(esScript.investigation.detention.hotspots.length).toBe(enScript.investigation.detention.hotspots.length);
 
     // Testimonies and contradiction evidence

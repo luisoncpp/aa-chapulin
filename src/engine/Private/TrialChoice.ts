@@ -127,7 +127,9 @@ function stampEpilogueLines(bg: string, lines: DialogueLine[]): DialogueLine[] {
 
 // fallow-ignore-next-line unused-export
 export function celebrateClimax(climax: ClimaxDefinition, deps: ClimaxQueueDeps): void {
-  VisualEffects.triggerConfetti(deps.dom.confettiContainerEl);
+  if (!climax.verdict.some((line) => line.confetti)) {
+    VisualEffects.triggerConfetti(deps.dom.confettiContainerEl);
+  }
   if (!climax.epilogue) {
     scheduleCaseComplete(deps);
     return;

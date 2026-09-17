@@ -74,7 +74,7 @@ describe('GameEngine Save and Load Feature', () => {
     // Reset state to simulate fresh or altered session
     state.inventory = ['insignia_abogado'];
     state.flags.talked_florinda_crime = false;
-    state.currentLocation = 'museum';
+    state.currentLocation = 'detention';
 
     // Click in-game Load button
     dom.btnLoadGame?.click();
@@ -163,28 +163,28 @@ describe('GameEngine Save and Load Feature', () => {
     engine.startGame();
     vi.advanceTimersByTime(400);
 
-    // Initial save: only museum is unlocked
-    expect(state.unlockedLocations).toEqual(['museum']);
+    // Initial save: only the detention centre is unlocked
+    expect(state.unlockedLocations).toEqual(['detention']);
     engine.saveGame();
 
     // Modify state
-    state.unlockLocation('detention');
-    expect(state.unlockedLocations).toEqual(['museum', 'detention']);
+    state.unlockLocation('museo_sala2');
+    expect(state.unlockedLocations).toEqual(['detention', 'museo_sala2']);
 
-    // Load restores initial state where only museum was unlocked
+    // Load restores initial state where only the detention centre was unlocked
     engine.loadGame();
-    expect(state.unlockedLocations).toEqual(['museum']);
+    expect(state.unlockedLocations).toEqual(['detention']);
 
-    // Unlock detention and save again
-    state.unlockLocation('detention');
+    // Unlock the museum and save again
+    state.unlockLocation('museo_sala2');
     engine.saveGame();
 
     // Reset state
-    state.unlockedLocations = ['museum'];
+    state.unlockedLocations = ['detention'];
 
     // Load restores both unlocked locations
     engine.loadGame();
-    expect(state.unlockedLocations).toEqual(['museum', 'detention']);
+    expect(state.unlockedLocations).toEqual(['detention', 'museo_sala2']);
   });
 
   it('loads legacy save files without unlockedLocations safely', () => {
@@ -203,7 +203,7 @@ describe('GameEngine Save and Load Feature', () => {
 
     const loaded = engine.loadGame();
     expect(loaded).toBe(true);
-    expect(state.unlockedLocations).toContain('museum');
+    expect(state.unlockedLocations).toContain('detention');
     expect(state.unlockedLocations).toContain('detention');
   });
 });

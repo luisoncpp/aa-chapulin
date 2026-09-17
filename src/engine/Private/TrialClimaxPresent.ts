@@ -6,7 +6,7 @@
 import type { MidiMusicComposer } from '../../audio/index.js';
 import { i18n } from '../../i18n/index.js';
 import type {
-  CaseScript, ClimaxDefinition, ClimaxStage, DialogueLine, EvidenceId, Testimony
+  CaseScript, ClimaxDefinition, ClimaxStage, DialogueLine, EvidenceId, ProfileId, Testimony
 } from '../../types/index.js';
 import type { DomElements } from './DomElements.js';
 import { startPresentPoint } from './PresentPoint.js';
@@ -50,6 +50,42 @@ export function getClimaxStages(climax: ClimaxDefinition): ClimaxStage[] {
   return [{ presentTarget: climax.presentTarget, successDialogue: climax.verdict }];
 }
 
+export function currentClimaxStage(ctrl: ClimaxControllerPort): ClimaxStage {
+  const stages = getClimaxStages(ctrl.script.trial.climax);
+  const idx = Math.min(Math.max(ctrl.climaxStageIdx, 0), stages.length - 1);
+  return stages[idx];
+}
+
+/**
+ * Person-shaped climax stage (spec §13.1). A wrong person costs a point and
+ * repeats the question without revealing the answer.
+ */
+export function presentClimaxProfile(ctrl: ClimaxControllerPort, profileId: ProfileId): void {
+  if (ctrl.climaxChoiceIdx != null) return;
+  ctrl.hideControls();
+  const climax = ctrl.script.trial.climax;
+  const deps = climaxRunDeps(ctrl);
+  const stageIdx = ctrl.climaxStageIdx;
+  const stage = getClimaxStages(climax)[stageIdx];
+  if (!stage?.profileTarget?.includes(profileId)) {
+    applyWrongClimax(deps, i18n.t.notifIncorrectProfile, stage?.failDialogue);
+    return;
+  }
+  continueOrPoint(ctrl, { climax, stageIdx, stage, onChoiceSelect: (id) => ctrl.handleSelectChoice(id) }, deps);
+}
+
+function applyWrongClimax(deps: ClimaxRunDeps, notif: string, failDialogue?: DialogueLine[]): void {
+  applyPenaltyEffects(deps);
+  queuePenaltyOrRestart(deps, /*onContinue*/ () => {
+    const reopen = /*reopenRecord*/ () => {
+      VisualEffects.showNotification(deps.dom.gameNotificationEl, notif);
+      deps.onOpenCourtRecord(/*isTrialPresent=*/ true);
+    };
+    if (!failDialogue?.length) return reopen();
+    deps.onQueueDialogue(failDialogue, reopen);
+  });
+}
+
 function applyClimaxSession(ctrl: ClimaxControllerPort, result: ClimaxSession): void {
   ctrl.climaxStageIdx = result.stageIdx;
   ctrl.climaxChoiceIdx = result.choiceIdx;
@@ -66,7 +102,7 @@ export function presentClimaxEvidence(
   const deps = climaxRunDeps(ctrl);
   const stageIdx = ctrl.climaxStageIdx;
   if (!climaxStageMatches({ climax, stageIdx, evidenceId }, (id) => deps.state.getEvidenceUpdateStage(id))) {
-    applyWrongClimaxPresent(deps, stageIdx);
+    applyWrongClimax(deps, i18n.t.notifIncorrectClue, getClimaxStages(climax)[stageIdx]?.failDialogue);
     return;
   }
   continueOrPoint(ctrl, { climax, stageIdx, stage: getClimaxStages(climax)[stageIdx], onChoiceSelect: (id) => ctrl.handleSelectChoice(id) }, deps);
@@ -84,9 +120,17 @@ function continueOrPoint(ctrl: ClimaxControllerPort, matched: MatchedStage, deps
     apply();
     return;
   }
-  startPresentPoint({ deps, pointTarget: matched.stage.pointTarget, onSuccess: apply });
+  const startPoint = /*beginPointOverlay*/ () => {
+    startPresentPoint({ deps, pointTarget: matched.stage.pointTarget!, onSuccess: apply });
+  };
+  if (matched.stage.introDialogue?.length) {
+    deps.onQueueDialogue(matched.stage.introDialogue, startPoint);
+    return;
+  }
+  startPoint();
 }
 
+// fallow-ignore-next-line complexity
 function climaxStageMatches(
   session: { climax: ClimaxDefinition; stageIdx: number; evidenceId: EvidenceId },
   getUpdateStage: (id: EvidenceId) => number
@@ -94,25 +138,17 @@ function climaxStageMatches(
   const stages = getClimaxStages(session.climax);
   const idx = Math.min(Math.max(session.stageIdx, 0), stages.length - 1);
   const stage = stages[idx];
-  if (!stage.presentTarget.includes(session.evidenceId)) return false;
+  if (!stage.presentTarget?.includes(session.evidenceId)) return false;
   const minStage = stage.requiredUpdateStage?.[session.evidenceId];
   if (minStage != null && getUpdateStage(session.evidenceId) < minStage) return false;
   return true;
-}
-
-function applyWrongClimaxPresent(deps: ClimaxRunDeps, stageIdx: number): ClimaxSession {
-  applyPenaltyEffects(deps);
-  queuePenaltyOrRestart(deps, /*onContinue*/ () => {
-    VisualEffects.showNotification(deps.dom.gameNotificationEl, i18n.t.notifIncorrectClue);
-    deps.onOpenCourtRecord(/*isTrialPresent=*/ true);
-  });
-  return { stageIdx, choiceIdx: null };
 }
 
 function isFinalClimaxStage(climax: ClimaxDefinition, stageIdx: number): boolean {
   return stageIdx >= getClimaxStages(climax).length - 1;
 }
 
+// fallow-ignore-next-line complexity
 function continueMatchedClimaxStage(matched: MatchedStage, deps: ClimaxRunDeps): ClimaxSession {
   const { climax, stageIdx, stage } = matched;
   if (!isFinalClimaxStage(climax, stageIdx)) {

@@ -269,6 +269,19 @@ describe('VisualEffects Subsystem', () => {
     expect(VisualEffects.resolveEffectivePose({ text: 'A', speaker: 'DEFENSA', pose: 'donramon_slam' }, /*isTrialMode=*/ true)).toBe('donramon_slam');
     expect(VisualEffects.resolveEffectivePose({ text: 'A', speaker: 'DEFENSA', pose: 'donramon_slam' }, /*isTrialMode=*/ false)).toBe('donramon_shock');
     expect(VisualEffects.resolveEffectivePose({ text: 'A', speaker: 'DEFENSA', pose: 'donramon_shock' }, /*isTrialMode=*/ false)).toBe('donramon_shock');
+    expect(VisualEffects.resolveEffectivePose({ text: 'A', speaker: 'DEFENSA', furniture: 'none' }, /*isTrialMode=*/ true)).toBe(null);
+  });
+
+  it('does not place Don Ramón over a full-screen evidence plate', () => {
+    expect(VisualEffects.resolveEffectivePose(
+      {
+        text: 'Tarjeta de cartulina...',
+        speaker: 'DEFENSA',
+        bg: 'assets/examine_ficha_museo.webp',
+        furniture: 'none'
+      },
+      /*isTrialMode=*/ true
+    )).toBe(null);
   });
 });
 

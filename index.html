@@ -149,6 +149,10 @@
                     <button id="btn-close-record" class="close-btn">X</button>
                 </div>
                 <p id="court-record-present-prompt" class="hidden"></p>
+                <div id="court-record-tabs" class="record-tabs hidden">
+                    <button id="tab-evidence" class="record-tab active">PRUEBAS</button>
+                    <button id="tab-profiles" class="record-tab">PERSONAS</button>
+                </div>
                 <div class="modal-body">
                     <div id="evidence-grid">
                         <!-- Evidence cards dynamically inserted -->
@@ -156,9 +160,11 @@
                     <div id="evidence-details">
                         <img id="evidence-icon-preview" src="" alt="Item" class="hidden">
                         <h3 id="evidence-title">Selecciona una prueba</h3>
+                        <p id="evidence-role-line" class="profile-role-line hidden"></p>
                         <p id="evidence-description">Haz clic en cualquier objeto para ver sus detalles y contradicciones.</p>
                         <button id="btn-evidence-examine" class="menu-btn" style="display:none; width: 100%;">Examinar Detalle</button>
                         <button id="btn-modal-present" class="menu-btn present-action" style="display:none; width: 100%;">¡Presentar Prueba!</button>
+                        <button id="btn-modal-present-profile" class="menu-btn present-action" style="display:none; width: 100%;">¡Señalar a esta persona!</button>
                     </div>
                 </div>
             </div>

@@ -115,6 +115,13 @@ describe('DialogueFlow', () => {
     expect(dom.charSpriteEl.classList.contains('hidden')).toBe(true);
   });
 
+  it('triggers confetti when a dialogue line requests it', () => {
+    flow.renderDialogueLine({ speaker: 'NARRADOR', text: '', instant: true, confetti: true });
+
+    expect(dom.confettiContainerEl.children).toHaveLength(80);
+    expect(dom.dialogueTextEl.textContent).toBe('');
+  });
+
   it('skips evidence notification when the item is already in inventory', () => {
     state.addEvidence('chipote_chillon');
     dom.gameNotificationEl.textContent = '';

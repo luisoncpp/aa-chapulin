@@ -5,15 +5,15 @@ import { CASE_SCRIPT } from '../../src/case/index.js';
 import type { DomElements } from '../../src/engine/Private/DomElements.js';
 import {
   bindPresentPoint,
-  findHitZone,
-  isInsideBounds,
-  percentFromStageClick,
-  POINT_STAGE_HEIGHT,
-  POINT_STAGE_WIDTH,
   rebindPresentPointScript,
+  resumePresentPointAfterCourtRecord,
   resolvePointClick,
-  resolvePointImage
+  suspendPresentPointForCourtRecord
 } from '../../src/engine/Private/PresentPoint.js';
+import {
+  findHitZone, isInsideBounds, percentFromStageClick, POINT_STAGE_HEIGHT, POINT_STAGE_WIDTH,
+  resolvePointImage
+} from '../../src/engine/Private/PresentPointGeometry.js';
 import { TrialController } from '../../src/engine/Private/TrialController.js';
 import { GameStateManager } from '../../src/state/index.js';
 import type { CaseScript, DialogueLine, PointTargetContradiction } from '../../src/types/index.js';
@@ -48,6 +48,13 @@ describe('PresentPoint bounds math', () => {
     const pct = percentFromStageClick(320, 180, { left: 0, top: 0, width: POINT_STAGE_WIDTH, height: POINT_STAGE_HEIGHT });
     expect(pct.x).toBe(50);
     expect(pct.y).toBe(50);
+  });
+
+  it('keeps axis fallbacks, borders, and invalid coordinates stable', () => {
+    expect(percentFromStageClick(100, 20, { left: 100, top: 20, width: 640, height: 360 })).toEqual({ x: 0, y: 0 });
+    expect(percentFromStageClick(740, 380, { left: 100, top: 20, width: 640, height: 360 })).toEqual({ x: 100, y: 100 });
+    expect(percentFromStageClick(Number.NaN, 360, { left: 100, top: 20, width: 0, height: 180 }).x).toBeNaN();
+    expect(percentFromStageClick(-1, -1, { left: 100, top: 20, width: -1, height: 0 })).toEqual({ x: -0.15625, y: -0.2777777777777778 });
   });
 
   it('falls back from imageAsset to detailedView to examine_<id>.webp', () => {
@@ -144,6 +151,45 @@ describe('PresentPoint overlay flow', () => {
 
     rebindPresentPointScript(englishScript);
 
+    expect(dom.presentPointPromptEl?.textContent).toBe('Where is the melted ice?');
+  });
+
+  it('queues dialogue between chained point targets before opening the next plate', () => {
+    const nextPoint = { ...POINT, id: 'second', promptQuestion: '¿Dónde está la pintura?' };
+    const firstPoint = {
+      ...POINT,
+      id: 'first',
+      successDialogue: [{ speaker: 'SUPER SAM', text: '¡Entonces pruébelo!' }],
+      next: nextPoint
+    };
+    controller.script.trial.testimony1!.statements[1].contradiction!.pointTarget = firstPoint;
+
+    controller.handlePresentEvidence('chipote_chillon');
+    resolvePointClick(60, 50);
+
+    expect(queued.at(-1)?.[0].text).toContain('pruébelo');
+    expect(dom.presentPointOverlayEl?.classList.contains('hidden')).toBe(true);
+    pending.at(-1)!();
+    expect(dom.presentPointPromptEl?.textContent).toBe(nextPoint.promptQuestion);
+
+    resolvePointClick(60, 50);
+    expect(queued.at(-1)?.some((line) => line.text.includes('cubeta'))).toBe(true);
+  });
+
+  it('suspends an active point target while the Court Record is consulted', () => {
+    controller.handlePresentEvidence('chipote_chillon');
+
+    suspendPresentPointForCourtRecord(dom);
+    expect(dom.presentPointOverlayEl?.classList.contains('hidden')).toBe(true);
+    expect(controller.isAwaitingEvidence()).toBe(false);
+
+    const englishScript = JSON.parse(JSON.stringify(controller.script)) as CaseScript;
+    englishScript.trial.testimony1!.statements[1].contradiction!.pointTarget!.promptQuestion = 'Where is the melted ice?';
+    rebindPresentPointScript(englishScript);
+    expect(dom.presentPointOverlayEl?.classList.contains('hidden')).toBe(true);
+
+    resumePresentPointAfterCourtRecord(dom);
+    expect(dom.presentPointOverlayEl?.classList.contains('hidden')).toBe(false);
     expect(dom.presentPointPromptEl?.textContent).toBe('Where is the melted ice?');
   });
 });

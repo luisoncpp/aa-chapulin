@@ -58,7 +58,7 @@ Case 0 is the courtroom-only entry: its splash/debug launch seeds the opening Co
 
 ### Final Climax & Verdict
 1. `startClimax()` keeps trial controls hidden, transitions BGM to `'suspense'`, and queues dilemma dialogue from the case climax (`case1_climax` or `case2_climax`).
-2. Court Record opens in presentation mode (`isTrialPresent: true`). If closed by the player, advancing dialogue (Click / Space / Enter) or clicking the top HUD Court Record button (`#btn-court-record`) reopens the Court Record in presentation mode (`isTrialPresent: true`) **only while a present is still required**. After the last correct present (no `choices`) or the last correct choice, `isAwaitingEvidence()` is false: idle clicks during confetti or the lobby fade must not reopen the Acta. If the current `ClimaxStage` has `prompt`, that question stays on `#climax-present-prompt` even after the Acta is closed, and inside `#court-record-present-prompt` when it is open.
+2. Court Record opens in presentation mode (`isTrialPresent: true`). If closed by the player, advancing dialogue (Click / Space / Enter) or clicking the top HUD Court Record button (`#btn-court-record`) reopens the Court Record in presentation mode (`isTrialPresent: true`) **only while a present is still required**. Closing the Acta clears both prompt banners, so the climax question cannot float over subsequent dialogue; reopening a pending present repaints it. After the last correct present (no `choices`) or the last correct choice, `isAwaitingEvidence()` is false: idle clicks during confetti or the lobby fade must not reopen the Acta. If the current `ClimaxStage` has `prompt`, that question appears in the HUD and inside the Acta only while the Acta is open.
 3. Player presents a `presentTarget` for the current climax stage (`climax.stages` when set; otherwise `climax.presentTarget`):
    - Wrong item: penalty and incorrect-clue toast; Court Record stays open on the same stage. If that penalty sets health to 0, queue the guilty (`CULPABLE`) game-over lines and restart the trial instead of reopening the Court Record.
    - Correct item on a non-final stage: if the stage has `pointTarget`, Present & Point first; then queues that stage's `successDialogue`, then opens the Court Record again.
@@ -66,9 +66,9 @@ Case 0 is the courtroom-only entry: its splash/debug launch seeds the opening Co
    - Correct item on the final stage with `choices` (Case 2): queues that stage's `successDialogue` (wax mold + judge question), then opens `#choice-prompt-modal`. Wrong choice: penalty + `failDialogue`, same prompt reopens. A wrong choice that exhausts health queues the guilty game-over lines and restarts the trial. Correct choice: `successDialogue`, then next prompt or verdict on the last one.
    - Case 0 is two climax stages with one choice between them; Case 1 is one stage (`antenitas_vinil` or `bolsa_dolares`); Case 2 is three presents then two choices.
 4. After the Not Guilty line (from `verdict` or last choice `successDialogue`):
-   - `triggerConfetti()` fires as soon as the verdict queue finishes, while the judge camera is still up.
-   - If `climax.epilogue` exists (Case 2), [[src/engine/Private/TrialClimax.ts]] holds that courtroom shot, fades `#screen-flash` to black, swaps to `bg_waiting_room.jpg` (clears confetti, hides bench/sprites), fades in, then queues stamped epilogue lines (`furniture: 'none'`). Case 1 has no epilogue.
-   - After the last Case 1 verdict click (following confetti) or the last Case 2 epilogue line, `fadeToBlack` stays covered and `#case-complete-overlay` reports that the case is finished.
+   - A verdict line with `confetti: true` fires `triggerConfetti()` when that line is rendered, before subsequent celebration dialogue. The climax completion callback keeps the old end-of-queue trigger as a fallback for verdicts without an effect line.
+   - If `climax.epilogue` exists, [[src/engine/Private/TrialClimax.ts]] holds that courtroom shot, fades `#screen-flash` to black, swaps to `bg_waiting_room.jpg` (clears confetti, hides bench/sprites), fades in, then queues stamped epilogue lines (`furniture: 'none'`). The `victory` → `epilogue` cue used by Case 1 continues the same catalog composition without resetting its sequencer position.
+   - After the last epilogue line, `fadeToBlack` stays covered and `#case-complete-overlay` reports that the case is finished.
 
 ## 4. Reads
 - Active trial day from `getActiveTrial(script, trialDay)` ([[src/engine/Private/TrialDayRouter.ts]]); walks `adjournment` / `adjournment.next` for days 2–3. Climax always `script.trial.climax`.
@@ -97,7 +97,7 @@ Case 0 is the courtroom-only entry: its splash/debug launch seeds the opening Co
 - [[src/engine/Private/ModalManager.ts]]
 - [[src/state/Private/GameStateManager.ts]]
 - [[src/engine/Private/TrialDayRouter.ts]]
-- [[src/case/case1/Private/trial.ts]] / [[src/case/case2/index.ts]]
+- [[src/case/case1/Private/trial_day1.ts]] / [[src/case/case2/index.ts]]
 - [[src/case/case1/Private/climax.ts]] / [[src/case/case2/Private/climax.ts]]
 
 ## 8. Common Failure Modes

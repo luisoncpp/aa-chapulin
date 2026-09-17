@@ -30,7 +30,7 @@ describe('InvestigationController edges', () => {
   });
 
   it('restores location pose after a first-time hotspot dialogue completes', () => {
-    controller.startInvestigation('museum');
+    controller.startInvestigation('museo_sala2');
     controller.currentLocationCharPose = 'florinda_idle';
     controller.startExamineMode();
     (dom.hotspotsContainerEl.children[0] as HTMLElement).click();
@@ -41,16 +41,16 @@ describe('InvestigationController edges', () => {
     const script = {
       ...CASE_SCRIPT,
       investigation: {
-        museum: { ...CASE_SCRIPT.investigation.museum, hotspots: undefined }
+        museo_sala2: { ...CASE_SCRIPT.investigation.museo_sala2, hotspots: undefined }
       }
     } as typeof CASE_SCRIPT;
     controller.setScript(script);
-    controller.startInvestigation('museum');
+    controller.startInvestigation('museo_sala2');
     expect(dom.hotspotsContainerEl.children).toHaveLength(0);
   });
 
   it('omits unlocked ids that have no matching investigation scene', () => {
-    state.unlockedLocations = ['museum', 'boveda'];
+    state.unlockedLocations = ['museo_sala2', 'boveda'];
     controller.openMoveMenu();
     expect(dom.moveLocationsListEl.children).toHaveLength(1);
   });
@@ -59,12 +59,13 @@ describe('InvestigationController edges', () => {
     const script = {
       ...CASE_SCRIPT,
       investigation: {
-        museum: { ...CASE_SCRIPT.investigation.museum, name: undefined }
+        museo_sala2: { ...CASE_SCRIPT.investigation.museo_sala2, name: undefined }
       }
     } as typeof CASE_SCRIPT;
+    state.unlockedLocations = ['museo_sala2'];
     controller.setScript(script);
     controller.openMoveMenu();
-    expect(dom.moveLocationsListEl.textContent).toContain(script.investigation.museum.title);
+    expect(dom.moveLocationsListEl.textContent).toContain(script.investigation.museo_sala2.title);
   });
 
   it('ignores trial-readiness UI when the trial button is absent', () => {
@@ -83,7 +84,7 @@ describe('InvestigationController edges', () => {
     controller.setScript(CASE_SCRIPT);
     expect(dom.hotspotsContainerEl.children.length).toBeGreaterThanOrEqual(0);
 
-    state.currentLocation = 'museum';
+    state.currentLocation = 'museo_sala2';
     controller.setScript(CASE_SCRIPT);
     expect(dom.locationBannerEl.textContent).toContain('Museo');
   });

@@ -34,9 +34,10 @@ describe('TrialController snapshot and setScript', () => {
     });
   });
 
-  it('starts a fresh trial when the snapshot is missing or idle', () => {
+  it('starts a fresh trial at testimony 1 when the snapshot is missing or idle', () => {
     controller.restoreTrialSnapshot();
     expect(state.mode).toBe('TRIAL');
+    // Case 1 day 1 has no `openingPresent`, so the intro leads straight into it.
     expect(controller.phase).toBe('TESTIMONY');
     expect(controller.currentTestimony).toBe(CASE_SCRIPT.trial.testimony1);
 

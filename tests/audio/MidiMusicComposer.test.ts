@@ -95,6 +95,17 @@ describe('MidiMusicComposer & TRACK_CATALOG', () => {
     expect(composer.bpm).toBe(162);
   });
 
+  it('continues playback when an alternate name uses the same composition', () => {
+    composer.playTrack('victory');
+    vi.advanceTimersByTime(200);
+    const stepBeforeAlias = composer.step;
+
+    composer.playTrack('epilogue');
+
+    expect(composer.currentTrack).toBe('victory');
+    expect(composer.step).toBe(stepBeforeAlias);
+  });
+
   it('stops and resumes playback reliably', () => {
     composer.playTrack('suspense');
     composer.stop();

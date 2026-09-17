@@ -4,7 +4,9 @@
  * Handles serialization, schema validation, and storage errors for [[./GameStateManager.ts]].
  */
 
-import type { CaseId, EvidenceId, GameFlags, GameMode, Language, LocationId, TrialDay } from '../../types/index.js';
+import type {
+  CaseId, EvidenceId, GameFlags, GameMode, Language, LocationId, ProfileId, TrialDay
+} from '../../types/index.js';
 
 export interface TrialStateSnapshot {
   phase: 'IDLE' | 'TESTIMONY' | 'CLIMAX';
@@ -31,6 +33,8 @@ export interface SaveData {
   inventory: EvidenceId[];
   flags: GameFlags;
   evidenceUpdateStage?: Record<string, number>;
+  profiles?: ProfileId[];
+  profileUpdateStage?: Record<string, number>;
   trial?: TrialStateSnapshot;
   caseId?: CaseId;
   trialDay?: TrialDay;
@@ -38,7 +42,22 @@ export interface SaveData {
 
 // fallow-ignore-next-line unused-export
 export const SAVE_STORAGE_KEY = 'ace_attorney_save_data';
-export const CURRENT_SAVE_VERSION = 1;
+export const CURRENT_SAVE_VERSION = 2;
+
+/**
+ * Brings a v1 payload up to the current schema. v1 predates the Acta de
+ * Personajes, so it simply gains the two empty character-record fields.
+ * Without this, bumping the version would erase every published case's saves.
+ */
+function migrateSave(data: SaveData): SaveData {
+  if (data.version >= CURRENT_SAVE_VERSION) return data;
+  return {
+    ...data,
+    profiles: data.profiles ?? [],
+    profileUpdateStage: data.profileUpdateStage ?? {},
+    version: CURRENT_SAVE_VERSION
+  };
+}
 
 export class SaveManager {
   // fallow-ignore-next-line complexity
@@ -77,7 +96,7 @@ export class SaveManager {
       if (!raw) return null;
       const parsed = JSON.parse(raw);
       if (!SaveManager.isValidSave(parsed)) return null;
-      return parsed;
+      return migrateSave(parsed);
     } catch {
       return null;
     }
@@ -102,7 +121,8 @@ export class SaveManager {
   public static isValidSave(data: unknown): data is SaveData {
     if (!data || typeof data !== 'object') return false;
     const d = data as Partial<SaveData>;
-    if (d.version !== CURRENT_SAVE_VERSION) return false;
+    if (typeof d.version !== 'number') return false;
+    if (d.version < 1 || d.version > CURRENT_SAVE_VERSION) return false;
     if (typeof d.timestamp !== 'number') return false;
     if (d.mode !== 'INVESTIGATION' && d.mode !== 'TRIAL') return false;
     if (typeof d.health !== 'number' || d.health < 0) return false;

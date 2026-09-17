@@ -20,8 +20,13 @@ export interface DomElements {
   evidenceListEl: HTMLElement;
   evidenceDescEl: HTMLElement;
   evidenceTitleEl: HTMLElement;
+  evidenceRoleLineEl: HTMLElement;
   evidenceIconPreviewEl: HTMLImageElement;
   presentBtnEl: HTMLButtonElement;
+  presentProfileBtnEl: HTMLButtonElement;
+  recordTabsEl: HTMLElement;
+  tabEvidenceEl: HTMLButtonElement;
+  tabProfilesEl: HTMLButtonElement;
   healthBarEl: HTMLElement;
   investigationNavEl: HTMLElement;
   examineNavEl: HTMLElement;
@@ -110,8 +115,13 @@ export function getDomElements(): DomElements {
     evidenceListEl: document.getElementById('evidence-grid')!,
     evidenceDescEl: document.getElementById('evidence-description')!,
     evidenceTitleEl: document.getElementById('evidence-title')!,
+    evidenceRoleLineEl: document.getElementById('evidence-role-line')!,
     evidenceIconPreviewEl: document.getElementById('evidence-icon-preview') as HTMLImageElement,
     presentBtnEl: document.getElementById('btn-modal-present') as HTMLButtonElement,
+    presentProfileBtnEl: document.getElementById('btn-modal-present-profile') as HTMLButtonElement,
+    recordTabsEl: document.getElementById('court-record-tabs')!,
+    tabEvidenceEl: document.getElementById('tab-evidence') as HTMLButtonElement,
+    tabProfilesEl: document.getElementById('tab-profiles') as HTMLButtonElement,
     healthBarEl: document.getElementById('health-bar')!,
     investigationNavEl: document.getElementById('investigation-controls')!,
     examineNavEl: document.getElementById('examine-controls')!,

@@ -47,11 +47,15 @@ const fakeDay3Script: CaseScript = {
 
 describe('TrialDayRouter', () => {
   const case2 = getCaseScript('es', 'case2');
+  /** Case 0 is courtroom-only: the one script with no adjournment at all. */
+  const case0 = getCaseScript('es', 'case0');
 
   it('returns day-1 trial by default and day-2 trial after adjournment', () => {
     expect(getActiveTrial(case2, 1)).toBe(case2.trial);
     expect(getActiveTrial(case2, 2)).toBe(case2.adjournment?.trial);
-    expect(getActiveTrial(CASE_SCRIPT, 2)).toBe(CASE_SCRIPT.trial);
+    expect(getActiveTrial(CASE_SCRIPT, 1)).toBe(CASE_SCRIPT.trial);
+    expect(getActiveTrial(CASE_SCRIPT, 2)).toBe(CASE_SCRIPT.adjournment?.trial);
+    expect(getActiveTrial(case0, 2)).toBe(case0.trial);
   });
 
   it('walks adjournment.next for day 3', () => {
@@ -62,7 +66,9 @@ describe('TrialDayRouter', () => {
   it('adjourns on day 1 and day 2 of a three-day case only', () => {
     expect(shouldAdjourn(case2, 1)).toBe(true);
     expect(shouldAdjourn(case2, 2)).toBe(false);
-    expect(shouldAdjourn(CASE_SCRIPT, 1)).toBe(false);
+    expect(shouldAdjourn(CASE_SCRIPT, 1)).toBe(true);
+    expect(shouldAdjourn(CASE_SCRIPT, 2)).toBe(false);
+    expect(shouldAdjourn(case0, 1)).toBe(false);
     expect(shouldAdjourn(fakeDay3Script, 1)).toBe(true);
     expect(shouldAdjourn(fakeDay3Script, 2)).toBe(true);
     expect(shouldAdjourn(fakeDay3Script, 3)).toBe(false);
@@ -76,7 +82,10 @@ describe('TrialDayRouter', () => {
 
   it('applies day-2 state or returns null when the case has no adjournment', () => {
     const state = new GameStateManager();
-    expect(applyAdjournment(state, CASE_SCRIPT)).toBeNull();
+    expect(applyAdjournment(state, case0)).toBeNull();
+
+    const case1Day2 = applyAdjournment(new GameStateManager(), CASE_SCRIPT);
+    expect(case1Day2?.nextLocation).toBe('patio_carga');
 
     const moved = applyAdjournment(state, case2);
     expect(moved?.nextLocation).toBe('oficina_postal');

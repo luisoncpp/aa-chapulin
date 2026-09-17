@@ -24,6 +24,7 @@ classDiagram
         +Array~string~ requiredEvidence
         +Object allEvidence
         +Array~string~ inventory
+        +ProfileInventory profiles
         +Object flags
         +beginNewCase(script) void
         +beginTrialDay2(adjournment) void
@@ -52,11 +53,17 @@ Contains the master catalog defined in [[src/state/Private/EvidenceCatalog.ts#Ev
 | `insignia_abogado` | Insignia de Abogado CH | Default starting badge |
 | `chipote_chillon` | Chipote Chillón | Disproves lethal blunt assault charge |
 | `pastillas_chiquitolina` | Pastillas de Chiquitolina | Explains entry into locked display case |
-| `antenitas_vinil` | Antenitas de Vinil | Detects villain location & timestamps alarm |
+| `antenitas_vinil` | Antenitas de Vinil | May react to enemies or important clues; never identifies the trigger |
 | `informe_medico` | Informe Médico de Alma Negra | Shows guard was struck with metal coins |
 | `foto_crimen` | Foto del Sospechoso | Mirror reflection proves escape direction |
 | `chicharra_oro` | Chicharra Paralizadora de Oro | The stolen artifact |
 | `bolsa_dolares` | Bolsa de Dólares de Super Sam | Prosecutor's coin bag / true blunt weapon |
+
+### 2a. Character Record (`profiles`)
+
+Case 1 adds a second inventory, the **Acta de Personajes** ([[src/state/Private/ProfileInventory.ts]]). It mirrors the evidence inventory exactly: `addProfile` / `hasProfile` file a person, `updateProfile` advances one `updates[]` stage and saturates, `getProfileDesc` resolves the current stage. `beginNewCase` clears it and reloads the catalogue for the new case; `populateTrialEvidence` saturates `script.debugProfiles` so a direct `?trial=2` start can answer the day-2 opening present.
+
+`getProfileCatalog(lang, caseId)` ([[src/state/Private/ProfileCatalog.ts]]) returns `{}` for every case except Case 1, which is what keeps the Acta tab bar out of the other four cases. `checkTrialReadiness` never looks at profiles: a person can never gate the trial.
 
 ### 2. Player Inventory (`inventory`)
 - Array of active evidence IDs currently held by the player.
@@ -95,7 +102,8 @@ Contains the master catalog defined in [[src/state/Private/EvidenceCatalog.ts#Ev
 ### 7. Browser Storage Persistence (`SaveManager`)
 - `SaveManager` in [[src/state/Private/SaveManager.ts]] provides persistence in `window.localStorage` under key `'ace_attorney_save_data'`.
 - `exportState(trialSnapshot)` serializes game progression, unlocked locations, inventory, flags, health, mode, language, `caseId`, `trialDay`, and active trial testimony statements.
-- `restoreState(data)` rehydrates game state and validates schema versioning (`CURRENT_SAVE_VERSION = 1`).
+- `restoreState(data)` rehydrates game state and validates schema versioning (`CURRENT_SAVE_VERSION = 2`).
+- **v1 → v2 migration.** Version 2 added `profiles` and `profileUpdateStage`. `isValidSave` accepts any version in `[1, CURRENT_SAVE_VERSION]` and `load()` runs `migrateSave`, which fills the two new fields on a v1 payload and stamps the new version. Validating on equality instead would silently delete every save of Cases 0, 2, 3 and 4 from the Continue screen. `tests/state/SaveManagerV2.test.ts` pins a literal v1 payload against that.
 
 ### 8. Scene Intro Tracking (`isIntroPlayed` & `markIntroPlayed`)
 - Tracks completed opening and event-driven scene entrance dialogues in `flags` via keys `intro_<id>`.

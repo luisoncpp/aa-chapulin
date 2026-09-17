@@ -1,7 +1,7 @@
 // @Architecture(descriptionShort="Controls testimony statements, pressing, and contradictions", type="controller", icon="panel")
 import type { MidiMusicComposer, SoundEngine } from '../../audio/index.js';
 import type { GameStateManager, TrialStateSnapshot } from '../../state/index.js';
-import type { CaseScript, DialogueLine, EvidenceId, LocationId, Statement, Testimony } from '../../types/index.js';
+import type { CaseScript, DialogueLine, EvidenceId, ProfileId, LocationId, Statement, Testimony } from '../../types/index.js';
 import type { DomElements } from './DomElements.js';
 import {
   indexInVisible,
@@ -19,7 +19,8 @@ import {
   afterTrialIntro, getTrialPresentPrompt, handleTestimonyPresent,
   hasPendingTrialPresent, rebindTrialPresentScript
 } from './TrialPresent.js';
-import { isPresentPointOpen } from './PresentPoint.js';
+import { handleProfilePresent, isAwaitingProfile } from './ProfilePresent.js';
+import { isPresentPointActive } from './PresentPoint.js';
 import { visibleStatements } from './StatementUnlock.js';
 import { restoreTrialFromSnapshot } from './TrialRestore.js';
 import { paintCourtroomPlate } from './TrialOpening.js';
@@ -134,9 +135,8 @@ export class TrialController {
 
   private resolveTestimony(index: number): Testimony | null {
     const trial = getActiveTrial(this.script, this.deps.state.trialDay);
-    if (index === 0 && trial.testimony1) return trial.testimony1;
-    if (index === 1 && trial.testimony2) return trial.testimony2;
-    return trial.testimonies[index] ?? null;
+    const namedTestimonies = [trial.testimony1, trial.testimony2];
+    return namedTestimonies[index] ?? trial.testimonies[index] ?? null;
   }
 
   public renderCurrentStatement(): void {
@@ -178,6 +178,12 @@ export class TrialController {
     });
   }
 
+  public handlePresentProfile(profileId: ProfileId): void {
+    handleProfilePresent(this, profileId);
+  }
+
+  public isAwaitingProfile(): boolean { return isAwaitingProfile(this); }
+
   public handlePresentEvidence(evidenceId: EvidenceId): void {
     if (this.phase === 'CLIMAX') return handleClimaxEvidencePresent(this, evidenceId);
     handleTestimonyPresent(this, evidenceId);
@@ -185,7 +191,7 @@ export class TrialController {
 
   public startClimax(): void { startClimaxPhase(this, /*replayOpening=*/ true); }
   public isAwaitingEvidence(): boolean {
-    return !isPresentPointOpen(this.deps.dom) && (hasPendingTrialPresent(this) || isAwaitingClimaxEvidence(this));
+    return !isPresentPointActive(this.deps.dom) && (hasPendingTrialPresent(this) || isAwaitingClimaxEvidence(this));
   }
 
   public getPresentPrompt(): string | null { return getTrialPresentPrompt(this) ?? getClimaxPresentPrompt(this); }

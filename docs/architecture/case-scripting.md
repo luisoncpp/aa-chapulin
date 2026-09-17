@@ -12,8 +12,12 @@ Narrative lives in `CaseScript` objects. `getCaseScript(lang, caseId)` in [[src/
 graph TD
     Facade[getCaseScript lang caseId] --> C1[case1]
     Facade --> C2[case2]
-    C1 --> Inv1[museum detention]
-    C1 --> Trial1[trial then climax]
+    C1 --> Inv1[detention museo_sala2 clinica]
+    C1 --> Day1C1[trial day 1]
+    Day1C1 --> AdjC1[adjournment]
+    AdjC1 --> Inv1b[patio_carga cuarto_camaras clinica_d2]
+    Inv1b --> Day2C1[adjournment.trial]
+    Day2C1 --> Climax1[four-stage climax]
     C2 --> Inv2[detention boveda restaurante]
     C2 --> Day1[trial day 1]
     Day1 --> Adj[adjournment]
@@ -22,11 +26,13 @@ graph TD
     Day2 --> Climax[script.trial.climax]
 ```
 
+Case 1 (`case1`) is assembled in [[src/case/case1/index.ts]] and is the project's **two-day** case: `detention` → `museo_sala2` → `clinica` → day-1 trial (Florinda, Tripaseca) → `patio_carga` → `cuarto_camaras` → `clinica_d2` → day-2 trial (Alma Negra, Tripaseca ×2) → four-stage climax + waiting-room epilogue. `adjournment.next` is deliberately **absent**: the case ends on day 2. `adjournment.unlockLocations` opens only `patio_carga`; the yard and the camera room unlock the rest of the day themselves through conditional hotspots, so inventory and route advance together. Case 1 owns its catalogue pair ([[src/state/Private/EvidenceCatalogCase1Es.ts]] / `…En.ts`) — `getEvidenceCatalog(lang, 'case1')` no longer returns the map shared with Case 2. It is the only case that declares `debugProfiles`, and therefore the only one whose Acta shows a tab bar (§ *Character record* below).
+
 Case 3 (`case3`) is assembled in [[src/case/case3/index.ts]]: `detention` → `cabina_radio` → `plaza_kermes` → day-1 trial → `despacho_barriga` → `clinica_chapatin` → `delegacion` → day-2 trial → `bodega_radio` → `detention_d3` → `delegacion_d3` → day-3 trial → four-stage climax + proverb-trap choices + waiting-room epilogue. Day 1 reuses the shared `detention` id; day 3 revisits detention and the precinct under `_d3` ids because `investigation` is one scene per location key and the intros are day-specific. Day 3 visits detention **before** the precinct so the two precinct clues close the day (see the gating invariant below). `Statement.unlockedBy` hides a line until another statement is pressed. `ClimaxStage.requiredUpdateStage` rejects `microfono_oro` until two description updates. `adjournment.next` is the third trial day. After Barriga wakes, day-3 trial, climax, and epilogue lines use the wheelchair family (`barriga_vendado`, `barriga_shock`, `barriga_enojado`) and never `barriga_idle`. Shock and enojado come from [[tools/raw/barriga_injured_poses_raw.png]], not from the idle 2×2. `tests/case/Case3BarrigaTrialPoses.test.ts` and `tests/assets/BarrigaInjuredPoses.test.ts` guard that. Case 3 owns `informe_barriga` rather than reusing Case 1's `informe_medico`, and `getEvidenceCatalog(lang, 'case3')` returns the Case 3 map alone — no Case 1 entries leak in.
 
 > **Gating invariant (all multi-day cases):** `checkTrialReadiness` reads only the inventory, never the visited-location set. The **last** location of each investigation day must therefore hand over at least one `requiredEvidence` item, or `#btn-inv-trial` lights up early and the player can skip scenes the trial script assumes were seen. Case 3 day lists live in [[src/case/case3/Private/progress.ts]]; `tests/case/Case3Scripts.test.ts` walks the `unlockLocation` chain to assert it.
 
-Case 2 is assembled in [[src/case/case2/index.ts]]: ES/EN scene modules, day-1 trial (`trial_day1*`), day-2 trial (`trial_day2*`), climax on `trial.climax` (`climax.ts`). Day-1 investigation: `detention` → `boveda` → `restaurante`. After testimony 2, `adjournment` sends the player to `oficina_postal` (unlock), then `casa_clotilde`. Day-2 testimonies live on `adjournment.trial`; the finale is still `script.trial.climax`. Case 2 uses optional `climax.stages`: three presents (`lata_grasa`/`antenitas_vinil`, then `frasco_valeriana`/`aroma_dulce`, then `molde_cera`), then optional `climax.choices` (two `ChoicePrompt` questions after the wax-mold present). Case 1 has a single present (`presentTarget` only) and no choices. After the Not Guilty line, courtroom confetti plays, then a black fade into Case 2 `climax.epilogue` in `assets/bg_waiting_room.jpg` (no bench/podium). Case 1 has no `adjournment` and no epilogue. Once that victory is queued, the engine is no longer awaiting a climax present, so the Acta must not reopen on the lobby cut.
+Case 2 is assembled in [[src/case/case2/index.ts]]: ES/EN scene modules, day-1 trial (`trial_day1*`), day-2 trial (`trial_day2*`), climax on `trial.climax` (`climax.ts`). Day-1 investigation: `detention` → `boveda` → `restaurante`. After testimony 2, `adjournment` sends the player to `oficina_postal` (unlock), then `casa_clotilde`. Day-2 testimonies live on `adjournment.trial`; the finale is still `script.trial.climax`. Case 2 uses optional `climax.stages`: three presents (`lata_grasa`/`antenitas_vinil`, then `frasco_valeriana`/`aroma_dulce`, then `molde_cera`), then optional `climax.choices` (two `ChoicePrompt` questions after the wax-mold present). Case 1 uses four `stages` and no choices. After the Not Guilty line, courtroom confetti plays, then a black fade into Case 2 `climax.epilogue` in `assets/bg_waiting_room.jpg` (no bench/podium). Case 1 adjourns once (day 1 → day 2) and ends on a waiting-room epilogue. Once that victory is queued, the engine is no longer awaiting a climax present, so the Acta must not reopen on the lobby cut.
 
 ## Schema Definitions
 
@@ -46,12 +52,20 @@ Each entry in a dialogue sequence supports the following optional and required f
 | `cutin` | string | Cut-in graphic key (`'objection_protesto'`, `'objection_un_momento'`, `'objection_toma_eso'`, `'objection_culpable'`, `'objection_inocente'`). |
 | `addEvidence` | string | Evidence ID to automatically add to the player's inventory with a progress notification (same toast + realization SFX as a new location). |
 | `updateEvidence` | string | Advances one Court Record description stage (`updates[]` or legacy `updatedDesc`). Missing items are added first. |
+| `addProfile` | string | Files a person in the Acta de Personajes. Same toast as evidence. Case 1 only. |
+| `updateProfile` | string | Advances one profile description stage. Missing profiles are filed first. Saturates like evidence. |
 
 To show a full-screen illustration mid-dialogue (Case 0's `cartapacio` definition inside the third press of testimony 1), stamp `bg` with a 960×540 plate plus `furniture: 'none'` on **every** line of the aside and speak them as `NARRADOR` (no `pose`, so no sprite covers the plate). The next line without `bg` restores the speaker camera.
 
+### Character record (`profileTarget`)
+
+Case 1 adds a second tab to the Acta. `ProfileItem` ([[src/types/Private/profile.ts]]) mirrors `EvidenceItem`: `desc` plus an ordered `updates[]` counter that saturates. `profileTarget` **replaces** `evidence` / `presentTarget` on `OpeningPresent`, `ContradictionRule`, `ContradictionFollowUp` and `ClimaxStage`, which is why those three fields are optional — code that reads them must guard, or an exhibit presented in a person-shaped slot would be penalised silently instead of routed to [[src/engine/Private/ProfilePresent.ts]]. Case 1 uses exactly two person slots: the day-2 `openingPresent` (`perfil_almanegra`) and climax stage 1 (`perfil_tripaseca`). Day 1 has no `openingPresent` at all. Optional `ClimaxStage.failDialogue` plays before the Acta reopens on a wrong present or a wrong person. See [[docs/flows/character-record-flow.md]].
+
+`Hotspot.condition` hides a hotspot until its predicate passes, and the hotspot layer re-renders after each examine. Case 1 chains its day-2 scenes with it (`hotspot_guantera` needs the truck; `hotspot_barda` needs the glovebox and the bag; `hotspot_espejo` needs the camera, the envelope and the roll log). Hotspots without a predicate are always available, so no other case changes.
+
 Statements may set `unlockedBy` to another statement id; [[src/engine/Private/StatementUnlock.ts]] keeps those lines out of the visible cross-exam list until that id is pressed. Instruction-only speakers (`NARRADOR`, `MODO EXAMINAR`, and `EXAMINE MODE`) do not infer a witness camera, so the last courtroom shot remains visible while the instruction is read.
 
-### 2. Investigation Scene Schema ([[src/case/case1/Private/investigation.ts]], [[src/case/case2/index.ts]])
+### 2. Investigation Scene Schema ([[src/case/case1/Private/museo.ts]], [[src/case/case2/index.ts]])
 
 ```typescript
 investigation: {
@@ -71,7 +85,7 @@ investigation: {
 
 Hotspot `x,y,w,h` are percentages of the 960×540 `#game-screen`, not of the JPEG. `#scene-bg` uses `background-size: cover` and `background-position: center`, so a 1536×1024 (3:2) Case 2 plate is width-fitted and the extra height is cropped equally top and bottom. Place boxes on that cover crop (and keep Spanish/English geometry identical). Keep clickable regions above the dialogue strip when the object is fully visible there; a floor object that only exists under the 145px dialogue box still belongs on that object.
 
-### 3. Testimony & Cross-Examination Schema ([[src/case/case1/Private/trial.ts]])
+### 3. Testimony & Cross-Examination Schema ([[src/case/case1/Private/trial_day1.ts]])
 
 `TrialScript.testimonies` and `TrialDayScript.testimonies` are ordered arrays. The controller advances from index `i` to `i + 1` after a successful contradiction and only enters adjournment/climax when the array is exhausted. Existing scripts expose optional `testimony1`/`testimony2` aliases for compatibility with older consumers; new cases must use the array.
 
@@ -119,7 +133,7 @@ interface ChoicePrompt {
 }
 ```
 
-If `stages` is set, [[src/engine/Private/TrialClimax.ts]] walks them in order: a correct present plays that stage's `successDialogue` and opens the Court Record again, until the last stage. Optional `ClimaxStage.prompt` is the question shown on `#climax-present-prompt` and `#court-record-present-prompt` while that stage awaits a present ([[src/engine/Private/ClimaxPresentPrompt.ts]]); Case 3 fills all four (cuándo / dónde / quién / por qué). Optional `ClimaxStage.pointTarget` opens Present & Point **before** `successDialogue`. Case 1 omits `stages` and treats `presentTarget` + `verdict` as one step. When `choices` is set (Case 2), the final present plays that stage's `successDialogue` (wax mold + judge question), then [[src/engine/Private/TrialChoice.ts]] opens `#choice-prompt-modal` for each `ChoicePrompt`. Wrong answers apply penalties and reopen the same prompt; the last correct choice queues its `successDialogue` (verdict through Not Guilty), then confetti and epilogue. `climax.verdict` mirrors the last choice's `successDialogue`. A final stage **without** `choices` plays `stage.successDialogue` then `queueClimaxCelebration(climax.verdict)` (Case 4 bottle + wax-seal breakdown, then INOCENTE). Case 1 has no `stages` array, so victory is still `verdict` only. [[src/engine/Private/TrialClimax.ts]] fires courtroom confetti and fades through black into `epilogue.bg`. Every epilogue line is stamped with that `bg` and `furniture: 'none'` so trial speaker cameras do not fire. After the last epilogue line the screen fades to black and `#case-complete-overlay` reports the case is finished. Case 1 omits `epilogue` and uses the same complete plate after the verdict confetti. Case 2 opens the epilogue with a narrator time-skip into the waiting room.
+If `stages` is set, [[src/engine/Private/TrialClimax.ts]] walks them in order: a correct present plays that stage's `successDialogue` and opens the Court Record again, until the last stage. Optional `ClimaxStage.prompt` is the question shown on `#climax-present-prompt` and `#court-record-present-prompt` while that stage awaits a present ([[src/engine/Private/ClimaxPresentPrompt.ts]]); Case 3 fills all four (cuándo / dónde / quién / por qué). Optional `ClimaxStage.pointTarget` opens Present & Point **before** `successDialogue`. Case 1 fills all four (quién / con qué se encuentra la pieza / estuvo adentro / de dónde salieron los datos), and its first stage is a `profileTarget`. When `choices` is set (Case 2), the final present plays that stage's `successDialogue` (wax mold + judge question), then [[src/engine/Private/TrialChoice.ts]] opens `#choice-prompt-modal` for each `ChoicePrompt`. Wrong answers apply penalties and reopen the same prompt; the last correct choice queues its `successDialogue` (verdict through Not Guilty), then confetti and epilogue. `climax.verdict` mirrors the last choice's `successDialogue`. A final stage **without** `choices` plays `stage.successDialogue` then `queueClimaxCelebration(climax.verdict)` (Case 4 bottle + wax-seal breakdown, then INOCENTE). A `DialogueLine` with `confetti: true` triggers the particles as soon as that line is rendered; the generic climax completion callback only supplies a fallback for verdicts without such a line. Case 1 takes this path: stage 4 (`ficha_museo`) plays its success dialogue, then the verdict's effect-only confetti line, followed by the remaining celebration dialogue. [[src/engine/Private/TrialClimax.ts]] then fades through black into `epilogue.bg`. Every epilogue line is stamped with that `bg` and `furniture: 'none'` so trial speaker cameras do not fire. After the last epilogue line the screen fades to black and `#case-complete-overlay` reports the case is finished. Case 1's epilogue is the courthouse waiting room. Case 2 opens the epilogue with a narrator time-skip into the waiting room.
 
 ### 5. Adjournment ([[src/types/Private/script.ts]])
 
@@ -127,12 +141,26 @@ Optional `AdjournmentDefinition`: `nextLocation`, `unlockLocations`, next-day `r
 
 ## Case 1 Contradiction Mapping
 
-| Phase | Statement | Contradiction Logic | Required Evidence | Module Source |
-|-------|-----------|---------------------|-------------------|---------------|
-| **Testimony 1** | Witness claims Chapulín knocked out the guard with his lethal Chipote Chillón. | The Chipote is hollow soft vinyl and makes squeaky sounds; medical report proves the guard suffered a blunt fracture from heavy metal coins. | `chipote_chillon` or `informe_medico` | [[src/case/case1/Private/trial.ts#Testimony 1: Assault Weapon]] |
-| **Testimony 2 (Part 1)** | Witness claims the culprit broke into the glass case from the outside. | Glass shards fell outward and Chiquitolina shrinking pills were found by the vent, showing the culprit shrank and broke the glass from inside. | `pastillas_chiquitolina` | [[src/case/case1/Private/trial.ts#Testimony 2: Escape Route]] |
-| **Testimony 2 (Part 2)** | Witness claims security photo shows Chapulín running toward the front exit. | The chest logo shows inverted "HC", proving the photo captured a reflection in the mirror; culprit was running to the rear loading bay. | `foto_crimen` | [[src/case/case1/Private/trial.ts#Testimony 2: Escape Route]] |
-| **Climax** | Prosecution demands physical proof of where the stolen artifact is right now. | Vinyl antennae detect enemy presence pointing straight at Tripaseca's jacket pocket where the Chicharra is concealed. | `antenitas_vinil` or `bolsa_dolares` | [[src/case/case1/Private/climax.ts#Climax Confrontation & Dilemma]] |
+Five testimonies across two days. Each has exactly one resolving contradiction and at most one `followUp`; the two carry **different** dialogue arrays ([[docs/lessons-learned/contradiction-followup-plays-twice.md]]).
+
+| Day / Testimony | Witness claims | Contradiction | Present | Follow-up | Module |
+|---|---|---|---|---|---|
+| **D1-T1** | The defendant took the Chicharra. | Sixty seconds later he carried nothing, and the museum was searched piece by piece. | `parte_detencion` | `chipote_chillon` (the "club" is a squeaky toy that cannot fracture a skull) | [[src/case/case1/Private/trial_day1.ts]] |
+| **D1-T2** | The blow sounded like "a sackful of iron" from the chipote. | The wound needs a heavy, dense, edgeless, *flexible* object struck downward from behind — a sack of coin, and from above. | `informe_medico` | — (closes on turnabout 1 and the recess) | [[src/case/case1/Private/trial_day1_t2.ts]] |
+| **D2-T1** | The watchman's round was secret. | It was written in a notebook hanging from a nail where any ticket-holder walks past. | `bitacora_ronda` | `chicharra_oro` (the relic paralysed the thief for a minute) | [[src/case/case1/Private/trial_day2.ts]] |
+| **D2-T2** | The case was smashed from outside. | All the glass lies outside the footprint, fanned six metres towards the door (**Pointing 1**). | `vitrina_rota` | `pastillas_chiquitolina` (the thief grew *inside* the case) | [[src/case/case1/Private/trial_day2_t2.ts]] |
+| **D2-T3** | The photo shows the defendant fleeing, emblem reading "CH". | The emblem reads "HC": the camera shot the mirror, so direction is inverted too (**Pointing 2**). | `foto_crimen` | `bolsa_dolares` (silver alloy matches the wound) | [[src/case/case1/Private/trial_day2_t3.ts]] |
+
+Climax, four stages ([[src/case/case1/Private/climax_stages.ts]] and [[src/case/case1/Private/climax.ts]]):
+
+| Stage | Question | Answer |
+|---|---|---|
+| 1 | Who stood on the pedestal? | `profileTarget: perfil_tripaseca` |
+| 2 | What instrument locates the Chicharra here in this room? | `antenitas_vinil` |
+| 3 | What proves he was inside the gallery? | `rejilla_ducto` (**Pointing 3**: bent corner → tape measure marks → fabric thread) |
+| 4 | Where did his advance knowledge come from? | `ficha_museo` |
+
+Stage 2 asks for an *instrument*, not a place: phrased as "where is the Chicharra?" it would make `chicharra_oro` — the card for that very piece, sitting in the Acta — the literal answer and punish the player for giving it. The tail of stage 1 success plants the hypothesis (Chapulín offers the antennae, Don Ramón asks the Record to name the instrument) without naming the answer.
 
 ## Case 4 Assembly (`case4`)
 
@@ -154,9 +182,9 @@ The day-2 §10.3 closing beat (Rufino's "I did not poison him", the search order
 
 | Field | Where | Purpose |
 |-------|-------|---------|
-| `pointTarget` | `ContradictionRule`, `ContradictionFollowUp`, `ClimaxStage` | After a correct present, opens `#present-point-overlay` so the player clicks a zone on the 640×360 plate ([[docs/flows/present-point-flow.md]]). Parent `successDialogue` plays only after a correct click. |
+| `pointTarget` | `ContradictionRule`, `ContradictionFollowUp`, `ClimaxStage` | After a correct present, opens `#present-point-overlay` so the player clicks a zone on the 640×360 plate ([[docs/flows/present-point-flow.md]]). Optional target `successDialogue` and `next` chain another deduction on the same plate; the parent success waits for the final correct click. Optional `id` preserves the active chained target across language changes. |
 | `followUp` | `ContradictionRule` | After the first present's success (and point, if any), reopen the Acta for `followUp.evidence`. Wrong item = penalty. Correct plays `followUp.successDialogue` (optional `followUp.pointTarget` first), then testimony 2 / adjourn / climax. |
-| `openingPresent` | `TrialScript` / `TrialDayScript` | After that day's intro, before testimony 1: Acta present. Unused in Case 4 day 3: the baccarat alibi is admitted, not presented. |
+| `openingPresent` | `TrialScript` / `TrialDayScript` | After that day's intro, before testimony 1: Acta present. Unused in Case 1 day 1 (the badge is a Case 0 tutorial beat only; repeating it every trial kills the pacing) and Case 4 day 3 (the baccarat alibi is admitted, not presented). |
 | `detailedView` | `EvidenceItem` in [[src/state/Private/EvidenceCatalogCase4.ts]] | Eight items expose `#btn-evidence-examine` in the Acta ([[docs/flows/evidence-examine-flow.md]]). |
 
 ### Case 4 trial gating (`checkTrialReadiness`)

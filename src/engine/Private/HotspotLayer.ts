@@ -3,13 +3,18 @@
  * Hotspot DOM binding for [[./InvestigationController.ts]].
  */
 
-import type { Hotspot } from '../../types/index.js';
+import type { GameFlags, Hotspot } from '../../types/index.js';
 
 export interface HotspotBindConfig {
   container: HTMLElement;
   tooltipEl: HTMLElement;
   isExamineActive: () => boolean;
   onClick: (hotspot: Hotspot) => void;
+}
+
+/** A hotspot without a predicate is always available. */
+export function visibleHotspots(hotspots: Hotspot[], flags: GameFlags): Hotspot[] {
+  return hotspots.filter(/*isAvailable*/ (h) => !h.condition || h.condition(flags));
 }
 
 export function renderHotspots(hotspots: Hotspot[], config: HotspotBindConfig): void {

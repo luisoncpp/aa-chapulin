@@ -101,6 +101,7 @@ export class VisualEffects {
       if (!isTrialMode && line.pose === 'donramon_slam') return 'donramon_shock';
       return line.pose;
     }
+    if (line.furniture === 'none') return null;
     if (!isTrialMode || !line.speaker) return null;
     if (isDefenseSpeaker(line.speaker)) return 'donramon_idle';
     if (isChapulinSpeaker(line.speaker)) return 'chapulin_idle';

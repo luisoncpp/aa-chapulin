@@ -3,6 +3,7 @@ import { describe, expect, it, beforeEach, vi } from 'vitest';
 import { MidiMusicComposer, SoundEngine } from '../../src/audio/index.js';
 import { CASE_SCRIPT, getCaseScript } from '../../src/case/index.js';
 import type { DomElements } from '../../src/engine/Private/DomElements.js';
+import { resolvePointClick } from '../../src/engine/Private/PresentPoint.js';
 import { SCENE_FADE_MS } from '../../src/engine/Private/SceneFade.js';
 import { TrialController } from '../../src/engine/Private/TrialController.js';
 import { GameStateManager } from '../../src/state/index.js';
@@ -49,10 +50,13 @@ describe('TrialController', () => {
     });
   });
 
-  it('starts trial mode and begins testimony 1', () => {
+  it('starts trial mode and goes straight into testimony 1', () => {
     controller.startTrial();
     vi.advanceTimersByTime(SCENE_FADE_MS * 2);
     expect(state.mode).toBe('TRIAL');
+    // Day 1 has no `openingPresent`: the Acta is never forced open.
+    expect(courtRecordOpenedWithTrial).toBe(false);
+
     expect(dom.trialNavEl.classList.contains('hidden')).toBe(false);
     expect(controller.currentTestimony).toBe(CASE_SCRIPT.trial.testimony1);
     expect(renderedLines.length).toBeGreaterThan(0);
@@ -84,13 +88,16 @@ describe('TrialController', () => {
     controller.nextStatement();
     expect(controller.currentStatementIdx).toBe(2);
 
+    controller.nextStatement();
+    expect(controller.currentStatementIdx).toBe(3);
+
     // Wraps back to 0
     controller.nextStatement();
     expect(controller.currentStatementIdx).toBe(0);
 
-    // Cycles backward to 2
+    // Cycles backward to the last statement
     controller.prevStatement();
-    expect(controller.currentStatementIdx).toBe(2);
+    expect(controller.currentStatementIdx).toBe(3);
   });
 
   it('handles navigation and actions before testimony is started gracefully', () => {
@@ -128,35 +135,57 @@ describe('TrialController', () => {
     expect(queuedDialogues.some((d) => d.some((l) => l.text.includes('Time is money')))).toBe(true);
   });
 
-  it('progresses from testimony 1 to testimony 2 on valid contradiction', () => {
+  it('progresses from testimony 1 to testimony 2 through contradiction', () => {
     controller.startTestimony('testimony1');
-    controller.currentStatementIdx = 1;
+    controller.currentStatementIdx = 3;
 
-    controller.handlePresentEvidence('chipote_chillon');
+    controller.handlePresentEvidence('parte_detencion');
     expect(controller.currentTestimony).toBe(CASE_SCRIPT.trial.testimony2);
     expect(midiComposerInstance.currentTrack).toBe('cross_exam_allegro');
   });
 
-  it('progresses from testimony 2 to climax on valid contradiction', () => {
-    controller.startTestimony('testimony2');
-    controller.currentStatementIdx = 0;
+  it('adjourns to day 2 after the last day-1 testimony', () => {
+    let adjournedTo: string | null = null;
+    const dayController = new TrialController({
+      dom, state, script: CASE_SCRIPT,
+      soundEngine: soundEngineInstance, midiComposer: midiComposerInstance,
+      onQueueDialogue: (dlg, cb) => { queuedDialogues.push(dlg); if (cb) cb(); },
+      onRenderLine: (line) => renderedLines.push(line),
+      onOpenCourtRecord: (isTrialPresent) => { courtRecordOpenedWithTrial = isTrialPresent; },
+      onAdjourn: (location) => { adjournedTo = location; }
+    });
+    dayController.startTestimony('testimony2');
+    // Statement 5 is the only `unlockedBy` statement of the case.
+    dayController.currentStatementIdx = 2;
+    dayController.handlePressStatement();
+    dayController.currentStatementIdx = 4;
 
-    controller.handlePresentEvidence('pastillas_chiquitolina');
-    expect(courtRecordOpenedWithTrial).toBe(true);
-    expect(midiComposerInstance.currentTrack).toBe('suspense');
+    dayController.handlePresentEvidence('informe_medico');
+    expect(adjournedTo).toBe('patio_carga');
+    expect(state.trialDay).toBe(2);
   });
 
-  it('handles climax submission: victory on correct target', () => {
+  it('handles climax submission: names the culprit, then walks the four stages', () => {
+    state.beginNewCase(CASE_SCRIPT);
+    state.populateTrialEvidence();
     controller.startClimax();
     expect(controller.phase).toBe('CLIMAX');
 
+    controller.handlePresentProfile('perfil_tripaseca');
     controller.handlePresentEvidence('antenitas_vinil');
+    controller.handlePresentEvidence('rejilla_ducto');
+    resolvePointClick(68, 50);
+    resolvePointClick(22, 38);
+    resolvePointClick(67, 63);
+    controller.handlePresentEvidence('ficha_museo');
 
     expect(queuedDialogues.some((d) => d.some((l) => l.text.includes('¡INOCENTE!')))).toBe(true);
-    expect(dom.confettiContainerEl.children.length).toBe(80);
+    expect(queuedDialogues.flat().some((line) => line.confetti)).toBe(true);
   });
 
   it('handles climax submission: penalty and retry on incorrect item', () => {
+    state.beginNewCase(CASE_SCRIPT);
+    state.populateTrialEvidence();
     controller.startClimax();
     expect(controller.phase).toBe('CLIMAX');
     expect(state.health).toBe(5);
@@ -167,6 +196,8 @@ describe('TrialController', () => {
   });
 
   it('triggers game over when a wrong climax present exhausts health', () => {
+    state.beginNewCase(CASE_SCRIPT);
+    state.populateTrialEvidence();
     controller.startClimax();
     courtRecordOpenedWithTrial = false;
     queuedDialogues = [];
@@ -251,7 +282,7 @@ describe('TrialController', () => {
     // Intro dialogue is playing -> trial controls MUST be hidden
     expect(dom.trialNavEl.classList.contains('hidden')).toBe(true);
 
-    // Once intro finishes, startTestimony is called and controls appear
+    // Once the intro finishes, cross-examination begins and the controls appear
     expect(pendingCallback).not.toBeNull();
     pendingCallback!();
     expect(dom.trialNavEl.classList.contains('hidden')).toBe(false);

@@ -18,6 +18,10 @@ export {
   getEvidenceCatalog
 } from './Private/EvidenceCatalog.js';
 export {
+  // fallow-ignore-next-line unused-export
+  getProfileCatalog
+} from './Private/ProfileCatalog.js';
+export {
   SaveManager,
   // fallow-ignore-next-line unused-export
   SAVE_STORAGE_KEY,

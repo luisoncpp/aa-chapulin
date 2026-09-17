@@ -5,7 +5,7 @@ import { CASE_SCRIPT, getCaseScript } from '../../src/case/index.js';
 import type { DomElements } from '../../src/engine/Private/DomElements.js';
 import { InvestigationController } from '../../src/engine/Private/InvestigationController.js';
 import { ModalManager } from '../../src/engine/Private/ModalManager.js';
-import { GameStateManager } from '../../src/state/index.js';
+import { GameStateManager, getEvidenceCatalog } from '../../src/state/index.js';
 import { FakeAudioContext } from '../fakes/FakeAudioContext.js';
 import { setupDomHarness } from '../fakes/DomHarness.js';
 
@@ -21,6 +21,9 @@ describe('InvestigationController', () => {
     vi.useFakeTimers();
     dom = setupDomHarness();
     state = new GameStateManager();
+    state.currentLocation = 'museo_sala2';
+    state.unlockedLocations = ['museo_sala2'];
+    state.allEvidence = { ...state.allEvidence, ...getEvidenceCatalog('es', 'case1') };
     const fakeCtx = new FakeAudioContext();
     soundEngineInstance = new SoundEngine();
     soundEngineInstance.init(fakeCtx as unknown as AudioContext);
@@ -41,18 +44,18 @@ describe('InvestigationController', () => {
   });
 
   it('starts investigation at museum with intro dialogue and background', () => {
-    controller.startInvestigation('museum');
+    controller.startInvestigation('museo_sala2');
     expect(state.mode).toBe('INVESTIGATION');
-    expect(state.currentLocation).toBe('museum');
+    expect(state.currentLocation).toBe('museo_sala2');
     expect(dom.locationBannerEl.textContent).toContain('Museo');
-    expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_museum.webp');
+    expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_museo_sala2.webp');
     expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(true);
     expect(midiComposerInstance.currentTrack).toBe('investigation');
     expect(queuedDialogues).toHaveLength(1);
   });
 
   it('does not replay opening dialogue when re-visiting an already visited location', () => {
-    controller.startInvestigation('museum');
+    controller.startInvestigation('museo_sala2');
     expect(queuedDialogues).toHaveLength(1);
 
     state.unlockLocation('detention');
@@ -60,10 +63,10 @@ describe('InvestigationController', () => {
     expect(queuedDialogues).toHaveLength(2);
 
     // Re-visit museum: opening dialogue should NOT be queued again
-    controller.startInvestigation('museum');
+    controller.startInvestigation('museo_sala2');
     expect(queuedDialogues).toHaveLength(2);
-    expect(state.currentLocation).toBe('museum');
-    expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_museum.webp');
+    expect(state.currentLocation).toBe('museo_sala2');
+    expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_museo_sala2.webp');
     expect(dom.charSpriteEl.src).toContain('assets/florinda_idle.webp');
   });
 
@@ -95,7 +98,7 @@ describe('InvestigationController', () => {
     expect(queuedDialogues[0][0].text).toBe('Initial dialogue');
 
     // Move to museum, then return to detention without flag: no new dialogue
-    controller.startInvestigation('museum');
+    controller.startInvestigation('museo_sala2');
     controller.startInvestigation('detention');
     expect(queuedDialogues).toHaveLength(2); // 1 detention initial + 1 museum
 
@@ -111,7 +114,7 @@ describe('InvestigationController', () => {
   });
 
   it('toggles examine mode and restores character pose on exit', () => {
-    controller.startInvestigation('museum');
+    controller.startInvestigation('museo_sala2');
     controller.currentLocationCharPose = 'florinda_idle';
     controller.startExamineMode();
 
@@ -136,7 +139,7 @@ describe('InvestigationController', () => {
   });
 
   it('handles hotspot hovering and clicking to queue dialogue', () => {
-    controller.startInvestigation('museum');
+    controller.startInvestigation('museo_sala2');
     const hotspotArea = dom.hotspotsContainerEl.children[0] as HTMLElement;
     expect(hotspotArea).toBeDefined();
 
@@ -169,7 +172,7 @@ describe('InvestigationController', () => {
   });
 
   it('hides the examine HUD while the pointer is over its frame, without hotspot state', () => {
-    controller.startInvestigation('museum');
+    controller.startInvestigation('museo_sala2');
     controller.startExamineMode();
     vi.spyOn(dom.dialogueBoxEl, 'getBoundingClientRect').mockReturnValue({
       left: 100, right: 900, top: 450, bottom: 498, width: 800, height: 48,
@@ -184,7 +187,7 @@ describe('InvestigationController', () => {
   });
 
   it('stays in examine mode across multiple hotspot examinations until exitExamineMode is called', () => {
-    controller.startInvestigation('museum');
+    controller.startInvestigation('museo_sala2');
     controller.startExamineMode();
     expect(controller.isExamineActive).toBe(true);
     expect(dom.charSpriteEl.classList.contains('hidden')).toBe(true);
@@ -196,7 +199,7 @@ describe('InvestigationController', () => {
 
     // Click first hotspot: dialogue completes and player stays in examine mode
     firstHotspot.click();
-    expect(state.isHotspotExamined('pedestal')).toBe(true);
+    expect(state.isHotspotExamined('hotspot_vitrina')).toBe(true);
     expect(controller.isExamineActive).toBe(true);
     expect(dom.hotspotsContainerEl.classList.contains('visible-hotspots')).toBe(true);
     expect(dom.examineNavEl.classList.contains('hidden')).toBe(false);
@@ -205,7 +208,7 @@ describe('InvestigationController', () => {
 
     // Immediately click second hotspot without clicking examine button again
     secondHotspot.click();
-    expect(state.isHotspotExamined('armor')).toBe(true);
+    expect(state.isHotspotExamined('hotspot_rejilla')).toBe(true);
     expect(controller.isExamineActive).toBe(true);
     expect(dom.hotspotsContainerEl.classList.contains('visible-hotspots')).toBe(true);
     expect(dom.examineNavEl.classList.contains('hidden')).toBe(false);
@@ -235,10 +238,10 @@ describe('InvestigationController', () => {
       }
     });
 
-    manualController.startInvestigation('museum');
+    manualController.startInvestigation('museo_sala2');
     expect(completeCallback).toBeDefined();
     completeCallback!();
-    expect(state.isHotspotExamined('pedestal')).toBe(false);
+    expect(state.isHotspotExamined('hotspot_vitrina')).toBe(false);
 
     // Enter examine and click first hotspot (pedestal)
     manualController.startExamineMode();
@@ -249,7 +252,7 @@ describe('InvestigationController', () => {
     expect(dom.investigationNavEl.classList.contains('hidden')).toBe(true);
     expect(dom.examineNavEl.classList.contains('hidden')).toBe(true);
     expect(manualController.isFirstTimeDialogue).toBe(true);
-    expect(state.isHotspotExamined('pedestal')).toBe(false);
+    expect(state.isHotspotExamined('hotspot_vitrina')).toBe(false);
 
     // Attempting to talk, examine, or move during first-time dialogue is blocked
     manualController.openTalkMenu();
@@ -264,7 +267,7 @@ describe('InvestigationController', () => {
     completeCallback!();
 
     // Now dialogue is completed: hotspot marked examined and examine mode is restored
-    expect(state.isHotspotExamined('pedestal')).toBe(true);
+    expect(state.isHotspotExamined('hotspot_vitrina')).toBe(true);
     expect(manualController.isFirstTimeDialogue).toBe(false);
     expect(manualController.isExamineActive).toBe(true);
     expect(dom.examineNavEl.classList.contains('hidden')).toBe(false);
@@ -289,7 +292,7 @@ describe('InvestigationController', () => {
       }
     });
 
-    manualController.startInvestigation('museum');
+    manualController.startInvestigation('museo_sala2');
     completeCallback!();
     manualController.openTalkMenu();
     (dom.talkListEl.children[0] as HTMLButtonElement).click();
@@ -318,7 +321,7 @@ describe('InvestigationController', () => {
       }
     });
 
-    manualController.startInvestigation('museum');
+    manualController.startInvestigation('museo_sala2');
     expect(completeCallback).toBeDefined();
     completeCallback!();
     manualController.openTalkMenu();
@@ -355,7 +358,7 @@ describe('InvestigationController', () => {
       }
     });
 
-    manualController.startInvestigation('museum');
+    manualController.startInvestigation('museo_sala2');
     expect(completeCallback).toBeDefined();
     completeCallback!();
     manualController.openTalkMenu();
@@ -383,9 +386,9 @@ describe('InvestigationController', () => {
   });
 
   it('opens move menu and navigates to unlocked locations', () => {
-    controller.startInvestigation('museum');
-    expect(state.currentLocation).toBe('museum');
-    expect(state.unlockedLocations).toEqual(['museum']);
+    controller.startInvestigation('museo_sala2');
+    expect(state.currentLocation).toBe('museo_sala2');
+    expect(state.unlockedLocations).toEqual(['museo_sala2']);
 
     // When only museum is unlocked, move modal shows museum as current/disabled
     controller.openMoveMenu();
@@ -401,7 +404,7 @@ describe('InvestigationController', () => {
 
     // Unlock detention
     state.unlockLocation('detention');
-    expect(state.unlockedLocations).toEqual(['museum', 'detention']);
+    expect(state.unlockedLocations).toEqual(['museo_sala2', 'detention']);
 
     // Open move menu again
     controller.openMoveMenu();
@@ -482,7 +485,7 @@ describe('InvestigationController', () => {
       }
     });
 
-    manualController.startInvestigation('museum');
+    manualController.startInvestigation('museo_sala2');
 
     // During intro dialogue: side navigation buttons must be hidden and isFirstTimeDialogue true
     expect(dom.investigationNavEl.classList.contains('hidden')).toBe(true);
@@ -521,7 +524,7 @@ describe('InvestigationController', () => {
     });
 
     // Start with deferred intro
-    manualController.startInvestigation('museum', /*deferIntro=*/ true);
+    manualController.startInvestigation('museo_sala2', /*deferIntro=*/ true);
     expect(dom.investigationNavEl.classList.contains('hidden')).toBe(true);
     expect(manualController.isFirstTimeDialogue).toBe(true);
 

@@ -17,6 +17,7 @@ export function resolveRequiredEvidence(state: GameStateManager, script: CaseScr
 
 export function applyCaseProgressionRules(state: GameStateManager, script: CaseScript): void {
   state.debugEvidence = [...script.debugEvidence];
+  state.debugProfiles = [...(script.debugProfiles ?? [])];
   state.debugUnlockLocations = [...script.debugUnlockLocations];
   state.requiredEvidence = resolveRequiredEvidence(state, script);
 }

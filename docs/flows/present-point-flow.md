@@ -18,18 +18,22 @@ Player presents the matching evidence during cross-examination, a `followUp` pre
 3. `#present-point-image` loads `pointTarget.imageAsset`, else `detailedView.imageAsset`, else `assets/examine_<id>.webp`.
 4. Player clicks `#present-point-stage`. The click is converted to percent of the **640×360 stage** (same box as overlay CSS). `zones[].bounds` are `[minX, minY, maxX, maxY]` percent. A catch-all incorrect zone must not steal a correct hotspot: correct zones are tested first.
 5. **Miss:** hide the overlay, `takePenalty()`, play that zone's `failureDialogue` (or the first incorrect zone's lines if the click hit empty space). Case 0 uses a judge/prosecutor/Chapulín coaching exchange here so the retry explains the interaction without revealing the target. After those lines, **reopen** the overlay. Health 0 queues guilty lines and restarts the trial.
-6. **Hit (`isCorrect`):** hide the overlay, `realization` SFX, then queue the **parent** `successDialogue` (`contradiction` / `followUp` / climax `stage`). Cut-ins live in that dialogue, not in the overlay.
+6. **Hit (`isCorrect`):** hide the overlay and play `realization`. A target with `successDialogue` plays those lines first. If it also has `next`, the next target opens after those lines; otherwise the **parent** `successDialogue` (`contradiction` / `followUp` / climax `stage`) plays. This lets one exhibit support several deductions without duplicating click handling.
 7. Optional `followUp` then reopens the Acta. Climax continues its stage flow (next present, choices, or `successDialogue` then `verdict`).
+
+While a target is open, the HUD Acta button remains available for reference. Opening it suspends the point overlay and renders the Acta in consult-only mode, so no Presentar button appears. Closing the Acta restores the same target and prompt.
 
 ## 4. State Read / Write
 
 | Read | Write |
 |------|-------|
-| `pointTarget` from active rule, follow-up, or climax stage | `health` via `takePenalty` on miss |
+| `pointTarget` and optional `next` chain from the active rule, follow-up, or climax stage | `health` via `takePenalty` on miss |
 | Evidence catalog for image fallback | Trial present pending flags in `TrialPresent` |
 | Click position vs 640×360 stage | `gameOver` / trial restart at 0 health |
 
-## 5. Case 4 Point Targets
+## 5. Case-specific point targets
+
+### Case 4
 
 | Moment | Target | Correct zone |
 |--------|--------|--------------|
@@ -44,6 +48,11 @@ Player presents the matching evidence during cross-examination, a `followUp` pre
 D2-T1 route B reverses the first two rows (present `casquillo_fogueo`, follow up `plano_hotel`). The plan target is calibrated to the vertical `RAMAL 204–304` cutaway at `[35, 14, 53, 85]`; the right-side Suite 304 inset is not clickable for this contradiction.
 
 The D2-T2 freight-log target is calibrated to both highlighted B-17 rows at `[4, 40, 96, 57]`, including the time column and the full row width on `assets/examine_registro.webp`.
+
+### Case 1
+
+D2-T3 chains three targets on `foto_crimen` and `plano_pasillo`: the reversed chest emblem, the painting in the mirror, and the painting location on the corridor sketch.
+Climax Stage 3 chains three targets on `rejilla_ducto` (`assets/examine_rejilla_ducto.webp`): the bent lower mesh corner, the tape measure marks on the inner frame lip, and the cream pinstriped fabric thread caught in the mesh.
 
 ## 6. Side Effects
 

@@ -10,6 +10,8 @@ import { CASE3_EVIDENCE_EN, CASE3_EVIDENCE_ES } from './EvidenceCatalogCase3.js'
 import { CASE4_EVIDENCE_EN, CASE4_EVIDENCE_ES } from './EvidenceCatalogCase4.js';
 import { CASE0_EVIDENCE_EN } from './EvidenceCatalogCase0En.js';
 import { CASE0_EVIDENCE_ES } from './EvidenceCatalogCase0Es.js';
+import { CASE1_EVIDENCE_EN } from './EvidenceCatalogCase1En.js';
+import { CASE1_EVIDENCE_ES } from './EvidenceCatalogCase1Es.js';
 
 // @Section(Spanish Evidence Catalog)
 // fallow-ignore-next-line unused-export
@@ -24,8 +26,8 @@ export const EVIDENCE_CATALOG_ES: EvidenceCatalogMap = {
     id: 'chipote_chillon',
     name: 'Chipote Chillón',
     icon: 'assets/chipote_chillon.webp',
-    desc: 'Arma supuestamente letal. Hecho de vinil suave y goma hueca.',
-    updatedDesc: 'Arma supuestamente letal. Vinil suave y hueco; al apretarlo emite un cómico chillido. Imposible fracturar un cráneo.'
+    desc: 'Arma supuestamente letal. El mazo del acusado.',
+    updatedDesc: 'Arma supuestamente letal. Al apretarlo emite un cómico chillido. Imposible fracturar un cráneo.'
   },
   pastillas_chiquitolina: {
     id: 'pastillas_chiquitolina',
@@ -37,14 +39,14 @@ export const EVIDENCE_CATALOG_ES: EvidenceCatalogMap = {
     id: 'antenitas_vinil',
     name: 'Antenitas de Vinil',
     icon: 'assets/antenitas_vinil.webp',
-    desc: 'Detectan la presencia del enemigo.',
-    updatedDesc: 'Detectan la presencia del enemigo. Registraron actividad sospechosa a las 8:45 PM.'
+    desc: 'Pueden vibrar cerca de un enemigo o de una pista importante. No identifican qué las activó.',
+    updatedDesc: 'Pueden vibrar cerca de un enemigo o de una pista importante. Registraron actividad sospechosa a las 8:45 PM, sin identificar la causa.'
   },
   informe_medico: {
     id: 'informe_medico',
     name: 'Informe Médico de Alma Negra',
     icon: 'assets/informe_medico.webp',
-    desc: 'El guardia fue noqueado por un saco pesado con monedas metálicas, no por goma/vinil.'
+    desc: 'El guardia fue noqueado por un saco pesado con monedas metálicas, no por el chipote.'
   },
   foto_crimen: {
     id: 'foto_crimen',
@@ -80,8 +82,8 @@ export const EVIDENCE_CATALOG_EN: EvidenceCatalogMap = {
     id: 'chipote_chillon',
     name: 'Chipote Chillón (Squeaky Mallet)',
     icon: 'assets/chipote_chillon.webp',
-    desc: 'Supposedly lethal assault weapon. Made of soft vinyl and hollow rubber.',
-    updatedDesc: 'Supposedly lethal assault weapon. Soft hollow vinyl; squeezing it emits a silly squeak. Impossible to fracture a skull.'
+    desc: 'Supposedly lethal assault weapon.',
+    updatedDesc: 'Supposedly lethal assault weapon. Squeezing it emits a silly squeak. Impossible to fracture a skull.'
   },
   pastillas_chiquitolina: {
     id: 'pastillas_chiquitolina',
@@ -93,14 +95,14 @@ export const EVIDENCE_CATALOG_EN: EvidenceCatalogMap = {
     id: 'antenitas_vinil',
     name: 'Antenitas de Vinil (Vinyl Antennae)',
     icon: 'assets/antenitas_vinil.webp',
-    desc: 'Detect enemy presence.',
-    updatedDesc: 'Detect enemy presence. Recorded suspicious activity at 8:45 PM.'
+    desc: 'May vibrate near an enemy or an important clue. They do not identify what triggered them.',
+    updatedDesc: 'May vibrate near an enemy or an important clue. They recorded suspicious activity at 8:45 PM without identifying the cause.'
   },
   informe_medico: {
     id: 'informe_medico',
     name: "Alma Negra's Medical Report",
     icon: 'assets/informe_medico.webp',
-    desc: 'The guard was knocked out by a heavy sack with metal coins, not rubber/vinyl.'
+    desc: 'The guard was knocked out by a heavy sack with metal coins, not by the chipote.'
   },
   foto_crimen: {
     id: 'foto_crimen',
@@ -127,15 +129,15 @@ export const EVIDENCE_CATALOG_EN: EvidenceCatalogMap = {
 // fallow-ignore-next-line unused-export
 export const EVIDENCE_CATALOG: EvidenceCatalogMap = EVIDENCE_CATALOG_ES;
 
+const ISOLATED_CATALOGS: Partial<Record<CaseId, Record<Language, EvidenceCatalogMap>>> = {
+  case0: { es: CASE0_EVIDENCE_ES as EvidenceCatalogMap, en: CASE0_EVIDENCE_EN as EvidenceCatalogMap },
+  case1: { es: CASE1_EVIDENCE_ES, en: CASE1_EVIDENCE_EN },
+  case3: { es: CASE3_EVIDENCE_ES as EvidenceCatalogMap, en: CASE3_EVIDENCE_EN as EvidenceCatalogMap },
+  case4: { es: CASE4_EVIDENCE_ES as EvidenceCatalogMap, en: CASE4_EVIDENCE_EN as EvidenceCatalogMap }
+};
+
 export function getEvidenceCatalog(lang: Language = 'es', caseId?: CaseId): EvidenceCatalogMap {
-  if (caseId === 'case0') {
-    return (lang === 'en' ? CASE0_EVIDENCE_EN : CASE0_EVIDENCE_ES) as EvidenceCatalogMap;
-  }
-  if (caseId === 'case3') {
-    return (lang === 'en' ? CASE3_EVIDENCE_EN : CASE3_EVIDENCE_ES) as EvidenceCatalogMap;
-  }
-  if (caseId === 'case4') {
-    return (lang === 'en' ? CASE4_EVIDENCE_EN : CASE4_EVIDENCE_ES) as EvidenceCatalogMap;
-  }
+  const isolated = caseId ? ISOLATED_CATALOGS[caseId] : undefined;
+  if (isolated) return isolated[lang];
   return lang === 'en' ? EVIDENCE_CATALOG_EN : EVIDENCE_CATALOG_ES;
 }

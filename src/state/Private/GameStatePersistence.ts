@@ -20,6 +20,8 @@ export function exportGameState(state: GameStateManager, trialSnapshot?: TrialSt
     inventory: [...state.inventory],
     flags: { ...state.flags },
     evidenceUpdateStage: { ...state.evidenceUpdateStage },
+    profiles: [...state.profiles.owned],
+    profileUpdateStage: { ...state.profiles.updateStage },
     trial: trialSnapshot,
     caseId: state.caseId,
     trialDay: state.trialDay
@@ -38,4 +40,6 @@ export function restoreGameState(state: GameStateManager, data: SaveData): void 
   state.flags = { ...data.flags };
   state.evidenceUpdateStage = data.evidenceUpdateStage ? { ...data.evidenceUpdateStage } : {};
   state.setLanguage(data.language);
+  state.profiles.owned = data.profiles ? [...data.profiles] : [];
+  state.profiles.updateStage = data.profileUpdateStage ? { ...data.profileUpdateStage } : {};
 }

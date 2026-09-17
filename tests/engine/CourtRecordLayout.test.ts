@@ -111,4 +111,8 @@ describe('conversation menu layout', () => {
     expect(cssProp(moveList, 'overflow-x')).toBe('clip');
     expect(cssProp(moveList, 'overflow-y')).toBe('auto');
   });
+
+  it('keeps the lifted first location button inside the scroll container', () => {
+    expect(cssProp(moveList, 'padding-top')).toBe('2px');
+  });
 });

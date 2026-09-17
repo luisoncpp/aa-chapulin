@@ -113,7 +113,7 @@ describe('GameStateManager', () => {
   });
 
   it('updates evidence descriptions with stages and persists the flag', () => {
-    expect(state.getEvidenceDesc('chipote_chillon')).toContain('vinil suave y goma');
+    expect(state.getEvidenceDesc('chipote_chillon')).toContain('El mazo del acusado');
     expect(state.updateEvidence('chipote_chillon')).toBe(true);
     expect(state.hasEvidence('chipote_chillon')).toBe(true);
     expect(state.isEvidenceUpdated('chipote_chillon')).toBe(true);

@@ -6,15 +6,19 @@
 
 import { i18n } from '../../i18n/index.js';
 import type { GameStateManager } from '../../state/index.js';
-import type { EvidenceId, LocationId, TalkOption, ChoicePrompt } from '../../types/index.js';
+import type { EvidenceId, LocationId, ProfileId, TalkOption, ChoicePrompt } from '../../types/index.js';
 import type { DomElements } from './DomElements.js';
-import { syncExamineButton } from './EvidenceExamine.js';
+import { renderRecordTab } from './CourtRecordTabs.js';
+import { applyClimaxPresentPrompt } from './ClimaxPresentPrompt.js';
 
 export interface CourtRecordConfig {
   dom: DomElements;
   state: GameStateManager;
   isTrialPresent: boolean;
+  /** The court demanded a person: the Acta opens on PERSONAS (spec §6.1). */
+  isProfilePresent?: boolean;
   onSelect: (id: EvidenceId) => void;
+  onSelectProfile?: (id: ProfileId) => void;
 }
 
 export interface MoveDestination {
@@ -41,50 +45,25 @@ export class ModalManager {
 
   // @Section(Court Record Evidence Modal)
   public static openCourtRecord(config: CourtRecordConfig): void {
-    const { dom, state, isTrialPresent, onSelect } = config;
-    dom.courtRecordModalEl.classList.remove('hidden');
-    dom.evidenceListEl.innerHTML = '';
-    dom.presentBtnEl.textContent = i18n.t.modalPresentBtn;
-    dom.presentBtnEl.style.display = isTrialPresent ? 'block' : 'none';
-
-    state.inventory.forEach((id, idx) => {
-      const item = state.allEvidence[id];
-      if (!item) return;
-
-      const card = document.createElement('div');
-      card.className = 'evidence-card' + (idx === 0 ? ' selected' : '');
-      card.innerHTML = `<img src="${item.icon}" alt="${item.name}"><p>${item.name}</p>`;
-
-      card.addEventListener('click', () => {
-        document.querySelectorAll('.evidence-card').forEach((c) => c.classList.remove('selected'));
-        card.classList.add('selected');
-        ModalManager.selectEvidence(dom, state, id);
-        onSelect(id);
-      });
-      dom.evidenceListEl.appendChild(card);
-    });
-
-    if (state.inventory.length > 0) {
-      const firstId = state.inventory[0];
-      ModalManager.selectEvidence(dom, state, firstId);
-      onSelect(firstId);
-      return;
-    }
-    syncExamineButton(dom, null);
-  }
-
-  public static selectEvidence(dom: DomElements, state: GameStateManager, id: EvidenceId): void {
-    const item = state.allEvidence[id];
-    if (!item) return;
-    dom.evidenceTitleEl.textContent = item.name;
-    dom.evidenceDescEl.textContent = state.getEvidenceDesc(id);
-    dom.evidenceIconPreviewEl.src = item.icon;
-    dom.evidenceIconPreviewEl.classList.remove('hidden');
-    syncExamineButton(dom, item);
+    const isProfilePresent = Boolean(config.isProfilePresent);
+    config.dom.courtRecordModalEl.classList.remove('hidden');
+    renderRecordTab(
+      {
+        dom: config.dom,
+        state: config.state,
+        isTrialPresent: config.isTrialPresent,
+        isProfilePresent,
+        onSelect: config.onSelect,
+        onSelectProfile: config.onSelectProfile ?? (() => undefined)
+      },
+      isProfilePresent ? 'profiles' : 'evidence'
+    );
   }
 
   public static closeCourtRecord(dom: DomElements): void {
     dom.courtRecordModalEl.classList.add('hidden');
+    dom.presentProfileBtnEl.style.display = 'none';
+    applyClimaxPresentPrompt(dom, null);
   }
 
   // @Section(Talk Options Dialog)

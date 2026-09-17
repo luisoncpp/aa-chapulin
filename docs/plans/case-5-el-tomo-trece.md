@@ -72,7 +72,7 @@ Su único error es el que nunca pudo evitar: la máquina de escribir con la que 
 
 **La prueba definitiva** no es ninguna de las tres: es la **máquina de escribir inventariada en la masa concursal**, con el mismo carácter defectuoso que la tarjeta del Caso 0, la ficha del museo del Caso 1 y la nota que acompañó el dinero de la renta. El hombre que nunca infringió la ley no se la llevó porque era un bien ajeno.
 
-**Las Antenitas de Vinil fallan.** No vibran frente a la caja, porque lo que hay dentro no es robado: es legalmente suyo. Y es Don Ramón, desde el banquillo, el que dice que esa quietud **es** la prueba. El acusado resuelve su propio caso y el gadget de la serie pierde por primera y última vez.
+**Las Antenitas de Vinil no responden.** Su quietud no prueba que el cedulario sea lícito ni que Berrondo sea inocente: pueden vibrar cerca de enemigos o pistas importantes, pero no identifican la causa ni reaccionan a voluntad. Don Ramón resuelve el punto mediante la adjudicación y el inventario. El aparato no sustituye a los documentos.
 
 Ruptura de Berrondo: el hombre que define palabras que nadie preguntó se queda sin la palabra. Espejo del Caso 0, donde Casimiro deja de mirar los relojes. Veredicto: **INOCENTE**.
 

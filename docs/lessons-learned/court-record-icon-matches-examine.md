@@ -4,6 +4,8 @@
 
 Case 4 `foto_crimen` copy lists body, pierced pillow, torn suit, glass, bottle, and key. `examine_foto.webp` already had that still (same layout family as `bg_hotel_suite`). The rewrite icon did not.
 
+The same rule applies to Case 1 `rejilla_ducto`: its icon must be a deterministic crop of `examine_rejilla_ducto`, not a separately framed grate raw. Separate raw compositions can look plausible while changing the mesh, framing, or bent corner that the detailed view establishes.
+
 **Before shipping a polaroid rewrite:**
 
 1. Use the finished `examine_*.webp` / raw JPEG as the identity lock.

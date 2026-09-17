@@ -11,6 +11,7 @@ import { VisualEffects } from './VisualEffects.js';
 let activeView: EvidenceDetailedView | null = null;
 let activeEvidenceId: EvidenceId | null = null;
 let onEvidenceExamined: (evidenceId: EvidenceId) => void = () => undefined;
+let wasCharacterVisible = false;
 
 export function bindEvidenceExamine(
   dom: DomElements,
@@ -38,9 +39,12 @@ export function syncExamineButton(dom: DomElements, item: EvidenceItem | null): 
 
 function closeExamineModal(dom: DomElements): void {
   dom.evidenceExamineModalEl?.classList.add('hidden');
+  dom.charSpriteEl.classList.toggle('hidden', !wasCharacterVisible);
 }
 
 function openExamineModal(dom: DomElements, view: EvidenceDetailedView): void {
+  wasCharacterVisible = !dom.charSpriteEl.classList.contains('hidden');
+  VisualEffects.hideCharacter(dom.charSpriteEl);
   if (activeEvidenceId) onEvidenceExamined(activeEvidenceId);
   if (dom.evidenceExamineTitleEl) {
     dom.evidenceExamineTitleEl.textContent = i18n.t.btnEvidenceExamine;

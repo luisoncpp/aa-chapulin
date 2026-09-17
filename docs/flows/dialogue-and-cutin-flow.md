@@ -50,7 +50,7 @@ sequenceDiagram
 4. **Cut-in Animation**: If `line.cutin` is present, `VisualEffects.showCutin(cutin)` applies `.cutin-animate` keyframes to `#cutin-overlay`, shakes the screen, and flashes white.
 5. **Sprite Management**:
    - If `line.pose` is set: the engine decodes the pose (and the line's background/furniture) off-DOM, then assigns `#character-sprite` `src` and the stage frame together. Until that decode finishes, the previous complete shot stays on screen so a slow CDN cannot show the last character at the next character's scale.
-   - If `line.speaker` is `'DEFENSA'` or `'NARRADOR'` with no pose: hides `#character-sprite` immediately.
+   - If `line.speaker` is `'DEFENSA'` or `'NARRADOR'` with no pose, or if the line explicitly sets `furniture: 'none'` without a pose: hides `#character-sprite` immediately. The latter keeps full-screen evidence plates clear while the defense reads them.
 6. **Stage Composition**: `presentDialogueVisuals` in [[src/engine/Private/StageCommit.ts]] waits for those bitmaps, then `VisualEffects.updateStagingForLine(dom, line, isTrialMode)` runs in the same turn as the pose swap:
    - Resolves courtroom background (`bg_defense.webp`, `bg_courtroom.webp`, `bg_judge.webp`, `bg_witness.webp`) and updates `#scene-bg` only after the plate has decoded, so the stage never drops to the black `#game-screen` fill between cameras.
    - Resolves furniture from `line.furniture`, else infers it from trial mode + resolved background + pose.

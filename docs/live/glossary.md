@@ -33,7 +33,7 @@ Domain terminology and project-specific concepts for **El Chapulín Colorado: Ac
 
 | **Chipote Chillón** | Chapulín's squeaky hammer, erroneously accused of being the heavy blunt assault weapon. | [[src/state/Private/EvidenceCatalog.ts]] |
 | **Pastillas de Chiquitolina** | Shrinking pills used by the true culprit to enter the sealed museum display through an air vent. | [[src/state/Private/EvidenceCatalog.ts]] |
-| **Antenitas de Vinil** | Vinyl antennae that vibrate when detecting the presence of enemies, used to pinpoint the hidden loot. | [[src/state/Private/EvidenceCatalog.ts]] |
+| **Antenitas de Vinil** | Vinyl antennae that may vibrate near an enemy or an important clue. They have led the Chapulín to stolen objects even when no enemy was nearby. They do not identify what triggered them, prove ownership, or make silence exculpatory. | [[src/state/Private/EvidenceCatalog.ts]] |
 | **Chicharra Paralizadora de Oro** | The stolen museum relic that immobilizes anyone nearby when sounded. | [[src/state/Private/EvidenceCatalog.ts]] |
 | **El Chómpiras** | Case 2 defendant: hapless thief framed for stealing the Chanfle de Oro from Jirafales's vault. | [[src/case/case2/Private/detention.ts]] |
 | **El Peterete** | Case 2 star witness and true culprit: Chómpiras's partner posing as a lawyer. | [[src/case/case2/Private/trial_day1_t2.ts]] |

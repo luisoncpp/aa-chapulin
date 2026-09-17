@@ -45,7 +45,7 @@ const CASE1_D2_T3_SUCCESS: DialogueLine[] = [
   { speaker: 'JUEZ', text: 'Entonces, ¿dónde estaba?', pose: 'judge_shock' },
   { speaker: 'DEFENSA', text: 'Aquí, delante del espejo. Corría hacia él, alejándose del acceso de carga.', pose: 'donramon_point' },
   { speaker: 'DEFENSA', text: 'La foto no demuestra una salida. Demuestra que a las nueve cruzó la franja iluminada del pasillo interior.', pose: 'donramon_slam', sfx: 'desk_slam', cutin: 'objection_toma_eso' },
-  { speaker: 'NARRADOR', text: 'Escándalo en la galería. El Juez tarda cuatro martillazos en callarla.', sfx: 'gavel' },
+  { speaker: 'NARRADOR', text: 'Escándalo en la galería', sfx: 'gavel' },
   { speaker: 'JUEZ', text: '¡ORDEN! ¡ORDEN!', sfx: 'gavel', pose: 'judge_gavel' },
   { speaker: 'DEFENSA', text: 'Y en la sala dos hay algo que dice lo mismo sin espejos de por medio, señor juez.', pose: 'donramon_point' },
   { speaker: 'DEFENSA', text: 'La jaula del perico histórico quedó volcada hacia dentro desde el acceso del pasillo a la sala dos.', pose: 'donramon_idle' },
@@ -101,7 +101,7 @@ export const CASE1_TESTIMONY_5: Testimony = {
       id: 'c1_d2t3_1',
       speaker: 'TRIPASECA',
       pose: 'tripaseca_smug',
-      text: 'Cuando me bajé del tambo y salí corriendo, vi la foto que tomó la cámara del pasillo.',
+      text: 'Vi la foto que tomó la cámara del pasillo.',
       pressText: [
         { speaker: 'DEFENSA', text: '¡UN MOMENTO! ¿Le vio usted la cara?', sfx: 'whoosh', cutin: 'objection_un_momento', pose: 'donramon_point' },
         { speaker: 'TRIPASECA', text: 'La cara no. Vi lo colorado en la foto.', pose: 'tripaseca_smug' },

@@ -39,7 +39,7 @@ export const CASE1_EVIDENCE_ES: EvidenceCatalogMap = {
     id: 'antenitas_vinil',
     name: 'Antenitas de Vinil',
     icon: 'assets/antenitas_vinil.webp',
-    desc: 'Detectan la presencia del enemigo. Vibraron a las 20:45 del 21 de agosto.'
+    desc: 'Pueden vibrar cerca de un enemigo o de una pista importante, sin identificar qué las activó. Vibraron a las 20:45 del 21 de agosto.'
   },
   chicharra_oro: {
     id: 'chicharra_oro',
@@ -51,7 +51,7 @@ export const CASE1_EVIDENCE_ES: EvidenceCatalogMap = {
     id: 'vitrina_rota',
     name: 'Vitrina Reventada',
     icon: 'assets/vitrina_rota.webp',
-    desc: 'Vitrina de la sala 2, reventada. Pedestal de madera a la altura de la cintura. Junto a ella, la jaula del perico histórico volcada.',
+    desc: 'Vitrina de la sala 2, reventada. No quedaron vidrios dentro de la vitrina. Pedestal de madera a la altura de la cintura. Junto a ella, la jaula del perico histórico volcada.',
     detailedView: {
       imageAsset: 'assets/examine_vitrina_rota.webp',
       caption: 'Vitrina de la sala 2 fotografiada a las 23:10 del 21 de agosto, antes de recoger nada.'
@@ -61,7 +61,7 @@ export const CASE1_EVIDENCE_ES: EvidenceCatalogMap = {
     id: 'rejilla_ducto',
     name: 'Rejilla del Ducto',
     icon: 'assets/rejilla_ducto.webp',
-    desc: 'Rejilla del ducto de la sala 2, 18 × 24 cm, cuatro tornillos con la pintura sin romper. Esquina inferior doblada; dos marcas paralelas en el polvo del labio interior. Un hilo de casimir crema con raya, recogido de la malla.',
+    desc: 'Rejilla del ducto de la sala 2, 18 × 24 cm, cuatro tornillos con la pintura sin romper. Esquina inferior con el alambre cortado, doblado hacia arriba y vuelto a acomodar; dos marcas paralelas en el polvo del lateral interior. Un hilo de casimir crema con raya, recogido de la malla.',
     detailedView: {
       imageAsset: 'assets/examine_rejilla_ducto.webp',
       caption: 'Rejilla de la sala 2 con cinta métrica del perito. El hilo recogido de la malla quedó embalado en sobre de papel encerado.'

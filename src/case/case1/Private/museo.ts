@@ -50,7 +50,7 @@ export const CASE1_MUSEO: InvestigationScene = {
         { speaker: 'DEFENSA', text: 'Dieciocho por veinticuatro. Por ahí no pasa ni un gato.', pose: 'donramon_idle' },
         { speaker: 'DEFENSA', text: 'Cuatro tornillos, y la pintura de los cuatro está entera. Nadie los ha aflojado desde que pintaron el muro.', pose: 'donramon_shock' },
         { speaker: 'FLORINDA', text: 'Esa rejilla da al patio de carga. Lleva ahí desde que el museo era fábrica de botones.', pose: 'florinda_idle' },
-        { speaker: 'DEFENSA', text: 'La esquina inferior de la malla está doblada hacia arriba y vuelta a acomodar.', pose: 'donramon_shock' },
+        { speaker: 'DEFENSA', text: 'La esquina inferior de la malla tiene el alambre cortado, doblado hacia arriba y vuelto a acomodar.', pose: 'donramon_shock' },
         { speaker: 'DEFENSA', text: 'Y en el labio interior faltan dos rayitas paralelas de polvo. Hay algo atorado entre los rombos.', pose: 'donramon_idle' },
         { speaker: 'NARRADOR', text: 'Don Ramón extrae con una pinza un hilo de casimir crema con raya y lo guarda en un sobre de papel encerado.', sfx: 'whoosh' },
         { speaker: 'DEFENSA', text: '(Sin marcas de palanca y sin tornillos tocados. No sé todavía qué significan esas rayas ni el hilo, pero vinieron del lado de adentro.)', pose: 'donramon_idle', addEvidence: 'rejilla_ducto' }

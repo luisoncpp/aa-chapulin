@@ -66,6 +66,23 @@ describe('EvidenceExamine', () => {
     expect(dom.evidenceExamineModalEl?.classList.contains('hidden')).toBe(true);
   });
 
+  it('hides the courtroom sprite while the evidence detail is open', () => {
+    dom.charSpriteEl.classList.remove('hidden');
+
+    ModalManager.openCourtRecord({
+      dom,
+      state,
+      isTrialPresent: /*isTrialPresent=*/ false,
+      onSelect: () => {}
+    });
+    (dom.evidenceListEl.children[1] as HTMLElement).click();
+    dom.btnEvidenceExamine!.click();
+
+    expect(dom.charSpriteEl.classList.contains('hidden')).toBe(true);
+    dom.btnCloseExamine!.click();
+    expect(dom.charSpriteEl.classList.contains('hidden')).toBe(false);
+  });
+
   it('records the selected evidence as examined when its detail view opens', () => {
     ModalManager.openCourtRecord({
       dom,

@@ -44,7 +44,7 @@ const CASE1_D2_T3_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'JUEZ', text: 'Then where was he?', pose: 'judge_shock' },
   { speaker: 'DEFENSA', text: 'Here, in front of the mirror. Running toward it, away from the loading access.', pose: 'donramon_point' },
   { speaker: 'DEFENSA', text: 'The photo does not prove an exit. It proves that at nine he crossed the lit strip of the interior corridor.', pose: 'donramon_slam', sfx: 'desk_slam', cutin: 'objection_toma_eso' },
-  { speaker: 'NARRADOR', text: 'Uproar in the gallery. The Judge needs four gavel strikes to quiet it.', sfx: 'gavel' },
+  { speaker: 'NARRADOR', text: 'Uproar in the gallery.', sfx: 'gavel' },
   { speaker: 'JUEZ', text: 'ORDER! ORDER!', sfx: 'gavel', pose: 'judge_gavel' },
   { speaker: 'DEFENSA', text: 'And in gallery two there is something that says the same thing with no mirrors involved, Your Honor.', pose: 'donramon_point' },
   { speaker: 'DEFENSA', text: "The historic parrot's cage was knocked inward from the corridor entrance into gallery two.", pose: 'donramon_idle' },
@@ -100,7 +100,7 @@ export const CASE1_TESTIMONY_5_EN: Testimony = {
       id: 'c1_d2t3_1',
       speaker: 'TRIPASECA',
       pose: 'tripaseca_smug',
-      text: 'When I got down off the drum and ran out, I saw the photo taken by the corridor camera.',
+      text: 'I saw the photo taken by the corridor camera.',
       pressText: [
         { speaker: 'DEFENSA', text: 'HOLD IT! Did you see his face?', sfx: 'whoosh', cutin: 'objection_un_momento', pose: 'donramon_point' },
         { speaker: 'TRIPASECA', text: 'Not his face. I saw the red in the photo.', pose: 'tripaseca_smug' },

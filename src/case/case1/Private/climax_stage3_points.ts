@@ -54,16 +54,16 @@ const REJILLA_CINTA_POINT_TARGET: PointTargetContradiction = {
     { id: 'rejilla_resto', bounds: [0, 0, 100, 100], isCorrect: false, failureDialogue: FAIL_CINTA }
   ],
   successDialogue: [
-    { speaker: 'DEFENSA', text: '¡Miren el labio interior del marco! El que da hacia la sala.', pose: 'donramon_point', sfx: 'desk_slam', bgm: 'pursuit' },
+    { speaker: 'DEFENSA', text: '¡Miren el lateral interior del marco! El que da hacia la sala.', pose: 'donramon_point', sfx: 'desk_slam', bgm: 'pursuit' },
     { speaker: 'JUEZ', text: '¡Cáspita! Todo el marco tiene una capa de polvo de años... ¡excepto dos rayitas perfectamente limpias y paralelas!', pose: 'judge_shock' },
     { speaker: 'DEFENSA', text: 'Separadas exactamente por un centímetro y medio, señor juez. El ancho exacto de una cinta métrica estándar.', pose: 'donramon_slam', sfx: 'desk_slam' },
-    { speaker: 'DEFENSA', text: 'Alguien apoyó la cinta en ese labio y midió el hueco de dieciocho por veinticuatro centímetros. Y lo hizo de pie, de día, desde la sala y sin ninguna prisa.', pose: 'donramon_idle' },
+    { speaker: 'DEFENSA', text: 'Alguien apoyó la cinta en ese lateral y midió el hueco de dieciocho por veinticuatro centímetros. Lo hizo de día, desde la sala y sin ninguna prisa.', pose: 'donramon_idle' },
     { speaker: 'NARRADOR', text: 'Murmullo de asombro en la galería.', sfx: 'realization' },
     { speaker: 'TRIPASECA', text: '¡Momento, momento! ¡Pamplinas!', pose: 'tripaseca_sweat' },
     { speaker: 'TRIPASECA', text: '¿Unas rayitas de cinta métrica? ¡Eso lo pudo haber hecho cualquiera! Un albañil, el conserje, el señor que vino a cambiar los zoclos... ¡o un curioso que pasaba por ahí!', pose: 'tripaseca_smug' },
     { speaker: 'SUPER SAM', text: '¡Excellent objection! ¡Tener marcas en una pared no vincula a mi testigo con este delito! ¡Falta la conexión personal!', pose: 'supersam_point' },
     { speaker: 'JUEZ', text: 'La corte debe darle la razón al señor fiscal y al testigo. Demostrar que alguien midió la rejilla no prueba que haya sido el señor Tripaseca.', pose: 'judge_thinking' },
-    { speaker: 'DEFENSA', text: 'Alguien que mide de pie no deja su tarjeta de visita en el marco, señor juez. Pero el que se arrastró encogido por ese hueco... cometió un descuido.', pose: 'donramon_idle' }
+    { speaker: 'DEFENSA', text: 'Alguien que mide con calma no deja su tarjeta de visita en el marco, señor juez. Pero el que se arrastró encogido por ese hueco... cometió un descuido.', pose: 'donramon_idle' }
   ],
   next: REJILLA_HILO_POINT_TARGET
 };
@@ -81,7 +81,7 @@ export const CASE1_REJILLA_POINT_TARGET: PointTargetContradiction = {
   ],
   successDialogue: [
     { speaker: 'DEFENSA', text: '¡AQUÍ, señor juez! ¡En la esquina inferior de la malla!', pose: 'donramon_slam', sfx: 'desk_slam', cutin: 'objection_toma_eso', bgm: 'objection' },
-    { speaker: 'DEFENSA', text: 'El alambre no está roto por viejo. Está cortado y doblado hacia arriba, y luego vuelto a acomodar de regreso.', pose: 'donramon_point' },
+    { speaker: 'DEFENSA', text: 'El alambre no está roto por viejo. Está cortado, doblado hacia arriba y vuelto a acomodar.', pose: 'donramon_point' },
     { speaker: 'DEFENSA', text: 'Por ese hueco no pasa una persona normal, ni un gato, ni un perro. Pero alguien que mide diez centímetros entra y sale como por su casa.', pose: 'donramon_idle' },
     { speaker: 'CHAPULIN', text: '¡Chanfle! ¡Es una gatera para ratones!', pose: 'chapulin_point' },
     { speaker: 'JUEZ', text: 'La corte concede que por ahí cabría un hombre encogido... pero un momento, licenciado.', pose: 'judge_thinking' },

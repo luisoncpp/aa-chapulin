@@ -39,7 +39,7 @@ export const CASE1_EVIDENCE_EN: EvidenceCatalogMap = {
     id: 'antenitas_vinil',
     name: 'Antenitas de Vinil (Vinyl Antennae)',
     icon: 'assets/antenitas_vinil.webp',
-    desc: 'They detect the presence of an enemy. They vibrated at 8:45 PM on August 21st.'
+    desc: 'They may vibrate near an enemy or an important clue without identifying what triggered them. They vibrated at 8:45 PM on August 21st.'
   },
   chicharra_oro: {
     id: 'chicharra_oro',
@@ -51,7 +51,7 @@ export const CASE1_EVIDENCE_EN: EvidenceCatalogMap = {
     id: 'vitrina_rota',
     name: 'Shattered Display Case',
     icon: 'assets/vitrina_rota.webp',
-    desc: 'The gallery 2 display case, blown open. Wooden pedestal at waist height. Beside it, the historic parrot cage lies knocked over.',
+    desc: 'The gallery 2 display case, blown open. No glass remained inside the display case. Wooden pedestal at waist height. Beside it, the historic parrot cage lies knocked over.',
     detailedView: {
       imageAsset: 'assets/examine_vitrina_rota.webp',
       caption: 'Gallery 2 display case photographed at 11:10 PM on August 21st, before anything was collected.'

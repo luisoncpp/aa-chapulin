@@ -1,5 +1,7 @@
 // @Architecture(descriptionShort="Pins Case 1 Present-and-Point boxes to evidence plates", type="test", icon="layers")
 import { describe, expect, it } from 'vitest';
+import { CASE1_MUSEO } from '../../src/case/case1/Private/museo.js';
+import { CASE1_PATIO } from '../../src/case/case1/Private/patio.js';
 import { CASE1_REJILLA_POINT_TARGET } from '../../src/case/case1/Private/climax_stage3_points.js';
 import { CASE1_REJILLA_POINT_TARGET_EN } from '../../src/case/case1/Private/climax_stage3_points_en.js';
 import { CASE1_FOTO_POINT_TARGET, CROQUIS_PINTURA_POINT_TARGET } from '../../src/case/case1/Private/trial_day2_t3_points.js';
@@ -82,5 +84,29 @@ describe('Case 1 Present & Point chained targets', () => {
     expect(findHitZone(thread.zones, 67, 63)?.isCorrect).toBe(true);
     expect(findHitZone(thread.zones, 20, 38)?.isCorrect).toBe(false);
   });
-});
 
+  it('describes the tape marks as the inner side of the frame in Spanish', () => {
+    const tape = CASE1_REJILLA_POINT_TARGET.next!;
+    expect(tape.successDialogue?.[0]?.text)
+      .toBe('¡Miren el lateral interior del marco! El que da hacia la sala.');
+  });
+
+  it('does not claim the floor-level grate was measured standing up', () => {
+    const tape = CASE1_REJILLA_POINT_TARGET.next!;
+    const dialogue = tape.successDialogue?.map((line) => line.text).join(' ') ?? '';
+    expect(dialogue).not.toContain('de pie');
+    expect(dialogue).not.toContain('labio');
+  });
+
+  it('describes the grate corner as cut before being bent back', () => {
+    const grate = CASE1_MUSEO.hotspots.find((hotspot) => hotspot.id === 'hotspot_rejilla');
+    const cornerLine = grate?.dialogue.find((line) => line.text.includes('esquina inferior'));
+    expect(cornerLine?.text)
+      .toBe('La esquina inferior de la malla tiene el alambre cortado, doblado hacia arriba y vuelto a acomodar.');
+
+    const yardGrate = CASE1_PATIO.hotspots.find((hotspot) => hotspot.id === 'hotspot_rejilla_exterior');
+    const yardCornerLine = yardGrate?.dialogue.find((line) => line.text.includes('esquina de abajo'));
+    expect(yardCornerLine?.text)
+      .toContain('alambre de la esquina de abajo está cortado');
+  });
+});

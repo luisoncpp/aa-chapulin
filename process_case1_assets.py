@@ -103,6 +103,9 @@ def process_profile(name: str) -> None:
 
 
 def process_icon(name: str) -> None:
+    if name == "rejilla_ducto":
+        process_rejilla_icon()
+        return
     source = raw_path(name)
     if not os.path.exists(source):
         print(f"Warning: Evidence raw not found {source}")
@@ -114,17 +117,32 @@ def process_icon(name: str) -> None:
     save_evidence_icon(despill_final(filtered), f"{name}.webp")
 
 
-def process_plate(name: str) -> None:
+def build_plate(name: str) -> Image.Image | None:
     source = raw_path(name)
     if not os.path.exists(source):
         print(f"Warning: Plate raw not found {source}")
-        return
+        return None
+    source_image = Image.open(source)
     if name == "examine_foto_crimen":
-        img = stamp_timestamp(cover_crop(Image.open(source), (960, 540), top_ratio=0.32))
-        save_webp(img, name)
-        process_photo_icon(img)
+        return stamp_timestamp(cover_crop(source_image, (960, 540), top_ratio=0.32))
+    return cover_crop(source_image, (960, 540))
+
+
+def process_plate(name: str) -> None:
+    img = build_plate(name)
+    if img is None:
         return
-    save_webp(cover_crop(Image.open(source), (960, 540)), name)
+    save_webp(img, name)
+    if name == "examine_foto_crimen":
+        process_photo_icon(img)
+
+
+def process_rejilla_icon() -> None:
+    plate = build_plate("examine_rejilla_ducto")
+    if plate is None:
+        return
+    crop = plate.crop((170, 0, 790, 450)).convert("RGBA")
+    save_evidence_icon(despill_final(crop), "rejilla_ducto.webp")
 
 
 def process_photo_icon(plate: Image.Image | None = None) -> None:
@@ -198,6 +216,10 @@ def run_case1(selected: set[str] | None = None) -> None:
         process_card_plate("ficha_museo", "examine_ficha_museo")
         process_card_plate("ficha_museo_en", "examine_ficha_museo_en")
         normalize_existing_plate("examine_informe_lesiones")
+    else:
+        for name in EVIDENCE_ICONS:
+            if want(name):
+                process_icon(name)
     for name in PLATES:
         if want(name) or (name == "examine_foto_crimen" and want("foto_crimen")):
             process_plate(name)

@@ -39,8 +39,8 @@ export const EVIDENCE_CATALOG_ES: EvidenceCatalogMap = {
     id: 'antenitas_vinil',
     name: 'Antenitas de Vinil',
     icon: 'assets/antenitas_vinil.webp',
-    desc: 'Detectan la presencia del enemigo.',
-    updatedDesc: 'Detectan la presencia del enemigo. Registraron actividad sospechosa a las 8:45 PM.'
+    desc: 'Pueden vibrar cerca de un enemigo o de una pista importante. No identifican qué las activó.',
+    updatedDesc: 'Pueden vibrar cerca de un enemigo o de una pista importante. Registraron actividad sospechosa a las 8:45 PM, sin identificar la causa.'
   },
   informe_medico: {
     id: 'informe_medico',
@@ -95,8 +95,8 @@ export const EVIDENCE_CATALOG_EN: EvidenceCatalogMap = {
     id: 'antenitas_vinil',
     name: 'Antenitas de Vinil (Vinyl Antennae)',
     icon: 'assets/antenitas_vinil.webp',
-    desc: 'Detect enemy presence.',
-    updatedDesc: 'Detect enemy presence. Recorded suspicious activity at 8:45 PM.'
+    desc: 'May vibrate near an enemy or an important clue. They do not identify what triggered them.',
+    updatedDesc: 'May vibrate near an enemy or an important clue. They recorded suspicious activity at 8:45 PM without identifying the cause.'
   },
   informe_medico: {
     id: 'informe_medico',

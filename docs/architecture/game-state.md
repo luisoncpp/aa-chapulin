@@ -53,7 +53,7 @@ Contains the master catalog defined in [[src/state/Private/EvidenceCatalog.ts#Ev
 | `insignia_abogado` | Insignia de Abogado CH | Default starting badge |
 | `chipote_chillon` | Chipote Chillón | Disproves lethal blunt assault charge |
 | `pastillas_chiquitolina` | Pastillas de Chiquitolina | Explains entry into locked display case |
-| `antenitas_vinil` | Antenitas de Vinil | Detects villain location & timestamps alarm |
+| `antenitas_vinil` | Antenitas de Vinil | May react to enemies or important clues; never identifies the trigger |
 | `informe_medico` | Informe Médico de Alma Negra | Shows guard was struck with metal coins |
 | `foto_crimen` | Foto del Sospechoso | Mirror reflection proves escape direction |
 | `chicharra_oro` | Chicharra Paralizadora de Oro | The stolen artifact |

@@ -1,6 +1,6 @@
-// @Architecture(descriptionShort="Case 5 day-4 Genoveva Peñaloza testimony, English", type="data", icon="layers")
+// @Architecture(descriptionShort="Case 5 day-4 Genoveva Penaloza testimony, English", type="data", icon="layers")
 /**
- * Case 5 Trial Day 4 — Testimony 9, Ms. Genoveva Peñaloza (spec §17.2), English.
+ * Case 5 Trial Day 4 — Testimony 9, Ms. Genoveva Penaloza (spec §17.2), English.
  */
 
 import type { DialogueLine, Testimony } from '../../../types/index.js';
@@ -16,7 +16,7 @@ const MOMENTO: DialogueLine = {
 
 export const CASE5_TESTIMONY_9_EN: Testimony = {
   title: 'Testimony: The window regulations',
-  witness: 'Ms. Genoveva Peñaloza',
+  witness: 'Ms. Genoveva Penaloza',
   bgm: 'cross_exam_allegro',
   statements: [
     {

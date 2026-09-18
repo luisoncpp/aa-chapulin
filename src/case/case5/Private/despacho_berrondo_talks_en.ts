@@ -100,7 +100,7 @@ export const CASE5_BERRONDO_TALKS_EN: TalkOption[] = [
       { speaker: 'BERRONDO', text: 'Your client is a decent man. I have watched him litigate four times and all four times I thought this city needed him.', pose: 'berrondo_idle' },
       { speaker: 'BERRONDO', text: 'I truly hope you get him out.', pose: 'berrondo_idle' },
       { speaker: 'DEFENSA', text: '...Thank you.', pose: 'chapulin_idle' },
-      { speaker: 'NARRADOR', text: 'Chapulín walks down the stairs at Donceles 14 and stops on the first landing.' },
+      { speaker: 'NARRADOR', text: 'Chapulin walks down the stairs at Donceles 14 and stops on the first landing.' },
       { speaker: 'DEFENSA', text: '(All my moves are coldly calculated.)', pose: 'chapulin_idle' },
       { speaker: 'DEFENSA', text: '(Except the antennae. They stood on end up there and I do not know why.)', pose: 'chapulin_panic', unlockLocation: 'delegacion_c5' }
     ]

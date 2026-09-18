@@ -1,6 +1,6 @@
-// @Architecture(descriptionShort="Case 5 day-3 Chómpiras testimony, English", type="data", icon="layers")
+// @Architecture(descriptionShort="Case 5 day-3 Chompiras testimony, English", type="data", icon="layers")
 /**
- * Case 5 Trial Day 3 — Testimony 6, El Chómpiras (spec §15.2), English.
+ * Case 5 Trial Day 3 — Testimony 6, El Chompiras (spec §15.2), English.
  */
 
 import type { DialogueLine, Testimony } from '../../../types/index.js';
@@ -16,7 +16,7 @@ const MOMENTO: DialogueLine = {
 
 export const CASE5_TESTIMONY_6_EN: Testimony = {
   title: 'Testimony: What I haul in that basement',
-  witness: 'El Chómpiras',
+  witness: 'El Chompiras',
   bgm: 'cross_exam_moderato',
   statements: [
     {

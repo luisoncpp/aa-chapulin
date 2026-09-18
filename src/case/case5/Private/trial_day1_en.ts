@@ -14,10 +14,10 @@ export { CASE5_TESTIMONY_1_EN, CASE5_TESTIMONY_2_EN, CASE5_TESTIMONY_3_EN };
 
 export const CASE5_TRIAL_INTRO_FULL_EN: DialogueLine[] = [
   ...CASE5_TRIAL_INTRO_EN,
-  { speaker: 'JUEZ', pose: 'judge_neutral', text: 'Defendant: Ramón Valdés, law degree from...' },
+  { speaker: 'JUEZ', pose: 'judge_neutral', text: 'Defendant: Ramon Valdes, law degree from...' },
   { speaker: 'DON RAMÓN', pose: 'donramon_idle', text: 'The street, Your Honor.' },
   { speaker: 'JUEZ', pose: 'judge_thinking', text: '...the street. Yes.' },
-  { speaker: 'JUEZ', pose: 'judge_thinking', text: 'Counselor Valdés, this is the fifth time this court has seen you. And the first time it has seen you sitting there.' },
+  { speaker: 'JUEZ', pose: 'judge_thinking', text: 'Counselor Valdes, this is the fifth time this court has seen you. And the first time it has seen you sitting there.' },
   { speaker: 'DON RAMÓN', pose: 'donramon_sweat', text: 'Feels strange to me too, Your Honor. Everything looks smaller.' },
   { speaker: 'SUPER SAM', pose: 'supersam_point', text: 'Your Honor, the prosecution will be brief, because this case already cost me a night.' },
   { speaker: 'SUPER SAM', pose: 'supersam_slam', text: 'A sealed building. A book with fourteen signatures. A dead man. And in the dead man\'s hand, the address of the last man who went up.', sfx: 'desk_slam' },
@@ -29,7 +29,7 @@ export const CASE5_TRIAL_INTRO_FULL_EN: DialogueLine[] = [
   { speaker: 'JUEZ', pose: 'judge_shock', text: 'First things first: this court does not recognize anyone at the defense table.' },
   { speaker: 'DEFENSA', pose: 'chapulin_slam', text: 'Right here, Your Honor!', sfx: 'desk_slam' },
   { speaker: 'JUEZ', pose: 'judge_shock', text: '...And who are you?' },
-  { speaker: 'DEFENSA', pose: 'chapulin_point', text: 'I am El Chapulín Colorado!' },
+  { speaker: 'DEFENSA', pose: 'chapulin_point', text: 'I am El Chapulin Colorado!' },
   { speaker: 'SUPER SAM', pose: 'supersam_slam', text: 'OBJECTION! Your Honor, that man was my DEFENDANT in August!', sfx: 'desk_slam' },
   { speaker: 'DEFENSA', pose: 'chapulin_point', text: 'And they acquitted me! Which is more than your record can say!' },
   { speaker: 'JUEZ', pose: 'judge_neutral', text: 'The court still needs whoever occupies that table to establish their credentials.' },

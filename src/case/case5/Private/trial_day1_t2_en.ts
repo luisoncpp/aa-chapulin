@@ -92,7 +92,7 @@ export const CASE5_TESTIMONY_2_EN: Testimony = {
       pressText: [
         MOMENTO,
         { speaker: 'DEFENSA', text: 'Both custodians?', pose: 'chapulin_point' },
-        { speaker: 'SARGENTO', text: 'Both. Alfredo Rangel and Jesús Nieto. Both said the same thing.', pose: 'pazguato_idle' },
+        { speaker: 'SARGENTO', text: 'Both. Alfredo Rangel and Jesus Nieto. Both said the same thing.', pose: 'pazguato_idle' },
         { speaker: 'DEFENSA', text: 'And were they at the hallway gate all afternoon?', pose: 'chapulin_idle' },
         { speaker: 'SARGENTO', text: '...All afternoon, yes. Well.', pose: 'pazguato_sweat' },
         { speaker: 'SARGENTO', text: 'Your Honor, may I add something to my testimony? Because if I do not say it I will not sleep.', pose: 'pazguato_sweat' },
@@ -109,8 +109,8 @@ export const CASE5_TESTIMONY_2_EN: Testimony = {
       pressText: [
         MOMENTO,
         { speaker: 'DEFENSA', text: 'Shift change?', pose: 'chapulin_point' },
-        { speaker: 'SARGENTO', text: 'Duty rotation, counselor. Rangel and Nieto handed off at five. The ones who came in were Cadena and Solís.', pose: 'pazguato_idle' },
-        { speaker: 'DEFENSA', text: 'And what time did Cadena and Solís reach the gate?', pose: 'chapulin_point' },
+        { speaker: 'SARGENTO', text: 'Duty rotation, counselor. Rangel and Nieto handed off at five. The ones who came in were Cadena and Solis.', pose: 'pazguato_idle' },
+        { speaker: 'DEFENSA', text: 'And what time did Cadena and Solis reach the gate?', pose: 'chapulin_point' },
         { speaker: 'SARGENTO', text: '...They did not tell me that. It is on the shift-change sheet.', pose: 'pazguato_sweat' },
         { speaker: 'SUPER SAM', text: 'Irrelevant! A shift change lasts as long as a handshake!', pose: 'supersam_slam', sfx: 'desk_slam' },
         { speaker: 'DEFENSA', text: '(A handshake. Let us see how long a handshake lasts in this country.)', pose: 'chapulin_idle' }

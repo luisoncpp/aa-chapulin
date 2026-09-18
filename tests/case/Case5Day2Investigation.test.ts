@@ -3,6 +3,7 @@ import { describe, expect, it } from 'vitest';
 import { getCaseScript } from '../../src/case/index.js';
 import { CASE5_DAY2_EVIDENCE } from '../../src/case/case5/Private/progress.js';
 import type { CaseScript, DialogueLine, EvidenceId } from '../../src/types/index.js';
+import { assertInvestigationParity } from './case5Parity.js';
 
 type Script = ReturnType<typeof getCaseScript>;
 
@@ -92,16 +93,7 @@ describe('Case 5 day 2 investigation (Spanish)', () => {
     expect(profiles).toContain('perfil_barriga');
   });
 
-  it('mirrors Spanish day-2 locations in English without a truth BGM cue', () => {
-    ['vecindad_c5', 'correspondencia', 'despacho_berrondo', 'delegacion_c5'].forEach((id) => {
-      expect(en.investigation[id]).toBeDefined();
-      expect(en.investigation[id].bgm).not.toBe('truth');
-    });
-    ['vecindad_c5', 'correspondencia', 'despacho_berrondo', 'delegacion_c5']
-      .flatMap((loc) => sceneLines(en, loc))
-      .forEach((line) => {
-        expect(line.bgm).not.toBe('truth');
-        expect(line.text).not.toMatch(/[¡¿]/);
-      });
+  it('mirrors Spanish day-2 investigation structure in English without Spanish leakage', () => {
+    assertInvestigationParity(en, es, DAY2_LOCATIONS, allDay2Lines(en));
   });
 });

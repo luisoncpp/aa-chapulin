@@ -22,7 +22,7 @@ export const CASE5_VECINDAD_EN: InvestigationScene = {
     { speaker: 'DEFENSA', text: 'I came for the opposite, Mr. Barriga. I came about rent that was actually paid.', pose: 'chapulin_point' },
     { speaker: 'BARRIGA', text: '...Ah.', pose: 'barriga_idle' },
     { speaker: 'BARRIGA', text: 'That.', pose: 'barriga_shock' },
-    { speaker: 'BARRIGA', text: 'Look, young man. I have been collecting from Mr. Ramón for seventeen years. Seventeen.', pose: 'barriga_idle' },
+    { speaker: 'BARRIGA', text: 'Look, young man. I have been collecting from Mr. Ramon for seventeen years. Seventeen.', pose: 'barriga_idle' },
     { speaker: 'BARRIGA', text: 'And on November twenty-ninth I found a yellow envelope under my door with seventeen months inside.', pose: 'barriga_shock' },
     { speaker: 'BARRIGA', text: 'I sat on the step and stayed still for ten minutes.', pose: 'barriga_idle' },
     { speaker: 'DEFENSA', text: 'For pleasure?', pose: 'chapulin_idle' },

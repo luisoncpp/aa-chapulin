@@ -2,6 +2,7 @@
 import { describe, expect, it } from 'vitest';
 import { getCaseScript } from '../../src/case/index.js';
 import type { CaseScript, DialogueLine, Statement, Testimony } from '../../src/types/index.js';
+import { assertEnglishTrialParity } from './case5Parity.js';
 
 function contradictions(t: Testimony): Statement[] {
   return t.statements.filter((s) => s.contradiction);
@@ -106,16 +107,10 @@ describe('Case 5 day 4 trial (Spanish)', () => {
     }
   });
 
-  it('matches Spanish day-4 testimony structure in English without a truth BGM cue', () => {
+  it('mirrors Spanish day-4 trial structure in English without Spanish leakage', () => {
     const enDay4 = day4Trial(en);
     const esDay4 = day4Trial(es);
-    expect(enDay4.openingPresent).toBeDefined();
-    expect(enDay4.testimonies).toHaveLength(esDay4.testimonies.length);
-    enDay4.testimonies.forEach((testimony, i) => {
-      expect(testimony.statements).toHaveLength(esDay4.testimonies[i].statements.length);
-      expect(testimony.bgm).not.toBe('truth');
-    });
-    trialDialogue(enDay4).forEach((line) => expect(line.bgm).not.toBe('truth'));
+    assertEnglishTrialParity(enDay4, esDay4, trialDialogue(enDay4));
   });
 
   it('calls Genoveva in openingPresent success and opens climax handoff on T9 followUp', () => {

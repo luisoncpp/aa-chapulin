@@ -16,7 +16,7 @@ export const CASE5_CORRESPONDENCIA_EN: InvestigationScene = {
   intro: [
     { speaker: 'NARRADOR', text: 'December 7, 10:00 AM. Correspondence office of the Seventh Court.', bg: 'assets/bg_correspondencia.webp', furniture: 'none', bgm: 'investigation_core' },
     { speaker: 'NARRADOR', text: 'Four thousand official letters a month pass through a seventy-centimeter wooden window.' },
-    { speaker: 'CHIMOLTRUFIA', text: 'Oh, what a song! If it is not El Chapulín Colorado!', pose: 'chimoltrufia_shock' },
+    { speaker: 'CHIMOLTRUFIA', text: 'Oh, what a song! If it is not El Chapulin Colorado!', pose: 'chimoltrufia_shock' },
     { speaker: 'DEFENSA', text: 'Easy does it, miss! I am here on official business.', pose: 'chapulin_point' },
     { speaker: 'CHIMOLTRUFIA', text: 'Well, everything here is official. Well, almost everything. Like I say one thing I say another.', pose: 'chimoltrufia_idle' },
     { speaker: 'DEFENSA', text: 'I need to know who was notified about a procedure scheduled for December fourth.', pose: 'chapulin_idle' },

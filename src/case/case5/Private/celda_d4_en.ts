@@ -1,7 +1,7 @@
 // @Architecture(descriptionShort="English Case 5 day 4 midnight detention cell investigation scene", type="data", icon="layers")
 /**
  * Case 5, Day 4 — Detention Center, midnight cell (`celda_c5_d4`). Spec §16.1. English.
- * Chapulín speaks as DEFENSA; Don Ramón is the defendant.
+ * Chapulin speaks as DEFENSA; Don Ramon is the defendant.
  */
 
 import type { InvestigationScene } from '../../../types/index.js';
@@ -19,7 +19,7 @@ export const CASE5_CELDA_D4_EN: InvestigationScene = {
     { speaker: 'DON RAMÓN', text: 'Young man, it is five forty in the morning.', pose: 'donramon_idle' },
     { speaker: 'DEFENSA', text: 'I have not slept!', pose: 'chapulin_panic' },
     { speaker: 'DON RAMÓN', text: 'It shows in your antennae. They are crooked.', pose: 'donramon_idle' },
-    { speaker: 'DEFENSA', text: 'Don Ramón, I have an idea, and it is a horrible idea.', pose: 'chapulin_idle' },
+    { speaker: 'DEFENSA', text: 'Don Ramon, I have an idea, and it is a horrible idea.', pose: 'chapulin_idle' },
     { speaker: 'DON RAMÓN', text: 'Those are the ones that work. Sit down.', pose: 'donramon_idle' }
   ],
   hotspots: [],

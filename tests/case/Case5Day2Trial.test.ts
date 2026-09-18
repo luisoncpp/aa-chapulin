@@ -2,6 +2,7 @@
 import { describe, expect, it } from 'vitest';
 import { getCaseScript } from '../../src/case/index.js';
 import type { CaseScript, DialogueLine, Statement, Testimony } from '../../src/types/index.js';
+import { assertEnglishTrialParity } from './case5Parity.js';
 
 function contradictions(t: Testimony): Statement[] {
   return t.statements.filter((s) => s.contradiction);
@@ -120,16 +121,10 @@ describe('Case 5 day 2 trial (Spanish)', () => {
     }
   });
 
-  it('matches Spanish day-2 testimony structure in English without a truth BGM cue', () => {
+  it('mirrors Spanish day-2 trial structure in English without Spanish leakage', () => {
     const enDay2 = day2Trial(en);
     const esDay2 = day2Trial(es);
-    expect(enDay2.openingPresent).toBeDefined();
-    expect(enDay2.testimonies).toHaveLength(esDay2.testimonies.length);
-    enDay2.testimonies.forEach((testimony, i) => {
-      expect(testimony.statements).toHaveLength(esDay2.testimonies[i].statements.length);
-      expect(testimony.bgm).not.toBe('truth');
-    });
-    trialDialogue(enDay2).forEach((line) => expect(line.bgm).not.toBe('truth'));
+    assertEnglishTrialParity(enDay2, esDay2, trialDialogue(enDay2));
   });
 
   it('calls Barriga in openingPresent and Berrondo before T5 via T4 followUp', () => {

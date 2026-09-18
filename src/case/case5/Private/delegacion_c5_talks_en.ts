@@ -12,7 +12,7 @@ export const CASE5_DELEGACION_C5_TALKS_EN: TalkOption[] = [
     dialogue: [
       { speaker: 'SARGENTO', text: 'I started thinking about what you said in court yesterday: that the list was incomplete.', pose: 'pazguato_idle' },
       { speaker: 'SARGENTO', text: 'And I got to thinking about another list.', pose: 'pazguato_decidido' },
-      { speaker: 'SARGENTO', text: 'Counselor: Mr. Ramón defended four trials between August and October and won all four.', pose: 'pazguato_idle' },
+      { speaker: 'SARGENTO', text: 'Counselor: Mr. Ramon defended four trials between August and October and won all four.', pose: 'pazguato_idle' },
       { speaker: 'SARGENTO', text: 'I was at two of them. And last night I went to the Archive and requested all four files.', pose: 'pazguato_decidido' },
       { speaker: 'DEFENSA', text: 'And what did you find?', pose: 'chapulin_point' },
       { speaker: 'SARGENTO', text: 'I do not know.', pose: 'pazguato_sweat' },

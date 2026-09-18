@@ -73,7 +73,7 @@ export const POINT_EXPEDIENTE_SERIE_EN: PointTargetContradiction = {
 export const CASE5_D2_T1_NOTA_SUCCESS_EN: DialogueLine[] = [
   { cutin: 'objection_protesto', speaker: 'DEFENSA', text: 'OBJECTION!', sfx: 'desk_slam', bgm: 'objection', pose: 'chapulin_slam' },
   { speaker: 'DEFENSA', text: 'Your Honor, that note is typewritten, in the third person, and about the debtor himself.', pose: 'chapulin_point' },
-  { speaker: 'DEFENSA', text: '"On behalf of C. Ramón Valdés." Nobody pays his own rent "on behalf of" himself.', pose: 'chapulin_idle' },
+  { speaker: 'DEFENSA', text: '"On behalf of C. Ramon Valdes." Nobody pays his own rent "on behalf of" himself.', pose: 'chapulin_idle' },
   { speaker: 'DEFENSA', text: 'And "kindly issue the corresponding receipt." Mr. Barriga: how does my client write to you?', pose: 'chapulin_point' },
   { speaker: 'BARRIGA', text: 'On the wrapper of a cake, Your Honor.', pose: 'barriga_idle' },
   { speaker: 'BARRIGA', text: 'And with spelling mistakes.', pose: 'barriga_enojado' },
@@ -91,9 +91,9 @@ export const CASE5_D2_T1_RECIBO_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'DEFENSA', text: 'Mr. Barriga wrote the receipt in his own hand on November twenty-ninth.', pose: 'chapulin_point' },
   { speaker: 'DEFENSA', text: 'And in the description he put, verbatim: "Received from unidentified third party, on account of the tenant."', pose: 'chapulin_slam', sfx: 'desk_slam' },
   { speaker: 'JUEZ', text: 'Good gracious! The witness himself recorded that he could not identify who left the money.', pose: 'judge_shock' },
-  { speaker: 'DEFENSA', text: 'That does not yet prove who paid, Your Honor. It proves the receipt does not certify a personal payment from Don Ramón.', pose: 'chapulin_idle' },
+  { speaker: 'DEFENSA', text: 'That does not yet prove who paid, Your Honor. It proves the receipt does not certify a personal payment from Don Ramon.', pose: 'chapulin_idle' },
   { speaker: 'BARRIGA', text: 'Of course I recorded it! I may be a landlord, but I am not a liar!', pose: 'barriga_enojado' },
-  { speaker: 'BARRIGA', text: 'If Mr. Ramón had paid me, I would have written "received from Mr. Ramón," and I would have drawn a little picture!', pose: 'barriga_shock' },
+  { speaker: 'BARRIGA', text: 'If Mr. Ramon had paid me, I would have written "received from Mr. Ramon," and I would have drawn a little picture!', pose: 'barriga_shock' },
   { speaker: 'DEFENSA', text: 'Mr. Barriga, you wrote this defense\'s best evidence eight days ago without knowing it.', pose: 'chapulin_idle' },
   { speaker: 'BARRIGA', text: '...Really?', pose: 'barriga_shock' },
   { speaker: 'DEFENSA', text: 'Really.', pose: 'chapulin_idle' },
@@ -161,7 +161,7 @@ export const CASE5_DAY2_OPENING_PRESENT_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'DON RAMÓN', text: 'People like Mr. Lengua get fear, or pity, or disgust. Never anything more like respect.', pose: 'donramon_idle' },
   { speaker: 'JUEZ', text: 'Be seated.', sfx: 'gavel', pose: 'judge_gavel' },
   { speaker: 'SUPER SAM', text: 'Touching. The prosecution calls the witness who collected that rent.', pose: 'supersam_point' },
-  { speaker: 'SUPER SAM', text: 'Mr. Zenón Barriga y Pesado, landlord.', pose: 'supersam_point' },
+  { speaker: 'SUPER SAM', text: 'Mr. Zenon Barriga y Pesado, landlord.', pose: 'supersam_point' },
   { speaker: 'BARRIGA', text: 'Present. And let me clarify right now that I did not want to come.', pose: 'barriga_enojado' },
   { speaker: 'JUEZ', text: 'Nobody wants to come, Mr. Barriga. Your testimony.', sfx: 'gavel', pose: 'judge_gavel' }
 ];

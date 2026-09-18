@@ -47,7 +47,7 @@ export const CASE5_TESTIMONY_7_EN: Testimony = {
         { speaker: 'DEFENSA', text: 'And you left that building empty.', pose: 'chapulin_idle' },
         { speaker: 'SUPER SAM', text: '...And I left that building empty.', pose: 'supersam_sweat' },
         { speaker: 'DON RAMÓN', text: '(Do not finish that thought, kid.)', pose: 'donramon_idle' },
-        { speaker: 'DEFENSA', text: '(I was not going to, Don Ramón. I have also saved on things that cost me later.)', pose: 'chapulin_idle' }
+        { speaker: 'DEFENSA', text: '(I was not going to, Don Ramon. I have also saved on things that cost me later.)', pose: 'chapulin_idle' }
       ]
     },
     {

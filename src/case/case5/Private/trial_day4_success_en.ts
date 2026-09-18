@@ -26,7 +26,7 @@ export const CASE5_DAY4_OPENING_PRESENT_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'SECRETARIO', text: 'The prosecution notes that the defense has just placed its own client inside the window.' },
   { speaker: 'NARRADOR', text: 'The gallery erupts. The Judge bangs the gavel five times.', sfx: 'gavel' },
   { speaker: 'JUEZ', text: 'ORDER! ORDER IN THE COURT!', sfx: 'gavel', pose: 'judge_gavel' },
-  { speaker: 'JUEZ', text: 'Counselor Chapulín! Do you know what you have just done?', pose: 'judge_shock' },
+  { speaker: 'JUEZ', text: 'Counselor Chapulin! Do you know what you have just done?', pose: 'judge_shock' },
   { speaker: 'DEFENSA', text: 'I do, Your Honor. I knew at five forty this morning.', pose: 'chapulin_idle' },
   { speaker: 'JUEZ', text: 'You have just placed your client alone with the victim within the hour of death!', pose: 'judge_shock', updateProfile: 'perfil_donramon' },
   { speaker: 'DEFENSA', text: 'Yes, Your Honor.', pose: 'chapulin_idle' },
@@ -45,14 +45,14 @@ export const CASE5_DAY4_OPENING_PRESENT_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'DEFENSA', text: 'I know, Your Honor.', pose: 'chapulin_idle' },
   { speaker: 'DEFENSA', text: 'The defense calls the clerk in charge of the Judicial Archive experts\' window.', pose: 'chapulin_point' },
   { speaker: 'JUEZ', text: 'Name and occupation.', pose: 'judge_neutral' },
-  { speaker: 'GENOVEVA', text: 'Genoveva Peñaloza Suárez. Clerk in charge of the experts and court auxiliaries window. Thirteen years.', pose: 'genoveva_idle' },
+  { speaker: 'GENOVEVA', text: 'Genoveva Penaloza Suarez. Clerk in charge of the experts and court auxiliaries window. Thirteen years.', pose: 'genoveva_idle' },
   { speaker: 'GENOVEVA', text: 'And I wish to note that I was summoned.', pose: 'genoveva_reglamento' },
   { speaker: 'JUEZ', text: 'Everyone here was summoned, miss. Take the stand.', sfx: 'gavel', pose: 'judge_gavel' }
 ];
 
 export const CASE5_D4_T1_LIBRO_SUCCESS_EN: DialogueLine[] = [
   { cutin: 'objection_protesto', speaker: 'DEFENSA', text: 'OBJECTION!', sfx: 'desk_slam', bgm: 'objection', pose: 'chapulin_slam' },
-  { speaker: 'DEFENSA', text: 'Miss Peñaloza, with all respect: your log has no departure column.', pose: 'chapulin_point' },
+  { speaker: 'DEFENSA', text: 'Miss Penaloza, with all respect: your log has no departure column.', pose: 'chapulin_point' },
   { speaker: 'GENOVEVA', text: '...It does.', pose: 'genoveva_idle' },
   { speaker: 'DEFENSA', text: 'Read the court the printed header of the second column.', pose: 'chapulin_slam', sfx: 'desk_slam' },
   { speaker: 'GENOVEVA', text: '..."Time badge returned".', pose: 'genoveva_sweat' },
@@ -83,7 +83,7 @@ export const CASE5_D4_T1_CEDULARIO_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'DEFENSA', text: 'The card-file index in crate nine has nine drawers, Your Honor. And each drawer has a label.', pose: 'chapulin_point' },
   { speaker: 'DEFENSA', text: 'And the labels are not names. They are streets.', pose: 'chapulin_idle' },
   { speaker: 'DEFENSA', text: '"Aguascalientes to Bucareli." "Bucareli to Donceles." "Donceles to Espanto."', pose: 'chapulin_idle' },
-  { speaker: 'DEFENSA', text: 'Miss Peñaloza: if someone opened a drawer, the voucher says which streets.', pose: 'chapulin_slam', sfx: 'desk_slam' },
+  { speaker: 'DEFENSA', text: 'Miss Penaloza: if someone opened a drawer, the voucher says which streets.', pose: 'chapulin_slam', sfx: 'desk_slam' },
   { speaker: 'GENOVEVA', text: '...With its exact label, sir. That is the regulation.', pose: 'genoveva_idle' },
   { speaker: 'JUEZ', text: 'Miss, do you have those vouchers with you?', pose: 'judge_neutral' },
   { speaker: 'GENOVEVA', text: 'I have this year\'s, Your Honor. They were summoned.', pose: 'genoveva_reglamento' },
@@ -102,6 +102,6 @@ export const CASE5_D4_T1_CEDULARIO_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'NARRADOR', text: 'The Judge stands.', sfx: 'gavel' },
   { speaker: 'JUEZ', text: 'ORDER!', sfx: 'gavel', pose: 'judge_gavel' },
   { speaker: 'JUEZ', text: 'The witness may step down.', pose: 'judge_neutral' },
-  { speaker: 'JUEZ', text: 'Counselor Chapulín.', pose: 'judge_thinking' },
+  { speaker: 'JUEZ', text: 'Counselor Chapulin.', pose: 'judge_thinking' },
   { speaker: 'JUEZ', text: 'This court has spent four days forbidding you to point at a person, and today it is going to order you to.', sfx: 'gavel', pose: 'judge_gavel' }
 ];

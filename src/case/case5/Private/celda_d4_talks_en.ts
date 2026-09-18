@@ -10,13 +10,13 @@ export const CASE5_CELDA_D4_TALKS_EN: TalkOption[] = [
     id: 'pasillo_caliente',
     label: 'The hallway was hot',
     dialogue: [
-      { speaker: 'DEFENSA', text: 'Don Ramón, when you went upstairs on Saturday, was it hot up there?', pose: 'chapulin_point' },
+      { speaker: 'DEFENSA', text: 'Don Ramon, when you went upstairs on Saturday, was it hot up there?', pose: 'chapulin_point' },
       { speaker: 'DON RAMÓN', text: 'A dreadful heat. I took off my jacket and put it back on because it was not the place.', pose: 'donramon_idle' },
       { speaker: 'DEFENSA', text: 'And Mr. Lengua?', pose: 'chapulin_idle' },
       { speaker: 'DON RAMÓN', text: 'He was sweating. He wiped his forehead with his handkerchief every other sentence. I thought it was nerves.', pose: 'donramon_sweat' },
       { speaker: 'DEFENSA', text: 'And the janitor?', pose: 'chapulin_point' },
       { speaker: 'DON RAMÓN', text: 'At the door the janitor told me they had had the boiler at maximum for four days because of a burst pipe.', pose: 'donramon_idle' },
-      { speaker: 'DEFENSA', text: 'Don Ramón.', pose: 'chapulin_panic' },
+      { speaker: 'DEFENSA', text: 'Don Ramon.', pose: 'chapulin_panic' },
       { speaker: 'DEFENSA', text: 'The coroner calculated time of death from the body temperature.', pose: 'chapulin_point' },
       { speaker: 'DON RAMÓN', text: '...Yes.', pose: 'donramon_idle' },
       { speaker: 'DEFENSA', text: 'And he calculated assuming a normal room.', pose: 'chapulin_idle' },
@@ -38,12 +38,12 @@ export const CASE5_CELDA_D4_TALKS_EN: TalkOption[] = [
     label: 'Do I present it or not?',
     unlockedByTalk: 'pasillo_caliente',
     dialogue: [
-      { speaker: 'DEFENSA', text: 'Don Ramón, you are the lawyer. Tell me what to do.', pose: 'chapulin_idle' },
+      { speaker: 'DEFENSA', text: 'Don Ramon, you are the lawyer. Tell me what to do.', pose: 'chapulin_idle' },
       { speaker: 'DON RAMÓN', text: 'I am the defendant, young man. Defendants do not decide these things.', pose: 'donramon_idle' },
       { speaker: 'DEFENSA', text: 'You decided four trials in a row!', pose: 'chapulin_point' },
       { speaker: 'DON RAMÓN', text: 'Those were not mine.', pose: 'donramon_sweat' },
-      { speaker: 'NARRADOR', text: 'Don Ramón stares at the wall for a long while.' },
-      { speaker: 'DON RAMÓN', text: 'Chapulín.', pose: 'donramon_idle' },
+      { speaker: 'NARRADOR', text: 'Don Ramon stares at the wall for a long while.' },
+      { speaker: 'DON RAMÓN', text: 'Chapulin.', pose: 'donramon_idle' },
       { speaker: 'DON RAMÓN', text: 'They put me in here over a scrap of paper someone placed in a dead man\'s hand.', pose: 'donramon_idle' },
       { speaker: 'DON RAMÓN', text: 'If I get out because an expert misread a room\'s temperature, I get out just as dirty as when I came in.', pose: 'donramon_idle' },
       { speaker: 'DON RAMÓN', text: 'Present it.', pose: 'donramon_shock' },
@@ -52,7 +52,7 @@ export const CASE5_CELDA_D4_TALKS_EN: TalkOption[] = [
       { speaker: 'DON RAMÓN', text: 'And I have a lawyer.', pose: 'donramon_idle' },
       { speaker: 'DEFENSA', text: '......', pose: 'chapulin_idle' },
       { speaker: 'DON RAMÓN', text: 'Go on, young man. And comb those antennae — you are going to be in the newspaper.', pose: 'donramon_idle' },
-      { speaker: 'DEFENSA', text: 'Do not panic the cunic, Don Ramón!', pose: 'chapulin_point' },
+      { speaker: 'DEFENSA', text: 'Do not panic the cunic, Don Ramon!', pose: 'chapulin_point' },
       { speaker: 'DON RAMÓN', text: 'It already spread, young man. Four days ago.', pose: 'donramon_sweat', unlockLocation: 'archivo_caldera' }
     ]
   }

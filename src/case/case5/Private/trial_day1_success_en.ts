@@ -49,7 +49,7 @@ export const CASE5_D1_T2_PARTE_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'DEFENSA', text: 'OBJECTION!', sfx: 'desk_slam', cutin: 'objection_protesto', pose: 'chapulin_slam', bgm: 'objection' },
   { speaker: 'DEFENSA', text: 'Your Honor, the detention report annex carries the Archive shift-change sheet, with four signatures and four times.', pose: 'chapulin_point' },
   { speaker: 'DEFENSA', text: 'Rangel and Nieto sign out at five o\'clock.', pose: 'chapulin_idle' },
-  { speaker: 'DEFENSA', text: 'Cadena and Solís sign in at five fifteen.', pose: 'chapulin_slam', sfx: 'desk_slam' },
+  { speaker: 'DEFENSA', text: 'Cadena and Solis sign in at five fifteen.', pose: 'chapulin_slam', sfx: 'desk_slam' },
   { speaker: 'JUEZ', text: 'Fifteen minutes!', pose: 'judge_shock' },
   { speaker: 'DEFENSA', text: 'Fifteen minutes with hallway seven\'s gate unguarded, Your Honor.', pose: 'chapulin_point' },
   { speaker: 'DEFENSA', text: 'Right in the middle of the window when that man died.', pose: 'chapulin_idle' },
@@ -112,7 +112,7 @@ export const CASE5_D1_T3_EXPEDIENTE_GIRO_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'DEFENSA', text: 'Mr. Nicanor said everything was "in its place." And among the things in their place was an open case file.', pose: 'chapulin_point' },
   { speaker: 'DEFENSA', text: 'Open to page two hundred fourteen, Your Honor. And on page two hundred fourteen there is a card glued with paste.', pose: 'chapulin_idle' },
   { speaker: 'JUEZ', text: 'Read it, counselor.', sfx: 'gavel', pose: 'judge_gavel' },
-  { speaker: 'DEFENSA', text: '"Enciclopedias El Saber Universal, Sociedad Anónima." Evidence seized from the convicted man in July.', pose: 'chapulin_point' },
+  { speaker: 'DEFENSA', text: '"Enciclopedias El Saber Universal, Sociedad Anonima." Evidence seized from the convicted man in July.', pose: 'chapulin_point' },
   { speaker: 'DEFENSA', text: 'And at the foot, in the clerk\'s hand: "company dissolved since 1971."', pose: 'chapulin_idle' },
   { speaker: 'DEFENSA', text: 'Mr. Nicanor dusts Volume XI every Monday. On the Saturday of the crime he saw the shelf complete and the file open to this page.', pose: 'chapulin_point' },
   { speaker: 'JUEZ', text: 'And what was that man doing here with a card from a company dead eleven years?', pose: 'judge_thinking', updateProfile: 'perfil_casimiro' },
@@ -133,7 +133,7 @@ export const CASE5_D1_T3_EXPEDIENTE_GIRO_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'DON RAMÓN', text: '(Seventeen months.)', pose: 'donramon_sweat' },
   { speaker: 'DON RAMÓN', text: '(In my whole life I never had seventeen months of anything. Not even luck.)', pose: 'donramon_idle' },
   { speaker: 'JUEZ', text: 'Court is adjourned.', sfx: 'gavel', pose: 'judge_gavel' },
-  { speaker: 'DEFENSA', text: '(Don Ramón, we won the first day.)', pose: 'chapulin_point' },
+  { speaker: 'DEFENSA', text: '(Don Ramon, we won the first day.)', pose: 'chapulin_point' },
   { speaker: 'DON RAMÓN', text: '(No, kid. You do not win the first day. On the first day you only do not lose.)', pose: 'donramon_idle' }
 ];
 

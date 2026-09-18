@@ -1,6 +1,6 @@
 // @Architecture(descriptionShort="Case 5 day-3 opening and T6 EN successes", type="data", icon="layers")
 /**
- * Case 5 Trial Day 3 — opening present and T6 (Chómpiras) successes, English.
+ * Case 5 Trial Day 3 — opening present and T6 (Chompiras) successes, English.
  */
 
 import type { DialogueLine } from '../../../types/index.js';
@@ -26,7 +26,7 @@ export const CASE5_DAY3_OPENING_PRESENT_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'DEFENSA', text: 'The defense calls the loader for the Judicial Archive estate-goods deposit.', pose: 'chapulin_point' },
   { speaker: 'CHOMPIRAS', text: '...Me?!', pose: 'chompiras_nervous' },
   { speaker: 'JUEZ', text: 'Name and occupation.', pose: 'judge_neutral' },
-  { speaker: 'CHOMPIRAS', text: '...They call me Chómpiras, Your Honor. Loader. With insurance and a Christmas bonus.', pose: 'chompiras_nervous' },
+  { speaker: 'CHOMPIRAS', text: '...They call me Chompiras, Your Honor. Loader. With insurance and a Christmas bonus.', pose: 'chompiras_nervous' },
   { speaker: 'CHOMPIRAS', text: 'And first I want to say I was acquitted in August and I have the paper.', pose: 'chompiras_idle' },
   { speaker: 'JUEZ', text: 'The court remembers perfectly and congratulates you. You may testify.', sfx: 'gavel', pose: 'judge_gavel' }
 ];

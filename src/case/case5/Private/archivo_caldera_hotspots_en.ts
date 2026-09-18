@@ -49,7 +49,7 @@ export const CASE5_ARCHIVO_CALDERA_HOTSPOTS_EN: Hotspot[] = [
       { speaker: 'DEFENSA', text: '(So the proof still missing to close this case has to be requested from the judge in front of everyone.)', pose: 'chapulin_idle' },
       { speaker: 'DEFENSA', text: '(And he will only give it to me if I first give him a reason to give it.)', pose: 'chapulin_point' },
       { speaker: 'CHOMPIRAS', text: 'Counselor... what if he does not?', pose: 'chompiras_nervous' },
-      { speaker: 'DEFENSA', text: 'Then Don Ramón stays inside, Chómpiras.', pose: 'chapulin_idle' },
+      { speaker: 'DEFENSA', text: 'Then Don Ramon stays inside, Chompiras.', pose: 'chapulin_idle' },
       { speaker: 'CHOMPIRAS', text: '...I was inside eight months.', pose: 'chompiras_nervous' },
       { speaker: 'CHOMPIRAS', text: 'I am only telling you so you know how long that is.', pose: 'chompiras_idle' },
       { speaker: 'NARRADOR', text: 'The courthouse bell sounds in the distance, four times.', sfx: 'bell' },

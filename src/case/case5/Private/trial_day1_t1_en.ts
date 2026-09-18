@@ -40,7 +40,7 @@ export const CASE5_TESTIMONY_1_EN: Testimony = {
       id: 'c5_d1t1_2',
       speaker: 'NICANOR',
       pose: 'nicanor_idle',
-      text: 'On December fourth fourteen people signed in. The last was Counselor Valdés, at four forty.',
+      text: 'On December fourth fourteen people signed in. The last was Counselor Valdes, at four forty.',
       pressText: [
         MOMENTO,
         { speaker: 'DEFENSA', text: 'Fourteen people. Who?', pose: 'chapulin_point' },
@@ -58,7 +58,7 @@ export const CASE5_TESTIMONY_1_EN: Testimony = {
       text: 'At four fifty-eight he came down, signed out, and I wrote the time with my pen.',
       pressText: [
         MOMENTO,
-        { speaker: 'DEFENSA', text: 'You saw Counselor Valdés come down?', pose: 'chapulin_point' },
+        { speaker: 'DEFENSA', text: 'You saw Counselor Valdes come down?', pose: 'chapulin_point' },
         { speaker: 'NICANOR', text: 'I saw him come down the stairs, cross the lobby, and sign. I asked if he had found what he was looking for.', pose: 'nicanor_idle' },
         { speaker: 'DEFENSA', text: 'And what did he answer?', pose: 'chapulin_idle' },
         { speaker: 'NICANOR', text: 'He said: "I hope not." I did not understand him and I did not ask.', pose: 'nicanor_sweat' },

@@ -45,7 +45,7 @@ export const CASE5_TESTIMONY_8_EN: Testimony = {
         { speaker: 'DEFENSA', text: 'And which of the two opens the basement?', pose: 'chapulin_idle' },
         { speaker: 'BERRONDO', text: 'The credential. The badge only serves for the reading rooms upstairs.', pose: 'berrondo_idle' },
         { speaker: 'DEFENSA', text: '(...)', pose: 'chapulin_idle' },
-        { speaker: 'DEFENSA', text: '(Hold on to that, Chapulín. Hold on to all of it.)', pose: 'chapulin_idle' }
+        { speaker: 'DEFENSA', text: '(Hold on to that, Chapulin. Hold on to all of it.)', pose: 'chapulin_idle' }
       ]
     },
     {
@@ -115,7 +115,7 @@ export const CASE5_TESTIMONY_8_EN: Testimony = {
         { speaker: 'BERRONDO', text: 'Right and duty. Estate goods are not displayed without their depositary.', pose: 'berrondo_definicion' },
         { speaker: 'BERRONDO', text: 'If someone had told me, I would have been there at five in the afternoon, sitting beside that poor man.', pose: 'berrondo_idle' },
         { speaker: 'BERRONDO', text: 'And perhaps nothing would have happened.', pose: 'berrondo_idle' },
-        { speaker: 'NARRADOR', text: 'Chapulín goes still.', bgm: 'suspense' },
+        { speaker: 'NARRADOR', text: 'Chapulin goes still.', bgm: 'suspense' },
         { speaker: 'DEFENSA', text: '(...He just said nobody told him.)', pose: 'chapulin_idle' },
         { speaker: 'DEFENSA', text: '(And he said it himself, without my asking, to look good.)', pose: 'chapulin_panic' }
       ],

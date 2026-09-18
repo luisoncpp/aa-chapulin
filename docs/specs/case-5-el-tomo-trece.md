@@ -1,6 +1,6 @@
 # Caso 5: El Tomo Trece — El Último Juicio de Don Ramón
 
-> **Estado: propuesta completa, sin implementar.** Ejecuta [[docs/plans/case-5-el-tomo-trece.md]] y [[docs/plans/arco-general-el-tomo-trece.md]] con cuatro ajustes aprobados por el autor, listados en §0. Contiene spoilers completos de los cinco episodios. Dirección de arte: [[docs/specs/artistic-direction.md]]. Configurado en [[src/case/case.group.md]].
+> **Estado: implementado en código** (guion ES/EN, clímax de cinco etapas, arte y geometría de hotspots). El plan [[docs/plans/case-5-el-tomo-trece.md]] no se reescribe aquí. Contiene spoilers completos de los cinco episodios. Dirección de arte: [[docs/specs/artistic-direction.md]]. Configurado en [[src/case/case.group.md]]. El BGM `truth` no se usa en este episodio.
 
 ### 0.0 Bitácora de auditoría ([[docs/lessons-learned/spec-audit-lens-log.md]])
 

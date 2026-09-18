@@ -17,13 +17,13 @@ describe('Case 5 investigation hotspot geometry', () => {
         { id: 'hotspot_donramon', x: 52, y: 38, w: 22, h: 28 }
       ],
       archivo_vestibulo: [
-        { id: 'hotspot_libro', x: 50, y: 26, w: 30, h: 22 },
+        { id: 'hotspot_libro', x: 58, y: 26, w: 26, h: 24 },
         { id: 'hotspot_plano', x: 0, y: 0, w: 22, h: 36 },
         { id: 'hotspot_carrito', x: 0, y: 48, w: 22, h: 42 }
       ],
       archivo_pasillo7: [
-        { id: 'hotspot_cuerpo', x: 28, y: 48, w: 32, h: 40 },
-        { id: 'hotspot_tomo', x: 50, y: 78, w: 18, h: 20 },
+        { id: 'hotspot_cuerpo', x: 38, y: 54, w: 26, h: 26 },
+        { id: 'hotspot_tomo', x: 54, y: 82, w: 18, h: 16 },
         { id: 'hotspot_estante', x: 54, y: 6, w: 46, h: 72 },
         { id: 'hotspot_mesa', x: 0, y: 4, w: 34, h: 58 }
       ],

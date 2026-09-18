@@ -1,6 +1,6 @@
 # Asset Pipeline Architecture
 
-Technical guide for [[process_assets.py]], [[process_case1_assets.py]], [[process_case2_assets.py]], [[process_case3_assets.py]], [[process_case4_assets.py]], and [[verify_assets.py]], configured in [[pipeline.group.md]].
+Technical guide for [[process_assets.py]], [[process_case1_assets.py]], [[process_case2_assets.py]], [[process_case3_assets.py]], [[process_case4_assets.py]], [[process_case5_assets.py]], and [[verify_assets.py]], configured in [[pipeline.group.md]].
 
 ## Overview
 
@@ -9,7 +9,7 @@ The asset pipeline automates the extraction, transparency keying, cropping, and 
 ```mermaid
 flowchart LR
     Raw[AI Grid Generation] --> Process[process_assets.py]
-    Raw2[Case 1-4 Raw Sheets] --> ProcessN[process_case1/2/3/4_assets.py]
+    Raw2[Case 1-5 Raw Sheets] --> ProcessN[process_case1/2/3/4/5_assets.py]
     Process --> Chroma[Magenta Chroma-Keying]
     ProcessN --> Chroma
     Chroma --> Slicing[2x2 / 4x3 / 4x4 Grid Cropping]
@@ -72,6 +72,10 @@ python process_case4_assets.py bg_hotel_suite,botija_idle
 ```
 
 Selectors use the final asset name without its directory and may include `.webp`. Character poses, icons, backgrounds, and examine plates can be selected independently. The selector validates names before processing and leaves all unselected files untouched.
+
+### Case 5 ([[process_case5_assets.py]])
+
+Same chroma pipeline. Raw sheets live in [[tools/raw/case5/]]. Pose families: Berrondo 2×2 plus `berrondo_breakdown` (identity lock: half-moon glasses, gold watch-chain, tome under the arm — never mustache, pipe, hat, or gown); Nicanor 3 poses; Genoveva 4 poses. Every Case 5 standing bust runs through `anchor_standing_bust`. New backgrounds cover-crop to 1536×1024: `bg_archivo_vestibulo`, `bg_archivo_pasillo7`, `bg_correspondencia`, `bg_despacho_berrondo`, `bg_bodega_masa`, `bg_fiscalia`, `bg_penal_efectos`, `bg_archivo_caldera`. Detention, courtroom cameras, `bg_waiting_room`, `bg_despacho`, and `bg_delegacion` are reused. Examine and didactic plates export at 960×540. Shared language-neutral plates: `examine_estante_consulta`, `examine_maquina`. English variants keep a visible lowercase `s` on questioned typewritten lines and localize `SÁB` → `SAT` on the crate. After any examine redraw, remeasure Present & Point zones on the final WebP.
 
 ### Case 0 ([[process_case0_assets.py]])
 

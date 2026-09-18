@@ -12,7 +12,7 @@ export const CASE5_VESTIBULO_HOTSPOTS_EN: Hotspot[] = [
   {
     id: 'hotspot_libro',
     label: 'Visitor Logbook',
-    x: 50, y: 26, w: 30, h: 22,
+    x: 58, y: 26, w: 26, h: 24,
     dialogue: [
       { speaker: 'NARRADOR', text: 'On the counter, an open registration book with a pen tied to a cord.' },
       { speaker: 'DEFENSA', text: 'December fourth page. Fourteen signatures.', pose: 'chapulin_idle' },

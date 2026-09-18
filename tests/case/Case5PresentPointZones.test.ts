@@ -39,7 +39,7 @@ describe('Case 5 Present & Point zones vs examine plates', () => {
       { id: 'tomo_i', bounds: [3, 16, 18, 72] },
       { id: 'cartoncitos', bounds: [19, 16, 40, 72] },
       { id: 'lomo_11', bounds: [42, 12, 52, 74] },
-      { id: 'hueco_13', bounds: [53, 16, 60, 72] },
+      { id: 'hueco_13', bounds: [52, 16, 57, 70] },
       { id: 'zoclo', bounds: [4, 74, 96, 88] }
     ]);
     expect(correctBounds(CASE5_CLIMAX_STAGE3_POINT)).toEqual([42, 12, 52, 74]);

@@ -10,7 +10,7 @@ export const CASE5_PASILLO7_HOTSPOTS: Hotspot[] = [
   {
     id: 'hotspot_cuerpo',
     label: 'Silueta del cuerpo',
-    x: 28, y: 48, w: 32, h: 40,
+    x: 38, y: 54, w: 26, h: 26,
     dialogue: [
       { speaker: 'NARRADOR', text: 'Una silueta de gis en el piso, entre el estante y la mesa de consulta. Boca abajo, con la cabeza hacia el estante.' },
       { speaker: 'DEFENSA', text: 'Cayó de frente. Con la cara hacia los libros.', pose: 'chapulin_idle' },
@@ -25,7 +25,7 @@ export const CASE5_PASILLO7_HOTSPOTS: Hotspot[] = [
   {
     id: 'hotspot_tomo',
     label: 'Tomo caído',
-    x: 50, y: 78, w: 18, h: 20,
+    x: 54, y: 82, w: 18, h: 16,
     dialogue: [
       { speaker: 'NARRADOR', text: 'A un metro de la silueta, marcado con un cartelito de perito, un tomo grueso encuadernado en tela verde.' },
       { speaker: 'DEFENSA', text: '«El Saber Universal. Tomo XI. Ferrocarriles - Guatemala.»', pose: 'chapulin_idle' },

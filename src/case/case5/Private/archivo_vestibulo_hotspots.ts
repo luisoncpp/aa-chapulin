@@ -12,7 +12,7 @@ export const CASE5_VESTIBULO_HOTSPOTS: Hotspot[] = [
   {
     id: 'hotspot_libro',
     label: 'Libro de visitas',
-    x: 50, y: 26, w: 30, h: 22,
+    x: 58, y: 26, w: 26, h: 24,
     dialogue: [
       { speaker: 'NARRADOR', text: 'Sobre el mostrador, un libro de registro abierto, con una pluma atada a un cordel.' },
       { speaker: 'DEFENSA', text: 'Hoja del cuatro de diciembre. Catorce firmas.', pose: 'chapulin_idle' },

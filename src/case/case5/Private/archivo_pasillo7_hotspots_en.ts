@@ -10,7 +10,7 @@ export const CASE5_PASILLO7_HOTSPOTS_EN: Hotspot[] = [
   {
     id: 'hotspot_cuerpo',
     label: 'Body Outline',
-    x: 28, y: 48, w: 32, h: 40,
+    x: 38, y: 54, w: 26, h: 26,
     dialogue: [
       { speaker: 'NARRADOR', text: 'A chalk outline on the floor, between the shelf and the consultation table. Face down, head toward the shelf.' },
       { speaker: 'DEFENSA', text: 'He fell forward. Face toward the books.', pose: 'chapulin_idle' },
@@ -25,7 +25,7 @@ export const CASE5_PASILLO7_HOTSPOTS_EN: Hotspot[] = [
   {
     id: 'hotspot_tomo',
     label: 'Fallen Volume',
-    x: 50, y: 78, w: 18, h: 20,
+    x: 54, y: 82, w: 18, h: 16,
     dialogue: [
       { speaker: 'NARRADOR', text: 'One meter from the outline, marked with a forensic tag, a thick volume bound in green cloth.' },
       { speaker: 'DEFENSA', text: '"Universal Knowledge. Volume XI. Railways - Guatemala."', pose: 'chapulin_idle' },

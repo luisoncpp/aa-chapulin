@@ -46,7 +46,7 @@ export const CASE5_D3_T1_INVENTARIO_SUCCESS: DialogueLine[] = [
   { speaker: 'BERRONDO', text: 'Doscientos diez ejemplares sueltos sin vender, licenciado. No doscientas diez colecciones completas. Fue un desastre memorable.', pose: 'berrondo_idle' },
   { speaker: 'DEFENSA', text: '(Gracias, licenciado.)', pose: 'chapulin_idle' },
   { speaker: 'DEFENSA', text: '(Otra vez me corrigió. Y otra vez me dio un dato que no le pedí.)', pose: 'chapulin_idle' },
-  { speaker: 'JUEZ', text: 'Defensa: ¿qué fecha aparece en la tira superior del huacal?', pose: 'judge_thinking' }
+  { speaker: 'JUEZ', text: 'Defensa: ¿qué fecha completa aparece en la tira de hasta arriba del huacal?', pose: 'judge_thinking' }
 ];
 
 export const CASE5_D3_T1_HUACAL_SUCCESS: DialogueLine[] = [

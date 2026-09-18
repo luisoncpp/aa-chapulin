@@ -667,7 +667,7 @@ describe('Case 5 structural relations', () => {
 
   it('reads only the top huacal strip in D3-T1 before E3 argues both (I40)', () => {
     const d3t1 = slice('#### `followUp`: **`huacal_9`**', '#### Contradicción resolutoria');
-    expect(d3t1).toContain('tira superior');
+    expect(d3t1).toContain('tira de hasta arriba');
     expect(d3t1).not.toContain('las dos tiras superiores');
     expect(d3t1).not.toContain('dos tiras superiores');
     const e3 = slice('### 18.3', '### 18.4');
@@ -676,20 +676,22 @@ describe('Case 5 structural relations', () => {
 
   it('does not allege the fichero offer in D2 without on-screen support (I41)', () => {
     const d2 = slice('### 13.1', '### 13.2');
-    expect(d2).toContain('diligencia de su apelación');
+    expect(d2).toContain('Venía a declarar en una diligencia de su apelación');
     expect(d2).not.toContain('entregar un fichero');
     const d3open = slice('### 15.1', '### 15.2');
-    expect(d3open).toContain('ayer la defensa dijo que el occiso venía a una diligencia de apelación');
+    expect(d3open).toContain('ayer esta corte oyó que ese hombre pidió esta diligencia para su apelación');
+    expect(d3open).toContain('qué venía a señalar en ella');
     expect(d3open).not.toContain('tres días sin que nadie le explique');
   });
 
   it('keeps Berrondo sindicatura dates and alibi stairs coherent (I42, I43)', () => {
     const d2vol = slice('BERRONDO: Fulgencio Berrondo Ontiveros', 'BERRONDO: Protesto decir verdad');
-    expect(d2vol).toContain('síndico de concursos desde 1971');
+    expect(d2vol).toContain('síndico desde marzo de 1971');
     expect(d2vol).not.toContain('síndico de concursos desde 1963');
     expect(SPEC).toContain('Mi primera sindicatura');
     const d3t3 = slice('### 15.4', '## 16.');
-    expect(d3t3).toContain('cuarenta escalones');
+    expect(d3t3).toContain('Es una escalera larga');
+    expect(d3t3).not.toContain('cuarenta escalones');
     expect(d3t3).not.toContain('ciento veinte escalones');
   });
 
@@ -703,10 +705,12 @@ describe('Case 5 structural relations', () => {
 
   it('counts boiler days from the rupture date, not twice as four (I45)', () => {
     const vestibulo = slice('### 10.2', '### 10.3');
-    expect(vestibulo).toContain('llevan cuatro días');
-    const d4 = slice('## 17.', '## 18.');
-    expect(d4).toContain('seis días');
-    expect(d4).not.toMatch(/cuatro días.*caldera|caldera.*cuatro días/);
+    expect(vestibulo).toContain('desde el tres de diciembre');
+    const celdaD4 = slice('### 16.1', '### 16.2');
+    expect(celdaD4).toContain('llevaban al máximo desde el tres');
+    const d4trial = slice('## 17.', '## 18.');
+    expect(d4trial).toContain('los dejaron cuatro días');
+    expect(d4trial).not.toMatch(/seis días.*caldera|caldera.*seis días/);
   });
 
   it('restamps bg after relato and fixes the §7.1 camera rule (I46)', () => {
@@ -722,18 +726,20 @@ describe('Case 5 structural relations', () => {
     const d4t1 = slice('### 17.2', '## 18.');
     const folder = d4t1.indexOf('carpeta de hule');
     const secretary = d4t1.indexOf('SECRETARIO: Recibo la carpeta');
-    const dismiss = d4t1.indexOf('La testigo puede retirarse');
+    const dismiss = d4t1.indexOf('queda a disposición de esta corte');
     expect(folder).toBeGreaterThan(-1);
     expect(secretary).toBeGreaterThan(folder);
     expect(dismiss).toBeGreaterThan(secretary);
     expect(slice('### 18.3', '### 18.4')).toContain('carpeta de vales que exhibió la señorita Peñaloza');
   });
 
-  it('orders the surplus tomo in E3 intro, not a photograph (I48)', () => {
+  it('orders the forensic photo and surplus tomo in E3 success (I48)', () => {
     const intro = slice('DEFENSA: Y en el suelo, a un metro del cuerpo', 'Bloque mapeado a `ClimaxStage.introDialogue`');
-    expect(intro).toContain('ese tomo');
-    expect(intro).not.toContain('esa fotografía');
-    expect(slice('### 18.3', '### 18.4')).toContain('deposita sobre el estrado un volumen pesado');
+    expect(intro).toContain('otro tomo');
+    const e3 = slice('### 18.3', '### 18.4');
+    expect(e3).toContain('el tomo que en ella sobra');
+    expect(e3).toContain('fotografía pericial del estante');
+    expect(e3).toContain('deposita sobre el estrado');
   });
 
   it('marks Don Ramón for the Monday citatorio and Nicanor for the relevo (I49)', () => {
@@ -761,8 +767,11 @@ describe('Case 5 structural relations', () => {
     expect(artRow, 'art row').toBeTruthy();
     const panelB = artRow!.slice(artRow!.indexOf('**B (28 AGO):**'), artRow!.indexOf('**C (21 AGO):**'));
     expect(panelB).toContain('Chapa puerta de carga');
+    expect(panelB).toContain('Malla floja');
+    expect(panelB).toContain('clavo en la caseta');
+    expect(panelB).toContain('Pastillas de chiquitolina');
     expect(panelB).toContain('Rollo de cámara');
-    expect(panelB).toContain('Servicio de cierre incluido — 5 min.');
+    expect(panelB).toContain('Servicio de cierre incluido. Cinco minutos.');
     expect(panelB).not.toMatch(/«6\. — 5 min\.»/);
   });
 
@@ -771,7 +780,7 @@ describe('Case 5 structural relations', () => {
     expect(row, 'perfil_berrondo').toBeTruthy();
     expect(row).toContain('(2) D2-T2:');
     expect(row).not.toContain('(2) GIRO 2:');
-    expect(row).toContain('paga impuestos por ello');
+    expect(row).toContain('inspeccionar su huacal');
   });
 
   it('grounds the actuario row in blocks that actually mention him (I53)', () => {
@@ -790,7 +799,8 @@ describe('Case 5 structural relations', () => {
     expect(slice('### 4.2', '### 4.3')).not.toMatch(/^\| 16:45 \|/m);
     expect(slice('### 4.2', '### 4.3')).toContain('16:40–16:45');
     const d3t1 = slice('### 15.2', '### 15.3');
-    expect(d3t1).toContain('inventario de la masa concursal');
+    expect(d3t1).toContain('inventario de la masa');
+    expect(d3t1).toContain('cuarenta y siete partidas');
     expect(d3t1).not.toMatch(/dentro de ese huacal lo escribió este juzgado/);
   });
 });

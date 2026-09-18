@@ -9,7 +9,7 @@ import type { ClimaxEpilogue, DialogueLine } from '../../../types/index.js';
 const BG = 'assets/bg_waiting_room.webp';
 
 const LINES: DialogueLine[] = [
-  { speaker: 'NARRADOR', text: '23 de agosto, 18:40. Sala de espera del tribunal.', bgm: 'epilogue' },
+  { speaker: 'NARRADOR', text: '30 de agosto, 18:40. Sala de espera del tribunal.', bgm: 'epilogue' },
   { speaker: 'FLORINDA', text: 'Ya está en su vitrina otra vez. Le van a poner cristal doble y una rejilla nueva.', pose: 'florinda_idle' },
   { speaker: 'DEFENSA', text: '¿Y la chapa de la puerta de carga?', pose: 'donramon_idle' },
   { speaker: 'FLORINDA', text: '...Mañana viene el cerrajero. Mañana.', pose: 'florinda_idle' },

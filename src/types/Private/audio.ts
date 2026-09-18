@@ -36,7 +36,8 @@ export type TrackName =
   | 'epilogue'
   | 'detention_center'
   | 'kermes'
-  | 'cross_exam_presto';
+  | 'cross_exam_presto'
+  | 'cross_exam_final';
 
 export type InstrumentWaveType = 'sine' | 'square' | 'sawtooth' | 'triangle';
 

@@ -16,7 +16,7 @@ export const CASE1_CLINICA_D2: InvestigationScene = {
   speaker: 'NARRADOR',
   idlePose: 'almanegra_vendado',
   intro: [
-    { speaker: 'NARRADOR', text: '23 de agosto, 12:00 PM. Clínica municipal, cuarto 6. La cama está vacía. El hombre enorme está sentado en una silla de ruedas, vendado hasta las cejas.', bg: 'assets/bg_clinica.webp', furniture: 'none', bgm: 'investigation_core' },
+    { speaker: 'NARRADOR', text: '30 de agosto, 12:00 PM. Clínica municipal, cuarto 6. La cama está vacía. El hombre enorme está sentado en una silla de ruedas, vendado hasta las cejas.', bg: 'assets/bg_clinica.webp', furniture: 'none', bgm: 'investigation_core' },
     { speaker: 'ALMA NEGRA', text: '¡Por mil demonios! ¿Quién anda ahí?', pose: 'almanegra_shock' },
     { speaker: 'DEFENSA', text: 'Calma, calma. Don Ramón, defensor.', pose: 'donramon_sweat' },
     { speaker: 'ALMA NEGRA', text: '¿Defensor de quién, grumete?', pose: 'almanegra_vendado' },

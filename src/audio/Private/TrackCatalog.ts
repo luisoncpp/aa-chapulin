@@ -17,6 +17,7 @@ import {
 } from './tracks/InvestigationTracks.js';
 import { crossExamPrestoTrack, kermesTrack } from './tracks/Case3Tracks.js';
 import { terrazaBarTrack } from './tracks/TerrazaBarTrack.js';
+import { crossExamFinalTrack } from './tracks/FinalConfrontationTrack.js';
 
 export const TRACK_CATALOG: TrackCatalogMap = {
   // @Section(Courtroom & Cross-Examination Tracks)
@@ -24,6 +25,7 @@ export const TRACK_CATALOG: TrackCatalogMap = {
   cross_exam_moderato: crossExamModeratoTrack,
   cross_exam_allegro: crossExamAllegroTrack,
   cross_exam_presto: crossExamPrestoTrack,
+  cross_exam_final: crossExamFinalTrack,
 
   // @Section(Objection & Pursuit Turnaround Tracks)
   objection: objectionTrack,

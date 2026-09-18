@@ -39,7 +39,7 @@ Operational guide for the procedural Web Audio API synthesizer, MIDI music track
 1. A correct contradiction queues its `successDialogue`.
 2. The first reveal line carries `bgm: 'objection'`, switching away from the testimony loop before the objection is explained.
 3. If the contradiction has a follow-up turnabout, its first line carries `bgm: 'pursuit'` and takes over for the remainder of that reveal.
-4. After the witness is cornered, the "here is what really happened" narration — the case's central truth argued at length — carries `bgm: 'truth'` on its first line instead. `truth` develops E minor tension through a fuller revelation and a suspended dominant return; the happy release belongs to `victory` at the verdict. When court business resumes, switch back to the testimony/cross-exam loop.
+4. After the witness is cornered, the "here is what really happened" narration — the case's central truth argued at length — carries `bgm: 'truth'` on its first line instead. `truth` ("Cerrando el Cerco") is reserved for the big reveal: a ~38s E minor 5/4 loop that opens on a heartbeat kick and hollow fifths, then tightens through a chromatic climb to an apex near the end. Cue it on the first reveal line so the build has room to work — the payoff bar is ~33 seconds in, so a late cue wastes the shape. It loops back onto its own dominant and never resolves, so the release still belongs to `victory` at the verdict. When court business resumes, switch back to the testimony/cross-exam loop.
 5. `suspense` is never a reveal cue: it opens the pre-verdict climax dilemma (see [[docs/flows/trial-cross-examination-flow.md]]).
 
 ### On-Demand SFX Generation

@@ -14,7 +14,7 @@ export const CASE1_CAMARAS_EN: InvestigationScene = {
   speaker: 'NARRADOR',
   idlePose: 'florinda_idle',
   intro: [
-    { speaker: 'NARRADOR', text: 'August 23rd, 11:00 AM. An interior museum corridor. The loading access is off to one side; ahead, a Venetian mirror closes the straight run.', bg: 'assets/bg_pasillo_espejo.webp', furniture: 'none', bgm: 'suspense' },
+    { speaker: 'NARRADOR', text: 'August 30th, 11:00 AM. An interior museum corridor. The loading access is off to one side; ahead, a Venetian mirror closes the straight run.', bg: 'assets/bg_pasillo_espejo.webp', furniture: 'none', bgm: 'suspense' },
     { speaker: 'FLORINDA', text: 'You two again.', pose: 'florinda_angry' },
     { speaker: 'DEFENSA', text: "Us again, ma'am. We come with the judge's order.", pose: 'donramon_idle' },
     { speaker: 'FLORINDA', text: '...Come in. But do not touch the mirror, it is from 1770 and it cost me three years of budget.', pose: 'florinda_idle' },
@@ -53,9 +53,9 @@ export const CASE1_CAMARAS_EN: InvestigationScene = {
       x: 88, y: 16, w: 11, h: 48,
       dialogue: [
         { speaker: 'NARRADOR', text: 'Nailed up beside the camera, a sheet with dates and checkmarks.' },
-        { speaker: 'DEFENSA', text: '"Film change: Mondays." And the last change was Monday the 20th.', pose: 'donramon_idle' },
+        { speaker: 'DEFENSA', text: '"Film change: Mondays." And the last change was Monday the 27th.', pose: 'donramon_idle' },
         { speaker: 'FLORINDA', text: 'Mondays, because Sundays are busier and the film runs out faster.', pose: 'florinda_idle' },
-        { speaker: 'DEFENSA', text: '(Monday the 20th. By Tuesday the 21st one frame was left. One.)', pose: 'donramon_shock' },
+        { speaker: 'DEFENSA', text: '(Monday the 27th. By Tuesday the 28th one frame was left. One.)', pose: 'donramon_shock' },
         { speaker: 'DEFENSA', text: 'And does anyone else know that?', pose: 'donramon_idle' },
         { speaker: 'FLORINDA', text: 'It is nailed to the corridor wall, counselor. Anyone who stops to read it knows.', pose: 'florinda_idle' },
         { speaker: 'DEFENSA', text: '(One more thing in plain sight of anyone who paid for a ticket.)', pose: 'donramon_sweat' },

@@ -13,7 +13,7 @@ export const CASE2_BOVEDA: InvestigationScene = {
   speaker: 'NARRADOR',
   idlePose: 'peterete_smug',
   intro: [
-    { speaker: 'NARRADOR', text: '29 de Agosto, 11:30 AM. Bóveda Subterránea de la Hacienda.' },
+    { speaker: 'NARRADOR', text: '22 de Agosto, 11:30 AM. Bóveda Subterránea de la Hacienda.' },
     { speaker: 'FLORINDA', text: '¡Esto es inconcebible! ¡Tener a un ladrón de baja ralea merodeando por el vecindario del hotel! ¡Menos mal que el fiscal Super Sam lo apresó de inmediato!', pose: 'florinda_angry' },
     { speaker: 'PETERETE', text: 'Tranquilícese, mi distinguida dama. Como jefe de seguridad, he levantado un peritaje irrebatible. El criminal actuó en solitario a las 10:00 PM.', pose: 'peterete_smug' },
     { speaker: 'DEFENSA', text: '¡Con permisito, dijo Monchito! La defensa entra a inspeccionar la escena del crimen.', pose: 'donramon_idle' },

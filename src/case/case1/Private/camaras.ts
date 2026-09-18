@@ -15,7 +15,7 @@ export const CASE1_CAMARAS: InvestigationScene = {
   speaker: 'NARRADOR',
   idlePose: 'florinda_idle',
   intro: [
-    { speaker: 'NARRADOR', text: '23 de agosto, 11:00 AM. Pasillo interior del museo. A un lado queda el acceso de carga; al frente, un espejo veneciano cierra el tramo recto.', bg: 'assets/bg_pasillo_espejo.webp', furniture: 'none', bgm: 'suspense' },
+    { speaker: 'NARRADOR', text: '30 de agosto, 11:00 AM. Pasillo interior del museo. A un lado queda el acceso de carga; al frente, un espejo veneciano cierra el tramo recto.', bg: 'assets/bg_pasillo_espejo.webp', furniture: 'none', bgm: 'suspense' },
     { speaker: 'FLORINDA', text: 'Otra vez ustedes.', pose: 'florinda_angry' },
     { speaker: 'DEFENSA', text: 'Otra vez nosotros, señora. Traemos orden del juez.', pose: 'donramon_idle' },
     { speaker: 'FLORINDA', text: '...Pásenle. Pero no toquen el espejo, que es de 1770 y me costó tres años de presupuesto.', pose: 'florinda_idle' },
@@ -54,9 +54,9 @@ export const CASE1_CAMARAS: InvestigationScene = {
       x: 88, y: 16, w: 11, h: 48,
       dialogue: [
         { speaker: 'NARRADOR', text: 'Clavada junto a la cámara, una hoja con fechas y palomitas.' },
-        { speaker: 'DEFENSA', text: '"Cambio de rollo: lunes." Y el último cambio fue el lunes 20.', pose: 'donramon_idle' },
+        { speaker: 'DEFENSA', text: '"Cambio de rollo: lunes." Y el último cambio fue el lunes 27.', pose: 'donramon_idle' },
         { speaker: 'FLORINDA', text: 'Los lunes, porque los domingos hay más gente y se acaba más rápido.', pose: 'florinda_idle' },
-        { speaker: 'DEFENSA', text: '(Lunes 20. Para el martes 21 le quedaba un cuadro. Uno.)', pose: 'donramon_shock' },
+        { speaker: 'DEFENSA', text: '(Lunes 27. Para el martes 28 le quedaba un cuadro. Uno.)', pose: 'donramon_shock' },
         { speaker: 'DEFENSA', text: '¿Y eso lo sabe alguien más?', pose: 'donramon_idle' },
         { speaker: 'FLORINDA', text: 'Está clavado en la pared del pasillo, licenciado. Lo sabe quien se pare a leerlo.', pose: 'florinda_idle' },
         { speaker: 'DEFENSA', text: '(Otra cosa que estaba a la vista de cualquiera que pagara un boleto.)', pose: 'donramon_sweat' },

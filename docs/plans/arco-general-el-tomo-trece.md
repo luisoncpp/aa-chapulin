@@ -51,8 +51,8 @@ Reglas duras de personaje:
 | Caso | Fecha del crimen | Renta de Don Ramón | Lo que el arco deja plantado |
 | --- | --- | --- | --- |
 | 0 | 12 de julio | 14 meses | Tarjeta de una sociedad muerta. El habla de catálogo. |
-| 1 (reescritura) | 21 de agosto | 14 meses | **La única mención en voz alta de "el Tomo Trece" en toda la serie**, más la sombra del soborno a Super Sam. |
-| 2 | 28 de agosto | 14 meses | El cliente misterioso. |
+| 2 | 21 de agosto | 14 meses | El cliente misterioso. |
+| 1 (reescritura) | 28 de agosto | 14 meses | **La única mención en voz alta de "el Tomo Trece" en toda la serie**, más la sombra del soborno a Super Sam. |
 | 3 | 15 de septiembre | 15 meses | Los $12,000 del 3 de septiembre. |
 | 4 | 24–27 de octubre | 16 meses | El Collar de Cleopatra y un corte impago. |
 | 5 (nuevo) | 1 de diciembre | 17 meses | — |

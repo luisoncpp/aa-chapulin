@@ -91,7 +91,7 @@ export const CASE1_TESTIMONY_4: Testimony = {
       pose: 'tripaseca_smug',
       text: 'Ya que el señor juez quiere saber cómo entró, yo se lo dije a la ley desde el principio: por la puerta de carga.',
       pressText: [
-        { speaker: 'DEFENSA', text: '¡UN MOMENTO! ¿Usted le dijo eso a la policía la noche del veintiuno?', sfx: 'whoosh', cutin: 'objection_un_momento', pose: 'donramon_point' },
+        { speaker: 'DEFENSA', text: '¡UN MOMENTO! ¿Usted le dijo eso a la policía la noche del veintiocho?', sfx: 'whoosh', cutin: 'objection_un_momento', pose: 'donramon_point' },
         { speaker: 'TRIPASECA', text: 'Se lo dije al señor fiscal en persona.', pose: 'tripaseca_smug' },
         { speaker: 'DEFENSA', text: 'Qué curioso: en el informe de detención no aparece una sola línea sobre la puerta de carga.', pose: 'donramon_idle' },
         { speaker: 'SUPER SAM', text: '¡Es que el caso ya estaba resuelto! ¡Uno no escribe lo que ya no hace falta!', pose: 'supersam_sweat' },

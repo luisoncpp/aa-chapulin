@@ -12,6 +12,8 @@ Configurado en [[src/case/case.group.md]]. Dirección de arte: [[docs/specs/arti
 |---|---|---|
 | 2026-09-17 | Contrato de motor y relaciones entre vistas | Se detectó deriva en D2-T2, D2-T3 y la cadena de señalamiento del clímax; se actualizan el guion, las vistas derivadas y las invariantes. |
 | 2026-09-17 | Simulación de presentaciones | Cero hallazgos nuevos: D2-T2 → Señalamiento 1 → `pastillas_chiquitolina`, D2-T3 → tres señalamientos encadenados → `bolsa_dolares`, y la etapa 3 del clímax conservan el orden y la prueba de cada transición. |
+| 2026-09-17 | Calendario y orden de actos | Cero hallazgos nuevos: el museo queda en 28–30 de agosto y sus referencias de guion, catálogo y spec coinciden. |
+| 2026-09-17 | Canon heredado desde el Caso 5 (lente del nuevo orden de actos) | Dos restos de la fechación antigua en `perfil_supersam` y en el Talk 1 de D1 — la bolsa preguntada por la noche del veintiuno —; corregidos a la noche del 28. El resto de los datos heredados (ficha, bolsa, cinco minutos, «el Tomo Trece») verifica contra el Caso 5. |
 
 **Regla de parada:** una nueva lente sin hallazgos sobre las secciones modificadas.
 
@@ -19,7 +21,7 @@ Configurado en [[src/case/case.group.md]]. Dirección de arte: [[docs/specs/arti
 
 ## 1. Objetivo y reglas de diseño
 
-Caso 1 es el **segundo episodio en orden de juego**, después del tutorial (Caso 0) y antes del Caso 2. Su trabajo es enseñar el juego completo —dos jornadas, aplazamiento, presión que desbloquea declaraciones, examen a detalle, señalamiento sobre lámina y clímax multietapa— sin la densidad de los Casos 3 y 4.
+Caso 1 es el **Acto 2 en orden de juego**, después del tutorial y del Acto 1 (el arco del Chómpiras) y antes de los Actos 3 y 4. Su trabajo es enseñar el juego completo —dos jornadas, aplazamiento, presión que desbloquea declaraciones, examen a detalle, señalamiento sobre lámina y clímax multietapa— sin la densidad de los Casos 3 y 4.
 
 | Regla | Valor |
 |---|---|
@@ -42,7 +44,7 @@ Caso 1 es el **segundo episodio en orden de juego**, después del tutorial (Caso
 
 ### 2.1 Lo que la fiscalía cree
 
-La noche del 21 de agosto robaron la **Chicharra Paralizadora de Oro** del Museo de las Curiosidades. El velador, **Alma Negra**, apareció con el cráneo fracturado. A las 21:07, el fiscal **Super Sam** detuvo dentro de la sala 2 a **El Chapulín Colorado**, de pie junto al cuerpo y con su **Chipote Chillón** en la mano. Un testigo de paso, el comerciante **El Tripaseca**, declara haberlo visto dar el golpe por la ventana del callejón. El museo estaba cerrado con llave desde las 20:40. Caso resuelto en cinco minutos: *Time is money*.
+La noche del 28 de agosto robaron la **Chicharra Paralizadora de Oro** del Museo de las Curiosidades. El velador, **Alma Negra**, apareció con el cráneo fracturado. A las 21:07, el fiscal **Super Sam** detuvo dentro de la sala 2 a **El Chapulín Colorado**, de pie junto al cuerpo y con su **Chipote Chillón** en la mano. Un testigo de paso, el comerciante **El Tripaseca**, declara haberlo visto dar el golpe por la ventana del callejón. El museo estaba cerrado con llave desde las 20:40. Caso resuelto en cinco minutos: *Time is money*.
 
 Lo defiende **Don Ramón**, abogado de banqueta con catorce meses de renta atrasada, asesorado por el propio acusado.
 
@@ -87,7 +89,7 @@ Ninguno bloquea el veredicto ni deja sensación de caso a medias: el acusado sal
 
 ---
 
-## 4. Cronología del 21 de agosto
+## 4. Cronología del 28 de agosto
 
 Las horas de autor **no son hechos judiciales**: la columna derecha dice hasta dónde llega el jugador.
 
@@ -119,10 +121,10 @@ Catorce entradas. Once se presentan durante los contrainterrogatorios y el clím
 | ID | Obtención | Descripción inicial permitida | Ranura de presentación |
 |---|---|---|---|
 | `insignia_abogado` *(heredado)* | Inicio | Insignia abollada de Don Ramón. Constante de la serie. | Ninguna. Sólo se presenta en el tutorial (Caso 0). |
-| `parte_detencion` **(nueva en Caso 1)** | D1 detención | Informe policial del 21 de agosto: detención a las 21:07 en la sala 2. Inventario del detenido: un Chipote Chillón, una caja de Pastillas de Chiquitolina, unas Antenitas de Vinil y tres pesos. **Chicharra no localizada.** Museo revisado pieza por pieza. Vehículos del predio: sin registrar. | D1-T1 contradicción. Un `[ACTUALIZAR]` en el `followUp` de D2-T2. |
+| `parte_detencion` **(nueva en Caso 1)** | D1 detención | Informe policial del 28 de agosto: detención a las 21:07 en la sala 2. Inventario del detenido: un Chipote Chillón, una caja de Pastillas de Chiquitolina, unas Antenitas de Vinil y tres pesos. **Chicharra no localizada.** Museo revisado pieza por pieza. Vehículos del predio: sin registrar. | D1-T1 contradicción. Un `[ACTUALIZAR]` en el `followUp` de D2-T2. |
 | `chipote_chillon` *(heredado)* | D1 detención | El mazo del acusado. Lo traía en la mano en la sala 2. Al apretarlo emite un chillido. | Ninguna. |
 | `pastillas_chiquitolina` *(heredado)* | D1 detención | Píldoras que reducen a quien las toma al tamaño de un ratón durante quince minutos. Reducen también lo que la persona lleva puesto o en la mano. | D2-T2 `followUp`. |
-| `antenitas_vinil` *(heredado)* | D1 detención | Pueden vibrar cerca de un enemigo o de una pista importante, sin identificar qué las activó. Vibraron a las 20:45 del 21 de agosto. | Clímax, etapa 2. |
+| `antenitas_vinil` *(heredado)* | D1 detención | Pueden vibrar cerca de un enemigo o de una pista importante, sin identificar qué las activó. Vibraron a las 20:45 del 28 de agosto. | Clímax, etapa 2. |
 | `chicharra_oro` *(heredado)* | D1 museo | Ficha de la pieza robada: cigarra de oro macizo, **1.2 kg**, filigrana de canto vivo, montada sobre base de resonancia. Al separarla de la base suena, y quien la oye queda inmóvil cerca de un minuto. | D2-T1 `followUp`. |
 | `vitrina_rota` **(nueva)** | D1 museo | Vitrina de la sala 2, reventada. No quedaron vidrios dentro de la vitrina. Pedestal de madera a la altura de la cintura. Junto a ella, la jaula del perico histórico volcada. `detailedView`. | D2-T2 contradicción + **Señalamiento 1**. |
 | `rejilla_ducto` **(nueva)** | D1 museo | Rejilla del ducto de la sala 2, 18 × 24 cm, cuatro tornillos con la pintura sin romper. Esquina inferior con el alambre cortado, doblado hacia arriba y vuelto a acomodar; dos marcas paralelas en el polvo del lateral interior. Un hilo de casimir crema con raya, recogido de la malla. `detailedView`. | Clímax, etapa 3. |
@@ -141,7 +143,7 @@ El contador es lineal y satura: una tercera actualización se descartaría en si
 |---|---|---|
 | `informe_medico` | En el éxito de la contradicción de D1-T2: *"El calco indica un objeto **flexible**, que se deformó al impactar, y una trayectoria de **arriba hacia abajo y por detrás**. Compatible con un saco denso de moneda metálica."* | En el éxito del `followUp` de D2-T3: *"Partículas metálicas en la herida: aleación de plata al 90%, idéntica a la moneda atorada en la costura de la bolsa de lona."* |
 | `parte_detencion` | En el éxito del `followUp` de D2-T2: *"Anexo de laboratorio: la caja de Pastillas de Chiquitolina venía **sellada de fábrica, doce de doce**. El acusado no tomó ninguna esa noche."* | — |
-| `foto_crimen` | Al examinar la bitácora del cuarto de cámaras (D2): *"Bitácora del rollo: se cambia los lunes. El martes 21 quedaba **un solo cuadro**, y se disparó por movimiento a las 21:00."* | — |
+| `foto_crimen` | Al examinar la bitácora del cuarto de cámaras (D2): *"Bitácora del rollo: se cambia los lunes. El martes 28 quedaba **un solo cuadro**, y se disparó por movimiento a las 21:00."* | — |
 
 ### 5.2 Reglas de redacción heredadas
 
@@ -214,7 +216,7 @@ Todas se entregan en el Día 1 salvo `perfil_almanegra`. Icono: recorte de busto
 |---|---|---|---|
 | `perfil_chapulin` | D1 detención | *"El acusado. Héroe profesional. Detenido a las 21:07 junto al cuerpo del velador, con su Chipote Chillón en la mano. Dice que llegó tarde."* | **1** (D1-T2, tras el giro): *"Mide 1.60 m. El velador mide 1.92 m con botas. Para golpearlo desde arriba habría tenido que estar subido en algo."* |
 | `perfil_donramon` | D1 detención | *"Abogado defensor. Catorce meses de renta atrasada. Es la primera vez que defiende a alguien que puede saltar edificios."* | — |
-| `perfil_supersam` | D1 juicio, apertura | *"Fiscal. Cobra por caso cerrado. Cerró éste en cinco minutos. Hoy subió al estrado sin su bolsa de dólares al hombro."* | **1** (D1, giro 1): *"Se negó a decir dónde estuvo su bolsa de lona la noche del 21 y pidió el aplazamiento él mismo."* |
+| `perfil_supersam` | D1 juicio, apertura | *"Fiscal. Cobra por caso cerrado. Cerró éste en cinco minutos. Hoy subió al estrado sin su bolsa de dólares al hombro."* | **1** (D1, giro 1): *"Se negó a decir dónde estuvo su bolsa de lona la noche del 28 y pidió el aplazamiento él mismo."* |
 | `perfil_tripaseca` | D1 juicio, llamado al estrado | *"Testigo estrella. Comerciante: compra barato y vende lo que se deje. Dice que pasaba por el callejón de carga cerca de las nueve."* | **3.** (1) D1-T2: *"Describió el sonido del golpe como 'un costalazo de fierros'."* (2) D1-T2, giro: *"Dijo haber visto al acusado **parado sobre el pedestal de la vitrina**. Nadie le preguntó cómo sabía que había un pedestal."* (3) D2-T2: *"Sabe que la chapa de la puerta de carga está vencida desde marzo."* |
 | `perfil_florinda` | D1 museo | *"Curadora del Museo de las Curiosidades. Única llave de la puerta principal. Cerró a las 20:40 con el Profesor Jirafales de testigo."* | **1** (D1-T1): *"Llegó a las 21:05 y vio al acusado de pie junto al velador. Es lo único que vio."* |
 | `perfil_jirafales` | D1 museo | *"Conferencista invitado y viejo conocido de la vecindad de Don Ramón. Dio la charla de las 20:00 sobre la Chicharra. Lleva minutario de todo lo que hace."* | — |
@@ -297,7 +299,7 @@ La comprobación es **sólo de inventario**: nunca mira qué locaciones se visit
 
 ---
 
-## 9. Guión: Día 1 — Investigación (22 de agosto)
+## 9. Guión: Día 1 — Investigación (29 de agosto)
 
 Ruta obligatoria: `detention` → `museo_sala2` → `clinica`. Se desbloquea en cadena; la clínica cierra la jornada entregando `informe_medico` (§8.1).
 
@@ -307,7 +309,7 @@ Ruta obligatoria: `detention` → `museo_sala2` → `clinica`. Se desbloquea en 
 - **Música:** `detention_center`.
 
 ~~~dialogue
-NARRADOR: 22 de agosto, 9:00 AM. Centro de Detención de la Ciudad. [bg: bg_detention; furniture: none; bgm: detention_center]
+NARRADOR: 29 de agosto, 9:00 AM. Centro de Detención de la Ciudad. [bg: bg_detention; furniture: none; bgm: detention_center]
 DEFENSA: Buenos días. Soy Don Ramón, defensor de oficio... y de banqueta, según quién pregunte. [pose: donramon_idle]
 CHAPULIN: ¡No contaban con mi astucia! [pose: chapulin_point]
 DEFENSA: Joven, está usted preso. [pose: donramon_sweat]
@@ -324,7 +326,7 @@ DEFENSA: (Ya me anoté a los dos en el Acta. A él porque es mi cliente; a mí p
 
 #### Opciones de diálogo (Talk)
 
-1. **"¿Qué pasó la noche del 21?"**
+1. **"¿Qué pasó la noche del 28?"**
 
 ~~~dialogue
 CHAPULIN: A las ocho cuarenta y cinco me vibraron las antenitas de vinil. Vibran cuando hay un enemigo cerca; nunca fallan. [pose: chapulin_idle]
@@ -383,7 +385,7 @@ CHAPULIN: Sígame usted a mí, entonces. Yo me quedo aquí dirigiendo. [pose: ch
 - El acusado está detenido: en la investigación del día 1 **no aparece en pantalla**. Sus intervenciones llegan por un radio de dos pesos que Don Ramón trae en el bolsillo y se estampan con `pose: donramon_idle` (nadie cambia de cámara).
 
 ~~~dialogue
-NARRADOR: 22 de agosto, 11:00 AM. Museo de las Curiosidades, sala 2. La cinta de la policía sigue puesta. [bg: bg_museo_sala2; furniture: none; bgm: investigation]
+NARRADOR: 29 de agosto, 11:00 AM. Museo de las Curiosidades, sala 2. La cinta de la policía sigue puesta. [bg: bg_museo_sala2; furniture: none; bgm: investigation]
 FLORINDA: ¡Ay, mi museo! ¡Mi pobre museo! [pose: florinda_crying]
 DEFENSA: Doña Florinda, buenas... [pose: donramon_idle]
 FLORINDA: ¡USTED! ¿Usted qué hace aquí? [pose: florinda_angry]
@@ -412,7 +414,7 @@ DEFENSA: (Hay algo raro en cómo cayó ese vidrio, pero ahorita no sabría decir
 [ENTREGAR vitrina_rota]
 ~~~
 
-> **`detailedView` de `vitrina_rota`** (`assets/examine_vitrina_rota.webp`). Pie de lámina neutro, sin adelantar la solución: *"Vitrina de la sala 2 fotografiada a las 23:10 del 21 de agosto, antes de recoger nada."* La lámina es también el tablero del **Señalamiento 1** (§12.3).
+> **`detailedView` de `vitrina_rota`** (`assets/examine_vitrina_rota.webp`). Pie de lámina neutro, sin adelantar la solución: *"Vitrina de la sala 2 fotografiada a las 23:10 del 28 de agosto, antes de recoger nada."* La lámina es también el tablero del **Señalamiento 1** (§12.3).
 
 2. **Rejilla del ducto (`hotspot_rejilla`)**
 
@@ -525,7 +527,7 @@ JIRAFALES: Licenciado, si de veras quiere ayudar a su cliente, vaya a la clínic
 - **Música:** `detention_center` (mismo criterio que el Caso 3 para una víctima en coma).
 
 ~~~dialogue
-NARRADOR: 22 de agosto, 12:00 PM. Clínica municipal, cuarto 6. [bg: bg_clinica_cuarto6; furniture: none; bgm: detention_center]
+NARRADOR: 29 de agosto, 12:00 PM. Clínica municipal, cuarto 6. [bg: bg_clinica_cuarto6; furniture: none; bgm: detention_center]
 NARRADOR: En la cama hay un hombre enorme, con parche en el ojo y la cabeza vendada. No se mueve.
 DEFENSA: Con que éste es Alma Negra. Parece que lo bajaron de un galeón. [pose: donramon_idle]
 DEFENSA: (Un metro noventa y dos. Con las botas, más. Y a mi cliente le calculo un metro sesenta parado de puntitas.) [pose: donramon_shock]
@@ -570,14 +572,14 @@ DEFENSA: (Pues vámonos. Que no panda el cúnico, dijo el otro.) [pose: donramon
 
 ---
 
-## 10. Guión: Día 1 — Juicio (22 de agosto, 14:00)
+## 10. Guión: Día 1 — Juicio (29 de agosto, 14:00)
 
 Pregunta de la jornada, enunciada por el Juez en la apertura y contestada en el giro: **¿con qué golpearon al velador?**
 
 ### 10.1 Apertura
 
 ~~~dialogue
-NARRADOR: 22 de agosto, 2:00 PM. Tribunal Superior - Sala de Espera. [bg: bg_waiting_room; furniture: none; bgm: trial]
+NARRADOR: 29 de agosto, 2:00 PM. Tribunal Superior - Sala de Espera. [bg: bg_waiting_room; furniture: none; bgm: trial]
 JUEZ: ¡Silencio en la sala! Se abre la audiencia por el robo de la Chicharra Paralizadora de Oro y las lesiones al velador Alma Negra. [sfx: gavel; bgm: trial; pose: judge_gavel]
 SUPER SAM: Your Honor, este caso lo cerré en cinco minutos. FIVE! Un museo cerrado con llave, un velador en el suelo, y adentro un señor vestido de grillo con el chipote en la mano. [pose: supersam_slam; sfx: desk_slam]
 SUPER SAM: Time is money, y este juicio ya me está costando dinero. [pose: supersam_point]
@@ -815,13 +817,13 @@ JUEZ: Entonces el arma entró de la calle. [pose: judge_shock]
 DEFENSA: Entró de la calle, señor juez, en la mano de alguien, y volvió a salir en la mano de alguien. Porque tampoco apareció adentro. [pose: donramon_point]
 NARRADOR: La sala estalla. El Juez golpea el mazo tres veces. [sfx: gavel]
 JUEZ: ¡ORDEN! [sfx: gavel; pose: judge_gavel]
-JUEZ: Alguien caminó hasta ese museo cargando un saco de moneda metálica la noche del veintiuno de agosto. [pose: judge_neutral]
+JUEZ: Alguien caminó hasta ese museo cargando un saco de moneda metálica la noche del veintiocho de agosto. [pose: judge_neutral]
 DEFENSA: (Alguien con un saco de moneda... a cinco minutos del museo... y con tanta prisa por cerrar el caso.) [pose: donramon_idle]
 DEFENSA: (No. Todavía no. Si lo digo hoy me lo tumban en tres segundos.) [pose: donramon_sweat]
 DEFENSA: Señor juez, la defensa tiene una sola pregunta y va dirigida a la fiscalía. [pose: donramon_point]
 SUPER SAM: ¡¿A MÍ?! [pose: supersam_sweat]
 DEFENSA: A usted. Señor fiscal: usted trae al hombro, todos los días, desde que yo lo conozco, una bolsa de lona con el sello de la fiscalía llena de moneda de plata. [pose: donramon_idle]
-DEFENSA: Hoy no la trae. **¿Dónde estaba esa bolsa la noche del veintiuno?** [pose: donramon_slam; sfx: desk_slam; cutin: objection_protesto]
+DEFENSA: Hoy no la trae. **¿Dónde estaba esa bolsa la noche del veintiocho?** [pose: donramon_slam; sfx: desk_slam; cutin: objection_protesto]
 NARRADOR: Silencio absoluto. [bgm: suspense]
 SUPER SAM: ...Your Honor. [pose: supersam_sweat]
 JUEZ: Fiscalía, conteste. [pose: judge_neutral]
@@ -850,7 +852,7 @@ DEFENSA: (Con permisito, dijo Monchito. Mañana le entro al patio de carga.) [po
 
 ---
 
-## 11. Guión: Día 2 — Investigación (23 de agosto)
+## 11. Guión: Día 2 — Investigación (30 de agosto)
 
 Ruta obligatoria: `patio_carga` → `cuarto_camaras` → `clinica_d2`. La clínica cierra la jornada entregando `bitacora_ronda` (§8.1).
 
@@ -862,7 +864,7 @@ Ruta obligatoria: `patio_carga` → `cuarto_camaras` → `clinica_d2`. La clíni
 - **Música:** `investigation`.
 
 ~~~dialogue
-NARRADOR: 23 de agosto, 8:30 AM. Patio de carga del Museo de las Curiosidades. Bardado, con una sola puerta y una camioneta cubierta con lona. [bg: bg_patio_carga; furniture: none; bgm: investigation]
+NARRADOR: 30 de agosto, 8:30 AM. Patio de carga del Museo de las Curiosidades. Bardado, con una sola puerta y una camioneta cubierta con lona. [bg: bg_patio_carga; furniture: none; bgm: investigation]
 CHAPULIN: ¡Aire libre! ¡Qué bonito se ve el mundo cuando a uno lo dejan salir con dos policías! [pose: chapulin_point]
 DEFENSA: Joven, no se emocione, que si se me pierde me quedo sin cliente y sin honorarios. [pose: donramon_sweat]
 CHAPULIN: ¡Que no panda el cúnico, licenciado! Yo nunca me pierdo. Nada más llego tarde. [pose: chapulin_idle]
@@ -958,7 +960,7 @@ DEFENSA: Vámonos al cuarto de las cámaras, joven. Quiero ver la famosa fotogra
 - **Música:** `suspense`.
 
 ~~~dialogue
-NARRADOR: 23 de agosto, 11:00 AM. Pasillo interior del museo. A un lado queda el acceso de carga; al frente, un espejo veneciano cierra el tramo recto. [bg: bg_pasillo_espejo; furniture: none; bgm: suspense]
+NARRADOR: 30 de agosto, 11:00 AM. Pasillo interior del museo. A un lado queda el acceso de carga; al frente, un espejo veneciano cierra el tramo recto. [bg: bg_pasillo_espejo; furniture: none; bgm: suspense]
 FLORINDA: Otra vez ustedes. [pose: florinda_angry]
 DEFENSA: Otra vez nosotros, señora. Traemos orden del juez. [pose: donramon_idle]
 FLORINDA: ...Pásenle. Pero no toquen el espejo, que es de 1770 y me costó tres años de presupuesto. [pose: florinda_idle]
@@ -993,9 +995,9 @@ FLORINDA: Porque sólo quedaba uno, licenciado. La explicación está clavada ju
 
 ~~~dialogue
 NARRADOR: Clavada junto a la cámara, una hoja con fechas y palomitas.
-DEFENSA: "Cambio de rollo: lunes." Y el último cambio fue el lunes 20. [pose: donramon_idle]
+DEFENSA: "Cambio de rollo: lunes." Y el último cambio fue el lunes 27. [pose: donramon_idle]
 FLORINDA: Los lunes, porque los domingos hay más gente y se acaba más rápido. [pose: florinda_idle]
-DEFENSA: (Lunes 20. Para el martes 21 le quedaba un cuadro. **Uno.**) [pose: donramon_shock]
+DEFENSA: (Lunes 27. Para el martes 28 le quedaba un cuadro. **Uno.**) [pose: donramon_shock]
 DEFENSA: ¿Y eso lo sabe alguien más? [pose: donramon_idle]
 FLORINDA: Está clavado en la pared del pasillo, licenciado. Lo sabe quien se pare a leerlo. [pose: florinda_idle]
 DEFENSA: (Otra cosa que estaba a la vista de cualquiera que pagara un boleto.) [pose: donramon_sweat]
@@ -1060,7 +1062,7 @@ DEFENSA: (Puerta y patio fuera del encuadre. Lo que la cámara conserva es el re
 - **Locación nueva, no mutación de `clinica`** ([[docs/lessons-learned/location-cast-rotation.md]]).
 
 ~~~dialogue
-NARRADOR: 23 de agosto, 12:00 PM. Clínica municipal, cuarto 6. La cama está vacía. El hombre enorme está sentado en una silla de ruedas, vendado hasta las cejas. [bg: bg_clinica; furniture: none; bgm: investigation_core]
+NARRADOR: 30 de agosto, 12:00 PM. Clínica municipal, cuarto 6. La cama está vacía. El hombre enorme está sentado en una silla de ruedas, vendado hasta las cejas. [bg: bg_clinica; furniture: none; bgm: investigation_core]
 ALMA NEGRA: ¡Por mil demonios! ¿Quién anda ahí? [pose: almanegra_shock]
 DEFENSA: Calma, calma. Don Ramón, defensor. [pose: donramon_sweat]
 ALMA NEGRA: ¿Defensor de quién, grumete? [pose: almanegra_vendado]
@@ -1136,14 +1138,14 @@ NARRADOR: El botón de JUICIO se ilumina. [sfx: realization]
 
 ---
 
-## 12. Guión: Día 2 — Juicio (23 de agosto, 14:00)
+## 12. Guión: Día 2 — Juicio (30 de agosto, 14:00)
 
 Preguntas de la jornada, dictadas por el Juez al cerrar el día 1: **por dónde entró el ladrón** y **por dónde salió el arma**.
 
 ### 12.1 Apertura y `openingPresent` de persona
 
 ~~~dialogue
-NARRADOR: 23 de agosto, 2:00 PM. Tribunal Superior - Sala de Espera. [bg: bg_waiting_room; furniture: none; bgm: trial]
+NARRADOR: 30 de agosto, 2:00 PM. Tribunal Superior - Sala de Espera. [bg: bg_waiting_room; furniture: none; bgm: trial]
 JUEZ: Se reanuda la audiencia. [sfx: gavel; bgm: trial; pose: judge_gavel]
 SUPER SAM: Your Honor, la fiscalía sostiene su acusación completa y pide que este juicio termine hoy. [pose: supersam_idle]
 DEFENSA: (Ya volvió a traer la bolsa al hombro. Nuevecita, además.) [pose: donramon_idle]
@@ -1298,7 +1300,7 @@ c1_d2t2_4 TRIPASECA: Agarró la chicharra y se echó a correr para el vestíbulo
 **Declaración 1**
 
 ~~~dialogue
-DEFENSA: ¡UN MOMENTO! ¿Usted le dijo eso a la policía la noche del veintiuno? [sfx: whoosh; pose: donramon_point]
+DEFENSA: ¡UN MOMENTO! ¿Usted le dijo eso a la policía la noche del veintiocho? [sfx: whoosh; pose: donramon_point]
 TRIPASECA: Se lo dije al señor fiscal en persona. [pose: tripaseca_smug]
 DEFENSA: Qué curioso: en el informe de detención no aparece una sola línea sobre la puerta de carga. [pose: donramon_idle]
 SUPER SAM: ¡Es que el caso ya estaba resuelto! ¡Uno no escribe lo que ya no hace falta! [pose: supersam_sweat]
@@ -1575,7 +1577,7 @@ DEFENSA: Y hay una cosa más, y ésta es la que le pido a la corte que no olvide
 DEFENSA: Miren las manos. [pose: donramon_point]
 NARRADOR: ... [bg: assets/ampliacion_foto_crimen_manos.webp; furniture: none]
 DEFENSA: Las trae abiertas. Y vacías. [pose: donramon_slam; sfx: desk_slam]
-DEFENSA: A las nueve en punto de la noche del veintiuno, la única fotografía de este caso muestra a mi cliente **entrando** al museo **con las manos vacías**. [pose: donramon_point]
+DEFENSA: A las nueve en punto de la noche del veintiocho, la única fotografía de este caso muestra a mi cliente **entrando** al museo **con las manos vacías**. [pose: donramon_point]
 CHAPULIN: ¡No contaban con mi astucia! [pose: chapulin_point]
 DEFENSA: Usted no hizo nada, joven, usted iba corriendo. [pose: donramon_sweat]
 CHAPULIN: ¡Corría astutamente! [pose: chapulin_idle]
@@ -1960,7 +1962,7 @@ ALMA NEGRA: ¡Por mil demonios, este barco llegó a puerto! [pose: almanegra_sho
 Cada línea estampa `bg: bg_waiting_room; furniture: none` ([[docs/lessons-learned/trial-waiting-room-epilogue-staging.md]]).
 
 ~~~dialogue
-NARRADOR: 23 de agosto, 18:40. Sala de espera del tribunal. [bg: bg_waiting_room; furniture: none; bgm: epilogue]
+NARRADOR: 30 de agosto, 18:40. Sala de espera del tribunal. [bg: bg_waiting_room; furniture: none; bgm: epilogue]
 FLORINDA: Ya está en su vitrina otra vez. Le van a poner cristal doble y una rejilla nueva. [pose: florinda_idle]
 DEFENSA: ¿Y la chapa de la puerta de carga? [pose: donramon_idle]
 FLORINDA: ...Mañana viene el cerrajero. Mañana. [pose: florinda_idle]

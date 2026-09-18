@@ -420,8 +420,8 @@ describe('Case 5 structural relations', () => {
     );
     const row = SPEC.split('\n').find((l) => l.startsWith('| `examine_expediente_serie.webp`'));
     expect(row, 'señalamiento 1 art row').toBeTruthy();
-    const panelA = row!.slice(row!.indexOf('**A (12 JUL):**'), row!.indexOf('**C (28 AGO):**'));
-    const panelB = row!.slice(row!.indexOf('**B (21 AGO):**'), row!.indexOf('**C (28 AGO):**'));
+    const panelA = row!.slice(row!.indexOf('**A (12 JUL):**'), row!.indexOf('**C (21 AGO):**'));
+    const panelB = row!.slice(row!.indexOf('**B (28 AGO):**'), row!.indexOf('**C (21 AGO):**'));
     for (const panel of [panelA, panelB]) {
       expect(panel).toContain('media línea por debajo del renglón y medio grado inclinadas a la izquierda');
     }
@@ -506,5 +506,151 @@ describe('Case 5 structural relations', () => {
     expect(barrigaRow, '§20 D2-T1 row').toBeTruthy();
     expect(barrigaRow).toContain('ocho días antes');
     expect(slice('### 13.2', '### 13.3')).toContain('hace ocho días');
+  });
+
+  it('describes panel C with the contents of its own case and narrates the legajos by date (I33, I34)', () => {
+    const l5 = slice('[LÁMINA assets/plate_cinco_papeles.webp]', '[FIN LÁMINA]');
+    expect(l5).toContain('valeriana');
+    expect(l5).toContain('molde de cera');
+    expect(l5).not.toContain('estanquillo');
+    const delegacion = slice('### 12.4', '## 13.');
+    expect(delegacion).toContain('valeriana');
+    expect(delegacion).not.toContain('nadie identificó');
+    expect(delegacion).not.toContain('nunca se identificó');
+    const hacienda = delegacion.indexOf('la hacienda');
+    const museo = delegacion.indexOf('el museo');
+    expect(hacienda, 'delegación mentions the hacienda').toBeGreaterThan(-1);
+    expect(museo, 'delegación mentions the museo').toBeGreaterThan(-1);
+    expect(
+      hacienda < museo,
+      'legajos narrados por fecha: hacienda (21 ago) antes del museo (28 ago)',
+    ).toBe(true);
+    const rowCaso2 = slice('### 4.3', '## 5.')
+      .split('\n')
+      .find((l) => l.startsWith('| 21 ago |'));
+    expect(rowCaso2, '§4.3 Caso 2 row').toBeTruthy();
+    expect(rowCaso2).toContain('valeriana');
+    expect(rowCaso2).toContain('propio culpable');
+    expect(rowCaso2).not.toContain('nunca se identificó');
+    const artRow = SPEC.split('\n').find((l) => l.startsWith('| `examine_expediente_serie.webp`'));
+    expect(artRow, 'señalamiento 1 art row').toBeTruthy();
+    const panelC = artRow!.slice(artRow!.indexOf('**C (21 AGO):**'), artRow!.indexOf('**D (15 SEP):**'));
+    expect(panelC).toContain('frasco de vidrio ámbar');
+    expect(panelC).toContain('molde de cera');
+  });
+
+  it('does not reopen the case-2 buyer as a loose end (I33)', () => {
+    const s211 = slice('### 21.1', '## 22.');
+    expect(s211).toContain('propio culpable');
+    expect(s211).toContain('sin respuesta');
+    expect(s211).not.toContain('La identidad del cliente del Caso 2');
+    expect(SPEC).toContain('**I33**');
+    expect(SPEC).toContain('**I34**');
+  });
+
+  it('counts five previous litigations before this court, including Case 2 (I38)', () => {
+    expect(SPEC).toContain('sexta vez que esta corte lo ve');
+    expect(SPEC).toContain('litigar a esa insignia cinco veces y en las cinco');
+    expect(SPEC).toContain('sexta vez que pisa este juzgado');
+    expect(SPEC).toContain('sexta vez que ve a Don Ramón');
+    expect(SPEC).toContain('lo ha respetado cinco veces');
+    // Berrondo's own count is his Aug–Oct vantage and stays at four.
+    expect(SPEC).toContain('Lo he visto litigar cuatro veces');
+    expect(SPEC).not.toContain('quinta vez que esta corte');
+    expect(SPEC).not.toContain('quinta vez que pisa');
+  });
+
+  it('anchors Chompiras hiring, overlap and prestige claims on screen (I36)', () => {
+    const d3t1 = slice('### 15.2', '### 15.3');
+    expect(d3t1).toContain('me escoltó cuando me arrestaron en agosto');
+    expect(d3t1).toContain('corría entre el Archivo y lo que cayera hasta noviembre');
+    expect(d3t1).not.toContain('primera vez en mi vida que me pagan por cargar');
+    expect(d3t1).not.toContain('turno de noche');
+    expect(d3t1).not.toContain('costó ocho meses');
+    const calderas = slice('### 16.2', '## 17.');
+    expect(calderas).toContain('dos noches adentro, y parecieron ocho meses');
+    expect(calderas).not.toContain('Yo estuve ocho meses');
+    const perfil = SPEC.split('\n').find((l) => l.startsWith('| `perfil_chompiras`'));
+    expect(perfil, 'perfil_chompiras row').toBeTruthy();
+    expect(perfil).not.toContain('primer trabajo fijo');
+    expect(perfil).toContain('seguro y con aguinaldo');
+  });
+
+  it('closes the Case 1 bag residue with two bags from one office (I35)', () => {
+    const d3t2 = slice('### 15.3', '### 15.4');
+    expect(d3t2).toContain('quedó en el patio de carga de ese museo una bolsa con el sello de su fiscalía');
+    expect(d3t2).toContain('de ahí salieron las dos');
+  });
+
+  it('describes panel E as the telegram its source case actually shows (I37)', () => {
+    const artRow = SPEC.split('\n').find((l) => l.startsWith('| `examine_expediente_serie.webp`'));
+    const panelE = artRow!.slice(artRow!.indexOf('**E (24 OCT):**'));
+    expect(panelE).toContain('telegrama mecanografiado');
+    expect(panelE).not.toContain('acta');
+    const zona = SPEC.split('\n').find((l) => l.startsWith('| `panel_e` |'));
+    expect(zona, 'panel_e zone row').toBeTruthy();
+    expect(zona).toContain('Telegrama (24 oct)');
+    expect(slice('### 4.3', '## 5.')).toContain('El telegrama de Cuajinais');
+  });
+
+  it('keeps failure lines true for every path and free of unanchored facts (I39)', () => {
+    expect(SPEC).not.toContain('Estoy haciendo que las antenitas contesten');
+    expect(SPEC).not.toContain('Los puso el conserje');
+    expect(SPEC).not.toContain('polvo de once años');
+    expect(SPEC).toContain('siguiera en ese estante después del golpe');
+    expect(SPEC).not.toContain('siguiera arriba después del golpe');
+    const climax = slice('## 18.', '## 19.');
+    expect(climax).not.toContain('no habilita a nadie a estar en ninguna parte');
+    expect(climax).toContain('después de entregar un gafete');
+    expect(climax).not.toContain('y son los últimos');
+    const descarte = slice('### 20.1', '## 21.');
+    expect(descarte).toContain('cinco días de anticipación');
+    expect(descarte).not.toContain('tres días de anticipación');
+  });
+
+  it('keeps the verification-pass residuals from drifting back', () => {
+    const artRow = SPEC.split('\n').find((l) => l.startsWith('| `examine_expediente_serie.webp`'));
+    expect(artRow, 'art row').toBeTruthy();
+    expect(artRow).not.toContain('etiqueta de botica');
+    expect(artRow).toContain('etiqueta manuscrita');
+    expect(SPEC).toContain('apareció en el patio de carga del museo el veintiocho de agosto');
+    expect(SPEC).not.toContain('cliente misterioso del Caso 2');
+    expect(SPEC).toContain('una hora por intervención');
+    expect(SPEC).not.toContain('dos veces por frase— aparece');
+  });
+
+  it('keeps inherited canon aligned with the source transcripts (pass 19)', () => {
+    const relato = slice('### 10.1', '### 10.2');
+    expect(relato).toContain('En el estrado me dijo usted que uno estudia el producto');
+    expect(relato).toContain('mi producto no eran los libros');
+    expect(relato).not.toContain('no había estudiado nada');
+    const d3t2 = slice('### 15.3', '### 15.4');
+    expect(d3t2).not.toContain('dos tercios del juicio');
+    expect(d3t2).toContain('hasta el final del juicio');
+    expect(d3t2).not.toContain('Con la mano levantada');
+    const libreta = slice('### 14.3', '### 15.2');
+    expect(libreta).not.toContain('Se ve en la fotografía');
+    expect(libreta).not.toContain('poli» tres veces');
+    const d1t2 = slice('### 11.3', '### 11.4');
+    expect(d1t2).toContain('Me pasaron a judicial con él');
+    const l9 = slice('### 18.6', '### 18.7');
+    expect(l9).toContain('que apareció en el patio de carga de un museo');
+    expect(l9).not.toContain('hallada en el patio de carga');
+    expect(l9).toContain('decomisada en su juicio');
+  });
+
+  it('keeps pass-20 residuals anchored and true to the source cases', () => {
+    const fiscalia = slice('### 14.2', '### 14.3');
+    expect(fiscalia).toContain('más de tres meses cargando una bolsa vacía');
+    expect(fiscalia).not.toContain('cuatro meses cargando');
+    const apertura = slice('### 15.2', '### 15.3');
+    expect(apertura).toContain('más de tres meses cargando');
+    expect(apertura).not.toContain('cuatro meses cargando');
+    const l5 = slice('[LÁMINA assets/plate_cinco_papeles.webp]', '[FIN LÁMINA]');
+    expect(l5).toContain('gasto del culpable');
+    expect(l5).not.toContain('para preparar otro delito');
+    expect(SPEC).toContain('en agosto, ficha incluida');
+    const tomotrece = slice('### 18.3', '### 18.4');
+    expect(tomotrece).not.toContain('no pudo preguntárselo');
   });
 });

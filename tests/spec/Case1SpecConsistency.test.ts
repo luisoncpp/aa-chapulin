@@ -92,4 +92,11 @@ describe('Case 1 spec relationships', () => {
     expect(CASE1_EVIDENCE_EN.vitrina_rota.desc).toContain('No glass remained inside the display case.');
     expect(spec).toContain('No quedaron vidrios dentro de la vitrina.');
   });
+
+  it('keeps every bag reference on the crime night the calendar pass fixed (28 de agosto)', () => {
+    const spec = readSpec();
+
+    expect(spec).not.toContain('noche del 21');
+    expect(spec).toContain('la noche del 28');
+  });
 });

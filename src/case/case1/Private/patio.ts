@@ -14,7 +14,7 @@ export const CASE1_PATIO: InvestigationScene = {
   speaker: 'NARRADOR',
   idlePose: 'chapulin_idle',
   intro: [
-    { speaker: 'NARRADOR', text: '23 de agosto, 8:30 AM. Patio de carga del Museo de las Curiosidades. Bardado, con una sola puerta y una camioneta cubierta con lona.', bg: 'assets/bg_patio_carga.webp', furniture: 'none', bgm: 'investigation' },
+    { speaker: 'NARRADOR', text: '30 de agosto, 8:30 AM. Patio de carga del Museo de las Curiosidades. Bardado, con una sola puerta y una camioneta cubierta con lona.', bg: 'assets/bg_patio_carga.webp', furniture: 'none', bgm: 'investigation' },
     { speaker: 'CHAPULIN', text: '¡Aire libre! ¡Qué bonito se ve el mundo cuando a uno lo dejan salir con dos policías!', pose: 'chapulin_point' },
     { speaker: 'DEFENSA', text: 'Joven, no se emocione, que si se me pierde me quedo sin cliente y sin honorarios.', pose: 'donramon_sweat' },
     { speaker: 'CHAPULIN', text: '¡Que no panda el cúnico, licenciado! Yo nunca me pierdo. Nada más llego tarde.', pose: 'chapulin_idle' },

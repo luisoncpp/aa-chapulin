@@ -56,7 +56,7 @@ const CASE1_D2_T3_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'DEFENSA', text: 'Look at the hands.', pose: 'donramon_point' },
   { speaker: 'NARRADOR', text: '...', bg: 'assets/ampliacion_foto_crimen_manos.webp', furniture: 'none' },
   { speaker: 'DEFENSA', text: 'They are open. And empty.', pose: 'donramon_slam', sfx: 'desk_slam' },
-  { speaker: 'DEFENSA', text: 'At nine on the dot on the night of the twenty-first, the only photograph in this case shows my client coming into the museum with empty hands.', pose: 'donramon_point' },
+  { speaker: 'DEFENSA', text: 'At nine on the dot on the night of the twenty-eighth, the only photograph in this case shows my client coming into the museum with empty hands.', pose: 'donramon_point' },
   { speaker: 'CHAPULIN', text: '¡No contaban con mi astucia!', pose: 'chapulin_point' },
   { speaker: 'DEFENSA', text: 'You did nothing, young man, you were running.', pose: 'donramon_sweat' },
   { speaker: 'CHAPULIN', text: 'I was running cunningly!', pose: 'chapulin_idle' },

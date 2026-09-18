@@ -9,7 +9,7 @@ import type { DialogueLine, Testimony } from '../../../types/index.js';
 import { CASE1_CALL_TRIPASECA_D1 } from './witness_calls.js';
 
 export const CASE1_TRIAL_INTRO: DialogueLine[] = [
-  { bg: 'assets/bg_waiting_room.webp', furniture: 'none', speaker: 'NARRADOR', text: '22 de agosto, 2:00 PM. Tribunal Superior - Sala de Espera.', bgm: 'trial' },
+  { bg: 'assets/bg_waiting_room.webp', furniture: 'none', speaker: 'NARRADOR', text: '29 de agosto, 2:00 PM. Tribunal Superior - Sala de Espera.', bgm: 'trial' },
   { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_gavel', text: '¡Silencio en la sala! Se abre la audiencia por el robo de la Chicharra Paralizadora de Oro y las lesiones al velador Alma Negra.', sfx: 'gavel', bgm: 'trial' },
   { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_case1_slam', text: 'Your Honor, este caso lo cerré en cinco minutos. FIVE! Un museo cerrado con llave, un velador en el suelo, y adentro un señor vestido de grillo con el chipote en la mano.', sfx: 'desk_slam' },
   { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_point', text: 'Time is money, y este juicio ya me está costando dinero.' },

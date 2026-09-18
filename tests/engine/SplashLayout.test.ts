@@ -92,9 +92,23 @@ describe('splash layout fits the 960x540 stage', () => {
     const rows = html.match(/<div class="splash-case-row(?: splash-case-row-single)?">[\s\S]*?<\/div>/g) ?? [];
     expect(rows).toHaveLength(3);
     expect(rows[0]).toContain('btn-start-case0');
-    expect(rows[0]).toContain('btn-start-game');
-    expect(rows[1]).toContain('btn-start-case2');
+    expect(rows[0]).toContain('btn-start-case2');
+    expect(rows[1]).toContain('btn-start-game');
     expect(rows[1]).toContain('btn-start-case3');
     expect(rows[2]).toContain('btn-start-case4');
+  });
+
+  it('presents playable arcs in Act order while preserving internal case ids', () => {
+    const labels = [
+      html.indexOf('id="btn-start-case2"'),
+      html.indexOf('id="btn-start-game"'),
+      html.indexOf('id="btn-start-case3"'),
+      html.indexOf('id="btn-start-case4"')
+    ];
+    expect(labels).toEqual([...labels].sort((a, b) => a - b));
+    expect(html).toContain('ACTO 1: EL JUICIO DEL CHÓMPIRAS');
+    expect(html).toContain('ACTO 2: EL ESCUADRÓN COLORADO');
+    expect(html).toContain('ACTO 3: LA NOCHE DEL GRITO');
+    expect(html).toContain('ACTO 4: CRIMEN EN EL GRAN HOTEL');
   });
 });

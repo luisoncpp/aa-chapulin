@@ -17,10 +17,10 @@ Live status of **El Chapulín Colorado: Ace Attorney — Turnabout Red Grasshopp
 ### Playable Content: Case 1 ("El Juicio del Escuadrón Colorado")
 - **Investigation Phase**: 2 fully interactive scenes (Museum Crime Scene & Detention Center) with 7 examine hotspots, 4 talk branches, and 5 collectable evidence items defined in [[src/case/Private/case1_investigation.ts]].
 - **Courtroom Trial Phase**: Complete trial intro, 2 cross-examination testimonies (Assault weapon contradiction & Escape route/Mirror photo contradiction), pressing mechanics, dynamic penalty damage, final climax evidence presentation, and Not Guilty verdict sequence defined in [[src/case/Private/case1_trial.ts]] and [[src/case/Private/case1_climax.ts]].
-- Default `CASE_SCRIPT` / `getCaseScript(lang)` is still Case 1. Splash **Caso 1** and debug trial without `?case=2` still launch Case 1.
+- Default `CASE_SCRIPT` / `getCaseScript(lang)` remains the museum arc (`case1`). The splash presents it as **Acto 2**; debug trial without `?case=2` still launches `case1`.
 
 ### Playable Content: Case 2 ("El Juicio del Chómpiras — El Asalto de las Dos Caras")
-Implemented (scripts + dedicated art). Spec: [[docs/specs/case-2-el-juicio-del-chompiras.md]]. Launch: splash **Caso 2**, `?case=2`, or `?case=2&trial` (day-1 courtroom).
+Implemented (scripts + dedicated art). Spec: [[docs/specs/case-2-el-juicio-del-chompiras.md]]. Launch: splash **Acto 1**, `?case=2`, or `?case=2&trial` (day-1 courtroom).
 
 - **Selection:** `getCaseScript(lang, caseId)` (`'case1' | 'case2' | 'case3'`) in [[src/case/index.ts]]; `#btn-start-case2` / `#btn-start-case3` in [[index.html]].
 - **Two-day loop:** `CaseScript.id` / `startLocation` / `requiredEvidence` / optional `adjournment`. After Case 2 testimony 2 on day 1, [[src/engine/Private/TrialDayRouter.ts]] returns to `oficina_postal` instead of climax. Day 2 uses `adjournment.trial`; climax stays on `script.trial.climax` and walks three presents (gold tin, valerian, wax mold) then two multiple-choice verdict questions.

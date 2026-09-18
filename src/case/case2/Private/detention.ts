@@ -13,7 +13,7 @@ export const CASE2_DETENTION: InvestigationScene = {
   speaker: 'NARRADOR',
   idlePose: 'chompiras_idle',
   intro: [
-    { speaker: 'NARRADOR', text: '29 de Agosto, 10:00 AM. Centro de Detención de la Ciudad.' },
+    { speaker: 'NARRADOR', text: '22 de Agosto, 10:00 AM. Centro de Detención de la Ciudad.' },
     { speaker: 'DEFENSA', text: 'Bueno, aquí estamos. Según la policía, el sospechoso es un peligroso asaltante internacional...', pose: 'donramon_idle' },
     { speaker: 'CHAPULIN', text: '¡Calma, Don Ramón! ¡Que no panda el cúnico! Mis antenitas de vinil me dicen que el acusado es inofensivo... o muy despistado.', pose: 'chapulin_idle' },
     { speaker: 'CHOMPIRAS', text: '¡Buaaaa! ¡Yo no fui, jefecito! ¡Yo no me robé ningún chanfle de nada! ¡Lo único que me he robado son dos panes de dulce y ya los devolví mordidos!', pose: 'chompiras_crying' },

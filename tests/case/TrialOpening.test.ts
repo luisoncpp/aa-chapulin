@@ -10,22 +10,22 @@ const expectedOpenings: Record<CaseId, { es: string[]; en: string[] }> = {
   },
   case1: {
     es: [
-      '22 de agosto, 2:00 PM. Tribunal Superior - Sala de Espera.',
-      '23 de agosto, 2:00 PM. Tribunal Superior - Sala de Espera.'
+      '29 de agosto, 2:00 PM. Tribunal Superior - Sala de Espera.',
+      '30 de agosto, 2:00 PM. Tribunal Superior - Sala de Espera.'
     ],
     en: [
-      'August 22, 2:00 PM. High Court - Waiting Room.',
-      'August 23, 2:00 PM. High Court - Waiting Room.'
+      'August 29, 2:00 PM. High Court - Waiting Room.',
+      'August 30, 2:00 PM. High Court - Waiting Room.'
     ]
   },
   case2: {
     es: [
-      '29 de agosto, 3:00 PM. Tribunal Superior - Sala de Espera.',
-      '30 de agosto, 3:00 PM. Tribunal Superior - Sala de Espera.'
+      '22 de agosto, 3:00 PM. Tribunal Superior - Sala de Espera.',
+      '23 de agosto, 3:00 PM. Tribunal Superior - Sala de Espera.'
     ],
     en: [
-      'August 29, 3:00 PM. High Court - Waiting Room.',
-      'August 30, 3:00 PM. High Court - Waiting Room.'
+      'August 22, 3:00 PM. High Court - Waiting Room.',
+      'August 23, 3:00 PM. High Court - Waiting Room.'
     ]
   },
   case3: {

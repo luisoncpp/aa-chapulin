@@ -15,7 +15,7 @@ export const CASE1_MUSEO_EN: InvestigationScene = {
   speaker: 'NARRADOR',
   idlePose: 'florinda_idle',
   intro: [
-    { speaker: 'NARRADOR', text: 'August 22nd, 11:00 AM. Museum of Curiosities, gallery 2. The police tape is still up.', bg: 'assets/bg_museo_sala2.webp', furniture: 'none', bgm: 'investigation' },
+    { speaker: 'NARRADOR', text: 'August 29th, 11:00 AM. Museum of Curiosities, gallery 2. The police tape is still up.', bg: 'assets/bg_museo_sala2.webp', furniture: 'none', bgm: 'investigation' },
     { speaker: 'FLORINDA', text: 'Oh, my museum! My poor museum!', pose: 'florinda_crying' },
     { speaker: 'DEFENSA', text: 'Doña Florinda, good morn...', pose: 'donramon_idle' },
     { speaker: 'FLORINDA', text: 'YOU! What are you doing here?', pose: 'florinda_angry' },

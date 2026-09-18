@@ -40,7 +40,7 @@ De ahí salen las dos mitades del episodio:
 
 El Tripaseca no estudió el museo: **lo compró**. Pagó por una ficha que traía la medida de la rejilla del ducto de la sala 2, la ronda escrita de Alma Negra, la noche en que no se cambia el rollo de la cámara, y un extra que el vendedor llama "servicio de cierre": un fiscal que factura por caso cerrado y que esa noche estaría a cinco minutos del museo.
 
-Cronología del 21 de agosto (las horas de autor no son hechos judiciales):
+Cronología del 28 de agosto (las horas de autor no son hechos judiciales):
 
 | Hora | Hecho real | Alcance para el jugador |
 | --- | --- | --- |
@@ -54,7 +54,7 @@ Cronología del 21 de agosto (las horas de autor no son hechos judiciales):
 
 ## 5. Estructura
 
-### Día 1 — investigación (21 de agosto, noche)
+### Día 1 — investigación (28 de agosto, noche)
 
 1. **Centro de detención.** El Chapulín cuenta su noche completa desde el principio, incluidas las antenitas. No oculta nada; su problema es que llegó cinco minutos tarde a su propia inocencia.
 2. **Sala 2 del museo.** Doña Florinda, vitrina rota, vidrio hacia afuera, jaula del perico volcada. Examen de la vitrina con lámina (`detailedView`).
@@ -68,7 +68,7 @@ Llamado al estrado completo (nombre y ocupación: comerciante honrado que "compr
 - Segunda contradicción, sobre una declaración que **sólo aparece al presionar** (`unlockedBy`): Tripaseca describe el sonido del golpe como "un costalazo de fierros". Presentar **`informe_medico`** actualizado (golpe desde atrás **y desde arriba**, objeto denso y flexible).
 - Cierre del día: el juez pregunta qué objeto del museo pesa así. Ninguno. Super Sam interrumpe el interrogatorio, se niega a decir dónde estuvo su bolsa de dólares y pide el aplazamiento él mismo. Es la primera vez en la serie que el fiscal gana tiempo en lugar de exigirlo.
 
-### Día 2 — investigación (22 de agosto)
+### Día 2 — investigación (29 de agosto)
 
 1. **Patio de carga y camioneta.** Se obtienen `bolsa_dolares` (vacía, con tizne de lona y restos de moneda) y **`ficha_museo`**: una tarjeta mecanografiada con la medida de la rejilla, la ronda del guardia y la frase "servicio de cierre incluido", impresa en el reverso de una papelería de El Saber Universal, S.A.
 2. **Cuarto de cámaras.** `foto_sospechoso` y la bitácora del rollo. Lámina examinable del pasillo del espejo.

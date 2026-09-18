@@ -8,6 +8,8 @@ Case 0 is a courtroom-only script: `investigation` is empty, `startLocation` is 
 
 Narrative lives in `CaseScript` objects. `getCaseScript(lang, caseId)` in [[src/case/index.ts]] returns Case 1 (`case1`), Case 2 (`case2`), Case 3 (`case3`), or Case 4 (`case4` when scripted); default `CASE_SCRIPT` is still Case 1 Spanish. Each script has `id`, `startLocation`, `requiredEvidence`, `debugEvidence`, `debugUnlockLocations`, `investigation`, `trial`, and optional `adjournment` ([[src/types/Private/script.ts]]). Case 3 lives in nested module [[src/case/case3/index.ts]]; Case 4 will live in [[src/case/case4/index.ts]].
 
+The splash menu presents the playable arcs as Acts rather than mirroring internal case ids: Act 1 launches `case2` (the Chómpiras arc), Act 2 launches `case1` (the museum arc), Act 3 launches `case3`, and Act 4 launches `case4`. Keep `case1`/`case2` stable for saves, catalogs, and deep-module imports. Their canonical crime dates are 28 August for `case1` and 21 August for `case2`; menu order is a presentation decision, not a `CaseId` rename.
+
 ```mermaid
 graph TD
     Facade[getCaseScript lang caseId] --> C1[case1]

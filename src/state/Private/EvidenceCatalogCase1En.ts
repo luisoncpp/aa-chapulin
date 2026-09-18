@@ -18,7 +18,7 @@ export const CASE1_EVIDENCE_EN: EvidenceCatalogMap = {
     id: 'parte_detencion',
     name: 'Arrest Report',
     icon: 'assets/parte_detencion_c1.webp',
-    desc: 'Report of August 21st: arrest at 9:07 PM in gallery 2. Effects on the detainee: one Chipote Chillón, one box of Pastillas de Chiquitolina, a pair of Antenitas de Vinil and three pesos. Chicharra not recovered. Museum searched piece by piece. Vehicles on the premises: not logged.',
+    desc: 'Report of August 28th: arrest at 9:07 PM in gallery 2. Effects on the detainee: one Chipote Chillón, one box of Pastillas de Chiquitolina, a pair of Antenitas de Vinil and three pesos. Chicharra not recovered. Museum searched piece by piece. Vehicles on the premises: not logged.',
     updates: [
       'Laboratory annex: the box of Pastillas de Chiquitolina was factory-sealed, twelve of twelve. The defendant took none that night.'
     ]
@@ -39,7 +39,7 @@ export const CASE1_EVIDENCE_EN: EvidenceCatalogMap = {
     id: 'antenitas_vinil',
     name: 'Antenitas de Vinil (Vinyl Antennae)',
     icon: 'assets/antenitas_vinil.webp',
-    desc: 'They may vibrate near an enemy or an important clue without identifying what triggered them. They vibrated at 8:45 PM on August 21st.'
+    desc: 'They may vibrate near an enemy or an important clue without identifying what triggered them. They vibrated at 8:45 PM on August 28th.'
   },
   chicharra_oro: {
     id: 'chicharra_oro',
@@ -54,7 +54,7 @@ export const CASE1_EVIDENCE_EN: EvidenceCatalogMap = {
     desc: 'The gallery 2 display case, blown open. No glass remained inside the display case. Wooden pedestal at waist height. Beside it, the historic parrot cage lies knocked over.',
     detailedView: {
       imageAsset: 'assets/examine_vitrina_rota.webp',
-      caption: 'Gallery 2 display case photographed at 11:10 PM on August 21st, before anything was collected.'
+      caption: 'Gallery 2 display case photographed at 11:10 PM on August 28th, before anything was collected.'
     }
   },
   rejilla_ducto: {
@@ -103,7 +103,7 @@ export const CASE1_EVIDENCE_EN: EvidenceCatalogMap = {
     icon: 'assets/foto_crimen.webp',
     desc: 'The single frame from the corridor camera, time-stamped 9:00 PM. A running figure is visible.',
     updates: [
-      'Roll log: the film is changed on Mondays. On Tuesday the 21st a single frame was left, and it fired on motion at 9:00 PM.'
+      'Roll log: the film is changed on Mondays. On Tuesday the 28th a single frame was left, and it fired on motion at 9:00 PM.'
     ],
     detailedView: {
       imageAsset: 'assets/examine_foto_crimen.webp',

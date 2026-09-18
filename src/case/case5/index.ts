@@ -24,6 +24,9 @@ import { CASE5_VECINDAD } from './Private/vecindad.js';
 import { CASE5_CORRESPONDENCIA } from './Private/correspondencia.js';
 import { CASE5_DESPACHO_BERRONDO } from './Private/despacho_berrondo.js';
 import { CASE5_DELEGACION_C5 } from './Private/delegacion_c5.js';
+import { CASE5_BODEGA_MASA } from './Private/bodega_masa.js';
+import { CASE5_FISCALIA_C5 } from './Private/fiscalia_c5.js';
+import { CASE5_PENAL_EFECTOS } from './Private/penal_efectos.js';
 import {
   CASE5_DAY1_OPENING_PRESENT, CASE5_TESTIMONY_1, CASE5_TESTIMONY_2, CASE5_TESTIMONY_3,
   CASE5_TRIAL_INTRO_FULL
@@ -127,7 +130,10 @@ const PLACEHOLDER_PARTS_ES: Case5Parts = {
     vecindad_c5: CASE5_VECINDAD,
     correspondencia: CASE5_CORRESPONDENCIA,
     despacho_berrondo: CASE5_DESPACHO_BERRONDO,
-    delegacion_c5: CASE5_DELEGACION_C5
+    delegacion_c5: CASE5_DELEGACION_C5,
+    bodega_masa: CASE5_BODEGA_MASA,
+    fiscalia_c5: CASE5_FISCALIA_C5,
+    penal_efectos: CASE5_PENAL_EFECTOS
   },
   intro: CASE5_TRIAL_INTRO_FULL,
   day1Opening: CASE5_DAY1_OPENING_PRESENT,

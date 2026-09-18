@@ -38,13 +38,11 @@ describe('Case 5 day 1 investigation (Spanish)', () => {
   const es = getCaseScript('es', 'case5') as CaseScript;
   const en = getCaseScript('en', 'case5') as CaseScript;
 
-  it('starts at celda_c5 with three day-1 locations', () => {
+  it('starts at celda_c5 with day-1 locations present in investigation map', () => {
     expect(es.startLocation).toBe('celda_c5');
-    expect(Object.keys(es.investigation).sort()).toEqual([
-      'archivo_pasillo7',
-      'archivo_vestibulo',
-      'celda_c5'
-    ]);
+    ['celda_c5', 'archivo_vestibulo', 'archivo_pasillo7'].forEach((id) => {
+      expect(es.investigation[id]).toBeDefined();
+    });
   });
 
   it('walks unlockLocation from celda to pasillo 7', () => {

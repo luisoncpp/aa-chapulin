@@ -8,6 +8,7 @@ import type { CaseId, EvidenceCatalogMap, Language } from '../../types/index.js'
 import { CASE2_EVIDENCE_EN, CASE2_EVIDENCE_ES } from './EvidenceCatalogCase2.js';
 import { CASE3_EVIDENCE_EN, CASE3_EVIDENCE_ES } from './EvidenceCatalogCase3.js';
 import { CASE4_EVIDENCE_EN, CASE4_EVIDENCE_ES } from './EvidenceCatalogCase4.js';
+import { CASE5_EVIDENCE_EN, CASE5_EVIDENCE_ES } from './EvidenceCatalogCase5.js';
 import { CASE0_EVIDENCE_EN } from './EvidenceCatalogCase0En.js';
 import { CASE0_EVIDENCE_ES } from './EvidenceCatalogCase0Es.js';
 import { CASE1_EVIDENCE_EN } from './EvidenceCatalogCase1En.js';
@@ -133,7 +134,8 @@ const ISOLATED_CATALOGS: Partial<Record<CaseId, Record<Language, EvidenceCatalog
   case0: { es: CASE0_EVIDENCE_ES as EvidenceCatalogMap, en: CASE0_EVIDENCE_EN as EvidenceCatalogMap },
   case1: { es: CASE1_EVIDENCE_ES, en: CASE1_EVIDENCE_EN },
   case3: { es: CASE3_EVIDENCE_ES as EvidenceCatalogMap, en: CASE3_EVIDENCE_EN as EvidenceCatalogMap },
-  case4: { es: CASE4_EVIDENCE_ES as EvidenceCatalogMap, en: CASE4_EVIDENCE_EN as EvidenceCatalogMap }
+  case4: { es: CASE4_EVIDENCE_ES as EvidenceCatalogMap, en: CASE4_EVIDENCE_EN as EvidenceCatalogMap },
+  case5: { es: CASE5_EVIDENCE_ES as EvidenceCatalogMap, en: CASE5_EVIDENCE_EN as EvidenceCatalogMap }
 };
 
 export function getEvidenceCatalog(lang: Language = 'es', caseId?: CaseId): EvidenceCatalogMap {

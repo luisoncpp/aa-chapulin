@@ -4,7 +4,7 @@
 
 ## What is counter-intuitive
 
-Adding a second tab to a shared modal is not a Case 1 change. `#court-record-modal` is the same DOM for all five cases, so the cheapest implementation — always render the tab bar, leave the second tab empty for older cases — silently redesigns four shipped episodes. The fix is to make **emptiness the switch**: the bar renders only when `state.profiles.owned.length > 0`, and `getProfileCatalog` returns `{}` for every case but Case 1, so the condition can never accidentally become true elsewhere. Guard it with a test that opens the Acta in another case and asserts the bar is absent; a test that only checks Case 1 would pass either way.
+Adding a second tab to a shared modal is not a Case 1 change. `#court-record-modal` is the same DOM for all five cases, so the cheapest implementation — always render the tab bar, leave the second tab empty for older cases — silently redesigns four shipped episodes. The fix is to make **emptiness the switch**: the bar renders only when `state.profiles.owned.length > 0`, and `getProfileCatalog` returns `{}` for cases that declare no profiles (Cases 0, 2, 3, and 4). Case 5 now declares profiles, so its Acta will show the bar once cards are owned. Guard it with a test that opens the Acta in another case and asserts the bar is absent; a test that only checks Case 1 would pass either way.
 
 The case capability and interaction mode are separate switches: the bar renders only when `state.profiles.owned.length > 0` and the Acta is being browsed. During a present prompt, render the requested list directly and hide the tabs so the question does not compete with an irrelevant inventory choice.
 

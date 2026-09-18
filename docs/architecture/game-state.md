@@ -63,7 +63,7 @@ Contains the master catalog defined in [[src/state/Private/EvidenceCatalog.ts#Ev
 
 Case 1 adds a second inventory, the **Acta de Personajes** ([[src/state/Private/ProfileInventory.ts]]). It mirrors the evidence inventory exactly: `addProfile` / `hasProfile` file a person, `updateProfile` advances one `updates[]` stage and saturates, `getProfileDesc` resolves the current stage. `beginNewCase` clears it and reloads the catalogue for the new case; `populateTrialEvidence` saturates `script.debugProfiles` so a direct `?trial=2` start can answer the day-2 opening present.
 
-`getProfileCatalog(lang, caseId)` ([[src/state/Private/ProfileCatalog.ts]]) returns `{}` for every case except Case 1, which is what keeps the Acta tab bar out of the other four cases. `checkTrialReadiness` never looks at profiles: a person can never gate the trial.
+`getProfileCatalog(lang, caseId)` ([[src/state/Private/ProfileCatalog.ts]]) returns Case 1 and Case 5 maps; `{}` for Cases 0, 2, 3, and 4. Emptiness still gates the Acta tab bar — a case with no declared profiles looks exactly as before. `checkTrialReadiness` never looks at profiles: a person can never gate the trial.
 
 ### 2. Player Inventory (`inventory`)
 - Array of active evidence IDs currently held by the player.
@@ -94,6 +94,7 @@ Case 1 adds a second inventory, the **Acta de Personajes** ([[src/state/Private/
 - Case 2 day 2 (`adjournment.requiredEvidence`): `multa_transito`, `registro_postal`, `lata_grasa`, `antenitas_vinil`, `frasco_valeriana`, `molde_cera`.
 - Case 3 lists live in [[src/case/case3/Private/progress.ts]] — day 1: `lentes_barriga`, `informe_barriga`, `marcas_carrito`, `microfono_cabina`, `microfono_oro`, `cinta_salud`, `ventana_cabina`, `programa_kermes`; day 2: `bitacora_transmision`, `receta_nono`, `libro_verde`; day 3: `ataduras_bodega`, `cinta_sketch`, `cartucho_corte`, `boleta_empeno`.
 - Case 4 lists are in [[docs/architecture/case-scripting.md#Case 4 trial gating (checkTrialReadiness)]]; catalog isolation in [[src/state/Private/EvidenceCatalogCase4.ts]] via `getEvidenceCatalog(lang, 'case4')` (18 items, no Case 1/2/3 leakage). Staged updates: `informe_policial` (3), `orden_servicios` (3), `toxicologia_vino` (1), `nota_amenaza` (1).
+- Case 5 lists live in [[src/case/case5/Private/progress.ts]]; catalog isolation in [[src/state/Private/EvidenceCatalogCase5.ts]] via `getEvidenceCatalog(lang, 'case5')` (23 items). Staged updates: `informe_forense_c5` (2), `maquina_escribir` (2).
 - **Invariant:** readiness is inventory-only — it never checks which locations were visited. So the last location of every investigation day must hand over at least one required item, or the trial unlocks before the player has seen scenes the trial script assumes. Case 3 moves `programa_kermes` to the plaza (day 1) and puts detention before the precinct (day 3) for exactly this reason.
 
 ### 6. Debug Trial State Setup (`populateTrialEvidence`)

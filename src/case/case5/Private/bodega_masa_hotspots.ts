@@ -13,7 +13,7 @@ export const CASE5_BODEGA_MASA_HOTSPOTS: Hotspot[] = [
   {
     id: 'hotspot_huacal',
     label: 'Tapa del huacal 9',
-    x: 26, y: 36, w: 38, h: 30,
+    x: 70, y: 56, w: 24, h: 38,
     dialogue: [
       { speaker: 'NARRADOR', text: 'La tapa está cubierta de tiras de papel sellado encabalgadas unas sobre otras, como escamas. Cada una lleva una rúbrica y una fecha.' },
       { speaker: 'DEFENSA', text: 'Una... dos... cincuenta... cien...', pose: 'chapulin_idle' },
@@ -34,9 +34,9 @@ export const CASE5_BODEGA_MASA_HOTSPOTS: Hotspot[] = [
   {
     id: 'hotspot_cajones',
     label: 'Cajones del cedulario',
-    x: 42, y: 50, w: 26, h: 22,
+    x: 44, y: 46, w: 28, h: 24,
     dialogue: [
-      { speaker: 'NARRADOR', text: 'Dentro del huacal, nueve cajones de madera rubia con tiradores de latón y una etiqueta manuscrita en cada frente.' },
+      { speaker: 'NARRADOR', text: 'Dentro del huacal, nueve cajones de madera rubia con tiradores de latón y una etiqueta manuscrita en cada frente.', bg: BODEGA_BG, furniture: 'none' },
       { speaker: 'DEFENSA', text: '«Aguascalientes a Bucareli.» «Bucareli a Donceles.» «Donceles a Espanto.»', pose: 'chapulin_idle' },
       { speaker: 'DEFENSA', text: '...Están ordenadas por calle.', pose: 'chapulin_panic' },
       { speaker: 'BERRONDO', text: 'Por calle, licenciado. Una editorial de crédito a domicilio no vende a personas: vende a domicilios.', pose: 'berrondo_idle' },
@@ -56,7 +56,7 @@ export const CASE5_BODEGA_MASA_HOTSPOTS: Hotspot[] = [
   {
     id: 'hotspot_maquina',
     label: 'Máquina de escribir',
-    x: 60, y: 42, w: 20, h: 24,
+    x: 56, y: 70, w: 22, h: 18,
     condition: (flags) => Boolean(flags.examined_hotspot_huacal) && Boolean(flags.examined_hotspot_cajones),
     dialogue: [
       { speaker: 'NARRADOR', text: 'En el fondo del huacal, envuelta en una funda de hule, una máquina de escribir negra con el carro cromado.' },

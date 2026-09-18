@@ -3,6 +3,9 @@ import { describe, expect, it } from 'vitest';
 import { getCaseScript } from '../../src/case/index.js';
 import { CASE5_DAY1_EVIDENCE } from '../../src/case/case5/Private/progress.js';
 import type { CaseScript, DialogueLine, EvidenceId } from '../../src/types/index.js';
+import { assertInvestigationParity } from './case5Parity.js';
+
+const DAY1_LOCATIONS = ['celda_c5', 'archivo_vestibulo', 'archivo_pasillo7'] as const;
 
 type Script = ReturnType<typeof getCaseScript>;
 
@@ -30,8 +33,8 @@ function evidenceFrom(lines: DialogueLine[]): EvidenceId[] {
   return lines.flatMap((l) => [l.addEvidence, l.updateEvidence].filter(Boolean) as EvidenceId[]);
 }
 
-function allDay1Lines(es: CaseScript): DialogueLine[] {
-  return ['celda_c5', 'archivo_vestibulo', 'archivo_pasillo7'].flatMap((loc) => sceneLines(es, loc));
+function allDay1Lines(script: CaseScript): DialogueLine[] {
+  return DAY1_LOCATIONS.flatMap((loc) => sceneLines(script, loc));
 }
 
 describe('Case 5 day 1 investigation (Spanish)', () => {
@@ -92,9 +95,8 @@ describe('Case 5 day 1 investigation (Spanish)', () => {
     );
   });
 
-  it('keeps English investigation empty while Spanish scenes are populated', () => {
-    expect(Object.keys(en.investigation)).toEqual([]);
-    expect(en.investigation).toEqual({});
+  it('mirrors Spanish day-1 investigation structure in English without Spanish leakage', () => {
+    assertInvestigationParity(en, es, DAY1_LOCATIONS, allDay1Lines(en));
   });
 
   it('uses detention_center in celda and archivo in vestibulo and pasillo 7', () => {

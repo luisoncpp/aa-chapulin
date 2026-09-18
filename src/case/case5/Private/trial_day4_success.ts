@@ -15,7 +15,7 @@ export const CASE5_DAY4_OPENING_PRESENT_SUCCESS: DialogueLine[] = [
   { speaker: 'NARRADOR', text: 'La curva de abajo es la que usó el perito: una sala a veinte grados.' },
   { speaker: 'NARRADOR', text: 'La curva de arriba es la del pasillo 7 esa tarde: treinta y un grados. El cuerpo se enfrió mucho más despacio.' },
   { speaker: 'NARRADOR', text: 'A la misma temperatura medida a las 18:40, la curva de arriba pone la muerte veinticinco minutos antes.' },
-  { speaker: 'NARRADOR', text: 'El legista se pone de pie en la segunda fila de la galería, sin que nadie lo llame.' },
+  { speaker: 'NARRADOR', text: 'El legista se pone de pie en la segunda fila de la galería, sin que nadie lo llame.', bg: 'assets/bg_courtroom.webp', furniture: 'none' },
   { speaker: 'NARRADOR', text: 'Habla durante cuarenta segundos con el secretario, hace dos cuentas en un papel y asiente con la cabeza.', sfx: 'realization' },
   { speaker: 'SECRETARIO', text: 'Señor juez, el perito rectifica su dictamen. Con treinta y un grados, el intervalo se corrige.' },
   { speaker: 'JUEZ', text: 'Dígalo.', sfx: 'gavel', pose: 'judge_gavel' },
@@ -101,7 +101,8 @@ export const CASE5_D4_T1_CEDULARIO_SUCCESS: DialogueLine[] = [
   { speaker: 'DON RAMÓN', text: 'Y en la mano de ese muerto había una esquina de tarjeta que dice mi calle.', pose: 'donramon_shock' },
   { speaker: 'NARRADOR', text: 'El Juez se pone de pie.', sfx: 'gavel' },
   { speaker: 'JUEZ', text: '¡ORDEN!', sfx: 'gavel', pose: 'judge_gavel' },
-  { speaker: 'JUEZ', text: 'La testigo puede retirarse.', pose: 'judge_neutral' },
+  { speaker: 'SECRETARIO', text: 'Recibo la carpeta, señor juez.' },
+  { speaker: 'JUEZ', text: 'La testigo queda a disposición de esta corte. Su carpeta de vales, en resguardo del tribunal.', pose: 'judge_neutral' },
   { speaker: 'JUEZ', text: 'Licenciado Chapulín.', pose: 'judge_thinking' },
   { speaker: 'JUEZ', text: 'Esta corte lleva cuatro días prohibiéndole a usted señalar a una persona, y hoy se lo va a ordenar.', sfx: 'gavel', pose: 'judge_gavel' }
 ];

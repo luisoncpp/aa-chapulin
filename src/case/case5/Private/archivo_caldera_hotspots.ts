@@ -10,7 +10,7 @@ export const CASE5_ARCHIVO_CALDERA_HOTSPOTS: Hotspot[] = [
   {
     id: 'hotspot_caldera',
     label: 'Caldera y secadores',
-    x: 28, y: 38, w: 34, h: 32,
+    x: 16, y: 2, w: 48, h: 78,
     dialogue: [
       { speaker: 'NARRADOR', text: 'La caldera está apagada y los dos secadores industriales, fuera de servicio, siguen apuntando a un ducto que sube por el muro.' },
       { speaker: 'CHOMPIRAS', text: 'Ese ducto sube derechito al pasillo siete, licenciado. Lo pusieron así cuando el edificio era fábrica.', pose: 'chompiras_idle' },
@@ -23,7 +23,7 @@ export const CASE5_ARCHIVO_CALDERA_HOTSPOTS: Hotspot[] = [
   {
     id: 'hotspot_termografo',
     label: 'Termógrafo',
-    x: 62, y: 22, w: 22, h: 28,
+    x: 70, y: 16, w: 28, h: 52,
     condition: (flags) => Boolean(flags.examined_hotspot_caldera),
     dialogue: [
       { speaker: 'NARRADOR', text: 'Atornillado al muro, un tambor de reloj con una tira de papel cuadriculado y una plumilla que raya una línea continua.' },

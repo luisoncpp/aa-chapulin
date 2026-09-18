@@ -9,7 +9,7 @@ export const CASE5_FISCALIA_C5_HOTSPOTS: Hotspot[] = [
   {
     id: 'hotspot_bolsa',
     label: 'Bolsa de lona vacía',
-    x: 76, y: 56, w: 16, h: 20,
+    x: 72, y: 52, w: 22, h: 34,
     dialogue: [
       { speaker: 'NARRADOR', text: 'En el rincón, doblada sobre una silla, una bolsa de lona cruda con el sello de la fiscalía. Vacía y limpia.' },
       { speaker: 'DEFENSA', text: '¿Y ésta?', pose: 'chapulin_idle' },

@@ -17,6 +17,7 @@ export interface PenaltyHost {
   soundEngine: SoundEngine;
   onQueueDialogue: (dialogue: DialogueLine[], onComplete?: () => void) => void;
   onRestartTrial?: () => void;
+  guiltyDialogue?: DialogueLine[];
 }
 
 function defensePenaltyPose(caseId: CaseId, kind: 'point' | 'panic'): PoseName {
@@ -43,17 +44,20 @@ export function queuePenaltyDialogue(deps: PenaltyHost, onResume: () => void): v
     { speaker: 'SUPER SAM', text: i18n.t.penaltyProsecutionText, pose: 'supersam_point' },
     { speaker: 'JUEZ', text: i18n.t.penaltyJudgeText, pose: 'judge_gavel', sfx: 'gavel' }
   ];
-  if (deps.state.gameOver) {
-    lines.push(
-      { speaker: 'JUEZ', pose: 'judge_gavel', text: i18n.t.gameOverJudgeText, sfx: 'gavel' },
-      {
-        speaker: 'DEFENSA',
-        pose: defensePenaltyPose(deps.state.caseId, /*kind=*/'panic'),
-        text: i18n.t.gameOverDefenseText
-      }
-    );
-  }
+  if (deps.state.gameOver) lines.push(...gameOverLines(deps));
   deps.onQueueDialogue(lines, /*onComplete*/ onResume);
+}
+
+function gameOverLines(deps: PenaltyHost): DialogueLine[] {
+  if (deps.guiltyDialogue?.length) return deps.guiltyDialogue;
+  return [
+    { speaker: 'JUEZ', pose: 'judge_gavel', text: i18n.t.gameOverJudgeText, sfx: 'gavel' },
+    {
+      speaker: 'DEFENSA',
+      pose: defensePenaltyPose(deps.state.caseId, /*kind=*/'panic'),
+      text: i18n.t.gameOverDefenseText
+    }
+  ];
 }
 
 export function queuePenaltyOrRestart(deps: PenaltyHost, onContinue: () => void): void {

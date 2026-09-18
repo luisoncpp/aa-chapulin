@@ -15,7 +15,7 @@ export const CASE5_CELDA_D4_TALKS: TalkOption[] = [
       { speaker: 'DEFENSA', text: '¿Y el señor Lengua?', pose: 'chapulin_idle' },
       { speaker: 'DON RAMÓN', text: 'Sudaba. Se limpiaba la frente con el pañuelo cada dos frases. Yo pensé que eran los nervios.', pose: 'donramon_sweat' },
       { speaker: 'DEFENSA', text: '¿Y el conserje?', pose: 'chapulin_point' },
-      { speaker: 'DON RAMÓN', text: 'El conserje me dijo en la puerta que llevaban cuatro días con la caldera al máximo por un tubo reventado.', pose: 'donramon_idle' },
+      { speaker: 'DON RAMÓN', text: 'El conserje me dijo en la puerta que la caldera y los secadores llevaban al máximo desde el tres, por un tubo reventado.', pose: 'donramon_idle' },
       { speaker: 'DEFENSA', text: 'Don Ramón.', pose: 'chapulin_panic' },
       { speaker: 'DEFENSA', text: 'El legista calculó la hora de la muerte con la temperatura del cuerpo.', pose: 'chapulin_point' },
       { speaker: 'DON RAMÓN', text: '...Sí.', pose: 'donramon_idle' },

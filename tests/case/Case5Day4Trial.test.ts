@@ -2,6 +2,7 @@
 import { describe, expect, it } from 'vitest';
 import { getCaseScript } from '../../src/case/index.js';
 import type { CaseScript, DialogueLine, Statement, Testimony } from '../../src/types/index.js';
+import { assertEnglishTrialParity } from './case5Parity.js';
 
 function contradictions(t: Testimony): Statement[] {
   return t.statements.filter((s) => s.contradiction);
@@ -49,7 +50,7 @@ describe('Case 5 day 4 trial (Spanish)', () => {
     expect(day4.openingPresent?.evidence).toContain('bitacora_caldera');
     expect(day4.openingPresent?.profileTarget ?? []).toHaveLength(0);
     expect(day4.openingPresent?.prompt).toBe('¿Con qué temperatura trabajó el legista?');
-    expect(en.adjournment?.next?.next?.trial.openingPresent).toBeUndefined();
+    expect(en.adjournment?.next?.next?.trial.openingPresent?.evidence).toEqual(['bitacora_caldera']);
   });
 
   it('exports T9 Genoveva with spec title, witness, and allegro BGM', () => {
@@ -106,14 +107,10 @@ describe('Case 5 day 4 trial (Spanish)', () => {
     }
   });
 
-  it('keeps English day-4 testimony on placeholder empty statements', () => {
+  it('mirrors Spanish day-4 trial structure in English without Spanish leakage', () => {
     const enDay4 = day4Trial(en);
-    expect(enDay4.intro).toHaveLength(2);
-    expect(enDay4.openingPresent).toBeUndefined();
-    for (const testimony of enDay4.testimonies) {
-      expect(testimony.statements).toHaveLength(0);
-      expect(testimony.title).toBe('Placeholder');
-    }
+    const esDay4 = day4Trial(es);
+    assertEnglishTrialParity(enDay4, esDay4, trialDialogue(enDay4));
   });
 
   it('calls Genoveva in openingPresent success and opens climax handoff on T9 followUp', () => {

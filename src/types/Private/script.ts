@@ -329,6 +329,8 @@ export interface ClimaxDefinition {
   /** Opens the shared choices after this zero-based stage instead of after the final stage. */
   choicesAfterStage?: number;
   epilogue?: ClimaxEpilogue;
+  /** Health-0 guilty lines. When set, replaces the generic i18n game-over pair. */
+  guiltyDialogue?: DialogueLine[];
 }
 
 export interface TrialScript {

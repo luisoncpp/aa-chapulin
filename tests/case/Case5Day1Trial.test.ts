@@ -2,6 +2,7 @@
 import { describe, expect, it } from 'vitest';
 import { getCaseScript } from '../../src/case/index.js';
 import type { CaseScript, DialogueLine, Statement, Testimony } from '../../src/types/index.js';
+import { assertEnglishTrialParity } from './case5Parity.js';
 
 function contradictions(t: Testimony): Statement[] {
   return t.statements.filter((s) => s.contradiction);
@@ -35,7 +36,7 @@ describe('Case 5 day 1 trial (Spanish)', () => {
   it('wires openingPresent with insignia_abogado', () => {
     expect(es.trial.openingPresent?.evidence).toContain('insignia_abogado');
     expect(es.trial.openingPresent?.prompt).toBe('¿Qué acredita a la defensa ante esta corte?');
-    expect(en.trial.openingPresent).toBeUndefined();
+    expect(en.trial.openingPresent?.evidence).toContain('insignia_abogado');
   });
 
   it('exports three testimonies with spec titles and witnesses', () => {
@@ -106,11 +107,7 @@ describe('Case 5 day 1 trial (Spanish)', () => {
     }
   });
 
-  it('keeps English day-1 trial on placeholder empty statements', () => {
-    expect(en.trial.intro).toHaveLength(2);
-    for (const testimony of en.trial.testimonies) {
-      expect(testimony.statements).toHaveLength(0);
-      expect(testimony.title).toBe('Placeholder');
-    }
+  it('mirrors Spanish day-1 trial structure in English without Spanish leakage', () => {
+    assertEnglishTrialParity(en.trial, es.trial, trialDialogue(en));
   });
 });

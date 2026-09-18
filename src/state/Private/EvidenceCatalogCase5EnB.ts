@@ -37,7 +37,7 @@ export const CASE5_EVIDENCE_EN_B: Record<string, EvidenceItem> = {
   }),
   huacal_9: ev('huacal_9', {
     name: 'Bonded Crate 9',
-    desc: 'Wooden crate, bankruptcy 114/1971. On the lid, more than two hundred fifty overlapping seal strips, each initialed by the syndic and dated with the day of the week. The top two read the full date SAT 4-XII.'
+    desc: 'Wooden crate, bankruptcy 114/1971. On the lid, more than two hundred fifty overlapping seal strips, each initialed by the syndic and dated with the day of the week. The top strip reads the full date SAT 4-XII.'
   }, {
     imageAsset: 'assets/examine_huacal9_en.webp',
     caption: 'Crate lid with 250+ overlapping seal strips; the top strip legible: SAT 4-XII.'

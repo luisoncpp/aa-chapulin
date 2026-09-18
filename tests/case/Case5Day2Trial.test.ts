@@ -2,6 +2,7 @@
 import { describe, expect, it } from 'vitest';
 import { getCaseScript } from '../../src/case/index.js';
 import type { CaseScript, DialogueLine, Statement, Testimony } from '../../src/types/index.js';
+import { assertEnglishTrialParity } from './case5Parity.js';
 
 function contradictions(t: Testimony): Statement[] {
   return t.statements.filter((s) => s.contradiction);
@@ -45,7 +46,7 @@ describe('Case 5 day 2 trial (Spanish)', () => {
     expect(day2.openingPresent?.profileTarget).toContain('perfil_casimiro');
     expect(day2.openingPresent?.evidence ?? []).toHaveLength(0);
     expect(day2.openingPresent?.prompt).toBe('¿Quién era el hombre que murió en el pasillo 7?');
-    expect(en.adjournment?.trial.openingPresent).toBeUndefined();
+    expect(en.adjournment?.trial.openingPresent?.profileTarget).toEqual(['perfil_casimiro']);
   });
 
   it('exports T4/T5 with spec titles, witnesses, and T5 grave BGM', () => {
@@ -120,14 +121,10 @@ describe('Case 5 day 2 trial (Spanish)', () => {
     }
   });
 
-  it('keeps English day-2 testimonies on placeholder empty statements', () => {
+  it('mirrors Spanish day-2 trial structure in English without Spanish leakage', () => {
     const enDay2 = day2Trial(en);
-    expect(enDay2.intro).toHaveLength(2);
-    expect(enDay2.openingPresent).toBeUndefined();
-    for (const testimony of enDay2.testimonies) {
-      expect(testimony.statements).toHaveLength(0);
-      expect(testimony.title).toBe('Placeholder');
-    }
+    const esDay2 = day2Trial(es);
+    assertEnglishTrialParity(enDay2, esDay2, trialDialogue(enDay2));
   });
 
   it('calls Barriga in openingPresent and Berrondo before T5 via T4 followUp', () => {

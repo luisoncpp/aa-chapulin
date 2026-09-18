@@ -9,6 +9,7 @@ import type { CaseScript, TrialDay } from '../../types/index.js';
 import type { DomElements } from './DomElements.js';
 import { getActiveTrial } from './TrialDayRouter.js';
 import { presentDialogueVisuals } from './StageCommit.js';
+import { setStagingCaseId } from './TrialCaseStaging.js';
 
 interface CourtroomPaintDeps {
   dom: DomElements;
@@ -16,6 +17,7 @@ interface CourtroomPaintDeps {
 }
 
 export function paintCourtroomPlate(deps: CourtroomPaintDeps, script: CaseScript): void | Promise<void> {
+  setStagingCaseId(deps.state.caseId);
   deps.state.mode = 'TRIAL';
   deps.dom.investigationNavEl.classList.add('hidden');
   deps.dom.examineNavEl.classList.add('hidden');

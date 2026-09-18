@@ -200,3 +200,7 @@ Readiness is inventory-only (see [[docs/lessons-learned/trial-gating-is-inventor
 `informe_forense` is delivered mid-trial on day 1 and never gates. Staged `updates[]` enrich cards, never days.
 
 `getEvidenceCatalog(lang, 'case4')` returns the Case 4 map alone (18 entries including `insignia_abogado`); Case 1 `foto_crimen` text must not leak.
+
+## Case 5 Assembly (`case5`)
+
+Case 5 (`case5`) is assembled in [[src/case/case5/index.ts]] from ES/EN part tables. Four investigation days and four trial days: `adjournment.next` is chained three times. DEFENSA lines use `chapulin_*` poses; Don Ramón is the dock speaker. Climax: five stages (`perfil_berrondo` → `credencial_sindico` → `estante_consulta` + Present & Point `lomo_11` → `ficha_domicilio` → `maquina_escribir` at update stage 2), `choicesAfterStage: 2`, waiting-room epilogue with `bg` + `furniture: 'none'` on every line. First climax line cues `pursuit`, never `truth`. Geometry pins: [[tests/case/Case5Hotspots.test.ts]], [[tests/case/Case5PresentPointZones.test.ts]], [[tests/case/Case5Climax.test.ts]].

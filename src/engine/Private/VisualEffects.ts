@@ -7,7 +7,8 @@
 import type { CutinName, DialogueLine, FurnitureType, PoseName } from '../../types/index.js';
 import type { DomElements } from './DomElements.js';
 import { applyStageFrame, resolveStageFrame } from './StageLayout.js';
-import { TRIAL_SPEAKER_BACKGROUNDS } from './TrialSpeakerCameras.js';
+import { defenseIdlePose, getStagingCaseId } from './TrialCaseStaging.js';
+import { trialBackgroundFor } from './TrialSpeakerCameras.js';
 
 const FURNITURE_ASSETS: Record<'podium' | 'bench', string> = {
   podium: 'assets/court_podium.webp',
@@ -59,8 +60,7 @@ export class VisualEffects {
   }
 
   public static inferTrialBackground(speaker?: string): string | null {
-    if (!speaker || speaker === 'NARRADOR' || speaker === 'MODO EXAMINAR' || speaker === 'EXAMINE MODE') return null;
-    return TRIAL_SPEAKER_BACKGROUNDS[speaker] ?? 'assets/bg_witness.webp';
+    return trialBackgroundFor(speaker, getStagingCaseId());
   }
 
   public static resolveBackground(line: DialogueLine, isTrialMode: boolean): string | null {
@@ -78,7 +78,7 @@ export class VisualEffects {
     }
     if (line.furniture === 'none') return null;
     if (!isTrialMode || !line.speaker) return null;
-    if (isDefenseSpeaker(line.speaker)) return 'donramon_idle';
+    if (isDefenseSpeaker(line.speaker)) return defenseIdlePose();
     if (isChapulinSpeaker(line.speaker)) return 'chapulin_idle';
     if (line.speaker === 'SUPER SAM') return 'supersam_idle';
     return null;

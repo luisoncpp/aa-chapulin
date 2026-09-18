@@ -83,4 +83,15 @@ describe('TrialPenalty', () => {
     expect(queued[0].some((line) => line.text === i18n.t.gameOverJudgeText)).toBe(true);
     expect(deps.onRestartTrial).toHaveBeenCalled();
   });
+
+  it('uses climax guiltyDialogue when health is exhausted', () => {
+    state.health = 1;
+    state.takePenalty();
+    const guilty = [
+      { speaker: 'JUEZ', pose: 'judge_gavel' as const, text: 'Ramón Valdés... ¡CULPABLE!' }
+    ];
+    queuePenaltyDialogue({ ...host(), guiltyDialogue: guilty }, /*onResume*/ () => {});
+    expect(queued[0].some((line) => line.text === 'Ramón Valdés... ¡CULPABLE!')).toBe(true);
+    expect(queued[0].some((line) => line.text === i18n.t.gameOverJudgeText)).toBe(false);
+  });
 });

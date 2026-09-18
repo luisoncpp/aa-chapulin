@@ -110,7 +110,11 @@ function reopenRecord(ctrl: TrialController): () => void {
 }
 
 function penaltyHost(ctrl: TrialController): PenaltyHost {
-  return { ...ctrl.deps, onRestartTrial: () => ctrl.restartAfterGameOver() };
+  return {
+    ...ctrl.deps,
+    onRestartTrial: () => ctrl.restartAfterGameOver(),
+    guiltyDialogue: ctrl.script.trial.climax.guiltyDialogue
+  };
 }
 
 function tryOpeningPresent(ctrl: TrialController, evidenceId: EvidenceId): boolean {

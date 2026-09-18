@@ -30,7 +30,7 @@ export const CASE5_CORRESPONDENCIA: InvestigationScene = {
     {
       id: 'hotspot_libro_acuses',
       label: 'Libro de acuses',
-      x: 72, y: 54, w: 18, h: 22,
+      x: 56, y: 62, w: 38, h: 34,
       dialogue: [
         { speaker: 'NARRADOR', text: 'Un libro empastado en tela azul, con una columna de firmas garabateadas al margen de cada asiento.' },
         { speaker: 'DEFENSA', text: 'Veintinueve de noviembre... veintinueve de noviembre...', pose: 'chapulin_idle' },

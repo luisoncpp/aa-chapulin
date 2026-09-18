@@ -9,7 +9,7 @@ export const CASE5_BERRONDO_HOTSPOTS: Hotspot[] = [
   {
     id: 'hotspot_vitrina',
     label: 'Vitrina de la sindicatura',
-    x: 8, y: 28, w: 22, h: 38,
+    x: 0, y: 28, w: 28, h: 42,
     dialogue: [
       { speaker: 'NARRADOR', text: 'Una vitrina de caoba con tres legajos exhibidos como si fueran trofeos, y un marco con una credencial.' },
       { speaker: 'DEFENSA', text: '«Fulgencio Berrondo. Síndico. Quiebra 114 diagonal 1971.»', pose: 'chapulin_idle' },
@@ -25,7 +25,7 @@ export const CASE5_BERRONDO_HOTSPOTS: Hotspot[] = [
   {
     id: 'hotspot_retrato',
     label: 'Retrato de la editorial',
-    x: 4, y: 12, w: 20, h: 28,
+    x: 0, y: 4, w: 16, h: 28,
     dialogue: [
       { speaker: 'NARRADOR', text: 'Una fotografía enmarcada: cincuenta hombres de traje frente a un edificio, con una banda que dice «EL SABER UNIVERSAL · 1969».' },
       { speaker: 'DEFENSA', text: '¿Ésta es la empresa?', pose: 'chapulin_idle' },

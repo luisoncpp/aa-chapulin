@@ -65,7 +65,7 @@ export const CASE5_TESTIMONY_6: Testimony = {
         successDialogue: CASE5_D3_T1_INVENTARIO_SUCCESS,
         followUp: {
           evidence: ['huacal_9'],
-          prompt: '¿Qué fecha completa aparece en las tiras superiores del huacal?',
+          prompt: '¿Qué fecha completa aparece en la tira de hasta arriba del huacal?',
           successDialogue: CASE5_D3_T1_HUACAL_SUCCESS
         }
       }

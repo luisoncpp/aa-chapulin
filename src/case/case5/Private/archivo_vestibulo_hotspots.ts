@@ -12,7 +12,7 @@ export const CASE5_VESTIBULO_HOTSPOTS: Hotspot[] = [
   {
     id: 'hotspot_libro',
     label: 'Libro de visitas',
-    x: 38, y: 42, w: 22, h: 18,
+    x: 58, y: 26, w: 26, h: 24,
     dialogue: [
       { speaker: 'NARRADOR', text: 'Sobre el mostrador, un libro de registro abierto, con una pluma atada a un cordel.' },
       { speaker: 'DEFENSA', text: 'Hoja del cuatro de diciembre. Catorce firmas.', pose: 'chapulin_idle' },
@@ -27,7 +27,7 @@ export const CASE5_VESTIBULO_HOTSPOTS: Hotspot[] = [
   {
     id: 'hotspot_plano',
     label: 'Plano de protección civil',
-    x: 62, y: 28, w: 28, h: 32,
+    x: 0, y: 0, w: 22, h: 36,
     dialogue: [
       { speaker: 'NARRADOR', text: 'Clavado con tachuelas junto al mostrador, un plano amarillento del edificio con las salidas marcadas en rojo.' },
       { speaker: 'DEFENSA', text: 'Planta baja, primer piso, sótano... ¡y dos puertas!', pose: 'chapulin_point' },
@@ -49,7 +49,7 @@ export const CASE5_VESTIBULO_HOTSPOTS: Hotspot[] = [
   {
     id: 'hotspot_carrito',
     label: 'Carrito de expedientes',
-    x: 8, y: 52, w: 24, h: 28,
+    x: 0, y: 48, w: 22, h: 42,
     dialogue: [
       { speaker: 'NARRADOR', text: 'Un carrito de metal con legajos atados con listón, esperando a que alguien los suba.' },
       { speaker: 'NICANOR', text: 'Ése lo sube el muchacho del montacargas. Yo ya no cargo: tengo la cintura hecha una lástima.', pose: 'nicanor_idle' },

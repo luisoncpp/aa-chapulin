@@ -99,6 +99,8 @@ export const UI_EN: UiTranslations = {
   notifNoSaveFound: 'No saved game found.',
   caseCompleteTitle: 'Case complete',
   caseCompleteBody: 'You have solved the case.',
+  case5CompleteTitle: 'The Thirteenth Volume',
+  case5CompleteBody: 'SEVENTEEN MONTHS',
 
   gameOverJudgeText: 'The defense has exhausted all chances! I declare the defendant... GUILTY!',
   gameOverDefenseText: 'Oh no! I will have to start over from the beginning of the trial!',

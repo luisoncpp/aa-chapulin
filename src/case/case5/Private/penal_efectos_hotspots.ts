@@ -10,7 +10,7 @@ export const CASE5_PENAL_EFECTOS_HOTSPOTS: Hotspot[] = [
   {
     id: 'hotspot_caja',
     label: 'Caja 214-J',
-    x: 38, y: 46, w: 30, h: 28,
+    x: 8, y: 42, w: 34, h: 40,
     dialogue: [
       { speaker: 'NARRADOR', text: 'Dentro de la caja: dos relojes de pulsera parados, un moño de corbata, una libreta de pasta negra y un papel carbón doblado en cuatro.' },
       { speaker: 'DEFENSA', text: 'Dos relojes.', pose: 'chapulin_idle' },

@@ -34,7 +34,7 @@ export const CASE5_DAY3_OPENING_PRESENT_SUCCESS: DialogueLine[] = [
 export const CASE5_D3_T1_INVENTARIO_SUCCESS: DialogueLine[] = [
   { cutin: 'objection_protesto', speaker: 'DEFENSA', text: '¡PROTESTO!', sfx: 'desk_slam', bgm: 'objection', pose: 'chapulin_slam' },
   { speaker: 'DEFENSA', text: 'Señor juez, el testigo dice «libros viejos y unos cajones». Y es lo que él ve, y lo dice de buena fe.', pose: 'chapulin_idle' },
-  { speaker: 'DEFENSA', text: 'Pero lo que hay dentro de ese huacal lo escribió este juzgado en 1971, y son cuarenta y siete partidas.', pose: 'chapulin_point' },
+  { speaker: 'DEFENSA', text: 'Pero lo que la corte escribió de ese huacal en 1971 consta en el inventario de la masa: cuarenta y siete partidas.', pose: 'chapulin_point' },
   { speaker: 'DEFENSA', text: 'Partida doce: cedulario, once mil cuatrocientas tarjetas.', pose: 'chapulin_idle' },
   { speaker: 'DEFENSA', text: 'Partida cuarenta y uno: máquina de escribir Olivetti Lexikon 80.', pose: 'chapulin_slam', sfx: 'desk_slam' },
   { speaker: 'JUEZ', text: 'Que se asiente.', sfx: 'gavel', pose: 'judge_gavel' },
@@ -46,13 +46,13 @@ export const CASE5_D3_T1_INVENTARIO_SUCCESS: DialogueLine[] = [
   { speaker: 'BERRONDO', text: 'Doscientos diez ejemplares sueltos sin vender, licenciado. No doscientas diez colecciones completas. Fue un desastre memorable.', pose: 'berrondo_idle' },
   { speaker: 'DEFENSA', text: '(Gracias, licenciado.)', pose: 'chapulin_idle' },
   { speaker: 'DEFENSA', text: '(Otra vez me corrigió. Y otra vez me dio un dato que no le pedí.)', pose: 'chapulin_idle' },
-  { speaker: 'JUEZ', text: 'Defensa: ¿qué fecha aparece en las tiras superiores del huacal?', pose: 'judge_thinking' }
+  { speaker: 'JUEZ', text: 'Defensa: ¿qué fecha completa aparece en la tira de hasta arriba del huacal?', pose: 'judge_thinking' }
 ];
 
 export const CASE5_D3_T1_HUACAL_SUCCESS: DialogueLine[] = [
   { cutin: 'objection_toma_eso', speaker: 'DEFENSA', text: '¡TOMA ESO!', sfx: 'desk_slam', pose: 'chapulin_slam' },
   { speaker: 'DEFENSA', text: 'Señor juez, el testigo declaró que ese huacal se destapa los jueves.', pose: 'chapulin_point' },
-  { speaker: 'DEFENSA', text: 'Y las dos tiras superiores dicen, con todas sus letras: «SÁB cuatro de diciembre». La respuesta está escrita en la prueba que acabo de presentar.', pose: 'chapulin_slam', sfx: 'desk_slam' },
+  { speaker: 'DEFENSA', text: 'Y la tira de hasta arriba dice, con todas sus letras: «SÁB cuatro de diciembre». La respuesta está escrita en la prueba que acabo de presentar.', pose: 'chapulin_slam', sfx: 'desk_slam' },
   { speaker: 'JUEZ', text: '¡Cáspita!', pose: 'judge_shock' },
   { speaker: 'CHOMPIRAS', text: '¡Ah, pues sí! ¡El sábado yo no fui! ¡Yo los sábados juego dominó!', pose: 'chompiras_nervous' },
   { speaker: 'DEFENSA', text: '¿Y entonces quién le destapó el huacal?', pose: 'chapulin_point' },

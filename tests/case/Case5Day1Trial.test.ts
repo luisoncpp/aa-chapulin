@@ -35,7 +35,7 @@ describe('Case 5 day 1 trial (Spanish)', () => {
   it('wires openingPresent with insignia_abogado', () => {
     expect(es.trial.openingPresent?.evidence).toContain('insignia_abogado');
     expect(es.trial.openingPresent?.prompt).toBe('¿Qué acredita a la defensa ante esta corte?');
-    expect(en.trial.openingPresent).toBeUndefined();
+    expect(en.trial.openingPresent?.evidence).toContain('insignia_abogado');
   });
 
   it('exports three testimonies with spec titles and witnesses', () => {
@@ -106,11 +106,14 @@ describe('Case 5 day 1 trial (Spanish)', () => {
     }
   });
 
-  it('keeps English day-1 trial on placeholder empty statements', () => {
-    expect(en.trial.intro).toHaveLength(2);
-    for (const testimony of en.trial.testimonies) {
-      expect(testimony.statements).toHaveLength(0);
-      expect(testimony.title).toBe('Placeholder');
-    }
+  it('matches Spanish day-1 testimony structure in English without a truth BGM cue', () => {
+    expect(en.trial.testimonies).toHaveLength(es.trial.testimonies.length);
+    en.trial.testimonies.forEach((testimony, i) => {
+      expect(testimony.statements).toHaveLength(es.trial.testimonies[i].statements.length);
+      expect(testimony.bgm).not.toBe('truth');
+    });
+    en.trial.intro.forEach((line) => {
+      expect(line.bgm).not.toBe('truth');
+    });
   });
 });

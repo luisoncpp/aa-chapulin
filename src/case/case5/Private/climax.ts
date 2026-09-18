@@ -36,4 +36,4 @@ export const CASE5_CLIMAX: ClimaxDefinition = {
     epilogue: CASE5_EPILOGUE
   }),
   guiltyDialogue: CASE5_CLIMAX_GUILTY
-} as ClimaxDefinition;
+};

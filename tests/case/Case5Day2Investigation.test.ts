@@ -92,8 +92,16 @@ describe('Case 5 day 2 investigation (Spanish)', () => {
     expect(profiles).toContain('perfil_barriga');
   });
 
-  it('keeps English investigation empty while Spanish scenes are populated', () => {
-    expect(Object.keys(en.investigation)).toEqual([]);
-    expect(en.investigation).toEqual({});
+  it('mirrors Spanish day-2 locations in English without a truth BGM cue', () => {
+    ['vecindad_c5', 'correspondencia', 'despacho_berrondo', 'delegacion_c5'].forEach((id) => {
+      expect(en.investigation[id]).toBeDefined();
+      expect(en.investigation[id].bgm).not.toBe('truth');
+    });
+    ['vecindad_c5', 'correspondencia', 'despacho_berrondo', 'delegacion_c5']
+      .flatMap((loc) => sceneLines(en, loc))
+      .forEach((line) => {
+        expect(line.bgm).not.toBe('truth');
+        expect(line.text).not.toMatch(/[¡¿]/);
+      });
   });
 });

@@ -92,9 +92,16 @@ describe('Case 5 day 1 investigation (Spanish)', () => {
     );
   });
 
-  it('keeps English investigation empty while Spanish scenes are populated', () => {
-    expect(Object.keys(en.investigation)).toEqual([]);
-    expect(en.investigation).toEqual({});
+  it('mirrors Spanish day-1 locations in English without a truth BGM cue', () => {
+    ['celda_c5', 'archivo_vestibulo', 'archivo_pasillo7'].forEach((id) => {
+      expect(en.investigation[id]).toBeDefined();
+      expect(en.investigation[id].hotspots).toHaveLength(es.investigation[id].hotspots.length);
+      expect(en.investigation[id].bgm).not.toBe('truth');
+    });
+    allDay1Lines(en).forEach((line) => {
+      expect(line.bgm).not.toBe('truth');
+      expect(line.text).not.toMatch(/[¡¿]/);
+    });
   });
 
   it('uses detention_center in celda and archivo in vestibulo and pasillo 7', () => {

@@ -49,7 +49,7 @@ describe('Case 5 day 4 trial (Spanish)', () => {
     expect(day4.openingPresent?.evidence).toContain('bitacora_caldera');
     expect(day4.openingPresent?.profileTarget ?? []).toHaveLength(0);
     expect(day4.openingPresent?.prompt).toBe('¿Con qué temperatura trabajó el legista?');
-    expect(en.adjournment?.next?.next?.trial.openingPresent).toBeUndefined();
+    expect(en.adjournment?.next?.next?.trial.openingPresent?.evidence).toEqual(['bitacora_caldera']);
   });
 
   it('exports T9 Genoveva with spec title, witness, and allegro BGM', () => {
@@ -106,14 +106,16 @@ describe('Case 5 day 4 trial (Spanish)', () => {
     }
   });
 
-  it('keeps English day-4 testimony on placeholder empty statements', () => {
+  it('matches Spanish day-4 testimony structure in English without a truth BGM cue', () => {
     const enDay4 = day4Trial(en);
-    expect(enDay4.intro).toHaveLength(2);
-    expect(enDay4.openingPresent).toBeUndefined();
-    for (const testimony of enDay4.testimonies) {
-      expect(testimony.statements).toHaveLength(0);
-      expect(testimony.title).toBe('Placeholder');
-    }
+    const esDay4 = day4Trial(es);
+    expect(enDay4.openingPresent).toBeDefined();
+    expect(enDay4.testimonies).toHaveLength(esDay4.testimonies.length);
+    enDay4.testimonies.forEach((testimony, i) => {
+      expect(testimony.statements).toHaveLength(esDay4.testimonies[i].statements.length);
+      expect(testimony.bgm).not.toBe('truth');
+    });
+    trialDialogue(enDay4).forEach((line) => expect(line.bgm).not.toBe('truth'));
   });
 
   it('calls Genoveva in openingPresent success and opens climax handoff on T9 followUp', () => {

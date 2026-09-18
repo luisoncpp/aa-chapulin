@@ -83,8 +83,14 @@ describe('Case 5 day 4 investigation (Spanish)', () => {
     });
   });
 
-  it('keeps English investigation empty while Spanish scenes are populated', () => {
-    expect(Object.keys(en.investigation)).toEqual([]);
-    expect(en.investigation).toEqual({});
+  it('mirrors Spanish day-4 locations in English without a truth BGM cue', () => {
+    DAY4_LOCATIONS.forEach((id) => {
+      expect(en.investigation[id]).toBeDefined();
+      expect(en.investigation[id].bgm).not.toBe('truth');
+    });
+    allDay4Lines(en).forEach((line) => {
+      expect(line.bgm).not.toBe('truth');
+      expect(line.text).not.toMatch(/[¡¿]/);
+    });
   });
 });

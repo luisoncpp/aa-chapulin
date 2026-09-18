@@ -91,8 +91,14 @@ describe('Case 5 day 3 investigation (Spanish)', () => {
     expect(profiles).toContain('perfil_chompiras');
   });
 
-  it('keeps English investigation empty while Spanish scenes are populated', () => {
-    expect(Object.keys(en.investigation)).toEqual([]);
-    expect(en.investigation).toEqual({});
+  it('mirrors Spanish day-3 locations in English without a truth BGM cue', () => {
+    DAY3_LOCATIONS.forEach((id) => {
+      expect(en.investigation[id]).toBeDefined();
+      expect(en.investigation[id].bgm).not.toBe('truth');
+    });
+    allDay3Lines(en).forEach((line) => {
+      expect(line.bgm).not.toBe('truth');
+      expect(line.text).not.toMatch(/[¡¿]/);
+    });
   });
 });

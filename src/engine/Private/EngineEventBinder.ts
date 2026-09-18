@@ -22,6 +22,7 @@ export interface EventBinderConfig extends CourtRecordEventConfig {
   onStartCase2?: () => void;
   onStartCase3?: () => void;
   onStartCase4?: () => void;
+  onStartCase5?: () => void;
   onStartTrialDebug?: () => void;
   onAdvance: () => void;
   onOpenHistory?: () => void;
@@ -46,7 +47,10 @@ export class EngineEventBinder {
 
   // @Section(Audio & Splash Bindings)
   private static bindStartAndAudio(config: EventBinderConfig): void {
-    const { dom, soundEngine, onStartGame, onStartCase0, onStartCase2, onStartCase3, onStartCase4, onStartTrialDebug, onToggleLanguage } = config;
+    const {
+      dom, soundEngine, onStartGame, onStartCase0, onStartCase2, onStartCase3,
+      onStartCase4, onStartCase5, onStartTrialDebug, onToggleLanguage
+    } = config;
     dom.btnStartGame?.addEventListener('click', /*onStartClick*/ () => onStartGame());
     dom.btnStartCase0?.addEventListener('click', /*onStartCase0Click*/ () => onStartCase0?.());
     dom.btnStartCase2?.addEventListener('click', /*onStartCase2Click*/ () => {
@@ -57,6 +61,9 @@ export class EngineEventBinder {
     });
     dom.btnStartCase4?.addEventListener('click', /*onStartCase4Click*/ () => {
       onStartCase4?.();
+    });
+    dom.btnStartCase5?.addEventListener('click', /*onStartCase5Click*/ () => {
+      onStartCase5?.();
     });
     dom.btnStartTrialDebug?.addEventListener('click', /*onStartTrialDebugClick*/ () => {
       onStartTrialDebug?.();

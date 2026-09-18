@@ -56,6 +56,7 @@ export interface UiTranslations {
   btnStartCase2: string;
   btnStartCase3: string;
   btnStartCase4: string;
+  btnStartCase5: string;
   btnStartTrialDebug: string;
   btnContinue: string;
   langToggleLabel: string;

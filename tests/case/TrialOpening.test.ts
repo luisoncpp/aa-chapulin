@@ -51,13 +51,30 @@ const expectedOpenings: Record<CaseId, { es: string[]; en: string[] }> = {
       'October 26, 4:00 PM. High Court - Waiting Room.',
       'October 27, 4:00 PM. High Court - Waiting Room.'
     ]
+  },
+  case5: {
+    es: [
+      '6 de diciembre, 2:00 PM. Tribunal Superior - Sala de Espera.',
+      '7 de diciembre, 4:00 PM. Tribunal Superior - Sala de Espera.',
+      '8 de diciembre, 4:00 PM. Tribunal Superior - Sala de Espera.',
+      '9 de diciembre, 4:00 PM. Tribunal Superior - Sala de Espera.'
+    ],
+    en: [
+      'December 6, 2:00 PM. High Court - Waiting Room.',
+      'December 7, 4:00 PM. High Court - Waiting Room.',
+      'December 8, 4:00 PM. High Court - Waiting Room.',
+      'December 9, 4:00 PM. High Court - Waiting Room.'
+    ]
   }
 };
 
 function trialDays(script: CaseScript): TrialDayScript[] {
   const days = [script.trial];
-  if (script.adjournment) days.push(script.adjournment.trial);
-  if (script.adjournment?.next) days.push(script.adjournment.next.trial);
+  let adj = script.adjournment;
+  while (adj) {
+    days.push(adj.trial);
+    adj = adj.next;
+  }
   return days;
 }
 

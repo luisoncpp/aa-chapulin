@@ -131,6 +131,18 @@ export type PoseName =
   | 'almanegra_shock'
   | 'almanegra_sweat'
   | 'almanegra_inconsciente'
+  | 'berrondo_idle'
+  | 'berrondo_definicion'
+  | 'berrondo_sweat'
+  | 'berrondo_panic'
+  | 'berrondo_breakdown'
+  | 'nicanor_idle'
+  | 'nicanor_escoba'
+  | 'nicanor_sweat'
+  | 'genoveva_idle'
+  | 'genoveva_reglamento'
+  | 'genoveva_sweat'
+  | 'genoveva_shock'
   | null;
 
 export type CutinName =

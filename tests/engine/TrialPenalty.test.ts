@@ -62,6 +62,17 @@ describe('TrialPenalty', () => {
       .toMatchObject({ speaker: 'DEFENSA', pose: 'donramon_panic' });
   });
 
+  it('uses Chapulín poses when Case 5 is the active defense', () => {
+    state.caseId = 'case5';
+    queuePenaltyDialogue(host(), /*onResume*/ () => {});
+    expect(queued[0][0]).toMatchObject({ speaker: 'DEFENSA', pose: 'chapulin_point' });
+    state.health = 1;
+    state.takePenalty();
+    queuePenaltyDialogue(host(), /*onResume*/ () => {});
+    expect(queued[1].find((line) => line.text === i18n.t.gameOverDefenseText))
+      .toMatchObject({ speaker: 'DEFENSA', pose: 'chapulin_panic' });
+  });
+
   it('restarts after game-over instead of continuing the current prompt', () => {
     state.health = 1;
     const deps = { ...host(), onRestartTrial: vi.fn() };

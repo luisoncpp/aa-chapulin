@@ -2,11 +2,11 @@
 
 Technical guide for [[src/case/index.ts]], configured in [[src/case/case.group.md]].
 
-Case 0 is a courtroom-only script: `investigation` is empty, `startLocation` is `courtroom`, and the launch layer enters `TRIAL` without calling investigation startup. It is registered alongside Cases 1–4 and has no `adjournment`. Its intro opens in the waiting room, where Chapulín teaches dialogue advance and cross-examination before the courtroom opening and `openingPresent` tutorial. Testimony 2's success dialogue includes the recessed waiting-room conversation, then resumes in court to deliver `maletin_cobranza` and `tarjeta_enciclopedias` before testimony 3.
+Case 0 is a courtroom-only script: `investigation` is empty, `startLocation` is `courtroom`, and the launch layer enters `TRIAL` without calling investigation startup. It is registered alongside Cases 1–5 and has no `adjournment`. Its intro opens in the waiting room, where Chapulín teaches dialogue advance and cross-examination before the courtroom opening and `openingPresent` tutorial. Testimony 2's success dialogue includes the recessed waiting-room conversation, then resumes in court to deliver `maletin_cobranza` and `tarjeta_enciclopedias` before testimony 3.
 
 ## Overview
 
-Narrative lives in `CaseScript` objects. `getCaseScript(lang, caseId)` in [[src/case/index.ts]] returns Case 1 (`case1`), Case 2 (`case2`), Case 3 (`case3`), or Case 4 (`case4` when scripted); default `CASE_SCRIPT` is still Case 1 Spanish. Each script has `id`, `startLocation`, `requiredEvidence`, `debugEvidence`, `debugUnlockLocations`, `investigation`, `trial`, and optional `adjournment` ([[src/types/Private/script.ts]]). Case 3 lives in nested module [[src/case/case3/index.ts]]; Case 4 will live in [[src/case/case4/index.ts]].
+Narrative lives in `CaseScript` objects. `getCaseScript(lang, caseId)` in [[src/case/index.ts]] returns Case 1 (`case1`), Case 2 (`case2`), Case 3 (`case3`), Case 4 (`case4`), or Case 5 (`case5`); default `CASE_SCRIPT` is still Case 1 Spanish. Each script has `id`, `startLocation`, `requiredEvidence`, `debugEvidence`, `debugUnlockLocations`, `investigation`, `trial`, and optional `adjournment` ([[src/types/Private/script.ts]]). Case 3 lives in nested module [[src/case/case3/index.ts]]; Case 4 lives in [[src/case/case4/index.ts]]; Case 5 lives in [[src/case/case5/index.ts]] with `adjournment.next` chained three times so `trialDay` can be `4`.
 
 ```mermaid
 graph TD

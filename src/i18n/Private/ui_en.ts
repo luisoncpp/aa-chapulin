@@ -51,6 +51,7 @@ export const UI_EN: UiTranslations = {
   btnStartCase2: '🔍 CASE 2: TURNABOUT OF THE TWO-FACED THIEF',
   btnStartCase3: '🔍 CASE 3: TURNABOUT OF THE GOLDEN VOICE',
   btnStartCase4: '🔍 CASE 4: MURDER AT THE GRAND HOTEL',
+  btnStartCase5: '🔍 CASE 5: VOLUME THIRTEEN',
   btnStartTrialDebug: '⚖️ DEBUG MODE: START IN TRIAL',
   btnContinue: '📂 CONTINUE GAME',
   langToggleLabel: '🌐 Language: English',
@@ -74,7 +75,9 @@ export const UI_EN: UiTranslations = {
     victory: '¡Síganme los buenos!',
     epilogue: '¡Síganme los buenos!',
     detention_center: 'Detention Center — Elegy',
-    kermes: 'Fairground — Popular Fest'
+    kermes: 'Fairground — Popular Fest',
+    archivo: 'Judicial Archive — Paper and Dust',
+    cross_exam_grave: 'Cross-Examination — Grave'
   },
 
   locationMuseum: 'Museum of Antiques & Curiosities - Crime Scene',

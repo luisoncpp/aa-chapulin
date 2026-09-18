@@ -55,6 +55,7 @@ export class UiLanguageUpdater {
     if (dom.btnStartCase2) dom.btnStartCase2.textContent = t.btnStartCase2;
     if (dom.btnStartCase3) dom.btnStartCase3.textContent = t.btnStartCase3;
     if (dom.btnStartCase4) dom.btnStartCase4.textContent = t.btnStartCase4;
+    if (dom.btnStartCase5) dom.btnStartCase5.textContent = t.btnStartCase5;
     if (dom.btnStartTrialDebug) dom.btnStartTrialDebug.textContent = t.btnStartTrialDebug;
     fillCaseCompleteCopy(dom, lang);
     refreshMusicPlayerCopy(dom);

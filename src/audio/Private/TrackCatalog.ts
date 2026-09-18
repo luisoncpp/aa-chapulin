@@ -1,4 +1,4 @@
-// @Architecture(descriptionShort="Catalog of 8 procedural multitrack 16-bit MIDI compositions", type="catalog", icon="music")
+// @Architecture(descriptionShort="Catalog of procedural multitrack 16-bit MIDI compositions", type="catalog", icon="music")
 /**
  * Procedural MIDI Soundtrack Definitions
  * Compositions for [[./MidiMusicComposer.ts]] aggregated from [[./tracks/]].
@@ -16,6 +16,7 @@ import {
   restauranteTrack
 } from './tracks/InvestigationTracks.js';
 import { crossExamPrestoTrack, kermesTrack } from './tracks/Case3Tracks.js';
+import { archivoTrack, crossExamGraveTrack } from './tracks/Case5Tracks.js';
 import { terrazaBarTrack } from './tracks/TerrazaBarTrack.js';
 
 export const TRACK_CATALOG: TrackCatalogMap = {
@@ -24,6 +25,7 @@ export const TRACK_CATALOG: TrackCatalogMap = {
   cross_exam_moderato: crossExamModeratoTrack,
   cross_exam_allegro: crossExamAllegroTrack,
   cross_exam_presto: crossExamPrestoTrack,
+  cross_exam_grave: crossExamGraveTrack,
 
   // @Section(Objection & Pursuit Turnaround Tracks)
   objection: objectionTrack,
@@ -41,5 +43,6 @@ export const TRACK_CATALOG: TrackCatalogMap = {
   victory: victoryTrack,
   epilogue: victoryTrack,
   detention_center: detentionCenterTrack,
-  kermes: kermesTrack
+  kermes: kermesTrack,
+  archivo: archivoTrack
 };

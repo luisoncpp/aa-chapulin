@@ -51,6 +51,7 @@ export const UI_ES: UiTranslations = {
   btnStartCase2: '🔍 CASO 2: EL JUICIO DEL CHÓMPIRAS',
   btnStartCase3: '🔍 CASO 3: LA NOCHE DEL GRITO',
   btnStartCase4: '🔍 CASO 4: CRIMEN EN EL GRAN HOTEL',
+  btnStartCase5: '🔍 CASO 5: EL TOMO TRECE',
   btnStartTrialDebug: '⚖️ MODO DEBUG: INICIAR EN JUICIO',
   btnContinue: '📂 CONTINUAR PARTIDA (CONTINUE)',
   langToggleLabel: '🌐 Idioma: Español',
@@ -74,7 +75,9 @@ export const UI_ES: UiTranslations = {
     victory: '¡Síganme los buenos!',
     epilogue: '¡Síganme los buenos!',
     detention_center: 'Centro de Detención — Elegía',
-    kermes: 'Kermés — Feria Popular'
+    kermes: 'Kermés — Feria Popular',
+    archivo: 'Archivo Judicial — Papel y Polvo',
+    cross_exam_grave: 'Interrogatorio — Grave'
   },
 
   locationMuseum: 'Museo de Antigüedades y Curiosidades - Escena del Crimen',

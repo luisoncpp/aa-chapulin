@@ -7,37 +7,11 @@
 import type { CutinName, DialogueLine, FurnitureType, PoseName } from '../../types/index.js';
 import type { DomElements } from './DomElements.js';
 import { applyStageFrame, resolveStageFrame } from './StageLayout.js';
+import { TRIAL_SPEAKER_BACKGROUNDS } from './TrialSpeakerCameras.js';
 
 const FURNITURE_ASSETS: Record<'podium' | 'bench', string> = {
   podium: 'assets/court_podium.webp',
   bench: 'assets/court_bench.webp'
-};
-
-const TRIAL_SPEAKER_BACKGROUNDS: Record<string, string> = {
-  DEFENSA: 'assets/bg_defense.webp',
-  'DON RAMON': 'assets/bg_defense.webp',
-  'DON RAMÓN': 'assets/bg_defense.webp',
-  CHAPULIN: 'assets/bg_defense.webp',
-  'CHAPULÍN': 'assets/bg_defense.webp',
-  'SUPER SAM': 'assets/bg_courtroom.webp',
-  JUEZ: 'assets/bg_judge.webp',
-  TRIPASECA: 'assets/bg_witness.webp',
-  FLORINDA: 'assets/bg_witness.webp',
-  PETERETE: 'assets/bg_witness.webp',
-  CHOMPIRAS: 'assets/bg_witness.webp',
-  JIRAFALES: 'assets/bg_witness.webp',
-  JAIMITO: 'assets/bg_witness.webp',
-  CLOTILDE: 'assets/bg_witness.webp',
-  CHAPATIN: 'assets/bg_witness.webp',
-  ANICETO: 'assets/bg_witness.webp',
-  BARRIGA: 'assets/bg_witness.webp',
-  NONO: 'assets/bg_witness.webp',
-  CHIMOLTRUFIA: 'assets/bg_witness.webp',
-  SARGENTO: 'assets/bg_witness.webp',
-  BOTIJA: 'assets/bg_witness.webp',
-  CECILIO: 'assets/bg_witness.webp',
-  MARUJA: 'assets/bg_witness.webp',
-  RUFINO: 'assets/bg_witness.webp'
 };
 
 function isDefenseSpeaker(speaker: string): boolean {
@@ -99,6 +73,7 @@ export class VisualEffects {
   public static resolveEffectivePose(line: DialogueLine, isTrialMode: boolean): PoseName | null {
     if (line.pose) {
       if (!isTrialMode && line.pose === 'donramon_slam') return 'donramon_shock';
+      if (!isTrialMode && line.pose === 'chapulin_slam') return 'chapulin_panic';
       return line.pose;
     }
     if (line.furniture === 'none') return null;

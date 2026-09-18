@@ -68,6 +68,7 @@ export interface DomElements {
   btnStartCase2?: HTMLButtonElement;
   btnStartCase3?: HTMLButtonElement;
   btnStartCase4?: HTMLButtonElement;
+  btnStartCase5?: HTMLButtonElement;
   btnStartTrialDebug?: HTMLButtonElement;
   btnEvidenceExamine?: HTMLButtonElement;
   btnCloseExamine?: HTMLButtonElement;
@@ -166,6 +167,7 @@ export function getDomElements(): DomElements {
     btnStartCase2: document.getElementById('btn-start-case2') as HTMLButtonElement,
     btnStartCase3: document.getElementById('btn-start-case3') as HTMLButtonElement,
     btnStartCase4: opt<HTMLButtonElement>('btn-start-case4'),
+    btnStartCase5: opt<HTMLButtonElement>('btn-start-case5'),
     btnStartTrialDebug: opt<HTMLButtonElement>('btn-start-trial-debug'),
     btnEvidenceExamine: opt<HTMLButtonElement>('btn-evidence-examine'),
     btnCloseExamine: opt<HTMLButtonElement>('btn-close-examine'),

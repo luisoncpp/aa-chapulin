@@ -13,9 +13,11 @@ import type {
 } from '../../types/index.js';
 
 export function getAdjournmentForDay(script: CaseScript, fromDay: TrialDay): AdjournmentDefinition | null {
-  if (fromDay === 1) return script.adjournment ?? null;
-  if (fromDay === 2) return script.adjournment?.next ?? null;
-  return null;
+  let adj: AdjournmentDefinition | undefined | null = script.adjournment;
+  for (let d = 1; d < fromDay; d++) {
+    adj = adj?.next;
+  }
+  return adj ?? null;
 }
 
 export function getActiveTrial(script: CaseScript, trialDay: TrialDay): TrialDayScript {

@@ -82,6 +82,10 @@ Modularized into private track collections under `src/audio/Private/tracks/`:
 
 `terraza_bar` in [[src/audio/Private/tracks/TerrazaBarTrack.ts]] plays at both Case 4 terrace locations in Spanish and English. Its 256 steps form 16 bars at 108 BPM, about 36 seconds. A minor lounge harmony, syncopated chords, sparse percussion, and four melodic phrases give the bar its own theme. Scene `bgm` selection uses the existing investigation audio flow.
 
+### Case 5
+
+`archivo` (84 BPM, 128 steps) scores the Judicial Archive: mid-register, hat-only percussion, paper and dust. `cross_exam_grave` (96 BPM, 128 steps) scores Berrondo and Super Sam's grave cross-examinations: walking bass, low lead, distinct from `cross_exam_moderato` and `cross_exam_allegro` from the first bar ([[src/audio/Private/tracks/Case5Tracks.ts]]). Case 5 never cues `truth`; climax and reveal blocks use `suspense` or `pursuit`.
+
 ## Invariants & Design Rules
 
 - **Autoplay Handling**: Audio is muted by default until the player interacts with the start splash overlay or document, avoiding browser console autoplay warnings.

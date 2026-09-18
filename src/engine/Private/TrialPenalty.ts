@@ -6,7 +6,7 @@
 import type { SoundEngine } from '../../audio/index.js';
 import { i18n } from '../../i18n/index.js';
 import type { GameStateManager } from '../../state/index.js';
-import type { DialogueLine } from '../../types/index.js';
+import type { CaseId, DialogueLine, PoseName } from '../../types/index.js';
 import type { DomElements } from './DomElements.js';
 import { ModalManager } from './ModalManager.js';
 import { VisualEffects } from './VisualEffects.js';
@@ -17,6 +17,11 @@ export interface PenaltyHost {
   soundEngine: SoundEngine;
   onQueueDialogue: (dialogue: DialogueLine[], onComplete?: () => void) => void;
   onRestartTrial?: () => void;
+}
+
+function defensePenaltyPose(caseId: CaseId, kind: 'point' | 'panic'): PoseName {
+  if (caseId === 'case5') return kind === 'point' ? 'chapulin_point' : 'chapulin_panic';
+  return kind === 'point' ? 'donramon_point' : 'donramon_panic';
 }
 
 export function applyPenaltyEffects(deps: PenaltyHost): void {
@@ -30,14 +35,22 @@ export function applyPenaltyEffects(deps: PenaltyHost): void {
 export function queuePenaltyDialogue(deps: PenaltyHost, onResume: () => void): void {
   const isEn = i18n.getLanguage() === 'en';
   const lines: DialogueLine[] = [
-    { cutin: 'objection_protesto', speaker: 'DEFENSA', text: isEn ? 'OBJECTION!' : '¡PROTESTO!', sfx: 'whoosh', pose: 'donramon_point' },
+    {
+      cutin: 'objection_protesto', speaker: 'DEFENSA',
+      text: isEn ? 'OBJECTION!' : '¡PROTESTO!', sfx: 'whoosh',
+      pose: defensePenaltyPose(deps.state.caseId, /*kind=*/'point')
+    },
     { speaker: 'SUPER SAM', text: i18n.t.penaltyProsecutionText, pose: 'supersam_point' },
     { speaker: 'JUEZ', text: i18n.t.penaltyJudgeText, pose: 'judge_gavel', sfx: 'gavel' }
   ];
   if (deps.state.gameOver) {
     lines.push(
       { speaker: 'JUEZ', pose: 'judge_gavel', text: i18n.t.gameOverJudgeText, sfx: 'gavel' },
-      { speaker: 'DEFENSA', pose: 'donramon_panic', text: i18n.t.gameOverDefenseText }
+      {
+        speaker: 'DEFENSA',
+        pose: defensePenaltyPose(deps.state.caseId, /*kind=*/'panic'),
+        text: i18n.t.gameOverDefenseText
+      }
     );
   }
   deps.onQueueDialogue(lines, /*onComplete*/ onResume);

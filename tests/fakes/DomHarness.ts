@@ -95,6 +95,7 @@ export function setupDomHarness(): DomElements {
         <button id="btn-start-case2">CASO 2</button>
         <button id="btn-start-case3">CASO 3</button>
         <button id="btn-start-case4">CASO 4</button>
+        <button id="btn-start-case5">CASO 5</button>
         <button id="btn-start-trial-debug">MODO DEBUG</button>
       </div>
       <div id="court-record-modal" class="game-modal hidden">

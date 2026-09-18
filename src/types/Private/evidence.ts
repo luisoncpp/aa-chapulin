@@ -70,7 +70,28 @@ export type EvidenceId =
   | 'sello_lacre'
   | 'nota_amenaza'
   | 'orden_servicios'
-  | 'toxicologia_vino';
+  | 'toxicologia_vino'
+  | 'esquina_tarjeta'
+  | 'informe_forense_c5'
+  | 'tomo_caido'
+  | 'estante_consulta'
+  | 'libro_visitas'
+  | 'plano_archivo'
+  | 'expediente_casimiro'
+  | 'recibo_renta'
+  | 'nota_mecanografiada'
+  | 'acuse_notificacion'
+  | 'credencial_sindico'
+  | 'inventario_1971'
+  | 'libro_peritos'
+  | 'expediente_serie'
+  | 'huacal_9'
+  | 'fichero_cedulario'
+  | 'maquina_escribir'
+  | 'oficio_diligencia'
+  | 'efectos_casimiro'
+  | 'bitacora_caldera'
+  | 'ficha_domicilio';
 
 export interface EvidenceExamineZone {
   id: string;

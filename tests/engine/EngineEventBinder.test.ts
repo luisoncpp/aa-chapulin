@@ -21,6 +21,7 @@ describe('EngineEventBinder', () => {
   let startedGame = false;
   let startedCase2 = false;
   let startedCase4 = false;
+  let startedCase5 = false;
   let advanced = false;
   let courtRecordOpened = false;
   let presentedFromModal = false;
@@ -37,6 +38,7 @@ describe('EngineEventBinder', () => {
     startedGame = false;
     startedCase2 = false;
     startedCase4 = false;
+    startedCase5 = false;
     advanced = false;
     courtRecordOpened = false;
     presentedFromModal = false;
@@ -70,6 +72,7 @@ describe('EngineEventBinder', () => {
       onStartGame: () => { startedGame = true; },
       onStartCase2: () => { startedCase2 = true; },
       onStartCase4: () => { startedCase4 = true; },
+      onStartCase5: () => { startedCase5 = true; },
       onAdvance: () => { advanced = true; },
       onOpenCourtRecord: () => { courtRecordOpened = true; },
       onPresentFromModal: () => { presentedFromModal = true; },
@@ -84,6 +87,8 @@ describe('EngineEventBinder', () => {
     expect(startedCase2).toBe(true);
     document.getElementById('btn-start-case4')?.click();
     expect(startedCase4).toBe(true);
+    document.getElementById('btn-start-case5')?.click();
+    expect(startedCase5).toBe(true);
 
     dom.btnAudioToggleEl.click();
     expect(dom.btnAudioToggleEl.textContent).toBe('🔇');

@@ -12,7 +12,14 @@ export type ProfileId =
   | 'perfil_tripaseca'
   | 'perfil_florinda'
   | 'perfil_almanegra'
-  | 'perfil_jirafales';
+  | 'perfil_jirafales'
+  | 'perfil_casimiro'
+  | 'perfil_berrondo'
+  | 'perfil_nicanor'
+  | 'perfil_genoveva'
+  | 'perfil_sargento'
+  | 'perfil_barriga'
+  | 'perfil_chompiras';
 
 export interface ProfileItem {
   id: ProfileId;

@@ -96,5 +96,6 @@ describe('splash layout fits the 960x540 stage', () => {
     expect(rows[1]).toContain('btn-start-case2');
     expect(rows[1]).toContain('btn-start-case3');
     expect(rows[2]).toContain('btn-start-case4');
+    expect(rows[2]).toContain('btn-start-case5');
   });
 });

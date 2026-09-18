@@ -87,7 +87,7 @@ Case 1 adds a second inventory, the **Acta de Personajes** ([[src/state/Private/
 
 ### 5. Case start, trial day, and readiness
 - `beginNewCase(script)` in [[src/state/Private/GameStateManager.ts#Case Progression]] sets `caseId`, `trialDay = 1`, investigation at `script.startLocation`, inventory to `['insignia_abogado']`, then `applyProgressionRules(script)`.
-- `trialDay` is `1 | 2 | 3`. `beginNextTrialDay(adjournment)` increments the day, copies that adjournment's required evidence and location list, and resets health. `beginTrialDay2` is a wrapper for Case 2 tests.
+- `trialDay` is `1 | 2 | 3 | 4`. `beginNextTrialDay(adjournment)` increments the day, copies that adjournment's required evidence and location list, and resets health. `beginTrialDay2` is a wrapper for Case 2 tests. `getAdjournmentForDay` walks `adjournment.next` so a fourth trial day is a third chain link, not a special case.
 - `checkTrialReadiness()` is case-aware: it requires every ID in the current `requiredEvidence` list (not a hardcoded Case 1 five-item set).
 - Case 1 `requiredEvidence`: `chipote_chillon`, `pastillas_chiquitolina`, `antenitas_vinil`, `informe_medico`, `foto_crimen`.
 - Case 2 day 1: `palanca_rota`, `informe_boveda`, `reloj_pendulo`, `aroma_dulce`, `plano_hacienda`, `caja_generador`.

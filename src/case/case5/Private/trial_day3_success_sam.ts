@@ -30,12 +30,12 @@ export const CASE5_D3_T2_OFICIO_SUCCESS: DialogueLine[] = [
 
 export const CASE5_D3_T2_EXPEDIENTE_SUCCESS: DialogueLine[] = [
   { cutin: 'objection_toma_eso', speaker: 'DEFENSA', text: '¡TOMA ESO!', sfx: 'desk_slam', pose: 'chapulin_slam' },
-  { speaker: 'DEFENSA', text: 'Panel B, señor juez. La ficha hallada en el patio de carga del museo el veintiuno de agosto. Seis renglones.', pose: 'chapulin_point' },
+  { speaker: 'DEFENSA', text: 'Panel B, señor juez. La ficha que apareció en el patio de carga del museo el veintiocho de agosto. Seis renglones.', pose: 'chapulin_point' },
   { speaker: 'JUEZ', text: 'Léalos.', sfx: 'gavel', bgm: 'suspense', pose: 'judge_gavel' },
   { speaker: 'DEFENSA', text: '«Uno. Chapa puerta de carga: vencida desde marzo. Se empuja.»', pose: 'chapulin_idle' },
-  { speaker: 'DEFENSA', text: '«Dos. Rejilla sala dos: dieciocho por veinticuatro.»', pose: 'chapulin_idle' },
-  { speaker: 'DEFENSA', text: '«Tres. Velador: veinte cuarenta y cinco bodega de proa; veintiuna cero cero bodega de popa. Copiado de su libreta.»', pose: 'chapulin_idle' },
-  { speaker: 'DEFENSA', text: '«Cuatro. Pastillas: farmacia de Insurgentes, mostrador de atrás.»', pose: 'chapulin_idle' },
+  { speaker: 'DEFENSA', text: '«Dos. Rejilla sala dos: dieciocho por veinticuatro. Malla floja en la esquina inferior. Da al patio.»', pose: 'chapulin_idle' },
+  { speaker: 'DEFENSA', text: '«Tres. Velador: veinte cuarenta y cinco bodega de proa; veintiuna cero cero bodega de popa. Copiado de su libreta; cuelga de un clavo en la caseta.»', pose: 'chapulin_idle' },
+  { speaker: 'DEFENSA', text: '«Cuatro. Pastillas de chiquitolina: farmacia de Insurgentes, mostrador de atrás.»', pose: 'chapulin_idle' },
   { speaker: 'DEFENSA', text: '«Cinco. Rollo de cámara: se cambia los lunes. El martes queda un cuadro.»', pose: 'chapulin_idle' },
   { speaker: 'DEFENSA', text: 'Y seis.', pose: 'chapulin_point' },
   { speaker: 'DEFENSA', text: '«Servicio de cierre incluido. Cinco minutos.»', pose: 'chapulin_slam', sfx: 'desk_slam' },

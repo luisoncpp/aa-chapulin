@@ -57,7 +57,7 @@ export const CASE5_PROFILES_ES: ProfileCatalogMap = {
     desc: 'Acusador coadyuvante. Abogado colegiado desde 1955. Síndico de una quiebra de 1971 que todavía no se cierra. Se ofreció a auxiliar a la fiscalía sin cobrar honorarios.',
     updates: [
       'Administra un cedulario de once mil cuatrocientas tarjetas y vende copias. No es delito.',
-      'Las fichas que vende contienen datos que ninguna tarjeta de 1971 pudo traer.',
+      'Concede que vender no es delito; la corte ordena inspeccionar su huacal de todos modos.',
       'Firmó el acuse de una diligencia que él mismo dijo desconocer.'
     ]
   },

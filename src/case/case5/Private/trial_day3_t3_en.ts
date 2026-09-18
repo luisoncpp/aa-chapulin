@@ -60,8 +60,8 @@ export const CASE5_TESTIMONY_8_EN: Testimony = {
         { speaker: 'DEFENSA', text: 'From 4:10 to 4:40.', pose: 'chapulin_idle' },
         { speaker: 'BERRONDO', text: 'Approximately.', pose: 'berrondo_idle' },
         { speaker: 'DEFENSA', text: 'And from 4:40 to 4:50, what did you do?', pose: 'chapulin_point' },
-        { speaker: 'BERRONDO', text: 'Climbed the service stair and walked to the wicket. That is one hundred twenty steps and I am seventy-one.', pose: 'berrondo_idle' },
-        { speaker: 'DEFENSA', text: '(Ten minutes for one hundred twenty steps. That is reasonable. So reasonable it is infuriating.)', pose: 'chapulin_idle' }
+        { speaker: 'BERRONDO', text: 'Climb the service stair to the courtyard and walk to the wicket. It is a long stair, counselor, and I am seventy-one.', pose: 'berrondo_idle' },
+        { speaker: 'DEFENSA', text: '(Ten minutes to leave the basement and return a badge. That is reasonable. So reasonable it is infuriating.)', pose: 'chapulin_idle' }
       ]
     },
     {

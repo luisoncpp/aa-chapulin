@@ -41,7 +41,7 @@ export const CASE5_CLIMAX_CHOICES_EN: ChoicePrompt[] = [
       { speaker: 'JUEZ', text: '...Let the defendant\'s intervention be entered in full.', sfx: 'gavel', pose: 'judge_gavel' },
       { speaker: 'DEFENSA', text: '(Don Ramon...)', pose: 'chapulin_idle' },
       { speaker: 'DON RAMÓN', text: '(Hush, young man, I am doing fine.)', pose: 'donramon_idle' },
-      { speaker: 'JUEZ', text: 'Miss Penaloza, do not leave yet.', pose: 'judge_neutral' },
+      { speaker: 'JUEZ', text: 'Miss Penaloza: your voucher folder, to the clerk.', pose: 'judge_neutral' },
       { speaker: 'JUEZ', text: 'This court orders the "Donceles to Espanto" drawer of the crate nine card file brought to this courtroom.', sfx: 'gavel', bgm: 'pursuit', pose: 'judge_gavel' },
       { speaker: 'BERRONDO', text: 'Your Honor, that drawer has one thousand three hundred cards! It will take all night!', pose: 'berrondo_panic' },
       { speaker: 'JUEZ', text: 'It is filed by street, counselor. You said so yourself.', pose: 'judge_neutral' },

@@ -7,7 +7,7 @@ import type { DialogueLine } from '../../../types/index.js';
 
 export const CASE5_DAY4_OPENING_PRESENT_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'DEFENSA', text: 'The Archive maintenance log, Your Honor, and the thermograph strip from corridor seven!', pose: 'chapulin_slam', sfx: 'desk_slam' },
-  { speaker: 'DEFENSA', text: 'On December third a pipe burst in corridor seven\'s wall. They ran the boiler and two dryers at maximum and left them for four days.', pose: 'chapulin_point' },
+  { speaker: 'DEFENSA', text: 'On December third a pipe burst in corridor seven\'s wall. They ran the boiler and two dryers at maximum and left them for six days.', pose: 'chapulin_point' },
   { speaker: 'DEFENSA', text: 'The building thermograph, which has recorded data on strips changed every Sunday for eighteen years, logged sustained thirty-one degrees on December fourth\'s strip.', pose: 'chapulin_idle' },
   { speaker: 'DEFENSA', text: 'And the medical examiner calculated time of death using a table for a room at twenty.', pose: 'chapulin_slam', sfx: 'desk_slam' },
   { speaker: 'JUEZ', text: 'Good grief! And what does that mean?', pose: 'judge_shock' },
@@ -15,7 +15,7 @@ export const CASE5_DAY4_OPENING_PRESENT_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'NARRADOR', text: 'The lower curve is the one the expert used: a room at twenty degrees.' },
   { speaker: 'NARRADOR', text: 'The upper curve is corridor 7 that afternoon: thirty-one degrees. The body cooled much more slowly.' },
   { speaker: 'NARRADOR', text: 'At the same temperature measured at 6:40 PM, the upper curve places death twenty-five minutes earlier.' },
-  { speaker: 'NARRADOR', text: 'The medical examiner stands up in the second row of the gallery without being called.' },
+  { speaker: 'NARRADOR', text: 'The medical examiner stands up in the second row of the gallery without being called.', bg: 'assets/bg_courtroom.webp', furniture: 'none' },
   { speaker: 'NARRADOR', text: 'He speaks with the clerk for forty seconds, does two sums on a slip of paper, and nods.', sfx: 'realization' },
   { speaker: 'SECRETARIO', text: 'Your Honor, the expert corrects his report. At thirty-one degrees, the interval is adjusted.' },
   { speaker: 'JUEZ', text: 'State it.', sfx: 'gavel', pose: 'judge_gavel' },
@@ -101,7 +101,8 @@ export const CASE5_D4_T1_CEDULARIO_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'DON RAMÓN', text: 'And in that dead man\'s hand was a corner of a card that names my street.', pose: 'donramon_shock' },
   { speaker: 'NARRADOR', text: 'The Judge stands.', sfx: 'gavel' },
   { speaker: 'JUEZ', text: 'ORDER!', sfx: 'gavel', pose: 'judge_gavel' },
-  { speaker: 'JUEZ', text: 'The witness may step down.', pose: 'judge_neutral' },
+  { speaker: 'SECRETARIO', text: 'I receive the folder, Your Honor.' },
+  { speaker: 'JUEZ', text: 'The witness remains at this court\'s disposal. Her voucher folder, in the tribunal\'s custody.', pose: 'judge_neutral' },
   { speaker: 'JUEZ', text: 'Counselor Chapulin.', pose: 'judge_thinking' },
   { speaker: 'JUEZ', text: 'This court has spent four days forbidding you to point at a person, and today it is going to order you to.', sfx: 'gavel', pose: 'judge_gavel' }
 ];

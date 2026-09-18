@@ -37,7 +37,7 @@ export const CASE5_EVIDENCE_ES_B: Record<string, EvidenceItem> = {
   }),
   huacal_9: ev('huacal_9', {
     name: 'Huacal 9',
-    desc: 'Huacal de madera, quiebra 114/1971. En la tapa, más de doscientas cincuenta tiras de sello encabalgadas, cada una rubricada por el síndico y fechada con día de la semana. Las dos superiores llevan la fecha completa SÁB 4-XII.'
+    desc: 'Huacal de madera, quiebra 114/1971. En la tapa, más de doscientas cincuenta tiras de sello encabalgadas, cada una rubricada por el síndico y fechada con día de la semana. La tira superior lleva la fecha completa SÁB 4-XII.'
   }, {
     imageAsset: 'assets/examine_huacal9.webp',
     caption: 'Tapa del huacal con más de doscientas cincuenta tiras de sello superpuestas; la tira superior legible: SÁB 4-XII.'

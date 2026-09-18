@@ -57,7 +57,7 @@ export const CASE5_PROFILES_EN: ProfileCatalogMap = {
     desc: 'Assisting accuser. Licensed attorney since 1955. Syndic of a 1971 bankruptcy that still has not closed. Offered to assist the prosecution without charging fees.',
     updates: [
       'He runs a card file of eleven thousand four hundred cards and sells copies. Not a crime.',
-      'The cards he sells carry data no 1971 card could have held.',
+      'Concedes selling is not a crime; the court orders inspection of his crate anyway.',
       'He signed the acknowledgment for a diligence he himself said he did not know.'
     ]
   },

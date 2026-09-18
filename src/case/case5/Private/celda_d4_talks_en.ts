@@ -15,7 +15,7 @@ export const CASE5_CELDA_D4_TALKS_EN: TalkOption[] = [
       { speaker: 'DEFENSA', text: 'And Mr. Lengua?', pose: 'chapulin_idle' },
       { speaker: 'DON RAMÓN', text: 'He was sweating. He wiped his forehead with his handkerchief every other sentence. I thought it was nerves.', pose: 'donramon_sweat' },
       { speaker: 'DEFENSA', text: 'And the janitor?', pose: 'chapulin_point' },
-      { speaker: 'DON RAMÓN', text: 'At the door the janitor told me they had had the boiler at maximum for four days because of a burst pipe.', pose: 'donramon_idle' },
+      { speaker: 'DON RAMÓN', text: 'At the door the janitor told me the boiler and dryers had been at maximum since the third, because of a burst pipe.', pose: 'donramon_idle' },
       { speaker: 'DEFENSA', text: 'Don Ramon.', pose: 'chapulin_panic' },
       { speaker: 'DEFENSA', text: 'The coroner calculated time of death from the body temperature.', pose: 'chapulin_point' },
       { speaker: 'DON RAMÓN', text: '...Yes.', pose: 'donramon_idle' },

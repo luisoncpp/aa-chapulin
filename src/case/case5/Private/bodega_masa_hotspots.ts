@@ -36,7 +36,7 @@ export const CASE5_BODEGA_MASA_HOTSPOTS: Hotspot[] = [
     label: 'Cajones del cedulario',
     x: 44, y: 46, w: 28, h: 24,
     dialogue: [
-      { speaker: 'NARRADOR', text: 'Dentro del huacal, nueve cajones de madera rubia con tiradores de latón y una etiqueta manuscrita en cada frente.' },
+      { speaker: 'NARRADOR', text: 'Dentro del huacal, nueve cajones de madera rubia con tiradores de latón y una etiqueta manuscrita en cada frente.', bg: BODEGA_BG, furniture: 'none' },
       { speaker: 'DEFENSA', text: '«Aguascalientes a Bucareli.» «Bucareli a Donceles.» «Donceles a Espanto.»', pose: 'chapulin_idle' },
       { speaker: 'DEFENSA', text: '...Están ordenadas por calle.', pose: 'chapulin_panic' },
       { speaker: 'BERRONDO', text: 'Por calle, licenciado. Una editorial de crédito a domicilio no vende a personas: vende a domicilios.', pose: 'berrondo_idle' },

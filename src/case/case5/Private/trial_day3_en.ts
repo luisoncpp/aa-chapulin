@@ -20,7 +20,7 @@ export const CASE5_DAY3_INTRO_FULL_EN: DialogueLine[] = [
   { speaker: 'JUEZ', pose: 'judge_thinking', text: 'It also shows all of it has been inventoried since 1971 and none of it is stolen.' },
   { speaker: 'SUPER SAM', pose: 'supersam_point', text: 'Your Honor, the prosecution requests this line of investigation be closed and the court rule on the defendant.' },
   { speaker: 'JUEZ', pose: 'judge_neutral', text: 'The prosecution requests that every day and this court denies it every day. Sit down.' },
-  { speaker: 'JUEZ', pose: 'judge_thinking', text: 'First things first: this court has spent three days without anyone explaining why that man was in the Archive.' },
+  { speaker: 'JUEZ', pose: 'judge_thinking', text: 'First things first: yesterday this court heard that man requested this proceeding for his appeal. What nobody has explained yet is what he came to point to in it.' },
   { speaker: 'JUEZ', pose: 'judge_gavel', text: 'Defense: what did the deceased come to do?', sfx: 'gavel' }
 ];
 

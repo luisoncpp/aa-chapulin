@@ -36,7 +36,7 @@ export const CASE5_BODEGA_MASA_HOTSPOTS_EN: Hotspot[] = [
     label: 'Index drawers',
     x: 44, y: 46, w: 28, h: 24,
     dialogue: [
-      { speaker: 'NARRADOR', text: 'Inside the crate, nine blond wood drawers with brass pulls and a handwritten label on each front.' },
+      { speaker: 'NARRADOR', text: 'Inside the crate, nine blond wood drawers with brass pulls and a handwritten label on each front.', bg: BODEGA_BG, furniture: 'none' },
       { speaker: 'DEFENSA', text: '"Aguascalientes to Bucareli." "Bucareli to Donceles." "Donceles to Espanto."', pose: 'chapulin_idle' },
       { speaker: 'DEFENSA', text: '...They are sorted by street.', pose: 'chapulin_panic' },
       { speaker: 'BERRONDO', text: 'By street, counselor. A door-to-door credit publisher does not sell to people: it sells to addresses.', pose: 'berrondo_idle' },

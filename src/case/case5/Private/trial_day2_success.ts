@@ -116,7 +116,7 @@ export const CASE5_D2_T1_RECIBO_SUCCESS: DialogueLine[] = [
   { speaker: 'DON RAMÓN', text: '(Joven. Cuidado.)', pose: 'donramon_sweat' },
   { speaker: 'DON RAMÓN', text: '(Un hombre que se sube al estrado sin que lo llamen es un hombre que ya sabe qué le van a preguntar.)', pose: 'donramon_idle' },
   { speaker: 'JUEZ', text: 'Que pase el licenciado Berrondo. Nombre, ocupación y protesta.', sfx: 'gavel', pose: 'judge_gavel' },
-  { speaker: 'BERRONDO', text: 'Fulgencio Berrondo Ontiveros. Abogado postulante desde 1955, síndico de concursos desde 1963.', pose: 'berrondo_idle' },
+  { speaker: 'BERRONDO', text: 'Fulgencio Berrondo Ontiveros. Abogado postulante desde 1955 y síndico desde marzo de 1971.', pose: 'berrondo_idle' },
   { speaker: 'BERRONDO', text: 'Protesto decir verdad, y agrego que en veintisiete años de ejercicio no he tenido una sola nota en mi expediente.', pose: 'berrondo_idle' },
   { speaker: 'JUEZ', text: 'La corte lo ha verificado esta mañana, y es cierto. Declare usted.', sfx: 'gavel', pose: 'judge_gavel' }
 ];
@@ -154,7 +154,7 @@ export const CASE5_DAY2_OPENING_PRESENT_SUCCESS: DialogueLine[] = [
   { speaker: 'DEFENSA', text: 'Sentenciado en julio por el asalto al cobrador Nazario Cuenca. Lo acusó la fiscalía que hoy comparece y lo venció el abogado que hoy está sentado en el banquillo.', pose: 'chapulin_point' },
   { speaker: 'DEFENSA', text: 'Su condena no está en discusión y esta defensa no va a pedir que se revise. Era culpable y lo sigue siendo.', pose: 'chapulin_idle' },
   { speaker: 'JUEZ', text: '¿Y qué hacía en el Archivo?', pose: 'judge_neutral' },
-  { speaker: 'DEFENSA', text: 'Había ofrecido al ministerio público entregar un fichero a cambio de reducción de pena.', pose: 'chapulin_idle' },
+  { speaker: 'DEFENSA', text: 'Venía a declarar en una diligencia de su apelación, señor juez. La diligencia la pidió él.', pose: 'chapulin_idle' },
   { speaker: 'DEFENSA', text: 'Y pidió que estuviera presente el único abogado que lo había vencido.', pose: 'chapulin_point' },
   { speaker: 'JUEZ', text: '¿Por qué pediría eso un hombre?', pose: 'judge_thinking' },
   { speaker: 'DON RAMÓN', text: 'Porque era el único que no le tenía miedo, señor juez.', pose: 'donramon_idle' },

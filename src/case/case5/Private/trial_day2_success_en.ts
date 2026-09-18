@@ -116,7 +116,7 @@ export const CASE5_D2_T1_RECIBO_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'DON RAMÓN', text: '(Young man. Careful.)', pose: 'donramon_sweat' },
   { speaker: 'DON RAMÓN', text: '(A man who takes the stand without being called is a man who already knows what they will ask.)', pose: 'donramon_idle' },
   { speaker: 'JUEZ', text: 'Let Counselor Berrondo take the stand. Name, occupation, and oath.', sfx: 'gavel', pose: 'judge_gavel' },
-  { speaker: 'BERRONDO', text: 'Fulgencio Berrondo Ontiveros. Practicing attorney since 1955, bankruptcy trustee since 1963.', pose: 'berrondo_idle' },
+  { speaker: 'BERRONDO', text: 'Fulgencio Berrondo Ontiveros. Practicing attorney since 1955 and syndic since March 1971.', pose: 'berrondo_idle' },
   { speaker: 'BERRONDO', text: 'I swear to tell the truth, and I add that in twenty-seven years of practice I have not had a single note in my file.', pose: 'berrondo_idle' },
   { speaker: 'JUEZ', text: 'The court verified that this morning, and it is true. You may testify.', sfx: 'gavel', pose: 'judge_gavel' }
 ];
@@ -154,7 +154,7 @@ export const CASE5_DAY2_OPENING_PRESENT_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'DEFENSA', text: 'Sentenced in July for the assault on collector Nazario Cuenca. Prosecuted by the office appearing today and defeated by the lawyer now sitting in the dock.', pose: 'chapulin_point' },
   { speaker: 'DEFENSA', text: 'His conviction is not in dispute and this defense will not ask for a review. He was guilty and still is.', pose: 'chapulin_idle' },
   { speaker: 'JUEZ', text: 'And what was he doing in the Archive?', pose: 'judge_neutral' },
-  { speaker: 'DEFENSA', text: 'He had offered the prosecution a file in exchange for a sentence reduction.', pose: 'chapulin_idle' },
+  { speaker: 'DEFENSA', text: 'He came to testify in a proceeding of his appeal, Your Honor. He requested that proceeding himself.', pose: 'chapulin_idle' },
   { speaker: 'DEFENSA', text: 'And he asked that the only lawyer who had beaten him be present.', pose: 'chapulin_point' },
   { speaker: 'JUEZ', text: 'Why would a man ask for that?', pose: 'judge_thinking' },
   { speaker: 'DON RAMÓN', text: 'Because he was the only one he was not afraid of, Your Honor.', pose: 'donramon_idle' },

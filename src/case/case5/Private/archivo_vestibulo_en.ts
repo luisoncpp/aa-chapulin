@@ -27,7 +27,7 @@ export const CASE5_ARCHIVO_VESTIBULO_EN: InvestigationScene = {
     { speaker: 'NICANOR', text: 'Ask, but walk along the edge. And do not touch anything in hallway seven; a man died there and it still smells damp.', pose: 'nicanor_escoba' },
     { speaker: 'DEFENSA', text: 'Damp?', pose: 'chapulin_idle' },
     { speaker: 'NICANOR', text: 'A pipe burst on December third. Damp eats paper, kid. Damp and mice.', pose: 'nicanor_idle' },
-    { speaker: 'NICANOR', text: 'They turned the boiler and two dryers to maximum and have been at it four days. That place is an oven.', pose: 'nicanor_sweat' },
+    { speaker: 'NICANOR', text: 'They turned the boiler and two dryers to maximum since December third. That place is an oven.', pose: 'nicanor_sweat' },
     { speaker: 'DEFENSA', text: '(An oven. Well. At least the dead man did not catch a chill.)', pose: 'chapulin_idle' }
   ],
   hotspots: CASE5_VESTIBULO_HOTSPOTS_EN,

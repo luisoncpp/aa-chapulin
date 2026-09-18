@@ -34,7 +34,7 @@ export const CASE5_DAY3_OPENING_PRESENT_SUCCESS_EN: DialogueLine[] = [
 export const CASE5_D3_T1_INVENTARIO_SUCCESS_EN: DialogueLine[] = [
   { cutin: 'objection_protesto', speaker: 'DEFENSA', text: 'OBJECTION!', sfx: 'desk_slam', bgm: 'objection', pose: 'chapulin_slam' },
   { speaker: 'DEFENSA', text: 'Your Honor, the witness says "old books and some drawers." That is what he sees, and he says it in good faith.', pose: 'chapulin_idle' },
-  { speaker: 'DEFENSA', text: 'But what is inside that crate was written by this court in 1971, and it is forty-seven line items.', pose: 'chapulin_point' },
+  { speaker: 'DEFENSA', text: 'But what this court wrote about that crate in 1971 is recorded in the estate inventory: forty-seven line items.', pose: 'chapulin_point' },
   { speaker: 'DEFENSA', text: 'Item twelve: card file, eleven thousand four hundred cards.', pose: 'chapulin_idle' },
   { speaker: 'DEFENSA', text: 'Item forty-one: Olivetti Lexikon 80 typewriter.', pose: 'chapulin_slam', sfx: 'desk_slam' },
   { speaker: 'JUEZ', text: 'So entered.', sfx: 'gavel', pose: 'judge_gavel' },
@@ -46,13 +46,13 @@ export const CASE5_D3_T1_INVENTARIO_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'BERRONDO', text: 'Two hundred ten loose unsold copies, counselor. Not two hundred ten complete collections. A memorable disaster.', pose: 'berrondo_idle' },
   { speaker: 'DEFENSA', text: '(Thank you, counselor.)', pose: 'chapulin_idle' },
   { speaker: 'DEFENSA', text: '(He corrected me again. And again he gave me a fact I did not ask for.)', pose: 'chapulin_idle' },
-  { speaker: 'JUEZ', text: 'Defense: what date appears on the top strips of the crate?', pose: 'judge_thinking' }
+  { speaker: 'JUEZ', text: 'Defense: what date appears on the top strip of the crate?', pose: 'judge_thinking' }
 ];
 
 export const CASE5_D3_T1_HUACAL_SUCCESS_EN: DialogueLine[] = [
   { cutin: 'objection_toma_eso', speaker: 'DEFENSA', text: 'TAKE THAT!', sfx: 'desk_slam', pose: 'chapulin_slam' },
   { speaker: 'DEFENSA', text: 'Your Honor, the witness testified that crate is opened on Thursdays.', pose: 'chapulin_point' },
-  { speaker: 'DEFENSA', text: 'And the top two strips say, in full: "SAT December 4." The answer is written on the evidence I just presented.', pose: 'chapulin_slam', sfx: 'desk_slam' },
+  { speaker: 'DEFENSA', text: 'And the top strip says, in full: "SAT December 4." The answer is written on the evidence I just presented.', pose: 'chapulin_slam', sfx: 'desk_slam' },
   { speaker: 'JUEZ', text: 'Good heavens!', pose: 'judge_shock' },
   { speaker: 'CHOMPIRAS', text: 'Oh, right! I was not there Saturday! I play dominoes on Saturdays!', pose: 'chompiras_nervous' },
   { speaker: 'DEFENSA', text: 'Then who opened the crate for him?', pose: 'chapulin_point' },

@@ -15,7 +15,7 @@ export const CASE5_FISCALIA_C5_TALKS_EN: TalkOption[] = [
       { speaker: 'DEFENSA', text: '"And at the foot, the distribution list: c.c.p. Assigned court clerk. c.c.p. Archive Directorate. c.c.p. Bankruptcy syndic 114/1971."', pose: 'chapulin_point' },
       { speaker: 'SUPER SAM', text: 'It is a formality, counselor. You notify whoever has a legal interest. The machine does it, not the man.', pose: 'supersam_idle' },
       { speaker: 'DEFENSA', text: 'Prosecutor, did you know that order left here with that list?', pose: 'chapulin_point' },
-      { speaker: 'SUPER SAM', text: '...I sign a hundred twenty orders a week.', pose: 'supersam_sweat' },
+      { speaker: 'SUPER SAM', text: '...I sign one hundred forty orders a week.', pose: 'supersam_sweat' },
       { speaker: 'SUPER SAM', text: 'And until the day before yesterday I thought that was efficiency.', pose: 'supersam_sweat', addEvidence: 'oficio_diligencia' }
     ]
   },

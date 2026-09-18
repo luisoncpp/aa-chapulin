@@ -27,7 +27,7 @@ export const CASE5_ARCHIVO_VESTIBULO: InvestigationScene = {
     { speaker: 'NICANOR', text: 'Pregunte, pero camine por la orilla. Y no me toque nada del pasillo siete, que ahí se murió un cristiano y todavía huele a humedad.', pose: 'nicanor_escoba' },
     { speaker: 'DEFENSA', text: '¿A humedad?', pose: 'chapulin_idle' },
     { speaker: 'NICANOR', text: 'Se reventó un tubo el tres de diciembre. La humedad se come el papel, joven. La humedad y los ratones.', pose: 'nicanor_idle' },
-    { speaker: 'NICANOR', text: 'Pusieron la caldera y dos secadores al máximo y ahí llevan cuatro días. Aquello es un horno.', pose: 'nicanor_sweat' },
+    { speaker: 'NICANOR', text: 'Pusieron la caldera y dos secadores al máximo desde el tres de diciembre. Aquello es un horno.', pose: 'nicanor_sweat' },
     { speaker: 'DEFENSA', text: '(Un horno. Bueno. Por lo menos el muerto no se resfrió.)', pose: 'chapulin_idle' }
   ],
   hotspots: CASE5_VESTIBULO_HOTSPOTS,

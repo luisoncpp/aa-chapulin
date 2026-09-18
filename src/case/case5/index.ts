@@ -5,7 +5,8 @@
  */
 
 import type {
-  AdjournmentDefinition, CaseScript, ClimaxDefinition, DialogueLine, Testimony, TrialDayScript
+  AdjournmentDefinition, CaseScript, ClimaxDefinition, DialogueLine, OpeningPresent, Testimony,
+  TrialDayScript
 } from '../../types/index.js';
 import {
   CASE5_DAY1_EVIDENCE, CASE5_DAY1_UNLOCK, CASE5_DAY2_EVIDENCE,
@@ -14,15 +15,20 @@ import {
 } from './Private/progress.js';
 import {
   CASE5_DAY2_INTRO, CASE5_DAY2_INTRO_EN, CASE5_DAY3_INTRO, CASE5_DAY3_INTRO_EN,
-  CASE5_DAY4_INTRO, CASE5_DAY4_INTRO_EN, CASE5_TRIAL_INTRO, CASE5_TRIAL_INTRO_EN
+  CASE5_DAY4_INTRO, CASE5_DAY4_INTRO_EN, CASE5_TRIAL_INTRO_EN
 } from './Private/trial_openings.js';
 import { CASE5_CELDA } from './Private/celda.js';
 import { CASE5_ARCHIVO_VESTIBULO } from './Private/archivo_vestibulo.js';
 import { CASE5_ARCHIVO_PASILLO7 } from './Private/archivo_pasillo7.js';
+import {
+  CASE5_DAY1_OPENING_PRESENT, CASE5_TESTIMONY_1, CASE5_TESTIMONY_2, CASE5_TESTIMONY_3,
+  CASE5_TRIAL_INTRO_FULL
+} from './Private/trial_day1.js';
 
 interface Case5Parts {
   scenes: CaseScript['investigation'];
   intro: DialogueLine[];
+  day1Opening?: OpeningPresent;
   t1: Testimony;
   t2: Testimony;
   t3: Testimony;
@@ -95,7 +101,8 @@ function assembleCase5(parts: Case5Parts): CaseScript {
       testimonies: [parts.t1, parts.t2, parts.t3],
       testimony1: parts.t1,
       testimony2: parts.t2,
-      climax: parts.climax
+      climax: parts.climax,
+      ...(parts.day1Opening ? { openingPresent: parts.day1Opening } : {})
     },
     adjournment: adjournmentChain(parts)
   };
@@ -107,10 +114,11 @@ const PLACEHOLDER_PARTS_ES: Case5Parts = {
     archivo_vestibulo: CASE5_ARCHIVO_VESTIBULO,
     archivo_pasillo7: CASE5_ARCHIVO_PASILLO7
   },
-  intro: CASE5_TRIAL_INTRO,
-  t1: PLACEHOLDER_TESTIMONY,
-  t2: PLACEHOLDER_TESTIMONY,
-  t3: PLACEHOLDER_TESTIMONY,
+  intro: CASE5_TRIAL_INTRO_FULL,
+  day1Opening: CASE5_DAY1_OPENING_PRESENT,
+  t1: CASE5_TESTIMONY_1,
+  t2: CASE5_TESTIMONY_2,
+  t3: CASE5_TESTIMONY_3,
   day2Intro: CASE5_DAY2_INTRO,
   t4: PLACEHOLDER_TESTIMONY,
   t5: PLACEHOLDER_TESTIMONY,
@@ -127,6 +135,10 @@ const PLACEHOLDER_PARTS_EN: Case5Parts = {
   ...PLACEHOLDER_PARTS_ES,
   scenes: {},
   intro: CASE5_TRIAL_INTRO_EN,
+  day1Opening: undefined,
+  t1: PLACEHOLDER_TESTIMONY,
+  t2: PLACEHOLDER_TESTIMONY,
+  t3: PLACEHOLDER_TESTIMONY,
   day2Intro: CASE5_DAY2_INTRO_EN,
   day3Intro: CASE5_DAY3_INTRO_EN,
   day4Intro: CASE5_DAY4_INTRO_EN

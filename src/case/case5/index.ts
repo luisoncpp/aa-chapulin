@@ -14,7 +14,7 @@ import {
   CASE5_DEBUG_PROFILES
 } from './Private/progress.js';
 import {
-  CASE5_DAY2_INTRO, CASE5_DAY2_INTRO_EN, CASE5_DAY3_INTRO, CASE5_DAY3_INTRO_EN,
+  CASE5_DAY2_INTRO_EN, CASE5_DAY3_INTRO, CASE5_DAY3_INTRO_EN,
   CASE5_DAY4_INTRO, CASE5_DAY4_INTRO_EN, CASE5_TRIAL_INTRO_EN
 } from './Private/trial_openings.js';
 import { CASE5_CELDA } from './Private/celda.js';
@@ -28,6 +28,9 @@ import {
   CASE5_DAY1_OPENING_PRESENT, CASE5_TESTIMONY_1, CASE5_TESTIMONY_2, CASE5_TESTIMONY_3,
   CASE5_TRIAL_INTRO_FULL
 } from './Private/trial_day1.js';
+import {
+  CASE5_DAY2_INTRO_FULL, CASE5_DAY2_OPENING_PRESENT, CASE5_TESTIMONY_4, CASE5_TESTIMONY_5
+} from './Private/trial_day2.js';
 
 interface Case5Parts {
   scenes: CaseScript['investigation'];
@@ -37,6 +40,7 @@ interface Case5Parts {
   t2: Testimony;
   t3: Testimony;
   day2Intro: DialogueLine[];
+  day2Opening?: OpeningPresent;
   t4: Testimony;
   t5: Testimony;
   day3Intro: DialogueLine[];
@@ -75,7 +79,10 @@ function adjournmentChain(parts: Case5Parts): AdjournmentDefinition {
     nextLocation: 'vecindad_c5',
     unlockLocations: ['vecindad_c5'],
     requiredEvidence: CASE5_DAY2_EVIDENCE,
-    trial: dayTrial(parts.day2Intro, [parts.t4, parts.t5]),
+    trial: {
+      ...dayTrial(parts.day2Intro, [parts.t4, parts.t5]),
+      ...(parts.day2Opening ? { openingPresent: parts.day2Opening } : {})
+    },
     next: {
       nextLocation: 'bodega_masa',
       unlockLocations: ['bodega_masa'],
@@ -127,9 +134,10 @@ const PLACEHOLDER_PARTS_ES: Case5Parts = {
   t1: CASE5_TESTIMONY_1,
   t2: CASE5_TESTIMONY_2,
   t3: CASE5_TESTIMONY_3,
-  day2Intro: CASE5_DAY2_INTRO,
-  t4: PLACEHOLDER_TESTIMONY,
-  t5: PLACEHOLDER_TESTIMONY,
+  day2Intro: CASE5_DAY2_INTRO_FULL,
+  day2Opening: CASE5_DAY2_OPENING_PRESENT,
+  t4: CASE5_TESTIMONY_4,
+  t5: CASE5_TESTIMONY_5,
   day3Intro: CASE5_DAY3_INTRO,
   t6: PLACEHOLDER_TESTIMONY,
   t7: PLACEHOLDER_TESTIMONY,
@@ -148,6 +156,9 @@ const PLACEHOLDER_PARTS_EN: Case5Parts = {
   t2: PLACEHOLDER_TESTIMONY,
   t3: PLACEHOLDER_TESTIMONY,
   day2Intro: CASE5_DAY2_INTRO_EN,
+  day2Opening: undefined,
+  t4: PLACEHOLDER_TESTIMONY,
+  t5: PLACEHOLDER_TESTIMONY,
   day3Intro: CASE5_DAY3_INTRO_EN,
   day4Intro: CASE5_DAY4_INTRO_EN
 };

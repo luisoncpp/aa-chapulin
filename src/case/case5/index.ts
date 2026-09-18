@@ -14,7 +14,7 @@ import {
   CASE5_DEBUG_PROFILES
 } from './Private/progress.js';
 import {
-  CASE5_DAY2_INTRO_EN, CASE5_DAY3_INTRO, CASE5_DAY3_INTRO_EN,
+  CASE5_DAY2_INTRO_EN, CASE5_DAY3_INTRO_EN,
   CASE5_DAY4_INTRO, CASE5_DAY4_INTRO_EN, CASE5_TRIAL_INTRO_EN
 } from './Private/trial_openings.js';
 import { CASE5_CELDA } from './Private/celda.js';
@@ -34,6 +34,10 @@ import {
 import {
   CASE5_DAY2_INTRO_FULL, CASE5_DAY2_OPENING_PRESENT, CASE5_TESTIMONY_4, CASE5_TESTIMONY_5
 } from './Private/trial_day2.js';
+import {
+  CASE5_DAY3_INTRO_FULL, CASE5_DAY3_OPENING_PRESENT, CASE5_TESTIMONY_6, CASE5_TESTIMONY_7,
+  CASE5_TESTIMONY_8
+} from './Private/trial_day3.js';
 
 interface Case5Parts {
   scenes: CaseScript['investigation'];
@@ -47,6 +51,7 @@ interface Case5Parts {
   t4: Testimony;
   t5: Testimony;
   day3Intro: DialogueLine[];
+  day3Opening?: OpeningPresent;
   t6: Testimony;
   t7: Testimony;
   t8: Testimony;
@@ -90,7 +95,10 @@ function adjournmentChain(parts: Case5Parts): AdjournmentDefinition {
       nextLocation: 'bodega_masa',
       unlockLocations: ['bodega_masa'],
       requiredEvidence: CASE5_DAY3_EVIDENCE,
-      trial: dayTrial(parts.day3Intro, [parts.t6, parts.t7, parts.t8]),
+      trial: {
+        ...dayTrial(parts.day3Intro, [parts.t6, parts.t7, parts.t8]),
+        ...(parts.day3Opening ? { openingPresent: parts.day3Opening } : {})
+      },
       next: {
         nextLocation: 'celda_c5_d4',
         unlockLocations: ['celda_c5_d4'],
@@ -144,10 +152,11 @@ const PLACEHOLDER_PARTS_ES: Case5Parts = {
   day2Opening: CASE5_DAY2_OPENING_PRESENT,
   t4: CASE5_TESTIMONY_4,
   t5: CASE5_TESTIMONY_5,
-  day3Intro: CASE5_DAY3_INTRO,
-  t6: PLACEHOLDER_TESTIMONY,
-  t7: PLACEHOLDER_TESTIMONY,
-  t8: PLACEHOLDER_TESTIMONY,
+  day3Intro: CASE5_DAY3_INTRO_FULL,
+  day3Opening: CASE5_DAY3_OPENING_PRESENT,
+  t6: CASE5_TESTIMONY_6,
+  t7: CASE5_TESTIMONY_7,
+  t8: CASE5_TESTIMONY_8,
   day4Intro: CASE5_DAY4_INTRO,
   t9: PLACEHOLDER_TESTIMONY,
   climax: PLACEHOLDER_CLIMAX
@@ -166,6 +175,10 @@ const PLACEHOLDER_PARTS_EN: Case5Parts = {
   t4: PLACEHOLDER_TESTIMONY,
   t5: PLACEHOLDER_TESTIMONY,
   day3Intro: CASE5_DAY3_INTRO_EN,
+  day3Opening: undefined,
+  t6: PLACEHOLDER_TESTIMONY,
+  t7: PLACEHOLDER_TESTIMONY,
+  t8: PLACEHOLDER_TESTIMONY,
   day4Intro: CASE5_DAY4_INTRO_EN
 };
 

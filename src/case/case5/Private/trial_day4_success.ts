@@ -7,7 +7,7 @@ import type { DialogueLine } from '../../../types/index.js';
 
 export const CASE5_DAY4_OPENING_PRESENT_SUCCESS: DialogueLine[] = [
   { speaker: 'DEFENSA', text: '¡La bitácora de mantenimiento del Archivo, señor juez, y la tira del termógrafo del pasillo siete!', pose: 'chapulin_slam', sfx: 'desk_slam' },
-  { speaker: 'DEFENSA', text: 'El tres de diciembre reventó un tubo en el muro del pasillo siete. Pusieron la caldera y dos secadores al máximo y los dejaron seis días.', pose: 'chapulin_point' },
+  { speaker: 'DEFENSA', text: 'El tres de diciembre reventó un tubo en el muro del pasillo siete. Pusieron la caldera y dos secadores al máximo y los dejaron cuatro días.', pose: 'chapulin_point' },
   { speaker: 'DEFENSA', text: 'El termógrafo del edificio, que lleva dieciocho años registrando datos en tiras cambiadas cada domingo, anotó treinta y un grados sostenidos en la del cuatro de diciembre.', pose: 'chapulin_idle' },
   { speaker: 'DEFENSA', text: 'Y el legista calculó la hora de la muerte con la tabla de una sala a veinte.', pose: 'chapulin_slam', sfx: 'desk_slam' },
   { speaker: 'JUEZ', text: '¡Cáspita! ¿Y eso qué significa?', pose: 'judge_shock' },

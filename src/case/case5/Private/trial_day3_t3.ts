@@ -60,8 +60,8 @@ export const CASE5_TESTIMONY_8: Testimony = {
         { speaker: 'DEFENSA', text: 'De las cuatro y diez a las cuatro cuarenta.', pose: 'chapulin_idle' },
         { speaker: 'BERRONDO', text: 'Aproximadamente.', pose: 'berrondo_idle' },
         { speaker: 'DEFENSA', text: 'Y de las cuatro cuarenta a las cuatro cincuenta, ¿qué hizo?', pose: 'chapulin_point' },
-        { speaker: 'BERRONDO', text: 'Subir la escalera de servicio hasta el patio y caminar hasta la ventanilla. Es una escalera larga, licenciado, y tengo setenta y un años.', pose: 'berrondo_idle' },
-        { speaker: 'DEFENSA', text: '(Diez minutos para salir del sótano y devolver un gafete. Es razonable. Es tan razonable que da coraje.)', pose: 'chapulin_idle' }
+        { speaker: 'BERRONDO', text: 'Subir la escalera de servicio y caminar hasta la ventanilla. Son cuarenta escalones y tengo setenta y un años.', pose: 'berrondo_idle' },
+        { speaker: 'DEFENSA', text: '(Diez minutos para cuarenta escalones. Es razonable. Es tan razonable que da coraje.)', pose: 'chapulin_idle' }
       ]
     },
     {

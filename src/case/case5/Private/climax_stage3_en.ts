@@ -25,7 +25,7 @@ export const CASE5_CLIMAX_STAGE3_EN: ClimaxStage = {
     { speaker: 'JUEZ', text: '...Twenty-four volumes.', pose: 'judge_shock' },
     { speaker: 'DEFENSA', text: 'Twenty-four volumes for twenty-four slots... and one slot empty since 1971.', pose: 'chapulin_point' },
     { speaker: 'DEFENSA', text: 'The count is off, Your Honor. One too many.', pose: 'chapulin_slam', sfx: 'desk_slam' },
-    { speaker: 'JUEZ', text: 'Bring that photograph before this court! NOW!', sfx: 'gavel', pose: 'judge_gavel' }
+    { speaker: 'JUEZ', text: 'Bring that volume before this court! NOW!', sfx: 'gavel', pose: 'judge_gavel' }
   ],
   pointTarget: CASE5_CLIMAX_STAGE3_POINT_EN,
   successDialogue: [

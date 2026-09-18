@@ -7,7 +7,7 @@ import type { DialogueLine } from '../../../types/index.js';
 
 export const CASE5_DAY4_OPENING_PRESENT_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'DEFENSA', text: 'The Archive maintenance log, Your Honor, and the thermograph strip from corridor seven!', pose: 'chapulin_slam', sfx: 'desk_slam' },
-  { speaker: 'DEFENSA', text: 'On December third a pipe burst in corridor seven\'s wall. They ran the boiler and two dryers at maximum and left them for six days.', pose: 'chapulin_point' },
+  { speaker: 'DEFENSA', text: 'On December third a pipe burst in corridor seven\'s wall. They ran the boiler and two dryers at maximum and left them for four days.', pose: 'chapulin_point' },
   { speaker: 'DEFENSA', text: 'The building thermograph, which has recorded data on strips changed every Sunday for eighteen years, logged sustained thirty-one degrees on December fourth\'s strip.', pose: 'chapulin_idle' },
   { speaker: 'DEFENSA', text: 'And the medical examiner calculated time of death using a table for a room at twenty.', pose: 'chapulin_slam', sfx: 'desk_slam' },
   { speaker: 'JUEZ', text: 'Good grief! And what does that mean?', pose: 'judge_shock' },

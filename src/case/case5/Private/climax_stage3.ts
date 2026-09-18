@@ -25,7 +25,7 @@ export const CASE5_CLIMAX_STAGE3: ClimaxStage = {
     { speaker: 'JUEZ', text: '...Veinticuatro tomos.', pose: 'judge_shock' },
     { speaker: 'DEFENSA', text: 'Veinticuatro tomos para veinticuatro ranuras... y una ranura que lleva vacía desde 1971.', pose: 'chapulin_point' },
     { speaker: 'DEFENSA', text: 'Sobran las cuentas, señor juez. Sobra uno.', pose: 'chapulin_slam', sfx: 'desk_slam' },
-    { speaker: 'JUEZ', text: '¡Que traigan esa fotografía a la vista de esta corte! ¡AHORA!', sfx: 'gavel', pose: 'judge_gavel' }
+    { speaker: 'JUEZ', text: '¡Que traigan ese tomo a la vista de esta corte! ¡AHORA!', sfx: 'gavel', pose: 'judge_gavel' }
   ],
   pointTarget: CASE5_CLIMAX_STAGE3_POINT,
   successDialogue: [

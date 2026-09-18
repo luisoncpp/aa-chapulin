@@ -16,6 +16,9 @@ import {
   CASE5_DAY2_INTRO, CASE5_DAY2_INTRO_EN, CASE5_DAY3_INTRO, CASE5_DAY3_INTRO_EN,
   CASE5_DAY4_INTRO, CASE5_DAY4_INTRO_EN, CASE5_TRIAL_INTRO, CASE5_TRIAL_INTRO_EN
 } from './Private/trial_openings.js';
+import { CASE5_CELDA } from './Private/celda.js';
+import { CASE5_ARCHIVO_VESTIBULO } from './Private/archivo_vestibulo.js';
+import { CASE5_ARCHIVO_PASILLO7 } from './Private/archivo_pasillo7.js';
 
 interface Case5Parts {
   scenes: CaseScript['investigation'];
@@ -99,7 +102,11 @@ function assembleCase5(parts: Case5Parts): CaseScript {
 }
 
 const PLACEHOLDER_PARTS_ES: Case5Parts = {
-  scenes: {},
+  scenes: {
+    celda_c5: CASE5_CELDA,
+    archivo_vestibulo: CASE5_ARCHIVO_VESTIBULO,
+    archivo_pasillo7: CASE5_ARCHIVO_PASILLO7
+  },
   intro: CASE5_TRIAL_INTRO,
   t1: PLACEHOLDER_TESTIMONY,
   t2: PLACEHOLDER_TESTIMONY,
@@ -118,6 +125,7 @@ const PLACEHOLDER_PARTS_ES: Case5Parts = {
 
 const PLACEHOLDER_PARTS_EN: Case5Parts = {
   ...PLACEHOLDER_PARTS_ES,
+  scenes: {},
   intro: CASE5_TRIAL_INTRO_EN,
   day2Intro: CASE5_DAY2_INTRO_EN,
   day3Intro: CASE5_DAY3_INTRO_EN,

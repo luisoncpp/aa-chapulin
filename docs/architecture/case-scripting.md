@@ -52,7 +52,7 @@ Each entry in a dialogue sequence supports the following optional and required f
 | `cutin` | string | Cut-in graphic key (`'objection_protesto'`, `'objection_un_momento'`, `'objection_toma_eso'`, `'objection_culpable'`, `'objection_inocente'`). |
 | `addEvidence` | string | Evidence ID to automatically add to the player's inventory with a progress notification (same toast + realization SFX as a new location). |
 | `updateEvidence` | string | Advances one Court Record description stage (`updates[]` or legacy `updatedDesc`). Missing items are added first. |
-| `addProfile` | string | Files a person in the Acta de Personajes. Same toast as evidence. Case 1 only. |
+| `addProfile` | string | Files a person in the Acta de Personajes. Same toast as evidence. Cases 1 and 5. |
 | `updateProfile` | string | Advances one profile description stage. Missing profiles are filed first. Saturates like evidence. |
 
 To show a full-screen illustration mid-dialogue (Case 0's `cartapacio` definition inside the third press of testimony 1), stamp `bg` with a 960×540 plate plus `furniture: 'none'` on **every** line of the aside and speak them as `NARRADOR` (no `pose`, so no sprite covers the plate). The next line without `bg` restores the speaker camera.

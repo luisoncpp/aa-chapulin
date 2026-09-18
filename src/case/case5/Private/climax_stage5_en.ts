@@ -6,7 +6,7 @@
 import type { ClimaxStage } from '../../../types/index.js';
 import { CASE5_CLIMAX_BREAKDOWN_EN } from './climax_breakdown_en.js';
 
-const PLATE_CUATRO_RENGLONES = 'assets/plate_cuatro_renglones.webp';
+const PLATE_CUATRO_RENGLONES = 'assets/plate_cuatro_renglones_en.webp';
 
 const CASE5_CLIMAX_STAGE5_SUCCESS_EN: ClimaxStage['successDialogue'] = [
   { speaker: 'DEFENSA', text: 'TAKE THAT!', sfx: 'desk_slam', cutin: 'objection_toma_eso', pose: 'chapulin_slam', bgm: 'pursuit' },

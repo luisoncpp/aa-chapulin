@@ -1,7 +1,7 @@
 // @Architecture(descriptionShort="Case 5 day-2 contradiction success, point target, GIRO 2 (English)", type="data", icon="layers")
 /**
  * Case 5 Trial Day 2 — Barriga/Berrondo successes, Pointing 1, Turn 2 (spec §13), English.
- * Point-zone bounds measured on `examine_expediente_serie.webp` (five dated panels).
+ * Point-zone bounds measured on `examine_expediente_serie_en.webp` (five dated panels).
  */
 
 import type { DialogueLine, PointTargetContradiction } from '../../../types/index.js';
@@ -15,7 +15,7 @@ const PANEL_FAIL = (text: string): DialogueLine[] => [
 export const POINT_EXPEDIENTE_SERIE_EN: PointTargetContradiction = {
   targetEvidenceId: 'expediente_serie',
   promptQuestion: 'Point at the paper that already describes the product this witness admits selling.',
-  imageAsset: 'assets/examine_expediente_serie.webp',
+  imageAsset: 'assets/examine_expediente_serie_en.webp',
   zones: [
     { id: 'panel_a', bounds: [1, 12, 20, 92], isCorrect: false, failureDialogue: PANEL_FAIL('That card names the dissolved company, counselor. It leads us to the card index, but it does not describe the product sold.') },
     { id: 'panel_b', bounds: [20, 12, 39, 92], isCorrect: true, failureDialogue: [] },

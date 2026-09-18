@@ -127,6 +127,13 @@ POINT_SETS = [
         {"id": "panel_d", "bounds": [58, 12, 78, 92]},
         {"id": "panel_e", "bounds": [78, 12, 99, 92]},
     ]),
+    PointSet("POINT_EXPEDIENTE_SERIE_EN", "examine_expediente_serie_en.webp", [
+        {"id": "panel_a", "bounds": [1, 12, 20, 92]},
+        {"id": "panel_b", "bounds": [20, 12, 39, 92], "correct": True},
+        {"id": "panel_c", "bounds": [39, 12, 58, 92]},
+        {"id": "panel_d", "bounds": [58, 12, 78, 92]},
+        {"id": "panel_e", "bounds": [78, 12, 99, 92]},
+    ]),
     PointSet("CASE5_CLIMAX_STAGE3_POINT", "examine_estante_consulta.webp", [
         {"id": "tomo_i", "bounds": [3, 16, 18, 72]},
         {"id": "cartoncitos", "bounds": [19, 16, 40, 72]},

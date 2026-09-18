@@ -30,6 +30,8 @@ describe('Case 5 Present & Point zones vs examine plates', () => {
     expect(hitsCorrect(POINT_EXPEDIENTE_SERIE, 30, 50)).toBe(true);
     expect(hitsCorrect(POINT_EXPEDIENTE_SERIE, 10, 50)).toBe(false);
     expect(isInsideBounds([20, 12, 39, 92], 25, 20)).toBe(true);
+    expect(POINT_EXPEDIENTE_SERIE.imageAsset).toBe('assets/examine_expediente_serie.webp');
+    expect(POINT_EXPEDIENTE_SERIE_EN.imageAsset).toBe('assets/examine_expediente_serie_en.webp');
     expect(POINT_EXPEDIENTE_SERIE_EN.zones.map((z) => z.bounds))
       .toEqual(POINT_EXPEDIENTE_SERIE.zones.map((z) => z.bounds));
   });

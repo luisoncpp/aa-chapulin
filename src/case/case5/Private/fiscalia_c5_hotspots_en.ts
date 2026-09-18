@@ -9,7 +9,7 @@ export const CASE5_FISCALIA_C5_HOTSPOTS_EN: Hotspot[] = [
   {
     id: 'hotspot_bolsa',
     label: 'Empty canvas bag',
-    x: 76, y: 56, w: 16, h: 20,
+    x: 72, y: 52, w: 22, h: 34,
     dialogue: [
       { speaker: 'NARRADOR', text: 'In the corner, folded on a chair, a raw canvas bag with the prosecutor seal. Empty and clean.' },
       { speaker: 'DEFENSA', text: 'And this one?', pose: 'chapulin_idle' },

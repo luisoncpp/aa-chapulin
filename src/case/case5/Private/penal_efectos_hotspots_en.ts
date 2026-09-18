@@ -10,7 +10,7 @@ export const CASE5_PENAL_EFECTOS_HOTSPOTS_EN: Hotspot[] = [
   {
     id: 'hotspot_caja',
     label: 'Box 214-J',
-    x: 38, y: 46, w: 30, h: 28,
+    x: 8, y: 42, w: 34, h: 40,
     dialogue: [
       { speaker: 'NARRADOR', text: 'Inside the box: two stopped wristwatches, a necktie bow, a black-cover notebook, and a carbon paper folded in four.' },
       { speaker: 'DEFENSA', text: 'Two watches.', pose: 'chapulin_idle' },

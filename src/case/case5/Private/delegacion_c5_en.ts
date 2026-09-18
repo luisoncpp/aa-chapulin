@@ -24,7 +24,7 @@ export const CASE5_DELEGACION_C5_EN: InvestigationScene = {
     {
       id: 'hotspot_legajos',
       label: 'Dossiers on the Desk',
-      x: 36, y: 48, w: 32, h: 22,
+      x: 84, y: 50, w: 16, h: 26,
       dialogue: [
         { speaker: 'NARRADOR', text: 'Five ribbon-tied dossiers dated July through October, stacked beside the cold coffee.' },
         { speaker: 'DEFENSA', text: '(The Sergeant already has them ready. He only needs to show them to me.)', pose: 'chapulin_idle' }

@@ -10,7 +10,7 @@ export const CASE5_BERRONDO_HOTSPOTS_EN: Hotspot[] = [
   {
     id: 'hotspot_vitrina',
     label: 'Syndicate Display Case',
-    x: 8, y: 28, w: 22, h: 38,
+    x: 0, y: 28, w: 28, h: 42,
     dialogue: [
       { speaker: 'NARRADOR', text: 'A mahogany display case with three dossiers exhibited like trophies, and a frame holding a credential.' },
       { speaker: 'DEFENSA', text: '"Fulgencio Berrondo. Trustee. Bankruptcy 114 slash 1971."', pose: 'chapulin_idle' },
@@ -26,7 +26,7 @@ export const CASE5_BERRONDO_HOTSPOTS_EN: Hotspot[] = [
   {
     id: 'hotspot_retrato',
     label: 'Publisher Portrait',
-    x: 4, y: 12, w: 20, h: 28,
+    x: 0, y: 4, w: 16, h: 28,
     dialogue: [
       { speaker: 'NARRADOR', text: 'A framed photograph: fifty men in suits before a building, with a banner reading "EL SABER UNIVERSAL · 1969".' },
       { speaker: 'DEFENSA', text: 'Is this the company?', pose: 'chapulin_idle' },

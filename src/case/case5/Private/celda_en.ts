@@ -53,7 +53,7 @@ export const CASE5_CELDA_EN: InvestigationScene = {
     {
       id: 'hotspot_cristal',
       label: 'Visitor Glass',
-      x: 84, y: 14, w: 14, h: 48,
+      x: 8, y: 8, w: 58, h: 58,
       dialogue: [
         { speaker: 'DEFENSA', text: '(Scratched glass, a dead speaker, and a no-smoking sign with a burn mark on top.)', pose: 'chapulin_idle' }
       ]
@@ -61,7 +61,7 @@ export const CASE5_CELDA_EN: InvestigationScene = {
     {
       id: 'hotspot_donramon',
       label: 'Don Ramon',
-      x: 18, y: 18, w: 52, h: 62,
+      x: 52, y: 38, w: 22, h: 28,
       dialogue: [
         { speaker: 'DON RAMON', text: 'Do not look at me like that, kid. I am thinking too.', pose: 'donramon_sweat' }
       ]

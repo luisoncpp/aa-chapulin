@@ -24,7 +24,7 @@ export const CASE5_DELEGACION_C5: InvestigationScene = {
     {
       id: 'hotspot_legajos',
       label: 'Legajos sobre el escritorio',
-      x: 36, y: 48, w: 32, h: 22,
+      x: 84, y: 50, w: 16, h: 26,
       dialogue: [
         { speaker: 'NARRADOR', text: 'Cinco legajos atados con listón rojo, fechados de julio a octubre, apilados junto al café frío.' },
         { speaker: 'DEFENSA', text: '(El Sargento ya los tiene listos. Solo falta que me los enseñe.)', pose: 'chapulin_idle' }

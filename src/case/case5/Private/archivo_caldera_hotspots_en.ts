@@ -10,7 +10,7 @@ export const CASE5_ARCHIVO_CALDERA_HOTSPOTS_EN: Hotspot[] = [
   {
     id: 'hotspot_caldera',
     label: 'Boiler and dryers',
-    x: 28, y: 38, w: 34, h: 32,
+    x: 16, y: 2, w: 48, h: 78,
     dialogue: [
       { speaker: 'NARRADOR', text: 'The boiler is shut down and the two industrial dryers, out of service, still point at a duct climbing the wall.' },
       { speaker: 'CHOMPIRAS', text: 'That duct goes straight up to corridor seven, Counselor. They built it that way when the building was a factory.', pose: 'chompiras_idle' },
@@ -23,7 +23,7 @@ export const CASE5_ARCHIVO_CALDERA_HOTSPOTS_EN: Hotspot[] = [
   {
     id: 'hotspot_termografo',
     label: 'Thermograph',
-    x: 62, y: 22, w: 22, h: 28,
+    x: 70, y: 16, w: 28, h: 52,
     condition: (flags) => Boolean(flags.examined_hotspot_caldera),
     dialogue: [
       { speaker: 'NARRADOR', text: 'Bolted to the wall, a clock drum with a gridded paper strip and a pen tracing one continuous line.' },

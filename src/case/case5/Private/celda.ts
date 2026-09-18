@@ -53,7 +53,7 @@ export const CASE5_CELDA: InvestigationScene = {
     {
       id: 'hotspot_cristal',
       label: 'Cristal de visitas',
-      x: 84, y: 14, w: 14, h: 48,
+      x: 8, y: 8, w: 58, h: 58,
       dialogue: [
         { speaker: 'DEFENSA', text: '(Vidrio rayado, bocina muerta y un letrero de «prohibido fumar» con una quemadura encima.)', pose: 'chapulin_idle' }
       ]
@@ -61,7 +61,7 @@ export const CASE5_CELDA: InvestigationScene = {
     {
       id: 'hotspot_donramon',
       label: 'Don Ramón',
-      x: 18, y: 18, w: 52, h: 62,
+      x: 52, y: 38, w: 22, h: 28,
       dialogue: [
         { speaker: 'DON RAMÓN', text: 'No me mire así, joven. Yo también estoy pensando.', pose: 'donramon_sweat' }
       ]

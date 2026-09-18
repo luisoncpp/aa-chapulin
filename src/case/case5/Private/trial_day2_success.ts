@@ -1,7 +1,7 @@
 // @Architecture(descriptionShort="Case 5 day-2 contradiction success, point target, GIRO 2", type="data", icon="layers")
 /**
  * Case 5 Trial Day 2 — Barriga/Berrondo successes, Señalamiento 1, GIRO 2 (spec §13).
- * Point-zone bounds are five equal columns on 960×540 until `examine_expediente_serie.webp` is calibrated.
+ * Point-zone bounds measured on `examine_expediente_serie.webp` (five dated panels).
  */
 
 import type { DialogueLine, PointTargetContradiction } from '../../../types/index.js';
@@ -17,11 +17,11 @@ export const POINT_EXPEDIENTE_SERIE: PointTargetContradiction = {
   promptQuestion: 'Señala el papel que ya describe el producto que este testigo admite vender.',
   imageAsset: 'assets/examine_expediente_serie.webp',
   zones: [
-    { id: 'panel_a', bounds: [2, 18, 20, 82], isCorrect: false, failureDialogue: PANEL_FAIL('Esa tarjeta identifica a la sociedad disuelta, licenciado. Nos lleva hasta el cedulario, pero no describe el producto vendido.') },
-    { id: 'panel_b', bounds: [21, 18, 39, 82], isCorrect: true, failureDialogue: [] },
-    { id: 'panel_c', bounds: [40, 18, 58, 82], isCorrect: false, failureDialogue: PANEL_FAIL('Esas compras prepararon otro delito, pero no son información salida del cedulario. Vuelva a mirar.') },
-    { id: 'panel_d', bounds: [59, 18, 77, 82], isCorrect: false, failureDialogue: PANEL_FAIL('Aniceto pagó doce mil pesos para desempeñar el micrófono. Es un gasto de preparación, no el producto que este testigo vende.') },
-    { id: 'panel_e', bounds: [78, 18, 98, 82], isCorrect: false, failureDialogue: PANEL_FAIL('Ese papel registra un reparto que quedó sin pagar. No contiene datos de una casa ni de una puerta.') }
+    { id: 'panel_a', bounds: [1, 12, 20, 92], isCorrect: false, failureDialogue: PANEL_FAIL('Esa tarjeta identifica a la sociedad disuelta, licenciado. Nos lleva hasta el cedulario, pero no describe el producto vendido.') },
+    { id: 'panel_b', bounds: [20, 12, 39, 92], isCorrect: true, failureDialogue: [] },
+    { id: 'panel_c', bounds: [39, 12, 58, 92], isCorrect: false, failureDialogue: PANEL_FAIL('Esas compras prepararon otro delito, pero no son información salida del cedulario. Vuelva a mirar.') },
+    { id: 'panel_d', bounds: [58, 12, 78, 92], isCorrect: false, failureDialogue: PANEL_FAIL('Aniceto pagó doce mil pesos para desempeñar el micrófono. Es un gasto de preparación, no el producto que este testigo vende.') },
+    { id: 'panel_e', bounds: [78, 12, 99, 92], isCorrect: false, failureDialogue: PANEL_FAIL('Ese papel registra un reparto que quedó sin pagar. No contiene datos de una casa ni de una puerta.') }
   ],
   successDialogue: [
     { speaker: 'DEFENSA', text: '¡La ficha del museo, señor juez!', pose: 'chapulin_slam', sfx: 'desk_slam' },

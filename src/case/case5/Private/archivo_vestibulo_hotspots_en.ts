@@ -12,7 +12,7 @@ export const CASE5_VESTIBULO_HOTSPOTS_EN: Hotspot[] = [
   {
     id: 'hotspot_libro',
     label: 'Visitor Logbook',
-    x: 38, y: 42, w: 22, h: 18,
+    x: 50, y: 26, w: 30, h: 22,
     dialogue: [
       { speaker: 'NARRADOR', text: 'On the counter, an open registration book with a pen tied to a cord.' },
       { speaker: 'DEFENSA', text: 'December fourth page. Fourteen signatures.', pose: 'chapulin_idle' },
@@ -27,7 +27,7 @@ export const CASE5_VESTIBULO_HOTSPOTS_EN: Hotspot[] = [
   {
     id: 'hotspot_plano',
     label: 'Civil Protection Floor Plan',
-    x: 62, y: 28, w: 28, h: 32,
+    x: 0, y: 0, w: 22, h: 36,
     dialogue: [
       { speaker: 'NARRADOR', text: 'Tacked beside the counter, a yellowed building plan with exits marked in red.' },
       { speaker: 'DEFENSA', text: 'Ground floor, first floor, basement... and two doors!', pose: 'chapulin_point' },
@@ -49,7 +49,7 @@ export const CASE5_VESTIBULO_HOTSPOTS_EN: Hotspot[] = [
   {
     id: 'hotspot_carrito',
     label: 'File Cart',
-    x: 8, y: 52, w: 24, h: 28,
+    x: 0, y: 48, w: 22, h: 42,
     dialogue: [
       { speaker: 'NARRADOR', text: 'A metal cart with ribbon-tied file bundles, waiting for someone to carry them upstairs.' },
       { speaker: 'NICANOR', text: 'The elevator boy takes that one up. I do not carry anymore: my back is a wreck.', pose: 'nicanor_idle' },

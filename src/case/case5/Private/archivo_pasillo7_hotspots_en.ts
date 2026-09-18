@@ -10,7 +10,7 @@ export const CASE5_PASILLO7_HOTSPOTS_EN: Hotspot[] = [
   {
     id: 'hotspot_cuerpo',
     label: 'Body Outline',
-    x: 34, y: 58, w: 28, h: 22,
+    x: 28, y: 48, w: 32, h: 40,
     dialogue: [
       { speaker: 'NARRADOR', text: 'A chalk outline on the floor, between the shelf and the consultation table. Face down, head toward the shelf.' },
       { speaker: 'DEFENSA', text: 'He fell forward. Face toward the books.', pose: 'chapulin_idle' },
@@ -25,7 +25,7 @@ export const CASE5_PASILLO7_HOTSPOTS_EN: Hotspot[] = [
   {
     id: 'hotspot_tomo',
     label: 'Fallen Volume',
-    x: 48, y: 62, w: 16, h: 14,
+    x: 50, y: 78, w: 18, h: 20,
     dialogue: [
       { speaker: 'NARRADOR', text: 'One meter from the outline, marked with a forensic tag, a thick volume bound in green cloth.' },
       { speaker: 'DEFENSA', text: '"Universal Knowledge. Volume XI. Railways - Guatemala."', pose: 'chapulin_idle' },
@@ -40,7 +40,7 @@ export const CASE5_PASILLO7_HOTSPOTS_EN: Hotspot[] = [
   {
     id: 'hotspot_estante',
     label: 'Consultation Shelf',
-    x: 6, y: 18, w: 22, h: 58,
+    x: 54, y: 6, w: 46, h: 72,
     dialogue: [
       { speaker: 'NARRADOR', text: 'A dark wood shelf against the wall, with numbered slots from 1 to 24 on cardboard tabs.' },
       { speaker: 'DEFENSA', text: 'A complete set. One through twenty-four.', pose: 'chapulin_idle' },
@@ -59,7 +59,7 @@ export const CASE5_PASILLO7_HOTSPOTS_EN: Hotspot[] = [
   {
     id: 'hotspot_mesa',
     label: 'Consultation Table',
-    x: 58, y: 38, w: 32, h: 28,
+    x: 0, y: 4, w: 34, h: 58,
     dialogue: [
       { speaker: 'NARRADOR', text: 'A long oak table with a green-shaded lamp. On it, an open file bundle tied with ribbon.' },
       { speaker: 'DEFENSA', text: 'It is Mr. Lengua file. His appeal.', pose: 'chapulin_idle' },

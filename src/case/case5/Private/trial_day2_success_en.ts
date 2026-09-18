@@ -1,7 +1,7 @@
 // @Architecture(descriptionShort="Case 5 day-2 contradiction success, point target, GIRO 2 (English)", type="data", icon="layers")
 /**
  * Case 5 Trial Day 2 — Barriga/Berrondo successes, Pointing 1, Turn 2 (spec §13), English.
- * Point-zone bounds are five equal columns on 960×540 until `examine_expediente_serie.webp` is calibrated.
+ * Point-zone bounds measured on `examine_expediente_serie.webp` (five dated panels).
  */
 
 import type { DialogueLine, PointTargetContradiction } from '../../../types/index.js';
@@ -17,11 +17,11 @@ export const POINT_EXPEDIENTE_SERIE_EN: PointTargetContradiction = {
   promptQuestion: 'Point at the paper that already describes the product this witness admits selling.',
   imageAsset: 'assets/examine_expediente_serie.webp',
   zones: [
-    { id: 'panel_a', bounds: [2, 18, 20, 82], isCorrect: false, failureDialogue: PANEL_FAIL('That card names the dissolved company, counselor. It leads us to the card index, but it does not describe the product sold.') },
-    { id: 'panel_b', bounds: [21, 18, 39, 82], isCorrect: true, failureDialogue: [] },
-    { id: 'panel_c', bounds: [40, 18, 58, 82], isCorrect: false, failureDialogue: PANEL_FAIL('Those purchases prepared another crime, but they are not information from the card index. Look again.') },
-    { id: 'panel_d', bounds: [59, 18, 77, 82], isCorrect: false, failureDialogue: PANEL_FAIL('Aniceto paid twelve thousand pesos to redeem the microphone. That is a preparation expense, not the product this witness sells.') },
-    { id: 'panel_e', bounds: [78, 18, 98, 82], isCorrect: false, failureDialogue: PANEL_FAIL('That paper records a split that was never paid. It contains no data about a house or a door.') }
+    { id: 'panel_a', bounds: [1, 12, 20, 92], isCorrect: false, failureDialogue: PANEL_FAIL('That card names the dissolved company, counselor. It leads us to the card index, but it does not describe the product sold.') },
+    { id: 'panel_b', bounds: [20, 12, 39, 92], isCorrect: true, failureDialogue: [] },
+    { id: 'panel_c', bounds: [39, 12, 58, 92], isCorrect: false, failureDialogue: PANEL_FAIL('Those purchases prepared another crime, but they are not information from the card index. Look again.') },
+    { id: 'panel_d', bounds: [58, 12, 78, 92], isCorrect: false, failureDialogue: PANEL_FAIL('Aniceto paid twelve thousand pesos to redeem the microphone. That is a preparation expense, not the product this witness sells.') },
+    { id: 'panel_e', bounds: [78, 12, 99, 92], isCorrect: false, failureDialogue: PANEL_FAIL('That paper records a split that was never paid. It contains no data about a house or a door.') }
   ],
   successDialogue: [
     { speaker: 'DEFENSA', text: 'The museum card, Your Honor!', pose: 'chapulin_slam', sfx: 'desk_slam' },

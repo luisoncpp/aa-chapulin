@@ -30,7 +30,7 @@ export const CASE5_CORRESPONDENCIA_EN: InvestigationScene = {
     {
       id: 'hotspot_libro_acuses',
       label: 'Receipt Ledger',
-      x: 72, y: 54, w: 18, h: 22,
+      x: 56, y: 62, w: 38, h: 34,
       dialogue: [
         { speaker: 'NARRADOR', text: 'A cloth-bound ledger with a column of scrawled signatures beside each entry.' },
         { speaker: 'DEFENSA', text: 'November twenty-ninth... November twenty-ninth...', pose: 'chapulin_idle' },

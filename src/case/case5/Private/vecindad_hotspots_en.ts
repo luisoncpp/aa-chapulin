@@ -10,7 +10,7 @@ export const CASE5_VECINDAD_HOTSPOTS_EN: Hotspot[] = [
   {
     id: 'hotspot_puerta',
     label: 'Office Door',
-    x: 6, y: 18, w: 18, h: 52,
+    x: 10, y: 2, w: 20, h: 40,
     dialogue: [
       { speaker: 'NARRADOR', text: 'A wooden door with a frame swollen from damp and a two-finger gap along the bottom.' },
       { speaker: 'DEFENSA', text: 'An envelope could slide through here without folding.', pose: 'chapulin_idle' },
@@ -23,7 +23,7 @@ export const CASE5_VECINDAD_HOTSPOTS_EN: Hotspot[] = [
   {
     id: 'hotspot_sobre',
     label: 'Envelope and Contents',
-    x: 44, y: 58, w: 22, h: 18,
+    x: 62, y: 40, w: 24, h: 22,
     dialogue: [
       { speaker: 'NARRADOR', text: 'On the desk, an open manila envelope and, beside it, half a typewritten sheet.' },
       { speaker: 'BARRIGA', text: 'There is everything. The envelope, the little note, and a copy of my receipt. I am not one to throw papers away.', pose: 'barriga_idle' },

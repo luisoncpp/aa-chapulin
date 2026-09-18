@@ -9,7 +9,7 @@ export const CASE5_VECINDAD_HOTSPOTS: Hotspot[] = [
   {
     id: 'hotspot_puerta',
     label: 'Puerta del despacho',
-    x: 6, y: 18, w: 18, h: 52,
+    x: 10, y: 2, w: 20, h: 40,
     dialogue: [
       { speaker: 'NARRADOR', text: 'Una puerta de madera con el marco hinchado por la humedad y una rendija de dos dedos abajo.' },
       { speaker: 'DEFENSA', text: 'Por aquí cabe un sobre sin doblarlo.', pose: 'chapulin_idle' },
@@ -22,7 +22,7 @@ export const CASE5_VECINDAD_HOTSPOTS: Hotspot[] = [
   {
     id: 'hotspot_sobre',
     label: 'Sobre y su contenido',
-    x: 44, y: 58, w: 22, h: 18,
+    x: 62, y: 40, w: 24, h: 22,
     dialogue: [
       { speaker: 'NARRADOR', text: 'Sobre el escritorio, un sobre de manila abierto y, al lado, media cuartilla mecanografiada.' },
       { speaker: 'BARRIGA', text: 'Ahí está todo. El sobre, el papelito y la copia de mi recibo. Yo no soy de los que tiran papeles.', pose: 'barriga_idle' },

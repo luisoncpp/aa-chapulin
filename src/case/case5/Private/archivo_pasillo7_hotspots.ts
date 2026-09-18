@@ -10,7 +10,7 @@ export const CASE5_PASILLO7_HOTSPOTS: Hotspot[] = [
   {
     id: 'hotspot_cuerpo',
     label: 'Silueta del cuerpo',
-    x: 34, y: 58, w: 28, h: 22,
+    x: 28, y: 48, w: 32, h: 40,
     dialogue: [
       { speaker: 'NARRADOR', text: 'Una silueta de gis en el piso, entre el estante y la mesa de consulta. Boca abajo, con la cabeza hacia el estante.' },
       { speaker: 'DEFENSA', text: 'Cayó de frente. Con la cara hacia los libros.', pose: 'chapulin_idle' },
@@ -25,7 +25,7 @@ export const CASE5_PASILLO7_HOTSPOTS: Hotspot[] = [
   {
     id: 'hotspot_tomo',
     label: 'Tomo caído',
-    x: 48, y: 62, w: 16, h: 14,
+    x: 50, y: 78, w: 18, h: 20,
     dialogue: [
       { speaker: 'NARRADOR', text: 'A un metro de la silueta, marcado con un cartelito de perito, un tomo grueso encuadernado en tela verde.' },
       { speaker: 'DEFENSA', text: '«El Saber Universal. Tomo XI. Ferrocarriles - Guatemala.»', pose: 'chapulin_idle' },
@@ -40,7 +40,7 @@ export const CASE5_PASILLO7_HOTSPOTS: Hotspot[] = [
   {
     id: 'hotspot_estante',
     label: 'Estante de consulta',
-    x: 6, y: 18, w: 22, h: 58,
+    x: 54, y: 6, w: 46, h: 72,
     dialogue: [
       { speaker: 'NARRADOR', text: 'Un estante de madera oscura pegado al muro, con las ranuras numeradas del 1 al 24 en cartoncitos.' },
       { speaker: 'DEFENSA', text: 'Una colección completa. Del uno al veinticuatro.', pose: 'chapulin_idle' },
@@ -59,7 +59,7 @@ export const CASE5_PASILLO7_HOTSPOTS: Hotspot[] = [
   {
     id: 'hotspot_mesa',
     label: 'Mesa de consulta',
-    x: 58, y: 38, w: 32, h: 28,
+    x: 0, y: 4, w: 34, h: 58,
     dialogue: [
       { speaker: 'NARRADOR', text: 'Una mesa larga de roble con una lámpara de pantalla verde. Sobre ella, un legajo abierto y atado con listón.' },
       { speaker: 'DEFENSA', text: 'Es el expediente del señor Lengua. Su apelación.', pose: 'chapulin_idle' },

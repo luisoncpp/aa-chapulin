@@ -47,7 +47,10 @@ export function onPresentPenalty(ctrl: TrialController, onResume?: () => void): 
     ctrl.deps.onQueueDialogue,
     resume
   )) return;
-  queuePenaltyDialogue(ctrl.deps, /*onResume*/ resume);
+  queuePenaltyDialogue(
+    { ...ctrl.deps, guiltyDialogue: ctrl.script.trial.climax.guiltyDialogue },
+    /*onResume*/ resume
+  );
 }
 
 export function showGameOverModal(ctrl: TrialController): void {

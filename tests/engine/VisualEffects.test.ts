@@ -3,6 +3,7 @@ import { describe, expect, it, beforeEach, vi } from 'vitest';
 import type { DomElements } from '../../src/engine/Private/DomElements.js';
 import { VisualEffects } from '../../src/engine/Private/VisualEffects.js';
 import { setupDomHarness } from '../fakes/DomHarness.js';
+import { setStagingCaseId } from '../../src/engine/Private/TrialCaseStaging.js';
 
 describe('VisualEffects Subsystem', () => {
   let dom: DomElements;
@@ -10,6 +11,7 @@ describe('VisualEffects Subsystem', () => {
   beforeEach(() => {
     vi.useFakeTimers();
     dom = setupDomHarness();
+    setStagingCaseId('case1');
   });
 
   it('updates character sprite pose and visibility', () => {
@@ -101,6 +103,23 @@ describe('VisualEffects Subsystem', () => {
     expect(VisualEffects.inferTrialBackground('CECILIO')).toBe('assets/bg_witness.webp');
     expect(VisualEffects.inferTrialBackground('MARUJA')).toBe('assets/bg_witness.webp');
     expect(VisualEffects.inferTrialBackground('RUFINO')).toBe('assets/bg_witness.webp');
+  });
+
+  it('puts Don Ramón on the dock camera only in Case 5', () => {
+    expect(VisualEffects.inferTrialBackground('DON RAMÓN')).toBe('assets/bg_defense.webp');
+    expect(VisualEffects.resolveEffectivePose(
+      { text: 'A', speaker: 'DEFENSA' },
+      /*isTrialMode=*/ true
+    )).toBe('donramon_idle');
+    setStagingCaseId('case5');
+    expect(VisualEffects.inferTrialBackground('DON RAMÓN')).toBe('assets/bg_witness.webp');
+    expect(VisualEffects.inferTrialBackground('DON RAMON')).toBe('assets/bg_witness.webp');
+    expect(VisualEffects.inferTrialBackground('DEFENSA')).toBe('assets/bg_defense.webp');
+    expect(VisualEffects.resolveEffectivePose(
+      { text: 'A', speaker: 'DEFENSA' },
+      /*isTrialMode=*/ true
+    )).toBe('chapulin_idle');
+    setStagingCaseId('case1');
   });
 
   it('does not move the courtroom camera for tutorial instruction labels', () => {

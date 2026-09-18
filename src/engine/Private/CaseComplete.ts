@@ -4,14 +4,21 @@
  */
 
 import { i18n } from '../../i18n/index.js';
-import type { Language } from '../../types/index.js';
+import { gameState } from '../../state/index.js';
+import type { CaseId, Language } from '../../types/index.js';
 import type { DomElements } from './DomElements.js';
 import { resetFlashPlate } from './SceneFade.js';
 import { VisualEffects } from './VisualEffects.js';
 
-export function fillCaseCompleteCopy(dom: DomElements, lang?: Language): void {
+export function fillCaseCompleteCopy(dom: DomElements, lang?: Language, caseId?: CaseId): void {
   if (!dom.caseCompleteTitleEl || !dom.caseCompleteBodyEl) return;
   const t = lang ? i18n.getUI(lang) : i18n.t;
+  const id = caseId ?? gameState.caseId;
+  if (id === 'case5') {
+    dom.caseCompleteTitleEl.textContent = t.case5CompleteTitle;
+    dom.caseCompleteBodyEl.textContent = t.case5CompleteBody;
+    return;
+  }
   dom.caseCompleteTitleEl.textContent = t.caseCompleteTitle;
   dom.caseCompleteBodyEl.textContent = t.caseCompleteBody;
 }

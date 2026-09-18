@@ -14,6 +14,7 @@ import type { DomElements } from './DomElements.js';
 import type { InvestigationController } from './InvestigationController.js';
 import type { Typewriter } from './Typewriter.js';
 import { presentDialogueVisuals } from './StageCommit.js';
+import { setStagingCaseId } from './TrialCaseStaging.js';
 import { VisualEffects } from './VisualEffects.js';
 
 export interface DialogueFlowDeps {
@@ -111,6 +112,7 @@ export class DialogueFlow {
   }
 
   private applyLineSpeakerAndPose(line: DialogueLine): void {
+    setStagingCaseId(this.deps.state.caseId);
     const isTrial = this.deps.state.mode === 'TRIAL';
     const effectivePose = VisualEffects.resolveEffectivePose(line, isTrial);
     if (effectivePose) {

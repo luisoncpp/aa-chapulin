@@ -15,7 +15,7 @@ import {
 } from './Private/progress.js';
 import {
   CASE5_DAY2_INTRO_EN, CASE5_DAY3_INTRO_EN,
-  CASE5_DAY4_INTRO, CASE5_DAY4_INTRO_EN, CASE5_TRIAL_INTRO_EN
+  CASE5_DAY4_INTRO_EN, CASE5_TRIAL_INTRO_EN
 } from './Private/trial_openings.js';
 import { CASE5_CELDA } from './Private/celda.js';
 import { CASE5_ARCHIVO_VESTIBULO } from './Private/archivo_vestibulo.js';
@@ -40,6 +40,9 @@ import {
   CASE5_DAY3_INTRO_FULL, CASE5_DAY3_OPENING_PRESENT, CASE5_TESTIMONY_6, CASE5_TESTIMONY_7,
   CASE5_TESTIMONY_8
 } from './Private/trial_day3.js';
+import {
+  CASE5_DAY4_INTRO_FULL, CASE5_DAY4_OPENING_PRESENT, CASE5_TESTIMONY_9
+} from './Private/trial_day4.js';
 
 interface Case5Parts {
   scenes: CaseScript['investigation'];
@@ -58,6 +61,7 @@ interface Case5Parts {
   t7: Testimony;
   t8: Testimony;
   day4Intro: DialogueLine[];
+  day4Opening?: OpeningPresent;
   t9: Testimony;
   climax: ClimaxDefinition;
 }
@@ -105,7 +109,10 @@ function adjournmentChain(parts: Case5Parts): AdjournmentDefinition {
         nextLocation: 'celda_c5_d4',
         unlockLocations: ['celda_c5_d4'],
         requiredEvidence: CASE5_DAY4_EVIDENCE,
-        trial: dayTrial(parts.day4Intro, [parts.t9])
+        trial: {
+          ...dayTrial(parts.day4Intro, [parts.t9]),
+          ...(parts.day4Opening ? { openingPresent: parts.day4Opening } : {})
+        }
       }
     }
   };
@@ -161,8 +168,9 @@ const PLACEHOLDER_PARTS_ES: Case5Parts = {
   t6: CASE5_TESTIMONY_6,
   t7: CASE5_TESTIMONY_7,
   t8: CASE5_TESTIMONY_8,
-  day4Intro: CASE5_DAY4_INTRO,
-  t9: PLACEHOLDER_TESTIMONY,
+  day4Intro: CASE5_DAY4_INTRO_FULL,
+  day4Opening: CASE5_DAY4_OPENING_PRESENT,
+  t9: CASE5_TESTIMONY_9,
   climax: PLACEHOLDER_CLIMAX
 };
 
@@ -183,7 +191,9 @@ const PLACEHOLDER_PARTS_EN: Case5Parts = {
   t6: PLACEHOLDER_TESTIMONY,
   t7: PLACEHOLDER_TESTIMONY,
   t8: PLACEHOLDER_TESTIMONY,
-  day4Intro: CASE5_DAY4_INTRO_EN
+  day4Intro: CASE5_DAY4_INTRO_EN,
+  day4Opening: undefined,
+  t9: PLACEHOLDER_TESTIMONY
 };
 
 export const CASE_SCRIPT_CASE5_ES: CaseScript = assembleCase5(PLACEHOLDER_PARTS_ES);

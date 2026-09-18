@@ -60,4 +60,5 @@ Domain terminology and project-specific concepts for **El Chapulín Colorado: Ac
 |------|------------|--------------------|
 | **Procedural Synthesizer** | Pure Web Audio API waveform generator producing retro 16-bit sound effects (gavels, desk slams, typewriter blips) without audio file downloads. | [[src/audio/Private/SoundEngine.ts]] |
 | **MIDI Music Tracker** | Step-sequenced 4-channel chiptune synthesizer composing dynamic multitrack background music (Bass, Lead, Chords, Drums) at runtime. | [[src/audio/Private/MidiMusicComposer.ts]] |
+| **Music Player (Reproductor / Jukebox)** | Splash-only overlay (`#btn-music-player` → `#music-player-modal`) for previewing the procedural soundtrack catalog. Not available in-game; closing or starting a case stops playback. | [[src/engine/Private/MusicPlayer/index.ts]], [[docs/flows/music-player-flow.md]] |
 | **Hotspot** | Relative coordinate bounding box on a scene background that triggers investigation interactions when clicked. | [[src/engine/Private/InvestigationController.ts]] |

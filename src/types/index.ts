@@ -12,7 +12,8 @@ export type {
   DrumHitType,
   NoteEntry,
   TrackDefinition,
-  TrackCatalogMap
+  TrackCatalogMap,
+  SoundtrackEntry
 } from './Private/audio.js';
 
 // @Section(Evidence Subsystem Types)

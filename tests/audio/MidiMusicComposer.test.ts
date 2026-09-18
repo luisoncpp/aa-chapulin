@@ -198,4 +198,37 @@ describe('MidiMusicComposer & TRACK_CATALOG', () => {
     expect(composer.isPlaying).toBe(true);
     expect(composer.currentTrack).toBe('suspense');
   });
+
+  it('pause keeps step and currentTrack; resumePaused continues from the same step', () => {
+    composer.playTrack('trial');
+    vi.advanceTimersByTime(60000 / 110 / 4 * 12);
+    const stepBeforePause = composer.step;
+    composer.pause();
+    expect(composer.isPlaying).toBe(false);
+    expect(composer.currentTrack).toBe('trial');
+    expect(composer.step).toBe(stepBeforePause);
+    vi.advanceTimersByTime(60000 / 110 / 4 * 5);
+    expect(composer.step).toBe(stepBeforePause);
+    composer.resumePaused();
+    expect(composer.isPlaying).toBe(true);
+    vi.advanceTimersByTime(60000 / 110 / 4);
+    expect(composer.step).toBe(stepBeforePause + 1);
+  });
+
+  it('seekToStep clamps to the active track length', () => {
+    composer.playTrack('trial');
+    const length = TRACK_CATALOG.trial.length;
+    composer.seekToStep(9999);
+    expect(composer.getPlaybackSnapshot().step).toBe(length - 1);
+    composer.seekToStep(-5);
+    expect(composer.getPlaybackSnapshot().step).toBe(0);
+  });
+
+  it('playTrack still resets step when switching to a different composition', () => {
+    composer.playTrack('trial');
+    vi.advanceTimersByTime(60000 / 110 / 4 * 20);
+    composer.playTrack('pursuit');
+    expect(composer.currentTrack).toBe('pursuit');
+    expect(composer.step).toBe(0);
+  });
 });

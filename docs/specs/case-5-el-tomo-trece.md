@@ -16,6 +16,8 @@
 | 8 | Contrato de motor, audio y tipos (guion ↔ `src/types`, `TrackCatalog`, `SFXName`, §25) | 2026-09-17 | 1 hallazgo: §25 sin fila de audio; corregido |
 | 9 | Cobertura del ledger y simulación del jugador (24.A ↔ descarte, §2.2 ↔ §24.B, §7.3 ↔ guion, fuentes de conocimiento, §9 presupuesto) | 2026-09-17 | 7 hallazgos: espera de §2.2, A11 del Sargento, fila 2 del descarte, hora 19:05 de L2, ubicación de L7, vector de conocimiento de Super Sam, suma de §9; convertidos en I17–I21 |
 | 10 | Conformidad con las reglas duras del propio episodio (§1.1, §7.2, §8, §20, §22, §23.2–23.3) ejecutadas contra el guion completo | 2026-09-17 | 5 hallazgos: antigüedad del Sargento, asistencia del Sargento a los cuatro juicios, seis→ocho días y conducta de D3-T2 en §20.1, ese caída en los paneles A/B de §23.3; convertidos en I22–I25 |
+| 11 | **Defensa adversaria del culpable** (suficiencia probatoria: qué demolería un defensor de Berrondo; atribución de cada rastro a una persona en pantalla; presupuestos contra las duraciones que declaran los propios testigos) | 2026-09-17 | 5 hallazgos: rúbrica de la segunda tira nunca leída en pantalla (I14), «dato tercero» inexistente en §21/§20.1, presupuesto de apertura sin tiempo de extracción, 2.8 kg atribuidos al tomo de lujo, orden de filas de §4.2 |
+| 12 | **Paridad de localización ES↔EN** (qué argumento deja de leerse al cambiar de idioma: láminas compartidas, defecto tipográfico, juegos de palabras) | 2026-09-17 | 3 hallazgos: `SÁB` en una lámina declarada compartida, `s` minúscula sin regla de traducción, refranes y chiste sin regla de sustitución; convertidos en I30–I32 |
 
 **Regla:** cada nueva pasada declara aquí su lente antes de empezar; repetir una lente no cuenta como auditoría. El criterio de parada es una pasada con lente nueva que rinde cero hallazgos.
 
@@ -98,7 +100,7 @@ El 4 de diciembre entra a las 16:05 por el **acceso de peritos y auxiliares**, q
 
 A las 17:00 los dos custodios del pasillo se bajan a firmar su relevo. A las **17:02**, Berrondo saca el **Tomo XI** del estante de consulta, se lo cierra a Casimiro en la nuca desde atrás y desde arriba, lo deja caer, y le acomoda la esquina de tarjeta en la mano.
 
-Y entonces comete su único error, que no es un cálculo sino un reflejo: **no puede dejar el estante con un hueco**. Usa el **montacargas de carga**, cuyo mando conserva como síndico, y baja al sótano en noventa segundos. **Sin tramitar un segundo vale**, abre otra vez el huacal 9, saca un Tomo XI de la **edición de lujo** —media piel, cantoneras de latón, doscientos diez ejemplares sin vender desde 1971— y sube con él por el mismo montacargas. Lo mete en la ranura vacía, vuelve a bajar, sella, fecha y toma el montacargas hasta el descanso del patio. Sale por el patio de maniobras a las 17:14. El recorrido completo queda presupuestado en §24.B; durante el crimen no usa los ciento veinte escalones.
+Y entonces comete su único error, que no es un cálculo sino un reflejo: **no puede dejar el estante con un hueco**. Usa el **montacargas de carga**, cuyo mando conserva como síndico, y baja al sótano en noventa segundos. **Sin tramitar un segundo vale**, abre otra vez el huacal 9 y saca un Tomo XI de la **edición de lujo** —media piel, cantoneras de latón, doscientos diez ejemplares sin vender desde 1971—. Vuelve a tapar el huacal, pega la segunda tira, la firma y la fecha, y **sólo entonces** sube con el tomo por el mismo montacargas: no deja tapas abiertas detrás de sí. Lo mete en la ranura vacía y baja al descanso del patio. Sale por el patio de maniobras a las 17:14. El recorrido completo queda presupuestado en §24.B; durante el crimen no usa los ciento veinte escalones.
 
 Sobre un estante de veintidós lomos de tela idénticos hay, desde esa tarde, **un lomo de piel con cantoneras de latón**, y en su guarda un sello: `Q-114/1971 — MASA CONCURSAL — HUACAL 9`. La ranura 13 sigue vacía.
 
@@ -209,15 +211,14 @@ Las horas de autor **no son hechos judiciales**: la columna derecha dice hasta d
 | 17:00 | **Los dos custodios bajan a firmar el relevo.** | `parte_detencion` anexo. |
 | 17:02–17:03 | Golpe único con el **Tomo XI** del estante de consulta, desde atrás y desde arriba, cerrando el libro sobre la nuca. Deja caer el tomo. Acomoda la esquina de tarjeta en la mano derecha de la víctima. | `informe_forense_c5`, `tomo_caido`, `esquina_tarjeta`. |
 | 17:03–17:04:30 | Baja solo en el **montacargas de carga**. No usa la escalera. | `plano_archivo`; D3-T1; §24.B. |
-| 17:04:30–17:06:30 | Sin registrar otro vale, abre el huacal 9 y extrae un **Tomo XI de la edición de lujo**. | Dos sellos / un vale; clímax E3. |
-| 17:06:30–17:08 | Sube en el montacargas con el tomo de 2.8 kg. | P8; clímax E3. |
-| 17:08–17:08:30 | Llena la ranura 11. | `estante_consulta`. |
-| 17:08:30–17:10 | Vuelve al sótano en el montacargas. | P8; clímax E3. |
-| 17:10–17:12:30 | Recoloca la tapa, pega una segunda tira, firma y fecha. | `huacal_9`. |
-| 17:12:30–17:14 | Sube hasta el descanso del patio y sale por el portón de maniobras. | P2, P8. |
+| 17:04:30–17:07:30 | Sin registrar otro vale, abre el huacal 9 y extrae un **Tomo XI de la edición de lujo**. | Dos sellos / un vale; clímax E3. |
+| 17:07:30–17:10:30 | Recoloca la tapa, pega una segunda tira, la firma y la fecha. | `huacal_9`; clímax E3. |
+| 17:10:30–17:12 | Sube en el montacargas con el tomo de lujo de 3.4 kg. | P8; clímax E3. |
+| 17:12–17:12:30 | Llena la ranura 11. | `estante_consulta`. |
+| 17:12:30–17:14 | Baja hasta el descanso del patio y sale por el portón de maniobras. | P2, P8. |
 | 17:15 | El relevo de custodios llega a la **reja** y firma su entrada; si los relevos habían entrado antes al edificio, todavía no estaban vigilando el pasillo. | `parte_detencion`, anexo. |
-| 17:44 | El actuario Hilario Balbuena entra por peritos y firma, ya después del hallazgo de las 17:35; la diligencia queda suspendida. Sus cuatro diligencias sabatinas anteriores constan entre 17:18 y 17:25; Berrondo había coincidido con él dos veces. | `libro_peritos`; D2 correspondencia. |
 | 17:35 | Nicanor sube a cerrar el pasillo y encuentra el cuerpo. | D1-T1. |
+| 17:44 | El actuario Hilario Balbuena entra por peritos y firma, ya después del hallazgo de las 17:35; la diligencia queda suspendida. Sus cuatro diligencias sabatinas anteriores constan entre 17:18 y 17:25; Berrondo había coincidido con él dos veces. | `libro_peritos`; D2 correspondencia. |
 | 18:40 | El médico legista toma temperatura. Con el modelo normal fija la muerte entre **17:00 y 17:30**. | `informe_forense_c5`. |
 | 19:05 | El Sargento toma la fotografía pericial de la escena. | L2. |
 | 21:40 | Detención de Don Ramón en la vecindad. Inventario: la insignia abollada, tres pesos, una libreta y **un recibo de renta a su nombre por diecisiete mensualidades**. | `parte_detencion`. |
@@ -257,7 +258,7 @@ Veintitrés entradas. **Todas tienen al menos una ranura de presentación** (tab
 | `tomo_caido` **(nueva)** | D1 pasillo 7 | Tomo XI de *El Saber Universal*, edición económica, encuadernado en tela. Hallado a un metro del cuerpo, con sangre en el canto del lomo. **En la guarda, un sello de tinta violeta.** `detailedView`. | D3-T3 `followUp`. |
 | `estante_consulta` **(nueva)** | D1 pasillo 7 | Estante de consulta del pasillo 7. Veinticuatro ranuras numeradas; la colección de *El Saber Universal* donada al Archivo en 1971. `detailedView`. **Tablero del Señalamiento 2.** | Clímax E3 + **Señ. 2**. |
 | `libro_visitas` **(nueva)** | D1 vestíbulo | Libro de visitas del público, hoja del 4 de diciembre. Catorce firmas. La última: *R. Valdés, 16:40 / 16:58*. `detailedView`. | D1-T1 `followUp`. |
-| `plano_archivo` **(nueva)** | D1 vestíbulo | Plano de protección civil del Archivo Judicial, clavado con tachuelas junto al mostrador. Marca dos accesos, la escalera de servicio y los tres descansos del montacargas en sótano, patio y primer piso. `detailedView`. | D1-T3 contradicción; clímax E3. |
+| `plano_archivo` **(nueva)** | D1 vestíbulo | Plano de protección civil del Archivo Judicial, clavado con tachuelas junto al mostrador. Marca dos accesos, la escalera de servicio y los tres descansos del montacargas en sótano, patio y primer piso. `detailedView`. | D1-T3 contradicción. *(La etapa 3 del clímax lo cita de palabra pero no lo admite como presentación: sólo acepta `estante_consulta`.)* |
 | `expediente_casimiro` **(nueva)** | D1 pasillo 7 | Expediente de apelación del occiso, hallado **abierto sobre la mesa de consulta, en la foja 214**. En esa foja está pegada, como prueba decomisada en julio, una tarjeta de presentación. | D1-T3 `followUp`. |
 
 ### 5.2 Bloque B — El dinero y el aviso (día 2)
@@ -3404,14 +3405,17 @@ DEFENSA: Y entonces en ese estante quedaba un hueco. [pose: chapulin_idle]
 DEFENSA: **Un hueco que ese hombre no podía soportar.** [pose: chapulin_slam; sfx: desk_slam]
 NARRADOR: Silencio. [bgm: suspense]
 DEFENSA: Bajó al sótano en el montacargas. Noventa segundos. Abrió el huacal nueve por segunda vez esa tarde y sacó un Tomo XI de lujo. [pose: chapulin_point]
-DEFENSA: Subió con el tomo en otros noventa segundos, lo metió en la ranura once y volvió a bajar por el mismo hueco para sellar el huacal. [pose: chapulin_idle]
+DEFENSA: Volvió a cerrarlo, le pegó su tira y la firmó, porque no sabe irse dejando una tapa abierta. Y después subió con el tomo en otros noventa segundos y lo metió en la ranura once. [pose: chapulin_idle]
 DEFENSA: El plano muestra los tres descansos. El Chómpiras declaró que el síndico conservaba el mando y sabía operarlo solo. [pose: chapulin_point]
 DEFENSA: (Nadie mata así por rabia. Así se mata... ordenadamente.) [pose: chapulin_panic]
 SARGENTO: ¡Señor juez! ¡La fotografía de la tapa! [pose: pazguato_decidido]
 SARGENTO: ¡Hay **dos** tiras de sello con fecha del cuatro de diciembre, una encima de la otra! ¡Las revisé anoche y no supe qué hacer con ellas! [pose: pazguato_decidido]
+JUEZ: Léale a esta corte la rúbrica de la de encima, Sargento. [sfx: gavel; pose: judge_gavel]
+SARGENTO: La misma de las otras doscientas cincuenta, señor juez. **F. Berrondo.** De su puño, con sus dos rayas debajo. [pose: pazguato_decidido]
+NARRADOR: Silencio en la sala. [sfx: realization]
 JUEZ: Secretario, coteje ahora la carpeta de vales que exhibió la señorita Peñaloza. ¿Cuántas aperturas del huacal nueve se registraron ese sábado? [pose: judge_thinking]
 SECRETARIO: Un vale, señor juez. Revisión inicial del contenido; ninguna extracción posterior registrada.
-DEFENSA: Dos sellos, un vale. La segunda apertura fue clandestina. [pose: chapulin_point]
+DEFENSA: Dos sellos firmados, un solo vale. La segunda apertura la hizo la misma mano y no la registró nadie. [pose: chapulin_point]
 JUEZ: ¡Que se asiente! [sfx: gavel; pose: judge_gavel]
 BERRONDO: ...Señor juez. [pose: berrondo_sweat]
 BERRONDO: Un estante incompleto es un desorden. [pose: berrondo_sweat]
@@ -3832,7 +3836,7 @@ La defensa **nunca** abre señalando personas. Cada bloque ataca **un hecho**. L
 | Tenía acceso a la máquina de la partida 41 | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✓ |
 | Tenía motivo para callar al occiso | ✓ *(según la fiscalía)* | ✗ | ✗ | ✗ | ✓ *(vergüenza)* | ✗ | ✓ |
 
-Super Sam coincide con Berrondo en dos casillas y **por eso el episodio lo pone en el estrado**: el jugador tiene que descartarlo con hechos, no con simpatía. **La fila 2 no descarta por sí sola**: Nicanor y Genoveva también la marcan —él por su propia escalera, ella por la puerta de su ventanilla, que da al patio (P1, P2)—. Lo que descarta es el bloque del sótano: las cuatro casillas que ninguna persona de este juicio salvo el síndico puede marcar.
+Super Sam coincide con Berrondo en dos casillas y **por eso el episodio lo pone en el estrado**: el jugador tiene que descartarlo con hechos, no con simpatía. **La fila 2 no descarta por sí sola**: Nicanor y Genoveva también la marcan —él por su propia escalera, ella por la puerta de su ventanilla, que da al patio (P1, P2)—. Lo que descarta es el bloque del sótano: las cuatro casillas que ninguna persona de este juicio salvo el síndico puede marcar. **La fila 3 y la fila 4 no son alegatos del estrado**: la primera se acredita con el acuse y el oficio; la segunda sólo con lo que el jugador oyó en correspondencia (F18), y por eso el clímax no la invoca.
 
 ---
 
@@ -3858,7 +3862,7 @@ Este episodio cierra **su misterio central** y da respuesta al origen de la bols
 | El billete con banda de banco | D2-T1 presión 2 | Rastreado al retiro del 26 de noviembre; la factura explica $750 y **el sobrante de $4,250 se cobra en el clímax E4** como dinero destinado a la renta |
 | «Se ruega expedir el recibo **y conservarlo**» | D2 vecindad; D2-T1 presión 3 | **Clímax E4**: Berrondo creó un rastro documental a nombre del acusado; Barriga guardó copia y entregó el original a Don Ramón. La entrega fue aprovechada para incriminarlo, pero no está ordenada literalmente por la nota. |
 | La rúbrica del margen del acuse | D2 correspondencia; `detailedView` | **D3-T3 contradicción** |
-| «¿Iba a haber policía?» / «A las cinco cambian de turno» | D2 correspondencia (Chimoltrufia) | **Clímax E1, dato tercero**: cómo supo del relevo |
+| «¿Iba a haber policía?» / «A las cinco cambian de turno» | D2 correspondencia (Chimoltrufia) | **D2 correspondencia**, en el acto: el Chapulín enuncia en voz alta que alguien pudo planear esos quince minutos. Es conocimiento del **jugador**, no del estrado: la Chimoltrufia nunca declara y nunca nombra a nadie, así que ninguna etapa del clímax lo alega. Sostiene la fila 4 de §20.1 y F18, no una imputación |
 | El campo «estado de la puerta» del cedulario | D2 despacho (lámina L4) | **Clímax E4**: la tarjeta de Don Ramón dice «chapa vencida. Se empuja» |
 | «Vender información no es delito» | D2 despacho; D2-T2 decl. 3; GIRO 2 | **Veredicto**: el Juez lo hace constar por escrito y da vista sin poder procesarlo |
 | Las siete altas del cedulario | D3 bodega (`hotspot_cajones`) | **D3 bodega**: se constata que el fichero sigue creciendo; **clímax E4**: la ficha del acusado, actualizada en agosto, demuestra uso reciente concreto |
@@ -3923,6 +3927,8 @@ El Chapulín no se equivoca al azar: **toma dos refranes emparentados y empalma 
    («A caballo regalado no se le ven los dientes» + «Más vale pájaro en mano que cien volando».)
    Cierra la serie y, por una vez, **describe exactamente lo que pasó**: le regalaron diecisiete meses y se le fueron volando.
 
+**En inglés no se traducen: se sustituyen.** Un refrán empalmado no sobrevive a la traducción literal. La versión inglesa toma **dos proverbios ingleses emparentados** y empalma la primera mitad de uno con la segunda del otro, conservando las dos funciones: que el resultado sea gramatical y absurdo, y que Berrondo pueda citar el origen de cada mitad. El segundo, además, tiene que seguir describiendo lo que pasó en el epílogo.
+
 **Prohibido:** inventar un tercero de relleno; repetir los del Caso 1 (*«Camarón que se duerme... a hierro muere»*, *«En casa del herrero... no entran moscas»*) o los del Caso 3 (*«Perro que ladra... no muerde, porque no puede hacer las dos cosas al mismo tiempo»*, *«El que a hierro mata... acaba con la casa llena de fierros»*, *«El que mucho abarca... poco aprieta el cinturón»*); **y, sobre todo, hacer que un refrán destrozado sea la clave del clímax**, que es lo que hizo el Caso 3 y repetirlo lo volvería tic.
 
 ### 22.2 El chiste de palabra difícil (§12.3)
@@ -3931,6 +3937,8 @@ Gag recurrente estrenado en el Caso 0 con *cartapacio* ([[docs/live/glossary.md]
 
 > Caso 0 — CHAPULÍN: «¿Cartapa... qué?» · CASIMIRO: «...cio.» · CHAPULÍN: «¡Chanfle!»
 > Caso 5 — CHAPULÍN: «¿La masa concur... qué?» · BERRONDO: «...sal.» · CHAPULÍN: «¡Chanfle!»
+
+**En inglés:** la palabra difícil se elige de modo que se pueda cortar a media sílaba y que **la sílaba que falta la complete Berrondo**, igual que en el Caso 0. La versión inglesa del Caso 0 ya eligió su palabra y **no se toca** (regla de no modificación, §1.1); el Caso 5 sólo tiene que repetir su forma, no su palabra.
 
 El jugador que venga del Caso 0 recibe el golpe aquí, tres jornadas antes de que nadie lo explique. El que no, se ríe y sigue. **Ninguna deducción depende de haberlo notado**: la explicación completa la da Don Ramón en §18.7.
 
@@ -4005,7 +4013,7 @@ Repetir este bloque **completo** en cada prompt de generación. **No se hereda p
 >
 > **Contrato de estrado.** Este es el primer caso en que `chapulin_*` ocupa el estrado de la defensa y `donramon_*` el banquillo. `chapulin_slam` es una pose de **contacto con mesa** y aquí es correcta y necesaria; `donramon_shock` es la pose de pie sin contacto y es la que se usa en el banquillo ([[docs/lessons-learned/investigation-slam-needs-standing-pose.md]], [[docs/lessons-learned/defense-counsel-decoupling.md]]). **Nunca usar `donramon_slam` en este caso: el acusado no tiene mesa.**
 
-### 23.3 Láminas de examen (16 bases, 29 archivos localizados) — 1280 × 720, mostradas a 640 × 360
+### 23.3 Láminas de examen (16 bases, 30 archivos localizados) — 1280 × 720, mostradas a 640 × 360
 
 Las zonas de los dos señalamientos **se miden sobre el WebP ya generado**, nunca sobre las coordenadas supuestas de este documento ([[docs/lessons-learned/present-point-cover-crop.md]]).
 
@@ -4028,7 +4036,11 @@ Las zonas de los dos señalamientos **se miden sobre el WebP ya generado**, nunc
 | `examine_termografo.webp` | `bitacora_caldera` | Dos paneles. Arriba: hoja de bitácora de mantenimiento con el asiento manuscrito del 3 de diciembre y nota de la **sonda remota en el pasillo 7**. Abajo: **tira semanal archivada el 5 de diciembre**, cuadrícula de horas en horizontal y grados en vertical, **línea de tinta que sube de 19 °C a 31 °C y se aplana**, con un punto a lápiz marcado por el perito. |
 | `examine_efectos.webp` | `efectos_casimiro` | Dos paneles. Izquierda: **libreta de pasta negra abierta**, letra menuda y regular, márgenes trazados a regla, cinco puntos numerados legibles; **el punto cinco, más torcido que los otros cuatro**. Derecha: copia al carbón morada y traslúcida de un oficio, con sello de acuse fechado **8 NOV** y, encima, escrito a lápiz por otra mano: «pendiente». Al lado, dos relojes de pulsera parados. |
 
-**Variantes localizadas al inglés (13):** `examine_esquina_tarjeta_en.webp`, `examine_libro_visitas_en.webp`, `examine_libro_peritos_en.webp`, `examine_plano_archivo_en.webp`, `examine_nota_renta_en.webp`, `examine_acuse_en.webp`, `examine_credencial_en.webp`, `examine_inventario_en.webp`, `examine_expediente_serie_en.webp`, `examine_tomo_caido_en.webp`, `examine_ficha_domicilio_en.webp`, `examine_termografo_en.webp` y `examine_efectos_en.webp`. En todas, el texto legible sostiene un argumento y debe coincidir con el catálogo inglés; composición, defectos mecánicos, fechas y marcas físicas permanecen iguales. `examine_estante_consulta.webp`, `examine_huacal9.webp` y `examine_maquina.webp` se comparten porque sus marcas operativas son números, fechas o geometría, no prosa.
+**Variantes localizadas al inglés (14):** `examine_esquina_tarjeta_en.webp`, `examine_libro_visitas_en.webp`, `examine_libro_peritos_en.webp`, `examine_plano_archivo_en.webp`, `examine_nota_renta_en.webp`, `examine_acuse_en.webp`, `examine_credencial_en.webp`, `examine_inventario_en.webp`, `examine_expediente_serie_en.webp`, `examine_tomo_caido_en.webp`, `examine_ficha_domicilio_en.webp`, `examine_termografo_en.webp`, `examine_efectos_en.webp` y **`examine_huacal9_en.webp`**. En todas, el texto legible sostiene un argumento y debe coincidir con el catálogo inglés; composición, defectos mecánicos, fechas y marcas físicas permanecen iguales.
+
+> **Por qué el huacal también se localiza.** Su argumento no es un número: es la **abreviatura del día de la semana**. El `followUp` de D3-T1 se gana leyendo `SÁB` en las dos tiras superiores, y esa abreviatura es española. La variante inglesa usa `SAT 4-XII` y el diálogo inglés lee el mismo día. Sólo `examine_estante_consulta.webp` y `examine_maquina.webp` se comparten: sus marcas operativas son números y geometría, y el defecto de la máquina es la letra `s`, que es la misma en los dos idiomas.
+
+> **Regla de localización del defecto tipográfico.** El caso entero se cierra sobre **la `s` minúscula caída**. Toda línea traducida que se imprima dentro de una lámina cuestionada —el domicilio del fragmento y de la ficha, los tres renglones de la nota, los seis de la ficha del museo, la tarjeta de julio— **debe seguir conteniendo al menos una `s` minúscula visible**, y el fragmento de `esquina_tarjeta` debe conservar su reparto en cuatro renglones con la `s` dentro del pedazo. Si una traducción elimina la `s` del trozo visible, se reescribe la traducción, nunca la lámina.
 
 ### 23.4 Láminas explicativas (9) — 1280 × 720
 
@@ -4101,14 +4113,13 @@ Este apartado manda sobre las cronologías, el guion, la tabla de descarte y la 
 | 16:55–17:02 | Espera oculta | — | 7:00 | A las 17:00 los custodios bajan a firmar |
 | 17:02–17:03 | Golpe, caída del tomo y colocación del fragmento | Pasillo 7 | 1:00 | Arma en el suelo; ranura 11 vacía |
 | 17:03–17:04:30 | Primer piso → sótano | Montacargas de carga | 1:30 | A1 ante el huacal 9 |
-| 17:04:30–17:06:30 | Levantar tapa y extraer el Tomo XI de lujo | Pata de cabra | 2:00 | Libro fuera; huacal abierto |
-| 17:06:30–17:08 | Sótano → primer piso con 2.8 kg | Montacargas de carga | 1:30 | Libro ante el estante |
-| 17:08–17:08:30 | Colocar el tomo en la ranura 11 | A mano | 0:30 | Estante completo |
-| 17:08:30–17:10 | Primer piso → sótano | Montacargas de carga | 1:30 | A1 vuelve al huacal |
-| 17:10–17:12:30 | Recolocar tapa, pegar tira, firmar y fechar | A mano | 2:30 | Segunda tira del 4-XII |
-| 17:12:30–17:14 | Sótano → descanso del patio y salida | Montacargas de carga | 1:30 | A1 fuera antes del relevo |
+| 17:04:30–17:07:30 | Levantar tapa (2:00 declarados por A6) y extraer el Tomo XI de lujo | Pata de cabra | 3:00 | Libro fuera; huacal abierto |
+| 17:07:30–17:10:30 | Recolocar tapa, cerrar los cuatro broches y pegar la tira (2:30 declarados por A6) más firmarla y fecharla | A mano | 3:00 | Segunda tira del 4-XII, rubricada |
+| 17:10:30–17:12 | Sótano → primer piso con 3.4 kg | Montacargas de carga | 1:30 | Libro ante el estante |
+| 17:12–17:12:30 | Colocar el tomo en la ranura 11 | A mano | 0:30 | Estante completo |
+| 17:12:30–17:14 | Primer piso → descanso del patio y salida | Montacargas de carga | 1:30 | A1 fuera antes del relevo |
 
-El circuito del crimen (17:02–17:14) consume los doce minutos completos: no admite una subida por los ciento veinte escalones, una cuarta parada ni una operación adicional. La aproximación (16:40–17:02) usa el montacargas entre el sótano y el primer piso, porque la escalera tarda diez minutos y los tramos disponibles son de cinco. Cualquier cambio de ruta obliga a recalcular esta tabla antes de tocar el guion.
+**A1 sella el huacal antes de subir el tomo, no después.** Es su carácter —no deja una tapa abierta más de lo necesario— y es lo que hace caber el circuito: son **tres** trayectos de montacargas, no cuatro. El circuito del crimen (17:02–17:14) consume los doce minutos completos: no admite una subida por los ciento veinte escalones, un cuarto trayecto ni una operación adicional. Las dos manipulaciones del huacal respetan las duraciones que el Chómpiras declara en D3-T1 (dos minutos abrir; dos y medio cerrar y poner la tira) más el tiempo de escribir la rúbrica y la fecha. La aproximación (16:40–17:02) usa el montacargas entre el sótano y el primer piso, porque la escalera tarda diez minutos y los tramos disponibles son de cinco. Cualquier cambio de ruta obliga a recalcular esta tabla antes de tocar el guion.
 
 ### 24.C Rastros, accesos y flujos de dinero
 
@@ -4121,7 +4132,7 @@ El circuito del crimen (17:02–17:14) consume los doce minutos completos: no ad
 | **F5** | Relevo sin custodios | A9 | 4 dic, 17:00–17:15 | Reja desatendida | D1-T2 | Abre la oportunidad material. No coloca a una persona concreta. |
 | **F6** | Ventana forense normal y corregida | A8 | 17:00–17:30 / 16:35–17:05 | 20 °C supuestos / 31 °C reales | GIRO 4 | La ventana corregida incluye a Don Ramón y Berrondo. La hora deja de atribuir autoría. |
 | **F7** | Libros visibles | A1, A8 | 17:35 | 23 en el estante + 1 en el suelo = 24 físicos | Clímax E3 | La colección publicada tuvo 23 tomos porque el XIII nunca existió. Una de las 24 copias físicas vino del huacal. |
-| **F8** | Tomo XI de lujo y dos sellos del 4 de diciembre | A1 | 16:10–16:40 y 17:04:30–17:12:30 | Primera apertura con vale; segunda apertura sin vale; huacal → montacargas → ranura 11 → huacal | Clímax E3 | La fotografía muestra dos sellos. El vale sólo registra la revisión inicial; el segundo circuito cabe únicamente por el montacargas presupuestado en §24.B. |
+| **F8** | Tomo XI de lujo y dos sellos del 4 de diciembre | A1 | 16:10–16:40 y 17:04:30–17:12:30 | Primera apertura con vale; segunda apertura sin vale; huacal → montacargas → ranura 11 → huacal | Clímax E3 | La fotografía muestra dos sellos **y ambos llevan la rúbrica de Berrondo**, que se lee en voz alta en E3: atribuyen a A1 una segunda apertura el día del crimen. El vale sólo registra la revisión inicial, de modo que la segunda no quedó registrada. El circuito cabe únicamente por el montacargas presupuestado en §24.B. |
 | **F9** | Esquina colocada y tarjeta de domicilio rota | A1 | 4 dic, 17:02 / hallazgo E4 | Cedulario → mano de A3 | D1-T2, clímax E4 | El fragmento fue plantado y empata con la tarjeta. |
 | **F10** | La misma `s` caída en tres documentos cuestionados y en una muestra judicial | A1 y máquina 41 | 1971–1982; muestra del 9 dic | Máquina → documentos | Clímax E5 | Atribuye los tres papeles antiguos a la máquina cotejada con la cuarta hoja de muestra. No atribuye por sí sola quién pulsó las teclas: para ello hace falta la cadena de acceso, actos documentados y reacción posterior de Berrondo. |
 | **F11** | Panel A y panel B del expediente de serie | A1 / cliente del Caso 1 | Julio / agosto | Sociedad disuelta / ficha operativa | Señalamiento 1, GIRO 2 | Juntos justifican inspeccionar el cedulario. Los paneles C, D y E sólo dan contexto. |
@@ -4131,6 +4142,7 @@ El circuito del crimen (17:02–17:14) consume los doce minutos completos: no ad
 | **F15** | Rutina de apertura del huacal | A1, empleados sucesivos, A6 | 1971–1982 | Síndico abre; empleado destapa acompañado | D3-T1 | La rutina tiene once años y dejó más de 250 tiras permanentes. Chómpiras sólo conoce su tramo desde septiembre. |
 | **F16** | Llegada habitual y llegada real del actuario | A1, A5, A10 | Cuatro sábados anteriores / 4 dic, 17:44 | Juzgado contiguo → acceso de peritos | D2 correspondencia; D2-T2 | A1 podía prever que A10 no estaría a las 17:00. El asiento real explica su ausencia durante el crimen; no coloca a A1 en el pasillo. |
 | **F17** | Vale del 29 de noviembre | A1, A5 | 29 nov | Solicitante: licenciado Fulgencio Berrondo; firma: F. Berrondo; cajón Donceles a Espanto | D4-T1; clímax E1 | Atribuye a A1 la consulta del cajón que contenía la ficha de Don Ramón. La fecha es un lunes y refuta la rutina de los jueves declarada por A1. Sin nombre y firma sólo probaría que alguien consultó el cajón. |
+| **F18** | Conocimiento del relevo de custodios y del retraso del actuario | A1, Chimoltrufia | 29 nov, ventanilla de correspondencia | Chimoltrufia → A1, de viva voz, al entregar el acuse | D2 correspondencia (**sólo investigación**) | Acredita, **para el jugador**, que A1 supo que a las 17:00 cambian de turno y que Balbuena nunca llega antes de las 17:15. **Nunca se alega en el estrado:** la Chimoltrufia no declara y no nombra a nadie. Sostiene la fila 4 de §20.1; no es uno de los cuatro datos de E1 ni interviene en ninguna etapa del clímax. |
 
 ### 24.D Invariantes
 
@@ -4148,8 +4160,15 @@ El circuito del crimen (17:02–17:14) consume los doce minutos completos: no ad
 | **I10** | El crimen ocurre el sábado 4 de diciembre de 1982; las jornadas judiciales van del lunes 6 al jueves 9. La notificación y la renta son del lunes 29 de noviembre; el retiro, del viernes 26. | Asignar días de la semana imposibles o romper los intervalos de la cronología. |
 | **I11** | Dos aperturas mensuales durante once años producen más de 250 tiras permanentes; las dos tiras superiores son las del 4 de diciembre. | Reducir el historial del huacal a 41 aperturas o confundir el total con las tiras del crimen. |
 | **I12** | Toda versión del crimen conserva los tramos de §24.B, incluida la aproximación 16:40–17:02. El tramo 16:40→16:45 y el circuito 17:02–17:14 usan el montacargas; A1 nunca sube los ciento veinte escalones. | Hacer materialmente imposible el reemplazo del tomo o la aproximación. |
+| **I26** | Toda vista que describa el circuito lo narra en el orden abrir → extraer → **sellar** → subir → colocar → salir, con **tres** trayectos de montacargas. | Volver al orden de cuatro trayectos, que no cabe en los doce minutos una vez respetadas las duraciones del Chómpiras. |
+| **I27** | Ningún tramo del huacal se presupuesta por debajo de lo que A6 declara en D3-T1 (2:00 abrir, 2:30 cerrar y poner la tira), y la apertura suma además la extracción y el cierre la firma y la fecha. | Presupuestar una operación en el tiempo exacto que un testigo asigna sólo a una parte de ella. |
+| **I28** | El tomo caído pesa 2.8 kg; el ejemplar de lujo, más grueso y con cantoneras, tiene peso propio (3.4 kg) y nunca hereda el del arma. | Restar el peso de una vista a otra y hacer indistinguibles los dos ejemplares en el presupuesto. |
+| **I29** | Las filas de §4.2 van en orden cronológico estricto. | Que una fila se lea antes del hecho al que su propio texto remite. |
+| **I30** | Una lámina sólo se comparte entre idiomas si **ningún** dato que sostiene un argumento es prosa ni abreviatura de idioma. `SÁB` es abreviatura española, así que `examine_huacal9` se localiza. | Compartir una lámina cuyo argumento el jugador inglés no puede leer. |
+| **I31** | Toda línea traducida impresa en una lámina cuestionada conserva al menos una `s` minúscula visible, y el fragmento conserva sus cuatro renglones. | Dejar sin defecto visible los documentos sobre los que se cierra el caso. |
+| **I32** | Los dos refranes empalmados y el chiste de palabra difícil se **sustituyen** en inglés por equivalentes que conserven su función; no se traducen literalmente ni se reescriben los casos anteriores. | Perder el chiste, la corrección de Berrondo o el eco del Caso 0 al localizar. |
 | **I13** | Toda persona esperada o presente entre 17:00 y 17:35 aparece en §24.A con hora, acceso y registro. A10 entra a las 17:44, después del hallazgo; los custodios cubren 17:00–17:15 como ausencia. | Borrar al actuario o convertir los libros en censos incompletos sin explicación. |
-| **I14** | Todo documento usado para atribuir una acción identifica al actor en pantalla. F17 siempre muestra solicitante y firma. | Afirmar que Berrondo abrió un cajón con un vale anónimo. |
+| **I14** | Todo documento usado para atribuir una acción identifica al actor **en pantalla, en el bloque que lo usa**. F17 muestra solicitante y firma; la segunda tira del 4-XII se lee con su rúbrica dentro de E3. | Afirmar que Berrondo abrió un cajón con un vale anónimo, o cargarle una apertura clandestina descrita como si no llevara firma. |
 | **I15** | La prueba exigida en cada presentación contiene la respuesta visible. El `followUp` de D3-T1 exige `huacal_9`, cuyas dos tiras superiores dicen «SÁB 4-XII». | Exigir conocimiento de calendario externo o una respuesta ausente del Acta. |
 | **I16** | Cada conclusión conserva el alcance de su prueba: el recibo no identifica al pagador; la muestra identifica la máquina, no al mecanógrafo ni al homicida; el dictamen inicial no excluye por sí solo dos minutos. | Convertir indicios circunstanciales en identificaciones directas. |
 | **I17** | La espera de A1 tras los estantes termina antes de las 16:50; la hora del libro es la de la devolución del gafete. Ninguna vista narra esperar hasta las 16:50 y bajar entonces. | Hacer imposible la devolución registrada o mover la hora del libro. |
@@ -4169,6 +4188,10 @@ No quedan puntos abiertos en la posibilidad material del crimen, la asistencia p
 Pasada del 2026-09-17 (lentes 8 y 9): ocho hallazgos registrados y corregidos en el mismo pase — seis como invariantes I17–I21 con pruebas relacionales, la suma de §9 bajo prueba propia y la fila de audio en §25. Ninguno dejó un punto abierto.
 
 Pasada del 2026-09-17 (lente 10, conformidad con las reglas duras del episodio): cinco hallazgos registrados y corregidos en el mismo pase — la antigüedad del Sargento (I22), su asistencia a los cuatro juicios de agosto–octubre (I23), la ese caída en los paneles A y B del tablero del Señalamiento 1 (I24) y dos filas de §20 que no describían lo que el guion ejecuta (I25). Ninguno dejó un punto abierto.
+
+Pasada del 2026-09-17 (lente 11, defensa adversaria del culpable): cinco hallazgos registrados y corregidos en el mismo pase — la rúbrica de la segunda tira, que se usaba para atribuir una apertura clandestina sin identificarse en pantalla (I14 ampliada); el cobro de la pista del relevo en un «dato tercero» de E1 que no existía, resuelto creando F18 y marcando la fila 4 de §20.1 como conocimiento del jugador y no alegato del estrado; el presupuesto del huacal, que asignaba a «abrir y extraer» el tiempo que A6 declara sólo para abrir (I26, I27); el peso del arma heredado por el ejemplar de lujo (I28); y el orden de las filas de §4.2 (I29). Ninguno dejó un punto abierto.
+
+Pasada del 2026-09-17 (lente 12, paridad de localización ES↔EN): tres hallazgos registrados y corregidos en el mismo pase — `examine_huacal9` se declaraba compartida entre idiomas aunque su argumento es la abreviatura española `SÁB` (I30); ninguna regla obligaba a que las traducciones de las láminas cuestionadas conservaran la `s` minúscula sobre la que se cierra el caso (I31); y §22.1 y §22.2 no decían cómo sobreviven a la traducción los dos refranes empalmados ni el chiste de palabra difícil (I32). Ninguno dejó un punto abierto.
 
 ---
 

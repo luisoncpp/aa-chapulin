@@ -23,6 +23,7 @@ flowchart TD
     Composer --> TrackCatalog[TrackCatalog]
     TrackCatalog --> CourtroomTracks[CourtroomTracks]
     TrackCatalog --> TurnaroundTracks[TurnaroundTracks]
+    TrackCatalog --> TruthTracks[TruthTracks]
     TrackCatalog --> AtmosphereTracks[AtmosphereTracks]
     TrackCatalog --> InvestigationTracks[InvestigationTracks]
 ```
@@ -57,7 +58,7 @@ Real-time step sequencer delegating voice rendering to [[src/audio/Private/Synth
 - **Pitch Math** ([[src/audio/Private/SynthVoiceSynthesizer.ts#Pitch Calculation]]): Standard MIDI note to Hz formula:
   $$f = 440 \times 2^{\frac{m - 69}{12}}$$
 - **Anti-Fatigue Multi-Section Loop Design**:
-  All 8 soundtrack themes feature 64 to 128 steps (8 to 16 bars, ~25–45s loop duration) structured into 4 narrative phrases (Exposition, Tension/Development, Climax, and Cadence Turnaround) with polyphonic harmonic backing and breathing rests to prevent ear fatigue during extended gameplay sessions.
+  All soundtrack themes feature 64 to 256 steps (8 to 32 bars, ~25–45s loop duration) structured into 4 narrative phrases (Exposition, Tension/Development, Climax, and Cadence Turnaround) with polyphonic harmonic backing and breathing rests to prevent ear fatigue during extended gameplay sessions.
 
 ### Track Catalog ([[src/audio/Private/TrackCatalog.ts]])
 
@@ -75,6 +76,7 @@ Modularized into private track collections under `src/audio/Private/tracks/`:
 11. `detention_center` (70 BPM, 128 steps) - Somber Bb Minor jailer's elegy for visitor room interviews ([[src/audio/Private/tracks/AtmosphereTracks.ts]])
 12. `suspense` (116 BPM, 128 steps) - D Minor final-showdown habanera for the climax verdict dilemma: staccato tango heartbeat groove, Dm-Bb-A7 harmonic minor pressure, and chromatic turnaround ([[src/audio/Private/tracks/AtmosphereTracks.ts]])
 13. `victory` (136 BPM, 128 steps) - Celebratory G Major case resolution march ("¡Síganme los buenos!") ([[src/audio/Private/tracks/AtmosphereTracks.ts]])
+14. `truth` (96 BPM, 256 steps, 40 seconds) - "The Missing Premise", an original E minor trial-reveal theme. Four four-bar phrases develop a rising question over broken eighth-note voicings: an E pedal opening, an Am / Em/G / F# half-diminished / B7 development, a higher Cmaj7 / D / Em / B7 climax, and an Am / Cmaj7/G / B7sus4 / B7 return. Quarter-note bass pulses suit the fixed synth envelopes; percussion expands at the climax and recedes before the leading tone returns to E. Uses the existing `truth` cue and jukebox entry ([[src/audio/Private/tracks/TruthTracks.ts]]).
 
 ### Terraza Bar
 
@@ -85,4 +87,6 @@ Modularized into private track collections under `src/audio/Private/tracks/`:
 - **Autoplay Handling**: Audio is muted by default until the player interacts with the start splash overlay or document, avoiding browser console autoplay warnings.
 - **Node Cleanup**: Oscillators and buffer sources call `.stop()` and are garbage-collected automatically once their envelopes finish.
 - **Seamless Switching**: Calling `playTrack()` clears existing playback timers before starting a different composition. Catalog aliases that reference the same `TrackDefinition` keep the current sequencer position, so narrative labels such as `victory` and `epilogue` do not restart the music during a scene transition.
-- **Narrative Cue Switching**: Dialogue lines can override the active testimony loop with `objection` at a successful contradiction and `pursuit` at a follow-up turnabout. The cue belongs on the first line of the queued reveal dialogue so the dramatic transition happens before the explanation continues.
+- **Pause / Resume / Seek (jukebox)**: `pause()` clears the interval but keeps `currentTrack` and `step`. `resumePaused()` re-arms the timer without resetting `step`. `seekToStep(n)` clamps to `track.length - 1`. `getPlaybackSnapshot()` exposes `{ track, step % length, length, isPlaying }` for UI. `stop()` remains the gameplay contract (`isPlaying=false`, `currentTrack=null`).
+- **Soundtrack playlist**: `listSoundtrack()` in [[src/audio/index.ts]] walks `TRACK_CATALOG` in insertion order, skips duplicate `TrackDefinition` aliases (e.g. `epilogue`), and returns `{ id, bpm, length, durationMs }` entries for the title-screen jukebox.
+- **Narrative Cue Switching**: Dialogue cues are chosen by dramatic job: `objection` scores a single successful contradiction (the breakthrough moment); `pursuit` scores the follow-up turnabout that chases a cornered witness. `truth` is different and script-driven only (`bgm: 'truth'` on the dialogue block): use it for the big truth-reveal sequences where the case's real story is laid out after the cornering — the "here is what really happened" narration — and switch back to the testimony/cross-exam loop when court business resumes. `suspense` is never a reveal: it opens the pre-verdict climax dilemma, and `victory` is the happy release that `truth` deliberately withholds.

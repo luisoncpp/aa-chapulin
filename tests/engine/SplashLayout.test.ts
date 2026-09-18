@@ -71,6 +71,15 @@ describe('splash layout fits the 960x540 stage', () => {
     expect(cssProp(langCorner, 'right')).toBe('18px');
   });
 
+  it('positions the music notes button top-left without affecting stack height', () => {
+    const musicCorner = cssRule(css, '.splash-music-corner');
+    expect(cssProp(musicCorner, 'position')).toBe('absolute');
+    expect(cssProp(musicCorner, 'left')).toBe('18px');
+    expect(cssProp(musicCorner, 'top')).toBe('14px');
+    expect(html).toContain('id="btn-music-player"');
+    expect(splashStackHeight(css)).toBeLessThanOrEqual(STAGE_H);
+  });
+
   it('keeps the overlay inside 960x540 viewport without overflow clipping', () => {
     expect(cssProp(overlay, 'overflow')).toBe('hidden');
   });

@@ -7,6 +7,7 @@
 import type { TrackCatalogMap } from '../../types/index.js';
 import { crossExamAllegroTrack, crossExamModeratoTrack, trialTrack } from './tracks/CourtroomTracks.js';
 import { objectionTrack, pursuitTrack } from './tracks/TurnaroundTracks.js';
+import { truthTrack } from './tracks/TruthTracks.js';
 import { investigationTrack, suspenseTrack, victoryTrack, detentionCenterTrack } from './tracks/AtmosphereTracks.js';
 import {
   callejonPostalTrack,
@@ -27,6 +28,7 @@ export const TRACK_CATALOG: TrackCatalogMap = {
   // @Section(Objection & Pursuit Turnaround Tracks)
   objection: objectionTrack,
   pursuit: pursuitTrack,
+  truth: truthTrack,
 
   // @Section(Atmosphere & Celebration Tracks)
   investigation: investigationTrack,

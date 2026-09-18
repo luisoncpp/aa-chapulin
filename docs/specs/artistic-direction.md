@@ -179,4 +179,5 @@ The procedural tracker drives 4 concurrent polyphonic channels: **Lead Synth** (
 | `pursuit` | *¡Que No Panda el Cúnico!* | 156 BPM | Climax Cornered theme; escalating chord progressions pushing the culprit to breakdown. |
 | `investigation` | *Museo de Curiosidades* | 112 BPM | Jaunty mystery groove; syncopated walking bass with vibraphone-like synth flourishes. |
 | `suspense` | *La Verdad al Descubierto* | 96 BPM | Dark pulsing revelation drone with clock-ticking hi-hat tension. |
+| `truth` | *Verdad — La Revelación* / *Truth — The Revelation* | 96 BPM | Original E minor composition, "The Missing Premise". A 40-second loop moves from a questioning motif and rolling inner voice to a higher, fuller revelation, then withdraws into a suspended dominant return. Sparse opening percussion grows at the climax. Scores the central account of what happened; victory remains the verdict release. Script-driven through `bgm: 'truth'`; return to the testimony loop when court business resumes. |
 | `victory` | *¡Síganme los Buenos!* | 136 BPM | Triumphant brass celebration fanfare celebrating a "Not Guilty" verdict. |

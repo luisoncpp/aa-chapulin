@@ -9,6 +9,8 @@ import { SoundEngine } from './Private/SoundEngine.js';
 
 export { SoundEngine } from './Private/SoundEngine.js';
 export { MidiMusicComposer } from './Private/MidiMusicComposer.js';
+export { listSoundtrack } from './Private/SoundtrackPlaylist.js';
+export type { SoundtrackEntry } from '../types/index.js';
 
 // @Section(Singleton Engine Instances)
 export const soundEngine = new SoundEngine();

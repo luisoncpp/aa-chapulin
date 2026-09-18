@@ -95,6 +95,56 @@ export class MidiMusicComposer {
     if (midi) this.playNote(midi, duration, opts);
   }
 
+  public pause(): void {
+    if (!this.isPlaying) return;
+    this.isPlaying = false;
+    if (this.timer) {
+      clearInterval(this.timer);
+      this.timer = null;
+    }
+  }
+
+  // fallow-ignore-next-line complexity
+  public resumePaused(): void {
+    if (!this.currentTrack || this.isPlaying || this.timer) return;
+    const track = TRACK_CATALOG[this.currentTrack];
+    if (!track) return;
+    this.isPlaying = true;
+    this.bpm = track.bpm || 120;
+    const stepTimeMs = 60000 / this.bpm / 4;
+    this.timer = setInterval(/*onStep*/ () => {
+      this.tickTrack(this.currentTrack!);
+    }, /*delayInMs=*/ stepTimeMs);
+  }
+
+  public seekToStep(step: number): void {
+    if (!this.currentTrack) return;
+    const track = TRACK_CATALOG[this.currentTrack];
+    if (!track) return;
+    const max = Math.max(0, track.length - 1);
+    this.step = Math.max(0, Math.min(step, max));
+  }
+
+  // fallow-ignore-next-line complexity
+  public getPlaybackSnapshot(): {
+    track: TrackName | null;
+    step: number;
+    length: number;
+    isPlaying: boolean;
+  } {
+    if (!this.currentTrack) {
+      return { track: null, step: 0, length: 0, isPlaying: false };
+    }
+    const track = TRACK_CATALOG[this.currentTrack];
+    const length = track?.length ?? 0;
+    return {
+      track: this.currentTrack,
+      step: length > 0 ? this.step % length : 0,
+      length,
+      isPlaying: this.isPlaying
+    };
+  }
+
   public resumePlayback(): void {
     if (this.queuedTrack && (!this.isPlaying || !this.timer)) {
       this.playTrack(this.queuedTrack);

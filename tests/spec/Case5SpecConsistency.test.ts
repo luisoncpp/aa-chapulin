@@ -91,7 +91,7 @@ describe('Case 5 specification consistency', () => {
 
   it('keeps detailed-view totals and target shapes implementation-ready', () => {
     expect(SPEC).toContain('`detailedView` | 16 pruebas');
-    expect(SPEC).toContain('16 bases, 29 archivos localizados');
+    expect(SPEC).toContain('16 bases, 30 archivos localizados');
     expect(SPEC).not.toMatch(/(?:profileTarget|presentTarget): (?!\[)/);
   });
 
@@ -133,9 +133,29 @@ describe('Case 5 specification consistency', () => {
     expect(SPEC.toLowerCase()).toContain('más de doscientas cincuenta aperturas desde 1971');
   });
 
-  it('localizes every examine asset whose readable prose carries an argument', () => {
-    expect(SPEC).toContain('16 bases, 29 archivos localizados');
-    expect(SPEC).toContain('Variantes localizadas al inglés (13)');
+  it('localizes every examine asset whose readable prose carries an argument (I30)', () => {
+    const section = slice('### 23.3', '### 23.4');
+    const bases = [...section.matchAll(/^\| `(examine_\w+\.webp)` \|/gm)].map((m) => m[1]);
+    expect(bases.length).toBe(16);
+    const variants = [...section.matchAll(/`(examine_\w+_en\.webp)`/g)].map((m) => m[1]);
+    expect(new Set(variants).size).toBe(14);
+    expect(section).toContain(`16 bases, ${bases.length + variants.length} archivos localizados`);
+    expect(section).toContain(`Variantes localizadas al inglés (${variants.length})`);
+    // A plate may only be shared across languages if no argued mark is prose or a
+    // language-bound abbreviation. `SÁB` is Spanish, so the huacal must be localized.
+    for (const base of bases) {
+      const row = section.split('\n').find((l) => l.startsWith(`| \`${base}\``)) ?? '';
+      if (!/SÁB|DÍA/.test(row)) continue;
+      const en = base.replace('.webp', '_en.webp');
+      expect(variants, `${base} carries a Spanish weekday and must localize`).toContain(en);
+    }
+  });
+
+  it('keeps the fallen-s rule and the wordplay substitution rules explicit (I31, I32)', () => {
+    expect(slice('### 23.3', '### 23.4')).toContain('debe seguir conteniendo al menos una `s` minúscula visible');
+    expect(slice('### 22.1', '### 22.2')).toContain('En inglés no se traducen: se sustituyen.');
+    expect(slice('### 22.2', '## 23.')).toContain('**En inglés:**');
+    for (const inv of ['**I30**', '**I31**', '**I32**']) expect(SPEC).toContain(inv);
   });
 
   it('fires profile updates only at their declared revelations', () => {
@@ -404,6 +424,75 @@ describe('Case 5 structural relations', () => {
     const panelB = row!.slice(row!.indexOf('**B (21 AGO):**'), row!.indexOf('**C (28 AGO):**'));
     for (const panel of [panelA, panelB]) {
       expect(panel).toContain('media línea por debajo del renglón y medio grado inclinadas a la izquierda');
+    }
+  });
+
+  it('identifies the second seal strip on screen where it attributes the opening (I14)', () => {
+    const e3 = slice('### 18.3', '### 18.4');
+    const twoStrips = e3.indexOf('**dos** tiras de sello con fecha del cuatro de diciembre');
+    expect(twoStrips, 'E3 two-strip line').toBeGreaterThan(-1);
+    const attribution = e3.indexOf('F. Berrondo');
+    expect(attribution, 'E3 must read the rubric of the top strip').toBeGreaterThan(twoStrips);
+    expect(e3).not.toContain('Dos sellos, un vale. La segunda apertura fue clandestina.');
+    expect(slice('**F8**', '| **F9**')).toContain('rúbrica de Berrondo');
+  });
+
+  it('never cashes the relevo plant in a climax datum that does not exist', () => {
+    const e1 = slice('### 18.1', '### 18.2');
+    const data = [...e1.matchAll(/\*\*(Primera|Segunda|Tercera|Cuarta)\.\*\*([^\n]*)/g)];
+    expect(data.length, 'E1 numbered data').toBe(4);
+    for (const [, , text] of data) {
+      expect(text).not.toMatch(/relevo|cambian de turno/);
+    }
+    const row = SPEC.split('\n').find((l) => l.startsWith('| «¿Iba a haber policía?»'));
+    expect(row, '§21 relevo row').toBeTruthy();
+    expect(row).not.toContain('dato tercero');
+    expect(slice('**F18**', '### 24.D')).toContain('Nunca se alega en el estrado');
+  });
+
+  it('budgets each huacal handling above the duration its witness declares (I26, I27)', () => {
+    const declared = SPEC.match(
+      /Abrirla toma (\w+) minutos\. Cerrar los cuatro broches y poner la tira, (\w+) minutos y medio/,
+    );
+    expect(declared, 'Chompiras duration line').toBeTruthy();
+    expect([declared![1], declared![2]]).toEqual(['dos', 'dos']);
+    const budget = slice('### 24.B', '### 24.C');
+    expect(budget).toContain('| 17:04:30–17:07:30 |');
+    expect(budget).toContain('| 17:07:30–17:10:30 |');
+    expect(budget).not.toContain('| 17:04:30–17:06:30 |');
+    const lifts = [...budget.matchAll(/Montacargas de carga/g)].length;
+    expect(lifts, 'one approach lift + three circuit lifts').toBe(4);
+    expect(budget).toContain('sella el huacal antes de subir el tomo');
+  });
+
+  it('gives the luxury copy its own weight instead of the weapon (I28)', () => {
+    expect(SPEC).toContain('Dos kilos ochocientos');
+    expect(SPEC).not.toContain('con el tomo de 2.8 kg');
+    expect(SPEC).not.toContain('primer piso con 2.8 kg');
+    expect(SPEC).toContain('3.4 kg');
+  });
+
+  it('keeps every §4.2 row in chronological order (I29)', () => {
+    const rows = [...slice('### 4.2', '### 4.3').matchAll(/^\| (\d\d):(\d\d)/gm)].map(
+      (m) => `${m[1]}:${m[2]}`,
+    );
+    expect(rows.length).toBeGreaterThan(10);
+    for (let i = 1; i < rows.length; i += 1) {
+      expect(rows[i] >= rows[i - 1], `row ${rows[i]} after ${rows[i - 1]}`).toBe(true);
+    }
+  });
+
+  it('declares climax ranuras only for stages that accept that evidence', () => {
+    const ranuras = ranuraMap();
+    const climaxSection = slice('## 18.', '## 19.');
+    const accepted = new Set(
+      [...climaxSection.matchAll(/presentTarget: \['(\w+)'\]/g)].map((m) => m[1]),
+    );
+    expect(accepted.size, 'climax present stages').toBe(4);
+    for (const [id, ranura] of ranuras) {
+      const climax = ranura.match(/[Cc]límax E(\d)/);
+      if (!climax) continue;
+      expect(accepted.has(id), `§5 claims ${id} as a climax slot`).toBe(true);
     }
   });
 

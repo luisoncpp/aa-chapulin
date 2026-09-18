@@ -39,6 +39,8 @@ Operational guide for the procedural Web Audio API synthesizer, MIDI music track
 1. A correct contradiction queues its `successDialogue`.
 2. The first reveal line carries `bgm: 'objection'`, switching away from the testimony loop before the objection is explained.
 3. If the contradiction has a follow-up turnabout, its first line carries `bgm: 'pursuit'` and takes over for the remainder of that reveal.
+4. After the witness is cornered, the "here is what really happened" narration — the case's central truth argued at length — carries `bgm: 'truth'` on its first line instead. `truth` develops E minor tension through a fuller revelation and a suspended dominant return; the happy release belongs to `victory` at the verdict. When court business resumes, switch back to the testimony/cross-exam loop.
+5. `suspense` is never a reveal cue: it opens the pre-verdict climax dilemma (see [[docs/flows/trial-cross-examination-flow.md]]).
 
 ### On-Demand SFX Generation
 1. Game Engine calls specific SFX method (e.g. `playGavel()`):

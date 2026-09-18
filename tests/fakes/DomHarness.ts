@@ -65,7 +65,30 @@ export function setupDomHarness(): DomElements {
       </div>
       <div id="confetti-container" class="hidden"></div>
       <div id="start-splash-overlay">
+        <button id="btn-music-player" class="splash-lang-corner splash-music-corner">♫</button>
         <button id="btn-lang-splash">IDIOMA</button>
+        <div id="music-player-modal" class="game-modal hidden">
+          <div class="modal-window music-player-window">
+            <div class="modal-header">
+              <h2 id="music-player-title">BANDA SONORA</h2>
+              <button id="btn-close-music-player" class="close-btn">X</button>
+            </div>
+            <div class="music-player-body">
+              <div class="music-player-album">
+                <p id="music-player-now-playing">—</p>
+                <div class="music-player-transport">
+                  <button id="btn-music-prev">⏮</button>
+                  <button id="btn-music-play">▶</button>
+                  <button id="btn-music-pause">⏸</button>
+                  <button id="btn-music-stop">⏹</button>
+                  <button id="btn-music-next">⏭</button>
+                </div>
+                <div id="music-player-seek"><div id="music-player-seek-fill"></div></div>
+              </div>
+              <ol id="music-player-track-list"></ol>
+            </div>
+          </div>
+        </div>
         <button id="btn-continue-game" class="hidden">CONTINUAR</button>
         <button id="btn-start-case0">CASO 0</button>
         <button id="btn-start-game">COMENZAR</button>

@@ -31,6 +31,7 @@ import { ModalManager } from './ModalManager.js';
 import { rebindPresentPointScript } from './PresentPoint.js';
 import { TrialController } from './TrialController.js';
 import { Typewriter } from './Typewriter.js';
+import { bindMusicPlayer, stopMusicPlayerIfOpen } from './MusicPlayer/index.js';
 import { UiLanguageUpdater } from './UiLanguageUpdater.js';
 
 export interface GameEngineDeps {
@@ -116,6 +117,10 @@ export class GameEngine {
       onLoadGame: () => this.loadGame(),
       onContinueGame: () => this.loadGame()
     });
+    bindMusicPlayer(this.dom, {
+      composer: this.midiComposer,
+      soundEngine: this.soundEngine
+    });
     ModalManager.updateHealthUI(this.dom.healthBarEl, this.state.health, this.state.maxHealth);
     this.setLanguage(this.state.language);
     this.updateContinueButton();
@@ -144,6 +149,7 @@ export class GameEngine {
   }
 
   public startGame(caseId: CaseId = 'case1'): void {
+    stopMusicPlayerIfOpen(this.dom);
     this.dialogue.clearHistory();
     launchGame(this.host(), caseId);
   }

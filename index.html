@@ -117,7 +117,35 @@
 
         <!-- Title / Audio Unlock Splash Overlay -->
         <div id="start-splash-overlay">
+            <button id="btn-music-player" class="splash-lang-corner splash-music-corner" title="Abrir reproductor de música">♫</button>
             <button id="btn-lang-splash" class="splash-lang-corner" title="Cambiar Idioma / Switch Language">🇲🇽 ES</button>
+            <div id="music-player-modal" class="game-modal hidden">
+                <div class="modal-window music-player-window">
+                    <div class="modal-header">
+                        <h2 id="music-player-title">BANDA SONORA</h2>
+                        <button id="btn-close-music-player" class="close-btn">X</button>
+                    </div>
+                    <div class="music-player-body">
+                        <div class="music-player-album">
+                            <div class="music-player-vinyl">
+                                <img src="assets/chapulin_point.webp" alt="Chapulín" class="music-player-cover">
+                            </div>
+                            <p id="music-player-now-playing" class="music-player-now">—</p>
+                            <div class="music-player-transport">
+                                <button id="btn-music-prev" type="button" class="music-transport-btn" aria-label="Previous">⏮</button>
+                                <button id="btn-music-play" type="button" class="music-transport-btn" aria-label="Play">▶</button>
+                                <button id="btn-music-pause" type="button" class="music-transport-btn" aria-label="Pause">⏸</button>
+                                <button id="btn-music-stop" type="button" class="music-transport-btn" aria-label="Stop">⏹</button>
+                                <button id="btn-music-next" type="button" class="music-transport-btn" aria-label="Next">⏭</button>
+                            </div>
+                            <div id="music-player-seek" class="music-player-seek" role="slider" aria-label="Seek">
+                                <div id="music-player-seek-fill" class="music-player-seek-fill"></div>
+                            </div>
+                        </div>
+                        <ol id="music-player-track-list" class="music-player-track-list"></ol>
+                    </div>
+                </div>
+            </div>
             <div class="splash-header">
                 <h1 class="splash-title">EL CHAPULÍN COLORADO</h1>
                 <h2 class="splash-subtitle">ACE ATTORNEY: EL CASO DEL ESCUADRÓN COLORADO</h2>

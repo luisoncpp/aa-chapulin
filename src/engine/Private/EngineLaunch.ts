@@ -10,6 +10,7 @@ import type { CaseId, CaseScript, TrialDay } from '../../types/index.js';
 import { hideCaseComplete } from './CaseComplete.js';
 import type { DomElements } from './DomElements.js';
 import { getAdjournmentForDay } from './TrialDayRouter.js';
+import { stopMusicPlayerIfOpen } from './MusicPlayer/index.js';
 import type { InvestigationController } from './InvestigationController.js';
 import type { TrialController } from './TrialController.js';
 
@@ -46,6 +47,7 @@ export function dismissSplash(dom: DomElements, soundEngine: SoundEngine): void 
 
 export function startGame(host: LaunchHost, caseId: CaseId = 'case1'): void {
   if (host.hasStarted) return;
+  stopMusicPlayerIfOpen(host.dom);
   hideCaseComplete(host.dom);
   host.markStarted();
   loadCase(host, caseId);
@@ -61,6 +63,7 @@ export function startGame(host: LaunchHost, caseId: CaseId = 'case1'): void {
 
 export function startTrialDebug(host: LaunchHost, day?: TrialDay): void {
   if (host.hasStarted) return;
+  stopMusicPlayerIfOpen(host.dom);
   hideCaseComplete(host.dom);
   host.markStarted();
   loadCase(host, host.state.caseId);

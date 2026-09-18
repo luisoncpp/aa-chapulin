@@ -4,7 +4,7 @@
  * Consumed by [[./I18nService.ts]], [[./ui_es.ts]], and [[./ui_en.ts]].
  */
 
-import type { Language } from '../../types/index.js';
+import type { Language, TrackName } from '../../types/index.js';
 
 export interface UiTranslations {
   // Navigation Buttons
@@ -59,6 +59,9 @@ export interface UiTranslations {
   btnStartTrialDebug: string;
   btnContinue: string;
   langToggleLabel: string;
+  musicPlayerTitle: string;
+  musicPlayerOpenTitle: string;
+  trackTitle: Record<TrackName, string>;
 
   // Location Names
   locationMuseum: string;

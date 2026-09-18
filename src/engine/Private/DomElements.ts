@@ -52,6 +52,9 @@ export interface DomElements {
   btnAudioToggleEl: HTMLButtonElement;
   btnLangToggleEl: HTMLButtonElement;
   btnLangSplashEl?: HTMLButtonElement;
+  btnMusicPlayer?: HTMLButtonElement;
+  musicPlayerModalEl?: HTMLElement;
+  musicPlayerTrackListEl?: HTMLOListElement;
   btnSaveGame?: HTMLButtonElement;
   btnHistory?: HTMLButtonElement;
   btnCloseHistory?: HTMLButtonElement;
@@ -147,6 +150,9 @@ export function getDomElements(): DomElements {
     btnAudioToggleEl: document.getElementById('btn-audio-toggle') as HTMLButtonElement,
     btnLangToggleEl: document.getElementById('btn-lang-toggle') as HTMLButtonElement,
     btnLangSplashEl: document.getElementById('btn-lang-splash') as HTMLButtonElement,
+    btnMusicPlayer: opt<HTMLButtonElement>('btn-music-player'),
+    musicPlayerModalEl: opt('music-player-modal'),
+    musicPlayerTrackListEl: opt<HTMLOListElement>('music-player-track-list'),
     btnSaveGame: document.getElementById('btn-save-game') as HTMLButtonElement,
     btnHistory: opt<HTMLButtonElement>('btn-history'),
     btnCloseHistory: opt<HTMLButtonElement>('btn-close-history'),

@@ -24,6 +24,7 @@ export type TrackName =
   | 'cross_exam_allegro'
   | 'objection'
   | 'pursuit'
+  | 'truth'
   | 'investigation'
   | 'investigation_core'
   | 'restaurante'
@@ -52,4 +53,11 @@ export interface TrackDefinition {
 }
 
 export type TrackCatalogMap = Record<TrackName, TrackDefinition>;
+
+export interface SoundtrackEntry {
+  id: TrackName;
+  bpm: number;
+  length: number;
+  durationMs: number;
+}
 

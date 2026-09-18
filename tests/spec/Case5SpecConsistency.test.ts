@@ -653,4 +653,139 @@ describe('Case 5 structural relations', () => {
     const tomotrece = slice('### 18.3', '### 18.4');
     expect(tomotrece).not.toContain('no pudo preguntárselo');
   });
+
+  it('does not spend the two-strip count before climax stage 3 (I40)', () => {
+    const d3t1 = slice('#### `followUp`: **`huacal_9`**', '### 15.3');
+    expect(d3t1).not.toContain('tiras superiores');
+    expect(d3t1).toContain('la tira de hasta arriba');
+    expect(d3t1).not.toContain('dos tiras');
+    expect(slice('### 18.3', '### 18.4')).toContain('**dos** tiras de sello');
+  });
+
+  it('grounds every trial allegation in an on-screen source (I41)', () => {
+    const d2Opening = slice('### 13.1', '### 13.2');
+    expect(d2Opening).toContain('diligencia de su apelación');
+    expect(d2Opening).not.toContain('fichero');
+    const firstOffer = SPEC.indexOf('ofrece entregar', SPEC.indexOf('## 10.'));
+    const carbón = SPEC.indexOf('### 14.3');
+    expect(firstOffer, 'the fichero offer first appears with efectos_casimiro').toBeGreaterThan(
+      carbón,
+    );
+    expect(slice('### 15.1', '### 15.2')).toContain('qué venía a señalar en ella');
+  });
+
+  it('keeps Berrondo self-descriptions consistent with his only sindicatura (I42)', () => {
+    expect(SPEC).not.toContain('síndico de concursos');
+    expect(SPEC).toContain('síndico desde marzo de 1971');
+    expect(SPEC).toContain('Mi primera sindicatura');
+  });
+
+  it('reserves the staircase count for the full flight only (I43, I12)', () => {
+    const dialogueUses = [...SPEC.matchAll(/^[A-ZÁÉÍÓÚÑ][^:\n]{0,25}:.*ciento veinte escalones/gm)];
+    expect(dialogueUses, 'no dialogue line claims the 120 steps').toEqual([]);
+    expect(SPEC).toContain('no usa los ciento veinte escalones');
+  });
+
+  it('keeps the fiscal self-quantifications compatible (I44)', () => {
+    expect(SPEC).toContain('ciento cuarenta oficios a la semana');
+    expect(SPEC).toContain('seiscientos oficios al mes');
+    expect(SPEC).not.toContain('ciento veinte oficios');
+  });
+
+  it('anchors the caldera day count to December 3 in every voice (I45)', () => {
+    const vestíbulo = slice('### 10.2', '### 10.3');
+    expect(vestíbulo).toContain('desde el tres de diciembre');
+    expect(vestíbulo).not.toContain('llevan cuatro días');
+    const celdaD4 = slice('### 16.1', '### 16.2');
+    expect(celdaD4).toContain('llevaban al máximo desde el tres');
+    expect(slice('### 17.1', '### 17.2')).toContain('los dejaron cuatro días');
+  });
+
+  it('declares §4.2 a derived view and budgets the approach lift (I54, I12)', () => {
+    const chrono = slice('### 4.2', '### 4.3');
+    expect(chrono).toContain('**Vista derivada** del Libro de hechos (§24)');
+    expect(chrono).toContain('| 16:40–16:45 |');
+    expect(chrono).not.toMatch(/^\| 16:45 \| Berrondo sube/m);
+  });
+
+  it('supports every descarte cell with a shown line (I49)', () => {
+    const descarte = slice('### 20.1', '## 21.');
+    const fila3 = descarte.split('\n').find((l) => l.startsWith('| Sabía con cinco días'));
+    expect(fila3, 'fila 3').toBeTruthy();
+    expect(fila3).toContain('citatorio del lunes');
+    const fila4 = descarte.split('\n').find((l) => l.startsWith('| Sabía que a las 17:00'));
+    expect(fila4, 'fila 4').toBeTruthy();
+    expect(fila4).toContain('31 años de relevos');
+    expect(fila4).toContain('lo leyó en el anexo, después');
+    expect(descarte).toContain('Nicanor, el Chómpiras y Genoveva');
+  });
+
+  it('cites only existing blocks in the §21 actuario row (I53)', () => {
+    const row = SPEC.split('\n').find((l) => l.startsWith('| El actuario habitual'));
+    expect(row, '§21 actuario row').toBeTruthy();
+    expect(row).toContain('§13.1');
+    expect(row).toContain('los cuatro antecedentes exactos viven sólo en §24.A/F16');
+    expect(row).not.toContain('D2-T2');
+  });
+
+  it('keeps the witness vales available for the blocks that consult them (I47)', () => {
+    const d4t1 = slice('### 17.2', '## 18.');
+    expect(d4t1).not.toContain('puede retirarse');
+    expect(d4t1).toContain('queda a disposición de esta corte');
+    expect(slice('### 18.4', '### 18.5')).toContain('su carpeta de vales, al secretario');
+  });
+
+  it('delivers what the judge ordered in stage 3 (I48)', () => {
+    const e3 = slice('### 18.3', '### 18.4');
+    expect(e3).toContain('el tomo que en ella sobra');
+    expect(e3).toContain('la fotografía pericial del estante');
+  });
+
+  it('restamps the camera on the first line after every plate or relato block (I46)', () => {
+    const lines = SPEC.split('\n');
+    for (const [i, line] of lines.entries()) {
+      const mark = line.trim();
+      if (mark !== '[FIN LÁMINA]' && mark !== '[FIN RELATO]') continue;
+      const next = lines
+        .slice(i + 1)
+        .find((l) => /^[A-ZÁÉÍÓÚÑ][^:\n]{0,25}: /.test(l));
+      expect(next, `first line after ${mark}`).toBeTruthy();
+      expect(
+        /bg:|pose:/.test(next!),
+        `${mark} at spec line ${i + 1}: ${next} must restamp bg or carry a pose`,
+      ).toBe(true);
+    }
+  });
+
+  it('lists the closed type unions in the integration contract (I50)', () => {
+    const integration = slice('## 25.', '<!-- APPEND-HERE');
+    for (const union of ['`EvidenceId`', '`ProfileId`', '`PoseName`']) {
+      expect(integration).toContain(union);
+    }
+    for (const file of ['evidence.ts', 'profile.ts', 'script.ts']) {
+      expect(integration, `integration names ${file}`).toContain(file);
+    }
+  });
+
+  it('enumerates the SFX the script actually uses (I50)', () => {
+    const integration = slice('## 25.', '<!-- APPEND-HERE');
+    expect(integration).toContain('`gavel`');
+    expect(integration).toContain('`desk_slam`');
+  });
+
+  it('inherits the museum card citation from its Case 1 source (I51)', () => {
+    const lectura = slice('### 15.3', '### 15.4');
+    expect(lectura).toContain('Malla floja en la esquina inferior');
+    expect(lectura).toContain('cuelga de un clavo en la caseta');
+    expect(lectura).toContain('Pastillas de chiquitolina');
+    expect(slice('### 4.3', '## 5.')).toContain('Servicio de cierre incluido. 5 min.');
+    expect(SPEC).not.toContain('incluido — 5 min');
+  });
+
+  it('updates perfil_berrondo stage 2 with what GIRO 2 executes (I52)', () => {
+    const perfil = SPEC.split('\n').find((l) => l.startsWith('| `perfil_berrondo`'));
+    expect(perfil, 'perfil_berrondo row').toBeTruthy();
+    expect(perfil).toContain('inspeccionar su huacal');
+    expect(perfil).not.toContain('ninguna tarjeta de 1971');
+  });
 });

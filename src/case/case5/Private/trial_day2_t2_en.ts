@@ -74,10 +74,10 @@ export const CASE5_TESTIMONY_5_EN: Testimony = {
       id: 'c5_d2t2_4',
       speaker: 'BERRONDO',
       pose: 'berrondo_idle',
-      text: 'I do not know and have not known any of the convicts whose files the defense has been paging through. Not even the deceased.',
+      text: 'I do not know and have not known any of the convicts whose files the defense has been paging through. Not even the victim.',
       pressText: [
         MOMENTO,
-        { speaker: 'DEFENSA', text: 'Not even the deceased? He was a distributor for your own company!', pose: 'chapulin_point' },
+        { speaker: 'DEFENSA', text: 'Not even the victim? He was a distributor for your own company!', pose: 'chapulin_point' },
         { speaker: 'BERRONDO', text: 'For the company I liquidated, counselor. Which is not my company: it is my file.', pose: 'berrondo_definicion' },
         { speaker: 'BERRONDO', text: 'One hundred ten distributors. I arrived when they were already dismissed. To me they were a labor-liability line item.', pose: 'berrondo_idle' },
         { speaker: 'JUEZ', text: 'You do not remember a single face?', pose: 'judge_shock' },

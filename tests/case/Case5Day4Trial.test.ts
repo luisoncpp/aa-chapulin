@@ -49,7 +49,7 @@ describe('Case 5 day 4 trial (Spanish)', () => {
   it('wires adjournment.next.next.trial openingPresent with bitacora_caldera only', () => {
     expect(day4.openingPresent?.evidence).toContain('bitacora_caldera');
     expect(day4.openingPresent?.profileTarget ?? []).toHaveLength(0);
-    expect(day4.openingPresent?.prompt).toBe('¿Con qué temperatura trabajó el legista?');
+    expect(day4.openingPresent?.prompt).toBe('¿Con qué temperatura trabajó el forense?');
     expect(en.adjournment?.next?.next?.trial.openingPresent?.evidence).toEqual(['bitacora_caldera']);
   });
 

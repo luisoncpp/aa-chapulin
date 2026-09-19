@@ -25,7 +25,7 @@ export const CASE5_DAY2_INTRO_FULL: DialogueLine[] = [
   { speaker: 'NARRADOR', text: 'Silencio absoluto en la sala.', bgm: 'suspense' },
   { speaker: 'DEFENSA', text: '(...El segundo nombre es el señor que me dio café esta mañana.)', pose: 'chapulin_panic' },
   { speaker: 'SUPER SAM', text: '¡Your Honor, antes de que la galería empiece a inventar!', pose: 'supersam_slam', sfx: 'desk_slam' },
-  { speaker: 'SUPER SAM', text: '¡El licenciado Berrondo es auxiliar de la justicia y estaba haciendo su trabajo! ¡Yo mismo lo invité a coadyuvar el lunes por la mañana, cuando él me comunicó su carácter de síndico del occiso!', pose: 'supersam_point' },
+  { speaker: 'SUPER SAM', text: '¡El licenciado Berrondo es auxiliar de la justicia y estaba haciendo su trabajo! ¡Yo mismo lo invité a coadyuvar el lunes por la mañana, cuando él me comunicó su carácter de síndico de la víctima!', pose: 'supersam_point' },
   { speaker: 'BERRONDO', text: 'Es exacto, señor juez. Yo se lo dije al señor fiscal el lunes por la mañana, antes de la primera audiencia.', pose: 'berrondo_idle' },
   { speaker: 'BERRONDO', text: 'Consideré que ocultarlo habría sido indigno y que declararlo sería útil. Me pareció que ambas cosas eran obvias.', pose: 'berrondo_idle' },
   { speaker: 'JUEZ', text: '¿La defensa tiene algo que decir?', pose: 'judge_thinking' },
@@ -35,7 +35,7 @@ export const CASE5_DAY2_INTRO_FULL: DialogueLine[] = [
   { speaker: 'DEFENSA', text: '(Y ahí se cerró la puerta.)', pose: 'chapulin_idle' },
   { speaker: 'DEFENSA', text: '(La señorita de la ventanilla lleva ese libro. Me la apunto en el Acta, aunque hoy no me sirva.)', pose: 'chapulin_idle', addEvidence: 'libro_peritos', addProfile: 'perfil_genoveva' },
   { speaker: 'JUEZ', text: 'Y antes de oír al testigo de hoy, esta corte quiere una cosa en actas, porque llevamos dos días hablando de un hombre como si fuera un mueble.', pose: 'judge_thinking' },
-  { speaker: 'JUEZ', text: 'Defensa: diga usted quién era el occiso y qué estaba haciendo en ese Archivo.', sfx: 'gavel', pose: 'judge_gavel' }
+  { speaker: 'JUEZ', text: 'Defensa: diga usted quién era la víctima y qué estaba haciendo en ese Archivo.', sfx: 'gavel', pose: 'judge_gavel' }
 ];
 
 export const CASE5_DAY2_OPENING_PRESENT: OpeningPresent = {

@@ -52,15 +52,18 @@ export const CASE5_CELDA_TALKS_EN: TalkOption[] = [
     id: 'parte_detencion',
     label: 'Show me the arrest report',
     dialogue: [
-      { speaker: 'NARRADOR', text: 'The bailiff slides a copy of the December fourth report through the slot.', sfx: 'click' },
+      { speaker: 'NARRADOR', text: 'The bailiff slides a copy of the December fourth arrest report through the slot.', sfx: 'click' },
       { speaker: 'DEFENSA', text: '(Arrest at nine forty PM. Inventory: one lawyer badge, three pesos, a notebook...)', pose: 'chapulin_idle' },
       { speaker: 'DEFENSA', text: '(...and a rent receipt in his name. Seventeen months. Paid.)', pose: 'chapulin_panic' },
       { speaker: 'DEFENSA', text: 'Don Ramon! This says you paid seventeen months of rent!', pose: 'chapulin_point' },
       { speaker: 'DON RAMON', text: 'I paid nothing, kid.', pose: 'donramon_idle' },
       { speaker: 'DON RAMON', text: 'Monday afternoon Mr. Barriga stopped me in the courtyard, handed me a receipt, and said thank you.', pose: 'donramon_sweat' },
       { speaker: 'DON RAMON', text: 'He said thank you, Chapulin. In seventeen years he never had. I thought he was mocking me.', pose: 'donramon_sweat' },
-      { speaker: 'DEFENSA', text: '(And there is an appendix: the Archive guards relief sheet. Two entry signatures and two exit signatures.)', pose: 'chapulin_idle' },
-      { speaker: 'DEFENSA', text: '(I will keep it. I do not know what it is for yet, but a paper with hours on it is always useful.)', pose: 'chapulin_idle', addEvidence: 'parte_detencion' }
+      { speaker: 'DEFENSA', text: '(I will keep the report.)', pose: 'chapulin_idle', addEvidence: 'parte_detencion' },
+      { speaker: 'NARRADOR', text: 'The bailiff slides a second sheet, stapled on its own: the Archive custody relay sheet.', sfx: 'click' },
+      { speaker: 'DEFENSA', text: '(Four signatures and four times. Rangel and Nieto sign out of the gate at five sharp...)', pose: 'chapulin_idle' },
+      { speaker: 'DEFENSA', text: '(...and Cadena and Solis do not sign in until a quarter past five.)', pose: 'chapulin_panic' },
+      { speaker: 'DEFENSA', text: '(Fifteen minutes. A paper with hours on it is always useful, and this one has a hole in it.)', pose: 'chapulin_idle', addEvidence: 'hoja_relevo' }
     ]
   },
   {
@@ -70,7 +73,7 @@ export const CASE5_CELDA_TALKS_EN: TalkOption[] = [
       { speaker: 'DON RAMON', text: 'That is what has me in here.', pose: 'donramon_idle' },
       { speaker: 'NARRADOR', text: 'Among the report pages is a forensic photograph: a closed hand over a scrap of cardstock.' },
       { speaker: 'DEFENSA', text: 'It is a corner piece. Torn. Typewritten letters.', pose: 'chapulin_idle' },
-      { speaker: 'DEFENSA', text: '"...city of Calle del Espanto 8, apt. 4."', pose: 'chapulin_point' },
+      { speaker: 'DEFENSA', text: '"...city of Calle del Espanto 8, apt. 72."', pose: 'chapulin_point' },
       { speaker: 'DON RAMON', text: 'My house, kid. With my apartment number.', pose: 'donramon_sweat' },
       { speaker: 'DEFENSA', text: 'But this proves nothing! Anyone can write an address!', pose: 'chapulin_panic' },
       { speaker: 'DON RAMON', text: 'Anyone can. But look closely at the scrap.', pose: 'donramon_idle' },

@@ -43,6 +43,7 @@ export const TRACK_CATALOG: TrackCatalogMap = {
   victory: victoryTrack,
   epilogue: victoryTrack,
   detention_center: detentionCenterTrack,
+  game_over: detentionCenterTrack,
   kermes: kermesTrack,
   archivo: archivoTrack
 };

@@ -43,10 +43,11 @@ Case 0 is the courtroom-only entry: its splash/debug launch seeds the opening Co
    - **Correct Evidence**:
      1. If the matched rule has `pointTarget`, open `#present-point-overlay` first ([[docs/flows/present-point-flow.md]]). Parent `successDialogue` waits for a correct click.
      2. If the matched rule has `requiresExamine` and that evidence has not been opened with `EXAMINE DETAIL`, queue the localized instruction and reopen the Acta without applying a penalty.
-     3. Queues `successDialogue` (displays `¡PROTESTO!` or `¡TOMA ESO!`, desk slams, realization sound, BGM switches to `objection` or `pursuit`).
+     3. Queues `successDialogue` (displays `¡PROTESTO!` or `¡TOMA ESO!`, desk slams, realization sound, BGM switches to `objection` or `pursuit`). That cue then plays until another line declares `bgm`, so the block must hand the testimony loop back on the line where routine court business resumes — see [[docs/flows/audio-synthesis-flow.md#Trial Reveal Cue]].
      4. If `followUp` is set, reopen the Acta for `followUp.evidence` (wrong = penalty; correct may also `pointTarget` then `followUp.successDialogue`). If `followUp.prompt` is set, that question is shown on the HUD and inside the Court Record window.
    5. On finish callback, launches the next testimony while `index + 1` remains in the active array; after the array is exhausted it either enters adjournment or starts the climax. Case 0 testimony 2 keeps its recess lobby scene and the courtroom delivery of the briefcase and encyclopedia card inside that success dialogue, so both items enter the Acta before testimony 3 begins.
    - Case 0 testimony 2 accepts `foto_patio` from either `c0_t2_2` or `c0_t2_3`; both claims use the same examine-detail and Present & Point flow.
+   - Several statements may share one `ContradictionRule` object whenever they carry the same claim; the rule (and its `followUp`) then resolves from any of them. Case 5 day-1 testimony 1 accepts `informe_forense_c5` on `c5_d1t1_3` or `c5_d1t1_4`.
    - **Point tutorial timing**: Any instruction that teaches the Present & Point click belongs in the active `pointTarget.promptQuestion`, because the rule's `successDialogue` is queued only after the player has already clicked the correct zone.
    - **Incorrect Evidence**:
      1. Calls `gameState.takePenalty()` in [[src/state/Private/GameStateManager.ts#Penalty & Health]].

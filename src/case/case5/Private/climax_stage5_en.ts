@@ -24,7 +24,7 @@ const CASE5_CLIMAX_STAGE5_SUCCESS_EN: ClimaxStage['successDialogue'] = [
   { speaker: 'NARRADOR', text: 'The bailiff enters pushing a metal cart with a black typewriter, number 41 stenciled on the side.', sfx: 'whoosh' },
   { speaker: 'NARRADOR', text: 'He sets it on the clerk\'s table. The whole room can hear paper feed into the roller.', sfx: 'click' },
   { speaker: 'JUEZ', text: 'Mr. Clerk. Type, at dictation, the text of the fragment found in the victim\'s hand, keeping its four lines.', sfx: 'gavel', pose: 'judge_gavel' },
-  { speaker: 'DEFENSA', text: '"...city of Calle del Espanto 8, apt. 4."', pose: 'chapulin_idle' },
+  { speaker: 'DEFENSA', text: '"...city of Calle del Espanto 8, apt. 72."', pose: 'chapulin_idle' },
   { speaker: 'NARRADOR', text: 'The clerk types the fragment in a room where nothing is heard but the keys.', sfx: 'text' },
   { speaker: 'NARRADOR', text: 'The clerk pulls the sheet from the roller and holds it up.', sfx: 'realization' },
   { speaker: 'SECRETARIO', text: '...Your Honor.' },

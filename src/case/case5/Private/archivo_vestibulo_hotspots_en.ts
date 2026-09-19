@@ -20,8 +20,10 @@ export const CASE5_VESTIBULO_HOTSPOTS_EN: Hotspot[] = [
       { speaker: 'DEFENSA', text: 'The last one says: "R. Valdes. Entry four forty. Exit four fifty-eight."', pose: 'chapulin_point' },
       { speaker: 'NICANOR', text: 'I wrote the exit time. Nobody leaves here without my writing it down.', pose: 'nicanor_idle' },
       { speaker: 'DEFENSA', text: 'And the police who brought Mr. Lengua?', pose: 'chapulin_idle' },
-      { speaker: 'NICANOR', text: 'Uniformed officers do not sign, kid. They never have. The book is for the public.', pose: 'nicanor_idle' },
-      { speaker: 'DEFENSA', text: '(So this book does not say who was in the building. It says who was public.)', pose: 'chapulin_idle', addEvidence: 'libro_visitas' }
+      { speaker: 'NICANOR', text: 'Uniformed officers do not sign, kid. They never have. This book is for visitors: outsiders who come in to consult, and nobody else.', pose: 'nicanor_idle' },
+      { speaker: 'DEFENSA', text: 'And people who work in the building?', pose: 'chapulin_point' },
+      { speaker: 'NICANOR', text: 'Those come in to work, kid, not to visit. I do not sign myself in.', pose: 'nicanor_idle' },
+      { speaker: 'DEFENSA', text: '(So this book does not say who was in the building. It only says who came as a visitor.)', pose: 'chapulin_idle', addEvidence: 'libro_visitas' }
     ]
   },
   {
@@ -34,13 +36,13 @@ export const CASE5_VESTIBULO_HOTSPOTS_EN: Hotspot[] = [
       { speaker: 'NICANOR', text: 'Three, if you count the coal door, but that one has been sealed since fifty-eight.', pose: 'nicanor_idle' },
       { speaker: 'DEFENSA', text: 'And this one on the side?', pose: 'chapulin_idle' },
       { speaker: 'NICANOR', text: 'That is the expert window. No public there: experts, court clerks, notaries, and trustees go in.', pose: 'nicanor_idle' },
-      { speaker: 'DEFENSA', text: 'Do they sign a logbook too?', pose: 'chapulin_point' },
-      { speaker: 'NICANOR', text: 'Of course. Their logbook. Theirs.', pose: 'nicanor_idle' },
-      { speaker: 'DEFENSA', text: '...There are two logbooks?', pose: 'chapulin_panic' },
-      { speaker: 'NICANOR', text: 'Kid, this place has logbooks to log the logbooks.', pose: 'nicanor_escoba' },
-      { speaker: 'DEFENSA', text: '(Two doors. Two logbooks. And the police took one.)', pose: 'chapulin_idle', addEvidence: 'plano_archivo' },
+      { speaker: 'DEFENSA', text: 'Do they come past your counter?', pose: 'chapulin_point' },
+      { speaker: 'NICANOR', text: 'Not past my counter and not into my book. They come in through their window and I never see their faces.', pose: 'nicanor_idle' },
+      { speaker: 'DEFENSA', text: '...Then who writes those ones down?', pose: 'chapulin_panic' },
+      { speaker: 'NICANOR', text: 'Miss Genoveva, kid. Each his own door and each his own sorrow.', pose: 'nicanor_escoba' },
+      { speaker: 'DEFENSA', text: '(Two doors. And the police only looked at one.)', pose: 'chapulin_idle', addEvidence: 'plano_archivo' },
       { speaker: 'NARRADOR', text: 'Judicial Archive floor plan. The public door opens to the vestibule and the visitor log counter.', bg: PLATE_DOS_ACCESOS, furniture: 'none' },
-      { speaker: 'NARRADOR', text: 'The expert window opens to the service yard and has its own logbook.', bg: PLATE_DOS_ACCESOS, furniture: 'none' },
+      { speaker: 'NARRADOR', text: 'The expert window opens to the service yard and never passes the vestibule counter.', bg: PLATE_DOS_ACCESOS, furniture: 'none' },
       { speaker: 'NARRADOR', text: 'A service stair links the yard, the basement, and the end of hallway 7 without passing any counter.', bg: PLATE_DOS_ACCESOS, furniture: 'none' },
       { speaker: 'DEFENSA', text: '(By that stair you can go from the basement to hallway seven without anyone seeing your face.)', pose: 'chapulin_idle', bg: VESTIBULO_BG, furniture: 'none' },
       { speaker: 'DEFENSA', text: '(They never counted on my cunning... and neither did I, to be honest.)', pose: 'chapulin_idle', bg: VESTIBULO_BG, furniture: 'none' }

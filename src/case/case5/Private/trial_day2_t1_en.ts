@@ -63,7 +63,7 @@ export const CASE5_TESTIMONY_4_EN: Testimony = {
       pressText: [
         MOMENTO,
         { speaker: 'DEFENSA', text: 'Read the note to the court, Mr. Barriga.', pose: 'chapulin_point' },
-        { speaker: 'BARRIGA', text: '"Enclosed is payment for seventeen months overdue on behalf of C. Ramon Valdes, tenant of dwelling 4."', pose: 'barriga_idle' },
+        { speaker: 'BARRIGA', text: '"Enclosed is payment for seventeen months overdue on behalf of C. Ramon Valdes, tenant of dwelling 72."', pose: 'barriga_idle' },
         { speaker: 'BARRIGA', text: '"Kindly issue the corresponding receipt and keep it. No reply required."', pose: 'barriga_idle' },
         { speaker: 'JUEZ', text: '"Kindly issue"?', pose: 'judge_thinking' },
         { speaker: 'BARRIGA', text: 'Kindly issue, Your Honor. That is what it says.', pose: 'barriga_idle' },

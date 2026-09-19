@@ -63,7 +63,7 @@ export const CASE5_TESTIMONY_4: Testimony = {
       pressText: [
         MOMENTO,
         { speaker: 'DEFENSA', text: 'Léale la nota a la corte, señor Barriga.', pose: 'chapulin_point' },
-        { speaker: 'BARRIGA', text: '«Adjunto el pago de diecisiete mensualidades vencidas a cargo del C. Ramón Valdés, inquilino de la vivienda 4.»', pose: 'barriga_idle' },
+        { speaker: 'BARRIGA', text: '«Adjunto el pago de diecisiete mensualidades vencidas a cargo del C. Ramón Valdés, inquilino de la vivienda 72.»', pose: 'barriga_idle' },
         { speaker: 'BARRIGA', text: '«Se ruega expedir el recibo correspondiente y conservarlo. No se requiere respuesta.»', pose: 'barriga_idle' },
         { speaker: 'JUEZ', text: '¿«Se ruega»?', pose: 'judge_thinking' },
         { speaker: 'BARRIGA', text: 'Se ruega, señor juez. Así dice.', pose: 'barriga_idle' },

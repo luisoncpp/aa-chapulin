@@ -24,7 +24,7 @@ export const CASE5_D1_T1_FORENSE_SUCCESS_EN: DialogueLine[] = [
 ];
 
 export const CASE5_D1_T1_LIBRO_SUCCESS_EN: DialogueLine[] = [
-  { speaker: 'DEFENSA', text: 'TAKE THAT! The public visitors\' log!', sfx: 'desk_slam', cutin: 'objection_toma_eso', pose: 'chapulin_slam' },
+  { speaker: 'DEFENSA', text: 'TAKE THAT! The public visitors\' log!', sfx: 'desk_slam', cutin: 'objection_toma_eso', pose: 'chapulin_slam', bgm: 'objection' },
   { speaker: 'DEFENSA', text: 'Mr. Nicanor: on December fourth, did two police officers enter the building escorting a prisoner?', pose: 'chapulin_point' },
   { speaker: 'NICANOR', text: 'Of course. And at five o\'clock two more came in for the shift change.', pose: 'nicanor_idle' },
   { speaker: 'DEFENSA', text: 'And did they sign?', pose: 'chapulin_idle' },
@@ -37,7 +37,7 @@ export const CASE5_D1_T1_LIBRO_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'DEFENSA', text: 'Nobody said that, prosecutor, and I ask you not to repeat it.', pose: 'chapulin_idle' },
   { speaker: 'DEFENSA', text: 'I am not pointing at anyone. I am saying the list is incomplete.', pose: 'chapulin_idle' },
   { speaker: 'JUEZ', text: 'The court shares that distinction and thanks the defense for drawing it.', pose: 'judge_neutral' },
-  { speaker: 'JUEZ', text: 'Witness, you may step down for now. The court wants to hear from the officer who processed the scene.', sfx: 'gavel', pose: 'judge_gavel' },
+  { speaker: 'JUEZ', text: 'Witness, you may step down for now. The court wants to hear from the officer who processed the scene.', sfx: 'gavel', pose: 'judge_gavel', bgm: 'cross_exam_moderato' },
   { speaker: 'SUPER SAM', text: 'The prosecution calls Sergeant Refu...', pose: 'supersam_point' },
   { speaker: 'SARGENTO', text: 'Refugio Pazguato, Your Honor. Judicial police.', pose: 'pazguato_saludo' },
   { speaker: 'SUPER SAM', text: 'I was going to say it!', pose: 'supersam_sweat' },
@@ -47,7 +47,7 @@ export const CASE5_D1_T1_LIBRO_SUCCESS_EN: DialogueLine[] = [
 
 export const CASE5_D1_T2_PARTE_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'DEFENSA', text: 'OBJECTION!', sfx: 'desk_slam', cutin: 'objection_protesto', pose: 'chapulin_slam', bgm: 'objection' },
-  { speaker: 'DEFENSA', text: 'Your Honor, the detention report annex carries the Archive shift-change sheet, with four signatures and four times.', pose: 'chapulin_point' },
+  { speaker: 'DEFENSA', text: 'Your Honor, the Archive custody relay sheet carries four signatures and four times.', pose: 'chapulin_point' },
   { speaker: 'DEFENSA', text: 'Rangel and Nieto sign out at five o\'clock.', pose: 'chapulin_idle' },
   { speaker: 'DEFENSA', text: 'Cadena and Solis sign in at five fifteen.', pose: 'chapulin_slam', sfx: 'desk_slam' },
   { speaker: 'JUEZ', text: 'Fifteen minutes!', pose: 'judge_shock' },
@@ -63,7 +63,7 @@ export const CASE5_D1_T2_PARTE_SUCCESS_EN: DialogueLine[] = [
 ];
 
 export const CASE5_D1_T2_TARJETA_SUCCESS_EN: DialogueLine[] = [
-  { speaker: 'DEFENSA', text: 'TAKE THAT!', sfx: 'desk_slam', cutin: 'objection_toma_eso', pose: 'chapulin_slam' },
+  { speaker: 'DEFENSA', text: 'TAKE THAT!', sfx: 'desk_slam', cutin: 'objection_toma_eso', pose: 'chapulin_slam', bgm: 'objection' },
   { speaker: 'DEFENSA', text: 'Your Honor, look closely. Three centimeters by two and a half.', pose: 'chapulin_point' },
   { speaker: 'DEFENSA', text: 'The edge is torn straight. Like paper torn when you fold it and pull calmly across a desk.', pose: 'chapulin_idle' },
   { speaker: 'DEFENSA', text: 'Paper ripped from someone in a struggle ends up crumpled. This one is pressed flat.', pose: 'chapulin_slam', sfx: 'desk_slam' },
@@ -72,14 +72,14 @@ export const CASE5_D1_T2_TARJETA_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'JUEZ', text: 'What is the defense saying?', pose: 'judge_shock' },
   { speaker: 'DEFENSA', text: 'That nobody ripped a card from that man.', pose: 'chapulin_idle' },
   { speaker: 'DEFENSA', text: 'That someone opened his hand afterward, put a scrap of card stock inside, and closed it again.', pose: 'chapulin_slam', sfx: 'desk_slam', cutin: 'objection_protesto' },
-  { speaker: 'NARRADOR', text: 'The gallery rises. The Judge strikes the gavel four times.', sfx: 'gavel' },
+  { speaker: 'NARRADOR', text: 'The gallery rises.', sfx: 'gavel' },
   { speaker: 'JUEZ', text: 'ORDER! ORDER IN THE COURT!', sfx: 'gavel', pose: 'judge_gavel' },
   { speaker: 'DEFENSA', text: 'And with the enlargement we requested this morning, Your Honor: the blow came top to bottom from behind, with no arc.', pose: 'chapulin_point', updateEvidence: 'informe_forense_c5' },
   { speaker: 'DEFENSA', text: 'The object was held in two hands and closed on the back of the neck. Like closing a book.', pose: 'chapulin_idle' },
   { speaker: 'SUPER SAM', text: 'Your client spent twelve minutes alone with him, counselor! With no witness who saw that desk!', pose: 'supersam_slam', sfx: 'desk_slam', updateProfile: 'perfil_donramon' },
   { speaker: 'DEFENSA', text: 'And those twelve minutes are all I have, prosecutor. I know.', pose: 'chapulin_idle' },
   { speaker: 'DEFENSA', text: 'That is why I am not asking the court to believe me. I am asking it to count.', pose: 'chapulin_point' },
-  { speaker: 'JUEZ', text: 'The court needs the janitor again.', sfx: 'gavel', pose: 'judge_gavel' },
+  { speaker: 'JUEZ', text: 'The court needs the janitor again.', sfx: 'gavel', pose: 'judge_gavel', bgm: 'cross_exam_moderato' },
   { speaker: 'JUEZ', text: 'Mr. Tolentino, return to the stand. You remain under oath.', pose: 'judge_neutral' },
   { speaker: 'NICANOR', text: 'With permission. And forgive the delay — I went for my broom.', pose: 'nicanor_escoba' },
   { speaker: 'JUEZ', text: '...The court asks you to set the broom aside.', pose: 'judge_thinking' },
@@ -115,7 +115,7 @@ export const CASE5_D1_T3_EXPEDIENTE_GIRO_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'DEFENSA', text: '"Enciclopedias El Saber Universal, Sociedad Anonima." Evidence seized from the convicted man in July.', pose: 'chapulin_point' },
   { speaker: 'DEFENSA', text: 'And at the foot, in the clerk\'s hand: "company dissolved since 1971."', pose: 'chapulin_idle' },
   { speaker: 'DEFENSA', text: 'Mr. Nicanor dusts Volume XI every Monday. On the Saturday of the crime he saw the shelf complete and the file open to this page.', pose: 'chapulin_point' },
-  { speaker: 'JUEZ', text: 'And what was that man doing here with a card from a company dead eleven years?', pose: 'judge_thinking', updateProfile: 'perfil_casimiro' },
+  { speaker: 'JUEZ', text: 'And what was that man doing here with the card of a company dissolved eleven years ago?', pose: 'judge_thinking', updateProfile: 'perfil_casimiro' },
   { speaker: 'DEFENSA', text: 'That, Your Honor, is exactly what someone did not want him to say.', pose: 'chapulin_slam', sfx: 'desk_slam', updateProfile: 'perfil_nicanor' },
   { speaker: 'SUPER SAM', text: 'OBJECTION! Speculation!', pose: 'supersam_slam', sfx: 'desk_slam' },
   { speaker: 'JUEZ', text: 'Sustained. But the court notes it anyway, because it will need it.', pose: 'judge_neutral' },
@@ -125,7 +125,7 @@ export const CASE5_D1_T3_EXPEDIENTE_GIRO_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'JUEZ', text: 'Prosecutor: this court has spent the whole hearing hearing that nobody came in through one door.', pose: 'judge_thinking' },
   { speaker: 'JUEZ', text: 'And we have spent the whole hearing without anyone telling me who came in through the other.', sfx: 'gavel', pose: 'judge_gavel' },
   { speaker: 'SUPER SAM', text: '...The prosecution will bring it.', pose: 'supersam_sweat' },
-  { speaker: 'NARRADOR', text: 'At the prosecution table, the man with the gold watch chain takes out a pen and writes a single line in a notebook.' },
+  { speaker: 'NARRADOR', text: 'At the prosecution table, the man with the gold watch chain takes out a pen and writes a single line in a notebook.', bgm: 'suspense' },
   { speaker: 'DEFENSA', text: '(That man took a note. He has gone all day without taking notes, and now he takes a note.)', pose: 'chapulin_idle' },
   { speaker: 'DEFENSA', text: '(And I do not even know why I noticed.)', pose: 'chapulin_idle' },
   { speaker: 'JUEZ', text: 'Tomorrow this court wants two things.', pose: 'judge_neutral' },
@@ -151,7 +151,7 @@ export const CASE5_D1_OPENING_BADGE_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'BERRONDO', text: 'I appear as amicus to the public ministry, without fee, with this court\'s leave.', pose: 'berrondo_idle' },
   { speaker: 'JUEZ', text: 'And to what do we owe the pleasure, counselor?', pose: 'judge_thinking' },
   { speaker: 'BERRONDO', text: 'The deceased was, many years ago, distributor for a company whose liquidation I oversee. I thought I ought to be present.', pose: 'berrondo_idle' },
-  { speaker: 'BERRONDO', text: '*Amicus*, from Latin *coadiuvare*: one who helps alongside another. I do not speak unless granted leave.', pose: 'berrondo_definicion' },
+  { speaker: 'BERRONDO', text: '"Amicus", from Latin "coadiuvare": one who helps alongside another. I do not speak unless granted leave.', pose: 'berrondo_definicion' },
   { speaker: 'DEFENSA', text: '(Who asked him what it meant?)', pose: 'chapulin_idle' },
   { speaker: 'JUEZ', text: 'You are entered on the record.', pose: 'judge_neutral', addProfile: 'perfil_berrondo' },
   { speaker: 'JUEZ', text: 'And this court wants a clear answer to one question before any other:', pose: 'judge_thinking' },
@@ -160,7 +160,7 @@ export const CASE5_D1_OPENING_BADGE_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'SUPER SAM', text: 'The prosecution calls the Judicial Archive janitor, Mr. Nicanor Tolentino.', pose: 'supersam_point' },
   { speaker: 'JUEZ', text: 'Before we hear him, let the clerk place the forensic photograph on view. This court wants to know what we are talking about.', pose: 'judge_neutral' },
   { bg: PLATE_FOTO, furniture: 'none', speaker: 'NARRADOR', text: 'Forensic photograph taken at 19:05 on December fourth. The body lies face down between the shelf and the reading table.' },
-  { bg: PLATE_FOTO, furniture: 'none', speaker: 'NARRADOR', text: 'One meter away, a cloth-bound volume with a stain on the spine edge.' },
+  { bg: PLATE_FOTO, furniture: 'none', speaker: 'NARRADOR', text: 'One meter away, a cloth-bound volume with a stain on the spine.' },
   { bg: PLATE_FOTO, furniture: 'none', speaker: 'NARRADOR', text: 'On the table, an open file and a lamp still lit. On the wall, a shelf with twenty-four slots.' },
   { speaker: 'JUEZ', text: 'Witness, state your name and occupation.', pose: 'judge_neutral' },
   { speaker: 'NICANOR', text: 'Nicanor Tolentino, janitor of the Judicial Archive. Thirty-one years, four months.', pose: 'nicanor_idle' },

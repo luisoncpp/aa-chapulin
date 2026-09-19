@@ -99,9 +99,66 @@ describe('Case 5 day 1 investigation (Spanish)', () => {
     assertInvestigationParity(en, es, DAY1_LOCATIONS, allDay1Lines(en));
   });
 
-  it('uses detention_center in celda and archivo in vestibulo and pasillo 7', () => {
+  it('uses detention_center in celda, archivo in vestibulo and suspense in pasillo 7', () => {
     expect(es.investigation.celda_c5.bgm).toBe('detention_center');
     expect(es.investigation.archivo_vestibulo.bgm).toBe('archivo');
-    expect(es.investigation.archivo_pasillo7.bgm).toBe('archivo');
+    expect(es.investigation.archivo_pasillo7.bgm).toBe('suspense');
+  });
+
+  it('hides the pasillo 7 consultation table until the other three hotspots are examined', () => {
+    for (const script of [es, en]) {
+      const mesa = script.investigation.archivo_pasillo7.hotspots.find((h) => h.id === 'hotspot_mesa');
+      expect(mesa?.condition).toBeTypeOf('function');
+      const all = {
+        examined_hotspot_cuerpo: true,
+        examined_hotspot_tomo: true,
+        examined_hotspot_estante: true
+      };
+      expect(mesa!.condition!(all)).toBe(true);
+      expect(mesa!.condition!({})).toBe(false);
+      Object.keys(all).forEach((missing) => {
+        const partial = { ...all, [missing]: false };
+        expect(mesa!.condition!(partial), `mesa visible without ${missing}`).toBe(false);
+      });
+    }
+  });
+
+  it('keeps the other pasillo 7 hotspots ungated so the scene is never soft-locked', () => {
+    for (const script of [es, en]) {
+      const open = script.investigation.archivo_pasillo7.hotspots.filter((h) => !h.condition);
+      expect(open.map((h) => h.id)).toEqual(['hotspot_cuerpo', 'hotspot_tomo', 'hotspot_estante']);
+    }
+  });
+
+  it('seals day 1 on the consultation table: it closes the day and grants required evidence', () => {
+    const mesa = es.investigation.archivo_pasillo7.hotspots.find((h) => h.id === 'hotspot_mesa')!;
+    expect(evidenceFrom(mesa.dialogue)).toContain('expediente_casimiro');
+    expect(CASE5_DAY1_EVIDENCE).toContain('expediente_casimiro');
+    // The bell and the exit to the courtroom are the day-closing beat.
+    expect(mesa.dialogue.some((l) => l.sfx === 'bell')).toBe(true);
+    const otherHotspots = es.investigation.archivo_pasillo7.hotspots.filter((h) => h.id !== 'hotspot_mesa');
+    otherHotspots.forEach((h) => {
+      expect(h.dialogue.some((l) => l.sfx === 'bell'), `${h.id} closes the day early`).toBe(false);
+    });
+  });
+
+  it('locks the El Saber Universal shelf arithmetic: 24 slots, 23 volumes, slot 13 empty', () => {
+    const estante = es.investigation.archivo_pasillo7.hotspots.find((h) => h.id === 'hotspot_estante')!;
+    const text = estante.dialogue.map((l) => l.text).join(' ');
+    expect(text).toContain('del 1 al 24');
+    expect(text).toContain('Veintitrés tomos');
+    expect(text).toContain('ranura trece está vacía');
+    // 23 on the shelf + the one on the floor = 24 volumes for 24 slots, one still empty.
+    expect(text).toContain('Veinticuatro tomos para veinticuatro ranuras');
+  });
+
+  it('changes the track when moving from the archive vestibule into hallway 7', () => {
+    for (const script of [es, en]) {
+      const vestibulo = script.investigation.archivo_vestibulo;
+      const pasillo = script.investigation.archivo_pasillo7;
+      expect(pasillo.bgm).not.toBe(vestibulo.bgm);
+      expect(pasillo.intro[0].bgm).toBe(pasillo.bgm);
+      expect(vestibulo.intro[0].bgm).toBe(vestibulo.bgm);
+    }
   });
 });

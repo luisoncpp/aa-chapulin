@@ -55,7 +55,7 @@ export const CASE5_TESTIMONY_2_EN: Testimony = {
       id: 'c5_d1t2_3',
       speaker: 'SARGENTO',
       pose: 'pazguato_idle',
-      text: 'One meter away, Volume XI of an encyclopedia, blood on the spine edge. I photographed it before touching it.',
+      text: 'One meter away, Volume XI of an encyclopedia, blood on the spine. I photographed it before touching it.',
       pressText: [
         MOMENTO,
         { speaker: 'DEFENSA', text: 'Describe the blow, Sergeant.', pose: 'chapulin_point' },
@@ -116,11 +116,11 @@ export const CASE5_TESTIMONY_2_EN: Testimony = {
         { speaker: 'DEFENSA', text: '(A handshake. Let us see how long a handshake lasts in this country.)', pose: 'chapulin_idle' }
       ],
       contradiction: {
-        evidence: ['parte_detencion'],
+        evidence: ['hoja_relevo'],
         successDialogue: CASE5_D1_T2_PARTE_SUCCESS_EN,
         followUp: {
           evidence: ['esquina_tarjeta'],
-          prompt: 'How did that paper reach the deceased\'s hand?',
+          prompt: 'How did that paper reach the victim\'s hand?',
           successDialogue: CASE5_D1_T2_TARJETA_SUCCESS_EN
         }
       }

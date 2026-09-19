@@ -18,10 +18,10 @@ export const CASE5_PENAL_EFECTOS: InvestigationScene = {
     { speaker: 'NARRADOR', text: 'Trescientas cajas de cartón numeradas en un estante metálico. En la etiqueta de la 214-J dice: LENGUA, CASIMIRO.' },
     { speaker: 'SARGENTO', text: 'Caja doscientos catorce jota, mi Licenciado. Y fíjese en el número.', pose: 'pazguato_decidido' },
     { speaker: 'DEFENSA', text: 'Doscientos catorce.', pose: 'chapulin_idle' },
-    { speaker: 'DEFENSA', text: 'Como la foja del expediente que dejó abierto.', pose: 'chapulin_panic' },
+    { speaker: 'DEFENSA', text: 'Como la página del expediente que dejó abierto.', pose: 'chapulin_panic' },
     { speaker: 'SARGENTO', text: 'Coincidencia, mi Licenciado. Lo verifiqué: se las numeran por orden de ingreso.', pose: 'pazguato_idle' },
     { speaker: 'DEFENSA', text: '...Ya.', pose: 'chapulin_idle' },
-    { speaker: 'DEFENSA', text: '(Coincidencia. Pero yo me acordé de la foja por el número, y por eso vine.)', pose: 'chapulin_idle' }
+    { speaker: 'DEFENSA', text: '(Coincidencia. Pero yo me acordé de la página por el número, y por eso vine.)', pose: 'chapulin_idle' }
   ],
   hotspots: CASE5_PENAL_EFECTOS_HOTSPOTS,
   talkOptions: []

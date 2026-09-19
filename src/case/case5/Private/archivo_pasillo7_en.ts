@@ -10,11 +10,11 @@ export const CASE5_ARCHIVO_PASILLO7_EN: InvestigationScene = {
   title: 'Judicial Archive - Hallway 7',
   name: 'Judicial Archive',
   bg: 'assets/bg_archivo_pasillo7.webp',
-  bgm: 'archivo',
+  bgm: 'suspense',
   speaker: 'NARRADOR',
   idlePose: 'pazguato_idle',
   intro: [
-    { speaker: 'NARRADOR', text: 'December 6, 11:40 AM. Hallway 7, first floor. Absurd heat for December.', bg: 'assets/bg_archivo_pasillo7.webp', furniture: 'none', bgm: 'archivo' },
+    { speaker: 'NARRADOR', text: 'December 6, 11:40 AM. Hallway 7, first floor. Absurd heat for December.', bg: 'assets/bg_archivo_pasillo7.webp', furniture: 'none', bgm: 'suspense' },
     { speaker: 'SARGENTO', text: 'At your service, Counse...!', pose: 'pazguato_saludo' },
     { speaker: 'SARGENTO', text: '...lor.', pose: 'pazguato_sweat' },
     { speaker: 'DEFENSA', text: 'Sergeant!', pose: 'chapulin_point' },

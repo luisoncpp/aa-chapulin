@@ -512,7 +512,7 @@ DEFENSA (donramon_point): ¡PROTESTO! ¡Aquí está el Chanfle de Oro, oculto de
 SUPER SAM (supersam_slam): What?! ¡¿Una simple lata de betún para calzado?! [sfx: desk_slam]
 DEFENSA (donramon_slam): ¡Pesa más de 5 KILOS y de su junta brota polvo dorado! El señor Peterete vació el betún, introdujo la estatuilla de oro macizo y reselló la tapa con betún negro para que pareciera un inocente utensilio de trabajo. [sfx: desk_slam]
 CHAPULIN (chapulin_slam): ¡Y mis Antenitas de Vinil lo confirman — vibran justo hacia esta lata! ¡Ábranla y verán el brillo del oro! [sfx: chipote]
-NARRADOR: *¡¡¡CLAAANG-BRILLOOOO!!!* (La tapa cede y el resplandor dorado del Chanfle de Oro ilumina toda la sala del tribunal) [sfx: realization]
+NARRADOR: ¡¡¡CLAAANG-BRILLOOOO!!! (La tapa cede y el resplandor dorado del Chanfle de Oro ilumina toda la sala del tribunal) [sfx: realization]
 PETERETE (peterete_sweat): ¡G-grrrk! ¡E-esa es la lata del Chómpiras! ¡Esto solo demuestra que él escondió el oro en su propia lata! ¡Yo no tengo nada que ver!
 SUPER SAM (supersam_point): ¡Exactly! ¡El acusado tenía la lata y la palanca! ¡Sigue siendo el único culpable posible!
 DEFENSA (donramon_idle): (¡Rayos! Tienen razón, el oro en la lata del Chómpiras no incrimina directamente al Peterete... a menos que demuestre que el Chómpiras no pudo haberlo hecho, y que el Peterete tenía cómo abrir la caja.)

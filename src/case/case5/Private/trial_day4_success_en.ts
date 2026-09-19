@@ -24,7 +24,7 @@ export const CASE5_DAY4_OPENING_PRESENT_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'SECRETARIO', text: '...Your Honor. With permission.' },
   { speaker: 'SECRETARIO', text: 'The defendant signed his entry at 4:40 PM and his exit at 4:58 PM.' },
   { speaker: 'SECRETARIO', text: 'The prosecution notes that the defense has just placed its own client inside the window.' },
-  { speaker: 'NARRADOR', text: 'The gallery erupts. The Judge bangs the gavel five times.', sfx: 'gavel' },
+  { speaker: 'NARRADOR', text: 'The gallery erupts.', sfx: 'gavel' },
   { speaker: 'JUEZ', text: 'ORDER! ORDER IN THE COURT!', sfx: 'gavel', pose: 'judge_gavel' },
   { speaker: 'JUEZ', text: 'Counselor Chapulin! Do you know what you have just done?', pose: 'judge_shock' },
   { speaker: 'DEFENSA', text: 'I do, Your Honor. I knew at five forty this morning.', pose: 'chapulin_idle' },

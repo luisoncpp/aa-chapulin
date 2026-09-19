@@ -35,6 +35,7 @@ export type TrackName =
   | 'victory'
   | 'epilogue'
   | 'detention_center'
+  | 'game_over'
   | 'kermes'
   | 'cross_exam_presto'
   | 'archivo'

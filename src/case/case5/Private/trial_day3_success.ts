@@ -6,7 +6,7 @@
 import type { DialogueLine } from '../../../types/index.js';
 
 export const CASE5_DAY3_OPENING_PRESENT_SUCCESS: DialogueLine[] = [
-  { speaker: 'DEFENSA', text: 'Los efectos personales del occiso, señor juez. Dos relojes parados, un moño y una libreta.', pose: 'chapulin_idle' },
+  { speaker: 'DEFENSA', text: 'Los efectos personales de la víctima, señor juez. Dos relojes parados, un moño y una libreta.', pose: 'chapulin_idle' },
   { speaker: 'DEFENSA', text: 'Y en la libreta, cinco puntos numerados que este hombre escribió en el penal el ocho de noviembre.', pose: 'chapulin_point' },
   { speaker: 'JUEZ', text: 'Léalos.', sfx: 'gavel', pose: 'judge_gavel' },
   { speaker: 'DEFENSA', text: '«Punto uno. La tarjeta que me decomisaron en julio tiene la ese caída. La miré nueve años, renglón por renglón.»', pose: 'chapulin_idle' },
@@ -41,7 +41,7 @@ export const CASE5_D3_T1_INVENTARIO_SUCCESS: DialogueLine[] = [
   { speaker: 'DEFENSA', text: 'Y una más, señor juez, porque nadie la ha leído en voz alta en once años.', pose: 'chapulin_point' },
   { speaker: 'DEFENSA', text: 'Partida cuarenta y cuatro: ejemplares de la edición de lujo sin vender, doscientos diez.', pose: 'chapulin_idle' },
   { speaker: 'JUEZ', text: '¿Edición de lujo?', pose: 'judge_thinking' },
-  { speaker: 'DEFENSA', text: 'Media piel, señor juez, con cantoneras de latón en el canto del lomo. La que nadie compró.', pose: 'chapulin_idle' },
+  { speaker: 'DEFENSA', text: 'Media piel, señor juez, con cantoneras de latón en el lomo. La que nadie compró.', pose: 'chapulin_idle' },
   { speaker: 'DEFENSA', text: 'Por eso quebró la empresa: dejó doscientas diez colecciones de lujo completas sin vender.', pose: 'chapulin_idle' },
   { speaker: 'BERRONDO', text: 'Doscientos diez ejemplares sueltos sin vender, licenciado. No doscientas diez colecciones completas. Fue un desastre memorable.', pose: 'berrondo_idle' },
   { speaker: 'DEFENSA', text: '(Gracias, licenciado.)', pose: 'chapulin_idle' },

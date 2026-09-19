@@ -3,7 +3,7 @@
  * Case 5 Trial Day 1 — Testimony 1, Nicanor Tolentino (spec §11.2).
  */
 
-import type { DialogueLine, Testimony } from '../../../types/index.js';
+import type { ContradictionRule, DialogueLine, Testimony } from '../../../types/index.js';
 import { CASE5_D1_T1_FORENSE_SUCCESS, CASE5_D1_T1_LIBRO_SUCCESS } from './trial_day1_success.js';
 
 const MOMENTO: DialogueLine = {
@@ -12,6 +12,17 @@ const MOMENTO: DialogueLine = {
   cutin: 'objection_un_momento',
   sfx: 'whoosh',
   pose: 'chapulin_point'
+};
+
+/** Declaraciones 3 y 4 sostienen la misma contradicción horaria: comparten la regla. */
+const CASE5_D1_T1_CONTRADICTION: ContradictionRule = {
+  evidence: ['informe_forense_c5'],
+  successDialogue: CASE5_D1_T1_FORENSE_SUCCESS,
+  followUp: {
+    evidence: ['libro_visitas'],
+    prompt: '¿A quién no le exige firma ese libro?',
+    successDialogue: CASE5_D1_T1_LIBRO_SUCCESS
+  }
 };
 
 export const CASE5_TESTIMONY_1: Testimony = {
@@ -65,8 +76,9 @@ export const CASE5_TESTIMONY_1: Testimony = {
         { speaker: 'DON RAMÓN', text: '(No le entendí yo tampoco, don Nicanor. Todavía.)', pose: 'donramon_sweat' },
         { speaker: 'SUPER SAM', text: '¡«Ojalá que no»! ¡Your Honor, que conste en actas la frase de un hombre que acababa de cometer un homicidio!', pose: 'supersam_slam', sfx: 'desk_slam' },
         { speaker: 'DEFENSA', text: '¡PROTESTO! ¡Eso es interpretar, no es declarar!', sfx: 'desk_slam', cutin: 'objection_protesto', pose: 'chapulin_slam' },
-        { speaker: 'JUEZ', text: 'Ha lugar. Consta la frase, no la interpretación.', pose: 'judge_neutral' }
-      ]
+        { speaker: 'JUEZ', text: 'Concedido. Consta la frase, no la interpretación.', pose: 'judge_neutral' }
+      ],
+      contradiction: CASE5_D1_T1_CONTRADICTION
     },
     {
       id: 'c5_d1t1_4',
@@ -81,30 +93,7 @@ export const CASE5_TESTIMONY_1: Testimony = {
         { speaker: 'NICANOR', text: 'Con la caldera y los dos secadores puestos al máximo, licenciado, ahí arriba no se oye ni el juicio final.', pose: 'nicanor_sweat' },
         { speaker: 'DEFENSA', text: '(Otra vez los secadores. Y otra vez nadie se detiene.)', pose: 'chapulin_idle' }
       ],
-      contradiction: {
-        evidence: ['informe_forense_c5'],
-        successDialogue: CASE5_D1_T1_FORENSE_SUCCESS,
-        followUp: {
-          evidence: ['libro_visitas'],
-          prompt: '¿A quién no le exige firma ese libro?',
-          successDialogue: CASE5_D1_T1_LIBRO_SUCCESS
-        }
-      }
-    },
-    {
-      id: 'c5_d1t1_5',
-      speaker: 'NICANOR',
-      pose: 'nicanor_idle',
-      text: 'Por mi puerta no pasa nadie sin firmar. Treinta y un años, señor juez. Nunca ha pasado.',
-      pressText: [
-        MOMENTO,
-        { speaker: 'DEFENSA', text: '«Por mi puerta.» Usted dijo «por mi puerta».', pose: 'chapulin_point' },
-        { speaker: 'NICANOR', text: 'Por mi puerta, sí señor. La del público.', pose: 'nicanor_idle' },
-        { speaker: 'DEFENSA', text: '¿Y hay otras?', pose: 'chapulin_idle' },
-        { speaker: 'SUPER SAM', text: '¡OBJECTION! ¡El testigo no es arquitecto! ¡Su declaración es sobre lo que él custodia!', pose: 'supersam_slam', sfx: 'desk_slam' },
-        { speaker: 'JUEZ', text: 'Ha lugar. Defensa, limítese a la puerta del testigo.', pose: 'judge_neutral' },
-        { speaker: 'DEFENSA', text: '(Me la taparon. Bueno. Por ahí no era todavía.)', pose: 'chapulin_idle' }
-      ]
+      contradiction: CASE5_D1_T1_CONTRADICTION
     }
   ]
 };

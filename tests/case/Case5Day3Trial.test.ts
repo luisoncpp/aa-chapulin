@@ -45,7 +45,7 @@ describe('Case 5 day 3 trial (Spanish)', () => {
   it('wires adjournment.next.trial openingPresent with efectos_casimiro only', () => {
     expect(day3.openingPresent?.evidence).toContain('efectos_casimiro');
     expect(day3.openingPresent?.profileTarget ?? []).toHaveLength(0);
-    expect(day3.openingPresent?.prompt).toBe('¿Qué iba a señalar el occiso en esa diligencia?');
+    expect(day3.openingPresent?.prompt).toBe('¿Qué iba a señalar la víctima en esa diligencia?');
     expect(en.adjournment?.next?.trial.openingPresent?.evidence).toEqual(['efectos_casimiro']);
   });
 

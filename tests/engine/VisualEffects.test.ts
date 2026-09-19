@@ -122,6 +122,19 @@ describe('VisualEffects Subsystem', () => {
     setStagingCaseId('case1');
   });
 
+  it('seats Berrondo at the prosecution table on Case 5 day 1 and at the stand once sworn', () => {
+    setStagingCaseId('case5', /*trialDay=*/ 1);
+    expect(VisualEffects.inferTrialBackground('BERRONDO')).toBe('assets/bg_courtroom.webp');
+    setStagingCaseId('case5', /*trialDay=*/ 2);
+    expect(VisualEffects.inferTrialBackground('BERRONDO')).toBe('assets/bg_witness.webp');
+    setStagingCaseId('case5', /*trialDay=*/ 3);
+    expect(VisualEffects.inferTrialBackground('BERRONDO')).toBe('assets/bg_witness.webp');
+    setStagingCaseId('case5', /*trialDay=*/ 4);
+    expect(VisualEffects.inferTrialBackground('BERRONDO')).toBe('assets/bg_witness.webp');
+    setStagingCaseId('case1');
+    expect(VisualEffects.inferTrialBackground('BERRONDO')).toBe('assets/bg_witness.webp');
+  });
+
   it('does not move the courtroom camera for tutorial instruction labels', () => {
     expect(VisualEffects.inferTrialBackground('MODO EXAMINAR')).toBeNull();
     expect(VisualEffects.inferTrialBackground('EXAMINE MODE')).toBeNull();

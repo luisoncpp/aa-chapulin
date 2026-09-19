@@ -25,7 +25,7 @@ export const CASE5_DAY2_INTRO_FULL_EN: DialogueLine[] = [
   { speaker: 'NARRADOR', text: 'Absolute silence in the courtroom.', bgm: 'suspense' },
   { speaker: 'DEFENSA', text: '(...The second name is the man who gave me coffee this morning.)', pose: 'chapulin_panic' },
   { speaker: 'SUPER SAM', text: 'Your Honor, before the gallery starts inventing things!', pose: 'supersam_slam', sfx: 'desk_slam' },
-  { speaker: 'SUPER SAM', text: 'Counselor Berrondo is an officer of the court and was doing his job! I myself invited him to assist on Monday morning, when he informed me of his status as the deceased\'s trustee!', pose: 'supersam_point' },
+  { speaker: 'SUPER SAM', text: 'Counselor Berrondo is an officer of the court and was doing his job! I myself invited him to assist on Monday morning, when he informed me of his status as the victim\'s trustee!', pose: 'supersam_point' },
   { speaker: 'BERRONDO', text: 'That is exact, Your Honor. I told the prosecutor Monday morning, before the first hearing.', pose: 'berrondo_idle' },
   { speaker: 'BERRONDO', text: 'I considered that hiding it would have been unworthy and that declaring it would be useful. Both seemed obvious to me.', pose: 'berrondo_idle' },
   { speaker: 'JUEZ', text: 'Does the defense have anything to say?', pose: 'judge_thinking' },
@@ -35,7 +35,7 @@ export const CASE5_DAY2_INTRO_FULL_EN: DialogueLine[] = [
   { speaker: 'DEFENSA', text: '(And there the door closed.)', pose: 'chapulin_idle' },
   { speaker: 'DEFENSA', text: '(The young woman at the window keeps that ledger. I am noting her in the Record, even if she is no use today.)', pose: 'chapulin_idle', addEvidence: 'libro_peritos', addProfile: 'perfil_genoveva' },
   { speaker: 'JUEZ', text: 'And before we hear today\'s witness, this court wants one thing on the record, because we have spent two days talking about a man as if he were furniture.', pose: 'judge_thinking' },
-  { speaker: 'JUEZ', text: 'Defense: tell this court who the deceased was and what he was doing in that Archive.', sfx: 'gavel', pose: 'judge_gavel' }
+  { speaker: 'JUEZ', text: 'Defense: tell this court who the victim was and what he was doing in that Archive.', sfx: 'gavel', pose: 'judge_gavel' }
 ];
 
 export const CASE5_DAY2_OPENING_PRESENT_EN: OpeningPresent = {

@@ -89,7 +89,7 @@ export const CASE5_TESTIMONY_3_EN: Testimony = {
         successDialogue: CASE5_D1_T3_PLANO_SUCCESS_EN,
         followUp: {
           evidence: ['expediente_casimiro'],
-          prompt: 'What was the deceased doing when he was struck?',
+          prompt: 'What was the victim doing when he was struck?',
           successDialogue: CASE5_D1_T3_EXPEDIENTE_GIRO_SUCCESS_EN
         }
       }

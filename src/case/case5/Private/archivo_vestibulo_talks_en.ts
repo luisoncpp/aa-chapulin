@@ -22,10 +22,10 @@ export const CASE5_VESTIBULO_TALKS_EN: TalkOption[] = [
     label: 'Who else was here that afternoon?',
     unlockedByTalk: 'como_encontro_cuerpo',
     dialogue: [
-      { speaker: 'NICANOR', text: 'From the public, fourteen people, all before five. The last was your counselor.', pose: 'nicanor_idle' },
-      { speaker: 'DEFENSA', text: 'And the ones who are not public?', pose: 'chapulin_point' },
+      { speaker: 'NICANOR', text: 'Fourteen visitors, all before five. The last was your counselor.', pose: 'nicanor_idle' },
+      { speaker: 'DEFENSA', text: 'And the ones who were not visiting?', pose: 'chapulin_point' },
       { speaker: 'NICANOR', text: 'I cannot swear to those. I have my door and Miss Genoveva has hers.', pose: 'nicanor_idle' },
-      { speaker: 'NICANOR', text: 'Each his own logbook, kid. Here that is like each his own grave.', pose: 'nicanor_idle' },
+      { speaker: 'NICANOR', text: 'Each his own door, kid. Here that is like each his own grave.', pose: 'nicanor_idle' },
       { speaker: 'DEFENSA', text: '(I will have to meet Miss Genoveva.)', pose: 'chapulin_idle' },
       { speaker: 'NICANOR', text: 'Go up to seven if you like. They took the tape down this morning. And do not lean on the shelf; it is straightened.', pose: 'nicanor_escoba', unlockLocation: 'archivo_pasillo7' },
       { speaker: 'DEFENSA', text: 'Straightened?', pose: 'chapulin_idle' },

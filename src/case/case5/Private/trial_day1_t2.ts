@@ -23,7 +23,7 @@ export const CASE5_TESTIMONY_2: Testimony = {
       id: 'c5_d1t2_1',
       speaker: 'SARGENTO',
       pose: 'pazguato_idle',
-      text: 'Recibí el aviso a las cinco treinta y ocho y llegué a las cinco cincuenta y dos con el legista.',
+      text: 'Recibí el aviso a las cinco treinta y ocho y llegué a las cinco cincuenta y dos con el forense.',
       pressText: [
         MOMENTO,
         { speaker: 'DEFENSA', text: 'Catorce minutos de camino. ¿Por qué tan rápido?', pose: 'chapulin_point' },
@@ -55,13 +55,13 @@ export const CASE5_TESTIMONY_2: Testimony = {
       id: 'c5_d1t2_3',
       speaker: 'SARGENTO',
       pose: 'pazguato_idle',
-      text: 'A un metro, el Tomo XI de una enciclopedia, con sangre en el canto del lomo. Lo fotografié antes de tocarlo.',
+      text: 'A un metro, el Tomo XI de una enciclopedia, con sangre en el lomo. Lo fotografié antes de tocarlo.',
       pressText: [
         MOMENTO,
         { speaker: 'DEFENSA', text: 'Descríbame el golpe, Sargento.', pose: 'chapulin_point' },
         { speaker: 'SARGENTO', text: 'Uno solo. En la nuca. El informe preliminar sólo fija un canto recto de cuatro centímetros.', pose: 'pazguato_idle' },
         { speaker: 'DEFENSA', text: '¿Y con cuánta fuerza?', pose: 'chapulin_idle' },
-        { speaker: 'SARGENTO', text: 'Todavía no consta si el objeto se blandió o se aplicó de otra manera. Pedí al legista que amplíe el análisis de las marcas.', pose: 'pazguato_sweat' },
+        { speaker: 'SARGENTO', text: 'Todavía no consta si el objeto se blandió o se aplicó de otra manera. Pedí al forense que amplíe el análisis de las marcas.', pose: 'pazguato_sweat' },
         { speaker: 'JUEZ', text: '¿Está pendiente esa ampliación, entonces?', pose: 'judge_shock' },
         { speaker: 'SARGENTO', text: 'Sí, señor juez. No quiero confundir lo que vimos con lo que aún tiene que concluir el perito.', pose: 'pazguato_idle' },
         { speaker: 'DEFENSA', text: '(Un canto recto de cuatro centímetros. Necesito el modo del golpe, no sólo el tamaño de la marca.)', pose: 'chapulin_idle' },
@@ -116,11 +116,11 @@ export const CASE5_TESTIMONY_2: Testimony = {
         { speaker: 'DEFENSA', text: '(Un saludo. Vamos a ver cuánto dura un saludo en este país.)', pose: 'chapulin_idle' }
       ],
       contradiction: {
-        evidence: ['parte_detencion'],
+        evidence: ['hoja_relevo'],
         successDialogue: CASE5_D1_T2_PARTE_SUCCESS,
         followUp: {
           evidence: ['esquina_tarjeta'],
-          prompt: '¿Cómo llegó ese papel a la mano del occiso?',
+          prompt: '¿Cómo llegó ese papel a la mano de la víctima?',
           successDialogue: CASE5_D1_T2_TARJETA_SUCCESS
         }
       }

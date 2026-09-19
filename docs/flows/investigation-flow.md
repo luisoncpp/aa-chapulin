@@ -17,7 +17,7 @@ Operational guide for player actions during the crime scene investigation phase.
 2. `locationBannerEl` text updates to current scene title.
 3. `bgEl` background style switches to the scene image from the active script (`bg_museum.jpg`, `bg_detention.jpg`, or Case 2 `bg_boveda.jpg` / `bg_restaurante.jpg` / `bg_postal.jpg` / `bg_clotilde.jpg`).
 4. `midiComposer.playTrack(scene.bgm)` transitions background music (`'investigation'` or `'suspense'`).
-5. `renderHotspots()` injects percentage-based clickable regions into `#hotspots-container` (`x,y,w,h` are of the 960×540 stage after `background-size: cover`, not of the raw background file).
+5. `renderHotspots()` injects percentage-based clickable regions into `#hotspots-container` (`x,y,w,h` are of the 960×540 stage after `background-size: cover`, not of the raw background file). `visibleHotspots()` ([[src/engine/Private/HotspotLayer.ts]]) first drops any hotspot whose optional `condition(flags)` predicate fails — the same `examined_<id>` flags that gate talk options. This is how a scene forces examination order: a hotspot that carries the day-closing beat stays hidden until its siblings are examined (Case 5 `archivo_pasillo7.hotspot_mesa`, Case 5 `bodega_masa.hotspot_maquina`). A scene must always leave at least one hotspot ungated or it soft-locks.
 6. `resolveSceneIntro(scene, gameState)` checks whether an opening dialogue should play:
    - On first visit (or when a conditional `SceneIntro` matches unplayed event flags), `gameState.markIntroPlayed(intro.id)` records completion, investigation navigation (`#investigation-controls`) is hidden with `.hidden`, `isFirstTimeDialogue = true` blocks menu/hotspot interactions, and `queueDialogue(intro.dialogue)` presents opening dialogue. On dialogue completion, `.hidden` is removed from `#investigation-controls`, `isFirstTimeDialogue = false`, and `restoreSceneIdlePose()` restores the resident character pose. After trial adjournment, intro waits until `fadeThroughBlack` reveals the new plate before `queueCurrentIntro()` queues the dialogue.
    - On re-visits where no new event intro matches, opening dialogue is bypassed as in Ace Attorney games; the speaker tag and dialogue box are cleared, the resident character pose is restored from the scene's resolved `idlePose` (or hidden if `null`), and investigation navigation is immediately ready. Dialogue completions (intro, hotspot examination, and talk topics) similarly restore the resident character's `idlePose`.
@@ -38,7 +38,7 @@ Operational guide for player actions during the crime scene investigation phase.
    - `#examine-nav` and `#investigation-controls` are both hidden during dialogue playback.
    - Hotspot dialogue array is queued via `queueDialogue()`.
    - Any `line.addEvidence` adds the item and shows `#game-notification` (`notifEvidenceAdded`) with realization SFX.
-   - Any `line.updateEvidence` applies catalog `updatedDesc` and shows `#game-notification`.
+   - Any `line.updateEvidence` advances one catalog stage and shows `#game-notification`. The Acta then shows the original `desc` plus every revealed `updates[]` addendum (legacy `updatedDesc` replaces instead).
    - On dialogue completion callback:
      - `gameState.markHotspotExamined(h.id)` records completion.
      - `notifyNewlyUnlocked()` checks for newly unlocked talk topics.

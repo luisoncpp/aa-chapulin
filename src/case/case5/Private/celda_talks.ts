@@ -16,7 +16,7 @@ const relatoFlashback: TalkOption['dialogue'] = [
   { speaker: 'CASIMIRO', text: 'Lo mandé llamar porque usted es el único que me creyó capaz de leer.', bg: PASILLO_BG, furniture: 'none', pose: 'casimiro_catalogo' },
   { speaker: 'DON RAMÓN', text: 'Usted me dijo en el estrado que no había estudiado nada.', bg: PASILLO_BG, furniture: 'none', pose: 'donramon_idle' },
   { speaker: 'CASIMIRO', text: 'Y es verdad. Yo no estudio: yo reconozco. Es otro oficio y paga peor.', bg: PASILLO_BG, furniture: 'none', pose: 'casimiro_amable' },
-  { speaker: 'NARRADOR', text: 'El sentenciado abre su expediente en la foja 214 y pone el dedo sobre una tarjeta pegada al papel.', bg: PASILLO_BG, furniture: 'none' },
+  { speaker: 'NARRADOR', text: 'El sentenciado abre su expediente en la página 214 y pone el dedo sobre una tarjeta pegada al papel.', bg: PASILLO_BG, furniture: 'none' },
   { speaker: 'CASIMIRO', text: 'Ésta me la decomisaron a mí en julio. Y en agosto, en el patio de un museo, apareció otra parecida. Salió periódico.', bg: PASILLO_BG, furniture: 'none', pose: 'casimiro_catalogo' },
   { speaker: 'CASIMIRO', text: 'Las dos las escribió la misma máquina, licenciado. Se lo digo yo, que me pasé nueve años tecleando en ella.', bg: PASILLO_BG, furniture: 'none', pose: 'casimiro_catalogo' },
   { speaker: 'DON RAMÓN', text: '¿Y dónde está esa máquina?', bg: PASILLO_BG, furniture: 'none', pose: 'donramon_shock' },
@@ -50,17 +50,20 @@ export const CASE5_CELDA_TALKS: TalkOption[] = [
   },
   {
     id: 'parte_detencion',
-    label: 'Enséñeme el parte de detención',
+    label: 'Enséñeme el acta de detención',
     dialogue: [
-      { speaker: 'NARRADOR', text: 'El alguacil desliza por la ranura una copia del parte del 4 de diciembre.', sfx: 'click' },
+      { speaker: 'NARRADOR', text: 'El alguacil desliza por la ranura una copia del acta de detención del 4 de diciembre.', sfx: 'click' },
       { speaker: 'DEFENSA', text: '(Detención a las nueve cuarenta de la noche. Inventario: una insignia de abogado, tres pesos, una libreta...)', pose: 'chapulin_idle' },
       { speaker: 'DEFENSA', text: '(...y un recibo de renta a su nombre. Diecisiete mensualidades. Pagadas.)', pose: 'chapulin_panic' },
       { speaker: 'DEFENSA', text: '¡Don Ramón! ¡Aquí dice que usted pagó diecisiete meses de renta!', pose: 'chapulin_point' },
       { speaker: 'DON RAMÓN', text: 'Yo no pagué nada, joven.', pose: 'donramon_idle' },
       { speaker: 'DON RAMÓN', text: 'El lunes en la tarde el señor Barriga me detuvo en el patio, me dio un recibo y me dijo «gracias».', pose: 'donramon_sweat' },
       { speaker: 'DON RAMÓN', text: 'Me dijo «gracias», Chapulín. Nunca en diecisiete años me había dicho gracias. Yo creí que se estaba burlando.', pose: 'donramon_sweat' },
-      { speaker: 'DEFENSA', text: '(Y hay un anexo: la hoja de relevo de los custodios del Archivo. Dos firmas de entrada y dos de salida.)', pose: 'chapulin_idle' },
-      { speaker: 'DEFENSA', text: '(Me la guardo. Todavía no sé para qué sirve, pero un papel con horas siempre sirve.)', pose: 'chapulin_idle', addEvidence: 'parte_detencion' }
+      { speaker: 'DEFENSA', text: '(Me quedo con el acta.)', pose: 'chapulin_idle', addEvidence: 'parte_detencion' },
+      { speaker: 'NARRADOR', text: 'El alguacil desliza una segunda hoja, engrapada aparte: la hoja de relevo de custodia del Archivo.', sfx: 'click' },
+      { speaker: 'DEFENSA', text: '(Cuatro firmas y cuatro horas. Rangel y Nieto salen de la reja a las cinco en punto...)', pose: 'chapulin_idle' },
+      { speaker: 'DEFENSA', text: '(...y Cadena y Solís firman su entrada hasta las cinco y cuarto.)', pose: 'chapulin_panic' },
+      { speaker: 'DEFENSA', text: '(Quince minutos. Un papel con horas siempre sirve, y éste tiene un hueco.)', pose: 'chapulin_idle', addEvidence: 'hoja_relevo' }
     ]
   },
   {
@@ -70,7 +73,7 @@ export const CASE5_CELDA_TALKS: TalkOption[] = [
       { speaker: 'DON RAMÓN', text: 'Eso es lo que me tiene aquí.', pose: 'donramon_idle' },
       { speaker: 'NARRADOR', text: 'Entre las hojas del parte viene una fotografía pericial: una mano cerrada sobre un pedazo de cartulina.' },
       { speaker: 'DEFENSA', text: 'Es una esquina. Rota. Con letras de máquina.', pose: 'chapulin_idle' },
-      { speaker: 'DEFENSA', text: '«...cindad de la calle del Espanto 8, viv. 4.»', pose: 'chapulin_point' },
+      { speaker: 'DEFENSA', text: '«...cindad de la calle del Espanto 8, viv. 72.»', pose: 'chapulin_point' },
       { speaker: 'DON RAMÓN', text: 'Mi casa, joven. Con el número de mi vivienda.', pose: 'donramon_sweat' },
       { speaker: 'DEFENSA', text: '¡Pero si esto no prueba nada! ¡Cualquiera puede escribir un domicilio!', pose: 'chapulin_panic' },
       { speaker: 'DON RAMÓN', text: 'Cualquiera puede. Pero fíjese bien en el pedazo.', pose: 'donramon_idle' },

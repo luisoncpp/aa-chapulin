@@ -17,7 +17,7 @@ export const CASE5_CELDA_D4_TALKS: TalkOption[] = [
       { speaker: 'DEFENSA', text: '¿Y el conserje?', pose: 'chapulin_point' },
       { speaker: 'DON RAMÓN', text: 'El conserje me dijo en la puerta que la caldera y los secadores llevaban al máximo desde el tres, por un tubo reventado.', pose: 'donramon_idle' },
       { speaker: 'DEFENSA', text: 'Don Ramón.', pose: 'chapulin_panic' },
-      { speaker: 'DEFENSA', text: 'El legista calculó la hora de la muerte con la temperatura del cuerpo.', pose: 'chapulin_point' },
+      { speaker: 'DEFENSA', text: 'El forense calculó la hora de la muerte con la temperatura del cuerpo.', pose: 'chapulin_point' },
       { speaker: 'DON RAMÓN', text: '...Sí.', pose: 'donramon_idle' },
       { speaker: 'DEFENSA', text: 'Y calculó suponiendo un cuarto normal.', pose: 'chapulin_idle' },
       { speaker: 'DON RAMÓN', text: '...Sí.', pose: 'donramon_shock' },

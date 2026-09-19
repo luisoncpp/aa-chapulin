@@ -71,7 +71,7 @@ export const CASE5_D3_T3_TOMO_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'BERRONDO', text: 'I did, Your Honor. Twenty-four slots and twenty-three volumes, because thirteen never existed.', pose: 'berrondo_idle' },
   { speaker: 'BERRONDO', text: 'Nobody wanted them. They were twenty-three heavy volumes and the per-kilo auction did not cover freight.', pose: 'berrondo_idle' },
   { speaker: 'BERRONDO', text: 'I gave them to the court to avoid hauling fees, declared it, and there is a receipt.', pose: 'berrondo_idle' },
-  { speaker: 'DEFENSA', text: 'Your Honor: the deceased was killed with a book the witness donated.', pose: 'chapulin_point' },
+  { speaker: 'DEFENSA', text: 'Your Honor: the victim was killed with a book the witness donated.', pose: 'chapulin_point' },
   { speaker: 'BERRONDO', text: 'Eleven years ago, counselor. And in plain view, in a public corridor, for eleven years.', pose: 'berrondo_idle' },
   { speaker: 'BERRONDO', text: 'If donating a book were evidence, half this city\'s libraries would be on trial.', pose: 'berrondo_idle' },
   { speaker: 'JUEZ', text: '...The court grants the gentleman is right. Again.', pose: 'judge_thinking' },

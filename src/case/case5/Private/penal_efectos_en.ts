@@ -18,10 +18,10 @@ export const CASE5_PENAL_EFECTOS_EN: InvestigationScene = {
     { speaker: 'NARRADOR', text: 'Three hundred numbered cardboard boxes on a metal shelf. Box 214-J reads: LENGUA, CASIMIRO.' },
     { speaker: 'SARGENTO', text: 'Box two hundred fourteen J, Counselor. And look at the number.', pose: 'pazguato_decidido' },
     { speaker: 'DEFENSA', text: 'Two hundred fourteen.', pose: 'chapulin_idle' },
-    { speaker: 'DEFENSA', text: 'Like the file folio he left open.', pose: 'chapulin_panic' },
+    { speaker: 'DEFENSA', text: 'Like the file page he left open.', pose: 'chapulin_panic' },
     { speaker: 'SARGENTO', text: 'Coincidence, Counselor. I verified: they number them by intake order.', pose: 'pazguato_idle' },
     { speaker: 'DEFENSA', text: '...Right.', pose: 'chapulin_idle' },
-    { speaker: 'DEFENSA', text: '(Coincidence. But I remembered the folio by the number, and that is why I came.)', pose: 'chapulin_idle' }
+    { speaker: 'DEFENSA', text: '(Coincidence. But I remembered the page by the number, and that is why I came.)', pose: 'chapulin_idle' }
   ],
   hotspots: CASE5_PENAL_EFECTOS_HOTSPOTS_EN,
   talkOptions: []

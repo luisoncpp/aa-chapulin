@@ -17,7 +17,7 @@ export const CASE5_DAY4_INTRO_FULL: DialogueLine[] = [
   { speaker: 'JUEZ', pose: 'judge_neutral', text: 'Defensa: tiene usted la palabra y tiene usted una tarde.' },
   { speaker: 'DEFENSA', text: 'Señor juez, antes de llamar a mi testigo, la defensa tiene que rectificar una prueba.', pose: 'chapulin_idle' },
   { speaker: 'JUEZ', text: '¿Rectificar?', pose: 'judge_thinking' },
-  { speaker: 'DEFENSA', text: 'El informe del legista.', pose: 'chapulin_point' },
+  { speaker: 'DEFENSA', text: 'El informe del forense.', pose: 'chapulin_point' },
   { speaker: 'SECRETARIO', text: 'La representación social no se opone... aunque no entiende.' },
   { speaker: 'DON RAMÓN', text: '(Nadie entiende, señor secretario. Yo tampoco y es mi pellejo.)', pose: 'donramon_sweat' },
   { speaker: 'JUEZ', text: 'Presente la defensa lo que tenga.', sfx: 'gavel', pose: 'judge_gavel' }
@@ -25,6 +25,6 @@ export const CASE5_DAY4_INTRO_FULL: DialogueLine[] = [
 
 export const CASE5_DAY4_OPENING_PRESENT: OpeningPresent = {
   evidence: ['bitacora_caldera'],
-  prompt: '¿Con qué temperatura trabajó el legista?',
+  prompt: '¿Con qué temperatura trabajó el forense?',
   successDialogue: CASE5_DAY4_OPENING_PRESENT_SUCCESS
 };

@@ -10,11 +10,11 @@ export const CASE5_ARCHIVO_PASILLO7: InvestigationScene = {
   title: 'Archivo Judicial - Pasillo 7',
   name: 'Archivo Judicial',
   bg: 'assets/bg_archivo_pasillo7.webp',
-  bgm: 'archivo',
+  bgm: 'suspense',
   speaker: 'NARRADOR',
   idlePose: 'pazguato_idle',
   intro: [
-    { speaker: 'NARRADOR', text: '6 de diciembre, 11:40 AM. Pasillo 7, primer piso. Hace un calor absurdo para diciembre.', bg: 'assets/bg_archivo_pasillo7.webp', furniture: 'none', bgm: 'archivo' },
+    { speaker: 'NARRADOR', text: '6 de diciembre, 11:40 AM. Pasillo 7, primer piso. Hace un calor absurdo para diciembre.', bg: 'assets/bg_archivo_pasillo7.webp', furniture: 'none', bgm: 'suspense' },
     { speaker: 'SARGENTO', text: '¡A sus órdenes, mi Licen...!', pose: 'pazguato_saludo' },
     { speaker: 'SARGENTO', text: '...ciado.', pose: 'pazguato_sweat' },
     { speaker: 'DEFENSA', text: '¡Sargento!', pose: 'chapulin_point' },

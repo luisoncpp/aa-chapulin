@@ -21,11 +21,11 @@ export const CASE5_DAY3_INTRO_FULL: DialogueLine[] = [
   { speaker: 'SUPER SAM', pose: 'supersam_point', text: 'Your Honor, la fiscalía solicita que se archive esta línea de investigación y se resuelva sobre el acusado.' },
   { speaker: 'JUEZ', pose: 'judge_neutral', text: 'La fiscalía la solicita todos los días y esta corte se la niega todos los días. Siéntese.' },
   { speaker: 'JUEZ', pose: 'judge_thinking', text: 'Antes de nada: ayer esta corte oyó que ese hombre pidió esta diligencia para su apelación. Lo que nadie ha explicado todavía es qué venía a señalar en ella.' },
-  { speaker: 'JUEZ', pose: 'judge_gavel', text: 'Defensa: ¿qué venía a hacer el occiso?', sfx: 'gavel' }
+  { speaker: 'JUEZ', pose: 'judge_gavel', text: 'Defensa: ¿qué venía a hacer la víctima?', sfx: 'gavel' }
 ];
 
 export const CASE5_DAY3_OPENING_PRESENT: OpeningPresent = {
   evidence: ['efectos_casimiro'],
-  prompt: '¿Qué iba a señalar el occiso en esa diligencia?',
+  prompt: '¿Qué iba a señalar la víctima en esa diligencia?',
   successDialogue: CASE5_DAY3_OPENING_PRESENT_SUCCESS
 };

@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 import { getEvidenceCatalog } from '../../src/state/index.js';
 
 const CASE5_IDS = [
-  'insignia_abogado', 'parte_detencion', 'esquina_tarjeta', 'informe_forense_c5',
+  'insignia_abogado', 'parte_detencion', 'hoja_relevo', 'esquina_tarjeta', 'informe_forense_c5',
   'tomo_caido', 'estante_consulta', 'libro_visitas', 'plano_archivo',
   'expediente_casimiro', 'recibo_renta', 'nota_mecanografiada', 'acuse_notificacion',
   'credencial_sindico', 'inventario_1971', 'libro_peritos', 'expediente_serie',
@@ -20,7 +20,7 @@ const DETAILED_VIEW_IDS = [
 ] as const;
 
 const NO_DETAILED_VIEW_IDS = [
-  'insignia_abogado', 'parte_detencion', 'informe_forense_c5',
+  'insignia_abogado', 'parte_detencion', 'hoja_relevo', 'informe_forense_c5',
   'expediente_casimiro', 'recibo_renta', 'fichero_cedulario', 'oficio_diligencia'
 ] as const;
 
@@ -38,12 +38,12 @@ function joinEnText(catalog: ReturnType<typeof getEvidenceCatalog>): string {
 }
 
 describe('Case5EvidenceCatalog', () => {
-  it('returns exactly 23 case5 items for es and en', () => {
+  it('returns exactly 24 case5 items for es and en', () => {
     const es = getEvidenceCatalog('es', 'case5');
     const en = getEvidenceCatalog('en', 'case5');
     const ids = Object.keys(es).sort();
 
-    expect(ids).toHaveLength(23);
+    expect(ids).toHaveLength(24);
     expect(ids).toEqual([...CASE5_IDS].sort());
     expect(ids).toContain('insignia_abogado');
     expect(ids).toContain('ficha_domicilio');
@@ -116,6 +116,38 @@ describe('Case5EvidenceCatalog', () => {
     expect(peritos).toMatch(/TIME OF ENTRY|Time of entry/i);
   });
 
+  it('names parte_detencion as an acta de detención / arrest report', () => {
+    const es = getEvidenceCatalog('es', 'case5').parte_detencion;
+    const en = getEvidenceCatalog('en', 'case5').parte_detencion;
+    expect(es?.name).toBe('Acta de Detención');
+    expect(es?.desc).toMatch(/[Aa]cta de detención/);
+    expect(es?.desc).not.toMatch(/\bParte del\b/);
+    expect(en?.name).toBe('Arrest Report');
+    expect(en?.desc).toMatch(/[Aa]rrest report/);
+  });
+
+  it('keeps the custody relay sheet separate from the arrest report', () => {
+    const es = getEvidenceCatalog('es', 'case5');
+    const en = getEvidenceCatalog('en', 'case5');
+    expect(es.hoja_relevo?.name).toBe('Hoja de Relevo de Custodia');
+    expect(en.hoja_relevo?.name).toBe('Custody Relay Sheet');
+    // The annex is gone: the arrest report no longer carries the relay hours.
+    expect(es.parte_detencion?.desc).not.toMatch(/relevo/i);
+    expect(en.parte_detencion?.desc).not.toMatch(/relay|annex/i);
+    expect(es.hoja_relevo?.icon).not.toBe(es.parte_detencion?.icon);
+  });
+
+  it('states the entry and exit hours that open the fifteen-minute gap', () => {
+    const es = getEvidenceCatalog('es', 'case5').hoja_relevo;
+    const en = getEvidenceCatalog('en', 'case5').hoja_relevo;
+    expect(es?.desc).toContain('17:00');
+    expect(es?.desc).toContain('17:15');
+    expect(es?.desc).toMatch(/quince minutos/i);
+    expect(en?.desc).toContain('5:00 PM');
+    expect(en?.desc).toContain('5:15 PM');
+    expect(en?.desc).toMatch(/fifteen minutes/i);
+  });
+
   it('uses 24h times in Spanish and AM/PM in English for libro_visitas', () => {
     const es = getEvidenceCatalog('es', 'case5').libro_visitas;
     const en = getEvidenceCatalog('en', 'case5').libro_visitas;
@@ -123,5 +155,12 @@ describe('Case5EvidenceCatalog', () => {
     expect(es?.desc).toContain('16:58');
     expect(en?.desc).toContain('4:40 PM');
     expect(en?.desc).toContain('4:58 PM');
+  });
+
+  it('states in libro_visitas that building staff do not sign', () => {
+    const es = getEvidenceCatalog('es', 'case5').libro_visitas;
+    const en = getEvidenceCatalog('en', 'case5').libro_visitas;
+    expect(es?.desc).toMatch(/personal del edificio no firma/i);
+    expect(en?.desc).toMatch(/building staff do not/i);
   });
 });

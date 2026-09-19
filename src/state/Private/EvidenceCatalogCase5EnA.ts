@@ -14,8 +14,13 @@ export const CASE5_EVIDENCE_EN_A: Record<string, EvidenceItem> = {
   }),
   parte_detencion: ev('parte_detencion', {
     name: 'Arrest Report',
-    desc: 'December 4 report: Ramón Valdés arrested at 9:40 PM in the neighborhood. Inventory: one attorney badge, three pesos, one notebook, and a rent receipt in his name for seventeen months. Annex: Archive custody relay sheet with entry and exit signatures of both custodian pairs.',
+    desc: 'Arrest report of December 4: Ramón Valdés arrested at 9:40 PM in the neighborhood. Inventory: one attorney badge, three pesos, one notebook, and a rent receipt in his name for seventeen months.',
     icon: 'assets/parte_detencion_c5.webp'
+  }),
+  hoja_relevo: ev('hoja_relevo', {
+    name: 'Custody Relay Sheet',
+    desc: 'Judicial Archive custody relay sheet, December 4. Outgoing shift: Rangel and Nieto sign OUT of the hallway 7 gate at 5:00 PM. Incoming shift: Cadena and Solis sign IN at 5:15 PM. Fifteen minutes stand between the two signatures with no custodian logged at the gate.',
+    icon: 'assets/bitacora_transmision.webp'
   }),
   esquina_tarjeta: ev('esquina_tarjeta', {
     name: 'Card Corner Fragment',
@@ -35,10 +40,10 @@ export const CASE5_EVIDENCE_EN_A: Record<string, EvidenceItem> = {
   }),
   tomo_caido: ev('tomo_caido', {
     name: 'Fallen Volume',
-    desc: 'Volume XI of El Saber Universal, economy edition, cloth-bound. Found one meter from the body, blood on the spine edge. On the flyleaf, a violet ink stamp.'
+    desc: 'Volume XI of El Saber Universal, economy edition, cloth-bound. Found one meter from the body, blood on the spine. On the flyleaf, a violet ink stamp.'
   }, {
     imageAsset: 'assets/examine_tomo_caido_en.webp',
-    caption: 'Olive cloth volume XI with brown stain on the spine edge; open flyleaf shows a violet oval stamp.'
+    caption: 'Olive cloth volume XI with brown stain on the spine; open flyleaf shows a violet oval stamp.'
   }),
   estante_consulta: ev('estante_consulta', {
     name: 'Reference Shelf',
@@ -49,7 +54,7 @@ export const CASE5_EVIDENCE_EN_A: Record<string, EvidenceItem> = {
   }),
   libro_visitas: ev('libro_visitas', {
     name: 'Visitors Log',
-    desc: 'Public visitors book, December 4 sheet. Fourteen signatures. The last: R. Valdés, 4:40 PM / 4:58 PM.'
+    desc: 'Public visitors book, December 4 sheet. Fourteen signatures. The last: R. Valdés, 4:40 PM / 4:58 PM. Only outside visitors sign it: building staff do not.'
   }, {
     imageAsset: 'assets/examine_libro_visitas_en.webp',
     caption: 'Public visitors book: fourteen handwritten rows; the last entry is R. Valdés, 4:40 PM / 4:58 PM.'
@@ -63,7 +68,7 @@ export const CASE5_EVIDENCE_EN_A: Record<string, EvidenceItem> = {
   }),
   expediente_casimiro: ev('expediente_casimiro', {
     name: "Casimiro's File",
-    desc: 'Victim’s appeal file, found open on the consultation table at folio 214. That folio bears, as evidence seized in July, a business card.'
+    desc: 'Victim’s appeal file, found open on the consultation table at page 214. That page bears, as evidence seized in July, a business card.'
   }),
   recibo_renta: ev('recibo_renta', {
     name: 'Rent Receipt',

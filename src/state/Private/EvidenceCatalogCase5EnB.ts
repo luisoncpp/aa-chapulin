@@ -19,7 +19,7 @@ export const CASE5_EVIDENCE_EN_B: Record<string, EvidenceItem> = {
     desc: 'Estate inventory, October 14, 1971. Forty-seven line items. Item 12: card file, 11,400 cards. Item 41: Olivetti Lexikon 80 typewriter. Item 44: unsold luxury copies, 210.'
   }, {
     imageAsset: 'assets/examine_inventario_en.webp',
-    caption: 'Two typed folios; items 12, 41, and 44 are visible by position, not highlights.'
+    caption: 'Two typed pages; items 12, 41, and 44 are visible by position, not highlights.'
   }),
   libro_peritos: ev('libro_peritos', {
     name: 'Experts Log',

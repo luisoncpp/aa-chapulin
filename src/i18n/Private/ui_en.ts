@@ -75,6 +75,7 @@ export const UI_EN: UiTranslations = {
     victory: '¡Síganme los buenos!',
     epilogue: '¡Síganme los buenos!',
     detention_center: 'Detention Center — Elegy',
+    game_over: 'Guilty — Verdict Elegy',
     kermes: 'Fairground — Popular Fest',
     archivo: 'Judicial Archive — Paper and Dust',
     cross_exam_grave: 'Cross-Examination — Grave'

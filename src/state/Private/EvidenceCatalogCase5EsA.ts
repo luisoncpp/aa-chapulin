@@ -13,13 +13,18 @@ export const CASE5_EVIDENCE_ES_A: Record<string, EvidenceItem> = {
     icon: 'assets/insignia_abogado.webp'
   }),
   parte_detencion: ev('parte_detencion', {
-    name: 'Parte de Detención',
-    desc: 'Parte del 4 de diciembre: detención de Ramón Valdés a las 21:40 en la vecindad. Inventario: una insignia de abogado, tres pesos, una libreta y un recibo de renta a su nombre por diecisiete mensualidades. Anexo: hoja de relevo de custodia del Archivo, con las firmas de entrada y salida de los dos pares de custodios.',
+    name: 'Acta de Detención',
+    desc: 'Acta de detención del 4 de diciembre: detención de Ramón Valdés a las 21:40 en la vecindad. Inventario: una insignia de abogado, tres pesos, una libreta y un recibo de renta a su nombre por diecisiete mensualidades.',
     icon: 'assets/parte_detencion_c5.webp'
+  }),
+  hoja_relevo: ev('hoja_relevo', {
+    name: 'Hoja de Relevo de Custodia',
+    desc: 'Hoja de relevo de custodia del Archivo Judicial, 4 de diciembre. Turno saliente: Rangel y Nieto firman su SALIDA de la reja del pasillo 7 a las 17:00. Turno entrante: Cadena y Solís firman su ENTRADA a las 17:15. Entre las dos firmas hay quince minutos sin ningún custodio asentado en la reja.',
+    icon: 'assets/bitacora_transmision.webp'
   }),
   esquina_tarjeta: ev('esquina_tarjeta', {
     name: 'Esquina de Tarjeta',
-    desc: 'Fotografía pericial del fragmento hallado en la mano derecha del occiso: esquina de cartulina crema, mecanografiada, con un domicilio incompleto.'
+    desc: 'Fotografía pericial del fragmento hallado en la mano derecha de la víctima: esquina de cartulina crema, mecanografiada, con un domicilio incompleto.'
   }, {
     imageAsset: 'assets/examine_esquina_tarjeta.webp',
     caption: 'Macro pericial con regla testigo de 5 cm: fragmento de cartulina crema, cuatro renglones mecanografiados cortos y borde roto recto y limpio.'
@@ -30,15 +35,15 @@ export const CASE5_EVIDENCE_ES_A: Record<string, EvidenceItem> = {
     icon: 'assets/informe_forense_c5.webp',
     updates: [
       'Ampliación: el calco corresponde a un canto recto de cuatro centímetros aplicado de arriba abajo y por detrás, con el objeto sostenido a dos manos y cerrado sobre la nuca. No hay arco de golpe: no se blandió, se cerró.',
-      'Rectificación del legista: aplicado el coeficiente de una sala a 31 °C, el intervalo se corrige a 16:35–17:05.'
+      'Rectificación del forense: aplicado el coeficiente de una sala a 31 °C, el intervalo se corrige a 16:35–17:05.'
     ]
   }),
   tomo_caido: ev('tomo_caido', {
     name: 'Tomo Caído',
-    desc: 'Tomo XI de El Saber Universal, edición económica, encuadernado en tela. Hallado a un metro del cuerpo, con sangre en el canto del lomo. En la guarda, un sello de tinta violeta.'
+    desc: 'Tomo XI de El Saber Universal, edición económica, encuadernado en tela. Hallado a un metro del cuerpo, con sangre en el lomo. En la guarda, un sello de tinta violeta.'
   }, {
     imageAsset: 'assets/examine_tomo_caido.webp',
-    caption: 'Tomo XI de tela verde oliva con mancha parda en el canto del lomo; en la guarda abierta se ve un sello ovalado de tinta violeta.'
+    caption: 'Tomo XI de tela verde oliva con mancha parda en el lomo; en la guarda abierta se ve un sello ovalado de tinta violeta.'
   }),
   estante_consulta: ev('estante_consulta', {
     name: 'Estante de Consulta',
@@ -49,7 +54,7 @@ export const CASE5_EVIDENCE_ES_A: Record<string, EvidenceItem> = {
   }),
   libro_visitas: ev('libro_visitas', {
     name: 'Libro de Visitas',
-    desc: 'Libro de visitas del público, hoja del 4 de diciembre. Catorce firmas. La última: R. Valdés, 16:40 / 16:58.'
+    desc: 'Libro de visitas del público, hoja del 4 de diciembre. Catorce firmas. La última: R. Valdés, 16:40 / 16:58. Sólo firman los que vienen de visita: el personal del edificio no firma.'
   }, {
     imageAsset: 'assets/examine_libro_visitas.webp',
     caption: 'Libro de visitas del público: catorce renglones manuscritos; el último asiento es R. Valdés, 16:40 / 16:58.'
@@ -63,7 +68,7 @@ export const CASE5_EVIDENCE_ES_A: Record<string, EvidenceItem> = {
   }),
   expediente_casimiro: ev('expediente_casimiro', {
     name: 'Expediente de Casimiro',
-    desc: 'Expediente de apelación del occiso, hallado abierto sobre la mesa de consulta, en la foja 214. En esa foja está pegada, como prueba decomisada en julio, una tarjeta de presentación.'
+    desc: 'Expediente de apelación de la víctima, hallado abierto sobre la mesa de consulta, en la página 214. En esa página está pegada, como prueba decomisada en julio, una tarjeta de presentación.'
   }),
   recibo_renta: ev('recibo_renta', {
     name: 'Recibo de Renta',

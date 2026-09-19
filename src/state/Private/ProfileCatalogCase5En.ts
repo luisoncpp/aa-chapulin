@@ -35,7 +35,7 @@ export const CASE5_PROFILES_EN: ProfileCatalogMap = {
     icon: 'assets/profile_perfil_casimiro.webp',
     desc: 'The victim. Sentenced in July for assaulting collector Nazario Cuenca; that conviction is not in dispute. Asked to testify at the Archive and asked for his own opposing counsel to be present.',
     updates: [
-      'They found him with his file open at folio 214.',
+      'They found him with his file open at page 214.',
       'He offered to hand over a card file on November 8. The prosecution answered eighteen days later.'
     ]
   },

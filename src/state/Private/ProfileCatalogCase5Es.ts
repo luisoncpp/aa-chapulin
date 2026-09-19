@@ -14,7 +14,7 @@ export const CASE5_PROFILES_ES: ProfileCatalogMap = {
     icon: 'assets/profile_perfil_donramon.webp',
     desc: 'El acusado. Abogado de banqueta. Diecisiete meses de renta atrasada que alguien le pagó sin decírselo. Es la quinta vez que pisa este juzgado y la primera que lo hace esposado.',
     updates: [
-      'Estuvo doce minutos a solas con el occiso, sin testigo que viera la mesa.',
+      'Estuvo doce minutos a solas con la víctima, sin testigo que viera la mesa.',
       'La ventana corregida lo incluye. Su defensa acaba de meterlo en ella.'
     ]
   },
@@ -35,7 +35,7 @@ export const CASE5_PROFILES_ES: ProfileCatalogMap = {
     icon: 'assets/profile_perfil_casimiro.webp',
     desc: 'La víctima. Sentenciado en julio por el asalto al cobrador Nazario Cuenca; su condena no está en discusión. Pidió declarar en el Archivo y pidió que estuviera su propio abogado contrario.',
     updates: [
-      'Lo encontraron con su expediente abierto en la foja 214.',
+      'Lo encontraron con su expediente abierto en la página 214.',
       'Ofreció entregar un fichero el 8 de noviembre. La fiscalía le contestó dieciocho días después.'
     ]
   },

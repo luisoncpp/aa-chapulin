@@ -3,7 +3,7 @@
  * Case 5 Trial Day 1 — Testimony 1, Nicanor Tolentino (spec §11.2), English.
  */
 
-import type { DialogueLine, Testimony } from '../../../types/index.js';
+import type { ContradictionRule, DialogueLine, Testimony } from '../../../types/index.js';
 import { CASE5_D1_T1_FORENSE_SUCCESS_EN, CASE5_D1_T1_LIBRO_SUCCESS_EN } from './trial_day1_success_en.js';
 
 const MOMENTO: DialogueLine = {
@@ -12,6 +12,17 @@ const MOMENTO: DialogueLine = {
   cutin: 'objection_un_momento',
   sfx: 'whoosh',
   pose: 'chapulin_point'
+};
+
+/** Statements 3 and 4 carry the same timing contradiction: they share the rule. */
+const CASE5_D1_T1_CONTRADICTION_EN: ContradictionRule = {
+  evidence: ['informe_forense_c5'],
+  successDialogue: CASE5_D1_T1_FORENSE_SUCCESS_EN,
+  followUp: {
+    evidence: ['libro_visitas'],
+    prompt: 'Who does that book not require to sign?',
+    successDialogue: CASE5_D1_T1_LIBRO_SUCCESS_EN
+  }
 };
 
 export const CASE5_TESTIMONY_1_EN: Testimony = {
@@ -66,7 +77,8 @@ export const CASE5_TESTIMONY_1_EN: Testimony = {
         { speaker: 'SUPER SAM', text: '"I hope not"! Your Honor, let the record show the phrase of a man who had just committed murder!', pose: 'supersam_slam', sfx: 'desk_slam' },
         { speaker: 'DEFENSA', text: 'OBJECTION! That is interpretation, not testimony!', sfx: 'desk_slam', cutin: 'objection_protesto', pose: 'chapulin_slam' },
         { speaker: 'JUEZ', text: 'Sustained. The phrase is entered, not the interpretation.', pose: 'judge_neutral' }
-      ]
+      ],
+      contradiction: CASE5_D1_T1_CONTRADICTION_EN
     },
     {
       id: 'c5_d1t1_4',
@@ -81,30 +93,7 @@ export const CASE5_TESTIMONY_1_EN: Testimony = {
         { speaker: 'NICANOR', text: 'With the boiler and both dryers on full, counselor, you cannot hear Judgment Day up there.', pose: 'nicanor_sweat' },
         { speaker: 'DEFENSA', text: '(The dryers again. And again nobody stops.)', pose: 'chapulin_idle' }
       ],
-      contradiction: {
-        evidence: ['informe_forense_c5'],
-        successDialogue: CASE5_D1_T1_FORENSE_SUCCESS_EN,
-        followUp: {
-          evidence: ['libro_visitas'],
-          prompt: 'Who does that book not require to sign?',
-          successDialogue: CASE5_D1_T1_LIBRO_SUCCESS_EN
-        }
-      }
-    },
-    {
-      id: 'c5_d1t1_5',
-      speaker: 'NICANOR',
-      pose: 'nicanor_idle',
-      text: 'Nobody passes my door without signing. Thirty-one years, Your Honor. It has never happened.',
-      pressText: [
-        MOMENTO,
-        { speaker: 'DEFENSA', text: '"My door." You said "my door."', pose: 'chapulin_point' },
-        { speaker: 'NICANOR', text: 'My door, yes sir. The public one.', pose: 'nicanor_idle' },
-        { speaker: 'DEFENSA', text: 'And are there others?', pose: 'chapulin_idle' },
-        { speaker: 'SUPER SAM', text: 'OBJECTION! The witness is not an architect! His testimony is about what he guards!', pose: 'supersam_slam', sfx: 'desk_slam' },
-        { speaker: 'JUEZ', text: 'Sustained. Defense, limit yourself to the witness\'s door.', pose: 'judge_neutral' },
-        { speaker: 'DEFENSA', text: '(They shut me down. Fine. That was not the way yet.)', pose: 'chapulin_idle' }
-      ]
+      contradiction: CASE5_D1_T1_CONTRADICTION_EN
     }
   ]
 };

@@ -21,11 +21,11 @@ export const CASE5_DAY3_INTRO_FULL_EN: DialogueLine[] = [
   { speaker: 'SUPER SAM', pose: 'supersam_point', text: 'Your Honor, the prosecution requests this line of investigation be closed and the court rule on the defendant.' },
   { speaker: 'JUEZ', pose: 'judge_neutral', text: 'The prosecution requests that every day and this court denies it every day. Sit down.' },
   { speaker: 'JUEZ', pose: 'judge_thinking', text: 'First things first: yesterday this court heard that man requested this proceeding for his appeal. What nobody has explained yet is what he came to point to in it.' },
-  { speaker: 'JUEZ', pose: 'judge_gavel', text: 'Defense: what did the deceased come to do?', sfx: 'gavel' }
+  { speaker: 'JUEZ', pose: 'judge_gavel', text: 'Defense: what did the victim come to do?', sfx: 'gavel' }
 ];
 
 export const CASE5_DAY3_OPENING_PRESENT_EN: OpeningPresent = {
   evidence: ['efectos_casimiro'],
-  prompt: 'What was the deceased going to point to at that proceeding?',
+  prompt: 'What was the victim going to point to at that proceeding?',
   successDialogue: CASE5_DAY3_OPENING_PRESENT_SUCCESS_EN
 };

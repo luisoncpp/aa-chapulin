@@ -1098,6 +1098,7 @@ body {
     overflow-x: clip;
     overflow-y: auto;
     text-align: center;
+    white-space: pre-line;
     scrollbar-width: thin;
 }
 

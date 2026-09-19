@@ -23,7 +23,7 @@ export const CASE5_TESTIMONY_7_EN: Testimony = {
       id: 'c5_d3t2_1',
       speaker: 'SUPER SAM',
       pose: 'supersam_idle',
-      text: 'I received the deceased\'s letter on November 8. I put it in a drawer and kept it eighteen days.',
+      text: 'I received the victim\'s letter on November 8. I put it in a drawer and kept it eighteen days.',
       pressText: [
         MOMENTO,
         { speaker: 'DEFENSA', text: 'Eighteen days. Why?', pose: 'chapulin_point' },

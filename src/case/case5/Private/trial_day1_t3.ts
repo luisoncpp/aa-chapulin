@@ -71,7 +71,7 @@ export const CASE5_TESTIMONY_3: Testimony = {
       id: 'c5_d1t3_4',
       speaker: 'NICANOR',
       pose: 'nicanor_idle',
-      text: 'Y como por mi escalera no subió nadie después del licenciado, concluí que nadie más pudo llegar al pasillo siete. Esa escalera nace a tres metros de mi mostrador.',
+      text: 'Y como por mi escalera no subió nadie después del licenciado, concluí que nadie más pudo llegar al pasillo siete. Esa escalera empieza a tres metros de mi mostrador.',
       pressText: [
         MOMENTO,
         { speaker: 'DEFENSA', text: '¿Su escalera es la única que llega al pasillo siete?', pose: 'chapulin_point' },
@@ -89,7 +89,7 @@ export const CASE5_TESTIMONY_3: Testimony = {
         successDialogue: CASE5_D1_T3_PLANO_SUCCESS,
         followUp: {
           evidence: ['expediente_casimiro'],
-          prompt: '¿Qué estaba haciendo el occiso cuando lo golpearon?',
+          prompt: '¿Qué estaba haciendo la víctima cuando la golpearon?',
           successDialogue: CASE5_D1_T3_EXPEDIENTE_GIRO_SUCCESS
         }
       }

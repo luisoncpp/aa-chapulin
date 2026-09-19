@@ -29,7 +29,7 @@ export const CASE5_PASILLO7_HOTSPOTS_EN: Hotspot[] = [
     dialogue: [
       { speaker: 'NARRADOR', text: 'One meter from the outline, marked with a forensic tag, a thick volume bound in green cloth.' },
       { speaker: 'DEFENSA', text: '"Universal Knowledge. Volume XI. Railways - Guatemala."', pose: 'chapulin_idle' },
-      { speaker: 'DEFENSA', text: 'There is blood on the spine edge.', pose: 'chapulin_panic' },
+      { speaker: 'DEFENSA', text: 'There is blood on the spine.', pose: 'chapulin_panic' },
       { speaker: 'SARGENTO', text: 'Two kilos eight hundred grams. That is the weapon, Counselor. The prosecution already photographed it, tagged it, and ordered it kept here under guard; I have the forensic card.', pose: 'pazguato_idle' },
       { speaker: 'DEFENSA', text: 'And this little purple stamp on the first page?', pose: 'chapulin_idle' },
       { speaker: 'SARGENTO', text: 'No idea. Half faded and tiny lettering. With the Record magnifier you might read it.', pose: 'pazguato_idle' },
@@ -59,6 +59,11 @@ export const CASE5_PASILLO7_HOTSPOTS_EN: Hotspot[] = [
   {
     id: 'hotspot_mesa',
     label: 'Consultation Table',
+    // Closes the day (bell + exit to the courtroom). Stays hidden until body,
+    // volume and shelf are examined so the closing beat cannot fire early.
+    condition: (flags) => Boolean(flags.examined_hotspot_cuerpo)
+      && Boolean(flags.examined_hotspot_tomo)
+      && Boolean(flags.examined_hotspot_estante),
     x: 0, y: 4, w: 34, h: 58,
     dialogue: [
       { speaker: 'NARRADOR', text: 'A long oak table with a green-shaded lamp. On it, an open file bundle tied with ribbon.' },
@@ -72,13 +77,11 @@ export const CASE5_PASILLO7_HOTSPOTS_EN: Hotspot[] = [
       { speaker: 'DEFENSA', text: '(And they killed him before the court clerk arrived.)', pose: 'chapulin_panic', addEvidence: 'expediente_casimiro' },
       { speaker: 'SARGENTO', text: 'Counselor. One more thing and then I will shut up.', pose: 'pazguato_sweat' },
       { speaker: 'SARGENTO', text: 'The prosecution asked me for the visitor logbook and I gave it to them.', pose: 'pazguato_idle' },
-      { speaker: 'DEFENSA', text: 'And the other one?', pose: 'chapulin_point' },
-      { speaker: 'SARGENTO', text: 'Which other?', pose: 'pazguato_sweat' },
-      { speaker: 'DEFENSA', text: 'The expert log. The side door.', pose: 'chapulin_idle' },
-      { speaker: 'SARGENTO', text: '...Nobody asked me for it.', pose: 'pazguato_sweat' },
-      { speaker: 'SARGENTO', text: 'And I did not offer it, because visitors are visitors and experts are experts.', pose: 'pazguato_sweat' },
-      { speaker: 'DEFENSA', text: '(Do not say that at trial, Sergeant. Let them figure it out.)', pose: 'chapulin_idle' },
-      { speaker: 'DEFENSA', text: '(And if they do not, I will.)', pose: 'chapulin_point' },
+      { speaker: 'DEFENSA', text: 'Did they ask you for anything else?', pose: 'chapulin_point' },
+      { speaker: 'SARGENTO', text: '...No, Counselor. They asked for that one and nothing else.', pose: 'pazguato_sweat' },
+      { speaker: 'SARGENTO', text: 'And I answer what I am asked. That is my flaw and also my virtue.', pose: 'pazguato_sweat' },
+      { speaker: 'DEFENSA', text: '(Fourteen visitor signatures. And nobody has asked yet who came in without visiting.)', pose: 'chapulin_idle' },
+      { speaker: 'DEFENSA', text: '(I will ask, Sergeant. In front of the judge.)', pose: 'chapulin_point' },
       { speaker: 'NARRADOR', text: 'The courthouse bell rings across the street.', sfx: 'bell' },
       { speaker: 'DEFENSA', text: 'Follow the good guys! To the courtroom!', pose: 'chapulin_point' },
       { speaker: 'SARGENTO', text: 'At your service, Counselor.', pose: 'pazguato_saludo' }

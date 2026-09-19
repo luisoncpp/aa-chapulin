@@ -72,6 +72,7 @@ export type EvidenceId =
   | 'orden_servicios'
   | 'toxicologia_vino'
   | 'esquina_tarjeta'
+  | 'hoja_relevo'
   | 'informe_forense_c5'
   | 'tomo_caido'
   | 'estante_consulta'

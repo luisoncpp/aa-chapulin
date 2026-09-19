@@ -6,7 +6,7 @@
 import type { SoundEngine } from '../../audio/index.js';
 import { i18n } from '../../i18n/index.js';
 import type { GameStateManager } from '../../state/index.js';
-import type { CaseId, DialogueLine, PoseName } from '../../types/index.js';
+import type { CaseId, DialogueLine, PoseName, TrackName } from '../../types/index.js';
 import type { DomElements } from './DomElements.js';
 import { ModalManager } from './ModalManager.js';
 import { VisualEffects } from './VisualEffects.js';
@@ -48,16 +48,29 @@ export function queuePenaltyDialogue(deps: PenaltyHost, onResume: () => void): v
   deps.onQueueDialogue(lines, /*onComplete*/ onResume);
 }
 
+/** Somber cue that replaces the trial loop the moment the health bar empties. */
+const GAME_OVER_BGM: TrackName = 'game_over';
+
+/**
+ * The guilty verdict must not play over the cross-examination loop, so the first
+ * line of any game-over block carries the somber cue. Scripted `guiltyDialogue`
+ * keeps its own `bgm` when it declares one.
+ */
+function withGameOverBgm(lines: DialogueLine[]): DialogueLine[] {
+  if (!lines.length || lines[0].bgm) return lines;
+  return [{ ...lines[0], bgm: GAME_OVER_BGM }, ...lines.slice(1)];
+}
+
 function gameOverLines(deps: PenaltyHost): DialogueLine[] {
-  if (deps.guiltyDialogue?.length) return deps.guiltyDialogue;
-  return [
+  if (deps.guiltyDialogue?.length) return withGameOverBgm(deps.guiltyDialogue);
+  return withGameOverBgm([
     { speaker: 'JUEZ', pose: 'judge_gavel', text: i18n.t.gameOverJudgeText, sfx: 'gavel' },
     {
       speaker: 'DEFENSA',
       pose: defensePenaltyPose(deps.state.caseId, /*kind=*/'panic'),
       text: i18n.t.gameOverDefenseText
     }
-  ];
+  ]);
 }
 
 export function queuePenaltyOrRestart(deps: PenaltyHost, onContinue: () => void): void {

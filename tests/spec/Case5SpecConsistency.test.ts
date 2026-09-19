@@ -224,7 +224,7 @@ describe('Case 5 specification consistency', () => {
 describe('Case 5 structural relations', () => {
   it('maps every testimony contradiction and followUp to its §5 ranura', () => {
     const ranuras = ranuraMap();
-    expect(ranuras.size).toBe(23);
+    expect(ranuras.size).toBe(24);
     const heads = [...SPEC.matchAll(/^### (\d+)\.\d+ Testimonio (\d+)/gm)];
     expect(heads.length).toBe(9);
     heads.forEach((head, i) => {
@@ -234,7 +234,7 @@ describe('Case 5 structural relations', () => {
       const body = SPEC.slice(start, end);
       const tag = `${DAY_BY_CHAPTER[head[1]]}-T${head[2]}`;
       const contradiction = body.match(
-        /#### (?:Contradicción resolutoria|Inferencia refutada) — declaración[^:]*: \*\*`(\w+)`\*\*/,
+        /#### (?:Contradicción resolutoria|Inferencia refutada) — declaraci(?:ón|ones)[^:]*: \*\*`(\w+)`\*\*/,
       );
       const followUp = body.match(/#### `followUp`: \*\*`(\w+)`\*\*/);
       expect(contradiction, `${tag}: missing contradiction header`).toBeTruthy();
@@ -361,7 +361,7 @@ describe('Case 5 structural relations', () => {
       expect((reading.index as number) > order).toBe(true);
     }
     expect(slice('### 13.1', '### 13.2')).toContain(
-      'cuando él me comunicó su carácter de síndico del occiso',
+      'cuando él me comunicó su carácter de síndico de la víctima',
     );
   });
 
@@ -716,7 +716,7 @@ describe('Case 5 structural relations', () => {
   it('restamps bg after relato and fixes the §7.1 camera rule (I46)', () => {
     expect(slice('### 7.1', '### 7.2')).toContain('re-estampar el `bg`');
     expect(slice('### 7.1', '### 7.2')).toContain('En el estrado');
-    const afterRelato = slice('DEFENSA: ...¿Y usted se fue?', '**2. «Enséñeme el parte de detención»**');
+    const afterRelato = slice('DEFENSA: ...¿Y usted se fue?', '**2. «Enséñeme el acta de detención»**');
     for (const line of afterRelato.split('\n').filter((l) => l.startsWith('DEFENSA:') || l.startsWith('DON RAMÓN:'))) {
       expect(line).toContain('bg: bg_detention');
     }
@@ -792,6 +792,15 @@ describe('Case 5 structural relations', () => {
     expect(row).toContain('**D2-T2**');
     expect(row).toContain('**F16**');
     expect(row).not.toContain('cuatro antecedentes en el libro profesional');
+  });
+
+  it('fixes Don Ramón at house 72 of the vecindad (lente 22)', () => {
+    // The audit log (lentes 19 and 22) quotes the old number on purpose; the script must not.
+    const scriptLines = SPEC.split('\n').filter((l) => !/lente 22|Caso 0/.test(l));
+    expect(scriptLines.filter((l) => /viv\. 4\.|vivienda 4\b|vivienda cuatro/.test(l))).toEqual([]);
+    expect(occurrences('viv. 72.')).toBeGreaterThanOrEqual(4);
+    expect(occurrences('vivienda setenta y dos')).toBeGreaterThanOrEqual(3);
+    expect(SPEC).toContain('inquilino de la vivienda 72');
   });
 
   it('scopes the 1971 inventory to the concursal deposit and folds §4.2 into §24 (I54)', () => {

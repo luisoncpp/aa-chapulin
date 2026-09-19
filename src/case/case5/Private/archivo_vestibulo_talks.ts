@@ -22,10 +22,10 @@ export const CASE5_VESTIBULO_TALKS: TalkOption[] = [
     label: '¿Quién más estuvo aquí esa tarde?',
     unlockedByTalk: 'como_encontro_cuerpo',
     dialogue: [
-      { speaker: 'NICANOR', text: 'Del público, catorce personas y todas antes de las cinco. El último fue su licenciado.', pose: 'nicanor_idle' },
-      { speaker: 'DEFENSA', text: '¿Y de los que no son público?', pose: 'chapulin_point' },
+      { speaker: 'NICANOR', text: 'De visita, catorce personas y todas antes de las cinco. El último fue su licenciado.', pose: 'nicanor_idle' },
+      { speaker: 'DEFENSA', text: '¿Y los que no venían de visita?', pose: 'chapulin_point' },
       { speaker: 'NICANOR', text: 'De ésos no me consta. Yo tengo mi puerta y la señorita Genoveva tiene la suya.', pose: 'nicanor_idle' },
-      { speaker: 'NICANOR', text: 'Cada quien su libro, joven. Aquí eso es como cada quien su tumba.', pose: 'nicanor_idle' },
+      { speaker: 'NICANOR', text: 'Cada quien su puerta, joven. Aquí eso es como cada quien su tumba.', pose: 'nicanor_idle' },
       { speaker: 'DEFENSA', text: '(Voy a tener que conocer a la señorita Genoveva.)', pose: 'chapulin_idle' },
       { speaker: 'NICANOR', text: 'Suba al siete si quiere. Ya levantaron la cinta esta mañana. Y no se recargue en el estante, que está enderezado.', pose: 'nicanor_escoba', unlockLocation: 'archivo_pasillo7' },
       { speaker: 'DEFENSA', text: '¿Enderezado?', pose: 'chapulin_idle' },

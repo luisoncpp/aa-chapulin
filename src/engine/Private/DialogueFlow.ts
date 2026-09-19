@@ -112,7 +112,7 @@ export class DialogueFlow {
   }
 
   private applyLineSpeakerAndPose(line: DialogueLine): void {
-    setStagingCaseId(this.deps.state.caseId);
+    setStagingCaseId(this.deps.state.caseId, this.deps.state.trialDay);
     const isTrial = this.deps.state.mode === 'TRIAL';
     const effectivePose = VisualEffects.resolveEffectivePose(line, isTrial);
     if (effectivePose) {

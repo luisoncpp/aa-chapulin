@@ -47,7 +47,7 @@ export const CASE5_CLIMAX_CHOICES: ChoicePrompt[] = [
       { speaker: 'JUEZ', text: 'Está ordenado por calle, licenciado. Usted mismo lo declaró.', pose: 'judge_neutral' },
       { speaker: 'JUEZ', text: 'Y esta corte tiene la suerte de contar hoy con alguien que sabe exactamente qué calle buscar.', pose: 'judge_thinking' },
       { speaker: 'JUEZ', text: 'Acusado: dicte usted su domicilio al secretario.', sfx: 'gavel', pose: 'judge_gavel' },
-      { speaker: 'DON RAMÓN', text: '...Vecindad de la calle del Espanto número ocho, vivienda cuatro.', pose: 'donramon_idle' },
+      { speaker: 'DON RAMÓN', text: '...Vecindad de la calle del Espanto número ocho, vivienda setenta y dos.', pose: 'donramon_idle' },
       { speaker: 'DON RAMÓN', text: 'Ciudad de México.', pose: 'donramon_sweat' },
       { speaker: 'NARRADOR', text: 'El secretario recorre el cajón con el dedo durante cuarenta segundos. La sala no respira.', bgm: 'suspense' },
       { speaker: 'SECRETARIO', text: '...La tengo, señor juez.', addEvidence: 'ficha_domicilio' },

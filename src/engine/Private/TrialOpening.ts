@@ -17,7 +17,7 @@ interface CourtroomPaintDeps {
 }
 
 export function paintCourtroomPlate(deps: CourtroomPaintDeps, script: CaseScript): void | Promise<void> {
-  setStagingCaseId(deps.state.caseId);
+  setStagingCaseId(deps.state.caseId, deps.state.trialDay);
   deps.state.mode = 'TRIAL';
   deps.dom.investigationNavEl.classList.add('hidden');
   deps.dom.examineNavEl.classList.add('hidden');

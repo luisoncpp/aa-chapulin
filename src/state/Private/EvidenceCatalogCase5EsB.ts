@@ -63,7 +63,7 @@ export const CASE5_EVIDENCE_ES_B: Record<string, EvidenceItem> = {
   }),
   efectos_casimiro: ev('efectos_casimiro', {
     name: 'Efectos de Casimiro',
-    desc: 'Efectos del occiso. Dos piezas: su libreta de pasta negra, escrita con letra de catálogo, y la copia al carbón del oficio que dirigió al ministerio público el 8 de noviembre.'
+    desc: 'Efectos de la víctima. Dos piezas: su libreta de pasta negra, escrita con letra de catálogo, y la copia al carbón del oficio que dirigió al ministerio público el 8 de noviembre.'
   }, {
     imageAsset: 'assets/examine_efectos.webp',
     caption: 'Libreta de pasta negra y copia al carbón del oficio del 8 de noviembre; dos relojes de pulsera parados al lado.'

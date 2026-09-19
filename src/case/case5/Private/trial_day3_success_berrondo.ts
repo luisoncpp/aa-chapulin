@@ -71,7 +71,7 @@ export const CASE5_D3_T3_TOMO_SUCCESS: DialogueLine[] = [
   { speaker: 'BERRONDO', text: 'Yo los doné, señor juez. Veinticuatro ranuras y veintitrés tomos, porque el trece no existió nunca.', pose: 'berrondo_idle' },
   { speaker: 'BERRONDO', text: 'Nadie los quería. Eran veintitrés volúmenes pesados y el remate por kilo no cubría el flete.', pose: 'berrondo_idle' },
   { speaker: 'BERRONDO', text: 'Los regalé al juzgado para no pagar acarreo, y lo declaré, y hay recibo.', pose: 'berrondo_idle' },
-  { speaker: 'DEFENSA', text: 'Señor juez: al occiso lo mataron con un libro que regaló el testigo.', pose: 'chapulin_point' },
+  { speaker: 'DEFENSA', text: 'Señor juez: a la víctima la mataron con un libro que regaló el testigo.', pose: 'chapulin_point' },
   { speaker: 'BERRONDO', text: 'Hace once años, licenciado. Y a la vista de todos, en un pasillo público, durante once años.', pose: 'berrondo_idle' },
   { speaker: 'BERRONDO', text: 'Si haber donado un libro fuera indicio, la mitad de las bibliotecas de esta ciudad estaría procesada.', pose: 'berrondo_idle' },
   { speaker: 'JUEZ', text: '...La corte concede que el señor tiene razón. Otra vez.', pose: 'judge_thinking' },

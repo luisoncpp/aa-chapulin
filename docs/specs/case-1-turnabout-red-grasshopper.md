@@ -2129,9 +2129,9 @@ El Chapulín no se equivoca al azar: **toma dos refranes emparentados y empalma 
 
 Repetir este bloque **completo** en cada prompt de generación. No se hereda por contexto: si no está escrito en el prompt, el modelo lo pierde.
 
-> **Estilo:** ilustración 2D estilo *Capcom Ace Attorney* (linaje GBA / Nintendo DS) en alta definición. Cel-shading de colores planos con terminador de sombra duro (dos tonos por superficie, sin degradados suaves). **Contorno oscuro nítido y continuo** en carbón `#1A1A1A`, más grueso en la silueta exterior que en los detalles internos. Anatomía facial expresiva y exagerada, al borde de la caricatura. Codificación cromática por colores primarios saturados.
+> **Estilo:** ilustración 2D estilo *Capcom Ace Attorney* (linaje GBA / Nintendo DS) en alta definición. . **Contorno oscuro nítido y continuo** en carbón `#1A1A1A`, más grueso en la silueta exterior que en los detalles internos. Anatomía facial expresiva y exagerada, al borde de la caricatura. Codificación cromática por colores primarios saturados.
 > **Tema:** televisión mexicana de los años setenta, universo Chespirito / El Chapulín Colorado. Melodrama de tribunal tratado en serio por el sistema, absurdo en los personajes.
-> **Prohibido:** fotorrealismo, render 3D, acuarela, degradados suaves, texturas fotográficas, anime moderno, estética de cómic americano de superhéroes, marcas de agua, texto en inglés dentro de la imagen. La única excepción es el texto localizado exigido en `examine_ficha_museo_en.webp` (§21).
+> **Prohibido:** fotorrealismo, render 3D, acuarela, texturas fotográficas, anime moderno, estética de cómic americano de superhéroes, marcas de agua, texto en inglés dentro de la imagen. La única excepción es el texto localizado exigido en `examine_ficha_museo_en.webp` (§21).
 > **Prohibido el magenta / rosa (`#FF00FF` y vecinos) en los sujetos pintados y en todos los assets finales**, porque es la clave de croma del pipeline ([[process_assets.py]]). La única excepción es el fondo `#FF00FF` puro de las hojas de sprites brutas, que el pipeline elimina antes de exportar.
 > **Paleta base de la serie:** rojo carmesí `#C0392B`, amarillo canario `#F1C40F`, azul marino `#1B263B`, verde dólar `#2A9D8F`, oro `#E9C46A`, piel cálida `#F5CBA7`, contorno `#1A1A1A`.
 

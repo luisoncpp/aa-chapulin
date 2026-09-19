@@ -33,7 +33,7 @@ export const CASE5_ARCHIVO_CALDERA_HOTSPOTS: Hotspot[] = [
       { speaker: 'NARRADOR', text: 'El Sargento desenrolla la tira de esa semana, retirada y archivada el domingo cinco: una línea de tinta sube y baja como una sierra.' },
       { speaker: 'DEFENSA', text: 'Del tres al cinco... la línea se va para arriba y se queda.', pose: 'chapulin_idle' },
       { speaker: 'SARGENTO', text: 'Treinta y un grados, mi Licenciado. Sostenidos.', pose: 'pazguato_decidido' },
-      { speaker: 'DEFENSA', text: '¿Y el legista con qué trabajó?', pose: 'chapulin_point' },
+      { speaker: 'DEFENSA', text: '¿Y el forense con qué trabajó?', pose: 'chapulin_point' },
       { speaker: 'SARGENTO', text: 'Con veinte. Es el número que trae impreso la tabla.', pose: 'pazguato_sweat' },
       { speaker: 'DEFENSA', text: '(Once grados. Once grados de diferencia.)', pose: 'chapulin_panic', addEvidence: 'bitacora_caldera' },
       { speaker: 'SARGENTO', text: 'Mi Licenciado, la segunda cosa. La perita en documentoscopia trabajó toda la noche.', pose: 'pazguato_decidido' },

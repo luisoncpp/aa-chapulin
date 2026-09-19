@@ -75,15 +75,19 @@ describe('Case 5 day 1 trial (Spanish)', () => {
 
   it('maps contradictions and follow-ups per spec §11', () => {
     const [t1, t2, t3] = es.trial.testimonies;
-    expect(contradictions(t1)).toHaveLength(1);
-    expect(t1.statements.find((s) => s.id === 'c5_d1t1_4')?.contradiction).toMatchObject({
-      evidence: ['informe_forense_c5'],
-      followUp: { evidence: ['libro_visitas'] }
-    });
+    expect(contradictions(t1).map((s) => s.id)).toEqual(['c5_d1t1_3', 'c5_d1t1_4']);
+    for (const id of ['c5_d1t1_3', 'c5_d1t1_4']) {
+      expect(t1.statements.find((s) => s.id === id)?.contradiction, id).toMatchObject({
+        evidence: ['informe_forense_c5'],
+        followUp: { evidence: ['libro_visitas'] }
+      });
+    }
+    const [enT1] = en.trial.testimonies;
+    expect(contradictions(enT1).map((s) => s.id)).toEqual(['c5_d1t1_3', 'c5_d1t1_4']);
 
     expect(contradictions(t2)).toHaveLength(1);
     expect(t2.statements.find((s) => s.id === 'c5_d1t2_6')?.contradiction).toMatchObject({
-      evidence: ['parte_detencion'],
+      evidence: ['hoja_relevo'],
       followUp: { evidence: ['esquina_tarjeta'] }
     });
     expect(t2.statements.find((s) => s.id === 'c5_d1t2_6')?.unlockedBy).toBe('c5_d1t2_5');
@@ -95,6 +99,25 @@ describe('Case 5 day 1 trial (Spanish)', () => {
     });
   });
 
+  it('resolves the fifteen-minute gap with the relay sheet, not the arrest report', () => {
+    for (const script of [es, en]) {
+      const [, t2] = script.trial.testimonies;
+      const rule = t2.statements.find((s) => s.id === 'c5_d1t2_6')?.contradiction;
+      expect(rule?.evidence).toEqual(['hoja_relevo']);
+      expect(rule?.evidence).not.toContain('parte_detencion');
+    }
+  });
+
+  it('drops the "nobody passes my door without signing" statement from day-1 testimony 1', () => {
+    for (const script of [es, en]) {
+      const [t1] = script.trial.testimonies;
+      expect(t1.statements.map((s) => s.id)).toEqual(['c5_d1t1_1', 'c5_d1t1_2', 'c5_d1t1_3', 'c5_d1t1_4']);
+    }
+    const allText = [...trialDialogue(es), ...trialDialogue(en)].map((l) => l.text).join('\n');
+    expect(allText).not.toMatch(/Por mi puerta no pasa nadie sin firmar/);
+    expect(allText).not.toMatch(/Nobody passes my door without signing/);
+  });
+
   it('never aliases contradiction successDialogue to followUp.successDialogue', () => {
     for (const testimony of es.trial.testimonies) {
       for (const stmt of contradictions(testimony)) {
@@ -104,6 +127,14 @@ describe('Case 5 day 1 trial (Spanish)', () => {
         expect(rule.followUp.successDialogue.map((l) => l.text))
           .not.toEqual(rule.successDialogue.map((l) => l.text));
       }
+    }
+  });
+
+  it('leaves day-1 Berrondo lines without an explicit bg so the prosecution-table camera applies', () => {
+    for (const script of [es, en]) {
+      const berrondo = trialDialogue(script).filter((l) => l.speaker === 'BERRONDO');
+      expect(berrondo.length).toBeGreaterThan(0);
+      for (const line of berrondo) expect(line.bg).toBeUndefined();
     }
   });
 

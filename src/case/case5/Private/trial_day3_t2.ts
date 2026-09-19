@@ -23,7 +23,7 @@ export const CASE5_TESTIMONY_7: Testimony = {
       id: 'c5_d3t2_1',
       speaker: 'SUPER SAM',
       pose: 'supersam_idle',
-      text: 'Recibí el oficio del occiso el ocho de noviembre. Lo puse en un cajón y lo tuve dieciocho días.',
+      text: 'Recibí el oficio de la víctima el ocho de noviembre. Lo puse en un cajón y lo tuve dieciocho días.',
       pressText: [
         MOMENTO,
         { speaker: 'DEFENSA', text: 'Dieciocho días. ¿Por qué?', pose: 'chapulin_point' },

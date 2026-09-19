@@ -83,7 +83,7 @@ export const CASE5_TESTIMONY_8_EN: Testimony = {
       id: 'c5_d3t3_5',
       speaker: 'BERRONDO',
       pose: 'berrondo_idle',
-      text: 'I never went up to the first floor. I did not know the deceased was in that building until I read it in Sunday\'s newspaper.',
+      text: 'I never went up to the first floor. I did not know the victim was in that building until I read it in Sunday\'s newspaper.',
       pressText: [
         MOMENTO,
         { speaker: 'DEFENSA', text: 'You never went up to the first floor?', pose: 'chapulin_point' },

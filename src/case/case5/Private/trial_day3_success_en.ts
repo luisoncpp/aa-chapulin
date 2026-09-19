@@ -6,7 +6,7 @@
 import type { DialogueLine } from '../../../types/index.js';
 
 export const CASE5_DAY3_OPENING_PRESENT_SUCCESS_EN: DialogueLine[] = [
-  { speaker: 'DEFENSA', text: "The deceased's personal effects, Your Honor. Two stopped watches, a bow tie, and a notebook.", pose: 'chapulin_idle' },
+  { speaker: 'DEFENSA', text: "The victim's personal effects, Your Honor. Two stopped watches, a bow tie, and a notebook.", pose: 'chapulin_idle' },
   { speaker: 'DEFENSA', text: 'And in the notebook, five numbered points this man wrote in prison on November 8.', pose: 'chapulin_point' },
   { speaker: 'JUEZ', text: 'Read them.', sfx: 'gavel', pose: 'judge_gavel' },
   { speaker: 'DEFENSA', text: '"Point one. The card they seized from me in July has the dropped s. I stared at it nine years, line by line."', pose: 'chapulin_idle' },
@@ -41,7 +41,7 @@ export const CASE5_D3_T1_INVENTARIO_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'DEFENSA', text: 'And one more, Your Honor, because nobody has read it aloud in eleven years.', pose: 'chapulin_point' },
   { speaker: 'DEFENSA', text: 'Item forty-four: unsold luxury-edition copies, two hundred ten.', pose: 'chapulin_idle' },
   { speaker: 'JUEZ', text: 'Luxury edition?', pose: 'judge_thinking' },
-  { speaker: 'DEFENSA', text: 'Half leather, Your Honor, with brass corners on the spine edge. The set nobody bought.', pose: 'chapulin_idle' },
+  { speaker: 'DEFENSA', text: 'Half leather, Your Honor, with brass corners on the spine. The set nobody bought.', pose: 'chapulin_idle' },
   { speaker: 'DEFENSA', text: 'That is why the company failed: two hundred ten complete luxury collections left unsold.', pose: 'chapulin_idle' },
   { speaker: 'BERRONDO', text: 'Two hundred ten loose unsold copies, counselor. Not two hundred ten complete collections. A memorable disaster.', pose: 'berrondo_idle' },
   { speaker: 'DEFENSA', text: '(Thank you, counselor.)', pose: 'chapulin_idle' },

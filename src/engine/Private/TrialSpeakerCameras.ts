@@ -5,7 +5,7 @@
  */
 
 import type { CaseId } from '../../types/index.js';
-import { isDockSpeaker, isDonRamonDockCase } from './TrialCaseStaging.js';
+import { case5CameraOverride } from './TrialCaseStaging.js';
 
 export const TRIAL_SPEAKER_BACKGROUNDS: Record<string, string> = {
   DEFENSA: 'assets/bg_defense.webp',
@@ -42,6 +42,7 @@ const INSTRUCTION_SPEAKERS = new Set(['NARRADOR', 'MODO EXAMINAR', 'EXAMINE MODE
 
 export function trialBackgroundFor(speaker?: string, caseId?: CaseId): string | null {
   if (!speaker || INSTRUCTION_SPEAKERS.has(speaker)) return null;
-  if (isDonRamonDockCase(caseId) && isDockSpeaker(speaker)) return 'assets/bg_witness.webp';
-  return TRIAL_SPEAKER_BACKGROUNDS[speaker] ?? 'assets/bg_witness.webp';
+  return case5CameraOverride(speaker, caseId)
+    ?? TRIAL_SPEAKER_BACKGROUNDS[speaker]
+    ?? 'assets/bg_witness.webp';
 }

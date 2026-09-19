@@ -46,8 +46,7 @@ export const CASE5_CELDA: InvestigationScene = {
       addProfile: 'perfil_donramon'
     },
     { speaker: 'DEFENSA', text: '(Yo también voy ahí.)', pose: 'chapulin_idle', addProfile: 'perfil_chapulin' },
-    { speaker: 'DEFENSA', text: '(Y el señor Lengua, pobre.)', pose: 'chapulin_point', addProfile: 'perfil_casimiro' },
-    { speaker: 'MODO TUTORIAL', text: 'El corazón amarillo del ACTA DEL JUICIO tiene dos pestañas: PRUEBAS y PERSONAS. En PERSONAS se guarda lo que sabes de cada quien y se actualiza sola.', instant: true }
+    { speaker: 'DEFENSA', text: '(Y el señor Lengua, pobre.)', pose: 'chapulin_point', addProfile: 'perfil_casimiro' }
   ],
   hotspots: [
     {

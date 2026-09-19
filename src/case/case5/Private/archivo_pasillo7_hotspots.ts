@@ -14,11 +14,11 @@ export const CASE5_PASILLO7_HOTSPOTS: Hotspot[] = [
     dialogue: [
       { speaker: 'NARRADOR', text: 'Una silueta de gis en el piso, entre el estante y la mesa de consulta. Boca abajo, con la cabeza hacia el estante.' },
       { speaker: 'DEFENSA', text: 'Cayó de frente. Con la cara hacia los libros.', pose: 'chapulin_idle' },
-      { speaker: 'SARGENTO', text: 'Golpe único en la nuca, mi Licenciado. El legista está preparando una ampliación sobre la dirección y el modo del impacto.', pose: 'pazguato_idle' },
+      { speaker: 'SARGENTO', text: 'Golpe único en la nuca, mi Licenciado. El forense está preparando una ampliación sobre la dirección y el modo del impacto.', pose: 'pazguato_idle' },
       { speaker: 'DEFENSA', text: '¿Y la hora?', pose: 'chapulin_point' },
       { speaker: 'SARGENTO', text: 'Entre las cinco y las cinco y media. Le tomaron la temperatura a las seis cuarenta.', pose: 'pazguato_idle' },
       { speaker: 'DEFENSA', text: 'Sargento, ¿usted no siente que aquí hace un calor de fritanga?', pose: 'chapulin_idle' },
-      { speaker: 'SARGENTO', text: 'Sí, pero el legista no vino a sentir. Vino a medir.', pose: 'pazguato_sweat' },
+      { speaker: 'SARGENTO', text: 'Sí, pero el forense no vino a sentir. Vino a medir.', pose: 'pazguato_sweat' },
       { speaker: 'DEFENSA', text: '(Ahí está el detalle... o a lo mejor no. Me lo apunto de todos modos.)', pose: 'chapulin_idle', addEvidence: 'informe_forense_c5' }
     ]
   },
@@ -29,7 +29,7 @@ export const CASE5_PASILLO7_HOTSPOTS: Hotspot[] = [
     dialogue: [
       { speaker: 'NARRADOR', text: 'A un metro de la silueta, marcado con un cartelito de perito, un tomo grueso encuadernado en tela verde.' },
       { speaker: 'DEFENSA', text: '«El Saber Universal. Tomo XI. Ferrocarriles - Guatemala.»', pose: 'chapulin_idle' },
-      { speaker: 'DEFENSA', text: 'Tiene sangre en el canto del lomo.', pose: 'chapulin_panic' },
+      { speaker: 'DEFENSA', text: 'Tiene sangre en el lomo.', pose: 'chapulin_panic' },
       { speaker: 'SARGENTO', text: 'Dos kilos ochocientos. Es el arma, mi Licenciado. La fiscalía ya lo fotografió, lo marcó y ordenó que quedara aquí bajo resguardo; yo tengo la ficha pericial.', pose: 'pazguato_idle' },
       { speaker: 'DEFENSA', text: '¿Y este sellito morado de la primera hoja?', pose: 'chapulin_idle' },
       { speaker: 'SARGENTO', text: 'Ni idea. Está medio borrado y tiene letra chiquita. Con la lupa del Acta a lo mejor lo lee usted.', pose: 'pazguato_idle' },
@@ -59,26 +59,29 @@ export const CASE5_PASILLO7_HOTSPOTS: Hotspot[] = [
   {
     id: 'hotspot_mesa',
     label: 'Mesa de consulta',
+    // Cierra la jornada (campana + salida a la sala). Se mantiene oculto hasta que
+    // cuerpo, tomo y estante estén examinados para que el cierre no se adelante.
+    condition: (flags) => Boolean(flags.examined_hotspot_cuerpo)
+      && Boolean(flags.examined_hotspot_tomo)
+      && Boolean(flags.examined_hotspot_estante),
     x: 0, y: 4, w: 34, h: 58,
     dialogue: [
       { speaker: 'NARRADOR', text: 'Una mesa larga de roble con una lámpara de pantalla verde. Sobre ella, un legajo abierto y atado con listón.' },
       { speaker: 'DEFENSA', text: 'Es el expediente del señor Lengua. Su apelación.', pose: 'chapulin_idle' },
-      { speaker: 'DEFENSA', text: 'Y está abierto en la foja doscientos catorce.', pose: 'chapulin_point' },
+      { speaker: 'DEFENSA', text: 'Y está abierto en la página doscientos catorce.', pose: 'chapulin_point' },
       { speaker: 'SARGENTO', text: 'Ahí lo dejó él. Nadie ha pasado esa hoja, mi Licenciado; tengo la fotografía de las siete de la noche y está igualita.', pose: 'pazguato_decidido' },
-      { speaker: 'DEFENSA', text: 'En la foja doscientos catorce hay una tarjeta pegada con engrudo.', pose: 'chapulin_idle' },
+      { speaker: 'DEFENSA', text: 'En la página doscientos catorce hay una tarjeta pegada con engrudo.', pose: 'chapulin_idle' },
       { speaker: 'DEFENSA', text: '«Enciclopedias El Saber Universal, S.A.» Prueba decomisada al sentenciado en julio.', pose: 'chapulin_idle' },
       { speaker: 'SARGENTO', text: 'Esa sociedad está disuelta desde el setenta y uno. Lo dice ahí abajito, de puño y letra del secretario.', pose: 'pazguato_idle' },
       { speaker: 'DEFENSA', text: '(Un hombre al que le quedaban cuatro años de condena pidió que lo trajeran hasta aquí para señalar una tarjeta vieja.)', pose: 'chapulin_idle' },
       { speaker: 'DEFENSA', text: '(Y lo mataron antes de que llegara el actuario.)', pose: 'chapulin_panic', addEvidence: 'expediente_casimiro' },
       { speaker: 'SARGENTO', text: 'Mi Licenciado. Una cosa más y ya me callo.', pose: 'pazguato_sweat' },
       { speaker: 'SARGENTO', text: 'La fiscalía me pidió el libro de visitas y yo se lo di.', pose: 'pazguato_idle' },
-      { speaker: 'DEFENSA', text: '¿Y el otro?', pose: 'chapulin_point' },
-      { speaker: 'SARGENTO', text: '¿Cuál otro?', pose: 'pazguato_sweat' },
-      { speaker: 'DEFENSA', text: 'El de peritos. El de la puerta del costado.', pose: 'chapulin_idle' },
-      { speaker: 'SARGENTO', text: '...Nadie me lo pidió.', pose: 'pazguato_sweat' },
-      { speaker: 'SARGENTO', text: 'Y yo no lo ofrecí, porque «visitas» son las visitas y peritos son peritos.', pose: 'pazguato_sweat' },
-      { speaker: 'DEFENSA', text: '(No lo diga en el juicio, Sargento. Deje que se les ocurra a ellos.)', pose: 'chapulin_idle' },
-      { speaker: 'DEFENSA', text: '(Y si no se les ocurre, ya me encargo yo.)', pose: 'chapulin_point' },
+      { speaker: 'DEFENSA', text: '¿Y le pidieron algo más?', pose: 'chapulin_point' },
+      { speaker: 'SARGENTO', text: '...No, mi Licenciado. Me pidieron ése y nada más.', pose: 'pazguato_sweat' },
+      { speaker: 'SARGENTO', text: 'Y yo contesto lo que me preguntan. Ése es mi defecto y también mi virtud.', pose: 'pazguato_sweat' },
+      { speaker: 'DEFENSA', text: '(Catorce firmas de visitas. Y nadie ha preguntado todavía quién entró sin ser visita.)', pose: 'chapulin_idle' },
+      { speaker: 'DEFENSA', text: '(Ya preguntaré yo, Sargento. Delante del juez.)', pose: 'chapulin_point' },
       { speaker: 'NARRADOR', text: 'Suena la campana del juzgado, al otro lado de la calle.', sfx: 'bell' },
       { speaker: 'DEFENSA', text: '¡Síganme los buenos! ¡A la sala de audiencias!', pose: 'chapulin_point' },
       { speaker: 'SARGENTO', text: 'A sus órdenes, mi Licenciado.', pose: 'pazguato_saludo' }

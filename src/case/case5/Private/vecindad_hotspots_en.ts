@@ -27,7 +27,7 @@ export const CASE5_VECINDAD_HOTSPOTS_EN: Hotspot[] = [
     dialogue: [
       { speaker: 'NARRADOR', text: 'On the desk, an open manila envelope and, beside it, half a typewritten sheet.' },
       { speaker: 'BARRIGA', text: 'There is everything. The envelope, the little note, and a copy of my receipt. I am not one to throw papers away.', pose: 'barriga_idle' },
-      { speaker: 'DEFENSA', text: '"Enclosed is payment for seventeen overdue months charged to C. Ramon Valdes, tenant of dwelling 4."', pose: 'chapulin_idle' },
+      { speaker: 'DEFENSA', text: '"Enclosed is payment for seventeen overdue months charged to C. Ramon Valdes, tenant of dwelling 72."', pose: 'chapulin_idle' },
       { speaker: 'DEFENSA', text: '"Please issue the corresponding receipt and retain it. No reply required."', pose: 'chapulin_point' },
       { speaker: 'DEFENSA', text: '...Mr. Barriga, do you think Don Ramon writes like this?', pose: 'chapulin_idle' },
       { speaker: 'BARRIGA', text: 'Young man, Mr. Ramon sends me notes scribbled on a cake wrapper.', pose: 'barriga_idle' },

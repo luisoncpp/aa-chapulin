@@ -13,7 +13,7 @@ const GOLD_REVEAL: DialogueLine[] = [
   { speaker: 'SUPER SAM', text: 'What?! ¡¿Una simple lata de betún para calzado?!', pose: 'supersam_slam', sfx: 'desk_slam' },
   { speaker: 'DEFENSA', text: '¡Pesa más de 5 KILOS y de su junta brota polvo dorado! Peterete vació el betún, metió la estatuilla y reselló la tapa.', pose: 'donramon_slam', sfx: 'desk_slam' },
   { speaker: 'CHAPULIN', text: '¡Y mis Antenitas de Vinil lo confirman — vibran justo hacia esta lata! ¡Ábranla y verán el brillo del oro!', pose: 'chapulin_slam', sfx: 'chipote' },
-  { speaker: 'NARRADOR', text: '*¡¡¡CLAAANG-BRILLOOOO!!!* (La tapa cede y el resplandor del Chanfle de Oro ilumina la sala)', sfx: 'realization' },
+  { speaker: 'NARRADOR', text: '¡¡¡CLAAANG-BRILLOOOO!!! (La tapa cede y el resplandor del Chanfle de Oro ilumina la sala)', sfx: 'realization' },
   { speaker: 'PETERETE', text: '¡G-grrrk! ¡E-esa es la lata del Chómpiras! ¡Esto solo demuestra que él escondió el oro en su propia lata! ¡Yo no tengo nada que ver!', pose: 'peterete_sweat' },
   { speaker: 'SUPER SAM', text: '¡Exactly! ¡El acusado tenía la lata y la palanca! ¡Sigue siendo el único culpable posible!', pose: 'supersam_point' },
   { speaker: 'DEFENSA', text: '(¡Rayos! Tienen razón, el oro en la lata del Chómpiras no incrimina al Peterete... a menos que demuestre que el Chómpiras no pudo haberlo hecho.)', pose: 'donramon_idle' }

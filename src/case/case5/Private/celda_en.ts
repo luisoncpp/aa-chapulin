@@ -46,8 +46,7 @@ export const CASE5_CELDA_EN: InvestigationScene = {
       addProfile: 'perfil_donramon'
     },
     { speaker: 'DEFENSA', text: '(I go in there too.)', pose: 'chapulin_idle', addProfile: 'perfil_chapulin' },
-    { speaker: 'DEFENSA', text: '(And Mr. Lengua, poor man.)', pose: 'chapulin_point', addProfile: 'perfil_casimiro' },
-    { speaker: 'MODO TUTORIAL', text: 'The yellow heart of the COURT RECORD has two tabs: EVIDENCE and PROFILES. PROFILES holds what you know about each person and updates on its own.', instant: true }
+    { speaker: 'DEFENSA', text: '(And Mr. Lengua, poor man.)', pose: 'chapulin_point', addProfile: 'perfil_casimiro' }
   ],
   hotspots: [
     {

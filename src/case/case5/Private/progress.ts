@@ -7,7 +7,7 @@
 import type { EvidenceId, LocationId, ProfileId } from '../../../types/index.js';
 
 export const CASE5_DAY1_EVIDENCE: EvidenceId[] = [
-  'parte_detencion', 'esquina_tarjeta', 'libro_visitas', 'plano_archivo',
+  'parte_detencion', 'hoja_relevo', 'esquina_tarjeta', 'libro_visitas', 'plano_archivo',
   'informe_forense_c5', 'tomo_caido', 'estante_consulta', 'expediente_casimiro'
 ];
 

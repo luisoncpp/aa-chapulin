@@ -204,7 +204,7 @@ export interface EvidenceItem {
 Reglas:
 
 1. `GameStateManager` guarda `evidenceUpdateStage: Record<EvidenceId, number>`; `updateEvidence` avanza una etapa y satura en la última.
-2. `getEvidenceDescription(id)` devuelve `updates[stage - 1] ?? updatedDesc ?? desc`.
+2. `getEvidenceDescription(id)` es acumulativa: devuelve `desc` más las entradas `updates[0..stage-1]`, separadas por línea en blanco. `updatedDesc` (legado) sigue sustituyendo el texto.
 3. Si el jugador llega a una línea `updateEvidence` de una prueba que aún no tiene, se **añade** con la descripción de esa etapa (toast de alta), igual que hoy — nadie se bloquea por orden de visita.
 4. El aviso de actualización reutiliza el toast y el `realization` existentes. Las etapas afectan la lógica: la etapa 4 del clímax sólo acepta `microfono_oro` **con las dos revisiones aplicadas**; sin ellas el trofeo es sólo un arma sin dueño.
 

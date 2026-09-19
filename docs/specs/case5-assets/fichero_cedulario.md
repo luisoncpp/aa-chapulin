@@ -71,5 +71,28 @@ Clase: `icon` de Acta de Prueba, sin `detailedView`. Espec: §5.3, §23.0, §23.
 
 ## Hallazgos de auditoría 2026-09-19
 
-- No se inspeccionó ninguna imagen, conforme al protocolo `asset-facts`; por tanto, no se confirma ningún defecto visual de la imagen actual.
-- Estado: hoja derivada exclusivamente del spec, catálogos ES/EN y guion ES/EN. La aceptación visual pendiente debe comprobar nueve cajones, tiradores de latón, etiquetas por rangos de calles, transparencia y ausencia de texto/realces no solicitados.
+- ~~No se inspeccionó ninguna imagen, conforme al protocolo `asset-facts`…~~ — sustituido por la pasada visual de la regeneración Lote C (abajo).
+
+## Hallazgos de auditoría 2026-09-19 (regeneración Lote C)
+
+RAW auditado: icono 1×1 magenta compuesto en `tools/raw/case5/case5_evidence_icons_raw.png` celda col 4, fila 2 (6×4). Recorte del mueble.
+
+**Veredicto: CUMPLE** en contenido (F1), estilo de icono (F5) y localización (F6).
+
+### Cumple
+
+- Nueve cajones de madera rubia en 3×3, tiradores de latón, etiqueta manuscrita en cada frente (F1, `bodega_masa_hotspots.ts:39-40`).
+- Objeto centrado, fondo magenta sólido, contorno carbón, cel-shading; no es una tarjeta suelta ni la bodega (F5).
+- Sin UI, flechas, `11,407`, inglés ni sangre (F2 AUSENTE). Un solo icono ES/EN (F6).
+
+### Defectos confirmados
+
+- `CONTRADICE` / **MENOR** / F2 — Las nueve etiquetas son el mismo garabato; no se distinguen rangos de calle. A escala de Acta (128 px) no bloquea el followUp de D4-T1, que vive en el diálogo.
+
+### Correcciones de auditoría
+
+- Primera inspección visual del icono regenerado; no había ✓ previos que retirar.
+
+### Recomendación
+
+Opcional: tres garabatos distintos que insinúen rangos, sin texto inglés.

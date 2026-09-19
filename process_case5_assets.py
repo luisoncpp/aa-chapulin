@@ -35,6 +35,7 @@ def output_stem(filename: str) -> str:
 BGS = [
     ("bg_archivo_vestibulo.jpg", "bg_archivo_vestibulo.webp"),
     ("bg_archivo_pasillo7.jpg", "bg_archivo_pasillo7.webp"),
+    ("bg_archivo_pasillo7_d4.jpg", "bg_archivo_pasillo7_d4.webp"),
     ("bg_correspondencia.jpg", "bg_correspondencia.webp"),
     ("bg_despacho_berrondo.jpg", "bg_despacho_berrondo.webp"),
     ("bg_bodega_masa.jpg", "bg_bodega_masa.webp"),

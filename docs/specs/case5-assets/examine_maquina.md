@@ -109,3 +109,61 @@ Clase: `examine`. Espec: §23.0, §23.3, §5.3 y §5.5. Guion: D3 bodega, `hotsp
 4. **Papel:** retirar la hoja mecanografiada del carro; máquina sin escribir, carro en reposo.
 5. **Rótulo:** no pintar el letrero «EXAMINE» dentro de la lámina; dejar el chrome de UI al pipeline (retirable por decisión del revisor si es del pipeline).
 6. Mantener: funda de hule, carro cromado, cinta bicolor, `41` blanco a plantilla; un único activo ES/EN sin variante `_en` (§23.3:4064–4066).
+
+## Hallazgos de auditoría 2026-09-19 (regeneración Lote C)
+
+RAW auditado: `tools/raw/case5/examine_maquina.jpg` (1280 × 720, sin `_en`). 3 intentos; se entrega el tercero (abanico de barras). Recortes: vista izquierda, macro, slugs.
+
+**Veredicto: NO CUMPLE** en el identificador probatorio (F1.5, barra `s` torcida) ni en texto extra (F2). El MAYOR de «cubos con letras / broca» sí está resuelto.
+
+### Cumple
+
+- Dos vistas: máquina completa a la izquierda, macro del mecanismo a la derecha (F1.1).
+- Olivetti negra de tres cuartos sobre paño de hule oscuro; carro cromado; `41` blanco en el costado; platina vacía, sin papel, sin EXAMINE (F1.2–F1.4, F2.1, F4).
+- Macro derecha: abanico de barras de tipos (varillas radiales con slugs), no caja de cubos ni broca (cancela el MAYOR MALFORMADO de la pasada previa).
+- Cinta bicolor visible. Sin diploma, lámpara ni atados de oficios (F1 AUSENTE). Un solo archivo ES/EN (F6). Cel-shading (F5).
+
+### Defectos confirmados
+
+- `AUSENTE` / **MAYOR** / F1.5 — La barra de la `s` minúscula no está visiblemente torcida a la izquierda respecto de sus vecinas. Los slugs forman un arco regular; hay varias `s` en el abanico, ninguna desplazada. Rompe el diagnóstico E5 (`EvidenceCatalogCase5EsB.ts:49-58`, §23.3:4059).
+- `CONTRADICE` / **MEDIO** / F2 — Placa `LEXIKON 80` legible en el cuerpo; la hoja reserva el nombre al diálogo y sólo exige `41` como marca.
+
+### Correcciones de auditoría
+
+- ~~Macro de cubos / broca, escena de oficina, papel insertado, «Caso 5 EXAMINE»~~ — superados en esta RAW; la traza sobre el webp previo se conserva arriba.
+- Intentos 1–2: abanico correcto pero con una palanca/gancho suelto sobre las barras, no una barra `s` torcida. Intento 3: abanico limpio, slugs con `s`, sin torsión.
+
+### Recomendación (cuarto intento, no ejecutado: tope 3)
+
+1. Una sola barra del abanico, la del slug `s` minúscula, inclinada a la izquierda; el resto paralelo.
+2. Quitar la placa `LEXIKON 80`.
+3. Mantener `41`, carro cromado, paño, dos paneles, sin UI.
+
+## Hallazgos de auditoría 2026-09-19 (Lote C, intento extra E5)
+
+RAW auditado: `tools/raw/case5/examine_maquina.jpg` (1280 × 720). Recortes: máquina izquierda, abanico, slug de la barra torcida. Intento extra pedido tras el 3/3; no se tocaron fondo ni icono.
+
+**Veredicto: CUMPLE** en el identificador E5 (F1.5) y en texto (F2). El abanico de barras se conserva.
+
+### Cumple
+
+- Dos vistas: Olivetti negra a la izquierda, macro del typebasket a la derecha (F1.1).
+- Carro cromado, `41` blanco en el costado, platina vacía, paño de hule, sin EXAMINE (F1.2–F1.4, F4).
+- Abanico de barras de tipos (varillas, no cubos) (F1.1).
+- Barra de la `s` minúscula: una varilla del abanico se desvía visiblemente a la izquierda; su slug se nombra como `s` sin ayuda de la hoja (F1.5, §23.3:4059). Sostiene E5.
+- Placa `LEXIKON 80` retirada; el frente queda esmalte negro con un cajetín vacío (F2).
+- Sin diploma, lámpara, atados, papel ni UI (F1 AUSENTE). Un solo archivo ES/EN (F6). Cel-shading (F5).
+
+### Defectos confirmados
+
+- `CONTRADICE` / **MENOR** / F1 — El arco inferior del abanico sigue mostrando varias `s` extra en slugs alineados. La barra torcida ya lleva la `s` decisiva; las extras no tapan el defecto.
+
+### Correcciones de auditoría
+
+- ~~MAYOR F1.5 barra `s` ausente~~ — retirado: recorte de la varilla izquierda muestra slug `s` fuera del abanico.
+- ~~MEDIO F2 `LEXIKON 80`~~ — retirado: la placa con letras ya no está.
+- Intento extra 1: varilla torcida sin letra. Intento extra 2 (entregado): misma varilla con slug `s`.
+
+### Recomendación
+
+Ninguna bloqueante. Opcional: dejar una sola `s` en todo el abanico, la de la barra torcida.

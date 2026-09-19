@@ -106,3 +106,35 @@ Clase: `examine`. Espec: §23.0, §23.3, §4.1, §4.2 y §24. Guion: D2 despacho
 5. ES: encabezado mínimo que identifique a Fulgencio Berrondo, síndico, quiebra 114/1971; los tres renglones exactos del catálogo ES; cero texto adicional inventado o meta («CREDENCIAL DE CARTULINA», «REVERSO»).
 6. EN: los tres renglones según la cadena canonizada (F2 fija «Valid until conclusion of the bankruptcy.», «No hour limit.», «Access to the estate goods deposit.»); todo el resto del texto impreso traducido, sin restos de español.
 7. Estilo: endurecer cel-shading y terminador en fondos; eliminar degradados fotográficos.
+
+## Hallazgos de auditoría 2026-09-19 (regeneración Lote E)
+
+**Veredicto: CUMPLE** en los ejes bloqueantes de la pasada anterior (firma del juez, sello seco en relieve, cadena EN del clímax, sin español residual, gemelas). RAW: `tools/raw/case5/examine_credencial.jpg` y `tools/raw/case5/examine_credencial_en.jpg` (1280×720). Recortes: encabezado, foto, sello, renglones, reverso. Quedan dos defectos no bloqueantes (lentes; coma ES).
+
+### Cumple
+
+- ✓ F1 — Dos vistas de cartulina, frente izquierda / reverso derecha, misma geometría ES/EN (pasada completa).
+- ✓ F1-3 — Sello seco como relieve ciego con balanza, sin tinta, sin lacre, sin la palabra «SELLO SECO» (recorte `v4_seal` / equivalente EN).
+- ✓ F1-5 / F4 — Reverso firmado por el **juez** (`Luis M. de la Garza` + «Juez del Juzgado Séptimo, 1971» / EN «Judge of the Seventh Court, 1971»). No hay «SECRETARIO DE ACUERDOS», ni «Lic. Juez», ni «Juez de lo Familiar» (`climax_stage2.ts:22`).
+- ✓ F2 ES — Encabezado mínimo «FULGENCIO BERRONDO / Síndico · Quiebra 114/1971»; los tres renglones del catálogo están presentes y legibles (recorte `v4_lines`).
+- ✓ F2-4 / F6-2 EN — Cadena exacta del clímax (recorte `en_lines`): «Valid until conclusion of the bankruptcy.» / «No hour limit.» / «Access to the estate goods deposit.» (`climax_stage2_en.ts:19-21`).
+- ✓ F6 — EN sin restos de español: «Syndic · Bankruptcy 114/1971»; reverso en inglés; misma foto, mismo sello, misma rúbrica (recortes `en_header`, `en_sig`).
+- ✓ F1 exclusiones — Sin gafete de latón, sin despacho, sin huacal, sin flechas, sin magenta, sin rótulo «REVERSO».
+
+### Defectos confirmados
+
+- **CONTRADICE · MEDIO — F1-2:** la fotografía (ES y EN) muestra **lentes de aro completo redondos/dorados**, no lentes de media luna. Recorte `v4_glasses`: prueba de nombrar «gafas redondas de oro», no «media luna». Tres regeneraciones no movieron el aro superior. No rompe el clímax E2 (la corte lee los renglones, no la montura).
+- **CONTRADICE · MENOR — F2 ES:** el primer renglón imprime una coma extra: «Vigente hasta la conclusión del concurso,» (recorte `v4_lines`). Las tres frases siguen siendo las del catálogo; el clímax ES cita sin coma (`climax_stage2.ts:19`).
+
+### Correcciones de auditoría
+
+- ~~CONTRADICE MAYOR — firma del SECRETARIO DE ACUERDOS~~ — [x] RETIRADO POR REGENERACIÓN (Lote E): firma del juez, 1971.
+- ~~CONTRADICE MEDIO — cadena EN «proceeding concludes» / «No time limit»~~ — [x] RETIRADO: cadena del clímax.
+- ~~CONTRADICE MEDIO — español residual en EN~~ — [x] RETIRADO.
+- ~~CONTRADICE MEDIO — sello de lacre / «SELLO SECO» impreso~~ — [x] RETIRADO: relieve ciego.
+- ~~CONTRADICE MEDIO — encabezado meta sin 114/1971~~ — [x] RETIRADO: Fulgencio Berrondo, síndico, 114/1971.
+- ~~CONTRADICE MEDIO — Juez de lo Familiar / Lic. Juez~~ — [x] RETIRADO.
+- ~~DRIFT MEDIO — gemelas de distinta geometría~~ — [x] RETIRADO: una sola composición, texto traducido.
+- ~~MENOR — rótulo REVERSO~~ — [x] RETIRADO.
+- Lentes de media luna: se intentó en las tres regeneraciones; el defecto MEDIO permanece.
+- No se ejecutó `process_case5_assets.py`.

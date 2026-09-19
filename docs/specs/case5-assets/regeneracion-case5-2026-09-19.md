@@ -2,7 +2,7 @@
 
 Índice de los hallazgos de las auditorías visuales del 2026-09-18/19 (skill `asset-audit`, un recorte por sustantivo y prueba de nombrar) sobre los 33 activos de Case 5 con imagen: 8 fondos (`bg_`), 16 vistas de detalle (`examine_`) y 9 láminas de juicio (`plate_`). Cada entrada resume los defectos confirmados en la hoja del asset (fuente de verdad; este índice no la sustituye) y agrupa la regeneración por los conjuntos de consistencia («Regenerar juntos») de esas hojas.
 
-Estado global: **sólo 1 de 33 cumple** (`bg_archivo_caldera`). El patrón dominante en `examine_`/`plate_` es triple: (1) gemelos ES/EN que no comparten composición (§23.3:4064), (2) texto impreso que el spec reserva al diálogo o que inventa contenido (rótulos de lámina, nombres, fechas), y (3) cifras/fechas que contradicen el canon (viv. 4 vs 72, fechas B/C invertidas, 1974/1975/1977 en un presente de 1982).
+Estado global: **1 de 33 WebP cumple** (`bg_archivo_caldera`). RAW Lote D (`bg_penal_efectos`, `examine_efectos`/`_en`, icono `efectos_casimiro`) y RAW Lote G `examine_libro_visitas`/`_en` y `examine_plano_archivo`/`_en` regenerados 2026-09-19 y **cumplen en hoja**; `plate_dos_accesos` RAW queda no-cumple leve. Los WebP de `assets/` no se reprocesaron. El patrón dominante en el resto de `examine_`/`plate_` es triple: (1) gemelos ES/EN que no comparten composición (§23.3:4064), (2) texto impreso que el spec reserva al diálogo o que inventa contenido (rótulos de lámina, nombres, fechas), y (3) cifras/fechas que contradicen el canon (viv. 4 vs 72, fechas B/C invertidas, 1974/1975/1977 en un presente de 1982).
 
 ## Tabla global (orden de prioridad)
 
@@ -14,22 +14,22 @@ Estado global: **sólo 1 de 33 cumple** (`bg_archivo_caldera`). El patrón domin
 | 4 | `examine_tomo_caido` | no cumple (EN) | EN: rótulos forenses inventados y otra composición | A |
 | 5 | `plate_tomo_trece` | no cumple | el hueco queda en la posición 12, no en la 13 | A |
 | 6 | `bg_fiscalia` | no cumple | calculadora y cronómetro ausentes; ventana prohibida; bolsa llena | B |
-| 7 | `bg_bodega_masa` | no cumple | apilado de huacales contradice «doce en pares + dos en piso» | C |
-| 8 | `examine_huacal9` | no cumple | sin tiras encabalgadas (~250); EN no es gemelo; sin duplicación 4-XII | C |
-| 9 | `plate_huacal_sellos` | no cumple | manual con rótulos; sin mano firmando ni tiras cruzando la junta | C |
-| 10 | `examine_maquina` | no cumple | «abanico de barras de tipos» malformado; barra `s` torcida ausente | C |
-| 11 | `bg_penal_efectos` | no cumple | etiqueta 214-J en blanco | D |
-| 12 | `examine_efectos` | no cumple | ES sin libreta; cinco puntos inventados; gemelos distintos | D |
-| 13 | `bg_despacho_berrondo` | no cumple | vitrina fuera del rect de `hotspot_vitrina`; legajos son bolsas | E |
-| 14 | `examine_credencial` | no cumple | reverso atribuye la firma al secretario, no al juez (rompe clímax) | E |
-| 15 | `plate_masa_concursal` | no cumple | mano con llave ausente; huacal abierto; rótulos; «EXP. 73/1974» | E |
-| 16 | `plate_anatomia_ficha` | no cumple | seis rótulos legibles; un panel vacío en vez de seis campos con llaves | E |
+| 7 | `bg_bodega_masa` | **cumple** (Lote C RAW) | residual: serie 1–14 no única; 3 cierres; pico en viga | C |
+| 8 | `examine_huacal9` | **cumple** (Lote C RAW) | residual: 2.ª tira no medio tapada; EN `SÁT` | C |
+| 9 | `plate_huacal_sellos` | **cumple** (Lote C RAW) | menor: tapa leída como tablones | C |
+| 10 | `examine_maquina` | **cumple** (Lote C RAW, intento extra E5) | abanico de barras; `s` minúscula en varilla torcida a la izquierda; sin LEXIKON 80 | C |
+| 11 | `bg_penal_efectos` | **cumple** (RAW Lote D 2026-09-19) | — (runtime WebP aún no reprocesado) | D |
+| 12 | `examine_efectos` | **cumple** (RAW Lote D 2026-09-19) | MENOR: punto 5 poco torcido; F5 grano de madera en ES | D |
+| 13 | `bg_despacho_berrondo` | **cumple** (regen Lote E 2026-09-19) | vitrina en hotspot izquierdo; lomos; fachada; samovar retirado. Matiz F5 | E |
+| 14 | `examine_credencial` | **cumple** ejes bloqueantes (regen Lote E) | firma del juez; sello seco; cadena EN del clímax. Queda MEDIO: lentes de aro, no media luna | E |
+| 15 | `plate_masa_concursal` | **cumple** (regen Lote E 2026-09-19) | llave sobre huacal cerrado; acreedores alrededor; lámina muda | E |
+| 16 | `plate_anatomia_ficha` | **cumple** (regen Lote E 2026-09-19) | seis campos vacíos con `}`; puerta como sexto; sin rótulos | E |
 | 17 | `bg_correspondencia` | no cumple (leve) | ventilador de aspas ausente (medio) | F |
 | 18 | `examine_acuse` | no cumple | ES sin el nombre del interno; EN inventa nombre y deja español | F |
 | 19 | `bg_archivo_vestibulo` | no cumple (leve) | lámparas colgantes ausentes (medio); estilo pendiente | G |
-| 20 | `examine_libro_visitas` | no cumple (EN) | EN en español; fecha 1974; no compone gemelo | G |
-| 21 | `examine_plano_archivo` | no cumple | gemelos distintos; UI «EXAMINE» horneada; EN rotula en español | G |
-| 22 | `plate_dos_accesos` | no cumple | rótulos y personajes prohibidos; sin ventanilla ni sótano | G |
+| 20 | `examine_libro_visitas` | **cumple** (regen Lote G) | gemelo EN, sello violeta, sin fecha 1974 | G |
+| 21 | `examine_plano_archivo` | **cumple** (regen Lote G P3) | estantes tapan la mesa; montacargas de 3 descansos; 4 rótulos únicos | G |
+| 22 | `plate_dos_accesos` | no cumple (leve) | ventanilla del patio se nombra chimenea; el resto (muda, topología, escalera sótano→pasillo 7) cumple | G |
 | 23 | `examine_termografo` | no cumple | eje de un solo día (sin días 3–5); EN es otro documento | H |
 | 24 | `plate_curva_enfriamiento` | no cumple (leve) | leyenda pre-impresa con la conclusión del NARRADOR (medio) | H |
 | 25 | `examine_ficha_domicilio` | no cumple | ES es ficha de perfil prohibida; sin los seis campos del clímax | I |
@@ -73,6 +73,8 @@ Estado global: **sólo 1 de 33 cumple** (`bg_archivo_caldera`). El patrón domin
 
 **Regenerar juntos:** `bg_bodega_masa`, `plate_huacal_sellos`, `examine_huacal9`/`_en`, `fichero_cedulario`, `examine_maquina`/`_en`, `maquina_escribir`.
 
+RAW Lote C escrito 2026-09-19 en `tools/raw/case5/` (sin `process_case5_assets.py`). Iconos `fichero_cedulario` / `maquina_escribir` compuestos sólo en col 4 y 5, fila 2 de `case5_evidence_icons_raw.png`. Veredictos en las hojas: cumple, incluido `examine_maquina` (intento extra E5: barra `s` torcida).
+
 | Asset | Regeneración clave |
 |---|---|
 | `bg_bodega_masa` | 1. Re-apilar: seis pilas de dos y dos en el suelo (14 en total, serie 1–14 única, 9 aparte y gran formato; hoy 3 columnas de 3 + 1, con el 7 duplicado). 2. Etiqueta manuscrita ilegible en las 9 caras de los cajones (hoy en blanco). 3. Marca blanca `41` a plantilla en el costado de la máquina; carro cromado distinguible. 4. Pata de cabra en clavo sobre viga (hoy gancho en S en muro). 5. Cuatro cierres de palanca en el huacal 9 (hoy 2). |
@@ -84,10 +86,12 @@ Estado global: **sólo 1 de 33 cumple** (`bg_archivo_caldera`). El patrón domin
 
 **Regenerar juntos:** `bg_penal_efectos`, `examine_efectos`/`_en`, `efectos_casimiro` (los catálogos apuntan a `examine_efectos.webp`).
 
+**Estado RAW 2026-09-19:** regenerados `tools/raw/case5/bg_penal_efectos.jpg`, `examine_efectos.jpg`, `examine_efectos_en.jpg`, y la celda (1,3) de `case5_evidence_icons_raw.png`. Hojas: **cumplen**. No se corrió `process_case5_assets.py`; los WebP de `assets/` siguen siendo la generación anterior.
+
 | Asset | Regeneración clave |
 |---|---|
-| `bg_penal_efectos` | 1. Estampar «214-J» y «LENGUA, CASIMIRO» en la etiqueta visible de la caja abierta. 2. Numeración de plantilla uniforme en las cajas del estante (no contables una por una). 3. Mantener composición, exclusiones e iluminación fría. |
-| `examine_efectos` | Regenerar ambos gemelos con la misma composición: libreta negra presente (ES hoy la sustituye por un tablero «IDENTIDAD…CONCLUSIÓN»); los cinco puntos con la cadena probatoria exigida (tarjeta decomisada en julio → ficha del museo en agosto → el mismo aparato → tecleo 1962–1971 → el deseo de salvarse); oficio dirigido al ministerio público del 8 de noviembre; sello con `8 NOV`; anotación manuscrita `pendiente`; relojes de pulsera; sin conclusión judicial impresa; corregir «beink» en EN. |
+| `bg_penal_efectos` | 1. Estampar «214-J» y «LENGUA, CASIMIRO» en la etiqueta visible de la caja abierta. 2. Numeración de plantilla uniforme en las cajas del estante (no contables una por una). 3. Mantener composición, exclusiones e iluminación fría. **Hecho en RAW.** |
+| `examine_efectos` | Regenerar ambos gemelos con la misma composición: libreta negra presente (ES hoy la sustituye por un tablero «IDENTIDAD…CONCLUSIÓN»); los cinco puntos con la cadena probatoria exigida (tarjeta decomisada en julio → ficha del museo en agosto → el mismo aparato → tecleo 1962–1971 → el deseo de salvarse); oficio dirigido al ministerio público del 8 de noviembre; sello con `8 NOV`; anotación manuscrita `pendiente`; relojes de pulsera; sin conclusión judicial impresa; corregir «beink» en EN. **Hecho en RAW** (EN: 2 generaciones; «pendieng» → «pending»). |
 
 ## Lote E — Despacho de Berrondo
 
@@ -95,10 +99,10 @@ Estado global: **sólo 1 de 33 cumple** (`bg_archivo_caldera`). El patrón domin
 
 | Asset | Regeneración clave |
 |---|---|
-| `bg_despacho_berrondo` | 1. Vitrina (tres legajos + credencial) dentro del rect `hotspot_vitrina` x:0–28 %, y:28–70 %, o cambio del rect en spec (`despacho_berrondo_hotspots.ts:12` y `_en:13`). 2. Tres legajos encuadernados con lomo, sin moños ni bolsa. 3. Render §23.0 o retiro del hallazgo de estilo por el revisor. 4. Fondo de la foto de grupo = fachada de edificio. 5. Retirar o declarar el samovar. |
-| `examine_credencial` | Reverso ES: la firma la hace el **juez expedidor** (hoy «SECRETARIO DE ACUERDOS»; rompe el clímax `climax_stage2.ts:22`). EN: cadena exacta del clímax («Valid until conclusion of the bankruptcy.» / «No hour limit.»); eliminar el español residual («SÍNDICO», «CREDENCIAL CERTIFICADA»…); lentes de media luna en la foto (hoy redondos); sello seco como relieve sin lacre ni palabra «SELLO SECO»; gemelos con una sola geometría y texto traducido. |
-| `plate_masa_concursal` | Lámina muda: añadir la mano con llave sobre el huacal (`despacho_berrondo_talks.ts:25`); huacal cerrado y sellado (hoy abierto con bienes asomando); acreedores alrededor del huacal; eliminar todo rótulo («LA EMPRESA SE DERRUMBA»…, «EXP. 73/1974» — el expediente real es 114/1971); quitar el atrezzo de juzgado horneado en el borde; fondo crema con trazo de manual escolar, no carátula de episodio. |
-| `plate_anatomia_ficha` | Tarjeta de cedulario ampliada con **exactamente seis campos vacíos señalados por llaves tipográficas** (hoy un panel único con una llave); eliminar los seis rótulos legibles («PAPEL», «EXPEDIENTE», «LISTÓN»…, inválidos también para el gemelo EN compartido) y la pila de papeles atada. |
+| `bg_despacho_berrondo` | 1. Vitrina (tres legajos + credencial) dentro del rect `hotspot_vitrina` x:0–28 %, y:28–70 %. 2. Tres legajos encuadernados con lomo, sin moños ni bolsa. 3. Render §23.0 o retiro del hallazgo de estilo por el revisor. 4. Fondo de la foto de grupo = fachada de edificio. 5. Retirar o declarar el samovar. **Hecho en RAW** (`tools/raw/case5/bg_despacho_berrondo.jpg`). Matiz F5 y secante MENOR. |
+| `examine_credencial` | Reverso: firma del **juez expedidor**. EN: cadena exacta del clímax («Valid until conclusion of the bankruptcy.» / «No hour limit.»); sin español residual; sello seco como relieve; gemelas de una geometría. **Hecho en RAW** (`examine_credencial.jpg` + `_en.jpg`). Queda MEDIO: lentes de aro completo (3 gens). |
+| `plate_masa_concursal` | Lámina muda: mano con llave sobre huacal **cerrado** sellado; acreedores alrededor; sin rótulos ni EXP. 73/1974; sin atrezzo de juzgado; fondo crema de manual escolar. **Hecho en RAW.** |
+| `plate_anatomia_ficha` | Tarjeta de cedulario con **exactamente seis campos vacíos** señalados por `}`; el sexto es puerta con chapa; sin rótulos ni pila atada. **Hecho en RAW.** |
 
 ## Lote F — Correspondencia
 
@@ -116,9 +120,9 @@ Estado global: **sólo 1 de 33 cumple** (`bg_archivo_caldera`). El patrón domin
 | Asset | Regeneración clave |
 |---|---|
 | `bg_archivo_vestibulo` | 1. Dos lámparas colgantes con tulipa opalina y reflejo alargado en el damero. 2. Cable de la enceradora enrollado; extintor de cobre; numeración diegética en casilleros; pluma con cordel. 3. Decisión del revisor sobre F5 (pictórico con degradados vs §23.0) o regenerar con cel-shading. |
-| `examine_libro_visitas` | Regenerar EN como gemelo literal de ES (hoja suelta sobre tabla con esquineras, misma retícula y sellos violetas): traducir los trece asuntos (hoy en español), sin fecha impresa (EN hoy imprime «4 de diciembre de 1974»; el canon es 1982). |
-| `examine_plano_archivo` | Regenerar ambos gemelos con la misma lámina (tachuelas en las cuatro esquinas, sin marco ni props): quitar la UI «EXAMINE / Case 5» horneada; EN localiza los cuatro rótulos (hoy nivela en español y falta el montacargas); sólo dos accesos activos (puerta pública al vestíbulo + ventanilla al patio; hoy entrada pública en el sótano); salidas marcadas con rutas en rojo. |
-| `plate_dos_accesos` | Lámina sin rótulos y sin personajes: eliminar título, subtítulo, párrafo narrativo, letreros, escala, leyenda y sello; eliminar el juez en TV y el empleado de bigote; quitar la fuga de meta-texto («CHEPIRITO…», banda «EN VIVO»); los dos accesos rojos = puerta pública + ventanilla de peritos (hoy dos arcos idénticos con «SERVICIO DE ENLACE»); topología patio / planta baja / primer piso / sótano con la ruta sótano→pasillo 7 legible (hoy pisos 1–2–3 sin sótano). |
+| `examine_libro_visitas` | **Cumple** (regen Lote G, RAW 1280×720). EN es gemelo de ES (tabla, esquineras, retícula, sello violeta); trece asuntos traducidos; asiento 14 EN `4:40 PM / 4:58 PM`; sin fecha impresa. |
+| `examine_plano_archivo` | **Cumple** (regen Lote G P3, RAW 1280×720). Reja sin línea de visión a la mesa; un montacargas en tres descansos; cuatro rótulos únicos ES/EN; puerta pública + ventanilla al patio; ruta sótano→pasillo 7. |
+| `plate_dos_accesos` | Regen Lote G: lámina muda, sin personajes ni CHEPIRITO; topología patio/planta/primer piso/sótano; escalera sótano→pasillo 7 y montacargas de tres descansos. **No cumple (leve):** el acceso rojo del patio se nombra chimenea, no ventanilla. |
 
 ## Lote H — Térmicos (caldera, termógrafo, curva de enfriamiento)
 

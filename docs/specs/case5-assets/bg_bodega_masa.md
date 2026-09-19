@@ -110,3 +110,38 @@ El activo es un fondo compartido por las variantes española e inglesa. Represen
 4. Sustituir el gancho en S del muro por una pata de cabra reconocible (barra de hierro con uña plana) colgando de un clavo en una viga.
 5. Añadir los cuatro cierres de palanca reutilizables en el borde del huacal 9 (al menos tres legibles con la perspectiva).
 6. Regenerar junto con el conjunto de consistencia: `plate_huacal_sellos`, `examine_huacal9`/`_en`, `fichero_cedulario`, `examine_maquina`/`_en` y `maquina_escribir` (el huacal 9, las tiras, los cajones y la máquina comparten diseño entre esos activos).
+
+## Hallazgos de auditoría 2026-09-19 (regeneración Lote C)
+
+RAW auditado: `tools/raw/case5/bg_bodega_masa.jpg` (1280 × 720, 16:9; 3 intentos). Recortes por sustantivo: pilas, huacal 9, cajones, máquina, pata/viga, escalera.
+
+**Veredicto: CUMPLE** en el eje mayor de contenido (F1/F4 apilado) y en estilo/exclusiones (F5/F6). Residual MEDIO/MENOR no rompe la narración de los catorce huacales.
+
+### Cumple
+
+- Seis pilas de exactamente dos huacales + dos en el suelo (14 y 9): catorce unidades, nunca tres de alto. Rompe el MAYOR previo (`bodega_masa_intro.ts:12`).
+- Huacal 9 aparte, de gran formato, abierto, tapa recargada; nueve cajones 3×3 con tiradores de latón y etiquetas manuscritas; ejemplares de lujo en el compartimento lateral (F1/F4).
+- Máquina negra al fondo del huacal 9, carro cromado distinguible, marca blanca `41` en el costado (F1/F2; `bodega_masa_hotspots.ts:62-64`).
+- Tiras engomadas encabalgadas como escamas amarillentas en las tapas cerradas; sin lacre ni candelero (F1).
+- Escalera de hierro y reja al fondo izquierda; bóveda de ladrillo, vigas remachadas, suelo de cemento, foco pelón (F1).
+- Herramienta colgada de una viga de hierro, no de un gancho en S en el muro (ubicación F1).
+- Sin personajes, sin pasillo 7, sin texto inglés, sin UI EXAMINE (F1 AUSENTE / F6). Cel-shading Ace Attorney, no foto (F5).
+
+### Defectos confirmados
+
+- `CONTRADICE` / **MENOR** / F2+F3 — Serie de plantilla no única: 11 duplicado en dos pilas de la derecha; asoma un 9 en una pila trasera; faltan 4, 6, 8 y 13 visibles. El conteo de catorce se sostiene; la identificación 1–14 no.
+- `CONTRADICE` / **MEDIO** / F1 — El borde del huacal 9 muestra tres cierres de palanca, no cuatro.
+- `MALFORMADO` / **MEDIO** / F1 — El objeto en la viga se nombra como pico/martillo de dos cabezas, no como pata de cabra de uña plana (`bodega_masa_hotspots.ts:79`).
+- `AUSENTE` / **MEDIO** / F1 — La funda de hule a medias sobre la Olivetti no aparece; la máquina está descubierta.
+
+### Correcciones de auditoría
+
+- Los MAYOR de la pasada previa sobre `assets/bg_bodega_masa.webp` (pilas de tres, 7 duplicado como síntoma del apilado, `41` ausente, carro no cromado, gancho en S) quedan ~~superados por esta RAW~~; la traza anterior se conserva arriba.
+- No se retira el MENOR de numeración: cambia de forma (11 duplicado / huecos 4-6-8-13) pero no desaparece.
+
+### Recomendación (si hay un cuarto intento)
+
+1. Estampar 1–14 una sola vez (sustituir el 11 derecho por 13 y el 9 de pila por 4 o 6 u 8).
+2. Cuarto cierre de palanca en el borde del 9.
+3. Pata de cabra de barra y uña, no pico, en el mismo clavo de viga.
+4. Funda de hule cubriendo la mitad izquierda de la máquina, con `41` y carro cromado a la vista.

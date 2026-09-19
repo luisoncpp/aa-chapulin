@@ -103,3 +103,26 @@ Es la vista ampliada del arma física hallada en el pasillo 7 el 4 de diciembre:
 2. Reposicionar el tomo de canto / lomo hacia arriba en AMBOS gemelos y mover la mancha parda al lomo (consistencia con `bg_archivo_pasillo7`, `plate_foto_pericial`).
 3. ES: retirar la cinta granate de la guarda (o decisión del revisor de conservarla, dejando traza) y confirmar que ningún tono magenta quede en primer plano.
 4. Verificar tras regeneración que el tejuelo ES/EN diga exactamente `XI` y que el sello EN conserve `114/1971` y `14-X-1971` sin fechas alternativas.
+
+## Hallazgos de auditoría 2026-09-19 (regeneración Lote A)
+
+Auditoría de `tools/raw/case5/examine_tomo_caido.jpg` y `examine_tomo_caido_en.jpg` (1280×720), recortes de lomo, guarda y sello. ES en tres intentos; EN como gemelo de ES. **Veredicto: cumple** (contenido, texto exacto, exclusiones, gemelo F6).
+
+### Cumple
+
+- ✓ Dos vistas: tomo cerrado de canto a la izquierda (lomo al cámara), guarda abierta a la derecha (F1).
+- ✓ Tela verde oliva, tejuelo exacto `XI`, mancha parda **en el lomo** (F1/F2/F4; recorte `examine_tomo_caido_spine`).
+- ✓ Regla testigo. Sin cinta granate. Sin UI EXAMINE / CASE 5 / leyendas (F1/F2).
+- ✓ ES sello ovalado violeta: `DONACIÓN DEL SÍNDICO DE LA QUIEBRA 114/1971 · 14-X-1971` (F2).
+- ✓ EN gemelo de composición; sello exacto `DONATION FROM THE SYNDIC OF BANKRUPTCY 114/1971 · 14-X-1971`; tejuelo `XI`; sin rótulos forenses (F2/F6).
+- ✓ Sin media piel ni cantoneras (F3).
+
+### Defectos confirmados
+
+- [x] ~~MAYOR EN rótulos FORENSIC PLATE / composición distinta~~ **[x] RETIRADO POR REGENERACIÓN (2026-09-19 Lote A).**
+- [x] ~~MEDIO mancha en la tapa y tomo no de canto~~ **[x] RETIRADO POR REGENERACIÓN:** mancha y `XI` en el lomo de canto.
+- [ ] **MENOR (F4)** — El sello se lee con claridad más que «medio borrado»; la cadena es correcta y no se inventa conclusión.
+
+### Recomendación
+
+Ninguna bloqueante. Opcional: ensuciar un poco más la tinta del sello.

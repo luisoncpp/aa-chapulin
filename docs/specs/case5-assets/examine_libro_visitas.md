@@ -70,27 +70,28 @@ Activo base: `examine_libro_visitas.webp`. Variante localizada: `examine_libro_v
 
 - No se encontró una discrepancia que requiera resolver el spec antes de regenerar este activo. `R. Valdés` es la forma impresa fijada por §23.3 y los guiones se refieren verbalmente al mismo visitante como Don Ramón (§23.3, `docs/specs/case-5-el-tomo-trece.md:4048`; §4.2, `docs/specs/case-5-el-tomo-trece.md:218-222`).
 
-## Hallazgos de auditoría 2026-09-19
+## Hallazgos de auditoría 2026-09-19 (regeneración Lote G)
 
-**Veredicto: NO CUMPLE** (contenido y localización). ES aprobada con una observación menor; EN contradice F3, §23.0 y F6.
+**Veredicto: CUMPLE** — contenido, texto, cifras, exclusiones y localización. Estilo (F5) con textura de papel ilustrada sujeta a decisión del revisor; no bloquea. RAW: `tools/raw/case5/examine_libro_visitas.jpg` y `examine_libro_visitas_en.jpg` (1280 × 720). `bg_archivo_vestibulo` no se regeneró (skip).
 
 ### Cumple
-- ES F1/F2/F3: catorce renglones con nombre, asunto y dos columnas de hora, cabecera «NÚM. / NOMBRE / ASUNTO / ENTRADA / SALIDA»; asiento 14 = «R. Valdés · “diligencia sala 7” · 16:40 · 16:58» exacto; sello circular azul «LIBRO DE VISITAS · DEL PÚBLICO» legible al margen; hoja rayada fotografiada de plano, sin fecha impresa contradictoria, sin flechas/círculos/anotaciones ni magenta en primer plano.
-- EN F2: asiento 14 = «R. Valdés · "room 7 diligence" · 4:40 PM · 4:58 PM», coherente con el catálogo EN (`src/state/Private/EvidenceCatalogCase5EnA.ts:55-60`); sello «PUBLIC VISITORS LOG» al margen; catorce filas.
-- Ambas: sin marcas periciales, sin texto que convierta la hoja en el libro de peritos ni que liste personal del edificio como visitante (F1/F2 `NO CONTRADECIR`).
+- ES F1/F2: hoja suelta rayada sobre tabla oscura con cuatro esquineras de latón, recorte de plano; cabecera «NÚM. / NOMBRE / ASUNTO / ENTRADA / SALIDA»; catorce renglones manuscritos con tintas distintas; asiento 14 = «R. Valdés · «diligencia sala 7» · 16:40 · 16:58» (recorte de filas 13–14 y columna de horas). Sello circular **violeta** al margen: «LIBRO DE VISITAS / DEL PÚBLICO».
+- ES F1 (encuadernación): canto izquierdo perforado (encuadernación); se nombra como hoja de libro de registro, no sólo como cartel (recorte del canto).
+- ES/EN F2 `AUSENTE`: sin fecha impresa, sin 1974/1982, sin flechas, círculos, marcas periciales, UI `EXAMINE`/`Case 5`, ni magenta en primer plano.
+- ES F3/F4: catorce firmas; última 16:40/16:58; asuntos de visitantes externos (comparecencia, testigo ocular, defensa, querellante, consulta de expediente, etc.), no censo de personal ni libro de peritos.
+- EN F2/F6: gemelo literal (misma tabla, esquineras, retícula, sello circular violeta a la derecha, catorce filas, mismos nombres). Cabecera `NO. / NAME / MATTER / ENTRY / EXIT`. Asiento 14 = `R. Valdés · «room 7 diligence» · 4:40 PM · 4:58 PM` (catálogo EN, `EvidenceCatalogCase5EnA.ts:55-60`). Sello «PUBLIC VISITORS LOG». Trece asuntos traducidos; cero prosa española.
+- EN F3: sin fecha impresa (el presente es 1982; no se reintroduce 1974).
 
 ### Defectos confirmados
-- [EN] `CONTRADICE` MAYOR — F6/§23.0: prosa española remanente en la variante EN: cabecera «FECHA: 4 de diciembre…», «REGISTRO DE VISITANTES» y trece asuntos en español («Citatorio - Testigo», «Declaración - Actor», «Audiencia - Demandado», «Notificación», «Consulta - Abogado», «Diligencia - Perito», «Entrega de Documentos», «Audiencia - Conciliación», «Diligencia - Inspección»). §23.0 (`docs/specs/case-5-el-tomo-trece.md:3978-3980`) y F6 (`examine_libro_visitas.md:58`).
-- [EN] `CONTRADICE` MEDIO — F3: fecha impresa «4 de diciembre de 1974»; la hoja es del 4 de diciembre de 1982 (`examine_libro_visitas.md:9,38`). En ES no hay fecha impresa, por lo que el error sólo existe en EN.
-- [EN] `DRIFT` MAYOR — F6: los gemelos no comparten composición: ES es una hoja suelta montada sobre tabla con esquineras de latón y columnas compactas; EN es una página de libro con cabecera FECHA/REGISTRO/PÁGINA 1280, otra retícula, otro sello (circular azul vs. rectangulares violetas) y otros trece nombres/asuntos. F6 exige encuadre, papel, sello y composición idénticos, localizando sólo el texto legible (`examine_libro_visitas.md:57`).
-- [ES] `MALFORMADO` MENOR — F1: no se lee como «libro grande abierto»: es una lámina individual enmarcada con bisagras metálicas, sin lomo ni encuadernación que la identifique como hoja de un libro de registro (`examine_libro_visitas.md:19`).
+- Ningún defecto MAYOR ni MEDIO. F5: cel-shading de ilustración Ace Attorney con grano de papel dibujado; aceptación de estilo = decisión del revisor (§23.0, `docs/specs/case-5-el-tomo-trece.md:3974-3978`).
 
 ### Correcciones de auditoría
-- Se reemplaza la sección previa «Hallazgos de auditoría 2026-09-19» (que sólo registraba la no inspección por protocolo de `asset-facts`); sin ✓ previos que corregir.
-- Verificación por recortes sobre `.tmp-audit/examine_libro_visitas.png` y `.tmp-audit/examine_libro_visitas_en.png`; catálogos ES/EN contrastados (`src/state/Private/EvidenceCatalogCase5EsA.ts:55-60`, `EvidenceCatalogCase5EnA.ts:55-60`). Ningún hallazgo retirado por revisión.
+- ~~[EN] `CONTRADICE` MAYOR — prosa española, cabecera FECHA/REGISTRO~~ — retirado: EN está íntegramente en inglés.
+- ~~[EN] `CONTRADICE` MEDIO — fecha «4 de diciembre de 1974»~~ — retirado: no hay fecha impresa.
+- ~~[EN] `DRIFT` MAYOR — gemelos de composición distinta~~ — retirado: misma tabla, retícula y sello violeta.
+- ~~[ES] `MALFORMADO` MENOR — sin indicio de libro~~ — retirado: canto izquierdo perforado.
+- Recortes sobre los JPEG RAW 1280 × 720 (cabecera, asiento 14, sello, esquineras, gutier). No se ejecutó `process_case5_assets.py`.
 
 ### Recomendación (orden del conjunto de consistencia)
-1. Regenerar EN partiendo de la composición de ES (misma hoja, retícula, marco, sello en posición y forma equivalentes), cambiando únicamente el texto legible al inglés: cabecera, rótulos de columnas, asuntos («summons — witness», etc.) y sello «PUBLIC VISITORS LOG»/«Public visitors book»; cero prosa española.
-2. Corregir o eliminar la fecha impresa en EN: no debe leerse «1974»; si se imprime fecha, «December 4, 1982».
-3. Alinear los trece asientos restantes entre gemelos (mismos nombres/asuntos/horas traducidos) para restaurar la identidad de composición de F6 antes de regenerar.
-4. En la próxima regeneración de ES (junto con `bg_archivo_vestibulo` y `libro_visitas`), añadir un indicio de encuadernación (lomo o cuaderno abierto) para que la lámina se nombre como hoja de libro, no como cartel enmarcado; no bloquea por sí solo.
+1. El icono `libro_visitas` y el fondo `bg_archivo_vestibulo` (skip en este lote) siguen fuera de esta regeneración; al tocarlos, conservar la identidad de hoja rayada + sello violeta del público.
+2. F5 queda al revisor; no regenerar por estilo salvo decisión explícita.

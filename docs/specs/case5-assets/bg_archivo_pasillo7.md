@@ -113,3 +113,54 @@ No cumple: regenerar junto con el conjunto de consistencia de esta hoja (`plate_
 4. Corregir la puerta del fondo a **metálica gris de servicio entreabierta**; añadir **reja de barrotes** en el fondo opuesto, **rejilla de ventilación con línea sutil de aire caliente** en el muro izquierdo y **tubería vista** en el techo.
 5. Girar el tomo caído a **lomo hacia arriba** (con la mancha compartida con `examine_tomo_caido`) y orientar la cabeza de la silueta **hacia el estante**.
 6. Mantener la silla volcada actual, el estilo aceptado y todas las exclusiones que ya cumplen.
+
+## Hallazgos de auditoría 2026-09-19 (regeneración Lote A)
+
+Auditoría visual de `tools/raw/case5/bg_archivo_pasillo7.jpg` (1280×720) contra esta hoja, recortes por sustantivo. Tres intentos. **Veredicto: cumple el eje bloqueante de contenido (F1/F4 MAYOR); restan MEDIO.** Los tres MAYOR de la pasada previa (mueble de consulta, cartelito pericial, legajo abierto) están pintados y se nombran. No se regenera más (tope de 3).
+
+### Cumple
+
+- ✓ Pasillo estrecho de un punto de fuga, estanterías de piso a techo con legajos atados con listón, techo con tubería vista (F1).
+- ✓ Mueble de consulta **distinto** a la derecha-frente: fila de lomos de tela verde, lomo vino con cantoneras, no es la estantería general (F1/F4; `archivo_pasillo7_hotspots.ts:45-56`).
+- ✓ Mesa de roble a la izquierda, lámpara de pantalla verde encendida, **legajo abierto atado con listón** (F1; `archivo_pasillo7_hotspots.ts:69-77`).
+- ✓ Silla volcada hacia atrás: asiento, respaldo y patas legibles (F1).
+- ✓ Silueta de gis boca abajo, cabeza hacia el estante/derecha, pies hacia la mesa (F1/F4).
+- ✓ Cartelito pericial en blanco junto al tomo (F1; `archivo_pasillo7_hotspots.ts:30`).
+- ✓ Puerta metálica gris entreabierta; reja de barrotes al fondo; rejilla de ventilación en el muro izquierdo con línea de calor; tubería al techo (F1).
+- ✓ AUSENTE personajes vivos, UI, fechas impresas, inglés (F1/F2/F4). F6: sin variante `_en`.
+
+### Defectos confirmados
+
+- [x] ~~MAYOR mueble de consulta ausente~~ **[x] RETIRADO POR REGENERACIÓN (2026-09-19 Lote A):** el recorte `bg_archivo_pasillo7_cabinet` se nombra «mueble de consulta de lomos verdes con un lomo vino».
+- [x] ~~MAYOR cartelito pericial ausente~~ **[x] RETIRADO POR REGENERACIÓN:** cartoncito en pie junto al tomo.
+- [x] ~~MAYOR legajo abierto ausente~~ **[x] RETIRADO POR REGENERACIÓN:** expediente abierto con listón sobre la mesa.
+- [x] ~~MEDIO puerta de madera / reja / rejilla / tubería~~ **[x] RETIRADO POR REGENERACIÓN:** puerta gris entreabierta, reja, rejilla y tubería presentes.
+- [x] ~~**MEDIO (F1, CONTRADICE/DRIFT)** — Tomo caído: tapa hacia arriba con `XI` y mancha en la tapa, no **lomo hacia arriba**.~~ **[x] RETIRADO POR CONSISTENCIA (2026-09-19):** recorte `bg_tomo_tight` se nombra «tomo de tela con el lomo hacia arriba, tejuelo XI y mancha parda en el lomo»; ancla el «Tiene sangre en el lomo» de `archivo_pasillo7_hotspots.ts:32` y alinea con `examine_tomo_caido`.
+- [ ] **MEDIO (F1/F3, CONTRADICE)** — Los cartoncitos del mueble son cifras grandes saltadas (`2 3 4 5 8 18 / 11 12 / 16…24`); el hueco 13 no se lee como ranura vacía oscura. El tablero jugable sigue siendo `examine_estante_consulta`; el fondo no sostiene por sí solo el conteo 24/13.
+
+### Recomendación
+
+Si hay un cuarto pase: igualar el mueble al tablero de `examine_estante_consulta` (hueco 13 oscuro, tags 1–12 / 14–24, lomo 11 vino) con cartoncitos pequeños.
+
+## Hallazgos de auditoría 2026-09-19 (consistencia lomo-arriba)
+
+Auditoría visual de `tools/raw/case5/bg_archivo_pasillo7.jpg` (1280×720) tras el arreglo de consistencia del tomo del piso. Recortes por sustantivo (`bg_tomo_tight`, `bg_body`, `bg_cab`, `bg_door`, `bg_tag`, `bg_mesa`). `bg_archivo_pasillo7_d4.jpg` no se tocó (suelo sin tomo). **Veredicto: cumple** el eje de consistencia del tomo (F1/F4 lomo arriba + mancha en el lomo). Sigue el MEDIO de numeración del mueble, fuera de este arreglo.
+
+### Cumple
+
+- ✓ Tomo caído **lomo hacia arriba** (ladrillo sobre el canto, no tapa al cielo): tejuelo `XI` y mancha parda **en el lomo**; el recorte `bg_tomo_tight` se nombra así sin el contexto de la hoja (F1/F4; `archivo_pasillo7_hotspots.ts:32`; consistencia con `examine_tomo_caido`).
+- ✓ Silueta de gis boca abajo, cabeza hacia el estante, pies hacia la mesa (F1; recorte `bg_body`).
+- ✓ Mueble de consulta de 24 ranuras a la derecha, lomo vino en 11, cartelitos diegéticos (F1; recorte `bg_cab`).
+- ✓ Puerta metálica gris entreabierta; reja al fondo (F1; recorte `bg_door`).
+- ✓ Cartelito pericial junto al tomo, sólo en este fondo de crimen (F1; recorte `bg_tag`).
+- ✓ Mesa, lámpara encendida, legajo abierto, silla volcada; sin personajes vivos (F1/F4).
+
+### Defectos confirmados
+
+- [x] ~~MEDIO tomo tapa-arriba~~ **[x] RETIRADO POR CONSISTENCIA (2026-09-19):** ver traza en la pasada Lote A.
+- [ ] **MEDIO (F1/F3, CONTRADICE)** — Cartoncitos saltados; hueco 13 no oscuro. Fuera de este arreglo.
+- [ ] **MENOR (F5, DRIFT de postproceso)** — El tomo del piso es un prop compuesto sobre el fondo: el lomo se lee, pero el contorno y la luz son un grado más gráficos que el resto de la sala.
+
+### Recomendación
+
+Ninguna bloqueante para el lomo. Opcional: alinear la numeración del mueble con `examine_estante_consulta`.

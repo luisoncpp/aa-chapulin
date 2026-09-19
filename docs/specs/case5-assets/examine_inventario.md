@@ -73,9 +73,43 @@ Activo base: `examine_inventario.webp`. Variante localizada: `examine_inventario
 - La lámina fija 11,400 tarjetas en la partida 12, mientras la inspección posterior fija 11,407 tarjetas físicas; es una diferencia histórica/documental que debe permanecer visible como diferencia de alcance, no corregirse en el arte (§5.2-§5.3, `docs/specs/case-5-el-tomo-trece.md:287,296`; §24.D I54, `docs/specs/case-5-el-tomo-trece.md:4229`).
 - D3-T1 deja que la defensa diga «doscientas diez colecciones de lujo completas» antes de que Berrondo corrija a «ejemplares sueltos»; la imagen sólo debe mostrar la entrada fijada del inventario, no anticipar la interpretación equivocada ni la corrección en forma de anotación (§23.3, `docs/specs/case-5-el-tomo-trece.md:4054`; `src/case/case5/Private/trial_day3_success.ts:44-46`).
 
+## Hallazgos de auditoría 2026-09-19 (regeneración Lote K, examine_inventario)
+
+**Veredicto: CUMPLE** en contenido (F1), texto (F2), cifras (F3), contrato en pantalla (F4), estilo (F5) y localización (F6), en ambas variantes. RAW `tools/raw/case5/examine_inventario.jpg` y `tools/raw/case5/examine_inventario_en.jpg` (1280×720, 16:9). Un MENOR de grapado no rompe D2 ni D3-T1.
+
+Trazas de recorte ES: `c_es_membrete`, `c_es_p10_13`, `c_es_partida12`, `c_es_14_18`, `c_es_folio2_head`, `c_es_right_25_32`, `c_es_p40_44`, `c_es_partida41`, `c_es_partida44`, `c_es_total`, `c_es_grapas`. Trazas EN: `c_en_membrete`, `c_en_p10_13`, `c_en_partida12`, `c_en_folio2_head`, `c_en_right_25_35`, `c_en_p34_47`, `c_en_partida41`, `c_en_partida44`, `c_en_total`, `c_en_grapas`. Gemelos: cajas de papel izq. (79,11)–(639,687) vs (79,10)–(639,689); der. equivalentes; 0 px magenta.
+
+### Cumple
+
+- **F1** — Dos folios de papel revolución, membrete del juzgado, columna numerada 1–24 / 25–47. Prueba de nombrar `c_es_membrete` / `c_en_membrete`: «dos pliegos mecanografiados de inventario judicial con membrete». (`docs/specs/case-5-el-tomo-trece.md:4054`; `EvidenceCatalogCase5EsB.ts:17-22`; `EvidenceCatalogCase5EnB.ts:17-22`).
+- **F1/F2** — Partida 12 por posición, sin realce: ES `12. Cedulario, 11,400 tarjetas` (`c_es_p10_13`); EN `12. Card file, 11,400 cards` (`c_en_p10_13`). (`EvidenceCatalogCase5EsB.ts:18-22`; `EvidenceCatalogCase5EnB.ts:18-22`).
+- **F1/F2/F4** — Partida 41: ES `41. Máquina de escribir Olivetti Lexikon 80` (`c_es_partida41`); EN `41. Olivetti Lexikon 80 typewriter` (`c_en_partida41`, grafía correcta, no `typeriter`). (`despacho_berrondo_talks.ts:89-96`; `despacho_berrondo_talks_en.ts:90-97`).
+- **F1/F2/F4** — Partida 44: ES `44. Ejemplares de lujo sin vender, 210` (`c_es_partida44`); EN `44. Unsold luxury copies, 210` (`c_en_partida44`). (`trial_day3_success.ts:41-46`; `trial_day3_success_en.ts:41-46`).
+- **F2/F3** — Fecha `14 de octubre de 1971` / `October 14, 1971` en ambos folios (`c_es_membrete`, `c_es_folio2_head`, `c_en_membrete`, `c_en_folio2_head`). No es 17 de mayo ni 4-XII. (`docs/specs/case-5-el-tomo-trece.md:287,4054`).
+- **F2/F3/F4** — `TOTAL DE PARTIDAS: 47` (`c_es_total`); EN `Forty-seven line items` + `TOTAL LINE ITEMS: 47` (`c_en_total`). No 58. (`trial_day3_success.ts:41`; `EvidenceCatalogCase5EnB.ts:18-19`).
+- **F2** — Listado ordenado y legible (`c_es_14_18`, `c_es_right_25_32`, `c_en_right_25_35`, `c_en_p34_47`): numeración consecutiva, sin líneas corruptas ni duplicados. Las no marcadas son bienes de oficina/bodega y no añaden respuesta narrativa.
+- **F2/F5 `AUSENTE`** — Sin flechas, círculos, subrayados, resaltador, banda EXAMINE, CASE 5 ni HUD. Sin personajes, manos, huacal, cajones ni máquina fotografiada. Sin tintero, lámpara, placa `ARCHIVO JUDICIAL` ni expediente `2147/1976`.
+- **F3** — Partida 12 = 11,400 (no 11,407). Partida 44 = 210 ejemplares sueltos (no 210 colecciones).
+- **F4** — El legajo abierto permite leer las 47 partidas, la 12 y la 41 que cita Berrondo, y la 44 de D3-T1 (`despacho_berrondo_talks.ts:83-92`; `trial_day3_t1.ts:63-69`).
+- **F5** — Cel-shade de dos tonos, contorno carbón, papel/madera/tungsteno, linaje Ace Attorney; 0 px magenta/rosa.
+- **F6** — Misma composición ES/EN (encuadre, folios, broches, foxing, posiciones de 12/41/44, cifras). Sólo cambia el texto localizado. EN usa `1971 Inventory`, `Estate inventory, October 14, 1971`, `card file, 11,400 cards`, `Olivetti Lexikon 80 typewriter`, `unsold luxury copies, 210` (`EvidenceCatalogCase5EnB.ts:17-22`).
+
+### Defectos confirmados
+
+1. **MALFORMADO — MENOR (F1 grapado):** los dos folios están abiertos lado a lado; `c_es_grapas` / `c_en_grapas` nombran dos broches metálicos de carpeta en el margen izquierdo del folio 1, no una grapa que una ambos pliegos en un solo legajo. No impide leer 12/41/44 ni el total 47. Gemelos coinciden en este rasgo.
+
+### Correcciones de auditoría
+
+- Los nueve defectos MAYOR/MEDIO de la pasada previa (fecha 17 MAY, total 58, partidas 12/41/44 ajenas, listado corrupto, gemelos distintos, `typeriter`, placa `ARCHIVO JUDICIAL` / exp. `2147/1976`) quedan ~~superados por regeneración~~: esta pasada los sustituye con los recortes citados arriba. Se conserva la sección anterior como traza del RAW anterior a Lote K.
+- El ✓ de «11 ausente» del primer vistazo al folio ES quedó anulado por `c_es_p10_13`: `11. Grapadoras, 6` precede a la 12.
+
+### Recomendación
+
+Ninguna bloqueante. Opcional en un retoque futuro: una grapa común visible en el canto que une los dos pliegos, sin mover 12/41/44 ni el total.
+
 ## Hallazgos de auditoría 2026-09-19
 
-**Veredicto: NO CUMPLE** en contenido (F1), texto (F2), cifras (F3), contrato en pantalla (F4) y localización (F6), en ambas variantes ES y EN. Las dos láminas generadas son documentos distintos y ninguno es el inventario de la hoja.
+**Veredicto: NO CUMPLE** en contenido (F1), texto (F2), cifras (F3), contrato en pantalla (F4) y localización (F6), en ambas variantes ES y EN. Las dos láminas generadas son documentos distintos y ninguno es el inventario de la hoja. *[x] SUPERADO POR REGENERACIÓN (2026-09-19, Lote K): ver sección anterior; esta sección describe el RAW previo.*
 
 ### Cumple
 

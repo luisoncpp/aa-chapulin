@@ -71,37 +71,37 @@ Clase: `plate`. Espec: §23.0 y §23.4. Guion directo: §7.3/L1, §10.2 (`hotspo
 - §10.2 habla de «dos puertas», pero el diálogo inmediatamente anterior cuenta una tercera puerta de carbón tapiada desde 1958 (`docs/specs/case-5-el-tomo-trece.md:670-673`; `archivo_vestibulo_hotspots.ts:35-36`). El contrato de §23.4 exige dos puertas rojas; no se decide aquí si el acceso histórico sellado se dibuja aparte.
 - §23.4 fija las láminas didácticas en `1280 × 720`, mientras la arquitectura de la tubería de Case 5 indica que las placas didácticas exportan a `960 × 540` (`docs/specs/case-5-el-tomo-trece.md:4041-4043,4074-4077`; `docs/architecture/asset-pipeline.md:76-78`). Esta hoja conserva la resolución explícita del spec y deja pendiente decidir cuál contrato de exportación/runtime prevalece.
 
-## Hallazgos de auditoría 2026-09-19
+## Hallazgos de auditoría 2026-09-19 (regeneración Lote G)
 
-- Veredicto: **NO CUMPLE** — en contenido (F1/F3), en exclusiones/texto (F2), en localización (F6) y con drift de estilo (F5). Se inspeccionó `assets/plate_dos_accesos.webp` (960 × 540) con conversión a PNG y recortes ampliados por zona (panel izquierdo, TV, ambas puertas rojas, escalera/montacargas, planta baja, leyenda y sello).
+**Veredicto: NO CUMPLE (leve)** — F2/F5/F6 y la topología patio / planta baja / primer piso / sótano cumplen; F1 deja la ventanilla de peritos **malformada** (se nombra chimenea). RAW: `tools/raw/case5/plate_dos_accesos.jpg` (1280 × 720). Sin variante EN. `bg_archivo_vestibulo` no se tocó.
 
 ### Cumple
 
-- ✓ `AUSENTE` F2/F5 — No hay texto en inglés dentro de la imagen; todo el texto impreso es español (recortes c1, c7, c8).
-- ✓ `AUSENTE` F5 — Sin marcas de agua ni rosa/magenta en primer plano; paleta sepia/roja sobre crema.
-- ✓ F1 (parcial) — Existe un corte axonométrico de tres niveles apilados y una escalera de servicio con trazado discontinuo; la imagen sí es una lámina arquitectónica, no la escena del pasillo 7 (recorte full + c5).
+- F2 / F6 `AUSENTE`: cero letras, números, leyenda, escala, sello, CHEPIRITO, EN VIVO o rótulos de piso (lámina muda compartida ES/EN).
+- F5 `AUSENTE`: sin personajes, sin juez en TV, sin empleado, sin cadáver ni tomo caído.
+- F1 axonométrico: sótano de ladrillo con caldera y huacales; planta baja con puerta pública **roja** a vestíbulo y mostrador largo; patio de maniobras empedrado anejo; primer piso con reja, estantes y mesa al fondo.
+- F1 reja/mesa: los estantes del pasillo 7 se interponen entre la reja y la mesa del cuarto del extremo (recorte de la reja); no hay visibilidad directa.
+- F1/F3 montacargas: hueco de carga distinto de la escalera, jaula con descansos en sótano, planta baja/patio y primer piso (recorte del núcleo).
+- F1 escalera: línea de puntos + peldaños desde el sótano (entre cajas) subiendo junto al hueco hasta el extremo del primer piso, sin cruzar el mostrador (`archivo_vestibulo_hotspots.ts:46-48`).
+- F1 puerta pública: doble hoja roja a la sala del mostrador (recorte).
+- F5: ilustración didáctica en papel crema, cel-shading y contorno carbón; aceptación de estilo = revisor.
 
 ### Defectos confirmados
 
-- **MAYOR — CONTRADICE (F2, §23.4 línea 4076):** la placa está llena de rótulos prohibidos: título «ARCHIVO JUDICIAL – 3 NIVELES», subtítulo «PAPEL, MADERA Y POLVO», párrafo narrativo «Registro oficial de causas penales…», letreros «SERVICIO DE ENLACE», «ATENCIÓN DE EXPEDIENTES / SOLO CON ORDEN JUDICIAL», «ESCALERAS DE SERVICIO», «ELEVADOR DE CARGA», numeración de pisos «3/2/1», «ESCALA 1:100» con regla numerada 0–5 m, caja «LEYENDA DEL PLANO» con cinco entradas y placa del sello «INSTALACIÓN JUDICIAL…». §23.4 define esta lámina como `Sin rótulos`; la narración debe explicar la imagen. Rompe la identidad del activo (recortes c1, c3, c4, c5, c6, c7, c8); afecta `archivo_vestibulo_hotspots.ts:44-48`.
-- **MAYOR — CONTRADICE (F2/F5):** fuga de meta-texto del arte en la imagen: pie «TELEVISIÓN MEXICANA DE LOS AÑOS SETENTA — CHEPIRITO / EL CHAPULÍN COLORADO —» y banda roja «EN VIVO» reproducen instrucciones del prompt como si fueran contenido (recortes c1, c2). Ningún rótulo de la placa debe nombrar el universo ni la época.
-- **MAYOR — CONTRADICE (F5 `AUSENTE`, §23.0/§23.1):** personajes presentes: un juez de toga dentro de un panel de TV con cámara, y un empleado de bigote escribiendo en un escritorio de planta baja. La placa explica la topología y no debe contener personajes ni escenas (recortes c2, c6).
-- **MAYOR — CONTRADICE (F1, §10.2 líneas 686–688; `archivo_vestibulo_hotspots.ts:44-45`):** los dos accesos rojos no son la puerta pública + la ventanilla de peritos: son dos puertas idénticas de arco, y una está rotulada «SERVICIO DE ENLACE». No existe ventanilla alguna hacia un patio de maniobras, ni vestíbulo/mostrador del libro de visitas conectado a la puerta pública. La dependencia de hotspot (public door / expert window) queda sin sustento visual.
-- **MAYOR — CONTRADICE (F1/F3, §4.1 líneas 158–200; §24.B):** los tres niveles dibujados son pisos numerados 1–2–3 con escritorios y archiveros; no hay sótano ni patio de maniobras. La topología exigida (patio / planta baja / primer piso / sótano) y la ruta sótano→pasillo 7 sin pasar por mostradores no son legibles; el diálogo de investigación (`archivo_vestibulo_hotspots.ts:46-48`, EN `:44-48`) y la refutación de D1-T3 se rompen con esta composición.
-- **MEDIO — CONTRADICE (F3, §24.B líneas 4131–4147):** el trazado discontinuo amarillo fusiona escalera y montacargas en una sola «RUTA PUNTUAL DE SERVICIO (ESCALERAS Y ELEVADOR)» (leyenda, recorte c7; recorrido, recorte c5). La hoja exige escalera y hueco del montacargas como elementos diferenciados, con tres descansos (sótano, patio, primer piso); los descansos no son verificables y la escalera debe distinguirse del montacargas (invariantes I12/I26).
-- **MEDIO — DRIFT (F5, §23.0 líneas 3974–3978):** el acabado es pictórico con sombreado suave, textura de pincel y degradados en el papel crema y los interiores, no cel-shading de colores planos con terminador duro y dos tonos por superficie. Desviación de estilo registrada; la aceptación final queda al revisor.
+- **MEDIO / MALFORMADO** (F1 ventanilla, `plate_dos_accesos.md:19-20`; §10.2, `docs/specs/case-5-el-tomo-trece.md:686-688`; `archivo_vestibulo_hotspots.ts:44-45`): el segundo acceso rojo en el patio, visto sin el contexto de la hoja, se nombra **chimenea con ménsula**, no ventanilla/teller window (recorte del patio). El objeto está en el muro correcto y es el único rojo además de la puerta pública, pero falla la prueba de nombrar.
 
 ### Correcciones de auditoría
 
-- ~~«No se inspeccionó ninguna imagen, por protocolo. No se confirma ningún defecto visual de la versión actual; esta sección queda como lista de aceptación derivada del spec y de los guiones ES/EN.»~~ — Sustituido por la auditoría real de `assets/plate_dos_accesos.webp` (2026-09-19), con recortes c1–c8; los archivos temporales fueron eliminados al cierre.
+- ~~MAYOR F2 — placa llena de rótulos, leyenda, escala, sello~~ — retirado: lámina muda.
+- ~~MAYOR F2/F5 — CHEPIRITO / EN VIVO~~ — retirado.
+- ~~MAYOR F5 — juez en TV y empleado~~ — retirado.
+- ~~MAYOR F1 — dos arcos idénticos «SERVICIO DE ENLACE», sin ventanilla ni vestíbulo~~ — retirado en parte: hay puerta pública + objeto rojo en el patio; la forma de la ventanilla sigue malformada (arriba).
+- ~~MAYOR F1/F3 — pisos 1–2–3 sin sótano ni patio~~ — retirado.
+- ~~MEDIO F3 — escalera y montacargas fusionados~~ — retirado: peldaños + línea de puntos aparte de la jaula.
+- Recortes sobre el JPEG RAW 1280 × 720 (puerta pública, patio, reja, sótano, núcleo). No se ejecutó `process_case5_assets.py`.
 
 ### Recomendación (si se regenera)
 
-1. Regenerar la placa como corte axonométrico `Sin rótulos`: cero texto, cero números, cero letreros, sin leyenda, sin escala, sin sello; fondo crema de papel y trazo de manual escolar mexicano setentero (§23.4, línea 4076).
-2. Tres niveles correctos: patio de maniobras / planta baja, primer piso (pasillo 7 con su reja en el extremo) y sótano, claramente separados; sin numerar los pisos.
-3. Exactamente dos accesos en rojo: la puerta pública hacia vestíbulo/mostrador del libro de visitas y la ventanilla de peritos abierta al patio de maniobras; nada más en rojo.
-4. Escalera de servicio como línea de puntos propia, conectando patio → sótano → extremo del pasillo 7 sin cruzar mostradores, visualmente distinta del hueco del montacargas.
-5. Hueco contiguo del montacargas de carga separado de la escalera, con descansos legibles en sótano, patio y primer piso.
-6. Eliminar todo personaje (juez en TV, empleado en mostrador), paneles tipo transmisión y cualquier fuga de prompt/meta-texto.
-7. Aplicar §23.0 estricto: cel-shading plano, terminador de sombra duro, dos tonos por superficie, contorno carbón `#1A1A1A`;  ni textura pictórica.
-8. Regenerar junto con `examine_plano_archivo` (ES/EN) y los fondos del conjunto de consistencia, sin tomar esta imagen como fuente de verdad de aquéllos.
+1. Sustituir la chimenea del patio por una ventanilla de peritos: ventana pequeña con repisa de mostrador y marco rojo, sin hogar ni campana. Conservar el resto de la axonometría muda.
+2. No reintroducir texto, personajes ni un tercer objeto rojo (la puerta del primer piso debe seguir en marrón).
+3. Regenerar junto con `examine_plano_archivo` ES/EN para alinear la ventanilla y el descanso de patio del montacargas; este activo no es fuente de verdad de aquéllos.

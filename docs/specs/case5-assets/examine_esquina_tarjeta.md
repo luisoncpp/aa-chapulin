@@ -103,4 +103,51 @@ Clase: `examine`. Espec: §23.0, §23.3 y §10.1. Guion: D1 celda, D1-T2 `follow
 4. Fondo gris neutro idéntico en ambas; escala real 3.1 × 2.4 contra la regla de 5 cm.
 5. Borde roto recto y limpio, papel liso, sin pliegues ni arrugas.
 
+## Hallazgos de auditoría 2026-09-19 — regeneración Lote I (RAW)
+
+**Veredicto: NO CUMPLE** (F2: la `s` caída no cuelga de `Espanto`; es un renglón huérfano bajo `viv./apt. 72`). Los bloqueantes MAYOR previos (`viv. 4` / `apt. 4`, flecha magenta EN, pie «CASE 5 / EXAMINE», borde dentado) están corregidos en `tools/raw/case5/examine_esquina_tarjeta.jpg` y `_en.jpg` (1280×720, 3 intentos ES / 2 EN).
+
+### Cumple
+
+- Macro sobre gris neutro con regla testigo de 5 cm, sin mano ni pinzas (F1; recorte de fragmento y de regla).
+- Cuatro renglones exactos ES: `...cindad de` / `la calle del` / `Espanto 8,` / `viv. 72.` EN: `...city of` / `Calle del` / `Espanto 8,` / `apt. 72.` (F2 TEXTO EXACTO; F3 **72** nunca 4).
+- Borde **recto y limpio** en rectángulo, papel liso, sin pliegues (F1 hecho 5; F4 D1-T2).
+- EN sin flecha magenta ni realce (F2 AUSENTE, F5). Sin rótulo CASE 5 / EXAMINE ni pie explicativo (F2).
+- Gemelos de la misma geometría, escala y regla (F6).
+
+### Defectos confirmados
+
+- **[MAYOR / MALFORMADO]** (F2, F4 E5; `climax_stage5.ts:26-31`) — La `s` minúscula visible es un quinto renglón huérfano bajo `viv. 72.` / `apt. 72.`, no la `s` de `Espanto` media línea por debajo de su palabra. `Espanto` queda con `s` alineada. Rompe la lectura de E5 sobre el fragmento.
+- **[MEDIO / CONTRADICE]** (F3) — El fragmento sigue más ancho que 3.1 cm contra la regla de 5 cm (cubre ~0–4 de la escala). El contrato de arte es 3.1 × 2.4 cm.
+
+### Correcciones de auditoría
+
+- ~~`viv. 4.` / `apt. 4.`~~ — [x] RETIRADO POR REVISIÓN (2026-09-19, Lote I): ambas RAW imprimen **72**.
+- ~~Flecha magenta EN~~ — [x] RETIRADO POR REVISIÓN.
+- ~~Pie «CASE 5 / EXAMINE» y pie explicativo ES~~ — [x] RETIRADO POR REVISIÓN.
+- ~~Borde dentado con pliegues~~ — [x] RETIRADO POR REVISIÓN: corte recto.
+- ~~Gemelos de composición distinta~~ — [x] RETIRADO POR REVISIÓN.
+
+### Recomendación (si hay otra pasada)
+
+1. Borrar el renglón huérfano `s` y redibujar esa misma `s` minúscula pegada bajo `Espanto`.
+2. Encoger el fragmento a ~60 % de la regla de 5 cm.
+
+## Hallazgos de auditoría 2026-09-19 — pasada s caída (RAW)
+
+**Veredicto: CUMPLE** (F2/F4 E5: la `s` de `Espanto` es la misma letra, media línea abajo entre `E` y `panto`; `viv./apt. 72` siguen en el cuarto renglón). Recortes de `tools/raw/case5/examine_esquina_tarjeta.jpg` y `_en.jpg`.
+
+### Cumple
+
+- ES: `E` + `s` caída + `panto 8,` en el renglón 3; renglón 4 `viv. 72.` sin huérfana (recorte del texto). EN: idéntica geometría, `apt. 72.` (F2, F6).
+- Cuatro renglones canónicos, **72**, borde recto, gris neutro, regla 5 cm, sin flecha magenta (F1–F6).
+
+### Defectos confirmados
+
+- **[MEDIO / CONTRADICE]** (F3) — El fragmento sigue más ancho que 3.1 cm contra la regla de 5 cm (se arrastra de la pasada previa).
+
+### Correcciones de auditoría
+
+- ~~`s` huérfana bajo `viv./apt. 72`~~ — [x] RETIRADO POR REVISIÓN (2026-09-19, pasada s caída): la `s` pertenece a `Espanto`.
+
 

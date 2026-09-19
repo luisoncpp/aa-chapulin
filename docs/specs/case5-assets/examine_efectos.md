@@ -106,3 +106,27 @@ Nota: la presencia del moño de corbata (expediente, ES) se registra sin resolve
 3. Reescribir la copia como el oficio del 8 de noviembre al ministerio público con la oferta del fichero por la reducción de condena; sello `8 NOV`; anotación manuscrita `pendiente`/`pending` a lápiz por otra mano.
 4. Eliminar todo texto ajeno: rótulos «COPIA CARBÓN/OFICIO», «Case 5», «EXAMINE», cabezas de expediente inventadas y fechas ajenas (14 de mayo de 1974, 21 de noviembre, 10:00).
 5. Corregir el estilo a cel-shading plano con terminador duro según §23.0,  ni textura fotográfica; revisar con el conjunto `examine_maquina`, `examine_esquina_tarjeta`, `examine_expediente_serie`, `examine_ficha_domicilio` y `examine_nota_renta` la `s` caída y la cadena documental.
+
+## Hallazgos de auditoría 2026-09-19 (post-regeneración Lote D)
+
+**Veredicto: CUMPLE** (contenido, texto, cifras, contrato, localización). F5 con desviación menor de grano de madera en ES (decisión del revisor). RAW: `tools/raw/case5/examine_efectos.jpg` y `examine_efectos_en.jpg` (1280×720). Recortes por sustantivo. La pasada anterior describe los JPG pre-regeneración.
+
+### Cumple
+
+- **Ambas F1:** dos paneles — libreta de pasta negra abierta a la izquierda; copia al carbón morada a la derecha; dos relojes de pulsera con correa, carátulas agrietadas (parados), juntos junto a la copia. Sin menú IDENTIDAD/CONCLUSIÓN, sin EXAMINE, sin candelero, sin relojes de bolsillo.
+- **ES F2 puntos (recorte de página):** «Tomo primero. De la máquina.» 1 julio/tarjeta/ese caída; 2 ficha del museo/agosto/ese caída; 3 mismo aparato; 4 tecleé 1962 a 1971; 5 me quiero salvar. Cadena de `penal_efectos_hotspots.ts:25-29` y `trial_day3_success.ts:12-17`.
+- **EN F2 puntos:** 1 card seized in July / drooping s; 2 museum card / August; 3 same device; 4 typed 1962 to 1971; 5 save myself. Sin «beink». (`penal_efectos_hotspots_en.ts:25-29`)
+- **ES F2/F3 oficio:** «Ciudadano agente del ministerio público», oferta del fichero a cambio de estudiar la reducción de condena, «8 de noviembre»; sello circular `8 NOV`; lápiz «pendiente» por otra mano.
+- **EN F2/F3 oficio:** «Citizen public ministry agent», file in exchange for a reduction in my sentence, «November 8»; sello `8 NOV` (marca física igual); lápiz «pending». Sin español residual.
+- **F4:** no hay conclusión judicial impresa. **F6:** misma composición (libreta / copia / dos pulseras / sello / anotación); sólo cambia el texto.
+
+### Defectos confirmados
+
+- `AUSENTE` / **MENOR** / F1 — el punto cinco es apenas más irregular que 1–4; no se lee como un renglón visiblemente más torcido (§14.3:2333,2337). No rompe la lectura de los cinco puntos.
+- **F5 — Desviación menor registrada (decisión del revisor):** ES conserva algo de grano de madera; EN y el contorno de objetos son cel-shading más plano. No se retira.
+
+### Correcciones de auditoría
+
+- Defectos MAYOR 1–6 de la pasada pre-regeneración (libreta ausente en ES, cadena inventada, oficio civil 1974, sello sin 8 NOV, `pendiente` ausente, gemelos distintos) → **corregidos** en ambos RAW.
+- «beink», «EXAMINE», «Case 5», rótulos COPIA CARBÓN / CARBON COPY, español en EN, relojes de bolsillo → **corregidos**.
+- Primera generación EN escribió «pendieng»; segunda generación (máx. 3) corrige a «pending». Traces en recorte `en2_pending`.

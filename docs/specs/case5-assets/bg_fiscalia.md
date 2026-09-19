@@ -73,42 +73,48 @@ Fuente de verdad: el spec y el contrato textual del guion. Esta hoja no inspecci
 
 ## Hallazgos de auditoría 2026-09-19
 
-- **Veredicto: NO CUMPLE** en contenido (F1) y en exclusiones; cumple texto (F2), cifras narrativas (F3), ausencia de marcadores de presentación (F4) y localización (F6). El estilo general (línea, color plano, contorno) es coherente con §23.0 en lo visible.
+- **Veredicto: CUMPLE** en contenido (F1), exclusiones, texto (F2), cifras (F3), contrato en pantalla (F4), estilo (F5) y localización (F6), sobre el RAW regenerado `tools/raw/case5/bg_fiscalia.jpg` (1280×720, 16:9). Un menor opcional no bloquea: el escudo nacional es el correcto (águila, nopal, serpiente; sin corona) pero no está descolorido.
+
+Fuente auditada: RAW Lote B, pasada 2 de regeneración (la pasada 1 de esta misma fecha inspeccionó la imagen previa y **no cumple**; ver Correcciones). Recortes por sustantivo y prueba de nombrar. No se ejecutó `process_case5_assets.py`.
 
 ### Cumple
 
+- F1 — Oficina pequeña y austera: pared izquierda ciega de yeso y lambrín, sin ventana ni cortina (§23.1).
 - F1 — Escritorio metálico gris con cubierta tipo linóleo, legible y con gavetas (§23.1).
-- F1/F4 — Silla de madera en el rincón derecho con la bolsa encima; la bolsa cae en lo esencial dentro del rectángulo del hotspot `hotspot_bolsa` (x:72, y:52, w:22, h:34) y es claramente examinable (`fiscalia_c5_hotspots.ts:10-14`; `fiscalia_c5_hotspots_en.ts:10-14`), aunque su forma contradice el estado (defecto 4).
-- F1/F5 — Lámpara de escritorio encendida con el resto de la habitación en penumbra cálida; parcial: la ventana aporta luz diurna (defecto 3).
-- F2 — Sin texto legible, sin inglés, sin marcas de agua; las tarjetas del archivero están en blanco y el «manuscrito» de los papeles es garabato ilegible; el oficio 4471 y las fechas no aparecen pintados (§23.1; `fiscalia_c5_talks.ts:13`).
-- F3 — La fecha/hora de la escena (8 de diciembre, 11:20 AM) no está impresa en la imagen (`fiscalia_c5.ts:18`; `fiscalia_c5_en.ts:18`).
-- F4 — Sin personajes, sin flechas, círculos ni resaltes; no hay pruebas presentables pintadas (§14.2, regla de arco; `fiscalia_c5.ts:18`).
-- F6 — Composición única compartida: `fiscalia_c5.ts:13,18` y `fiscalia_c5_en.ts:13,18` apuntan al mismo `assets/bg_fiscalia.webp`; no existe `bg_fiscalia_en.webp` en `assets/`; sin texto que «resuelva» la traducción.
+- F1/F4 — Calculadora de manivela: máquina de sumar beige con teclado numérico y manivela/perilla lateral a la derecha, despejada de las pilas. Lectura honesta del recorte: «calculadora de manivela». Soporta `fiscalia_c5.ts:19` y `fiscalia_c5_talks.ts:36`.
+- F1/F4 — Cronómetro de bolsillo de latón apoyado sobre un pisapapeles circular. Lectura honesta: «cronómetro de bolsillo sobre pisapapeles». Soporta `fiscalia_c5.ts:19`.
+- F1 — Dos montañas de oficios perfectamente iguales, misma altura, cada una atada con listón en X; sin tercera pila ni papeles sueltos (§23.1).
+- F1/F3 — Archivero oliva de **cuatro** frentes de gaveta visibles; el segundo cajón desde arriba está entreabierto; los otros tres cerrados; tapas de etiqueta en blanco; sin papeles encima (§23.1).
+- F1 — Reloj de oficina analógico en la pared, junto al escudo (§23.1).
+- F1 — Escudo nacional (águila sobre nopal devorando una serpiente, encina y laurel); sin corona real ni balanza (§23.1). El adjetivo «descolorido» queda como menor (defecto 1 de esta pasada).
+- F1/F4 — Silla de madera en el rincón derecho; bolsa de lona cruda **doblada, plana y vacía** sobre el asiento, con sello circular en tinta verde (marca diegética, sin cadena legible). Dentro del rect `hotspot_bolsa` x:72, y:52, w:22, h:34; el saco cae hacia el centro-izquierda de esa caja. Lectura honesta: «bolsa de lona vacía doblada, sello verde». Soporta `fiscalia_c5_hotspots.ts:14-18` y `fiscalia_c5_hotspots_en.ts:14-18`.
+- F1/F5 — Única luz: lámpara de escritorio encendida; el resto en penumbra de tungsteno; sin aplique de pared (§23.1).
+- F1/F4 — Sin personajes, sin flechas ni resaltes; `furniture: none` (§14.2; `fiscalia_c5.ts:18`).
+- F2 — Sin inglés, sin marcas de agua, sin oficio 4471 ni fechas impresas; garabato ilegible en los oficios; etiquetas del archivero en blanco. El sello es un círculo verde con emblema interior, no una leyenda tipográfica (§23.1; `fiscalia_c5_talks.ts:13`).
+- F3 — 8 de diciembre, 11:20 AM no está impreso; el reloj no marca esa hora (`fiscalia_c5.ts:18`).
+- F5 — Cel-shading Ace Attorney (GBA/DS), contorno carbón, dos tonos, no foto (§23.0).
+- F6 — Composición única ES/EN; no existe `bg_fiscalia_en.webp` (`fiscalia_c5.ts:13,18`; `fiscalia_c5_en.ts:13,18`).
 
 ### Defectos confirmados
 
-1. `AUSENTE` — MAYOR — F1/F4 — Calculadora de manivela: no existe. El objeto de latón junto a la base de la lámpara es un tintero y la caja de madera junto a la pila derecha es un estuche con broche, sin manivela ni teclas. Rompe `src/case/case5/Private/fiscalia_c5.ts:19` (narración de entrada) y `src/case/case5/Private/fiscalia_c5_talks.ts:36` (la mano de Super Sam sobre la calculadora).
-2. `AUSENTE` — MAYOR — F1 — Cronómetro de bolsillo sobre un pisapapeles: no hay ni reloj de bolsillo ni pisapapeles en ninguna zona del escritorio. Rompe `src/case/case5/Private/fiscalia_c5.ts:19`.
-3. `CONTRADICE` — MAYOR — F1 (exclusión «ventanas») / F5 — Ventana con marco de madera y cortina atada en la pared izquierda; el despacho debe ser austero y **sin ventana**, y la penumbra debe venir sólo de la lámpara de escritorio (§23.1).
-4. `CONTRADICE` — MAYOR — F1/F4, con carga `DRIFT` contra la identidad de la bolsa vacía compartida con `trial_day3_success_berrondo.ts:55` y `climax_epilogue.ts:73` — La bolsa es un saco abulgado atado con cordel (lectura honesta: «saco relleno»), no una bolsa de lona cruda **doblada** y **vacía**. Rompe `src/case/case5/Private/fiscalia_c5_hotspots.ts:14-18` y `fiscalia_c5_hotspots_en.ts:14-18` («doblada sobre una silla», «Está vacía»).
-5. `AUSENTE` — MEDIO — F1/F2/F6 — Sello de la fiscalía en tinta verde: la bolsa no lleva marca alguna de sello. Rompe `src/case/case5/Private/fiscalia_c5_hotspots.ts:14` y `fiscalia_c5_hotspots_en.ts:14` («sello de la fiscalía» / «prosecutor seal»).
-6. `AUSENTE` — MEDIO — F1 — Reloj de oficina: ausente en todas las paredes (§23.1).
-7. `CONTRADICE` — MEDIO — F1/F3 — Archivero: ningún cajón está entreabierto (todos cerrados) y sólo se ven tres frentes de gaveta (la cuarta queda oculta tras el escritorio), de modo que «cuatro gavetas, exactamente un cajón entreabierto» no se cumple (§23.1).
-8. `CONTRADICE` — MEDIO — F1 — Dos montañas de oficios «perfectamente iguales»: la pila izquierda mide menos de la mitad de la derecha; además hay una tercera pila atada sobre el archivero y papeles sueltos dispersos en el centro del escritorio, que la hoja excluye explícitamente («papeles dispersos o mobiliario adicional», §23.1).
-9. `CONTRADICE` — MENOR — F1 (exclusión «segunda lámpara») / F5 — Aplique de latón de pared, apagado, en la pared derecha: segunda luminaria en un esquema de una sola lámpara (§23.1).
-10. `MALFORMADO` — MENOR — F1 — Escudo descolorido: se lee como escudo institucional de la justicia (balanza entre laureles con corona real), no como escudo nacional; lectura parcial del hecho (§23.1).
+1. `CONTRADICE` — MENOR — F1 — Escudo nacional correcto en identidad, pero **no descolorido**: pintura saturada (marrón, verde, rojo) en vez de mural desteñido (§23.1). No rompe diálogo ni hotspot.
 
 ### Correcciones de auditoría
 
-- Se reemplaza la nota previa de esta misma fecha («No se realizó auditoría visual: por protocolo de `asset-facts`, la imagen no fue inspeccionada») por esta pasada completa del 2026-09-19; no había hallazgos previos que tachar ni ✓ anteriores que reclasificar (la hoja no tenía cumplidos marcados).
+- Se reemplaza el veredicto **NO CUMPLE** de la pasada 1 (imagen previa a Lote B, esta misma fecha) por **CUMPLE** sobre el RAW regenerado. Los diez defectos de esa pasada se tachan porque el recorte de la pasada 2 los desmiente:
+  - ~~1. Calculadora de manivela ausente (tintero / estuche)~~ — ahora máquina de sumar con manivela lateral.
+  - ~~2. Cronómetro y pisapapeles ausentes~~ — cronómetro de bolsillo sobre pisapapeles.
+  - ~~3. Ventana y cortina en la pared izquierda~~ — pared ciega en penumbra.
+  - ~~4. Saco abulgado atado~~ — bolsa de lona doblada, plana y vacía.
+  - ~~5. Sello verde ausente~~ — sello circular en tinta verde sobre el pliegue.
+  - ~~6. Reloj de oficina ausente~~ — reloj analógico junto al escudo.
+  - ~~7. Archivero: tres frentes, todos cerrados~~ — cuatro frentes, segundo cajón entreabierto.
+  - ~~8. Pilas desiguales, tercera pila y papeles sueltos~~ — dos montañas iguales, sin tercera pila ni sueltos.
+  - ~~9. Aplique de latón en la pared derecha~~ — sin segunda luminaria.
+  - ~~10. Escudo de la justicia con corona real~~ — escudo nacional (águila/nopal/serpiente), sin corona. Queda el menor de saturación (defecto 1 de esta pasada).
+- El ✓ de F1/F4 de la pasada 1 («silla con bolsa en el hotspot, aunque su forma contradice el estado») se corrige: la forma ahora coincide con «doblada y vacía».
+- El ✓ parcial de F1/F5 de la pasada 1 («lámpara + penumbra, pero la ventana aporta luz diurna») se corrige: ya no hay ventana.
 
-### Recomendación (regeneración)
+### Recomendación
 
-1. Eliminar la ventana y la cortina; pared izquierda ciega (lambrín/yeso) en penumbra, sin aplique de pared.
-2. Pintar la calculadora de manivela sobre el escritorio (cuerpo metálico con manivela lateral legible) y el cronómetro de bolsillo apoyado en un pisapapeles, ambos despejados de pilas y del borde, para la narración de entrada y la línea de la mano sobre la calculadora.
-3. Sustituir el saco atado por una bolsa de lona cruda doblada, plana y vacía sobre el asiento de la silla, con un sello circular en tinta verde visible, manteniéndola dentro del rectángulo x:72, y:52, w:22, h:34.
-4. Igualar las dos montañas de oficios (misma altura y mismo atado con listón), retirar la tercera pila del archivero y los papeles sueltos del centro.
-5. Entreabrir exactamente un cajón del archivero y dejar los cuatro frentes de gaveta legibles por encima del escritorio.
-6. Añadir un reloj de oficina en la pared del escudo.
-7. Reajustar el emblema de pared a lectura de escudo nacional descolorido (sin corona real).
-
+Ninguna bloqueante. Opcional: desteñir el escudo nacional (grisáceo, mural gastado) si se vuelve a tocar el fondo; no regenerar sólo por eso.

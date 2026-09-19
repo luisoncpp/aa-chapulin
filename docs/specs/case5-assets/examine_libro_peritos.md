@@ -81,50 +81,68 @@ Clase: `examine`. Espec: §23.0, §23.3, §4.1 P1/P4/P5, §4.2, §5.2 y §24. Gu
 
 ## Hallazgos de auditoría 2026-09-19
 
-~~- No se inspeccionó ninguna imagen, conforme al protocolo `asset-facts`; por tanto, no se confirma ningún defecto visual de la exportación actual.~~ — Pasada previa sin inspección; sustituida por esta auditoría con recortes ES/EN.
+~~- No se inspeccionó ninguna imagen, conforme al protocolo `asset-facts`; por tanto, no se confirma ningún defecto visual de la exportación actual.~~ — Pasada previa sin inspección; sustituida por la auditoría con recortes ES/EN.
 
-**Veredicto: NO CUMPLE** (contenido y localización). Contenido F1/F2/F3/F4 con defectos MAYOR en ambas variantes; estilo F5 con desviación registrada (decisión del revisor); exclusiones de F1 rotas en ES; F6 paridad de gemelos rota por completo.
+~~**Veredicto: NO CUMPLE** (contenido y localización).~~ — Sustituido por la regeneración RAW Lote K del mismo día (abajo).
+
+### Cumple (pasada previa, RAW anteriores)
+
+- ES/EN: dos columnas impresas, sin columna de salida ni permanencia (F1/F2, `trial_day2_success.ts:126-130`) ✓ — se conserva en la regeneración
+- ES: encabezados `HORA DE ENTRADA` / `HORA DE DEVOLUCIÓN DE GAFETE` exactos y legibles ✓ — se conserva
+- EN: encabezados `TIME OF ENTRY` / `TIME BADGE RETURNED`; no aparece `TIME OF DEPARTURE` ✓ — se conserva
+- ES: fila 2 `16:05` / `16:50`, fila 3 `17:44` / `18:05`, fila 4 `17:52` / `22:15` ✓ — se conserva (formato de celdas separado, no rango)
+- EN: fila 3 Balbuena `5:44 PM / 6:05 PM` ✓ — se conserva
+- Ambas: sin tachaduras ni correcciones (F1 AUSENTE, `trial_day4_t1.ts:44-56`) ✓ — se conserva
+- ES: no hay texto inglés ni marcas de agua (F2) ✓ — se conserva
+
+### Defectos confirmados (RAW anteriores; retirados por regeneración)
+
+ES (`examine_libro_peritos.jpg` previo):
+1. ~~**MAYOR / CONTRADICE (F1)** — El libro es un tomo grueso de piel/duro con hebillas de latón, cinta roja y marco dorado.~~ — Corregido: lomo cilíndrico de hule negro mate, bloque delgado, sin hebillas ni marco dorado.
+2. ~~**MEDIO / AUSENTE (F1/F2)** — Faltan los cargos de los cuatro asientos.~~ — Corregido: los cuatro cargos están impresos y legibles.
+3. ~~**MAYOR / AUSENTE (F1, exclusión)** — Fondo con escritorio, silla, expedientes, lámpara y ventanal.~~ — Corregido: documento recortado sobre relleno crema plano.
+4. ~~**MEDIO / CONTRADICE (F2)** — Insignia «5 EXAMINE».~~ — Corregido: ausente.
+5. ~~**MENOR / DRIFT (F3)** — Asiento 1 `9:10 - 9:40` en vez de `09:10` / `09:40`.~~ — Corregido: `09:10` y `09:40` en celdas separadas.
+6. ~~**MEDIO / CONTRADICE (F1, exclusión)** — Marco dorado y numeración 1-4.~~ — Corregido: sin marco dorado ni numeración de filas.
+
+EN (`examine_libro_peritos_en.jpg` previo):
+7. ~~**MAYOR / CONTRADICE (F3/F2)** — Fecha «(1974)» y «EXP. 17-12-74».~~ — Corregido: `December 4, 1982`; sin expediente de fondo.
+8. ~~**MAYOR / CONTRADICE (F3)** — Horas de asientos 1, 2 y 4 erróneas.~~ — Corregido: Rosas `9:10 AM` / `9:40 AM`; Berrondo `4:05 PM` / `4:50 PM`; Pazguato `5:52 PM` / `10:15 PM`.
+9. ~~**MEDIO / CONTRADICE (F2/F6)** — Título «REGISTRO DE INSIGNIAS» y apellidos sin cargos.~~ — Corregido: sin título de lámina; cargos traducidos.
+10. ~~**MAYOR / CONTRADICE (F6, paridad)** — Composición distinta (doble página en blanco).~~ — Corregido: gemelo literal de ES (un folio, misma retícula).
+11. ~~**MEDIO / AUSENTE (F1)** — Libro grueso.~~ — Corregido: mismo lomo delgado de hule negro que ES.
+12. ~~**MENOR / DRIFT (F6)** — Folio inglés en español.~~ — Corregido: `December 4, 1982`.
+
+~~Estilo (F5): textura fotográfica de papel/madera.~~ — Corregido: cel-shading plano, terminador duro en el lomo, contorno carbón `#1A1A1A`; sin grano de madera.
+
+## Hallazgos de auditoría 2026-09-19 (regeneración RAW Lote K)
+
+**Veredicto: CUMPLE** (contenido, exclusiones, localización y estilo). Recortes por sustantivo sobre `tools/raw/case5/examine_libro_peritos.jpg` y `examine_libro_peritos_en.jpg` (1280×720). Una regeneración ES (la primera quedó con encabezados desalojados y textura de escaneo) y un gemelo EN a partir del ES aceptado. No se ejecutó `process_case5_assets.py`.
 
 ### Cumple
 
-- ES/EN: dos columnas impresas, sin columna de salida ni permanencia (F1/F2, `trial_day2_success.ts:126-130`) ✓
-- ES: encabezados `HORA DE ENTRADA` / `HORA DE DEVOLUCIÓN DE GAFETE` exactos y legibles ✓
-- EN: encabezados `TIME OF ENTRY` / `TIME BADGE RETURNED`; no aparece `TIME OF DEPARTURE` ✓
-- ES: fila 2 `16:05 - 16:50`, fila 3 `17:44 - 18:05`, fila 4 `17:52 - 22:15` ✓ (F3; `EvidenceCatalogCase5EsB.ts:24-29`)
-- EN: fila 3 Balbuena `5:44 PM / 6:05 PM` ✓ (F3)
-- Ambas: sin tachaduras ni correcciones (F1 AUSENTE, `trial_day4_t1.ts:44-56`) ✓
-- ES: no hay texto inglés ni marcas de agua (F2) ✓
+- F1 libro: lomo cilíndrico de hule negro mate, bloque delgado, sin hebillas ni cinta; se nombra como libro pequeño de registro, no como tomo público (`trial_day2.ts:18`) ✓
+- F1 recorte: relleno crema plano; sin escritorio, silla, lámpara, ventanal ni pila de expedientes ✓
+- F1/F2 cuatro asientos con cargo, ES: Rosas perito valuador `09:10`/`09:40`; Berrondo síndico de la quiebra 114/1971 `16:05`/`16:50`; Balbuena actuario `17:44`/`18:05`; Pazguato policía judicial `17:52`/`22:15` (`trial_day2.ts:20-24`) ✓
+- F1/F2 columnas: encabezados ES `HORA DE ENTRADA` / `HORA DE DEVOLUCIÓN DE GAFETE` alineados sobre las celdas de hora, no sobre los nombres (`trial_day2_success.ts:129`) ✓
+- F1 AUSENTE: sin tachaduras, sin columna de salida/permanencia, sin «SALIDA» ✓
+- F2 AUSENTE: sin «5 EXAMINE», sin «REGISTRO DE INSIGNIAS», sin flechas/círculos/marcas de agua, sin inglés en ES ✓
+- F3 fecha 1982: ES `4 de diciembre de 1982`; EN `December 4, 1982`; sin 1974 ni `EXP. 17-12-74` (§24.D I10) ✓
+- F3 EN horas canónicas: Rosas `9:10 AM`/`9:40 AM`; Berrondo `4:05 PM`/`4:50 PM`; Balbuena `5:44 PM`/`6:05 PM`; Pazguato `5:52 PM`/`10:15 PM` (`EvidenceCatalogCase5EnB.ts:24-29`) ✓
+- F4: el segundo encabezado resuelve D2-T2 y D4-T1; no hay columna que convierta `16:50` / `4:50 PM` en salida (`trial_day4_success.ts:57-58`) ✓
+- F5: cel-shading plano, terminador duro en el lomo, contorno `#1A1A1A`; sin rosa/magenta ✓
+- F6 paridad: misma geometría, cuatro filas, lomo, relleno y ausencia de marcas; sólo cambia el texto localizado. Encabezados EN `TIME OF ENTRY` / `TIME BADGE RETURNED` (no `TIME OF DEPARTURE`) ✓
 
 ### Defectos confirmados
 
-ES (`examine_libro_peritos.png`):
-1. **MAYOR / CONTRADICE (F1)** — El libro es un tomo grueso de piel/duro con hebillas de latón, cinta roja y marco dorado en la página: no es «libro pequeño, delgado, empastado en hule negro», y su masa/aspecto hereda la identidad del libro público grande (`case-5-el-tomo-trece.md:1709-1711`; D2 `trial_day2.ts:18-36`).
-2. **MEDIO / AUSENTE (F1/F2)** — Faltan los cargos de los cuatro asientos (perito valuador, síndico de la quiebra 114/1971, actuario, policía judicial) que el secretario lee (`trial_day2.ts:20-24`).
-3. **MAYOR / AUSENTE (F1, exclusión)** — Fondo pintado con escritorio, silla, pila de expedientes atados, lámpara de latón y ventanal: el activo debe ser «el documento recortado, no el entorno» (`trial_day2.ts:18-24`).
-4. **MEDIO / CONTRADICE (F2)** — Insignia «5 EXAMINE» horneada en la esquina superior izquierda: rótulo de lámina prohibido (§23.3) salvo que sea UI del motor; confirmar y regenerar sin ella.
-5. **MENOR / DRIFT (F3)** — Asiento 1 impreso `9:10 - 9:40` en vez de `09:10 / 09:40`; la hoja fija formato `09:10`.
-6. **MEDIO / CONTRADICE (F1, exclusión)** — Marco dorado alrededor de la hoja y numeración 1-4 añadida: rotulación no pedida (§23.3; matiz: la numeración es defensible como folio, decide el revisor).
-
-EN (`examine_libro_peritos_en.png`):
-7. **MAYOR / CONTRADICE (F3/F2)** — Se imprime la fecha «(1974)» y en el expediente de fondo «EXP. 17-12-74»: el presente del caso es 1982 y «no imprimir otra fecha» (§4.2; §24.D I10).
-8. **MAYOR / CONTRADICE (F3)** — Horas de los asientos 1, 2 y 4 erróneas: ROSAS `4:10 PM / 4:32 PM` (debe ser 9:10 AM / 9:40 AM), BERRONDO `4:58 PM / 5:20 PM` (debe ser 4:05 PM / 4:50 PM, rompe la contradicción D2-T2), PAZGUATO `6:30 PM / 6:52 PM` (debe ser 5:52 PM / 10:15 PM) (`EvidenceCatalogCase5EnB.ts:24-29`; `trial_day2_t2.ts:104-110`).
-9. **MEDIO / CONTRADICE (F2/F6)** — Título añadido «REGISTRO DE INSIGNIAS» y apellidos sin cargos; sólo debe traducirse el texto que sostiene el argumento (§23.3; `trial_day2.ts:20-24`).
-10. **MAYOR / CONTRADICE (F6, paridad)** — Composición totalmente distinta al gemelo ES: libro abierto a doble página con página izquierda en blanco, encuadre distinto, folio «48», fondo y remate distintos; los gemelos deben compartir composición, filas y remates (§23.3).
-11. **MEDIO / AUSENTE (F1)** — El libro vuelve a ser grueso, no el libro delgado de hule negro (F1, ítem 1).
-12. **MENOR / DRIFT (F6)** — El folio inglés conserva «4 DE DICIEMBRE» en español sin decisión de diseño; el resto del texto está traducido.
-
-Estilo (F5, decisión del revisor):
-- Ambas variantes usan textura de papel/madera con sombreado suave y grano fotográfico en la madera; §23.0 exige cel-shading plano con terminador duro y contorno `#1A1A1A`. Registrado como desviación; la aceptación es del revisor. Sin rosa/magenta, sin marcas de agua ✓.
+- **MENOR / DRIFT (F6)** — EN conserva el tratamiento `Lic.` y `Sargento` del folio ES en vez de `Counselor` / `Sergeant` del guion inglés (`trial_day2_en.ts:22-24`). No rompe encabezados, horas ni cargos; no bloquea.
 
 ### Correcciones de auditoría
 
-- ~~- No se inspeccionó ninguna imagen, conforme al protocolo `asset-facts`…~~ — sustituido por la auditoría del 2026-09-19 con recortes ES/EN.
-- Los ✓ de contenido del bloque previo (ninguno listado) no cambian; se añaden los defectos 1-12. Ningún hallazgo retirado aún.
+- ~~Veredicto NO CUMPLE de la pasada previa del 2026-09-19~~ — sustituido por CUMPLE tras regenerar ES+EN.
+- Defectos 1–12 y la desviación de estilo F5: ~~tachados~~ arriba, con la corrección observada en los RAW nuevos. Ningún MAYOR residual.
+- ~~- No se inspeccionó ninguna imagen…~~ — sigue sustituido; esta pasada inspeccionó recortes ES/EN.
 
-### Recomendación (regenerar ES y EN juntos, en orden del conjunto de consistencia)
+### Recomendación
 
-1. Libro: pequeño, delgado, empastado en hule negro, recortado como documento (sin escritorio, lámpara, pila de expedientes, silla ni ventanal; sin marco dorado ni insignia «EXAMINE» horneada).
-2. Estructura de la hoja: dos columnas con encabezados `HORA DE ENTRADA` / `HORA DE DEVOLUCIÓN DE GAFETE` (ES) y `TIME OF ENTRY` / `TIME BADGE RETURNED` (EN); sin título de lámina, sin fecha impresa distinta de «4 de diciembre de 1982» o sin fecha si el diseño no la necesita (prohibido 1974).
-3. Cuatro asientos con nombre, cargo y horas exactas: Rosas (perito valuador) `09:10 / 09:40`; Berrondo (síndico de la quiebra 114/1971) `16:05 / 16:50` (ES) / `4:05 PM / 4:50 PM` (EN); Balbuena (actuario) `17:44 / 18:05` / `5:44 PM / 6:05 PM`; Pazguato (policía judicial) `17:52 / 22:15` / `5:52 PM / 10:15 PM`.
-4. Paridad ES↔EN: idéntica composición, encuadre, remates y ausencia de marcas; sólo cambia el texto legible localizado.
-5. Estilo: cel-shading de colores planos con terminador duro y contorno carbón `#1A1A1A`; sin grano fotográfico ni sombreado suave (§23.0).
+Ninguna regeneración bloqueante. Opcional: traducir `Lic.` → `Counselor` y `Sargento` → `Sergeant` en EN si se pide paridad léxica estricta con `trial_day2_en.ts`.

@@ -66,24 +66,24 @@ Clase: `examine` / `plate`. Espec: §5.2, §12.2, §15.4, §23.0, §23.3 y §24.
 
 ## Hallazgos de auditoría 2026-09-19
 
-**Veredicto: NO CUMPLE** (contenido F1/F2, localización F6 y composición F1; estilo F5 con matiz por decidir el revisor). Ninguno de los dos gemelos pinta el asiento del libro de acuses conforme a la hoja.
+**Veredicto (imágenes previas a la regeneración Lote F):** NO CUMPLE (contenido F1/F2, localización F6 y composición F1; estilo F5 con matiz por decidir el revisor). Ninguno de los dos gemelos pintaba el asiento del libro de acuses conforme a la hoja. Esa pasada quedó superada por la regeneración de `tools/raw/case5/examine_acuse.jpg` y `examine_acuse_en.jpg`; los defectos MAYOR/MEDIO de abajo se marcan retirados porque las imágenes ya no existen.
 
-### Cumple
+### Cumple (imágenes previas)
 
 - Fechador de hule morado presente en ambas variantes con la fecha física compartida: «29 NOV.» en ES y «NOV 29» en EN, conforme al tratamiento declarado por cada catálogo y al conflicto abierto registrado (F1/F2/F3; `src/state/Private/EvidenceCatalogCase5EsA.ts:88-89`, `EvidenceCatalogCase5EnA.ts:88-89`).
 - Rúbrica a tinta azul en el margen derecho de ambas variantes, sin convertirse en retrato ni quedar señalada con flechas o círculos (F1/F4; parcial: véase defecto de tamaño).
 - No aparece Berrondo, la Chimoltrufia ni texto con la custodia de las 17:00 (F4 `NO CONTRADECIR`).
 
-### Defectos confirmados
+### Defectos confirmados (imágenes previas)
 
-- **AUSENTE · MAYOR (ES)** — El renglón mecanografiado no existe como tal: la lámina ES sólo lee «C. JUEZ DE DISTRITO PRESENTE.» y «Oficio 4471.». Falta el nombre del interno C. Lengua, la diligencia de cotejo, el Archivo Judicial, el 4 de diciembre y la sindicatura 114/1971, que F2 exige legibles (`F1/F2/F4`; rompe `src/case/case5/Private/correspondencia.ts:37-38` y la contradicción D3-T3 `trial_day3_success_berrondo.ts:10-13`).
-- **CONTRADICE · MAYOR (EN)** — El renglón dice «Nombre del interno: José de Jesús Martínez López» (nombre completo inventado): el interno es C. Lengua y F2 exige el texto exacto en inglés; además imprime un nombre completo, lo que F1 `AUSENTE` prohíbe para la rúbrica/asiento (`F1/F2`; rompe `correspondencia_en.ts:37-38`, `EvidenceCatalogCase5EnA.ts:84-89`).
-- **CONTRADICE · MAYOR (EN, F6)** — El texto visible del asiento EN está en español («Oficio No. 4471», «Nombre del interno:»): la variante EN debe traducirlo, no dejarlo para «resolver» la traducción (`correspondencia_en.ts:37-38`).
-- **DRIFT · MAYOR (F6, gemelos)** — Encuadre, escala y composición no se comparten: ES es una vista de escritorio con lámpara, faja roja y sello institucional; EN es un plano de página con cintas moradas y ojales de carpeta. F6 exige misma composición cambiando sólo el texto legible. Además ambas usan la hoja suelta, no un asiento del libro de acuses (`F1/F6`; `docs/specs/case-5-el-tomo-trece.md:4064`).
-- **CONTRADICE · MEDIO (ambas, F1)** — La rúbrica es una firma grande y desarrollada, no «muy pequeña y enérgica», y ninguna muestra las dos rayas bajo el trazo (`docs/specs/case-5-el-tomo-trece.md:1441,4052`).
-- **CONTRADICE · MEDIO (ES, F2/F5)** — Banda superior con el texto en inglés «EXAMINE» y balanza: rotulación de UI no pedida y texto en inglés prohibido en la variante ES (`docs/specs/case-5-el-tomo-trece.md:3978`).
-- **CONTRADICE · MEDIO (ES, F1)** — La lámina ES incluye un sello institucional de balanza, faja roja con moño y montón de expedientes: elementos no pedidos que convierten el asiento en un sobre/oficio y alejan la lectura de «asiento del libro de acuses fotografiado de plano» (`docs/specs/case-5-el-tomo-trece.md:1441`).
-- **DRIFT · MENOR (EN, F5)** — El papel EN lleva textura granulada fotográfica y degradado suave hacia los bordes; el literal §23.0 pide cel-shading de colores planos  ni texturas fotográficas. La aceptación es decisión del revisor (`docs/specs/case-5-el-tomo-trece.md:3974-3980`).
+- ~~**AUSENTE · MAYOR (ES)** — El renglón mecanografiado no existe como tal: la lámina ES sólo lee «C. JUEZ DE DISTRITO PRESENTE.» y «Oficio 4471.». Falta el nombre del interno C. Lengua, la diligencia de cotejo, el Archivo Judicial, el 4 de diciembre y la sindicatura 114/1971, que F2 exige legibles (`F1/F2/F4`; rompe `src/case/case5/Private/correspondencia.ts:37-38` y la contradicción D3-T3 `trial_day3_success_berrondo.ts:10-13`).~~ `[x] RETIRADO POR REGENERACIÓN (2026-09-19, Lote F)`: el renglón ES nuevo transcribe el oficio 4471, C. Lengua, la diligencia, el Archivo Judicial, el 4 de diciembre y la sindicatura 114/1971.
+- ~~**CONTRADICE · MAYOR (EN)** — El renglón dice «Nombre del interno: José de Jesús Martínez López» (nombre completo inventado): el interno es C. Lengua y F2 exige el texto exacto en inglés; además imprime un nombre completo, lo que F1 `AUSENTE` prohíbe para la rúbrica/asiento (`F1/F2`; rompe `correspondencia_en.ts:37-38`, `EvidenceCatalogCase5EnA.ts:84-89`).~~ `[x] RETIRADO POR REGENERACIÓN (2026-09-19, Lote F)`: el renglón EN nombra a C. Lengua y no inventa otro interno.
+- ~~**CONTRADICE · MAYOR (EN, F6)** — El texto visible del asiento EN está en español («Oficio No. 4471», «Nombre del interno:»): la variante EN debe traducirlo, no dejarlo para «resolver» la traducción (`correspondencia_en.ts:37-38`).~~ `[x] RETIRADO POR REGENERACIÓN (2026-09-19, Lote F)`: el asiento EN está en inglés.
+- ~~**DRIFT · MAYOR (F6, gemelos)** — Encuadre, escala y composición no se comparten: ES es una vista de escritorio con lámpara, faja roja y sello institucional; EN es un plano de página con cintas moradas y ojales de carpeta. F6 exige misma composición cambiando sólo el texto legible. Además ambas usan la hoja suelta, no un asiento del libro de acuses (`F1/F6`; `docs/specs/case-5-el-tomo-trece.md:4064`).~~ `[x] RETIRADO POR REGENERACIÓN (2026-09-19, Lote F)`: ambos gemelos son el mismo libro azul abierto, mismo encuadre.
+- ~~**CONTRADICE · MEDIO (ambas, F1)** — La rúbrica es una firma grande y desarrollada, no «muy pequeña y enérgica», y ninguna muestra las dos rayas bajo el trazo (`docs/specs/case-5-el-tomo-trece.md:1441,4052`).~~ `[x] RETIRADO POR REGENERACIÓN (2026-09-19, Lote F)`: rúbrica minúscula con dos rayas.
+- ~~**CONTRADICE · MEDIO (ES, F2/F5)** — Banda superior con el texto en inglés «EXAMINE» y balanza: rotulación de UI no pedida y texto en inglés prohibido en la variante ES (`docs/specs/case-5-el-tomo-trece.md:3978`).~~ `[x] RETIRADO POR REGENERACIÓN (2026-09-19, Lote F)`.
+- ~~**CONTRADICE · MEDIO (ES, F1)** — La lámina ES incluye un sello institucional de balanza, faja roja con moño y montón de expedientes: elementos no pedidos que convierten el asiento en un sobre/oficio y alejan la lectura de «asiento del libro de acuses fotografiado de plano» (`docs/specs/case-5-el-tomo-trece.md:1441`).~~ `[x] RETIRADO POR REGENERACIÓN (2026-09-19, Lote F)`.
+- ~~**DRIFT · MENOR (EN, F5)** — El papel EN lleva textura granulada fotográfica y degradado suave hacia los bordes; el literal §23.0 pide cel-shading de colores planos ni texturas fotográficas. La aceptación es decisión del revisor (`docs/specs/case-5-el-tomo-trece.md:3974-3980`).~~ `[x] RETIRADO POR REGENERACIÓN (2026-09-19, Lote F)`: ambas variantes usan papel cel-sombreado plano; queda un matiz de bokeh en la pasada nueva.
 
 ### Correcciones de auditoría
 
@@ -96,3 +96,36 @@ Clase: `examine` / `plate`. Espec: §5.2, §12.2, §15.4, §23.0, §23.3 y §24.
 3. **Rúbrica (F1/F4):** misma forma en ambos gemelos, a tinta azul, muy pequeña y enérgica, con dos rayas bajo el trazo, en el margen derecho; no una firma caligráfica grande.
 4. **Fechador (F2/F3):** morado, «29 NOV» en ES y «NOV 29» en EN según catálogos; única pieza de texto que puede diferir entre gemelos.
 5. **Estilo (F5):** cel-shading plano con terminador duro y contorno carbón en ambas variantes; eliminar la textura granulada/degredo del papel EN (pendiente de aceptación del revisor).
+
+## Hallazgos de auditoría 2026-09-19 (regeneración Lote F, skip `bg_correspondencia`)
+
+Imágenes auditadas: `tools/raw/case5/examine_acuse.jpg` y `tools/raw/case5/examine_acuse_en.jpg` (1280×720, 16:9). Recortes ampliados por sustantivo F1 (renglón, rúbrica, fechador, lomo/gutter, zona superior, margen derecho). `bg_correspondencia.jpg` se usó sólo como candado de identidad del libro azul, sin regenerarse (veredicto previo: no cumple leve).
+
+**Veredicto: CUMPLE** en contenido (F1), texto (F2), cifras (F3), contrato en pantalla (F4) y localización (F6). Estilo F5 cumple el cel-shading y el contorno carbón, con un matiz menor de bokeh (decisión del revisor). Tres defectos `MENOR` que no rompen el hotspot ni D3-T3. No se requiere otra regeneración.
+
+### Cumple
+
+- **F1** — Asiento del libro de acuses, no una hoja suelta: libro abierto empastado en tela azul, lomo y gutter visibles, página enfrentada con garabatos ilegibles (recorte gutter; prueba de nombrar: «libro de registro abierto»). Sustituye la oficina/sobre de la pasada previa (`docs/specs/case-5-el-tomo-trece.md:1441,4052`).
+- **F1/F2** — Renglón mecanografiado ES, letras completas: «Oficio 4471. Diligencia de cotejo documental promovida por el interno C. Lengua.» / «Archivo Judicial, 4 de diciembre, 17:00 horas.» / «Entregado en: Sindicatura de la quiebra 114/1971.» (recorte typed; `src/case/case5/Private/correspondencia.ts:37-38`; `trial_day3_success_berrondo.ts:10-13`).
+- **F1/F2** — Renglón mecanografiado EN, traducido, sin español residual ni nombre inventado: «Official letter 4471. Document-comparison procedure filed by inmate C. Lengua.» / «Judicial Archive, December fourth, 5:00 PM.» / «Delivered to: Syndicate of bankruptcy 114/1971.» (recorte typed; `correspondencia_en.ts:37-38`; F2 de esta hoja).
+- **F1/F4** — Rúbrica a tinta azul, minúscula y enérgica, en el margen derecho de ambas variantes, con exactamente dos rayas bajo el trazo; no es un nombre caligráfico ni un retrato; sin flechas ni círculos (recorte rubric; `docs/specs/case-5-el-tomo-trece.md:1441,2815-2828`).
+- **F1/F2/F3** — Fechador de hule morado rectangular (no sello institucional circular): ES «29 NOV», EN «NOV 29», misma fecha física del 29 de noviembre (`EvidenceCatalogCase5EsA.ts:88-89`, `EvidenceCatalogCase5EnA.ts:88-89`; conflicto abierto del orden del fechador conservado).
+- **F1 AUSENTE / F4** — Sin Berrondo, sin Chimoltrufia, sin oficina completa, sin banda «EXAMINE», sin sello de balanza, sin faja roja con moño, sin expedientes apilados, sin el nombre del firmante impreso, sin nota de custodia a las 17:00 (recortes topbanner y margen derecho; `correspondencia.ts:15-27`; `correspondencia_talks.ts:10-27`).
+- **F3** — El aviso es del 29 de noviembre y la diligencia consignada es del 4 de diciembre a las 17:00; oficio 4471 y quiebra 114/1971 coinciden (`correspondencia.ts:37-38`; `docs/specs/case-5-el-tomo-trece.md:1438-1441,4172`).
+- **F4** — El jugador puede leer oficio, C. Lengua, sindicatura, fecha del aviso y rúbrica marginal, que es lo que cita D3-T3 (`correspondencia.ts:31-44`; `trial_day3_success_berrondo.ts:10-13`; `trial_day3_success_berrondo_en.ts:10-13`).
+- **F5** — Cel-shading de colores planos, terminador duro, contorno carbón `#1A1A1A`, papel crema de dos tonos, tela azul saturada, sin fotorrealismo, sin magenta en primer plano, sin marcas de agua; el ES no lleva inglés (`docs/specs/case-5-el-tomo-trece.md:3974-3980`).
+- **F6** — Gemelos de composición: mismo encuadre, misma escala, misma rúbrica, mismo fechador, mismas marcas físicas; sólo cambia el texto del asiento y el orden del fechador (`docs/specs/case-5-el-tomo-trece.md:4064`). Identificadores `4471`, `C. Lengua` y `114/1971` estables.
+
+### Defectos confirmados
+
+- `CONTRADICE` / MENOR / F2 — El fechador deja un espacio entre dígitos («2 9 NOV» / «NOV 2 9») en lugar del bloque compacto `29 NOV` / `NOV 29`. Sigue leyéndose como 29 de noviembre y no cambia el día; no rompe `correspondencia.ts:36` ni D3-T3.
+- `DRIFT` / MENOR / consistencia con `bg_correspondencia` — El libro de la lámina añade cantoneras de latón y un señalador rojo que el libro de `tools/raw/case5/bg_correspondencia.jpg` no pinta. Pasta de tela azul, papel rayado crema y contorno carbón sí coinciden; el `detailedView` no es fuente de verdad del fondo (`docs/specs/case-5-el-tomo-trece.md:3988`).
+- `DRIFT` / MENOR / F5 — Motas/bokeh doradas en el borde superior (polvo/tungsteno pictórico). El literal §23.0 pide cel-shading plano sin texturas fotográficas; la aceptación es decisión del revisor (`docs/specs/case-5-el-tomo-trece.md:3974-3980`).
+
+### Correcciones de auditoría
+
+- Los ocho defectos MAYOR/MEDIO/MENOR de la pasada sobre las JPG previas se retiran por regeneración, con traza tachada arriba. Ningún ✓ de esta pasada nueva fue desmentido por su recorte: el renglón se nombra como asiento mecanografiado, la rúbrica como rúbrica pequeña con dos rayas, el fechador como sello de hule morado, y el objeto como libro abierto.
+
+### Recomendación
+
+Cumple; no requiere regeneración. Si se retoca con el conjunto de consistencia (`bg_correspondencia`, aún no cumple leve), compactar `29`/`NOV 29` en el fechador y omitir cantoneras/señalador para igualar el libro de escena. No correr `process_case5_assets.py` en esta pasada: sólo RAW.

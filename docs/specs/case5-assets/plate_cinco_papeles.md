@@ -107,3 +107,48 @@ El activo es la lámina explicativa L5 del GIRO 2 del día 2. La fuente de verda
 6. Papel 5 (24 OCT): telegrama con acuse de recibo sobre el reparto impago de un collar; no un acta ni una balanza de sentencia.
 7. Línea de tiempo debajo de la fila, de julio a octubre, con los cinco hitos ordenados sobre ella; sin título, sin placas de etapa procesal, sin flechas/círculos/realces de respuesta, sin texto en inglés, sin marcas de agua.
 8. Mantener el estilo actual (cumple §23.0/§23.4) al regenerar junto con `examine_expediente_serie` y `examine_expediente_serie_en`.
+
+## Hallazgos de auditoría 2026-09-19 (regeneración Lote J)
+
+RAW auditado: `tools/raw/case5/plate_cinco_papeles.jpg` (1280×720). Recortes de los cinco papeles, chips de fecha y riel de tiempo. No se corrió `process_case5_assets.py`. Tres generaciones: se conserva la v2 (la v3 duplicó `12 JUL` sobre el frasco y perdió `21 AGO`).
+
+**Veredicto: NO CUMPLE** en F2/F3 por el chip del primer papel (`1 JUL` en vez de `12 JUL`). Cumple en identidades de los cinco hitos, orden cronológico de objetos, estilo, exclusiones y localización (lámina compartida, sin inglés).
+
+**Cumple**
+- Cinco papeles en fila sobre fondo crema con riel `JULIO / AGOSTO / AGOSTO / SEPTIEMBRE / OCTUBRE` (F1 línea 18; F5).
+- Papel 1: tarjeta Enciclopedias El Saber Universal, `Sociedad disuelta desde 1971` (F1 línea 19, F3 línea 36).
+- Papel 2: frasco de valeriana manuscrito + molde de cera agrietado de llave, chip `21 AGO` (F1 línea 20).
+- Papel 3: ficha de seis renglones mecanografiados (`pestillo` / `reja` / `ronda del vigilante` / `pastillas` / `rollo de cámara` / `servicio de cierre`), chip `28 AGO`. Semánticamente la ficha operativa; la hoja no exige los seis renglones completos (F1 líneas 21-22).
+- Papel 4: comprobante con `$12,000.00`, micrófono dibujado y marca `GASTO` (no cobro), chip `15 SEP` (F1 línea 23, F3 línea 37).
+- Papel 5: telegrama `24 OCT 1982`, asunto `COLLAR ROBADO IMPAGO`, sello `RECIBO`; no acta, no foto, no balanza (F1 línea 24).
+- Sin título de infografía, sin placas de etapa procesal, sin nombres de culpables, sin flechas de respuesta, sin inglés (F2 línea 30, F4 línea 45, F6).
+- F5: cel-shading plano de manual escolar, contorno carbón, fondo crema.
+
+**Defectos confirmados**
+1. MAYOR / CONTRADICE (F2 línea 29, F3 línea 35) — Chip del papel 1: `1 JUL` en vez de `12 JUL`. Recorte ampliado del taco. Las otras cuatro fechas canónicas (`21 AGO`, `28 AGO`, `15 SEP`, `24 OCT`) sí coinciden. Rompe la coincidencia literal con `trial_day2_success.ts:34` («Doce de julio») sobre esta lámina.
+2. MENOR / CONTRADICE (F4 línea 45, matiz) — Los tacos de fecha son cuadrados con número grande, no medallones de color; se aceptan como calendario de taco. No se registra como bloqueante.
+
+**Correcciones de auditoría**
+- Defectos de la imagen previa (fechas 15 JULIO/28 JULIO/12 AGOSTO/04 SEPTIEMBRE/16 OCTUBRE; pila atada; mazo; pila genérica; caja «ARCHIVO GENERAL»; balanza; título «EXPEDIENTE JUDICIAL – CRONOLOGÍA»; placas de etapa): ~~no aplican a este RAW~~. La regeneración Lote J los sustituye por los cinco objetos pedidos.
+- El defecto de fechas **se reduce** a un solo chip (`1 JUL`).
+
+**Recomendación**
+1. Misma lámina. Cambiar sólo el taco del papel 1 de `1 JUL` a `12 JUL`. No tocar el `21 AGO` del frasco.
+
+## Hallazgos de auditoría 2026-09-19 (regeneración Lote J, pasada dirigida)
+
+RAW: `tools/raw/case5/plate_cinco_papeles.jpg` (1280×720). Recortes del taco del papel 1, del chip del frasco y de la franja de fechas.
+
+**Veredicto: CUMPLE** en F1–F6 de esta pasada. El chip del papel 1 es `12 JUL`; el frasco sigue en `21 AGO` (no se copió 12 JUL al segundo hito). Orden GIRO 2 intacto.
+
+**Cumple**
+- Tacos: `12 JUL` / `21 AGO` / `28 AGO` / `15 SEP` / `24 OCT` (F2 línea 29, F3 línea 35). Recorte `plDates`.
+- Papel 1 tarjeta 1971; papel 2 valeriana+cera; papel 3 ficha de seis renglones; papel 4 `$12,000` GASTO con micrófono; papel 5 telegrama del collar (F1).
+- Riel JULIO–OCTUBRE; sin título, sin placas de etapa, sin inglés (F4, F6).
+- F5 cel-shade de manual, fondo crema.
+
+**Defectos confirmados**
+- Ninguno bloqueante en esta pasada.
+
+**Correcciones de auditoría**
+- Defecto 1 de la pasada Lote J (`1 JUL`): ~~corregido~~ a `12 JUL`. La regeneración intermedia que duplicaba `12 JUL` sobre el frasco se descartó; este RAW conserva `21 AGO` en el segundo hito.

@@ -67,4 +67,24 @@ Alias seguidos: `pasillo 7`, `Archivo Judicial`, `mesa de consulta`, `mueble/est
 
 ## Hallazgos de auditoría 2026-09-19
 
-- No se realizó auditoría visual ni se inspeccionó ninguna imagen, conforme al protocolo de `asset-facts` y a la solicitud. No hay defectos visuales confirmados; los conflictos abiertos proceden únicamente de la comparación entre el spec, el guion y la propuesta de activo nuevo.
+- ~~No se realizó auditoría visual ni se inspeccionó ninguna imagen, conforme al protocolo de `asset-facts` y a la solicitud. No hay defectos visuales confirmados; los conflictos abiertos proceden únicamente de la comparación entre el spec, el guion y la propuesta de activo nuevo.~~ (Sustituido por la auditoría de regeneración Lote A sobre `tools/raw/case5/bg_archivo_pasillo7_d4.jpg`.)
+
+## Hallazgos de auditoría 2026-09-19 (regeneración Lote A)
+
+Auditoría visual de `tools/raw/case5/bg_archivo_pasillo7_d4.jpg` (1280×720), recortes por sustantivo. Primera imagen del activo. **Veredicto: cumple** el estado previo al crimen (F1/F4) y las exclusiones. Resta MEDIO heredado del fondo canónico (numeración del mueble; línea de calor).
+
+### Cumple
+
+- ✓ Misma geometría de pasillo que `bg_archivo_pasillo7`: estanterías, mesa, lámpara encendida, mueble de consulta, puerta metálica gris entreabierta, reja, rejilla, tubería (F1).
+- ✓ Mesa de roble con expediente abierto atado con listón; silla **en pie** junto a la mesa, no volcada (F1; recorte `d4_chair`).
+- ✓ AUSENTE cadáver, silueta de gis, tomo caído, cartelito pericial: el piso entre mesa y estante está vacío (F1/F4; recorte `d4_floor`).
+- ✓ AUSENTE personajes pintados (F1). F2: sin texto de fecha/hora. F6: composición única ES/EN.
+
+### Defectos confirmados
+
+- [ ] **MEDIO (F1, DRIFT)** — El mueble hereda las cifras saltadas del fondo canónico; el hueco 13 no se lee. No rompe el relato del 4 de diciembre (el diálogo no examina el estante).
+- [ ] **MEDIO (F1, AUSENTE)** — Rejilla presente; la línea sutil de aire caliente no se nombra en el recorte (un intento con vapor fotográfico se descartó por contradecir «nunca vapor»).
+
+### Recomendación
+
+Alinear el mueble con `examine_estante_consulta` cuando se reabra el fondo canónico; añadir una línea de calor plana, no humo.

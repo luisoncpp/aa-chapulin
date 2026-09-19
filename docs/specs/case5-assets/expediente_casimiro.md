@@ -71,4 +71,22 @@ Clase: `icon`. Espec: §23.0, §23.5, §5.2, §7.2, §7.3, §10.1, §11.4 y §24
 
 ## Hallazgos de auditoría 2026-09-19
 
-- No se inspeccionó ninguna imagen por protocolo. No se confirma ningún defecto visual de la generación actual; esta hoja contiene únicamente hechos derivados del spec, catálogos y guiones ES/EN.
+- ~~No se inspeccionó ninguna imagen por protocolo. No se confirma ningún defecto visual de la generación actual; esta hoja contiene únicamente hechos derivados del spec, catálogos y guiones ES/EN.~~ (Sustituido por la auditoría del icono regenerado en Lote A.)
+
+## Hallazgos de auditoría 2026-09-19 (regeneración Lote A)
+
+Auditoría del icono en `tools/raw/case5/case5_evidence_icons_raw.png` celda col 1, fila 1 (y fuente 1:1). Recorte `cell_expediente_casimiro`. **Veredicto: cumple.**
+
+### Cumple
+
+- ✓ Legajo/expediente **abierto** atado con listón, no carpeta cerrada (F1).
+- ✓ Tarjeta de presentación pegada con engrudo en la página; cifra `214` en la hoja (F1/F3).
+- ✓ En la fuente 1:1 se lee `Enciclopedias El Saber Universal, Sociedad Anónima` (F2). Fondo magenta. Sin cuerpo, silueta, tomo ni pasillo (F1 AUSENTE).
+
+### Defectos confirmados
+
+- [ ] **MENOR (F2)** — La anotación `sociedad disuelta desde 1971` no está al pie de la tarjeta (es TEXTO EXACTO sólo si el encuadre la muestra). El icono de Acta no la necesita para nombrar el expediente abierto.
+
+### Recomendación
+
+Ninguna bloqueante.

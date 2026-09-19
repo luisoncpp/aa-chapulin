@@ -69,4 +69,28 @@ Es la máquina de escribir física que permanece dentro del huacal 9 del depósi
 
 ## Hallazgos de auditoría 2026-09-19
 
-- No se inspeccionó ninguna imagen por protocolo. Por tanto, no se confirma ningún defecto visual del icono ni de `examine_maquina.webp`; esta hoja registra únicamente hechos verificables derivados del spec, catálogos y guion.
+- ~~No se inspeccionó ninguna imagen por protocolo…~~ — sustituido por la pasada visual de la regeneración Lote C (abajo). El `detailedView` se audita en `examine_maquina.md`.
+
+## Hallazgos de auditoría 2026-09-19 (regeneración Lote C)
+
+RAW auditado: icono 1×1 magenta compuesto en `tools/raw/case5/case5_evidence_icons_raw.png` celda col 5, fila 2 (6×4). Recorte del aparato.
+
+**Veredicto: CUMPLE** para el icono (F1/F2/F5/F6). El defecto de la barra `s` pertenece a `examine_maquina`, no a esta celda.
+
+### Cumple
+
+- Máquina de escribir negra centrada, carro cromado, `41` a plantilla blanca en el costado, platina vacía (F1/F2, `bodega_masa_hotspots.ts:62-64`).
+- Fondo magenta, sin bodega, sin huacal, sin papel, sin flechas, sin nombre Olivetti (F1 AUSENTE, F2).
+- Cel-shading, contorno carbón, un solo icono ES/EN (F5/F6).
+
+### Defectos confirmados
+
+Ninguno bloqueante en el icono. La cinta bicolor no se lee a esta escala (MENOR, igual que en la lámina).
+
+### Correcciones de auditoría
+
+- Primera inspección visual del icono regenerado; no había ✓ previos que retirar.
+
+### Recomendación
+
+Ninguna para el icono. La barra `s` se corrige en `examine_maquina`, no aquí.

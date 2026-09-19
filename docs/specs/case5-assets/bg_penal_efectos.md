@@ -97,3 +97,31 @@ El activo es un fondo compartido por las variantes española e inglesa. Represen
 1. Estampar en la etiqueta visible de la caja abierta el número «214-J» y el nombre «LENGUA, CASIMIRO» como identidad visual (texto corto de plantilla, sin rotulación adicional).
 2. Añadir numeración de plantilla breve (p. ej. «###-X») a las tarjetas de etiqueta de las cajas del estante, todas con el mismo formato, sin que sean contables una por una.
 3. Mantener intactas la composición, las exclusiones, la iluminación fría y la ausencia de personajes; regenerar junto con `examine_efectos` para conservar la identidad compartida de la caja 214-J.
+
+## Hallazgos de auditoría 2026-09-19 (post-regeneración Lote D)
+
+**Veredicto: CUMPLE** (contenido, texto, cifras, contrato, exclusiones, estilo, localización). RAW regenerado: `tools/raw/case5/bg_penal_efectos.jpg` (1152×864). Recortes por sustantivo F1 con prueba de nombrar. La pasada anterior sobre `assets/bg_penal_efectos.webp` queda como traza pre-regeneración.
+
+### Cumple
+
+- Estantería metálica industrial de piso a techo, cajas de cartón cerradas iguales a ambos lados (F1).
+- Caja abierta en primer plano sobre mesa de acero remachada, tapa volcada al lado (F1). Recorte de etiqueta: «214-J» / «LENGUA, CASIMIRO» legibles (F2 + F4, `penal_efectos.ts:18`).
+- Flexo de cuello de ganso, libro de registro cerrado, sello de madera con mango (F1).
+- Piso de concreto gris; reja de seguridad con candado al fondo; fluorescente de techo frío (F1).
+- Interior de la caja: sólo folders/papeles genéricos; no se nombran relojes, moño, libreta ni carbón (F1 `AUSENTE`, F4).
+- `AUSENTE` personajes (F1).
+- Numeración de plantilla uniforme `101-A` / `187-F` / `188-H` / `220-K` en las cajas del estante; códigos repetidos, no contables una por una (F2, F3).
+- Sin reloj de 2:40, sin página 214, sin inglés, sin texto inventado en libro/sello/reja (F2, F3).
+- Caja abierta sigue en la zona de `hotspot_caja` (composición conservada) (F4).
+- Un solo fondo ES/EN; sin `bg_penal_efectos_en` (F6).
+- Cel-shading plano con terminador duro y contorno `#1A1A1A` (F5).
+
+### Defectos confirmados
+
+- Ninguno. Los dos bloqueantes de la pasada anterior (etiqueta en blanco; plantilla ausente) están corregidos.
+
+### Correcciones de auditoría
+
+- `AUSENTE` / MAYOR etiqueta 214-J en blanco → **corregido** en el RAW: recorte de etiqueta nombra «214-J» y «LENGUA, CASIMIRO».
+- `AUSENTE` / MEDIO plantilla del estante → **corregido**: recorte 3× de estante izquierdo nombra códigos de plantilla del mismo formato.
+- La pasada sobre `assets/bg_penal_efectos.webp` no se borra; describe el archivo de runtime anterior a `process_case5_assets.py`.

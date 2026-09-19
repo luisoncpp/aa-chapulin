@@ -109,3 +109,24 @@ Activo base: `examine_estante_consulta.webp`. Variante localizada: no existe ni 
 2. Garantizar la secuencia completa 1–24 con el 15 presente (F2).
 3. Dar a los dígitos trazo manuscrito irregular (tinta sobre cartón), no tipografía limpia (F5).
 4. Aplanar el sombreado del lomo vino y las telas hacia cel-shading de dos tonos con terminador duro, reduciendo la veta fotorreal de la piel (F5).
+
+## Hallazgos de auditoría 2026-09-19 (regeneración Lote A)
+
+Auditoría de `tools/raw/case5/examine_estante_consulta.jpg` (1280×720), recortes `est3_mid` / `est3_right`. Tres intentos. **Veredicto: cumple el eje bloqueante (F1/F3/F4 del hueco 13).** El tomo rotulado «13» desapareció; el hueco es la ranura 13 con cartoncito 13 en el hueco; el 15 está. Resta MEDIO: falta el 22 (una ranura).
+
+### Cumple
+
+- ✓ Tablero frontal desaturado del mueble, no el pasillo (F1).
+- ✓ 1–10 tela oliva; ranura 11 media piel vino con cantoneras de latón arriba/abajo y tag 11; 12 oliva; **ranura 13 vacía oscura** con tag 13 en el hueco, sin libro; 14–21 y 23–24 oliva, con **15 presente** (F1/F2/F4).
+- ✓ Regla testigo y zócalo (F1). Sin flechas ni UI. F6: sin `_en`.
+
+### Defectos confirmados
+
+- [x] ~~MAYOR tomo rotulado «13» a la derecha del hueco~~ **[x] RETIRADO POR REGENERACIÓN (2026-09-19 Lote A):** el recorte `est3_mid` se nombra «hueco oscuro 13 entre el 12 y el 14».
+- [x] ~~MEDIO cartoncito 15 ausente~~ **[x] RETIRADO POR REGENERACIÓN:** 15 visible en `est3_right`.
+- [ ] **MEDIO (F1/F2/F3, AUSENTE)** — Falta el cartoncito/lomo **22** (secuencia 21, 23, 24). El recuento de posiciones es 23, no 24; hay 22 tomos en el mueble en vez de 23. No relabela el hueco histórico; el señalamiento de `lomo_11` sigue pudiéndose leer.
+- [ ] **MENOR (F5, DRIFT)** — Dígitos aún tipográficos, no manuscritos.
+
+### Recomendación
+
+Insertar un lomo oliva con tag 22 entre 21 y 23 para cerrar 24 ranuras / 23 tomos.

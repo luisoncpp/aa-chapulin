@@ -101,3 +101,30 @@ Veredicto: **NO CUMPLE** en los tres ejes: contenido (F1), exclusiones/texto (F2
 6. Estilo §23.0: ilustración 2D estilo *Ace Attorney* GBA/DS en HD, cel-shading plano con terminador duro y dos tonos por superficie, contorno carbón `#1A1A1A`;  ni texturas fotográficas.
 7. Gemelo EN: una sola pieza sin texto resuelve F6; el narrador cambia, la imagen no.
 8. Consistencia (regenerar juntos): `plate_anatomia_ficha` (mismo fondo crema y ausencia de texto), `bg_despacho_berrondo` (reconocibilidad del regreso al escritorio), `plate_huacal_sellos` (identidad del huacal sellado: tapa, tiras, llave), `bg_bodega_masa` (tratamiento madera/papel), `examine_huacal9` (el diagrama no hereda su número, fecha ni composición fotográfica).
+
+## Hallazgos de auditoría 2026-09-19 (regeneración Lote E)
+
+**Veredicto: CUMPLE** en contenido (F1), texto/exclusiones (F2, F6), cifras (F3), contrato (F4) y medio de lámina (F5). RAW: `tools/raw/case5/plate_masa_concursal.jpg` (1280×720). Recortes: edificio, huacal+llave, acreedores, esquinas de exclusión.
+
+### Cumple
+
+- ✓ F1 — Empresa como edificio de dos pisos que se desploma (recorte `masa_building`). Prueba de nombrar: «edificio derrumbándose».
+- ✓ F1 — Bienes (muebles, papeles, cajas) cayendo hacia un **huacal cerrado** con tapa puesta y tiras de papel cruzando la junta (recorte `masa_crate_key`). No está abierto.
+- ✓ F1/F4 — Mano con **llave** apoyada sobre la tapa, manga de traje; se lee como custodia, no como robo (`despacho_berrondo_talks.ts:25`).
+- ✓ F1 — Acreedores alrededor del huacal en la misma escena, no en viñeta aparte (recorte `masa_creditors`).
+- ✓ F2/F6 — Cero texto legible: sin «EXP. 73/1974», sin títulos, sin pies, sin «SIGLO XX» (recortes `masa_tl` / esquinas crema). Una sola pieza ES/EN.
+- ✓ F4 — Sin atrezzo de juzgado, sin mazo, sin escritorio, sin televisor, sin viñetas numeradas. Fondo crema de papel, trazo de manual escolar.
+- ✓ F1/F3 — Un solo huacal genérico; no hereda 9 cajones, máquina 41, catorce cajas ni número de Huacal 9.
+
+### Defectos confirmados
+
+- **MENOR — F1 (sello del huacal):** las tiras blancas llevan un punto rojo tipo lacre diminuto sobre la junta. No hay cifras ni palabras; no contradice el huacal cerrado. Opcional en una pasada futura: tira de papel sellada sin lacre, para alinear del todo con `plate_huacal_sellos`.
+
+### Correcciones de auditoría
+
+- ~~AUSENTE MAYOR — mano con llave~~ — [x] RETIRADO POR REGENERACIÓN (Lote E).
+- ~~CONTRADICE MAYOR — huacal abierto~~ — [x] RETIRADO: tapa cerrada.
+- ~~AUSENTE MAYOR — texto de episodio / EXP. 73/1974~~ — [x] RETIRADO: lámina muda.
+- ~~CONTRADICE MEDIO — acreedores en viñeta aparte~~ — [x] RETIRADO: alrededor del huacal.
+- ~~DRIFT MEDIO — mazo/placas/televisor~~ — [x] RETIRADO: fondo crema.
+- No se ejecutó `process_case5_assets.py`.

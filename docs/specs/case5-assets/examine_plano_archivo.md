@@ -69,43 +69,33 @@ Clase: `examine`. Espec: §23.0, §23.3. Guion: §4.1, §7.3/L1, §10.2 (`hotspo
 - §4.1 P1 dice que el segundo libro sólo se revela en el juicio, pero §10.2/L1 muestra durante la investigación que la ventanilla profesional lleva su propio libro (`docs/specs/case-5-el-tomo-trece.md:193-194`; `docs/specs/case-5-el-tomo-trece.md:686-689`). El plano debe mostrar la puerta y la ruta sin imprimir una explicación adicional del libro; resolver la discrepancia narrativa corresponde al spec/guion.
 - La frase de §10.2 dice “dos puertas”, pero Nicanor cuenta una tercera puerta de carbón tapiada desde 1958 (§10.2, líneas 670–673). La imagen debe mantener dos accesos operativos y no decidir si la puerta sellada merece representación gráfica más allá de no contradecirla.
 
-## Hallazgos de auditoría 2026-09-19
+## Hallazgos de auditoría 2026-09-19 (regeneración Lote G, pasada P3)
 
-**Veredicto: NO CUMPLE** — en contenido (F1/F4), texto en imagen (F2), localización (F6) y estilo (F5); ambos gemelos requieren regeneración conjunta. Resolución 960 × 540 en ambos (conflicto de exportación ya anotado en «Conflictos abiertos»).
+**Veredicto: CUMPLE** — P3, montacargas de tres descansos, dos accesos, cuatro rótulos únicos y gemelos ES/EN. RAW: `tools/raw/case5/examine_plano_archivo.jpg` y `examine_plano_archivo_en.jpg` (1280 × 720). `plate_dos_accesos` y `bg_archivo_vestibulo` no se tocaron. No se ejecutó `process_case5_assets.py`.
 
 ### Cumple
 
-- ES: lámina amarillenta de protección civil vista de frente con marco; título de plano legible como lámina (F1-1, parcial).
-- ES: los cuatro rótulos exigidos existen y son legibles: `ACCESO PÚBLICO`, `PERITOS Y AUXILIARES`, `PATIO DE MANIOBRAS`, `MONTACARGAS` (F2-1; §23.3, línea 4050).
-- ES: tres niveles separados en tres recuadros rotulados (PRIMER PISO / PLANTA BAJA / SÓTANO) (F1-2, parcial).
-- ES: escalera de servicio y hueco del montacargas aparecen en los tres niveles, con rótulos legibles (F1-3, F1-4).
-- EN: `PUBLIC ACCESS`, `EXPERTS AND AUXILIARIES`, `SERVICE COURTYARD` legibles; núcleo vertical (escalera + hueco con señalización) presente en los tres niveles (F1-3, F1-4, F6-2 parcial).
-- EN: cuatro tachuelas/pinos metálicos en las esquinas (F1-1, parcial).
-- Ambas: el texto del diálogo, tiempos de trayecto y nombres de personajes no están impresos; el manuscrito del margen EN es ilegible (F2-3).
+- F1-1: lámina amarillenta, **cuatro tachuelas** de latón, una por esquina; sin marco ni props de escritorio; sin `EXAMINE` / `Case 5`.
+- F1 P3 (recorte reja): pasillo 7 = reja a la izquierda y **estantes que llenan el corredor**; la mesa de consulta está en un cuarto aparte, al otro lado del montacargas, sin línea de visión desde la reja (§4.1 P3, `docs/specs/case-5-el-tomo-trece.md:195`).
+- F1-4 (recorte del núcleo): **un** hueco de montacargas en columna continua con jaula en sótano, patio/planta baja y primer piso; un solo rótulo `MONTACARGAS` / `FREIGHT ELEVATOR`.
+- F1-3 / F4: escalera de servicio junto al hueco, ruta roja discontinua sótano → extremo del pasillo 7, sin cruzar el mostrador.
+- F1-5: dos accesos operativos — puerta pública **roja** al vestíbulo/mostrador; ventanilla de peritos (marco rojo, pane oscuro, repisa de madera) al patio empedrado. Sótano sin puerta pública.
+- F2-1: exactamente cuatro rótulos, una vez cada uno. ES: `ACCESO PÚBLICO`, `PERITOS Y AUXILIARES`, `PATIO DE MANIOBRAS`, `MONTACARGAS`. EN: `PUBLIC ACCESS`, `EXPERTS AND AUXILIARIES`, `SERVICE COURTYARD`, `FREIGHT ELEVATOR`.
+- F6: misma axonometría, tachuelas, rutas y colores; EN sin español residual.
+- F2-3 / F5: salas vacías; cel-shading Ace Attorney; aceptación de estilo = revisor.
 
 ### Defectos confirmados
 
-- **MAYOR / DRIFT** (F6-1): los gemelos no comparten composición, geometría ni lenguaje material. ES = lámina enmarcada en madera con mostrador, props (atados de documentos, tintero, sello) y plano ilustrado; EN = hoja suelta clavada a madera con plano blueprint a lápiz. «misma lámina, rutas, proporciones, colores y tachuelas; sólo cambia el texto legible» (hoja, línea 64; §23.3, línea 4064).
-- **MAYOR / CONTRADICE** (F2/F6): la variante ES lleva la interface `EXAMINE` + `Case 5` pintada dentro del arte, esquina superior izquierda; chrome de UI no pedido (F2-2/AUSENTE de texto; §23.0, líneas 3974–3980).
-- **MAYOR / CONTRADICE** (F6-2): la variante EN rotula los niveles en español: `PLANTA BAJA (NIVEL 0)`, `PRIMER PISO (NIVEL 1)`, `SÓTANO (NIVEL –1)`; texto español sin resolver en el gemelo inglés.
-- **MEDIO / AUSENTE** (F2-1/F6-2): EN no localiza el rótulo `MONTACARGAS` (ni equivalente «freight elevator»); quedan 3 de 4 rótulos.
-- **MEDIO / CONTRADICE** (F1/F2): ES repite `ACCESO PÚBLICO` y `PERITOS Y AUXILIARES` en los tres niveles, incluida una entrada pública en el SÓTANO con flecha roja; la hoja fija dos accesos activos: puerta pública hacia vestíbulo/mostrador y ventanilla hacia el patio (F1-5; §10.2, líneas 686–688; `archivo_vestibulo_hotspots.ts:44-46`).
-- **MEDIO / CONTRADICE** (F2-2): ES añade rótulos legibles no pedidos: título `PLANO DE PROTECCIÓN CIVIL / EDIFICIO DEL TRIBUNAL – PLANO GENERAL`, leyenda con `SALIDAS – SALIDA / RUTA DE EVACUACIÓN`, `ESCALERA DE SERVICIO`, `HUECO DEL MONTACARGAS`, y bloques de párrafos legibles como tipografía; el spec sólo exige los cuatro rótulos (F2-2; §23.3, línea 4050).
-- **MEDIO / CONTRADICE** (F1-1): ES sustituye las tachuelas por esquineras de latón y marco de madera con pomo, y añade props de escritorio en primer plano; la hoja pide lámina de archivo con marcas de tachuela en las cuatro esquinas, sin props (§10.2, líneas 666–679).
-- **MEDIO / CONTRADICE** (F1-2): EN no muestra las salidas marcadas en rojo como rutas; sólo pictogramas rojos de «persona corriendo» sin trazado de rutas entre niveles (§4.1, líneas 158–186).
-- **MEDIO / DRIFT** (F5): EN es estilo blueprint técnico a lápiz, tonos apagados, sin colores primarios saturados ni cel-shading; ES tiene fondo y madera fotorrealistas con degradados suaves. Literal §23.0: «cel-shading de colores planos con terminador duro, dos tonos por superficie y ; contorno carbón #1A1A1A nítido… colores primarios saturados» (hoja, línea 48). Aceptación de estilo = decisión del revisor; se registra.
-- **MENOR / CONTRADICE** (F3-3): ES no representa la puerta de carbón sellada ni como acceso histórico, lo cual es admisible; pero junto al rótulo de sótano la flecha pública sugiere un tercer acceso operativo, contrario a «tapiada desde 1958» (§10.2, líneas 670–673).
+- Ningún defecto MAYOR ni MEDIO. F5 (textura de papel ilustrada) queda a decisión del revisor.
 
 ### Correcciones de auditoría
 
-- Se reemplaza el hallazgo previo «No se inspeccionó ninguna imagen, por protocolo» (2026-09-19) por esta inspección real contra los PNG temporales ES/EN; la lista de aceptación anterior queda absorbida por los «Cumple» y «Defectos» de arriba.
-- Ningún ✓ de una pasada previa fue retirado por revisión en esta fecha.
+- ~~MAYOR / CONTRADICE F1 P3 — mesa delante de la librería, a la vista de la reja~~ — retirado: estantes bloquean el pasillo; mesa en cuarto lateral.
+- ~~MEDIO / AUSENTE F1-4 — montacargas sin descanso de patio alineado~~ — retirado: tres jaulas en la misma vertical.
+- ~~MEDIO / CONTRADICE F2 — `MONTACARGAS` duplicado~~ — retirado: un solo rótulo.
+- ~~MENOR / MALFORMADO — patio rotulado en un postigo~~ — retirado: `PATIO DE MANIOBRAS` / `SERVICE COURTYARD` sobre el empedrado.
+- Recortes sobre los JPEG RAW 1280 × 720 (reja+estantes, mesa, columna del hueco, puerta pública, ventanilla, sótano, tachuelas).
 
-### Recomendación (regenerar ES y EN juntos, en el orden del conjunto de consistencia)
+### Recomendación
 
-1. Fijar una sola composición gemela (base `plate_dos_accesos`, hoja línea 60): lámina amarillenta de frente, tachuelas en las cuatro esquinas, sin marco de madera con pomo, sin props de escritorio y sin chrome `EXAMINE`/`Case 5` dentro del arte.
-2. Un solo juego de los cuatro rótulos por variante, en las posiciones idénticas entre gemelos: ES `ACCESO PÚBLICO` / `PERITOS Y AUXILIARES` / `PATIO DE MANIOBRAS` / `MONTACARGAS`; EN con la terminología del catálogo inglés incluida la del montacargas. Niveles rotulados en el idioma de cada variante (sin español en EN).
-3. Un acceso público (planta baja → vestíbulo/mostrador) y una ventanilla de peritos y auxiliares (→ patio de maniobras); eliminar las repeticiones de acceso público en sótano.
-4. Rutas rojas de salida con el trazado escalera de servicio (patio–sótano–pasillo 7) y hueco del montacargas con tres descansos, legibles en los tres recuadros, sin convertirse en rotulación extra.
-5. Todo texto que no sea uno de los cuatro rótulos debe quedar ilegible o eliminarse (títulos, leyenda, párrafos).
-6. Estilo §23.0: cel-shading plano saturado, contorno carbón duro, sin degradados fotográficos ni blueprint a lápiz; exportar según el contrato que el revisor fije para el conflicto 1280×720 vs 960×540.
+1. No regenerar salvo decisión de estilo F5. Al procesar WebP, volver a medir zonas Present & Point sobre el recorte 960 × 540.

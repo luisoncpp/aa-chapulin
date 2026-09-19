@@ -98,3 +98,30 @@ Alias seguidos: `tarjeta de cedulario`, `cedulario`, `tarjeta en blanco`, `card-
 4. Eliminar los objetos ajenos: pila de papeles con moño (sup. der.), bisagra de latón (sup. izq.) y los dos muebles de madera (esquinas inferiores). Fondo crema liso, sólo la tarjeta.
 5. Mantener el estilo actual (F5 ✓): crema, colores planos, contorno carbón, registro de manual escolar mexicano de los setenta; sin magenta ni fotorealismo.
 6. Sin variante `_en` (correcto hoy); al regenerar sin texto, la imagen compartida ES/EN queda válida.
+
+## Hallazgos de auditoría 2026-09-19 (regeneración Lote E)
+
+**Veredicto: CUMPLE** en contenido (F1), texto (F2), cifras (F3), contrato (F4), estilo (F5) y localización (F6). RAW: `tools/raw/case5/plate_anatomia_ficha.jpg` (1280×720). Recortes: tarjeta completa, cinco campos superiores, puerta/chapa, llaves tipográficas, esquinas de exclusión.
+
+### Cumple
+
+- ✓ F1 — Una tarjeta de cedulario ampliada, rectángulo con borde doble sobre fondo crema (recorte `ficha_card`). Prueba de nombrar: «ficha/formulario en blanco», no diagrama de ferretería.
+- ✓ F1 — Exactamente **seis** campos vacíos, cada uno con su llave tipográfica `}` a la derecha (recorte `ficha_braces`: seis llaves; recorte `ficha_five_fields` + `ficha_door`). Campos 1–5 en blanco, sin nombres ni cifras.
+- ✓ F1 — El sexto campo, abajo, es una puerta de madera con chapa/pestillo, integrada a la tarjeta.
+- ✓ F2 — Cero texto legible: sin «PAPEL/EXPEDIENTE/LISTÓN/MADERA/LATÓN/LUZ DE TUNGSTENO» (pasada completa + recortes de exclusión `ficha_tr` / `ficha_tl`).
+- ✓ F1 exclusiones — Sin pila de papeles atada, sin bisagra de pared, sin muebles en las esquinas. Sólo la tarjeta sobre crema.
+- ✓ F5 — Fondo crema, contorno carbón, trazo de manual escolar; sin magenta ni fotorrealismo.
+- ✓ F6 — Sin `plate_anatomia_ficha_en`; imagen muda reutilizable.
+
+### Defectos confirmados
+
+Ninguno bloqueante. Matiz no defectuoso: varios de los cinco campos superiores llevan una raya interior de renglón; siguen siendo un campo por llave, no campos extra.
+
+### Correcciones de auditoría
+
+- ~~MAYOR F2 — seis rótulos PAPEL/EXPEDIENTE/…~~ — [x] RETIRADO POR REGENERACIÓN (Lote E).
+- ~~MAYOR F1 — un panel y una llave en vez de seis campos~~ — [x] RETIRADO: seis campos + seis `}`.
+- ~~MAYOR F1 — diagrama de ferretería~~ — [x] RETIRADO: tarjeta de cedulario.
+- ~~MAYOR F1 — pila de papeles con moño~~ — [x] RETIRADO.
+- ~~MEDIO F1 — bisagra y muebles de esquina~~ — [x] RETIRADO.
+- No se ejecutó `process_case5_assets.py`.

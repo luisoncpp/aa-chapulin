@@ -103,3 +103,31 @@ Alias seguidos: `despacho de Berrondo`, `despacho del Lic. Fulgencio Berrondo`, 
 3. Ajustar el render a §23.0: cel-shading plano con terminador duro de dos tonos, contorno carbón continuo y paleta más saturada; evitar los degradados suaves de luz.
 4. En la fotografía de grupo, hacer legible el fondo como fachada de edificio detrás de los retratados.
 5. Retirar el samovar del aparador derecho o declararlo en la hoja si el revisor lo acepta.
+
+## Hallazgos de auditoría 2026-09-19 (regeneración Lote E)
+
+**Veredicto: CUMPLE** en contenido, exclusiones, texto, contrato de hotspot (F4) y localización. RAW inspeccionado: `tools/raw/case5/bg_despacho_berrondo.jpg` (1280×720). Recortes sobre el viewport 960×540 simulado (cover 16:9→3:2→16:9). El eje de estilo (F5) conserva un matiz pictórico cuya aceptación sigue siendo decisión del revisor.
+
+### Cumple
+
+- F4 — Recorte `bg_hotspot_vitrina` (x:0–28 %, y:28–70 % del viewport): vitrina de caoba con vidrio a la izquierda, no en el centro. Prueba de nombrar: «vitrina baja de caoba con tres tomos de lomo y un marco». Coincide con `despacho_berrondo_hotspots.ts:12`.
+- F1/F3 — Recorte `bg_spines`: exactamente tres legajos encuadernados de pie, lomos granate con tejuelo dorado, más credencial enmarcada con pseudotexto ilegible. No son moños de regalo ni bolsa de tela.
+- F1 — Recorte `bg_hotspot_retrato` / `bg_photo`: fotografía sepia de hombres de traje **frente a una fachada de edificio** con ventanas; banda de tela cruzada **sin letras**. Conflicto abierto de «EL SABER UNIVERSAL · 1969» intacto.
+- AUSENTE — Sin samovar/urna en el aparador derecho (recorte `bg_window_right`: ventana, visillos, luz de mediodía, gabinete vacío).
+- AUSENTE — Sin personajes ni sprites horneados (pasada completa del RAW y del viewport).
+- F1 — Escritorio de caoba, cuero verde, tintero y taza en platito; alfombra persa; librerías de caoba con vidrio y lomos granate alineados (recorte `bg_desk`).
+- F2 — Sin texto legible, sin inglés, sin marcas de agua. Tejuelos y credencial enmarcados se leen como ornamentación, no como cadenas.
+- F6 — Una sola composición ES/EN; no se creó variante `_en`.
+
+### Defectos confirmados
+
+- **AUSENTE · MENOR — F1 (secante):** el escritorio muestra tintero y taza sobre el cuero verde; no hay un secante/papel secante distinguible del tapiz de cuero (recorte `bg_desk`). No rompe hotspot ni diálogo.
+- **DRIFT · MEDIO — F5 (estilo §23.0):** cel-shading más nítido que la pasada previa, pero conserva degradados suaves en madera y suelo. Registrado contra el literal de terminador duro de dos tonos; aceptación = revisor.
+
+### Correcciones de auditoría
+
+- ~~CONTRADICE / MAYOR — F4 vitrina centrada fuera del hotspot~~ — [x] RETIRADO POR REGENERACIÓN (2026-09-19 Lote E): la vitrina está en la banda izquierda del viewport.
+- ~~CONTRADICE / MEDIO — F1/F3 moños de regalo y bolsa~~ — [x] RETIRADO POR REGENERACIÓN: tres lomos encuadernados.
+- ~~CONTRADICE / MENOR — F1 foto de interior~~ — [x] RETIRADO POR REGENERACIÓN: fachada de edificio.
+- ~~CONTRADICE / MENOR — F1 samovar~~ — [x] RETIRADO POR REGENERACIÓN: retirado.
+- RAW de esta pasada: `tools/raw/case5/bg_despacho_berrondo.jpg`. No se ejecutó `process_case5_assets.py`.

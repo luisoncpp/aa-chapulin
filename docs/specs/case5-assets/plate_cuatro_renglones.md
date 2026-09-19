@@ -109,3 +109,48 @@ Alias seguidos: `L9`, `cuatro papeles`, `cuatro documentos`, `cuatro tiras`, `la
 2. Elegir cuatro cadenas ES que contengan al menos una `s` minúscula por renglón y re-dibujar la `s` de cada renglón media línea por DEBAJO del baseline (corrige defectos 1–4).
 3. En ambas variantes, posicionar las cadenas de modo que la `s` caída de los cuatro renglones caiga en la misma columna vertical (corrige defecto 9); evitar `s` caídas adicionales no alineadas (defecto 10).
 4. Regenerar ES y EN juntas con idéntica geometría de tiras; sólo el texto legible debe diferir entre variantes (F6, hoja:56).
+
+## Hallazgos de auditoría 2026-09-19 — regeneración Lote I (RAW)
+
+**Veredicto: NO CUMPLE** (F2/F1: palabras partidas alrededor de una `S` capital apilada; la `s` minúscula sí cae, no está invertida). Corregidos los MAYOR previos (ES sin escalera, tablero con mazo, `s` invertida/ausente, gemelos distintos). Archivos: `tools/raw/case5/plate_cuatro_renglones.jpg` y `plate_cuatro_renglones_en.jpg` (1280×720, 3 intentos ES / 1 EN).
+
+### Cumple
+
+- Exactamente cuatro tiras en **escalera** sobre fondo crema plano, sin tablero de madera, mazo, tintero ni placa (F1, F5; recortes de tira 1–4). Gemelos ES/EN de la misma geometría (F6).
+- Un renglón mecanografiado por tira; las cuatro `s` de comparación cuelgan **media línea por debajo** (no superíndice invertido) y caen en la **misma vertical** (F1 hechos 2–3; F4 “la `s`, media línea abajo”).
+- Sin personajes, máquina, fechas de calendario, flechas ni conclusión impresa (F1 AUSENTE). ES sin inglés, EN sin español (F2 AUSENTE).
+
+### Defectos confirmados
+
+- **[MAYOR / MALFORMADO]** (F2; hoja:26) — La `s` de comparación se pinta como glifo apilado `S/s` separado de la palabra: ES `ocieedad` / `S ervicio` / `S e ruega` / `e s mecanografia`; EN `ociety` / `ervice` / `eventeen` / `ample`. El renglón deja de leerse como una palabra entera (`sociedad`, `society`).
+- **[MEDIO / CONTRADICE]** (F1 hecho 3) — La `S` de arriba del glifo es capital, no minúscula; el contrato pide `s` minúscula caída.
+
+### Correcciones de auditoría
+
+- ~~ES tiras paralelas, no escalera~~ — [x] RETIRADO POR REVISIÓN (2026-09-19, Lote I).
+- ~~ES tablero con mazo / tintero / placa~~ — [x] RETIRADO POR REVISIÓN: fondo crema plano compartido con EN.
+- ~~ES renglones 1–2 sin `s`; renglón 3 normal; renglón 4 `s` invertida~~ — [x] RETIRADO POR REVISIÓN: las cuatro `s` cuelgan debajo, no arriba.
+- ~~Gemelos de encuadre distinto~~ — [x] RETIRADO POR REVISIÓN.
+
+### Recomendación (si hay otra pasada)
+
+1. Palabras enteras (`sociedad`, `servicio`, `se ruega`, `se mecanografia` / `society`, `service`, `seventeen`, `sample`) con la `s` inicial minúscula caída bajo su hueco, sin `S` capital ni espacio.
+
+## Hallazgos de auditoría 2026-09-19 — pasada s caída (RAW)
+
+**Veredicto: CUMPLE** (F1/F2: `s` intramisyllabic, palabras no partidas por `S/s` capital, caída hacia abajo no invertida). Archivos: `tools/raw/case5/plate_cuatro_renglones.jpg` y `plate_cuatro_renglones_en.jpg`.
+
+### Cumple
+
+- ES: cuatro tiras, un renglón cada una: `disuelta` / `visado` / `meses` / `pesas` con la `s` de la tercera letra en el hueco de la sílaba, media línea abajo, misma vertical (recorte de las cuatro tiras). Fondo crema, sin mazo.
+- EN: escalera gemela: `dissolved` / `visible` / `cases` / `lists` con la misma mecánica (la `s` sale de la línea base y se sienta en el hueco; no hay `ociety`).
+- Sin conclusión impresa, sin inglés en ES ni español en EN (F2 AUSENTE).
+
+### Defectos confirmados
+
+- **[MENOR / DRIFT]** (F6) — ES apila las tiras con poco desplazamiento; EN conserva más escalera. La `s` comparada sigue en la misma columna.
+- **[MENOR / MALFORMADO]** (F2 EN) — Espacio extra alrededor de la `s` caída (`di  olved`, `vi ible`); la palabra se lee igual.
+
+### Correcciones de auditoría
+
+- ~~Palabras partidas `ocieedad` / `ociety` y glifo `S/s` capital~~ — [x] RETIRADO POR REVISIÓN (2026-09-19, pasada s caída).

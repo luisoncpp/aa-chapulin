@@ -110,3 +110,35 @@ Clase: `examine` / `plate`. Espec: §5.3, §14.1, §15.2, §18.3, §23.0, §23.3
 4. Eliminar fechas de año y cualquier otra fecha legible no pedida (`1976`, `1974`); las demás fechas en formato `DÍA D-MES` manuscrito y apenas legibles (F2 `NO CONTRADECIR`, F3).
 5. Aplicar el contrato §23.0 completo: cel-shading plano, terminador duro, contorno carbón, paleta saturada, registro de papel/madera/polvo de archivo; prohibido el fotorrealismo actual (F5).
 6. Sin flechas, círculos ni rótulos explicativos de la duplicación (F2 `AUSENTE`, ya cumple pero debe mantenerse en la regeneración).
+
+## Hallazgos de auditoría 2026-09-19 (regeneración Lote C)
+
+RAW auditados: `tools/raw/case5/examine_huacal9.jpg` y `examine_huacal9_en.jpg` (1280 × 720). Recortes de las dos tiras superiores y de la masa amarillenta. EN generado con la ES como `reference_image_paths`.
+
+**Veredicto: CUMPLE** en contenido (F1), texto (F2), estilo (F5) y gemelos (F6). Residual MEDIO/MENOR no impide leer `SÁB`/`SAT 4-XII` ni ver la duplicación.
+
+### Cumple
+
+- Tapa aislada en picado, sin bodega, cajones, máquina, manos, candelero, lacre, medallón ni UI EXAMINE (F1 AUSENTE).
+- Masa de tiras encabalgadas como escamas, cientos, con amarilleamiento progresivo hacia abajo y sombras de estrato (F1/F3; el conteo del Sargento ya no es inverosímil).
+- Tira superior blanca y limpia, manuscrita, `SÁB 4-XII` + rúbrica (ES) / `SAT 4-XII` + rúbrica (EN) (F2/F4, `trial_day3_t1.ts:63-69`).
+- Segunda tira inmediatamente debajo, misma fecha `SÁB 4-XII` / `SAT 4-XII` con rúbrica; la duplicación se ve sin flechas (F1/F2, `climax_stage3_success.ts:36-44`).
+- Cel-shading, no fotorrealismo; gemelos con la misma geometría de tapa y escamas (F5/F6).
+- Sin pie que diga «dos aperturas» (F2 AUSENTE).
+
+### Defectos confirmados
+
+- `CONTRADICE` / **MEDIO** / F1 — La segunda tira no queda medio tapada: es un cartel casi completo bajo la superior, apenas más crema. El spec pide que asome.
+- `CONTRADICE` / **MENOR** / F2 — EN: la segunda tira escribe `SÁT` (acento) en vez de `SAT`.
+- `CONTRADICE` / **MENOR** / F3 — Un `1971` apenas legible en el ángulo inferior derecho; el formato institucional no pide año.
+- Otras fechas `DÍA D-MES` (JUE 11-XI, etc.) son más legibles de lo «apenas»; no contradicen el followUp, que sólo exige la superior.
+
+### Correcciones de auditoría
+
+- ~~MAYOR de gemelos distintos, EN con 15-IX-1976 / 23-VII-1974, ~2–6 tiras, tira superior roja, lacre/candelero, fotorrealismo~~ — superados por estas RAW; la traza sobre los webp previos se conserva arriba.
+
+### Recomendación (opcional)
+
+1. Meter la segunda tira bajo el borde inferior de la superior, dejando `SÁB`/`SAT 4-XII` a medias.
+2. EN: quitar el acento de `SÁT`.
+3. Borrar el `1971` del rincón.

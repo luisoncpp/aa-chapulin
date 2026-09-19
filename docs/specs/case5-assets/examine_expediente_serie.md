@@ -116,3 +116,90 @@ Clase: `examine`. Espec: §23.0, §23.3, §4.3, §5.2, §12.4, §13.2, §15.3 y 
 5. Añadir el defecto de la `s` minúscula caída en todos los renglones cuestionados de B y en la tarjeta A (medio grado a la izquierda, media línea abajo); en EN conservar al menos una `s` minúscula con su caída.
 6. Quitar todo año impreso distinto de 1982 (sin «1975», sin «No. 3178/75»); en D, la fecha de pago no debe decir 15 SEP como pago del empeño.
 7. EN: traducir la totalidad del texto legible (sin frases en español huérfanas en A, D ni E), corregir «RECIÉI DE» → `Received from:`, eliminar la línea duplicada de A, y mantener composición idéntica al gemelo ES.
+
+## Hallazgos de auditoría 2026-09-19 (regeneración Lote J)
+
+RAW auditados: `tools/raw/case5/examine_expediente_serie.jpg` y `tools/raw/case5/examine_expediente_serie_en.jpg` (1280×720, gemelos). Recortes por panel A–E y zoom de las `s` de A y del renglón 6 de B. No se corrió `process_case5_assets.py`.
+
+**Veredicto: NO CUMPLE** en F2 (defecto de la `s` caída AUSENTE en A y B, ambas variantes) y en F6 EN (español residual en A y en la etiqueta del frasco). Cumple en contenido de paneles, fechas canónicas B=28 AGO / C=21 AGO, contrato del Señalamiento 1, estilo y gemelos de composición. El jugador ya puede leer los seis renglones de B; I24 sigue sin pintura.
+
+**Cumple**
+- Cinco paneles en fila sobre mesa de roble con lámpara de tungsteno; sin rótulos explicativos por panel (F1 líneas 20/26; F5 línea 55). Recortes `esA`–`esE` / `enA`–`enE`.
+- Fechas por letra, no invertidas: ES `12 JUL` / `28 AGO` / `21 AGO` / `15 SEP` / `24 OCT`; EN `JUL 12` / `AUG 28` / `AUG 21` / `SEP 15` / `OCT 24` (F2 línea 30, F3 línea 41).
+- Panel B ES: los seis renglones canónicos, incluyendo «Servicio de cierre incluido. Cinco minutos.» (F2 línea 32; `trial_day3_success_sam.ts:35-41`).
+- Panel B EN: los seis renglones de `trial_day3_success_sam_en.ts:35-41`, incluyendo `Loading door latch`, `Gallery 2 grate`, `Watchman`, `Chiquitolina pills`, `Camera roll` y `Closing service included. 5 min.` (F2 línea 34, F6 línea 62).
+- Panel C: frasco ámbar con etiqueta manuscrita + molde de cera agrietado en forma de llave; no pólvora ni bloque de madera (F1 línea 23).
+- Panel D: `$12,000` y `EFECTIVO` (ES) / `CASH` (EN); fecha de pago `3 SEP 1982`, no 15 SEP (F1 línea 24, F3 línea 40).
+- Panel E: telegrama mecanografiado con acuse de recibo `24 OCT 1982` reclamando la parte impaga de un collar; sin acta y sin fotografía (F1 línea 25, F4 línea 50).
+- Año visible 1982; sin 1975 ni «No. 3178/75» (F3 línea 39).
+- F5: cel-shading de dos tonos, contorno carbón, registro de papel/madera/polvo; sin fotorrealismo ni magenta en primer plano.
+- Gemelos de composición: misma mesa, mismos cinco folders, mismos objetos C/D/E (F6 línea 60).
+
+**Defectos confirmados**
+1. MAYOR / AUSENTE (F1 líneas 21/33, F2 líneas 31/33; §24.C I24) — Ambas variantes: todas las `s` minúsculas de A y B reposan en la línea de base. Zoom de `Enciclopedias`, `desde`, `cierre`, `incluido`, `minutos`, `since`, `latch`: ninguna cuelga media línea ni se inclina. Tres regeneraciones no movieron el glifo. Rompe la identidad mecánica de la máquina cuando A/B se leen juntos.
+2. MAYOR / CONTRADICE (F6 líneas 61-63) — EN, panel A: la segunda línea sigue en español (`sociedad disuelta desde 1971`) en vez de `dissolved since 1971`. El nombre propio de la sociedad está bien; el resto del texto legible no está localizado.
+3. MEDIO / CONTRADICE (F6) — EN, panel C: la etiqueta manuscrita lee `Valeriana`, no `valerian`.
+4. MENOR / MALFORMADO (F2) — ES panel D: `articulo` sin tilde; ES panel E: pestaña `24 OCT.` con punto. No rompen el argumento.
+
+**Correcciones de auditoría**
+- Defectos 1–4 y 6–8 y 10–11 de la pasada sobre el RAW anterior: ~~retirados como bloqueantes de esta imagen~~ porque la regeneración Lote J los corrige. Traza: la imagen vieja invertía B/C, sustituía B/C/E, imprimía 1975, acta con foto y rótulos de infografía; el RAW nuevo no.
+- Defecto 5 (s caída) **se reitera** sobre el RAW nuevo: sigue AUSENTE (defecto 1 de esta pasada).
+- Defecto 9 (EN mezclado) **se reduce**: D y E y el panel B ya están en inglés; queda español en A (defecto 2) y `Valeriana` en C (defecto 3).
+
+**Recomendación** (si hay otra pasada; no gastar el presupuesto en rehacer B/C/E)
+1. Misma composición. Cada `s` minúscula de A y B cuelga media línea bajo la base, inclinada a la izquierda; no convertir las tarjetas a mayúsculas.
+2. EN panel A: `dissolved since 1971`. EN panel C: etiqueta `valerian`.
+
+## Hallazgos de auditoría 2026-09-19 (regeneración Lote J, pasada dirigida)
+
+RAW: `tools/raw/case5/examine_expediente_serie.jpg` y `_en.jpg` (1280×720). Recortes de A, renglón 6 de B y etiqueta C. Sin pipeline.
+
+**Veredicto: NO CUMPLE** en F2 de la `s` caída in-word. EN ya localiza A y C. Fechas B/C y contenidos de paneles se mantienen.
+
+**Cumple**
+- ES/EN: B=`28 AGO`/`AUG 28`, C=`21 AGO`/`AUG 21`; seis renglones; valeriana+molde de llave; telegrama 24 OCT; `$12,000`; gemelos de mesa y folders.
+- EN F6: panel A `dissolved since 1971` (ya no `sociedad disuelta`); etiqueta C `valerian` (ya no `Valeriana`); line 6 exacta `Closing service included. 5 min.` Fechas `JUL 12` / `AUG 28` / `AUG 21` / `SEP 15` / `OCT 24`.
+
+**Defectos confirmados**
+1. MAYOR / AUSENTE (F2; panel A, ambas variantes) — Las `s` de `Enciclopedias`, `desde`/`since`, `sociedad`, `Universal` siguen en la línea de base. Recortes `esA`/`enA`. No hay glifo in-word medio renglón más abajo.
+2. MAYOR / MALFORMADO (F2; ES renglón 6) — `Cinco minutos` conserva la `s` en la base y añade una segunda `s` colgada a la derecha. No es la misma letra desplazada dentro de la sílaba; es una letra extra. EN renglón 6 no baja ninguna `s` de `Closing`/`service`.
+3. Intentos que se descartaron en esta pasada: (a) ES que borraba letras (`Enciclopedi`, `Univer al`); (b) ES con `s` huérfana en línea propia; (c) EN que imprimía la instrucción (`Clo' s dropped half a line ing…`).
+
+**Correcciones de auditoría**
+- Defectos 2–3 de la pasada Lote J (español en A EN; `Valeriana` EN): ~~corregidos~~ en este RAW EN.
+- Defecto 1 (s caída) **se reitera** en A; en ES B6 pasa de AUSENTE a MALFORMADO (s duplicada).
+
+**Recomendación**
+1. No borrar ni duplicar la `s`. En `Enciclopedias` / `desde` / `minutos` (ES) y `Enciclopedias` / `since` / `Closing` (EN), la misma `s` de la sílaba baja media línea, todavía entre sus letras vecinas.
+
+## Hallazgos de auditoría 2026-09-19 (Espanto-lock)
+
+RAW: `tools/raw/case5/examine_expediente_serie.jpg` y `_en.jpg` (1280×720). Recortes A–E y zoom de `Enciclopedias`, renglón 6 de B y etiqueta C. Identidad de la `s` caída tomada de `examine_esquina_tarjeta.jpg` / `_en.jpg` (`Espanto` = E + `s` baja + panto, la letra sigue DENTRO de la palabra). `plate_cinco_papeles` no se tocó. Sin pipeline.
+
+**Veredicto: CUMPLE** en F1–F4 y en F2 del defecto in-word (panel A `Enciclopedias` y renglón 6 de B) a la mecánica de Espanto. F6 EN localiza A/C/B. Gemelos de composición. MENOR: otras `s` de A/B siguen en la base; la caída de `Closing` es más baja que la de `Enciclopedias` porque el renglón `5 min.` no deja media línea libre.
+
+**Cumple**
+- Cinco paneles en fila, sin rótulos explicativos, mesa de peritajes, cel-shade §23.0 (F1/F5). Recortes `esA`–`esE` / `enA`–`enE`.
+- Fechas por letra: ES `12 JUL` / `28 AGO` / `21 AGO` / `15 SEP` / `24 OCT`; EN `JUL 12` / `AUG 28` / `AUG 21` / `SEP 15` / `OCT 24` (F2/F3 I34).
+- Panel B seis renglones canónicos ES, incluida `6. Servicio de cierre incluido. Cinco minutos.`; EN `Loading door latch` / `Gallery 2 grate` / `Watchman` / `Chiquitolina pills` / `Camera roll` / `Closing service included. 5 min.`
+- Panel C valeriana manuscrita + molde de cera de llave; EN etiqueta `valerian`.
+- Panel D `$12,000` `EFECTIVO`/`CASH`, pago `3 SEP 1982`.
+- Panel E telegrama 24 OCT con acuse, collar impago; sin acta ni foto.
+- F2 I24 panel A: `Enciclopedias` = Enciclopedia + una `s` minúscula media línea más baja, todavía última letra de la palabra (misma mecánica que `Espanto`). No se borran `a`/`i`/`d`. No hay `s` huérfana en línea propia. Recortes `esA_text` / `enA_text`.
+- F2 I24 renglón 6 ES: `minutos` = minuto + una `s` baja tras la `o`; se retiró la `s` extra colgada que duplicaba la palabra. No hay `s` en renglón propio. Recorte `esB6`.
+- F2 I24 renglón 6 EN: `Closing` permanece una palabra; la `s` queda entre `o` e `i`, un poco más baja (Clo + `s` baja + ing), sin espacio tipo `Clo ing` y sin borrar vecinas. Recorte `enB6`.
+- F6: EN `dissolved since 1971`; `since` con `s` baja; sin `sociedad disuelta` ni `Valeriana`.
+
+**Defectos confirmados**
+1. MENOR / AUSENTE (F2, alcance extra) — En ES, `desde` / `sociedad` / `disuelta` y las `s` de los renglones 1–5 de B siguen en la línea de base. El contrato de esta pasada pedía A (`Enciclopedias`) y el renglón 6 de B, no cada `s` de la ficha. EN `Closing` cae menos que `Enciclopedias` por el renglón `5 min.` pegado debajo.
+2. MENOR / MALFORMADO (F2) — ES pestaña E `24 OCT.` con punto. No rompe el telegrama ni el año 1982.
+
+**Correcciones de auditoría**
+- Defecto 1 de la pasada dirigida (AUSENTE in-word en A): ~~corregido~~ en ambas variantes: `Enciclopedias` ya es Enciclopedia + `s` baja, sin `Enciclopedi` y sin `s` huérfana.
+- Defecto 2 de la pasada dirigida (ES B6 `minutos` + `s` extra): ~~corregido~~; queda una sola `s`, dentro de `minutos`.
+- Defecto 2 (EN B6 `Closing` en la base): ~~reducido~~ a caída in-word menor (defecto 1 de esta pasada, MENOR).
+- Intentos descartados en esta pasada (no instalados): ES que escribía `Enciclopedi` / `de de 1971`; EN que escribía `Clo ing` o `Cloing`; collages en gris con regla de `examine_esquina_tarjeta`.
+
+**Recomendación**
+1. No regenerar el tablero entero. Si se busca simetría total con Espanto en `Closing`, hay que dejar más aire bajo el renglón 6 EN o bajar sólo 4–6 px para no chocar con `5 min.`
+2. No tocar `plate_cinco_papeles` (ya CUMPLE).

@@ -78,3 +78,24 @@ La fuente de verdad es el spec, no una imagen existente. El icono debe identific
 
 - No se inspeccionó ninguna imagen, conforme al protocolo `asset-facts`; no se confirma ni descarta ningún defecto visual del icono o de las variantes de la vista ampliada.
 - La aceptación futura debe comprobar identidad compartida entre icono y `detailedView`, dos paneles, cinco puntos legibles, punto cinco torcido, `8 NOV`, `pendiente`/`pending`, dos relojes parados, ausencia de marcadores y localización EN coherente.
+
+## Hallazgos de auditoría 2026-09-19 (post-regeneración Lote D)
+
+**Veredicto: CUMPLE** para el icono de Acta y, por el lote, para la vista ampliada (ver `examine_efectos.md` post-regeneración). RAW del icono: celda (col 1, row 3) de `tools/raw/case5/case5_evidence_icons_raw.png` (rejilla 6×4); las demás celdas no se regeneraron.
+
+### Cumple
+
+- **Icono F1:** recorte de objeto sobre magenta, sin habitación ni personajes. Identidad: libreta negra cerrada + hoja de carbón morada + dos relojes de pulsera. Sin placa «COPIA CARBONO». Nombra el mismo bundle que el `detailedView` (`EvidenceCatalogCase5EsB.ts:64-69`).
+- **Vista ampliada:** dos paneles, cinco puntos de la cadena, sello `8 NOV`, `pendiente`/`pending`, pulseras paradas — auditoría en `examine_efectos.md`. El icono no es fuente de verdad de esos textos.
+- **F2 `AUSENTE` en el icono:** sin flechas, sin conclusión judicial, sin EXAMINE.
+- **F5:** cel-shading plano, contorno carbón, sin rosa en el objeto. Magenta de celda igualado al de la hoja (≈250,2,142).
+- **F6:** el icono es lengua-neutral; ES/EN se resuelven en `examine_efectos.webp` / `_en.webp`.
+
+### Defectos confirmados
+
+- Ninguno bloqueante en el icono. El punto cinco «más torcido» es un hecho de la lámina, no del thumbnail (MENOR registrado en `examine_efectos.md`).
+
+### Correcciones de auditoría
+
+- ~~No se inspeccionó ninguna imagen~~ → inspección del RAW de la celda (1,3) y de ambos `examine_efectos`.
+- La celda previa (libreta con tejuelo «COPIA CARBONO» + hoja gris) se sustituyó por el bundle libreta + carbón morado + dos pulseras, sin tocar las otras 23 celdas.

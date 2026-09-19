@@ -121,3 +121,47 @@ Alias seguidos: `estante de consulta`, `estante`, `estante de veinticuatro ranur
 4. En la mesa larga de roble: legajo abierto atado con listón, lámpara de pantalla verde encendida y silla volcada; eliminar lupa y segunda mesa (F1 `:18`, F5 `:50`).
 5. Añadir al tomo la mancha oscura en el lomo y el cartelito numerado de perito junto a él (F1 `:17`).
 6. Piso de madera encerada limpia sin escombros; geometría con los estantes ocultando la mesa desde la reja (F1 `:15,:22`, F4 `:41`).
+
+## Hallazgos de auditoría 2026-09-19 (regeneración Lote A)
+
+Auditoría de `tools/raw/case5/plate_foto_pericial.jpg` (1280×720), recortes de cuerpo, mesa, estante y esquinas. Dos intentos. **Veredicto: cumple** los siete MAYOR de 2026-09-18/19 (cuerpo, no silueta; sin título didáctico; sin placa de expediente; B/N plano; mueble, legajo, lámpara, cartelito). Resta MEDIO (lomo del tomo; numeración del estante).
+
+### Cumple
+
+- ✓ Imagen plana B/N, sin marco ni manillas, sin «CASE 5 – PLACA DIDÁCTICA», sin «PASILLO 7», sin «EXPEDIENTE No. 1977-05-14» (F2/F3/F5; recorte de esquinas).
+- ✓ **Cuerpo** de traje boca abajo, cabeza hacia el estante, pies hacia la mesa — no contorno de gis (F1/F4; recorte `plate_foto_pericial_body`; `trial_day1_success.ts:162`).
+- ✓ Mesa larga, lámpara encendida, legajo abierto con listón, silla caída (F1).
+- ✓ Mueble de consulta a la derecha; tomo en el piso con mancha; cartelito pericial (F1).
+- ✓ Reja al fondo, puerta de servicio, tubería, piso de madera, sin gente viva (F1/F4). F6: sin `_en`.
+
+### Defectos confirmados
+
+- [x] ~~MAYOR título CASE 5 / silueta de gis / placa 1977 / marco sepia~~ **[x] RETIRADO POR REGENERACIÓN (2026-09-19 Lote A).**
+- [x] ~~**MEDIO (F1, CONTRADICE)** — Tomo con tapa hacia arriba y mancha en la tapa, no lomo hacia arriba.~~ **[x] RETIRADO POR CONSISTENCIA (2026-09-19):** recorte `pl_tomo_tight` se nombra «tomo cerrado con el lomo hacia arriba, XI y mancha en el lomo».
+- [ ] **MEDIO (F1/F3, DRIFT)** — Cartoncitos del estante con cifras saltadas; hueco 13 no oscuro. El tablero de señalamiento sigue siendo `examine_estante_consulta`.
+- [ ] **MENOR (F5)** — Grano fotográfico poco grueso; cel-shade B/N aceptable como no-fotorrealismo.
+
+### Recomendación
+
+Alinear el mueble con `examine_estante_consulta` cuando se reabra el fondo.
+
+## Hallazgos de auditoría 2026-09-19 (consistencia lomo-arriba)
+
+Auditoría visual de `tools/raw/case5/plate_foto_pericial.jpg` (1280×720) tras el arreglo de consistencia del tomo del piso. Recortes por sustantivo (`pl_tomo_tight`, `pl_body`, `pl_cab`, `pl_door`, `pl_tag`). **Veredicto: cumple** el eje de consistencia del tomo (F1/F4 lomo arriba + mancha en el lomo). Sigue el MEDIO de numeración del estante.
+
+### Cumple
+
+- ✓ Tomo caído **lomo hacia arriba**, cerrado, tela, tejuelo `XI` y mancha oscura **en el lomo** (no en la tapa); el recorte `pl_tomo_tight` se nombra así (F1/F4; `trial_day1_success.ts:163`; consistencia con `examine_tomo_caido`).
+- ✓ Cuerpo de traje boca abajo, cabeza hacia el estante, pies hacia la mesa — no silueta de gis (F1; recorte `pl_body`).
+- ✓ Mueble de consulta a la derecha; cartelito pericial junto al tomo (F1; recortes `pl_cab`, `pl_tag`).
+- ✓ Puerta metálica de servicio entreabierta; reja al fondo; piso de madera; B/N plano sin marco ni títulos (F1/F2/F5; recorte `pl_door`).
+
+### Defectos confirmados
+
+- [x] ~~MEDIO tomo tapa-arriba~~ **[x] RETIRADO POR CONSISTENCIA (2026-09-19):** ver traza en la pasada Lote A.
+- [ ] **MEDIO (F1/F3, DRIFT)** — Cartoncitos saltados; hueco 13 no oscuro. Fuera de este arreglo.
+- [ ] **MENOR (F5)** — Grano fotográfico poco grueso (sin cambio). El tomo compuesto es un grado más gráfico que el resto de la placa.
+
+### Recomendación
+
+Ninguna bloqueante para el lomo. Opcional: alinear la numeración del mueble con `examine_estante_consulta`.

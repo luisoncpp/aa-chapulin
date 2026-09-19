@@ -65,4 +65,22 @@ Es la prueba física que el jugador recoge en el pasillo 7: el Tomo XI de *El Sa
 
 ## Hallazgos de auditoría 2026-09-19
 
-- No se inspeccionó ninguna imagen por protocolo. No se confirma ningún defecto visual de la imagen actual; esta hoja contiene únicamente hechos verificables derivados del spec, catálogos y guiones ES/EN.
+- ~~No se inspeccionó ninguna imagen por protocolo. No se confirma ningún defecto visual de la imagen actual; esta hoja contiene únicamente hechos verificables derivados del spec, catálogos y guiones ES/EN.~~ (Sustituido por la auditoría del icono regenerado en Lote A.)
+
+## Hallazgos de auditoría 2026-09-19 (regeneración Lote A)
+
+Auditoría del icono en `tools/raw/case5/case5_evidence_icons_raw.png` celda col 3, fila 0 (y fuente 1:1 de generación). Recorte `cell_tomo_caido`. **Veredicto: cumple.**
+
+### Cumple
+
+- ✓ Tomo de tela verde oliva, tejuelo `XI`, mancha parda **en el lomo** visto de canto (F1/F2; prueba de nombrar: «lomo de tomo XI con sangre»).
+- ✓ Fondo magenta `#FF00FF`. Sin media piel, sin cantoneras, sin pasillo, sin peso impreso (F1/F3).
+- ✓ Sin flechas ni prosa (F2). La guarda y el sello quedan en `examine_tomo_caido` (F4).
+
+### Defectos confirmados
+
+Ninguno bloqueante. El icono es más «lomo de frente» que el tomo del fondo (tapa arriba): DRIFT menor de encuadre, no de identidad.
+
+### Recomendación
+
+Ninguna. Si se reabre el fondo, girar el tomo del piso a esta misma identidad de lomo.

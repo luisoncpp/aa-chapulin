@@ -116,3 +116,76 @@ Variante EN (`.tmp-audit/examine_termografo_en.png`):
 3. Asiento de la bitácora con el texto exacto «tubo reventado, muro poniente pasillo 7; caldera y dos secadores al máximo», fechado 3 de diciembre, más la nota de la sonda remota del pasillo 7; suprimir «REGISTRO VERIFICADO…», la franja «ARCHIVO JUDICIAL…» y el expediente atado.
 4. EN: traducir exactamente el texto legible ES acorde a `EvidenceCatalogCase5EnB.ts:71-76`, sin fechas 14–20/04/77, sin «basement», sin tinta roja, manteniendo 3/4/5 de diciembre, 19→31 °C y pasillo 7; eliminar la sombra rosada.
 5. Verificar contra `bg_archivo_caldera` y `informe_forense_c5` tras regenerar (misma tira, misma marca de 18:40).
+
+## Hallazgos de auditoría 2026-09-19 (regeneración RAW)
+
+**VEREDICTO: CUMPLE (leve)** en ambas variantes. Regeneración de `tools/raw/case5/examine_termografo.jpg` y `examine_termografo_en.jpg` (1280×720, 16:9). Esta pasada pinta la **meseta** (sube el día 3 y se aplana), no la sierra; el `detailedView` y el diálogo de defensa ya la sostienen (decisión pendiente del spec, no resuelta aquí). `plate_curva_enfriamiento` y `bg_archivo_caldera` no se tocaron.
+
+### Cumple (ES, recortes `/tmp/audit-termografo/v3/`)
+
+- Composición documental de dos paneles (bitácora suelta arriba, tira semanal desenrollada abajo) sobre escritorio de roble; no es sala ni lámina explicativa: ✓ F1-1, §23.3.
+- Asiento manuscrito fechado «3 de diciembre» con el texto exacto «tubo reventado, muro poniente pasillo 7; caldera y dos secadores al máximo»: ✓ F1-2, F2 TEXTO EXACTO, F3 (`§16.2` detailedView).
+- Nota «Sonda remota: pasillo 7. Registrador en sótano.»: la medición es del pasillo, el tambor queda abajo: ✓ F1-3, F2, F4 (`archivo_caldera_hotspots.ts:30-32`).
+- Tira semanal con eje de días **3 DIC / 4 DIC / 5 DIC**, marcas de hora 0–12–18–24 bajo el sábado 4, grados en vertical con 19 y 31, nota «archivada 5 DIC»: ✓ F1-4, F3. El punto de las 18:40 del día 4 **puede existir** en el eje (bloqueante previo retirado).
+- Línea de tinta 19→31 °C que termina de subir al cierre del 3 DIC y queda **plana en 31 °C** todo el 4 y el 5 (meseta, no sierra): ✓ F1-5, F3, F4 (`trial_day4_success.ts:11-17`).
+- Marca pericial a **lápiz/grafito** sobre la meseta del sábado, sin flecha y sin rótulo «PUNTO LÁPIZ PERITO»: ✓ F1-6 (forma), F1-7/F5 `AUSENTE`.
+- Sin personas, manos, expediente atado, cromo «EXAMINE», franja «ARCHIVO JUDICIAL», «REGISTRO VERIFICADO», conclusiones 16:35–17:05 ni tabla a 20 °C impresa: ✓ F1-7, F2 `AUSENTE`, F4, F5.
+- Cel-shading plano, contorno carbón `#1A1A1A`, papel y madera ilustrados, sin magenta de primer plano ni inglés en ES: ✓ F5, F6.
+
+### Cumple (EN, recortes `/tmp/audit-termografo/en3/`)
+
+- Gemelo literal de ES: mismos paneles, encuadre, meseta 19→31, días 3–5, marca de grafito en la columna del sábado: ✓ F6, §23.3:4064.
+- Texto traducido, no un formulario de 1977: «MAINTENANCE LOG», «December 3», «burst pipe, west wall corridor 7; boiler and two dryers at maximum», «Remote probe: corridor 7. Recorder in basement.», «WEEKLY THERMOGRAPH», «archived 5 DEC», «3 DEC / 4 DEC / 5 DEC», «DEGREES C»: ✓ F6-2, `EvidenceCatalogCase5EnB.ts:71-76`.
+- La sonda mide el pasillo 7; «Recorder in basement» no sustituye la medición al sótano: ✓ F6-3 (el defecto previo «Location: basement, east wing» no reaparece).
+- Sin fechas 14–20/04/77, sin tinta roja, sin tabla de actividades, sin sombra rosa, sin cromo EXAMINE: ✓ F1/F2/F5/F6.
+
+### Defectos confirmados
+
+1. **MEDIO — MALFORMADO (F1/F3)** — Ambas variantes: el punto a lápiz está sobre la meseta del **4 de diciembre**, pero a la izquierda de la marca «18» (lectura honesta ~15–16 h, no 18:40). El eje semanal ya permite las 18:40; la marca no cae sobre ese tick. No rompe el hotspot (el sábado a 31 °C sostenidos se lee), sí incumple la hora exacta de §23.3 / `informe_forense_c5`. Misma desviación en ES y EN (no es drift de gemelo).
+2. **MENOR — CONTRADICE (F2)** — Título diegético extra «TERMÓGRAFO SEMANAL» / «WEEKLY THERMOGRAPH.» (el EN lleva punto); funcional, no editorial de solución, pero el spec no lo pide. Conservado porque nombra el objeto de la tira.
+
+### Correcciones de auditoría
+
+- Hallazgos 1, 3, 4, 5, 6, 7, 8, 9, 10 y 11 de la pasada previa sobre los JPEG antiguos: **resueltos por regeneración** (eje semanal 3–5 DIC; asiento completo con «muro poniente» y «dos secadores»; sin flecha ni «PUNTO LÁPIZ PERITO»; sin EXAMINE / expediente / «REGISTRO VERIFICADO»; EN gemelo, no el formulario 14–20/04/77).
+- Hallazgo 2 previo (tinta+flecha cerca de la hora 16): ~~tinta con flecha~~ resuelto; la hora exacta 18:40 **sigue abierta** como el defecto 1 de esta pasada.
+- Ningún hallazgo `[x] RETIRADO POR REVISIÓN` en esta pasada.
+- Forma de la línea: se pintó meseta según `detailedView` §16.2/§23.3 y `trial_day4_success.ts:11-17`, no la sierra del NARRADOR en `archivo_caldera_hotspots.ts:33-35`. El conflicto abierto del spec permanece.
+
+### Recomendación
+
+1. Si el revisor exige el tick exacto 18:40: desplazar el smudge de grafito sobre la marca «18» de la columna 4 DIC/DEC, sin flecha ni rótulo, en **ambos** gemelos.
+2. No regenerar `plate_curva_enfriamiento` ni `bg_archivo_caldera` (cifras y argumento no cambian; el fondo ya cumple).
+3. No correr `process_case5_assets.py` en esta tanda (RAW only).
+
+## Hallazgos de auditoría 2026-09-19 (punto 18:40)
+
+**VEREDICTO: CUMPLE** en ambas variantes. RAW `tools/raw/case5/examine_termografo.jpg` y `examine_termografo_en.jpg` (1280×720). Se conservó la placa que ya cumplía (meseta, asiento exacto, eje 3–5 DIC, gemelo EN) y se colocó el grafito **sobre la línea de 31 °C, justo después del tick 18** de la columna del 4 (18:40), no entre 12 y 18. `plate_curva_enfriamiento` y `bg_archivo_caldera` no se tocaron. Pipeline no ejecutado.
+
+### Cumple (ES)
+
+- Bitácora intacta: «3 de diciembre»; «tubo reventado, muro poniente pasillo 7; caldera y dos secadores al máximo»; «Sonda remota: pasillo 7. Registrador en sótano.»: ✓ F1-2/F1-3, F2, F3.
+- Tira semanal 3 DIC / 4 DIC / 5 DIC, horas 0–12–18–24, subida el día 3 y meseta a 31 °C: ✓ F1-4/F1-5, F3, F4.
+- Punto a lápiz en la meseta del sábado, **justo a la derecha del tick 18 y a la izquierda del 24** (lectura 18:40); el hueco previo ~15–16 h queda línea limpia: ✓ F1-6, F3 (`§23.3`; `informe_forense_c5`). Recorte de nombrar: «smudge de grafito sobre la línea de 31 °C junto al 18».
+- Sin flecha, sin «PUNTO LÁPIZ PERITO», sin EXAMINE, sin personas: ✓ F1-7, F5.
+- Cel-shading y contorno carbón; español sólo en ES: ✓ F5, F6.
+
+### Cumple (EN)
+
+- Gemelo: misma geometría y el mismo punto a las 18:40 del 4 DEC: ✓ F6.
+- Texto inglés intacto (MAINTENANCE LOG, west wall corridor 7, two dryers, Remote probe: corridor 7): ✓ F6-2.
+
+### Defectos confirmados
+
+Ningún MAYOR ni MEDIO en esta pasada.
+
+1. **MENOR — CONTRADICE (F2)** — Sigue el título diegético extra «TERMÓGRAFO SEMANAL» / «WEEKLY THERMOGRAPH.» (no pedido; no señala la solución). Igual que la pasada anterior.
+
+### Correcciones de auditoría
+
+- Defecto 1 de «regeneración RAW» (marca ~15–16 h, a la izquierda del 18): **resuelto**. El grafito generado se desplazó sobre la meseta hasta ~18:40; image_gen no lograba X e Y a la vez (o caía en el eje, o volvía a 15 h).
+- El MENOR del título extra se conserva (no bloquea).
+- Ningún hallazgo `[x] RETIRADO POR REVISIÓN`.
+
+### Recomendación
+
+Cumple. No regenerar el lote H restante. No correr `process_case5_assets.py` en esta tanda.

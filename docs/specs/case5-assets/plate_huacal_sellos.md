@@ -88,3 +88,30 @@ Clase: `plate`. Espec: §23.0, §23.4, L6 de §7.3/§14.1. Guion: D3 bodega, `ho
   6. Sin fecha, cifra o lectura de sello inventadas; los «cuántas veces, cuándo y quién» permanecen en la narración (F3).
   7. Eliminar la franja inferior con expedientes y vela; fondo crema plano a página completa (F5).
   8. Renderizar a 1280 × 720 (F5).
+
+## Hallazgos de auditoría 2026-09-19 (regeneración Lote C)
+
+RAW auditado: `tools/raw/case5/plate_huacal_sellos.jpg` (1280 × 720). Recortes de las tres viñetas.
+
+**Veredicto: CUMPLE** en contenido (F1/F4), texto (F2/F6), exclusiones y estilo (F5).
+
+### Cumple
+
+- Tres viñetas mudas en fila, fondo crema de manual escolar, sin título, rótulos, NOTA, placa, fechas, flechas ni medallones (F2/F6; cancela los MAYOR de texto de la pasada previa).
+- Viñeta 1: madera vista desde arriba con junta central cruzada por tiras engomadas encabalgadas, amarilleando debajo (F1/F4, `bodega_masa_hotspots.ts:28`).
+- Viñeta 2: mano caricaturesca firmando una tira nueva; rúbrica ilegible (F1, `bodega_masa_hotspots.ts:29`).
+- Viñeta 3: tira blanca nueva pegada encima de las capas previas, que siguen visibles; sin lacre, listón ni sello (F1).
+- Sin personajes completos, sótano, cajones, máquina, números de huacal ni fotografía forense (F1 AUSENTE).
+- 1280 × 720, cel-shading, sin magenta en primer plano (F5). Una sola lámina ES/EN (F6).
+
+### Defectos confirmados
+
+- `MALFORMADO` / **MENOR** / F1 — Las viñetas no muestran el canto de una tapa de huacal: se leen como tablones con tiras. La junta y el proceso de firmar/superponer sí se entienden.
+
+### Correcciones de auditoría
+
+- ~~MAYOR de texto de manual, viñeta 2 sin mano, viñeta 3 con lacre, flechas, vela y 960 × 540~~ — retirados por la RAW nueva; la traza de 2026-09-19 sobre `assets/plate_huacal_sellos.webp` se conserva arriba.
+
+### Recomendación
+
+Ninguna bloqueante. Opcional: dibujar el canto rectangular de la tapa en las tres viñetas.

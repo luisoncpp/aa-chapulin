@@ -112,3 +112,23 @@ Veredicto: **NO CUMPLE** — eje contenido (posición del hueco) y eje exclusion
 2. `plate_tomo_trece`: redibujar el titular del recorte de periódico como caligrafía gótica ilegible (tinta corrida, manchada o difuminada, sin glifos individuales legibles); conservar cuerpo y epígrafes como rayas ilegibles.
 3. `plate_tomo_trece`: conservar lo ya verificado — contorno punteado sin volumen, vecinos aplomados, publicidad con doblez y sombra, estilo plano didáctico y ninguna marca que señale la ranura.
 4. Regenerar junto con `examine_estante_consulta` (ES/EN), `bg_archivo_pasillo7`, `bg_archivo_pasillo7_d4` y `plate_foto_pericial`, verificando en todos que el hueco quede en la ranura 13; este activo no es fuente de verdad del otro (§23.3, línea 4057; §23.4, línea 4083).
+
+## Hallazgos de auditoría 2026-09-19 (regeneración Lote A)
+
+Auditoría de `tools/raw/case5/plate_tomo_trece.jpg` (1280×720), recortes de la fila y del recorte de periódico. **Veredicto: cumple** el eje bloqueante (hueco en la posición 13; titular ilegible). Estilo didáctico y F6 intactos.
+
+### Cumple
+
+- ✓ Fila única; **12 lomos a la izquierda**, contorno punteado vacío, lomos a la derecha. El hueco se nombra «posición 13», no 12 (F1/F3/F4; recorte `plate_tomo_trece_row`).
+- ✓ Contorno punteado sin volumen (F1). Publicidad de época debajo, titular gótico **borrado en mancha de tinta**, sin glifos de empresa (F2; recorte `plate_tomo_trece_news`).
+- ✓ AUSENTE escena del crimen, ranura 11 especial, personajes, flechas, UI (F1/F5).
+
+### Defectos confirmados
+
+- [x] ~~MAYOR hueco en posición 12 (11 lomos a la izquierda)~~ **[x] RETIRADO POR REGENERACIÓN (2026-09-19 Lote A):** 12 lomos a la izquierda.
+- [x] ~~MEDIO titular «Tmdaami Hom iynisa» con glifos legibles~~ **[x] RETIRADO POR REGENERACIÓN:** el titular es una mancha.
+- [ ] **MEDIO (F3, CONTRADICE)** — El flanco derecho admite lectura de 12 lomos (24 impresos + 1 hueco = 25 posiciones). El eje «Tomo Trece» se sostiene por los 12 de la izquierda; el total 24/23 queda dudoso.
+
+### Recomendación
+
+Quitar un lomo del flanco derecho para dejar 11 a la derecha (24 posiciones, 23 impresos).

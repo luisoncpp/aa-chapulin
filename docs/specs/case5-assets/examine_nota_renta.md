@@ -132,3 +132,33 @@ EN (`examine_nota_renta_en.webp`):
 Gemelas (F6):
 - **MEDIO / DRIFT / F6** — Las variantes no son gemelas de composición: difieren en textura y color del papel, presencia/posición de la marca circular, estado del sobre, número de renglones y encuadre de props. §23.3:4064 exige composición y marcas físicas idénticas con sólo el texto cambiado.
 
+## Hallazgos de auditoría 2026-09-19 — regeneración Lote I (RAW)
+
+**Veredicto: CUMPLE** en contenido bloqueante (texto exacto, vivienda/dwelling **72**, sobre abierto, nota suelta, marca de liga, `s` caída visible, EN sin «Truly yours», gemelos). Residual MEDIO: cuatro renglones visuales frente a los tres de §23.3 (conflicto abierto de la hoja: dos frases largas). Archivos: `tools/raw/case5/examine_nota_renta.jpg` y `_en.jpg` (1280×720, 3 intentos ES / 1 EN).
+
+### Cumple
+
+- ES: texto literal «Adjunto el pago de diecisiete mensualidades vencidas a cargo del C. Ramón Valdés, inquilino de la vivienda 72.» y «Se ruega expedir el recibo correspondiente y conservarlo. No se requiere respuesta.» (F2; `vecindad_hotspots.ts:28-35`; el juez puede leer «se ruega»).
+- EN: “Enclosed is payment for seventeen overdue months charged to C. Ramon Valdes, tenant of dwelling **72**.” y “Please issue the corresponding receipt and retain it. No reply required.” Sin «Truly yours» (F2; `vecindad_hotspots_en.ts:28-36`).
+- Sobre de manila **abierto**, solapa levantada, interior visible, sin timbres (F1 hecho 3; recorte del sobre).
+- Nota suelta sin alfiler (F4). Marca circular de liga en esquina **inferior** derecha, idéntica en ES/EN (F1/F6).
+- `s` caída visible al estilo de subíndice con subrayado bajo `mensualidades`/`vivienda`/`respuesta` (ES) y `overdue`/`months`/`dwelling`/`Please`/`issue`/`corresponding` (EN) (F2; §16.2).
+- Cel-shading plano, sin HUD EXAMINE, sin fecha ni $4,250 (F3, F5). Gemelos de la misma composición (F6).
+
+### Defectos confirmados
+
+- **[MEDIO / CONTRADICE]** (F1 hecho 2; §23.3:4051) — Cuatro renglones visuales (la última frase parte «No se requiere respuesta» / “No reply required.”). El conflicto abierto de la hoja admite cortar dos frases en tres renglones, no en cuatro.
+- **[MENOR / MALFORMADO]** (F2 EN) — EN subraya `dwelling` y cuelga una `s` aunque la palabra no contiene `s`; el defecto sigue siendo visible en `months` / `Please` / `issue` / `corresponding`.
+
+### Correcciones de auditoría
+
+- ~~Texto ES de comparecencia / EN «dwelling 4» y «Truly yours»~~ — [x] RETIRADO POR REVISIÓN (2026-09-19, Lote I).
+- ~~Sobre cerrado ES~~ — [x] RETIRADO POR REVISIÓN.
+- ~~Alfiler / marca de liga ausente o en esquina superior~~ — [x] RETIRADO POR REVISIÓN.
+- ~~Gemelas distintas~~ — [x] RETIRADO POR REVISIÓN.
+
+### Recomendación (si hay otra pasada)
+
+1. Forzar la tercera línea como una sola: «Se ruega… No se requiere respuesta.» / “Please issue… No reply required.”
+2. No colgar `s` bajo palabras que no la tienen (`dwelling`).
+

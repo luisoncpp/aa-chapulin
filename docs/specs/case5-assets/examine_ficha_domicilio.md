@@ -125,3 +125,69 @@ Clase: `examine`. Espec: §5.3 (`ficha_domicilio`), §18.5 y §23.3. Guion: clí
 5. Fechas manuscritas limpias `1969` y `VIII` sin trazos extra, en ambas variantes.
 6. Gemelos con composición idéntica; sólo cambia el texto legible (ES español de §18.5, EN inglés del guion, sin mezcla de idiomas).
 7. Estilo §23.0 literal: cel-shading plano, contorno carbón, sin fotorrealismo, degradados ni fondo de escena.
+
+## Hallazgos de auditoría 2026-09-19 — regeneración Lote I (RAW)
+
+**Veredicto: NO CUMPLE** (residual F2: la `s` caída no es uniforme en el domicilio). Los bloqueantes MAYOR de la pasada previa (ficha de perfil, `viv. 4`, EN como carátula, gemelos distintos) están corregidos en `tools/raw/case5/examine_ficha_domicilio.jpg` y `_en.jpg` (1280×720, 3 intentos).
+
+### Cumple
+
+- ES/EN: tarjeta de cedulario crema apaisada de plano, no ficha de perfil (F1 hechos 1–2 y NO CONTRADECIR; recorte de campos). Texto de §18.5 / `climax_stage4_en.ts:20-27` presente: ingreso variable, oficio abogado sin despacho, objetos ninguno, catorce meses de atraso, no insistir, chapa vencida. Se empuja.
+- ES: domicilio en cuatro renglones a la derecha: `Domicilio: vecindad de / la calle del Espanto / ocho, vivienda setenta / y dos.` (F1 hecho 3; F2 TEXTO EXACTO; F3 vivienda **72**).
+- EN: la misma geometría; domicilio `Address: Calle del / Espanto eight, / apartment seventy- / two.` (F6; `climax_stage4_en.ts:20`).
+- ES/EN: `1969` y `VIII` manuscritos limpios en el ángulo superior (F1/F3). Esquina inferior derecha ausente con corte **recto y limpio** en escuadra (F1 hechos 7–8).
+- ES/EN: cel-shading de colores planos sobre madera, sin escena de archivo ni magenta (F5). Gemelos de una sola geometría (F6).
+
+### Defectos confirmados
+
+- **[MEDIO / CONTRADICE]** (F2, regla de la `s` caída; §23.3 4068) — ES: las `s` de la columna izquierda llevan una marca de subíndice/cedilla, pero las de `Espanto`, `setenta` y `dos` del domicilio quedan en la línea base. EN: idem en `Espanto` / `seventy`. El cotejo con `examine_esquina_tarjeta` y E5 exige la caída también en el campo de domicilio.
+- **[MENOR / MALFORMADO]** (F1 hecho 2) — ES: `oficio:` ocupa un renglón propio bajo ingreso (seis líneas izquierdas en vez de cinco campos). EN: `Occupation:` igual. El texto del campo 1 sigue completo.
+
+### Correcciones de auditoría
+
+- ~~ES es ficha de perfil (NOMBRE, OCUPACIÓN, EDAD, `viv. 4`)~~ — [x] RETIRADO POR REVISIÓN (2026-09-19, regeneración Lote I): la RAW es cedulario de seis campos con vivienda 72.
+- ~~EN es carátula de expediente~~ — [x] RETIRADO POR REVISIÓN (misma fecha): EN traduce el clímax sobre la geometría ES.
+- ~~Gemelos de composición distinta~~ — [x] RETIRADO POR REVISIÓN.
+- ~~Borde irregular~~ — [x] RETIRADO POR REVISIÓN: corte recto en escuadra.
+
+### Recomendación (si hay otra pasada)
+
+1. Bajar media línea las `s` de `Espanto` / `setenta` / `dos` (EN: `Espanto` / `seventy`) sin duplicar palabras, con la misma geometría de subíndice que ya marca la columna izquierda.
+2. Fundir `oficio` / `Occupation` en el renglón de ingreso.
+
+## Hallazgos de auditoría 2026-09-19 — pasada s caída (RAW)
+
+**Veredicto: NO CUMPLE** (residual F2 en el domicilio). Recortes de `tools/raw/case5/examine_ficha_domicilio.jpg` (ES v4) y `_en.jpg`. Los seis campos y **72** se mantienen.
+
+### Cumple
+
+- ES: `Espanto` ya no está en línea base: `E` + `s` en el hueco de la sílaba + `panto` (recorte del renglón 2 derecho). `dos` lleva marca de `s` baja. Campos §18.5, corte recto, `1969`/`VIII`, gemelo EN.
+- EN: cuatro renglones `Address / Espanto eight / apartment seventy- / two.`; `Espanto` y `seventy` con `s` ligeramente descolgada, sin renglón huérfano.
+
+### Defectos confirmados
+
+- **[MEDIO / CONTRADICE]** (F2; §23.3 4068) — ES: `setenta` sigue con `s` en la línea base; la `s` de `Espanto` es más pequeña que en `examine_esquina_tarjeta` (no llega a media línea de x-height). EN: la caída de `Espanto`/`seventy` es un matiz de subíndice, no el hueco claro del fragmento.
+- **[MENOR / MALFORMADO]** (F1) — `oficio` / `Occupation` siguen en renglón propio.
+
+### Correcciones de auditoría
+
+- ~~`Espanto` del domicilio totalmente en línea base (ES)~~ — [x] RETIRADO PARCIALMENTE (2026-09-19, pasada s): hay `s` intramisyllabic en `Espanto` ES; `setenta` aún no.
+
+## Hallazgos de auditoría 2026-09-19 — pasada s = fragmento (RAW ficha only)
+
+**Veredicto: CUMPLE** en el cotejo E5 de `Espanto` (ES/EN) y `setenta` / `seventy`. Residual MENOR: ES `dos` sigue en la línea base. Archivos: `tools/raw/case5/examine_ficha_domicilio.jpg` y `_en.jpg` (1280×720). No se tocaron esquina, plate ni nota.
+
+### Cumple
+
+- ES recorte domicilio: `Espanto` = `E` + `s` de cuerpo entero en hueco de media línea + `panto` (misma mecánica que `examine_esquina_tarjeta`). `setenta` = `s` caída + `etenta`. Cuatro renglones, vivienda **72**, seis campos §18.5, `1969`/`VIII`, corte recto.
+- EN recorte: `Espanto` idéntico al fragmento; `seventy` = `s` en hueco de media línea + `eventy-`. `apartment seventy-two`. Gemelo de geometría (F6).
+- F1/F3/F5: cedulario, no perfil; sin magenta; cel-shading.
+
+### Defectos confirmados
+
+- **[MENOR / CONTRADICE]** (F2 ES) — `y dos.` conserva la `s` en la línea base. Una pasada extra la convirtió en renglón huérfano; se retiene esta RAW para no romper `Espanto`/`setenta`.
+- **[MENOR / MALFORMADO]** (F1) — `Oficio:` / `Occupation:` siguen en renglón propio.
+
+### Correcciones de auditoría
+
+- ~~`setenta` en línea base; `Espanto` ES como cedilla minúscula; EN solo subíndice~~ — [x] RETIRADO POR REVISIÓN (2026-09-19, pasada s = fragmento).

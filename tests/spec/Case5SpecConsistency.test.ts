@@ -585,10 +585,12 @@ describe('Case 5 structural relations', () => {
     expect(perfil).toContain('seguro y con aguinaldo');
   });
 
-  it('closes the Case 1 bag residue with two bags from one office (I35)', () => {
+  it('closes the Case 1 bag residue with the prosecutor own bag (I35)', () => {
     const d3t2 = slice('### 15.3', '### 15.4');
-    expect(d3t2).toContain('quedó en el patio de carga de ese museo una bolsa con el sello de su fiscalía');
-    expect(d3t2).toContain('de ahí salieron las dos');
+    expect(d3t2).toContain('quedó en el patio de carga de ese museo una bolsa de lona vacía con el sello de su fiscalía');
+    expect(d3t2).toContain('Seis kilos.');
+    expect(d3t2).toContain('Era la mía.');
+    expect(d3t2).toContain('un kilo de seis');
   });
 
   it('describes panel E as the telegram its source case actually shows (I37)', () => {

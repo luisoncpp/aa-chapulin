@@ -20,27 +20,37 @@ function caseFiles(): string[] {
 }
 
 describe('Case 5 invariant anchors reach the shipped scripts', () => {
-  it('states on screen that two bags left the same office (I35)', () => {
+  it('names the stolen bag as the prosecutor own bag, six kilos (I35)', () => {
     const es = read('src/case/case5/Private/trial_day3_t2.ts');
     const en = read('src/case/case5/Private/trial_day3_t2_en.ts');
 
-    expect(es).toContain('de ahí salieron las dos');
-    expect(es).toContain('patio de carga de ese museo');
-    expect(en).toContain('both of them came out of there');
-    expect(en).toContain('loading yard');
+    expect(es).toContain('se habían llevado mi bolsa. Seis kilos.');
+    expect(es).toContain('Era la mía.');
+    expect(en).toContain('taken my bag. Six kilos.');
+    expect(en).toContain('It was mine.');
   });
 
-  it('never lets Super Sam call the bribe bag the one he carried (I35)', () => {
+  it('pays the bribe outside a bag, one kilo out of six (I35)', () => {
     const es = read('src/case/case5/Private/trial_day3_t2.ts');
     const en = read('src/case/case5/Private/trial_day3_t2_en.ts');
 
-    expect(es).not.toContain('mi propia bolsa de lona');
-    expect(en).not.toContain('my own canvas bag');
+    // He lost a bag that night; he never gained one.
+    expect(es).toContain('papel de estraza');
+    expect(es).toContain('un kilo de seis');
+    expect(es).not.toMatch(/me pagaron.{0,40}bolsa de lona/);
+    expect(en).toContain('butcher paper');
+    expect(en).toContain('one kilo out of six');
+  });
+
+  it('dates the office burglary so the player can place it (I35)', () => {
+    const es = read('src/case/case5/Private/trial_day3_t2.ts');
+    expect(es).toContain('Esa mañana habían entrado a mi despacho');
+    expect(read('src/case/case5/Private/trial_day3_t2_en.ts')).toContain('That morning someone had entered my chambers');
   });
 
   it('says the silver came out of his own prosecution office (I35)', () => {
     const es = read('src/case/case5/Private/trial_day3_t2.ts');
-    expect(es).toMatch(/plata de (mi|su) (propia )?(oficina|fiscalía|despacho)/);
+    expect(es).toMatch(/mi propia plata|plata de (mi|su) (propia )?(oficina|fiscalía|despacho)/);
   });
 });
 

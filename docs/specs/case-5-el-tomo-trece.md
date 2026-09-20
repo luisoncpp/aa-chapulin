@@ -2578,7 +2578,7 @@ c5_d3t2_1 SUPER SAM: Recibí el oficio que me mandó el preso el ocho de noviemb
 c5_d3t2_2 SUPER SAM: El veintiséis lo saqué, y fijé la diligencia para el sábado cuatro de diciembre a las cinco de la tarde, porque el sábado el traslado cuesta la mitad.
 c5_d3t2_3 SUPER SAM: Nadie más supo de esa diligencia. Un oficio de la fiscalía no se publica en el periódico.
 c5_d3t2_4 SUPER SAM: Y ahora lo mío. El veintiocho de agosto de este año, alguien me pagó por llegar rápido a un museo y cerrar el caso en cinco minutos.
-c5_d3t2_5 SUPER SAM: Fue una vez. No tuvo nombre, no tuvo recibo y no se lo vendí a nadie. Fue un sobre, una hora y una bolsa de lona.
+c5_d3t2_5 SUPER SAM: Fue una vez. No tuvo nombre, no tuvo recibo y no se lo vendí a nadie. Un sobre por debajo de la puerta y un bulto en un callejón.
 c5_d3t2_6 SUPER SAM: Desde entonces cargo esa bolsa vacía. No por remordimiento. Por contabilidad.
 ~~~
 
@@ -2649,19 +2649,27 @@ NARRADOR: Silencio absoluto. [bgm: suspense]
 DEFENSA: ¡UN MOMENTO! ¿Cuánto había en esa bolsa? [sfx: whoosh; pose: chapulin_point]
 SUPER SAM: Diez mil pesos en moneda de plata. Seis kilos. [pose: supersam_idle]
 DEFENSA: ¿Y quién se la dejó? [pose: chapulin_idle]
-SUPER SAM: No lo sé. Apareció en un callejón, a la hora que decía el sobre, dentro de una bolsa de lona sellada por mi propia fiscalía. [pose: supersam_sweat]
-SUPER SAM: Eso fue lo que más me asustó, counselor: que la plata con que me pagaron fuera **plata de mi oficina**. Alguien entró a mi despacho. [pose: supersam_sweat]
-DEFENSA: Señor fiscal, el veintiocho de agosto quedó en el patio de carga de ese museo una bolsa con el sello de su fiscalía. [pose: chapulin_point]
-SUPER SAM: ...Ya la había reconocido, counselor. [pose: supersam_sweat]
-DEFENSA: ¿Y dijo algo? [pose: chapulin_idle]
-SUPER SAM: Aquella noche no supe qué decir. Ahora ya sí: alguien entró a mi oficina, y de ahí salieron las dos. [pose: supersam_sweat]
-DEFENSA: Dos bolsas. Una para el que entró al museo y otra para usted. [pose: chapulin_idle]
-SUPER SAM: Con la mía me pagaron **una sexta parte** de lo que se llevaron de mi despacho. Lo saqué esa misma noche, contando. [pose: supersam_sweat]
+SUPER SAM: No lo sé. Estaba en el callejón que decía el sobre, a la hora que decía el sobre, envuelto en papel de estraza como un kilo de carne. [pose: supersam_sweat]
+SUPER SAM: Lo abrí ahí mismo y lo conté. Yo siempre cuento, counselor. Es lo único que sé hacer bien. [pose: supersam_sweat]
+DEFENSA: ¿Y qué le salió la cuenta? [pose: chapulin_idle]
+SUPER SAM: Esa mañana habían entrado a mi despacho y se habían llevado mi bolsa. **Seis kilos.** [pose: supersam_sweat]
+JUEZ: ¿Seis? [pose: judge_thinking]
+SUPER SAM: Seis, Your Honor. La cargué once años al hombro. Sé lo que pesa. [pose: supersam_sweat]
+DEFENSA: Entonces esa noche, en ese callejón, lo que le dieron... [pose: chapulin_point]
+SUPER SAM: Era mi propia plata, counselor. Me devolvieron **un kilo de seis** y yo dije que sí. [pose: supersam_sweat]
 DON RAMÓN: (No lo remate, joven.) [pose: donramon_idle]
+DEFENSA: ¿Y el robo no lo denunció? [pose: chapulin_idle]
+SUPER SAM: Iba a levantar el acta a mediodía. A las cinco de la tarde ya estaba comprado, y un hombre comprado ya no tiene nada que denunciar. [pose: supersam_sweat]
+DEFENSA: Señor fiscal. Esa noche quedó en el patio de carga de ese museo una bolsa de lona vacía con el sello de su fiscalía. [pose: chapulin_point]
+SUPER SAM: ...Sí. [pose: supersam_sweat]
+DEFENSA: Usted la vio. La pusieron sobre la mesa de pruebas, delante de usted. [pose: chapulin_idle]
+SUPER SAM: Y dije que la fiscalía repartía bolsas como ésa. Para viáticos. Para muchas cosas. [pose: supersam_sweat]
+SUPER SAM: Eso fue lo que dije, counselor. **Era la mía.** [pose: supersam_sweat]
+NARRADOR: Nadie tose. [sfx: realization]
 DEFENSA: ¿Y qué decía el sobre? [pose: chapulin_point]
-SUPER SAM: Tres renglones. Una hora, una dirección y el encargo. A máquina, sin firma, por debajo de la puerta. [pose: supersam_idle]
-DEFENSA: ¿Y el encargo cómo estaba escrito? [pose: chapulin_idle]
-SUPER SAM: Como se escribe un pedido, counselor. No me pedían nada: me decían lo que ya venía incluido. [pose: supersam_sweat]
+SUPER SAM: La hora y la dirección. Y abajo un renglón que no me pedía nada. [pose: supersam_idle]
+DEFENSA: ¿Cómo que no le pedía nada? [pose: chapulin_idle]
+SUPER SAM: Estaba escrito como se escribe lo que ya está vendido. No decía «haga usted esto». Decía lo que venía incluido. [pose: supersam_sweat]
 DEFENSA: (A máquina.) [pose: chapulin_panic]
 DEFENSA: ¿Lo conserva? [pose: chapulin_idle]
 SUPER SAM: Lo quemé en agosto. [pose: supersam_sweat]
@@ -4267,7 +4275,7 @@ Este apartado manda sobre las cronologías, el guion, la tabla de descarte y la 
 | **I25** | Cada fila de §20 describe una conducta que el guion ejecuta en ese bloque. | Derivar la escalera de sospecha de una conducta que nunca ocurre en pantalla (pedir al fiscal que no se acuse, cuando Don Ramón dice «Déjelo»). |
 | **I33** | Toda vista que describe el panel C —§4.3, la delegación del día 2, la lámina L5 y `examine_expediente_serie`— lo describe como el frasco de valeriana que compró y el molde de cera que dejó al copiar una llave **el propio culpable del Caso 2**, identificado en ese episodio; ninguna vista lo presenta como compra sin identificar, como dos compras ni como una compra distinta. | Que una lámina describa otra compra o que el episodio reviva como cabo abierto un comprador que el Acto 1 vio identificado en pantalla. |
 | **I34** | El Sargento narra los cinco legajos en el orden de sus fechas (12 jul, 21 ago, 28 ago, 15 sep, 24 oct); las letras de panel conservan su identidad aunque B (28 ago) y C (21 ago) no queden ascendentes en el tablero. | Narrar «por fecha» un orden que no es el de las fechas, o romper la identidad probatoria de los paneles al reordenarlos. |
-| **I35** | El pago al fiscal y el pago del ladrón del museo salieron **de la misma oficina en dos bolsas distintas**, ambas selladas por la fiscalía; Super Sam reconoce en pantalla, en D3-T2, que la bolsa vacía del patio de carga del museo era de su fiscalía y que «de ahí salieron las dos». | Cerrar el residuo del Caso 1 con una sola bolsa (ya gastada por Tripaseca a las 20:40) o dejar el origen de la bolsa del museo sin el ancla que el testimonio de Sam aporta. |
+| **I35** | Del despacho del fiscal salió **una sola bolsa: la suya**, con seis kilos de moneda de plata, robada la mañana del 28 de agosto. Ésa es el arma del Caso 1 y la que aparece vacía en el patio de carga. A Super Sam le devolvieron **un kilo de esos seis**, envuelto en papel de estraza, en un callejón y **no en una bolsa**; él lo reconoce en pantalla en D3-T2, incluida su propia evasiva del Caso 1 («la fiscalía reparte bolsas como ésa»). | Pagarle al fiscal dentro de una bolsa de lona —esa noche perdió una, no ganó ninguna, y el día 1 del Caso 1 sube al estrado sin nada al hombro— o darle seis kilos de cobro, que serían la bolsa entera y no una parte. |
 | **I36** | El ingreso del Chómpiras al Archivo (15 de septiembre) convive en pantalla con sus empleos de hotelero —dos hoteles distintos entre agosto y octubre, sin turnos que el Caso 4 contradiga con sus escenas diurnas—, corriendo entre el Archivo y lo que cayera hasta noviembre; el Sargento lo ancla en agosto («me escoltó cuando me arrestaron»); su trabajo del Archivo se describe por sus prestaciones (seguro y aguinaldo), nunca como «la primera vez que le pagan por cargar» ni «su primer trabajo fijo», y ninguna antigüedad de encierro o proceso suya excede lo que el Caso 2 muestra: un juicio de dos días y dos noches de detención. | Hacer declarar a un testigo un historial imposible frente al Caso 4 o al propio Caso 2. |
 | **I37** | Cada panel del `expediente_serie` describe un documento que su caso fuente muestra o deja en el expediente: el panel E es el **telegrama del 24 de octubre** de Cuajinais, no un acta. | Citar como panel un documento (acta con fotografía) que ningún episodio produjo. |
 | **I38** | Don Ramón compareció ante esta misma corte en los Casos 0, 1, 2, 3 y 4 —el Caso 2 también lo presidió el Juez regular, no Jirafales—, de modo que el Caso 5 es la **sexta** vez que lo ve y la insignia ha litigado **cinco** veces. | Contar como si el Caso 2 tuviera otro juez y dejar los conteos de la corte en quinta/cuatro. |

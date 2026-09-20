@@ -17,7 +17,7 @@ const MOMENTO: DialogueLine = {
 export const CASE5_TESTIMONY_9: Testimony = {
   title: 'Testimonio: El reglamento de la ventanilla',
   witness: 'Srta. Genoveva Peñaloza',
-  bgm: 'cross_exam_allegro',
+  bgm: 'cross_exam_final',
   statements: [
     {
       id: 'c5_d4t1_1',

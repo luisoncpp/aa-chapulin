@@ -3186,7 +3186,7 @@ JUEZ: Todo el mundo viene citado, señorita. Declare usted. [sfx: gavel; pose: j
 
 ### 17.2 Testimonio 1 — Srta. Genoveva Peñaloza: *«El reglamento de la ventanilla»*
 
-**BGM:** `cross_exam_allegro`.
+**BGM:** `cross_exam_final`.
 
 ~~~dialogue
 c5_d4t1_1 GENOVEVA: Mi ventanilla atiende a peritos, actuarios, notarios y síndicos. Es el único acceso de ese edificio que no es el público.

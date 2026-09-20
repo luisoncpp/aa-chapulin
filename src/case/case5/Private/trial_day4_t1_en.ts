@@ -17,7 +17,7 @@ const MOMENTO: DialogueLine = {
 export const CASE5_TESTIMONY_9_EN: Testimony = {
   title: 'Testimony: The window regulations',
   witness: 'Ms. Genoveva Penaloza',
-  bgm: 'cross_exam_allegro',
+  bgm: 'cross_exam_final',
   statements: [
     {
       id: 'c5_d4t1_1',

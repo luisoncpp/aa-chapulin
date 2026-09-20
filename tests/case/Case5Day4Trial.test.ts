@@ -53,12 +53,12 @@ describe('Case 5 day 4 trial (Spanish)', () => {
     expect(en.adjournment?.next?.next?.trial.openingPresent?.evidence).toEqual(['bitacora_caldera']);
   });
 
-  it('exports T9 Genoveva with spec title, witness, and allegro BGM', () => {
+  it('exports T9 Genoveva with spec title, witness, and final BGM', () => {
     const [t9] = day4.testimonies;
     expect(t9).toMatchObject({
       title: 'Testimonio: El reglamento de la ventanilla',
       witness: 'Srta. Genoveva Peñaloza',
-      bgm: 'cross_exam_allegro'
+      bgm: 'cross_exam_final'
     });
     expect(day4.testimonies).toHaveLength(1);
   });

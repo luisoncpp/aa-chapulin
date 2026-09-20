@@ -63,7 +63,7 @@ Alias seguidos: `vestíbulo`, `Archivo Judicial`, `mostrador`, `libro de visitas
 - `examine_plano_archivo` — comparte el plano amarillento clavado con cuatro tachuelas y sus cuatro esquinas marcadas; el detailed view es la fuente de verdad de los rótulos legibles y la geometría interna. Regenerar juntos; este activo no es fuente de verdad del otro.
 - `plate_dos_accesos` — comparte el objeto conceptual del plano y la topología de dos accesos, ventanilla, escalera y montacargas; la lámina es la fuente de verdad de la vista axonométrica sin rótulos. Regenerar juntos; este activo no es fuente de verdad del otro.
 - `bg_archivo_pasillo7` — comparte edificio, época, materiales de archivo, madera y polvo, pero no la sala ni el estado de trama; no trasladar estantes, cadáver, tomo, reja o puerta del pasillo al vestíbulo. Regenerar juntos sólo para mantener el lenguaje arquitectónico; este activo no es fuente de verdad del otro.
-- `bg_archivo_pasillo7_d4` (si se materializa el activo propuesto en `new-assets.md`) — comparte únicamente la identidad del edificio y el registro material; no debe heredar ningún prop del pasillo al vestíbulo. Regenerar juntos sólo como consistencia de estilo; este activo no es fuente de verdad del otro.
+- `bg_archivo_pasillo7_d4` — comparte únicamente la identidad del edificio y el registro material; no debe heredar ningún prop del pasillo al vestíbulo. Regenerar juntos sólo como consistencia de estilo; este activo no es fuente de verdad del otro.
 
 ## Conflictos abiertos
 

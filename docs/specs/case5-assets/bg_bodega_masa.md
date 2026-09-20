@@ -145,3 +145,32 @@ RAW auditado: `tools/raw/case5/bg_bodega_masa.jpg` (1280 × 720, 16:9; 3 intento
 2. Cuarto cierre de palanca en el borde del 9.
 3. Pata de cabra de barra y uña, no pico, en el mismo clavo de viga.
 4. Funda de hule cubriendo la mitad izquierda de la máquina, con `41` y carro cromado a la vista.
+
+## Hallazgos de auditoría 2026-09-20
+
+RAW auditado: `tools/raw/case5/bg_bodega_masa.jpg` (1536 × 1024); WebP final: `assets/bg_bodega_masa.webp` (1536 × 1024). Se inspeccionaron recortes separados de inventario, huacal 9, cajones/fichas, máquina, cierres, pata de cabra y accesos; el overlay de hotspots se comprobó sobre el recorte cover 960 × 540.
+
+**Veredicto: CUMPLE** en contenido, contrato de pantalla, exclusiones, estilo y localización (F1–F6).
+
+### Cumple
+
+- Catorce huacales identificables: seis pilas de dos más los huacales 9 y 14 en el suelo; numeración única visible del 1 al 14; tapas cerradas con tiras superpuestas (F1/F2/F3; `bodega_masa_intro.ts:11-12`).
+- Huacal 9 grande, abierto, con tapa recargada y cuatro cierres de palanca distinguibles (F1; §23.1 línea 3990).
+- Nueve cajones 3×3 de madera rubia, tiradores de latón y etiquetas manuscritas, con muchas fichas físicas visibles detrás y entre los cajones; la lectura de “fichero” deja de contradecir la narración (F1/F4; `bodega_masa_hotspots.ts:35-53`).
+- Compartimento lateral de libros de lujo encuadernados en piel; Olivetti negra al fondo, funda de hule parcial, carro cromado y marca blanca `41` (F1/F2/F4; `bodega_masa_hotspots.ts:57-72`).
+- Pata de cabra reconocible colgada de un clavo en la viga; escalera de servicio y reja de montacargas al fondo izquierdo (F1; `bodega_masa_hotspots.ts:79`; §24.B).
+- Sin personajes, pasillo 7, UI, horas, fechas o rótulos explicativos; sin texto inglés ni tonos rosa/magenta en primer plano (F2/F3/F5/F6).
+- Los tres hotspots ahora caen sobre su objeto pintado en el cover 960×540: tapa `65,54,24,44`, cajones `27,54,29,32`, máquina `45,45,23,24`; ES/EN son idénticos y el test de geometría pasa (F4/F6; `bodega_masa_hotspots.ts`, `_en.ts`, `tests/case/Case5Hotspots.test.ts`).
+
+### Defectos confirmados
+
+- Ninguno en esta pasada.
+
+### Correcciones de auditoría
+
+- Los defectos residuales de la regeneración Lote C —numeración incompleta, tres cierres, herramienta ambigua y ausencia de funda— quedan ~~superados por esta regeneración~~; la traza anterior se conserva arriba.
+- Se añade como corrección específica del reporte del usuario la masa de fichas visibles detrás de los cajones; no se clasifica como defecto del spec anterior porque la hoja sólo exigía nueve cajones, pero ahora el contrato en pantalla queda legible sin vacío visual.
+
+### Recomendación
+
+- Mantener este fondo como fuente de producción y no cambiar su recorte sin volver a ejecutar el overlay y el test bilingüe de geometría.

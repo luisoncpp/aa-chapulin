@@ -132,6 +132,20 @@ describe('Case 5 script sources', () => {
     for (const hit of hits) expect(hit.text).toContain("speaker: 'BERRONDO'");
   });
 
+  it('reserves "leontina" for Berrondo', () => {
+    const hits = scriptLines('es').filter((line) => /leontina/i.test(line.text));
+    expect(hits.length).toBeGreaterThan(0);
+    for (const hit of hits) expect(hit.text).toContain("speaker: 'BERRONDO'");
+  });
+
+  it('reserves "albert chain" for Berrondo, and never mislabels the object', () => {
+    const hits = scriptLines('en').filter((line) => /albert chain/i.test(line.text));
+    expect(hits.length).toBeGreaterThan(0);
+    for (const hit of hits) expect(hit.text).toContain("speaker: 'BERRONDO'");
+    const wrong = scriptLines('en').filter((line) => /lorgnette|pince-nez|cravat/i.test(line.text));
+    expect(wrong.map((hit) => `${hit.file}: ${hit.text.trim()}`)).toEqual([]);
+  });
+
   it('drops "foja", "legista", "Ha lugar" and "canto del lomo" everywhere', () => {
     const patterns = [/\bfojas?\b/i, /\blegistas?\b/i, /\bha lugar\b/i, /canto del lomo/i];
     const hits = scriptLines('es').filter((line) => patterns.some((p) => p.test(line.text)));

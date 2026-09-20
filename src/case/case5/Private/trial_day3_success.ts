@@ -63,7 +63,7 @@ export const CASE5_D3_T1_HUACAL_SUCCESS: DialogueLine[] = [
   { speaker: 'BERRONDO', text: 'Señor juez, yo lo declaré ayer: bajé el sábado porque una diligencia iba a tocar el bien.', pose: 'berrondo_idle' },
   { speaker: 'BERRONDO', text: 'Un depositario que sólo baja los jueves y deja pasar una diligencia en sábado merece una queja en el colegio.', pose: 'berrondo_idle' },
   { speaker: 'DEFENSA', text: '(Otra vez tiene razón. Otra vez.)', pose: 'chapulin_idle' },
-  { speaker: 'JUEZ', text: 'La corte anota la explicación y ordena que se agregue al acta la fotografía de la tapa del huacal.', sfx: 'gavel', pose: 'judge_gavel' },
+  { speaker: 'JUEZ', text: 'La corte asienta la explicación. Sargento: sobre la fotografía que ya obra en autos, ¿cuántas tiras contó usted?', sfx: 'gavel', pose: 'judge_gavel' },
   { speaker: 'SARGENTO', text: 'Más de doscientas cincuenta tiras, señor juez. Las revisé con el perito.', pose: 'pazguato_decidido' },
   { speaker: 'SARGENTO', text: 'Y el perito dejó su dictamen ocular de la máquina. ¿Lo leo?', pose: 'pazguato_decidido' },
   { speaker: 'JUEZ', text: 'Léalo.', pose: 'judge_neutral' },

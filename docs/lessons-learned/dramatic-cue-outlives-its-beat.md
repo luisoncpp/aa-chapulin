@@ -11,5 +11,6 @@ What to remember:
 - **Re-cueing the same track is free.** `playTrack` compares the resolved `TrackDefinition`, so handing back `cross_exam_moderato` four lines before `startTestimony` cues it again does not restart the sequencer.
 - **One exemption.** The last contradiction chain of the last trial day hands over to the climax, whose first dialogue line declares its own cue; a dramatic cue carried across that seam is continuous, not an overhang.
 - **The engine cannot infer the end of a beat.** There is no structural boundary between "the reveal" and "the judge moving on" — both are lines in the same array — so this is a scripting contract, checked by a structural test ([[tests/case/Case5TrialCue.test.ts]]), not something to fix in `DialogueFlow`.
+- **Pressing is not a new beat.** `Statement.pressText` runs inside the active testimony and must leave its `bgm` unset. A cue there changes the track for the rest of the cross-examination, as Super Sam's day-3 press response demonstrated.
 
 Cases 0–4 still contain blocks with the same shape; they predate the contract and were left alone rather than re-scored in a bug fix.

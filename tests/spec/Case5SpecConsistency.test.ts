@@ -427,6 +427,15 @@ describe('Case 5 structural relations', () => {
     }
   });
 
+  it('defines the fallen s as the original lowercase glyph, never a duplicate (I24/I31)', () => {
+    const noteDetail = slice('> **`detailedView` de `nota_mecanografiada`', '#### Hablar con el Señor Barriga');
+    const noteRow = SPEC.split('\n').find((line) => line.startsWith('| `examine_nota_renta.webp`'));
+    expect(noteRow, 'nota renta art row').toBeTruthy();
+    expect(noteDetail).toContain('se imprime una sola vez');
+    expect(noteDetail).toContain('se añade otra `s` debajo');
+    expect(noteRow).toContain('no se duplica');
+  });
+
   it('identifies the second seal strip on screen where it attributes the opening (I14)', () => {
     const e3 = slice('### 18.3', '### 18.4');
     const twoStrips = e3.indexOf('**dos** tiras de sello con fecha del cuatro de diciembre');

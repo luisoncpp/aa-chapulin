@@ -16,7 +16,7 @@ Alias seguidos: `estante de consulta`, `estante`, `estante de veinticuatro ranur
 - [ ] `PINTAR` — Cuerpo tendido **boca abajo** entre el estante y la mesa, con la cabeza hacia el estante y los pies hacia la mesa; la toma no puede convertirlo en una silueta de pie, boca arriba o con otra orientación (§10.3; `src/case/case5/Private/trial_day1_t2.ts:43-49`; `trial_day1_success.ts:162`).
 - [ ] `PINTAR` — Tomo caído a un metro del cuerpo, cerrado, encuadernado en tela, con el lomo hacia arriba y una mancha/sangre oscura en el lomo; junto a él va el cartelito numerado de perito (§23.1; §10.3; `src/case/case5/Private/archivo_pasillo7_hotspots.ts:29-35`; `trial_day1_t2.ts:58`; `trial_day1_success.ts:163`). En esta foto no se exige mostrar el canto ni el sello de la guarda: el detalle del sello pertenece a `examine_tomo_caido` (§23.3, `docs/specs/case-5-el-tomo-trece.md:4056`).
 - [ ] `PINTAR` — Mesa larga de roble con la lámpara de pantalla verde encendida y el legajo/expediente abierto y atado con listón; la silla está volcada hacia atrás (§23.1; §10.3; `src/case/case5/Private/archivo_pasillo7_hotspots.ts:69-72`; `trial_day1_t2.ts:49-50`; `trial_day1_t3.ts:54`).
-- [ ] `PINTAR` — Estante de consulta de madera oscura pegado al muro, con **24 ranuras** y cartoncitos manuscritos numerados del 1 al 24 (`src/case/case5/Private/archivo_pasillo7_hotspots.ts:45-46`; §23.1; `trial_day1_success.ts:164`).
+- [ ] `PINTAR` — Estante de consulta de madera oscura pegado al muro, con **una sola banda horizontal continua de 24 ranuras claramente separadas**, cartoncitos manuscritos numerados del 1 al 24, no dos filas apiladas ni una consola baja (`src/case/case5/Private/archivo_pasillo7_hotspots.ts:45-46`; §23.1, §23.3; `examine_estante_consulta.md:23-27`).
 - [ ] `PINTAR` — Estado del estante a las 19:05: **22 lomos de tela idénticos**, un lomo distinto de **media piel en la ranura 11**, con nervios y dos cantoneras de latón, y la **ranura 13 vacía y oscura**; el lomo de la ranura 11 es algo más grueso que sus vecinos (§23.1; §23.3, `docs/specs/case-5-el-tomo-trece.md:4057`; `src/case/case5/Private/climax_stage3_success.ts:12,16,27-33`). En la foto B/N, verde oliva/vino/latón son identidad compartida: verificar textura de tela, superficie de piel, nervios, cantoneras y contraste tonal, no el matiz cromático literal.
 - [ ] `PINTAR` — La cuenta visible debe ser coherente: 23 tomos en el estante (22 de tela + 1 de media piel) y 1 tomo en el suelo; son 24 objetos físicos para 24 ranuras, pero la 13 permanece vacía porque ese tomo se anunció y nunca se publicó (§4.1 P6; §10.3; §24.C F7 e I3; `archivo_pasillo7_hotspots.ts:48-55`).
 - [ ] `PINTAR` — Geometría de sala consistente con el fondo: estanterías altas de madera oscura, piso de madera encerada, reja de barrotes al extremo opuesto, puerta metálica gris de servicio entreabierta y rejilla de ventilación del muro con una indicación sutil de aire caliente; sin vapor fotográfico (§23.1; §4.1 P3/P7; `trial_day1_success.ts:167`).
@@ -46,7 +46,7 @@ Alias seguidos: `estante de consulta`, `estante`, `estante de veinticuatro ranur
 ### F5 Estilo
 
 - [ ] Contrato §23.0 completo en el prompt: ilustración 2D estilo *Capcom Ace Attorney* (linaje GBA/Nintendo DS) en alta definición; , ; contorno carbón nítido y continuo `#1A1A1A`, más grueso en silueta que en detalles; anatomía expresiva/caricaturesca; colores primarios saturados cuando el medio los permita.
-- [ ] El registro del Caso 5 es papel, madera y polvo: archivo judicial, expedientes con listón, madera barnizada, latón envejecido y luz de tungsteno (§23.0). Para esta placa, la excepción de medio manda: blanco y negro con **grano grueso**, contraste fotográfico y siluetas/materiales reconocibles; no se verifica literalmente verde oliva, vino o latón de color (§23.4; §23.1).
+- [ ] El registro del Caso 5 es papel, madera y polvo: archivo judicial, expedientes con listón, madera barnizada, latón envejecido y luz de tungsteno (§23.0). Para esta placa, la excepción de medio manda: blanco y negro con **grano grueso**, contraste fotográfico y siluetas/materiales reconocibles, pero el render debe seguir siendo **ilustración 2D cel-shaded de Ace Attorney**, nunca fotorrealista; no se verifica literalmente verde oliva, vino o latón de color (§23.4; §23.1).
 - [ ] `AUSENTE` — Fotorrealismo, render 3D, acuarela, texturas fotográficas, anime moderno, cómic americano, marcas de agua, texto en inglés y cualquier rosa/magenta en primer plano (§23.0; [[docs/specs/artistic-direction.md]] §5).
 - [ ] `AUSENTE` — Marco decorativo, manillas de latón, borde de placa, sello autodescriptivo, aspecto sepia o tratamiento didáctico. Es la única lámina de §23.4 que no es ilustrativa; el formato es una imagen plana de 1280 × 720, no una fotografía enmarcada (§23.4, `docs/specs/case-5-el-tomo-trece.md:4070-4077`).
 
@@ -60,8 +60,16 @@ Alias seguidos: `estante de consulta`, `estante`, `estante de veinticuatro ranur
 - `bg_archivo_pasillo7` — comparte pasillo, piso de madera, estanterías, reja, puerta de servicio, rejilla caliente, mesa, lámpara, silla, legajo y disposición posterior al crimen. No comparte el estado exacto: el fondo investigable muestra el contorno de gis y la fotografía de las 19:05 muestra el cuerpo. No es fuente de verdad de éste; la hoja sigue §23 y el contrato de la foto.
 - `examine_estante_consulta` — comparte el objeto de 24 ranuras: 22 lomos de tela idénticos, ranura 13 vacía/oscura y ranura 11 de media piel con nervios y cantoneras. No es fuente de verdad de éste; la foto B/N traduce el color a textura/contraste.
 - `examine_tomo_caido` + icono `tomo_caido` — comparten el tomo caído: tela, tejuelo XI cuando el encuadre lo permita, mancha en el lomo y escala de un metro. El sello de guarda pertenece sólo al `detailedView`; no exigirlo en esta toma.
-- `bg_archivo_pasillo7_d4` (propuesto en [[new-assets.md]]) — mismo espacio antes del crimen; regenerar juntos sólo para conservar geometría y materiales, pero no trasladar a L2 el estado vivo/sin cuerpo del recuerdo.
+- `bg_archivo_pasillo7_d4` — mismo espacio antes del crimen; regenerar juntos sólo para conservar geometría y materiales, pero no trasladar a L2 el estado vivo/sin cuerpo del recuerdo.
 - `plate_tomo_trece` — comparte las 24 ranuras y la ausencia histórica de la 13 como relación de objeto/colección; no es fuente de verdad de la fotografía ni debe imponer su dibujo frontal o su publicidad ilegible.
+
+## Decisión de regeneración futura
+
+`examine_estante_consulta.webp` es el candado de consistencia del mueble: una sola fila horizontal continua de 24 ranuras. Regenerar en el mismo lote `bg_archivo_pasillo7_d4`, `bg_archivo_pasillo7` y esta placa, adaptando esa geometría a cada encuadre; no regenerar `examine_estante_consulta` por este drift. La placa además debe conservar B/N y grano, pero con personajes y props en ilustración 2D cel-shaded de Ace Attorney, no fotorealismo.
+
+## Corrección de auditoría 2026-09-19 (revisión posterior)
+
+El veredicto «cumple» de Lote B queda **supersedido**. La placa instalada tiene un cuerpo y materiales con tratamiento fotorealista, no el render 2D cel-shaded del Caso 5, y el mueble de dos filas no coincide con `examine_estante_consulta`. Regenerar sólo este lote junto con los dos fondos, manteniendo B/N, grano y formato 1280×720.
 
 ## Conflictos abiertos
 
@@ -165,3 +173,104 @@ Auditoría visual de `tools/raw/case5/plate_foto_pericial.jpg` (1280×720) tras 
 ### Recomendación
 
 Ninguna bloqueante para el lomo. Opcional: alinear la numeración del mueble con `examine_estante_consulta`.
+
+## Hallazgos de auditoría 2026-09-19 (regeneración final Lote B)
+
+Auditoría visual per-crop de `assets/plate_foto_pericial.webp` (1280×720): cuerpo, mueble, tomo, mesa, silla y placa completa. **Veredicto: cumple** contenido, geometría, medio B/N, exclusiones y formato.
+
+### Cumple
+
+- ✓ Imagen plana B/N de grano grueso a 1280×720, sin marco, título, subtítulo, rótulo, placa de expediente, sepia ni flechas (`plate_full`).
+- ✓ Cuerpo real boca abajo, cabeza hacia el estante y pies hacia la mesa; no hay contorno de gis (`plate_body`).
+- ✓ Mueble alto de varias repisas y ranuras, con lomo distinto y una cavidad oscura; no es una consola baja (`plate_bookcase`).
+- ✓ Tomo cerrado con el lomo hacia arriba, `XI` y mancha oscura en el lomo; cartelito pericial al lado (`plate_tome`).
+- ✓ Mesa larga con lámpara y legajo abierto, silla volcada pero legible, piso de madera limpio, puerta y reja (`plate_table`, `plate_chair`, `plate_full`).
+
+### Defectos confirmados
+
+- [x] ~~MAYOR · AUSENTE/CONTRADICE — cuerpo reemplazado por silueta de gis~~ **[x] RETIRADO POR REGENERACIÓN (2026-09-19 Lote B).**
+- [x] ~~MAYOR · AUSENTE — mueble de 24 ranuras, legajo, mancha y cartelito~~ **[x] RETIRADO POR REGENERACIÓN (2026-09-19 Lote B).**
+- [x] ~~MAYOR · CONTRADICE — marco, títulos, sepia, placa de expediente y 960×540~~ **[x] RETIRADO POR REGENERACIÓN (2026-09-19 Lote B):** salida instalada a 1280×720.
+- [ ] **MENOR · F5** — el grano es visible pero algo más limpio que una fotografía analógica extrema; no afecta la lectura ni el contrato de placa plana.
+
+### Recomendación
+
+Ninguna regeneración adicional; el defecto menor de grano no justifica otra pasada.
+
+## Hallazgos de auditoría 2026-09-19 (regeneración desde cero)
+
+Auditoría visual per-crop de `assets/plate_foto_pericial.webp` (1280×720), generada desde la descripción escrita sin imagen de referencia. **Veredicto: cumple** contenido, orientación, formato B/N y exclusiones.
+
+### Cumple
+
+- ✓ Imagen plana B/N de grano visible a 1280×720, sin marco, títulos, placa, flechas, sepia ni texto explicativo (`plate_full`).
+- ✓ Cuerpo real boca abajo, cabeza hacia el estante y pies hacia la mesa; no hay silueta de gis (`plate_body`).
+- ✓ Mueble de consulta como una sola fila continua de 24 ranuras, con cavidad oscura en la 13 y lomo distinto en la 11; no hay segunda fila en el mueble (`plate_bookcase`).
+- ✓ Tomo cerrado con lomo arriba y mancha en el lomo, cartelito pericial, mesa larga con expediente abierto y lámpara encendida (`plate_body`, `plate_table_chair`).
+- ✓ Silla volcada pero completamente legible como silla; piso limpio, puerta, reja, rejilla con onda de aire y perspectiva larga (`plate_table_chair`, `plate_full`).
+- ✓ AUSENTE policía, personajes vivos, segunda mesa, escombros, marcas de agua y rotulación inventada (`plate_full`).
+
+### Defectos confirmados
+
+- Ninguno que justifique otra regeneración. El grano es visible y la placa mantiene el medio 2D B/N exigido.
+
+### Recomendación
+
+Conservar esta generación.
+
+## Hallazgos de auditoría 2026-09-19 (regeneración Lote A ~19:54, RAW 1672×940)
+
+Auditoría visual per-crop de `tools/raw/case5/plate_foto_pericial.jpg` (1672×940 ≈16:9, regenerada 2026-09-19 19:54) contra los 7 bloqueantes de la auditoría previa de esta hoja. Recortes por sustantivo (`tmp_plate_foto_pericial_*`, eliminados al cerrar): mueble/ranuras, tomo+cartelito, cuerpo, mesa/lámpara/legajo/silla, puerta, rejilla, esquinas. **Veredicto: no cumple plenamente** — los 7 bloqueantes previos están corregidos, pero la numeración del estante CONTRADICE el reparto canónico: el hueco vacío no cae bajo la cartela «13» sino bajo la zona del «15» duplicado (F1/F3/F4).
+
+### Verificación de los 7 bloqueantes previos
+
+- [x] ~~Título «CASE 5 – PLACA DIDÁCTICA»~~ → **RETIRADO (2026-09-19):** esquinas sin ningún título ni rótulo.
+- [x] ~~Silueta de pie brazos en alto~~ → **RETIRADO (2026-09-19):** cuerpo real de traje **boca abajo**, cabeza hacia el estante, pies hacia la mesa (`rec_body`; F1/F4, `trial_day1_success.ts:162`).
+- [x] ~~Estante de 24 ranuras con hueco 13 y lomo distinto en 11~~ → **RETIRADO PARCIALMENTE (2026-09-19):** una sola banda continua de ranuras con cartelas 1–24 y **ranura 13 vacía y oscura**… — *RECTIFICADO en re-auditoría per-crop (2026-09-19): la estructura y el lomo distinto de la ranura 11 (textura con greca y cantoneras, algo más grueso) sí se confirman (`rec_mueble`), pero el **hueco vacío no está bajo la cartela «13»**: aparece entre las cartelas «14» y «15», y la secuencia imprime 25 cartelas porque «15» está duplicada (…14, 15, 15, 16…). El retiro del bloqueante se mantiene en lo estructural; la numeración pasa a defecto confirmado.* 
+- [x] ~~Legajo abierto~~ → **RETIRADO (2026-09-19):** legajo abierto y atado con listón sobre la mesa (`rec_mesa`).
+- [x] ~~Lámpara encendida~~ → **RETIRADO (2026-09-19):** lámpara de pantalla verde con halo de luz encendido (`rec_mesa`).
+- [x] ~~Mancha y cartelito~~ → **RETIRADO (2026-09-19):** tomo cerrado con el **lomo hacia arriba**, nervios y **mancha oscura en el lomo**; cartelito numerado de perito «1» junto a él (`rec_tomo`).
+- [x] ~~Foto B/N con grano grueso sin marco con manillas / placa «EXPEDIENTE No. 1977-05-14»~~ → **RETIRADO (2026-09-19):** placa plana B/N sin marco, sin manillas, sin sepia, sin placa de expediente ni fecha impresa; el marco/mueble superior es la pila de legajos del propio pasillo (F2/F3/F5).
+
+### Cumple
+
+- ✓ Encuadre desde el interior junto a la mesa: cuerpo, tomo y mesa visibles, perspectiva estrecha y larga; reja de barrotes al extremo opuesto entre las estanterías (F1).
+- ✓ Cuerpo de traje **boca abajo**, cabeza hacia el estante y pies hacia la mesa, sin silueta de gis (F1/F4; `trial_day1_success.ts:162`).
+- ✓ Mesa de roble con lámpara encendida (halo de luz) y legajo abierto atado con listón; silla volcada hacia atrás con asiento, respaldo y patas legibles (F1; `archivo_pasillo7_hotspots.ts:69-72`).
+- ✓ Geometría de sala: estanterías altas de madera, piso encerado, puerta metálica gris de servicio entreabierta con mirilla, rejilla de ventilación con ondas de aire caliente, sin vapor fotográfico (F1/F5).
+- ✓ AUSENTE personajes vivos, policías, segunda mesa, escombros, marcas de agua, flechas, círculos, título o rótulo en las cuatro esquinas (F1/F2).
+- ✓ Tomo del suelo cerrado con el lomo hacia arriba, mancha oscura en el lomo y cartelito pericial «1» (F1/F4).
+- ✓ F6: sin prosa ni abreviaturas de idioma; composición compartible ES/EN. La única numeración es diegética y no hay fecha/hora impresas (F3).
+
+### Defectos confirmados
+
+- [ ] **MEDIO (F1/F3/F4, CONTRADICE)** — Numeración del estante contradice el reparto canónico: la secuencia de cartelas imprime 25 números con «15» duplicado (…14, 15, 15, 16…), y el **hueco vacío cae bajo la zona del «15», no bajo la «13»**. La narración posterior sobre la ranura 13 vacía (ausencia histórica del tomo 13; `archivo_pasillo7_hotspots.ts:48-55`; §24.C F7) queda contradicha por la placa visible. No rompe un diálogo en pantalla directa, pero es el dato central del caso.
+- [ ] **MENOR (F1, DRIFT)** — Los «cartoncitos manuscritos» aparecen como placas tipográficas impresas uniformes, no tarjetas escritas a mano (§23.1/`examine_estante_consulta`).
+- [ ] **MENOR (F5)** — Grano fotográfico visible pero moderado; cel-shade B/N plano, aceptable como no-fotorrealismo (hallazgo persistente de pasadas anteriores).
+
+### Correcciones de auditoría
+
+- [x] ~~Veredicto previo de esta sección: «cumple» con el defecto MEDIO solo como duplicación «15»~~ → **RECTIFICADO (2026-09-19, re-auditoría per-crop):** el recorte ampliado del mueble (`tmp_plate_foto_pericial_mueble.png`) demuestra además que el hueco vacío está desplazado a la posición del «15» duplicado; se consolida en el defecto MEDIO CONTRADICE y el veredicto pasa a «no cumple plenamente» con regeneración recomendada.
+
+### Recomendación
+
+Regenerar (prioridad media): 1) corregir la banda de numeración para que sean exactamente 24 cartelas manuscritas 1–24 sin duplicados; 2) dejar la **ranura 13** como la única vacía y oscura, bajo su cartela; 3) mantener el lomo distinto en la 11 (correcto en esta generación). Los bloqueantes estructurales (cuerpo, tomo, mesa, formato forense) no requieren cambios.
+
+Auditoría visual per-crop de `assets/plate_foto_pericial.webp` (1280×720), comparada contra la geometría del master de investigación y del recuerdo previo. **Veredicto: cumple** contenido, formato forense y consistencia del lote.
+
+### Cumple
+
+- ✓ Placa plana B/N sin marco, título, flechas, círculos ni texto explicativo (`plate_foto_pericial_0`).
+- ✓ Cuerpo estilizado en cel-shading B/N, boca abajo, cabeza hacia el mueble y pies hacia la mesa; el gis no aparece (`plate_foto_pericial_3`).
+- ✓ La mano izquierda visible a la izquierda del cuerpo tiene cuatro dedos y un pulgar único en el borde superior/externo de la palma; no hay pulgar invertido ni dedos extra (`plate_foto_pericial_3`, recorte de mano).
+- ✓ La silla volcada conserva asiento, respaldo, listones y patas claramente conectados (`plate_foto_pericial_2`, `plate_foto_pericial_3`).
+- ✓ Mueble de una sola fila con 24 ranuras, hueco 13 y lomo vino 11 (`plate_foto_pericial_1`).
+- ✓ Tomo con lomo arriba, mancha y cartel; mesa, expediente, lámpara, grille con ondas de aire, puerta y reja comparten la escena (`plate_foto_pericial_0`, `plate_foto_pericial_2`, `plate_foto_pericial_4`, `plate_foto_pericial_5`).
+
+### Defectos confirmados
+
+- Ninguno que justifique otra regeneración.
+
+### Recomendación
+
+Conservar esta placa como el recorte 16:9 del mismo master visual.

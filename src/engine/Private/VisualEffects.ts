@@ -7,7 +7,7 @@
 import type { CutinName, DialogueLine, FurnitureType, PoseName } from '../../types/index.js';
 import type { DomElements } from './DomElements.js';
 import { applyStageFrame, resolveStageFrame } from './StageLayout.js';
-import { defenseIdlePose, getStagingCaseId } from './TrialCaseStaging.js';
+import { defenseIdlePose, getStagingCaseId, isCase5Secretary } from './TrialCaseStaging.js';
 import { trialBackgroundFor } from './TrialSpeakerCameras.js';
 
 const FURNITURE_ASSETS: Record<'podium' | 'bench', string> = {
@@ -81,6 +81,7 @@ export class VisualEffects {
     if (isDefenseSpeaker(line.speaker)) return defenseIdlePose();
     if (isChapulinSpeaker(line.speaker)) return 'chapulin_idle';
     if (line.speaker === 'SUPER SAM') return 'supersam_idle';
+    if (line.speaker === 'SECRETARIO' && isCase5Secretary()) return 'secretario_leyendo';
     return null;
   }
 

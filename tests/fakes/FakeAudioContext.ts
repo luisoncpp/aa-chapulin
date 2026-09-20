@@ -5,7 +5,7 @@
 
 export class FakeAudioParam {
   public value: number;
-  public events: Array<{ type: 'set' | 'linearRamp'; value: number; time: number }> = [];
+  public events: Array<{ type: 'set' | 'linearRamp' | 'exponentialRamp'; value: number; time: number }> = [];
 
   constructor(defaultValue = 1) {
     this.value = defaultValue;
@@ -19,6 +19,11 @@ export class FakeAudioParam {
   public linearRampToValueAtTime(value: number, time: number): void {
     this.value = value;
     this.events.push({ type: 'linearRamp', value, time });
+  }
+
+  public exponentialRampToValueAtTime(value: number, time: number): void {
+    this.value = value;
+    this.events.push({ type: 'exponentialRamp', value, time });
   }
 }
 

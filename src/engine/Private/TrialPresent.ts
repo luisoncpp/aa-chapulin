@@ -9,7 +9,7 @@ import type {
 } from '../../types/index.js';
 import { i18n } from '../../i18n/index.js';
 import { closePresentPoint, startPresentPoint } from './PresentPoint.js';
-import { visibleStatements } from './StatementUnlock.js';
+import { tryDeflect } from './TrialDeflect.js';
 import { getActiveTrial } from './TrialDayRouter.js';
 import { advanceAfterContradiction, onPresentPenalty } from './TrialOutcome.js';
 import type { PenaltyHost } from './TrialPenalty.js';
@@ -56,7 +56,7 @@ function rebindOpeningScript(ctrl: TrialController, p: PresentPending): void {
 }
 
 function rebindFollowUpScript(ctrl: TrialController, p: PresentPending): void {
-  const rule = currentContradiction(ctrl);
+  const rule = ctrl.currentStatement()?.contradiction;
   if (rule?.followUp) p.followUp = rule.followUp;
 }
 
@@ -145,9 +145,11 @@ function tryFollowUpPresent(ctrl: TrialController, evidenceId: EvidenceId): bool
 }
 
 function presentCurrentContradiction(ctrl: TrialController, evidenceId: EvidenceId): void {
-  const rule = currentContradiction(ctrl);
+  const statement = ctrl.currentStatement();
+  const rule = statement?.contradiction;
   if (!rule?.evidence?.includes(evidenceId)) {
-    onPresentPenalty(ctrl);
+    // Nothing matched: the court either answers the present or charges for it.
+    if (!tryDeflect(ctrl, statement, evidenceId)) onPresentPenalty(ctrl);
     return;
   }
   if (rule.requiresExamine && !ctrl.deps.state.isEvidenceExamined(rule.requiresExamine)) {
@@ -178,13 +180,6 @@ function afterContradictionSuccess(ctrl: TrialController, rule: ContradictionRul
   slot(ctrl).followUp = rule.followUp;
   ctrl.hideControls();
   ctrl.deps.onOpenCourtRecord(/*isTrialPresent=*/ true);
-}
-
-function currentContradiction(ctrl: TrialController): ContradictionRule | undefined {
-  if (!ctrl.currentTestimony) return undefined;
-  const pressed = new Set(ctrl.getTrialSnapshot().pressedStatementIds);
-  const visible = visibleStatements(ctrl.currentTestimony, pressed);
-  return visible[ctrl.currentStatementIdx]?.contradiction;
 }
 
 function beginRuleSuccess(ctrl: TrialController, config: RuleSuccessConfig): void {

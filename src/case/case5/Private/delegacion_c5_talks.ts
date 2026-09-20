@@ -36,12 +36,11 @@ export const CASE5_DELEGACION_C5_TALKS: TalkOption[] = [
       { speaker: 'DEFENSA', text: '(Cinco papeles de cinco casos que no se conocen entre ellos.)', pose: 'chapulin_idle' },
       { speaker: 'DEFENSA', text: '(Y los cinco hablan del mismo negocio.)', pose: 'chapulin_panic' },
       { speaker: 'SARGENTO', text: 'Mi Licenciado. Le voy a pedir una cosa y perdóneme el atrevimiento.', pose: 'pazguato_sweat' },
-      { speaker: 'SARGENTO', text: 'No lo diga hoy en la sala hasta que el señor de la leontina esté declarando.', pose: 'pazguato_decidido' },
+      { speaker: 'SARGENTO', text: 'No lo diga hoy en la sala hasta que el señor de la cadena de oro esté declarando.', pose: 'pazguato_decidido' },
       { speaker: 'DEFENSA', text: '¿Y por qué?', pose: 'chapulin_idle' },
       { speaker: 'SARGENTO', text: 'Porque un coadyuvante puede objetar. Un testigo, no.', pose: 'pazguato_decidido' },
       { speaker: 'DEFENSA', text: '(Sargento, ¿desde cuándo sabe usted de derecho?)', pose: 'chapulin_idle' },
-      { speaker: 'SARGENTO', text: 'Desde septiembre, mi Licenciado. Es lo único bueno que me dejó septiembre.', pose: 'pazguato_saludo' },
-      { speaker: 'NARRADOR', text: 'Suena la campana del juzgado.', sfx: 'bell' }
+      { speaker: 'SARGENTO', text: 'Desde septiembre, mi Licenciado. Es lo único bueno que me dejó septiembre.', pose: 'pazguato_saludo' }
     ]
   }
 ];

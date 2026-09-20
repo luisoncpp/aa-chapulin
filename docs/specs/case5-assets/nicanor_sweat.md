@@ -67,5 +67,6 @@ Alias seguidos: Nicanor, don Nicanor, conserje, conserje del Archivo Judicial, e
 
 ## Hallazgos de auditoría 2026-09-19
 
-- No se inspeccionó ninguna imagen, conforme al protocolo `asset-facts`; por tanto, no se confirma ningún defecto visual de la exportación actual.
-- Hoja preparada únicamente desde §23, §24, el perfil ES/EN y los guiones ES/EN. No se ejecutaron tests, lint, auditorías, procesamiento ni verificación de assets.
+- `MALFORMADO` — La celda inferior izquierda de `nicanor_sprites_raw.png` cortaba el cepillo de la escoba contra el borde de la hoja. Tras el chroma-key, el corte se convertía en el borde izquierdo del bbox y el WebP tenía margen de lienzo, así que un test de padding no lo cazaba. En el vestíbulo, la línea «Yo fui el que lo encontró» mostraba la escoba mutilada detrás del diálogo.
+- Corrección: `nicanor_sweat` sale de `tools/raw/case5/nicanor_sweat_raw.png` (1×1), con la escoba completa junto al hombro derecho y el cepillo entero dentro del busto. El 2×2 ya no exporta esta pose.
+- No se inspeccionó la hoja contra cada casilla F1 en esta pasada; el hallazgo y el arreglo cubren el recorte del cepillo, no un audit completo de identidad.

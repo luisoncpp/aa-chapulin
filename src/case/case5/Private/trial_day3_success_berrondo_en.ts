@@ -53,10 +53,10 @@ const CASE5_DAY3_GIRO3_EN: DialogueLine[] = [
   { speaker: 'JUEZ', text: 'Defense: tomorrow at four in the afternoon you put someone inside that corridor, or this court sentences on what it has.', pose: 'judge_neutral' },
   { speaker: 'JUEZ', text: 'Court is adjourned.', sfx: 'gavel', pose: 'judge_gavel' },
   { speaker: 'NARRADOR', text: 'The room empties slowly. Super Sam leaves without the canvas bag, which stays on the table.' },
-  { speaker: 'BERRONDO', text: 'Counselor.', pose: 'berrondo_idle' },
+  { speaker: 'BERRONDO', text: 'Counselor.', pose: 'berrondo_idle', bg: 'assets/bg_courtroom.webp' },
   { speaker: 'DEFENSA', text: '...Counselor.', pose: 'chapulin_idle' },
-  { speaker: 'BERRONDO', text: 'The rubric was very well found. And the volume stamp, better.', pose: 'berrondo_idle' },
-  { speaker: 'BERRONDO', text: 'If you ever want to practice for real, speak with me. I mean it.', pose: 'berrondo_idle' },
+  { speaker: 'BERRONDO', text: 'The rubric was very well found. And the volume stamp, better.', pose: 'berrondo_idle', bg: 'assets/bg_courtroom.webp' },
+  { speaker: 'BERRONDO', text: 'If you ever want to practice for real, speak with me. I mean it.', pose: 'berrondo_idle', bg: 'assets/bg_courtroom.webp' },
   { speaker: 'DEFENSA', text: '(And he means it. That is the worst part: he means it.)', pose: 'chapulin_idle' }
 ];
 

@@ -29,7 +29,7 @@ export const CASE5_TESTIMONY_4: Testimony = {
         { speaker: 'DEFENSA', text: '¿A las nueve en punto?', pose: 'chapulin_point' },
         { speaker: 'BARRIGA', text: 'A las nueve. Desayuno antes de esa hora y salgo por el periódico a las nueve en punto desde 1954.', pose: 'barriga_idle' },
         { speaker: 'DEFENSA', text: 'Entonces el sobre pudo estar ahí desde la madrugada.', pose: 'chapulin_idle' },
-        { speaker: 'BARRIGA', text: 'Pudo. Yo no duermo en la puerta, joven.', pose: 'barriga_enojado' },
+        { speaker: 'BARRIGA', text: 'Pudo. Yo no duermo en la puerta, joven.', pose: 'barriga_reclamo' },
         { speaker: 'DEFENSA', text: '(Nadie vio nada. Como siempre que las cosas están bien hechas.)', pose: 'chapulin_idle' }
       ]
     },
@@ -41,14 +41,14 @@ export const CASE5_TESTIMONY_4: Testimony = {
       pressText: [
         MOMENTO,
         { speaker: 'DEFENSA', text: '¿Billetes nuevos?', pose: 'chapulin_point' },
-        { speaker: 'BARRIGA', text: 'Nuevecitos. De los de cien, con la banda del banco todavía puesta en dos fajos.', pose: 'barriga_shock' },
+        { speaker: 'BARRIGA', text: 'Nuevecitos. De los de cien, con la banda del banco todavía puesta en dos fajos.', pose: 'barriga_sorpresa' },
         { speaker: 'JUEZ', text: '¿Con banda de banco?', pose: 'judge_thinking' },
         { speaker: 'BARRIGA', text: 'Con banda. Yo la guardé porque tenía un número. Se la di al Sargento.', pose: 'barriga_idle' },
         { speaker: 'SARGENTO', text: 'Y yo la rastreé, señor juez. Retiro de ventanilla del veintiséis de noviembre. Cuenta a nombre de una sindicatura.', pose: 'pazguato_decidido' },
         { speaker: 'NARRADOR', text: 'Murmullo.', sfx: 'realization' },
-        { speaker: 'BERRONDO', text: 'Señor juez, con la venia: ese retiro es mío y está declarado.', pose: 'berrondo_idle' },
-        { speaker: 'BERRONDO', text: 'Retiré cinco mil pesos el veintiséis para pagar honorarios de un notario en efectivo, cosa fea pero corriente.', pose: 'berrondo_idle' },
-        { speaker: 'BERRONDO', text: 'El notario extendió factura y la tengo aquí. ¿La agrego?', pose: 'berrondo_idle' },
+        { speaker: 'BERRONDO', text: 'Señor juez, con la venia: ese retiro es mío y está declarado.', pose: 'berrondo_idle', bg: 'assets/bg_courtroom.webp' },
+        { speaker: 'BERRONDO', text: 'Retiré cinco mil pesos el veintiséis para pagar honorarios de un notario en efectivo, cosa fea pero corriente.', pose: 'berrondo_idle', bg: 'assets/bg_courtroom.webp' },
+        { speaker: 'BERRONDO', text: 'El notario extendió factura y la tengo aquí. ¿La agrego?', pose: 'berrondo_idle', bg: 'assets/bg_courtroom.webp' },
         { speaker: 'JUEZ', text: '...Agréguela.', pose: 'judge_thinking' },
         { speaker: 'DEFENSA', text: '(Contesta antes de que le pregunten. Y contesta bien.)', pose: 'chapulin_idle' },
         { speaker: 'DEFENSA', text: '(Cinco mil menos cuatro mil doscientos cincuenta son setecientos cincuenta pesos. ¿Cuánto cobra un notario?)', pose: 'chapulin_idle' },
@@ -78,7 +78,7 @@ export const CASE5_TESTIMONY_4: Testimony = {
       pressText: [
         MOMENTO,
         { speaker: 'DEFENSA', text: '¿Qué cara puso mi cliente cuando le dio el recibo?', pose: 'chapulin_point' },
-        { speaker: 'BARRIGA', text: 'Cara de susto.', pose: 'barriga_shock' },
+        { speaker: 'BARRIGA', text: 'Cara de susto.', pose: 'barriga_sorpresa' },
         { speaker: 'BARRIGA', text: 'Yo le dije «gracias, señor Ramón» y él me dijo «¿gracias de qué?» y se quedó parado como poste.', pose: 'barriga_idle' },
         { speaker: 'SUPER SAM', text: '¡Actuación! ¡Yo también sé poner cara de poste!', pose: 'supersam_point' },
         { speaker: 'DON RAMÓN', text: 'Póngala usted, señor fiscal, a ver si le sale.', pose: 'donramon_idle' },
@@ -94,8 +94,8 @@ export const CASE5_TESTIMONY_4: Testimony = {
       pressText: [
         MOMENTO,
         { speaker: 'DEFENSA', text: 'Señor Barriga, ¿usted quiere que condenen a Don Ramón?', pose: 'chapulin_point' },
-        { speaker: 'BARRIGA', text: '¡Claro que no!', pose: 'barriga_shock' },
-        { speaker: 'BARRIGA', text: 'Si lo encierran, ¿a quién le cobro? Uno no le cobra la renta a un preso.', pose: 'barriga_enojado' },
+        { speaker: 'BARRIGA', text: '¡Claro que no!', pose: 'barriga_sorpresa' },
+        { speaker: 'BARRIGA', text: 'Si lo encierran, ¿a quién le cobro? Uno no le cobra la renta a un preso.', pose: 'barriga_reclamo' },
         { speaker: 'BARRIGA', text: 'Yo nomás estoy diciendo lo único que se me ocurre, joven, porque no se me ocurre otra cosa.', pose: 'barriga_idle' },
         { speaker: 'DEFENSA', text: '(Eso es exactamente lo que está pasando, señor juez. Y no es lo mismo que declarar.)', pose: 'chapulin_idle' }
       ],

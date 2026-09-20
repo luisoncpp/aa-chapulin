@@ -33,6 +33,7 @@ Case 0 is the courtroom-only entry: its splash/debug launch seeds the opening Co
    - Retrieves visible statement `pressText` (navigation uses [[src/engine/Private/StatementUnlock.ts]]). Case 0 gives every statement a press response, so pressing always produces an intentional dialogue beat.
    - Hides trial controls.
    - Queues press dialogue. The response begins with the defense's localized `¡UN MOMENTO!` / `HOLD IT!` line using the `objection_un_momento` cut-in and `whoosh` SFX, then continues with the witness's added detail.
+   - Press dialogue inherits the active testimony's music; press responses must not declare a `bgm`, because pressing is an interruption inside the same cross-examination rather than a narrative cue change.
    - Records the statement id. If another statement has `unlockedBy` matching it, a toast ("El testigo ha añadido una declaración") plays, and the cursor jumps to the new line.
    - After two failed presents on a testimony that still has hidden lines, Chapulín gives a one-line press hint (no extra penalty for pressing).
 
@@ -49,6 +50,7 @@ Case 0 is the courtroom-only entry: its splash/debug launch seeds the opening Co
    - Case 0 testimony 2 accepts `foto_patio` from either `c0_t2_2` or `c0_t2_3`; both claims use the same examine-detail and Present & Point flow.
    - Several statements may share one `ContradictionRule` object whenever they carry the same claim; the rule (and its `followUp`) then resolves from any of them. Case 5 day-1 testimony 1 accepts `informe_forense_c5` on `c5_d1t1_3` or `c5_d1t1_4`.
    - **Point tutorial timing**: Any instruction that teaches the Present & Point click belongs in the active `pointTarget.promptQuestion`, because the rule's `successDialogue` is queued only after the player has already clicked the correct zone.
+   - **Deflected Evidence** (`stmt.deflect`): the presented item does bear on the statement but not yet. Queues `deflect.dialogue` and restores the same statement, with no `takePenalty`, no `damage` SFX and no `failedPresentCount` bump (so it never advances the press hint). Checked only against the current statement: `openingPresent` and `followUp` answers still penalize. Case 5 day-3 T6 deflects `huacal_9` on `c5_d3t1_2` and `maquina_escribir` on `c5_d3t1_3`.
    - **Incorrect Evidence**:
      1. Calls `gameState.takePenalty()` in [[src/state/Private/GameStateManager.ts#Penalty & Health]].
      2. Calls `ModalManager.updateHealthUI()` (one green `!` turns dark gray).
@@ -98,9 +100,10 @@ Case 0 is the courtroom-only entry: its splash/debug launch seeds the opening Co
 - [[src/engine/Private/ModalManager.ts]]
 - [[src/state/Private/GameStateManager.ts]]
 - [[src/engine/Private/TrialDayRouter.ts]]
+- [[src/engine/Private/TrialDeflect.ts]]
 - [[src/case/case1/Private/trial_day1.ts]] / [[src/case/case2/index.ts]]
 - [[src/case/case1/Private/climax.ts]] / [[src/case/case2/Private/climax.ts]]
 
 ## 8. Common Failure Modes
-- **Wrong Evidence Penalty**: Presenting evidence that does not match `stmt.contradiction.evidence`.
+- **Wrong Evidence Penalty**: Presenting evidence that does not match `stmt.contradiction.evidence` and is not listed in `stmt.deflect.evidence`. Before shipping a cross-examination, ask which item a player who understood the case would reach for on each statement; if it is not the accepted one, deflect it instead of charging a point ([[docs/lessons-learned/plausible-present-is-not-a-mistake.md]]).
 - **Game Over on 5 Penalties**: Life bar depletion resets health and restarts the trial phase.

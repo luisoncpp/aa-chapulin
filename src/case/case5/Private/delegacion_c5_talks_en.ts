@@ -36,12 +36,11 @@ export const CASE5_DELEGACION_C5_TALKS_EN: TalkOption[] = [
       { speaker: 'DEFENSA', text: '(Five papers from five cases that do not know each other.)', pose: 'chapulin_idle' },
       { speaker: 'DEFENSA', text: '(And all five talk about the same business.)', pose: 'chapulin_panic' },
       { speaker: 'SARGENTO', text: 'Counselor. I am going to ask you something and forgive my boldness.', pose: 'pazguato_sweat' },
-      { speaker: 'SARGENTO', text: 'Do not say it in court today until the man with the lorgnette is on the stand.', pose: 'pazguato_decidido' },
+      { speaker: 'SARGENTO', text: 'Do not say it in court today until the man with the watch chain is on the stand.', pose: 'pazguato_decidido' },
       { speaker: 'DEFENSA', text: 'Why?', pose: 'chapulin_idle' },
       { speaker: 'SARGENTO', text: 'Because an amicus can object. A witness cannot.', pose: 'pazguato_decidido' },
       { speaker: 'DEFENSA', text: '(Sergeant, since when do you know law?)', pose: 'chapulin_idle' },
-      { speaker: 'SARGENTO', text: 'Since September, counselor. It is the only good thing September left me.', pose: 'pazguato_saludo' },
-      { speaker: 'NARRADOR', text: 'The courthouse bell rings.', sfx: 'bell' }
+      { speaker: 'SARGENTO', text: 'Since September, counselor. It is the only good thing September left me.', pose: 'pazguato_saludo' }
     ]
   }
 ];

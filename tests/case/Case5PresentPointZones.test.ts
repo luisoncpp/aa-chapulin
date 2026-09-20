@@ -40,13 +40,13 @@ describe('Case 5 Present & Point zones vs examine plates', () => {
     expect(CASE5_CLIMAX_STAGE3_POINT.zones.map((z) => ({ id: z.id, bounds: z.bounds }))).toEqual([
       { id: 'tomo_i', bounds: [3, 16, 18, 72] },
       { id: 'cartoncitos', bounds: [19, 16, 40, 72] },
-      { id: 'lomo_11', bounds: [42, 12, 52, 74] },
-      { id: 'hueco_13', bounds: [52, 16, 57, 70] },
+      { id: 'lomo_11', bounds: [41, 12, 47, 74] },
+      { id: 'hueco_13', bounds: [49, 16, 55, 70] },
       { id: 'zoclo', bounds: [4, 74, 96, 88] }
     ]);
-    expect(correctBounds(CASE5_CLIMAX_STAGE3_POINT)).toEqual([42, 12, 52, 74]);
-    expect(hitsCorrect(CASE5_CLIMAX_STAGE3_POINT, 47, 40)).toBe(true);
-    expect(hitsCorrect(CASE5_CLIMAX_STAGE3_POINT, 56, 40)).toBe(false);
+    expect(correctBounds(CASE5_CLIMAX_STAGE3_POINT)).toEqual([41, 12, 47, 74]);
+    expect(hitsCorrect(CASE5_CLIMAX_STAGE3_POINT, 44, 40)).toBe(true);
+    expect(hitsCorrect(CASE5_CLIMAX_STAGE3_POINT, 52, 40)).toBe(false);
     expect(hitsCorrect(CASE5_CLIMAX_STAGE3_POINT, 47, 80)).toBe(false);
     expect(CASE5_CLIMAX_STAGE3_POINT_EN.zones.map((z) => z.bounds))
       .toEqual(CASE5_CLIMAX_STAGE3_POINT.zones.map((z) => z.bounds));

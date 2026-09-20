@@ -74,6 +74,11 @@ export class TrialController {
     return visibleStatements(this.currentTestimony, this.pressedStatementIds);
   }
 
+  /** The statement the player is looking at, as [[./TrialPresent.ts]] resolves presents against it. */
+  public currentStatement(): Statement | undefined {
+    return this.visibleStatements()[this.currentStatementIdx];
+  }
+
   public getTrialSnapshot(): TrialStateSnapshot {
     return {
       phase: this.phase,

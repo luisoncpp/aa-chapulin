@@ -23,11 +23,15 @@ function chainBlocks(testimony: Testimony): DialogueLine[][][] {
     .filter((s) => s.contradiction)
     .map((s) => {
       const rule = s.contradiction!;
-      const blocks: DialogueLine[][] = [rule.successDialogue];
-      if (rule.pointTarget) blocks.push(rule.pointTarget.successDialogue);
+      // A pointTarget's own successDialogue plays BEFORE the successDialogue that owns it.
+      const blocks: DialogueLine[][] = [];
+      if (rule.pointTarget?.successDialogue) blocks.push(rule.pointTarget.successDialogue);
+      blocks.push(rule.successDialogue);
       if (rule.followUp) {
+        if (rule.followUp.pointTarget?.successDialogue) {
+          blocks.push(rule.followUp.pointTarget.successDialogue);
+        }
         blocks.push(rule.followUp.successDialogue);
-        if (rule.followUp.pointTarget) blocks.push(rule.followUp.pointTarget.successDialogue);
       }
       return blocks;
     });

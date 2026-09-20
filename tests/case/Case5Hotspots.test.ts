@@ -22,17 +22,17 @@ describe('Case 5 investigation hotspot geometry', () => {
         { id: 'hotspot_carrito', x: 0, y: 48, w: 22, h: 42 }
       ],
       archivo_pasillo7: [
-        { id: 'hotspot_cuerpo', x: 38, y: 54, w: 26, h: 26 },
-        { id: 'hotspot_tomo', x: 54, y: 82, w: 18, h: 16 },
-        { id: 'hotspot_estante', x: 54, y: 6, w: 46, h: 72 },
-        { id: 'hotspot_mesa', x: 0, y: 4, w: 34, h: 58 }
+        { id: 'hotspot_cuerpo', x: 38, y: 67, w: 39, h: 33 },
+        { id: 'hotspot_tomo', x: 57, y: 81, w: 17, h: 15 },
+        { id: 'hotspot_estante', x: 60, y: 35, w: 40, h: 37 },
+        { id: 'hotspot_mesa', x: 0, y: 28, w: 35, h: 38 }
       ],
       vecindad_c5: [
         { id: 'hotspot_puerta', x: 10, y: 2, w: 20, h: 40 },
         { id: 'hotspot_sobre', x: 62, y: 40, w: 24, h: 22 }
       ],
       correspondencia: [
-        { id: 'hotspot_libro_acuses', x: 56, y: 62, w: 38, h: 34 }
+        { id: 'hotspot_libro_acuses', x: 65, y: 67, w: 31, h: 22 }
       ],
       despacho_berrondo: [
         { id: 'hotspot_vitrina', x: 0, y: 28, w: 28, h: 42 },
@@ -42,12 +42,12 @@ describe('Case 5 investigation hotspot geometry', () => {
         { id: 'hotspot_legajos', x: 84, y: 50, w: 16, h: 26 }
       ],
       bodega_masa: [
-        { id: 'hotspot_huacal', x: 70, y: 56, w: 24, h: 38 },
-        { id: 'hotspot_cajones', x: 44, y: 46, w: 28, h: 24 },
-        { id: 'hotspot_maquina', x: 56, y: 70, w: 22, h: 18 }
+        { id: 'hotspot_huacal', x: 65, y: 54, w: 24, h: 44 },
+        { id: 'hotspot_cajones', x: 27, y: 54, w: 29, h: 32 },
+        { id: 'hotspot_maquina', x: 45, y: 45, w: 23, h: 24 }
       ],
       fiscalia_c5: [
-        { id: 'hotspot_bolsa', x: 72, y: 52, w: 22, h: 34 }
+        { id: 'hotspot_bolsa', x: 77, y: 84, w: 23, h: 16 }
       ],
       penal_efectos: [
         { id: 'hotspot_caja', x: 8, y: 42, w: 34, h: 40 }
@@ -79,5 +79,12 @@ describe('Case 5 investigation hotspot geometry', () => {
         es.investigation[loc].hotspots.map(geom)
       );
     }
+  });
+
+  it('uses the Case 5 desk variant for the Barriga office', () => {
+    expect(es.investigation.vecindad_c5.bg).toBe('assets/bg_despacho_c5.webp');
+    expect(en.investigation.vecindad_c5.bg).toBe('assets/bg_despacho_c5.webp');
+    expect(es.investigation.vecindad_c5.intro[0]?.bg).toBe('assets/bg_despacho_c5.webp');
+    expect(en.investigation.vecindad_c5.intro[0]?.bg).toBe('assets/bg_despacho_c5.webp');
   });
 });

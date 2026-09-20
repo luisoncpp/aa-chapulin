@@ -58,8 +58,8 @@ export const CASE5_D3_T2_EXPEDIENTE_SUCCESS: DialogueLine[] = [
   { speaker: 'JUEZ', text: 'Y esta corte le dice una cosa, señor Sullivan, porque no se la va a decir nadie más.', pose: 'judge_thinking' },
   { speaker: 'JUEZ', text: 'Lo que usted hizo hoy no lo absuelve. Pero no lo hizo por barato.', pose: 'judge_neutral' },
   { speaker: 'SUPER SAM', text: '...Thank you, Your Honor.', pose: 'supersam_sweat' },
-  { speaker: 'DEFENSA', text: '(Y ahora sí. Ahora ya nada más queda el señor de la leontina.)', pose: 'chapulin_idle' },
+  { speaker: 'DEFENSA', text: '(Y ahora sí. Ahora ya nada más queda el señor de la cadena de oro.)', pose: 'chapulin_idle' },
   { speaker: 'JUEZ', text: 'Licenciado Berrondo. Esta corte le ordena declarar, y le advierte que ya no lo hace como coadyuvante.', sfx: 'gavel', pose: 'judge_gavel' },
-  { speaker: 'BERRONDO', text: 'Con mucho gusto, señor juez. Y le agradezco que me lo ordene: así no parece que huyo.', pose: 'berrondo_idle' },
+  { speaker: 'BERRONDO', text: 'Con mucho gusto, señor juez. Y le agradezco que me lo ordene: así no parece que huyo.', pose: 'berrondo_idle', bg: 'assets/bg_courtroom.webp' },
   { speaker: 'JUEZ', text: 'Declare usted.', sfx: 'gavel', pose: 'judge_gavel' }
 ];

@@ -22,10 +22,9 @@ function trialDialogue(day: ReturnType<typeof day2Trial>): DialogueLine[] {
       if (!rule) continue;
       lines.push(...rule.successDialogue);
       if (rule.followUp) {
+        // Engine order: a pointTarget's own successDialogue plays BEFORE the parent's.
+        lines.push(...(rule.followUp.pointTarget?.successDialogue ?? []));
         lines.push(...rule.followUp.successDialogue);
-        if (rule.followUp.pointTarget?.successDialogue) {
-          lines.push(...rule.followUp.pointTarget.successDialogue);
-        }
       }
     }
   }
@@ -35,6 +34,13 @@ function trialDialogue(day: ReturnType<typeof day2Trial>): DialogueLine[] {
 function defensaPoses(lines: DialogueLine[]): string[] {
   return lines.filter((l) => l.speaker === 'DEFENSA' && l.pose).map((l) => l.pose as string);
 }
+
+const SECRETARY_READING_POSES = [
+  'secretario_leyendo',
+  'secretario_leyendo_senala',
+  'secretario_leyendo_pagina',
+  'secretario_leyendo_mira'
+];
 
 describe('Case 5 day 2 trial (Spanish)', () => {
   const es = getCaseScript('es', 'case5') as CaseScript;
@@ -109,6 +115,20 @@ describe('Case 5 day 2 trial (Spanish)', () => {
     });
   });
 
+  it('stages every day-2 ledger line with a secretary reading pose', () => {
+    const secretaryLines = lines.filter((line) => line.speaker === 'SECRETARIO');
+    expect(secretaryLines).toHaveLength(5);
+    expect(secretaryLines.map((line) => line.pose)).toEqual([
+      ...SECRETARY_READING_POSES,
+      'secretario_leyendo'
+    ]);
+    expect(en.adjournment?.trial.intro.filter((line) => line.speaker === 'SECRETARIO')
+      .map((line) => line.pose)).toEqual([
+        ...SECRETARY_READING_POSES,
+        'secretario_leyendo'
+      ]);
+  });
+
   it('never aliases contradiction successDialogue to followUp.successDialogue', () => {
     for (const testimony of day2.testimonies) {
       for (const stmt of contradictions(testimony)) {
@@ -136,5 +156,41 @@ describe('Case 5 day 2 trial (Spanish)', () => {
       .find((s) => s.id === 'c5_d2t1_5')?.contradiction?.followUp?.successDialogue ?? [];
     expect(t4Follow.map((l) => l.speaker)).toContain('BERRONDO');
     expect(t4Follow[t4Follow.length - 1]?.speaker).toBe('JUEZ');
+  });
+
+  it("keeps Berrondo's unsolicited day-2 intervention at the prosecution table", () => {
+    const spanishLine = lines.find((line) =>
+      line.text === 'Señor juez, con la venia: ese retiro es mío y está declarado.'
+    );
+    const englishLine = trialDialogue(day2Trial(en)).find((line) =>
+      line.text === 'Your Honor, with leave: that withdrawal is mine and it is declared.'
+    );
+
+    expect(spanishLine).toMatchObject({
+      speaker: 'BERRONDO',
+      bg: 'assets/bg_courtroom.webp'
+    });
+    expect(englishLine).toMatchObject({
+      speaker: 'BERRONDO',
+      bg: 'assets/bg_courtroom.webp'
+    });
+  });
+
+  it('closes day 2 with the adjournment gavel, after the exhibit is shown', () => {
+    const texts = lines.map((l) => l.text);
+    const shown = texts.indexOf('Que se ponga a la vista de esta corte.');
+    const adjourn = texts.indexOf('Se levanta la sesión.');
+    expect(shown).toBeGreaterThan(-1);
+    expect(adjourn).toBeGreaterThan(shown);
+    expect(texts.slice(adjourn + 1).every((t) => t.startsWith('(')), 'court speaks after adjourning').toBe(true);
+  });
+
+  it('closes the English day 2 with the adjournment gavel last', () => {
+    const texts = trialDialogue(day2Trial(en)).map((l) => l.text);
+    const shown = texts.indexOf('Let it be shown to this court.');
+    const adjourn = texts.indexOf('Court is adjourned.');
+    expect(shown).toBeGreaterThan(-1);
+    expect(adjourn).toBeGreaterThan(shown);
+    expect(texts.slice(adjourn + 1).every((t) => t.startsWith('(')), 'court speaks after adjourning').toBe(true);
   });
 });

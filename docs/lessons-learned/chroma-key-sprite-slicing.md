@@ -28,6 +28,7 @@ Subtracting excess magenta neutralizes purple fringe into crisp neutral dark out
 Dramatic gestures (pointing fingers, outstretched arms, long weapons) can extend $50..100\text{px}$ across the $512\text{px}$ grid divider into adjacent cells:
 - **Solution**: Use custom crop windows (e.g. $x: 0..576$) for outstretched poses to capture the entire finger/extremity with margin.
 - **Neighbor Cleanup**: Use targeted drop boxes on the adjacent cell to drop the cross-boundary limb bleed.
+- **Sheet-edge shears cannot be cropped back.** If the missing pixels were never painted because the prop hit the sheet border, an extended window is empty. Detect the sheared bbox edge and regenerate that pose as a 1×1 ([[docs/lessons-learned/prop-corner-shear-is-not-canvas-pad.md]]).
 
 ### 6. Accurate Speech Bubble & Artifact Drop Boxes
 When removing AI-generated speech bubbles or text labels, measure the exact vertical bounding box (e.g. $y: 0..138$) and stop at least $5\text{px}$ before character extremities begin to prevent flat horizontal slicing across knuckles, hair, or hats.

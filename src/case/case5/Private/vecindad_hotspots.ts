@@ -15,7 +15,7 @@ export const CASE5_VECINDAD_HOTSPOTS: Hotspot[] = [
       { speaker: 'DEFENSA', text: 'Por aquí cabe un sobre sin doblarlo.', pose: 'chapulin_idle' },
       { speaker: 'BARRIGA', text: 'Por ahí me han pasado de todo: cartas, quejas, un pollo.', pose: 'barriga_idle' },
       { speaker: 'DEFENSA', text: '¿Un pollo?', pose: 'chapulin_panic' },
-      { speaker: 'BARRIGA', text: 'Vivo. No pregunte.', pose: 'barriga_enojado' },
+      { speaker: 'BARRIGA', text: 'Vivo. No pregunte.', pose: 'barriga_reclamo' },
       { speaker: 'DEFENSA', text: '(Cualquiera pudo dejar ese sobre sin que nadie lo viera. Eso no me sirve de nada... o me sirve para todo.)', pose: 'chapulin_idle' }
     ]
   },
@@ -30,7 +30,7 @@ export const CASE5_VECINDAD_HOTSPOTS: Hotspot[] = [
       { speaker: 'DEFENSA', text: '«Se ruega expedir el recibo correspondiente y conservarlo. No se requiere respuesta.»', pose: 'chapulin_point' },
       { speaker: 'DEFENSA', text: '...Señor Barriga, ¿usted cree que Don Ramón escribe así?', pose: 'chapulin_idle' },
       { speaker: 'BARRIGA', text: 'Joven, el señor Ramón me manda los recados escritos en la envoltura de una torta.', pose: 'barriga_idle' },
-      { speaker: 'BARRIGA', text: 'Y con faltas.', pose: 'barriga_enojado' },
+      { speaker: 'BARRIGA', text: 'Y con faltas.', pose: 'barriga_reclamo' },
       { speaker: 'DEFENSA', text: '(A máquina. En tercera persona. Y con «se ruega».)', pose: 'chapulin_idle', addEvidence: 'nota_mecanografiada' },
       { speaker: 'DEFENSA', text: '(Y el recibo dice «tercero no identificado».)', pose: 'chapulin_idle', addEvidence: 'recibo_renta' }
     ]

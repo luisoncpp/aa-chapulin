@@ -4,6 +4,7 @@
  */
 
 import type { DialogueLine, Testimony } from '../../../types/index.js';
+import { CASE5_D3_T1_HUACAL_DEFLECT, CASE5_D3_T1_MAQUINA_DEFLECT } from './trial_day3_deflect.js';
 import { CASE5_D3_T1_HUACAL_SUCCESS, CASE5_D3_T1_INVENTARIO_SUCCESS } from './trial_day3_success.js';
 
 const MOMENTO: DialogueLine = {
@@ -45,7 +46,8 @@ export const CASE5_TESTIMONY_6: Testimony = {
         { speaker: 'DEFENSA', text: '¿Y por qué los jueves?', pose: 'chapulin_idle' },
         { speaker: 'CHOMPIRAS', text: 'Porque los jueves no hay público abajo y se puede trabajar. Me lo dijo él.', pose: 'chompiras_idle' },
         { speaker: 'DEFENSA', text: '(Y eso mismo declaró ayer bajo protesta. Punto por punto.)', pose: 'chapulin_idle' }
-      ]
+      ],
+      deflect: { evidence: ['huacal_9'], dialogue: CASE5_D3_T1_HUACAL_DEFLECT }
     },
     {
       id: 'c5_d3t1_3',
@@ -60,6 +62,7 @@ export const CASE5_TESTIMONY_6: Testimony = {
         { speaker: 'CHOMPIRAS', text: '¡A mí la curiosidad me costó ocho meses de proceso, licenciado! ¡Yo ya no tengo curiosidad ni por el periódico!', pose: 'chompiras_nervous' },
         { speaker: 'DEFENSA', text: '(Y aun así acaba de decirle a la corte lo que él cree que hay. Y se equivoca por defecto.)', pose: 'chapulin_idle' }
       ],
+      deflect: { evidence: ['maquina_escribir'], dialogue: CASE5_D3_T1_MAQUINA_DEFLECT },
       contradiction: {
         evidence: ['inventario_1971'],
         successDialogue: CASE5_D3_T1_INVENTARIO_SUCCESS,

@@ -36,8 +36,8 @@ export const CASE5_CORRESPONDENCIA_TALKS: TalkOption[] = [
       { speaker: 'DEFENSA', text: 'Señorita, ¿me puede decir dónde está esa sindicatura?', pose: 'chapulin_point' },
       { speaker: 'CHIMOLTRUFIA', text: 'Claro. Calle de Donceles 14, segundo piso. Despacho del licenciado Berrondo.', pose: 'chimoltrufia_idle' },
       { speaker: 'DEFENSA', text: '...¿Berrondo?', pose: 'chapulin_panic' },
-      { speaker: 'CHIMOLTRUFIA', text: 'Berrondo. Muy buen señor. Manda una canasta en Navidad.', pose: 'chimoltrufia_shock' },
-      { speaker: 'DEFENSA', text: '(El señor de la leontina. El que ayuda a la fiscalía sin cobrar.)', pose: 'chapulin_idle' },
+      { speaker: 'CHIMOLTRUFIA', text: 'Berrondo. Muy buen señor. Manda una canasta en Navidad.', pose: 'chimoltrufia_idle' },
+      { speaker: 'DEFENSA', text: '(El señor de la cadena de oro. El que ayuda a la fiscalía sin cobrar.)', pose: 'chapulin_idle' },
       { speaker: 'DEFENSA', text: '(Que no panda el cúnico, Chapulín. Que no panda.)', pose: 'chapulin_panic', unlockLocation: 'despacho_berrondo' }
     ]
   }

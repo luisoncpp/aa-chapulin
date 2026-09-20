@@ -40,7 +40,6 @@ export const CASE5_PENAL_EFECTOS_HOTSPOTS_EN: Hotspot[] = [
       { speaker: 'SARGENTO', text: 'And if they convict him tomorrow, I will spend the rest of my life knowing I had the expert book in my hand on day one and did not hand it over.', pose: 'pazguato_decidido' },
       { speaker: 'DEFENSA', text: 'Sergeant, you did nothing wrong.', pose: 'chapulin_idle' },
       { speaker: 'SARGENTO', text: 'I did nothing, Counselor. Which is different and worse.', pose: 'pazguato_decidido' },
-      { speaker: 'NARRADOR', text: 'The courthouse bell sounds in the distance.', sfx: 'bell' },
       { speaker: 'DEFENSA', text: 'Follow me, good people, Sergeant!', pose: 'chapulin_point' },
       { speaker: 'SARGENTO', text: 'At your orders, Counselor.', pose: 'pazguato_saludo' }
     ]

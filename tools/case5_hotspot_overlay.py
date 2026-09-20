@@ -83,17 +83,17 @@ HOTSPOT_SETS = [
         {"id": "hotspot_carrito", "x": 0, "y": 48, "w": 22, "h": 42},
     ]),
     HotspotSet("archivo_pasillo7", "bg_archivo_pasillo7.webp", [
-        {"id": "hotspot_cuerpo", "x": 38, "y": 54, "w": 26, "h": 26},
-        {"id": "hotspot_tomo", "x": 54, "y": 82, "w": 18, "h": 16},
-        {"id": "hotspot_estante", "x": 54, "y": 6, "w": 46, "h": 72},
-        {"id": "hotspot_mesa", "x": 0, "y": 4, "w": 34, "h": 58},
+        {"id": "hotspot_cuerpo", "x": 38, "y": 67, "w": 39, "h": 33},
+        {"id": "hotspot_tomo", "x": 57, "y": 81, "w": 17, "h": 15},
+        {"id": "hotspot_estante", "x": 60, "y": 35, "w": 40, "h": 37},
+        {"id": "hotspot_mesa", "x": 0, "y": 28, "w": 35, "h": 38},
     ]),
     HotspotSet("vecindad_c5", "bg_despacho.webp", [
         {"id": "hotspot_puerta", "x": 10, "y": 2, "w": 20, "h": 40},
         {"id": "hotspot_sobre", "x": 62, "y": 40, "w": 24, "h": 22},
     ]),
     HotspotSet("correspondencia", "bg_correspondencia.webp", [
-        {"id": "hotspot_libro_acuses", "x": 56, "y": 62, "w": 38, "h": 34},
+        {"id": "hotspot_libro_acuses", "x": 65, "y": 67, "w": 31, "h": 22},
     ]),
     HotspotSet("despacho_berrondo", "bg_despacho_berrondo.webp", [
         {"id": "hotspot_vitrina", "x": 0, "y": 28, "w": 28, "h": 42},
@@ -103,12 +103,12 @@ HOTSPOT_SETS = [
         {"id": "hotspot_legajos", "x": 84, "y": 50, "w": 16, "h": 26},
     ]),
     HotspotSet("bodega_masa", "bg_bodega_masa.webp", [
-        {"id": "hotspot_huacal", "x": 70, "y": 56, "w": 24, "h": 38},
-        {"id": "hotspot_cajones", "x": 44, "y": 46, "w": 28, "h": 24},
-        {"id": "hotspot_maquina", "x": 56, "y": 70, "w": 22, "h": 18},
+        {"id": "hotspot_huacal", "x": 65, "y": 54, "w": 24, "h": 44},
+        {"id": "hotspot_cajones", "x": 27, "y": 54, "w": 29, "h": 32},
+        {"id": "hotspot_maquina", "x": 45, "y": 45, "w": 23, "h": 24},
     ]),
     HotspotSet("fiscalia_c5", "bg_fiscalia.webp", [
-        {"id": "hotspot_bolsa", "x": 72, "y": 52, "w": 22, "h": 34},
+        {"id": "hotspot_bolsa", "x": 77, "y": 84, "w": 23, "h": 16},
     ]),
     HotspotSet("penal_efectos", "bg_penal_efectos.webp", [
         {"id": "hotspot_caja", "x": 8, "y": 42, "w": 34, "h": 40},

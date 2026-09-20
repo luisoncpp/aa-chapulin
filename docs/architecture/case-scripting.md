@@ -46,6 +46,7 @@ Each entry in a dialogue sequence supports the following optional and required f
 | `text` | string | Text string rendered via typewriter. |
 | `pose` | string \| null | Sprite key (e.g. `'donramon_idle'`, `'donramon_shock'`, `'chompiras_crying'`). If `null` during trial, defense defaults to `'donramon_idle'`. `donramon_slam` is a desk-contact pose for trial benches; investigation uses `donramon_shock`. Leftover slam tags remap to shock when mode is not `TRIAL`. |
 | `requiresExamine` | string \| null | On a contradiction rule, the evidence id that must have been opened with `EXAMINE DETAIL` before the matching present is accepted. |
+| `deflect` | object \| null | On a statement, `{ evidence, dialogue }`: presents answered by the court instead of a penalty. See below. |
 | `bg` | string | File path to switch the background image (`#scene-bg`). |
 | `bgm` | string | Track ID to switch soundtrack playback in `midiComposer`. On a climax `dialogue[0]` it overrides the engine's `suspense` opener — see [[docs/lessons-learned/climax-bgm-line-override.md]]. For the big truth-reveal dialogue block (the "here is what really happened" sequence), use `truth` on the block's first line and return to the testimony loop when court business resumes — see [[docs/architecture/audio-system.md#Track Catalog]]. |
 | `sfx` | string | SFX identifier to trigger procedural audio (`'gavel'`, `'desk_slam'`, `'whoosh'`, `'realization'`, `'damage'`, `'chipote'`, `'chicharra'`). |
@@ -63,6 +64,10 @@ Case 1 adds a second tab to the Acta. `ProfileItem` ([[src/types/Private/profile
 
 `Hotspot.condition` hides a hotspot until its predicate passes, and the hotspot layer re-renders after each examine. Case 1 chains its day-2 scenes with it (`hotspot_guantera` needs the truck; `hotspot_barda` needs the glovebox and the bag; `hotspot_espejo` needs the camera, the envelope and the roll log). Hotspots without a predicate are always available, so no other case changes.
 
+### Deflected presents (`Statement.deflect`)
+
+A present has three outcomes, not two. `deflect` ({ `evidence`, `dialogue` }) marks items that genuinely bear on the statement but not yet: the court answers with `dialogue`, the player keeps their health and stays on the same statement. It hangs off the **statement**, not off `ContradictionRule`, because a statement with no contradiction of its own still needs it, and it is checked only after `evidence` fails to match — a correct present always wins. It never fires for `openingPresent` or `followUp`: answering an explicit question from the court wrong still costs a point. Deflection dialogue carries no `bgm` and no `cutin`; it is court business, not a reveal. Case 5 day-3 T6 deflects `huacal_9` on `c5_d3t1_2` and `maquina_escribir` on `c5_d3t1_3` ([[src/case/case5/Private/trial_day3_deflect.ts]]).
+
 Statements may set `unlockedBy` to another statement id; [[src/engine/Private/StatementUnlock.ts]] keeps those lines out of the visible cross-exam list until that id is pressed. Instruction-only speakers (`NARRADOR`, `MODO EXAMINAR`, and `EXAMINE MODE`) do not infer a witness camera, so the last courtroom shot remains visible while the instruction is read.
 
 ### 2. Investigation Scene Schema ([[src/case/case1/Private/museo.ts]], [[src/case/case2/index.ts]])
@@ -71,6 +76,7 @@ Statements may set `unlockedBy` to another statement id; [[src/engine/Private/St
 investigation: {
   [locationId]: {
     title: string;
+    name?: string;
     bg: string;
     bgm: TrackName;
     speaker: SpeakerName;
@@ -80,6 +86,8 @@ investigation: {
   }
 }
 ```
+
+`name` is the short label rendered in the investigation move menu; when absent, the menu falls back to `title`. Unlocked destinations that share a building must still provide distinct `name` values so the player can tell them apart.
 
 `TalkOption` supports progressive unlocking via optional `unlockedByTalk` (another talk option id that must be played first), `unlockedByHotspot` (a hotspot id that must be examined first), and `condition` predicates. [[src/engine/Private/TalkOptionUnlock.ts]] filters available options for the talk modal and triggers realization SFX and `notifDialogueUnlocked` banner notifications whenever a previously locked topic unlocks.
 
@@ -203,4 +211,4 @@ Readiness is inventory-only (see [[docs/lessons-learned/trial-gating-is-inventor
 
 ## Case 5 Assembly (`case5`)
 
-Case 5 (`case5`) is assembled in [[src/case/case5/index.ts]] from ES/EN part tables. Four investigation days and four trial days: `adjournment.next` is chained three times. DEFENSA lines use `chapulin_*` poses; Don Ramón is the dock speaker. Climax: five stages (`perfil_berrondo` → `credencial_sindico` → `estante_consulta` + Present & Point `lomo_11` → `ficha_domicilio` → `maquina_escribir` at update stage 2), `choicesAfterStage: 2`, waiting-room epilogue with `bg` + `furniture: 'none'` on every line. First climax line cues `pursuit`, never `truth`. Geometry pins: [[tests/case/Case5Hotspots.test.ts]], [[tests/case/Case5PresentPointZones.test.ts]], [[tests/case/Case5Climax.test.ts]].
+Case 5 (`case5`) is assembled in [[src/case/case5/index.ts]] from ES/EN part tables. Four investigation days and four trial days: `adjournment.next` is chained three times. DEFENSA lines use `chapulin_*` poses; Don Ramón is the accused and stays on the defense camera while he advises from the bench. Climax: five stages (`perfil_berrondo` → `credencial_sindico` → `estante_consulta` + Present & Point `lomo_11` → `ficha_domicilio` → `maquina_escribir` at update stage 2), `choicesAfterStage: 2`, waiting-room epilogue with `bg` + `furniture: 'none'` on every line. First climax line cues `pursuit`, never `truth`. Geometry pins: [[tests/case/Case5Hotspots.test.ts]], [[tests/case/Case5PresentPointZones.test.ts]], [[tests/case/Case5Climax.test.ts]].

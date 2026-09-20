@@ -52,7 +52,6 @@ export const CASE5_ARCHIVO_CALDERA_HOTSPOTS: Hotspot[] = [
       { speaker: 'DEFENSA', text: 'Entonces Don Ramón se queda adentro, Chómpiras.', pose: 'chapulin_idle' },
       { speaker: 'CHOMPIRAS', text: '...Yo estuve ocho meses adentro.', pose: 'chompiras_nervous' },
       { speaker: 'CHOMPIRAS', text: 'Se lo digo nomás para que sepa cuánto dura.', pose: 'chompiras_idle' },
-      { speaker: 'NARRADOR', text: 'Suena la campana del juzgado, a lo lejos, cuatro veces.', sfx: 'bell' },
       { speaker: 'DEFENSA', text: '¡Síganme los buenos!', pose: 'chapulin_point' }
     ]
   }

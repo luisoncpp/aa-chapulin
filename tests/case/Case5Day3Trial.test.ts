@@ -18,6 +18,7 @@ function trialDialogue(day: ReturnType<typeof day3Trial>): DialogueLine[] {
     for (const stmt of testimony.statements) {
       lines.push(stmt);
       lines.push(...(stmt.pressText ?? []));
+      lines.push(...(stmt.deflect?.dialogue ?? []));
       const rule = stmt.contradiction;
       if (!rule) continue;
       lines.push(...rule.successDialogue);
@@ -89,9 +90,42 @@ describe('Case 5 day 3 trial (Spanish)', () => {
     });
   });
 
+  it('deflects the two premature presents of T6 instead of penalizing them', () => {
+    const [t6] = day3.testimonies;
+    const enT6 = day3Trial(en).testimonies[0];
+
+    expect(t6.statements.find((s) => s.id === 'c5_d3t1_2')?.deflect?.evidence).toEqual(['huacal_9']);
+    expect(t6.statements.find((s) => s.id === 'c5_d3t1_3')?.deflect?.evidence)
+      .toEqual(['maquina_escribir']);
+    expect(enT6.statements.find((s) => s.id === 'c5_d3t1_2')?.deflect?.dialogue)
+      .not.toBe(t6.statements.find((s) => s.id === 'c5_d3t1_2')?.deflect?.dialogue);
+  });
+
+  it('keeps the deflections out of the dramatic cue and on the court voice', () => {
+    const deflections = day3.testimonies
+      .flatMap((t) => t.statements)
+      .flatMap((s) => s.deflect?.dialogue ?? []);
+
+    expect(deflections.length).toBeGreaterThan(0);
+    deflections.forEach((line) => {
+      expect(line.bgm, line.text).toBeUndefined();
+      expect(line.cutin, line.text).toBeUndefined();
+    });
+    expect(deflections.filter((line) => line.speaker === 'JUEZ').length)
+      .toBeGreaterThanOrEqual(deflections.length - 2);
+  });
+
   it('never uses truth BGM in day-3 trial dialogue', () => {
     lines.forEach((line) => {
       expect(line.bgm).not.toBe('truth');
+    });
+  });
+
+  it('keeps Super Sam press responses on the testimony music in both languages', () => {
+    [day3.testimonies[1], (day3Trial(en).testimonies[1])].forEach((superSam) => {
+      const pressedLines = superSam.statements.flatMap((statement) => statement.pressText ?? []);
+
+      expect(pressedLines.some((line) => line.bgm)).toBe(false);
     });
   });
 

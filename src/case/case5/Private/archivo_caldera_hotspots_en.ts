@@ -52,7 +52,6 @@ export const CASE5_ARCHIVO_CALDERA_HOTSPOTS_EN: Hotspot[] = [
       { speaker: 'DEFENSA', text: 'Then Don Ramon stays inside, Chompiras.', pose: 'chapulin_idle' },
       { speaker: 'CHOMPIRAS', text: '...I was inside eight months.', pose: 'chompiras_nervous' },
       { speaker: 'CHOMPIRAS', text: 'I am only telling you so you know how long that is.', pose: 'chompiras_idle' },
-      { speaker: 'NARRADOR', text: 'The courthouse bell sounds in the distance, four times.', sfx: 'bell' },
       { speaker: 'DEFENSA', text: 'Follow me, good people!', pose: 'chapulin_point' }
     ]
   }

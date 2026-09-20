@@ -36,8 +36,8 @@ export const CASE5_CORRESPONDENCIA_TALKS_EN: TalkOption[] = [
       { speaker: 'DEFENSA', text: 'Miss, can you tell me where that syndicate office is?', pose: 'chapulin_point' },
       { speaker: 'CHIMOLTRUFIA', text: 'Of course. Donceles 14, second floor. Attorney Berrondo\'s office.', pose: 'chimoltrufia_idle' },
       { speaker: 'DEFENSA', text: '...Berrondo?', pose: 'chapulin_panic' },
-      { speaker: 'CHIMOLTRUFIA', text: 'Berrondo. A very fine gentleman. He sends a basket at Christmas.', pose: 'chimoltrufia_shock' },
-      { speaker: 'DEFENSA', text: '(The man with the lorgnette. The one who helps the prosecution for free.)', pose: 'chapulin_idle' },
+      { speaker: 'CHIMOLTRUFIA', text: 'Berrondo. A very fine gentleman. He sends a basket at Christmas.', pose: 'chimoltrufia_idle' },
+      { speaker: 'DEFENSA', text: '(The man with the watch chain. The one who helps the prosecution for free.)', pose: 'chapulin_idle' },
       { speaker: 'DEFENSA', text: '(Easy does it, Chapulin. Easy does it.)', pose: 'chapulin_panic', unlockLocation: 'despacho_berrondo' }
     ]
   }

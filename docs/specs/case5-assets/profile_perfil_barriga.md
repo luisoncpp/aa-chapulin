@@ -16,7 +16,7 @@ Identidad narrativa compartida: lleva diecisiete años cobrándole a Don Ramón;
 - [ ] `PINTAR` — Formato de icono de persona de 256 × 256: busto sobre un color plano distinto por persona, sin marco y con recorte limpio (§23.5).
 - [ ] `NO CONTRADECIR` — El retrato debe sostener a un casero adulto reconocible como el mismo Barriga que aparece en la investigación, el estrado y el epílogo; no convertirlo en Don Ramón, Berrondo ni otro personaje (`vecindad.ts:16-29`; `trial_day2_t1.ts:19-25`; `climax_epilogue.ts:12-23`).
 - [ ] `AUSENTE` — Despacho, puerta, escalón, sobre amarillo, billetes, recibo, nota mecanografiada, caja fuerte, patio, vecinas, juzgado y cualquier otro fondo u objeto narrativo. El icono representa sólo a la persona (§23.5; `vecindad_hotspots.ts:28-33`).
-- [ ] `AUSENTE` — `barriga_vendado` y cualquier silla de ruedas, vendaje o estado del Caso 3: §23.2 declara que en este episodio se reutilizan `barriga_idle / shock / enojado`, y la ficha deriva sólo de `barriga_idle` (§23.2).
+- [ ] `AUSENTE` — `barriga_vendado` y cualquier silla de ruedas, vendaje o estado del Caso 3. Caso 5 usa `barriga_idle` y su familia sana `barriga_sorpresa / barriga_reclamo / barriga_confundido / barriga_aliviado`; la ficha deriva sólo de `barriga_idle` (§23.2).
 
 ### F2 Texto en imagen
 
@@ -33,7 +33,7 @@ Identidad narrativa compartida: lleva diecisiete años cobrándole a Don Ramón;
 
 - [ ] `PINTAR` — La escena D2 de la vecindad usa `barriga_idle` como `idlePose` y añade `perfil_barriga` al concluir la introducción, después de que Barriga cuenta que recibió el sobre y se quedó quieto por el susto (`vecindad.ts:16-29`; variante EN `vecindad_en.ts:16-29`).
 - [ ] `NO CONTRADECIR` — La tarjeta queda disponible como perfil del Acta de Personajes, con rol de casero, mientras las conversaciones posteriores desarrollan el sobre, el dinero, el recibo y la nota (`ProfileCatalogCase5Es.ts:91-97`; `vecindad_talks.ts:1-46`; variante EN `vecindad_talks_en.ts:1-46`).
-- [ ] `NO CONTRADECIR` — Durante el testimonio del día 2 Barriga alterna `barriga_idle`, `barriga_shock` y `barriga_enojado`; esas poses de diálogo no cambian la imagen del perfil ni autorizan una variante localizada del icono (`trial_day2_t1.ts:19-99`; `trial_day2_t1_en.ts:19-99`).
+- [ ] `NO CONTRADECIR` — Durante el día 2 Barriga alterna `barriga_idle`, `barriga_sorpresa`, `barriga_reclamo`, `barriga_confundido` y `barriga_aliviado`; esas poses de diálogo no cambian la imagen del perfil ni autorizan una variante localizada del icono (`trial_day2_t1.ts:19-99`; `trial_day2_t1_en.ts:19-99`).
 - [ ] `NO CONTRADECIR` — La tarjeta de persona no ofrece botón de presentar durante un contrainterrogatorio; el perfil sirve para lectura e identificación dentro del Acta, no para presentar a Barriga antes de una ranura autorizada (§6; §6.2; `docs/flows/character-record-flow.md`).
 
 ### F5 Estilo
@@ -53,7 +53,7 @@ Identidad narrativa compartida: lleva diecisiete años cobrándole a Don Ramón;
 ## Consistencia (regenerar juntos)
 
 - `barriga_idle` — fuente visual obligatoria del recorte; comparte la identidad y el anclaje del personaje. Regenerar/recortar juntos; este activo no es fuente de verdad del otro (§23.2; §23.5).
-- `barriga_shock` y `barriga_enojado` — comparten identidad de personaje y continuidad de ropa, rostro y diseño en el testimonio y la investigación. Regenerar juntos; este activo no es fuente de verdad de los otros (§23.2; `vecindad.ts:19-29`; `trial_day2_t1.ts:25-99`).
+- `barriga_sorpresa`, `barriga_reclamo`, `barriga_confundido` y `barriga_aliviado` — comparten identidad sana, ropa, rostro, maletín y línea inferior con `barriga_idle` en el testimonio, la investigación y el epílogo. Regenerar juntos; este activo no es fuente de verdad de los otros (§23.2; `vecindad.ts:19-29`; `trial_day2_t1.ts:25-99`).
 - `profile_perfil_donramon`, `profile_perfil_chapulin`, `profile_perfil_casimiro` y las demás fichas de §6.1 — comparten formato de Acta: 256 × 256, busto, color plano individual, sin texto ni marco. Regenerar juntos; estos activos no son fuente de verdad de éste (§6.1; §23.5).
 - `bg_despacho` — comparte el momento y la escena de la vecindad, pero el perfil no debe importar el despacho ni sus muebles. Regenerar juntos para continuidad de identidad/escena; este activo no es fuente de verdad del fondo (§12.1; `vecindad.ts:3-18`).
 - `recibo_renta`, `nota_mecanografiada` y `acuse_notificacion` — comparten el hilo documental del pago, pero ninguno de esos objetos debe aparecer en el busto. Regenerar juntos para continuidad semántica; estos activos no son fuente de verdad de éste (§23.5; §13.2; `vecindad_hotspots.ts:28-33`).

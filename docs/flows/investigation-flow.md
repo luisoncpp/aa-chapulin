@@ -55,6 +55,7 @@ Operational guide for player actions during the crime scene investigation phase.
 3. `#move-locations-modal` opens via `ModalManager.openMoveModal()` with destination buttons:
    - Current location is styled with `disabled` and badge `(Actual)` / `(Current)`.
    - Other unlocked locations are clickable.
+   - Each button uses the scene's optional short `name` (falling back to `title`); locations in the same building must keep those labels distinct.
 4. Player clicks an unlocked destination: modal closes and `startInvestigation(locId)` executes scene transition.
 
 ### Talk Option Click, Progressive Unlocking & Dynamic Location Unlock
@@ -71,6 +72,7 @@ Operational guide for player actions during the crime scene investigation phase.
 ### Unlocking & Launching Trial
 1. `gameState.checkTrialReadiness()` in [[src/state/Private/GameStateManager.ts#Investigation Readiness]] checks `script.requiredEvidence` (day 1) or `adjournment.requiredEvidence` after Case 2 day-1 adjournment.
 2. If ready, `#btn-inv-trial` loses `.disabled`, sets `disabled = false`, gains `.pulse-glow`, and displays a ready notification.
+   - On the transition from locked to ready (and only then), `updateTrialButtonProgress()` plays the `bell` SFX: the courthouse bell marks the end of the investigation day. Scripts must not narrate it, because a scripted bell line fires wherever the writer put it, not when the day actually closes.
 3. While disabled (due to `disabled` property and `.disabled` class), clicking `#btn-inv-trial` is ignored.
 4. When enabled, player clicks "⚖️ Ir a Juicio": `trial.startTrial()` fades through black, then queues the courtroom intro.
 

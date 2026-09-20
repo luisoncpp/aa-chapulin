@@ -67,4 +67,7 @@ export type {
 } from './Private/script.js';
 // fallow-ignore-next-line unused-type
 export type { ChoiceOption } from './Private/script.js';
+// Part of the case-authoring vocabulary; scripts declare `deflect` inline.
+// fallow-ignore-next-line unused-type
+export type { DeflectRule } from './Private/script.js';
 

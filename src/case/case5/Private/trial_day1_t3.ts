@@ -64,7 +64,7 @@ export const CASE5_TESTIMONY_3: Testimony = {
         { speaker: 'NICANOR', text: 'Ése lleva vacío desde el setenta y uno. Es un tomo que anunciaron y nunca imprimieron. Yo le digo «el tomo trece» y ahí sigue, vacío.', pose: 'nicanor_idle' },
         { speaker: 'DEFENSA', text: '(El tomo trece.)', pose: 'chapulin_idle' },
         { speaker: 'BERRONDO', text: '...', pose: 'berrondo_idle' },
-        { speaker: 'DEFENSA', text: '(Ese señor de la leontina no se ha movido en toda la audiencia. Y acaba de mover un dedo.)', pose: 'chapulin_idle' }
+        { speaker: 'DEFENSA', text: '(Ese señor de la cadena de oro no se ha movido en toda la audiencia. Y acaba de mover un dedo.)', pose: 'chapulin_idle' }
       ]
     },
     {

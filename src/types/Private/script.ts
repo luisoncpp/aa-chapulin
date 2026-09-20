@@ -94,6 +94,10 @@ export type PoseName =
   | 'barriga_vendado'
   | 'barriga_shock'
   | 'barriga_enojado'
+  | 'barriga_sorpresa'
+  | 'barriga_reclamo'
+  | 'barriga_confundido'
+  | 'barriga_aliviado'
   | 'nono_idle'
   | 'nono_nervioso'
   | 'nono_llorando'
@@ -143,6 +147,10 @@ export type PoseName =
   | 'genoveva_reglamento'
   | 'genoveva_sweat'
   | 'genoveva_shock'
+  | 'secretario_leyendo'
+  | 'secretario_leyendo_senala'
+  | 'secretario_leyendo_pagina'
+  | 'secretario_leyendo_mira'
   | null;
 
 export type CutinName =
@@ -267,6 +275,17 @@ export interface OpeningPresent {
   prompt?: string;
 }
 
+/**
+ * A plausible but premature present: the evidence really does bear on the
+ * statement, just not yet. The court answers and the player keeps their health.
+ * Hangs off the statement, not off `ContradictionRule`: a statement with no
+ * contradiction of its own can still deflect.
+ */
+export interface DeflectRule {
+  evidence: EvidenceId[];
+  dialogue: DialogueLine[];
+}
+
 export interface Statement {
   id: string;
   speaker: SpeakerName;
@@ -274,6 +293,8 @@ export interface Statement {
   text: string;
   pressText?: DialogueLine[];
   contradiction?: ContradictionRule;
+  /** Presents answered by the court instead of a penalty. */
+  deflect?: DeflectRule;
   /** Visible only after the statement with this id has been pressed. */
   unlockedBy?: string;
 }

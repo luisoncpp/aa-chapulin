@@ -1,6 +1,6 @@
 # bg_archivo_pasillo7 — hoja de hechos
 
-Clase: `bg`. Espec: §23.0, §23.1. Guion: §10.1 (relato del 4 de diciembre), §10.3 (investigación del 6 de diciembre) y las variantes ES/EN de `src/case/case5/Private/archivo_pasillo7*.ts` y `celda_talks*.ts`.
+Clase: `bg`. Espec: §23.0, §23.1. Guion: §10.3 (investigación del 6 de diciembre) y las variantes ES/EN de `src/case/case5/Private/archivo_pasillo7*.ts`; el recuerdo del 4 de diciembre usa `bg_archivo_pasillo7_d4`.
 
 ## Mapa semántico y alcance
 
@@ -13,7 +13,7 @@ Alias seguidos: `pasillo 7`, `estante de consulta`, `estante`, `mueble de consul
 ### F1 Contenido
 
 - [ ] `PINTAR` — Pasillo estrecho y largo del primer piso, entre estanterías de madera oscura de piso a techo cargadas con legajos atados con listón, con perspectiva de un punto de fuga y techo alto con una tubería vista (§23.1, `docs/specs/case-5-el-tomo-trece.md:3987`).
-- [ ] `PINTAR` — A la derecha y al frente, un mueble de consulta distinto de las estanterías: 24 ranuras con cartoncitos numerados; 22 lomos de tela verde oliva idénticos, la ranura 13 vacía y oscura, y en la ranura 11 un lomo de media piel color vino con nervios y dos cantoneras de latón (§23.1; `src/case/case5/Private/archivo_pasillo7_hotspots.ts:45-56`).
+- [ ] `PINTAR` — A la derecha y al frente, un mueble de consulta distinto de las estanterías: **una sola banda horizontal continua de 24 ranuras claramente separadas**, no dos filas apiladas ni una consola baja, con cartoncitos numerados; 22 lomos de tela verde oliva idénticos, la ranura 13 vacía y oscura, y en la ranura 11 un lomo de media piel color vino con nervios y dos cantoneras de latón (`examine_estante_consulta.md:23-27`).
 - [ ] `PINTAR` — A la izquierda, mesa larga de roble con lámpara de pantalla verde encendida, legajo abierto sobre la mesa y silla volcada hacia atrás (§23.1; `archivo_pasillo7_hotspots.ts:69-72`; `docs/specs/case-5-el-tomo-trece.md:790-824`).
 - [ ] `PINTAR` — Entre mesa y estante, silueta de cuerpo marcada con gis blanco, boca abajo y con la cabeza hacia el estante; a un metro, tomo grueso de tela verde caído con el lomo hacia arriba y cartelito numerado de perito al lado (§23.1; §10.3; `archivo_pasillo7_hotspots.ts:19-35`).
 - [ ] `PINTAR` — Al fondo, puerta metálica gris de servicio entreabierta; en el muro izquierdo, rejilla grande de ventilación con una línea sutil de aire caliente, nunca vapor fotográfico; al fondo opuesto, reja de barrotes que cierra el pasillo (§23.1; §4.1 P3/P7).
@@ -28,7 +28,7 @@ Alias seguidos: `pasillo 7`, `estante de consulta`, `estante`, `mueble de consul
 
 - [ ] `NO CONTRADECIR` — La investigación representa el 6 de diciembre a las 11:40 AM, con calor absurdo para diciembre; esas palabras están en la narración y no deben imprimirse en el fondo (`archivo_pasillo7.ts:17`; `archivo_pasillo7_en.ts:17`; §10.3).
 - [ ] `NO CONTRADECIR` — La colección visible conserva la aritmética de 24 ranuras, 23 tomos en el mueble y un tomo en el suelo; la ranura 13 es el hueco histórico del tomo anunciado y nunca publicado (§4.1 P6; §24.C F7; §24.D I3).
-- [ ] `NO CONTRADECIR` — El relato reutilizado ocurre el 4 de diciembre a las 16:44–16:56, antes del homicidio de las 17:02 (§10.1; §24.A/§24.B; `celda_talks.ts:12-28`). No se debe pintar una hora ni una fecha; el problema es el estado visual incompatible, no una cifra que deba aparecer.
+- [ ] `NO CONTRADECIR` — El fondo se reserva para la investigación posterior del 6 de diciembre; el relato previo al homicidio de las 17:02 usa `bg_archivo_pasillo7_d4` (§10.1; §10.3; §24.A/§24.B).
 
 ### F4 Contrato en pantalla
 
@@ -53,16 +53,24 @@ Alias seguidos: `pasillo 7`, `estante de consulta`, `estante`, `mueble de consul
 ## Consistencia (regenerar juntos)
 
 - `plate_foto_pericial` — comparte geometría del pasillo, piso de madera, estanterías, reja, puerta de servicio, rejilla caliente, mesa, lámpara, silla, legajo y disposición posterior al crimen. No es fuente de verdad de éste; aquí la silueta sustituye al cuerpo de la fotografía.
-- `examine_estante_consulta` — comparte el mueble de 24 ranuras, 22 lomos de tela, hueco 13 y lomo distinto de la ranura 11. No es fuente de verdad de éste.
+- `examine_estante_consulta` — fija la referencia canónica del mueble compartido: una sola fila horizontal de 24 ranuras, 22 lomos de tela, hueco 13 y lomo distinto de la ranura 11. Regenerar junto con este fondo; el fondo no es fuente de verdad de la placa frontal.
 - `examine_tomo_caido` + icono `tomo_caido` — comparten tomo de tela verde, lomo arriba, mancha y posición a un metro; el sello violeta de la guarda pertenece al `detailedView`, no al fondo. No son fuente de verdad de éste.
 - `expediente_casimiro` — comparte mesa, legajo abierto y página 214 como objeto narrado; el texto de la tarjeta no debe imprimirse en el fondo. No es fuente de verdad de éste.
 - `bg_archivo_pasillo7_d4` (propuesto en `new-assets.md`) — mismo espacio en el recuerdo previo al crimen; regenerar juntos para conservar geometría y materiales, pero no mezclar su estado sin silueta/tomo/cartel con el estado canónico de investigación.
 - `plate_tomo_trece` — comparte la colección, 24 ranuras y ausencia histórica de la 13; no es fuente de verdad del fondo ni debe imponer un primer plano frontal.
 - `bg_archivo_vestibulo` — comparte el edificio y la ruta de acceso, no la sala ni los props; regenerar juntos sólo si se cambia el lenguaje material del Archivo.
 
+## Decisión de regeneración futura
+
+El mueble de `examine_estante_consulta.webp` es el candado de consistencia. `bg_archivo_pasillo7_d4`, `bg_archivo_pasillo7` y `plate_foto_pericial` deben mostrar el mismo mueble de **una sola fila horizontal**, adaptado a la perspectiva del pasillo; no se acepta el diseño actual de dos filas. No regenerar la placa frontal ni otros assets del caso por este problema: el lote afectado son esos tres fondos/placa.
+
+## Corrección de auditoría 2026-09-19 (revisión posterior)
+
+El veredicto «cumple» de Lote B queda **supersedido** por drift de consistencia: el mueble instalado usa dos filas, mientras `examine_estante_consulta` fija una sola fila horizontal continua. La próxima regeneración debe cambiar sólo el lote de tres assets y conservar el resto del caso.
+
 ## Conflictos abiertos
 
-- `bg_archivo_pasillo7` está estampado en el relato de §10.1 para el 4 de diciembre a las 16:44–16:56 (`docs/specs/case-5-el-tomo-trece.md:550-567`; `src/case/case5/Private/celda_talks.ts:12-28` y `_en`). Ese momento es anterior al homicidio de las 17:02, pero §23.1 y §10.3 obligan a pintar la escena del crimen descubierta: silueta de gis, tomo caído, cartelito pericial y silla volcada. La hoja no resuelve si debe cambiarse el guion a un fondo previo al crimen o si debe crearse/separarse el estado visual.
+- `bg_archivo_pasillo7` queda reservado para la escena del crimen descubierta de §10.3: silueta de gis, tomo caído, cartelito pericial y silla volcada. El relato previo de §10.1 usa la variante `bg_archivo_pasillo7_d4`, que separa el estado visual anterior al homicidio (`docs/specs/case-5-el-tomo-trece.md:550-567`; `src/case/case5/Private/celda_talks.ts:12-28` y `_en`).
 - §10.1 no fija una composición alternativa visible para el recuerdo más allá de la mesa y los dos custodios descritos por el diálogo; por ello no se inventan requisitos de props para el estado previo. El conflicto queda limitado al estado incompatible ya documentado.
 
 ## Hallazgos de auditoría 2026-09-19
@@ -164,3 +172,135 @@ Auditoría visual de `tools/raw/case5/bg_archivo_pasillo7.jpg` (1280×720) tras 
 ### Recomendación
 
 Ninguna bloqueante para el lomo. Opcional: alinear la numeración del mueble con `examine_estante_consulta`.
+
+## Hallazgos de auditoría 2026-09-19 (regeneración final Lote B)
+
+Auditoría visual per-crop de `assets/bg_archivo_pasillo7.webp` (1536×1024): silla, mueble, cuerpo, tomo y mesa. **Veredicto: cumple** los defectos críticos solicitados y la consistencia del tomo.
+
+### Cumple
+
+- ✓ Silla volcada hacia atrás pero inequívocamente silla: asiento, respaldo con listones y patas coherentes (`bg_chair`).
+- ✓ Mueble de consulta alto con varias repisas, zócalo, fila superior e inferior y una cavidad oscura; ya no es una repisa baja de una sola fila (`bg_bookcase`).
+- ✓ Silueta de gis boca abajo, cabeza hacia el mueble y pies hacia la mesa; tomo separado de la silueta (`bg_body`).
+- ✓ Tomo cerrado de tela verde, lomo hacia arriba, tejuelo `XI` y mancha concentrada sobre el lomo; cartelito junto al volumen (`bg_tome`).
+- ✓ Mesa larga, lámpara encendida, expediente abierto, puerta y reja; sin personajes vivos ni mobiliario inventado (`bg_table`, `bg_bookcase`).
+
+### Defectos confirmados
+
+- [x] ~~MEDIO · DRIFT — cifras saltadas y hueco 13 no oscuro~~ **[x] RETIRADO POR REGENERACIÓN (2026-09-19 Lote B):** el mueble comparte la geometría alta y la cavidad oscura con el nuevo `d4`; los cartoncitos no contienen cifras falsas legibles.
+- [x] ~~MENOR · DRIFT — tomo compuesto más gráfico que la sala~~ **[x] RETIRADO POR REGENERACIÓN (2026-09-19 Lote B):** el tomo conserva una silueta limpia y coincide en orientación, tela, tejuelo y mancha con la placa.
+
+### Recomendación
+
+Ninguna regeneración adicional.
+
+## Hallazgos de auditoría 2026-09-19 (regeneración desde cero)
+
+Auditoría visual per-crop de `assets/bg_archivo_pasillo7.webp` (1536×1024), generada desde la descripción escrita sin imagen de referencia. **Veredicto: cumple** el estado de investigación, el contenido bloqueante, las exclusiones y el conjunto de consistencia.
+
+### Cumple
+
+- ✓ Mueble de consulta como una sola banda continua de 24 ranuras, con hueco oscuro en la 13 y lomo vino con nervios/cantoneras en la 11; no hay segunda fila (`crime_bookcase`).
+- ✓ Silla caída inequívocamente reconocible: asiento, respaldo, listones, patas y travesaños ensamblados (`crime_floor`).
+- ✓ Silueta de gis boca abajo, cabeza hacia el mueble y pies hacia la mesa; tomo cerrado con lomo arriba, mancha en el lomo y cartelito adyacente (`crime_floor`).
+- ✓ Mesa larga, lámpara encendida, expediente abierto, puerta gris entreabierta, reja, rejilla con onda de aire y tubería (`crime_corridor`, `crime_floor`).
+- ✓ AUSENTE cuerpo vivo, personajes, policía, segunda mesa, máquina de escribir, vapor fotográfico y texto explicativo (`crime_corridor`).
+
+### Defectos confirmados
+
+- Ninguno que justifique otra regeneración. La silla pasa el test de nombrar como silla volcada, no como tablas sueltas.
+
+### Recomendación
+
+Conservar esta generación.
+
+## Hallazgos de auditoría 2026-09-19 (lote canónico compartido)
+
+Auditoría visual per-crop de `assets/bg_archivo_pasillo7.webp` (1536×1024), con comparación de geometría contra `bg_archivo_pasillo7_d4`, `plate_foto_pericial` y `examine_estante_consulta`. **Veredicto: cumple** contenido bloqueante, legibilidad de objetos y consistencia del lote.
+
+### Cumple
+
+- ✓ La silla volcada conserva asiento, respaldo alto, listones, patas y travesaños conectados; pasa el test de nombrar como silla (`bg_archivo_pasillo7_2`, `bg_archivo_pasillo7_3`).
+- ✓ El mueble de consulta es una sola banda horizontal con 24 ranuras, hueco oscuro en 13 y lomo vino en 11 (`bg_archivo_pasillo7_1`).
+- ✓ La silueta, el tomo con lomo arriba y el cartel pericial están separados y legibles; la cabeza de la silueta apunta al mueble (`bg_archivo_pasillo7_3`).
+- ✓ Mesa, expediente abierto, lámpara encendida, puerta, reja, rejilla con ondas de aire y ducto permanecen en la composición compartida (`bg_archivo_pasillo7_0`, `bg_archivo_pasillo7_4`, `bg_archivo_pasillo7_5`).
+- ✓ No hay personajes, texto explicativo, humo fotográfico, segunda fila del mueble ni segundo hueco.
+
+### Defectos confirmados
+
+- Ninguno que justifique otra regeneración. Esta generación queda como master del lote compartido.
+
+### Recomendación
+
+Conservar esta generación y derivar las variantes únicamente desde este master.
+
+## Hallazgos de auditoría 2026-09-19 (regeneración Lote A v2, RAW ~19:56)
+
+Auditoría visual per-crop de `tools/raw/case5/bg_archivo_pasillo7.jpg` (1536×1024, regenerado 2026-09-19 ~19:56), recortes ampliados por sustantivo: `c_mueble`, `c_slots` (×4), `c_tomo`, `c_silla`, `c_gis`, `c_puerta`, `c_rejilla`, `c_techo`, `c_mesa`. Los hallazgos previos corresponden a la generación anterior. **Veredicto: cumple** los nueve puntos solicitados para la regeneración (F1/F4 bloqueante) y las exclusiones; restan dos defectos no bloqueantes (MEDIO/MEDIO) y un matiz de estilo.
+
+### Cumple
+
+- ✓ **Mueble de consulta** distinto de las estanterías: una sola banda horizontal continua de 24 ranuras con cartoncitos numerados, sin segunda fila ni consola baja; aritmética correcta — 12 tomos a la izquierda del hueco (11 verdes + lomo vino en la ranura 11), **ranura 13 vacía y oscura**, 11 tomos a la derecha → 23 tomos en el mueble y el tomo 24 en el suelo (F1/F3; `examine_estante_consulta.md:23-27`; `archivo_pasillo7_hotspots.ts:45-56`). Prueba de nombrar: «mueble de consulta de lomos verdes con un lomo vino y un hueco oscuro».
+- ✓ **Lomo vino** de la ranura 11: burdeos con nervios y franjas doradas, claramente distinto del oliva; las cantoneras de latón no son visibles en vista de lomo (aceptación del revisor en pasadas previas) (F1; recorte `c_mueble`).
+- ✓ **Cartelito pericial** numerado en pie junto al tomo, sin volverse rotulación (F1/F2; `archivo_pasillo7_hotspots.ts:30`).
+- ✓ **Tomo caído**: cerrado, tela verde, **lomo hacia arriba** con tejuelo y mancha parda concentrada en el lomo, a un metro de la silueta (F1/F4; consistencia con `examine_tomo_caido`).
+- ✓ **Silueta de gis** boca abajo, mano visible, **cabeza hacia el estante/mueble** y pies hacia la mesa (F1/F4; `trial_day1_success.ts:161-164`).
+- ✓ **Legajo abierto atado con listón** sobre la mesa de robe; **lámpara de pantalla verde encendida** (F1; `archivo_pasillo7_hotspots.ts:69-77`).
+- ✓ **Silla volcada hacia atrás**: pasa el test de nombrar — asiento, respaldo con listones, travesaños y patas ensamblados; no es un enredo de tablas (F1; recorte `c_silla`).
+- ✓ **Puerta metálica gris de servicio entreabierta** con ojo de buey y mirilla reticulada; **reja de barrotes** cerrando el pasillo al fondo opuesto (F1; recorte `c_puerta`).
+- ✓ **Rejilla de ventilación** metálica en el muro izquierdo con tres ondas grises de aire; se leen como línea de aire estilizada, no vapor fotográfico (F1; recorte `c_rejilla`).
+- ✓ **Tubería vista** en el techo: ducto metálico espiral a lo largo del pasillo con puntos de fuga (F1; recorte `c_techo`).
+- ✓ **AUSENTE** personajes vivos, policía, escombros, segunda mesa, mobiliario inventado, fechas/horas impresas, texto en inglés ni marcas de agua (F1/F2/F4). F6: sin variante localizada; sin texto de «ayuda» de traducción.
+
+### Defectos confirmados
+
+- [ ] **MEDIO (F3/F4, CONTRADICE)** — Los cartoncitos numerados del mueble están **saltados y duplicados**: tras «16» se leen `17, 17, 19, 19, 20, 21, 22, 23, 24`; falta el 18. El conteo de ranuras (24) y el hueco 13 sí son correctos, pero la numeración impresa contradice el tag 13 narrado («el hueco histórico del tomo anunciado»); la aritmética del mueble no se sostiene por sí sola en pantalla (recorte `c_slots`; `archivo_pasillo7_hotspots.ts:45-56`).
+- [ ] **MEDIO (consistencia, DRIFT)** — El piso es **losa gris pulida**; el conjunto de consistencia fija «piso de madera» compartido con `plate_foto_pericial` («Consistencia», primera viñeta). No rompe un diálogo directamente, pero contradice el rasgo compartido del lote.
+- [ ] **MENOR (F5, DRIFT de estilo, pendiente de revisor)** — El sombreado es de transición suave con oclusión ambiental; diluye el «cel-shading plano con terminador duro de dos tonos y contorno carbón `#1A1A1A`» del §23.0. En pasadas anteriores un hallazgo equivalente fue retirado por decisión del revisor; se registra para que el revisor decida sobre este render.
+
+### Correcciones de auditoría
+
+- Los ✓ de la generación anterior sobre el mismo archivo quedan superseded por esta pasada; las trazas previas se conservan arriba sin cambios.
+
+### Recomendación
+
+1. Corregir la numeración de los cartoncitos a 1–24 secuenciales (o cartoncitos ilegibles pequeños) conservando el hueco 13 oscuro y el lomo vino en la 11.
+2. Cambiar el piso a madera barnizada para alinear el lote (`plate_foto_pericial`).
+3. Decisión de revisor sobre el estilo F5 (cel-shading vs. sombreado suave).
+
+## Hallazgos de auditoría 2026-09-19 (regeneración Lote A v3, RAW 21:18)
+
+Auditoría visual per-crop de `tools/raw/case5/bg_archivo_pasillo7.jpg` — **última versión confirmada por LastWriteTime: 19/09/2026 21:18** (posterior a la v2 de ~19:56; la sección anterior queda superseded como traza). Recortes propios ampliados por sustantivo: `c_mueble_v3`, `c_slots_v3` (×4), `c_gis_tomo_v3`, `c_mesa_v3`, `c_silla_v3`, `c_puerta_v3`, `c_rejilla_v3`, `c_techo_v3`, `c_piso_v3`. Los hallazgos previos corresponden a las generaciones anteriores.
+
+**Veredicto: cumple** los nueve puntos solicitados para la regeneración (F1/F4 bloqueante) y las exclusiones; persisten dos defectos no bloqueantes (MEDIO/MEDIO) y un matiz de estilo pendiente de revisor.
+
+### Cumple
+
+- ✓ **Mueble de consulta** distinto de las estanterías: una sola banda horizontal continua con cartoncitos numerados, sin segunda fila ni consola baja; **ranura 13 vacía y oscura** tras el hueco, 12 tomos a la izquierda del hueco (11 verdes + lomo vino en la ranura 11) y 11 a la derecha → 23 tomos en el mueble y el tomo 24 en el suelo (F1/F3; `examine_estante_consulta.md:23-27`; `archivo_pasillo7_hotspots.ts:45-56`). Prueba de nombrar: «mueble de consulta de lomos verdes con un lomo vino y un hueco oscuro».
+- ✓ **Lomo vino** de la ranura 11: burdeos, claramente distinto del oliva; nervios y cantoneras de latón no legibles en vista de lomo (aceptación del revisor de pasadas previas se mantiene) (F1; recorte `c_slots_v3`).
+- ✓ **Cartelito pericial** numerado (marcador triangular «1») en pie junto al tomo, sin volverse rotulación (F1/F2; `archivo_pasillo7_hotspots.ts:30`).
+- ✓ **Tomo caído**: cerrado, tela verde, **lomo hacia arriba** con tejuelo dorado y mancha parda concentrada en el lomo, a un metro de la silueta (F1/F4; consistencia con `examine_tomo_caido`; recorte `c_gis_tomo_v3`).
+- ✓ **Silueta de gis** boca abajo, mano visible, **cabeza hacia el estante/mueble** y pies hacia la mesa (F1/F4; `trial_day1_success.ts:161-164`; recorte `c_gis_tomo_v3`).
+- ✓ **Legajo abierto atado con listón** sobre la mesa de roble; **lámpara de pantalla verde encendida** (F1; `archivo_pasillo7_hotspots.ts:69-77`; recorte `c_mesa_v3`).
+- ✓ **Silla volcada hacia atrás**: pasa el test de nombrar — asiento, respaldo con listones, travesaños y patas ensamblados; no es un enredo de tablas (F1; recorte `c_silla_v3`).
+- ✓ **Puerta metálica gris de servicio entreabierta** con mirilla reticulada; **reja de barrotes** cerrando el pasillo al fondo (F1; recorte `c_puerta_v3`).
+- ✓ **Rejilla de ventilación** metálica en el muro izquierdo con tres ondas grises de aire estilizadas, no vapor fotográfico (F1; recorte `c_rejilla_v3`).
+- ✓ **Tubería vista** en el techo: ducto espiral a lo largo del pasillo (F1; recorte `c_techo_v3`).
+- ✓ **AUSENTE** personajes vivos, policía, escombros, segunda mesa, mobiliario inventado, fechas/horas impresas, texto en inglés ni marcas de agua (F1/F2/F4). F6: sin variante localizada; sin texto de «ayuda» de traducción.
+
+### Defectos confirmados
+
+- [ ] **MEDIO (F3/F4, CONTRADICE)** — Los cartoncitos numerados del mueble siguen **saltados y duplicados**: tras «16» se leen `17, 17, 19, 19, 20, 21, 22, 23, 24` (25 cartoncitos visibles), falta el 18. La regeneración v3 no corrigió este defecto de la v2. El hueco 13 y la aritmética de tomos (23+1) se sostienen, pero la numeración impresa no demuestra la secuencia 1–24 en pantalla (recorte `c_slots_v3`; `archivo_pasillo7_hotspots.ts:45-56`).
+- [ ] **MEDIO (consistencia, DRIFT)** — El piso sigue siendo **losa gris pulida**; el conjunto de consistencia fija «piso de madera» compartido con `plate_foto_pericial`. No rompe un diálogo directamente, pero contradice el rasgo compartido del lote (recorte `c_piso_v3`).
+- [ ] **MENOR (F5, DRIFT de estilo, pendiente de revisor)** — Sombreado de transición suave con oclusión ambiental; diluye el «cel-shading plano con terminador duro de dos tonos y contorno carbón `#1A1A1A`» del §23.0. Se registra para decisión del revisor sobre este render.
+
+### Correcciones de auditoría
+
+- La sección «Hallazgos de auditoría 2026-09-19 (regeneración Lote A v2, RAW ~19:56)» queda superseded por esta pasada: se auditó la versión más reciente del JPG (21:18, confirmada por LastWriteTime). Sus ✓ se reproducen en esta sección con recortes propios `*_v3`; sus dos defectos MEDIO persisten sin cambios.
+
+### Recomendación
+
+1. Corregir la numeración de los cartoncitos a 1–24 secuenciales (o hacerlos ilegibles en la resolución final), conservando el hueco 13 oscuro y el lomo vino en la 11.
+2. Cambiar el piso a madera barnizada para alinear el lote (`plate_foto_pericial`).
+3. Decisión de revisor sobre el estilo F5 (cel-shading vs. sombreado suave).
+

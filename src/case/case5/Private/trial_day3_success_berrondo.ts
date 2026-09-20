@@ -53,10 +53,10 @@ const CASE5_DAY3_GIRO3: DialogueLine[] = [
   { speaker: 'JUEZ', text: 'Defensa: mañana a las cuatro de la tarde usted pone a alguien dentro de ese pasillo, o esta corte dicta sentencia con lo que tiene.', pose: 'judge_neutral' },
   { speaker: 'JUEZ', text: 'Se levanta la sesión.', sfx: 'gavel', pose: 'judge_gavel' },
   { speaker: 'NARRADOR', text: 'La sala se vacía despacio. Super Sam sale sin la bolsa de lona, que se queda sobre la mesa.' },
-  { speaker: 'BERRONDO', text: 'Licenciado.', pose: 'berrondo_idle' },
+  { speaker: 'BERRONDO', text: 'Licenciado.', pose: 'berrondo_idle', bg: 'assets/bg_courtroom.webp' },
   { speaker: 'DEFENSA', text: '...Licenciado.', pose: 'chapulin_idle' },
-  { speaker: 'BERRONDO', text: 'Lo de la rúbrica estuvo muy bien encontrado. Y lo del sello del tomo, mejor.', pose: 'berrondo_idle' },
-  { speaker: 'BERRONDO', text: 'Si alguna vez quiere usted ejercer de verdad, hable conmigo. Lo digo en serio.', pose: 'berrondo_idle' },
+  { speaker: 'BERRONDO', text: 'Lo de la rúbrica estuvo muy bien encontrado. Y lo del sello del tomo, mejor.', pose: 'berrondo_idle', bg: 'assets/bg_courtroom.webp' },
+  { speaker: 'BERRONDO', text: 'Si alguna vez quiere usted ejercer de verdad, hable conmigo. Lo digo en serio.', pose: 'berrondo_idle', bg: 'assets/bg_courtroom.webp' },
   { speaker: 'DEFENSA', text: '(Y lo dice en serio. Eso es lo peor de todo: que lo dice en serio.)', pose: 'chapulin_idle' }
 ];
 

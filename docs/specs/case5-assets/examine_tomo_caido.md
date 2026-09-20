@@ -56,7 +56,7 @@ Es la vista ampliada del arma física hallada en el pasillo 7 el 4 de diciembre:
 - `bg_archivo_pasillo7` — comparte el tomo de tela verde caído, su lomo hacia arriba, la mancha y la relación espacial con el cuerpo; el fondo fija la escena completa, no el detalle del sello. Regenerar juntos; este activo no es fuente de verdad del otro (§23.1, `docs/specs/case-5-el-tomo-trece.md:3987`).
 - `plate_foto_pericial` — comparte el tomo a un metro del cuerpo, cerrado, con lomo hacia arriba, mancha y cartelito de perito; esta lámina es el detalle de la guarda y del sello. Regenerar juntos; este activo no es fuente de verdad del otro (`docs/specs/case5-assets/plate_foto_pericial.md:17,62`).
 - `examine_estante_consulta` — comparte el Tomo XI como miembro de la colección y la distinción entre el tomo caído de tela y el ejemplar de lujo que termina en la ranura 11; no trasladar a esta lámina la media piel ni las cantoneras. Regenerar juntos; este activo no es fuente de verdad del otro (§23.3, `docs/specs/case-5-el-tomo-trece.md:4057`).
-- `bg_archivo_pasillo7_d4` (propuesto en `new-assets.md`) — comparte la geometría y el objeto del pasillo antes del crimen, pero no el estado narrativo: ese fondo debe estar sin cadáver, silueta ni tomo caído. Regenerar juntos para conservar el diseño del tomo, sin usarlo como fuente de verdad (§10.1; `docs/specs/case5-assets/new-assets.md:9-14`).
+- `bg_archivo_pasillo7_d4` — comparte la geometría y el objeto del pasillo antes del crimen, pero no el estado narrativo: ese fondo está sin cadáver, silueta ni tomo caído. Regenerar juntos para conservar el diseño del tomo, sin usarlo como fuente de verdad (§10.1; `docs/specs/case5-assets/new-assets.md:9-14`).
 - `plate_tomo_trece` — comparte la colección de 24 ranuras y la ausencia histórica del tomo XIII; no es fuente de verdad del ejemplar caído ni debe imponer una vista de lomos o un texto distinto (§23.4; §24.C F7/I3).
 
 ## Conflictos abiertos
@@ -121,8 +121,15 @@ Auditoría de `tools/raw/case5/examine_tomo_caido.jpg` y `examine_tomo_caido_en.
 
 - [x] ~~MAYOR EN rótulos FORENSIC PLATE / composición distinta~~ **[x] RETIRADO POR REGENERACIÓN (2026-09-19 Lote A).**
 - [x] ~~MEDIO mancha en la tapa y tomo no de canto~~ **[x] RETIRADO POR REGENERACIÓN:** mancha y `XI` en el lomo de canto.
-- [ ] **MENOR (F4)** — El sello se lee con claridad más que «medio borrado»; la cadena es correcta y no se inventa conclusión.
+- **MENOR · CONTRADICE (F4)** — ES/EN: el sello es legible con claridad y la tinta no se lee corrida; el diálogo lo describe medio borrado y de letra pequeña (`src/case/case5/Private/archivo_pasillo7_hotspots.ts:34-35`). La cadena es exacta y no se imprime conclusión; no bloquea.
+- **MENOR · CONTRADICE (F1/F4, matiz)** — ES/EN: la mancha parda se concentra en el lomo (✓), pero salpica sobre el borde de la tapa junto al tejuelo; el spec pide localizada en el lomo, «no en el canto ni como una herida distinta». Lectura dominante sigue siendo el lomo; no bloquea.
+
+### Re-verificación per-crop (2026-09-19, auditoría Lote A) — re-auditoría del RAW final 15:29
+
+Re-auditoría sobre la versión RAW definitiva (LastWriteTime 19/09 15:29 ambos gemelos, 1280×720) con recortes ampliados de lomo/tejuelo/mancha y de ambos sellos. La prueba de nombrar confirma: «tomo de tela verde oliva de pie con el lomo al cámara, tejuelo dorado XI y mancha parda en el lomo»; «sello ovalado violeta de donación». Textos exactos verificados carácter a carácter: ES `DONACIÓN DEL SÍNDICO DE LA QUIEBRA 114/1971 · 14-X-1971`; EN `DONATION FROM THE SYNDIC OF BANKRUPTCY 114/1971 · 14-X-1971` (sin regla de la `s` caída). Sin rótulos forenses, sin flechas/realces, sin magenta, sin cantoneras ni media piel. Composición gemela idéntica (misma mesa de madera, encuadre, regla continua, sello ovalado). Se mantiene el veredicto «cumple» y los dos defectos MENOR (tinta del sello más nítida de lo descrito; salpicadura de la mancha saliendo del lomo hacia el borde de la tapa junto al tejuelo). No se convierte ningún ✓ en defecto.
+
+Recortes ampliados de ambos RAW (lomo/tejuelo/mancha, sello ES, sello EN, regla, zonas de exclusión) confirman el veredicto «cumple»: composición de dos vistas idéntica entre gemelos; tejuelo dorado exacto `XI` en el lomo de canto de pie; regla testigo única pasando por detrás del tomo (numeración continua 4→8, no son dos reglas); sello ovalado violeta con cadena exacta en cada idioma, sin regla de la `s` caída en EN; sin rótulos, flechas, realces, magenta en primer plano, ni cantoneras/media piel. Los ✓ anteriores se defienden por recorte; no se convierte ninguno en defecto MAYOR/MEDIO.
 
 ### Recomendación
 
-Ninguna bloqueante. Opcional: ensuciar un poco más la tinta del sello.
+Ninguna bloqueante. Opcional: ensuciar un poco más la tinta del sello (medio borrado) y reducir la salpicadura sobre la tapa.

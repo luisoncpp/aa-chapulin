@@ -89,7 +89,7 @@ export const CASE5_TESTIMONY_7: Testimony = {
         { speaker: 'DEFENSA', text: '¿Entonces por qué?', pose: 'chapulin_panic' },
         { speaker: 'SUPER SAM', text: 'Porque hay un hombre muerto que me escribió el ocho de noviembre y yo lo dejé dieciocho días en un cajón.', pose: 'supersam_sweat' },
         { speaker: 'SUPER SAM', text: 'Y porque si no lo digo yo hoy, mañana lo va a tener que sacar usted a golpes, y eso me cuesta más caro.', pose: 'supersam_idle' },
-        { speaker: 'NARRADOR', text: 'Silencio absoluto.', bgm: 'suspense' }
+        { speaker: 'NARRADOR', text: 'Silencio absoluto.' }
       ]
     },
     {

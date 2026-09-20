@@ -63,7 +63,7 @@ export const CASE5_D3_T1_HUACAL_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'BERRONDO', text: 'Your Honor, I said so yesterday: I went down Saturday because a diligence was going to touch the estate goods.', pose: 'berrondo_idle' },
   { speaker: 'BERRONDO', text: 'A depositary who only goes down on Thursdays and lets a Saturday diligence pass deserves a bar complaint.', pose: 'berrondo_idle' },
   { speaker: 'DEFENSA', text: '(He is right again. Again.)', pose: 'chapulin_idle' },
-  { speaker: 'JUEZ', text: 'The court notes the explanation and orders the photograph of the crate lid entered.', sfx: 'gavel', pose: 'judge_gavel' },
+  { speaker: 'JUEZ', text: 'The court enters the explanation on the record. Sergeant: on the photograph already in evidence, how many strips did you count?', sfx: 'gavel', pose: 'judge_gavel' },
   { speaker: 'SARGENTO', text: 'More than two hundred fifty strips, Your Honor. I reviewed them with the expert.', pose: 'pazguato_decidido' },
   { speaker: 'SARGENTO', text: 'And the expert left his visual report on the machine. Shall I read it?', pose: 'pazguato_decidido' },
   { speaker: 'JUEZ', text: 'Read it.', pose: 'judge_neutral' },

@@ -10,7 +10,7 @@ export const CASE5_PASILLO7_HOTSPOTS_EN: Hotspot[] = [
   {
     id: 'hotspot_cuerpo',
     label: 'Body Outline',
-    x: 38, y: 54, w: 26, h: 26,
+    x: 38, y: 67, w: 39, h: 33,
     dialogue: [
       { speaker: 'NARRADOR', text: 'A chalk outline on the floor, between the shelf and the consultation table. Face down, head toward the shelf.' },
       { speaker: 'DEFENSA', text: 'He fell forward. Face toward the books.', pose: 'chapulin_idle' },
@@ -25,7 +25,7 @@ export const CASE5_PASILLO7_HOTSPOTS_EN: Hotspot[] = [
   {
     id: 'hotspot_tomo',
     label: 'Fallen Volume',
-    x: 54, y: 82, w: 18, h: 16,
+    x: 57, y: 81, w: 17, h: 15,
     dialogue: [
       { speaker: 'NARRADOR', text: 'One meter from the outline, marked with a forensic tag, a thick volume bound in green cloth.' },
       { speaker: 'DEFENSA', text: '"Universal Knowledge. Volume XI. Railways - Guatemala."', pose: 'chapulin_idle' },
@@ -40,7 +40,7 @@ export const CASE5_PASILLO7_HOTSPOTS_EN: Hotspot[] = [
   {
     id: 'hotspot_estante',
     label: 'Consultation Shelf',
-    x: 54, y: 6, w: 46, h: 72,
+    x: 60, y: 35, w: 40, h: 37,
     dialogue: [
       { speaker: 'NARRADOR', text: 'A dark wood shelf against the wall, with numbered slots from 1 to 24 on cardboard tabs.' },
       { speaker: 'DEFENSA', text: 'A complete set. One through twenty-four.', pose: 'chapulin_idle' },
@@ -59,12 +59,12 @@ export const CASE5_PASILLO7_HOTSPOTS_EN: Hotspot[] = [
   {
     id: 'hotspot_mesa',
     label: 'Consultation Table',
-    // Closes the day (bell + exit to the courtroom). Stays hidden until body,
+    // Closes the day (exit to the courtroom). Stays hidden until body,
     // volume and shelf are examined so the closing beat cannot fire early.
     condition: (flags) => Boolean(flags.examined_hotspot_cuerpo)
       && Boolean(flags.examined_hotspot_tomo)
       && Boolean(flags.examined_hotspot_estante),
-    x: 0, y: 4, w: 34, h: 58,
+    x: 0, y: 28, w: 35, h: 38,
     dialogue: [
       { speaker: 'NARRADOR', text: 'A long oak table with a green-shaded lamp. On it, an open file bundle tied with ribbon.' },
       { speaker: 'DEFENSA', text: 'It is Mr. Lengua file. His appeal.', pose: 'chapulin_idle' },
@@ -82,7 +82,6 @@ export const CASE5_PASILLO7_HOTSPOTS_EN: Hotspot[] = [
       { speaker: 'SARGENTO', text: 'And I answer what I am asked. That is my flaw and also my virtue.', pose: 'pazguato_sweat' },
       { speaker: 'DEFENSA', text: '(Fourteen visitor signatures. And nobody has asked yet who came in without visiting.)', pose: 'chapulin_idle' },
       { speaker: 'DEFENSA', text: '(I will ask, Sergeant. In front of the judge.)', pose: 'chapulin_point' },
-      { speaker: 'NARRADOR', text: 'The courthouse bell rings across the street.', sfx: 'bell' },
       { speaker: 'DEFENSA', text: 'Follow the good guys! To the courtroom!', pose: 'chapulin_point' },
       { speaker: 'SARGENTO', text: 'At your service, Counselor.', pose: 'pazguato_saludo' }
     ]

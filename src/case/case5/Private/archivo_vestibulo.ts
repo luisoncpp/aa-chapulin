@@ -9,7 +9,7 @@ import { CASE5_VESTIBULO_TALKS } from './archivo_vestibulo_talks.js';
 
 export const CASE5_ARCHIVO_VESTIBULO: InvestigationScene = {
   title: 'Archivo Judicial - Vestíbulo',
-  name: 'Archivo Judicial',
+  name: 'Archivo Judicial - Vestíbulo',
   bg: 'assets/bg_archivo_vestibulo.webp',
   bgm: 'archivo',
   speaker: 'NARRADOR',

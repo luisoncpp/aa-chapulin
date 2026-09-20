@@ -26,7 +26,7 @@ Clase: `examine`. Espec: §23.0, §23.3, §5.2 y §9.1. Guion: D2 vecindad, D2-T
 
 - [ ] `TEXTO EXACTO` — La variante ES debe permitir leer: «Adjunto el pago de diecisiete mensualidades vencidas a cargo del C. Ramón Valdés, inquilino de la vivienda 72.» (§13.2, líneas 1348–1351; §13.2, líneas 1802–1804; `vecindad_hotspots.ts:28-35`).
 - [ ] `TEXTO EXACTO` — La variante ES debe permitir leer: «Se ruega expedir el recibo correspondiente y conservarlo. No se requiere respuesta.» (§13.2, líneas 1350–1355; §13.2, líneas 1802–1807; `vecindad_hotspots.ts:28-35`).
-- [ ] `PINTAR` — Todas las `s` minúsculas impresas aparecen media línea por debajo del renglón y medio grado inclinadas a la izquierda; el defecto es parte del documento, no un realce gráfico (§13.2, línea 1360; §23.3, línea 4051; §16.2, líneas 3019–3021).
+- [ ] `PINTAR` — Cada `s` minúscula original aparece una sola vez dentro de su palabra, media línea por debajo del renglón y medio grado inclinada a la izquierda; no se conserva otra `s` en la línea base ni se añade una `S/s` separada debajo. El defecto es parte del documento, no un realce gráfico (§13.2, línea 1360; §23.3, línea 4051; §16.2, líneas 3019–3021).
 - [ ] `AUSENTE` — No imprimir la explicación «la ese caída», el diagnóstico de la barra de tipos ni la conclusión de que la nota no la escribió el inquilino; esas afirmaciones pertenecen al diálogo y a la comparación posterior (§13.2, línea 1360; §13.2, líneas 1832–1849; §16.2, líneas 3019–3021).
 - [ ] `TEXTO EXACTO` — La variante EN debe conservar el contenido equivalente leído en pantalla: “Enclosed is payment for seventeen overdue months charged to C. Ramon Valdes, tenant of dwelling 72.” y “Please issue the corresponding receipt and retain it. No reply required.” (`vecindad_hotspots_en.ts:28-36`).
 - [ ] `PINTAR` — La variante EN conserva la misma composición, defecto mecánico, marca circular, ausencia de firma/membrete/fecha y sobre abierto; sólo cambia el texto legible (§23.3, línea 4064; catálogo EN, `EvidenceCatalogCase5EnA.ts:77-82`). Debe quedar visible al menos una `s` minúscula para sostener la regla del defecto tipográfico (§23.3, línea 4064).
@@ -46,7 +46,7 @@ Clase: `examine`. Espec: §23.0, §23.3, §5.2 y §9.1. Guion: D2 vecindad, D2-T
 - [ ] `PINTAR` — En la declaración 3 de D2-T1, Barriga debe poder leer la nota a la corte y el juez reacciona específicamente a «se ruega» (§13.2, líneas 1799–1807; `trial_day2_t1.ts:60-70`). El texto legible debe conservar esas palabras y su sentido.
 - [ ] `PINTAR` — La contradicción resolutoria usa la nota para demostrar que quien la redactó no es el inquilino: Don Ramón no tiene máquina de escribir ni mesa, y Barriga describe sus recados en una envoltura de torta y con faltas (§13.2, líneas 1832–1849; `trial_day2_success.ts:73-86`; EN: `trial_day2_success_en.ts:73-86`). La nota debe ser formal, mecanografiada, impersonal y sin firma.
 - [ ] `NO CONTRADECIR` — La nota sólo excluye a Don Ramón como redactor; no identifica por sí sola al autor, no prueba quién entregó el sobre y no demuestra que Berrondo ordenara el pago (§13.2, líneas 1848–1849; §24.C F13, línea 4165).
-- [ ] `PINTAR` — La comparación posterior del Sargento incluye esta nota junto con la tarjeta de julio y la ficha del museo; las tres comparten la misma `s` vencida (§16.2, líneas 3019–3021). El defecto debe ser nítido y repetible, pero no debe recibir una flecha o círculo explicativo.
+- [ ] `PINTAR` — La comparación posterior del Sargento incluye esta nota junto con la tarjeta de julio y la ficha del museo; las tres comparten la misma `s` vencida (§16.2, líneas 3019–3021). El defecto debe ser nítido y repetible, sin duplicar el glifo ni recibir una flecha o círculo explicativo.
 - [ ] `NO CONTRADECIR` — En el clímax, la demostración de la máquina se hace con la `s` y otros documentos; esta lámina no debe introducir una numeración de máquina, una macro de barras de tipos ni el texto de la prueba sobre la Olivetti (§18.6, líneas 3644–3650; §23.3, líneas 4051 y 4059).
 
 ### F5 Estilo
@@ -59,7 +59,7 @@ Clase: `examine`. Espec: §23.0, §23.3, §5.2 y §9.1. Guion: D2 vecindad, D2-T
 
 - [ ] `PINTAR` — Generar ES y EN como gemelas de composición: misma media cuartilla, luz rasante, papel cebolla, tres renglones, cinta bicolor gastada, marca circular, sobre abierto sin timbres, defecto de la `s` y ausencias físicas (§23.3, líneas 4051 y 4064).
 - [ ] `TEXTO EXACTO` — ES conserva las fórmulas leídas por la defensa, incluida «se ruega» y «No se requiere respuesta» (§13.2, líneas 1802–1807; `vecindad_hotspots.ts:28-35`). EN conserva “Please issue the corresponding receipt and retain it. No reply required.” (`vecindad_hotspots_en.ts:28-36`).
-- [ ] `PINTAR` — La traducción EN debe retener una `s` minúscula visible para que el defecto tipográfico siga siendo comprobable; composición, fechas narrativas y marcas físicas no cambian (§23.3, línea 4064; §16.2, líneas 3019–3021).
+- [ ] `PINTAR` — La traducción EN debe retener una `s` minúscula visible para que el defecto tipográfico siga siendo comprobable; esa `s` se desplaza, no se duplica ni se convierte en una `S` separada. Composición, fechas narrativas y marcas físicas no cambian (§23.3, línea 4064; §16.2, líneas 3019–3021).
 
 ## Consistencia (regenerar juntos)
 
@@ -161,4 +161,65 @@ Gemelas (F6):
 
 1. Forzar la tercera línea como una sola: «Se ruega… No se requiere respuesta.» / “Please issue… No reply required.”
 2. No colgar `s` bajo palabras que no la tienen (`dwelling`).
+
+## Hallazgos de auditoría 2026-09-20 — corrección de la `s` duplicada
+
+### Veredicto
+
+**CUMPLE la intención corregida de la `s` caída** en ES y EN: la letra ya no aparece como una `S`/`s` extra bajo una palabra que conserva su `s` original. **NO CUMPLE plenamente §23.3** por el residual conocido de cuatro líneas visuales frente a los tres renglones declarados.
+
+### Cumple
+
+- ES y EN: papel suelto junto a un sobre de manila abierto, sin timbres ni sellos postales (F1/F4; recortes temporales `es_paper`, `en_paper`, `es_envelope`, `en_envelope`).
+- ES y EN: marca circular de liga en una esquina inferior, sin flechas, círculos de señalamiento ni texto explicativo (F1/F5; recortes `es_mark`, `en_mark`).
+- ES y EN: las `s` defectuosas se leen como los glifos originales desplazados dentro de sus palabras y no como letras añadidas; no hay una `s` caída bajo `vivienda`, `dwelling` ni otra palabra que carezca de esa letra (F2/F4; recortes `es_text`, `en_text`).
+- ES y EN: no hay firma, membrete, fecha, importe, identidad de Berrondo, ni «Truly yours» (F1/F2/F3).
+- ES y EN: composición gemela de papel, sobre, iluminación y marca; sólo cambia el texto legible (F6).
+
+### Defectos confirmados
+
+- **MEDIO / CONTRADICE / F1** — Ambas variantes conservan cuatro líneas visuales de texto, mientras §23.3 exige tres renglones. Es el conflicto abierto ya registrado; no introduce una oración nueva, pero requiere resolver el corte de línea si se busca conformidad plena.
+- **MENOR / DRIFT / F2** — El desplazamiento de la `s` deja un hueco visible en la línea base de algunas palabras. Es la representación intencionada del defecto mecánico y no una letra duplicada; se conserva como decisión del spec, no como fallo de regeneración.
+
+### Correcciones de auditoría
+
+- ~~MEDIO / MALFORMADO / F2 — La generación anterior conservaba la `s` en la línea y añadía debajo una `S` mayúscula, incluso bajo `vivienda`.~~ [x] **CORREGIDO POR REGENERACIÓN (2026-09-20):** cada `s` se imprime una sola vez como glifo minúsculo desplazado; la regla quedó explicitada en §23.3 e I24.
+- ~~MEDIO / DRIFT / F2 — El defecto no era apreciable en la variante ES/EN.~~ [x] **CORREGIDO POR REGENERACIÓN (2026-09-20):** las `s` caídas son visibles en ambos recortes de texto.
+
+### Recomendación
+
+1. Si se hace otra pasada, conservar la geometría actual de la `s` y corregir sólo el reparto tipográfico para que las dos frases se lean en tres renglones visuales.
+2. No volver a añadir una segunda `S/s` debajo de una palabra: el glifo desplazado es la `s` original.
+
+## Hallazgos de auditoría 2026-09-20 — todas las `s` intramisyllabic
+
+Revisión del revisor: no todas las `s` minúsculas estaban abajo, y en `diecisiete` caía la `e` final. Recortes de texto sobre `assets/examine_nota_renta.webp` y `_en.webp` (pre-parche) y sobre las placas parcheadas.
+
+### Veredicto
+
+**CUMPLE F2 del defecto** en ES y EN: cada `s` minúscula del texto cae media línea dentro de su palabra. Residual conocido: cuatro renglones vs tres de §23.3.
+
+### Cumple
+
+- ES: `diecisiete` lee dieci + `s` caída + iete; la última letra es `e` en la línea base (F2; el fallo que veía el revisor).
+- ES: las diez `s` minúsculas caen: `diecisiete` (1), `mensualidades` (2), `vencidas` (1), `Valdés` (1), `correspondiente` (1), `conservarlo` (1), `se` (1), `respuesta` (2). La `S` de `Se ruega` sigue en la línea base.
+- ES: sobre abierto, marca de liga inferior, sin firma/membrete/fecha, texto exacto de `vecindad_hotspots.ts:28-35` (F1/F4).
+- EN: las nueve `s` minúsculas caen: `Enclosed`, `is`, `seventeen`, `months`, `Valdes`, `Please`, `issue` (2), `corresponding`. `issue` se lee i + dos `s` caídas + `ue`. `corresponding` se lee corre + `s` caída + ponding. Sin `s` colgada bajo `dwelling` (F2/F6).
+
+### Defectos confirmados
+
+- **MEDIO / CONTRADICE / F1** — Sigue el residual de cuatro renglones visuales frente a los tres de §23.3.
+
+### Correcciones de auditoría
+
+- ~~ES: `s` de `diecisiete` en la línea base y `e` final caída.~~ [x] **CORREGIDO (2026-09-20):** parche intramisyllabic sobre la placa reconstruida.
+- ~~ES: primera `s` de `respuesta` (`re`+`s`) en la línea base.~~ [x] **CORREGIDO (2026-09-20):** ambas `s` de `respuesta` caen.
+- ~~EN: `s` de `seventeen` y `corresponding` en la línea base.~~ [x] **CORREGIDO (2026-09-20).**
+- ~~EN: `Enclosed` con `s` en la línea base; `issue` leía `i` + dos `s` caídas + `e` (sin `u`).~~ [x] **CORREGIDO (2026-09-20):** parche de glifos EN; `Enclosed` cae la `s`; `issue` recompone `i` + dos `s` caídas + `ue`. ES no se tocó.
+- ~~EN: `corresponding` conservaba la `s` en la línea y caía la `e`.~~ [x] **CORREGIDO (2026-09-20):** `corre` + `s` caída + `ponding`.
+
+### Recomendación
+
+1. No regenerar con image_gen: vuelve a duplicar o a tragar palabras. El parche de glifos de esta placa es la fuente de la `s`.
+2. El corte a tres renglones sigue abierto en la hoja; no forma parte de este arreglo.
 

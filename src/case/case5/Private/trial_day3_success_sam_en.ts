@@ -58,8 +58,8 @@ export const CASE5_D3_T2_EXPEDIENTE_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'JUEZ', text: 'And this court will tell you one thing, Mr. Sullivan, because nobody else will.', pose: 'judge_thinking' },
   { speaker: 'JUEZ', text: 'What you did today does not absolve you. But you did not do it cheaply.', pose: 'judge_neutral' },
   { speaker: 'SUPER SAM', text: '...Thank you, Your Honor.', pose: 'supersam_sweat' },
-  { speaker: 'DEFENSA', text: '(And now. Now only the man with the pince-nez is left.)', pose: 'chapulin_idle' },
+  { speaker: 'DEFENSA', text: '(And now. Now only the man with the watch chain is left.)', pose: 'chapulin_idle' },
   { speaker: 'JUEZ', text: 'Counselor Berrondo. This court orders you to testify, and warns you it is no longer as co-counsel.', sfx: 'gavel', pose: 'judge_gavel' },
-  { speaker: 'BERRONDO', text: 'With pleasure, Your Honor. And thank you for ordering it: this way it does not look like I am running.', pose: 'berrondo_idle' },
+  { speaker: 'BERRONDO', text: 'With pleasure, Your Honor. And thank you for ordering it: this way it does not look like I am running.', pose: 'berrondo_idle', bg: 'assets/bg_courtroom.webp' },
   { speaker: 'JUEZ', text: 'You may testify.', sfx: 'gavel', pose: 'judge_gavel' }
 ];

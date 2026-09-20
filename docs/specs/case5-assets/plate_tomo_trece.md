@@ -119,7 +119,7 @@ Auditoría de `tools/raw/case5/plate_tomo_trece.jpg` (1280×720), recortes de la
 
 ### Cumple
 
-- ✓ Fila única; **12 lomos a la izquierda**, contorno punteado vacío, lomos a la derecha. El hueco se nombra «posición 13», no 12 (F1/F3/F4; recorte `plate_tomo_trece_row`).
+- ~~✓ Fila única; **12 lomos a la izquierda**, contorno punteado vacío, lomos a la derecha. El hueco se nombra «posición 13», no 12 (F1/F3/F4; recorte `plate_tomo_trece_row`).~~ **CORREGIDO en la re-verificación de recortes (ver sección inferior): el recuento real sobre recortes ampliados es 11 lomos a la izquierda y 12 a la derecha — el hueco sigue en la posición 12.**
 - ✓ Contorno punteado sin volumen (F1). Publicidad de época debajo, titular gótico **borrado en mancha de tinta**, sin glifos de empresa (F2; recorte `plate_tomo_trece_news`).
 - ✓ AUSENTE escena del crimen, ranura 11 especial, personajes, flechas, UI (F1/F5).
 
@@ -127,8 +127,56 @@ Auditoría de `tools/raw/case5/plate_tomo_trece.jpg` (1280×720), recortes de la
 
 - [x] ~~MAYOR hueco en posición 12 (11 lomos a la izquierda)~~ **[x] RETIRADO POR REGENERACIÓN (2026-09-19 Lote A):** 12 lomos a la izquierda.
 - [x] ~~MEDIO titular «Tmdaami Hom iynisa» con glifos legibles~~ **[x] RETIRADO POR REGENERACIÓN:** el titular es una mancha.
-- [ ] **MEDIO (F3, CONTRADICE)** — El flanco derecho admite lectura de 12 lomos (24 impresos + 1 hueco = 25 posiciones). El eje «Tomo Trece» se sostiene por los 12 de la izquierda; el total 24/23 queda dudoso.
+- [ ] ~~**MEDIO (F3, CONTRADICE)** — El flanco derecho admite lectura de 12 lomos (24 impresos + 1 hueco = 25 posiciones). El eje «Tomo Trece» se sostiene por los 12 de la izquierda; el total 24/23 queda dudoso.~~ **CORREGIDO en la re-verificación de recortes:** el recuento real es 11 a la izquierda + hueco + 12 a la derecha = 24 posiciones con el hueco en la posición **12**. El defecto de posición es MAYOR (ver sección inferior); la aritmética total 24/23 sí es correcta.
 
 ### Recomendación
 
 Quitar un lomo del flanco derecho para dejar 11 a la derecha (24 posiciones, 23 impresos).
+
+## Hallazgos de auditoría 2026-09-19 (re-verificación de recortes, Lote A)
+
+Re-auditoría independiente de `tools/raw/case5/plate_tomo_trece.jpg` (1280×720, regenerada 2026-09-19) con recortes ampliados (`tmp_tomo13_left/right/full`, borrados al cerrar). Contradice el veredicto «cumple» de la sección anterior: **Veredicto: no cumple** en el eje contenido (posición del hueco).
+
+### Cumple
+
+- ✓ F1/F2: contorno punteado de la posición vacía sin lomo sólido, páginas ni volumen; se lee como ausencia estructural de la colección, no como tomo caído.
+- ✓ F2: titular del recorte de periódico convertido en mancha de tinta negra, sin glifos de empresa legibles (recorte de la publicidad). El cuerpo son pseudo-líneas góticas ilegibles, sin palabras en español ni inglés.
+- ✓ F1/F5: publicidad de época recortada (papel rasgado, doblez, sombra) debajo de la fila; estilo plano didáctico; sin personajes, sangre, ranura 11 especial, flechas ni UI (AUSENTE confirmado por recortes).
+
+### Defectos confirmados
+
+- [ ] **MAYOR / CONTRADICE (F1/F3/F4)** — El hueco punteado está en la **posición 12, no en la 13**: recuento sobre recortes ampliados da **11 lomos a la izquierda** (verde, rojo, azul, marrón, verde, rojo, ocre, gris, ocre, azul, verde) + hueco + **12 lomos a la derecha** = 24 posiciones. La auditoría previa contó 12 a la izquierda por error; el recuento corregido deja el hueco en la posición que el jugador lee como «tomo doce», contradiciendo la identidad «Tomo Trece» y `climax_stage3_success.ts:53` (y `climax_stage3_success_en.ts:52-54`). Es el defecto previo a la regeneración, no corregido.
+
+### Recomendación
+
+1. Desplazar la fila un lomo a la derecha (o eliminar el lomo 12 y rellenar): **12 lomos a la izquierda, hueco en la posición 13, 11 a la derecha**, 24 posiciones / 23 impresos, una sola fila.
+2. Mantener el titular del periódico como mancha de tinta ilegible (ya correcto en esta regeneración).
+3. Regenerar junto con `examine_estante_consulta` (ES/EN), `bg_archivo_pasillo7`, `bg_archivo_pasillo7_d4` y `plate_foto_pericial`, verificando en todos el hueco en la ranura 13.
+
+## Hallazgos de auditoría 2026-09-19 (regeneración final)
+
+Auditoría de `assets/plate_tomo_trece.webp` y `tools/raw/case5/plate_tomo_trece.jpg`, con recortes ampliados independientes para los dos flancos de la fila, el hueco y la publicidad. **Veredicto: cumple** en contenido, exclusiones, estilo y localización.
+
+### Cumple
+
+- F1/F3 — La fila contiene **12 lomos a la izquierda + hueco punteado en la posición 13 + 11 lomos a la derecha**: 24 posiciones, 23 volúmenes impresos y un único vacío estructural.
+- F1 — El hueco sólo contiene fondo crema y contorno discontinuo; no hay lomo, páginas, volumen caído ni indicio de retirada durante el crimen.
+- F1 — La publicidad de época está debajo de la colección, con papel rasgado, doblez, sombra y fotografía contextual; no introduce la escena del crimen.
+- F2 — Tejuelos y publicidad no contienen texto legible, números, títulos, «Tomo Trece», fechas, precios, nombres de empresa ni pseudo-palabras identificables; el titular es una mancha de tinta y el cuerpo son líneas ilegibles.
+- F1/F5 — No aparecen Tomo XI, sangre, cadáver, ranura 11 especial, estante del pasillo, huacal, sello, personajes, flechas, círculos, realces, UI, marcas de agua ni magenta en primer plano.
+- F4/F6 — La composición muda sostiene por igual el diálogo ES/EN y se mantiene en el archivo compartido `assets/plate_tomo_trece.webp`; no existe variante `_en`.
+- F5 — Se conserva la ilustración didáctica plana sobre fondo crema, con cel-shading duro, contorno carbón y registro de manual escolar mexicano de los setenta.
+- Consistencia visual — Astra comparó la versión final con el estante, fondos, foto pericial y tomo caído relacionados: confirmó **12 + hueco 13 + 11**, publicidad ilegible y ninguna contradicción material pendiente.
+
+### Defectos confirmados
+
+- Ninguno en la versión final auditada.
+
+### Correcciones de auditoría
+
+- [x] RETIRADO POR REGENERACIÓN (2026-09-19, lote final): el defecto MAYOR de hueco en posición 12 queda corregido; el recuento ampliado confirma posición 13.
+- [x] RETIRADO POR REGENERACIÓN (2026-09-19, lote final): el defecto MEDIO de titular legible queda corregido; la publicidad permanece reconocible pero ilegible.
+
+### Recomendación
+
+- Mantener esta versión y no introducir texto, numeración ni una segunda fila; si se regenera un asset del conjunto, volver a comprobar que conserve el hueco 13 y la distinción visual respecto del Tomo XI.

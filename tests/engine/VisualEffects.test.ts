@@ -105,15 +105,15 @@ describe('VisualEffects Subsystem', () => {
     expect(VisualEffects.inferTrialBackground('RUFINO')).toBe('assets/bg_witness.webp');
   });
 
-  it('puts Don Ramón on the dock camera only in Case 5', () => {
+  it('keeps Don Ramón at the defense table on Case 5 day 2', () => {
     expect(VisualEffects.inferTrialBackground('DON RAMÓN')).toBe('assets/bg_defense.webp');
     expect(VisualEffects.resolveEffectivePose(
       { text: 'A', speaker: 'DEFENSA' },
       /*isTrialMode=*/ true
     )).toBe('donramon_idle');
-    setStagingCaseId('case5');
-    expect(VisualEffects.inferTrialBackground('DON RAMÓN')).toBe('assets/bg_witness.webp');
-    expect(VisualEffects.inferTrialBackground('DON RAMON')).toBe('assets/bg_witness.webp');
+    setStagingCaseId('case5', /*trialDay=*/ 2);
+    expect(VisualEffects.inferTrialBackground('DON RAMÓN')).toBe('assets/bg_defense.webp');
+    expect(VisualEffects.inferTrialBackground('DON RAMON')).toBe('assets/bg_defense.webp');
     expect(VisualEffects.inferTrialBackground('DEFENSA')).toBe('assets/bg_defense.webp');
     expect(VisualEffects.resolveEffectivePose(
       { text: 'A', speaker: 'DEFENSA' },
@@ -133,6 +133,28 @@ describe('VisualEffects Subsystem', () => {
     expect(VisualEffects.inferTrialBackground('BERRONDO')).toBe('assets/bg_witness.webp');
     setStagingCaseId('case1');
     expect(VisualEffects.inferTrialBackground('BERRONDO')).toBe('assets/bg_witness.webp');
+  });
+
+  it('seats the Case 5 secretary at the prosecution table with a reading default', () => {
+    setStagingCaseId('case5', /*trialDay=*/ 2);
+    expect(VisualEffects.inferTrialBackground('SECRETARIO')).toBe('assets/bg_courtroom.webp');
+    expect(VisualEffects.resolveEffectivePose(
+      { text: 'Cuatro asientos.', speaker: 'SECRETARIO' },
+      /*isTrialMode=*/ true
+    )).toBe('secretario_leyendo');
+    expect(VisualEffects.resolveEffectivePose(
+      { text: 'Cuatro asientos.', speaker: 'SECRETARIO', pose: 'secretario_leyendo_pagina' },
+      /*isTrialMode=*/ true
+    )).toBe('secretario_leyendo_pagina');
+    VisualEffects.updateStagingForLine(
+      dom,
+      { text: 'Cuatro asientos.', speaker: 'SECRETARIO', pose: 'secretario_leyendo' },
+      /*isTrialMode=*/ true
+    );
+    expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_courtroom.webp');
+    expect(dom.courtFurnitureSpriteEl.src).toContain('assets/court_bench.webp');
+    expect(dom.gameScreen.dataset.stageFrame).toBe('bench-stand');
+    setStagingCaseId('case1');
   });
 
   it('does not move the courtroom camera for tutorial instruction labels', () => {

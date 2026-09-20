@@ -10,7 +10,7 @@ export const CASE5_PASILLO7_HOTSPOTS: Hotspot[] = [
   {
     id: 'hotspot_cuerpo',
     label: 'Silueta del cuerpo',
-    x: 38, y: 54, w: 26, h: 26,
+    x: 38, y: 67, w: 39, h: 33,
     dialogue: [
       { speaker: 'NARRADOR', text: 'Una silueta de gis en el piso, entre el estante y la mesa de consulta. Boca abajo, con la cabeza hacia el estante.' },
       { speaker: 'DEFENSA', text: 'Cayó de frente. Con la cara hacia los libros.', pose: 'chapulin_idle' },
@@ -25,7 +25,7 @@ export const CASE5_PASILLO7_HOTSPOTS: Hotspot[] = [
   {
     id: 'hotspot_tomo',
     label: 'Tomo caído',
-    x: 54, y: 82, w: 18, h: 16,
+    x: 57, y: 81, w: 17, h: 15,
     dialogue: [
       { speaker: 'NARRADOR', text: 'A un metro de la silueta, marcado con un cartelito de perito, un tomo grueso encuadernado en tela verde.' },
       { speaker: 'DEFENSA', text: '«El Saber Universal. Tomo XI. Ferrocarriles - Guatemala.»', pose: 'chapulin_idle' },
@@ -40,7 +40,7 @@ export const CASE5_PASILLO7_HOTSPOTS: Hotspot[] = [
   {
     id: 'hotspot_estante',
     label: 'Estante de consulta',
-    x: 54, y: 6, w: 46, h: 72,
+    x: 60, y: 35, w: 40, h: 37,
     dialogue: [
       { speaker: 'NARRADOR', text: 'Un estante de madera oscura pegado al muro, con las ranuras numeradas del 1 al 24 en cartoncitos.' },
       { speaker: 'DEFENSA', text: 'Una colección completa. Del uno al veinticuatro.', pose: 'chapulin_idle' },
@@ -59,12 +59,12 @@ export const CASE5_PASILLO7_HOTSPOTS: Hotspot[] = [
   {
     id: 'hotspot_mesa',
     label: 'Mesa de consulta',
-    // Cierra la jornada (campana + salida a la sala). Se mantiene oculto hasta que
+    // Cierra la jornada (salida a la sala). Se mantiene oculto hasta que
     // cuerpo, tomo y estante estén examinados para que el cierre no se adelante.
     condition: (flags) => Boolean(flags.examined_hotspot_cuerpo)
       && Boolean(flags.examined_hotspot_tomo)
       && Boolean(flags.examined_hotspot_estante),
-    x: 0, y: 4, w: 34, h: 58,
+    x: 0, y: 28, w: 35, h: 38,
     dialogue: [
       { speaker: 'NARRADOR', text: 'Una mesa larga de roble con una lámpara de pantalla verde. Sobre ella, un legajo abierto y atado con listón.' },
       { speaker: 'DEFENSA', text: 'Es el expediente del señor Lengua. Su apelación.', pose: 'chapulin_idle' },
@@ -82,7 +82,6 @@ export const CASE5_PASILLO7_HOTSPOTS: Hotspot[] = [
       { speaker: 'SARGENTO', text: 'Y yo contesto lo que me preguntan. Ése es mi defecto y también mi virtud.', pose: 'pazguato_sweat' },
       { speaker: 'DEFENSA', text: '(Catorce firmas de visitas. Y nadie ha preguntado todavía quién entró sin ser visita.)', pose: 'chapulin_idle' },
       { speaker: 'DEFENSA', text: '(Ya preguntaré yo, Sargento. Delante del juez.)', pose: 'chapulin_point' },
-      { speaker: 'NARRADOR', text: 'Suena la campana del juzgado, al otro lado de la calle.', sfx: 'bell' },
       { speaker: 'DEFENSA', text: '¡Síganme los buenos! ¡A la sala de audiencias!', pose: 'chapulin_point' },
       { speaker: 'SARGENTO', text: 'A sus órdenes, mi Licenciado.', pose: 'pazguato_saludo' }
     ]

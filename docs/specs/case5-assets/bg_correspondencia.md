@@ -79,7 +79,7 @@ Clase: `bg`. Espec: §23.0, §23.1 y §23.3. Guion: §12.2; `src/case/case5/Priv
 - F1 — Casilleros de madera cargados de sobres rebosantes con etiquetas manuscritas: ✓ como objeto (recortes 02, 03, 10); el matiz de «pared a pared» queda como defecto MENOR abajo.
 - F1 — Fajos de oficios atados con cordel sobre el suelo, a la izquierda: ✓ (recorte 04).
 - F1 — Fechador de hule con perilla sobre almohadilla de tinta morada, a la derecha: ✓ (recorte 05).
-- F1 — Libro abierto empastado en tela azul con asientos y firmas garabateadas: ✓ (recorte 06); ocupa el interior de la zona del hotspot `hotspot_libro_acuses` (x 56–94 %, y 62–96 %).
+- F1 — Libro abierto empastado en tela azul con asientos y firmas garabateadas: ✓ (recorte 06); ocupa el interior de la zona del hotspot `hotspot_libro_acuses` (x 65–96 %, y 67–89 %).
 - F1 — Calendario de pared tipo barbería con señorita setentera y hojas dobladas en el borde inferior: ✓ (recorte 07); el matiz de sus dígitos queda como defecto MENOR abajo.
 - F1 — Luz fluorescente verdosa encendida y ausencia de personajes: ✓ (recortes 09 y full).
 - F2 — Etiquetas de casilleros y gavetas del archivero son rayajes ilegibles; las entradas del libro son garabatos indistintos sin palabras, nombres ni fechas: ✓ (recortes 06, 10, 11).
@@ -108,3 +108,7 @@ Clase: `bg`. Espec: §23.0, §23.1 y §23.3. Guion: §12.2; `src/case/case5/Priv
 2. Continuar la hilera de casilleros hasta la esquina derecha (pared a pared) o desplazar calendario y archivero de modo que la retícula de madera cierre contra el muro.
 3. Sustituir los dígitos impresos de la retícula del calendario por trazos indistintos (rayitas como las etiquetas de los casilleros), sin números legibles ni nombre de mes.
 4. Mantener sin cambios ventanilla, arco de latón, fechador, almohadilla morada, libro azul, fajos del suelo y luz fluorescente: son conformes y anclan el hotspot.
+
+## Reemplazo visual 2026-09-20
+
+El fondo fue sustituido por la imagen adjunta y reprocesado mediante `process_case5_assets.py` a `assets/bg_correspondencia.webp` (1536×1024). La nueva composición conserva la ventanilla, el arco, los fajos, el fechador morado, el libro azul y la iluminación; incorpora el ventilador de mesa apagado sobre el archivero y no introduce texto narrativo legible. El hotspot compartido ES/EN se recalibró sobre el recorte `cover` 960×540 a `x: 65, y: 67, w: 31, h: 22`.

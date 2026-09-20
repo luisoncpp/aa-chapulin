@@ -105,6 +105,13 @@ describe('Case 5 day 1 investigation (Spanish)', () => {
     expect(es.investigation.archivo_pasillo7.bgm).toBe('suspense');
   });
 
+  it('distinguishes the vestibule and hallway 7 in the move menu labels', () => {
+    expect(es.investigation.archivo_vestibulo.name).toBe('Archivo Judicial - Vestíbulo');
+    expect(es.investigation.archivo_pasillo7.name).toBe('Archivo Judicial - Pasillo 7');
+    expect(en.investigation.archivo_vestibulo.name).toBe('Judicial Archive - Vestibule');
+    expect(en.investigation.archivo_pasillo7.name).toBe('Judicial Archive - Hallway 7');
+  });
+
   it('hides the pasillo 7 consultation table until the other three hotspots are examined', () => {
     for (const script of [es, en]) {
       const mesa = script.investigation.archivo_pasillo7.hotspots.find((h) => h.id === 'hotspot_mesa');
@@ -130,15 +137,32 @@ describe('Case 5 day 1 investigation (Spanish)', () => {
     }
   });
 
+  it('aligns pasillo 7 hotspots with the regenerated cover-cropped background', () => {
+    const expected = {
+      hotspot_cuerpo: [38, 67, 39, 33],
+      hotspot_tomo: [57, 81, 17, 15],
+      hotspot_estante: [60, 35, 40, 37],
+      hotspot_mesa: [0, 28, 35, 38]
+    } as const;
+    for (const script of [es, en]) {
+      const hotspots = script.investigation.archivo_pasillo7.hotspots;
+      for (const [id, bounds] of Object.entries(expected)) {
+        const hotspot = hotspots.find((candidate) => candidate.id === id);
+        expect(hotspot, `${id} is missing`).toBeDefined();
+        expect([hotspot!.x, hotspot!.y, hotspot!.w, hotspot!.h]).toEqual(bounds);
+      }
+    }
+  });
+
   it('seals day 1 on the consultation table: it closes the day and grants required evidence', () => {
     const mesa = es.investigation.archivo_pasillo7.hotspots.find((h) => h.id === 'hotspot_mesa')!;
     expect(evidenceFrom(mesa.dialogue)).toContain('expediente_casimiro');
     expect(CASE5_DAY1_EVIDENCE).toContain('expediente_casimiro');
-    // The bell and the exit to the courtroom are the day-closing beat.
-    expect(mesa.dialogue.some((l) => l.sfx === 'bell')).toBe(true);
-    const otherHotspots = es.investigation.archivo_pasillo7.hotspots.filter((h) => h.id !== 'hotspot_mesa');
-    otherHotspots.forEach((h) => {
-      expect(h.dialogue.some((l) => l.sfx === 'bell'), `${h.id} closes the day early`).toBe(false);
+    // The exit to the courtroom is the day-closing beat. The courthouse bell is
+    // no longer narrated here: it rings when the trial button unlocks.
+    expect(mesa.dialogue.some((l) => l.text.includes('Síganme los buenos'))).toBe(true);
+    es.investigation.archivo_pasillo7.hotspots.forEach((h) => {
+      expect(h.dialogue.some((l) => l.sfx === 'bell'), `${h.id} narrates the bell`).toBe(false);
     });
   });
 

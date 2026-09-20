@@ -13,7 +13,7 @@ export const CASE5_BODEGA_MASA_HOTSPOTS_EN: Hotspot[] = [
   {
     id: 'hotspot_huacal',
     label: 'Crate 9 lid',
-    x: 70, y: 56, w: 24, h: 38,
+    x: 65, y: 54, w: 24, h: 44,
     dialogue: [
       { speaker: 'NARRADOR', text: 'The lid is covered with overlapping seal strips like scales. Each one carries an initial and a date.' },
       { speaker: 'DEFENSA', text: 'One... two... fifty... a hundred...', pose: 'chapulin_idle' },
@@ -34,7 +34,7 @@ export const CASE5_BODEGA_MASA_HOTSPOTS_EN: Hotspot[] = [
   {
     id: 'hotspot_cajones',
     label: 'Index drawers',
-    x: 44, y: 46, w: 28, h: 24,
+    x: 27, y: 54, w: 29, h: 32,
     dialogue: [
       { speaker: 'NARRADOR', text: 'Inside the crate, nine blond wood drawers with brass pulls and a handwritten label on each front.', bg: BODEGA_BG, furniture: 'none' },
       { speaker: 'DEFENSA', text: '"Aguascalientes to Bucareli." "Bucareli to Donceles." "Donceles to Espanto."', pose: 'chapulin_idle' },
@@ -56,7 +56,7 @@ export const CASE5_BODEGA_MASA_HOTSPOTS_EN: Hotspot[] = [
   {
     id: 'hotspot_maquina',
     label: 'Typewriter',
-    x: 56, y: 70, w: 22, h: 18,
+    x: 45, y: 45, w: 23, h: 24,
     condition: (flags) => Boolean(flags.examined_hotspot_huacal) && Boolean(flags.examined_hotspot_cajones),
     dialogue: [
       { speaker: 'NARRADOR', text: 'At the back of the crate, wrapped in a rubber cover, a black typewriter with a chrome carriage.' },

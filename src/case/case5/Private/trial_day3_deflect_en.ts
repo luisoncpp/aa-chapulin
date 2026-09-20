@@ -1,0 +1,20 @@
+// @Architecture(descriptionShort="Case 5 day-3 T6 premature-present deflections, English", type="data", icon="layers")
+/**
+ * Case 5 Trial Day 3 — Testimony 6 deflections (spec §15.2), English.
+ */
+
+import type { DialogueLine } from '../../../types/index.js';
+
+/** Statement 2: the photograph says when it was opened, not what is kept inside. */
+export const CASE5_D3_T1_HUACAL_DEFLECT_EN: DialogueLine[] = [
+  { speaker: 'JUEZ', text: 'Defense: that photograph proves the day someone opened the crate. The witness is testifying about what he does on Thursdays.', pose: 'judge_thinking' },
+  { speaker: 'JUEZ', text: 'Until this court knows what is kept inside, a loose date contradicts no one. Establish the contents first.', pose: 'judge_neutral' },
+  { speaker: 'DEFENSA', text: '(First what is in there. Then who opened it.)', pose: 'chapulin_idle' }
+];
+
+/** Statement 3: the machine says what is there today; the witness speaks of what he has seen. */
+export const CASE5_D3_T1_MAQUINA_DEFLECT_EN: DialogueLine[] = [
+  { speaker: 'JUEZ', text: 'Defense: that typewriter was recovered yesterday, in the inspection this court ordered. It says what is in the crate today.', pose: 'judge_thinking' },
+  { speaker: 'JUEZ', text: 'The witness speaks of what he has seen since September. To contradict him, bring me what the court wrote when it sealed that deposit.', pose: 'judge_neutral' },
+  { speaker: 'DEFENSA', text: '(What the court wrote... when it sealed it. In nineteen seventy-one.)', pose: 'chapulin_idle' }
+];

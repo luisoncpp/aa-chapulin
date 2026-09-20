@@ -8,7 +8,7 @@ import { CASE5_PASILLO7_HOTSPOTS_EN } from './archivo_pasillo7_hotspots_en.js';
 
 export const CASE5_ARCHIVO_PASILLO7_EN: InvestigationScene = {
   title: 'Judicial Archive - Hallway 7',
-  name: 'Judicial Archive',
+  name: 'Judicial Archive - Hallway 7',
   bg: 'assets/bg_archivo_pasillo7.webp',
   bgm: 'suspense',
   speaker: 'NARRADOR',

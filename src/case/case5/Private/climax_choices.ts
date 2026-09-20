@@ -43,7 +43,7 @@ export const CASE5_CLIMAX_CHOICES: ChoicePrompt[] = [
       { speaker: 'DON RAMÓN', text: '(Ya cállese, joven, que me está saliendo bien.)', pose: 'donramon_idle' },
       { speaker: 'JUEZ', text: 'Señorita Peñaloza: su carpeta de vales, al secretario.', pose: 'judge_neutral' },
       { speaker: 'JUEZ', text: 'Esta corte ordena que se traiga a esta sala el cajón «Donceles a Espanto» del cedulario del huacal nueve.', sfx: 'gavel', bgm: 'pursuit', pose: 'judge_gavel' },
-      { speaker: 'BERRONDO', text: '¡Señor juez, ese cajón tiene mil trescientas tarjetas! ¡Nos va a tomar la noche entera!', pose: 'berrondo_panic' },
+      { speaker: 'BERRONDO', text: '¡Señor juez, ese cajón tiene mil trescientas tarjetas! ¡Nos va a tomar la noche entera!', pose: 'berrondo_panic', bg: 'assets/bg_courtroom.webp' },
       { speaker: 'JUEZ', text: 'Está ordenado por calle, licenciado. Usted mismo lo declaró.', pose: 'judge_neutral' },
       { speaker: 'JUEZ', text: 'Y esta corte tiene la suerte de contar hoy con alguien que sabe exactamente qué calle buscar.', pose: 'judge_thinking' },
       { speaker: 'JUEZ', text: 'Acusado: dicte usted su domicilio al secretario.', sfx: 'gavel', pose: 'judge_gavel' },

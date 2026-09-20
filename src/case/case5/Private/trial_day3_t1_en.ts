@@ -4,6 +4,7 @@
  */
 
 import type { DialogueLine, Testimony } from '../../../types/index.js';
+import { CASE5_D3_T1_HUACAL_DEFLECT_EN, CASE5_D3_T1_MAQUINA_DEFLECT_EN } from './trial_day3_deflect_en.js';
 import { CASE5_D3_T1_HUACAL_SUCCESS_EN, CASE5_D3_T1_INVENTARIO_SUCCESS_EN } from './trial_day3_success_en.js';
 
 const MOMENTO: DialogueLine = {
@@ -45,7 +46,8 @@ export const CASE5_TESTIMONY_6_EN: Testimony = {
         { speaker: 'DEFENSA', text: 'And why Thursdays?', pose: 'chapulin_idle' },
         { speaker: 'CHOMPIRAS', text: 'Because there is no public downstairs on Thursdays and you can work. He told me.', pose: 'chompiras_idle' },
         { speaker: 'DEFENSA', text: '(And he said the same thing yesterday under oath. Point for point.)', pose: 'chapulin_idle' }
-      ]
+      ],
+      deflect: { evidence: ['huacal_9'], dialogue: CASE5_D3_T1_HUACAL_DEFLECT_EN }
     },
     {
       id: 'c5_d3t1_3',
@@ -60,6 +62,7 @@ export const CASE5_TESTIMONY_6_EN: Testimony = {
         { speaker: 'CHOMPIRAS', text: 'Curiosity cost me eight months of trial, counselor! I am not curious about anything anymore, not even the newspaper!', pose: 'chompiras_nervous' },
         { speaker: 'DEFENSA', text: '(And still he just told the court what he thinks is in there. And he is wrong by default.)', pose: 'chapulin_idle' }
       ],
+      deflect: { evidence: ['maquina_escribir'], dialogue: CASE5_D3_T1_MAQUINA_DEFLECT_EN },
       contradiction: {
         evidence: ['inventario_1971'],
         successDialogue: CASE5_D3_T1_INVENTARIO_SUCCESS_EN,

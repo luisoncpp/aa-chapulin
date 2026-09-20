@@ -6,7 +6,7 @@
 import type { TalkOption } from '../../../types/index.js';
 
 const DETENTION_BG = 'assets/bg_detention.webp';
-const PASILLO_BG = 'assets/bg_archivo_pasillo7.webp';
+const PASILLO_BG = 'assets/bg_archivo_pasillo7_d4.webp';
 
 const relatoFlashback: TalkOption['dialogue'] = [
   { speaker: 'NARRADOR', text: 'December 4, 4:44 PM. Hallway 7, Judicial Archive.', bg: PASILLO_BG, furniture: 'none', bgm: 'suspense' },

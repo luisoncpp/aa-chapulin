@@ -8,7 +8,7 @@ import { CASE5_PASILLO7_HOTSPOTS } from './archivo_pasillo7_hotspots.js';
 
 export const CASE5_ARCHIVO_PASILLO7: InvestigationScene = {
   title: 'Archivo Judicial - Pasillo 7',
-  name: 'Archivo Judicial',
+  name: 'Archivo Judicial - Pasillo 7',
   bg: 'assets/bg_archivo_pasillo7.webp',
   bgm: 'suspense',
   speaker: 'NARRADOR',

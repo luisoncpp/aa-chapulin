@@ -88,9 +88,27 @@ describe('Case 5 day 2 investigation (Spanish)', () => {
     });
   });
 
+  it('uses a calm pose when Chimoltrufia praises Berrondo', () => {
+    const line = sceneLines(es, 'correspondencia').find(
+      (entry) => entry.text === 'Berrondo. Muy buen señor. Manda una canasta en Navidad.'
+    );
+    const englishLine = sceneLines(en, 'correspondencia').find(
+      (entry) => entry.text === 'Berrondo. A very fine gentleman. He sends a basket at Christmas.'
+    );
+    expect(line?.speaker).toBe('CHIMOLTRUFIA');
+    expect(line?.pose).toBe('chimoltrufia_idle');
+    expect(englishLine?.speaker).toBe('CHIMOLTRUFIA');
+    expect(englishLine?.pose).toBe('chimoltrufia_idle');
+  });
+
   it('adds perfil_barriga at vecindad per spec', () => {
     const profiles = sceneLines(es, 'vecindad_c5').flatMap((l) => [l.addProfile].filter(Boolean));
     expect(profiles).toContain('perfil_barriga');
+  });
+
+  it('labels Barriga\'s location as his office in the move menu', () => {
+    expect(es.investigation.vecindad_c5.name).toBe('Despacho del Señor Barriga');
+    expect(en.investigation.vecindad_c5.name).toBe("Mr. Barriga's Office");
   });
 
   it('mirrors Spanish day-2 investigation structure in English without Spanish leakage', () => {

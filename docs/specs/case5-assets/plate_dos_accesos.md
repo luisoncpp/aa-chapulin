@@ -105,3 +105,31 @@ Clase: `plate`. Espec: §23.0 y §23.4. Guion directo: §7.3/L1, §10.2 (`hotspo
 1. Sustituir la chimenea del patio por una ventanilla de peritos: ventana pequeña con repisa de mostrador y marco rojo, sin hogar ni campana. Conservar el resto de la axonometría muda.
 2. No reintroducir texto, personajes ni un tercer objeto rojo (la puerta del primer piso debe seguir en marrón).
 3. Regenerar junto con `examine_plano_archivo` ES/EN para alinear la ventanilla y el descanso de patio del montacargas; este activo no es fuente de verdad de aquéllos.
+
+## Hallazgos de auditoría 2026-09-19 (regeneración final)
+
+Auditoría de `assets/plate_dos_accesos.webp` y `tools/raw/case5/plate_dos_accesos.jpg`, con recortes ampliados de puerta pública, ventanilla, ruta, montacargas, primer piso y sótano. **Veredicto: cumple** en contenido, topología, exclusiones, estilo y localización.
+
+### Cumple
+
+- F1 — El corte axonométrico separa con claridad sótano, planta baja/patio y primer piso.
+- F1 — Hay exactamente dos accesos operativos rojos: la puerta pública de doble hoja y una **ventanilla rectangular con marco rojo, abertura oscura y repisa** en el patio; el recorte ya no se nombra como chimenea.
+- F1/F4 — La puerta pública conecta con el vestíbulo y el mostrador; la ventanilla abre hacia el patio de maniobras. No se dibuja el segundo libro.
+- F1/F3 — La escalera de servicio se distingue por la línea de puntos y conecta sótano, patio y extremo del pasillo 7 sin cruzar el mostrador; el hueco del montacargas permanece contiguo pero separado.
+- F1/F3 — El montacargas conserva tres descansos visuales, uno por sótano, patio y primer piso; no se añade una tercera puerta roja ni una ruta imposible.
+- F1 — La reja, los estantes del pasillo 7 y el cuarto del extremo mantienen la obstrucción de la vista hacia la mesa; la puerta de servicio superior permanece neutral.
+- F2/F5/F6 — La placa es muda: no hay rótulos, leyenda, números, escala, flechas, personajes, escena del crimen, marcas de agua, texto localizado ni magenta; ES y EN comparten `assets/plate_dos_accesos.webp`.
+- F5 — Se conserva la ilustración didáctica plana sobre fondo crema, con cel-shading duro, contorno carbón y registro de manual escolar mexicano de los setenta.
+- Consistencia visual — Astra comparó la versión final con el plano detallado, fondos del vestíbulo/pasillo/caldera y sus referencias: confirmó tres niveles, puerta pública y ventanilla rojas, ruta punteada sin mostradores y montacargas conectado a los tres pisos, sin contradicción material pendiente.
+
+### Defectos confirmados
+
+- Ninguno en la versión final auditada.
+
+### Correcciones de auditoría
+
+- [x] RETIRADO POR REGENERACIÓN (2026-09-19, lote final): el defecto MEDIO de ventanilla malformada/chimenea queda corregido por una ventanilla de patio reconocible, con repisa y marco rojo.
+
+### Recomendación
+
+- Mantener esta versión y no reintroducir rótulos, un tercer acceso rojo, chimenea en el patio ni props del crimen; si se regenera un asset del conjunto, volver a comprobar la ruta punteada y los tres descansos del montacargas.

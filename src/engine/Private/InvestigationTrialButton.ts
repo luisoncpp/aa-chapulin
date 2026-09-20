@@ -5,20 +5,29 @@
  */
 
 import { i18n } from '../../i18n/index.js';
+import type { SoundEngine } from '../../audio/index.js';
 import { VisualEffects } from './VisualEffects.js';
+
+interface TrialButtonDeps {
+  notificationEl: HTMLElement;
+  soundEngine?: SoundEngine;
+}
 
 export function updateTrialButtonProgress(
   trialBtn: HTMLButtonElement | null | undefined,
   isReady: boolean,
-  notificationEl: HTMLElement
+  deps: TrialButtonDeps
 ): void {
   if (!trialBtn) return;
+  // The courthouse bell announces the day is over. It rings on the transition
+  // into readiness, never on the repeated progress checks that follow.
+  const justUnlocked = isReady && trialBtn.disabled;
   trialBtn.classList.toggle('disabled', !isReady);
   trialBtn.classList.toggle('pulse-glow', isReady);
   trialBtn.disabled = !isReady;
-  if (isReady) {
-    VisualEffects.showNotification(notificationEl, i18n.t.notifTrialReady);
-  }
+  if (!isReady) return;
+  if (justUnlocked) deps.soundEngine?.playSFX('bell');
+  VisualEffects.showNotification(deps.notificationEl, i18n.t.notifTrialReady);
 }
 
 export function resetTrialButton(trialBtn?: HTMLButtonElement | null): void {

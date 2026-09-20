@@ -14,6 +14,7 @@ export function statementParityFields(s: Statement) {
     evidence: s.contradiction?.evidence,
     profileTarget: s.contradiction?.profileTarget,
     requiresExamine: s.contradiction?.requiresExamine,
+    deflect: s.deflect?.evidence,
     followUpEvidence: s.contradiction?.followUp?.evidence,
     followUpProfileTarget: s.contradiction?.followUp?.profileTarget,
     unlockedBy: s.unlockedBy

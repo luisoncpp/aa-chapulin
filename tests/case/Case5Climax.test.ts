@@ -93,6 +93,7 @@ function testimonyLines(script: CaseScript): DialogueLine[] {
       for (const stmt of testimony.statements) {
         lines.push(stmt);
         lines.push(...(stmt.pressText ?? []));
+        lines.push(...(stmt.deflect?.dialogue ?? []));
         const rule = stmt.contradiction;
         if (!rule) continue;
         lines.push(...rule.successDialogue);

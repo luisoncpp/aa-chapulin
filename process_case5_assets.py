@@ -20,12 +20,16 @@ os.makedirs(DEST_DIR, exist_ok=True)
 CASE5_RAW_DIR = os.path.join(os.path.dirname(__file__), "tools", "raw", "case5")
 
 SHEETS = [
+    ("barriga_healthy_poses_raw.png",
+     ["barriga_sorpresa", "barriga_reclamo", "barriga_confundido", "barriga_aliviado"]),
     ("berrondo_sprites_raw.png",
      ["berrondo_idle", "berrondo_definicion", "berrondo_sweat", "berrondo_panic"]),
     ("nicanor_sprites_raw.png",
-     ["nicanor_idle", "nicanor_escoba", "nicanor_sweat"]),
+     ["nicanor_idle", "nicanor_escoba"]),
     ("genoveva_sprites_raw.png",
      ["genoveva_idle", "genoveva_reglamento", "genoveva_sweat", "genoveva_shock"]),
+    ("secretario_sprites_raw.png",
+     ["secretario_leyendo", "secretario_leyendo_senala", "secretario_leyendo_pagina", "secretario_leyendo_mira"]),
 ]
 
 def output_stem(filename: str) -> str:
@@ -105,7 +109,13 @@ PROFILE_COLORS = {
 
 BG_SIZE = (1536, 1024)
 PLATE_SIZE = (960, 540)
-FLOOR_BUSTS = [name for _sheet, names in SHEETS for name in names] + ["berrondo_breakdown"]
+EXTRA_POSES = [
+    ("berrondo_breakdown_raw.png", "berrondo_breakdown"),
+    ("nicanor_sweat_raw.png", "nicanor_sweat"),
+]
+FLOOR_BUSTS = [name for _sheet, names in SHEETS for name in names] + [
+    name for _src, name in EXTRA_POSES
+]
 
 
 def raw_path(filename: str) -> str:
@@ -118,6 +128,10 @@ def process_character_sheet(sheet_name: str, pose_names: list[str]) -> None:
         print(f"Warning: Sheet not found {sheet_path}")
         return
     with Image.open(sheet_path) as img:
+        if sheet_name == "barriga_healthy_poses_raw.png":
+            magenta = Image.new("RGBA", img.size, (255, 0, 255, 255))
+            magenta.alpha_composite(img.convert("RGBA"))
+            img = magenta
         cell_width, cell_height = img.width // 2, img.height // 2
         for idx, name in enumerate(pose_names):
             row, col = divmod(idx, 2)
@@ -135,18 +149,21 @@ def process_character_sheet(sheet_name: str, pose_names: list[str]) -> None:
             print(f"  [OK] Processed: {name}.webp ({final_img.size})")
 
 
-def process_breakdown() -> None:
-    path = raw_path("berrondo_breakdown_raw.png")
-    if not os.path.exists(path):
-        print(f"Warning: Sheet not found {path}")
-        return
-    with Image.open(path) as img:
-        cleaned = remove_bg_magenta_vectorized(img, threshold=165.0, despill_depth=4)
-        cleaned = clean_edges_vectorized(cleaned, depth=5)
-        filtered = extract_primary_components_fast(cleaned, min_area_fraction=0.08)
-        anchored = despill_final(anchor_standing_bust(filtered))
-        anchored.save(os.path.join(DEST_DIR, "berrondo_breakdown.webp"), "WEBP", quality=85, method=6)
-        print(f"  [OK] Processed: berrondo_breakdown.webp ({anchored.size})")
+def process_full_poses(selected: set[str] | None) -> None:
+    for src_name, out_name in EXTRA_POSES:
+        if selected is not None and out_name not in selected:
+            continue
+        path = raw_path(src_name)
+        if not os.path.exists(path):
+            print(f"Warning: Sheet not found {path}")
+            continue
+        with Image.open(path) as img:
+            cleaned = remove_bg_magenta_vectorized(img, threshold=165.0, despill_depth=4)
+            cleaned = clean_edges_vectorized(cleaned, depth=5)
+            filtered = extract_primary_components_fast(cleaned, min_area_fraction=0.08)
+            anchored = despill_final(anchor_standing_bust(filtered))
+            anchored.save(os.path.join(DEST_DIR, f"{out_name}.webp"), "WEBP", quality=85, method=6)
+            print(f"  [OK] Processed: {out_name}.webp ({anchored.size})")
 
 
 def cover_crop(img: Image.Image, size: tuple[int, int]) -> Image.Image:
@@ -285,8 +302,7 @@ def run_case5(selected: set[str] | None = None) -> None:
         selected_poses = names if selected is None else [n for n in names if n in selected]
         if selected_poses:
             process_character_sheet(sheet, selected_poses)
-    if selected is None or "berrondo_breakdown" in selected:
-        process_breakdown()
+    process_full_poses(selected)
     floor_standing_busts(
         FLOOR_BUSTS if selected is None else [n for n in FLOOR_BUSTS if n in selected]
     )

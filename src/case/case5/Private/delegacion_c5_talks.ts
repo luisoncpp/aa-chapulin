@@ -26,8 +26,8 @@ export const CASE5_DELEGACION_C5_TALKS: TalkOption[] = [
     dialogue: [
       { speaker: 'NARRADOR', text: 'El Sargento desata cinco legajos y los pone en fila sobre el escritorio, por fecha.' },
       { speaker: 'SARGENTO', text: 'Julio. El señor Lengua, el de las enciclopedias. Le decomisaron una tarjeta de presentación de una sociedad disuelta desde el setenta y uno.', pose: 'pazguato_idle' },
-      { speaker: 'SARGENTO', text: 'Agosto, el museo. En el patio de carga apareció una ficha mecanografiada de seis renglones. Nunca se supo quién la escribió.', pose: 'pazguato_idle' },
-      { speaker: 'SARGENTO', text: 'Agosto otra vez, la hacienda. Un frasco de valeriana y un molde de cera comprados por un cliente que nadie identificó.', pose: 'pazguato_idle' },
+      { speaker: 'SARGENTO', text: 'Agosto, la hacienda. Un frasco de valeriana y un molde de cera comprados por un cliente que nadie identificó.', pose: 'pazguato_idle' },
+      { speaker: 'SARGENTO', text: 'Agosto otra vez, el museo. En el patio de carga apareció una ficha mecanografiada de seis renglones. Nunca se supo quién la escribió.', pose: 'pazguato_idle' },
       { speaker: 'SARGENTO', text: 'Septiembre, la radiodifusora. Una boleta del Monte de Piedad: doce mil pesos en efectivo, el tres de septiembre.', pose: 'pazguato_idle' },
       { speaker: 'SARGENTO', text: 'Y octubre, el hotel. Un collar que se robaron antes y cuyo reparto nunca se pagó.', pose: 'pazguato_idle' },
       { speaker: 'DEFENSA', text: 'Sargento... estos cinco casos no tienen nada que ver entre sí.', pose: 'chapulin_idle' },

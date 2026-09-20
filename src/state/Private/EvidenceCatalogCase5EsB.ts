@@ -30,7 +30,7 @@ export const CASE5_EVIDENCE_ES_B: Record<string, EvidenceItem> = {
   }),
   expediente_serie: ev('expediente_serie', {
     name: 'Expediente de Serie',
-    desc: 'Extracto certificado de cinco expedientes de este año, compilado por la policía judicial. Cinco paneles: A (12 jul), B (21 ago), C (28 ago), D (15 sep), E (24 oct).'
+    desc: 'Extracto certificado de cinco expedientes de este año, compilado por la policía judicial. Cinco paneles: A (12 jul), B (28 ago), C (21 ago), D (15 sep), E (24 oct).'
   }, {
     imageAsset: 'assets/examine_expediente_serie.webp',
     caption: 'Cinco paneles fechados A–E sobre mesa de peritajes: tarjeta de presentación, ficha mecanografiada, frasco y molde, boleta de empeño y acta con fotografía.'

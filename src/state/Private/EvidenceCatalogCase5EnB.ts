@@ -30,7 +30,7 @@ export const CASE5_EVIDENCE_EN_B: Record<string, EvidenceItem> = {
   }),
   expediente_serie: ev('expediente_serie', {
     name: 'Series File Extract',
-    desc: 'Certified extract of five files from this year, compiled by judicial police. Five panels: A (Jul 12), B (Aug 21), C (Aug 28), D (Sep 15), E (Oct 24).'
+    desc: 'Certified extract of five files from this year, compiled by judicial police. Five panels: A (Jul 12), B (Aug 28), C (Aug 21), D (Sep 15), E (Oct 24).'
   }, {
     imageAsset: 'assets/examine_expediente_serie_en.webp',
     caption: 'Five dated panels A–E on an exam table: business card, typed card, bottle and mold, pawn slip, and typed minutes with a photograph.'

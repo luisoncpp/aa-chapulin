@@ -26,8 +26,8 @@ export const CASE5_DELEGACION_C5_TALKS_EN: TalkOption[] = [
     dialogue: [
       { speaker: 'NARRADOR', text: 'The Sergeant unties five dossiers and lines them up on the desk by date.' },
       { speaker: 'SARGENTO', text: 'July. Mr. Lengua, the encyclopedia man. They seized a business card from a company dissolved since seventy-one.', pose: 'pazguato_idle' },
-      { speaker: 'SARGENTO', text: 'August, the museum. A six-line typewritten card turned up in the loading yard. Nobody ever learned who wrote it.', pose: 'pazguato_idle' },
-      { speaker: 'SARGENTO', text: 'August again, the hacienda. A bottle of valerian and a wax mold bought by a customer nobody identified.', pose: 'pazguato_idle' },
+      { speaker: 'SARGENTO', text: 'August, the hacienda. A bottle of valerian and a wax mold bought by a customer nobody identified.', pose: 'pazguato_idle' },
+      { speaker: 'SARGENTO', text: 'August again, the museum. A six-line typewritten card turned up in the loading yard. Nobody ever learned who wrote it.', pose: 'pazguato_idle' },
       { speaker: 'SARGENTO', text: 'September, the radio station. A pawn ticket: twelve thousand pesos in cash, September third.', pose: 'pazguato_idle' },
       { speaker: 'SARGENTO', text: 'And October, the hotel. A necklace stolen before whose split was never paid.', pose: 'pazguato_idle' },
       { speaker: 'DEFENSA', text: 'Sergeant... these five cases have nothing to do with one another.', pose: 'chapulin_idle' },

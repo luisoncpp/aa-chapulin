@@ -32,7 +32,7 @@ const CASE5_CLIMAX_STAGE5_SUCCESS_EN: ClimaxStage['successDialogue'] = [
   { speaker: 'NARRADOR', text: 'The whole gallery rises.', sfx: 'realization', bgm: 'objection' },
   { speaker: 'JUEZ', text: 'ORDER! ORDER IN THE COURT!', sfx: 'gavel', pose: 'judge_gavel' },
   { bg: PLATE_CUATRO_RENGLONES, furniture: 'none', speaker: 'NARRADOR', text: 'July twelfth. Business card seized from Casimiro Lengua. The s, half a line down.' },
-  { bg: PLATE_CUATRO_RENGLONES, furniture: 'none', speaker: 'NARRADOR', text: 'August twenty-first. Six-line card found in a museum loading yard. The s, half a line down.' },
+  { bg: PLATE_CUATRO_RENGLONES, furniture: 'none', speaker: 'NARRADOR', text: 'August twenty-eighth. Six-line card found in a museum loading yard. The s, half a line down.' },
   { bg: PLATE_CUATRO_RENGLONES, furniture: 'none', speaker: 'NARRADOR', text: 'November twenty-ninth. Note that came with seventeen months of rent in a yellow envelope. The s, half a line down.' },
   { bg: PLATE_CUATRO_RENGLONES, furniture: 'none', speaker: 'NARRADOR', text: 'Today, in this room. A sample just typed. The s, half a line down.' },
   { speaker: 'DEFENSA', text: 'Four papers, Your Honor. One machine.', pose: 'chapulin_point' },

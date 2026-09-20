@@ -18,7 +18,7 @@ export const CASE5_FISCALIA_C5_HOTSPOTS: Hotspot[] = [
       { speaker: 'SUPER SAM', text: 'Desde agosto.', pose: 'supersam_sweat' },
       { speaker: 'DEFENSA', text: 'Señor fiscal, en agosto usted me acusó a mí.', pose: 'chapulin_point' },
       { speaker: 'SUPER SAM', text: 'Lo sé perfectamente, counselor. Cerré ese caso en cinco minutos. Five.', pose: 'supersam_sweat' },
-      { speaker: 'SUPER SAM', text: 'Y llevo cuatro meses cargando una bolsa vacía para que no se me olvide por qué los cerré tan rápido.', pose: 'supersam_sweat' },
+      { speaker: 'SUPER SAM', text: 'Y llevo más de tres meses cargando una bolsa vacía para que no se me olvide por qué los cerré tan rápido.', pose: 'supersam_sweat' },
       { speaker: 'DEFENSA', text: '...¿Perdón?', pose: 'chapulin_panic' },
       { speaker: 'SUPER SAM', text: 'Nada. Get out of my office.', pose: 'supersam_point' },
       { speaker: 'DEFENSA', text: '(No. No me lo va a decir hoy. Y si se lo saco a la fuerza, deja de ser suyo.)', pose: 'chapulin_idle' }

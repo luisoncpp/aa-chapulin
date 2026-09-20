@@ -80,7 +80,7 @@ export const CASE5_D3_T1_HUACAL_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'SUPER SAM', text: 'That I be sworn in, Your Honor. Under oath.', pose: 'supersam_idle' },
   { speaker: 'DEFENSA', text: 'What?!', pose: 'chapulin_panic' },
   { speaker: 'DON RAMÓN', text: '(Let him, kid.)', pose: 'donramon_idle' },
-  { speaker: 'DON RAMÓN', text: '(That man has been carrying an empty bag for four months. Let him.)', pose: 'donramon_sweat' },
+  { speaker: 'DON RAMÓN', text: '(That man has been carrying an empty bag for over three months. Let him.)', pose: 'donramon_sweat' },
   { speaker: 'JUEZ', text: '...The court grants it, and appoints the clerk to act as public ministry in the meantime.', sfx: 'gavel', pose: 'judge_gavel' },
   { speaker: 'JUEZ', text: 'Name, office, and oath.', pose: 'judge_neutral' },
   { speaker: 'SUPER SAM', text: 'Sam Sullivan. Public prosecutor assigned to this court.', pose: 'supersam_idle' },

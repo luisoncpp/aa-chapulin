@@ -32,7 +32,7 @@ const CASE5_CLIMAX_STAGE5_SUCCESS: ClimaxStage['successDialogue'] = [
   { speaker: 'NARRADOR', text: 'La galería se levanta entera.', sfx: 'realization', bgm: 'objection' },
   { speaker: 'JUEZ', text: '¡ORDEN! ¡ORDEN EN LA SALA!', sfx: 'gavel', pose: 'judge_gavel' },
   { bg: PLATE_CUATRO_RENGLONES, furniture: 'none', speaker: 'NARRADOR', text: 'Doce de julio. Tarjeta de presentación decomisada a Casimiro Lengua. La ese, media línea abajo.' },
-  { bg: PLATE_CUATRO_RENGLONES, furniture: 'none', speaker: 'NARRADOR', text: 'Veintiuno de agosto. Ficha de seis renglones hallada en el patio de carga de un museo. La ese, media línea abajo.' },
+  { bg: PLATE_CUATRO_RENGLONES, furniture: 'none', speaker: 'NARRADOR', text: 'Veintiocho de agosto. Ficha de seis renglones hallada en el patio de carga de un museo. La ese, media línea abajo.' },
   { bg: PLATE_CUATRO_RENGLONES, furniture: 'none', speaker: 'NARRADOR', text: 'Veintinueve de noviembre. Nota que acompañó diecisiete meses de renta en un sobre amarillo. La ese, media línea abajo.' },
   { bg: PLATE_CUATRO_RENGLONES, furniture: 'none', speaker: 'NARRADOR', text: 'Hoy, en esta sala. Una muestra recién mecanografiada. La ese, media línea abajo.' },
   { speaker: 'DEFENSA', text: 'Cuatro papeles, señor juez. Una máquina.', pose: 'chapulin_point' },

@@ -5,6 +5,7 @@
 
 import type { DialogueLine, Testimony } from '../../../types/index.js';
 import { CASE5_D3_T2_EXPEDIENTE_SUCCESS_EN, CASE5_D3_T2_OFICIO_SUCCESS_EN } from './trial_day3_success_sam_en.js';
+import { SINDICO_LESSON_EN } from './trial_day3_sindico_lesson_en.js';
 
 const MOMENTO: DialogueLine = {
   speaker: 'DEFENSA',
@@ -23,14 +24,14 @@ export const CASE5_TESTIMONY_7_EN: Testimony = {
       id: 'c5_d3t2_1',
       speaker: 'SUPER SAM',
       pose: 'supersam_idle',
-      text: 'I received the victim\'s letter on November 8. I put it in a drawer and kept it eighteen days.',
+      text: 'I received the letter the inmate sent me on November 8. I put it in a drawer and kept it eighteen days.',
       pressText: [
         MOMENTO,
         { speaker: 'DEFENSA', text: 'Eighteen days. Why?', pose: 'chapulin_point' },
         { speaker: 'SUPER SAM', text: 'Because an inmate offering a file in exchange for a shorter sentence reaches me every week, counselor.', pose: 'supersam_idle' },
-        { speaker: 'SUPER SAM', text: 'And because I myself convicted that inmate and convicted the wrong man for two thirds of the trial.', pose: 'supersam_sweat' },
+        { speaker: 'SUPER SAM', text: 'And because that particular inmate was convicted by me, and I convicted him badly.', pose: 'supersam_sweat' },
         { speaker: 'JUEZ', text: 'Wrongly?', pose: 'judge_thinking' },
-        { speaker: 'SUPER SAM', text: 'I convicted the wrong man for two thirds of the trial, Your Honor. You were there.', pose: 'supersam_sweat' },
+        { speaker: 'SUPER SAM', text: 'I convicted the wrong man all the way to the end of the trial, Your Honor. You were there.', pose: 'supersam_sweat' },
         { speaker: 'SUPER SAM', text: 'Nobody goes back gladly to a file where they looked like an idiot.', pose: 'supersam_sweat' }
       ]
     },
@@ -63,7 +64,8 @@ export const CASE5_TESTIMONY_7_EN: Testimony = {
         { speaker: 'SUPER SAM', text: 'The guards find out the morning of the transfer. That is policy.', pose: 'supersam_idle' },
         { speaker: 'DEFENSA', text: 'So, by your account, five people knew Saturday morning.', pose: 'chapulin_idle' },
         { speaker: 'SUPER SAM', text: 'Five. And none of them killed anyone.', pose: 'supersam_point' },
-        { speaker: 'DEFENSA', text: '(Five people... and a distribution list he signed without reading.)', pose: 'chapulin_idle' }
+        ...SINDICO_LESSON_EN,
+        { speaker: 'DEFENSA', text: '(Five people, he says. But that is him talking... it is not his own letter talking.)', pose: 'chapulin_idle' }
       ],
       contradiction: {
         evidence: ['oficio_diligencia'],
@@ -79,7 +81,7 @@ export const CASE5_TESTIMONY_7_EN: Testimony = {
       id: 'c5_d3t2_4',
       speaker: 'SUPER SAM',
       pose: 'supersam_idle',
-      text: 'And now mine. On August 21 this year, someone paid me to get to a museum fast and close a case in five minutes.',
+      text: 'And now mine. On August 28 this year, someone paid me to get to a museum fast and close a case in five minutes.',
       pressText: [
         MOMENTO,
         { speaker: 'DEFENSA', text: 'Mr. Prosecutor, you do not have to say this.', pose: 'chapulin_point' },
@@ -102,10 +104,19 @@ export const CASE5_TESTIMONY_7_EN: Testimony = {
         { speaker: 'DEFENSA', text: 'How much was in that bag?', pose: 'chapulin_point' },
         { speaker: 'SUPER SAM', text: 'Ten thousand pesos in silver coin. Six kilos.', pose: 'supersam_idle' },
         { speaker: 'DEFENSA', text: 'And who left it?', pose: 'chapulin_idle' },
-        { speaker: 'SUPER SAM', text: 'I do not know. It appeared in an alley, at the hour on the envelope, in my own canvas bag sealed by my own prosecution office.', pose: 'supersam_sweat' },
-        { speaker: 'SUPER SAM', text: 'That is what scared me most, counselor: they used my bag. Someone entered my office.', pose: 'supersam_sweat' },
+        { speaker: 'SUPER SAM', text: 'I do not know. It appeared in an alley, at the hour on the envelope, inside a canvas bag sealed by my own prosecution office.', pose: 'supersam_sweat' },
+        { speaker: 'SUPER SAM', text: 'That is what scared me most, counselor: the silver they paid me with was my office\'s silver. Someone entered my chambers.', pose: 'supersam_sweat' },
+        { speaker: 'DEFENSA', text: 'Sir, on August 28 a bag bearing your office seal was left in that museum\'s loading yard.', pose: 'chapulin_point' },
+        { speaker: 'SUPER SAM', text: '...I had already recognized it, counselor.', pose: 'supersam_sweat' },
+        { speaker: 'DEFENSA', text: 'And did you say anything?', pose: 'chapulin_idle' },
+        { speaker: 'SUPER SAM', text: 'That night I did not know what to say. Now I do: someone entered my office, and both of them came out of there.', pose: 'supersam_sweat' },
+        { speaker: 'DEFENSA', text: 'Two bags. One for the man who went into the museum and one for you.', pose: 'chapulin_idle' },
+        { speaker: 'SUPER SAM', text: 'With mine they paid me a sixth of what they took from my chambers. I worked it out that same night, counting.', pose: 'supersam_sweat' },
+        { speaker: 'DON RAMÓN', text: '(Do not finish him off, son.)', pose: 'donramon_idle' },
         { speaker: 'DEFENSA', text: 'And what did the envelope say?', pose: 'chapulin_point' },
-        { speaker: 'SUPER SAM', text: 'An hour and an address. Typed.', pose: 'supersam_idle' },
+        { speaker: 'SUPER SAM', text: 'Three lines. An hour, an address, and the job. Typed, unsigned, under my door.', pose: 'supersam_idle' },
+        { speaker: 'DEFENSA', text: 'And how was the job written?', pose: 'chapulin_idle' },
+        { speaker: 'SUPER SAM', text: 'The way an order is written, counselor. They were not asking me for anything: they were telling me what already came included.', pose: 'supersam_sweat' },
         { speaker: 'DEFENSA', text: '(Typed.)', pose: 'chapulin_panic' },
         { speaker: 'DEFENSA', text: 'Do you still have it?', pose: 'chapulin_idle' },
         { speaker: 'SUPER SAM', text: 'I burned it in August.', pose: 'supersam_sweat' },
@@ -120,7 +131,7 @@ export const CASE5_TESTIMONY_7_EN: Testimony = {
       pressText: [
         MOMENTO,
         { speaker: 'DEFENSA', text: '"For accounting"?', pose: 'chapulin_point' },
-        { speaker: 'SUPER SAM', text: 'An empty bag weighs four hundred grams, counselor. A man who carries four hundred grams every day remembers every day.', pose: 'supersam_idle' },
+        { speaker: 'SUPER SAM', text: 'An empty bag weighs nine hundred grams, counselor. A man who carries nine hundred grams every day remembers every day.', pose: 'supersam_idle' },
         { speaker: 'SUPER SAM', text: 'In my country, they call that amortization.', pose: 'supersam_sweat' },
         { speaker: 'DEFENSA', text: 'In mine they call it conscience.', pose: 'chapulin_idle' },
         { speaker: 'SUPER SAM', text: 'Everything is cheaper in yours.', pose: 'supersam_idle' }

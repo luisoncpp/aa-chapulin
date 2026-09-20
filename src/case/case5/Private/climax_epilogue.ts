@@ -70,5 +70,5 @@ export const CASE5_EPILOGUE: DialogueLine[] = [
   { bg: WAITING_ROOM, furniture: 'none', speaker: 'DON RAMÓN', text: 'Tarde.', pose: 'donramon_idle' },
   { bg: WAITING_ROOM, furniture: 'none', speaker: 'DEFENSA', text: 'Pero voy.', pose: 'chapulin_idle' },
   { bg: WAITING_ROOM, furniture: 'none', speaker: 'DON RAMÓN', text: 'Pero va.', pose: 'donramon_idle' },
-  { bg: WAITING_ROOM, furniture: 'none', speaker: 'NARRADOR', text: 'Salen. Sobre el banco donde el secretario dejó los objetos retirados de la sala de audiencias queda una bolsa de lona vacía que nadie recoge.' }
+  { bg: WAITING_ROOM, furniture: 'none', speaker: 'NARRADOR', text: 'Salen. Sobre el banco donde el secretario dejó los objetos retirados de la sala de audiencias queda una bolsa de lona floja, sin su algodón, que nadie recoge.' }
 ];

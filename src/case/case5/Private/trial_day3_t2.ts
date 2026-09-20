@@ -131,15 +131,15 @@ export const CASE5_TESTIMONY_7: Testimony = {
       id: 'c5_d3t2_6',
       speaker: 'SUPER SAM',
       pose: 'supersam_sweat',
-      text: 'Desde entonces la cargo vacía. No por remordimiento. Por contabilidad.',
+      text: 'Desde entonces la cargo rellena de algodón. No por remordimiento. Por contabilidad.',
       pressText: [
         MOMENTO,
         { speaker: 'DEFENSA', text: '¿«Por contabilidad»?', pose: 'chapulin_point' },
-        { speaker: 'SUPER SAM', text: 'Llena pesaba seis kilos. Vacía pesa novecientos gramos.', pose: 'supersam_point' },
-        { speaker: 'SUPER SAM', text: 'Un hombre que nota todos los días lo que le falta no tiene que acordarse a propósito.', pose: 'supersam_sweat' },
-        { speaker: 'DEFENSA', text: '¿Es la misma bolsa?', pose: 'chapulin_idle' },
-        { speaker: 'SUPER SAM', text: 'Me la devolvieron cuando aquel expediente se cerró. La fiscalía ya me había dado otra.', pose: 'supersam_sweat' },
-        { speaker: 'SUPER SAM', text: 'Uso la mía. A eso, en mi tierra, le llaman amortización.', pose: 'supersam_sweat' },
+        { speaker: 'SUPER SAM', text: 'Llena de plata pesaba seis kilos. Llena de algodón pesa novecientos gramos.', pose: 'supersam_point' },
+        { speaker: 'SUPER SAM', text: 'Levanto la misma bolsa todos los días y me falta el mismo peso. Así no tengo que acordarme a propósito.', pose: 'supersam_sweat' },
+        { speaker: 'DEFENSA', text: '¿Y el algodón para qué?', pose: 'chapulin_idle' },
+        { speaker: 'SUPER SAM', text: 'Para que no se me note el balance, counselor. Un fiscal que cobra por caso cerrado no puede llegar al juzgado con la bolsa floja.', pose: 'supersam_sweat' },
+        { speaker: 'SUPER SAM', text: 'A eso, en mi tierra, le llaman amortización.', pose: 'supersam_sweat' },
         { speaker: 'DEFENSA', text: 'En la mía le llaman conciencia.', pose: 'chapulin_idle' },
         { speaker: 'SUPER SAM', text: 'En la suya todo sale más barato.', pose: 'supersam_point' }
       ]

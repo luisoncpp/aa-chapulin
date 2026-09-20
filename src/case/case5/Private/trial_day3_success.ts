@@ -80,7 +80,7 @@ export const CASE5_D3_T1_HUACAL_SUCCESS: DialogueLine[] = [
   { speaker: 'SUPER SAM', text: 'Que me tomen declaración a mí, Your Honor. Bajo protesta.', pose: 'supersam_idle' },
   { speaker: 'DEFENSA', text: '¡¿Qué?!', pose: 'chapulin_panic' },
   { speaker: 'DON RAMÓN', text: '(Déjelo, joven.)', pose: 'donramon_idle' },
-  { speaker: 'DON RAMÓN', text: '(Ese hombre lleva más de tres meses cargando una bolsa vacía. Déjelo.)', pose: 'donramon_sweat' },
+  { speaker: 'DON RAMÓN', text: '(Ese hombre lleva más de tres meses cargando una bolsa rellena de algodón. Déjelo.)', pose: 'donramon_sweat' },
   { speaker: 'JUEZ', text: '...La corte lo autoriza, y designa al secretario para que actúe como ministerio público mientras tanto.', sfx: 'gavel', pose: 'judge_gavel' },
   { speaker: 'JUEZ', text: 'Nombre, cargo y protesta.', pose: 'judge_neutral' },
   { speaker: 'SUPER SAM', text: 'Sam Sullivan. Agente del ministerio público adscrito a este juzgado.', pose: 'supersam_idle' },

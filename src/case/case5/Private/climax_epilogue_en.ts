@@ -70,5 +70,5 @@ export const CASE5_EPILOGUE_EN: DialogueLine[] = [
   { bg: WAITING_ROOM, furniture: 'none', speaker: 'DON RAMÓN', text: 'Late.', pose: 'donramon_idle' },
   { bg: WAITING_ROOM, furniture: 'none', speaker: 'DEFENSA', text: 'But I am going.', pose: 'chapulin_idle' },
   { bg: WAITING_ROOM, furniture: 'none', speaker: 'DON RAMÓN', text: 'But you go.', pose: 'donramon_idle' },
-  { bg: WAITING_ROOM, furniture: 'none', speaker: 'NARRADOR', text: 'They leave. On the bench where the clerk set items cleared from the courtroom sits an empty canvas bag nobody picks up.' }
+  { bg: WAITING_ROOM, furniture: 'none', speaker: 'NARRADOR', text: 'They leave. On the bench where the clerk set items cleared from the courtroom sits a slack canvas bag, its cotton gone, that nobody picks up.' }
 ];

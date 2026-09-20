@@ -44,7 +44,7 @@ export const CASE5_PROFILES_EN: ProfileCatalogMap = {
     name: 'Super Sam',
     role: 'Prosecutor',
     icon: 'assets/profile_perfil_supersam.webp',
-    desc: 'Prosecutor. Paid by the closed case. Has carried an empty canvas bag since August and nobody has asked why.',
+    desc: 'Prosecutor. Paid by the closed case. Since August he has carried his canvas bag stuffed with cotton and nobody has asked why.',
     updates: [
       'He testified against himself without anyone asking him to.'
     ]

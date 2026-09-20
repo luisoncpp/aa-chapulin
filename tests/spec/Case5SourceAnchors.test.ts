@@ -98,6 +98,20 @@ describe('Case 5 scripts follow the swapped August chronology', () => {
 });
 
 describe('Case 5 day-3 testimony staging', () => {
+  it('carries the bag stuffed with cotton, never described as empty in hand', () => {
+    // The sprites paint a bulging bag, so the fiction cannot call it empty on his shoulder.
+    const carried = [
+      'src/case/case5/Private/trial_day3_t2.ts',
+      'src/case/case5/Private/fiscalia_c5_hotspots.ts',
+      'src/case/case5/Private/trial_day3_success.ts',
+    ];
+    for (const path of carried) {
+      expect(read(path)).not.toMatch(/carg\w* una bolsa .{0,12}vacía|la cargo vacía/);
+    }
+    expect(read('src/case/case5/Private/trial_day3_t2.ts')).toContain('rellena de algodón');
+    expect(read('src/case/case5/Private/trial_day3_t2_en.ts')).toContain('stuffed with cotton');
+  });
+
   it('never poses Super Sam with a full bag while he testifies about losing it', () => {
     // supersam_idle carries the bulging money bag; in T7 the bag is empty on the table.
     for (const name of ['trial_day3_t2.ts', 'trial_day3_t2_en.ts']) {

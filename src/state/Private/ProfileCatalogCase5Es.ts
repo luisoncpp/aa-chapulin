@@ -44,7 +44,7 @@ export const CASE5_PROFILES_ES: ProfileCatalogMap = {
     name: 'Super Sam',
     role: 'Fiscal',
     icon: 'assets/profile_perfil_supersam.webp',
-    desc: 'Fiscal. Cobra por caso cerrado. Lleva una bolsa de lona vacía desde agosto y nadie le ha preguntado por qué.',
+    desc: 'Fiscal. Cobra por caso cerrado. Desde agosto carga su bolsa de lona rellena de algodón y nadie le ha preguntado por qué.',
     updates: [
       'Declaró contra sí mismo sin que nadie se lo pidiera.'
     ]

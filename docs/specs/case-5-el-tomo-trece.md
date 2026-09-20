@@ -2572,9 +2572,11 @@ SUPER SAM: Protesto decir verdad. Y le advierto a esta corte que le va a salir b
 
 ### 15.3 Testimonio 2 — Super Sam: *«Lo que cobré en agosto»*
 
-**BGM:** `cross_exam_grave`. El fiscal declara desde el estrado de testigos, con la bolsa de lona vacía sobre la mesa de la fiscalía, a la vista de la sala.
+**BGM:** `cross_exam_grave`. El fiscal declara desde el estrado de testigos, con la bolsa de lona sobre la mesa de la fiscalía, a la vista de la sala.
 
 > **Pose.** En este testimonio **no se usa `supersam_idle`**: ese sprite lleva la bolsa llena al hombro y aquí la bolsa está vacía sobre la mesa, no en su mano. Declaraciones 1–3 en `supersam_point` (todavía es el fiscal que cobra por caso cerrado) y 4–6 en `supersam_sweat`, de modo que el arco de la pose acompañe al de la confesión. Misma regla que §14.2 para el despacho.
+>
+> **Algodón.** Desde agosto Super Sam **rellena de algodón** la bolsa para cargarla: los sprites la pintan abultada y la ficción no puede contradecirlos. En su despacho está **doblada y plana** sobre la silla, tal como la pinta `bg_fiscalia` (§23.x), y ahí es donde el jugador descubre el truco. El algodón sirve a la vez de vanidad —«que no se me note el balance»— y de penitencia: levanta el mismo bulto y le faltan los mismos cinco kilos cien gramos. En el epílogo la bolsa queda floja y sin algodón, porque ya no necesita el recordatorio.
 
 ~~~dialogue
 c5_d3t2_1 SUPER SAM: Recibí el oficio que me mandó el preso el ocho de noviembre. Lo puse en un cajón y lo tuve dieciocho días.
@@ -2582,7 +2584,7 @@ c5_d3t2_2 SUPER SAM: El veintiséis lo saqué, y fijé la diligencia para el sá
 c5_d3t2_3 SUPER SAM: Nadie más supo de esa diligencia. Un oficio de la fiscalía no se publica en el periódico.
 c5_d3t2_4 SUPER SAM: Y ahora lo mío. La mañana del veintiocho de agosto entré a mi despacho y mi bolsa no estaba. Seis kilos de moneda de plata de esta fiscalía.
 c5_d3t2_5 SUPER SAM: Esa misma noche me compraron con un kilo de mi propia plata, por llegar rápido a ese museo y cerrar el caso en cinco minutos.
-c5_d3t2_6 SUPER SAM: Desde entonces la cargo vacía. No por remordimiento. Por contabilidad.
+c5_d3t2_6 SUPER SAM: Desde entonces la cargo rellena de algodón. No por remordimiento. Por contabilidad.
 ~~~
 
 #### Presiones
@@ -2681,13 +2683,13 @@ SUPER SAM: Y ésa, counselor, es la única cosa de todo esto de la que de veras 
 
 ~~~dialogue
 DEFENSA: ¡UN MOMENTO! ¿«Por contabilidad»? [sfx: whoosh; pose: chapulin_point]
-SUPER SAM: Llena pesaba seis kilos. Vacía pesa novecientos gramos. [pose: supersam_idle]
-SUPER SAM: Un hombre que nota todos los días lo que le falta no tiene que acordarse a propósito. [pose: supersam_sweat]
-DEFENSA: ¿Es la misma bolsa? [pose: chapulin_idle]
-SUPER SAM: Me la devolvieron cuando aquel expediente se cerró. La fiscalía ya me había dado otra. [pose: supersam_sweat]
-SUPER SAM: Uso la mía. A eso, en mi tierra, le llaman amortización. [pose: supersam_sweat]
+SUPER SAM: Llena de plata pesaba seis kilos. Llena de algodón pesa novecientos gramos. [pose: supersam_point]
+SUPER SAM: Levanto la misma bolsa todos los días y me falta el mismo peso. Así no tengo que acordarme a propósito. [pose: supersam_sweat]
+DEFENSA: ¿Y el algodón para qué? [pose: chapulin_idle]
+SUPER SAM: Para que no se me note el balance, counselor. Un fiscal que cobra por caso cerrado no puede llegar al juzgado con la bolsa floja. [pose: supersam_sweat]
+SUPER SAM: A eso, en mi tierra, le llaman amortización. [pose: supersam_sweat]
 DEFENSA: En la mía le llaman conciencia. [pose: chapulin_idle]
-SUPER SAM: En la suya todo sale más barato. [pose: supersam_idle]
+SUPER SAM: En la suya todo sale más barato. [pose: supersam_point]
 ~~~
 
 #### Contradicción resolutoria — declaración 3: **`oficio_diligencia`**

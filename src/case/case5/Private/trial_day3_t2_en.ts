@@ -131,15 +131,15 @@ export const CASE5_TESTIMONY_7_EN: Testimony = {
       id: 'c5_d3t2_6',
       speaker: 'SUPER SAM',
       pose: 'supersam_sweat',
-      text: 'I have carried it empty ever since. Not from remorse. For accounting.',
+      text: 'I have carried it stuffed with cotton ever since. Not from remorse. For accounting.',
       pressText: [
         MOMENTO,
         { speaker: 'DEFENSA', text: '"For accounting"?', pose: 'chapulin_point' },
-        { speaker: 'SUPER SAM', text: 'Full it weighed six kilos. Empty it weighs nine hundred grams.', pose: 'supersam_point' },
-        { speaker: 'SUPER SAM', text: 'A man who feels what is missing every day does not have to remember on purpose.', pose: 'supersam_sweat' },
-        { speaker: 'DEFENSA', text: 'Is it the same bag?', pose: 'chapulin_idle' },
-        { speaker: 'SUPER SAM', text: 'They returned it to me when that file was closed. The office had already issued me another.', pose: 'supersam_sweat' },
-        { speaker: 'SUPER SAM', text: 'I use mine. In my country, they call that amortization.', pose: 'supersam_sweat' },
+        { speaker: 'SUPER SAM', text: 'Full of silver it weighed six kilos. Full of cotton it weighs nine hundred grams.', pose: 'supersam_point' },
+        { speaker: 'SUPER SAM', text: 'I lift the same bag every day and the same weight is missing. That way I do not have to remember on purpose.', pose: 'supersam_sweat' },
+        { speaker: 'DEFENSA', text: 'And what is the cotton for?', pose: 'chapulin_idle' },
+        { speaker: 'SUPER SAM', text: 'So the balance does not show, counselor. A prosecutor paid by the closed case cannot walk into court with a slack bag.', pose: 'supersam_sweat' },
+        { speaker: 'SUPER SAM', text: 'In my country, they call that amortization.', pose: 'supersam_sweat' },
         { speaker: 'DEFENSA', text: 'In mine they call it conscience.', pose: 'chapulin_idle' },
         { speaker: 'SUPER SAM', text: 'Everything is cheaper in yours.', pose: 'supersam_point' }
       ]

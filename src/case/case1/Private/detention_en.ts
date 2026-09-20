@@ -14,7 +14,7 @@ export const CASE1_DETENTION_EN: InvestigationScene = {
   speaker: 'NARRADOR',
   idlePose: 'chapulin_idle',
   intro: [
-    { speaker: 'NARRADOR', text: 'August 22nd, 9:00 AM. City Detention Centre.', bg: 'assets/bg_detention.webp', furniture: 'none', bgm: 'detention_center' },
+    { speaker: 'NARRADOR', text: 'August 29th, 9:00 AM. City Detention Centre.', bg: 'assets/bg_detention.webp', furniture: 'none', bgm: 'detention_center' },
     { speaker: 'DEFENSA', text: "Good morning. I'm Don Ramón, public defender... and street-corner defender, depending on who you ask.", pose: 'donramon_idle' },
     { speaker: 'CHAPULIN', text: '¡No contaban con mi astucia! They never counted on my cunning!', pose: 'chapulin_point' },
     { speaker: 'DEFENSA', text: 'Young man, you are in jail.', pose: 'donramon_sweat' },
@@ -46,7 +46,7 @@ export const CASE1_DETENTION_EN: InvestigationScene = {
   talkOptions: [
     {
       id: 'noche_21',
-      label: 'What happened on the night of the 21st?',
+      label: 'What happened on the night of the 28th?',
       dialogue: [
         { speaker: 'CHAPULIN', text: 'At eight forty-five my vinyl antennae buzzed. They buzz when an enemy is near; they never fail.', pose: 'chapulin_idle' },
         { speaker: 'CHAPULIN', text: 'I flew off to the museum. Well, not flew. Ran. With stops.', pose: 'chapulin_panic' },

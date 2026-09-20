@@ -30,10 +30,10 @@ describe('UiLanguageUpdater', () => {
     expect(dom.btnHistory?.title).toBe('Message History');
     expect(dom.historyModalEl?.querySelector('.modal-header h2')?.textContent).toBe('MESSAGE HISTORY');
     expect(dom.btnContinueGame?.textContent).toContain('CONTINUE GAME');
-    expect(dom.btnStartGame.textContent).toContain('CASE 1');
-    expect(dom.btnStartCase2?.textContent).toContain('CASE 2');
-    expect(dom.btnStartCase4?.textContent).toContain('CASE 4');
-    expect(dom.btnStartCase5?.textContent).toContain('CASE 5');
+    expect(dom.btnStartGame.textContent).toContain('ACT 2');
+    expect(dom.btnStartCase2?.textContent).toContain('ACT 1');
+    expect(dom.btnStartCase4?.textContent).toContain('ACT 4');
+    expect(dom.btnStartCase5?.textContent).toContain('ACT 5');
     expect(dom.btnEvidenceExamine?.textContent).toBe('Examine Detail');
     if (dom.btnStartTrialDebug) expect(dom.btnStartTrialDebug.textContent).toContain('DEBUG MODE');
     expect(dom.btnCourtRecord.title).toContain('Court Record');

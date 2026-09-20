@@ -13,11 +13,11 @@ export const CASE2_POSTAL_EN: InvestigationScene = {
   speaker: 'NARRADOR',
   idlePose: 'jaimito_idle',
   intro: [
-    { speaker: 'NARRADOR', text: 'August 30, 9:00 AM. Rear Alley and Postal Stand.' },
+    { speaker: 'NARRADOR', text: 'August 23, 9:00 AM. Rear Alley and Postal Stand.' },
     { speaker: 'JAIMITO', text: 'Good morning... I came to deliver these letters, but I want to avoid fatigue...', pose: 'jaimito_tired' },
     { speaker: 'DEFENSA', text: 'Don Jaimito, sorry to bother you, but on the night of the theft you parked your mail cart in this alley, right under the hacienda dumbwaiter.', pose: 'donramon_idle' },
     { speaker: 'JAIMITO', text: 'Ah, yes! In my hometown, Tangamandapio, carts are left in the shade of the guava trees...', pose: 'jaimito_idle' },
-    { speaker: 'CHAPULIN', text: 'Don Jaimito, do you recall Mr. Peterete handing you a package on the 28th at 9:30 PM?', pose: 'chapulin_idle' },
+    { speaker: 'CHAPULIN', text: 'Don Jaimito, do you recall Mr. Peterete handing you a package on the 21st at 9:30 PM?', pose: 'chapulin_idle' },
     { speaker: 'JAIMITO', text: 'At 9:30 PM? Impossible! I was taking a restorative nap on the park bench to avoid fatigue. They even gave me a ticket for leaving the cart abandoned.', pose: 'jaimito_tired' }
   ],
   hotspots: [

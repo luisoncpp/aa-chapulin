@@ -15,7 +15,7 @@ export const CASE1_CLINICA_EN: InvestigationScene = {
   speaker: 'NARRADOR',
   idlePose: null,
   intro: [
-    { speaker: 'NARRADOR', text: 'August 22nd, 12:00 PM. Municipal clinic, room 6.', bg: 'assets/bg_clinica_cuarto6.webp', furniture: 'none', bgm: 'detention_center' },
+    { speaker: 'NARRADOR', text: 'August 29th, 12:00 PM. Municipal clinic, room 6.', bg: 'assets/bg_clinica_cuarto6.webp', furniture: 'none', bgm: 'detention_center' },
     { speaker: 'NARRADOR', text: 'On the bed lies an enormous man with an eyepatch and a bandaged head. He does not move.' },
     { speaker: 'DEFENSA', text: 'So this is Alma Negra. He looks like they lowered him off a galleon.', pose: 'donramon_idle' },
     { speaker: 'DEFENSA', text: '(Six foot three. In boots, more. And I put my client at five foot four on tiptoe.)', pose: 'donramon_shock' }

@@ -84,7 +84,7 @@ export const CASE1_TESTIMONY_4_EN: Testimony = {
       pose: 'tripaseca_smug',
       text: 'Since His Honor wants to know how he got in, I told the law from the start: through the loading door.',
       pressText: [
-        { speaker: 'DEFENSA', text: 'HOLD IT! Did you tell the police that on the night of the twenty-first?', sfx: 'whoosh', cutin: 'objection_un_momento', pose: 'donramon_point' },
+        { speaker: 'DEFENSA', text: 'HOLD IT! Did you tell the police that on the night of the twenty-eighth?', sfx: 'whoosh', cutin: 'objection_un_momento', pose: 'donramon_point' },
         { speaker: 'TRIPASECA', text: 'I told the prosecutor himself.', pose: 'tripaseca_smug' },
         { speaker: 'DEFENSA', text: 'How curious: the arrest report contains not a single line about the loading door.', pose: 'donramon_idle' },
         { speaker: 'SUPER SAM', text: 'The case was already solved! One does not write down what is no longer needed!', pose: 'supersam_sweat' },

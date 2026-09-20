@@ -39,7 +39,8 @@ export type TrackName =
   | 'kermes'
   | 'cross_exam_presto'
   | 'archivo'
-  | 'cross_exam_grave';
+  | 'cross_exam_grave'
+  | 'cross_exam_final';
 
 export type InstrumentWaveType = 'sine' | 'square' | 'sawtooth' | 'triangle';
 

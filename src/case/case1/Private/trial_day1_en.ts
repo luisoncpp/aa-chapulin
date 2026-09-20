@@ -8,7 +8,7 @@ import type { DialogueLine, Testimony } from '../../../types/index.js';
 import { CASE1_CALL_TRIPASECA_D1_EN } from './witness_calls_en.js';
 
 export const CASE1_TRIAL_INTRO_EN: DialogueLine[] = [
-  { bg: 'assets/bg_waiting_room.webp', furniture: 'none', speaker: 'NARRADOR', text: 'August 22, 2:00 PM. High Court - Waiting Room.', bgm: 'trial' },
+  { bg: 'assets/bg_waiting_room.webp', furniture: 'none', speaker: 'NARRADOR', text: 'August 29, 2:00 PM. High Court - Waiting Room.', bgm: 'trial' },
   { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_gavel', text: 'Order in the court! We open the hearing on the theft of the Golden Paralyzing Chicharra and the wounding of night watchman Alma Negra.', sfx: 'gavel', bgm: 'trial' },
   { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_case1_slam', text: 'Your Honor, I closed this case in five minutes. FIVE! A museum locked with a key, a watchman on the floor, and inside a gentleman dressed as a grasshopper holding the chipote.', sfx: 'desk_slam' },
   { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_point', text: 'Time is money, and this trial is already costing me some.' },

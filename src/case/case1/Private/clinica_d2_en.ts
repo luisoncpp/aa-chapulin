@@ -15,7 +15,7 @@ export const CASE1_CLINICA_D2_EN: InvestigationScene = {
   speaker: 'NARRADOR',
   idlePose: 'almanegra_vendado',
   intro: [
-    { speaker: 'NARRADOR', text: 'August 23rd, 12:00 PM. Municipal clinic, room 6. The bed is empty. The enormous man is sitting in a wheelchair, bandaged to the eyebrows.', bg: 'assets/bg_clinica.webp', furniture: 'none', bgm: 'investigation_core' },
+    { speaker: 'NARRADOR', text: 'August 30th, 12:00 PM. Municipal clinic, room 6. The bed is empty. The enormous man is sitting in a wheelchair, bandaged to the eyebrows.', bg: 'assets/bg_clinica.webp', furniture: 'none', bgm: 'investigation_core' },
     { speaker: 'ALMA NEGRA', text: 'By a thousand devils! Who goes there?', pose: 'almanegra_shock' },
     { speaker: 'DEFENSA', text: 'Easy, easy. Don Ramón, defense counsel.', pose: 'donramon_sweat' },
     { speaker: 'ALMA NEGRA', text: 'Counsel for whom, deckhand?', pose: 'almanegra_vendado' },

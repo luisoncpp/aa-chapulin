@@ -13,7 +13,7 @@ export const CASE2_BOVEDA_EN: InvestigationScene = {
   speaker: 'NARRADOR',
   idlePose: 'peterete_smug',
   intro: [
-    { speaker: 'NARRADOR', text: 'August 29, 11:30 AM. Hacienda Underground Vault.' },
+    { speaker: 'NARRADOR', text: 'August 22, 11:30 AM. Hacienda Underground Vault.' },
     { speaker: 'FLORINDA', text: 'This is inconceivable! A lowlife thief prowling the hotel neighborhood! Thank goodness prosecutor Super Sam arrested him at once!', pose: 'florinda_angry' },
     { speaker: 'PETERETE', text: 'Calm yourself, distinguished lady. As security chief I have an irrefutable report. The criminal acted alone at 10:00 PM.', pose: 'peterete_smug' },
     { speaker: 'DEFENSA', text: 'Excuse me, said Monchito! The defense is here to inspect the crime scene.', pose: 'donramon_idle' },

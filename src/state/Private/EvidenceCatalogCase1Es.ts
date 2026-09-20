@@ -18,7 +18,7 @@ export const CASE1_EVIDENCE_ES: EvidenceCatalogMap = {
     id: 'parte_detencion',
     name: 'Informe de Detención',
     icon: 'assets/parte_detencion_c1.webp',
-    desc: 'Informe policial del 21 de agosto: detención a las 21:07 en la sala 2. Inventario del detenido: un Chipote Chillón, una caja de Pastillas de Chiquitolina, unas Antenitas de Vinil y tres pesos. Chicharra no localizada. Museo revisado pieza por pieza. Vehículos del predio: sin registrar.',
+    desc: 'Informe policial del 28 de agosto: detención a las 21:07 en la sala 2. Inventario del detenido: un Chipote Chillón, una caja de Pastillas de Chiquitolina, unas Antenitas de Vinil y tres pesos. Chicharra no localizada. Museo revisado pieza por pieza. Vehículos del predio: sin registrar.',
     updates: [
       'Anexo de laboratorio: la caja de Pastillas de Chiquitolina venía sellada de fábrica, doce de doce. El acusado no tomó ninguna esa noche.'
     ]
@@ -39,7 +39,7 @@ export const CASE1_EVIDENCE_ES: EvidenceCatalogMap = {
     id: 'antenitas_vinil',
     name: 'Antenitas de Vinil',
     icon: 'assets/antenitas_vinil.webp',
-    desc: 'Pueden vibrar cerca de un enemigo o de una pista importante, sin identificar qué las activó. Vibraron a las 20:45 del 21 de agosto.'
+    desc: 'Pueden vibrar cerca de un enemigo o de una pista importante, sin identificar qué las activó. Vibraron a las 20:45 del 28 de agosto.'
   },
   chicharra_oro: {
     id: 'chicharra_oro',
@@ -54,7 +54,7 @@ export const CASE1_EVIDENCE_ES: EvidenceCatalogMap = {
     desc: 'Vitrina de la sala 2, reventada. No quedaron vidrios dentro de la vitrina. Pedestal de madera a la altura de la cintura. Junto a ella, la jaula del perico histórico volcada.',
     detailedView: {
       imageAsset: 'assets/examine_vitrina_rota.webp',
-      caption: 'Vitrina de la sala 2 fotografiada a las 23:10 del 21 de agosto, antes de recoger nada.'
+      caption: 'Vitrina de la sala 2 fotografiada a las 23:10 del 28 de agosto, antes de recoger nada.'
     }
   },
   rejilla_ducto: {
@@ -103,7 +103,7 @@ export const CASE1_EVIDENCE_ES: EvidenceCatalogMap = {
     icon: 'assets/foto_crimen.webp',
     desc: 'Único cuadro de la cámara del pasillo, con hora impresa 21:00. Se ve una figura corriendo.',
     updates: [
-      'Bitácora del rollo: se cambia los lunes. El martes 21 quedaba un solo cuadro, y se disparó por movimiento a las 21:00.'
+      'Bitácora del rollo: se cambia los lunes. El martes 28 quedaba un solo cuadro, y se disparó por movimiento a las 21:00.'
     ],
     detailedView: {
       imageAsset: 'assets/examine_foto_crimen.webp',

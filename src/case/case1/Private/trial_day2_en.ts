@@ -8,7 +8,7 @@ import type { DialogueLine, OpeningPresent, Testimony } from '../../../types/ind
 import { CASE1_CALL_ALMA_NEGRA_EN, CASE1_CALL_TRIPASECA_D2_T2_EN } from './witness_calls_en.js';
 
 export const CASE1_DAY2_INTRO_EN: DialogueLine[] = [
-  { bg: 'assets/bg_waiting_room.webp', furniture: 'none', speaker: 'NARRADOR', text: 'August 23, 2:00 PM. High Court - Waiting Room.', bgm: 'trial' },
+  { bg: 'assets/bg_waiting_room.webp', furniture: 'none', speaker: 'NARRADOR', text: 'August 30, 2:00 PM. High Court - Waiting Room.', bgm: 'trial' },
   { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_gavel', text: 'The hearing resumes.', sfx: 'gavel', bgm: 'trial' },
   { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_idle', text: 'Your Honor, the prosecution maintains its accusation in full and asks that this trial end today.' },
   { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_idle', text: '(He has the bag back on his shoulder. Brand new, at that.)' },

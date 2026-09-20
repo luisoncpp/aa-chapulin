@@ -13,11 +13,11 @@ export const CASE2_POSTAL: InvestigationScene = {
   speaker: 'NARRADOR',
   idlePose: 'jaimito_idle',
   intro: [
-    { speaker: 'NARRADOR', text: '30 de Agosto, 9:00 AM. Callejón Trasero y Puesto Postal.' },
+    { speaker: 'NARRADOR', text: '23 de Agosto, 9:00 AM. Callejón Trasero y Puesto Postal.' },
     { speaker: 'JAIMITO', text: 'Buenos días... Vengo a entregar estas cartas, pero es que quiero evitar la fatiga...', pose: 'jaimito_tired' },
     { speaker: 'DEFENSA', text: 'Don Jaimito, perdone la molestia, pero la noche del robo usted estacionó su carrito de correos en este callejón, justo debajo del montaplatos de la hacienda.', pose: 'donramon_idle' },
     { speaker: 'JAIMITO', text: '¡Ah, sí! Es que en mi pueblo natal, Tangamandapio, los carritos se dejan a la sombra de los árboles de guayaba...', pose: 'jaimito_idle' },
-    { speaker: 'CHAPULIN', text: 'Don Jaimito, ¿recuerda si el señor Peterete le entregó algún paquete la noche del 28 a las 9:30 PM?', pose: 'chapulin_idle' },
+    { speaker: 'CHAPULIN', text: 'Don Jaimito, ¿recuerda si el señor Peterete le entregó algún paquete la noche del 21 a las 9:30 PM?', pose: 'chapulin_idle' },
     { speaker: 'JAIMITO', text: '¿A las 9:30 PM? ¡Imposible! A esa hora yo estaba durmiendo una siesta reparadora en la banca del parque para evitar la fatiga. Hasta me pusieron una multa por dejar el carrito abandonado.', pose: 'jaimito_tired' }
   ],
   hotspots: [

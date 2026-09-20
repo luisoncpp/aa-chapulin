@@ -21,13 +21,13 @@ export const CASE2_CLIMAX_CHOICES: ChoicePrompt[] = [
       { speaker: 'JUEZ', text: '¡La defensa recibirá una penalización si no deja de perder el tiempo!', pose: 'judge_shock' }
     ],
     successDialogue: [
-      { speaker: 'DEFENSA', text: '¡La clave no es cómo iba vestido, sino CUÁNDO fue! Doña Clotilde dijo que el hombre fue a comprar la esencia la tarde del 28 de agosto.', pose: 'donramon_point' },
-      { speaker: 'JUEZ', text: '¿La tarde del 28 de agosto? ¿Y por qué es tan importante esa hora específica?', pose: 'judge_neutral' }
+      { speaker: 'DEFENSA', text: '¡La clave no es cómo iba vestido, sino CUÁNDO fue! Doña Clotilde dijo que el hombre fue a comprar la esencia la tarde del 21 de agosto.', pose: 'donramon_point' },
+      { speaker: 'JUEZ', text: '¿La tarde del 21 de agosto? ¿Y por qué es tan importante esa hora específica?', pose: 'judge_neutral' }
     ]
   },
   {
     id: 'key_holder',
-    question: '¿Quién era el portador de la llave maestra durante la tarde del 28 de agosto?',
+    question: '¿Quién era el portador de la llave maestra durante la tarde del 21 de agosto?',
     options: [
       { id: 'bellhop', label: 'El botones' },
       { id: 'security_chief', label: 'El jefe de seguridad' },

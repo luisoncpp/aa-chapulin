@@ -14,7 +14,7 @@ const CASE_SCRIPT = {
             bgm: "investigation",
             speaker: "NARRADOR",
             intro: [
-                { speaker: "NARRADOR", text: "21 de Agosto, 9:30 PM. Museo de Curiosidades.", pose: null },
+                { speaker: "NARRADOR", text: "28 de Agosto, 9:30 PM. Museo de Curiosidades.", pose: null },
                 { speaker: "DEFENSA", text: "La legendaria 'Chicharra Paralizadora de Oro' ha sido sustraída de su vitrina protegida...", pose: null },
                 { speaker: "FLORINDA", text: "¡Ay, Dios mío! ¡Qué escándalo! ¡Toda la chusma del vecindario está hablando de esto!", pose: "florinda_angry", sfx: "text" },
                 { speaker: "DEFENSA", text: "(Doña Florinda es la curadora del museo... y parece más molesta que de costumbre.)", pose: null }

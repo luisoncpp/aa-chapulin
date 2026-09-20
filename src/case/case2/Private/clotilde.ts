@@ -13,7 +13,7 @@ export const CASE2_CLOTILDE: InvestigationScene = {
   speaker: 'NARRADOR',
   idlePose: 'clotilde_idle',
   intro: [
-    { speaker: 'NARRADOR', text: '30 de Agosto, 11:30 AM. Casa de Doña Clotilde.' },
+    { speaker: 'NARRADOR', text: '23 de Agosto, 11:30 AM. Casa de Doña Clotilde.' },
     { speaker: 'CLOTILDE', text: '¡Ay, mi Roro! ¡Qué dicha tenerte en mi humilde morada! ¿Quieres que te prepare una tacita de café o una infusión para los nervios?', pose: 'clotilde_flustered' },
     { speaker: 'DEFENSA', text: 'Este... gracias, Doña Clotilde, pero andamos investigando un aroma muy curioso. ¿Reconoce este frasco?', pose: 'donramon_sweat' },
     { speaker: 'CLOTILDE', text: '¡Por supuesto! Es mi fórmula secreta de Esencia Concentrada de Valeriana y Rosas. Un hombre muy elegante vino antier por la tarde, justo antes del robo, a comprarme tres frascos diciendo que tenía un insomnio terrible.', pose: 'clotilde_mysterious' },

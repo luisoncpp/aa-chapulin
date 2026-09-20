@@ -1,9 +1,17 @@
 # Caso 2: El Juicio del Chómpiras — El Asalto de las Dos Caras
 *(Turnabout of the Two-Faced Thief)*
 
-Documento de diseño narrativo, guión de diálogos y especificación técnica para el **Episodio 2** de **El Chapulín Colorado: Ace Attorney**.
+Documento de diseño narrativo, guión de diálogos y especificación técnica para el **Acto 1** de **El Chapulín Colorado: Ace Attorney**.
 
 ---
+
+## 0.0 Bitácora de auditoría
+
+| Fecha | Lente | Resultado |
+|---|---|---|
+| 2026-09-17 | Calendario y orden de actos | Cero hallazgos nuevos: el crimen queda el 21 de agosto, las jornadas el 22–23 y las referencias ES/EN coinciden. |
+
+**Regla de parada:** una nueva lente sin hallazgos sobre las secciones modificadas.
 
 ## 1. Resumen General del Caso (Case Synopsis)
 
@@ -41,8 +49,8 @@ Juntos, Don Ramón y El Chapulín deberán enfrentarse a un misterio que parece 
 
 ```mermaid
 timeline
-    title Cronología del Robo del Chanfle de Oro (Noche del 28 de Agosto)
-    Tarde 28 Ago : Un individuo misterioso visita a Doña Clotilde para comprar la Esencia de Valeriana y aprovecha un descuido de ella para copiar la llave maestra en cera (molde desechado en la basura de Clotilde).
+    title Cronología del Robo del Chanfle de Oro (Noche del 21 de Agosto)
+    Tarde 21 Ago : Un individuo misterioso visita a Doña Clotilde para comprar la Esencia de Valeriana y aprovecha un descuido de ella para copiar la llave maestra en cera (molde desechado en la basura de Clotilde).
     8:30 PM : El Peterete devuelve la llave original a custodia y contrata a Chómpiras para lustrar unas botas de plata históricas en la antecámara de la bóveda, dejándolo encerrado con su lata de grasa vacía.
     9:15 PM : Peterete fuerza la caja del generador (pintura azul) y baja el interruptor principal; el reloj de péndulo centralizado se detiene a las 9:15 PM y el reloj digital del pasillo (sin pila de respaldo) queda sin hora. En el restaurante, con acometida eléctrica propia, Jirafales y Florinda sólo perciben un parpadeo momentáneo de las luces.
     9:20 PM : Peterete bombea Esencia Sedante de Valeriana por el ducto de aire independiente; Chómpiras (aún sin palanca en manos) cae dormido profundamente (~30 min de efecto).
@@ -78,13 +86,13 @@ timeline
 8. **Caja del Generador (`caja_generador`)**:
     - *Descripción*: La caja metálica azul del interruptor principal está abollada y presenta una muesca del ancho exacto de la palanca. La punta de la palanca conserva transferencia de pintura azul marino de esta caja, prueba de que se forzó el generador, no la caja fuerte.
 9. **Registro Postal (`registro_postal`)**:
-    - *Descripción*: Cuaderno de Don Jaimito con los envíos del 28 de agosto. Contiene una entrada a las 9:30 PM con sello y firma atribuidos a Peterete, estampados con un sello manual de trazo irregular — incompatible con el sello mecánico oficial que el cartero lleva siempre consigo. Jaimito confirma que a esa hora dormía en el parque y no selló nada.
+    - *Descripción*: Cuaderno de Don Jaimito con los envíos del 21 de agosto. Contiene una entrada a las 9:30 PM con sello y firma atribuidos a Peterete, estampados con un sello manual de trazo irregular — incompatible con el sello mecánico oficial que el cartero lleva siempre consigo. Jaimito confirma que a esa hora dormía en el parque y no selló nada.
 10. **Multa de Tránsito (`multa_transito`)**:
      - *Descripción*: Multa de tránsito municipal expedida a las 9:30 PM al carrito de correos por estar "abandonado y sin supervisión" en el callejón trasero. La multa fue puesta por un agente vial de ronda, independiente de la policía judicial que aseguró la bóveda, por lo que el carrito no fue inspeccionado como parte de la escena del crimen.
 11. **Frasco de Esencia de Valeriana (`frasco_valeriana`)**:
     - *Descripción*: Brebaje herbal concentrado creado por Doña Clotilde (rosas + valeriana). Provoca sueño instantáneo y profundo de ~30 minutos; coincide químicamente con el residuo del ducto. Fue comprado por un cliente misterioso.
 12. **Molde de Cera (`molde_cera`)**:
-    - *Descripción*: Trozo de cera de veladora encontrado en la basura de Doña Clotilde. Contiene la huella exacta de la llave maestra de la bóveda. Fue creado la tarde del 28 de agosto por el misterioso cliente que visitó a Clotilde para comprar la esencia.
+    - *Descripción*: Trozo de cera de veladora encontrado en la basura de Doña Clotilde. Contiene la huella exacta de la llave maestra de la bóveda. Fue creado la tarde del 21 de agosto por el misterioso cliente que visitó a Clotilde para comprar la esencia.
 13. **Lata de Grasa de Zapatos (`lata_grasa`)**:
     - *Descripción*: Lata grande de betún negro con el logotipo del Chómpiras. Es inusualmente pesada (~5.3 kg: 5 kg del Chanfle + lata) y de su junta brota polvo dorado brillante. Fue la lata vacía que Chómpiras llevó a la bóveda por encargo de Peterete.
 14. **Antenitas de Vinil (`antenitas_vinil`)**:
@@ -150,7 +158,7 @@ Ese bloque vive al final del diálogo que precede al testimonio: la apertura del
 
 ```dialogue
 [ENTRADA AL CENTRO DE DETENCIÓN]
-NARRADOR: 29 de Agosto, 10:00 AM. Centro de Detención de la Ciudad.
+NARRADOR: 22 de Agosto, 10:00 AM. Centro de Detención de la Ciudad.
 DEFENSA (donramon_idle): Bueno, aquí estamos. Según la policía, el sospechoso es un peligroso asaltante internacional...
 CHAPULIN (chapulin_idle): ¡Calma, Don Ramón! ¡Que no panda el cúnico! Mis antenitas de vinil me dicen que el acusado es una persona totalmente inofensiva... o muy despistada.
 CHOMPIRAS (chompiras_crying): ¡Buaaaa! ¡Yo no fui, jefecito! ¡Yo no me robé ningún chanfle de nada! ¡Lo único que me he robado en mi vida son dos panes de dulce y ya los devolví mordidos!
@@ -182,7 +190,7 @@ CHOMPIRAS (chompiras_relieved): ¡El Chapulín Colorado! ¡No contaban con mi as
 
 ```dialogue
 [ENTRADA A LA BÓVEDA SUBTERRÁNEA]
-NARRADOR: 29 de Agosto, 11:30 AM. Bóveda Subterránea de la Hacienda.
+NARRADOR: 22 de Agosto, 11:30 AM. Bóveda Subterránea de la Hacienda.
 FLORINDA (florinda_angry): ¡Esto es inconcebible! ¡Tener a un ladrón de baja ralea merodeando por el vecindario del hotel! ¡Menos mal que el fiscal Super Sam lo apresó de inmediato!
 PETERETE (peterete_smug): Tranquilícese, mi distinguida dama. Como jefe de seguridad, he levantado un peritaje irrebatible. El criminal actuó en solitario a las 10:00 PM.
 DEFENSA (donramon_idle): ¡Con permisito, dijo Monchito! La defensa entra a inspeccionar la escena del crimen.
@@ -214,7 +222,7 @@ PETERETE (peterete_smug): Ja, adelante, 'abogado'. Aunque dudo que su intelecto 
 
 ```dialogue
 [ENTRADA AL RESTAURANTE]
-NARRADOR: 29 de Agosto, 1:00 PM. Restaurante de Doña Florinda.
+NARRADOR: 22 de Agosto, 1:00 PM. Restaurante de Doña Florinda.
 JIRAFALES (jirafales_idle): ¡Ah, Don Ramón! He escuchado sobre la penosa situación del señor Chómpiras. Como hombre de ciencia y educación, abogo por la verdad absoluta.
 DEFENSA (donramon_idle): Profesor, usted que es un pozo de sabiduría, ¿estaba cenando aquí anoche con Doña Florinda?
 JIRAFALES (jirafales_smoking): En efecto. Degustábamos una exquisita taza de café de olla cuando, de súbito, a las 9:15 PM las luces sufrieron un apagón momentáneo.
@@ -354,11 +362,11 @@ JUEZ (judge_gavel): Concuerdo con la fiscalía en que faltan elementos clave. Po
 
 ```dialogue
 [ENCUENTRO CON DON JAIMITO]
-NARRADOR: 30 de Agosto, 9:00 AM. Callejón Trasero y Puesto Postal.
+NARRADOR: 23 de Agosto, 9:00 AM. Callejón Trasero y Puesto Postal.
 JAIMITO (jaimito_tired): Buenos días... Vengo a entregar estas cartas, pero es que quiero evitar la fatiga...
 DEFENSA (donramon_idle): Don Jaimito, perdone la molestia, pero la noche del robo usted estacionó su carrito de correos en este callejón, justo debajo del montaplatos de la hacienda.
 JAIMITO (jaimito_idle): ¡Ah, sí! Es que en mi pueblo natal, Tangamandapio, los carritos se dejan a la sombra de los árboles de guayaba...
-CHAPULIN (chapulin_idle): Don Jaimito, ¿recuerda si el señor Peterete le entregó algún paquete la noche del 28 a las 9:30 PM?
+CHAPULIN (chapulin_idle): Don Jaimito, ¿recuerda si el señor Peterete le entregó algún paquete la noche del 21 a las 9:30 PM?
 JAIMITO (jaimito_tired): ¿A las 9:30 PM? ¡Imposible! A esa hora yo estaba durmiendo una siesta reparadora en la banca del parque para evitar la fatiga. Hasta me pusieron una multa por dejar el carrito abandonado en el callejón.
 DEFENSA (donramon_idle): ¿Una multa?
 JAIMITO (jaimito_tired): Sí, mire. Aquí dice: "9:30 PM. Vehículo postal abandonado sin cartero a la vista."
@@ -372,7 +380,7 @@ JAIMITO (jaimito_tired): Sí, mire. Aquí dice: "9:30 PM. Vehículo postal aband
    - **Don Ramón**: *"¡Caray! Esta lata de grasa para zapatos pesa más de 5 kilos... ¡y de la tapa cae un polvillo amarillo resplandeciente!"*
    - **Chapulín**: *"¡Mis antenitas de vinil están vibrando a 10,000 revoluciones por minuto! ¡El oro está aquí adentro!"*
    - **Se añade al acta**: `lata_grasa` y `antenitas_vinil` (el Chapulín registra sus antenitas como instrumento de detección ante el tribunal).
-   - *Nota de cadena de custodia:* El carrito fue retirado del callejón al amanecer del 29 por Jaimito y no fue inspeccionado por la policía judicial la noche del crimen (sólo se aseguró la bóveda interior), por lo que la lata permaneció oculta bajo la correspondencia hasta hoy.
+   - *Nota de cadena de custodia:* El carrito fue retirado del callejón al amanecer del 22 por Jaimito y no fue inspeccionado por la policía judicial la noche del crimen (sólo se aseguró la bóveda interior), por lo que la lata permaneció oculta bajo la correspondencia hasta hoy.
 
 ---
 
@@ -382,7 +390,7 @@ JAIMITO (jaimito_tired): Sí, mire. Aquí dice: "9:30 PM. Vehículo postal aband
 
 ```dialogue
 [ENCUENTRO CON DOÑA CLOTILDE]
-NARRADOR: 30 de Agosto, 11:30 AM. Casa de Doña Clotilde.
+NARRADOR: 23 de Agosto, 11:30 AM. Casa de Doña Clotilde.
 CLOTILDE (clotilde_flustered): ¡Ay, mi Roro! ¡Qué dicha tenerte en mi humilde morada! ¿Quieres que te prepare una tacita de café o una infusión para los nervios?
 DEFENSA (donramon_sweat): Este... gracias, Doña Clotilde, pero andamos investigando un aroma muy curioso. ¿Reconoce este frasco?
 CLOTILDE (clotilde_mysterious): ¡Por supuesto! Es mi fórmula secreta de 'Esencia Concentrada de Valeriana y Rosas'. Un hombre muy elegante vino antier por la tarde, justo antes del robo, a comprarme tres frascos diciendo que tenía un insomnio terrible.
@@ -395,7 +403,7 @@ DEFENSA (donramon_point): ¡El misterioso comprador usó la cera de Doña Clotil
 
 #### Pruebas Recolectadas:
 - **Frasco de Esencia de Valeriana (`frasco_valeriana`)**: Coincidencia química 100% idéntica con el residuo del ducto (`aroma_dulce`).
-- **Molde de Cera (`molde_cera`)**: El comprador misterioso usó cera de las velas de Doña Clotilde para copiar una llave la tarde previa al robo (28 de agosto) y desechó el molde en su basura por exceso de confianza.
+- **Molde de Cera (`molde_cera`)**: El comprador misterioso usó cera de las velas de Doña Clotilde para copiar una llave la tarde previa al robo (21 de agosto) y desechó el molde en su basura por exceso de confianza.
 
 ---
 
@@ -554,12 +562,12 @@ JUEZ (judge_headshake): La defensa recibirá una penalización si no deja de per
 (El jugador recibe daño y debe volver a intentar)
 
 [OPCIÓN CORRECTA: La hora de compra]
-DEFENSA (donramon_point): ¡La clave no es cómo iba vestido, sino CUÁNDO fue! Doña Clotilde dijo que el hombre fue a comprar la esencia la tarde del 28 de agosto.
-JUEZ (judge_idle): ¿La tarde del 28 de agosto? ¿Y por qué es tan importante esa hora específica?
+DEFENSA (donramon_point): ¡La clave no es cómo iba vestido, sino CUÁNDO fue! Doña Clotilde dijo que el hombre fue a comprar la esencia la tarde del 21 de agosto.
+JUEZ (judge_idle): ¿La tarde del 21 de agosto? ¿Y por qué es tan importante esa hora específica?
 ```
 
 #### Elección Múltiple 2: El portador de la llave
-- **Pregunta:** ¿Quién era el portador de la llave maestra durante la tarde del 28 de agosto?
+- **Pregunta:** ¿Quién era el portador de la llave maestra durante la tarde del 21 de agosto?
 - **Opciones**:
   - El botones. (Incorrecta)
   - El jefe de seguridad. (Correcta)

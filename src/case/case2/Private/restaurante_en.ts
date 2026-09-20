@@ -13,7 +13,7 @@ export const CASE2_RESTAURANTE_EN: InvestigationScene = {
   speaker: 'NARRADOR',
   idlePose: 'jirafales_idle',
   intro: [
-    { speaker: 'NARRADOR', text: "August 29, 1:00 PM. Doña Florinda's Restaurant." },
+    { speaker: 'NARRADOR', text: "August 22, 1:00 PM. Doña Florinda's Restaurant." },
     { speaker: 'JIRAFALES', text: 'Ah, Don Ramón! I heard of Mr. Chómpiras\'s unfortunate situation. As a man of science, I stand for absolute truth.', pose: 'jirafales_idle' },
     { speaker: 'DEFENSA', text: 'Professor, you are a well of wisdom. Were you dining here last night with Doña Florinda?', pose: 'donramon_idle' },
     { speaker: 'JIRAFALES', text: 'Indeed. We were savoring clay-pot coffee when, suddenly, at 9:15 PM the lights suffered a momentary blackout.', pose: 'jirafales_smoking' },

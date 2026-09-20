@@ -21,13 +21,13 @@ export const CASE2_CLIMAX_CHOICES_EN: ChoicePrompt[] = [
       { speaker: 'JUEZ', text: 'The defense will receive a penalty if it keeps wasting time!', pose: 'judge_shock' }
     ],
     successDialogue: [
-      { speaker: 'DEFENSA', text: 'The key is not how he was dressed, but WHEN he went! Doña Clotilde said the man came to buy the essence on the afternoon of August 28.', pose: 'donramon_point' },
-      { speaker: 'JUEZ', text: 'The afternoon of August 28? And why is that specific time so important?', pose: 'judge_neutral' }
+      { speaker: 'DEFENSA', text: 'The key is not how he was dressed, but WHEN he went! Doña Clotilde said the man came to buy the essence on the afternoon of August 21.', pose: 'donramon_point' },
+      { speaker: 'JUEZ', text: 'The afternoon of August 21? And why is that specific time so important?', pose: 'judge_neutral' }
     ]
   },
   {
     id: 'key_holder',
-    question: 'Who carried the master key on the afternoon of August 28?',
+    question: 'Who carried the master key on the afternoon of August 21?',
     options: [
       { id: 'bellhop', label: 'The bellhop' },
       { id: 'security_chief', label: 'The chief of security' },

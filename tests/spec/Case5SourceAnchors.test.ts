@@ -24,9 +24,9 @@ describe('Case 5 invariant anchors reach the shipped scripts', () => {
     const es = read('src/case/case5/Private/trial_day3_t2.ts');
     const en = read('src/case/case5/Private/trial_day3_t2_en.ts');
 
-    expect(es).toContain('se habían llevado mi bolsa. Seis kilos.');
+    expect(es).toContain('mi bolsa no estaba. Seis kilos');
     expect(es).toContain('Era la mía.');
-    expect(en).toContain('taken my bag. Six kilos.');
+    expect(en).toContain('my bag was gone. Six kilos');
     expect(en).toContain('It was mine.');
   });
 
@@ -36,16 +36,16 @@ describe('Case 5 invariant anchors reach the shipped scripts', () => {
 
     // He lost a bag that night; he never gained one.
     expect(es).toContain('papel de estraza');
-    expect(es).toContain('un kilo de seis');
+    expect(es).toContain('un kilo de mi propia plata');
     expect(es).not.toMatch(/me pagaron.{0,40}bolsa de lona/);
     expect(en).toContain('butcher paper');
-    expect(en).toContain('one kilo out of six');
+    expect(en).toContain('one kilo of my own silver');
   });
 
   it('dates the office burglary so the player can place it (I35)', () => {
     const es = read('src/case/case5/Private/trial_day3_t2.ts');
-    expect(es).toContain('Esa mañana habían entrado a mi despacho');
-    expect(read('src/case/case5/Private/trial_day3_t2_en.ts')).toContain('That morning someone had entered my chambers');
+    expect(es).toContain('La mañana del veintiocho de agosto entré a mi despacho');
+    expect(read('src/case/case5/Private/trial_day3_t2_en.ts')).toContain('On the morning of August 28 I walked into my chambers');
   });
 
   it('says the silver came out of his own prosecution office (I35)', () => {
@@ -93,6 +93,15 @@ describe('Case 5 scripts follow the swapped August chronology', () => {
       const source = read(`src/state/Private/${file}`);
       expect(source).not.toMatch(/B \(21 ago\)/);
       expect(source).not.toMatch(/B \(Aug 21\)/);
+    }
+  });
+});
+
+describe('Case 5 day-3 testimony staging', () => {
+  it('never poses Super Sam with a full bag while he testifies about losing it', () => {
+    // supersam_idle carries the bulging money bag; in T7 the bag is empty on the table.
+    for (const name of ['trial_day3_t2.ts', 'trial_day3_t2_en.ts']) {
+      expect(read(`src/case/case5/Private/${name}`)).not.toContain('supersam_idle');
     }
   });
 });

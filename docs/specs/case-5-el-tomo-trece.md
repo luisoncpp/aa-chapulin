@@ -2574,13 +2574,15 @@ SUPER SAM: Protesto decir verdad. Y le advierto a esta corte que le va a salir b
 
 **BGM:** `cross_exam_grave`. El fiscal declara desde el estrado de testigos, con la bolsa de lona vacía sobre la mesa de la fiscalía, a la vista de la sala.
 
+> **Pose.** En este testimonio **no se usa `supersam_idle`**: ese sprite lleva la bolsa llena al hombro y aquí la bolsa está vacía sobre la mesa, no en su mano. Declaraciones 1–3 en `supersam_point` (todavía es el fiscal que cobra por caso cerrado) y 4–6 en `supersam_sweat`, de modo que el arco de la pose acompañe al de la confesión. Misma regla que §14.2 para el despacho.
+
 ~~~dialogue
 c5_d3t2_1 SUPER SAM: Recibí el oficio que me mandó el preso el ocho de noviembre. Lo puse en un cajón y lo tuve dieciocho días.
 c5_d3t2_2 SUPER SAM: El veintiséis lo saqué, y fijé la diligencia para el sábado cuatro de diciembre a las cinco de la tarde, porque el sábado el traslado cuesta la mitad.
 c5_d3t2_3 SUPER SAM: Nadie más supo de esa diligencia. Un oficio de la fiscalía no se publica en el periódico.
-c5_d3t2_4 SUPER SAM: Y ahora lo mío. El veintiocho de agosto de este año, alguien me pagó por llegar rápido a un museo y cerrar el caso en cinco minutos.
-c5_d3t2_5 SUPER SAM: Fue una vez. No tuvo nombre, no tuvo recibo y no se lo vendí a nadie. Un sobre por debajo de la puerta y un bulto en un callejón.
-c5_d3t2_6 SUPER SAM: Desde entonces cargo esa bolsa vacía. No por remordimiento. Por contabilidad.
+c5_d3t2_4 SUPER SAM: Y ahora lo mío. La mañana del veintiocho de agosto entré a mi despacho y mi bolsa no estaba. Seis kilos de moneda de plata de esta fiscalía.
+c5_d3t2_5 SUPER SAM: Esa misma noche me compraron con un kilo de mi propia plata, por llegar rápido a ese museo y cerrar el caso en cinco minutos.
+c5_d3t2_6 SUPER SAM: Desde entonces la cargo vacía. No por remordimiento. Por contabilidad.
 ~~~
 
 #### Presiones
@@ -2634,6 +2636,23 @@ DEFENSA: (Cinco personas, según él. Pero eso lo dice él... no lo dice su ofic
 **Declaración 4**
 
 ~~~dialogue
+DEFENSA: ¡UN MOMENTO! ¿Y cuándo levantó el acta? [sfx: whoosh; pose: chapulin_point]
+SUPER SAM: No la levanté. [pose: supersam_sweat]
+DEFENSA: ¿Le roban seis kilos de plata y no levanta un acta? [pose: chapulin_panic]
+SUPER SAM: Iba a hacerlo a mediodía. A las cinco de la tarde ya no tenía nada que denunciar. [pose: supersam_sweat]
+JUEZ: Explíquese, señor fiscal. [pose: judge_thinking]
+SUPER SAM: Un hombre comprado no denuncia a quien lo compró, Your Honor. Sale carísimo. [pose: supersam_sweat]
+DEFENSA: Esa noche quedó en el patio de carga de un museo una bolsa de lona vacía con el sello de su fiscalía. [pose: chapulin_point]
+SUPER SAM: ...Sí. [pose: supersam_sweat]
+DEFENSA: Usted la vio. La pusieron sobre la mesa de pruebas, delante de usted. [pose: chapulin_idle]
+SUPER SAM: Y dije que la fiscalía repartía bolsas como ésa. Para viáticos. Para muchas cosas. [pose: supersam_sweat]
+SUPER SAM: Eso fue lo que dije, counselor. **Era la mía.** [pose: supersam_sweat]
+NARRADOR: Nadie tose. [sfx: realization]
+~~~
+
+**Declaración 5**
+
+~~~dialogue
 DEFENSA: ¡UN MOMENTO! Señor fiscal, usted no tiene por qué decir esto. [sfx: whoosh; pose: chapulin_point]
 SUPER SAM: Lo sé, counselor. [pose: supersam_idle]
 DEFENSA: Le pueden quitar la cédula. [pose: chapulin_idle]
@@ -2641,36 +2660,15 @@ SUPER SAM: También lo sé. [pose: supersam_idle]
 DEFENSA: ¿Entonces por qué? [pose: chapulin_panic]
 SUPER SAM: Porque hay un hombre muerto que me escribió el ocho de noviembre y yo lo dejé dieciocho días en un cajón. [pose: supersam_sweat]
 SUPER SAM: Y porque si no lo digo yo hoy, mañana lo va a tener que sacar usted a golpes, y eso me cuesta más caro. [pose: supersam_idle]
-NARRADOR: Silencio absoluto. [bgm: suspense]
-~~~
-
-**Declaración 5**
-
-~~~dialogue
-DEFENSA: ¡UN MOMENTO! ¿Cuánto había en ese bulto? [sfx: whoosh; pose: chapulin_point]
-SUPER SAM: Un kilo. Diez mil pesos en moneda de plata. [pose: supersam_idle]
-DEFENSA: ¿Y quién se lo dejó? [pose: chapulin_idle]
-SUPER SAM: No lo sé. Estaba en el callejón que decía el sobre, a la hora que decía el sobre, envuelto en papel de estraza como un kilo de carne. [pose: supersam_sweat]
+NARRADOR: Silencio absoluto.
+DEFENSA: ¿Cómo se lo entregaron? [pose: chapulin_idle]
+SUPER SAM: Un sobre por debajo de la puerta con una hora y una dirección. A esa hora, en ese callejón, había un bulto envuelto en papel de estraza. [pose: supersam_idle]
 SUPER SAM: Lo abrí ahí mismo y lo conté. Yo siempre cuento, counselor. Es lo único que sé hacer bien. [pose: supersam_sweat]
-DEFENSA: ¿Y qué le salió la cuenta? [pose: chapulin_idle]
-SUPER SAM: Esa mañana habían entrado a mi despacho y se habían llevado mi bolsa. **Seis kilos.** [pose: supersam_sweat]
-JUEZ: ¿Seis? [pose: judge_thinking]
-SUPER SAM: Seis, Your Honor. La cargué once años al hombro. Sé lo que pesa. [pose: supersam_sweat]
-DEFENSA: Entonces esa noche, en ese callejón, lo que le dieron... [pose: chapulin_point]
-SUPER SAM: Era mi propia plata, counselor. Me devolvieron **un kilo de seis** y yo dije que sí. [pose: supersam_sweat]
+DEFENSA: Un kilo de seis. [pose: chapulin_idle]
+SUPER SAM: Me devolvieron **la sexta parte de lo mío** y yo dije que sí. Ésa es toda mi tarifa, counselor. [pose: supersam_sweat]
 DON RAMÓN: (No lo remate, joven.) [pose: donramon_idle]
-DEFENSA: ¿Y el robo no lo denunció? [pose: chapulin_idle]
-SUPER SAM: Iba a levantar el acta a mediodía. A las cinco de la tarde ya estaba comprado, y un hombre comprado ya no tiene nada que denunciar. [pose: supersam_sweat]
-DEFENSA: Señor fiscal. Esa noche quedó en el patio de carga de ese museo una bolsa de lona vacía con el sello de su fiscalía. [pose: chapulin_point]
-SUPER SAM: ...Sí. [pose: supersam_sweat]
-DEFENSA: Usted la vio. La pusieron sobre la mesa de pruebas, delante de usted. [pose: chapulin_idle]
-SUPER SAM: Y dije que la fiscalía repartía bolsas como ésa. Para viáticos. Para muchas cosas. [pose: supersam_sweat]
-SUPER SAM: Eso fue lo que dije, counselor. **Era la mía.** [pose: supersam_sweat]
-NARRADOR: Nadie tose. [sfx: realization]
-DEFENSA: ¿Y qué decía el sobre? [pose: chapulin_point]
-SUPER SAM: La hora y la dirección. Y abajo un renglón que no me pedía nada. [pose: supersam_idle]
-DEFENSA: ¿Cómo que no le pedía nada? [pose: chapulin_idle]
-SUPER SAM: Estaba escrito como se escribe lo que ya está vendido. No decía «haga usted esto». Decía lo que venía incluido. [pose: supersam_sweat]
+DEFENSA: ¿Y el sobre qué más traía? [pose: chapulin_point]
+SUPER SAM: Abajo, un renglón que no me pedía nada. Estaba escrito como se escribe lo que ya está vendido. [pose: supersam_sweat]
 DEFENSA: (A máquina.) [pose: chapulin_panic]
 DEFENSA: ¿Lo conserva? [pose: chapulin_idle]
 SUPER SAM: Lo quemé en agosto. [pose: supersam_sweat]
@@ -2683,8 +2681,11 @@ SUPER SAM: Y ésa, counselor, es la única cosa de todo esto de la que de veras 
 
 ~~~dialogue
 DEFENSA: ¡UN MOMENTO! ¿«Por contabilidad»? [sfx: whoosh; pose: chapulin_point]
-SUPER SAM: Una bolsa vacía pesa novecientos gramos, counselor. Un hombre que carga novecientos gramos todos los días se acuerda todos los días. [pose: supersam_idle]
-SUPER SAM: A eso, en mi tierra, le llaman amortización. [pose: supersam_sweat]
+SUPER SAM: Llena pesaba seis kilos. Vacía pesa novecientos gramos. [pose: supersam_idle]
+SUPER SAM: Un hombre que nota todos los días lo que le falta no tiene que acordarse a propósito. [pose: supersam_sweat]
+DEFENSA: ¿Es la misma bolsa? [pose: chapulin_idle]
+SUPER SAM: Me la devolvieron cuando aquel expediente se cerró. La fiscalía ya me había dado otra. [pose: supersam_sweat]
+SUPER SAM: Uso la mía. A eso, en mi tierra, le llaman amortización. [pose: supersam_sweat]
 DEFENSA: En la mía le llaman conciencia. [pose: chapulin_idle]
 SUPER SAM: En la suya todo sale más barato. [pose: supersam_idle]
 ~~~

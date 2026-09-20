@@ -587,10 +587,10 @@ describe('Case 5 structural relations', () => {
 
   it('closes the Case 1 bag residue with the prosecutor own bag (I35)', () => {
     const d3t2 = slice('### 15.3', '### 15.4');
-    expect(d3t2).toContain('quedó en el patio de carga de ese museo una bolsa de lona vacía con el sello de su fiscalía');
-    expect(d3t2).toContain('Seis kilos.');
+    expect(d3t2).toContain('patio de carga de un museo una bolsa de lona vacía con el sello de su fiscalía');
+    expect(d3t2).toContain('Seis kilos');
     expect(d3t2).toContain('Era la mía.');
-    expect(d3t2).toContain('un kilo de seis');
+    expect(d3t2).toMatch(/[Uu]n kilo de seis|la sexta parte de lo mío/);
   });
 
   it('describes panel E as the telegram its source case actually shows (I37)', () => {

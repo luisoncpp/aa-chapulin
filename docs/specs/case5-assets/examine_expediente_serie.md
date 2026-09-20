@@ -77,6 +77,16 @@ Clase: `examine`. Espec: §23.0, §23.3, §4.3, §5.2, §12.4, §13.2, §15.3 y 
 - El diálogo de entrega en D2 enumera primero «el museo» y luego «la hacienda» (`delegacion_c5_talks.ts:27-32`; EN equivalente), mientras §24.C I34 exige narrar la secuencia cronológica 12 jul, 21 ago, 28 ago, 15 sep, 24 oct y §13.2 llega a leer primero la fecha de B como 21 de agosto (`trial_day2_success.ts:34-37`). La lámina conserva las letras y fechas canónicas; no resolver aquí la discrepancia de orden del guion.
 - El caption del catálogo llama al conjunto «cinco paneles fechados», pero no exige legibilidad completa de todos los textos; §23.3 sí exige seis renglones legibles en B, fechas y marcas clave en A, D y E. Se adopta la exigencia más fuerte del spec, sin añadir texto explicativo.
 
+> **Cómo leer este registro.** Los bloques de «Hallazgos de auditoría» van en orden
+> cronológico y **gobierna el último**. Cada pasada retira explícitamente, en sus
+> «Correcciones de auditoría», los defectos que la regeneración ya resolvió; los de
+> las pasadas anteriores quedan como traza histórica, no como trabajo pendiente.
+> No cites un defecto de un bloque antiguo sin comprobar antes si una pasada
+> posterior lo tachó.
+>
+> **Estado actual (pasada Espanto-lock, la última): CUMPLE.** Sólo quedan dos
+> defectos MENORES y su propia recomendación es **no regenerar el tablero**.
+
 ## Hallazgos de auditoría 2026-09-19
 
 - ~~No se inspeccionó ninguna imagen… no se confirma ningún defecto visual de la exportación actual.~~ SUPERSEDED: pasada de auditoría con recortes por panel sobre `examine_expediente_serie.png` y `examine_expediente_serie_en.png` (gemelos auditados juntos), conforme al protocolo `asset-audit`.

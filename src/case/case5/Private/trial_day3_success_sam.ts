@@ -22,7 +22,7 @@ export const CASE5_D3_T2_OFICIO_SUCCESS: DialogueLine[] = [
   { speaker: 'SUPER SAM', text: '...Seiscientos, Your Honor.', pose: 'supersam_sweat' },
   { speaker: 'JUEZ', text: '¿Cómo dice?', pose: 'judge_thinking' },
   { speaker: 'SUPER SAM', text: 'Que firmo seiscientos oficios al mes, y que no he leído lo que va hasta abajo de ninguno en once años.', pose: 'supersam_sweat' },
-  { speaker: 'NARRADOR', text: 'El secretario levanta la pluma.', updateProfile: 'perfil_supersam' },
+  { speaker: 'NARRADOR', text: 'El secretario levanta la pluma.', pose: 'secretario_leyendo', updateProfile: 'perfil_supersam' },
   { speaker: 'JUEZ', text: 'Que se asiente.', sfx: 'gavel', pose: 'judge_gavel', updateProfile: 'perfil_casimiro' },
   { speaker: 'JUEZ', text: 'Y que se asiente también que este tribunal no tiene todavía nada contra nadie, porque recibir una notificación legal no es un delito.', pose: 'judge_neutral' },
   { speaker: 'DEFENSA', text: '(Ya lo sé, señor juez. Llevo tres días sabiéndolo.)', pose: 'chapulin_idle' },

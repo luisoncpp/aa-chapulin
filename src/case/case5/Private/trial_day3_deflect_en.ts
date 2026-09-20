@@ -18,3 +18,9 @@ export const CASE5_D3_T1_MAQUINA_DEFLECT_EN: DialogueLine[] = [
   { speaker: 'JUEZ', text: 'The witness speaks of what he has seen since September. To contradict him, bring me what the court wrote when it sealed that deposit.', pose: 'judge_neutral' },
   { speaker: 'DEFENSA', text: '(What the court wrote... when it sealed it. In nineteen seventy-one.)', pose: 'chapulin_idle' }
 ];
+
+/** Statement 3 of T7: the lid proves presence, not knowledge of the notice. */
+export const CASE5_D3_T2_HUACAL_DEFLECT_EN: DialogueLine[] = [
+  { speaker: 'JUEZ', text: 'Defense: that lid does prove the syndic was there and signed an opening on Saturday the fourth.', pose: 'judge_thinking' },
+  { speaker: 'JUEZ', text: 'But being in the deposit does not yet prove he knew about this diligence or that the prosecution notified him. Bring me the order that carries that notice.', pose: 'judge_neutral' }
+];

@@ -20,3 +20,9 @@ export const CASE5_D3_T1_MAQUINA_DEFLECT: DialogueLine[] = [
   { speaker: 'JUEZ', text: 'El testigo habla de lo que él ha visto desde septiembre. Para contradecirlo, tráigame lo que la corte escribió cuando selló ese depósito.', pose: 'judge_neutral' },
   { speaker: 'DEFENSA', text: '(Lo que la corte escribió... cuando lo selló. En mil novecientos setenta y uno.)', pose: 'chapulin_idle' }
 ];
+
+/** Declaración 3 de T7: la tapa prueba presencia, no conocimiento del aviso. */
+export const CASE5_D3_T2_HUACAL_DEFLECT: DialogueLine[] = [
+  { speaker: 'JUEZ', text: 'Defensa: esa tapa sí demuestra que el síndico estuvo allí y rubricó una apertura el sábado cuatro.', pose: 'judge_thinking' },
+  { speaker: 'JUEZ', text: 'Pero estar en el depósito no prueba todavía que conociera esta diligencia ni que la fiscalía le avisara. Tráigame el oficio que contiene ese aviso.', pose: 'judge_neutral' }
+];

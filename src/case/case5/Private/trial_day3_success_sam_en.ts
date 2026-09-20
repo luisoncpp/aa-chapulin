@@ -22,7 +22,7 @@ export const CASE5_D3_T2_OFICIO_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'SUPER SAM', text: '...Six hundred, Your Honor.', pose: 'supersam_sweat' },
   { speaker: 'JUEZ', text: 'What was that?', pose: 'judge_thinking' },
   { speaker: 'SUPER SAM', text: 'That I sign six hundred letters a month, and I have not read what goes at the bottom of one in eleven years.', pose: 'supersam_sweat' },
-  { speaker: 'NARRADOR', text: 'The clerk lifts his pen.', updateProfile: 'perfil_supersam' },
+  { speaker: 'NARRADOR', text: 'The clerk lifts his pen.', pose: 'secretario_leyendo', updateProfile: 'perfil_supersam' },
   { speaker: 'JUEZ', text: 'So entered.', sfx: 'gavel', pose: 'judge_gavel', updateProfile: 'perfil_casimiro' },
   { speaker: 'JUEZ', text: 'And let it also be entered that this court still has nothing against anyone, because receiving a legal notice is not a crime.', pose: 'judge_neutral' },
   { speaker: 'DEFENSA', text: '(I know, Your Honor. I have known it for three days.)', pose: 'chapulin_idle' },

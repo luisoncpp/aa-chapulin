@@ -163,4 +163,11 @@ describe('Case5EvidenceCatalog', () => {
     expect(es?.desc).toMatch(/personal del edificio no firma/i);
     expect(en?.desc).toMatch(/building staff do not/i);
   });
+
+  it('makes the oficio distribution list legible', () => {
+    const es = getEvidenceCatalog('es', 'case5').oficio_diligencia;
+    const en = getEvidenceCatalog('en', 'case5').oficio_diligencia;
+    expect(es?.desc).toMatch(/sindicatura de la quiebra 114\/1971/i);
+    expect(en?.desc).toMatch(/bankruptcy (?:syndic|receivership) 114\/1971/i);
+  });
 });

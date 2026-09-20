@@ -59,7 +59,7 @@ export const CASE5_EVIDENCE_EN_B: Record<string, EvidenceItem> = {
   }),
   oficio_diligencia: ev('oficio_diligencia', {
     name: 'Diligence Order',
-    desc: 'Prosecution official letter 4471, November 26: orders the diligence set for Saturday, December 4 at 5:00 PM at the Judicial Archive and appoints court clerk Hilario Balbuena. Distribution list at the foot.'
+    desc: 'Prosecution official letter 4471, November 26: orders the diligence set for Saturday, December 4 at 5:00 PM at the Judicial Archive and appoints court clerk Hilario Balbuena. The distribution list names the assigned clerk, the Archive Directorate, and the bankruptcy syndic 114/1971.'
   }),
   efectos_casimiro: ev('efectos_casimiro', {
     name: "Casimiro's Effects",

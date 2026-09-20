@@ -823,4 +823,16 @@ describe('Case 5 structural relations', () => {
     expect(d3t1).toContain('cuarenta y siete partidas');
     expect(d3t1).not.toMatch(/dentro de ese huacal lo escribió este juzgado/);
   });
+
+  it('keeps the oficio clue and premature huacal present aligned (I55)', () => {
+    const oficio = SPEC.split('\n').find((line) => line.startsWith('| `oficio_diligencia`'));
+    expect(oficio, 'oficio_diligencia row').toContain('Sindicatura de la quiebra 114/1971');
+    expect(oficio).toContain('desvío en D3-T2 declaración 3');
+
+    const d3t2 = slice('### 15.3', '### 15.4');
+    expect(d3t2).toContain('#### Presentación desviada — declaración 3: **`huacal_9`**');
+    expect(d3t2).toContain('el síndico estuvo en el depósito');
+    expect(d3t2).toContain('el oficio que contiene el aviso');
+    expect(SPEC).toContain('**I55**');
+  });
 });

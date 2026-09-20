@@ -90,8 +90,9 @@ describe('Case 5 day 3 trial (Spanish)', () => {
     });
   });
 
-  it('deflects the two premature presents of T6 instead of penalizing them', () => {
+  it('deflects premature presents instead of penalizing them', () => {
     const [t6] = day3.testimonies;
+    const t7 = day3.testimonies[1];
     const enT6 = day3Trial(en).testimonies[0];
 
     expect(t6.statements.find((s) => s.id === 'c5_d3t1_2')?.deflect?.evidence).toEqual(['huacal_9']);
@@ -99,6 +100,8 @@ describe('Case 5 day 3 trial (Spanish)', () => {
       .toEqual(['maquina_escribir']);
     expect(enT6.statements.find((s) => s.id === 'c5_d3t1_2')?.deflect?.dialogue)
       .not.toBe(t6.statements.find((s) => s.id === 'c5_d3t1_2')?.deflect?.dialogue);
+    expect(t7.statements.find((s) => s.id === 'c5_d3t2_3')?.deflect?.evidence)
+      .toEqual(['huacal_9']);
   });
 
   it('keeps the deflections out of the dramatic cue and on the court voice', () => {
@@ -127,6 +130,15 @@ describe('Case 5 day 3 trial (Spanish)', () => {
 
       expect(pressedLines.some((line) => line.bgm)).toBe(false);
     });
+  });
+
+  it('keeps the secretary visible while the narrator describes his written entry', () => {
+    const spanishLine = lines.find((line) => line.text === 'El secretario levanta la pluma.');
+    const englishLines = trialDialogue(day3Trial(en));
+    const englishLine = englishLines.find((line) => line.text === 'The clerk lifts his pen.');
+
+    expect(spanishLine).toMatchObject({ speaker: 'NARRADOR', pose: 'secretario_leyendo' });
+    expect(englishLine).toMatchObject({ speaker: 'NARRADOR', pose: 'secretario_leyendo' });
   });
 
   it('keeps DEFENSA on chapulin poses only and bans donramon_slam', () => {

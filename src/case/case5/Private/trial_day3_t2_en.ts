@@ -5,6 +5,7 @@
 
 import type { DialogueLine, Testimony } from '../../../types/index.js';
 import { CASE5_D3_T2_EXPEDIENTE_SUCCESS_EN, CASE5_D3_T2_OFICIO_SUCCESS_EN } from './trial_day3_success_sam_en.js';
+import { CASE5_D3_T2_HUACAL_DEFLECT_EN } from './trial_day3_deflect_en.js';
 import { SINDICO_LESSON_EN } from './trial_day3_sindico_lesson_en.js';
 
 const MOMENTO: DialogueLine = {
@@ -67,6 +68,7 @@ export const CASE5_TESTIMONY_7_EN: Testimony = {
         ...SINDICO_LESSON_EN,
         { speaker: 'DEFENSA', text: '(Five people, he says. But that is him talking... it is not his own letter talking.)', pose: 'chapulin_idle' }
       ],
+      deflect: { evidence: ['huacal_9'], dialogue: CASE5_D3_T2_HUACAL_DEFLECT_EN },
       contradiction: {
         evidence: ['oficio_diligencia'],
         successDialogue: CASE5_D3_T2_OFICIO_SUCCESS_EN,

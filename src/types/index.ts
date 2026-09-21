@@ -42,6 +42,7 @@ export type {
 
 // @Section(Narrative & Script Types)
 export type {
+  SpeakerName,
   PoseName,
   CutinName,
   FurnitureType,

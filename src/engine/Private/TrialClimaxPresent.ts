@@ -109,7 +109,11 @@ export function presentClimaxEvidence(
 }
 
 function climaxRunDeps(ctrl: ClimaxControllerPort): ClimaxRunDeps {
-  return { ...ctrl.deps, onRestartTrial: () => ctrl.restartAfterGameOver() };
+  return {
+    ...ctrl.deps,
+    testimony: ctrl.currentTestimony,
+    onRestartTrial: () => ctrl.restartAfterGameOver()
+  };
 }
 
 function continueOrPoint(ctrl: ClimaxControllerPort, matched: MatchedStage, deps: ClimaxRunDeps): void {

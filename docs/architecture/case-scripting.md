@@ -65,7 +65,19 @@ Case 1 adds a second tab to the Acta. `ProfileItem` ([[src/types/Private/profile
 
 `Hotspot.condition` hides a hotspot until its predicate passes, and the hotspot layer re-renders after each examine. Case 1 chains its day-2 scenes with it (`hotspot_guantera` needs the truck; `hotspot_barda` needs the glovebox and the bag; `hotspot_espejo` needs the camera, the envelope and the roll log). Hotspots without a predicate are always available, so no other case changes.
 
-Statements may set `unlockedBy` to another statement id; [[src/engine/Private/StatementUnlock.ts]] keeps those lines out of the visible cross-exam list until that id is pressed. Instruction-only speakers (`NARRADOR`, `MODO EXAMINAR`, and `EXAMINE MODE`) do not infer a witness camera, so the last courtroom shot remains visible while the instruction is read.
+Statements may set `unlockedBy` to another statement id; [[src/engine/Private/StatementUnlock.ts]] keeps those lines out of the visible cross-exam list until that id is pressed. Instruction-only speakers (`NARRADOR`, `MODO EXAMINAR`, and `EXAMINE MODE`) do not infer a witness camera, so the last courtroom shot remains visible while the instruction is read. `ALGUACIL` and `CUSTODIO` are the same kind of voice: no camera, no sprite. `SECRETARIO` is a voice too, but after a recusal he speaks from the prosecution bench (`bg_courtroom.webp`) with pose omitted so staging hides the sprite.
+
+### Court roles (optional; Cases 0–4 omit them)
+
+Penalty lines used to hardcode Super Sam and Don Ramón. Cases that swap the bench (Chapulín as `DEFENSA`) or recuse the prosecutor declare roles on the script instead:
+
+| Field | Where | Default |
+|-------|--------|---------|
+| `defensePointPose` / `defensePanicPose` | `CaseScript` | `donramon_point` / `donramon_panic` |
+| `defenseIdlePose` | `CaseScript` | `donramon_idle` (documentational; idle inference in VisualEffects still uses Don Ramón unless the line stamps a pose) |
+| `penaltyProsecutionSpeaker` / `penaltyProsecutionPose` | `TrialScript`, `TrialDayScript`, and `Testimony` | `'SUPER SAM'` / `supersam_point` |
+
+Testimony overrides the active day. A speaker other than Super Sam with no pose queues a voiceless line. `BERRONDO` omitted-pose lines infer `berrondo_idle` (identity lock: black three-piece, leontina, tome) on the witness camera. Do not invent extra Berrondo poses past `berrondo_idle`, `berrondo_definicion`, `berrondo_sweat`, `berrondo_catalogo`, `berrondo_panic`, `berrondo_breakdown`.
 
 ### 2. Investigation Scene Schema ([[src/case/case1/Private/museo.ts]], [[src/case/case2/index.ts]])
 

@@ -52,7 +52,7 @@ Case 0 is the courtroom-only entry: its splash/debug launch seeds the opening Co
      1. Calls `gameState.takePenalty()` in [[src/state/Private/GameStateManager.ts#Penalty & Health]].
      2. Calls `ModalManager.updateHealthUI()` (one green `!` turns dark gray).
      3. Plays `damage` SFX and shakes screen.
-     4. Queues judge/prosecutor penalty dialogue.
+     4. Queues judge/prosecutor penalty dialogue. Speaker and poses come from optional `CaseScript` / trial-day / `Testimony` court-role fields; Cases 0–4 keep DEFENSA + Don Ramón and SUPER SAM. After a recusal the testimony can set `penaltyProsecutionSpeaker: 'SECRETARIO'` with no pose so Super Sam does not return.
      5. If `gameState.gameOver` (health == 0): queues Game Over dialogue, resets health, and restarts trial.
      6. If health > 0: restores current statement and re-reveals trial controls after dialogue finishes.
 

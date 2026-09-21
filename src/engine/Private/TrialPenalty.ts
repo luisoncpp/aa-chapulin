@@ -6,8 +6,9 @@
 import type { SoundEngine } from '../../audio/index.js';
 import { i18n } from '../../i18n/index.js';
 import type { GameStateManager } from '../../state/index.js';
-import type { DialogueLine } from '../../types/index.js';
+import type { CaseScript, DialogueLine, Testimony } from '../../types/index.js';
 import type { DomElements } from './DomElements.js';
+import { resolveCourtPenaltyRoles } from './CourtPenaltyRoles.js';
 import { ModalManager } from './ModalManager.js';
 import { VisualEffects } from './VisualEffects.js';
 
@@ -17,6 +18,8 @@ export interface PenaltyHost {
   soundEngine: SoundEngine;
   onQueueDialogue: (dialogue: DialogueLine[], onComplete?: () => void) => void;
   onRestartTrial?: () => void;
+  script?: CaseScript;
+  testimony?: Testimony | null;
 }
 
 export function applyPenaltyEffects(deps: PenaltyHost): void {
@@ -29,18 +32,28 @@ export function applyPenaltyEffects(deps: PenaltyHost): void {
 
 export function queuePenaltyDialogue(deps: PenaltyHost, onResume: () => void): void {
   const isEn = i18n.getLanguage() === 'en';
+  const roles = resolveCourtPenaltyRoles(deps.script, deps.testimony, deps.state.trialDay);
   const lines: DialogueLine[] = [
-    { cutin: 'objection_protesto', speaker: 'DEFENSA', text: isEn ? 'OBJECTION!' : '¡PROTESTO!', sfx: 'whoosh', pose: 'donramon_point' },
-    { speaker: 'SUPER SAM', text: i18n.t.penaltyProsecutionText, pose: 'supersam_point' },
+    { cutin: 'objection_protesto', speaker: 'DEFENSA', text: isEn ? 'OBJECTION!' : '¡PROTESTO!', sfx: 'whoosh', pose: roles.defensePointPose },
+    prosecutionPenaltyLine(roles.prosecutionSpeaker, i18n.t.penaltyProsecutionText, roles.prosecutionPose),
     { speaker: 'JUEZ', text: i18n.t.penaltyJudgeText, pose: 'judge_gavel', sfx: 'gavel' }
   ];
   if (deps.state.gameOver) {
     lines.push(
       { speaker: 'JUEZ', pose: 'judge_gavel', text: i18n.t.gameOverJudgeText, sfx: 'gavel' },
-      { speaker: 'DEFENSA', pose: 'donramon_panic', text: i18n.t.gameOverDefenseText }
+      { speaker: 'DEFENSA', pose: roles.defensePanicPose, text: i18n.t.gameOverDefenseText }
     );
   }
   deps.onQueueDialogue(lines, /*onComplete*/ onResume);
+}
+
+function prosecutionPenaltyLine(
+  speaker: DialogueLine['speaker'],
+  text: string,
+  pose: DialogueLine['pose']
+): DialogueLine {
+  if (pose) return { speaker, text, pose };
+  return { speaker, text };
 }
 
 export function queuePenaltyOrRestart(deps: PenaltyHost, onContinue: () => void): void {

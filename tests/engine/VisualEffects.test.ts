@@ -103,6 +103,21 @@ describe('VisualEffects Subsystem', () => {
     expect(VisualEffects.inferTrialBackground('RUFINO')).toBe('assets/bg_witness.webp');
   });
 
+  it('stages Berrondo on the witness camera and SECRETARIO as a voiceless bench', () => {
+    expect(VisualEffects.inferTrialBackground('BERRONDO')).toBe('assets/bg_witness.webp');
+    expect(VisualEffects.resolveEffectivePose(
+      { text: 'Comparezco.', speaker: 'BERRONDO' },
+      /*isTrialMode=*/ true
+    )).toBe('berrondo_idle');
+    expect(VisualEffects.inferTrialBackground('SECRETARIO')).toBe('assets/bg_courtroom.webp');
+    expect(VisualEffects.resolveEffectivePose(
+      { text: 'Cuatro asientos.', speaker: 'SECRETARIO' },
+      /*isTrialMode=*/ true
+    )).toBeNull();
+    expect(VisualEffects.inferTrialBackground('ALGUACIL')).toBeNull();
+    expect(VisualEffects.inferTrialBackground('CUSTODIO')).toBeNull();
+  });
+
   it('does not move the courtroom camera for tutorial instruction labels', () => {
     expect(VisualEffects.inferTrialBackground('MODO EXAMINAR')).toBeNull();
     expect(VisualEffects.inferTrialBackground('EXAMINE MODE')).toBeNull();

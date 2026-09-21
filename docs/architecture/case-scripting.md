@@ -121,8 +121,16 @@ testimony: {
   witness: string;
   bgm: TrackName;
   statements: Statement[];
+  deflects?: EvidenceDeflect[];
+}
+
+interface EvidenceDeflect {
+  evidence: EvidenceId[];
+  dialogue: DialogueLine[];
 }
 ```
+
+`Statement.deflects` (and `Testimony.deflects` as fallback) is a witness denial for exhibits that are **not** the resolving contradiction. Present order in `presentCurrentContradiction` only ([[src/engine/Private/TrialPresent.ts]], [[src/engine/Private/TrialDeflect.ts]]): (1) current statement `contradiction.evidence` → success; (2) matching statement deflect, else testimony deflect → penalty + scripted denial, **not** Super Sam / press hint; (3) `onPresentPenalty`. Opening, follow-up, and climax presents skip deflects. Case 5 D3-T3 scripts `acuse_notificacion` / `oficio_diligencia` on statements 1–4 as a composed denial (`berrondo_idle` / `berrondo_definicion`); `berrondo_sweat` stays on the catch at statements 5–6.
 
 Case 0 uses three entries in that array. Each entry has exactly one resolving contradiction; a second proof is represented by `followUp`. Its second testimony is the intentional exception for alternate entry points: `c0_t2_2` and `c0_t2_3` both map to the same `foto_patio` contradiction because both assert that the school bell rang, so either statement starts the same examine-detail and Present & Point sequence.
 

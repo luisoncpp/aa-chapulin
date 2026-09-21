@@ -265,6 +265,11 @@ export interface OpeningPresent {
   prompt?: string;
 }
 
+export interface EvidenceDeflect {
+  evidence: EvidenceId[];
+  dialogue: DialogueLine[];
+}
+
 export interface Statement {
   id: string;
   speaker: SpeakerName;
@@ -274,6 +279,8 @@ export interface Statement {
   contradiction?: ContradictionRule;
   /** Visible only after the statement with this id has been pressed. */
   unlockedBy?: string;
+  /** Witness denial for these exhibits when they are not the resolving contradiction. */
+  deflects?: EvidenceDeflect[];
 }
 
 export interface Testimony {
@@ -284,6 +291,8 @@ export interface Testimony {
   /** Overrides the day's penalty prosecutor (Case 5 day 3 after recusal). */
   penaltyProsecutionSpeaker?: SpeakerName;
   penaltyProsecutionPose?: PoseName;
+  /** Fallback deflects when the current statement has no matching entry. */
+  deflects?: EvidenceDeflect[];
 }
 
 export interface ClimaxEpilogue {

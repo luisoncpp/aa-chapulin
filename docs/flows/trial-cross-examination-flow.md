@@ -39,7 +39,7 @@ Case 0 is the courtroom-only entry: its splash/debug launch seeds the opening Co
 ### Presenting Evidence & Contradiction Evaluation
 1. Player clicks "📜 Presentar" (`#btn-trial-present`) on HUD or inside Court Record modal.
 2. Player selects an item and clicks "¡Presentar Prueba!".
-3. Modal closes; `handlePresentEvidence(selectedEvidenceId)` hides trial controls and checks opening present, pending `followUp`, then `stmt.contradiction`:
+3. Modal closes; `handlePresentEvidence(selectedEvidenceId)` hides trial controls and checks opening present, pending `followUp`, then the current statement's contradiction / `deflects`:
    - **Correct Evidence**:
      1. If the matched rule has `pointTarget`, open `#present-point-overlay` first ([[docs/flows/present-point-flow.md]]). Parent `successDialogue` waits for a correct click.
      2. If the matched rule has `requiresExamine` and that evidence has not been opened with `EXAMINE DETAIL`, queue the localized instruction and reopen the Acta without applying a penalty.
@@ -49,12 +49,14 @@ Case 0 is the courtroom-only entry: its splash/debug launch seeds the opening Co
    - Case 0 testimony 2 accepts `foto_patio` from either `c0_t2_2` or `c0_t2_3`; both claims use the same examine-detail and Present & Point flow.
    - **Point tutorial timing**: Any instruction that teaches the Present & Point click belongs in the active `pointTarget.promptQuestion`, because the rule's `successDialogue` is queued only after the player has already clicked the correct zone.
    - **Incorrect Evidence**:
-     1. Calls `gameState.takePenalty()` in [[src/state/Private/GameStateManager.ts#Penalty & Health]].
-     2. Calls `ModalManager.updateHealthUI()` (one green `!` turns dark gray).
-     3. Plays `damage` SFX and shakes screen.
-     4. Queues judge/prosecutor penalty dialogue. Speaker and poses come from optional `CaseScript` / trial-day / `Testimony` court-role fields; Cases 0–4 keep DEFENSA + Don Ramón and SUPER SAM. After a recusal the testimony can set `penaltyProsecutionSpeaker: 'SECRETARIO'` with no pose so Super Sam does not return.
-     5. If `gameState.gameOver` (health == 0): queues Game Over dialogue, resets health, and restarts trial.
-     6. If health > 0: restores current statement and re-reveals trial controls after dialogue finishes.
+     1. If the current statement (else the testimony) has a matching `deflects` entry, apply the penalty and queue that witness denial. Do not queue Super Sam or the press hint — presenting this exhibit already has a specific response. Resume the statement after the lines; health 0 still goes through game-over after the deflect.
+     2. Otherwise `onPresentPenalty`: `gameState.takePenalty()` in [[src/state/Private/GameStateManager.ts#Penalty & Health]].
+     3. Calls `ModalManager.updateHealthUI()` (one green `!` turns dark gray).
+     4. Plays `damage` SFX and shakes screen.
+     5. Queues judge/prosecutor penalty dialogue. Speaker and poses come from optional `CaseScript` / trial-day / `Testimony` court-role fields; Cases 0–4 keep DEFENSA + Don Ramón and SUPER SAM. After a recusal the testimony can set `penaltyProsecutionSpeaker: 'SECRETARIO'` with no pose so Super Sam does not return.
+     6. After two failed presents on a testimony that still has `unlockedBy` lines, `onPresentPenalty` queues a press hint instead of the prosecutor — except a matching deflect, which still plays the witness.
+     7. If `gameState.gameOver` (health == 0): queues Game Over dialogue, resets health, and restarts trial.
+     8. If health > 0: restores current statement and re-reveals trial controls after dialogue finishes.
 
 ### Final Climax & Verdict
 1. `startClimax()` keeps trial controls hidden, transitions BGM to `'suspense'`, and queues dilemma dialogue from the case climax (`case1_climax` or `case2_climax`).
@@ -96,10 +98,12 @@ Case 0 is the courtroom-only entry: its splash/debug launch seeds the opening Co
 - [[src/engine/Private/CaseComplete.ts]]
 - [[src/engine/Private/ModalManager.ts]]
 - [[src/state/Private/GameStateManager.ts]]
+- [[src/engine/Private/TrialPresent.ts]]
+- [[src/engine/Private/TrialDeflect.ts]]
 - [[src/engine/Private/TrialDayRouter.ts]]
 - [[src/case/case1/Private/trial_day1.ts]] / [[src/case/case2/index.ts]]
 - [[src/case/case1/Private/climax.ts]] / [[src/case/case2/Private/climax.ts]]
 
 ## 8. Common Failure Modes
-- **Wrong Evidence Penalty**: Presenting evidence that does not match `stmt.contradiction.evidence`.
+- **Wrong Evidence Penalty**: Presenting evidence that does not match `stmt.contradiction.evidence` and has no `deflects` entry.
 - **Game Over on 5 Penalties**: Life bar depletion resets health and restarts the trial phase.

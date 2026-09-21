@@ -157,6 +157,16 @@ describe('VisualEffects Subsystem', () => {
     setStagingCaseId('case1');
   });
 
+  it('stages Berrondo and voice-only prosecution speakers correctly', () => {
+    expect(VisualEffects.inferTrialBackground('BERRONDO')).toBe('assets/bg_witness.webp');
+    expect(VisualEffects.resolveEffectivePose(
+      { text: 'Comparezco.', speaker: 'BERRONDO' },
+      /*isTrialMode=*/ true
+    )).toBe('berrondo_idle');
+    expect(VisualEffects.inferTrialBackground('ALGUACIL')).toBeNull();
+    expect(VisualEffects.inferTrialBackground('CUSTODIO')).toBeNull();
+  });
+
   it('does not move the courtroom camera for tutorial instruction labels', () => {
     expect(VisualEffects.inferTrialBackground('MODO EXAMINAR')).toBeNull();
     expect(VisualEffects.inferTrialBackground('EXAMINE MODE')).toBeNull();

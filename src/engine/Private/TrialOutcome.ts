@@ -41,13 +41,12 @@ export function onPresentPenalty(ctrl: TrialController, onResume?: () => void): 
   if (ctrl.deps.state.gameOver) return queueGuiltyVerdict(ctrl);
   const resume = onResume ?? (() => ctrl.renderCurrentStatement());
   if (maybeQueuePressHint(
-    ctrl.currentTestimony,
-    failedCount,
+    { testimony: ctrl.currentTestimony, failedPresentCount: failedCount, script: ctrl.script },
     ctrl.deps.onQueueDialogue,
-    resume
+    /*onResume*/ resume
   )) return;
   queuePenaltyDialogue(
-    { ...ctrl.deps, guiltyDialogue: ctrl.script.trial.climax.guiltyDialogue },
+    { ...ctrl.deps, script: ctrl.script, testimony: ctrl.currentTestimony, guiltyDialogue: ctrl.script.trial.climax.guiltyDialogue },
     /*onResume*/ resume
   );
 }
@@ -55,7 +54,7 @@ export function onPresentPenalty(ctrl: TrialController, onResume?: () => void): 
 /** A press hint must never replace the verdict: game over always plays the guilty block. */
 function queueGuiltyVerdict(ctrl: TrialController): void {
   queuePenaltyDialogue(
-    { ...ctrl.deps, guiltyDialogue: ctrl.script.trial.climax.guiltyDialogue },
+    { ...ctrl.deps, script: ctrl.script, testimony: ctrl.currentTestimony, guiltyDialogue: ctrl.script.trial.climax.guiltyDialogue },
     /*onResume*/ () => showGameOverModal(ctrl)
   );
 }

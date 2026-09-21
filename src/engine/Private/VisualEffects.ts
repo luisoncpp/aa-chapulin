@@ -7,21 +7,12 @@
 import type { CutinName, DialogueLine, FurnitureType, PoseName } from '../../types/index.js';
 import type { DomElements } from './DomElements.js';
 import { applyStageFrame, resolveStageFrame } from './StageLayout.js';
-import { defenseIdlePose, getStagingCaseId, isCase5Secretary } from './TrialCaseStaging.js';
-import { trialBackgroundFor } from './TrialSpeakerCameras.js';
+import { inferTrialBackground, resolveEffectivePose as resolveTrialSpeakerPose } from './TrialSpeakerStaging.js';
 
 const FURNITURE_ASSETS: Record<'podium' | 'bench', string> = {
   podium: 'assets/court_podium.webp',
   bench: 'assets/court_bench.webp'
 };
-
-function isDefenseSpeaker(speaker: string): boolean {
-  return speaker === 'DEFENSA' || speaker === 'DON RAMON' || speaker === 'DON RAMÓN';
-}
-
-function isChapulinSpeaker(speaker: string): boolean {
-  return speaker === 'CHAPULIN' || speaker === 'CHAPULÍN';
-}
 
 export class VisualEffects {
   // @Section(Character Pose Staging)
@@ -60,7 +51,7 @@ export class VisualEffects {
   }
 
   public static inferTrialBackground(speaker?: string): string | null {
-    return trialBackgroundFor(speaker, getStagingCaseId());
+    return inferTrialBackground(speaker);
   }
 
   public static resolveBackground(line: DialogueLine, isTrialMode: boolean): string | null {
@@ -69,20 +60,8 @@ export class VisualEffects {
     return VisualEffects.inferTrialBackground(line.speaker);
   }
 
-  // fallow-ignore-next-line complexity
   public static resolveEffectivePose(line: DialogueLine, isTrialMode: boolean): PoseName | null {
-    if (line.pose) {
-      if (!isTrialMode && line.pose === 'donramon_slam') return 'donramon_shock';
-      if (!isTrialMode && line.pose === 'chapulin_slam') return 'chapulin_panic';
-      return line.pose;
-    }
-    if (line.furniture === 'none') return null;
-    if (!isTrialMode || !line.speaker) return null;
-    if (isDefenseSpeaker(line.speaker)) return defenseIdlePose();
-    if (isChapulinSpeaker(line.speaker)) return 'chapulin_idle';
-    if (line.speaker === 'SUPER SAM') return 'supersam_idle';
-    if (line.speaker === 'SECRETARIO' && isCase5Secretary()) return 'secretario_leyendo';
-    return null;
+    return resolveTrialSpeakerPose(line, /*isTrialMode=*/ isTrialMode);
   }
 
   public static updateStagingForLine(

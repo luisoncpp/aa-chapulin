@@ -2872,6 +2872,20 @@ DEFENSA: (...Acaba de decir que nadie le avisó.) [pose: chapulin_idle]
 DEFENSA: (Y lo dijo él solito, sin que yo se lo preguntara, para quedar bien.) [pose: chapulin_panic]
 ~~~
 
+#### Deflect — declaraciones 1–4: `acuse_notificacion` / `oficio_diligencia`
+
+Presenting `acuse_notificacion` or `oficio_diligencia` on declaraciones 1–4 is **not** the resolving contradiction. Script it as `Statement.deflects` on those lines (testimony-level `Testimony.deflects` is the fallback). The engine plays this denial instead of Super Sam or the Chapulín/Don Ramón press hint. It still costs a health point.
+
+Use `berrondo_idle` or `berrondo_definicion`. Do **not** use `berrondo_sweat` here — the first sweat drop is when the judge catches him on statements 5 and 6.
+
+~~~dialogue
+DEFENSA: ¡PROTESTO! [sfx: desk_slam; cutin: objection_protesto; pose: chapulin_slam]
+DEFENSA: Señor juez, esta diligencia consta en el expediente. [pose: chapulin_point]
+BERRONDO: No conozco esa diligencia, licenciado. Nadie me notificó de ella. [pose: berrondo_idle]
+BERRONDO: Si me hubieran avisado, yo lo sabría. [pose: berrondo_definicion]
+JUEZ: Eso no prueba una contradicción. Penalización a la defensa. [sfx: gavel; pose: judge_gavel]
+~~~
+
 #### Contradicción resolutoria — declaración 5 y 6: **`acuse_notificacion`**
 
 Pregunta visible: *«¿Es verdad que nadie le avisó?»*

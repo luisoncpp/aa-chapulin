@@ -1,6 +1,6 @@
 // @Architecture(descriptionShort="Opening presents, follow-up presents, and point-target contradictions", type="controller", icon="panel")
 /**
- * Testimony present routing for [[./TrialController.ts]]: openingPresent, followUp, pointTarget.
+ * Testimony present routing for [[./TrialController.ts]]: openingPresent, followUp, deflects.
  */
 
 import type {
@@ -9,8 +9,8 @@ import type {
 } from '../../types/index.js';
 import { i18n } from '../../i18n/index.js';
 import { closePresentPoint, startPresentPoint } from './PresentPoint.js';
-import { tryDeflect } from './TrialDeflect.js';
 import { getActiveTrial } from './TrialDayRouter.js';
+import { currentVisibleStatement, tryDeflect, tryPresentDeflect } from './TrialDeflect.js';
 import { advanceAfterContradiction, onPresentPenalty } from './TrialOutcome.js';
 import type { PenaltyHost } from './TrialPenalty.js';
 import type { TrialController } from './TrialController.js';
@@ -56,7 +56,7 @@ function rebindOpeningScript(ctrl: TrialController, p: PresentPending): void {
 }
 
 function rebindFollowUpScript(ctrl: TrialController, p: PresentPending): void {
-  const rule = ctrl.currentStatement()?.contradiction;
+  const rule = currentVisibleStatement(ctrl)?.contradiction;
   if (rule?.followUp) p.followUp = rule.followUp;
 }
 
@@ -112,6 +112,7 @@ function reopenRecord(ctrl: TrialController): () => void {
 function penaltyHost(ctrl: TrialController): PenaltyHost {
   return {
     ...ctrl.deps,
+    testimony: ctrl.currentTestimony,
     onRestartTrial: () => ctrl.restartAfterGameOver(),
     guiltyDialogue: ctrl.script.trial.climax.guiltyDialogue
   };
@@ -145,22 +146,25 @@ function tryFollowUpPresent(ctrl: TrialController, evidenceId: EvidenceId): bool
 }
 
 function presentCurrentContradiction(ctrl: TrialController, evidenceId: EvidenceId): void {
-  const statement = ctrl.currentStatement();
+  const statement = currentVisibleStatement(ctrl);
   const rule = statement?.contradiction;
-  if (!rule?.evidence?.includes(evidenceId)) {
-    // Nothing matched: the court either answers the present or charges for it.
-    if (!tryDeflect(ctrl, statement, evidenceId)) onPresentPenalty(ctrl);
+  if (rule?.evidence?.includes(evidenceId)) {
+    if (rule.requiresExamine && !ctrl.deps.state.isEvidenceExamined(rule.requiresExamine)) {
+      queueExamineRequirement(ctrl);
+      return;
+    }
+    beginRuleSuccess(ctrl, {
+      successDialogue: rule.successDialogue,
+      pointTarget: rule.pointTarget,
+      afterDone: () => afterContradictionSuccess(ctrl, rule)
+    });
     return;
   }
-  if (rule.requiresExamine && !ctrl.deps.state.isEvidenceExamined(rule.requiresExamine)) {
-    queueExamineRequirement(ctrl);
-    return;
-  }
-  beginRuleSuccess(ctrl, {
-    successDialogue: rule.successDialogue,
-    pointTarget: rule.pointTarget,
-    afterDone: () => afterContradictionSuccess(ctrl, rule)
-  });
+  // A plausible present can either be harmlessly premature or a scripted
+  // witness denial that still costs a penalty.
+  if (tryDeflect(ctrl, statement, evidenceId)) return;
+  if (tryPresentDeflect(ctrl, evidenceId)) return;
+  onPresentPenalty(ctrl);
 }
 
 function queueExamineRequirement(ctrl: TrialController): void {

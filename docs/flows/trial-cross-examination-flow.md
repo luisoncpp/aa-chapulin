@@ -35,12 +35,12 @@ Case 0 is the courtroom-only entry: its splash/debug launch seeds the opening Co
    - Queues press dialogue. The response begins with the defense's localized `¡UN MOMENTO!` / `HOLD IT!` line using the `objection_un_momento` cut-in and `whoosh` SFX, then continues with the witness's added detail.
    - Press dialogue inherits the active testimony's music; press responses must not declare a `bgm`, because pressing is an interruption inside the same cross-examination rather than a narrative cue change.
    - Records the statement id. If another statement has `unlockedBy` matching it, a toast ("El testigo ha añadido una declaración") plays, and the cursor jumps to the new line.
-   - After two failed presents on a testimony that still has hidden lines, Chapulín gives a one-line press hint (no extra penalty for pressing).
+   - After two failed presents on a testimony that still has hidden lines, `onPresentPenalty` queues a press hint instead of Super Sam / SECRETARIO. Speaker follows who is counsel: Cases 0–4 omit `CaseScript.pressHint` so Chapulín coaches Don Ramón; a swapped bench (Chapulín as `DEFENSA`) must script the client delivering the hint. Pressing itself still has no extra penalty.
 
 ### Presenting Evidence & Contradiction Evaluation
 1. Player clicks "📜 Presentar" (`#btn-trial-present`) on HUD or inside Court Record modal.
 2. Player selects an item and clicks "¡Presentar Prueba!".
-3. Modal closes; `handlePresentEvidence(selectedEvidenceId)` hides trial controls and checks opening present, pending `followUp`, then `stmt.contradiction`:
+3. Modal closes; `handlePresentEvidence(selectedEvidenceId)` hides trial controls and checks opening present, pending `followUp`, then the current statement's contradiction / `deflects`:
    - **Correct Evidence**:
      1. If the matched rule has `pointTarget`, open `#present-point-overlay` first ([[docs/flows/present-point-flow.md]]). Parent `successDialogue` waits for a correct click.
      2. If the matched rule has `requiresExamine` and that evidence has not been opened with `EXAMINE DETAIL`, queue the localized instruction and reopen the Acta without applying a penalty.
@@ -52,12 +52,14 @@ Case 0 is the courtroom-only entry: its splash/debug launch seeds the opening Co
    - **Point tutorial timing**: Any instruction that teaches the Present & Point click belongs in the active `pointTarget.promptQuestion`, because the rule's `successDialogue` is queued only after the player has already clicked the correct zone.
    - **Deflected Evidence** (`stmt.deflect`): the presented item does bear on the statement but not yet. Queues `deflect.dialogue` and restores the same statement, with no `takePenalty`, no `damage` SFX and no `failedPresentCount` bump (so it never advances the press hint). Checked only against the current statement: `openingPresent` and `followUp` answers still penalize. Case 5 day-3 T6 deflects `huacal_9` on `c5_d3t1_2` and `maquina_escribir` on `c5_d3t1_3`.
    - **Incorrect Evidence**:
-     1. Calls `gameState.takePenalty()` in [[src/state/Private/GameStateManager.ts#Penalty & Health]].
-     2. Calls `ModalManager.updateHealthUI()` (one green `!` turns dark gray).
-     3. Plays `damage` SFX and shakes screen.
-     4. Queues judge/prosecutor penalty dialogue.
-     5. If `gameState.gameOver` (health == 0): queues Game Over dialogue, resets health, and restarts trial.
-     6. If health > 0: restores current statement and re-reveals trial controls after dialogue finishes.
+     1. If the current statement (else the testimony) has a matching `deflects` entry, apply the penalty and queue that witness denial. Do not queue Super Sam or the press hint — presenting this exhibit already has a specific response. Resume the statement after the lines; health 0 still goes through game-over after the deflect.
+     2. Otherwise `onPresentPenalty`: `gameState.takePenalty()` in [[src/state/Private/GameStateManager.ts#Penalty & Health]].
+     3. Calls `ModalManager.updateHealthUI()` (one green `!` turns dark gray).
+     4. Plays `damage` SFX and shakes screen.
+     5. Queues judge/prosecutor penalty dialogue. Speaker and poses come from optional `CaseScript` / trial-day / `Testimony` court-role fields; Cases 0–4 keep DEFENSA + Don Ramón and SUPER SAM. After a recusal the testimony can set `penaltyProsecutionSpeaker: 'SECRETARIO'` with no pose so Super Sam does not return.
+     6. After two failed presents on a testimony that still has `unlockedBy` lines, `onPresentPenalty` queues a press hint instead of the prosecutor — except a matching deflect, which still plays the witness.
+     7. If `gameState.gameOver` (health == 0): queues Game Over dialogue, resets health, and restarts trial.
+     8. If health > 0: restores current statement and re-reveals trial controls after dialogue finishes.
 
 ### Final Climax & Verdict
 1. `startClimax()` keeps trial controls hidden, transitions BGM to `'suspense'`, and queues dilemma dialogue from the case climax (`case1_climax` or `case2_climax`).
@@ -99,11 +101,12 @@ Case 0 is the courtroom-only entry: its splash/debug launch seeds the opening Co
 - [[src/engine/Private/CaseComplete.ts]]
 - [[src/engine/Private/ModalManager.ts]]
 - [[src/state/Private/GameStateManager.ts]]
+- [[src/engine/Private/TrialPresent.ts]]
 - [[src/engine/Private/TrialDayRouter.ts]]
 - [[src/engine/Private/TrialDeflect.ts]]
 - [[src/case/case1/Private/trial_day1.ts]] / [[src/case/case2/index.ts]]
 - [[src/case/case1/Private/climax.ts]] / [[src/case/case2/Private/climax.ts]]
 
 ## 8. Common Failure Modes
-- **Wrong Evidence Penalty**: Presenting evidence that does not match `stmt.contradiction.evidence` and is not listed in `stmt.deflect.evidence`. Before shipping a cross-examination, ask which item a player who understood the case would reach for on each statement; if it is not the accepted one, deflect it instead of charging a point ([[docs/lessons-learned/plausible-present-is-not-a-mistake.md]]).
+- **Wrong Evidence Penalty**: Presenting evidence that does not match `stmt.contradiction.evidence`, `stmt.deflect.evidence`, or a matching `deflects` entry. Before shipping a cross-examination, ask which item a player who understood the case would reach for on each statement; deflect it instead of charging a point when the script calls for an early answer ([[docs/lessons-learned/plausible-present-is-not-a-mistake.md]]).
 - **Game Over on 5 Penalties**: Life bar depletion resets health and restarts the trial phase.

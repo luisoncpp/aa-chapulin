@@ -111,6 +111,7 @@ export function presentClimaxEvidence(
 function climaxRunDeps(ctrl: ClimaxControllerPort): ClimaxRunDeps {
   return {
     ...ctrl.deps,
+    testimony: ctrl.currentTestimony,
     onRestartTrial: () => ctrl.restartAfterGameOver(),
     guiltyDialogue: ctrl.script.trial.climax.guiltyDialogue
   };

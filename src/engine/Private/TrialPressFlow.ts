@@ -5,7 +5,7 @@
 
 import { i18n } from '../../i18n/index.js';
 import type { SoundEngine } from '../../audio/index.js';
-import type { DialogueLine, Statement, Testimony } from '../../types/index.js';
+import type { CaseScript, DialogueLine, Statement, Testimony } from '../../types/index.js';
 import type { DomElements } from './DomElements.js';
 import {
   findUnlockedByPress,
@@ -31,18 +31,30 @@ export function notifyWitnessAddedStatement(
   soundEngine.playRealization();
 }
 
+export interface PressHintContext {
+  testimony: Testimony | null;
+  failedPresentCount: number;
+  script?: CaseScript;
+}
+
 export function maybeQueuePressHint(
-  testimony: Testimony | null,
-  failedPresentCount: number,
+  ctx: PressHintContext,
   onQueueDialogue: (lines: DialogueLine[], onComplete?: () => void) => void,
   onResume: () => void
 ): boolean {
-  if (!testimony || failedPresentCount < 2 || !testimonyHasHiddenStatements(testimony)) return false;
-  onQueueDialogue(
-    [{ speaker: 'CHAPULIN', text: i18n.t.pressHint, pose: 'chapulin_point' }],
-  /*onComplete*/ onResume
-  );
+  if (!shouldQueuePressHint(ctx)) return false;
+  onQueueDialogue(resolvePressHint(ctx.script), /*onComplete*/ onResume);
   return true;
+}
+
+function shouldQueuePressHint(ctx: PressHintContext): boolean {
+  if (!ctx.testimony || ctx.failedPresentCount < 2) return false;
+  return testimonyHasHiddenStatements(ctx.testimony);
+}
+
+function resolvePressHint(script?: CaseScript): DialogueLine[] {
+  if (script?.pressHint) return script.pressHint;
+  return [{ speaker: 'CHAPULIN', text: i18n.t.pressHint, pose: 'chapulin_point' }];
 }
 
 export function indexInVisible(testimony: Testimony, pressedIds: Set<string>, statementId: string): number {

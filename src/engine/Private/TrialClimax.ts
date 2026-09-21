@@ -38,6 +38,7 @@ function buildClimaxCtx(ctrl: ClimaxControllerPort): ClimaxRestoreCtx {
       ctrl.currentTestimony = null;
       ctrl.hideControls();
     },
+    testimony: ctrl.currentTestimony,
     onRestartTrial: () => ctrl.restartAfterGameOver(),
     guiltyDialogue: ctrl.script.trial.climax.guiltyDialogue
   };

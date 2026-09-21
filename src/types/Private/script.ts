@@ -24,6 +24,10 @@ export type SpeakerName =
   | 'JIRAFALES'
   | 'NARRADOR'
   | 'MODO EXAMINAR'
+  | 'BERRONDO'
+  | 'SECRETARIO'
+  | 'ALGUACIL'
+  | 'CUSTODIO'
   | string;
 
 export type PoseName =
@@ -126,6 +130,12 @@ export type PoseName =
   | 'casimiro_sweat'
   | 'casimiro_panic'
   | 'casimiro_breakdown'
+  | 'berrondo_idle'
+  | 'berrondo_definicion'
+  | 'berrondo_sweat'
+  | 'berrondo_catalogo'
+  | 'berrondo_panic'
+  | 'berrondo_breakdown'
   | 'rufino_smug'
   | 'rufino_monocle'
   | 'rufino_sweat'
@@ -286,6 +296,11 @@ export interface DeflectRule {
   dialogue: DialogueLine[];
 }
 
+export interface EvidenceDeflect {
+  evidence: EvidenceId[];
+  dialogue: DialogueLine[];
+}
+
 export interface Statement {
   id: string;
   speaker: SpeakerName;
@@ -297,6 +312,8 @@ export interface Statement {
   deflect?: DeflectRule;
   /** Visible only after the statement with this id has been pressed. */
   unlockedBy?: string;
+  /** Witness denial for these exhibits when they are not the resolving contradiction. */
+  deflects?: EvidenceDeflect[];
 }
 
 export interface Testimony {
@@ -304,6 +321,11 @@ export interface Testimony {
   witness: string;
   bgm: TrackName;
   statements: Statement[];
+  /** Overrides the day's penalty prosecutor (Case 5 day 3 after recusal). */
+  penaltyProsecutionSpeaker?: SpeakerName;
+  penaltyProsecutionPose?: PoseName;
+  /** Fallback deflects when the current statement has no matching entry. */
+  deflects?: EvidenceDeflect[];
 }
 
 export interface ClimaxEpilogue {
@@ -362,6 +384,9 @@ export interface TrialScript {
   testimony2?: Testimony;
   climax: ClimaxDefinition;
   openingPresent?: OpeningPresent;
+  /** Default Super Sam; Case 5 day 3 uses SECRETARIO after recusal. */
+  penaltyProsecutionSpeaker?: SpeakerName;
+  penaltyProsecutionPose?: PoseName;
 }
 
 export interface TrialDayScript {
@@ -371,6 +396,8 @@ export interface TrialDayScript {
   testimony1?: Testimony;
   testimony2?: Testimony;
   openingPresent?: OpeningPresent;
+  penaltyProsecutionSpeaker?: SpeakerName;
+  penaltyProsecutionPose?: PoseName;
 }
 
 export interface AdjournmentDefinition {
@@ -391,4 +418,11 @@ export interface CaseScript {
   investigation: Record<string, InvestigationScene>;
   trial: TrialScript;
   adjournment?: AdjournmentDefinition;
+  /** Penalty protesto pose; Cases 0–4 keep Don Ramón. */
+  defensePointPose?: PoseName;
+  defensePanicPose?: PoseName;
+  /** Idle when DEFENSA/DON RAMON omit pose; VisualEffects still defaults Don Ramón. */
+  defenseIdlePose?: PoseName;
+  /** After two wrong presents with hidden lines; omit for Chapulín → Don Ramón. */
+  pressHint?: DialogueLine[];
 }

@@ -34,7 +34,7 @@ Case 0 is the courtroom-only entry: its splash/debug launch seeds the opening Co
    - Hides trial controls.
    - Queues press dialogue. The response begins with the defense's localized `¡UN MOMENTO!` / `HOLD IT!` line using the `objection_un_momento` cut-in and `whoosh` SFX, then continues with the witness's added detail.
    - Records the statement id. If another statement has `unlockedBy` matching it, a toast ("El testigo ha añadido una declaración") plays, and the cursor jumps to the new line.
-   - After two failed presents on a testimony that still has hidden lines, Chapulín gives a one-line press hint (no extra penalty for pressing).
+   - After two failed presents on a testimony that still has hidden lines, `onPresentPenalty` queues a press hint instead of Super Sam / SECRETARIO. Speaker follows who is counsel: Cases 0–4 omit `CaseScript.pressHint` so Chapulín coaches Don Ramón; a swapped bench (Chapulín as `DEFENSA`) must script the client delivering the hint. Pressing itself still has no extra penalty.
 
 ### Presenting Evidence & Contradiction Evaluation
 1. Player clicks "📜 Presentar" (`#btn-trial-present`) on HUD or inside Court Record modal.

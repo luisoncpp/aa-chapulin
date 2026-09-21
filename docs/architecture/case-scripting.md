@@ -76,6 +76,9 @@ Penalty lines used to hardcode Super Sam and Don Ramón. Cases that swap the ben
 | `defensePointPose` / `defensePanicPose` | `CaseScript` | `donramon_point` / `donramon_panic` |
 | `defenseIdlePose` | `CaseScript` | `donramon_idle` (documentational; idle inference in VisualEffects still uses Don Ramón unless the line stamps a pose) |
 | `penaltyProsecutionSpeaker` / `penaltyProsecutionPose` | `TrialScript`, `TrialDayScript`, and `Testimony` | `'SUPER SAM'` / `supersam_point` |
+| `pressHint` | `CaseScript` | omitted → Chapulín (`chapulin_point`) speaks `i18n.t.pressHint` at Don Ramón |
+
+The press hint speaker follows **who is counsel**, not a hardcoded hero. Cases 0–4 omit `pressHint` so Chapulín coaches Don Ramón. When Chapulín is `DEFENSA`, set `pressHint` to Don Ramón (client, defense bench) addressing Chapulín — never Chapulín saying "¡Don Ramón!". After two wrong presents on a testimony that still has `unlockedBy` lines, [[src/engine/Private/TrialPressFlow.ts]] queues `script.pressHint` instead of the Super Sam / SECRETARIO penalty.
 
 Testimony overrides the active day. A speaker other than Super Sam with no pose queues a voiceless line. `BERRONDO` omitted-pose lines infer `berrondo_idle` (identity lock: black three-piece, leontina, tome) on the witness camera. Do not invent extra Berrondo poses past `berrondo_idle`, `berrondo_definicion`, `berrondo_sweat`, `berrondo_catalogo`, `berrondo_panic`, `berrondo_breakdown`.
 

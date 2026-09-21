@@ -379,4 +379,6 @@ export interface CaseScript {
   defensePanicPose?: PoseName;
   /** Idle when DEFENSA/DON RAMON omit pose; VisualEffects still defaults Don Ramón. */
   defenseIdlePose?: PoseName;
+  /** After two wrong presents with hidden lines; omit for Chapulín → Don Ramón. */
+  pressHint?: DialogueLine[];
 }

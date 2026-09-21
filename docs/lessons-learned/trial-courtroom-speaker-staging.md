@@ -11,9 +11,10 @@ Requiring scriptwriters to annotate every single dialogue line, statement press,
 ### 2. Centralized Speaker-to-Courtroom Camera Mapping
 Resolving canonical courtroom camera angles dynamically based on the active speaker:
 - `DEFENSA` / `DON RAMON` / `CHAPULIN` -> `bg_defense.jpg`
-- `SUPER SAM` -> `bg_courtroom.jpg` (prosecutor bench)
+- `SUPER SAM` / `SECRETARIO` -> `bg_courtroom.jpg` (prosecutor bench). `SECRETARIO` is voice-only: inferred pose is `null`, so the sprite hides.
 - `JUEZ` -> `bg_judge.jpg` (judge bench)
-- Witness / `TRIPASECA` -> `bg_witness.jpg` (witness stand)
+- Witness / `TRIPASECA` / `BERRONDO` -> `bg_witness.jpg` (witness stand). Omitted `BERRONDO` pose infers `berrondo_idle`.
+- `NARRADOR` / `ALGUACIL` / `CUSTODIO` / tutorial labels -> no camera change, no sprite
 
 Explicit `line.bg` continues to override when a scene requires a specific cutaway or wide courtroom shot.
 

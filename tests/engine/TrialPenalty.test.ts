@@ -4,7 +4,7 @@ import { SoundEngine } from '../../src/audio/index.js';
 import { applyPenaltyEffects, queuePenaltyDialogue, queuePenaltyOrRestart } from '../../src/engine/Private/TrialPenalty.js';
 import { i18n } from '../../src/i18n/index.js';
 import { GameStateManager } from '../../src/state/index.js';
-import type { DialogueLine } from '../../src/types/index.js';
+import type { CaseScript, DialogueLine, Testimony } from '../../src/types/index.js';
 import { FakeAudioContext } from '../fakes/FakeAudioContext.js';
 import { setupDomHarness } from '../fakes/DomHarness.js';
 
@@ -62,6 +62,42 @@ describe('TrialPenalty', () => {
       .toMatchObject({ speaker: 'DEFENSA', pose: 'donramon_panic' });
   });
 
+  it('uses the scripted defense panic pose on game over', () => {
+    state.health = 1;
+    state.takePenalty();
+    queuePenaltyDialogue({ ...host(), script: chapulinDefenseScript() }, /*onResume*/ () => {});
+    expect(queued[0].find((line) => line.text === i18n.t.gameOverDefenseText))
+      .toMatchObject({ speaker: 'DEFENSA', pose: 'chapulin_panic' });
+  });
+
+  it('queues Super Sam pointing and a Don Ramón protesto by default', () => {
+    queuePenaltyDialogue(host(), /*onResume*/ () => {});
+    expect(queued[0][0]).toMatchObject({ speaker: 'DEFENSA', pose: 'donramon_point' });
+    expect(queued[0][1]).toMatchObject({ speaker: 'SUPER SAM', pose: 'supersam_point', text: i18n.t.penaltyProsecutionText });
+    expect(queued[0][2]).toMatchObject({ speaker: 'JUEZ', pose: 'judge_gavel' });
+  });
+
+  it('uses Chapulín protesto and a voiceless SECRETARIO when court roles are set', () => {
+    queuePenaltyDialogue(
+      { ...host(), script: chapulinDefenseScript(), testimony: secretarioTestimony() },
+      /*onResume*/ () => {}
+    );
+    const lines = queued[0];
+    expect(lines[0]).toMatchObject({ speaker: 'DEFENSA', pose: 'chapulin_point' });
+    expect(lines[1]).toMatchObject({ speaker: 'SECRETARIO', text: i18n.t.penaltyProsecutionText });
+    expect(lines[1].pose).toBeUndefined();
+    expect(lines.some((line) => line.speaker === 'SUPER SAM')).toBe(false);
+    expect(lines.some((line) => line.pose === 'donramon_point')).toBe(false);
+  });
+
+  it('reads the penalty prosecutor from the trial day when testimony does not override', () => {
+    const script = chapulinDefenseScript();
+    script.trial.penaltyProsecutionSpeaker = 'SECRETARIO';
+    queuePenaltyDialogue({ ...host(), script }, /*onResume*/ () => {});
+    expect(queued[0][1]).toMatchObject({ speaker: 'SECRETARIO', text: i18n.t.penaltyProsecutionText });
+    expect(queued[0][1].pose).toBeUndefined();
+  });
+
   it('restarts after game-over instead of continuing the current prompt', () => {
     state.health = 1;
     const deps = { ...host(), onRestartTrial: vi.fn() };
@@ -73,3 +109,31 @@ describe('TrialPenalty', () => {
     expect(deps.onRestartTrial).toHaveBeenCalled();
   });
 });
+
+function chapulinDefenseScript(): CaseScript {
+  return {
+    id: 'case1',
+    startLocation: 'detention',
+    requiredEvidence: [],
+    debugEvidence: [],
+    debugUnlockLocations: [],
+    investigation: {},
+    defensePointPose: 'chapulin_point',
+    defensePanicPose: 'chapulin_panic',
+    trial: {
+      intro: [],
+      testimonies: [],
+      climax: { dialogue: [], presentTarget: [], verdict: [] }
+    }
+  };
+}
+
+function secretarioTestimony(): Testimony {
+  return {
+    title: 'T3',
+    witness: 'BERRONDO',
+    bgm: 'cross_exam_moderato',
+    statements: [],
+    penaltyProsecutionSpeaker: 'SECRETARIO'
+  };
+}

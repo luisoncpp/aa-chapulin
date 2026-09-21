@@ -42,6 +42,7 @@ export type {
 
 // @Section(Narrative & Script Types)
 export type {
+  SpeakerName,
   PoseName,
   CutinName,
   FurnitureType,
@@ -63,7 +64,8 @@ export type {
   PointTargetContradiction,
   ContradictionFollowUp,
   ContradictionRule,
-  OpeningPresent
+  OpeningPresent,
+  EvidenceDeflect
 } from './Private/script.js';
 // fallow-ignore-next-line unused-type
 export type { ChoiceOption } from './Private/script.js';

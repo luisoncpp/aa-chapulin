@@ -42,12 +42,14 @@ export function onPresentPenalty(ctrl: TrialController, onResume?: () => void): 
     ? () => showGameOverModal(ctrl)
     : (onResume ?? (() => ctrl.renderCurrentStatement()));
   if (maybeQueuePressHint(
-    ctrl.currentTestimony,
-    failedCount,
+    { testimony: ctrl.currentTestimony, failedPresentCount: failedCount, script: ctrl.script },
     ctrl.deps.onQueueDialogue,
-    resume
+    /*onResume*/ resume
   )) return;
-  queuePenaltyDialogue(ctrl.deps, /*onResume*/ resume);
+  queuePenaltyDialogue(
+    { ...ctrl.deps, testimony: ctrl.currentTestimony },
+    /*onResume*/ resume
+  );
 }
 
 export function showGameOverModal(ctrl: TrialController): void {

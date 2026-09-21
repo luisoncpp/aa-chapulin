@@ -65,7 +65,22 @@ Case 1 adds a second tab to the Acta. `ProfileItem` ([[src/types/Private/profile
 
 `Hotspot.condition` hides a hotspot until its predicate passes, and the hotspot layer re-renders after each examine. Case 1 chains its day-2 scenes with it (`hotspot_guantera` needs the truck; `hotspot_barda` needs the glovebox and the bag; `hotspot_espejo` needs the camera, the envelope and the roll log). Hotspots without a predicate are always available, so no other case changes.
 
-Statements may set `unlockedBy` to another statement id; [[src/engine/Private/StatementUnlock.ts]] keeps those lines out of the visible cross-exam list until that id is pressed. Instruction-only speakers (`NARRADOR`, `MODO EXAMINAR`, and `EXAMINE MODE`) do not infer a witness camera, so the last courtroom shot remains visible while the instruction is read.
+Statements may set `unlockedBy` to another statement id; [[src/engine/Private/StatementUnlock.ts]] keeps those lines out of the visible cross-exam list until that id is pressed. Instruction-only speakers (`NARRADOR`, `MODO EXAMINAR`, and `EXAMINE MODE`) do not infer a witness camera, so the last courtroom shot remains visible while the instruction is read. `ALGUACIL` and `CUSTODIO` are the same kind of voice: no camera, no sprite. `SECRETARIO` is a voice too, but after a recusal he speaks from the prosecution bench (`bg_courtroom.webp`) with pose omitted so staging hides the sprite.
+
+### Court roles (optional; Cases 0–4 omit them)
+
+Penalty lines used to hardcode Super Sam and Don Ramón. Cases that swap the bench (Chapulín as `DEFENSA`) or recuse the prosecutor declare roles on the script instead:
+
+| Field | Where | Default |
+|-------|--------|---------|
+| `defensePointPose` / `defensePanicPose` | `CaseScript` | `donramon_point` / `donramon_panic` |
+| `defenseIdlePose` | `CaseScript` | `donramon_idle` (documentational; idle inference in VisualEffects still uses Don Ramón unless the line stamps a pose) |
+| `penaltyProsecutionSpeaker` / `penaltyProsecutionPose` | `TrialScript`, `TrialDayScript`, and `Testimony` | `'SUPER SAM'` / `supersam_point` |
+| `pressHint` | `CaseScript` | omitted → Chapulín (`chapulin_point`) speaks `i18n.t.pressHint` at Don Ramón |
+
+The press hint speaker follows **who is counsel**, not a hardcoded hero. Cases 0–4 omit `pressHint` so Chapulín coaches Don Ramón. When Chapulín is `DEFENSA`, set `pressHint` to Don Ramón (client, defense bench) addressing Chapulín — never Chapulín saying "¡Don Ramón!". After two wrong presents on a testimony that still has `unlockedBy` lines, [[src/engine/Private/TrialPressFlow.ts]] queues `script.pressHint` instead of the Super Sam / SECRETARIO penalty.
+
+Testimony overrides the active day. A speaker other than Super Sam with no pose queues a voiceless line. `BERRONDO` omitted-pose lines infer `berrondo_idle` (identity lock: black three-piece, leontina, tome) on the witness camera. Do not invent extra Berrondo poses past `berrondo_idle`, `berrondo_definicion`, `berrondo_sweat`, `berrondo_catalogo`, `berrondo_panic`, `berrondo_breakdown`.
 
 ### 2. Investigation Scene Schema ([[src/case/case1/Private/museo.ts]], [[src/case/case2/index.ts]])
 
@@ -106,8 +121,16 @@ testimony: {
   witness: string;
   bgm: TrackName;
   statements: Statement[];
+  deflects?: EvidenceDeflect[];
+}
+
+interface EvidenceDeflect {
+  evidence: EvidenceId[];
+  dialogue: DialogueLine[];
 }
 ```
+
+`Statement.deflects` (and `Testimony.deflects` as fallback) is a witness denial for exhibits that are **not** the resolving contradiction. Present order in `presentCurrentContradiction` only ([[src/engine/Private/TrialPresent.ts]], [[src/engine/Private/TrialDeflect.ts]]): (1) current statement `contradiction.evidence` → success; (2) matching statement deflect, else testimony deflect → penalty + scripted denial, **not** Super Sam / press hint; (3) `onPresentPenalty`. Opening, follow-up, and climax presents skip deflects. Case 5 D3-T3 scripts `acuse_notificacion` / `oficio_diligencia` on statements 1–4 as a composed denial (`berrondo_idle` / `berrondo_definicion`); `berrondo_sweat` stays on the catch at statements 5–6.
 
 Case 0 uses three entries in that array. Each entry has exactly one resolving contradiction; a second proof is represented by `followUp`. Its second testimony is the intentional exception for alternate entry points: `c0_t2_2` and `c0_t2_3` both map to the same `foto_patio` contradiction because both assert that the school bell rang, so either statement starts the same examine-detail and Present & Point sequence.
 

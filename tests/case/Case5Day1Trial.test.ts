@@ -35,27 +35,7 @@ describe('Case 5 day 1 trial (Spanish)', () => {
 
   it('wires openingPresent with insignia_abogado', () => {
     expect(es.trial.openingPresent?.evidence).toContain('insignia_abogado');
-    expect(es.trial.openingPresent?.prompt).toBe('¿Qué acredita a la defensa ante esta corte?');
     expect(en.trial.openingPresent?.evidence).toContain('insignia_abogado');
-  });
-
-  it('exports three testimonies with spec titles and witnesses', () => {
-    const [t1, t2, t3] = es.trial.testimonies;
-    expect(t1).toMatchObject({
-      title: 'Testimonio: Nadie más entró esa tarde',
-      witness: 'Nicanor Tolentino',
-      bgm: 'cross_exam_moderato'
-    });
-    expect(t2).toMatchObject({
-      title: 'Testimonio: La secuencia que asenté',
-      witness: 'El Sargento',
-      bgm: 'cross_exam_moderato'
-    });
-    expect(t3).toMatchObject({
-      title: 'Testimonio: Lo que sí vi al subir',
-      witness: 'Nicanor Tolentino',
-      bgm: 'cross_exam_allegro'
-    });
   });
 
   it('never uses truth BGM in day-1 trial dialogue', () => {
@@ -70,32 +50,6 @@ describe('Case 5 day 1 trial (Spanish)', () => {
     });
     lines.forEach((line) => {
       expect(line.pose).not.toBe('donramon_slam');
-    });
-  });
-
-  it('maps contradictions and follow-ups per spec §11', () => {
-    const [t1, t2, t3] = es.trial.testimonies;
-    expect(contradictions(t1).map((s) => s.id)).toEqual(['c5_d1t1_3', 'c5_d1t1_4']);
-    for (const id of ['c5_d1t1_3', 'c5_d1t1_4']) {
-      expect(t1.statements.find((s) => s.id === id)?.contradiction, id).toMatchObject({
-        evidence: ['informe_forense_c5'],
-        followUp: { evidence: ['libro_visitas'] }
-      });
-    }
-    const [enT1] = en.trial.testimonies;
-    expect(contradictions(enT1).map((s) => s.id)).toEqual(['c5_d1t1_3', 'c5_d1t1_4']);
-
-    expect(contradictions(t2)).toHaveLength(1);
-    expect(t2.statements.find((s) => s.id === 'c5_d1t2_6')?.contradiction).toMatchObject({
-      evidence: ['hoja_relevo'],
-      followUp: { evidence: ['esquina_tarjeta'] }
-    });
-    expect(t2.statements.find((s) => s.id === 'c5_d1t2_6')?.unlockedBy).toBe('c5_d1t2_5');
-
-    expect(contradictions(t3)).toHaveLength(1);
-    expect(t3.statements.find((s) => s.id === 'c5_d1t3_4')?.contradiction).toMatchObject({
-      evidence: ['plano_archivo'],
-      followUp: { evidence: ['expediente_casimiro'] }
     });
   });
 

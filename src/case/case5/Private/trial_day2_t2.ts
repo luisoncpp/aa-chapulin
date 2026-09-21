@@ -25,7 +25,7 @@ export const CASE5_TESTIMONY_5: Testimony = {
       id: 'c5_d2t2_1',
       speaker: 'BERRONDO',
       pose: 'berrondo_idle',
-      text: 'Soy síndico de la quiebra 114 diagonal 1971, Enciclopedias El Saber Universal, sociedad anónima, desde el 9 de marzo de ese año.',
+      text: 'Soy síndico de la quiebra 114/1971, Enciclopedias El Saber Universal, sociedad anónima, desde el 9 de marzo de ese año.',
       pressText: [
         MOMENTO,
         { speaker: 'DEFENSA', text: 'Once años con un concurso abierto. ¿No es mucho?', pose: 'chapulin_point' },
@@ -93,7 +93,7 @@ export const CASE5_TESTIMONY_5: Testimony = {
       id: 'c5_d2t2_5',
       speaker: 'BERRONDO',
       pose: 'berrondo_idle',
-      text: 'Y el cuatro de diciembre entré a las dieciséis cero cinco, revisé el huacal nueve y salí a las dieciséis cincuenta. Consta en el libro.',
+      text: 'Y el cuatro de diciembre entré a las 16:05, revisé el huacal nueve y salí a las 16:50. Consta en el libro.',
       pressText: [
         MOMENTO,
         { speaker: 'DEFENSA', text: '¿Y a qué fue usted ese día al sótano?', pose: 'chapulin_point' },
@@ -102,7 +102,7 @@ export const CASE5_TESTIMONY_5: Testimony = {
         { speaker: 'BERRONDO', text: 'Naturalmente. Un bien de la masa no se toca sin notificar al síndico; es lo primero que se estudia en concursal.', pose: 'berrondo_definicion' },
         { speaker: 'DEFENSA', text: '(Contesta que sí sin que le tiemble nada. Porque es verdad y porque es legal.)', pose: 'chapulin_idle' },
         { speaker: 'DEFENSA', text: '¿Y salió a las cuatro cincuenta?', pose: 'chapulin_idle' },
-        { speaker: 'BERRONDO', text: 'A las dieciséis cincuenta. Está en el libro, licenciado. Léalo usted.', pose: 'berrondo_idle' },
+        { speaker: 'BERRONDO', text: 'A las 16:50. Está en el libro, licenciado. Léalo usted.', pose: 'berrondo_idle' },
         { speaker: 'DEFENSA', text: '(Eso voy a hacer.)', pose: 'chapulin_idle' }
       ],
       contradiction: {

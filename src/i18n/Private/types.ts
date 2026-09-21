@@ -91,7 +91,7 @@ export interface UiTranslations {
   // Game Over Dialogues
   gameOverJudgeText: string;
   gameOverDefenseText: string;
-  penaltyProsecutionText: string;
+  penaltySecretaryText: string;
   penaltyJudgeText: string;
 }
 

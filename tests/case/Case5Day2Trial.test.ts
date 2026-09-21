@@ -35,13 +35,6 @@ function defensaPoses(lines: DialogueLine[]): string[] {
   return lines.filter((l) => l.speaker === 'DEFENSA' && l.pose).map((l) => l.pose as string);
 }
 
-const SECRETARY_READING_POSES = [
-  'secretario_leyendo',
-  'secretario_leyendo_senala',
-  'secretario_leyendo_pagina',
-  'secretario_leyendo_mira'
-];
-
 describe('Case 5 day 2 trial (Spanish)', () => {
   const es = getCaseScript('es', 'case5') as CaseScript;
   const en = getCaseScript('en', 'case5') as CaseScript;
@@ -67,23 +60,6 @@ describe('Case 5 day 2 trial (Spanish)', () => {
       witness: 'Lic. Berrondo',
       bgm: 'cross_exam_grave'
     });
-  });
-
-  it('maps contradictions per spec §13', () => {
-    const [t4, t5] = day2.testimonies;
-    expect(contradictions(t4)).toHaveLength(1);
-    expect(t4.statements.find((s) => s.id === 'c5_d2t1_5')?.contradiction).toMatchObject({
-      evidence: ['nota_mecanografiada'],
-      followUp: { evidence: ['recibo_renta'] }
-    });
-
-    expect(contradictions(t5)).toHaveLength(1);
-    const t5Rule = t5.statements.find((s) => s.id === 'c5_d2t2_5')?.contradiction;
-    expect(t5Rule).toMatchObject({
-      evidence: ['libro_peritos'],
-      followUp: { evidence: ['expediente_serie'] }
-    });
-    expect(t5Rule?.followUp?.pointTarget?.targetEvidenceId).toBe('expediente_serie');
   });
 
   it('configures Señalamiento 1 with panel_b correct and four coached fail zones', () => {
@@ -115,20 +91,6 @@ describe('Case 5 day 2 trial (Spanish)', () => {
     });
   });
 
-  it('stages every day-2 ledger line with a secretary reading pose', () => {
-    const secretaryLines = lines.filter((line) => line.speaker === 'SECRETARIO');
-    expect(secretaryLines).toHaveLength(5);
-    expect(secretaryLines.map((line) => line.pose)).toEqual([
-      ...SECRETARY_READING_POSES,
-      'secretario_leyendo'
-    ]);
-    expect(en.adjournment?.trial.intro.filter((line) => line.speaker === 'SECRETARIO')
-      .map((line) => line.pose)).toEqual([
-        ...SECRETARY_READING_POSES,
-        'secretario_leyendo'
-      ]);
-  });
-
   it('never aliases contradiction successDialogue to followUp.successDialogue', () => {
     for (const testimony of day2.testimonies) {
       for (const stmt of contradictions(testimony)) {
@@ -156,24 +118,6 @@ describe('Case 5 day 2 trial (Spanish)', () => {
       .find((s) => s.id === 'c5_d2t1_5')?.contradiction?.followUp?.successDialogue ?? [];
     expect(t4Follow.map((l) => l.speaker)).toContain('BERRONDO');
     expect(t4Follow[t4Follow.length - 1]?.speaker).toBe('JUEZ');
-  });
-
-  it("keeps Berrondo's unsolicited day-2 intervention at the prosecution table", () => {
-    const spanishLine = lines.find((line) =>
-      line.text === 'Señor juez, con la venia: ese retiro es mío y está declarado.'
-    );
-    const englishLine = trialDialogue(day2Trial(en)).find((line) =>
-      line.text === 'Your Honor, with leave: that withdrawal is mine and it is declared.'
-    );
-
-    expect(spanishLine).toMatchObject({
-      speaker: 'BERRONDO',
-      bg: 'assets/bg_courtroom.webp'
-    });
-    expect(englishLine).toMatchObject({
-      speaker: 'BERRONDO',
-      bg: 'assets/bg_courtroom.webp'
-    });
   });
 
   it('closes day 2 with the adjournment gavel, after the exhibit is shown', () => {

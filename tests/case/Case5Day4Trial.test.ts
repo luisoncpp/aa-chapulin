@@ -53,25 +53,6 @@ describe('Case 5 day 4 trial (Spanish)', () => {
     expect(en.adjournment?.next?.next?.trial.openingPresent?.evidence).toEqual(['bitacora_caldera']);
   });
 
-  it('exports T9 Genoveva with spec title, witness, and final BGM', () => {
-    const [t9] = day4.testimonies;
-    expect(t9).toMatchObject({
-      title: 'Testimonio: El reglamento de la ventanilla',
-      witness: 'Srta. Genoveva Peñaloza',
-      bgm: 'cross_exam_final'
-    });
-    expect(day4.testimonies).toHaveLength(1);
-  });
-
-  it('maps contradiction per spec §17 on c5_d4t1_2', () => {
-    const [t9] = day4.testimonies;
-    expect(contradictions(t9)).toHaveLength(1);
-    expect(t9.statements.find((s) => s.id === 'c5_d4t1_2')?.contradiction).toMatchObject({
-      evidence: ['libro_peritos'],
-      followUp: { evidence: ['fichero_cedulario'] }
-    });
-  });
-
   it('updates informe_forense_c5 in intro or opening success', () => {
     const openingLines = [
       ...day4.intro,

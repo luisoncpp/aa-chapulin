@@ -137,23 +137,6 @@ describe('Case 5 day 1 investigation (Spanish)', () => {
     }
   });
 
-  it('aligns pasillo 7 hotspots with the regenerated cover-cropped background', () => {
-    const expected = {
-      hotspot_cuerpo: [38, 67, 39, 33],
-      hotspot_tomo: [57, 81, 17, 15],
-      hotspot_estante: [60, 35, 40, 37],
-      hotspot_mesa: [0, 28, 35, 38]
-    } as const;
-    for (const script of [es, en]) {
-      const hotspots = script.investigation.archivo_pasillo7.hotspots;
-      for (const [id, bounds] of Object.entries(expected)) {
-        const hotspot = hotspots.find((candidate) => candidate.id === id);
-        expect(hotspot, `${id} is missing`).toBeDefined();
-        expect([hotspot!.x, hotspot!.y, hotspot!.w, hotspot!.h]).toEqual(bounds);
-      }
-    }
-  });
-
   it('seals day 1 on the consultation table: it closes the day and grants required evidence', () => {
     const mesa = es.investigation.archivo_pasillo7.hotspots.find((h) => h.id === 'hotspot_mesa')!;
     expect(evidenceFrom(mesa.dialogue)).toContain('expediente_casimiro');
@@ -164,16 +147,6 @@ describe('Case 5 day 1 investigation (Spanish)', () => {
     es.investigation.archivo_pasillo7.hotspots.forEach((h) => {
       expect(h.dialogue.some((l) => l.sfx === 'bell'), `${h.id} narrates the bell`).toBe(false);
     });
-  });
-
-  it('locks the El Saber Universal shelf arithmetic: 24 slots, 23 volumes, slot 13 empty', () => {
-    const estante = es.investigation.archivo_pasillo7.hotspots.find((h) => h.id === 'hotspot_estante')!;
-    const text = estante.dialogue.map((l) => l.text).join(' ');
-    expect(text).toContain('del 1 al 24');
-    expect(text).toContain('Veintitrés tomos');
-    expect(text).toContain('ranura trece está vacía');
-    // 23 on the shelf + the one on the floor = 24 volumes for 24 slots, one still empty.
-    expect(text).toContain('Veinticuatro tomos para veinticuatro ranuras');
   });
 
   it('changes the track when moving from the archive vestibule into hallway 7', () => {

@@ -46,26 +46,13 @@ describe('EngineDebugBootstrap', () => {
     window.location = originalLocation;
   });
 
-  it('loads case 4 from the query string', () => {
+  it.each([
+    { search: '?case=4', expectedCaseId: 'case4', expectedTrialDay: null },
+    { search: '?case=5&trial=4', expectedCaseId: 'case5', expectedTrialDay: 4 }
+  ])('loads $expectedCaseId from the query string', ({ search, expectedCaseId, expectedTrialDay }) => {
     const originalLocation = window.location;
     delete (window as { location?: Location }).location;
-    window.location = { search: '?case=4', hash: '' } as Location;
-
-    const actions = { caseId: null as CaseId | null };
-    applyDebugUrlParams({
-      setLanguage: () => undefined,
-      loadCase: (caseId) => { actions.caseId = caseId; },
-      startTrialDebug: () => undefined
-    });
-
-    expect(actions.caseId).toBe('case4');
-    window.location = originalLocation;
-  });
-
-  it('loads case 5 from the query string', () => {
-    const originalLocation = window.location;
-    delete (window as { location?: Location }).location;
-    window.location = { search: '?case=5&trial=4', hash: '' } as Location;
+    window.location = { search, hash: '' } as Location;
 
     const actions = {
       caseId: null as CaseId | null,
@@ -77,8 +64,12 @@ describe('EngineDebugBootstrap', () => {
       startTrialDebug: (day) => { actions.trialDay = day ?? 1; }
     });
 
-    expect(actions.caseId).toBe('case5');
-    expect(actions.trialDay).toBe(4);
+    expect(actions.caseId).toBe(expectedCaseId);
+    if (expectedTrialDay !== null) {
+      expect(actions.trialDay).toBe(expectedTrialDay);
+    } else {
+      expect(actions.trialDay).toBeNull();
+    }
     window.location = originalLocation;
   });
 

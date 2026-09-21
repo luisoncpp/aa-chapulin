@@ -96,9 +96,7 @@ describe('Case 5 day 2 investigation (Spanish)', () => {
       (entry) => entry.text === 'Berrondo. A very fine gentleman. He sends a basket at Christmas.'
     );
     expect(line?.speaker).toBe('CHIMOLTRUFIA');
-    expect(line?.pose).toBe('chimoltrufia_idle');
     expect(englishLine?.speaker).toBe('CHIMOLTRUFIA');
-    expect(englishLine?.pose).toBe('chimoltrufia_idle');
   });
 
   it('adds perfil_barriga at vecindad per spec', () => {

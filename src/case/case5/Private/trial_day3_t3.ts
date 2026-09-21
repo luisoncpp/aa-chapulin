@@ -3,8 +3,20 @@
  * Case 5 Trial Day 3 — Testimony 8, Lic. Berrondo investigado (spec §15.4). BGM cross_exam_grave.
  */
 
-import type { DialogueLine, Testimony } from '../../../types/index.js';
+import type { ContradictionRule, DialogueLine, Testimony } from '../../../types/index.js';
+import { CASE5_D3_T3_OFICIO_DEFLECT } from './trial_day3_deflect.js';
 import { CASE5_D3_T3_ACUSE_SUCCESS, CASE5_D3_T3_TOMO_SUCCESS } from './trial_day3_success_berrondo.js';
+
+// Shared by statements 5 and 6: the acuse resolves from either one.
+const ACUSE_CONTRADICCION: ContradictionRule = {
+  evidence: ['acuse_notificacion'],
+  successDialogue: CASE5_D3_T3_ACUSE_SUCCESS,
+  followUp: {
+    evidence: ['tomo_caido'],
+    prompt: '¿De dónde salió el libro con el que mataron a ese hombre?',
+    successDialogue: CASE5_D3_T3_TOMO_SUCCESS
+  }
+};
 
 const MOMENTO: DialogueLine = {
   speaker: 'DEFENSA',
@@ -18,6 +30,7 @@ export const CASE5_TESTIMONY_8: Testimony = {
   title: 'Testimonio: Lo que hice el cuatro de diciembre',
   witness: 'Lic. Berrondo (investigado)',
   bgm: 'cross_exam_grave',
+  // fallow-ignore-next-line complexity
   statements: [
     {
       id: 'c5_d3t3_1',
@@ -36,7 +49,7 @@ export const CASE5_TESTIMONY_8: Testimony = {
       id: 'c5_d3t3_2',
       speaker: 'BERRONDO',
       pose: 'berrondo_idle',
-      text: 'El cuatro de diciembre entré por la ventanilla de peritos a las dieciséis cero cinco y recibí un gafete de visita.',
+      text: 'El cuatro de diciembre entré por la ventanilla de peritos a las 16:05 y recibí un gafete de visita.',
       pressText: [
         MOMENTO,
         { speaker: 'DEFENSA', text: '¿Para qué necesita un gafete si tiene credencial?', pose: 'chapulin_point' },
@@ -68,7 +81,7 @@ export const CASE5_TESTIMONY_8: Testimony = {
       id: 'c5_d3t3_4',
       speaker: 'BERRONDO',
       pose: 'berrondo_idle',
-      text: 'A las dieciséis cincuenta devolví el gafete en la ventanilla y salí por el patio de maniobras, donde tengo el automóvil.',
+      text: 'A las 16:50 devolví el gafete en la ventanilla y salí por el patio de maniobras, donde tengo el automóvil.',
       pressText: [
         MOMENTO,
         { speaker: 'DEFENSA', text: '¿Alguien lo vio salir por el patio?', pose: 'chapulin_point' },
@@ -98,7 +111,9 @@ export const CASE5_TESTIMONY_8: Testimony = {
         { speaker: 'BERRONDO', text: 'Si me permite, señor juez, hay una cosa más que debería agregar yo.', pose: 'berrondo_idle' },
         { speaker: 'JUEZ', text: '¡La corte quiere oírla! Testigo, agréguela a su testimonio.', sfx: 'gavel', pose: 'judge_gavel' },
         { speaker: 'NARRADOR', text: 'Se ha añadido una nueva declaración al testimonio.', sfx: 'realization' }
-      ]
+      ],
+      deflect: { evidence: ['oficio_diligencia'], dialogue: CASE5_D3_T3_OFICIO_DEFLECT },
+      contradiction: ACUSE_CONTRADICCION
     },
     {
       id: 'c5_d3t3_6',
@@ -119,15 +134,8 @@ export const CASE5_TESTIMONY_8: Testimony = {
         { speaker: 'DEFENSA', text: '(...Acaba de decir que nadie le avisó.)', pose: 'chapulin_idle' },
         { speaker: 'DEFENSA', text: '(Y lo dijo él solito, sin que yo se lo preguntara, para quedar bien.)', pose: 'chapulin_panic' }
       ],
-      contradiction: {
-        evidence: ['acuse_notificacion'],
-        successDialogue: CASE5_D3_T3_ACUSE_SUCCESS,
-        followUp: {
-          evidence: ['tomo_caido'],
-          prompt: '¿De dónde salió el libro con el que mataron a ese hombre?',
-          successDialogue: CASE5_D3_T3_TOMO_SUCCESS
-        }
-      }
+      deflect: { evidence: ['oficio_diligencia'], dialogue: CASE5_D3_T3_OFICIO_DEFLECT },
+      contradiction: ACUSE_CONTRADICCION
     }
   ]
 };

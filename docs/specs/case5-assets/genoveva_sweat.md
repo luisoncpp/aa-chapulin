@@ -34,10 +34,10 @@ Clase: `sprite`. Espec: §23.2.C. Guion: §17.2, §18.4 / clímax del día 4, y 
 
 ### F4 Contrato en pantalla
 
-- [ ] `PINTAR` — La pose acompaña la lectura del encabezado «Hora de devolución de gafete» después de que la defensa demuestra que la columna no es una hora de salida (`src/case/case5/Private/trial_day4_success.ts:58`; variante EN `trial_day4_success_en.ts:58`). La cara debe comunicar la primera grieta reglamentaria, sin anticipar el shock completo.
-- [ ] `PINTAR` — La pose acompaña la admisión de que lleva trece años llamando «hora de salida» a una columna que dice otra cosa (`src/case/case5/Private/trial_day4_success.ts:62`; variante EN `trial_day4_success_en.ts:62`). Mantener sudor único y gesto contenido.
-- [ ] `PINTAR` — La pose acompaña el «...Sí, señor» cuando admite que un síndico que devolvió el gafete aún puede permanecer dentro del edificio con su credencial (`src/case/case5/Private/trial_day4_success.ts:69`; variante EN `trial_day4_success_en.ts:69`). No añadir credenciales ni depósito como objetos nuevos al sprite.
-- [ ] `PINTAR` — La pose acompaña el «...Hay uno» cuando el juez pide el vale del 29 de noviembre (`src/case/case5/Private/trial_day4_success.ts:92`; variante EN `trial_day4_success_en.ts:92`). El fajo de vales rosas aparece en la narración posterior, no debe pegarse al sprite (§17.2, líneas 3242–3246; `trial_day4_success.ts:89–92`).
+- [ ] `PINTAR` — La pose acompaña la lectura del encabezado «Hora de devolución de gafete» después de que la defensa demuestra que la columna no es una hora de salida (`src/case/case5/Private/trial_day4_success.ts:59`; variante EN `trial_day4_success_en.ts:59`). La cara debe comunicar la primera grieta reglamentaria, sin anticipar el shock completo.
+- [ ] `PINTAR` — La pose acompaña la admisión de que lleva trece años llamando «hora de salida» a una columna que dice otra cosa (`src/case/case5/Private/trial_day4_success.ts:63`; variante EN `trial_day4_success_en.ts:63`). Mantener sudor único y gesto contenido.
+- [ ] `PINTAR` — La pose acompaña el «...Sí, señor» cuando admite que un síndico que devolvió el gafete aún puede permanecer dentro del edificio con su credencial (`src/case/case5/Private/trial_day4_success.ts:70`; variante EN `trial_day4_success_en.ts:70`). No añadir credenciales ni depósito como objetos nuevos al sprite.
+- [ ] `PINTAR` — La pose acompaña el «...Hay uno» cuando el juez pide el vale del 29 de noviembre (`src/case/case5/Private/trial_day4_success.ts:93`; variante EN `trial_day4_success_en.ts:93`). El fajo de vales rosas aparece en la narración posterior, no debe pegarse al sprite (§17.2, líneas 3242–3246; `trial_day4_success.ts:90–92`).
 - [ ] `NO CONTRADECIR` — La pose no afirma que Genoveva vea la puerta del patio o vigile físicamente el acceso: su ventanilla mira hacia dentro y la puerta queda a su espalda (§17.2, declaración 4; §24.A, A5).
 - [ ] `NO CONTRADECIR` — La pose no afirma que registre salidas reales; Genoveva registra entrada y devolución de gafetes, no salidas por el patio (§24.A, A5; catálogo `src/state/Private/ProfileCatalogCase5Es.ts:74–81` y `ProfileCatalogCase5En.ts:74–81`).
 
@@ -49,7 +49,7 @@ Clase: `sprite`. Espec: §23.2.C. Guion: §17.2, §18.4 / clímax del día 4, y 
 ### F6 Localización
 
 - [ ] `PINTAR` — `genoveva_sweat` es una pose compartida ES/EN; no existe variante `_en` en el contrato de §23.2.C. La composición y la expresión deben ser idénticas en ambos idiomas.
-- [ ] `NO CONTRADECIR` — Las líneas ES y EN cambian sólo el texto de diálogo: «Hora de devolución de gafete» / “Time badge returned”, y «hora de salida» / “time of departure”; ninguna cadena debe entrar en el sprite (§17.2; `trial_day4_success.ts:58,62`; `trial_day4_success_en.ts:58,62`).
+- [ ] `NO CONTRADECIR` — Las líneas ES y EN cambian sólo el texto de diálogo: «Hora de devolución de gafete» / “Time badge returned”, y «hora de salida» / “time of departure”; ninguna cadena debe entrar en el sprite (§17.2; `trial_day4_success.ts:59,63`; `trial_day4_success_en.ts:59,63`).
 - [ ] `NO CONTRADECIR` — La localización EN debe respetar las reglas generales de §23.3, incluida la `s` minúscula caída cuando corresponda a texto mecanografiado; esta pose no contiene texto mecanografiado ni variante localizada (§23.3; §23.2.C).
 
 ## Consistencia (regenerar juntos)

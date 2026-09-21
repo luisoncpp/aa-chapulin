@@ -16,7 +16,7 @@ export const CASE5_CLIMAX_STAGE3_POINT_SUCCESS: DialogueLine[] = [
   { speaker: 'NARRADOR', text: 'El alguacil deposita sobre el estrado la fotografía pericial del estante y, junto a ella, un volumen pesado, encuadernado en media piel, con cantoneras de latón en el lomo.' },
   { speaker: 'JUEZ', text: 'Ábralo por la guarda, señor secretario.', pose: 'judge_neutral' },
   { speaker: 'SECRETARIO', text: 'Hay un sello, señor juez. De tinta violeta.' },
-  { speaker: 'SECRETARIO', text: '«Q guion ciento catorce diagonal mil novecientos setenta y uno. Masa concursal. Huacal nueve.»' },
+  { speaker: 'SECRETARIO', text: '«Q-114/1971. Masa concursal. Huacal 9.»' },
   { speaker: 'NARRADOR', text: 'La galería estalla.', sfx: 'gavel', bgm: 'objection' },
   { speaker: 'JUEZ', text: '¡ORDEN! ¡ORDEN!', sfx: 'gavel', pose: 'judge_gavel' },
   { speaker: 'DEFENSA', text: '¡Señor juez, ese tomo es de la edición de lujo!', pose: 'chapulin_point' },

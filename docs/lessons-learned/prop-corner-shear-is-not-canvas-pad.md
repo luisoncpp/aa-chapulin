@@ -14,4 +14,4 @@ A missing canvas pad and a sheared silhouette are different defects:
 
 Extended crop windows only recover pixels that bled into a neighbor cell. When the missing bristles were never painted because the prop hit the **sheet** edge, regeneration is the only fix. Point long handheld props (brooms, poles, bags) inside the bust envelope — on the shoulder, across the torso — or generate that pose as a 1×1. Do not aim them at a 2×2 corner.
 
-Guarded by [[tests/assets/Case5NicanorBroom.test.ts]].
+Guarded by the Case 5 asset pipeline ([[process_case5_assets.py]]) and its audit pass; the pixel-run assertion belonged to the asset-metric snapshots that were removed from the Vitest suite.

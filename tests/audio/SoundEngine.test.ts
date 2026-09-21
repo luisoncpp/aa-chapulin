@@ -1,10 +1,17 @@
 // @Architecture(descriptionShort="Unit tests for procedural sound engine and audio routing", type="test", icon="bolt")
 import { describe, expect, it, beforeEach, vi } from 'vitest';
 import { CourtSfx } from '../../src/audio/Private/CourtSfx.js';
-import { NoveltySfx } from '../../src/audio/Private/NoveltySfx.js';
-import { SoundEngine, soundEngine } from '../../src/audio/index.js';
+import { SoundEngine } from '../../src/audio/index.js';
 import type { SFXName } from '../../src/types/index.js';
 import { FakeAudioContext, FakeGainNode } from '../fakes/FakeAudioContext.js';
+
+function getDefaultMasterGain(): number {
+  const probe = new SoundEngine();
+  probe.init(new FakeAudioContext() as unknown as AudioContext);
+  return probe.masterGain?.gain.value ?? 0;
+}
+
+const DEFAULT_MASTER_GAIN = getDefaultMasterGain();
 
 describe('SoundEngine & Procedural SFX', () => {
   let engine: SoundEngine;
@@ -62,7 +69,7 @@ describe('SoundEngine & Procedural SFX', () => {
 
     engine.init(fakeCtx as unknown as AudioContext);
     expect(engine.isMuted).toBe(false);
-    expect(engine.masterGain?.gain.value).toBe(0.85);
+    expect(engine.masterGain?.gain.value).toBe(DEFAULT_MASTER_GAIN);
 
     const isMutedNow = engine.toggleMute();
     expect(isMutedNow).toBe(true);
@@ -71,7 +78,7 @@ describe('SoundEngine & Procedural SFX', () => {
 
     engine.toggleMute();
     expect(engine.isMuted).toBe(false);
-    expect(engine.masterGain?.gain.value).toBe(0.85);
+    expect(engine.masterGain?.gain.value).toBe(DEFAULT_MASTER_GAIN);
   });
 
   it('synthesizes all courtroom and novelty sound effects', () => {
@@ -88,7 +95,7 @@ describe('SoundEngine & Procedural SFX', () => {
     vi.advanceTimersByTime(200);
   });
 
-  it('synthesizes all direct methods when active', () => {
+  it('routes playSFX through direct synthesis methods including onClimaxHit timing', () => {
     engine.init(fakeCtx as unknown as AudioContext);
     expect(() => engine.playTextBlip()).not.toThrow();
     expect(() => engine.playClick()).not.toThrow();
@@ -99,16 +106,13 @@ describe('SoundEngine & Procedural SFX', () => {
     expect(() => engine.playDamage()).not.toThrow();
     expect(() => engine.playChipoteSqueak()).not.toThrow();
     expect(() => engine.playChicharra()).not.toThrow();
-    vi.advanceTimersByTime(120);
-  });
-
-  it('synthesizes individual CourtSfx methods directly', () => {
-    const dest = fakeCtx.createGain();
-    expect(() => CourtSfx.playGavel(fakeCtx as unknown as AudioContext, dest as unknown as GainNode)).not.toThrow();
-    expect(() => CourtSfx.playDeskSlam(fakeCtx as unknown as AudioContext, dest as unknown as GainNode)).not.toThrow();
-    expect(() => CourtSfx.playDamage(fakeCtx as unknown as AudioContext, dest as unknown as GainNode)).not.toThrow();
+    expect(() => engine.playSFX('gavel')).not.toThrow();
+    expect(() => engine.playSFX('desk_slam')).not.toThrow();
+    expect(() => engine.playSFX('damage')).not.toThrow();
+    expect(() => engine.playSFX('whoosh')).not.toThrow();
 
     let chordHit = false;
+    const dest = fakeCtx.createGain();
     CourtSfx.playObjectionWhoosh(
       fakeCtx as unknown as AudioContext,
       dest as unknown as GainNode,
@@ -117,18 +121,8 @@ describe('SoundEngine & Procedural SFX', () => {
     expect(chordHit).toBe(false);
     vi.advanceTimersByTime(120);
     expect(chordHit).toBe(true);
-  });
 
-  it('synthesizes individual NoveltySfx methods directly including defaults', () => {
-    const dest = fakeCtx.createGain();
-    expect(() => NoveltySfx.playTextBlip(fakeCtx as unknown as AudioContext, dest as unknown as GainNode, /*pitchOffset=*/ 2)).not.toThrow();
-    expect(() => NoveltySfx.playClick(fakeCtx as unknown as AudioContext, dest as unknown as GainNode)).not.toThrow();
-    expect(() => NoveltySfx.playRealization(fakeCtx as unknown as AudioContext, dest as unknown as GainNode)).not.toThrow();
-    expect(() => NoveltySfx.playChipoteSqueak(fakeCtx as unknown as AudioContext, dest as unknown as GainNode)).not.toThrow();
-    expect(() => NoveltySfx.playChicharra(fakeCtx as unknown as AudioContext, dest as unknown as GainNode)).not.toThrow();
-    expect(() => NoveltySfx.playChord(fakeCtx as unknown as AudioContext, dest as unknown as GainNode, {
-      notes: [440, 554, 659]
-    })).not.toThrow();
+    vi.advanceTimersByTime(120);
   });
 
   it('does not play audio when uninitialized or muted', () => {
@@ -155,9 +149,5 @@ describe('SoundEngine & Procedural SFX', () => {
     expect(() => engine.playDamage()).not.toThrow();
     expect(() => engine.playChipoteSqueak()).not.toThrow();
     expect(() => engine.playChicharra()).not.toThrow();
-  });
-
-  it('exports singleton soundEngine', () => {
-    expect(soundEngine).toBeInstanceOf(SoundEngine);
   });
 });

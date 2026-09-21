@@ -32,6 +32,13 @@ import {
   CASE5_DAY4_INTRO_FULL_EN, CASE5_DAY4_OPENING_PRESENT_EN, CASE5_TESTIMONY_9_EN
 } from './trial_day4_en.js';
 import { CASE5_VECINDAD_EN } from './vecindad_en.js';
+import type { DialogueLine } from '../../../types/index.js';
+
+const CASE5_PRESS_HINT_EN: DialogueLine[] = [{
+  speaker: 'DON RAMÓN',
+  text: 'Chapulin! We need to squeeze this witness, not just listen!',
+  pose: 'donramon_point'
+}];
 
 export const CASE5_PARTS_EN: Case5Parts = {
   scenes: {
@@ -49,6 +56,7 @@ export const CASE5_PARTS_EN: Case5Parts = {
     archivo_caldera: CASE5_ARCHIVO_CALDERA_EN
   },
   intro: CASE5_TRIAL_INTRO_FULL_EN,
+  pressHint: CASE5_PRESS_HINT_EN,
   day1Opening: CASE5_DAY1_OPENING_PRESENT_EN,
   t1: CASE5_TESTIMONY_1_EN,
   t2: CASE5_TESTIMONY_2_EN,

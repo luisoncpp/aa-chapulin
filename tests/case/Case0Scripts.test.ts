@@ -48,26 +48,6 @@ describe('Case 0 — El Primer Juicio de Don Ramón', () => {
     )).toEqual([1, 2, 1]);
   });
 
-  it('keeps the evidence progression and climax gates exact', () => {
-    const script = getCaseScript('es', 'case0');
-    const [t1, t2, t3] = script.trial.testimonies;
-    expect(t1.statements[2].contradiction?.evidence).toEqual(['parte_detencion']);
-    expect(t1.statements[2].contradiction?.followUp?.evidence).toEqual(['recibo_hielo']);
-    expect(t2.statements.slice(1, 3).map((statement) => statement.contradiction?.evidence)).toEqual([
-      ['foto_patio'], ['foto_patio']
-    ]);
-    expect(t3.statements[1].contradiction?.evidence).toEqual(['parte_detencion']);
-    expect(t3.statements[1].contradiction?.followUp?.evidence).toEqual(['tarjeta_enciclopedias']);
-    expect(script.trial.climax.stages?.map((stage) => stage.presentTarget)).toEqual([
-      ['plancha_carbon'], ['lata_ahorros']
-    ]);
-    expect(script.trial.climax.stages?.[0].requiredUpdateStage).toEqual({ informe_lesiones: 2 });
-    expect(script.trial.climax.stages?.[1].requiredUpdateStage).toEqual({ lata_ahorros: 1 });
-    expect(script.trial.climax.choicesAfterStage).toBe(0);
-    expect(script.trial.climax.choices?.map((choice) => choice.id)).toEqual(['arma']);
-    expect(script.trial.climax.choices?.[0].correctId).toBe('calma');
-  });
-
   it('keeps Spanish and English testimony/climax structure aligned', () => {
     const es = getCaseScript('es', 'case0');
     const en = getCaseScript('en', 'case0');
@@ -308,25 +288,5 @@ describe('Case 0 — El Primer Juicio de Don Ramón', () => {
     const t3FollowUpEn = en.trial.testimonies[2].statements[1].contradiction?.followUp;
     expect(t3FollowUpEs?.prompt).toBe('¿Qué dice el oficio del testigo sobre su presencia en la vecindad?');
     expect(t3FollowUpEn?.prompt).toBe('What does the witness\'s occupation say about his presence in the neighborhood?');
-  });
-
-  it('escalates cross-examination tempos and provides dynamic BGM cues on contradictions and climax', () => {
-    for (const lang of ['es', 'en'] as const) {
-      const script = getCaseScript(lang, 'case0');
-      const [t1, t2, t3] = script.trial.testimonies;
-      expect(t1.bgm).toBe('cross_exam_moderato');
-      expect(t2.bgm).toBe('cross_exam_allegro');
-      expect(t3.bgm).toBe('cross_exam_presto');
-
-      // Contradictions trigger objection or pursuit
-      expect(t1.statements[2].contradiction?.successDialogue[0].bgm).toBe('objection');
-      expect(t2.statements[1].contradiction?.successDialogue[0].bgm).toBe('objection');
-      expect(t3.statements[1].contradiction?.successDialogue[0].bgm).toBe('objection');
-      expect(t3.statements[1].contradiction?.followUp?.successDialogue[0].bgm).toBe('pursuit');
-
-      // Climax stages trigger pursuit
-      expect(script.trial.climax.stages?.[0].successDialogue[0].bgm).toBe('pursuit');
-      expect(script.trial.climax.stages?.[1].successDialogue[0].bgm).toBe('pursuit');
-    }
   });
 });

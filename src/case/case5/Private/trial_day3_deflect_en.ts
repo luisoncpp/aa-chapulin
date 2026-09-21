@@ -24,3 +24,10 @@ export const CASE5_D3_T2_HUACAL_DEFLECT_EN: DialogueLine[] = [
   { speaker: 'JUEZ', text: 'Defense: that lid does prove the syndic was there and signed an opening on Saturday the fourth.', pose: 'judge_thinking' },
   { speaker: 'JUEZ', text: 'But being in the deposit does not yet prove he knew about this diligence or that the prosecution notified him. Bring me the order that carries that notice.', pose: 'judge_neutral' }
 ];
+
+/** Statements 5 and 6 of T8: the order proves sending, not receipt. */
+export const CASE5_D3_T3_OFICIO_DEFLECT_EN: DialogueLine[] = [
+  { speaker: 'JUEZ', text: 'Defense: that order proves the prosecution sent notice to the receivership, but not that Counselor Berrondo received it.', pose: 'judge_thinking' },
+  { speaker: 'JUEZ', text: 'That is not yet a contradiction. To refute his claim that nobody told him, you must prove the notice reached his hands.', pose: 'judge_neutral' },
+  { speaker: 'DEFENSA', text: '(The order proves it was sent. We still need to prove it arrived.)', pose: 'chapulin_idle' }
+];

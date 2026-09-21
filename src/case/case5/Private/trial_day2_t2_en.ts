@@ -25,7 +25,7 @@ export const CASE5_TESTIMONY_5_EN: Testimony = {
       id: 'c5_d2t2_1',
       speaker: 'BERRONDO',
       pose: 'berrondo_idle',
-      text: 'I am trustee in bankruptcy 114 diagonal 1971, Enciclopedias El Saber Universal, corporation, since March ninth of that year.',
+      text: 'I am trustee in bankruptcy 114/1971, Enciclopedias El Saber Universal, corporation, since March ninth of that year.',
       pressText: [
         MOMENTO,
         { speaker: 'DEFENSA', text: 'Eleven years with an open proceeding. Is that not a lot?', pose: 'chapulin_point' },
@@ -93,7 +93,7 @@ export const CASE5_TESTIMONY_5_EN: Testimony = {
       id: 'c5_d2t2_5',
       speaker: 'BERRONDO',
       pose: 'berrondo_idle',
-      text: 'And on December fourth I entered at sixteen oh five, reviewed crate nine, and left at sixteen fifty. It is on the ledger.',
+      text: 'And on December fourth I entered at 16:05, reviewed crate nine, and left at 16:50. It is on the ledger.',
       pressText: [
         MOMENTO,
         { speaker: 'DEFENSA', text: 'And why did you go to the basement that day?', pose: 'chapulin_point' },
@@ -102,7 +102,7 @@ export const CASE5_TESTIMONY_5_EN: Testimony = {
         { speaker: 'BERRONDO', text: 'Naturally. An estate asset is not touched without notifying the trustee; that is the first thing you study in bankruptcy law.', pose: 'berrondo_definicion' },
         { speaker: 'DEFENSA', text: '(He says yes without a tremor. Because it is true and because it is legal.)', pose: 'chapulin_idle' },
         { speaker: 'DEFENSA', text: 'And you left at four fifty?', pose: 'chapulin_idle' },
-        { speaker: 'BERRONDO', text: 'At sixteen fifty. It is in the ledger, counselor. Read it yourself.', pose: 'berrondo_idle' },
+        { speaker: 'BERRONDO', text: 'At 16:50. It is in the ledger, counselor. Read it yourself.', pose: 'berrondo_idle' },
         { speaker: 'DEFENSA', text: '(That is what I am going to do.)', pose: 'chapulin_idle' }
       ],
       contradiction: {

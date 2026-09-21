@@ -33,7 +33,7 @@ export const CASE5_CLIMAX_STAGE1: ClimaxStage = {
     { speaker: 'BERRONDO', text: '......', pose: 'berrondo_sweat', bg: 'assets/bg_courtroom.webp' },
     { speaker: 'JUEZ', text: 'La corte permite a la defensa continuar.', sfx: 'gavel', pose: 'judge_gavel' },
     { speaker: 'JUEZ', text: 'Pero le advierto una cosa, licenciado: cuatro datos no son cuatro pruebas.', pose: 'judge_neutral' },
-    { speaker: 'JUEZ', text: 'Este hombre entregó su gafete a las dieciséis cincuenta.', pose: 'judge_thinking' },
+    { speaker: 'JUEZ', text: 'Este hombre entregó su gafete a las 16:50.', pose: 'judge_thinking' },
     { speaker: 'JUEZ', text: 'Dígale a esta corte qué lo autorizaba a seguir dentro de ese edificio después de esa hora.', sfx: 'gavel', pose: 'judge_gavel' }
   ]
 };

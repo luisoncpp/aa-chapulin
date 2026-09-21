@@ -40,7 +40,7 @@ export function queuePenaltyDialogue(deps: PenaltyHost, onResume: () => void): v
   }
   const lines: DialogueLine[] = [
     { cutin: 'objection_protesto', speaker: 'DEFENSA', text: isEn ? 'OBJECTION!' : '¡PROTESTO!', sfx: 'whoosh', pose: roles.defensePointPose },
-    prosecutionPenaltyLine(roles.prosecutionSpeaker, i18n.t.penaltyProsecutionText, roles.prosecutionPose),
+    prosecutionPenaltyLine(roles.prosecutionSpeaker, i18n.t.penaltySecretaryText, roles.prosecutionPose),
     { speaker: 'JUEZ', text: i18n.t.penaltyJudgeText, pose: 'judge_gavel', sfx: 'gavel' }
   ];
   if (deps.state.gameOver) lines.push(...gameOverLines(deps, roles.defensePanicPose));
@@ -68,6 +68,9 @@ function prosecutionPenaltyLine(
   text: string,
   pose: DialogueLine['pose']
 ): DialogueLine {
+  if (speaker === 'SECRETARIO') {
+    return { speaker, text, pose: pose ?? 'secretario_leyendo', bg: 'assets/bg_courtroom.webp' };
+  }
   if (pose) return { speaker, text, pose };
   return { speaker, text };
 }

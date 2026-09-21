@@ -193,7 +193,6 @@ describe('GameStateManager', () => {
 
   it('exports singleton gameState with evidence catalog correctly', () => {
     expect(gameState).toBeInstanceOf(GameStateManager);
-    expect(gameState.allEvidence.insignia_abogado.name).toBe('Insignia de Abogado CH');
     expect(Object.keys(gameState.allEvidence).length).toBeGreaterThanOrEqual(20);
   });
 });

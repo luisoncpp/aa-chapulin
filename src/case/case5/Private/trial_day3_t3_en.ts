@@ -3,8 +3,20 @@
  * Case 5 Trial Day 3 — Testimony 8, Lic. Berrondo under investigation (spec §15.4), English.
  */
 
-import type { DialogueLine, Testimony } from '../../../types/index.js';
+import type { ContradictionRule, DialogueLine, Testimony } from '../../../types/index.js';
+import { CASE5_D3_T3_OFICIO_DEFLECT_EN } from './trial_day3_deflect_en.js';
 import { CASE5_D3_T3_ACUSE_SUCCESS_EN, CASE5_D3_T3_TOMO_SUCCESS_EN } from './trial_day3_success_berrondo_en.js';
+
+// Shared by statements 5 and 6: the acuse resolves from either one.
+const ACUSE_CONTRADICCION_EN: ContradictionRule = {
+  evidence: ['acuse_notificacion'],
+  successDialogue: CASE5_D3_T3_ACUSE_SUCCESS_EN,
+  followUp: {
+    evidence: ['tomo_caido'],
+    prompt: 'Where did the book used to kill that man come from?',
+    successDialogue: CASE5_D3_T3_TOMO_SUCCESS_EN
+  }
+};
 
 const MOMENTO: DialogueLine = {
   speaker: 'DEFENSA',
@@ -18,6 +30,7 @@ export const CASE5_TESTIMONY_8_EN: Testimony = {
   title: 'Testimony: What I did on December 4',
   witness: 'Lic. Berrondo (under investigation)',
   bgm: 'cross_exam_grave',
+  // fallow-ignore-next-line complexity
   statements: [
     {
       id: 'c5_d3t3_1',
@@ -98,7 +111,9 @@ export const CASE5_TESTIMONY_8_EN: Testimony = {
         { speaker: 'BERRONDO', text: 'If you allow me, Your Honor, there is one more thing I should add.', pose: 'berrondo_idle' },
         { speaker: 'JUEZ', text: 'The court wants to hear it! Witness, add it to your testimony.', sfx: 'gavel', pose: 'judge_gavel' },
         { speaker: 'NARRADOR', text: 'A new statement has been added to the testimony.', sfx: 'realization' }
-      ]
+      ],
+      deflect: { evidence: ['oficio_diligencia'], dialogue: CASE5_D3_T3_OFICIO_DEFLECT_EN },
+      contradiction: ACUSE_CONTRADICCION_EN
     },
     {
       id: 'c5_d3t3_6',
@@ -119,15 +134,8 @@ export const CASE5_TESTIMONY_8_EN: Testimony = {
         { speaker: 'DEFENSA', text: '(...He just said nobody told him.)', pose: 'chapulin_idle' },
         { speaker: 'DEFENSA', text: '(And he said it himself, without my asking, to look good.)', pose: 'chapulin_panic' }
       ],
-      contradiction: {
-        evidence: ['acuse_notificacion'],
-        successDialogue: CASE5_D3_T3_ACUSE_SUCCESS_EN,
-        followUp: {
-          evidence: ['tomo_caido'],
-          prompt: 'Where did the book used to kill that man come from?',
-          successDialogue: CASE5_D3_T3_TOMO_SUCCESS_EN
-        }
-      }
+      deflect: { evidence: ['oficio_diligencia'], dialogue: CASE5_D3_T3_OFICIO_DEFLECT_EN },
+      contradiction: ACUSE_CONTRADICCION_EN
     }
   ]
 };

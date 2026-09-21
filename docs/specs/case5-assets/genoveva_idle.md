@@ -10,7 +10,7 @@ Activo compartido por ES/EN: no existe `genoveva_idle_en`. La pose no contiene t
 - Identidad visual compartida: mujer de 38 años, estatura media y porte rígido; cabello castaño oscuro en chongo bajo muy apretado; anteojos rectangulares de pasta negra; cara ovalada; labios finos con lápiz coral discreto; blusa blanca de cuello camisero abotonada hasta arriba con broche de camafeo; suéter gris ratón sobre los hombros, abrochado sólo en el primer botón; reloj pequeño en la muñeca izquierda y lápiz detrás de la oreja derecha (spec §23.2.C).
 - Objeto inseparable: carpeta de hule negro apretada contra el pecho con el brazo izquierdo. Es su soporte visual de registro y la diferencia estructural frente a las otras poses (spec §23.2.C).
 - Estado de esta pose: neutral, atenta y perfectamente compuesta; barbilla ligeramente levantada, hombros cuadrados y manos sin el gesto de recitar, sudar o perder la compostura (spec §23.2.C; §17.2).
-- Función narrativa: la pose acompaña sus respuestas sobrias sobre el libro de peritos, gafetes, credenciales y vales; las revelaciones emocionales del encabezado incorrecto pertenecen a las otras poses (spec §23.2.C; `trial_day4_success.ts:53-71,86-94`).
+- Función narrativa: la pose acompaña sus respuestas sobrias sobre el libro de peritos, gafetes, credenciales y vales; las revelaciones emocionales del encabezado incorrecto pertenecen a las otras poses (spec §23.2.C; `trial_day4_success.ts:54-72,86-94`).
 
 ## Hechos a verificar
 
@@ -33,20 +33,20 @@ Activo compartido por ES/EN: no existe `genoveva_idle_en`. La pose no contiene t
 
 ### F3 Cifras/fechas/horas
 
-- [ ] `NO CONTRADECIR` — La identidad canónica fija 38 años; el guion de presentación fija trece años en la ventanilla. Ninguna cifra debe aparecer pintada en el sprite (spec §23.2.C; `docs/specs/case-5-el-tomo-trece.md:3113`; `trial_day4_success.ts:48`; `trial_day4_success_en.ts:48`).
+- [ ] `NO CONTRADECIR` — La identidad canónica fija 38 años; el guion de presentación fija trece años en la ventanilla. Ninguna cifra debe aparecer pintada en el sprite (spec §23.2.C; `docs/specs/case-5-el-tomo-trece.md:3113`; `trial_day4_success.ts:49`; `trial_day4_success_en.ts:49`).
 - [ ] `NO CONTRADECIR` — Las horas 16:05 y 16:50, el cuatro de diciembre, el libro de peritos y los vales del 29 de noviembre son hechos narrados, no texto obligatorio dentro de la pose (`docs/specs/case-5-el-tomo-trece.md:3125-3129,3246-3248`; `trial_day4_t1.ts:42-43,66-68,101-111`).
-- [ ] `NO CONTRADECIR` — La pose idle conserva la compostura hasta que el guion cambia explícitamente a `genoveva_sweat` o `genoveva_shock`; no anticipar que la testigo descubre el encabezado de «Hora de devolución de gafete» (spec §23.2.C; `trial_day4_success.ts:56-62`).
+- [ ] `NO CONTRADECIR` — La pose idle conserva la compostura hasta que el guion cambia explícitamente a `genoveva_sweat` o `genoveva_shock`; no anticipar que la testigo descubre el encabezado de «Hora de devolución de gafete» (spec §23.2.C; `trial_day4_success.ts:57-63`).
 
 ### F4 Contrato en pantalla
 
-- [ ] `PINTAR` — En la presentación ante el estrado, idle muestra a la encargada de la ventanilla de peritos y auxiliares, con su nombre, ocupación y trece años de servicio; la imagen debe leer como una testigo profesional y contenida (`docs/specs/case-5-el-tomo-trece.md:3113-3114`; `trial_day4_success.ts:46-49`; `trial_day4_success_en.ts:46-49`).
+- [ ] `PINTAR` — En la presentación ante el estrado, idle muestra a la encargada de la ventanilla de peritos y auxiliares, con su nombre, ocupación y trece años de servicio; la imagen debe leer como una testigo profesional y contenida (`docs/specs/case-5-el-tomo-trece.md:3113-3114`; `trial_day4_success.ts:47-50`; `trial_day4_success_en.ts:47-50`).
 - [ ] `PINTAR` — Durante las respuestas «No, señor», «Tampoco», «Jamás» y «Ninguna», idle sostiene precisión y neutralidad, no comicidad visual (`docs/specs/case-5-el-tomo-trece.md:3138-3154`; `trial_day4_t1.ts:30-32,48-50`).
 - [ ] `PINTAR` — Idle acompaña la explicación de que el gafete es una placa de latón numerada con cordón para las salas de lectura del primer piso y que una credencial de síndico la expide y conserva un juez (`docs/specs/case-5-el-tomo-trece.md:3163-3167`; `trial_day4_t1.ts:66-76`; `trial_day4_t1_en.ts:66-76`).
 - [ ] `PINTAR` — Idle acompaña que ella escribe la hora cuando le ponen el gafete en el mostrador, que puede ver a la persona sólo si espera el recibo y que después vuelve a su trabajo (`docs/specs/case-5-el-tomo-trece.md:3176-3180`; `trial_day4_t1.ts:83-93`; `trial_day4_t1_en.ts:83-93`).
 - [ ] `PINTAR` — Idle acompaña la definición del vale: papeleta que firma quien mueve, abre o consulta un bien depositado, con fecha, nombre, número de huacal y rótulo exacto (`docs/specs/case-5-el-tomo-trece.md:3190-3194`; `trial_day4_t1.ts:101-111`; `trial_day4_t1_en.ts:101-111`).
-- [ ] `PINTAR` — En la resolución de `libro_peritos`, idle puede acompañar el «...Sí la tiene» y el «Es lo que dice el papel», pero no debe representar el sudor o shock que el guion reserva para el descubrimiento del encabezado (`trial_day4_success.ts:53-71`; `trial_day4_success_en.ts:53-71`).
-- [ ] `PINTAR` — En la resolución de `fichero_cedulario`, idle acompaña la lectura del vale de Berrondo y su rótulo exacto; el shock de «Cajón: Donceles a Espanto» pertenece a `genoveva_shock` (`trial_day4_success.ts:86-94`; `trial_day4_success_en.ts:86-94`).
-- [ ] `NO CONTRADECIR` — La carpeta de hule negro de la identidad debe poder coexistir con la carpeta de vales que entrega al tribunal al final del testimonio; la escena exige que la testigo quede a disposición y que esa carpeta quede bajo resguardo, sin que idle anticipe la entrega ni la haga desaparecer (`docs/specs/case-5-el-tomo-trece.md:3243-3248`; `trial_day4_success.ts:88-105`).
+- [ ] `PINTAR` — En la resolución de `libro_peritos`, idle puede acompañar el «...Sí la tiene» y el «Es lo que dice el papel», pero no debe representar el sudor o shock que el guion reserva para el descubrimiento del encabezado (`trial_day4_success.ts:54-72`; `trial_day4_success_en.ts:54-72`).
+- [ ] `PINTAR` — En la resolución de `fichero_cedulario`, idle acompaña la lectura del vale de Berrondo y su rótulo exacto; el shock de «Cajón: Donceles a Espanto» pertenece a `genoveva_shock` (`trial_day4_success.ts:87-95`; `trial_day4_success_en.ts:87-95`).
+- [ ] `NO CONTRADECIR` — La carpeta de hule negro de la identidad debe poder coexistir con la carpeta de vales que entrega al tribunal al final del testimonio; la escena exige que la testigo quede a disposición y que esa carpeta quede bajo resguardo, sin que idle anticipe la entrega ni la haga desaparecer (`docs/specs/case-5-el-tomo-trece.md:3243-3248`; `trial_day4_success.ts:89-106`).
 
 ### F5 Estilo
 
@@ -67,7 +67,7 @@ Activo compartido por ES/EN: no existe `genoveva_idle_en`. La pose no contiene t
 
 ## Conflictos abiertos
 
-- El testimonio inicial dice que el libro tiene «hora de entrada y hora de salida», mientras la contradicción resolutoria establece que la segunda columna dice exactamente «Hora de devolución de gafete» y que el libro no acredita quién permanecía dentro (`docs/specs/case-5-el-tomo-trece.md:3126-3128,3205-3221`; `trial_day4_success.ts:53-71`). Es una contradicción deliberada del guion, no un detalle que deba imprimirse en `genoveva_idle`; la pose debe permanecer neutral hasta el cambio explícito de sprite.
+- El testimonio inicial dice que el libro tiene «hora de entrada y hora de salida», mientras la contradicción resolutoria establece que la segunda columna dice exactamente «Hora de devolución de gafete» y que el libro no acredita quién permanecía dentro (`docs/specs/case-5-el-tomo-trece.md:3126-3128,3205-3221`; `trial_day4_success.ts:54-72`). Es una contradicción deliberada del guion, no un detalle que deba imprimirse en `genoveva_idle`; la pose debe permanecer neutral hasta el cambio explícito de sprite.
 - El perfil dice que Genoveva «lleva el segundo libro del edificio», mientras el testimonio habla de un libro con vales y luego de una carpeta de papeletas. El spec no exige que esos documentos aparezcan como parte del sprite; tratarlos como utilería de escena, no como texto o accesorio adicional del candado (§6.1, §17.2; `ProfileCatalogCase5Es.ts:79-81`; `docs/specs/case-5-el-tomo-trece.md:3190-3194,3243-3248`).
 
 ## Hallazgos de auditoría 2026-09-19

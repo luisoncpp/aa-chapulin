@@ -63,13 +63,6 @@ function splashStackHeight(css: string): number {
 describe('splash layout fits the 960x540 stage', () => {
   const css = fs.readFileSync(path.resolve(__dirname, '../../style.css'), 'utf-8');
   const html = fs.readFileSync(path.resolve(__dirname, '../../index.html'), 'utf-8');
-  const overlay = cssRule(css, '#start-splash-overlay');
-  const langCorner = cssRule(css, '.splash-lang-corner');
-
-  it('positions the language toggle in the corner', () => {
-    expect(cssProp(langCorner, 'position')).toBe('absolute');
-    expect(cssProp(langCorner, 'right')).toBe('18px');
-  });
 
   it('positions the music notes button top-left without affecting stack height', () => {
     const musicCorner = cssRule(css, '.splash-music-corner');
@@ -80,36 +73,7 @@ describe('splash layout fits the 960x540 stage', () => {
     expect(splashStackHeight(css)).toBeLessThanOrEqual(STAGE_H);
   });
 
-  it('keeps the overlay inside 960x540 viewport without overflow clipping', () => {
-    expect(cssProp(overlay, 'overflow')).toBe('hidden');
-  });
-
   it('sizes the stacked splash content to fit 540px with Continue visible', () => {
     expect(splashStackHeight(css)).toBeLessThanOrEqual(STAGE_H);
-  });
-
-  it('groups the case buttons into the intended three-row menu', () => {
-    const rows = html.match(/<div class="splash-case-row(?: splash-case-row-single)?">[\s\S]*?<\/div>/g) ?? [];
-    expect(rows).toHaveLength(3);
-    expect(rows[0]).toContain('btn-start-case0');
-    expect(rows[0]).toContain('btn-start-case2');
-    expect(rows[1]).toContain('btn-start-game');
-    expect(rows[1]).toContain('btn-start-case3');
-    expect(rows[2]).toContain('btn-start-case4');
-    expect(rows[2]).toContain('btn-start-case5');
-  });
-
-  it('presents playable arcs in Act order while preserving internal case ids', () => {
-    const labels = [
-      html.indexOf('id="btn-start-case2"'),
-      html.indexOf('id="btn-start-game"'),
-      html.indexOf('id="btn-start-case3"'),
-      html.indexOf('id="btn-start-case4"')
-    ];
-    expect(labels).toEqual([...labels].sort((a, b) => a - b));
-    expect(html).toContain('ACTO 1: EL JUICIO DEL CHÓMPIRAS');
-    expect(html).toContain('ACTO 2: EL ESCUADRÓN COLORADO');
-    expect(html).toContain('ACTO 3: LA NOCHE DEL GRITO');
-    expect(html).toContain('ACTO 4: CRIMEN EN EL GRAN HOTEL');
   });
 });

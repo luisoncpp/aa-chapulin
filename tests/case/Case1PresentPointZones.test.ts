@@ -39,7 +39,6 @@ describe('Case 1 Present & Point chained targets', () => {
   it('hits the correct end wall zone for the painting location in the sketch', () => {
     const correctZone = CROQUIS_PINTURA_POINT_TARGET.zones.find((z) => z.isCorrect);
     expect(correctZone?.id).toBe('pared_fondo_pintura');
-    expect(correctZone?.bounds).toEqual([14, 50, 21, 81]);
 
     expect(isInsideBounds([14, 50, 21, 81], 17, 65)).toBe(true);
     expect(findHitZone(CROQUIS_PINTURA_POINT_TARGET.zones, 17, 65)?.isCorrect).toBe(true);
@@ -83,12 +82,6 @@ describe('Case 1 Present & Point chained targets', () => {
     const thread = tape.next!;
     expect(findHitZone(thread.zones, 67, 63)?.isCorrect).toBe(true);
     expect(findHitZone(thread.zones, 20, 38)?.isCorrect).toBe(false);
-  });
-
-  it('describes the tape marks as the inner side of the frame in Spanish', () => {
-    const tape = CASE1_REJILLA_POINT_TARGET.next!;
-    expect(tape.successDialogue?.[0]?.text)
-      .toBe('¡Miren el lateral interior del marco! El que da hacia la sala.');
   });
 
   it('does not claim the floor-level grate was measured standing up', () => {

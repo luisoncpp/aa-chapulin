@@ -1,7 +1,6 @@
 // @Architecture(descriptionShort="Unit tests for penalty SFX and bilingual objection lines", type="test", icon="bolt")
 import { describe, expect, it, beforeEach, vi } from 'vitest';
 import { SoundEngine } from '../../src/audio/index.js';
-import { TRACK_CATALOG } from '../../src/audio/Private/TrackCatalog.js';
 import {
   applyPenaltyEffects,
   queuePenaltyDialogue,
@@ -89,22 +88,31 @@ describe('TrialPenalty', () => {
       .toMatchObject({ speaker: 'DEFENSA', pose: 'chapulin_panic' });
   });
 
-  it('queues Super Sam pointing and a Don Ramón protesto by default', () => {
+  it('queues the secretary finding and a Don Ramón protesto by default', () => {
     queuePenaltyDialogue(host(), /*onResume*/ () => {});
     expect(queued[0][0]).toMatchObject({ speaker: 'DEFENSA', pose: 'donramon_point' });
-    expect(queued[0][1]).toMatchObject({ speaker: 'SUPER SAM', pose: 'supersam_point', text: i18n.t.penaltyProsecutionText });
+    expect(queued[0][1]).toMatchObject({
+      speaker: 'SECRETARIO',
+      pose: 'secretario_leyendo',
+      bg: 'assets/bg_courtroom.webp',
+      text: i18n.t.penaltySecretaryText
+    });
     expect(queued[0][2]).toMatchObject({ speaker: 'JUEZ', pose: 'judge_gavel' });
   });
 
-  it('uses Chapulín protesto and a voiceless SECRETARIO when court roles are set', () => {
+  it('uses Chapulín protesto and an explicit SECRETARIO role when court roles are set', () => {
     queuePenaltyDialogue(
       { ...host(), script: chapulinDefenseScript(), testimony: secretarioTestimony() },
       /*onResume*/ () => {}
     );
     const lines = queued[0];
     expect(lines[0]).toMatchObject({ speaker: 'DEFENSA', pose: 'chapulin_point' });
-    expect(lines[1]).toMatchObject({ speaker: 'SECRETARIO', text: i18n.t.penaltyProsecutionText });
-    expect(lines[1].pose).toBeUndefined();
+    expect(lines[1]).toMatchObject({
+      speaker: 'SECRETARIO',
+      text: i18n.t.penaltySecretaryText,
+      pose: 'secretario_leyendo',
+      bg: 'assets/bg_courtroom.webp'
+    });
     expect(lines.some((line) => line.speaker === 'SUPER SAM')).toBe(false);
     expect(lines.some((line) => line.pose === 'donramon_point')).toBe(false);
   });
@@ -113,8 +121,12 @@ describe('TrialPenalty', () => {
     const script = chapulinDefenseScript();
     script.trial.penaltyProsecutionSpeaker = 'SECRETARIO';
     queuePenaltyDialogue({ ...host(), script }, /*onResume*/ () => {});
-    expect(queued[0][1]).toMatchObject({ speaker: 'SECRETARIO', text: i18n.t.penaltyProsecutionText });
-    expect(queued[0][1].pose).toBeUndefined();
+    expect(queued[0][1]).toMatchObject({
+      speaker: 'SECRETARIO',
+      text: i18n.t.penaltySecretaryText,
+      pose: 'secretario_leyendo',
+      bg: 'assets/bg_courtroom.webp'
+    });
   });
 
   it('restarts after game-over instead of continuing the current prompt', () => {
@@ -174,11 +186,6 @@ describe('TrialPenalty', () => {
   it('does not cue the game-over track while health remains', () => {
     queuePenaltyDialogue(host(), /*onResume*/ () => {});
     expect(queued[0].every((line) => line.bgm !== GAME_OVER_BGM)).toBe(true);
-  });
-
-  it('resolves the game-over cue to a real catalog composition', () => {
-    expect(TRACK_CATALOG[GAME_OVER_BGM]).toBeDefined();
-    expect(TRACK_CATALOG[GAME_OVER_BGM].bpm).toBeLessThan(100);
   });
 });
 

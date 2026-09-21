@@ -12,7 +12,7 @@ export const CASE5_BERRONDO_HOTSPOTS: Hotspot[] = [
     x: 0, y: 28, w: 28, h: 42,
     dialogue: [
       { speaker: 'NARRADOR', text: 'Una vitrina de caoba con tres legajos exhibidos como si fueran trofeos, y un marco con una credencial.' },
-      { speaker: 'DEFENSA', text: '«Fulgencio Berrondo. Síndico. Quiebra 114 diagonal 1971.»', pose: 'chapulin_idle' },
+      { speaker: 'DEFENSA', text: '«Fulgencio Berrondo. Síndico. Quiebra 114/1971.»', pose: 'chapulin_idle' },
       { speaker: 'BERRONDO', text: 'Enciclopedias El Saber Universal, Sociedad Anónima. Mi primera sindicatura y la última que me queda abierta.', pose: 'berrondo_idle' },
       { speaker: 'DEFENSA', text: '¿Once años abierta?', pose: 'chapulin_panic' },
       { speaker: 'BERRONDO', text: 'Once años, casi nueve meses. Hay acreedores que murieron esperando y herederos que no aparecen.', pose: 'berrondo_idle' },

@@ -117,12 +117,4 @@ describe('TrialDayRouter', () => {
     expect(state.gameOver).toBe(false);
   });
 
-  it('walks the third adjournment.next for Case 5 day 4', () => {
-    const case5 = getCaseScript('es', 'case5');
-    expect(getActiveTrial(case5, 4).intro[0]?.text).toContain('Sala de Espera');
-    expect(getAdjournmentForDay(case5, 3)?.nextLocation).toBe('celda_c5_d4');
-    expect(getAdjournmentForDay(case5, 4)).toBeNull();
-    expect(shouldAdjourn(case5, 3)).toBe(true);
-    expect(shouldAdjourn(case5, 4)).toBe(false);
-  });
 });

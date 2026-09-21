@@ -87,11 +87,11 @@ export const CASE5_D2_T1_RECIBO_SUCCESS: DialogueLine[] = [
 
 export const CASE5_D2_T2_LIBRO_SUCCESS: DialogueLine[] = [
   { cutin: 'objection_protesto', speaker: 'DEFENSA', text: '¡PROTESTO!', sfx: 'desk_slam', bgm: 'objection', pose: 'chapulin_slam' },
-  { speaker: 'DEFENSA', text: 'Señor juez, el testigo acaba de decir «salí a las dieciséis cincuenta».', pose: 'chapulin_point' },
+  { speaker: 'DEFENSA', text: 'Señor juez, el testigo acaba de decir «salí a las 16:50».', pose: 'chapulin_point' },
   { speaker: 'DEFENSA', text: 'Ese libro no tiene columna de salida.', pose: 'chapulin_slam', sfx: 'desk_slam' },
   { speaker: 'JUEZ', text: '¿Cómo dice?', pose: 'judge_shock' },
   { speaker: 'DEFENSA', text: 'Tiene dos columnas, señor juez, y están impresas: «hora de entrada» y «hora de devolución de gafete».', pose: 'chapulin_point' },
-  { speaker: 'DEFENSA', text: 'Lo que este libro registra a las dieciséis cincuenta no es que alguien saliera del edificio. Es que alguien entregó un gafete en una ventanilla.', pose: 'chapulin_idle' },
+  { speaker: 'DEFENSA', text: 'Lo que este libro registra a las 16:50 no es que alguien saliera del edificio. Es que alguien entregó un gafete en una ventanilla.', pose: 'chapulin_idle' },
   { speaker: 'NARRADOR', text: 'Murmullo en la galería.', sfx: 'realization' },
   { speaker: 'SUPER SAM', text: '¡Objection! ¡Es la misma cosa! ¡Uno entrega el gafete y se va!', pose: 'supersam_slam', sfx: 'desk_slam' },
   { speaker: 'DEFENSA', text: 'Uno normalmente se va, señor fiscal. Eso no es lo mismo que constar.', pose: 'chapulin_point' },

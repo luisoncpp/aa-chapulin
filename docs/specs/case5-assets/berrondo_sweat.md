@@ -26,14 +26,14 @@ Alias y candados seguidos: Berrondo, Lic. Fulgencio Berrondo, leontina de oro, l
 ### F3 Cifras/fechas/horas
 
 - [ ] `NO CONTRADECIR` — La pose aparece después de que el guion identifica la primera gota de sudor en tres jornadas; no convertir la gota en una condición previa a ese momento (`trial_day3_success_berrondo.ts:21-25`; EN `trial_day3_success_berrondo_en.ts:21-25`).
-- [ ] `NO CONTRADECIR` — En el día 4 la defensa dice que Berrondo está sudando desde ayer; la pose puede reutilizarse como continuidad del mismo sudor, sin aumentar la cantidad de gotas ni cambiarlo a pánico (`trial_day4_success.ts:74-75`; EN `trial_day4_success_en.ts:74-75`).
+- [ ] `NO CONTRADECIR` — En el día 4 la defensa dice que Berrondo está sudando desde ayer; la pose puede reutilizarse como continuidad del mismo sudor, sin aumentar la cantidad de gotas ni cambiarlo a pánico (`trial_day4_success.ts:75-76`; EN `trial_day4_success_en.ts:75-76`).
 - [ ] `NO CONTRADECIR` — Las cifras de doscientos acuses al mes y la devolución del gafete a las 16:50 pertenecen al diálogo mostrado junto a la pose, no deben imprimirse en el sprite (`trial_day3_success_berrondo.ts:25`; `docs/specs/case-5-el-tomo-trece.md:238`; §24.A–§24.B).
 
 ### F4 Contrato en pantalla
 
 - [ ] `PINTAR` — En D3-T3, Berrondo usa esta pose al responder «Acabo de declararlo» y al admitir que firma doscientos acuses al mes; la gota es la primera señal visible de que la compostura empieza a fallar (`trial_day3_success_berrondo.ts:21-25`; EN `trial_day3_success_berrondo_en.ts:21-25`).
 - [ ] `PINTAR` — En el mismo bloque, la pose vuelve a aparecer durante la reacción de silencio/contención de Berrondo; debe seguir siendo sobria y consistente, no transformarse en `berrondo_panic` (`trial_day3_success_berrondo.ts:25`; `climax_stage1.ts:30-33`; EN equivalentes).
-- [ ] `NO CONTRADECIR` — En D4, Berrondo utiliza la pose al afirmar que nada de lo discutido estaba oculto y después del hallazgo del registro de noviembre; debe comunicar presión sostenida desde el día anterior (`trial_day4_success.ts:74,98`; EN `trial_day4_success_en.ts:74,98`).
+- [ ] `NO CONTRADECIR` — En D4, Berrondo utiliza la pose al afirmar que nada de lo discutido estaba oculto y después del hallazgo del registro de noviembre; debe comunicar presión sostenida desde el día anterior (`trial_day4_success.ts:75,99`; EN `trial_day4_success_en.ts:75,99`).
 - [ ] `NO CONTRADECIR` — En el clímax E1/E2/E3, esta pose acompaña rectificaciones y la frase «Un estante incompleto es un desorden»; el personaje todavía conserva verticalidad, tomo y traje, porque la pérdida de verticalidad y el tomo ausente pertenecen a `berrondo_panic` (§23.2.A; `climax_stage1.ts:30-33`; `climax_stage2.ts:26`; `climax_stage3_success.ts:45-46`; variantes EN equivalentes).
 - [ ] `AUSENTE` — No dibujar lentes torcidos, hombros adelantados, mano abierta sobre la mesa, boca abierta, leontina rota, chaleco desabotonado, cabello despeinado, papeles volando ni saliva; esos cambios pertenecen a `berrondo_panic` o `berrondo_breakdown` (§23.2.A).
 
@@ -47,7 +47,7 @@ Alias y candados seguidos: Berrondo, Lic. Fulgencio Berrondo, leontina de oro, l
 ### F6 Localización
 
 - [ ] `NO CONTRADECIR` — ES y EN comparten exactamente la misma composición, silueta, gesto, ropa, gota y accesorios; sólo cambia el diálogo (`trial_day3_success_berrondo.ts` / `_en.ts`, `trial_day4_success.ts` / `_en.ts`).
-- [ ] `AUSENTE` — No localizar texto porque el sprite no contiene texto legible; las cadenas «Primera gota de sudor en tres jornadas» / «First drop of sweat in three days» y «Está sudando. Desde ayer» / «He is sweating. He has been sweating since yesterday» viven en el guion, no en la imagen (`trial_day3_success_berrondo.ts:22`; `trial_day4_success.ts:75`; variantes EN equivalentes).
+- [ ] `AUSENTE` — No localizar texto porque el sprite no contiene texto legible; las cadenas «Primera gota de sudor en tres jornadas» / «First drop of sweat in three days» y «Está sudando. Desde ayer» / «He is sweating. He has been sweating since yesterday» viven en el guion, no en la imagen (`trial_day3_success_berrondo.ts:22`; `trial_day4_success.ts:76`; variantes EN equivalentes).
 
 ## Consistencia (regenerar juntos)
 
@@ -60,7 +60,7 @@ Alias y candados seguidos: Berrondo, Lic. Fulgencio Berrondo, leontina de oro, l
 
 ## Conflictos abiertos
 
-- No se detecta conflicto entre el arte y el guion para esta pose: «primera gota» aparece en D3 y «está sudando desde ayer» en D4, una continuidad temporal compatible (`trial_day3_success_berrondo.ts:22`; `trial_day4_success.ts:75`; variantes EN equivalentes).
+- No se detecta conflicto entre el arte y el guion para esta pose: «primera gota» aparece en D3 y «está sudando desde ayer» en D4, una continuidad temporal compatible (`trial_day3_success_berrondo.ts:22`; `trial_day4_success.ts:76`; variantes EN equivalentes).
 - La pose se usa también en `climax_stage1`, `climax_stage2` y `climax_stage3_success`, pero §23.2.A define su estado estable y reserva la escalada física a `berrondo_panic`/`berrondo_breakdown`; la hoja conserva esa separación en lugar de inferir cambios no descritos.
 
 ## Hallazgos de auditoría 2026-09-19

@@ -10,7 +10,7 @@ export const CASE5_D3_T2_OFICIO_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'DEFENSA', text: 'Your Honor, official letter 4471 was signed by the prosecutor himself on November 26.', pose: 'chapulin_point' },
   { speaker: 'DEFENSA', text: 'And down at the bottom is the list of who was sent a copy, printed on his own office machine.', pose: 'chapulin_idle' },
   { speaker: 'DEFENSA', text: '"Copy to: the assigned court clerk. The Archive Directorate. And..."', pose: 'chapulin_idle' },
-  { speaker: 'DEFENSA', text: '"...the Syndicate for bankruptcy 114 diagonal 1971."', pose: 'chapulin_slam', sfx: 'desk_slam', cutin: 'objection_toma_eso' },
+  { speaker: 'DEFENSA', text: '"...the Syndicate for bankruptcy 114/1971."', pose: 'chapulin_slam', sfx: 'desk_slam', cutin: 'objection_toma_eso' },
   { speaker: 'NARRADOR', text: 'The gallery rises.', sfx: 'realization', bgm: 'objection' },
   { speaker: 'SUPER SAM', text: '...What?', pose: 'supersam_sweat' },
   { speaker: 'JUEZ', text: 'ORDER!', sfx: 'gavel', pose: 'judge_gavel' },
@@ -51,7 +51,6 @@ export const CASE5_D3_T2_EXPEDIENTE_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'DEFENSA', text: 'Mr. Prosecutor, you thought someone had given you an envelope.', pose: 'chapulin_point' },
   { speaker: 'DEFENSA', text: 'What they gave you was line six of a catalog.', pose: 'chapulin_slam', sfx: 'desk_slam', cutin: 'objection_toma_eso' },
   { speaker: 'SUPER SAM', text: 'I AM NOT A LINE ITEM!', pose: 'supersam_breakdown', sfx: 'desk_slam' },
-  { speaker: 'NARRADOR', text: 'The prosecutor folds over the rail.', sfx: 'realization' },
   { speaker: 'SUPER SAM', text: 'I am a man who charges! Charging is not being a product!', pose: 'supersam_breakdown' },
   { speaker: 'DEFENSA', text: 'With a price and a duration, Mr. Prosecutor. Five minutes.', pose: 'chapulin_idle' },
   { speaker: 'DEFENSA', text: 'In your country, they call that a rate.', pose: 'chapulin_idle' },
@@ -64,6 +63,6 @@ export const CASE5_D3_T2_EXPEDIENTE_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'SUPER SAM', text: '...Thank you, Your Honor.', pose: 'supersam_sweat' },
   { speaker: 'DEFENSA', text: '(And now. Now only the man with the watch chain is left.)', pose: 'chapulin_idle' },
   { speaker: 'JUEZ', text: 'Counselor Berrondo. This court orders you to testify, and warns you it is no longer as co-counsel.', sfx: 'gavel', pose: 'judge_gavel' },
-  { speaker: 'BERRONDO', text: 'With pleasure, Your Honor. And thank you for ordering it: this way it does not look like I am running.', pose: 'berrondo_idle', bg: 'assets/bg_courtroom.webp' },
+  { speaker: 'BERRONDO', text: 'With pleasure, Your Honor. And thank you for ordering it: this way it does not look like I am running.', pose: 'berrondo_idle' },
   { speaker: 'JUEZ', text: 'You may testify.', sfx: 'gavel', pose: 'judge_gavel' }
 ];

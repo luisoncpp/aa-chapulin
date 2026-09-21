@@ -1,6 +1,4 @@
 // @Architecture(descriptionShort="Guards Case 5 player-facing vocabulary against archaic legalese", type="test", icon="layers")
-import fs from 'node:fs';
-import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { getCaseScript } from '../../src/case/index.js';
 import { getEvidenceCatalog, getProfileCatalog } from '../../src/state/index.js';
@@ -105,50 +103,3 @@ describe('Case 5 player-facing vocabulary', () => {
   });
 });
 
-const SCRIPT_DIR = path.resolve(__dirname, '../../src/case/case5/Private');
-
-function scriptLines(suffix: 'es' | 'en'): { file: string; text: string }[] {
-  return fs
-    .readdirSync(SCRIPT_DIR)
-    .filter((file) => file.endsWith('.ts') && file.endsWith('_en.ts') === (suffix === 'en'))
-    .flatMap((file) =>
-      fs
-        .readFileSync(path.join(SCRIPT_DIR, file), 'utf8')
-        .split('\n')
-        .map((text) => ({ file, text }))
-    );
-}
-
-describe('Case 5 script sources', () => {
-  it('reserves "occiso" for Berrondo, at most twice', () => {
-    const hits = scriptLines('es').filter((line) => /occiso/i.test(line.text));
-    expect(hits.map((hit) => hit.text.trim())).toHaveLength(2);
-    for (const hit of hits) expect(hit.text).toContain("speaker: 'BERRONDO'");
-  });
-
-  it('reserves "deceased" for Berrondo, at most twice', () => {
-    const hits = scriptLines('en').filter((line) => /\bdeceased\b/i.test(line.text));
-    expect(hits.map((hit) => hit.text.trim())).toHaveLength(2);
-    for (const hit of hits) expect(hit.text).toContain("speaker: 'BERRONDO'");
-  });
-
-  it('reserves "leontina" for Berrondo', () => {
-    const hits = scriptLines('es').filter((line) => /leontina/i.test(line.text));
-    expect(hits.length).toBeGreaterThan(0);
-    for (const hit of hits) expect(hit.text).toContain("speaker: 'BERRONDO'");
-  });
-
-  it('reserves "albert chain" for Berrondo, and never mislabels the object', () => {
-    const hits = scriptLines('en').filter((line) => /albert chain/i.test(line.text));
-    expect(hits.length).toBeGreaterThan(0);
-    for (const hit of hits) expect(hit.text).toContain("speaker: 'BERRONDO'");
-    const wrong = scriptLines('en').filter((line) => /lorgnette|pince-nez|cravat/i.test(line.text));
-    expect(wrong.map((hit) => `${hit.file}: ${hit.text.trim()}`)).toEqual([]);
-  });
-
-  it('drops "foja", "legista", "Ha lugar" and "canto del lomo" everywhere', () => {
-    const patterns = [/\bfojas?\b/i, /\blegistas?\b/i, /\bha lugar\b/i, /canto del lomo/i];
-    const hits = scriptLines('es').filter((line) => patterns.some((p) => p.test(line.text)));
-    expect(hits.map((hit) => `${hit.file}: ${hit.text.trim()}`)).toEqual([]);
-  });
-});

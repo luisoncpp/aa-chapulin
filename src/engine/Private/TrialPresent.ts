@@ -82,7 +82,7 @@ export function resolveOpeningPresent(ctrl: TrialController, opening: OpeningPre
 }
 
 export function openingPenalty(ctrl: TrialController): void {
-  onPresentPenalty(ctrl, reopenRecord(ctrl));
+  onPresentPenalty(ctrl, reopenRecord(ctrl), { allowPressHint: false });
 }
 
 export function afterTrialIntro(ctrl: TrialController): void {
@@ -122,7 +122,7 @@ function tryOpeningPresent(ctrl: TrialController, evidenceId: EvidenceId): boole
   const opening = pending.get(ctrl)?.opening;
   if (!opening) return false;
   if (!opening.evidence?.includes(evidenceId)) {
-    onPresentPenalty(ctrl, reopenRecord(ctrl));
+    onPresentPenalty(ctrl, reopenRecord(ctrl), { allowPressHint: false });
     return true;
   }
   resolveOpeningPresent(ctrl, opening);
@@ -133,7 +133,7 @@ function tryFollowUpPresent(ctrl: TrialController, evidenceId: EvidenceId): bool
   const followUp = pending.get(ctrl)?.followUp;
   if (!followUp) return false;
   if (!followUp.evidence?.includes(evidenceId)) {
-    onPresentPenalty(ctrl, reopenRecord(ctrl));
+    onPresentPenalty(ctrl, reopenRecord(ctrl), { allowPressHint: false });
     return true;
   }
   delete slot(ctrl).followUp;

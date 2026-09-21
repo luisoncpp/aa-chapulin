@@ -160,7 +160,7 @@ RAW auditado: `tools/raw/case5/bg_bodega_masa.jpg` (1536 × 1024); WebP final: `
 - Compartimento lateral de libros de lujo encuadernados en piel; Olivetti negra al fondo, funda de hule parcial, carro cromado y marca blanca `41` (F1/F2/F4; `bodega_masa_hotspots.ts:57-72`).
 - Pata de cabra reconocible colgada de un clavo en la viga; escalera de servicio y reja de montacargas al fondo izquierdo (F1; `bodega_masa_hotspots.ts:79`; §24.B).
 - Sin personajes, pasillo 7, UI, horas, fechas o rótulos explicativos; sin texto inglés ni tonos rosa/magenta en primer plano (F2/F3/F5/F6).
-- Los tres hotspots ahora caen sobre su objeto pintado en el cover 960×540: tapa `65,54,24,44`, cajones `27,54,29,32`, máquina `45,45,23,24`; ES/EN son idénticos y el test de geometría pasa (F4/F6; `bodega_masa_hotspots.ts`, `_en.ts`, `tests/case/Case5Hotspots.test.ts`).
+- Los tres hotspots ahora caen sobre su objeto pintado en el cover 960×540: tapa `65,54,24,44`, cajones `27,54,29,32`, máquina `45,45,23,24`; ES/EN son idénticos y el test de geometría pasa (F4/F6; `bodega_masa_hotspots.ts`, `_en.ts`, `tests/case/ScriptIntegrity.test.ts`).
 
 ### Defectos confirmados
 

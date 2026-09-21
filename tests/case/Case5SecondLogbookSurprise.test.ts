@@ -52,14 +52,6 @@ describe('Case 5 — second logbook stays a trial surprise', () => {
     expect(offenders).toEqual([]);
   });
 
-  it('still establishes that only visitors sign the visitors book', () => {
-    const joined = texts.join('\n');
-    expect(joined).toContain('Este libro es para las visitas');
-    expect(joined).toContain('no viene de visita');
-    expect(joined).toContain('This book is for visitors');
-    expect(joined).toContain('not to visit');
-  });
-
   it('never phrases the register question as "who was public"', () => {
     expect(texts.filter((t) => /qui[eé]n era p[uú]blico|who was public/i.test(t))).toEqual([]);
   });

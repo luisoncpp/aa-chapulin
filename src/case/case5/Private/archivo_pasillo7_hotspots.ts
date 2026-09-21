@@ -68,9 +68,9 @@ export const CASE5_PASILLO7_HOTSPOTS: Hotspot[] = [
     dialogue: [
       { speaker: 'NARRADOR', text: 'Una mesa larga de roble con una lámpara de pantalla verde. Sobre ella, un legajo abierto y atado con listón.' },
       { speaker: 'DEFENSA', text: 'Es el expediente del señor Lengua. Su apelación.', pose: 'chapulin_idle' },
-      { speaker: 'DEFENSA', text: 'Y está abierto en la página doscientos catorce.', pose: 'chapulin_point' },
+      { speaker: 'DEFENSA', text: 'Y está abierto en la página 214.', pose: 'chapulin_point' },
       { speaker: 'SARGENTO', text: 'Ahí lo dejó él. Nadie ha pasado esa hoja, mi Licenciado; tengo la fotografía de las siete de la noche y está igualita.', pose: 'pazguato_decidido' },
-      { speaker: 'DEFENSA', text: 'En la página doscientos catorce hay una tarjeta pegada con engrudo.', pose: 'chapulin_idle' },
+      { speaker: 'DEFENSA', text: 'En la página 214 hay una tarjeta pegada con engrudo.', pose: 'chapulin_idle' },
       { speaker: 'DEFENSA', text: '«Enciclopedias El Saber Universal, S.A.» Prueba decomisada al sentenciado en julio.', pose: 'chapulin_idle' },
       { speaker: 'SARGENTO', text: 'Esa sociedad está disuelta desde el setenta y uno. Lo dice ahí abajito, de puño y letra del secretario.', pose: 'pazguato_idle' },
       { speaker: 'DEFENSA', text: '(Un hombre al que le quedaban cuatro años de condena pidió que lo trajeran hasta aquí para señalar una tarjeta vieja.)', pose: 'chapulin_idle' },

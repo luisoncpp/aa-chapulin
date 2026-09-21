@@ -33,7 +33,7 @@ export const CASE5_CLIMAX_STAGE1_EN: ClimaxStage = {
     { speaker: 'BERRONDO', text: '......', pose: 'berrondo_sweat', bg: 'assets/bg_courtroom.webp' },
     { speaker: 'JUEZ', text: 'The court allows the defense to continue.', sfx: 'gavel', pose: 'judge_gavel' },
     { speaker: 'JUEZ', text: 'But I warn you one thing, counselor: four facts are not four proofs.', pose: 'judge_neutral' },
-    { speaker: 'JUEZ', text: 'This man turned in his badge at four fifty.', pose: 'judge_thinking' },
+    { speaker: 'JUEZ', text: 'This man turned in his badge at 4:50 PM.', pose: 'judge_thinking' },
     { speaker: 'JUEZ', text: 'Tell this court what authorized him to remain inside that building after that hour.', sfx: 'gavel', pose: 'judge_gavel' }
   ]
 };

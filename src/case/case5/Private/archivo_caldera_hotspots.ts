@@ -27,7 +27,7 @@ export const CASE5_ARCHIVO_CALDERA_HOTSPOTS: Hotspot[] = [
     condition: (flags) => Boolean(flags.examined_hotspot_caldera),
     dialogue: [
       { speaker: 'NARRADOR', text: 'Atornillado al muro, un tambor de reloj con una tira de papel cuadriculado y una plumilla que raya una línea continua.' },
-      { speaker: 'SARGENTO', text: 'Termógrafo del Archivo, mi Licenciado. El tambor está aquí abajo, pero su sonda está cableada al pasillo siete: mide el aire de la escena. Lo pusieron en el sesenta y cuatro por la humedad.', pose: 'pazguato_idle' },
+      { speaker: 'SARGENTO', text: 'Termógrafo del Archivo, mi Licenciado. El tambor está aquí abajo, pero su sonda está cableada al pasillo siete: mide el aire de la escena. Lo pusieron en el 64 por la humedad.', pose: 'pazguato_idle' },
       { speaker: 'SARGENTO', text: 'Da una vuelta por semana; cada domingo se retira y archiva la tira anterior y se coloca una nueva.', pose: 'pazguato_decidido' },
       { speaker: 'DEFENSA', text: 'Enséñeme la tira del sábado cuatro de diciembre.', pose: 'chapulin_point' },
       { speaker: 'NARRADOR', text: 'El Sargento desenrolla la tira de esa semana, retirada y archivada el domingo cinco: una línea de tinta sube y baja como una sierra.' },

@@ -55,7 +55,7 @@ export const CASE5_D1_T2_PARTE_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'DEFENSA', text: 'Right in the middle of the window when that man died.', pose: 'chapulin_idle' },
   { speaker: 'SARGENTO', text: '...That is correct. And I logged it, Your Honor, and nobody asked me about it until today.', pose: 'pazguato_decidido' },
   { speaker: 'SUPER SAM', text: 'Your salary is...! Ugh!', pose: 'supersam_sweat' },
-  { speaker: 'JUEZ', text: 'So noted! Between seventeen hundred and seventeen fifteen, hallway seven stood open and unguarded.', sfx: 'gavel', pose: 'judge_gavel' },
+  { speaker: 'JUEZ', text: 'So noted! Between 17:00 and 17:15, hallway seven stood open and unguarded.', sfx: 'gavel', pose: 'judge_gavel' },
   { speaker: 'SUPER SAM', text: 'Open for the defendant, Your Honor! He had already signed out and could go back up!', pose: 'supersam_point' },
   { speaker: 'DEFENSA', text: 'By the main staircase, which starts three meters from a man who spent thirty-one years watching that door.', pose: 'chapulin_idle' },
   { speaker: 'JUEZ', text: 'The court grants the defense its point and returns the question to the prosecution.', pose: 'judge_neutral' },
@@ -110,7 +110,7 @@ export const CASE5_D1_T3_PLANO_SUCCESS_EN: DialogueLine[] = [
 export const CASE5_D1_T3_EXPEDIENTE_GIRO_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'DEFENSA', text: 'TAKE THAT!', sfx: 'desk_slam', cutin: 'objection_toma_eso', pose: 'chapulin_slam' },
   { speaker: 'DEFENSA', text: 'Mr. Nicanor said everything was "in its place." And among the things in their place was an open case file.', pose: 'chapulin_point' },
-  { speaker: 'DEFENSA', text: 'Open to page two hundred fourteen, Your Honor. And on page two hundred fourteen there is a card glued with paste.', pose: 'chapulin_idle' },
+  { speaker: 'DEFENSA', text: 'Open to page 214, Your Honor. And on page 214 there is a card glued with paste.', pose: 'chapulin_idle' },
   { speaker: 'JUEZ', text: 'Read it, counselor.', sfx: 'gavel', pose: 'judge_gavel' },
   { speaker: 'DEFENSA', text: '"Enciclopedias El Saber Universal, Sociedad Anonima." Evidence seized from the convicted man in July.', pose: 'chapulin_point' },
   { speaker: 'DEFENSA', text: 'And at the foot, in the clerk\'s hand: "company dissolved since 1971."', pose: 'chapulin_idle' },

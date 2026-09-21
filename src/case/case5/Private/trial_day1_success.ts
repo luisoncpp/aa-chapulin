@@ -55,7 +55,7 @@ export const CASE5_D1_T2_PARTE_SUCCESS: DialogueLine[] = [
   { speaker: 'DEFENSA', text: 'Justo en medio del intervalo en que murió ese hombre.', pose: 'chapulin_idle' },
   { speaker: 'SARGENTO', text: '...Es correcto. Y lo asenté yo, señor juez, y nadie me preguntó por ello hasta hoy.', pose: 'pazguato_decidido' },
   { speaker: 'SUPER SAM', text: '¡Su salary is...! ¡Ash!', pose: 'supersam_sweat' },
-  { speaker: 'JUEZ', text: '¡Que se asiente! Entre las diecisiete horas y las diecisiete quince, el pasillo siete estuvo abierto y sin vigilancia.', sfx: 'gavel', pose: 'judge_gavel' },
+  { speaker: 'JUEZ', text: '¡Que se asiente! Entre las 17:00 y las 17:15, el pasillo siete estuvo abierto y sin vigilancia.', sfx: 'gavel', pose: 'judge_gavel' },
   { speaker: 'SUPER SAM', text: '¡Abierto para el acusado, Your Honor! ¡Que ya había firmado su salida y podía volver a subir!', pose: 'supersam_point' },
   { speaker: 'DEFENSA', text: 'Por la escalera principal, cuyo primer escalón está a tres metros del mostrador de un hombre que llevaba treinta y un años mirando esa puerta.', pose: 'chapulin_idle' },
   { speaker: 'JUEZ', text: 'La corte concede el punto a la defensa y devuelve la pregunta a la fiscalía.', pose: 'judge_neutral' },
@@ -110,7 +110,7 @@ export const CASE5_D1_T3_PLANO_SUCCESS: DialogueLine[] = [
 export const CASE5_D1_T3_EXPEDIENTE_GIRO_SUCCESS: DialogueLine[] = [
   { speaker: 'DEFENSA', text: '¡TOMA ESO!', sfx: 'desk_slam', cutin: 'objection_toma_eso', pose: 'chapulin_slam' },
   { speaker: 'DEFENSA', text: 'Don Nicanor dijo que todo estaba «en su sitio». Y entre las cosas que estaban en su sitio había un expediente abierto.', pose: 'chapulin_point' },
-  { speaker: 'DEFENSA', text: 'Abierto en la página doscientos catorce, señor juez. Y en la página doscientos catorce hay una tarjeta pegada con engrudo.', pose: 'chapulin_idle' },
+  { speaker: 'DEFENSA', text: 'Abierto en la página 214, señor juez. Y en la página 214 hay una tarjeta pegada con engrudo.', pose: 'chapulin_idle' },
   { speaker: 'JUEZ', text: 'Léala, licenciado.', sfx: 'gavel', pose: 'judge_gavel' },
   { speaker: 'DEFENSA', text: '«Enciclopedias El Saber Universal, Sociedad Anónima.» Prueba decomisada al sentenciado en julio.', pose: 'chapulin_point' },
   { speaker: 'DEFENSA', text: 'Y al pie, de puño y letra del secretario: «sociedad disuelta desde 1971».', pose: 'chapulin_idle' },

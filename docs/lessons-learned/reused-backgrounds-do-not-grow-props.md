@@ -4,4 +4,4 @@
 
 Measure boxes on the 960×540 cover crop of the reused file. Do not keep the spec’s guessed percentages when they sit on empty carpet.
 
-Related: [[docs/lessons-learned/investigation-hotspot-targets-must-be-on-background.md]], [[tests/case/Case5Hotspots.test.ts]].
+Related: [[docs/lessons-learned/investigation-hotspot-targets-must-be-on-background.md]], [[tests/case/ScriptIntegrity.test.ts]].

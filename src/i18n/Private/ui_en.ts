@@ -106,6 +106,6 @@ export const UI_EN: UiTranslations = {
 
   gameOverJudgeText: 'The defense has exhausted all chances! I declare the defendant... GUILTY!',
   gameOverDefenseText: 'Oh no! I will have to start over from the beginning of the trial!',
-  penaltyProsecutionText: 'Time is money, and you are wasting mine! That evidence does not contradict the testimony at all.',
+  penaltySecretaryText: 'That evidence does not contradict the testimony at all.',
   penaltyJudgeText: 'The prosecution is correct! I shall penalize the defense for presenting irrelevant evidence.'
 };

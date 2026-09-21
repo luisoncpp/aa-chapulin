@@ -1,6 +1,7 @@
 // @Architecture(descriptionShort="Resolves scripted defense and prosecution penalty roles", type="util", icon="gear")
 /**
- * Court-role defaults for [[./TrialPenalty.ts]]. Cases 0–4 omit the fields.
+ * Court-role defaults for [[./TrialPenalty.ts]]. The clerk announces the
+ * irrelevant-evidence finding; scripted cases may override the speaker.
  */
 
 import type { CaseScript, PoseName, SpeakerName, Testimony, TrialDay } from '../../types/index.js';
@@ -21,7 +22,7 @@ export function resolveCourtPenaltyRoles(
   const trial = script ? getActiveTrial(script, trialDay) : undefined;
   const speakerOverride = testimony?.penaltyProsecutionSpeaker ?? trial?.penaltyProsecutionSpeaker;
   const poseOverride = testimony?.penaltyProsecutionPose ?? trial?.penaltyProsecutionPose;
-  const prosecutionSpeaker = speakerOverride ?? 'SUPER SAM';
+  const prosecutionSpeaker = speakerOverride ?? 'SECRETARIO';
   return {
     defensePointPose: script?.defensePointPose ?? 'donramon_point',
     defensePanicPose: script?.defensePanicPose ?? 'donramon_panic',
@@ -32,5 +33,6 @@ export function resolveCourtPenaltyRoles(
 
 function defaultProsecutionPose(speaker: SpeakerName): PoseName | undefined {
   if (speaker === 'SUPER SAM') return 'supersam_point';
+  if (speaker === 'SECRETARIO') return 'secretario_leyendo';
   return undefined;
 }

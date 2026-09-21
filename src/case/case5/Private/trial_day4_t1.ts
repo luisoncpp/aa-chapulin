@@ -65,7 +65,7 @@ export const CASE5_TESTIMONY_9: Testimony = {
       id: 'c5_d4t1_3',
       speaker: 'GENOVEVA',
       pose: 'genoveva_idle',
-      text: 'Al licenciado Berrondo le entregué un gafete de visita a las dieciséis cero cinco y se lo recibí a las dieciséis cincuenta.',
+      text: 'Al licenciado Berrondo le entregué un gafete de visita a las 16:05 y se lo recibí a las 16:50.',
       pressText: [
         MOMENTO,
         { speaker: 'DEFENSA', text: '¿Y qué es exactamente un gafete de visita?', pose: 'chapulin_point' },

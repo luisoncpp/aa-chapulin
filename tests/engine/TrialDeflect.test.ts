@@ -6,12 +6,13 @@ import type { DomElements } from '../../src/engine/Private/DomElements.js';
 import { TrialController } from '../../src/engine/Private/TrialController.js';
 import { i18n } from '../../src/i18n/index.js';
 import { GameStateManager } from '../../src/state/index.js';
-import type { CaseScript, DialogueLine, PoseName, Testimony } from '../../src/types/index.js';
+import type { CaseScript, DialogueLine, Testimony } from '../../src/types/index.js';
 import { FakeAudioContext } from '../fakes/FakeAudioContext.js';
 import { setupDomHarness } from '../fakes/DomHarness.js';
 
 const HUACAL_DEFLECT = 'esa fotografía prueba el día';
 const MAQUINA_DEFLECT = 'esa máquina se levantó ayer';
+const OFICIO_DEFLECT = 'ese oficio demuestra que la fiscalía mandó el aviso';
 
 describe('Premature present deflection (Case 5, day 3, Testimony 6)', () => {
   let dom: DomElements;
@@ -87,6 +88,25 @@ describe('Premature present deflection (Case 5, day 3, Testimony 6)', () => {
     expect(state.health).toBe(4);
     expect(queuedText()).not.toContain(HUACAL_DEFLECT);
   });
+
+  it('deflects the oficio before the receipt contradiction on Berrondo', () => {
+    controller.startTestimony(2);
+    controller.currentStatementIdx = 4;
+    controller.handlePresentEvidence('oficio_diligencia');
+    expect(state.health).toBe(5);
+    expect(controller.currentStatementIdx).toBe(4);
+    expect(queuedText()).toContain(OFICIO_DEFLECT);
+  });
+
+  it('deflects the oficio after Berrondo adds the nobody-told-me statement', () => {
+    controller.startTestimony(2);
+    controller.currentStatementIdx = 4;
+    controller.handlePressStatement();
+    controller.handlePresentEvidence('oficio_diligencia');
+    expect(state.health).toBe(5);
+    expect(controller.currentStatementIdx).toBe(5);
+    expect(queuedText()).toContain(OFICIO_DEFLECT);
+  });
 });
 
 const DEFLECT_LINES: DialogueLine[] = [
@@ -142,13 +162,8 @@ describe('Scripted witness deflects', () => {
   it('sends unrelated evidence through the default penalty', () => {
     ctrl.handlePresentEvidence('chipote_chillon');
     expect(state.health).toBe(4);
-    expect(queued[0].some((line) => line.speaker === 'SUPER SAM')).toBe(true);
-  });
-
-  it('accepts berrondo_sweat as a dialogue pose', () => {
-    const pose: PoseName = 'berrondo_sweat';
-    const line: DialogueLine = { speaker: 'BERRONDO', text: '...Acabo de declararlo.', pose };
-    expect(line.pose).toBe('berrondo_sweat');
+    expect(queued[0].some((line) => line.speaker === 'SECRETARIO')).toBe(true);
+    expect(queued[0].some((line) => line.speaker === 'SUPER SAM')).toBe(false);
   });
 });
 

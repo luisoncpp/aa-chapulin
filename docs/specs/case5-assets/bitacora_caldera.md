@@ -7,7 +7,7 @@ Clase: `icon` / prueba del Acta. Espec: §23.0, §5.4, §9.2, §16.2, §17.1, §
 - Lugar y momento: sala de calderas del sótano del Archivo Judicial, investigación de la madrugada del 9 de diciembre; la prueba se entrega al examinar el termógrafo (`docs/specs/case-5-el-tomo-trece.md:2969-3013`; `src/case/case5/Private/archivo_caldera.ts:9-25`).
 - Objeto: una bitácora de mantenimiento del Archivo acompañada por la tira semanal archivada del termógrafo. El icono identifica esa prueba documental; no es el fondo `bg_archivo_caldera` ni la vista ampliada de 960×540 (`docs/specs/case-5-el-tomo-trece.md:3013,4061,4088`; catálogos ES/EN).
 - Hechos visibles que la vista detallada debe sostener: tubo reventado el 3 de diciembre en el muro del pasillo 7; caldera y dos secadores al máximo; registrador en el sótano y sonda remota en el pasillo 7; tira de 19 °C a 31 °C, plana a 31 °C hasta el domingo 5, con punto pericial a las 18:40 del día 4 (`docs/specs/case-5-el-tomo-trece.md:3013,4061`). El icono sólo necesita conservar esa identidad sin intentar imprimir todos los datos.
-- Función narrativa: demuestra que el forense trabajó con una tabla de sala a 20 °C mientras el pasillo registró 31 °C; abre el giro 4 y permite rectificar el intervalo a 16:35–17:05 (`docs/specs/case-5-el-tomo-trece.md:3059-3072`; `src/case/case5/Private/trial_day4_success.ts:8-22`; equivalente EN).
+- Función narrativa: demuestra que el forense trabajó con una tabla de sala a 20 °C mientras el pasillo registró 31 °C; abre el giro 4 y permite rectificar el intervalo a 16:35–17:05 (`docs/specs/case-5-el-tomo-trece.md:3059-3072`; `src/case/case5/Private/trial_day4_success.ts:8-23`; equivalente EN).
 
 ## Hechos a verificar
 
@@ -21,7 +21,7 @@ Clase: `icon` / prueba del Acta. Espec: §23.0, §5.4, §9.2, §16.2, §17.1, §
 ### F2 Texto en imagen
 
 - [ ] `NO CONTRADECIR` — El contrato del icono de Acta sólo exige objeto centrado, transparencia y contorno; no exige cadenas legibles dentro del icono (§23.5; `src/state/Private/EvidenceCatalogCase5Helpers.ts:12-22`).
-- [ ] `AUSENTE` — No imprimir como solución `31 °C`, `20 °C`, `16:35–17:05`, «once grados», «veinticinco minutos» ni la conclusión de que el informe estaba mal; esos datos se leen en la vista detallada y el juicio (`docs/specs/case-5-el-tomo-trece.md:3013,3059-3072`; `src/case/case5/Private/trial_day4_success.ts:9-22`).
+- [ ] `AUSENTE` — No imprimir como solución `31 °C`, `20 °C`, `16:35–17:05`, «once grados», «veinticinco minutos» ni la conclusión de que el informe estaba mal; esos datos se leen en la vista detallada y el juicio (`docs/specs/case-5-el-tomo-trece.md:3013,3059-3072`; `src/case/case5/Private/trial_day4_success.ts:9-23`).
 - [ ] `NO CONTRADECIR` — Si el diseño deja marcas legibles, no pueden contradecir la identidad de bitácora del 3 de diciembre, termógrafo semanal o sonda del pasillo 7; no introducir texto inglés en el icono compartido (§23.0, §23.5; catálogos ES/EN).
 
 ### F3 Cifras, fechas y estados

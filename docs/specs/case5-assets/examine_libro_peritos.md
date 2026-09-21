@@ -29,9 +29,9 @@ Clase: `examine`. Espec: §23.0, §23.3, §4.1 P1/P4/P5, §4.2, §5.2 y §24. Gu
 ### F2 Texto en imagen
 
 - [ ] `TEXTO EXACTO` — Encabezado español de la primera columna: `HORA DE ENTRADA` (§23.3; `trial_day2_success.ts:129`).
-- [ ] `TEXTO EXACTO` — Encabezado español de la segunda columna: `HORA DE DEVOLUCIÓN DE GAFETE` (§23.3; `trial_day2_success.ts:129`; `trial_day4_success.ts:57-58`).
+- [ ] `TEXTO EXACTO` — Encabezado español de la segunda columna: `HORA DE DEVOLUCIÓN DE GAFETE` (§23.3; `trial_day2_success.ts:129`; `trial_day4_success.ts:58-59`).
 - [ ] `TEXTO EXACTO` — Los nombres, cargos y horas de los cuatro asientos deben ser legibles y coincidir con la lectura del secretario (`trial_day2.ts:20-24`; §23.3).
-- [ ] `TEXTO EXACTO` — En la variante inglesa, los encabezados deben ser `TIME OF ENTRY` y `TIME BADGE RETURNED`, y el tercer asiento debe conservar `5:44 PM / 6:05 PM` (`EvidenceCatalogCase5EnB.ts:24-29`; `trial_day2_success_en.ts:124-130`; `trial_day4_success_en.ts:53-58`).
+- [ ] `TEXTO EXACTO` — En la variante inglesa, los encabezados deben ser `TIME OF ENTRY` y `TIME BADGE RETURNED`, y el tercer asiento debe conservar `5:44 PM / 6:05 PM` (`EvidenceCatalogCase5EnB.ts:24-29`; `trial_day2_success_en.ts:124-130`; `trial_day4_success_en.ts:54-59`).
 - [ ] `AUSENTE` — Prosa explicativa, título de lámina, flechas, círculos, realces, marcas de respuesta, marcas de agua o texto inglés en la variante ES (§23.0, §23.3; `trial_day2_success.ts:129`).
 
 ### F3 Cifras/fechas/horas
@@ -39,15 +39,15 @@ Clase: `examine`. Espec: §23.0, §23.3, §4.1 P1/P4/P5, §4.2, §5.2 y §24. Gu
 - [ ] `NO CONTRADECIR` — El presente del caso es 1982 y la hoja corresponde al sábado 4 de diciembre; no imprimir otra fecha (§4.2:202-215; §24.D I10).
 - [ ] `NO CONTRADECIR` — La entrada de Berrondo es `16:05` y la devolución `16:50`; su devolución ocurre mientras sigue dentro del edificio y no registra salida (§4.2:215,221,238; §24.A A1; §24.D I1, I17).
 - [ ] `NO CONTRADECIR` — Balbuena entra a las `17:44`, después del hallazgo de las 17:35, y devuelve el gafete a las `18:05`; Pazguato entra a las `17:52` y devuelve a las `22:15` (§24.A A10-A11; §24.C F16).
-- [ ] `NO CONTRADECIR` — El libro registra entradas y devoluciones de gafete, no un censo de quién permanecía dentro ni una hora de salida (§24.C F3; `trial_day4_success.ts:64-65`).
+- [ ] `NO CONTRADECIR` — El libro registra entradas y devoluciones de gafete, no un censo de quién permanecía dentro ni una hora de salida (§24.C F3; `trial_day4_success.ts:65-66`).
 
 ### F4 Contrato en pantalla
 
 - [ ] `PINTAR` — En D2 el alguacil deposita el libro negro, el secretario lee los cuatro asientos y después el Acta entrega `libro_peritos` y el perfil de Genoveva; el activo debe permitir reconocer el documento que acaba de leerse (`trial_day2.ts:18-36`; `trial_day2_en.ts:18-36`).
 - [ ] `PINTAR` — En D2-T2 la defensa presenta este activo para demostrar que la frase de Berrondo «salí a las dieciséis cincuenta» no está respaldada por una columna de salida; el encabezado de devolución debe ser legible y no debe sugerir que 16:50 sea una salida (`trial_day2_t2.ts:104-110`; `trial_day2_success.ts:124-130`; variantes EN equivalentes).
-- [ ] `PINTAR` — En D4-T1 la defensa presenta el mismo activo contra la afirmación de Genoveva de que las cuatro personas tienen hora de entrada y hora de salida; el segundo encabezado debe resolver la contradicción como `devolución de gafete` (`trial_day4_t1.ts:44-56`; `trial_day4_success.ts:53-65`; variantes EN equivalentes).
-- [ ] `NO CONTRADECIR` — La ausencia de columna de salida no elimina las cuatro devoluciones de gafete ni convierte el documento en incompleto: la sorpresa nace de la etiqueta exacta de la segunda columna (§4.1 P4; `trial_day4_success.ts:57-62`).
-- [ ] `NO CONTRADECIR` — El documento no prueba que Berrondo saliera a las 16:50 ni que estuviera fuera antes de las 17:02; sólo prueba entrada y devolución (§24.C F3; §24.D I1; `trial_day4_success.ts:36-39`).
+- [ ] `PINTAR` — En D4-T1 la defensa presenta el mismo activo contra la afirmación de Genoveva de que las cuatro personas tienen hora de entrada y hora de salida; el segundo encabezado debe resolver la contradicción como `devolución de gafete` (`trial_day4_t1.ts:44-56`; `trial_day4_success.ts:54-66`; variantes EN equivalentes).
+- [ ] `NO CONTRADECIR` — La ausencia de columna de salida no elimina las cuatro devoluciones de gafete ni convierte el documento en incompleto: la sorpresa nace de la etiqueta exacta de la segunda columna (§4.1 P4; `trial_day4_success.ts:58-63`).
+- [ ] `NO CONTRADECIR` — El documento no prueba que Berrondo saliera a las 16:50 ni que estuviera fuera antes de las 17:02; sólo prueba entrada y devolución (§24.C F3; §24.D I1; `trial_day4_success.ts:37-40`).
 - [ ] `NO CONTRADECIR` — La hoja no debe aparecer como conocida o leída antes de que la corte ordene producirla en D2; el descubrimiento del libro ocurre en el juicio, no durante la investigación del D1 (§4.1 P1; §24.D I18; `trial_day1_success.ts:123-126`).
 
 ### F5 Estilo y prohibidos
@@ -55,21 +55,21 @@ Clase: `examine`. Espec: §23.0, §23.3, §4.1 P1/P4/P5, §4.2, §5.2 y §24. Gu
 - [ ] Contrato §23.0 completo en el prompt: ilustración 2D estilo *Capcom Ace Attorney* (linaje GBA / Nintendo DS) en alta definición; ; contorno oscuro nítido y continuo en carbón `#1A1A1A`, más grueso en la silueta exterior que en los detalles internos; anatomía facial expresiva y exagerada cuando aparezca una persona; colores primarios saturados.
 - [ ] Contrato §23.0 completo en el prompt: televisión mexicana de los años setenta, universo Chespirito / El Chapulín Colorado; melodrama judicial tratado en serio por el sistema y absurdo en los personajes; registro de papel, madera y polvo, archivo judicial, expedientes atados con listón, madera barnizada, latón envejecido y luz de tungsteno.
 - [ ] `AUSENTE` — Fotorrealismo, render 3D, acuarela, texturas fotográficas, anime moderno, estética de cómic americano, marcas de agua, flechas/círculos/realces y cualquier tono rosa o magenta en primer plano (§23.0; §23.3; `docs/architecture/asset-pipeline.md`).
-- [ ] `NO CONTRADECIR` — La legibilidad tipográfica es prioritaria: el argumento depende de leer ambos encabezados, pero el documento sigue siendo un objeto de archivo sobrio, no una infografía ni una lámina autodescriptiva (§23.3; `trial_day2_success.ts:129`; `trial_day4_success.ts:57-58`).
+- [ ] `NO CONTRADECIR` — La legibilidad tipográfica es prioritaria: el argumento depende de leer ambos encabezados, pero el documento sigue siendo un objeto de archivo sobrio, no una infografía ni una lámina autodescriptiva (§23.3; `trial_day2_success.ts:129`; `trial_day4_success.ts:58-59`).
 
 ### F6 Localización
 
 - [ ] `PINTAR` — Generar `examine_libro_peritos.webp` y `examine_libro_peritos_en.webp`; §23.3 exige variante EN porque el argumento depende de texto legible (§23.3:4041,4049,4064).
 - [ ] `NO CONTRADECIR` — Mantener idénticos entre ES/EN el encuadre, libro negro, cuatro filas, nombres propios, fechas, horas, ausencia de tachaduras y marcas físicas; sólo traducir el texto legible que sostiene el argumento (§23.3; §23.3:4064).
-- [ ] `TEXTO EXACTO` — En EN usar `TIME OF ENTRY` y `TIME BADGE RETURNED`; el catálogo inglés confirma esas cadenas y el formato horario `5:44 PM / 6:05 PM` (`EvidenceCatalogCase5EnB.ts:24-29`; `trial_day4_success_en.ts:57-58`).
-- [ ] `NO CONTRADECIR` — No usar la etiqueta inglesa `TIME OF DEPARTURE`: la traducción del guion habla de departure como el error de Genoveva, pero el encabezado correcto es `TIME BADGE RETURNED` (`trial_day4_t1_en.ts:44`; `trial_day4_success_en.ts:55-62`).
+- [ ] `TEXTO EXACTO` — En EN usar `TIME OF ENTRY` y `TIME BADGE RETURNED`; el catálogo inglés confirma esas cadenas y el formato horario `5:44 PM / 6:05 PM` (`EvidenceCatalogCase5EnB.ts:24-29`; `trial_day4_success_en.ts:58-59`).
+- [ ] `NO CONTRADECIR` — No usar la etiqueta inglesa `TIME OF DEPARTURE`: la traducción del guion habla de departure como el error de Genoveva, pero el encabezado correcto es `TIME BADGE RETURNED` (`trial_day4_t1_en.ts:44`; `trial_day4_success_en.ts:56-63`).
 
 ## Consistencia (regenerar juntos)
 
 - `examine_libro_peritos_en` — gemelo localizado; comparte composición, cuatro asientos, horas, ausencia de tachaduras y marcas físicas; sólo cambia el texto legible. **Regenerar juntos, este activo no es fuente de verdad del otro** (§23.3).
 - `examine_libro_visitas` — comparte la idea de un libro del Archivo y la comparación entre accesos, pero este activo debe seguir siendo el libro pequeño profesional de dos columnas y no heredar las catorce firmas, el sello del público ni el tamaño del libro grande. **Regenerar juntos, este activo no es fuente de verdad del otro** (§4.1 P1; §23.3; `examine_libro_visitas.md`).
 - `bg_archivo_vestibulo` — comparte el acceso público y la existencia de una ventanilla separada; el fondo no es fuente de verdad del recorte documental. **Regenerar juntos, este activo no es fuente de verdad del otro** (§23.1; §4.1 P1).
-- `genoveva_idle` y `genoveva_reglamento` — comparten a Genoveva como encargada de la ventanilla y el contexto del segundo libro, pero ningún sprite debe hornearse en la lámina ni fijar su texto. **Regenerar juntos, este activo no es fuente de verdad del otro** (§12.3; `trial_day4_success.ts:46-50`).
+- `genoveva_idle` y `genoveva_reglamento` — comparten a Genoveva como encargada de la ventanilla y el contexto del segundo libro, pero ningún sprite debe hornearse en la lámina ni fijar su texto. **Regenerar juntos, este activo no es fuente de verdad del otro** (§12.3; `trial_day4_success.ts:47-51`).
 - `examine_plano_archivo` — comparte la distinción entre acceso público y acceso de peritos/auxiliares; el plano usa rótulos de accesos y el libro materializa la segunda vía, sin añadir al plano el contenido de esta hoja. **Regenerar juntos, este activo no es fuente de verdad del otro** (§4.1 P1; §23.3).
 - `examine_libro_peritos` ES↔EN — gemelos de idioma del mismo documento; la aceptación debe comprobar paridad de conteos, nombres, horas, composición y defecto de texto, cambiando sólo las cadenas localizadas. **Regenerar juntos, este activo no es fuente de verdad del otro**.
 
@@ -129,7 +129,7 @@ EN (`examine_libro_peritos_en.jpg` previo):
 - F2 AUSENTE: sin «5 EXAMINE», sin «REGISTRO DE INSIGNIAS», sin flechas/círculos/marcas de agua, sin inglés en ES ✓
 - F3 fecha 1982: ES `4 de diciembre de 1982`; EN `December 4, 1982`; sin 1974 ni `EXP. 17-12-74` (§24.D I10) ✓
 - F3 EN horas canónicas: Rosas `9:10 AM`/`9:40 AM`; Berrondo `4:05 PM`/`4:50 PM`; Balbuena `5:44 PM`/`6:05 PM`; Pazguato `5:52 PM`/`10:15 PM` (`EvidenceCatalogCase5EnB.ts:24-29`) ✓
-- F4: el segundo encabezado resuelve D2-T2 y D4-T1; no hay columna que convierta `16:50` / `4:50 PM` en salida (`trial_day4_success.ts:57-58`) ✓
+- F4: el segundo encabezado resuelve D2-T2 y D4-T1; no hay columna que convierta `16:50` / `4:50 PM` en salida (`trial_day4_success.ts:58-59`) ✓
 - F5: cel-shading plano, terminador duro en el lomo, contorno `#1A1A1A`; sin rosa/magenta ✓
 - F6 paridad: misma geometría, cuatro filas, lomo, relleno y ausencia de marcas; sólo cambia el texto localizado. Encabezados EN `TIME OF ENTRY` / `TIME BADGE RETURNED` (no `TIME OF DEPARTURE`) ✓
 

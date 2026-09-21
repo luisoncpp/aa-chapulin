@@ -17,8 +17,7 @@ import { CASE5_CLIMAX_GUILTY_EN, CASE5_CLIMAX_VERDICT_EN } from './climax_verdic
 export const CASE5_CLIMAX_EN: ClimaxDefinition = {
   ...assembleCase5Climax({
     dialogue: [
-      { speaker: 'JUEZ', text: 'Counselor: for four days this court kept you from naming a person, and it was right to.', sfx: 'gavel', bgm: 'pursuit', pose: 'judge_gavel' },
-      { speaker: 'JUEZ', text: 'We establish facts. People come at the end, or they do not come.', pose: 'judge_neutral' },
+      { speaker: 'JUEZ', text: 'We establish facts. People come at the end, or they do not come.', bgm: 'pursuit', pose: 'judge_neutral' },
       { speaker: 'JUEZ', text: 'Today the facts leave nobody else standing.', pose: 'judge_thinking' },
       { speaker: 'JUEZ', text: 'Name one and back it with the Court Record.', sfx: 'gavel', pose: 'judge_gavel' },
       { speaker: 'DEFENSA', text: '(Don Ramon. Do I say it?)', pose: 'chapulin_idle' },

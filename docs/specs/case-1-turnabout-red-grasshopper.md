@@ -1,6 +1,6 @@
 # Caso 1: El Juicio del Chapulín Colorado — La Chicharra de Oro
 
-> **Estado: implementada.** El guion, la mecánica, las pruebas y el arte de §18 viven ya en [[src/case/case1/index.ts]] y [[process_case1_assets.py]]. La versión anterior (una jornada, tres contradicciones en línea recta) sigue en el historial de git. Pendiente el recorrido cronometrado de §22. Las cajas de hotspots y de todos los `pointTarget` están medidas sobre los WebP de 960 × 540 ([[tests/case/Case1Hotspots.test.ts]], [[docs/lessons-learned/present-point-cover-crop.md]]). Esta reescritura ejecuta [[docs/plans/case-1-reconstruccion-narrativa.md]] con tres ajustes aprobados por el autor: **90 minutos** en lugar de 70–85, **tres testigos distintos en el estrado** en lugar de uno solo recurrente, y un **Acta de Personajes** (mecánica nueva, §6).
+> **Estado: implementada.** El guion, la mecánica, las pruebas y el arte de §18 viven ya en [[src/case/case1/index.ts]] y [[process_case1_assets.py]]. La versión anterior (una jornada, tres contradicciones en línea recta) sigue en el historial de git. Pendiente el recorrido cronometrado de §22. Las cajas de hotspots y de todos los `pointTarget` están medidas sobre los WebP de 960 × 540 ([[tests/case/ScriptIntegrity.test.ts]], [[docs/lessons-learned/present-point-cover-crop.md]]). Esta reescritura ejecuta [[docs/plans/case-1-reconstruccion-narrativa.md]] con tres ajustes aprobados por el autor: **90 minutos** en lugar de 70–85, **tres testigos distintos en el estrado** en lugar de uno solo recurrente, y un **Acta de Personajes** (mecánica nueva, §6).
 
 Configurado en [[src/case/case.group.md]]. Dirección de arte: [[docs/specs/artistic-direction.md]].
 
@@ -1032,7 +1032,7 @@ FLORINDA: Si no cruzan la luz, no retrata ni un elefante. Por eso digo que no si
 DEFENSA: (Pegado a este muro se sale sin gastar el último cuadro.) [pose: donramon_shock]
 ~~~
 
-> **Geometría de hotspots** (porcentajes del 960 × 540, ES = EN, [[tests/case/Case1Hotspots.test.ts]]): `hotspot_camara` `(76, 1, 13, 16)`; `hotspot_foto` `(70, 75, 22, 21)`; `hotspot_bitacora_rollo` `(88, 16, 11, 48)`; `hotspot_acceso_carga` `(36, 18, 7, 30)`; `hotspot_muro_ciego` `(66, 65, 16, 10)`; `hotspot_espejo` `(49, 23, 21, 34)`.
+> **Geometría de hotspots** (porcentajes del 960 × 540, ES = EN, [[tests/case/ScriptIntegrity.test.ts]]): `hotspot_camara` `(76, 1, 13, 16)`; `hotspot_foto` `(70, 75, 22, 21)`; `hotspot_bitacora_rollo` `(88, 16, 11, 48)`; `hotspot_acceso_carga` `(36, 18, 7, 30)`; `hotspot_muro_ciego` `(66, 65, 16, 10)`; `hotspot_espejo` `(49, 23, 21, 34)`.
 
 6. **Espejo veneciano (`hotspot_espejo`)** — *(requiere `hotspot_camara`, `hotspot_foto` y `hotspot_bitacora_rollo`; desbloquea `clinica_d2`; entrega `plano_pasillo`)*. La condición no es burocrática: la línea de remate da por sabido que la cámara apunta al espejo, y eso lo entrega `hotspot_camara`.
 

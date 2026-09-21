@@ -31,6 +31,13 @@ import {
 } from './trial_day4.js';
 import { CASE5_VECINDAD } from './vecindad.js';
 import type { Case5Parts } from './assemble.js';
+import type { DialogueLine } from '../../../types/index.js';
+
+const CASE5_PRESS_HINT: DialogueLine[] = [{
+  speaker: 'DON RAMÓN',
+  text: '¡Chapulín! ¡A ese testigo hay que exprimirlo, no nomás oírlo!',
+  pose: 'donramon_point'
+}];
 
 export const CASE5_PARTS_ES: Case5Parts = {
   scenes: {
@@ -48,6 +55,7 @@ export const CASE5_PARTS_ES: Case5Parts = {
     archivo_caldera: CASE5_ARCHIVO_CALDERA
   },
   intro: CASE5_TRIAL_INTRO_FULL,
+  pressHint: CASE5_PRESS_HINT,
   day1Opening: CASE5_DAY1_OPENING_PRESENT,
   t1: CASE5_TESTIMONY_1,
   t2: CASE5_TESTIMONY_2,

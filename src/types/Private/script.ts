@@ -321,7 +321,7 @@ export interface Testimony {
   witness: string;
   bgm: TrackName;
   statements: Statement[];
-  /** Overrides the day's penalty prosecutor (Case 5 day 3 after recusal). */
+  /** Overrides the day's penalty speaker for scripted court-role changes. */
   penaltyProsecutionSpeaker?: SpeakerName;
   penaltyProsecutionPose?: PoseName;
   /** Fallback deflects when the current statement has no matching entry. */
@@ -384,7 +384,7 @@ export interface TrialScript {
   testimony2?: Testimony;
   climax: ClimaxDefinition;
   openingPresent?: OpeningPresent;
-  /** Default Super Sam; Case 5 day 3 uses SECRETARIO after recusal. */
+  /** Defaults to SECRETARIO; scripts may override the penalty speaker. */
   penaltyProsecutionSpeaker?: SpeakerName;
   penaltyProsecutionPose?: PoseName;
 }

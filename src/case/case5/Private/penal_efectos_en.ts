@@ -16,8 +16,8 @@ export const CASE5_PENAL_EFECTOS_EN: InvestigationScene = {
   intro: [
     { speaker: 'NARRADOR', text: 'December 8, 2:40 PM. District Penitentiary, personal effects warehouse.', bg: 'assets/bg_penal_efectos.webp', furniture: 'none', bgm: 'suspense' },
     { speaker: 'NARRADOR', text: 'Three hundred numbered cardboard boxes on a metal shelf. Box 214-J reads: LENGUA, CASIMIRO.' },
-    { speaker: 'SARGENTO', text: 'Box two hundred fourteen J, Counselor. And look at the number.', pose: 'pazguato_decidido' },
-    { speaker: 'DEFENSA', text: 'Two hundred fourteen.', pose: 'chapulin_idle' },
+    { speaker: 'SARGENTO', text: 'Box 214-J, Counselor. And look at the number.', pose: 'pazguato_decidido' },
+    { speaker: 'DEFENSA', text: '214.', pose: 'chapulin_idle' },
     { speaker: 'DEFENSA', text: 'Like the file page he left open.', pose: 'chapulin_panic' },
     { speaker: 'SARGENTO', text: 'Coincidence, Counselor. I verified: they number them by intake order.', pose: 'pazguato_idle' },
     { speaker: 'DEFENSA', text: '...Right.', pose: 'chapulin_idle' },

@@ -27,7 +27,7 @@ export const CASE5_ARCHIVO_CALDERA_HOTSPOTS_EN: Hotspot[] = [
     condition: (flags) => Boolean(flags.examined_hotspot_caldera),
     dialogue: [
       { speaker: 'NARRADOR', text: 'Bolted to the wall, a clock drum with a gridded paper strip and a pen tracing one continuous line.' },
-      { speaker: 'SARGENTO', text: 'Archive thermograph, Counselor. The drum is down here, but its probe is wired to corridor seven: it measures the air at the scene. They installed it in sixty-four because of the humidity.', pose: 'pazguato_idle' },
+      { speaker: 'SARGENTO', text: 'Archive thermograph, Counselor. The drum is down here, but its probe is wired to corridor seven: it measures the air at the scene. They installed it in 64 because of the humidity.', pose: 'pazguato_idle' },
       { speaker: 'SARGENTO', text: 'It turns once a week; every Sunday the previous strip is removed, archived, and a new one is mounted.', pose: 'pazguato_decidido' },
       { speaker: 'DEFENSA', text: 'Show me the strip for Saturday, December fourth.', pose: 'chapulin_point' },
       { speaker: 'NARRADOR', text: 'The Sergeant unrolls that week\'s strip, removed and archived on Sunday the fifth: an ink line rising and falling like a saw.' },

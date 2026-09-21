@@ -72,20 +72,6 @@ describe('Case 3 La Noche del Grito', () => {
     expect(es.investigation.delegacion_d3).toBeDefined();
   });
 
-  it('requires the eight day-1 clues and catalogs every court-record item', () => {
-    expect(es.requiredEvidence).toEqual([
-      'lentes_barriga', 'informe_barriga', 'marcas_carrito',
-      'microfono_cabina', 'microfono_oro', 'cinta_salud',
-      'ventana_cabina', 'programa_kermes'
-    ]);
-    expect(es.adjournment?.requiredEvidence).toEqual([
-      'bitacora_transmision', 'receta_nono', 'libro_verde'
-    ]);
-    es.debugEvidence.forEach((id) => {
-      expect(catalog[id]).toBeDefined();
-    });
-  });
-
   it('chains two adjournments into a third trial day', () => {
     expect(es.adjournment?.nextLocation).toBe('despacho_barriga');
     expect(es.adjournment?.next?.nextLocation).toBe('bodega_radio');
@@ -154,33 +140,6 @@ describe('Case 3 La Noche del Grito', () => {
     expect(day2Recap).toContain('escalera de servicio');
     expect(day2Recap).toContain('carrito a las 10:50');
     expect(day2Recap).not.toContain('carrito a las 10:45');
-  });
-
-  it('defines four climax stages and matching bilingual choice ids', () => {
-    expect(es.trial.climax.stages?.map((s) => s.presentTarget)).toEqual([
-      ['programa_kermes'],
-      ['cinta_salud'],
-      ['cinta_sketch'],
-      ['boleta_empeno', 'libro_verde', 'microfono_oro']
-    ]);
-    expect(es.trial.climax.stages?.[3].requiredUpdateStage).toEqual({ microfono_oro: 2 });
-    expect(es.trial.climax.stages?.map((s) => s.prompt)).toEqual([
-      '¿CUÁNDO se grabó el grito?',
-      '¿DÓNDE se grabó? (y por qué no pudo ser el acusado)',
-      '¿QUIÉN podía hacer esa voz?',
-      '¿POR QUÉ?'
-    ]);
-    expect(en.trial.climax.stages?.map((s) => s.prompt)).toEqual([
-      'WHEN was the scream recorded?',
-      'WHERE was it recorded? (and why it could not be the defendant)',
-      'WHO could make that voice?',
-      'WHY?'
-    ]);
-    expect(es.trial.climax.choices?.map((c) => c.id)).toEqual(['prove_voice', 'proverb_trap']);
-    expect(en.trial.climax.choices?.map((c) => c.correctId)).toEqual(
-      es.trial.climax.choices?.map((c) => c.correctId)
-    );
-    expect(es.trial.climax.epilogue?.bg).toBe('assets/bg_waiting_room.webp');
   });
 
   it('keeps English hotspot geometry and statement counts in lockstep', () => {

@@ -26,3 +26,10 @@ export const CASE5_D3_T2_HUACAL_DEFLECT: DialogueLine[] = [
   { speaker: 'JUEZ', text: 'Defensa: esa tapa sí demuestra que el síndico estuvo allí y rubricó una apertura el sábado cuatro.', pose: 'judge_thinking' },
   { speaker: 'JUEZ', text: 'Pero estar en el depósito no prueba todavía que conociera esta diligencia ni que la fiscalía le avisara. Tráigame el oficio que contiene ese aviso.', pose: 'judge_neutral' }
 ];
+
+/** Declaraciones 5 y 6 de T8: el oficio prueba envío, no recepción. */
+export const CASE5_D3_T3_OFICIO_DEFLECT: DialogueLine[] = [
+  { speaker: 'JUEZ', text: 'Defensa: ese oficio demuestra que la fiscalía mandó el aviso a la Sindicatura, pero no que el licenciado Berrondo lo recibiera.', pose: 'judge_thinking' },
+  { speaker: 'JUEZ', text: 'Todavía no hay contradicción. Para desmentir que nadie se lo dijo, hace falta probar que el aviso llegó a sus manos.', pose: 'judge_neutral' },
+  { speaker: 'DEFENSA', text: '(El oficio prueba el envío. Todavía falta probar la recepción.)', pose: 'chapulin_idle' }
+];

@@ -21,15 +21,17 @@ closed.
 
 ## Why the tests did not catch it
 
-`tests/spec/Case5SpecConsistency.test.ts` reads the spec and asserts against the
-spec. That validates a document against itself. Every invariant whose anchor is a
-line the **player reads** needs a test that opens the shipped script instead.
+The `tests/spec/` suite read each spec and asserted against that same spec — it
+has been removed, precisely because it validated a document against itself. Every
+invariant whose anchor is a line the **player reads** needs a test that opens the
+shipped script instead.
 
 ## What to do
 
-- When an invariant says "X is stated on screen", add a test that reads the file
-  under `src/` where the line must live. `tests/spec/Case5SourceAnchors.test.ts` is
-  the pattern.
+- When an invariant says "X is stated on screen", assert the player-facing contract
+  from the shipped data: the wording guards in [[tests/case/Case5Vocabulary.test.ts]]
+  and the spoiler/leakage guards in [[tests/state/Case5EvidenceCatalog.test.ts]] are
+  the surviving pattern. Raw source-line greps and spec-vs-spec comparisons are not.
 - Treat a residue table as a claim to verify, not as evidence. "Closed" in the spec
   means someone intended to close it.
 - Prefer relational assertions to string matches. "No line dated 21 August may talk

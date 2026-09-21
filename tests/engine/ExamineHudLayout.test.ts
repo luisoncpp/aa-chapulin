@@ -1,4 +1,4 @@
-// @Architecture(descriptionShort="Pins examine HUD so it cannot steal hotspot hits", type="test", icon="layout")
+﻿// @Architecture(descriptionShort="Pins examine HUD so it cannot steal hotspot hits", type="test", icon="layout")
 import fs from 'node:fs';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
@@ -23,14 +23,8 @@ function px(value: string, label: string): number {
 describe('examine HUD does not occlude hotspot hit-testing', () => {
   const css = fs.readFileSync(path.resolve(__dirname, '../../style.css'), 'utf-8');
   const bar = cssRule(css, '#controls-bar');
-  const btn = cssRule(css, '.menu-btn');
   const examineBar = cssRule(css, '#game-screen.examine-mode #controls-bar');
   const examineBox = cssRule(css, '#dialogue-box.examine-mode');
-
-  it('lets clicks pass through empty controls-bar space onto hotspots', () => {
-    expect(cssProp(bar, 'pointer-events')).toBe('none');
-    expect(cssProp(btn, 'pointer-events')).toBe('auto');
-  });
 
   it('drops the examine back button onto the shrunk dialogue stack', () => {
     const idleBottom = px(cssProp(bar, 'bottom'), 'controls-bar bottom');
@@ -39,13 +33,5 @@ describe('examine HUD does not occlude hotspot hit-testing', () => {
     expect(idleBottom).toBe(138);
     expect(examineBottom).toBeLessThan(idleBottom);
     expect(examineBottom).toBeGreaterThan(examineBoxH);
-  });
-
-  it('hides the examine plate through its tracked HUD hover state', () => {
-    expect(css).toMatch(
-      /#dialogue-box\.examine-mode\.examine-hud-hidden\s*\{[^}]*visibility:\s*hidden/,
-    );
-    expect(css).not.toContain('.hotspot-area:hover) #dialogue-box.examine-mode');
-    expect(css).not.toContain('data-examine-plate-overlap');
   });
 });

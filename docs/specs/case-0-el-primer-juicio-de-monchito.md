@@ -638,14 +638,14 @@ Las horas de `recibo_hielo`, `foto_patio` y del anexo de `parte_detencion` deben
 
 ### 15.6 Tests
 
-- `tests/case/Case0Trial.test.ts`: cada testimonio tiene exactamente una contradicción resolutoria; cada prueba exigida está en el Acta en ese momento; ningún `prompt` nombra su prueba objetivo.
-- `tests/case/Case0Progression.test.ts`: `informe_lesiones` llega a la etapa 2 antes de la etapa 1 del clímax; `lata_ahorros` llega a la etapa 1 antes de la etapa 2; `parte_detencion` no recibe un segundo update.
-- `tests/engine/TrialTestimonySequence.test.ts`: con tres testimonios, el acierto en T1 lleva a T2, el de T2 a T3 y el de T3 al clímax; con dos, el comportamiento de los casos 1–4 no cambia.
-- `tests/state/SaveTestimonyMigration.test.ts`: un save con `testimonyKey: 'testimony2'` se restaura en el índice 1.
-- `tests/engine/TrialOnlyLaunch.test.ts`: `startGame('case0')` deja `mode === 'TRIAL'`, otorga las siete pruebas iniciales y **no** adelanta etapas.
-- `tests/state/Case0EvidenceCatalog.test.ts`: paridad es/en y existencia de `assets/<id>.webp`.
-- `tests/assets/Case0Assets.test.ts`: sprites, iconos y láminas presentes.
-- `tests/case/Case0Points.test.ts`: cada `pointTarget` tiene exactamente una zona correcta y sus `bounds` caen dentro de 0–100.
+- `tests/case/Case0Scripts.test.ts`: cada testimonio tiene la contradicción resolutoria esperada y la progresión de pruebas exigidas.
+- `tests/state/EvidenceUpdateStages.test.ts`: las etapas de `informe_lesiones` y `lata_ahorros` avanzan en orden y saturan.
+- `tests/engine/TrialDayRouter.test.ts` + `tests/engine/TrialController.test.ts`: con tres testimonios, el acierto en T1 lleva a T2 y el de T2 a T3; con dos, el comportamiento de los casos 1–4 no cambia.
+- `tests/engine/SaveTestimonyMigration.test.ts`: un save con `testimonyKey: 'testimony2'` se restaura en el índice 1.
+- `tests/engine/Case0TrialFlow.test.ts`: `startGame('case0')` deja `mode === 'TRIAL'`, otorga las siete pruebas iniciales y **no** adelanta etapas.
+- `tests/state/CatalogIntegrity.test.ts`: paridad es/en, existencia de `assets/<id>.webp` y de cada lámina de Acta en los seis casos.
+- `tests/case/ScriptIntegrity.test.ts`: sprites, iconos, láminas y fondos referenciados por el guion están en disco, con geometría ES = EN.
+- `tests/case/ScriptIntegrity.test.ts`: cada `pointTarget` tiene al menos una zona correcta y sus `bounds` caen dentro de 0–100.
 
 ## 16. Validación
 

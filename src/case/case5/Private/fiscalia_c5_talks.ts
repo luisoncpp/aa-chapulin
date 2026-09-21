@@ -11,7 +11,7 @@ export const CASE5_FISCALIA_C5_TALKS: TalkOption[] = [
     label: 'Deme el oficio de la diligencia',
     dialogue: [
       { speaker: 'SUPER SAM', text: 'Oficio 4471, del veintiséis de noviembre. Mío, firmado por mí, ordenado por mí.', pose: 'supersam_sweat' },
-      { speaker: 'DEFENSA', text: '«Diligencia de cotejo documental. Archivo Judicial. Cuatro de diciembre, diecisiete horas.»', pose: 'chapulin_idle' },
+      { speaker: 'DEFENSA', text: '«Diligencia de cotejo documental. Archivo Judicial. Cuatro de diciembre, 17:00.»', pose: 'chapulin_idle' },
       { speaker: 'DEFENSA', text: '«Y al calce, la lista de distribución: c.c.p. Actuaría adscrita. c.c.p. Dirección del Archivo. c.c.p. Sindicatura de la quiebra 114/1971.»', pose: 'chapulin_point' },
       { speaker: 'SUPER SAM', text: 'Es un trámite, counselor. Se notifica a quien tiene interés jurídico. Lo hace la máquina, no el hombre.', pose: 'supersam_sweat' },
       { speaker: 'DEFENSA', text: 'Señor fiscal, ¿usted sabía que ese oficio salía de aquí con esa lista?', pose: 'chapulin_point' },

@@ -37,7 +37,7 @@ Activo compartido por ES/EN: `assets/profile_perfil_donramon.webp`; no existe va
 - [ ] `PINTAR` — La ficha se incorpora al Acta cuando el diálogo de la celda entrega el perfil del acusado después de la insignia; la línea inmediata la presenta como una de las tres fichas del Acta (§10.1; `celda.ts:44-49`; `celda_en.ts:44-49`).
 - [ ] `PINTAR` — El catálogo debe leer inicialmente «El acusado» / “The defendant”, no “Defensa” ni “Abogado defensor”; el Chapulín es quien recibe el rol de defensor titular (§3; §6.1; `ProfileCatalogCase5Es.ts:10-15`; `ProfileCatalogCase5En.ts:10-15`).
 - [ ] `NO CONTRADECIR` — En D1-T2, la actualización convierte la oportunidad de los doce minutos en un hecho registrado del perfil, pero no autoriza cambiar la imagen a una pose acusatoria (`trial_day1_success.ts:79`; `trial_day1_success_en.ts:79`).
-- [ ] `NO CONTRADECIR` — En el giro 4, la actualización registra que la ventana forense corregida incluye a Don Ramón; el perfil sigue siendo el mismo icono y la imagen no debe dibujar una gráfica, ventana horaria ni culpabilidad (`trial_day4_success.ts:31`; `trial_day4_success_en.ts:31`).
+- [ ] `NO CONTRADECIR` — En el giro 4, la actualización registra que la ventana forense corregida incluye a Don Ramón; el perfil sigue siendo el mismo icono y la imagen no debe dibujar una gráfica, ventana horaria ni culpabilidad (`trial_day4_success.ts:32`; `trial_day4_success_en.ts:32`).
 - [ ] `NO CONTRADECIR` — El perfil sirve para identificar a la persona, no para demostrar por sí solo que mató a Casimiro, que escribió la tarjeta o que recibió personalmente el dinero (§2.1-§2.2; §6.2; §24.C F9/F13).
 
 ### F5 Estilo

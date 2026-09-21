@@ -11,7 +11,7 @@ export const CASE5_FISCALIA_C5_TALKS_EN: TalkOption[] = [
     label: 'Give me the diligence order',
     dialogue: [
       { speaker: 'SUPER SAM', text: 'Order 4471, November twenty-sixth. Mine, signed by me, ordered by me.', pose: 'supersam_sweat' },
-      { speaker: 'DEFENSA', text: '"Document collation diligence. Judicial Archive. December fourth, five PM."', pose: 'chapulin_idle' },
+      { speaker: 'DEFENSA', text: '"Document collation diligence. Judicial Archive. December fourth, 5:00 PM."', pose: 'chapulin_idle' },
       { speaker: 'DEFENSA', text: '"And at the foot, the distribution list: c.c.p. Assigned court clerk. c.c.p. Archive Directorate. c.c.p. Bankruptcy syndic 114/1971."', pose: 'chapulin_point' },
       { speaker: 'SUPER SAM', text: 'It is a formality, counselor. You notify whoever has a legal interest. The machine does it, not the man.', pose: 'supersam_sweat' },
       { speaker: 'DEFENSA', text: 'Prosecutor, did you know that order left here with that list?', pose: 'chapulin_point' },

@@ -16,7 +16,7 @@ export const CASE5_CLIMAX_STAGE3_POINT_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'NARRADOR', text: 'The bailiff sets on the bench the forensic photograph of the shelf and, beside it, a heavy volume, half-leather bound, with brass corners on the spine.' },
   { speaker: 'JUEZ', text: 'Open it at the endpaper, Mr. Clerk.', pose: 'judge_neutral' },
   { speaker: 'SECRETARIO', text: 'There is a stamp, Your Honor. Violet ink.' },
-  { speaker: 'SECRETARIO', text: '"Q dash one fourteen slash nineteen seventy-one. Estate goods. Crate nine."' },
+  { speaker: 'SECRETARIO', text: '"Q-114/1971. Estate goods. Crate 9."' },
   { speaker: 'NARRADOR', text: 'The gallery erupts.', sfx: 'gavel', bgm: 'objection' },
   { speaker: 'JUEZ', text: 'ORDER! ORDER!', sfx: 'gavel', pose: 'judge_gavel' },
   { speaker: 'DEFENSA', text: 'Your Honor, that volume is from the luxury edition!', pose: 'chapulin_point' },

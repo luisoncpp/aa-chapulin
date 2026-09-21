@@ -27,15 +27,15 @@ Clase: `icon`. Espec: §23.0, §5.1, §5.5, §23.5 y §24.D F6. Guion directo: e
 
 - [ ] `NO CONTRADECIR` — La prueba inicial representa un intervalo de muerte de **17:00–17:30**, con temperatura tomada a las **18:40**; esas cifras pertenecen al estado narrativo del Acta y no necesitan aparecer en el icono (§2.2 cronología; §5.1; §24.D F6; catálogos ES/EN).
 - [ ] `NO CONTRADECIR` — La etapa 1 añade que el golpe fue de arriba abajo y por detrás, con el objeto sostenido a dos manos y cerrado sobre la nuca, sin arco de golpe (§5.5; `trial_day1_success.ts:77-78`; equivalente EN).
-- [ ] `NO CONTRADECIR` — La etapa 2 corrige el intervalo a **16:35–17:05** al aplicar una sala a **31 °C**, frente al modelo normal de **20 °C**; el icono no debe sugerir una tercera ventana ni que la hora atribuye autoría (§5.5; §17.1; §24.D F6; `trial_day4_success.ts:20-22`; equivalente EN).
+- [ ] `NO CONTRADECIR` — La etapa 2 corrige el intervalo a **16:35–17:05** al aplicar una sala a **31 °C**, frente al modelo normal de **20 °C**; el icono no debe sugerir una tercera ventana ni que la hora atribuye autoría (§5.5; §17.1; §24.D F6; `trial_day4_success.ts:21-23`; equivalente EN).
 
 ### F4 Contrato en pantalla
 
 - [ ] `PINTAR` — El icono se entrega al terminar el hotspot del cuerpo en el pasillo 7, después de que se establecen el golpe único, la medición a las 18:40 y la ventana de cinco a cinco y media (`archivo_pasillo7_hotspots.ts:3-22`; variante EN equivalente).
 - [ ] `NO CONTRADECIR` — En D1-T1 el jugador presenta esta prueba para sostener la contradicción de la ventana **17:00–17:30** con la salida observada de Don Ramón a las 16:58; la prueba también es válida contra las declaraciones 3 y 4, que comparten la misma regla (`trial_day1_t1.ts:17-22`; §10.2; equivalente EN).
 - [ ] `NO CONTRADECIR` — Tras el `followUp` de D1-T2, la actualización visible acompaña la afirmación de que el golpe entró de arriba abajo y por detrás, sin arco, y que el objeto se cerró sobre la nuca (`trial_day1_success.ts:74-78`; equivalente EN).
-- [ ] `NO CONTRADECIR` — En D4, `openingPresent` usa `bitacora_caldera` para demostrar que el forense trabajó con 20 °C frente a los 31 °C del pasillo; después se actualiza este informe a 16:35–17:05 (`trial_day4.ts:20-28`; `trial_day4_success.ts:8-22`; equivalentes EN).
-- [ ] `NO CONTRADECIR` — La corrección incluye a Don Ramón y a Berrondo dentro de la ventana y hace que la hora deje de decidir la autoría; el icono no debe sugerir que el informe señala por sí solo al culpable (§24.D F6; `trial_day4_success.ts:22-33`).
+- [ ] `NO CONTRADECIR` — En D4, `openingPresent` usa `bitacora_caldera` para demostrar que el forense trabajó con 20 °C frente a los 31 °C del pasillo; después se actualiza este informe a 16:35–17:05 (`trial_day4.ts:20-28`; `trial_day4_success.ts:8-23`; equivalentes EN).
+- [ ] `NO CONTRADECIR` — La corrección incluye a Don Ramón y a Berrondo dentro de la ventana y hace que la hora deje de decidir la autoría; el icono no debe sugerir que el informe señala por sí solo al culpable (§24.D F6; `trial_day4_success.ts:23-34`).
 
 ### F5 Estilo y prohibidos
 

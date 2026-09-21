@@ -16,6 +16,7 @@ import {
 export interface Case5Parts {
   scenes: CaseScript['investigation'];
   intro: DialogueLine[];
+  pressHint: DialogueLine[];
   day1Opening?: OpeningPresent;
   t1: Testimony;
   t2: Testimony;
@@ -83,6 +84,7 @@ export function assembleCase5(parts: Case5Parts): CaseScript {
     debugProfiles: CASE5_DEBUG_PROFILES,
     debugUnlockLocations: CASE5_DAY1_UNLOCK,
     investigation: parts.scenes,
+    pressHint: parts.pressHint,
     trial: {
       intro: parts.intro,
       testimonies: [parts.t1, parts.t2, parts.t3],

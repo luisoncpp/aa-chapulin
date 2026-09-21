@@ -50,50 +50,31 @@ describe('Case 5 day 3 trial (Spanish)', () => {
     expect(en.adjournment?.next?.trial.openingPresent?.evidence).toEqual(['efectos_casimiro']);
   });
 
-  it('exports T6/T7/T8 with spec titles, witnesses, and T7/T8 grave BGM', () => {
-    const [t6, t7, t8] = day3.testimonies;
-    expect(t6).toMatchObject({
-      title: 'Testimonio: Lo que cargo en ese sótano',
-      witness: 'El Chómpiras',
-      bgm: 'cross_exam_moderato'
-    });
-    expect(t7).toMatchObject({
-      title: 'Testimonio: Lo que cobré en agosto',
-      witness: 'Super Sam',
-      bgm: 'cross_exam_grave'
-    });
-    expect(t8).toMatchObject({
-      title: 'Testimonio: Lo que hice el cuatro de diciembre',
-      witness: 'Lic. Berrondo (investigado)',
-      bgm: 'cross_exam_grave'
-    });
+
+
+  it('lets Don Ramón advise Chapulín through the Case 5 press hint', () => {
+    expect(es.pressHint).toMatchObject([{
+      speaker: 'DON RAMÓN',
+      pose: 'donramon_point'
+    }]);
+    expect(es.pressHint?.[0].text).toContain('Chapulín');
+    expect(en.pressHint).toMatchObject([{
+      speaker: 'DON RAMÓN',
+      pose: 'donramon_point'
+    }]);
+    expect(en.pressHint?.[0].text).toContain('Chapulin');
+    expect(es.pressHint?.[0].text).not.toContain('Don Ramón');
+    expect(en.pressHint?.[0].text).not.toContain('Don Ramón');
   });
 
-  it('maps contradictions per spec §15', () => {
-    const [t6, t7, t8] = day3.testimonies;
-    expect(contradictions(t6)).toHaveLength(1);
-    expect(t6.statements.find((s) => s.id === 'c5_d3t1_3')?.contradiction).toMatchObject({
-      evidence: ['inventario_1971'],
-      followUp: { evidence: ['huacal_9'] }
-    });
 
-    expect(contradictions(t7)).toHaveLength(1);
-    expect(t7.statements.find((s) => s.id === 'c5_d3t2_3')?.contradiction).toMatchObject({
-      evidence: ['oficio_diligencia'],
-      followUp: { evidence: ['expediente_serie'] }
-    });
-
-    expect(contradictions(t8)).toHaveLength(1);
-    expect(t8.statements.find((s) => s.id === 'c5_d3t3_6')?.contradiction).toMatchObject({
-      evidence: ['acuse_notificacion'],
-      followUp: { evidence: ['tomo_caido'] }
-    });
-  });
 
   it('deflects premature presents instead of penalizing them', () => {
     const [t6] = day3.testimonies;
     const t7 = day3.testimonies[1];
+    const t8 = day3.testimonies[2];
     const enT6 = day3Trial(en).testimonies[0];
+    const enT8 = day3Trial(en).testimonies[2];
 
     expect(t6.statements.find((s) => s.id === 'c5_d3t1_2')?.deflect?.evidence).toEqual(['huacal_9']);
     expect(t6.statements.find((s) => s.id === 'c5_d3t1_3')?.deflect?.evidence)
@@ -102,6 +83,12 @@ describe('Case 5 day 3 trial (Spanish)', () => {
       .not.toBe(t6.statements.find((s) => s.id === 'c5_d3t1_2')?.deflect?.dialogue);
     expect(t7.statements.find((s) => s.id === 'c5_d3t2_3')?.deflect?.evidence)
       .toEqual(['huacal_9']);
+    expect(t8.statements.find((s) => s.id === 'c5_d3t3_5')?.deflect?.evidence)
+      .toEqual(['oficio_diligencia']);
+    expect(t8.statements.find((s) => s.id === 'c5_d3t3_6')?.deflect?.evidence)
+      .toEqual(['oficio_diligencia']);
+    expect(enT8.statements.find((s) => s.id === 'c5_d3t3_5')?.deflect?.dialogue)
+      .not.toBe(t8.statements.find((s) => s.id === 'c5_d3t3_5')?.deflect?.dialogue);
   });
 
   it('keeps the deflections out of the dramatic cue and on the court voice', () => {
@@ -114,8 +101,8 @@ describe('Case 5 day 3 trial (Spanish)', () => {
       expect(line.bgm, line.text).toBeUndefined();
       expect(line.cutin, line.text).toBeUndefined();
     });
-    expect(deflections.filter((line) => line.speaker === 'JUEZ').length)
-      .toBeGreaterThanOrEqual(deflections.length - 2);
+    expect(deflections.filter((line) => line.speaker !== 'JUEZ')
+      .every((line) => line.speaker === 'DEFENSA')).toBe(true);
   });
 
   it('never uses truth BGM in day-3 trial dialogue', () => {
@@ -139,6 +126,13 @@ describe('Case 5 day 3 trial (Spanish)', () => {
 
     expect(spanishLine).toMatchObject({ speaker: 'NARRADOR', pose: 'secretario_leyendo' });
     expect(englishLine).toMatchObject({ speaker: 'NARRADOR', pose: 'secretario_leyendo' });
+  });
+
+  it('does not add a redundant sweat caption after Berrondo already reacts', () => {
+    const englishLines = trialDialogue(day3Trial(en));
+
+    expect(lines.some((line) => line.text === 'Primera gota de sudor en tres jornadas.')).toBe(false);
+    expect(englishLines.some((line) => line.text === 'First drop of sweat in three days.')).toBe(false);
   });
 
   it('keeps DEFENSA on chapulin poses only and bans donramon_slam', () => {

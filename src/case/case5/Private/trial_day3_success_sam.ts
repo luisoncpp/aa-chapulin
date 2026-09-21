@@ -10,7 +10,7 @@ export const CASE5_D3_T2_OFICIO_SUCCESS: DialogueLine[] = [
   { speaker: 'DEFENSA', text: 'Señor juez, el oficio 4471 lo firmó el propio fiscal el veintiséis de noviembre.', pose: 'chapulin_point' },
   { speaker: 'DEFENSA', text: 'Y hasta abajo lleva la lista de a quién se le mandó copia, escrita por la máquina de su propia oficina.', pose: 'chapulin_idle' },
   { speaker: 'DEFENSA', text: '«Con copia para: la Actuaría adscrita. La Dirección del Archivo. Y...»', pose: 'chapulin_idle' },
-  { speaker: 'DEFENSA', text: '«...la Sindicatura de la quiebra ciento catorce diagonal mil novecientos setenta y uno.»', pose: 'chapulin_slam', sfx: 'desk_slam', cutin: 'objection_toma_eso' },
+  { speaker: 'DEFENSA', text: '«...la Sindicatura de la quiebra 114/1971.»', pose: 'chapulin_slam', sfx: 'desk_slam', cutin: 'objection_toma_eso' },
   { speaker: 'NARRADOR', text: 'La galería se levanta.', sfx: 'realization', bgm: 'objection' },
   { speaker: 'SUPER SAM', text: '...¿Qué?', pose: 'supersam_sweat' },
   { speaker: 'JUEZ', text: '¡ORDEN!', sfx: 'gavel', pose: 'judge_gavel' },
@@ -51,7 +51,6 @@ export const CASE5_D3_T2_EXPEDIENTE_SUCCESS: DialogueLine[] = [
   { speaker: 'DEFENSA', text: 'Señor fiscal, usted creyó que le habían dado un sobre.', pose: 'chapulin_point' },
   { speaker: 'DEFENSA', text: 'Y lo que le dieron fue el renglón seis de un catálogo.', pose: 'chapulin_slam', sfx: 'desk_slam', cutin: 'objection_toma_eso' },
   { speaker: 'SUPER SAM', text: '¡YO NO SOY UN RENGLÓN!', pose: 'supersam_breakdown', sfx: 'desk_slam' },
-  { speaker: 'NARRADOR', text: 'El fiscal se dobla sobre el barandal del estrado.', sfx: 'realization' },
   { speaker: 'SUPER SAM', text: '¡Yo soy un hombre que cobra! ¡Cobrar no es ser un producto!', pose: 'supersam_breakdown' },
   { speaker: 'DEFENSA', text: 'Con precio y con duración, señor fiscal. Cinco minutos.', pose: 'chapulin_idle' },
   { speaker: 'DEFENSA', text: 'A eso, en su tierra, le llaman una tarifa.', pose: 'chapulin_idle' },
@@ -64,6 +63,6 @@ export const CASE5_D3_T2_EXPEDIENTE_SUCCESS: DialogueLine[] = [
   { speaker: 'SUPER SAM', text: '...Thank you, Your Honor.', pose: 'supersam_sweat' },
   { speaker: 'DEFENSA', text: '(Y ahora sí. Ahora ya nada más queda el señor de la cadena de oro.)', pose: 'chapulin_idle' },
   { speaker: 'JUEZ', text: 'Licenciado Berrondo. Esta corte le ordena declarar, y le advierte que ya no lo hace como coadyuvante.', sfx: 'gavel', pose: 'judge_gavel' },
-  { speaker: 'BERRONDO', text: 'Con mucho gusto, señor juez. Y le agradezco que me lo ordene: así no parece que huyo.', pose: 'berrondo_idle', bg: 'assets/bg_courtroom.webp' },
+  { speaker: 'BERRONDO', text: 'Con mucho gusto, señor juez. Y le agradezco que me lo ordene: así no parece que huyo.', pose: 'berrondo_idle' },
   { speaker: 'JUEZ', text: 'Declare usted.', sfx: 'gavel', pose: 'judge_gavel' }
 ];

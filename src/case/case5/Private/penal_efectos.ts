@@ -16,8 +16,8 @@ export const CASE5_PENAL_EFECTOS: InvestigationScene = {
   intro: [
     { speaker: 'NARRADOR', text: '8 de diciembre, 2:40 PM. Penal del Distrito, bodega de efectos personales.', bg: 'assets/bg_penal_efectos.webp', furniture: 'none', bgm: 'suspense' },
     { speaker: 'NARRADOR', text: 'Trescientas cajas de cartón numeradas en un estante metálico. En la etiqueta de la 214-J dice: LENGUA, CASIMIRO.' },
-    { speaker: 'SARGENTO', text: 'Caja doscientos catorce jota, mi Licenciado. Y fíjese en el número.', pose: 'pazguato_decidido' },
-    { speaker: 'DEFENSA', text: 'Doscientos catorce.', pose: 'chapulin_idle' },
+    { speaker: 'SARGENTO', text: 'Caja 214-J, mi Licenciado. Y fíjese en el número.', pose: 'pazguato_decidido' },
+    { speaker: 'DEFENSA', text: '214.', pose: 'chapulin_idle' },
     { speaker: 'DEFENSA', text: 'Como la página del expediente que dejó abierto.', pose: 'chapulin_panic' },
     { speaker: 'SARGENTO', text: 'Coincidencia, mi Licenciado. Lo verifiqué: se las numeran por orden de ingreso.', pose: 'pazguato_idle' },
     { speaker: 'DEFENSA', text: '...Ya.', pose: 'chapulin_idle' },

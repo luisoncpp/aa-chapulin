@@ -87,11 +87,11 @@ export const CASE5_D2_T1_RECIBO_SUCCESS_EN: DialogueLine[] = [
 
 export const CASE5_D2_T2_LIBRO_SUCCESS_EN: DialogueLine[] = [
   { cutin: 'objection_protesto', speaker: 'DEFENSA', text: 'OBJECTION!', sfx: 'desk_slam', bgm: 'objection', pose: 'chapulin_slam' },
-  { speaker: 'DEFENSA', text: 'Your Honor, the witness just said "I left at sixteen fifty."', pose: 'chapulin_point' },
+  { speaker: 'DEFENSA', text: 'Your Honor, the witness just said "I left at 16:50."', pose: 'chapulin_point' },
   { speaker: 'DEFENSA', text: 'That book has no departure column.', pose: 'chapulin_slam', sfx: 'desk_slam' },
   { speaker: 'JUEZ', text: 'What did you say?', pose: 'judge_shock' },
   { speaker: 'DEFENSA', text: 'It has two columns, Your Honor, and they are printed: "time of entry" and "time of badge return."', pose: 'chapulin_point' },
-  { speaker: 'DEFENSA', text: 'What this book records at sixteen fifty is not that someone left the building. It is that someone turned in a badge at a window.', pose: 'chapulin_idle' },
+  { speaker: 'DEFENSA', text: 'What this book records at 16:50 is not that someone left the building. It is that someone turned in a badge at a window.', pose: 'chapulin_idle' },
   { speaker: 'NARRADOR', text: 'Murmurs in the gallery.', sfx: 'realization' },
   { speaker: 'SUPER SAM', text: 'Objection! It is the same thing! You hand in the badge and you leave!', pose: 'supersam_slam', sfx: 'desk_slam' },
   { speaker: 'DEFENSA', text: 'One normally does leave, Mr. Prosecutor. That is not the same as being on record.', pose: 'chapulin_point' },

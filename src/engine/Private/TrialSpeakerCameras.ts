@@ -7,13 +7,14 @@
 import type { CaseId } from '../../types/index.js';
 import { case5CameraOverride } from './TrialCaseStaging.js';
 
-export const TRIAL_SPEAKER_BACKGROUNDS: Record<string, string> = {
+const TRIAL_SPEAKER_BACKGROUNDS: Record<string, string> = {
   DEFENSA: 'assets/bg_defense.webp',
   'DON RAMON': 'assets/bg_defense.webp',
   'DON RAMÓN': 'assets/bg_defense.webp',
   CHAPULIN: 'assets/bg_defense.webp',
   'CHAPULÍN': 'assets/bg_defense.webp',
   'SUPER SAM': 'assets/bg_courtroom.webp',
+  SECRETARIO: 'assets/bg_courtroom.webp',
   JUEZ: 'assets/bg_judge.webp',
   TRIPASECA: 'assets/bg_witness.webp',
   FLORINDA: 'assets/bg_witness.webp',
@@ -38,7 +39,9 @@ export const TRIAL_SPEAKER_BACKGROUNDS: Record<string, string> = {
   CASIMIRO: 'assets/bg_witness.webp'
 };
 
-const INSTRUCTION_SPEAKERS = new Set(['NARRADOR', 'MODO EXAMINAR', 'EXAMINE MODE']);
+const INSTRUCTION_SPEAKERS = new Set([
+  'NARRADOR', 'MODO EXAMINAR', 'EXAMINE MODE', 'ALGUACIL', 'CUSTODIO'
+]);
 
 export function trialBackgroundFor(speaker?: string, caseId?: CaseId): string | null {
   if (!speaker || INSTRUCTION_SPEAKERS.has(speaker)) return null;

@@ -32,12 +32,15 @@ describe('StatementUnlock', () => {
   });
 
   it('detects hidden statements in a testimony', () => {
-    expect(testimonyHasHiddenStatements(testimony)).toBe(true);
+    const pressed = new Set<string>();
+    expect(testimonyHasHiddenStatements(testimony, pressed)).toBe(true);
+    pressed.add('a');
+    expect(testimonyHasHiddenStatements(testimony, pressed)).toBe(false);
     expect(testimonyHasHiddenStatements({
       title: 'Open',
       witness: 'WITNESS',
       bgm: 'cross_exam_moderato',
       statements: [{ id: 'x', speaker: 'WITNESS', text: 'Only one' }]
-    })).toBe(false);
+    }, new Set())).toBe(false);
   });
 });

@@ -68,9 +68,9 @@ export const CASE5_PASILLO7_HOTSPOTS_EN: Hotspot[] = [
     dialogue: [
       { speaker: 'NARRADOR', text: 'A long oak table with a green-shaded lamp. On it, an open file bundle tied with ribbon.' },
       { speaker: 'DEFENSA', text: 'It is Mr. Lengua file. His appeal.', pose: 'chapulin_idle' },
-      { speaker: 'DEFENSA', text: 'And it is open to page two hundred fourteen.', pose: 'chapulin_point' },
+      { speaker: 'DEFENSA', text: 'And it is open to page 214.', pose: 'chapulin_point' },
       { speaker: 'SARGENTO', text: 'He left it there. Nobody has turned that page, Counselor; I have the seven PM photograph and it is identical.', pose: 'pazguato_decidido' },
-      { speaker: 'DEFENSA', text: 'On page two hundred fourteen there is a card glued with paste.', pose: 'chapulin_idle' },
+      { speaker: 'DEFENSA', text: 'On page 214 there is a card glued with paste.', pose: 'chapulin_idle' },
       { speaker: 'DEFENSA', text: '"Universal Knowledge Encyclopedias, Inc." Evidence seized from the convict in July.', pose: 'chapulin_idle' },
       { speaker: 'SARGENTO', text: 'That company was dissolved in seventy-one. It says so below, in the clerk handwriting.', pose: 'pazguato_idle' },
       { speaker: 'DEFENSA', text: '(A man with four years left on his sentence asked to be brought here to point at an old card.)', pose: 'chapulin_idle' },

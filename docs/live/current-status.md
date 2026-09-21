@@ -44,7 +44,7 @@ Implemented as the courtroom-only tutorial specified in [[docs/specs/case-0-el-p
 - **Runtime:** `TrialScript.testimonies` is now the authoritative variable-length schema; Cases 1–4 retain legacy `testimony1`/`testimony2` aliases for existing integrations and v1 saves. Case 0 seeds exactly seven Court Record entries without consuming staged updates.
 - **Content:** Three Casimiro cross-examinations, opening badge present, two Present & Point moments, two gated climax stages, choice prompt, verdict, and waiting-room epilogue are implemented in [[src/case/case0/index.ts]]. Spanish and English catalogs are isolated in [[src/state/Private/EvidenceCatalogCase0Es.ts]] and [[src/state/Private/EvidenceCatalogCase0En.ts]].
 - **Art:** Generated raw sheets live in `tools/raw/case0/`; deterministic production extraction is [[process_case0_assets.py]]. Output includes Toribio and Casimiro poses, eight unlabeled object-only evidence icons, the bilingual-referenced `examine_informe_lesiones.webp` with `foto_nazario.webp`, six examine plates, two point plates, and the Case 0-only `bg_waiting_room_case0.webp` newspaper variant.
-- **Tests:** [[tests/case/Case0Scripts.test.ts]], [[tests/case/Case0PresentPointZones.test.ts]], [[tests/state/Case0EvidenceCatalog.test.ts]], [[tests/assets/Case0Assets.test.ts]], [[tests/engine/Case0TrialFlow.test.ts]], and [[tests/engine/SaveTestimonyMigration.test.ts]].
+- **Tests:** [[tests/case/Case0Scripts.test.ts]], [[tests/engine/Case0TrialFlow.test.ts]], [[tests/engine/SaveTestimonyMigration.test.ts]], plus the cross-case contract suites [[tests/case/ScriptIntegrity.test.ts]] (references, geometry, ES/EN lockstep) and [[tests/state/CatalogIntegrity.test.ts]] (catalog completeness and icon/plate presence).
 
 ---
 
@@ -54,7 +54,7 @@ Implemented as the courtroom-only tutorial specified in [[docs/specs/case-0-el-p
 
 ## Remaining polish (not unimplemented content)
 
-1. Coverage 90% branches (`npm run test:coverage`). Engine files are under 200 lines. [[tests/assets/SlamSpriteContact.test.ts]] needs Python + Pillow.
+1. Coverage 90% branches (`npm run test:coverage`). Engine files are under 200 lines. No test needs Python or Pillow: asset pixel gates live in the asset pipeline (`verify_assets.py`), not in Vitest.
 2. `npx fallow audit` (needs `coverage/coverage-final.json`).
 3. Browser playtest: detention → vault → restaurant → trial day 1 → postal → Clotilde → trial day 2 → climax (trial button off after adjournment, on again with day-2 evidence).
 

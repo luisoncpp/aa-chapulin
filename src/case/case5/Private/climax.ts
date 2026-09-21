@@ -17,8 +17,7 @@ import { CASE5_CLIMAX_GUILTY, CASE5_CLIMAX_VERDICT } from './climax_verdict.js';
 export const CASE5_CLIMAX: ClimaxDefinition = {
   ...assembleCase5Climax({
     dialogue: [
-      { speaker: 'JUEZ', text: 'Licenciado: esta corte le ha impedido durante cuatro días señalar a una persona, y ha hecho bien.', sfx: 'gavel', bgm: 'pursuit', pose: 'judge_gavel' },
-      { speaker: 'JUEZ', text: 'Se señalan hechos. Las personas vienen al final o no vienen.', pose: 'judge_neutral' },
+      { speaker: 'JUEZ', text: 'Se señalan hechos. Las personas vienen al final o no vienen.', bgm: 'pursuit', pose: 'judge_neutral' },
       { speaker: 'JUEZ', text: 'Hoy los hechos ya no dejan a nadie más de pie.', pose: 'judge_thinking' },
       { speaker: 'JUEZ', text: 'Diga usted un nombre y respáldelo con el Acta.', sfx: 'gavel', pose: 'judge_gavel' },
       { speaker: 'DEFENSA', text: '(Don Ramón. ¿Lo digo?)', pose: 'chapulin_idle' },

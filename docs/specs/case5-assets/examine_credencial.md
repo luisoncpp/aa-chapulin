@@ -34,7 +34,7 @@ Clase: `examine`. Espec: §23.0, §23.3, §4.1, §4.2 y §24. Guion: D2 despacho
 
 - [ ] `NO CONTRADECIR` — La credencial pertenece a la quiebra 114/1971 y la firma del reverso corresponde a 1971 (§10.1, línea 1518; §23.3, línea 4053; catálogo ES/EN).
 - [ ] `NO CONTRADECIR` — «Vigente hasta la conclusión del concurso» significa que no caduca mientras el concurso siga abierto; no convertirlo en una vigencia diaria o temporal (§1.1, línea 197; catálogo ES/EN; clímax E2).
-- [ ] `NO CONTRADECIR` — «Sin límite de horario» autoriza la permanencia del síndico a cualquier hora, pero no imprime una hora concreta ni prueba por sí sola que Berrondo se quedara o saliera el 4 de diciembre (§24.A A1; §24.C F3; `src/case/case5/Private/trial_day4_success.ts:68-74`).
+- [ ] `NO CONTRADECIR` — «Sin límite de horario» autoriza la permanencia del síndico a cualquier hora, pero no imprime una hora concreta ni prueba por sí sola que Berrondo se quedara o saliera el 4 de diciembre (§24.A A1; §24.C F3; `src/case/case5/Private/trial_day4_success.ts:69-75`).
 - [ ] `NO CONTRADECIR` — La credencial abre el depósito de bienes de la masa; el gafete sólo habilita las salas de lectura del primer piso (§1.1, línea 197; D3-T3, `src/case/case5/Private/trial_day3_t3.ts:42-46`; D4-T1, `src/case/case5/Private/trial_day4_t1.ts:71-78`).
 
 ### F4 Contrato en pantalla

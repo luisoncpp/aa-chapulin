@@ -1,6 +1,6 @@
 # examine_termografo — hoja de hechos
 
-Clase: `examine`. Espec: §23.0, §23.3, §4.1 P7, §4.2, §5.4, §16.2, §17.1 y §24.D I45. Guion directo: punto `hotspot_termografo` de D4 y `openingPresent` de `bitacora_caldera`. Variantes localizadas cubiertas juntas: `examine_termografo.webp` y `examine_termografo_en.webp`.
+Clase: `examine`. Espec: §23.0, §23.3, §4.1 P7, §4.2, §5.4, §16.2, §17.1 y §24.D I45. Guion directo: punto `hotspot_termografo` de D4, `openingPresent` de `bitacora_caldera` y primera mitad de la lámina L7 (§17.1). Variantes localizadas cubiertas juntas: `examine_termografo.webp` y `examine_termografo_en.webp`.
 
 ## Mapa semántico y alcance
 
@@ -8,7 +8,7 @@ Clase: `examine`. Espec: §23.0, §23.3, §4.1 P7, §4.2, §5.4, §16.2, §17.1 
 - Panel superior: hoja de bitácora de mantenimiento del Archivo, con el asiento manuscrito del 3 de diciembre sobre el tubo reventado en el muro poniente del pasillo 7 y la operación máxima de la caldera y los dos secadores (§23.3; §16.2; catálogo ES/EN).
 - Panel inferior: tira semanal del termógrafo, retirada y archivada el domingo 5; el tambor está en el sótano, pero la sonda remota mide el aire del pasillo 7 (§4.1 P7; §16.2; §23.3).
 - Datos que la tira debe sostener: eje horizontal de horas, eje vertical de grados, subida de 19 °C a 31 °C el día 3, línea plana en 31 °C hasta el 5 y punto marcado a lápiz por el perito a las 18:40 del día 4 (§23.3; §16.2).
-- La prueba sirve para corregir el modelo forense de una sala a 20 °C: la temperatura real del pasillo 7 fue 31 °C y desplaza el intervalo de muerte a 16:35–17:05 (§4.2; §17.1; `trial_day4_success.ts:9-22` y equivalente EN).
+- La prueba sirve para corregir el modelo forense de una sala a 20 °C: la temperatura real del pasillo 7 fue 31 °C y desplaza el intervalo de muerte a 16:35–17:05 (§4.2; §17.1; `trial_day4_success.ts:9-23` y equivalente EN).
 
 ## Hechos a verificar
 
@@ -18,7 +18,7 @@ Clase: `examine`. Espec: §23.0, §23.3, §4.1 P7, §4.2, §5.4, §16.2, §17.1 
 - [ ] `PINTAR` — Panel superior: hoja de mantenimiento con asiento manuscrito del 3 de diciembre sobre «tubo reventado, muro poniente pasillo 7; caldera y dos secadores al máximo» (§23.3, §16.2).
 - [ ] `PINTAR` — Panel superior: nota que identifica la sonda remota en el pasillo 7; el registrador/termógrafo permanece en el sótano, pero la medición representa el aire de la escena (§4.1 P7; catálogo ES/EN; `archivo_caldera_hotspots.ts:30-32`).
 - [ ] `PINTAR` — Panel inferior: tira semanal archivada el 5 de diciembre, con cuadrícula de horas en horizontal y grados en vertical (§23.3; §16.2).
-- [ ] `PINTAR` — Panel inferior: línea de tinta que sube de 19 °C a 31 °C y se aplana en 31 °C hasta el domingo 5 (§23.3, §16.2 detailedView; `trial_day4_success.ts:11-17`).
+- [ ] `PINTAR` — Panel inferior: línea de tinta que sube de 19 °C a 31 °C y se aplana en 31 °C hasta el domingo 5 (§23.3, §16.2 detailedView; `trial_day4_success.ts:11-18`).
 - [ ] `PINTAR` — Punto marcado a lápiz por el perito sobre la línea a las 18:40 del 4 de diciembre (§23.3; §4.2; §16.2 detailedView).
 - [ ] `AUSENTE` — Personas, manos, flechas, círculos, halos o realces que señalen la respuesta; la prueba debe seguir siendo un documento físico y no una infografía (§23.0; §23.3; §17.1).
 
@@ -27,7 +27,7 @@ Clase: `examine`. Espec: §23.0, §23.3, §4.1 P7, §4.2, §5.4, §16.2, §17.1 
 - [ ] `TEXTO EXACTO` — La bitácora debe permitir leer el asiento manuscrito del 3 de diciembre: «tubo reventado, muro poniente pasillo 7; caldera y dos secadores al máximo» (§16.2 detailedView; §23.3).
 - [ ] `TEXTO EXACTO` — La nota de la bitácora debe identificar la sonda remota del pasillo 7; no sustituir «pasillo 7» por sótano (§4.1 P7; catálogo ES/EN; §23.3).
 - [ ] `PINTAR` — La tira debe mostrar físicamente sus ejes, cuadrícula, curva y punto pericial; las palabras de los ejes pueden ser funcionales y legibles, pero no añadir texto explicativo que el spec no pide (§23.3; §23.0).
-- [ ] `AUSENTE` — No imprimir dentro del activo la explicación «once grados», el intervalo `16:35–17:05`, la conclusión sobre la muerte ni la frase «tabla de una sala a 20 °C» como anotación editorial; esas relaciones se narran después (§17.1; `trial_day4_success.ts:11-22`).
+- [ ] `AUSENTE` — No imprimir dentro del activo la explicación «once grados», el intervalo `16:35–17:05`, la conclusión sobre la muerte ni la frase «tabla de una sala a 20 °C» como anotación editorial; esas relaciones se narran después (§17.1; `trial_day4_success.ts:11-23`).
 
 ### F3 Cifras, fechas y horas
 
@@ -35,7 +35,7 @@ Clase: `examine`. Espec: §23.0, §23.3, §4.1 P7, §4.2, §5.4, §16.2, §17.1 
 - [ ] `TEXTO EXACTO` — La escala de la tira debe sostener 19 °C → 31 °C y 31 °C sostenidos hasta el 5 (§23.3; §16.2 detailedView).
 - [ ] `NO CONTRADECIR` — La caldera y los dos secadores estuvieron al máximo del 3 al 7 de diciembre y fueron apagados anteayer respecto de la visita del 9; la bitácora no debe sugerir que el cuarto del sótano o el termógrafo se mantuvieron a 31 °C (§16.2; §24.D I45).
 - [ ] `NO CONTRADECIR` — El termógrafo lleva dieciocho años registrando en tiras cambiadas cada domingo; se instaló en 1964 por la humedad (§16.2; `trial_day4_success.ts:11`). Este dato es narrativo y no exige imprimirse como leyenda (§23.0; §23.3).
-- [ ] `NO CONTRADECIR` — Los 20 °C son la tabla usada por el forense, mientras 31 °C es la lectura del pasillo 7; no fusionar ambos valores en una sola escala (§4.2; §17.1; `trial_day4_success.ts:11-17`).
+- [ ] `NO CONTRADECIR` — Los 20 °C son la tabla usada por el forense, mientras 31 °C es la lectura del pasillo 7; no fusionar ambos valores en una sola escala (§4.2; §17.1; `trial_day4_success.ts:11-18`).
 
 ### F4 Contrato en pantalla
 
@@ -44,7 +44,8 @@ Clase: `examine`. Espec: §23.0, §23.3, §4.1 P7, §4.2, §5.4, §16.2, §17.1 
 - [ ] `NO CONTRADECIR` — El objeto da una vuelta por semana; la tira mostrada es la del sábado 4, retirada y archivada el domingo 5 (`archivo_caldera_hotspots.ts:32-35`; EN equivalente).
 - [ ] `NO CONTRADECIR` — La conversación de investigación concluye en 31 °C sostenidos frente a 20 °C de la tabla forense y entrega `bitacora_caldera`; la imagen debe sostener el contraste sin adelantar la explicación de la lámina L7 (`archivo_caldera_hotspots.ts:35-40`; §17.1).
 - [ ] `NO CONTRADECIR` — Tras entregar la bitácora, el mismo bloque habla de tres documentos y de la imposibilidad de cotejar la Olivetti por estar en depósito judicial; no añadir documentos, máquina de escribir ni una segunda prueba a este examen (`archivo_caldera_hotspots.ts:41-50`; variante EN equivalente).
-- [ ] `NO CONTRADECIR` — En D4 `openingPresent` la defensa usa la bitácora para afirmar 31 °C sostenidos el 4 de diciembre y 20 °C en la tabla; la lámina posterior explica el desplazamiento de veinticinco minutos, pero esa curva no pertenece a este activo (§17.1; `trial_day4_success.ts:9-17`).
+- [ ] `NO CONTRADECIR` — En D4 `openingPresent` la defensa usa la bitácora para afirmar 31 °C sostenidos el 4 de diciembre y 20 °C en la tabla; la lámina posterior explica el desplazamiento de veinticinco minutos, pero esa curva no pertenece a este activo (§17.1; `trial_day4_success.ts:9-18`).
+- [ ] `NO CONTRADECIR` — En D4 el activo se usa además como la primera lámina de L7: ocupa la pantalla completa en un bloque de lámina (§7.1), con la `DEFENSA` explicando la pérdida de calor **sin `pose`** y sin `sfx` de máquina de escribir, y con el mismo encuadre documental del `detailedView` (§7.2; §17.1; `trial_day4_success.ts:14-15`).
 
 ### F5 Estilo y prohibidos
 
@@ -69,7 +70,7 @@ Clase: `examine`. Espec: §23.0, §23.3, §4.1 P7, §4.2, §5.4, §16.2, §17.1 
 
 ## Conflictos abiertos
 
-- §23.1 describe el termógrafo del fondo con una línea de tinta que «sube y se aplana» (`docs/specs/case-5-el-tomo-trece.md:3993`), mientras el diálogo de `hotspot_termografo` dice que la tira «sube y baja como una sierra» (`archivo_caldera_hotspots.ts:33-35`; EN equivalente). El `detailedView` de §16.2/§23.3 y el juicio fijan la lectura como subida de 19 °C a 31 °C y plana hasta el 5 (`docs/specs/case-5-el-tomo-trece.md:3013`, `:4061`, `trial_day4_success.ts:11-17`). No resolver aquí; el spec debe unificar la forma canónica de la línea.
+- §23.1 describe el termógrafo del fondo con una línea de tinta que «sube y se aplana» (`docs/specs/case-5-el-tomo-trece.md:3993`), mientras el diálogo de `hotspot_termografo` dice que la tira «sube y baja como una sierra» (`archivo_caldera_hotspots.ts:33-35`; EN equivalente). El `detailedView` de §16.2/§23.3 y el juicio fijan la lectura como subida de 19 °C a 31 °C y plana hasta el 5 (`docs/specs/case-5-el-tomo-trece.md:3013`, `:4061`, `trial_day4_success.ts:11-18`). No resolver aquí; el spec debe unificar la forma canónica de la línea.
 - §23.0 establece luz de tungsteno como parte del registro general, mientras §23.1 exige para `bg_archivo_caldera` luz de foco blanco y un cuarto ya enfriado (`docs/specs/case-5-el-tomo-trece.md:3979`, `:3993`). Este examen documental no debe inventar una iluminación que contradiga la escena compartida; la tensión pertenece a la dirección de arte del fondo.
 
 ## Hallazgos de auditoría 2026-09-19
@@ -82,14 +83,14 @@ Clase: `examine`. Espec: §23.0, §23.3, §4.1 P7, §4.2, §5.4, §16.2, §17.1 
 - Panel superior: asiento manuscrito fechado «3 DIC» con «TUBO REVENTADO PASILLO 7» y «CALDERA Y SECADORES AL MÁXIMO»: ✓ parcial F1-2/F2 (ver defecto 4 por el texto faltante).
 - Nota «SONDA REMOTA PASILLO 7» en la bitácora: el registrador queda en el sótano y la medición es del aire del pasillo: ✓ F1-3/F2 (`archivo_caldera_hotspots.ts:30-32`).
 - Panel inferior: título «TIRA TERMÓGRAFO ARCHIVADA 5 DIC» con cuadrícula, horas en horizontal y grados en vertical (15–35 °C): ✓ F1-4, F3-escala.
-- Curva que sube de 19 °C a ~31 °C y se aplana en 31: ✓ F1-5/F3 (`trial_day4_success.ts:11-17`).
+- Curva que sube de 19 °C a ~31 °C y se aplana en 31: ✓ F1-5/F3 (`trial_day4_success.ts:11-18`).
 - Sin personas, halos ni degradados suaves; cel-shading, contorno carbón, papel manchado y luz cálida acordes a §23.0: ✓ F5. Sin inglés en la variante ES (el rótulo «EXAMINE» es cromo de UI, no del activo): ✓ F6.
 
 ### Defectos confirmados
 
 Variante ES:
 
-1. **MAYOR — CONTRADICE (F1/F3/F4)** — El eje horizontal de la tira cubre sólo 0–24 h de un solo día; el spec exige la tira semanal con la subida el día 3 y la línea plana «hasta el domingo 5»: no existe ningún eje/etiqueta de los días 3, 4 y 5 de diciembre, y en consecuencia no puede representarse el punto pericial a las 18:40 del día 4. Rompe `trial_day4_success.ts:9-17` y `archivo_caldera_hotspots.ts:32-40` (contraste 31 °C sostenidos frente a la tabla).
+1. **MAYOR — CONTRADICE (F1/F3/F4)** — El eje horizontal de la tira cubre sólo 0–24 h de un solo día; el spec exige la tira semanal con la subida el día 3 y la línea plana «hasta el domingo 5»: no existe ningún eje/etiqueta de los días 3, 4 y 5 de diciembre, y en consecuencia no puede representarse el punto pericial a las 18:40 del día 4. Rompe `trial_day4_success.ts:9-18` y `archivo_caldera_hotspots.ts:32-40` (contraste 31 °C sostenidos frente a la tabla).
 2. **MEDIO — MALFORMADO (F1/F3)** — El «punto a lápiz del perito» no se lee como marca de lápiz: es un punto de tinta negra impresa con flecha, situado cerca de la hora 16, no de las 18:40 del 4 de diciembre (§23.3; §16.2).
 3. **MEDIO — CONTRADICE (F1/F5)** — Flecha + rótulo «PUNTO LÁPIZ PERITO» señalan la respuesta: exactamente lo que el `AUSENTE` de F1-7 y F5 prohíben («no añadir flechas, círculos, realces ni etiquetas editoriales»).
 4. **MEDIO — CONTRADICE (F2/F3, TEXTO EXACTO)** — El asiento omite «muro poniente» y «dos» (dice «SECADORES» a secas): el texto exigido es «tubo reventado, muro poniente pasillo 7; caldera y dos secadores al máximo» (§16.2 detailedView; §23.3).
@@ -127,7 +128,7 @@ Variante EN (`.tmp-audit/examine_termografo_en.png`):
 - Asiento manuscrito fechado «3 de diciembre» con el texto exacto «tubo reventado, muro poniente pasillo 7; caldera y dos secadores al máximo»: ✓ F1-2, F2 TEXTO EXACTO, F3 (`§16.2` detailedView).
 - Nota «Sonda remota: pasillo 7. Registrador en sótano.»: la medición es del pasillo, el tambor queda abajo: ✓ F1-3, F2, F4 (`archivo_caldera_hotspots.ts:30-32`).
 - Tira semanal con eje de días **3 DIC / 4 DIC / 5 DIC**, marcas de hora 0–12–18–24 bajo el sábado 4, grados en vertical con 19 y 31, nota «archivada 5 DIC»: ✓ F1-4, F3. El punto de las 18:40 del día 4 **puede existir** en el eje (bloqueante previo retirado).
-- Línea de tinta 19→31 °C que termina de subir al cierre del 3 DIC y queda **plana en 31 °C** todo el 4 y el 5 (meseta, no sierra): ✓ F1-5, F3, F4 (`trial_day4_success.ts:11-17`).
+- Línea de tinta 19→31 °C que termina de subir al cierre del 3 DIC y queda **plana en 31 °C** todo el 4 y el 5 (meseta, no sierra): ✓ F1-5, F3, F4 (`trial_day4_success.ts:11-18`).
 - Marca pericial a **lápiz/grafito** sobre la meseta del sábado, sin flecha y sin rótulo «PUNTO LÁPIZ PERITO»: ✓ F1-6 (forma), F1-7/F5 `AUSENTE`.
 - Sin personas, manos, expediente atado, cromo «EXAMINE», franja «ARCHIVO JUDICIAL», «REGISTRO VERIFICADO», conclusiones 16:35–17:05 ni tabla a 20 °C impresa: ✓ F1-7, F2 `AUSENTE`, F4, F5.
 - Cel-shading plano, contorno carbón `#1A1A1A`, papel y madera ilustrados, sin magenta de primer plano ni inglés en ES: ✓ F5, F6.
@@ -149,7 +150,7 @@ Variante EN (`.tmp-audit/examine_termografo_en.png`):
 - Hallazgos 1, 3, 4, 5, 6, 7, 8, 9, 10 y 11 de la pasada previa sobre los JPEG antiguos: **resueltos por regeneración** (eje semanal 3–5 DIC; asiento completo con «muro poniente» y «dos secadores»; sin flecha ni «PUNTO LÁPIZ PERITO»; sin EXAMINE / expediente / «REGISTRO VERIFICADO»; EN gemelo, no el formulario 14–20/04/77).
 - Hallazgo 2 previo (tinta+flecha cerca de la hora 16): ~~tinta con flecha~~ resuelto; la hora exacta 18:40 **sigue abierta** como el defecto 1 de esta pasada.
 - Ningún hallazgo `[x] RETIRADO POR REVISIÓN` en esta pasada.
-- Forma de la línea: se pintó meseta según `detailedView` §16.2/§23.3 y `trial_day4_success.ts:11-17`, no la sierra del NARRADOR en `archivo_caldera_hotspots.ts:33-35`. El conflicto abierto del spec permanece.
+- Forma de la línea: se pintó meseta según `detailedView` §16.2/§23.3 y `trial_day4_success.ts:11-18`, no la sierra del NARRADOR en `archivo_caldera_hotspots.ts:33-35`. El conflicto abierto del spec permanece.
 
 ### Recomendación
 

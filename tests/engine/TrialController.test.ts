@@ -132,7 +132,8 @@ describe('TrialController', () => {
     controller.handlePresentEvidence('insignia_abogado');
 
     expect(state.health).toBe(4);
-    expect(queuedDialogues.some((d) => d.some((l) => l.text.includes('Time is money')))).toBe(true);
+    expect(queuedDialogues.some((dialogue) => dialogue.some((line) => line.speaker === 'SECRETARIO'))).toBe(true);
+    expect(queuedDialogues.some((dialogue) => dialogue.some((line) => line.speaker === 'SUPER SAM'))).toBe(false);
   });
 
   it('progresses from testimony 1 to testimony 2 through contradiction', () => {

@@ -12,4 +12,4 @@ A flex child defaults to `min-height: auto`. Long `updatedDesc` copy makes `#evi
 
 Do not put `overflow-y: auto` on the whole details card. That would scroll the button away with the text. Scroll only `#evidence-description`; keep `#btn-modal-present` at `flex-shrink: 0`.
 
-Measured in [[tests/engine/CourtRecordLayout.test.ts]] against [[style.css]].
+Measured against [[style.css]] (the earlier property-mirror test was removed as duplicated implementation state).

@@ -95,6 +95,11 @@ function addTestimony(testimony: Testimony | undefined, urls: Set<string>): void
     if (contradiction.followUp) {
       addLines(contradiction.followUp.successDialogue, urls);
       addPointTarget(contradiction.followUp.pointTarget, urls);
+      for (const step of contradiction.followUp.sequence ?? []) {
+        addLines(step.successDialogue, urls);
+        addLines(step.choice?.successDialogue, urls);
+        addLines(step.choice?.failDialogue, urls);
+      }
     }
   }
 }

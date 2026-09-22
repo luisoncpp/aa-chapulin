@@ -264,6 +264,16 @@ export interface ContradictionFollowUp {
   successDialogue: DialogueLine[];
   pointTarget?: PointTargetContradiction;
   prompt?: string;
+  /** Optional ordered chain of evidence/profile/choice prompts after the contradiction. */
+  sequence?: TrialPresentStep[];
+}
+
+export interface TrialPresentStep {
+  evidence?: EvidenceId[];
+  profileTarget?: ProfileId[];
+  prompt?: string;
+  successDialogue: DialogueLine[];
+  choice?: ChoicePrompt;
 }
 
 export interface ContradictionRule {
@@ -337,6 +347,8 @@ export interface ClimaxStage {
   presentTarget?: EvidenceId[];
   /** Replaces `presentTarget` when the court demands a person instead of an exhibit. */
   profileTarget?: ProfileId[];
+  /** Plausible evidence that bears on the climax question but is not its answer. */
+  deflects?: EvidenceDeflect[];
   /** Optional dialogue played upon presenting the correct exhibit, before pointing begins. */
   introDialogue?: DialogueLine[];
   /** Played when the player points at the wrong person or exhibit. */

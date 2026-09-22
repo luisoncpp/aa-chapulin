@@ -37,7 +37,7 @@ const CASE5_CLIMAX_STAGE5_SUCCESS_EN: ClimaxStage['successDialogue'] = [
   { bg: PLATE_CUATRO_RENGLONES, furniture: 'none', speaker: 'NARRADOR', text: 'Today, in this room. A sample just typed. The s, half a line down.' },
   { speaker: 'DEFENSA', text: 'Four papers, Your Honor. One machine.', pose: 'chapulin_point' },
   { speaker: 'DEFENSA', text: 'The comparison identifies the machine behind the papers; it does not by itself identify who used it, much less the killer.', pose: 'chapulin_idle' },
-  { speaker: 'DEFENSA', text: 'But the affidavit proves Berrondo knew the diligence; the voucher shows which drawer he opened; the two strips show two openings on the day of the crime, though only one was logged.', pose: 'chapulin_point' },
+  { speaker: 'DEFENSA', text: 'But the notice proves Berrondo knew the diligence; the voucher proves he consulted the card-file index, not which card he saw; the two strips show two openings on the day of the crime, though only one was logged.', pose: 'chapulin_point' },
   { speaker: 'DEFENSA', text: 'The luxury volume left that crate and appeared where the weapon was missing; the mutilated card links the file to the fragment placed in Casimiro\'s hand. It is the combination of those trails with Berrondo\'s access and his own words about the shelf that supports the charge.', pose: 'chapulin_slam', sfx: 'desk_slam' },
   { speaker: 'DEFENSA', text: 'And opening that crate has left eleven years of strips signed by one hand only: his. Taking the typewriter without an order would have been disposing of another\'s property.', pose: 'chapulin_idle' },
   { speaker: 'DEFENSA', text: 'He told me so in his office Tuesday, over coffee with me.', pose: 'chapulin_point' },

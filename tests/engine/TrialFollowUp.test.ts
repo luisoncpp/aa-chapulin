@@ -79,4 +79,46 @@ describe('TrialFollowUp', () => {
     controller.setScript(newScript);
     expect(controller.getPresentPrompt()).toBe('What is the second piece of evidence?');
   });
+
+  it('walks an ordered follow-up sequence through a choice and a profile', () => {
+    const rule = controller.script.trial.testimony1!.statements[1].contradiction!;
+    rule.followUp = {
+      successDialogue: [],
+      sequence: [
+        {
+          evidence: ['informe_medico'],
+          prompt: 'Present the index.',
+          successDialogue: [{ speaker: 'JUEZ', text: 'Index accepted.' }]
+        },
+        {
+          choice: {
+            id: 'plan',
+            question: 'Plan or improvise?',
+            options: [{ id: 'planear', label: 'Plan.' }, { id: 'esperar', label: 'Improvise.' }],
+            correctId: 'planear',
+            successDialogue: [{ speaker: 'JUEZ', text: 'Plan accepted.' }],
+            failDialogue: [{ speaker: 'JUEZ', text: 'Try again.' }]
+          },
+          successDialogue: []
+        },
+        {
+          profileTarget: ['perfil_genoveva'],
+          prompt: 'Present Genoveva.',
+          successDialogue: [{ speaker: 'JUEZ', text: 'Sequence complete.' }]
+        }
+      ]
+    };
+
+    controller.handlePresentEvidence('chipote_chillon');
+    controller.handlePresentEvidence('informe_medico');
+    expect(controller.getPresentPrompt()).toBe('Plan or improvise?');
+    controller.handleSelectChoice('esperar');
+    expect(state.health).toBe(5);
+    expect(controller.getPresentPrompt()).toBe('Plan or improvise?');
+    controller.handleSelectChoice('planear');
+    expect(controller.getPresentPrompt()).toBe('Present Genoveva.');
+    expect(controller.isAwaitingProfile()).toBe(true);
+    controller.handlePresentProfile('perfil_genoveva');
+    expect(queued.some((d) => d.some((l) => l.text === 'Sequence complete.'))).toBe(true);
+  });
 });

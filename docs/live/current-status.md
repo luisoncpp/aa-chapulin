@@ -14,7 +14,7 @@ Live status of **El Chapulín Colorado: Ace Attorney — Turnabout Red Grasshopp
 - **Save / Load persistence** in `localStorage` ([[src/state/Private/SaveManager.ts]]). Save payload now also stores optional `caseId` and `trialDay` (old saves without those fields still load as Case 1 / day 1).
 - **Automated tests** via Vitest for state, trial contradictions, investigation, engine, i18n, and case scripts.
 
-### Playable Content: Case 1 ("El Juicio del Escuadrón Colorado")
+### Playable Content: Case 1 ("Robo en el Museo")
 - **Investigation Phase**: 2 fully interactive scenes (Museum Crime Scene & Detention Center) with 7 examine hotspots, 4 talk branches, and 5 collectable evidence items defined in [[src/case/Private/case1_investigation.ts]].
 - **Courtroom Trial Phase**: Complete trial intro, 2 cross-examination testimonies (Assault weapon contradiction & Escape route/Mirror photo contradiction), pressing mechanics, dynamic penalty damage, final climax evidence presentation, and Not Guilty verdict sequence defined in [[src/case/Private/case1_trial.ts]] and [[src/case/Private/case1_climax.ts]].
 - Default `CASE_SCRIPT` / `getCaseScript(lang)` remains the museum arc (`case1`). The splash presents it as **Acto 2**; debug trial without `?case=2` still launches `case1`.

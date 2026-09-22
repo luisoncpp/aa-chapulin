@@ -24,7 +24,7 @@ export const CASE5_CLIMAX_STAGE1: ClimaxStage = {
     { speaker: 'JUEZ', text: 'La corte comparte la objeción en principio. Defensa, fundamente o retire.', pose: 'judge_neutral' },
     { speaker: 'DEFENSA', text: 'Con cuatro cosas, señor juez. Cuatro cosas que dijo él, delante de usted, sin que nadie se las sacara.', pose: 'chapulin_idle' },
     { speaker: 'DEFENSA', text: 'Primera. Firmó el veintinueve de noviembre un acuse que decía el día, la hora, el lugar y el nombre.', pose: 'chapulin_point' },
-    { speaker: 'DEFENSA', text: 'Segunda. El veintinueve de noviembre, el mismo día, abrió con vale el cajón que va de Donceles a la calle del Espanto.', pose: 'chapulin_idle' },
+    { speaker: 'DEFENSA', text: 'Segunda. El veintinueve de noviembre, el mismo día, revisó el cedulario.', pose: 'chapulin_idle' },
     { speaker: 'DEFENSA', text: 'Tercera. El cuatro de diciembre estuvo dentro de ese edificio en una hora que ahora cae dentro de la ventana del perito.', pose: 'chapulin_point' },
     { speaker: 'DEFENSA', text: 'Cuarta. Y ayer declaró bajo protesta que nadie le había avisado, cuando su propia rúbrica decía lo contrario.', pose: 'chapulin_slam', sfx: 'desk_slam' },
     { speaker: 'BERRONDO', text: 'Señor juez, la cuarta la rectifiqué yo mismo y me disculpé.', pose: 'berrondo_sweat', bg: 'assets/bg_courtroom.webp' },

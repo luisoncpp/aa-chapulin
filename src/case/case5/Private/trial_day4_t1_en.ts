@@ -4,7 +4,7 @@
  */
 
 import type { DialogueLine, Testimony } from '../../../types/index.js';
-import { CASE5_D4_T1_CEDULARIO_SUCCESS_EN, CASE5_D4_T1_LIBRO_SUCCESS_EN } from './trial_day4_success_en.js';
+import { CASE5_D4_T1_CHAIN_EN, CASE5_D4_T1_LIBRO_SUCCESS_EN } from './trial_day4_success_en.js';
 
 const MOMENTO: DialogueLine = {
   speaker: 'DEFENSA',
@@ -55,9 +55,8 @@ export const CASE5_TESTIMONY_9_EN: Testimony = {
         evidence: ['libro_peritos'],
         successDialogue: CASE5_D4_T1_LIBRO_SUCCESS_EN,
         followUp: {
-          evidence: ['fichero_cedulario'],
-          prompt: 'What would a voucher have to say to open that card-file index?',
-          successDialogue: CASE5_D4_T1_CEDULARIO_SUCCESS_EN
+          successDialogue: [],
+          sequence: CASE5_D4_T1_CHAIN_EN
         }
       }
     },
@@ -100,16 +99,15 @@ export const CASE5_TESTIMONY_9_EN: Testimony = {
       id: 'c5_d4t1_5',
       speaker: 'GENOVEVA',
       pose: 'genoveva_idle',
-      text: 'And, by regulation, every opening or removal from the goods deposit requires a voucher. I fill out the vouchers that are filed, and I archive them.',
+      text: 'I fill out the deposit vouchers and archive them. If someone opens an item without filing one, my folder records no such opening.',
       pressText: [
         MOMENTO,
-        { speaker: 'DEFENSA', text: 'What is a deposit voucher?', pose: 'chapulin_point' },
-        { speaker: 'GENOVEVA', text: 'A slip. The regulations require whoever moves, opens, or consults an item in deposit to fill out the voucher and sign it.', pose: 'genoveva_idle' },
-        { speaker: 'DEFENSA', text: 'Even if he is the depositary?', pose: 'chapulin_idle' },
-        { speaker: 'GENOVEVA', text: 'Especially if it is under his responsibility, sir. The deposit does not protect the court: it protects the depositary.', pose: 'genoveva_reglamento' },
-        { speaker: 'DEFENSA', text: 'And what is written on the voucher?', pose: 'chapulin_point' },
-        { speaker: 'GENOVEVA', text: 'Date, name, crate number... and what was opened. With its exact label.', pose: 'genoveva_idle' },
-        { speaker: 'DEFENSA', text: '(With its exact label.)', pose: 'chapulin_panic' }
+        { speaker: 'DEFENSA', text: 'What does a deposit voucher record?', pose: 'chapulin_point' },
+        { speaker: 'GENOVEVA', text: 'Date, requester, and the item or operation recorded. The person signs the slip.', pose: 'genoveva_idle' },
+        { speaker: 'DEFENSA', text: 'Is the slip required to physically open the crate?', pose: 'chapulin_idle' },
+        { speaker: 'GENOVEVA', text: 'No, sir. The regulation requires the consultation to be recorded; whoever has access can violate it.', pose: 'genoveva_reglamento' },
+        { speaker: 'DEFENSA', text: 'Then if there is no voucher, can you assure us nobody opened the crate?', pose: 'chapulin_point' },
+        { speaker: 'GENOVEVA', text: 'No. I can only say which openings were recorded.', pose: 'genoveva_idle' }
       ]
     }
   ]

@@ -12,7 +12,7 @@ const ZONE_FAIL = (text: string): DialogueLine[] => [
 ];
 
 export const CASE5_CLIMAX_STAGE3_POINT: PointTargetContradiction = {
-  targetEvidenceId: 'estante_consulta',
+  targetEvidenceId: 'tomo_caido',
   promptQuestion: 'Señala lo que no debería estar en ese estante.',
   imageAsset: 'assets/examine_estante_consulta.webp',
   zones: [

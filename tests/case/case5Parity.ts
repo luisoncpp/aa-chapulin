@@ -9,6 +9,7 @@ export function hotspotGeom(h: { id: string; x: number; y: number; w: number; h:
 }
 
 export function statementParityFields(s: Statement) {
+  const sequence = s.contradiction?.followUp?.sequence;
   return {
     id: s.id,
     evidence: s.contradiction?.evidence,
@@ -17,6 +18,14 @@ export function statementParityFields(s: Statement) {
     deflect: s.deflect?.evidence,
     followUpEvidence: s.contradiction?.followUp?.evidence,
     followUpProfileTarget: s.contradiction?.followUp?.profileTarget,
+    followUpSequence: sequence?.map((step) => ({
+      evidence: step.evidence,
+      profileTarget: step.profileTarget,
+      hasPrompt: Boolean(step.prompt),
+      choiceId: step.choice?.id,
+      choiceCorrectId: step.choice?.correctId,
+      optionIds: step.choice?.options.map((option) => option.id)
+    })),
     unlockedBy: s.unlockedBy
   };
 }

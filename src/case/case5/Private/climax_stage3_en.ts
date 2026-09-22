@@ -7,8 +7,15 @@ import type { ClimaxStage } from '../../../types/index.js';
 import { CASE5_CLIMAX_STAGE3_POINT_EN } from './climax_stage3_point_en.js';
 
 export const CASE5_CLIMAX_STAGE3_EN: ClimaxStage = {
-  presentTarget: ['estante_consulta'],
+  presentTarget: ['tomo_caido'],
   prompt: 'What proves someone returned to the first floor after the blow?',
+  deflects: [{
+    evidence: ['esquina_tarjeta'],
+    dialogue: [
+      { speaker: 'JUEZ', text: 'The card corner implicates Attorney Berrondo, but it does not prove anyone returned to the first floor after the blow.', pose: 'judge_thinking' },
+      { speaker: 'JUEZ', text: 'This court needs what remained upstairs and could not get there on its own.', pose: 'judge_neutral' }
+    ]
+  }],
   failDialogue: [
     { speaker: 'JUEZ', text: 'That does not prove anyone returned to the first floor after the blow.', pose: 'judge_thinking' },
     { speaker: 'JUEZ', text: 'This court needs something that was upstairs and could not get there on its own.', pose: 'judge_neutral' },

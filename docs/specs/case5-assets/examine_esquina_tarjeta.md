@@ -151,3 +151,21 @@ Clase: `examine`. Espec: §23.0, §23.3 y §10.1. Guion: D1 celda, D1-T2 `follow
 - ~~`s` huérfana bajo `viv./apt. 72`~~ — [x] RETIRADO POR REVISIÓN (2026-09-19, pasada s caída): la `s` pertenece a `Espanto`.
 
 
+
+## Criterio de composición 2026-09-21
+
+Por la corrección solicitada por el usuario, el fragmento se extrae literalmente de la tarjeta completa. En ES contiene `cindad de` / `la calle del` / `Espanto 8,` / `viv. 72.`; en EN, `city of` / `Calle del` / `Espanto 8,` / `apt. 72.`. La elipsis del guion señala texto perdido y no se imprime como tinta sobre el fragmento. Se conserva la lectura canónica del domicilio y la relación física de §23.3 y F9.
+
+## Hallazgos de auditoría 2026-09-21, recorte de tarjeta maestra
+
+**Veredicto: CUMPLE el emparejamiento, las dimensiones de arte y el defecto tipográfico ES/EN.** Auditoría de los WebP finales a 960×540 y recortes independientes de papel, letra y regla.
+
+- F1/F4: un rectángulo de cartulina crema, plano, liso, sin pliegues ni sudor, sobre gris neutro; mismo papel y contorno que su tarjeta. El recorte de la maestra coincide píxel por píxel con el PNG del fragmento. Sus bordes superior e izquierdo son el corte; inferior y derecho son los bordes originales de la tarjeta.
+- F2: cuatro renglones, vivienda 72 y `s` de `Espanto` a cuerpo completo media línea abajo, sin repetición. No hay pies explicativos, flechas ni marcas de respuesta.
+- F3: la pieza ocupa 372×288 px de la placa final; entre 0 y 5 cm hay 600 px. Por tanto mide 3,1×2,4 cm. Se retira el defecto anterior de una pieza demasiado ancha frente a la regla.
+- F5/F6/exclusiones: mismo gris, papel y geometría ES/EN, sin magenta, mano, pinzas ni escenas de archivo. Sólo cambia el texto localizado.
+- Consistencia: el icono también sale del mismo recorte. No existen zonas interactivas asociadas que recalibrar.
+
+**Correcciones de auditoría:** retirado el defecto MEDIO de escala. La diferencia histórica entre la medida exacta de arte y la aproximación oral de D1-T2 sigue registrada en Conflictos abiertos; esta corrección no cambia ese diálogo.
+
+Fuentes y prompts: [[tools/raw/case5/address_composition.md]]. Sin defectos nuevos en el alcance corregido.

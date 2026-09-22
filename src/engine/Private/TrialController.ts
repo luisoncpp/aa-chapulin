@@ -17,7 +17,7 @@ import {
 } from './TrialClimax.js';
 import {
   afterTrialIntro, getTrialPresentPrompt, handleTestimonyPresent,
-  hasPendingTrialPresent, rebindTrialPresentScript
+  hasPendingTrialPresent, rebindTrialPresentScript, resolveTrialChoice
 } from './TrialPresent.js';
 import { handleProfilePresent, isAwaitingProfile } from './ProfilePresent.js';
 import { isPresentPointActive } from './PresentPoint.js';
@@ -202,7 +202,10 @@ export class TrialController {
   public getPresentPrompt(): string | null { return getTrialPresentPrompt(this) ?? getClimaxPresentPrompt(this); }
 
   // fallow-ignore-next-line unused-class-member
-  public handleSelectChoice(optionId: string): void { resolveClimaxChoiceFromController(this, optionId); }
+  public handleSelectChoice(optionId: string): void {
+    if (resolveTrialChoice(this, optionId)) return;
+    resolveClimaxChoiceFromController(this, optionId);
+  }
 
   public restartAfterGameOver(): void { showGameOverModal(this); }
 

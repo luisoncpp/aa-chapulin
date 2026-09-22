@@ -24,7 +24,7 @@ export const CASE5_CLIMAX_STAGE1_EN: ClimaxStage = {
     { speaker: 'JUEZ', text: 'The court shares the objection in principle. Defense, justify it or withdraw.', pose: 'judge_neutral' },
     { speaker: 'DEFENSA', text: 'With four things, Your Honor. Four things he said himself, in front of you, with nobody putting words in his mouth.', pose: 'chapulin_idle' },
     { speaker: 'DEFENSA', text: 'First. On November twenty-ninth he signed a receipt stating the day, the hour, the place, and the name.', pose: 'chapulin_point' },
-    { speaker: 'DEFENSA', text: 'Second. On November twenty-ninth, the same day, he opened with a voucher the drawer that runs from Donceles to Calle del Espanto.', pose: 'chapulin_idle' },
+    { speaker: 'DEFENSA', text: 'Second. On November twenty-ninth, the same day, he checked the card-file index.', pose: 'chapulin_idle' },
     { speaker: 'DEFENSA', text: 'Third. On December fourth he was inside that building at an hour that now falls inside the expert\'s window.', pose: 'chapulin_point' },
     { speaker: 'DEFENSA', text: 'Fourth. And yesterday he testified under oath that nobody had warned him, when his own signature said otherwise.', pose: 'chapulin_slam', sfx: 'desk_slam' },
     { speaker: 'BERRONDO', text: 'Your Honor, I corrected the fourth myself and apologized.', pose: 'berrondo_sweat', bg: 'assets/bg_courtroom.webp' },

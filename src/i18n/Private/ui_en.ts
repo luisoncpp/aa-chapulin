@@ -46,7 +46,7 @@ export const UI_EN: UiTranslations = {
   splashTitle: 'EL CHAPULÍN COLORADO',
   splashSubtitle: 'ACE ATTORNEY: THE CASE OF THE COLORADO SQUAD',
   splashTip: 'Click below to activate procedural MIDI audio and start playing!',
-  btnStartGame: '🔍 ACT 2: THE COLORADO SQUAD',
+  btnStartGame: '🔍 ACT 2: THE MUSEUM HEIST',
   btnStartCase0: '⚖️ TUTORIAL: DON RAMÓN’S FIRST TRIAL',
   btnStartCase2: '🔍 ACT 1: TURNABOUT OF THE TWO-FACED THIEF',
   btnStartCase3: '🔍 ACT 3: TURNABOUT OF THE GOLDEN VOICE',

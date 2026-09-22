@@ -70,3 +70,13 @@ Clase: `icon` con `detailedView`. Espec: §23.0, §23.3, §23.5 y §10.1. Guion:
 
 - No se inspeccionó ninguna imagen por protocolo. No se confirma ningún defecto visual de la generación actual.
 - El spec registra como corregido el domicilio de Don Ramón de vivienda 4 a vivienda 72; cualquier regeneración debe imprimir `viv. 72.` en ES y `apt. 72.` en EN (§24, línea 4255; §23.3, líneas 4047 y 4068).
+
+## Hallazgos de auditoría 2026-09-21, icono derivado
+
+**Veredicto: CUMPLE la identidad física.** Inspección del icono final 128×128 y de su recorte original.
+
+- Fragmento crema rectangular, liso y limpio, con cuatro líneas y vivienda 72. La `s` de Espanto conserva su desplazamiento; no aparecen letras duplicadas.
+- Objeto centrado sobre transparencia, sin regla, mano, flechas ni otros objetos. Es el mismo recorte usado en la macro y procede de la esquina inferior derecha de la tarjeta maestra.
+- El procesador exporta el PNG derivado después de la hoja antigua de iconos, conservando la correspondencia al regenerar.
+
+Sin defectos nuevos. Fuentes: [[tools/raw/case5/address_composition.md]].

@@ -49,7 +49,7 @@ BGS = [
 ]
 
 EXAMINE = [
-    ("examine_esquina_tarjeta.jpg", "examine_esquina_tarjeta.webp"),
+    ("examine_esquina_tarjeta.png", "examine_esquina_tarjeta.webp"),
     ("examine_libro_visitas.jpg", "examine_libro_visitas.webp"),
     ("examine_libro_peritos.jpg", "examine_libro_peritos.webp"),
     ("examine_plano_archivo.jpg", "examine_plano_archivo.webp"),
@@ -62,7 +62,7 @@ EXAMINE = [
     ("examine_estante_consulta.jpg", "examine_estante_consulta.webp"),
     ("examine_huacal9.jpg", "examine_huacal9.webp"),
     ("examine_maquina.jpg", "examine_maquina.webp"),
-    ("examine_ficha_domicilio.jpg", "examine_ficha_domicilio.webp"),
+    ("examine_ficha_domicilio.png", "examine_ficha_domicilio.webp"),
     ("examine_termografo.jpg", "examine_termografo.webp"),
     ("examine_efectos.jpg", "examine_efectos.webp"),
 ]
@@ -81,7 +81,7 @@ DIDACTIC = [
 ]
 
 EXAMINE_EN = [
-    (f"{output_stem(src)}_en.jpg", f"{output_stem(src)}_en.webp")
+    (f"{output_stem(src)}_en{os.path.splitext(src)[1]}", f"{output_stem(src)}_en.webp")
     for src, _ in EXAMINE
     if output_stem(src) not in ("examine_estante_consulta", "examine_maquina")
 ]
@@ -221,6 +221,16 @@ def export_evidence_icons() -> None:
         save_evidence_icon(filtered, name)
 
 
+def export_address_icons(selected: set[str] | None) -> None:
+    """The corner and its parent must retain the composed plate's identity."""
+    for name in ("ficha_domicilio", "esquina_tarjeta"):
+        if selected is not None and name not in selected:
+            continue
+        with Image.open(raw_path(f"{name}_derived.png")) as icon:
+            icon.save(os.path.join(DEST_DIR, f"{name}.webp"),
+                      "WEBP", quality=85, method=6)
+
+
 def export_profiles(selected: set[str] | None) -> None:
     for profile_id, color in PROFILE_COLORS.items():
         out = f"profile_perfil_{profile_id}.webp"
@@ -315,6 +325,7 @@ def run_case5(selected: set[str] | None = None) -> None:
     )
     if want_icons:
         export_evidence_icons()
+    export_address_icons(selected)
     export_profiles(selected)
     print("\nCase 5 assets saved.")
 

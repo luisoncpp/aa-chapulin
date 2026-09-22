@@ -4,7 +4,7 @@
  */
 
 import type { DialogueLine, Testimony } from '../../../types/index.js';
-import { CASE5_D4_T1_CEDULARIO_SUCCESS, CASE5_D4_T1_LIBRO_SUCCESS } from './trial_day4_success.js';
+import { CASE5_D4_T1_CHAIN, CASE5_D4_T1_LIBRO_SUCCESS } from './trial_day4_success.js';
 
 const MOMENTO: DialogueLine = {
   speaker: 'DEFENSA',
@@ -55,9 +55,8 @@ export const CASE5_TESTIMONY_9: Testimony = {
         evidence: ['libro_peritos'],
         successDialogue: CASE5_D4_T1_LIBRO_SUCCESS,
         followUp: {
-          evidence: ['fichero_cedulario'],
-          prompt: '¿Qué habría que escribir en un vale para abrir ese cedulario?',
-          successDialogue: CASE5_D4_T1_CEDULARIO_SUCCESS
+          successDialogue: [],
+          sequence: CASE5_D4_T1_CHAIN
         }
       }
     },
@@ -100,16 +99,15 @@ export const CASE5_TESTIMONY_9: Testimony = {
       id: 'c5_d4t1_5',
       speaker: 'GENOVEVA',
       pose: 'genoveva_idle',
-      text: 'Y, por reglamento, toda apertura o extracción de la bodega de bienes exige vale. Los vales que se tramitan los lleno yo y los archivo yo.',
+      text: 'Los vales de la bodega los lleno yo y los archivo yo. Si alguien abre un bien sin tramitar uno, mi carpeta no registra esa apertura.',
       pressText: [
         MOMENTO,
-        { speaker: 'DEFENSA', text: '¿Qué es un vale de bodega?', pose: 'chapulin_point' },
-        { speaker: 'GENOVEVA', text: 'Una papeleta. El reglamento exige que quien vaya a mover, abrir o consultar un bien en depósito llene el vale y lo firme.', pose: 'genoveva_idle' },
-        { speaker: 'DEFENSA', text: '¿Aunque él sea el depositario?', pose: 'chapulin_idle' },
-        { speaker: 'GENOVEVA', text: 'Sobre todo si está bajo su responsabilidad, señor. El depósito no protege al juzgado: protege al depositario.', pose: 'genoveva_reglamento' },
-        { speaker: 'DEFENSA', text: '¿Y qué se escribe en el vale?', pose: 'chapulin_point' },
-        { speaker: 'GENOVEVA', text: 'Fecha, nombre, número de huacal... y qué se abrió. Con su rótulo exacto.', pose: 'genoveva_idle' },
-        { speaker: 'DEFENSA', text: '(Con su rótulo exacto.)', pose: 'chapulin_panic' }
+        { speaker: 'DEFENSA', text: '¿Qué deja asentado un vale de bodega?', pose: 'chapulin_point' },
+        { speaker: 'GENOVEVA', text: 'Fecha, solicitante y bien u operación registrados. La persona firma la papeleta.', pose: 'genoveva_idle' },
+        { speaker: 'DEFENSA', text: '¿La papeleta es necesaria para abrir físicamente el huacal?', pose: 'chapulin_idle' },
+        { speaker: 'GENOVEVA', text: 'No, señor. El reglamento obliga a registrar la consulta; quien tiene acceso puede incumplirlo.', pose: 'genoveva_reglamento' },
+        { speaker: 'DEFENSA', text: 'Entonces, si falta un vale, ¿usted puede asegurar que nadie abrió el huacal?', pose: 'chapulin_point' },
+        { speaker: 'GENOVEVA', text: 'No. Sólo puedo decir qué aperturas quedaron registradas.', pose: 'genoveva_idle' }
       ]
     }
   ]

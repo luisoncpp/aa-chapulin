@@ -94,15 +94,23 @@ describe('Case 5 day 4 trial (Spanish)', () => {
     assertEnglishTrialParity(enDay4, esDay4, trialDialogue(enDay4));
   });
 
-  it('calls Genoveva in openingPresent success and opens climax handoff on T9 followUp', () => {
+  it('calls Genoveva in openingPresent success and defines the preparation chain after T9', () => {
     const opening = day4.openingPresent!.successDialogue.map((l) => l.speaker);
     expect(opening).toContain('GENOVEVA');
     expect(opening[opening.length - 1]).toBe('JUEZ');
 
-    const t9Follow = day4.testimonies[0].statements
-      .find((s) => s.id === 'c5_d4t1_2')?.contradiction?.followUp?.successDialogue ?? [];
-    expect(t9Follow[t9Follow.length - 1]?.speaker).toBe('JUEZ');
-    expect(t9Follow[t9Follow.length - 1]?.text)
+    const follow = day4.testimonies[0].statements
+      .find((s) => s.id === 'c5_d4t1_2')?.contradiction?.followUp;
+    expect(follow?.sequence?.map((step) => step.evidence ?? step.profileTarget ?? (step.choice ? ['choice'] : [])))
+      .toEqual([
+        ['esquina_tarjeta'],
+        ['oficio_diligencia'],
+        ['choice'],
+        ['fichero_cedulario'],
+        ['perfil_genoveva']
+      ]);
+    expect(follow?.sequence?.[2].choice?.correctId).toBe('planear');
+    expect(follow?.sequence?.[4].successDialogue.at(-1)?.text)
       .toContain('se lo va a ordenar');
   });
 });

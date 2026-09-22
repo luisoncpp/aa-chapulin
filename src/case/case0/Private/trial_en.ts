@@ -51,10 +51,13 @@ export const CASE0_TESTIMONY_1_EN: Testimony = {
       evidence: ['parte_detencion'],
       successDialogue: [
         { speaker: 'DEFENSA', pose: 'donramon_slam', cutin: 'objection_protesto', sfx: 'desk_slam', text: 'OBJECTION! That accordion file appears nowhere in this report!', bgm: 'objection' },
-        { speaker: 'DEFENSA', pose: 'donramon_point', text: 'The report says my client had an ice bar, forty cents, and an ice-shop receipt at 2:15. No collection file.' },
+        { speaker: 'DEFENSA', pose: 'donramon_point', text: 'The report records that at 2:15 my client arrived carrying an enormous ice bar with both hands. Not one free hand.' },
+        { speaker: 'DEFENSA', pose: 'donramon_point', text: 'And the inventory is short: the ice bar, forty cents, and a receipt. Of a file in that hand, not a trace.' },
         { speaker: 'CASIMIRO', pose: 'casimiro_sweat', text: 'One says “with the file” as a figure of speech. Synecdoche, if you please. From the Latin charta, incidentally.' },
         { speaker: 'CHAPULÍN', pose: 'chapulin_point', text: 'And was the cry synecdoche too?' },
-        { speaker: 'JUEZ', pose: 'judge_shock', text: 'An unlocated object proves nothing by itself. But that hour is now decisive.' }
+        { speaker: 'JUEZ', pose: 'judge_shock', text: 'Good gracious! Witness, this court did not ask for literature.' },
+        { speaker: 'SUPER SAM', pose: 'supersam_slam', sfx: 'desk_slam', text: 'Irrelevant! The boy had forty minutes to hide that file wherever he liked!' },
+        { speaker: 'JUEZ', pose: 'judge_neutral', text: 'The court grants that an unlocated object proves nothing by itself. But the report states the detainee had no free hand. That hour now becomes decisive: where was the defendant at one o’clock?' }
       ],
       followUp: {
         evidence: ['recibo_hielo'], prompt: 'Where was the defendant at one o’clock?', successDialogue: [

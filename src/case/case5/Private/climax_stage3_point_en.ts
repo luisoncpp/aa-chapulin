@@ -12,7 +12,7 @@ const ZONE_FAIL = (text: string): DialogueLine[] => [
 ];
 
 export const CASE5_CLIMAX_STAGE3_POINT_EN: PointTargetContradiction = {
-  targetEvidenceId: 'estante_consulta',
+  targetEvidenceId: 'tomo_caido',
   promptQuestion: 'Point to what should not be on that shelf.',
   imageAsset: 'assets/examine_estante_consulta.webp',
   zones: [

@@ -8,7 +8,10 @@
 import type { ProfileId } from '../../types/index.js';
 import { isAwaitingClimaxEvidence } from './TrialClimax.js';
 import { currentClimaxStage, presentClimaxProfile } from './TrialClimaxPresent.js';
-import { getPendingOpening, openingPenalty, resolveOpeningPresent } from './TrialPresent.js';
+import {
+  getPendingOpening, getPendingTrialProfile, openingPenalty, resolveOpeningPresent,
+  resolveTrialProfile
+} from './TrialPresent.js';
 import type { TrialController } from './TrialController.js';
 
 function openingWantsProfile(ctrl: TrialController): ProfileId[] | undefined {
@@ -22,7 +25,7 @@ function climaxWantsProfile(ctrl: TrialController): ProfileId[] | undefined {
 
 /** True while the court is asking for a person rather than an exhibit. */
 export function isAwaitingProfile(ctrl: TrialController): boolean {
-  return Boolean(openingWantsProfile(ctrl) ?? climaxWantsProfile(ctrl));
+  return Boolean(openingWantsProfile(ctrl) ?? getPendingTrialProfile(ctrl) ?? climaxWantsProfile(ctrl));
 }
 
 export function handleProfilePresent(ctrl: TrialController, profileId: ProfileId): void {
@@ -33,6 +36,10 @@ export function handleProfilePresent(ctrl: TrialController, profileId: ProfileId
       return;
     }
     resolveOpeningPresent(ctrl, getPendingOpening(ctrl)!);
+    return;
+  }
+  if (getPendingTrialProfile(ctrl)) {
+    resolveTrialProfile(ctrl, profileId);
     return;
   }
   if (!climaxWantsProfile(ctrl)) return;

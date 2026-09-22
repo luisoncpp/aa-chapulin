@@ -37,7 +37,7 @@ const CASE5_CLIMAX_STAGE5_SUCCESS: ClimaxStage['successDialogue'] = [
   { bg: PLATE_CUATRO_RENGLONES, furniture: 'none', speaker: 'NARRADOR', text: 'Hoy, en esta sala. Una muestra recién mecanografiada. La ese, media línea abajo.' },
   { speaker: 'DEFENSA', text: 'Cuatro papeles, señor juez. Una máquina.', pose: 'chapulin_point' },
   { speaker: 'DEFENSA', text: 'El cotejo identifica la máquina de los papeles; no identifica por sí solo a quien la usó, y menos aún al homicida.', pose: 'chapulin_idle' },
-  { speaker: 'DEFENSA', text: 'Pero el oficio prueba que Berrondo conocía la diligencia; el vale acredita qué cajón consultó; las dos tiras muestran dos aperturas el día del crimen, aunque solo una quedó registrada.', pose: 'chapulin_point' },
+  { speaker: 'DEFENSA', text: 'Pero el oficio prueba que Berrondo conocía la diligencia; el vale acredita que consultó el cedulario, no qué ficha vio; las dos tiras muestran dos aperturas el día del crimen, aunque solo una quedó registrada.', pose: 'chapulin_point' },
   { speaker: 'DEFENSA', text: 'El tomo de lujo salió de ese huacal y apareció donde faltaba el arma; la tarjeta mutilada enlaza el fichero con el fragmento puesto en la mano de Casimiro. Es la combinación de esos rastros con el acceso de Berrondo y sus propias palabras sobre el estante lo que sostiene la acusación.', pose: 'chapulin_slam', sfx: 'desk_slam' },
   { speaker: 'DEFENSA', text: 'Y abrir ese huacal, señor juez, ha dejado once años de tiras firmadas por una sola mano: la suya. Sacar la máquina sin orden habría sido disponer de un bien ajeno.', pose: 'chapulin_idle' },
   { speaker: 'DEFENSA', text: 'Me lo dijo él en su despacho el martes, tomándose un café conmigo.', pose: 'chapulin_point' },

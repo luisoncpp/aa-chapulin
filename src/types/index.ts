@@ -63,6 +63,7 @@ export type {
   PointZone,
   PointTargetContradiction,
   ContradictionFollowUp,
+  TrialPresentStep,
   ContradictionRule,
   OpeningPresent,
   EvidenceDeflect

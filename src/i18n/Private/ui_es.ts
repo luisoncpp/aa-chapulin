@@ -46,7 +46,7 @@ export const UI_ES: UiTranslations = {
   splashTitle: 'EL CHAPULÍN COLORADO',
   splashSubtitle: 'ACE ATTORNEY: EL CASO DEL ESCUADRÓN COLORADO',
   splashTip: '¡Haz clic abajo para activar la música MIDI procedimental y comenzar!',
-  btnStartGame: '🔍 ACTO 2: EL ESCUADRÓN COLORADO',
+  btnStartGame: '🔍 ACTO 2: ROBO EN EL MUSEO',
   btnStartCase0: '⚖️ TUTORIAL: EL PRIMER JUICIO DE DON RAMÓN',
   btnStartCase2: '🔍 ACTO 1: EL JUICIO DEL CHÓMPIRAS',
   btnStartCase3: '🔍 ACTO 3: LA NOCHE DEL GRITO',

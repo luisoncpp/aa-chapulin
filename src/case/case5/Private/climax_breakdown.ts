@@ -32,7 +32,7 @@ export const CASE5_CLIMAX_BREAKDOWN: DialogueLine[] = [
   { speaker: 'JUEZ', text: '¿Tiene algo que declarar?', pose: 'judge_neutral' },
   { speaker: 'BERRONDO', text: '...Homicidio.', pose: 'berrondo_breakdown', bg: 'assets/bg_courtroom.webp' },
   { speaker: 'BERRONDO', text: 'Del latín homo, hombre. Y caedere...', pose: 'berrondo_breakdown', bg: 'assets/bg_courtroom.webp' },
-  { speaker: 'NARRADOR', text: 'El licenciado Berrondo se queda con la boca abierta.', bgm: 'suspense' },
+  { speaker: 'BERRONDO', text: '...', pose: 'berrondo_breakdown', bgm: 'suspense', bg: 'assets/bg_courtroom.webp' },
   { speaker: 'BERRONDO', text: '...caedere...', pose: 'berrondo_breakdown', bg: 'assets/bg_courtroom.webp' },
   { speaker: 'NARRADOR', text: 'No sigue.' },
   { speaker: 'NARRADOR', text: 'Por primera vez en veintisiete años, el licenciado Fulgencio Berrondo no encuentra una palabra.', sfx: 'realization' },

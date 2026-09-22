@@ -20,6 +20,13 @@ export function* testimonyLines(testimony: Testimony): Generator<DialogueLine> {
     if (contradiction) {
       yield* contradiction.successDialogue;
       if (contradiction.followUp) yield* contradiction.followUp.successDialogue;
+      for (const step of contradiction.followUp?.sequence ?? []) {
+        yield* step.successDialogue;
+        if (step.choice) {
+          yield* step.choice.successDialogue;
+          yield* step.choice.failDialogue;
+        }
+      }
       if (contradiction.pointTarget) yield* pointTargetLines(contradiction.pointTarget);
     }
     if (statement.deflect) yield* statement.deflect.dialogue;

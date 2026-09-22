@@ -10,6 +10,7 @@ function allClimaxLines(es: CaseScript): DialogueLine[] {
     ...c.dialogue,
     ...stages.flatMap((s) => [
       ...(s.failDialogue ?? []),
+      ...(s.deflects?.flatMap((d) => d.dialogue) ?? []),
       ...(s.introDialogue ?? []),
       ...s.successDialogue,
       ...(s.pointTarget?.successDialogue ?? []),
@@ -31,7 +32,8 @@ describe('Case 5 climax (Spanish)', () => {
     expect(climax.choicesAfterStage).toBe(2);
     expect(climax.stages?.[0].profileTarget).toEqual(['perfil_berrondo']);
     expect(climax.stages?.[1].presentTarget).toEqual(['credencial_sindico']);
-    expect(climax.stages?.[2].presentTarget).toEqual(['estante_consulta']);
+    expect(climax.stages?.[2].presentTarget).toEqual(['tomo_caido']);
+    expect(climax.stages?.[2].deflects?.[0].evidence).toEqual(['esquina_tarjeta']);
     expect(climax.stages?.[3].presentTarget).toEqual(['ficha_domicilio']);
     expect(climax.stages?.[4].presentTarget).toEqual(['maquina_escribir']);
     expect(climax.stages?.[4].requiredUpdateStage).toEqual({ maquina_escribir: 2 });

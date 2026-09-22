@@ -31,7 +31,7 @@ Reglas obligatorias:
 - **Ninguna prueba se obtiene por adivinanza.** Las nueve piezas del Acta están en poder de la corte antes de la primera declaración o se entregan en línea de diálogo con `[ENTREGAR]`.
 - **Nada de pericias mágicas.** No hay huellas dactilares, ni hora de muerte al minuto, ni análisis que identifiquen a una persona. Lo que se compara es tizne, calcos y horas escritas.
 - **El culpable es un personaje de un solo episodio.** No se gasta ni se adelanta el villano de ningún caso posterior.
-- **El epílogo enlaza con el Caso 1** sin resolverlo: un titular de periódico sobre el Museo de las Curiosidades.
+- **El epílogo cierra el caso sin anzuelos posteriores.** No hay titular de periódico ni tease del Caso 1: Chapulín es arrestado a minutos del robo, así que una prensa del día lo contradiría.
 
 ## 2. Sinopsis y verdad del autor
 
@@ -43,7 +43,7 @@ Se echó el dinero de la cobranza a la bolsa y **se quedó con el cartapacio y s
 
 Cuando Toribio volvió de la hielería y gritó, Casimiro apareció "corriendo" y declaró haberlo visto salir con el cartapacio. Su cálculo es que la corte fije el golpe a la una en punto, cinco minutos antes de que empiece la coartada verificable del acusado.
 
-Sus tres errores materiales: describió el cartapacio al agente veinticinco minutos antes de la hora en que después dirá que se lo encontró; la plancha quedó acomodada con el asa hacia la pared y con tizne fresco en el mango; y la lata de ahorros quedó sobre la mesa, con el mismo tizne en la tapa.
+Sus tres errores materiales: describió el cartapacio al agente veinticinco minutos antes de la hora en que después dirá que se lo encontró, y el parte asienta que a esa hora el detenido cargaba una enorme barra de hielo con ambas manos ocupadas; la plancha quedó acomodada con el asa hacia la pared y con tizne fresco en el mango; y la lata de ahorros quedó sobre la mesa, con el mismo tizne en la tapa.
 
 ## 3. Reparto
 
@@ -75,7 +75,7 @@ Las horas de autor no son hechos judiciales. La columna derecha dice qué puede 
 | 14:00 | Pasa el camión del hielo y toca dos veces el claxon. Es el sonido con el que la vecindad marca la hora. | `foto_patio` y dicho del hielero citado en el parte. |
 | 14:05 | Toribio regresa con la barra, encuentra a Don Nazario en el suelo y grita. | Su relato desde el inicio. |
 | 14:10 | Casimiro llega "corriendo" al patio y dice haber llamado a la policía. | Su declaración. |
-| 14:15 | Detención de Toribio. Inventario: barra de hielo, 40 centavos, recibo de hielería. **Sin el cartapacio.** En el mismo acto, Casimiro le describe al agente el cartapacio: color, broche y que lo llevaba en la mano izquierda. | `parte_detencion`. Es la pieza que hunde el testimonio 3. |
+| 14:15 | Detención de Toribio. Llega **cargando una enorme barra de hielo con ambas manos ocupadas**. Inventario: esa barra de hielo, 40 centavos, recibo de hielería. **Sin el cartapacio.** En el mismo acto, Casimiro le describe al agente el cartapacio: color, broche y que lo llevaba en la mano izquierda. | `parte_detencion`. Las dos manos ocupadas sostienen el testimonio 1; la hora de la descripción hunde el testimonio 3. |
 | 14:40 | La patrulla se retira con el detenido. | `parte_detencion`. |
 | 16:00 | Don Nazario despierta en la clínica sin recuerdo del episodio. | `informe_lesiones`. |
 
@@ -88,7 +88,7 @@ Nueve entradas. Las siete de origen "Corte" están en el Acta antes de la primer
 | ID | Obtención | Descripción inicial permitida | Función |
 | --- | --- | --- | --- |
 | `insignia_abogado` | Inicio | Insignia abollada de Don Ramón. Primera vez que la usa. | Constante. Se presenta una vez, en el tutorial de la apertura, y nunca más. |
-| `parte_detencion` | Inicio | Parte del 12 de julio: detención a las 14:15 en el patio. Inventario del detenido: barra de hielo, 40 centavos, recibo de hielería. Chapa de la vivienda 4 vencida desde marzo. Cartapacio de cobranza no localizado. **Anexo: descripción del cartapacio aportada por el testigo Lengua a las 14:15.** | Se presenta dos veces, en T1 y en T3, contra declaraciones distintas. Un solo `[ACTUALIZAR]`, en T3. |
+| `parte_detencion` | Inicio | Parte del 12 de julio: detención a las 14:15 en el patio. **El detenido llegó cargando una enorme barra de hielo con ambas manos ocupadas.** Inventario del detenido: esa barra de hielo, 40 centavos, recibo de hielería. Chapa de la vivienda 4 vencida desde marzo. Cartapacio de cobranza no localizado. **Anexo: descripción del cartapacio aportada por el testigo Lengua a las 14:15.** | Se presenta dos veces, en T1 y en T3, contra declaraciones distintas. **Las dos manos ocupadas son lo que hace evidente la contradicción de T1** (el testigo lo vio salir "con el cartapacio en la mano"): la ficha debe conservar ese dato en su primera línea. Un solo `[ACTUALIZAR]`, en T3. |
 | `informe_lesiones` | Inicio | Don Nazario Cuenca: golpe único en la región occipital, objeto pesado de base plana. Ventana del golpe entre 13:00 y 14:00. Amnesia del episodio; sin aptitud para declarar. | `updates[]` en orden fijo: (1) en el `followUp` de T1, el golpe vino **desde atrás y arriba**; (2) al cierre de T3, el calco de la lesión es compatible con una base plana, borde recto y unos seis kilos. **Ni la ficha, ni los `updates`, ni la lámina, ni el pie de lámina nombran o dibujan la plancha**: identificar el objeto es la deducción de la etapa 1 del clímax, y el informe está en el Acta desde la apertura. Contador lineal: un tercer `[ACTUALIZAR]` se descartaría (ver [[docs/lessons-learned/investigation-gating-and-evidence-stages.md]]). |
 | `recibo_hielo` | Inicio | Recibo de la Hielería La Nevada. Dos sellos de hora: entrada 13:05, salida 13:55. Firma del hielero. | Coartada. `detailedView`: la lámina permite ver que son dos sellos distintos y no uno repetido. |
 | `foto_patio` | Inicio | Fotografía del patio de la vecindad tomada a las 14:30 desde la puerta de la vivienda 4. Se ve el lavadero, el tendedero y, al fondo, la escuela de la acera de enfrente. | `detailedView`: **en el campanario hay andamios y el hueco de la campana está vacío**. Objetivo de Present & Point en T2. |
@@ -233,15 +233,17 @@ La lámina ocupa la pantalla completa: cada línea del inciso lleva `bg` + `furn
 
 **Contradicción sobre 3:** `parte_detencion`. Pregunta visible: "¿Qué traía el acusado encima cuando lo detuvieron?".
 
+La contradicción se apoya en un solo dato físico y la ficha lo dice en su primera línea: el detenido llegó **con las dos manos ocupadas por la barra de hielo**. Sin ese dato la escena se leía como "no se encontró el cartapacio" y la objeción de Super Sam (cuarenta minutos para esconderlo) la dejaba en pie; la respuesta del Juez cierra justo esa grieta.
+
 ~~~dialogue
 DEFENSA: ¡PROTESTO! ¡Ese cartapacio no aparece en ninguna parte de este expediente! [sfx: desk_slam; cutin: objection_protesto]
-DEFENSA: El parte de la detención dice qué traía mi cliente a las 14:15: una barra de hielo, cuarenta centavos y un recibo de hielería.
-DEFENSA: Del cartapacio de cobranza, señor juez, nada. Ni en sus manos, ni en su vivienda, ni en la vecindad completa.
-CASIMIRO: Bueno... uno dice "con el cartapacio" por decir. Es una figura retórica. Sinécdoque, si me permite. Del latín *charta*, por cierto. [pose: casimiro_sweat]
+DEFENSA: El informe de detención asienta que a las 14:15 mi cliente llegó cargando una barra de hielo enorme, con las dos manos. Ninguna mano libre.
+DEFENSA: Y el inventario del parte es corto: la barra de hielo, cuarenta centavos y un recibo. De un cartapacio en esa mano, ni rastro.
+CASIMIRO: Uno dice "con el cartapacio" por decir. Es una figura retórica. Sinécdoque, si me permite. Del latín *charta*, por cierto. [pose: casimiro_sweat]
 CHAPULIN: ¡Chanfle! ¿Y el grito también fue una sinécdoque?
-JUEZ: ¡Cáspita! Testigo, la corte no le pidió literatura.
+JUEZ: ¡Cáspita! Testigo, la corte no le pidió literatura. [pose: judge_shock]
 SUPER SAM: ¡Irrelevante! ¡El muchacho tuvo cuarenta minutos para esconder ese cartapacio donde quisiera! [sfx: desk_slam]
-JUEZ: La corte concede que un objeto no localizado no acredita nada por sí solo. Pero entonces esa hora se vuelve decisiva. Defensa, ¿tiene algo sobre la una en punto?
+JUEZ: La corte concede que un objeto no localizado no acredita nada por sí solo. Pero el parte asienta que el detenido no tenía ninguna mano libre. Esa hora se vuelve decisiva: ¿dónde estaba el acusado a la una en punto? [pose: judge_neutral]
 ~~~
 
 **FollowUp sobre 2:** `recibo_hielo`. Pregunta visible: "¿Dónde estaba el acusado a la una de la tarde?".
@@ -524,10 +526,6 @@ TORIBIO: Trece. Una se derritió en el juzgado. [bg: bg_waiting_room_case0]
 DEFENSA: (Trece paletas y catorce meses de renta. Vamos empatados.) [bg: bg_waiting_room_case0]
 CHAPULIN: ¡No te desanimes, Don Ramón! Todo abogado empieza con un cliente que le paga en especie. [bg: bg_waiting_room_case0]
 DEFENSA: Y termina con un casero que le cobra en efectivo. [bg: bg_waiting_room_case0]
-NARRADOR: Sobre el banco, un periódico abierto: "ROBAN LA CHICHARRA PARALIZADORA DE ORO DEL MUSEO DE LAS CURIOSIDADES". [bg: bg_waiting_room_case0]
-CHAPULIN: ...Chanfle. [bg: bg_waiting_room_case0; pose: chapulin_idle]
-DEFENSA: ¿Y ése quién lo va a defender? [bg: bg_waiting_room_case0]
-CHAPULIN: Ahí está el detalle. [bg: bg_waiting_room_case0]
 ~~~
 
 El epílogo **no** resuelve nada del Caso 1 ni nombra a Tripaseca.

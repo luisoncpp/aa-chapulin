@@ -19,6 +19,10 @@ Three tools, cheapest first:
 
 Reserve the penalty for presents that are actually *wrong*, not merely early.
 
+## Climax stages
+
+The same distinction applies to `ClimaxStage.deflects`. Use it when an exhibit belongs to the chain of reasoning and incriminates someone, but cannot answer the stage's current question. Its dialogue should state what the exhibit establishes and what it still does not prove; the stage remains pending without a penalty.
+
 ## The trap in the test harness
 
 Each case day has its own line collector (`trialDialogue`, `allTrialLines`, `testimonyLines`), and they all read:

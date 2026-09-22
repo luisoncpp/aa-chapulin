@@ -59,7 +59,7 @@ export const CASE5_EVIDENCE_ES_B: Record<string, EvidenceItem> = {
   }),
   oficio_diligencia: ev('oficio_diligencia', {
     name: 'Oficio de Diligencia',
-    desc: 'Oficio 4471 de la fiscalía, 26 de noviembre: ordena la diligencia fijada para el sábado 4 de diciembre a las 17:00 en el Archivo Judicial y designa al actuario Hilario Balbuena. Al calce, la lista de distribución dice: copia para la Actuaría adscrita, la Dirección del Archivo y la Sindicatura de la quiebra 114/1971.'
+    desc: 'Oficio 4471 de la fiscalía, 26 de noviembre: ordena la diligencia fijada para el sábado 4 de diciembre a las 17:00 en el Archivo Judicial, designa al actuario Hilario Balbuena y cita a Ramón Valdés a petición de Casimiro. Al calce, la lista de distribución dice: copia para la Actuaría adscrita, la Dirección del Archivo y la Sindicatura de la quiebra 114/1971.'
   }),
   efectos_casimiro: ev('efectos_casimiro', {
     name: 'Efectos de Casimiro',

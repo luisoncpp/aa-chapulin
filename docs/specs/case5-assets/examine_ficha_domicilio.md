@@ -191,3 +191,21 @@ Clase: `examine`. Espec: §5.3 (`ficha_domicilio`), §18.5 y §23.3. Guion: clí
 ### Correcciones de auditoría
 
 - ~~`setenta` en línea base; `Espanto` ES como cedilla minúscula; EN solo subíndice~~ — [x] RETIRADO POR REVISIÓN (2026-09-19, pasada s = fragmento).
+
+## Criterio de composición 2026-09-21
+
+La corrección solicitada por el usuario exige un recorte real de una tarjeta maestra. Prevalece el reparto físico de §10.1 y §23.3: la maestra ES escribe `Domicilio: vecindad de` / `la calle del` / `Espanto 8,` / `viv. 72.`. El corte se lleva `cindad de` y las tres líneas siguientes. EN escribe `Address: city of` / `Calle del` / `Espanto 8,` / `apt. 72.`, conforme a la lectura del fragmento en `celda_talks_en.ts:76`. La elipsis del diálogo representa lo que falta, no puntos mecanografiados. Las cifras y abreviaturas se desarrollan al leerlas en §18.5; no se escriben de nuevo con otra distribución en el papel. Esto resuelve el conflicto anterior entre lectura corrida y cuatro renglones. Los cinco campos izquierdos se agrupan por espaciado; un salto de línea dentro de ingreso/oficio no crea un campo adicional.
+
+## Hallazgos de auditoría 2026-09-21, composición desde tarjeta maestra
+
+**Veredicto: CUMPLE el emparejamiento físico ES/EN y el defecto tipográfico.** Auditoría sobre los WebP finales de 960×540, con recortes separados de campos, fechas y corte.
+
+- F1/F2/F4: cinco campos izquierdos legibles con sus respuestas, domicilio a la derecha cuya continuación está en el fragmento. Tarjeta crema apaisada, fechas manuscritas 1969/VIII y corte rectangular limpio en la esquina inferior derecha.
+- F2: cada `s` minúscula se imprime una vez, a cuerpo completo, 26 px debajo de un interlineado de 52 px en la maestra. Se conserva la letra dentro de su palabra; no hay cedillas ni letras duplicadas.
+- F3/F6: domicilio 8, vivienda/apartamento 72; catorce meses de atraso; gemelos de igual geometría y papel. La esquina proviene del recorte exacto de cada maestra, comprobado por igualdad de píxeles antes de la compresión WebP.
+- F5/exclusiones: ilustración de papel sobre gris, sin perfil, membrete, flechas, realces ni objetos de escena. Se conserva el contorno oscuro del contrato vigente de §23.0.
+- Consistencia: ambos iconos se derivan de estos mismos objetos. No hay `clickableZones` ni `pointTarget` vinculados a estas placas que recalibrar.
+
+**Correcciones de auditoría:** retirados los defectos residuales de caída desigual y de `dos` alineado: el domicilio impreso usa las abreviaturas del fragmento y toda `s` se compone con la misma función. Se retira la clasificación de `Oficio` en otro renglón como campo adicional; sigue agrupado con ingreso.
+
+Fuentes y prompts: [[tools/raw/case5/address_composition.md]]. Sin defectos nuevos en el alcance corregido.

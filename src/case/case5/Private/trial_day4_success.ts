@@ -3,7 +3,7 @@
  * Case 5 Trial Day 4 — opening present, T9 successes, GIRO 4 (spec §17).
  */
 
-import type { DialogueLine } from '../../../types/index.js';
+import type { ChoicePrompt, DialogueLine, TrialPresentStep } from '../../../types/index.js';
 
 export const CASE5_DAY4_OPENING_PRESENT_SUCCESS: DialogueLine[] = [
   { speaker: 'DEFENSA', text: '¡La bitácora de mantenimiento del Archivo, señor juez, y la tira del termógrafo del pasillo siete!', pose: 'chapulin_slam', sfx: 'desk_slam' },
@@ -79,31 +79,66 @@ export const CASE5_D4_T1_LIBRO_SUCCESS: DialogueLine[] = [
   { speaker: 'DEFENSA', text: '(Ya voy, señor juez. Nada más una cosa antes.)', pose: 'chapulin_idle' }
 ];
 
-export const CASE5_D4_T1_CEDULARIO_SUCCESS: DialogueLine[] = [
-  { cutin: 'objection_toma_eso', speaker: 'DEFENSA', text: '¡TOMA ESO!', sfx: 'desk_slam', pose: 'chapulin_slam' },
-  { speaker: 'DEFENSA', text: 'El cedulario del huacal nueve tiene nueve cajones, señor juez. Y cada cajón tiene un rótulo.', pose: 'chapulin_point' },
-  { speaker: 'DEFENSA', text: 'Y los rótulos no son nombres. Son calles.', pose: 'chapulin_idle' },
-  { speaker: 'DEFENSA', text: '«Aguascalientes a Bucareli.» «Bucareli a Donceles.» «Donceles a Espanto.»', pose: 'chapulin_idle' },
-  { speaker: 'DEFENSA', text: 'Señorita Peñaloza: si alguien abrió un cajón, su vale dice qué calles.', pose: 'chapulin_slam', sfx: 'desk_slam' },
-  { speaker: 'GENOVEVA', text: '...Con su rótulo exacto, señor. Es el reglamento.', pose: 'genoveva_idle' },
-  { speaker: 'JUEZ', text: 'Señorita, ¿trae usted esos vales?', pose: 'judge_neutral' },
-  { speaker: 'GENOVEVA', text: 'Traigo los del año, señor juez. Vienen citados.', pose: 'genoveva_reglamento' },
-  { speaker: 'NARRADOR', text: 'La testigo saca de una carpeta de hule un fajo de papeletas rosas atadas con una liga.', bgm: 'suspense' },
-  { speaker: 'JUEZ', text: 'El del veintinueve de noviembre.', sfx: 'gavel', pose: 'judge_gavel' },
-  { speaker: 'GENOVEVA', text: '...Hay uno, señor juez.', pose: 'genoveva_sweat' },
-  { speaker: 'GENOVEVA', text: '«Veintinueve de noviembre. Huacal 9. Cedulario. Solicitante: licenciado Fulgencio Berrondo. Firma: F. Berrondo.»', pose: 'genoveva_idle' },
-  { speaker: 'GENOVEVA', text: '«Cajón: Donceles a Espanto.»', pose: 'genoveva_shock' },
-  { speaker: 'NARRADOR', text: 'La galería entera se vuelve hacia la mesa de la fiscalía.', sfx: 'realization', bgm: 'pursuit' },
-  { speaker: 'DEFENSA', text: '¡Y fíjese en la fecha, señor juez! El veintinueve de noviembre fue lunes.', pose: 'chapulin_point' },
-  { speaker: 'DEFENSA', text: '¡Y el licenciado Berrondo declaró el martes que baja al huacal dos veces al mes — sólo los jueves!', pose: 'chapulin_slam', sfx: 'desk_slam' },
-  { speaker: 'BERRONDO', text: '......', pose: 'berrondo_sweat', bg: 'assets/bg_courtroom.webp' },
-  { speaker: 'DON RAMÓN', text: '...Señor juez.', pose: 'donramon_shock' },
-  { speaker: 'DON RAMÓN', text: 'Yo vivo en la calle del Espanto número ocho.', pose: 'donramon_idle' },
-  { speaker: 'DON RAMÓN', text: 'Y en la mano de ese muerto había una esquina de tarjeta que dice mi calle.', pose: 'donramon_shock' },
-  { speaker: 'NARRADOR', text: 'El Juez se pone de pie.', sfx: 'gavel' },
-  { speaker: 'JUEZ', text: '¡ORDEN!', sfx: 'gavel', pose: 'judge_gavel' },
-  { speaker: 'SECRETARIO', text: 'Recibo la carpeta, señor juez.' },
-  { speaker: 'JUEZ', text: 'La testigo queda a disposición de esta corte. Su carpeta de vales, en resguardo del tribunal.', pose: 'judge_neutral' },
-  { speaker: 'JUEZ', text: 'Licenciado Chapulín.', pose: 'judge_thinking' },
-  { speaker: 'JUEZ', text: 'Esta corte lleva cuatro días prohibiéndole a usted señalar a una persona, y hoy se lo va a ordenar.', sfx: 'gavel', pose: 'judge_gavel' }
+const PLAN_CHOICE: ChoicePrompt = {
+  id: 'd4_plan_preparation',
+  question: 'Si Berrondo preparó el montaje antes del sábado, ¿qué hipótesis podemos comprobar?',
+  options: [
+    { id: 'esperar', label: 'Esperó al sábado e improvisó.' },
+    { id: 'planear', label: 'Buscó de antemano una pieza para incriminar a Don Ramón.' }
+  ],
+  correctId: 'planear',
+  successDialogue: [
+    { speaker: 'DEFENSA', text: '(Si planeó el señuelo, tuvo que confirmar antes que la ficha de Don Ramón seguía en el cedulario.)', pose: 'chapulin_idle' }
+  ],
+  failDialogue: [
+    { speaker: 'DON RAMÓN', text: '(Si esperó al sábado, no habrá un registro anterior que nos ayude.)', pose: 'donramon_idle' },
+    { speaker: 'DEFENSA', text: '(Volvamos a la hipótesis que deja un rastro comprobable.)', pose: 'chapulin_idle' }
+  ]
+};
+
+export const CASE5_D4_T1_CHAIN: TrialPresentStep[] = [
+  {
+    evidence: ['esquina_tarjeta'],
+    prompt: '¿Qué hallazgo de la escena pudo prepararse para incriminar a Don Ramón?',
+    successDialogue: [
+      { cutin: 'objection_toma_eso', speaker: 'DEFENSA', text: '¡TOMA ESO!', sfx: 'desk_slam', pose: 'chapulin_slam' },
+      { speaker: 'DEFENSA', text: 'La esquina de tarjeta que apareció en la mano de Casimiro llevaba el domicilio de Don Ramón. Alguien la puso allí para señalarlo.', pose: 'chapulin_point' },
+      { speaker: 'BERRONDO', text: 'Una cartulina mecanografiada no demuestra que saliera de mi cedulario. Cualquiera que conociera al señor Valdés pudo escribirla.', pose: 'berrondo_idle' },
+      { speaker: 'BERRONDO', text: 'Hasta este juicio yo ni siquiera sabía su nombre. ¿Por qué habría de buscarlo en once mil tarjetas?', pose: 'berrondo_idle' }
+    ]
+  },
+  {
+    evidence: ['oficio_diligencia'],
+    prompt: '¿Qué documento de la fiscalía nombraba al citado y se distribuyó a la Sindicatura?',
+    successDialogue: [
+      { speaker: 'DEFENSA', text: 'El oficio 4471 cita a Ramón Valdés a petición de Casimiro y ordena enviar una copia a la Sindicatura.', pose: 'chapulin_point' },
+      { speaker: 'BERRONDO', text: 'Firmé el acuse de recibido, pero no presté atención al asunto. Que el nombre estuviera escrito no demuestra que lo leyera.', pose: 'berrondo_idle' },
+      { speaker: 'JUEZ', text: 'El oficio acredita qué podía saber, no qué hizo después de firmar.', pose: 'judge_thinking' }
+    ]
+  },
+  { choice: PLAN_CHOICE, successDialogue: [] },
+  {
+    evidence: ['fichero_cedulario'],
+    prompt: '¿Qué bien habría consultado para comprobar que Don Ramón seguía fichado?',
+    successDialogue: [
+      { speaker: 'DEFENSA', text: 'El cedulario reúne las fichas de domicilio. Si eligió una tarjeta, ahí pudo comprobar que la de Don Ramón seguía archivada.', pose: 'chapulin_point' },
+      { speaker: 'DON RAMÓN', text: '(Eso todavía es una hipótesis, joven.)', pose: 'donramon_idle' }
+    ]
+  },
+  {
+    profileTarget: ['perfil_genoveva'],
+    prompt: '¿Quién puede consultar los registros de la bodega y comprobar si hubo una consulta anterior?',
+    successDialogue: [
+      { speaker: 'DEFENSA', text: 'Señor juez, solicito que vuelva al estrado la señorita Peñaloza. Ella archiva los vales de la bodega.', pose: 'chapulin_point' },
+      { speaker: 'JUEZ', text: 'Señorita, revise su carpeta. ¿Consta una consulta del cedulario por el licenciado Berrondo el veintinueve de noviembre?', pose: 'judge_neutral' },
+      { speaker: 'GENOVEVA', text: 'Sí, señor juez. «Veintinueve de noviembre. Huacal 9. Bien consultado: cedulario. Solicitante: licenciado Fulgencio Berrondo. Firma: F. Berrondo.»', pose: 'genoveva_sweat' },
+      { speaker: 'DEFENSA', text: 'Ese día fue lunes. El vale registra una consulta, pero no dice qué tarjeta miró ni era necesario para abrir el huacal.', pose: 'chapulin_slam', sfx: 'desk_slam' },
+      { speaker: 'JUEZ', text: 'Así se asentará. La ficha se identificará por su domicilio, no por este vale.', pose: 'judge_neutral' },
+      { speaker: 'SECRETARIO', text: 'Recibo la carpeta, señor juez.' },
+      { speaker: 'JUEZ', text: 'Licenciado Chapulín. Esta corte lleva cuatro días prohibiéndole señalar a una persona, y hoy se lo va a ordenar.', sfx: 'gavel', pose: 'judge_gavel' }
+    ]
+  }
 ];
+
+/** Kept as a named block for legacy script walkers; the chain owns the final dialogue now. */
+export const CASE5_D4_T1_CEDULARIO_SUCCESS: DialogueLine[] = CASE5_D4_T1_CHAIN[4].successDialogue;

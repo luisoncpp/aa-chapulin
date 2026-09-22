@@ -73,3 +73,13 @@ Clase: `icon`. Espec: §5.4, §23.0 y §23.5; identidad detallada vinculada en �
 
 - No se inspeccionó ninguna imagen, por instrucción del protocolo. No hay defectos visuales confirmados ni severidades que registrar.
 - Esta hoja es un contrato derivado del spec y del guion; no certifica el estado actual de `assets/ficha_domicilio.webp`.
+
+## Hallazgos de auditoría 2026-09-21, icono derivado
+
+**Veredicto: CUMPLE la identidad y el encaje.** Inspección del icono final 128×128 y del recorte de tarjeta que lo genera.
+
+- F1/F3/F4: tarjeta crema apaisada, 1969/VIII, cinco grupos izquierdos y resto del domicilio junto al corte inferior derecho. El hueco corresponde a la pieza de `esquina_tarjeta`.
+- F2/F5/F6: objeto centrado sobre transparencia, sin objetos extra ni etiquetas añadidas. A tamaño de icono la mecanografía se lee como líneas; la lectura localizada pertenece a las placas ES/EN.
+- Consistencia: extraído de la misma maestra que las dos placas detalladas, con idéntica máscara de esquina. El procesador vuelve a exportar este PNG después de la hoja de iconos para conservar esa identidad.
+
+Sin defectos nuevos. Fuentes: [[tools/raw/case5/address_composition.md]].

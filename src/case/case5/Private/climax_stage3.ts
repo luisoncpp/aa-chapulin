@@ -7,8 +7,15 @@ import type { ClimaxStage } from '../../../types/index.js';
 import { CASE5_CLIMAX_STAGE3_POINT } from './climax_stage3_point.js';
 
 export const CASE5_CLIMAX_STAGE3: ClimaxStage = {
-  presentTarget: ['estante_consulta'],
+  presentTarget: ['tomo_caido'],
   prompt: '¿Qué prueba que alguien volvió al primer piso después del golpe?',
+  deflects: [{
+    evidence: ['esquina_tarjeta'],
+    dialogue: [
+      { speaker: 'JUEZ', text: 'La esquina de la tarjeta compromete al licenciado Berrondo, pero no demuestra que alguien volviera al primer piso después del golpe.', pose: 'judge_thinking' },
+      { speaker: 'JUEZ', text: 'La corte necesita lo que siguiera arriba y no pudiera llegar solo.', pose: 'judge_neutral' }
+    ]
+  }],
   failDialogue: [
     { speaker: 'JUEZ', text: 'Eso no demuestra que alguien volviera al primer piso después del golpe.', pose: 'judge_thinking' },
     { speaker: 'JUEZ', text: 'Esta corte necesita una cosa que estuviera arriba y que no pudiera llegar sola.', pose: 'judge_neutral' },

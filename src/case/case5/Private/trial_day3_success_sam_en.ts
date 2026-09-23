@@ -57,7 +57,7 @@ export const CASE5_D3_T2_EXPEDIENTE_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'NARRADOR', text: 'Long silence.', bgm: 'suspense' },
   { speaker: 'SUPER SAM', text: '...Your Honor.', pose: 'supersam_sweat' },
   { speaker: 'SUPER SAM', text: 'The prosecution —I— request to be removed from this matter and placed at the Comptroller\'s disposal.', pose: 'supersam_idle' },
-  { speaker: 'JUEZ', text: 'So noted. The agreements clerk will continue as public ministry.', sfx: 'gavel', pose: 'judge_gavel' },
+  { speaker: 'JUEZ', text: 'So noted. The agreements clerk will continue as public ministry.', sfx: 'gavel', pose: 'judge_gavel', setFlag: 'case5_super_sam_recused' },
   { speaker: 'JUEZ', text: 'And this court will tell you one thing, Mr. Sullivan, because nobody else will.', pose: 'judge_thinking' },
   { speaker: 'JUEZ', text: 'What you did today does not absolve you. But you did not do it cheaply.', pose: 'judge_neutral' },
   { speaker: 'SUPER SAM', text: '...Thank you, Your Honor.', pose: 'supersam_sweat' },

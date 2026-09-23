@@ -61,7 +61,7 @@ export const CASE1_EVIDENCE_EN: EvidenceCatalogMap = {
     id: 'rejilla_ducto',
     name: 'Duct Grate',
     icon: 'assets/rejilla_ducto.webp',
-    desc: 'The gallery 2 duct grate, 18 × 24 cm, four screws with the paint unbroken. Lower corner bent; two parallel marks in the dust on the inner lip. A cream pinstriped worsted thread, recovered from the mesh.',
+    desc: 'The gallery 2 duct grate, 18 × 24 cm, four screws with the paint unbroken. Wire cut at the lower corner; two parallel marks in the dust on the inner lip. A cream pinstriped worsted thread, recovered from the mesh.',
     detailedView: {
       imageAsset: 'assets/examine_rejilla_ducto.webp',
       caption: "Gallery 2 grate with the examiner's tape measure. The thread recovered from the mesh was bagged in waxed paper."

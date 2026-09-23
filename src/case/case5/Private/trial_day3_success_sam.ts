@@ -57,7 +57,7 @@ export const CASE5_D3_T2_EXPEDIENTE_SUCCESS: DialogueLine[] = [
   { speaker: 'NARRADOR', text: 'Silencio largo.', bgm: 'suspense' },
   { speaker: 'SUPER SAM', text: '...Your Honor.', pose: 'supersam_sweat' },
   { speaker: 'SUPER SAM', text: 'La fiscalía —yo— solicito ser separado de este asunto y puesto a disposición de la Contraloría.', pose: 'supersam_idle' },
-  { speaker: 'JUEZ', text: 'Se le tiene por separado. El secretario de acuerdos continuará en representación social.', sfx: 'gavel', pose: 'judge_gavel' },
+  { speaker: 'JUEZ', text: 'Se le tiene por separado. El secretario de acuerdos continuará en representación social.', sfx: 'gavel', pose: 'judge_gavel', setFlag: 'case5_super_sam_recused' },
   { speaker: 'JUEZ', text: 'Y esta corte le dice una cosa, señor Sullivan, porque no se la va a decir nadie más.', pose: 'judge_thinking' },
   { speaker: 'JUEZ', text: 'Lo que usted hizo hoy no lo absuelve. Pero no lo hizo por barato.', pose: 'judge_neutral' },
   { speaker: 'SUPER SAM', text: '...Thank you, Your Honor.', pose: 'supersam_sweat' },

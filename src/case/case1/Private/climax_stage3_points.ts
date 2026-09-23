@@ -81,7 +81,7 @@ export const CASE1_REJILLA_POINT_TARGET: PointTargetContradiction = {
   ],
   successDialogue: [
     { speaker: 'DEFENSA', text: '¡AQUÍ, señor juez! ¡En la esquina inferior de la malla!', pose: 'donramon_slam', sfx: 'desk_slam', cutin: 'objection_toma_eso', bgm: 'objection' },
-    { speaker: 'DEFENSA', text: 'El alambre no está roto por viejo. Está cortado, doblado hacia arriba y vuelto a acomodar.', pose: 'donramon_point' },
+    { speaker: 'DEFENSA', text: 'El alambre no está roto por viejo. Está cortado.', pose: 'donramon_point' },
     { speaker: 'DEFENSA', text: 'Por ese hueco no pasa una persona normal, ni un gato, ni un perro. Pero alguien que mide diez centímetros entra y sale como por su casa.', pose: 'donramon_idle' },
     { speaker: 'CHAPULIN', text: '¡Chanfle! ¡Es una gatera para ratones!', pose: 'chapulin_point' },
     { speaker: 'JUEZ', text: 'La corte concede que por ahí cabría un hombre encogido... pero un momento, licenciado.', pose: 'judge_thinking' },

@@ -5,8 +5,8 @@ Wrong-present penalty dialogue always queued Super Sam pointing plus Don Ramón 
 
 ## What Was Learned
 
-### 1. Hardcoded courtroom jobs leak across recusal
-A penalty is not a cutscene you can restage later. If the engine always paints Super Sam, every miss after recusal undoes the plot. Prosecution speaker and pose belong on `Testimony` (and the trial day) so T3 can be SECRETARIO with no pose while T1–T2 stay Super Sam.
+### 1. Courtroom roles change at the scripted handoff
+A penalty can happen before or after a recusal inside a testimony. Keep Super Sam as the default prosecutor and change the role when the Judge accepts his recusal. In Case 5, the day-3 opening and testimonies 6–7 begin with Sam; after the ruling, the clerk speaks through the rest of testimony 7, testimony 8, and all of day 4.
 
 ### 2. Voice-only bench speakers must not borrow a sprite
 `SECRETARIO` uses the prosecution camera but infers pose `null`. Staging hides the character. Mapping him as an unknown speaker would send him to the witness stand; defaulting his pose to `supersam_point` would put Super Sam’s body under the secretary’s nameplate.

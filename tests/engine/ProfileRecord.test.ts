@@ -153,7 +153,7 @@ describe('Acta de Personajes in the Court Record', () => {
     expect(dayState.health).toBe(3);
     expect(queued.some((dialogue) => dialogue.some((line) => line.text === i18n.t.pressHint)))
       .toBe(false);
-    expect(queued.some((dialogue) => dialogue.some((line) => line.speaker === 'SECRETARIO')))
+    expect(queued.some((dialogue) => dialogue.some((line) => line.speaker === 'SUPER SAM')))
       .toBe(true);
     expect(queued.some((dialogue) => dialogue.some((line) => line.speaker === 'JUEZ')))
       .toBe(true);

@@ -57,6 +57,7 @@ Each entry in a dialogue sequence supports the following optional and required f
 | `updateEvidence` | string | Advances one Court Record description stage (`updates[]` or legacy `updatedDesc`). Missing items are added first. |
 | `addProfile` | string | Files a person in the Acta de Personajes. Same toast as evidence. Cases 1 and 5. |
 | `updateProfile` | string | Advances one profile description stage. Missing profiles are filed first. Saturates like evidence. |
+| `setFlag` | string | Marks a progression flag when this line is displayed; flags are saved with game progress. |
 
 To show a full-screen illustration mid-dialogue (Case 0's `cartapacio` definition inside the third press of testimony 1), stamp `bg` with a 960×540 plate plus `furniture: 'none'` on **every** line of the aside and speak them **without `pose`** (so no sprite covers the plate). Normally the speaker is `NARRADOR`; Case 5's day-4 cooling-curve plate instead has the defense explain over `examine_termografo.webp` with no pose, which the same rule keeps clear. The next line without `bg` restores the speaker camera.
 

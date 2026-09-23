@@ -81,7 +81,7 @@ export const CASE1_REJILLA_POINT_TARGET_EN: PointTargetContradiction = {
   ],
   successDialogue: [
     { speaker: 'DEFENSA', text: 'RIGHT HERE, Your Honor! In the bottom corner of the mesh!', pose: 'donramon_slam', sfx: 'desk_slam', cutin: 'objection_toma_eso', bgm: 'objection' },
-    { speaker: 'DEFENSA', text: 'The wire is not broken from age. It was cut and bent upward, and then pushed back into place.', pose: 'donramon_point' },
+    { speaker: 'DEFENSA', text: 'The wire is not broken from age. It was cut.', pose: 'donramon_point' },
     { speaker: 'DEFENSA', text: 'A normal person, a cat, or a dog cannot fit through there. But someone who stands ten centimetres tall goes in and out like it is their own home.', pose: 'donramon_idle' },
     { speaker: 'CHAPULIN', text: '¡Chanfle! It is a cat door for mice!', pose: 'chapulin_point' },
     { speaker: 'JUEZ', text: 'The court concedes that a shrunken man could fit through there... but one moment, counselor.', pose: 'judge_thinking' },

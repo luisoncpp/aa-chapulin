@@ -92,6 +92,7 @@ export class DialogueFlow {
     this.grantProfileIfPresent(line.addProfile);
     this.updateProfileIfPresent(line.updateProfile);
     this.unlockLocationIfPresent(line.unlockLocation);
+    this.setProgressFlagIfPresent(line.setFlag);
     if (line.instant) {
       this.deps.typewriter.showImmediately(line.text || '');
     } else {
@@ -167,6 +168,10 @@ export class DialogueFlow {
     const scene = this.deps.getScript().investigation[locationId];
     const locName = scene?.name ?? scene?.title ?? locationId;
     this.showProgressNotification(i18n.t.notifLocationUnlocked(locName));
+  }
+
+  private setProgressFlagIfPresent(flag?: string): void {
+    if (flag) this.deps.state.flags[flag] = true;
   }
 
   private showProgressNotification(msg: string): void {

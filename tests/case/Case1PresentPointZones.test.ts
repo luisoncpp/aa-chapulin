@@ -95,7 +95,7 @@ describe('Case 1 Present & Point chained targets', () => {
     const grate = CASE1_MUSEO.hotspots.find((hotspot) => hotspot.id === 'hotspot_rejilla');
     const cornerLine = grate?.dialogue.find((line) => line.text.includes('esquina inferior'));
     expect(cornerLine?.text)
-      .toBe('La esquina inferior de la malla tiene el alambre cortado, doblado hacia arriba y vuelto a acomodar.');
+      .toBe('La esquina inferior de la malla tiene el alambre cortado.');
 
     const yardGrate = CASE1_PATIO.hotspots.find((hotspot) => hotspot.id === 'hotspot_rejilla_exterior');
     const yardCornerLine = yardGrate?.dialogue.find((line) => line.text.includes('esquina de abajo'));

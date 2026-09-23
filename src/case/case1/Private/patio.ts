@@ -85,7 +85,7 @@ export const CASE1_PATIO: InvestigationScene = {
       dialogue: [
         { speaker: 'NARRADOR', text: 'Del lado del patio, la rejilla del ducto de la sala 2, al ras del suelo.' },
         { speaker: 'DEFENSA', text: 'La misma rejilla de ayer, vista por fuera. Dieciocho por veinticuatro.', pose: 'donramon_idle' },
-        { speaker: 'DEFENSA', text: '(Tornillos con la pintura entera. Pero el alambre de la esquina de abajo está cortado, doblado hacia arriba y vuelto a acomodar.)', pose: 'donramon_shock' },
+        { speaker: 'DEFENSA', text: '(Tornillos con la pintura entera. Pero el alambre de la esquina de abajo está cortado.)', pose: 'donramon_shock' },
         { speaker: 'CHAPULIN', text: 'Licenciado, por ahí no pasa ni un gato.', pose: 'chapulin_idle' },
         { speaker: 'DEFENSA', text: 'No, joven. Por ahí no pasa ni un gato.', pose: 'donramon_idle' },
         { speaker: 'DEFENSA', text: '(Ni un gato. Pero un ratón sí.)', pose: 'donramon_shock' },

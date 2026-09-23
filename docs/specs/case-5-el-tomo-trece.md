@@ -2772,6 +2772,8 @@ SUPER SAM: ...Thank you, Your Honor. [pose: supersam_sweat]
 DEFENSA: (Y ahora sí. Ahora ya nada más queda el señor de la cadena de oro.) [pose: chapulin_idle]
 ~~~
 
+**Continuidad de la penalización por prueba incorrecta.** Hasta que el Juez acepta la separación, esa réplica genérica la da Super Sam. Desde la línea «El secretario de acuerdos continuará en representación social», la da el secretario. En el tercer día, la apertura, el testimonio 6 y el testimonio 7 antes de esa resolución corresponden a Super Sam; después de la resolución, también habla el secretario durante el resto del testimonio 7, el testimonio 8 y todo el día 4.
+
 ---
 
 ### 15.4 Testimonio 3 — Lic. Berrondo (en calidad de investigado): *«Lo que hice el cuatro de diciembre»*
@@ -3865,7 +3867,7 @@ JUEZ: En cuanto al acusado. [pose: judge_thinking]
 JUEZ: Ramón Valdés subió una escalera porque un hombre al que él mismo había vencido le pidió que estuviera presente. [pose: judge_neutral]
 JUEZ: Estuvo doce minutos. Bajó. Firmó su salida con buena letra. Y le dijo al conserje «ojalá que no». [pose: judge_thinking]
 JUEZ: Esta corte dicta su veredicto. [sfx: gavel; pose: judge_gavel]
-JUEZ: ¡INOCENTE! [cutin: objection_inocente; sfx: gavel; bgm: victory]
+JUEZ: ¡INOCENTE! [cutin: objection_inocente; sfx: gavel; bgm: victory; pose: judge_gavel]
 DEFENSA: ¡SÍGANME LOS BUENOS! [pose: chapulin_point]
 DON RAMÓN: ...... [pose: donramon_shock]
 DON RAMÓN: Con permisito, dijo Monchito. [pose: donramon_idle]
@@ -3886,7 +3888,7 @@ JUEZ: No es agradable decir esto. Esta corte respeta al acusado y lo ha respetad
 JUEZ: Pero un tribunal no absuelve por respeto. [pose: judge_neutral]
 JUEZ: Ramón Valdés estuvo a solas con la víctima dentro de la hora de su muerte, y en la mano del muerto estaba su domicilio. [pose: judge_neutral]
 JUEZ: Esta corte dicta su veredicto. [sfx: gavel; pose: judge_gavel]
-NARRADOR: ¡CULPABLE! [cutin: objection_culpable; sfx: gavel]
+JUEZ: ¡CULPABLE! [cutin: objection_culpable; sfx: gavel; pose: judge_gavel]
 DON RAMÓN: ...Está bien, joven. [pose: donramon_idle]
 DON RAMÓN: Inténtelo otra vez. [pose: donramon_idle]
 ~~~

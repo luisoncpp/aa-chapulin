@@ -189,6 +189,8 @@ export interface DialogueLine {
   addProfile?: ProfileId;
   updateProfile?: ProfileId;
   unlockLocation?: LocationId;
+  /** Progress flag set when this dialogue line is shown. */
+  setFlag?: string;
   furniture?: FurnitureType;
 }
 
@@ -396,7 +398,7 @@ export interface TrialScript {
   testimony2?: Testimony;
   climax: ClimaxDefinition;
   openingPresent?: OpeningPresent;
-  /** Defaults to SECRETARIO; scripts may override the penalty speaker. */
+  /** Defaults to Super Sam; scripts may override the penalty speaker. */
   penaltyProsecutionSpeaker?: SpeakerName;
   penaltyProsecutionPose?: PoseName;
 }

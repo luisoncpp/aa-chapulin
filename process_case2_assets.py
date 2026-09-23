@@ -146,6 +146,28 @@ def process_case2_evidence() -> None:
         save_evidence_icon(filtered, name)
 
 
+def process_case2_reveal_assets() -> None:
+    """Keep the reveal plate and evidence icon on the audited kicking pose."""
+    raw_dir = "case2"
+    icon_path = find_asset_file(os.path.join(raw_dir, "chanfle_oro_kick_raw.png"))
+    if os.path.exists(icon_path):
+        icon = Image.open(icon_path).convert("RGBA")
+        icon = icon.resize((128, 128), Image.Resampling.LANCZOS)
+        icon.save(os.path.join(DEST_DIR, "chanfle_oro.webp"), "WEBP", quality=90, method=6)
+        print(f"  [OK] Processed audited kicking icon: chanfle_oro.webp ({icon.size})")
+    else:
+        print(f"Warning: Kicking Chanfle icon not found {icon_path}")
+
+    plate_path = find_asset_file(os.path.join(raw_dir, "plate_revelacion_chanfle_lata_raw.png"))
+    if os.path.exists(plate_path):
+        plate = Image.open(plate_path).convert("RGB")
+        plate = plate.resize((960, 540), Image.Resampling.LANCZOS)
+        plate.save(os.path.join(DEST_DIR, "plate_revelacion_chanfle_lata.webp"), "WEBP", quality=90, method=6)
+        print(f"  [OK] Processed audited reveal plate: plate_revelacion_chanfle_lata.webp ({plate.size})")
+    else:
+        print(f"Warning: Chanfle reveal plate not found {plate_path}")
+
+
 def copy_backgrounds() -> None:
     for src_name, dst_name in BGS:
         src_p = find_asset_file(src_name)
@@ -170,6 +192,7 @@ def run_case2() -> None:
         anchored.save(shock_path, 'WEBP', quality=85, method=6)
         print(f"  [OK] Anchored standing hem: donramon_shock.webp ({anchored.size})")
     process_case2_evidence()
+    process_case2_reveal_assets()
     copy_backgrounds()
     print("\nCase 2 assets saved.")
 

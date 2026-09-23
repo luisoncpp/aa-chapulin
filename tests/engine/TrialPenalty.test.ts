@@ -1,6 +1,8 @@
 // @Architecture(descriptionShort="Unit tests for penalty SFX and bilingual objection lines", type="test", icon="bolt")
 import { describe, expect, it, beforeEach, vi } from 'vitest';
 import { SoundEngine } from '../../src/audio/index.js';
+import { CASE_SCRIPT_CASE1_ES } from '../../src/case/case1/index.js';
+import { CASE_SCRIPT_CASE5_ES } from '../../src/case/case5/index.js';
 import {
   applyPenaltyEffects,
   queuePenaltyDialogue,
@@ -88,16 +90,56 @@ describe('TrialPenalty', () => {
       .toMatchObject({ speaker: 'DEFENSA', pose: 'chapulin_panic' });
   });
 
-  it('queues the secretary finding and a Don Ramón protesto by default', () => {
+  it('queues Super Sam finding and a Don Ramón protesto by default', () => {
     queuePenaltyDialogue(host(), /*onResume*/ () => {});
     expect(queued[0][0]).toMatchObject({ speaker: 'DEFENSA', pose: 'donramon_point' });
     expect(queued[0][1]).toMatchObject({
-      speaker: 'SECRETARIO',
-      pose: 'secretario_leyendo',
-      bg: 'assets/bg_courtroom.webp',
+      speaker: 'SUPER SAM',
+      pose: 'supersam_point',
       text: i18n.t.penaltySecretaryText
     });
     expect(queued[0][2]).toMatchObject({ speaker: 'JUEZ', pose: 'judge_gavel' });
+  });
+
+  it('uses Super Sam for Case 1 penalties on both trial days', () => {
+    for (const trialDay of [1, 2] as const) {
+      state.trialDay = trialDay;
+      queuePenaltyDialogue({ ...host(), script: CASE_SCRIPT_CASE1_ES }, /*onResume*/ () => {});
+      expect(queued.at(-1)?.[1]).toMatchObject({ speaker: 'SUPER SAM', pose: 'supersam_point' });
+    }
+  });
+
+  it('switches the Case 5 penalty speaker only after Sam recuses himself', () => {
+    const deps = host();
+    deps.state.caseId = 'case5';
+    for (const trialDay of [1, 2] as const) {
+      deps.state.trialDay = trialDay;
+      queuePenaltyDialogue({ ...deps, script: CASE_SCRIPT_CASE5_ES }, /*onResume*/ () => {});
+      expect(queued.at(-1)?.[1]).toMatchObject({ speaker: 'SUPER SAM', pose: 'supersam_point' });
+    }
+    deps.state.trialDay = 3;
+
+    queuePenaltyDialogue({ ...deps, script: CASE_SCRIPT_CASE5_ES }, /*onResume*/ () => {});
+    expect(queued.at(-1)?.[1]).toMatchObject({ speaker: 'SUPER SAM', pose: 'supersam_point' });
+
+    const thirdDay = CASE_SCRIPT_CASE5_ES.adjournment?.next?.trial;
+    const testimony6 = thirdDay?.testimonies[0];
+    const testimony7 = thirdDay?.testimonies[1];
+    const testimony8 = thirdDay?.testimonies[2];
+    queuePenaltyDialogue({ ...deps, script: CASE_SCRIPT_CASE5_ES, testimony: testimony6 }, /*onResume*/ () => {});
+    expect(queued.at(-1)?.[1]).toMatchObject({ speaker: 'SUPER SAM', pose: 'supersam_point' });
+    queuePenaltyDialogue({ ...deps, script: CASE_SCRIPT_CASE5_ES, testimony: testimony7 }, /*onResume*/ () => {});
+    expect(queued.at(-1)?.[1]).toMatchObject({ speaker: 'SUPER SAM', pose: 'supersam_point' });
+
+    deps.state.flags.case5_super_sam_recused = true;
+    queuePenaltyDialogue({ ...deps, script: CASE_SCRIPT_CASE5_ES, testimony: testimony7 }, /*onResume*/ () => {});
+    expect(queued.at(-1)?.[1]).toMatchObject({ speaker: 'SECRETARIO', pose: 'secretario_leyendo' });
+    queuePenaltyDialogue({ ...deps, script: CASE_SCRIPT_CASE5_ES, testimony: testimony8 }, /*onResume*/ () => {});
+    expect(queued.at(-1)?.[1]).toMatchObject({ speaker: 'SECRETARIO', pose: 'secretario_leyendo' });
+
+    deps.state.trialDay = 4;
+    queuePenaltyDialogue({ ...deps, script: CASE_SCRIPT_CASE5_ES }, /*onResume*/ () => {});
+    expect(queued.at(-1)?.[1]).toMatchObject({ speaker: 'SECRETARIO', pose: 'secretario_leyendo' });
   });
 
   it('uses Chapulín protesto and an explicit SECRETARIO role when court roles are set', () => {
@@ -117,7 +159,7 @@ describe('TrialPenalty', () => {
     expect(lines.some((line) => line.pose === 'donramon_point')).toBe(false);
   });
 
-  it('reads the penalty prosecutor from the trial day when testimony does not override', () => {
+  it('lets an explicit trial-day prosecutor override the Super Sam default', () => {
     const script = chapulinDefenseScript();
     script.trial.penaltyProsecutionSpeaker = 'SECRETARIO';
     queuePenaltyDialogue({ ...host(), script }, /*onResume*/ () => {});

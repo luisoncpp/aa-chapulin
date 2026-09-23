@@ -80,7 +80,7 @@ const CASE1_VERDICT_EN: DialogueLine[] = [
   { speaker: 'JUEZ', text: 'As to the defendant.', pose: 'judge_neutral' },
   { speaker: 'JUEZ', text: 'He came in through an open door, empty-handed, to help a man he did not know, and he was arrested for arriving late.', pose: 'judge_thinking' },
   { speaker: 'JUEZ', text: 'This court delivers its verdict.', sfx: 'gavel', pose: 'judge_gavel' },
-  { speaker: 'NARRADOR', text: 'NOT GUILTY!', cutin: 'objection_inocente', sfx: 'gavel', bgm: 'victory' },
+  { speaker: 'JUEZ', text: 'NOT GUILTY!', cutin: 'objection_inocente', sfx: 'gavel', bgm: 'victory', pose: 'judge_gavel' },
   { speaker: 'NARRADOR', text: '', instant: true, confetti: true },
   { speaker: 'CHAPULIN', text: '¡SÍGANME LOS BUENOS!', pose: 'chapulin_point' },
   { speaker: 'DEFENSA', text: '¡Con permisito, dijo Monchito!', pose: 'donramon_point' },

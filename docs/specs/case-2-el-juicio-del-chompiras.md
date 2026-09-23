@@ -15,7 +15,7 @@ Documento de diseño narrativo, guión de diálogos y especificación técnica p
 
 ## 1. Resumen General del Caso (Case Synopsis)
 
-El legendario y milenario **"Chanfle de Oro"** (una estatuilla prehispánica maciza de oro puro y esmeraldas valorada en 5 millones de dólares) ha sido sustraída de la bóveda de máxima seguridad de la histórica **Hacienda del Marqués**, anexa al exclusivo **Gran Hotel & Restaurante de Doña Florinda**.
+El legendario y milenario **"Chanfle de Oro"** (una estatuilla prehispánica maciza de oro puro y esmeraldas que representa a una persona pateando una pelota, valorada en 5 millones de dólares) ha sido sustraído de la bóveda de máxima seguridad de la histórica **Hacienda del Marqués**, anexa al exclusivo **Gran Hotel & Restaurante de Doña Florinda**.
 
 La policía y el implacable fiscal **Super Sam** (*"Time is money!"*) encuentran en el interior de la bóveda sellada a **Aquiles Esquivel Madrazo, alias "El Chómpiras"**, un ex-carterista que intentaba reformarse trabajando como humilde limpiabotas y botones nocturno. El Chómpiras es hallado aturdido y tambaleante frente a la caja fuerte abierta y vacía, sosteniendo una pesada palanca de metal. Para Super Sam, se trata de un caso cerrado en tiempo récord (menos de 5 minutos).
 
@@ -72,7 +72,7 @@ timeline
 1. **Insignia de Abogado (`insignia_abogado`)**:
    - *Descripción*: La chapa oficial de Don Ramón. Demuestra su condición de letrado defensor (aunque esté algo abollada).
 2. **Chanfle de Oro (`chanfle_oro`)**:
-   - *Descripción*: Reliquia de oro puro macizo de 5 kg con incrustaciones de esmeraldas. Desaparecida de la caja fuerte de la hacienda.
+   - *Descripción*: Estatuilla prehispánica de oro puro macizo de 5 kg con incrustaciones de esmeraldas: una persona patea una pelota situada junto al pie, no la sostiene en la mano. Desaparecida de la caja fuerte de la hacienda.
 3. **Reloj de Péndulo Dañado (`reloj_pendulo`)**:
    - *Descripción*: Reloj electromecánico de la bóveda. Sus manecillas quedaron congeladas a las **9:15 PM** tras el corte eléctrico.
 4. **Informe de la Bóveda (`informe_boveda`)**:
@@ -525,6 +525,8 @@ PETERETE (peterete_sweat): ¡G-grrrk! ¡E-esa es la lata del Chómpiras! ¡Esto 
 SUPER SAM (supersam_point): ¡Exactly! ¡El acusado tenía la lata y la palanca! ¡Sigue siendo el único culpable posible!
 DEFENSA (donramon_idle): (¡Rayos! Tienen razón, el oro en la lata del Chómpiras no incrimina directamente al Peterete... a menos que demuestre que el Chómpiras no pudo haberlo hecho, y que el Peterete tenía cómo abrir la caja.)
 ```
+
+La placa de esta revelación muestra la lata abierta sobre la mesa de la defensa, ante el fondo de `bg_defense`; no usa el ángulo de la fiscalía. Mesa, lata y pared comparten una cámara apenas elevada sobre la mesa: se ve el frente de la lata y una abertura poco profunda. Los paneles de madera deben conservar la nitidez y el diseño del fondo del juego.
 
 #### Elección de Prueba Clímax 2: La Inocencia del Chómpiras
 - **Presentar**: `frasco_valeriana` o `aroma_dulce`.

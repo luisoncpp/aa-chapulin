@@ -17,7 +17,7 @@ export const CASE5_CLIMAX_VERDICT: DialogueLine[] = [
   { speaker: 'JUEZ', text: 'Ramón Valdés subió una escalera porque un hombre al que él mismo había vencido le pidió que estuviera presente.', pose: 'judge_neutral' },
   { speaker: 'JUEZ', text: 'Estuvo doce minutos. Bajó. Firmó su salida con buena letra. Y le dijo al conserje «ojalá que no».', pose: 'judge_thinking' },
   { speaker: 'JUEZ', text: 'Esta corte dicta su veredicto.', sfx: 'gavel', pose: 'judge_gavel' },
-  { speaker: 'JUEZ', text: '¡INOCENTE!', cutin: 'objection_inocente', sfx: 'gavel', bgm: 'victory', confetti: true },
+  { speaker: 'JUEZ', text: '¡INOCENTE!', cutin: 'objection_inocente', sfx: 'gavel', bgm: 'victory', confetti: true, pose: 'judge_gavel' },
   { speaker: 'DEFENSA', text: '¡SÍGANME LOS BUENOS!', pose: 'chapulin_point' },
   { speaker: 'DON RAMÓN', text: '......', pose: 'donramon_shock' },
   { speaker: 'DON RAMÓN', text: 'Con permisito, dijo Monchito.', pose: 'donramon_idle' },
@@ -32,7 +32,7 @@ export const CASE5_CLIMAX_GUILTY: DialogueLine[] = [
   { speaker: 'JUEZ', text: 'Pero un tribunal no absuelve por respeto.', pose: 'judge_neutral' },
   { speaker: 'JUEZ', text: 'Ramón Valdés estuvo a solas con la víctima dentro de la hora de su muerte, y en la mano del muerto estaba su domicilio.', pose: 'judge_neutral' },
   { speaker: 'JUEZ', text: 'Esta corte dicta su veredicto.', sfx: 'gavel', pose: 'judge_gavel' },
-  { speaker: 'NARRADOR', text: '¡CULPABLE!', cutin: 'objection_culpable', sfx: 'gavel' },
+  { speaker: 'JUEZ', text: '¡CULPABLE!', cutin: 'objection_culpable', sfx: 'gavel', pose: 'judge_gavel' },
   { speaker: 'DON RAMÓN', text: '...Está bien, joven.', pose: 'donramon_idle' },
   { speaker: 'DON RAMÓN', text: 'Inténtelo otra vez.', pose: 'donramon_idle' }
 ];

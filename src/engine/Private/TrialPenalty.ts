@@ -33,7 +33,12 @@ export function applyPenaltyEffects(deps: PenaltyHost): void {
 
 export function queuePenaltyDialogue(deps: PenaltyHost, onResume: () => void): void {
   const isEn = i18n.getLanguage() === 'en';
-  const roles = resolveCourtPenaltyRoles(deps.script, deps.testimony, deps.state.trialDay);
+  const roles = resolveCourtPenaltyRoles({
+    script: deps.script,
+    testimony: deps.testimony,
+    trialDay: deps.state.trialDay,
+    samRecused: Boolean(deps.state.flags.case5_super_sam_recused)
+  });
   if (deps.state.caseId === 'case5' && !deps.script?.defensePointPose) {
     roles.defensePointPose = 'chapulin_point';
     roles.defensePanicPose = 'chapulin_panic';

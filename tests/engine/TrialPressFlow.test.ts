@@ -75,13 +75,13 @@ describe('onPresentPenalty press hint', () => {
     i18n.setLanguage('es');
   });
 
-  it('queues the scripted hint instead of the secretary after two wrong presents', () => {
+  it('queues the scripted hint instead of Super Sam after two wrong presents', () => {
     const queued: DialogueLine[][] = [];
     const ctrl = makeController(scriptWithPressHint(CLIENT_PRESS_HINT), queued);
     ctrl.currentTestimony = hiddenTestimony();
     onPresentPenalty(ctrl);
-    expect(queued[0].some((line) => line.speaker === 'SECRETARIO')).toBe(true);
-    expect(queued[0].some((line) => line.speaker === 'SUPER SAM')).toBe(false);
+    expect(queued[0].some((line) => line.speaker === 'SUPER SAM')).toBe(true);
+    expect(queued[0].some((line) => line.speaker === 'SECRETARIO')).toBe(false);
     onPresentPenalty(ctrl);
     expect(queued[1]).toEqual(CLIENT_PRESS_HINT);
     expect(queued[1].some((line) => line.speaker === 'SUPER SAM')).toBe(false);
@@ -98,7 +98,8 @@ describe('onPresentPenalty press hint', () => {
 
     const lastDialogue = queued[queued.length - 1];
     expect(lastDialogue.some((line) => line.text === i18n.t.pressHint)).toBe(false);
-    expect(lastDialogue.some((line) => line.speaker === 'SECRETARIO')).toBe(true);
+    expect(lastDialogue.some((line) => line.speaker === 'SUPER SAM')).toBe(true);
+    expect(lastDialogue.some((line) => line.speaker === 'SECRETARIO')).toBe(false);
     expect(lastDialogue.some((line) => line.speaker === 'JUEZ')).toBe(true);
   });
 
@@ -113,7 +114,7 @@ describe('onPresentPenalty press hint', () => {
 
     expect(queued.some((dialogue) => dialogue.some((line) => line.text === i18n.t.pressHint)))
       .toBe(false);
-    expect(queued.some((dialogue) => dialogue.some((line) => line.speaker === 'SECRETARIO')))
+    expect(queued.some((dialogue) => dialogue.some((line) => line.speaker === 'SUPER SAM')))
       .toBe(true);
   });
 });

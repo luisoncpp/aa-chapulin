@@ -162,8 +162,8 @@ describe('Scripted witness deflects', () => {
   it('sends unrelated evidence through the default penalty', () => {
     ctrl.handlePresentEvidence('chipote_chillon');
     expect(state.health).toBe(4);
-    expect(queued[0].some((line) => line.speaker === 'SECRETARIO')).toBe(true);
-    expect(queued[0].some((line) => line.speaker === 'SUPER SAM')).toBe(false);
+    expect(queued[0].some((line) => line.speaker === 'SUPER SAM')).toBe(true);
+    expect(queued[0].some((line) => line.speaker === 'SECRETARIO')).toBe(false);
   });
 });
 

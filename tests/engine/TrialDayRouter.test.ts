@@ -116,4 +116,5 @@ describe('TrialDayRouter', () => {
     expect(state.health).toBe(state.maxHealth);
     expect(state.gameOver).toBe(false);
   });
+
 });

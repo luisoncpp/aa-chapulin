@@ -101,18 +101,35 @@ export function presentClimaxEvidence(
   const climax = ctrl.script.trial.climax;
   const deps = climaxRunDeps(ctrl);
   const stageIdx = ctrl.climaxStageIdx;
-  if (!climaxStageMatches({ climax, stageIdx, evidenceId }, (id) => deps.state.getEvidenceUpdateStage(id))) {
-    applyWrongClimax(deps, i18n.t.notifIncorrectClue, getClimaxStages(climax)[stageIdx]?.failDialogue);
+  const stage = getClimaxStages(climax)[stageIdx];
+  const matches = climaxStageMatches({ climax, stageIdx, evidenceId }, (id) => deps.state.getEvidenceUpdateStage(id));
+  if (matches) {
+    continueOrPoint(ctrl, { climax, stageIdx, stage, onChoiceSelect: (id) => ctrl.handleSelectChoice(id) }, deps);
     return;
   }
-  continueOrPoint(ctrl, { climax, stageIdx, stage: getClimaxStages(climax)[stageIdx], onChoiceSelect: (id) => ctrl.handleSelectChoice(id) }, deps);
+  if (tryClimaxDeflect(deps, stage, evidenceId)) return;
+  applyWrongClimax(deps, i18n.t.notifIncorrectClue, stage?.failDialogue);
+}
+
+function tryClimaxDeflect(
+  deps: ClimaxRunDeps,
+  stage: ClimaxStage | undefined,
+  evidenceId: EvidenceId
+): boolean {
+  const deflect = stage?.deflects?.find((entry) => entry.evidence.includes(evidenceId));
+  if (!deflect) return false;
+  deps.onQueueDialogue(deflect.dialogue, /*reopenClimaxPresent*/ () => {
+    deps.onOpenCourtRecord(/*isTrialPresent=*/ true);
+  });
+  return true;
 }
 
 function climaxRunDeps(ctrl: ClimaxControllerPort): ClimaxRunDeps {
   return {
     ...ctrl.deps,
     testimony: ctrl.currentTestimony,
-    onRestartTrial: () => ctrl.restartAfterGameOver()
+    onRestartTrial: () => ctrl.restartAfterGameOver(),
+    guiltyDialogue: ctrl.script.trial.climax.guiltyDialogue
   };
 }
 

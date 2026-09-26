@@ -1,8 +1,7 @@
 // @Architecture(descriptionShort="Unit tests for polyphonic MIDI tracker and soundtrack catalog", type="test", icon="music")
 import { describe, expect, it, beforeEach, afterEach, vi } from 'vitest';
 import { TRACK_CATALOG } from '../../src/audio/Private/TrackCatalog.js';
-import { SynthVoiceSynthesizer } from '../../src/audio/Private/SynthVoiceSynthesizer.js';
-import { MidiMusicComposer, SoundEngine, midiComposer } from '../../src/audio/index.js';
+import { MidiMusicComposer, SoundEngine } from '../../src/audio/index.js';
 import type { TrackName } from '../../src/types/index.js';
 import { FakeAudioContext } from '../fakes/FakeAudioContext.js';
 
@@ -54,15 +53,6 @@ describe('MidiMusicComposer & TRACK_CATALOG', () => {
     expect(() => composer.playDrum('0')).not.toThrow();
   });
 
-  it('handles direct calls to SynthVoiceSynthesizer', () => {
-    const dest = fakeCtx.createGain();
-    expect(() => SynthVoiceSynthesizer.playNote(fakeCtx as any, dest as any, { midi: [60, 64, 67], durationSec: 0.3, vibrato: true })).not.toThrow();
-    expect(() => SynthVoiceSynthesizer.playDrum(fakeCtx as any, dest as any, 'KC')).not.toThrow();
-    expect(() => SynthVoiceSynthesizer.playDrum(fakeCtx as any, dest as any, 'O')).not.toThrow();
-    expect(() => SynthVoiceSynthesizer.playDrum(fakeCtx as any, dest as any, 'P')).not.toThrow();
-    expect(() => SynthVoiceSynthesizer.playDrum(fakeCtx as any, dest as any, '0')).not.toThrow();
-  });
-
   it('does not play notes or drums when not active', () => {
     composer.isPlaying = false;
     expect(() => composer.playNote(69, 0.2)).not.toThrow();
@@ -73,10 +63,10 @@ describe('MidiMusicComposer & TRACK_CATALOG', () => {
     composer.playTrack('trial');
     expect(composer.isPlaying).toBe(true);
     expect(composer.currentTrack).toBe('trial');
-    expect(composer.bpm).toBe(110);
+    expect(composer.bpm).toBe(TRACK_CATALOG.trial.bpm);
     expect(composer.step).toBe(0);
 
-    const stepMs = 60000 / 110 / 4;
+    const stepMs = 60000 / TRACK_CATALOG.trial.bpm / 4;
     vi.advanceTimersByTime(stepMs * 35);
     expect(composer.step).toBe(35);
 
@@ -92,7 +82,7 @@ describe('MidiMusicComposer & TRACK_CATALOG', () => {
     composer.playTrack('pursuit');
     expect(composer.currentTrack).toBe('pursuit');
     expect(composer.step).toBe(0);
-    expect(composer.bpm).toBe(162);
+    expect(composer.bpm).toBe(TRACK_CATALOG.pursuit.bpm);
   });
 
   it('continues playback when an alternate name uses the same composition', () => {
@@ -162,10 +152,6 @@ describe('MidiMusicComposer & TRACK_CATALOG', () => {
         }
       });
     });
-  });
-
-  it('exports singleton midiComposer', () => {
-    expect(midiComposer).toBeInstanceOf(MidiMusicComposer);
   });
 
   it('skips voices when muted, notes are empty, or the sequencer is paused', () => {

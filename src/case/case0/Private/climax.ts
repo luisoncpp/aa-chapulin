@@ -83,11 +83,7 @@ export const CASE0_CLIMAX: ClimaxDefinition = {
       { speaker: 'TORIBIO', pose: 'toribio_aliviado', text: 'Trece. Una se derritió en el juzgado.', bg: EPILOGUE_BG },
       { speaker: 'DEFENSA', pose: 'donramon_idle', text: '(Trece paletas y catorce meses de renta. Vamos empatados.)', bg: EPILOGUE_BG },
       { speaker: 'CHAPULÍN', pose: 'chapulin_idle', text: 'Todo abogado empieza con un cliente que le paga en especie.', bg: EPILOGUE_BG },
-      { speaker: 'DEFENSA', pose: 'donramon_idle', text: 'Y termina con un casero que le cobra en efectivo.', bg: EPILOGUE_BG },
-      { speaker: 'NARRADOR', text: 'Sobre el banco, un periódico abierto: “ROBAN LA CHICHARRA PARALIZADORA DE ORO DEL MUSEO DE LAS CURIOSIDADES”.', bg: EPILOGUE_BG },
-      { speaker: 'CHAPULÍN', pose: 'chapulin_idle', text: '...Chanfle.', bg: EPILOGUE_BG },
-      { speaker: 'DEFENSA', pose: 'donramon_point', text: '¿Y a ese quién lo va a defender?', bg: EPILOGUE_BG },
-      { speaker: 'CHAPULÍN', pose: 'chapulin_idle', text: 'Ahí está el detalle.', bg: EPILOGUE_BG }
+      { speaker: 'DEFENSA', pose: 'donramon_idle', text: 'Y termina con un casero que le cobra en efectivo.', bg: EPILOGUE_BG }
     ]
   }
 };

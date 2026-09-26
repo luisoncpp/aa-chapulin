@@ -42,15 +42,33 @@ export const UI_EN: UiTranslations = {
   hudHistoryTitle: 'Message History',
   historyModalTitle: 'MESSAGE HISTORY',
   historyEmpty: 'No dialogue has been recorded yet.',
+  slotSaveTitle: 'SAVE GAME',
+  slotLoadTitle: 'LOAD GAME',
+  slotEmpty: 'Empty',
+  slotOverwrite: 'Overwrite this save?',
+  slotDeleteAsk: 'Delete this save?',
+  slotYes: 'Yes',
+  slotNo: 'No',
+  slotDelete: 'Delete',
+  slotDay: (day: number) => `Day ${day}`,
+  caseSlotLabel: {
+    case0: 'Tutorial',
+    case1: 'Act 2',
+    case2: 'Act 1',
+    case3: 'Act 3',
+    case4: 'Act 4',
+    case5: 'Act 5'
+  },
 
   splashTitle: 'EL CHAPULÍN COLORADO',
   splashSubtitle: 'ACE ATTORNEY: THE CASE OF THE COLORADO SQUAD',
   splashTip: 'Click below to activate procedural MIDI audio and start playing!',
-  btnStartGame: '🔍 ACT 2: THE COLORADO SQUAD',
+  btnStartGame: '🔍 ACT 2: THE MUSEUM HEIST',
   btnStartCase0: '⚖️ TUTORIAL: DON RAMÓN’S FIRST TRIAL',
   btnStartCase2: '🔍 ACT 1: TURNABOUT OF THE TWO-FACED THIEF',
   btnStartCase3: '🔍 ACT 3: TURNABOUT OF THE GOLDEN VOICE',
   btnStartCase4: '🔍 ACT 4: MURDER AT THE GRAND HOTEL',
+  btnStartCase5: '🔍 ACT 5: VOLUME THIRTEEN',
   btnStartTrialDebug: '⚖️ DEBUG MODE: START IN TRIAL',
   btnContinue: '📂 CONTINUE GAME',
   langToggleLabel: '🌐 Language: English',
@@ -62,6 +80,7 @@ export const UI_EN: UiTranslations = {
     cross_exam_allegro: 'Cross-Examination — Allegro',
     cross_exam_presto: 'Cross-Examination — Presto',
     cross_exam_final: 'Final Cross-Examination — Confrontation',
+    cross_exam_careo: 'Final Cross-Examination — Face to Face',
     objection: '¡No contaban con mi astucia!',
     pursuit: '¡Que no panda el cúnico!',
     truth: 'Truth — Closing In',
@@ -75,7 +94,10 @@ export const UI_EN: UiTranslations = {
     victory: '¡Síganme los buenos!',
     epilogue: '¡Síganme los buenos!',
     detention_center: 'Detention Center — Elegy',
-    kermes: 'Fairground — Popular Fest'
+    game_over: 'Guilty — Verdict Elegy',
+    kermes: 'Fairground — Popular Fest',
+    archivo: 'Judicial Archive — Paper and Dust',
+    cross_exam_grave: 'Cross-Examination — Grave'
   },
 
   locationMuseum: 'Museum of Antiques & Curiosities - Crime Scene',
@@ -97,9 +119,11 @@ export const UI_EN: UiTranslations = {
   notifNoSaveFound: 'No saved game found.',
   caseCompleteTitle: 'Case complete',
   caseCompleteBody: 'You have solved the case.',
+  case5CompleteTitle: 'The Thirteenth Volume',
+  case5CompleteBody: 'SEVENTEEN MONTHS',
 
   gameOverJudgeText: 'The defense has exhausted all chances! I declare the defendant... GUILTY!',
   gameOverDefenseText: 'Oh no! I will have to start over from the beginning of the trial!',
-  penaltyProsecutionText: 'Time is money, and you are wasting mine! That evidence does not contradict the testimony at all.',
+  penaltySecretaryText: 'That evidence does not contradict the testimony at all.',
   penaltyJudgeText: 'The prosecution is correct! I shall penalize the defense for presenting irrelevant evidence.'
 };

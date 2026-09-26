@@ -17,7 +17,7 @@ import {
 } from './TrialClimax.js';
 import {
   afterTrialIntro, getTrialPresentPrompt, handleTestimonyPresent,
-  hasPendingTrialPresent, rebindTrialPresentScript
+  hasPendingTrialPresent, rebindTrialPresentScript, resolveTrialChoice
 } from './TrialPresent.js';
 import { handleProfilePresent, isAwaitingProfile } from './ProfilePresent.js';
 import { isPresentPointActive } from './PresentPoint.js';
@@ -72,6 +72,11 @@ export class TrialController {
   private visibleStatements(): Statement[] {
     if (!this.currentTestimony) return [];
     return visibleStatements(this.currentTestimony, this.pressedStatementIds);
+  }
+
+  /** The statement the player is looking at, as [[./TrialPresent.ts]] resolves presents against it. */
+  public currentStatement(): Statement | undefined {
+    return this.visibleStatements()[this.currentStatementIdx];
   }
 
   public getTrialSnapshot(): TrialStateSnapshot {
@@ -197,7 +202,10 @@ export class TrialController {
   public getPresentPrompt(): string | null { return getTrialPresentPrompt(this) ?? getClimaxPresentPrompt(this); }
 
   // fallow-ignore-next-line unused-class-member
-  public handleSelectChoice(optionId: string): void { resolveClimaxChoiceFromController(this, optionId); }
+  public handleSelectChoice(optionId: string): void {
+    if (resolveTrialChoice(this, optionId)) return;
+    resolveClimaxChoiceFromController(this, optionId);
+  }
 
   public restartAfterGameOver(): void { showGameOverModal(this); }
 

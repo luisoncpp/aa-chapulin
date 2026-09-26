@@ -39,8 +39,17 @@ Operational guide for the procedural Web Audio API synthesizer, MIDI music track
 1. A correct contradiction queues its `successDialogue`.
 2. The first reveal line carries `bgm: 'objection'`, switching away from the testimony loop before the objection is explained.
 3. If the contradiction has a follow-up turnabout, its first line carries `bgm: 'pursuit'` and takes over for the remainder of that reveal.
-4. After the witness is cornered, the "here is what really happened" narration — the case's central truth argued at length — carries `bgm: 'truth'` on its first line instead. `truth` ("Cerrando el Cerco") is reserved for the big reveal: a ~38s E minor 5/4 loop that opens on a heartbeat kick and hollow fifths, then tightens through a chromatic climb to an apex near the end. Cue it on the first reveal line so the build has room to work — the payoff bar is ~33 seconds in, so a late cue wastes the shape. It loops back onto its own dominant and never resolves, so the release still belongs to `victory` at the verdict. When court business resumes, switch back to the testimony/cross-exam loop.
+4. After the witness is cornered, the "here is what really happened" narration — the case's central truth argued at length — carries `bgm: 'truth'` on its first line instead. `truth` ("Atando Cabos") is reserved for the big reveal: a 60s B minor loop that opens on a 16th-note ostinato alone, brings in the theme at bar 5, climbs through a rising sequence, and peaks at 17–20, about 40 seconds in. Cue it on the first reveal line so the build has room to work. It turns back onto its own dominant and never resolves, so the release still belongs to `victory` at the verdict. When court business resumes, switch back to the testimony/cross-exam loop.
 5. `suspense` is never a reveal cue: it opens the pre-verdict climax dilemma (see [[docs/flows/trial-cross-examination-flow.md]]).
+6. **The block hands the cue back.** The engine never ends `objection` or `pursuit` on its own; the next `playTrack` call is `startTestimony` for the following testimony, which may be twenty lines later. The line where routine court business resumes inside the success or follow-up block must stamp the testimony's own `bgm` again, or the dramatic loop rides through the witness dismissal and the next swearing-in. A follow-up block with no `bgm` inherits the parent cue, so its own peak declares one explicitly. Last chain of the last day is exempt: it hands over to the climax, whose first line declares the cue.
+
+### Game Over Cue
+1. A wrong present (cross-examination, climax present, climax choice, or Present & Point) calls `applyPenaltyEffects`; `takePenalty()` empties the health bar.
+2. `queuePenaltyDialogue` in [[src/engine/Private/TrialPenalty.ts]] appends the guilty block — the engine's default judge/defense lines, or the case's `trial.climax.guiltyDialogue`.
+3. `gameOverLines` stamps `bgm: GAME_OVER_BGM` (`game_over`, an alias of the `detention_center` elegy) on the **first** line of that block, so the music turns somber exactly when CULPABLE is pronounced instead of riding the cross-examination loop into the verdict. A scripted guilty block that declares its own `bgm` keeps it.
+4. [[src/engine/Private/DialogueFlow.ts]] applies the cue via `midiComposer.playTrack`.
+5. `onRestartTrial` / `showGameOverModal` resets health and calls `startTrial()`; the trial intro's `bgm: 'trial'` restores the courtroom loop.
+6. A press hint never replaces the verdict: `onPresentPenalty` branches to the guilty block before `maybeQueuePressHint` when `gameOver` is set.
 
 ### On-Demand SFX Generation
 1. Game Engine calls specific SFX method (e.g. `playGavel()`):

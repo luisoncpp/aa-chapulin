@@ -1,4 +1,4 @@
-// @Architecture(descriptionShort="Catalog of 8 procedural multitrack 16-bit MIDI compositions", type="catalog", icon="music")
+// @Architecture(descriptionShort="Catalog of procedural multitrack 16-bit MIDI compositions", type="catalog", icon="music")
 /**
  * Procedural MIDI Soundtrack Definitions
  * Compositions for [[./MidiMusicComposer.ts]] aggregated from [[./tracks/]].
@@ -16,8 +16,10 @@ import {
   restauranteTrack
 } from './tracks/InvestigationTracks.js';
 import { crossExamPrestoTrack, kermesTrack } from './tracks/Case3Tracks.js';
+import { archivoTrack, crossExamGraveTrack } from './tracks/Case5Tracks.js';
 import { terrazaBarTrack } from './tracks/TerrazaBarTrack.js';
 import { crossExamFinalTrack } from './tracks/FinalConfrontationTrack.js';
+import { crossExamCareoTrack } from './tracks/CareoTrack.js';
 
 export const TRACK_CATALOG: TrackCatalogMap = {
   // @Section(Courtroom & Cross-Examination Tracks)
@@ -25,7 +27,9 @@ export const TRACK_CATALOG: TrackCatalogMap = {
   cross_exam_moderato: crossExamModeratoTrack,
   cross_exam_allegro: crossExamAllegroTrack,
   cross_exam_presto: crossExamPrestoTrack,
+  cross_exam_grave: crossExamGraveTrack,
   cross_exam_final: crossExamFinalTrack,
+  cross_exam_careo: crossExamCareoTrack,
 
   // @Section(Objection & Pursuit Turnaround Tracks)
   objection: objectionTrack,
@@ -43,5 +47,7 @@ export const TRACK_CATALOG: TrackCatalogMap = {
   victory: victoryTrack,
   epilogue: victoryTrack,
   detention_center: detentionCenterTrack,
-  kermes: kermesTrack
+  game_over: detentionCenterTrack,
+  kermes: kermesTrack,
+  archivo: archivoTrack
 };

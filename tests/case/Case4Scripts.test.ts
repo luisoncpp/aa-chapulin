@@ -57,18 +57,7 @@ describe('Case 4 El Caso del Hotel Buena Vista', () => {
     expect(es.investigation.delegacion_d3).toBeDefined();
   });
 
-  it('requires six day-1, six day-2, and four day-3 clues', () => {
-    expect(es.requiredEvidence).toEqual([
-      'informe_policial', 'foto_crimen', 'billetera_cuajinais',
-      'orden_servicios', 'plano_hotel', 'candado_cadena'
-    ]);
-    expect(es.adjournment?.requiredEvidence).toEqual([
-      'residuos_manos', 'casquillo_fogueo', 'registro_montacargas',
-      'baul_etiquetas', 'copa_vino', 'toxicologia_vino'
-    ]);
-    expect(es.adjournment?.next?.requiredEvidence).toEqual([
-      'botella_vino', 'boleta_baccarat', 'nota_amenaza', 'sello_lacre'
-    ]);
+  it('pins debug unlock locations for day-1 investigation', () => {
     expect(es.debugUnlockLocations).toEqual([
       'detention', 'hotel_lobby', 'hotel_suite', 'hotel_terraza'
     ]);

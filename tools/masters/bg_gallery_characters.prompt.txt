@@ -1,0 +1,74 @@
+Original built-in image_gen pass, identity-preserve cutouts, 2026-09-24.
+
+Shared method: each character used its matching assets/*_idle.webp as the exact
+identity reference and assets/bg_gallery.webp as the style and lighting reference.
+Generate one isolated transparent RGBA bust per call, with clean anti-aliased
+edges, charcoal line art, two-tone cel shading, no room, furniture, other people,
+border or watermark. The generated images were not used as a replacement room.
+
+Don Ramón: Standing behind the defense desk in gentle three-quarter front
+view, neutral confident expression, hands close to his body. Preserve his
+weathered face, thin dark moustache, light blue bucket hat, navy lawyer suit,
+white shirt and dark tie. Show head, torso and arms to the waist.
+
+El Chapulín: Standing beside Don Ramón behind the defense desk in gentle
+three-quarter front view, cheerful attentive expression, hands at his hips.
+Preserve red hood and suit, two curved red-tipped antennae, black hair,
+youthful face, yellow heart with red CH, yellow cape panels and slim build.
+Show head, torso and arms to the waist.
+
+Super Sam: Standing behind the prosecution desk in gentle three-quarter
+front view, confident grin, one hand near his belt. Preserve swept blond
+pompadour, blue eyes, muscular royal-blue suit, white dollar chest mark,
+striped red cravat, navy star-spangled shoulders, striped cape and gold SS
+belt. Raise the tan money bag in his left hand to upper-chest height, so its
+full tied shape and dark dollar mark stay visible above the desk after scaling
+to about 165 px high. The first generation held it at his waist and was
+discarded.
+
+Final placement and desk occlusion are deterministic in
+tools/compose_gallery_characters.py. Its input is the clean, installed
+assets/bg_gallery.webp. The three PNG cutouts are in tools/masters/ and the
+lossless output is assets/bg_gallery_characters.webp.
+
+Side-profile correction, built-in image_gen, 2026-09-24.
+
+The user corrected the pose: all three characters face the opposing bench
+across the central aisle, in the Ace Attorney side-profile convention. The
+defense pair face image right; Super Sam faces image left. Faces and torsos
+turn together. The camera sees each character's side, not the front or back.
+
+Each revised cutout was generated separately from its original *_idle.webp
+sprite, the previous painted cutout for identity and color, and bg_gallery.webp
+for room lighting and cel-shaded style. The final cutouts are
+bg_gallery_characters_{donramon,chapulin,supersam}_side.png. Don Ramón keeps
+his bucket hat, moustache, navy suit and tie. Chapulín keeps the two antennae,
+red suit, yellow cape and chest heart in their proper positions. Super Sam
+keeps his blond pompadour, blue suit, star-spangled striped cape and raised
+money bag. He received one targeted iteration to turn his torso farther left.
+He received a second targeted iteration to lift the bag beside his face so
+its dollar mark clears the prosecution desk in the composite.
+
+tools/compose_gallery_characters.py places these transparent side-profile
+cutouts behind the original desks on a fresh copy of assets/bg_gallery.webp.
+The previous front-facing composite is backed up at
+tools/masters/bg_gallery_characters_front_20260924.webp. The corrected output
+is assets/bg_gallery_characters.webp.
+
+Placement correction, 2026-09-25.
+
+The user supplied two enlarged desk-edge crops and a standing-height reference.
+The previous composite put Don Ramón behind Chapulín, cropped the figures
+through the gold rails, and placed their heads too low for standing adults.
+Super Sam's cape also crossed the prosecution desk corner.
+
+Built-in image_gen extended all three profiles into full standing cutouts to
+check body proportions. The full-body trial exposed legs above the desks and
+was rejected. Chapulín's full-body trial also retained a red/yellow glow in
+its alpha; a background-extraction retry did not remove it. The selected
+version reuses the clean `_side.png` cutouts. It raises the figures, paints
+Chapulín before the nearer Don Ramón, moves Super Sam left, and restores the
+complete desk silhouettes from the clean `assets/bg_gallery.webp`. Exact
+placements and desk contours are in `tools/compose_gallery_characters.py`.
+The earlier low composite is backed up as
+`tools/masters/bg_gallery_characters_low_20260925.webp`.

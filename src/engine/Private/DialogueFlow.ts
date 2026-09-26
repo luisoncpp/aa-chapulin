@@ -14,6 +14,7 @@ import type { DomElements } from './DomElements.js';
 import type { InvestigationController } from './InvestigationController.js';
 import type { Typewriter } from './Typewriter.js';
 import { presentDialogueVisuals } from './StageCommit.js';
+import { setStagingCaseId } from './TrialCaseStaging.js';
 import { VisualEffects } from './VisualEffects.js';
 
 export interface DialogueFlowDeps {
@@ -91,6 +92,7 @@ export class DialogueFlow {
     this.grantProfileIfPresent(line.addProfile);
     this.updateProfileIfPresent(line.updateProfile);
     this.unlockLocationIfPresent(line.unlockLocation);
+    this.setProgressFlagIfPresent(line.setFlag);
     if (line.instant) {
       this.deps.typewriter.showImmediately(line.text || '');
     } else {
@@ -111,6 +113,7 @@ export class DialogueFlow {
   }
 
   private applyLineSpeakerAndPose(line: DialogueLine): void {
+    setStagingCaseId(this.deps.state.caseId, this.deps.state.trialDay);
     const isTrial = this.deps.state.mode === 'TRIAL';
     const effectivePose = VisualEffects.resolveEffectivePose(line, isTrial);
     if (effectivePose) {
@@ -165,6 +168,10 @@ export class DialogueFlow {
     const scene = this.deps.getScript().investigation[locationId];
     const locName = scene?.name ?? scene?.title ?? locationId;
     this.showProgressNotification(i18n.t.notifLocationUnlocked(locName));
+  }
+
+  private setProgressFlagIfPresent(flag?: string): void {
+    if (flag) this.deps.state.flags[flag] = true;
   }
 
   private showProgressNotification(msg: string): void {

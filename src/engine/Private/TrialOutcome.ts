@@ -9,6 +9,10 @@ import { applyPenaltyEffects, queuePenaltyDialogue } from './TrialPenalty.js';
 import { maybeQueuePressHint } from './TrialPressFlow.js';
 import type { TrialController } from './TrialController.js';
 
+export interface PresentPenaltyOptions {
+  allowPressHint?: boolean;
+}
+
 export function advanceAfterContradiction(ctrl: TrialController): void {
   const current = ctrl.getTestimonyIndex();
   const testimonies = getActiveTrial(ctrl.script, ctrl.deps.state.trialDay).testimonies;
@@ -34,21 +38,38 @@ function refreshHealthUI(ctrl: TrialController): void {
   );
 }
 
-export function onPresentPenalty(ctrl: TrialController, onResume?: () => void): void {
+export function onPresentPenalty(
+  ctrl: TrialController,
+  onResume?: () => void,
+  options: PresentPenaltyOptions = {}
+): void {
   const failedCount = ctrl.bumpFailedPresentCount();
   applyPenaltyEffects(ctrl.deps);
   ctrl.hideControls();
-  const resume = ctrl.deps.state.gameOver
-    ? () => showGameOverModal(ctrl)
-    : (onResume ?? (() => ctrl.renderCurrentStatement()));
-  if (maybeQueuePressHint(
-    { testimony: ctrl.currentTestimony, failedPresentCount: failedCount, script: ctrl.script },
+  if (ctrl.deps.state.gameOver) return queueGuiltyVerdict(ctrl);
+  const resume = onResume ?? (() => ctrl.renderCurrentStatement());
+  const pressedStatementIds = new Set(ctrl.getTrialSnapshot().pressedStatementIds);
+  if (options.allowPressHint !== false && maybeQueuePressHint(
+    {
+      testimony: ctrl.currentTestimony,
+      failedPresentCount: failedCount,
+      pressedStatementIds,
+      script: ctrl.script
+    },
     ctrl.deps.onQueueDialogue,
     /*onResume*/ resume
   )) return;
   queuePenaltyDialogue(
-    { ...ctrl.deps, testimony: ctrl.currentTestimony },
+    { ...ctrl.deps, script: ctrl.script, testimony: ctrl.currentTestimony, guiltyDialogue: ctrl.script.trial.climax.guiltyDialogue },
     /*onResume*/ resume
+  );
+}
+
+/** A press hint must never replace the verdict: game over always plays the guilty block. */
+function queueGuiltyVerdict(ctrl: TrialController): void {
+  queuePenaltyDialogue(
+    { ...ctrl.deps, script: ctrl.script, testimony: ctrl.currentTestimony, guiltyDialogue: ctrl.script.trial.climax.guiltyDialogue },
+    /*onResume*/ () => showGameOverModal(ctrl)
   );
 }
 

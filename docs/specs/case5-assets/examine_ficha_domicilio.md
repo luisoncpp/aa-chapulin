@@ -1,0 +1,211 @@
+# examine_ficha_domicilio — hoja de hechos
+
+Clase: `examine`. Espec: §5.3 (`ficha_domicilio`), §18.5 y §23.3. Guion: clímax E4 / `climax_choices` y `climax_stage4` (ES/EN). Variantes: `examine_ficha_domicilio.webp` y `examine_ficha_domicilio_en.webp`; cubiertas juntas.
+
+## Mapa semántico
+
+- Tarjeta física del cedulario correspondiente al domicilio de Don Ramón: vecindad de la calle del Espanto, número 8, vivienda/apartment 72.
+- Ficha de cartulina crema, apaisada, vista de plano; no es la tarjeta del museo ni la tarjeta de presentación de Casimiro.
+- Formato de seis campos en dos columnas: cinco campos a la izquierda y el domicilio a la derecha en cuatro renglones cortos.
+- El último campo izquierdo es el estado de la puerta. La esquina inferior derecha de la tarjeta falta y debe empatar con el fragmento `esquina_tarjeta`.
+- La tarjeta fue levantada en 1969 y actualizada en agosto de 1982. La actualización es reciente respecto del crimen del 4 de diciembre.
+- Todas las `s` minúsculas impresas presentan la caída tipográfica compartida: media línea abajo; §23.3 no fija aquí el medio grado, por lo que no se añade como requisito exclusivo de esta lámina.
+
+## Hechos a verificar
+
+### F1 Contenido
+
+- [ ] `PINTAR` — Tarjeta de cedulario de cartulina crema, formato apaisado, fotografiada de plano (§23.3, `examine_ficha_domicilio`).
+- [ ] `PINTAR` — Seis campos impresos en dos columnas: cinco a la izquierda y el campo de domicilio a la derecha (§23.3; §5.3; `EvidenceCatalogCase5EsB.ts:78-83`, `EvidenceCatalogCase5EnB.ts:78-83`).
+- [ ] `PINTAR` — El domicilio ocupa cuatro renglones cortos en la columna derecha (§23.3; §5.3).
+- [ ] `PINTAR` — El estado de la puerta está en la parte inferior de la columna izquierda, como el sexto campo del formato narrado (§23.3; §18.5).
+- [ ] `PINTAR` — Respuestas mecanografiadas legibles en los campos (§23.3). La tarjeta debe poder sostener la lectura campo por campo del clímax, no ser una ficha vacía.
+- [ ] `PINTAR` — Fechas manuscritas `1969` y `VIII` en el ángulo superior (§23.3; §5.3; §18.5: «levantada en mil novecientos sesenta y nueve» y «actualizada en agosto de este año»).
+- [ ] `PINTAR` — Falta la esquina inferior derecha; el borde faltante es el origen visible del fragmento (§23.3; §18.5; §24.C F9).
+- [ ] `PINTAR` — El borde roto es recto y limpio, igual que el del fragmento (`EvidenceCatalogCase5EsB.ts:82-83`, `EvidenceCatalogCase5EnB.ts:82-83`; §23.3).
+- [ ] `NO CONTRADECIR` — La tarjeta corresponde al domicilio de Don Ramón, pero no convertir la imagen en una ficha de perfil ni imprimir su nombre como requisito: el clímax identifica el domicilio por lectura y cotejo (§5.3; §18.5).
+
+### F2 Texto en imagen
+
+- [ ] `TEXTO EXACTO` — Campo de domicilio, en cuatro renglones cortos, debe corresponder a: `Domicilio: vecindad de la calle del Espanto ocho, vivienda setenta y dos.` (§18.5, líneas de lectura 3550-3550; §23.3 exige texto exacto de §18.5).
+- [ ] `TEXTO EXACTO` — Campo de ingreso: `Ingreso declarado: variable. Oficio: abogado sin despacho.` (§18.5, 3551).
+- [ ] `TEXTO EXACTO` — Campo de objetos: `Objetos de valor declarados: ninguno.` (§18.5, 3552).
+- [ ] `TEXTO EXACTO` — Campo de pagos: `Puntualidad de pago: catorce meses de atraso.` (§18.5, 3553).
+- [ ] `TEXTO EXACTO` — Campo de observaciones: `Observaciones del vendedor: no insistir.` (§18.5, 3554).
+- [ ] `TEXTO EXACTO` — Campo de puerta: `Estado de la puerta: chapa vencida. Se empuja.` (§18.5, 3555-3556).
+- [ ] `TEXTO EXACTO` — En inglés, la lectura equivalente debe conservar el contenido y la legibilidad: `Address: Calle del Espanto eight, apartment seventy-two.`; `Declared income: variable. Occupation: lawyer without an office.`; `Declared valuables: none.`; `Payment punctuality: fourteen months behind.`; `Seller notes: do not press.`; `Door condition: lock expired. Push to enter.` (`src/case/case5/Private/climax_stage4_en.ts:20-27`).
+- [ ] `TEXTO EXACTO` — Las fechas manuscritas permanecen como `1969` y `VIII` en ambas variantes; no se traducen (§23.3-§23.3, regla de variantes).
+- [ ] `TEXTO EXACTO` — Toda `s` minúscula visible en la tarjeta conserva el defecto de caer media línea abajo. La traducción no puede eliminar la `s` del texto impreso (§23.3, regla de localización del defecto; I24 e I31).
+- [ ] `NO CONTRADECIR` — No imprimir una explicación sobre la esquina faltante, el montaje, Berrondo o el cotejo: esas conclusiones las pronuncia el diálogo posterior (§18.5, 3570-3588; §23.3).
+
+### F3 Cifras, fechas y horas
+
+- [ ] `NO CONTRADECIR` — `1969` es el año de levantamiento; `VIII`/agosto de 1982 es la actualización, no la fecha del crimen (§5.3; §10.1; §18.5; §24.B/I10).
+- [ ] `NO CONTRADECIR` — La tarjeta registra catorce meses de atraso, dato que coincide con la deuda de Don Ramón en agosto; no sustituirlo por los diecisiete meses pagados el 29 de noviembre (§18.5, 3553 y 3566-3568; §2.1 y §10.1).
+- [ ] `NO CONTRADECIR` — El domicilio es casa/vivienda 72, no vivienda 4; la corrección canónica de la lente 22 unificó ES y EN a 72 (§0, tabla de pasadas, lente 22; §18.5; `climax_choices_en.ts:50`).
+- [ ] `NO CONTRADECIR` — La medida o fecha del fragmento pertenece a `examine_esquina_tarjeta`; esta lámina sólo debe mostrar el mismo corte limpio y el emparejamiento físico, no inventar dimensiones ni el pie pericial (§23.3; §18.5, 3570-3575).
+
+### F4 Contrato en pantalla
+
+- [ ] `PINTAR` — La tarjeta se entrega en el clímax después de que Don Ramón dicta «Calle del Espanto número ocho, vivienda setenta y dos» y el secretario la encuentra en cuarenta segundos (§18.4, 3516-3527; `climax_choices.ts:45-54`, `climax_choices_en.ts:45-54`).
+- [ ] `PINTAR` — El jugador presenta esta tarjeta como respuesta a «¿Qué había en ese cedulario que tocaba directamente a este juicio?»; no es intercambiable con otra prueba (§18.5, 3532-3542; `climax_stage4.ts:9-14`, `climax_stage4_en.ts:9-14`).
+- [ ] `NO CONTRADECIR` — La lectura de la ficha demuestra que Don Ramón estaba fichado como domicilio/mercancía: sin objetos de valor, catorce meses de atraso, observación «no insistir» y chapa vencida (§18.5, 3547-3568; `climax_stage4_en.ts:17-37`).
+- [ ] `PINTAR` — La esquina inferior derecha ausente permite acercar el fragmento encontrado en la mano de Casimiro; al unirlos, se completan los cuatro renglones del domicilio con `...cindad de la calle del Espanto 8, viv. 72.` (§18.5, 3569-3575; §24.C F9).
+- [ ] `NO CONTRADECIR` — El emparejamiento prueba que el fragmento salió de una tarjeta del cedulario bajo custodia de Berrondo, pero no debe convertir el cotejo aislado en identificación del mecanógrafo (§18.5, 3577-3588; §24.D I16; §24.C F9).
+- [ ] `NO CONTRADECIR` — La tarjeta se usa para probar el montaje de la renta y el acceso al cedulario; no demuestra por sí sola quién arrancó el fragmento ni quién mató a Casimiro (§24.C F9; §24.D I16).
+- [ ] `NO CONTRADECIR` — La imagen debe permanecer como documento pericial plano, sin flechas, círculos, realces, membrete inventado ni explicación visual del argumento; el argumento lo da el clímax (§23.0; §23.3; §18.5).
+
+### F5 Estilo y prohibidos
+
+- [ ] Repetir completo en el prompt de regeneración el contrato §23.0: ilustración 2D estilo *Capcom Ace Attorney* en alta definición; cel-shading de colores planos con terminador duro; dos tonos por superficie ; contorno carbón `#1A1A1A` nítido y continuo, más grueso en la silueta; expresividad caricaturesca; colores primarios saturados.
+- [ ] Repetir el tema §23.0: televisión mexicana de los años setenta / Chespirito, melodrama judicial tratado en serio, y registro visual de papel, madera, polvo, archivo judicial, listón, madera barnizada, latón envejecido y luz de tungsteno cuando el encuadre lo permita.
+- [ ] Prohibir fotorrealismo, 3D, acuarela, texturas fotográficas, anime moderno, cómic americano de superhéroes, marcas de agua, texto en inglés dentro de la variante ES y cualquier rosa o magenta en primer plano (§23.0).
+- [ ] `PINTAR` — Para esta lámina, el medio es una fotografía pericial ilustrada de plano sobre la tarjeta; conservar legibilidad y geometría del documento sin convertir el fondo neutro en una escena del Archivo (§23.3).
+
+### F6 Localización ES/EN
+
+- [ ] `PINTAR` — `examine_ficha_domicilio.webp` y `examine_ficha_domicilio_en.webp` tienen composición, cartulina, fechas, defecto de impresión y esquina faltante idénticos; sólo cambia el texto legible (§23.3, 4064).
+- [ ] `TEXTO EXACTO` — La variante ES usa los seis campos leídos en §18.5; la EN usa las seis líneas equivalentes de `climax_stage4_en.ts:20-27`. No mezclar `vivienda` y `apartment` dentro de una misma variante.
+- [ ] `PINTAR` — Ambas variantes conservan `1969`, `VIII`, la esquina inferior derecha ausente y la `s` minúscula caída (§23.3, 4064 y 4068; I31).
+- [ ] `NO CONTRADECIR` — La regla de localización exige al menos una `s` minúscula visible en cada línea traducida impresa dentro de una lámina cuestionada; si una traducción la pierde, se reescribe el texto (§23.3, 4068; I24/I31).
+
+## Consistencia (regenerar juntos)
+
+- `examine_esquina_tarjeta` — comparte el fragmento físico: cartulina crema, cuatro renglones del domicilio, `s` caída y borde recto y limpio. Regenerar juntos; este activo no es fuente de verdad del otro.
+- `plate_anatomia_ficha` — comparte el formato de cedulario de seis campos y la división funcional del campo de puerta; la lámina explicativa usa campos vacíos y no dicta el contenido de esta tarjeta. Regenerar juntos; este activo no es fuente de verdad del otro.
+- `examine_expediente_serie` (panel B) — comparte la familia de fichas mecanografiadas y el defecto visible de la `s` caída; panel B es otra ficha, con seis renglones y contenido del Caso 1. Regenerar juntos para el defecto tipográfico; este activo no es fuente de verdad del otro.
+- `examine_maquina` — comparte la causa visual del defecto de la `s` minúscula torcida/caída. La máquina explica el defecto, pero no dicta el texto ni la composición de esta tarjeta. Regenerar juntos; este activo no es fuente de verdad del otro.
+- `examine_nota_renta` y `examine_expediente_serie` — comparten documentos cuestionados que conservan la `s` caída y sostienen la cadena de documentoscopia. Regenerar juntos por consistencia del defecto; este activo no es fuente de verdad del otro.
+- `ficha_museo` / `examine_ficha_museo` — comparten la procedencia conceptual de las tarjetas vendidas por Berrondo, pero son una ficha distinta del Caso 1, con seis renglones y otro contenido. Regenerar juntos sólo para la familia material y el defecto tipográfico; este activo no es fuente de verdad del otro.
+
+## Conflictos abiertos
+
+- §23.3 describe la columna derecha como cuatro renglones cortos y §18.5 cita una lectura corrida que incluye etiquetas de campo (`Domicilio:`); no se resuelve aquí si las etiquetas impresas ocupan una línea propia o forman parte del primer renglón. La hoja exige cuatro renglones legibles y el texto exacto del diálogo, sin inventar un quinto renglón (§23.3; §18.5, 3550).
+- El inglés traduce «chapa vencida. Se empuja.» como `lock expired. Push to enter.` en el guion, mientras el catálogo sólo fija la composición y no una cadena inglesa independiente (`EvidenceCatalogCase5EnB.ts:78-83`; `climax_stage4_en.ts:27`). Se conserva el texto del guion inglés como contrato de localización; no se corrige desde esta hoja.
+- §23.3 ordena que «todas las eses» estén media línea abajo, mientras la regla general I24/I31 sólo exige que las líneas cuestionadas conserven al menos una `s` visible. Se mantiene el requisito más específico de la lámina: todas las `s` impresas deben mostrar la caída; no se amplía a letras no impresas.
+
+## Hallazgos de auditoría 2026-09-19
+
+**Veredicto: NO CUMPLE** en contenido (F1/F2/F3), contrato en pantalla (F4), estilo (F5) y localización (F6), en ambas variantes.
+
+> Reemplaza a la sección «Auditoría de imagen — 2026-09-19» (que no inspeccionó imagen alguna; sin hallazgos previos que conservar).
+
+### Cumple
+
+- ES: tarjeta de cartulina crema, apaisada, vista de plano sobre fondo neutro de madera (F1, hecho 1; F5, lámina pericial de plano).
+- ES: fechas manuscritas `1969` y `VIII` presentes en el ángulo superior (F1/F3) — aunque `VIII` arrastra un trazo extra («VIII a»), ver defectos.
+- ES: ausencia de la esquina inferior derecha, presente en la composición (F1, hecho 7) — geometría incorrecta, ver defectos.
+- ES: la variante no contiene texto en inglés (F5, prohibido en la variante ES).
+- EN: ausencia de la esquina inferior derecha, presente en la composición.
+
+### Defectos confirmados
+
+- **[MAYOR / CONTRADICE]** (ES, F1 hecho 2 y NO CONTRADECIR; `climax_stage4.ts` lectura 3547-3568) — La tarjeta es una ficha de perfil (NOMBRE, OCUPACIÓN «defensor de causas justas», EDAD «43 años», NACIONALIDAD «mexicana») que la hoja prohíbe explícitamente; el clímax identifica por lectura y cotejo, no por perfil.
+- **[MAYOR / AUSENTE]** (ES, F2, TEXTO EXACTO; `climax_stage4.ts:3550-3556`) — Ninguno de los seis campos de §18.5 aparece: no hay `Domicilio: vecindad de la calle del Espanto ocho, vivienda setenta y dos`, ni ingreso, ni objetos, ni puntualidad «catorce meses de atraso», ni observaciones «no insistir», ni puerta «chapa vencida. Se empuja.». La tarjeta no sostiene la lectura campo por campo del clímax.
+- **[MAYOR / CONTRADICE]** (ES, F3; `climax_choices.ts:45-54`) — Domicilio impreso como `viv. 4.`; el canon unificado por la lente 22 es vivienda **72**.
+- **[MAYOR / AUSENTE]** (EN, F2/F6; `climax_stage4_en.ts:20-27`) — La variante EN no es la ficha de domicilio: es una carátula mecanografiada de expediente (case identifier, plaintiff, defendant «chapulín colorado», nature of case). Ninguna de las seis líneas inglesas requeridas aparece.
+- **[MAYOR / CONTRADICE]** (F6, §23.3 4064) — Los gemelos no comparten composición, cartulina ni formato: ES es ficha manuscrita/mechanografiada de cedulario, EN es documento de tribunal con fondo con libros y objeto metálico. Rompe el pareo de localización.
+- **[MEDIO / CONTRADICE]** (EN, F2; `climax_stage4_en.ts:20-27`) — Texto español mezclado en la variante EN («14 de junio de 1977», «ministerio público», «melodrama agravado con alevosía»); el texto impreso debía ser el inglés del guion.
+- **[MEDIO / CONTRADICE]** (F1 hecho 8; `EvidenceCatalogCase5EsB.ts:82-83`) — ES: el borde faltante es desgarrado e irregular; debe ser recto y limpio para empatar con `examine_esquina_tarjeta` (§24.C F9).
+- **[MEDIO / AUSENTE]** (F2, regla de la `s` caída; §23.3 4068, I24/I31) — ES: ninguna `s` minúscula impresa presenta la caída de media línea («años», «cindad», «justas», «Espanto» con línea base normal). EN: idem — no hay `s` defectuosa en el texto mecanografiado.
+- **[MENOR / CONTRADICE]** (F1 hecho 3; §23.3) — ES: el campo de domicilio no ocupa cuatro renglones cortos en la columna derecha; la columna derecha tiene cinco rótulos distintos (DOMICILIO vacío, CALLE, VIV., COLONIA, CIUDAD) y no la dirección en cuatro renglones.
+- **[MENOR / MALFORMADO]** (F1/F3) — ES: la fecha `VIII` va seguida de un trazo suelto («a») que no corresponde a ningún hecho de la hoja.
+- **[MEDIO / DRIFT]** (F5, §23.0) — EN: estilo fotorreal con texturas fotográficas y grunge, degradados y viñeteado, violando el cel-shading de colores planos con terminador duro y contorno carbón; el fondo incorpora libros y una pieza metálica (convertir el fondo en escena, contra el hecho F5 de lámina de plano). ES: sombreado con degradados de envejecimiento suaves, desviación menor del mismo literal.
+
+### Correcciones de auditoría
+
+- `~~## Auditoría de imagen — 2026-09-19 — No se inspeccionó ninguna imagen...~~` → reemplazada por esta sección tras inspección de ambas variantes (2026-09-19).
+
+### Recomendación (regenerar, en el orden del conjunto de consistencia)
+
+1. Pintar la ficha de cedulario crema apaisada con el formato de seis campos: cinco a la izquierda (ingreso, objetos, puntualidad, observaciones, estado de la puerta) y el domicilio a la derecha en cuatro renglones cortos, con el texto EXACTO de §18.5 / `climax_stage4_en.ts:20-27` según variante. Compartir material y formato con `plate_anatomia_ficha`.
+2. Imprimir el domicilio canónico `72` (nunca `viv. 4.`), compartido con `examine_esquina_tarjeta`.
+3. Bordes faltantes rectos y limpios en la esquina inferior derecha, idénticos al fragmento.
+4. Aplicar la caída de media línea a toda `s` minúscula impresa en ambas variantes (defecto compartido con `examine_expediente_serie`, `examine_nota_renta`, `examine_maquina`).
+5. Fechas manuscritas limpias `1969` y `VIII` sin trazos extra, en ambas variantes.
+6. Gemelos con composición idéntica; sólo cambia el texto legible (ES español de §18.5, EN inglés del guion, sin mezcla de idiomas).
+7. Estilo §23.0 literal: cel-shading plano, contorno carbón, sin fotorrealismo, degradados ni fondo de escena.
+
+## Hallazgos de auditoría 2026-09-19 — regeneración Lote I (RAW)
+
+**Veredicto: NO CUMPLE** (residual F2: la `s` caída no es uniforme en el domicilio). Los bloqueantes MAYOR de la pasada previa (ficha de perfil, `viv. 4`, EN como carátula, gemelos distintos) están corregidos en `tools/raw/case5/examine_ficha_domicilio.jpg` y `_en.jpg` (1280×720, 3 intentos).
+
+### Cumple
+
+- ES/EN: tarjeta de cedulario crema apaisada de plano, no ficha de perfil (F1 hechos 1–2 y NO CONTRADECIR; recorte de campos). Texto de §18.5 / `climax_stage4_en.ts:20-27` presente: ingreso variable, oficio abogado sin despacho, objetos ninguno, catorce meses de atraso, no insistir, chapa vencida. Se empuja.
+- ES: domicilio en cuatro renglones a la derecha: `Domicilio: vecindad de / la calle del Espanto / ocho, vivienda setenta / y dos.` (F1 hecho 3; F2 TEXTO EXACTO; F3 vivienda **72**).
+- EN: la misma geometría; domicilio `Address: Calle del / Espanto eight, / apartment seventy- / two.` (F6; `climax_stage4_en.ts:20`).
+- ES/EN: `1969` y `VIII` manuscritos limpios en el ángulo superior (F1/F3). Esquina inferior derecha ausente con corte **recto y limpio** en escuadra (F1 hechos 7–8).
+- ES/EN: cel-shading de colores planos sobre madera, sin escena de archivo ni magenta (F5). Gemelos de una sola geometría (F6).
+
+### Defectos confirmados
+
+- **[MEDIO / CONTRADICE]** (F2, regla de la `s` caída; §23.3 4068) — ES: las `s` de la columna izquierda llevan una marca de subíndice/cedilla, pero las de `Espanto`, `setenta` y `dos` del domicilio quedan en la línea base. EN: idem en `Espanto` / `seventy`. El cotejo con `examine_esquina_tarjeta` y E5 exige la caída también en el campo de domicilio.
+- **[MENOR / MALFORMADO]** (F1 hecho 2) — ES: `oficio:` ocupa un renglón propio bajo ingreso (seis líneas izquierdas en vez de cinco campos). EN: `Occupation:` igual. El texto del campo 1 sigue completo.
+
+### Correcciones de auditoría
+
+- ~~ES es ficha de perfil (NOMBRE, OCUPACIÓN, EDAD, `viv. 4`)~~ — [x] RETIRADO POR REVISIÓN (2026-09-19, regeneración Lote I): la RAW es cedulario de seis campos con vivienda 72.
+- ~~EN es carátula de expediente~~ — [x] RETIRADO POR REVISIÓN (misma fecha): EN traduce el clímax sobre la geometría ES.
+- ~~Gemelos de composición distinta~~ — [x] RETIRADO POR REVISIÓN.
+- ~~Borde irregular~~ — [x] RETIRADO POR REVISIÓN: corte recto en escuadra.
+
+### Recomendación (si hay otra pasada)
+
+1. Bajar media línea las `s` de `Espanto` / `setenta` / `dos` (EN: `Espanto` / `seventy`) sin duplicar palabras, con la misma geometría de subíndice que ya marca la columna izquierda.
+2. Fundir `oficio` / `Occupation` en el renglón de ingreso.
+
+## Hallazgos de auditoría 2026-09-19 — pasada s caída (RAW)
+
+**Veredicto: NO CUMPLE** (residual F2 en el domicilio). Recortes de `tools/raw/case5/examine_ficha_domicilio.jpg` (ES v4) y `_en.jpg`. Los seis campos y **72** se mantienen.
+
+### Cumple
+
+- ES: `Espanto` ya no está en línea base: `E` + `s` en el hueco de la sílaba + `panto` (recorte del renglón 2 derecho). `dos` lleva marca de `s` baja. Campos §18.5, corte recto, `1969`/`VIII`, gemelo EN.
+- EN: cuatro renglones `Address / Espanto eight / apartment seventy- / two.`; `Espanto` y `seventy` con `s` ligeramente descolgada, sin renglón huérfano.
+
+### Defectos confirmados
+
+- **[MEDIO / CONTRADICE]** (F2; §23.3 4068) — ES: `setenta` sigue con `s` en la línea base; la `s` de `Espanto` es más pequeña que en `examine_esquina_tarjeta` (no llega a media línea de x-height). EN: la caída de `Espanto`/`seventy` es un matiz de subíndice, no el hueco claro del fragmento.
+- **[MENOR / MALFORMADO]** (F1) — `oficio` / `Occupation` siguen en renglón propio.
+
+### Correcciones de auditoría
+
+- ~~`Espanto` del domicilio totalmente en línea base (ES)~~ — [x] RETIRADO PARCIALMENTE (2026-09-19, pasada s): hay `s` intramisyllabic en `Espanto` ES; `setenta` aún no.
+
+## Hallazgos de auditoría 2026-09-19 — pasada s = fragmento (RAW ficha only)
+
+**Veredicto: CUMPLE** en el cotejo E5 de `Espanto` (ES/EN) y `setenta` / `seventy`. Residual MENOR: ES `dos` sigue en la línea base. Archivos: `tools/raw/case5/examine_ficha_domicilio.jpg` y `_en.jpg` (1280×720). No se tocaron esquina, plate ni nota.
+
+### Cumple
+
+- ES recorte domicilio: `Espanto` = `E` + `s` de cuerpo entero en hueco de media línea + `panto` (misma mecánica que `examine_esquina_tarjeta`). `setenta` = `s` caída + `etenta`. Cuatro renglones, vivienda **72**, seis campos §18.5, `1969`/`VIII`, corte recto.
+- EN recorte: `Espanto` idéntico al fragmento; `seventy` = `s` en hueco de media línea + `eventy-`. `apartment seventy-two`. Gemelo de geometría (F6).
+- F1/F3/F5: cedulario, no perfil; sin magenta; cel-shading.
+
+### Defectos confirmados
+
+- **[MENOR / CONTRADICE]** (F2 ES) — `y dos.` conserva la `s` en la línea base. Una pasada extra la convirtió en renglón huérfano; se retiene esta RAW para no romper `Espanto`/`setenta`.
+- **[MENOR / MALFORMADO]** (F1) — `Oficio:` / `Occupation:` siguen en renglón propio.
+
+### Correcciones de auditoría
+
+- ~~`setenta` en línea base; `Espanto` ES como cedilla minúscula; EN solo subíndice~~ — [x] RETIRADO POR REVISIÓN (2026-09-19, pasada s = fragmento).
+
+## Criterio de composición 2026-09-21
+
+La corrección solicitada por el usuario exige un recorte real de una tarjeta maestra. Prevalece el reparto físico de §10.1 y §23.3: la maestra ES escribe `Domicilio: vecindad de` / `la calle del` / `Espanto 8,` / `viv. 72.`. El corte se lleva `cindad de` y las tres líneas siguientes. EN escribe `Address: city of` / `Calle del` / `Espanto 8,` / `apt. 72.`, conforme a la lectura del fragmento en `celda_talks_en.ts:76`. La elipsis del diálogo representa lo que falta, no puntos mecanografiados. Las cifras y abreviaturas se desarrollan al leerlas en §18.5; no se escriben de nuevo con otra distribución en el papel. Esto resuelve el conflicto anterior entre lectura corrida y cuatro renglones. Los cinco campos izquierdos se agrupan por espaciado; un salto de línea dentro de ingreso/oficio no crea un campo adicional.
+
+## Hallazgos de auditoría 2026-09-21, composición desde tarjeta maestra
+
+**Veredicto: CUMPLE el emparejamiento físico ES/EN y el defecto tipográfico.** Auditoría sobre los WebP finales de 960×540, con recortes separados de campos, fechas y corte.
+
+- F1/F2/F4: cinco campos izquierdos legibles con sus respuestas, domicilio a la derecha cuya continuación está en el fragmento. Tarjeta crema apaisada, fechas manuscritas 1969/VIII y corte rectangular limpio en la esquina inferior derecha.
+- F2: cada `s` minúscula se imprime una vez, a cuerpo completo, 26 px debajo de un interlineado de 52 px en la maestra. Se conserva la letra dentro de su palabra; no hay cedillas ni letras duplicadas.
+- F3/F6: domicilio 8, vivienda/apartamento 72; catorce meses de atraso; gemelos de igual geometría y papel. La esquina proviene del recorte exacto de cada maestra, comprobado por igualdad de píxeles antes de la compresión WebP.
+- F5/exclusiones: ilustración de papel sobre gris, sin perfil, membrete, flechas, realces ni objetos de escena. Se conserva el contorno oscuro del contrato vigente de §23.0.
+- Consistencia: ambos iconos se derivan de estos mismos objetos. No hay `clickableZones` ni `pointTarget` vinculados a estas placas que recalibrar.
+
+**Correcciones de auditoría:** retirados los defectos residuales de caída desigual y de `dos` alineado: el domicilio impreso usa las abreviaturas del fragmento y toda `s` se compone con la misma función. Se retira la clasificación de `Oficio` en otro renglón como campo adicional; sigue agrupado con ingreso.
+
+Fuentes y prompts: [[tools/raw/case5/address_composition.md]]. Sin defectos nuevos en el alcance corregido.

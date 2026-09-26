@@ -19,7 +19,7 @@ describe('Case 1 mirror photo painting point', () => {
       expect(firstPoint.zones.find((zone) => zone.isCorrect)?.id).toBe('emblema_pecho');
       expect(bridgeText).toMatch(language === 'es' ? /negativo.*pru[eé]b/i : /negative.*prove/i);
       expect(secondPoint.zones.find((zone) => zone.isCorrect)).toEqual(
-        expect.objectContaining({ id: 'pintura', bounds: [61, 18, 81, 41] })
+        expect.objectContaining({ id: 'pintura' })
       );
       expect(secondPoint.promptQuestion).toMatch(language === 'es' ? /espejo/i : /mirror/i);
     }

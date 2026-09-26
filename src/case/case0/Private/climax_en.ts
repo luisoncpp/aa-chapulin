@@ -80,11 +80,7 @@ export const CASE0_CLIMAX_EN: ClimaxDefinition = {
       { speaker: 'TORIBIO', pose: 'toribio_aliviado', text: 'Thirteen. One melted at the courthouse.', bg: EPILOGUE_BG },
       { speaker: 'DEFENSA', pose: 'donramon_idle', text: '(Thirteen paletas and fourteen months of rent. We are even.)', bg: EPILOGUE_BG },
       { speaker: 'CHAPULÍN', pose: 'chapulin_idle', text: 'Every lawyer starts with a client who pays in kind.', bg: EPILOGUE_BG },
-      { speaker: 'DEFENSA', pose: 'donramon_idle', text: 'And ends with a landlord who wants cash.', bg: EPILOGUE_BG },
-      { speaker: 'NARRADOR', text: 'An open newspaper lies on the bench: “GOLDEN PARALYZING CHICHARRA STOLEN FROM THE MUSEUM OF CURIOSITIES.”', bg: EPILOGUE_BG },
-      { speaker: 'CHAPULÍN', pose: 'chapulin_idle', text: '...Chanfle.', bg: EPILOGUE_BG },
-      { speaker: 'DEFENSA', pose: 'donramon_point', text: 'Who will defend that one?', bg: EPILOGUE_BG },
-      { speaker: 'CHAPULÍN', pose: 'chapulin_idle', text: 'That is the detail.', bg: EPILOGUE_BG }
+      { speaker: 'DEFENSA', pose: 'donramon_idle', text: 'And ends with a landlord who wants cash.', bg: EPILOGUE_BG }
     ]
   }
 };

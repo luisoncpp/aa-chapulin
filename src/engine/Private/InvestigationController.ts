@@ -202,7 +202,9 @@ export class InvestigationController {
   }
 
   public checkInvestigationProgress(): void {
-    updateTrialButtonProgress(this.dom.btnInvTrial, this.state.checkTrialReadiness(), this.dom.gameNotificationEl);
+    updateTrialButtonProgress(this.dom.btnInvTrial, this.state.checkTrialReadiness(), {
+      notificationEl: this.dom.gameNotificationEl, soundEngine: this.soundEngine
+    });
   }
 
   public resetTrialLaunchButton(): void {

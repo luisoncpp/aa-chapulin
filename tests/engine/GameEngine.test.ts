@@ -323,11 +323,12 @@ describe('GameEngine Coordinator', () => {
     expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(false);
     expect(dom.courtFurnitureSpriteEl.src).toContain('assets/court_bench.webp');
 
-    // 4. JUEZ -> judge stand, no furniture
+    // 4. JUEZ -> judge stand, judge bench in front of the bust
     engine.handleAdvance();
     engine.handleAdvance();
     expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_judge.webp');
-    expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(true);
+    expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(false);
+    expect(dom.courtFurnitureSpriteEl.src).toContain('assets/court_judge_bench.webp');
 
     // 5. TRIPASECA -> witness stand, podium
     engine.handleAdvance();

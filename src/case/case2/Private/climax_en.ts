@@ -7,13 +7,15 @@ import type { DialogueLine } from '../../../types/index.js';
 import { CASE2_CLIMAX_CHOICES_EN } from './climax_choices_en.js';
 import { assembleCase2Climax } from './climax_shared.js';
 
+const GOLD_REVEAL_PLATE = 'assets/plate_revelacion_chanfle_lata.webp';
+
 const GOLD_REVEAL: DialogueLine[] = [
   { cutin: 'objection_protesto', speaker: 'DEFENSA', text: 'OBJECTION!', sfx: 'whoosh', bgm: 'pursuit', pose: 'donramon_point' },
   { speaker: 'DEFENSA', text: "Here is the Golden Chanfle, hidden inside Chómpiras's Shoe Polish Tin!", pose: 'donramon_point' },
   { speaker: 'SUPER SAM', text: 'What?! A simple tin of shoe polish?!', pose: 'supersam_slam', sfx: 'desk_slam' },
   { speaker: 'DEFENSA', text: 'It weighs over 5 KILOS and gold dust spills from the seam! Peterete emptied the polish, stuffed the statuette in, and resealed the lid.', pose: 'donramon_slam', sfx: 'desk_slam' },
   { speaker: 'CHAPULIN', text: 'And my Vinyl Antennae confirm it — they vibrate straight at this tin! Open it and see the gold shine!', pose: 'chapulin_slam', sfx: 'chipote' },
-  { speaker: 'NARRADOR', text: '*CLAAANG-GLOWWW!* (The lid gives way and the Golden Chanfle lights up the courtroom)', sfx: 'realization' },
+  { speaker: 'NARRADOR', text: 'CLAAANG-GLOWWW! (The lid gives way and the Golden Chanfle lights up the courtroom)', sfx: 'realization', bg: GOLD_REVEAL_PLATE, furniture: 'none' },
   { speaker: 'PETERETE', text: "G-grrrk! Th-that's Chómpiras's tin! This only proves HE hid the gold in his own can! I have nothing to do with it!", pose: 'peterete_sweat' },
   { speaker: 'SUPER SAM', text: 'Exactly! The defendant had the tin and the crowbar! He is still the only possible culprit!', pose: 'supersam_point' },
   { speaker: 'DEFENSA', text: "(Darn it! They're right — gold in Chómpiras's tin does not pin Peterete... unless I prove Chómpiras could not have done it.)", pose: 'donramon_idle' }

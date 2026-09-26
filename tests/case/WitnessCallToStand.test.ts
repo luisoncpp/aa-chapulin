@@ -9,13 +9,16 @@ import { describe, expect, it } from 'vitest';
 import { getCaseScript } from '../../src/case/index.js';
 import type { CaseId, CaseScript, DialogueLine, Testimony, TrialDayScript } from '../../src/types/index.js';
 
-const CASE_IDS: CaseId[] = ['case0', 'case1', 'case2', 'case3', 'case4'];
+const CASE_IDS: CaseId[] = ['case0', 'case1', 'case2', 'case3', 'case4', 'case5'];
 const LANGUAGES = ['es', 'en'] as const;
 
 function trialDays(script: CaseScript): TrialDayScript[] {
   const days: TrialDayScript[] = [script.trial];
-  if (script.adjournment) days.push(script.adjournment.trial);
-  if (script.adjournment?.next) days.push(script.adjournment.next.trial);
+  let adj = script.adjournment;
+  while (adj) {
+    days.push(adj.trial);
+    adj = adj.next;
+  }
   return days;
 }
 
@@ -50,6 +53,7 @@ describe('witness call to the stand', () => {
         const script = getCaseScript(language, caseId) as CaseScript;
         trialDays(script).forEach((day, dayIndex) => {
           day.testimonies.forEach((testimony, index) => {
+            if (testimony.statements.length === 0) return;
             expectCallToStand(
               precedingBlock(day, index),
               testimony,

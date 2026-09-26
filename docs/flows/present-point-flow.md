@@ -21,6 +21,11 @@ Player presents the matching evidence during cross-examination, a `followUp` pre
 6. **Hit (`isCorrect`):** hide the overlay and play `realization`. A target with `successDialogue` plays those lines first. If it also has `next`, the next target opens after those lines; otherwise the **parent** `successDialogue` (`contradiction` / `followUp` / climax `stage`) plays. This lets one exhibit support several deductions without duplicating click handling.
 7. Optional `followUp` then reopens the Acta. Climax continues its stage flow (next present, choices, or `successDialogue` then `verdict`).
 
+**Authoring rule:** because of step 6, the spec block written *before* the señalamiento belongs in
+`pointTarget.successDialogue` and the block written *after* it belongs in the parent `successDialogue`.
+Filling them the other way round replays the day in reverse; see
+[[docs/lessons-learned/point-target-success-precedes-parent.md]].
+
 While a target is open, the HUD Acta button remains available for reference. Opening it suspends the point overlay and renders the Acta in consult-only mode, so no Presentar button appears. Closing the Acta restores the same target and prompt.
 
 ## 4. State Read / Write

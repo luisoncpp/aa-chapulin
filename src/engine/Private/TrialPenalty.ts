@@ -6,7 +6,7 @@
 import type { SoundEngine } from '../../audio/index.js';
 import { i18n } from '../../i18n/index.js';
 import type { GameStateManager } from '../../state/index.js';
-import type { CaseScript, DialogueLine, Testimony } from '../../types/index.js';
+import type { CaseScript, DialogueLine, Testimony, TrackName } from '../../types/index.js';
 import type { DomElements } from './DomElements.js';
 import { resolveCourtPenaltyRoles } from './CourtPenaltyRoles.js';
 import { ModalManager } from './ModalManager.js';
@@ -18,6 +18,7 @@ export interface PenaltyHost {
   soundEngine: SoundEngine;
   onQueueDialogue: (dialogue: DialogueLine[], onComplete?: () => void) => void;
   onRestartTrial?: () => void;
+  guiltyDialogue?: DialogueLine[];
   script?: CaseScript;
   testimony?: Testimony | null;
 }
@@ -32,19 +33,39 @@ export function applyPenaltyEffects(deps: PenaltyHost): void {
 
 export function queuePenaltyDialogue(deps: PenaltyHost, onResume: () => void): void {
   const isEn = i18n.getLanguage() === 'en';
-  const roles = resolveCourtPenaltyRoles(deps.script, deps.testimony, deps.state.trialDay);
+  const roles = resolveCourtPenaltyRoles({
+    script: deps.script,
+    testimony: deps.testimony,
+    trialDay: deps.state.trialDay,
+    samRecused: Boolean(deps.state.flags.case5_super_sam_recused)
+  });
+  if (deps.state.caseId === 'case5' && !deps.script?.defensePointPose) {
+    roles.defensePointPose = 'chapulin_point';
+    roles.defensePanicPose = 'chapulin_panic';
+  }
   const lines: DialogueLine[] = [
     { cutin: 'objection_protesto', speaker: 'DEFENSA', text: isEn ? 'OBJECTION!' : '¡PROTESTO!', sfx: 'whoosh', pose: roles.defensePointPose },
-    prosecutionPenaltyLine(roles.prosecutionSpeaker, i18n.t.penaltyProsecutionText, roles.prosecutionPose),
+    prosecutionPenaltyLine(roles.prosecutionSpeaker, i18n.t.penaltySecretaryText, roles.prosecutionPose),
     { speaker: 'JUEZ', text: i18n.t.penaltyJudgeText, pose: 'judge_gavel', sfx: 'gavel' }
   ];
-  if (deps.state.gameOver) {
-    lines.push(
-      { speaker: 'JUEZ', pose: 'judge_gavel', text: i18n.t.gameOverJudgeText, sfx: 'gavel' },
-      { speaker: 'DEFENSA', pose: roles.defensePanicPose, text: i18n.t.gameOverDefenseText }
-    );
-  }
+  if (deps.state.gameOver) lines.push(...gameOverLines(deps, roles.defensePanicPose));
   deps.onQueueDialogue(lines, /*onComplete*/ onResume);
+}
+
+/** Somber cue that replaces the trial loop the moment the health bar empties. */
+const GAME_OVER_BGM: TrackName = 'game_over';
+
+function withGameOverBgm(lines: DialogueLine[]): DialogueLine[] {
+  if (!lines.length || lines[0].bgm) return lines;
+  return [{ ...lines[0], bgm: GAME_OVER_BGM }, ...lines.slice(1)];
+}
+
+function gameOverLines(deps: PenaltyHost, defensePanicPose: DialogueLine['pose']): DialogueLine[] {
+  if (deps.guiltyDialogue?.length) return withGameOverBgm(deps.guiltyDialogue);
+  return withGameOverBgm([
+    { speaker: 'JUEZ', pose: 'judge_gavel', text: i18n.t.gameOverJudgeText, sfx: 'gavel' },
+    { speaker: 'DEFENSA', pose: defensePanicPose, text: i18n.t.gameOverDefenseText }
+  ]);
 }
 
 function prosecutionPenaltyLine(
@@ -52,6 +73,9 @@ function prosecutionPenaltyLine(
   text: string,
   pose: DialogueLine['pose']
 ): DialogueLine {
+  if (speaker === 'SECRETARIO') {
+    return { speaker, text, pose: pose ?? 'secretario_leyendo', bg: 'assets/bg_courtroom.webp' };
+  }
   if (pose) return { speaker, text, pose };
   return { speaker, text };
 }

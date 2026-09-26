@@ -2,6 +2,10 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { setupDomHarness } from './fakes/DomHarness.js';
 
+/**
+ * Both cases import the whole engine module graph cold; under a fully loaded
+ * suite that import alone can exceed vitest's 5s default, so they carry their own.
+ */
 describe('Application Entrypoint Bootstrap', () => {
   afterEach(() => {
     vi.resetModules();
@@ -20,7 +24,7 @@ describe('Application Entrypoint Bootstrap', () => {
     setupDomHarness();
     await import('../src/main.js');
     expect(window.gameEngine).toBeDefined();
-  });
+  }, /*timeoutMs=*/20000);
 
   it('defers bootstrap until DOMContentLoaded while the document is loading', async () => {
     Object.defineProperty(document, 'readyState', {
@@ -32,5 +36,5 @@ describe('Application Entrypoint Bootstrap', () => {
     expect(window.gameEngine).toBeUndefined();
     document.dispatchEvent(new Event('DOMContentLoaded'));
     expect(window.gameEngine).toBeDefined();
-  });
+  }, /*timeoutMs=*/20000);
 });

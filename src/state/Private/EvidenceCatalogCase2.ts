@@ -13,7 +13,7 @@ function ev(id: EvidenceId, text: { name: string; desc: string; updatedDesc?: st
 export const CASE2_EVIDENCE_ES: Record<string, EvidenceItem> = {
   chanfle_oro: ev('chanfle_oro', {
     name: 'Chanfle de Oro',
-    desc: 'Reliquia de oro macizo de 5 kg con esmeraldas. Desaparecida de la caja fuerte.'
+    desc: 'Reliquia de oro macizo de 5 kg con esmeraldas: una figura pateando una pelota. Desaparecida de la caja fuerte.'
   }),
   reloj_pendulo: ev('reloj_pendulo', {
     name: 'Reloj de Péndulo Dañado',
@@ -66,7 +66,7 @@ export const CASE2_EVIDENCE_ES: Record<string, EvidenceItem> = {
 export const CASE2_EVIDENCE_EN: Record<string, EvidenceItem> = {
   chanfle_oro: ev('chanfle_oro', {
     name: 'Golden Chanfle',
-    desc: 'Solid gold 5 kg relic with emeralds. Missing from the vault safe.'
+    desc: 'Solid gold 5 kg relic with emeralds, shaped as a figure kicking a ball. Missing from the vault safe.'
   }),
   reloj_pendulo: ev('reloj_pendulo', {
     name: 'Stopped Pendulum Clock',

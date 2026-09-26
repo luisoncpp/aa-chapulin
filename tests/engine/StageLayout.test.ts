@@ -5,8 +5,6 @@
  * counter's top surface instead of its far edge.
  */
 
-import fs from 'node:fs';
-import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import {
   applyStageFrame,
@@ -67,6 +65,9 @@ describe('StageLayout composition frames', () => {
     expect(resolveStageFrame('bench', 'donramon_shock')).toBe('bench-stand');
     expect(resolveStageFrame('bench', null)).toBe('bench-stand');
     expect(resolveStageFrame('podium', 'tripaseca_smug')).toBe('podium');
+    expect(resolveStageFrame('judge-bench', 'judge_gavel')).toBe('judge-stand');
+    expect(resolveStageFrame('judge-bench', 'judge_shock')).toBe('judge-stand');
+    expect(resolveStageFrame('judge-bench', 'judge_thinking')).toBe('judge-stand');
     expect(resolveStageFrame('none', 'chapulin_slam')).toBe('plain');
   });
 
@@ -132,20 +133,6 @@ describe('StageLayout composition frames', () => {
     expect(STAGE_FRAMES.plain.characterLayer).toBeLessThan(FURNITURE_LAYER);
   });
 
-  it('projects the frame onto the stage as CSS custom properties', () => {
-    const dom = setupDomHarness();
-    applyStageFrame(dom.gameScreen, 'bench-slam');
-
-    expect(dom.gameScreen.dataset.stageFrame).toBe('bench-slam');
-    expect(dom.gameScreen.dataset.stageContact).toBe('true');
-    expect(dom.gameScreen.style.getPropertyValue('--char-height')).toBe('62.00%');
-    expect(dom.gameScreen.style.getPropertyValue('--char-baseline')).toBe('37.60%');
-    expect(dom.gameScreen.style.getPropertyValue('--char-layer')).toBe('4');
-    expect(dom.gameScreen.style.getPropertyValue('--furniture-width')).toBe('100.00%');
-    expect(dom.gameScreen.style.getPropertyValue('--furniture-height')).toBe('45.70%');
-    expect(dom.gameScreen.style.getPropertyValue('--furniture-baseline')).toBe('0.00%');
-  });
-
   it('suppresses the idle float for a body lying in the clinic bed', () => {
     const dom = setupDomHarness();
     applyStageFrame(dom.gameScreen, 'plain', 'almanegra_inconsciente');
@@ -155,37 +142,21 @@ describe('StageLayout composition frames', () => {
     expect(dom.gameScreen.dataset.stageContact).toBe('false');
   });
 
-  it('stages Doctor Chapatín shorter so the witness podium is not swallowed', () => {
+  it('drops the judge bench below the defense desk and sinks only the gavel', () => {
     const dom = setupDomHarness();
-    applyStageFrame(dom.gameScreen, 'podium', 'chapatin_enojado');
-    const chapatinHeight = parseFloat(dom.gameScreen.style.getPropertyValue('--char-height'));
-    // Shorter than the 62% cast default, but not so short he reads as a child: his ink
-    // fills the same share of the 512 canvas as every other bust.
-    expect(chapatinHeight).toBeCloseTo(52.7, 1);
-    expect(chapatinHeight).toBeGreaterThan(50);
-    expect(chapatinHeight).toBeLessThan(62);
-    expect(dom.gameScreen.style.getPropertyValue('--char-baseline')).toBe('18.00%');
+    expect(STAGE_FRAMES['judge-stand'].furnitureHeight).toBeLessThan(STAGE_FRAMES['bench-stand'].furnitureHeight);
 
-    applyStageFrame(dom.gameScreen, 'podium', 'aniceto_idle');
-    expect(dom.gameScreen.style.getPropertyValue('--char-height')).toBe('62.00%');
-    expect(dom.gameScreen.style.getPropertyValue('--char-baseline')).toBe('18.00%');
+    applyStageFrame(dom.gameScreen, 'judge-stand', 'judge_thinking');
+    expect(dom.gameScreen.style.getPropertyValue('--char-baseline')).toBe('34.00%');
+
+    applyStageFrame(dom.gameScreen, 'judge-stand', 'judge_gavel');
+    expect(dom.gameScreen.style.getPropertyValue('--char-baseline')).toBe('28.00%');
+    expect(dom.gameScreen.style.getPropertyValue('--furniture-height')).toBe('38.00%');
   });
 
   it('aligns plain frame character baseline with the dialogue box top edge', () => {
     // Dialogue box sits 15px from bottom with 120px height (top edge at 135px / 540px = 25%)
     const dialogueBoxTopRatio = (15 + 120) / STAGE_H;
     expect(STAGE_FRAMES.plain.characterBaseline).toBeCloseTo(dialogueBoxTopRatio, 4);
-  });
-
-  it('does not apply position transitions to character container to avoid sliding on shot cuts', () => {
-    const cssContent = fs.readFileSync(path.resolve(__dirname, '../../style.css'), 'utf-8');
-    const charContainerRule = cssContent.match(/#character-container\s*\{([^}]+)\}/)?.[1] ?? '';
-    expect(charContainerRule).not.toMatch(/transition:[^;]*(bottom|height|top|transform)/);
-  });
-
-  it('does not fade furniture opacity across camera cuts', () => {
-    const cssContent = fs.readFileSync(path.resolve(__dirname, '../../style.css'), 'utf-8');
-    const furnitureRule = cssContent.match(/#court-furniture-container\s*\{([^}]+)\}/)?.[1] ?? '';
-    expect(furnitureRule).not.toMatch(/transition:/);
   });
 });

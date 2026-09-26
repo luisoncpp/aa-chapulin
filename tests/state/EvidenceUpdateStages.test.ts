@@ -22,6 +22,33 @@ describe('EvidenceUpdateStages', () => {
     expect(state.getEvidenceUpdateStage('microfono_oro')).toBe(2);
   });
 
+  it('keeps the original description visible after every update stage', () => {
+    for (const lang of ['es', 'en'] as const) {
+      const state = new GameStateManager();
+      state.beginNewCase(getCaseScript(lang, 'case5'));
+      state.addEvidence('informe_forense_c5');
+      const original = state.getEvidenceDesc('informe_forense_c5');
+
+      state.updateEvidence('informe_forense_c5');
+      expect(state.getEvidenceDesc('informe_forense_c5')).toContain(original);
+
+      state.updateEvidence('informe_forense_c5');
+      const full = state.getEvidenceDesc('informe_forense_c5');
+      expect(full).toContain(original);
+      const item = state.allEvidence.informe_forense_c5!;
+      for (const update of item.updates ?? []) expect(full).toContain(update);
+    }
+  });
+
+  it('keeps legacy updatedDesc as a full replacement', () => {
+    const state = new GameStateManager();
+    state.beginNewCase(getCaseScript('es', 'case2'));
+    state.addEvidence('palanca_rota');
+    state.updateEvidence('palanca_rota');
+    const desc = state.getEvidenceDesc('palanca_rota');
+    expect(desc).toBe(state.allEvidence.palanca_rota?.updatedDesc);
+  });
+
   it('adds evidence when updateEvidence runs before ownership', () => {
     const state = new GameStateManager();
     state.beginNewCase(getCaseScript('es', 'case3'));

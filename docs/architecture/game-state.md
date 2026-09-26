@@ -63,14 +63,14 @@ Contains the master catalog defined in [[src/state/Private/EvidenceCatalog.ts#Ev
 
 Case 1 adds a second inventory, the **Acta de Personajes** ([[src/state/Private/ProfileInventory.ts]]). It mirrors the evidence inventory exactly: `addProfile` / `hasProfile` file a person, `updateProfile` advances one `updates[]` stage and saturates, `getProfileDesc` resolves the current stage. `beginNewCase` clears it and reloads the catalogue for the new case; `populateTrialEvidence` saturates `script.debugProfiles` so a direct `?trial=2` start can answer the day-2 opening present.
 
-`getProfileCatalog(lang, caseId)` ([[src/state/Private/ProfileCatalog.ts]]) returns `{}` for every case except Case 1, which is what keeps the Acta tab bar out of the other four cases. `checkTrialReadiness` never looks at profiles: a person can never gate the trial.
+`getProfileCatalog(lang, caseId)` ([[src/state/Private/ProfileCatalog.ts]]) returns Case 1 and Case 5 maps; `{}` for Cases 0, 2, 3, and 4. Emptiness still gates the Acta tab bar — a case with no declared profiles looks exactly as before. `checkTrialReadiness` never looks at profiles: a person can never gate the trial.
 
 ### 2. Player Inventory (`inventory`)
 - Array of active evidence IDs currently held by the player.
 - Initialized with `['insignia_abogado']`.
 - Updated via `addEvidence(evidenceId)` in [[src/state/Private/GameStateManager.ts#Inventory Operations]] which prevents duplicate additions.
 - Evidence detail views mark `examined_evidence_<id>` in `flags`; `isEvidenceExamined` lets a trial rule require that the player inspect an item before presenting it. Because the flag is part of `flags`, it survives save/load and is cleared by `beginNewCase`.
-- Optional catalog fields `updatedDesc` (legacy one-shot) and `updates[]` (ordered stages). `updateEvidence` advances `evidenceUpdateStage` one step and saturates. `getEvidenceDesc` returns `updates[stage-1] ?? updatedDesc ?? desc`. A dialogue `updateEvidence` line still adds a missing item first.
+- Optional catalog fields `updatedDesc` (legacy one-shot) and `updates[]` (ordered stages). `updateEvidence` advances `evidenceUpdateStage` one step and saturates. `getEvidenceDesc` is **cumulative** for `updates[]`: it returns `desc` followed by every entry of `updates[0..stage-1]`, joined by a blank line (`#evidence-description` is `white-space: pre-line`). Entries in `updates[]` must therefore be written as addenda, never as full rewrites — the Acta must never lose a fact the player already read (time of death, inventory, hours). Legacy `updatedDesc` keeps replacement semantics: `updatedDesc` alone is the whole text. A dialogue `updateEvidence` line still adds a missing item first.
 - `beginNewCase` clears flags (including update flags). `populateTrialEvidence` also applies `updateEvidence` so debug trial shows the revised text. Saves persist the flags with the rest of `flags`.
 
 ### 3. Location Management (`unlockedLocations`)
@@ -87,23 +87,26 @@ Case 1 adds a second inventory, the **Acta de Personajes** ([[src/state/Private/
 
 ### 5. Case start, trial day, and readiness
 - `beginNewCase(script)` in [[src/state/Private/GameStateManager.ts#Case Progression]] sets `caseId`, `trialDay = 1`, investigation at `script.startLocation`, inventory to `['insignia_abogado']`, then `applyProgressionRules(script)`.
-- `trialDay` is `1 | 2 | 3`. `beginNextTrialDay(adjournment)` increments the day, copies that adjournment's required evidence and location list, and resets health. `beginTrialDay2` is a wrapper for Case 2 tests.
+- `trialDay` is `1 | 2 | 3 | 4`. `beginNextTrialDay(adjournment)` increments the day, copies that adjournment's required evidence and location list, and resets health. `beginTrialDay2` is a wrapper for Case 2 tests. `getAdjournmentForDay` walks `adjournment.next` so a fourth trial day is a third chain link, not a special case.
 - `checkTrialReadiness()` is case-aware: it requires every ID in the current `requiredEvidence` list (not a hardcoded Case 1 five-item set).
 - Case 1 `requiredEvidence`: `chipote_chillon`, `pastillas_chiquitolina`, `antenitas_vinil`, `informe_medico`, `foto_crimen`.
 - Case 2 day 1: `palanca_rota`, `informe_boveda`, `reloj_pendulo`, `aroma_dulce`, `plano_hacienda`, `caja_generador`.
 - Case 2 day 2 (`adjournment.requiredEvidence`): `multa_transito`, `registro_postal`, `lata_grasa`, `antenitas_vinil`, `frasco_valeriana`, `molde_cera`.
 - Case 3 lists live in [[src/case/case3/Private/progress.ts]] — day 1: `lentes_barriga`, `informe_barriga`, `marcas_carrito`, `microfono_cabina`, `microfono_oro`, `cinta_salud`, `ventana_cabina`, `programa_kermes`; day 2: `bitacora_transmision`, `receta_nono`, `libro_verde`; day 3: `ataduras_bodega`, `cinta_sketch`, `cartucho_corte`, `boleta_empeno`.
 - Case 4 lists are in [[docs/architecture/case-scripting.md#Case 4 trial gating (checkTrialReadiness)]]; catalog isolation in [[src/state/Private/EvidenceCatalogCase4.ts]] via `getEvidenceCatalog(lang, 'case4')` (18 items, no Case 1/2/3 leakage). Staged updates: `informe_policial` (3), `orden_servicios` (3), `toxicologia_vino` (1), `nota_amenaza` (1).
+- Case 5 lists live in [[src/case/case5/Private/progress.ts]]; catalog isolation in [[src/state/Private/EvidenceCatalogCase5.ts]] via `getEvidenceCatalog(lang, 'case5')` (24 items). Staged updates: `informe_forense_c5` (2), `maquina_escribir` (2). The arrest report (`parte_detencion`) and the Archive custody relay sheet (`hoja_relevo`) are two separate items: a contradiction the player must read off a document requires the numbers to live in that document's own `desc`, not in an annex clause of another item.
 - **Invariant:** readiness is inventory-only — it never checks which locations were visited. So the last location of every investigation day must hand over at least one required item, or the trial unlocks before the player has seen scenes the trial script assumes. Case 3 moves `programa_kermes` to the plaza (day 1) and puts detention before the precinct (day 3) for exactly this reason.
 
 ### 6. Debug Trial State Setup (`populateTrialEvidence`)
 - `populateTrialEvidence()` in [[src/state/Private/GameStateManager.ts#Trial Debug Setup]] adds `debugEvidence`, unlocks `debugUnlockLocations`, sets `flags.ready_for_trial = true`, and switches `mode` to `'TRIAL'`. Those lists come from the active `CaseScript` (Case 1 extra `bolsa_dolares`; Case 2 debug uses day-1 evidence + `boveda` / `restaurante`).
 
 ### 7. Browser Storage Persistence (`SaveManager`)
-- `SaveManager` in [[src/state/Private/SaveManager.ts]] provides persistence in `window.localStorage` under key `'ace_attorney_save_data'`.
+- Eight slots live in `window.localStorage` under `'ace_attorney_save_slots'` ([[src/state/Private/SaveSlots.ts]]). `SaveManager` in [[src/state/Private/SaveManager.ts]] is the facade: `listSlots`, `saveToSlot`, `loadSlot`, `loadNewest`, `deleteSlot`. `save()` still writes slot 0 and `load()` still returns the newest timestamp, so Continue and older callers keep a single-save shape.
+- The HUD Save and Load buttons open the slot list ([[src/engine/Private/SaveSlotModal.ts]]). An empty row saves immediately. An occupied row asks before overwrite. Delete asks, then removes that slot only. Title Continue calls `loadNewest` and does not open the list.
+- A payload written before slots, under `'ace_attorney_save_data'`, is copied into slot 0 on the first read and the old key is removed after the envelope write succeeds. If that write fails, the old key stays.
 - `exportState(trialSnapshot)` serializes game progression, unlocked locations, inventory, flags, health, mode, language, `caseId`, `trialDay`, and active trial testimony statements.
-- `restoreState(data)` rehydrates game state and validates schema versioning (`CURRENT_SAVE_VERSION = 2`).
-- **v1 → v2 migration.** Version 2 added `profiles` and `profileUpdateStage`. `isValidSave` accepts any version in `[1, CURRENT_SAVE_VERSION]` and `load()` runs `migrateSave`, which fills the two new fields on a v1 payload and stamps the new version. Validating on equality instead would silently delete every save of Cases 0, 2, 3 and 4 from the Continue screen. `tests/state/SaveManagerV2.test.ts` pins a literal v1 payload against that.
+- `restoreState(data)` rehydrates game state and validates schema versioning (`CURRENT_SAVE_VERSION = 2`). Slot count is not a schema version: do not bump `CURRENT_SAVE_VERSION` for a storage-envelope change.
+- **v1 → v2 migration.** Version 2 added `profiles` and `profileUpdateStage`. `isValidSave` accepts any version in `[1, CURRENT_SAVE_VERSION]` and each slot read runs `migrateSave`, which fills the two new fields on a v1 payload and stamps the new version. Validating on equality instead would silently delete every save of Cases 0, 2, 3 and 4 from the Continue screen. `tests/state/SaveManagerV2.test.ts` pins a literal v1 payload against that. A corrupt slot becomes empty and does not drop its siblings.
 
 ### 8. Scene Intro Tracking (`isIntroPlayed` & `markIntroPlayed`)
 - Tracks completed opening and event-driven scene entrance dialogues in `flags` via keys `intro_<id>`.

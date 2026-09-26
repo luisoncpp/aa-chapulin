@@ -6,10 +6,13 @@ import { listSoundtrack, type SoundtrackEntry } from '../../src/audio/index.js';
 describe('listSoundtrack', () => {
   it('returns unique compositions in catalog insertion order', () => {
     const playlist: SoundtrackEntry[] = listSoundtrack();
-    const catalogKeys = Object.keys(TRACK_CATALOG);
-    expect(playlist.length).toBe(catalogKeys.length - 1);
+    const uniqueDefs = new Set(Object.values(TRACK_CATALOG));
+    expect(playlist.length).toBe(uniqueDefs.size);
     expect(playlist.some((e) => e.id === 'epilogue')).toBe(false);
     expect(playlist.some((e) => e.id === 'victory')).toBe(true);
+    // `game_over` aliases `detention_center`; only the first key is listed.
+    expect(playlist.some((e) => e.id === 'game_over')).toBe(false);
+    expect(playlist.some((e) => e.id === 'detention_center')).toBe(true);
   });
 
   it('computes durationMs from bpm and length', () => {

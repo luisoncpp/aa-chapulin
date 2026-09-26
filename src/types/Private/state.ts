@@ -9,9 +9,9 @@ export type Language = 'es' | 'en';
 
 export type GameMode = 'INVESTIGATION' | 'TRIAL';
 
-export type CaseId = 'case0' | 'case1' | 'case2' | 'case3' | 'case4';
+export type CaseId = 'case0' | 'case1' | 'case2' | 'case3' | 'case4' | 'case5';
 
-export type TrialDay = 1 | 2 | 3;
+export type TrialDay = 1 | 2 | 3 | 4;
 
 export type LocationId = 'museum' | 'detention' | (string & {});
 

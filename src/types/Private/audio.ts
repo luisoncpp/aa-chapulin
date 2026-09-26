@@ -35,9 +35,13 @@ export type TrackName =
   | 'victory'
   | 'epilogue'
   | 'detention_center'
+  | 'game_over'
   | 'kermes'
   | 'cross_exam_presto'
-  | 'cross_exam_final';
+  | 'archivo'
+  | 'cross_exam_grave'
+  | 'cross_exam_final'
+  | 'cross_exam_careo';
 
 export type InstrumentWaveType = 'sine' | 'square' | 'sawtooth' | 'triangle';
 

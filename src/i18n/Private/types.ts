@@ -4,7 +4,7 @@
  * Consumed by [[./I18nService.ts]], [[./ui_es.ts]], and [[./ui_en.ts]].
  */
 
-import type { Language, TrackName } from '../../types/index.js';
+import type { CaseId, Language, TrackName } from '../../types/index.js';
 
 export interface UiTranslations {
   // Navigation Buttons
@@ -46,6 +46,16 @@ export interface UiTranslations {
   hudHistoryTitle: string;
   historyModalTitle: string;
   historyEmpty: string;
+  slotSaveTitle: string;
+  slotLoadTitle: string;
+  slotEmpty: string;
+  slotOverwrite: string;
+  slotDeleteAsk: string;
+  slotYes: string;
+  slotNo: string;
+  slotDelete: string;
+  slotDay: (day: number) => string;
+  caseSlotLabel: Record<CaseId, string>;
 
   // Splash Screen
   splashTitle: string;
@@ -56,6 +66,7 @@ export interface UiTranslations {
   btnStartCase2: string;
   btnStartCase3: string;
   btnStartCase4: string;
+  btnStartCase5: string;
   btnStartTrialDebug: string;
   btnContinue: string;
   langToggleLabel: string;
@@ -84,11 +95,13 @@ export interface UiTranslations {
   notifNoSaveFound: string;
   caseCompleteTitle: string;
   caseCompleteBody: string;
+  case5CompleteTitle: string;
+  case5CompleteBody: string;
 
   // Game Over Dialogues
   gameOverJudgeText: string;
   gameOverDefenseText: string;
-  penaltyProsecutionText: string;
+  penaltySecretaryText: string;
   penaltyJudgeText: string;
 }
 

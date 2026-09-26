@@ -58,7 +58,7 @@ const REJILLA_CINTA_POINT_TARGET_EN: PointTargetContradiction = {
     { speaker: 'JUEZ', text: 'Great Scott! The entire frame carries years of dust... except for two perfectly clean parallel strips!', pose: 'judge_shock' },
     { speaker: 'DEFENSA', text: 'Separated by exactly one and a half centimetres, Your Honor. The exact width of a standard tape measure.', pose: 'donramon_slam', sfx: 'desk_slam' },
     { speaker: 'DEFENSA', text: 'Someone rested the tape on that lip and measured the eighteen-by-twenty-four opening. Standing up, by day, from the gallery and in no hurry at all.', pose: 'donramon_idle' },
-    { speaker: 'NARRADOR', text: 'A murmur of astonishment runs through the gallery.', sfx: 'realization' },
+    { speaker: 'NARRADOR', text: 'A murmur of astonishment runs through the gallery.', bg: 'assets/bg_gallery_characters.webp', furniture: 'none', sfx: 'realization' },
     { speaker: 'TRIPASECA', text: 'Wait a minute, wait a minute! Rubbish!', pose: 'tripaseca_sweat' },
     { speaker: 'TRIPASECA', text: 'A couple of tape measure marks? Anyone could have done that! A bricklayer, the janitor, the guy replacing the baseboards... or some curious tourist passing by!', pose: 'tripaseca_smug' },
     { speaker: 'SUPER SAM', text: 'Excellent objection! Having marks on a wall does not link my witness to this crime! We lack the personal connection!', pose: 'supersam_point' },
@@ -81,7 +81,7 @@ export const CASE1_REJILLA_POINT_TARGET_EN: PointTargetContradiction = {
   ],
   successDialogue: [
     { speaker: 'DEFENSA', text: 'RIGHT HERE, Your Honor! In the bottom corner of the mesh!', pose: 'donramon_slam', sfx: 'desk_slam', cutin: 'objection_toma_eso', bgm: 'objection' },
-    { speaker: 'DEFENSA', text: 'The wire is not broken from age. It was cut and bent upward, and then pushed back into place.', pose: 'donramon_point' },
+    { speaker: 'DEFENSA', text: 'The wire is not broken from age. It was cut.', pose: 'donramon_point' },
     { speaker: 'DEFENSA', text: 'A normal person, a cat, or a dog cannot fit through there. But someone who stands ten centimetres tall goes in and out like it is their own home.', pose: 'donramon_idle' },
     { speaker: 'CHAPULIN', text: '¡Chanfle! It is a cat door for mice!', pose: 'chapulin_point' },
     { speaker: 'JUEZ', text: 'The court concedes that a shrunken man could fit through there... but one moment, counselor.', pose: 'judge_thinking' },

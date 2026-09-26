@@ -50,7 +50,7 @@ export const CASE1_MUSEO_EN: InvestigationScene = {
         { speaker: 'DEFENSA', text: 'Eighteen by twenty-four. Not even a cat could get through there.', pose: 'donramon_idle' },
         { speaker: 'DEFENSA', text: 'Four screws, and the paint on all four is unbroken. Nobody has loosened them since the wall was painted.', pose: 'donramon_shock' },
         { speaker: 'FLORINDA', text: 'That grate leads to the loading yard. It has been there since the museum was a button factory.', pose: 'florinda_idle' },
-        { speaker: 'DEFENSA', text: 'The lower corner of the mesh is bent upward and pushed back into place.', pose: 'donramon_shock' },
+        { speaker: 'DEFENSA', text: 'The wire at the lower corner of the mesh is cut.', pose: 'donramon_shock' },
         { speaker: 'DEFENSA', text: 'And on the inner lip, two parallel strips of dust are missing. Something is caught between the diamonds.', pose: 'donramon_idle' },
         { speaker: 'NARRADOR', text: 'With tweezers, Don Ramón pulls out a cream pinstriped worsted thread and bags it in waxed paper.', sfx: 'whoosh' },
         { speaker: 'DEFENSA', text: '(No pry marks and no screws touched. I still do not know what those strips or that thread mean, but they came from the inside.)', pose: 'donramon_idle', addEvidence: 'rejilla_ducto' }

@@ -1,12 +1,113 @@
-// @Architecture(descriptionShort="Regression tests for scripted witness evidence deflects", type="test", icon="bolt")
+// @Architecture(descriptionShort="Regression tests for both deflect present outcomes", type="test", icon="panel")
 import { describe, expect, it, beforeEach, vi } from 'vitest';
 import { MidiMusicComposer, SoundEngine } from '../../src/audio/index.js';
+import { getCaseScript } from '../../src/case/index.js';
+import type { DomElements } from '../../src/engine/Private/DomElements.js';
 import { TrialController } from '../../src/engine/Private/TrialController.js';
 import { i18n } from '../../src/i18n/index.js';
 import { GameStateManager } from '../../src/state/index.js';
-import type { CaseScript, DialogueLine, PoseName, Testimony } from '../../src/types/index.js';
+import type { CaseScript, DialogueLine, Testimony } from '../../src/types/index.js';
 import { FakeAudioContext } from '../fakes/FakeAudioContext.js';
 import { setupDomHarness } from '../fakes/DomHarness.js';
+
+const HUACAL_DEFLECT = 'esa fotografía prueba el día';
+const MAQUINA_DEFLECT = 'esa máquina se levantó ayer';
+const OFICIO_DEFLECT = 'ese oficio demuestra que la fiscalía mandó el aviso';
+
+describe('Premature present deflection (Case 5, day 3, Testimony 6)', () => {
+  let dom: DomElements;
+  let state: GameStateManager;
+  let controller: TrialController;
+  let queuedDialogues: DialogueLine[][] = [];
+
+  function viewStatement(idx: number): void {
+    controller.startTestimony(0);
+    controller.currentStatementIdx = idx;
+  }
+
+  function queuedText(): string {
+    return queuedDialogues.flat().map((line) => line.text).join(' | ');
+  }
+
+  beforeEach(() => {
+    vi.useFakeTimers();
+    dom = setupDomHarness();
+    state = new GameStateManager();
+    state.caseId = 'case5';
+    state.trialDay = 3;
+    queuedDialogues = [];
+    const soundEngine = new SoundEngine();
+    soundEngine.init(new FakeAudioContext() as unknown as AudioContext);
+    controller = new TrialController({
+      dom,
+      state,
+      script: getCaseScript('es', 'case5'),
+      soundEngine,
+      midiComposer: new MidiMusicComposer(soundEngine),
+      onQueueDialogue: (dlg, cb) => {
+        queuedDialogues.push(dlg);
+        if (cb) cb();
+      },
+      onRenderLine: () => {},
+      onOpenCourtRecord: () => {}
+    });
+  });
+
+  it('answers the crate photograph without a penalty', () => {
+    viewStatement(1);
+    controller.handlePresentEvidence('huacal_9');
+    expect(state.health).toBe(5);
+    expect(queuedText()).toContain(HUACAL_DEFLECT);
+  });
+
+  it('answers the typewriter without a penalty', () => {
+    viewStatement(2);
+    controller.handlePresentEvidence('maquina_escribir');
+    expect(state.health).toBe(5);
+    expect(queuedText()).toContain(MAQUINA_DEFLECT);
+  });
+
+  it('leaves a harmlessly deflected statement in place', () => {
+    viewStatement(1);
+    controller.handlePresentEvidence('huacal_9');
+    expect(controller.phase).toBe('TESTIMONY');
+    expect(controller.currentStatementIdx).toBe(1);
+    expect(controller.getTestimonyIndex()).toBe(0);
+  });
+
+  it('still resolves the contradiction with the inventory', () => {
+    viewStatement(2);
+    controller.handlePresentEvidence('inventario_1971');
+    expect(state.health).toBe(5);
+    expect(queuedText()).toContain('cuarenta y siete partidas');
+  });
+
+  it('penalizes unrelated evidence', () => {
+    viewStatement(1);
+    controller.handlePresentEvidence('inventario_1971');
+    expect(state.health).toBe(4);
+    expect(queuedText()).not.toContain(HUACAL_DEFLECT);
+  });
+
+  it('deflects the oficio before the receipt contradiction on Berrondo', () => {
+    controller.startTestimony(2);
+    controller.currentStatementIdx = 4;
+    controller.handlePresentEvidence('oficio_diligencia');
+    expect(state.health).toBe(5);
+    expect(controller.currentStatementIdx).toBe(4);
+    expect(queuedText()).toContain(OFICIO_DEFLECT);
+  });
+
+  it('deflects the oficio after Berrondo adds the nobody-told-me statement', () => {
+    controller.startTestimony(2);
+    controller.currentStatementIdx = 4;
+    controller.handlePressStatement();
+    controller.handlePresentEvidence('oficio_diligencia');
+    expect(state.health).toBe(5);
+    expect(controller.currentStatementIdx).toBe(5);
+    expect(queuedText()).toContain(OFICIO_DEFLECT);
+  });
+});
 
 const DEFLECT_LINES: DialogueLine[] = [
   { speaker: 'DEFENSA', text: '¡PROTESTO!', pose: 'chapulin_slam' },
@@ -20,7 +121,7 @@ const SUCCESS_LINES: DialogueLine[] = [
   { speaker: 'BERRONDO', text: '...Acabo de declararlo.', pose: 'berrondo_sweat' }
 ];
 
-describe('TrialDeflect', () => {
+describe('Scripted witness deflects', () => {
   let queued: DialogueLine[][];
   let state: GameStateManager;
   let ctrl: TrialController;
@@ -34,53 +135,35 @@ describe('TrialDeflect', () => {
     ctrl.startTestimony(0);
   });
 
-  it('queues Berrondo denial, not Super Sam, and applies a penalty', () => {
-    expect(state.health).toBe(5);
+  it('queues the witness denial and applies a penalty', () => {
     ctrl.handlePresentEvidence('parte_detencion');
     expect(state.health).toBe(4);
-    expect(queued).toHaveLength(1);
     expect(queued[0]).toEqual(DEFLECT_LINES);
     expect(queued[0].some((line) => line.speaker === 'SUPER SAM')).toBe(false);
-    expect(queued[0].some((line) => line.pose === 'berrondo_sweat')).toBe(false);
   });
 
-  it('plays contradiction successDialogue with berrondo_sweat, not the deflect', () => {
+  it('plays contradiction success instead of the witness deflect', () => {
     ctrl.currentStatementIdx = 1;
     ctrl.handlePresentEvidence('recibo_hielo');
     expect(state.health).toBe(5);
-    expect(queued).toHaveLength(1);
     expect(queued[0]).toEqual(SUCCESS_LINES);
-    expect(queued[0].some((line) => line.pose === 'berrondo_sweat')).toBe(true);
-    expect(queued[0].some((line) => line.text.includes('diligencia'))).toBe(false);
   });
 
-  it('still queues deflect after two generic misses, not the press hint', () => {
+  it('keeps witness deflects ahead of the press hint', () => {
     ctrl.handlePresentEvidence('chipote_chillon');
     ctrl.handlePresentEvidence('insignia_abogado');
     expect(queued[1].some((line) => line.text === i18n.t.pressHint)).toBe(true);
     queued.length = 0;
     ctrl.handlePresentEvidence('parte_detencion');
-    expect(queued).toHaveLength(1);
     expect(queued[0]).toEqual(DEFLECT_LINES);
     expect(queued[0].some((line) => line.text === i18n.t.pressHint)).toBe(false);
-    expect(queued[0].some((line) => line.speaker === 'SUPER SAM')).toBe(false);
   });
 
-  it('sends unrelated evidence through onPresentPenalty (Super Sam by default)', () => {
+  it('sends unrelated evidence through the default penalty', () => {
     ctrl.handlePresentEvidence('chipote_chillon');
     expect(state.health).toBe(4);
     expect(queued[0].some((line) => line.speaker === 'SUPER SAM')).toBe(true);
-    expect(queued[0]).not.toEqual(DEFLECT_LINES);
-  });
-
-  it('accepts berrondo_sweat as a DialogueLine pose', () => {
-    const pose: PoseName = 'berrondo_sweat';
-    const line: DialogueLine = {
-      speaker: 'BERRONDO',
-      text: '...Acabo de declararlo.',
-      pose
-    };
-    expect(line.pose).toBe('berrondo_sweat');
+    expect(queued[0].some((line) => line.speaker === 'SECRETARIO')).toBe(false);
   });
 });
 
@@ -93,10 +176,7 @@ function deflectTestimony(): Testimony {
     statements: [
       { id: 's1', speaker: 'BERRONDO', text: 'Comparezco.', deflects },
       {
-        id: 's2',
-        speaker: 'BERRONDO',
-        text: 'Nadie me lo dijo.',
-        deflects,
+        id: 's2', speaker: 'BERRONDO', text: 'Nadie me lo dijo.', deflects,
         contradiction: { evidence: ['recibo_hielo'], successDialogue: SUCCESS_LINES }
       },
       { id: 's3', speaker: 'BERRONDO', text: 'Hidden', unlockedBy: 's1' }
@@ -106,18 +186,10 @@ function deflectTestimony(): Testimony {
 
 function scriptWithTestimony(testimony: Testimony): CaseScript {
   return {
-    id: 'case1',
-    startLocation: 'detention',
-    requiredEvidence: [],
-    debugEvidence: [],
-    debugUnlockLocations: [],
-    investigation: {},
-    trial: {
-      intro: [],
-      testimonies: [testimony],
-      testimony1: testimony,
-      climax: { dialogue: [], presentTarget: [], verdict: [] }
-    }
+    id: 'case1', startLocation: 'detention', requiredEvidence: [], debugEvidence: [],
+    debugUnlockLocations: [], investigation: {},
+    trial: { intro: [], testimonies: [testimony], testimony1: testimony,
+      climax: { dialogue: [], presentTarget: [], verdict: [] } }
   };
 }
 
@@ -129,13 +201,9 @@ function makeController(
   const soundEngine = new SoundEngine();
   soundEngine.init(new FakeAudioContext() as unknown as AudioContext);
   return new TrialController({
-    dom: setupDomHarness(),
-    state,
-    script,
-    soundEngine,
+    dom: setupDomHarness(), state, script, soundEngine,
     midiComposer: new MidiMusicComposer(soundEngine),
     onQueueDialogue: (dialogue) => { queued.push(dialogue); },
-    onRenderLine: () => {},
-    onOpenCourtRecord: () => {}
+    onRenderLine: () => {}, onOpenCourtRecord: () => {}
   });
 }

@@ -61,7 +61,7 @@ export const CASE1_EVIDENCE_ES: EvidenceCatalogMap = {
     id: 'rejilla_ducto',
     name: 'Rejilla del Ducto',
     icon: 'assets/rejilla_ducto.webp',
-    desc: 'Rejilla del ducto de la sala 2, 18 × 24 cm, cuatro tornillos con la pintura sin romper. Esquina inferior con el alambre cortado, doblado hacia arriba y vuelto a acomodar; dos marcas paralelas en el polvo del lateral interior. Un hilo de casimir crema con raya, recogido de la malla.',
+    desc: 'Rejilla del ducto de la sala 2, 18 × 24 cm, cuatro tornillos con la pintura sin romper. Alambre de la esquina inferior cortado; dos marcas paralelas en el polvo del lateral interior. Un hilo de casimir crema con raya, recogido de la malla.',
     detailedView: {
       imageAsset: 'assets/examine_rejilla_ducto.webp',
       caption: 'Rejilla de la sala 2 con cinta métrica del perito. El hilo recogido de la malla quedó embalado en sobre de papel encerado.'

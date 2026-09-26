@@ -3,6 +3,14 @@
 
 Documento de diseño narrativo, guión de diálogos y especificación técnica para el **Episodio 3** de **El Chapulín Colorado: Ace Attorney**.
 
+## 0.0 Bitácora de auditoría
+
+| Fecha | Lente | Resultado |
+|---|---|---|
+| 2026-09-25 | Contrato visual de la galería en los cortes de NARRADOR (juicios ES/EN) | Hallazgo corregido: el corte de Ñoño de pie en la galería durante el éxito de la contradicción 4 ahora usa `assets/bg_gallery_characters.webp` con `furniture: 'none'` en ambos idiomas y en el guion. Sin otros cortes visuales de narrador sobre la galería en los juicios del Caso 3. |
+
+**Cierre de esta pasada:** lente agotada tras recorrer los guiones de juicio, clímax y epílogo en español e inglés y cotejarlos con las menciones de juicio del spec. La regla de cámara se alinea con [[docs/specs/common/bg_gallery.md]].
+
 **Duración objetivo:** ~2 horas (6 fases: 3 días de investigación + 3 días de juicio, ~20 min cada una).
 
 ---
@@ -204,7 +212,7 @@ export interface EvidenceItem {
 Reglas:
 
 1. `GameStateManager` guarda `evidenceUpdateStage: Record<EvidenceId, number>`; `updateEvidence` avanza una etapa y satura en la última.
-2. `getEvidenceDescription(id)` devuelve `updates[stage - 1] ?? updatedDesc ?? desc`.
+2. `getEvidenceDescription(id)` es acumulativa: devuelve `desc` más las entradas `updates[0..stage-1]`, separadas por línea en blanco. `updatedDesc` (legado) sigue sustituyendo el texto.
 3. Si el jugador llega a una línea `updateEvidence` de una prueba que aún no tiene, se **añade** con la descripción de esa etapa (toast de alta), igual que hoy — nadie se bloquea por orden de visita.
 4. El aviso de actualización reutiliza el toast y el `realization` existentes. Las etapas afectan la lógica: la etapa 4 del clímax sólo acepta `microfono_oro` **con las dos revisiones aplicadas**; sin ellas el trofeo es sólo un arma sin dueño.
 
@@ -669,7 +677,7 @@ DEFENSA (donramon_slam): ¡Esta es la libreta de consultas de su clínica! ¡15 
 SUPER SAM (supersam_slam): ¡Un papel escrito por el propio acusado! ¡Objection!
 DEFENSA (donramon_point): ¡Entonces vea su bolsa de papel, la que el sargento levantó de la escena! ¡Ampolleta vacía y jeringa recién usada! ¡Mi cliente venía de inyectar a alguien en el callejón, señor fiscal, no de asaltar una caja fuerte!
 NONO (nono_llorando): ¡ERA YO! [sfx: realization]
-NARRADOR: (El joven Ñoño se pone de pie en la galería, con la cara empapada.)
+NARRADOR: (El joven Ñoño se pone de pie en la galería, con la cara empapada.) [bg: assets/bg_gallery_characters.webp; furniture: none]
 NONO (nono_llorando): ¡Era yo! ¡Yo bajé al callejón a las diez cuarenta y cinco porque me faltaba el aire! ¡El doctor YA estaba ahí, esperándome! ¡Lleva un año inyectándome a escondidas y sin cobrarme para que mi papi no se entere de que estoy malo del corazón!
 CHAPATIN (chapatin_enojado): ¡Muchacho imprudente! ¡Eso era secreto profesional!
 CHAPATIN (chapatin_conmovido): ...Y baje la voz, que se le va a subir la presión.

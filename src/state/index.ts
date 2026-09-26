@@ -24,12 +24,16 @@ export {
 export {
   SaveManager,
   // fallow-ignore-next-line unused-export
-  SAVE_STORAGE_KEY,
-  // fallow-ignore-next-line unused-export
   CURRENT_SAVE_VERSION,
   type SaveData,
   type TrialStateSnapshot
 } from './Private/SaveManager.js';
+export {
+  // fallow-ignore-next-line unused-export
+  SAVE_STORAGE_KEY,
+  // fallow-ignore-next-line unused-export
+  SAVE_SLOTS_KEY
+} from './Private/SaveSlots.js';
 
 // @Section(Singleton State Instance)
 export const gameState = new GameStateManager();

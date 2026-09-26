@@ -98,6 +98,10 @@ export type PoseName =
   | 'barriga_vendado'
   | 'barriga_shock'
   | 'barriga_enojado'
+  | 'barriga_sorpresa'
+  | 'barriga_reclamo'
+  | 'barriga_confundido'
+  | 'barriga_aliviado'
   | 'nono_idle'
   | 'nono_nervioso'
   | 'nono_llorando'
@@ -141,6 +145,22 @@ export type PoseName =
   | 'almanegra_shock'
   | 'almanegra_sweat'
   | 'almanegra_inconsciente'
+  | 'berrondo_idle'
+  | 'berrondo_definicion'
+  | 'berrondo_sweat'
+  | 'berrondo_panic'
+  | 'berrondo_breakdown'
+  | 'nicanor_idle'
+  | 'nicanor_escoba'
+  | 'nicanor_sweat'
+  | 'genoveva_idle'
+  | 'genoveva_reglamento'
+  | 'genoveva_sweat'
+  | 'genoveva_shock'
+  | 'secretario_leyendo'
+  | 'secretario_leyendo_senala'
+  | 'secretario_leyendo_pagina'
+  | 'secretario_leyendo_mira'
   | null;
 
 export type CutinName =
@@ -150,7 +170,7 @@ export type CutinName =
   | 'objection_culpable'
   | 'objection_inocente';
 
-export type FurnitureType = 'podium' | 'bench' | 'none';
+export type FurnitureType = 'podium' | 'bench' | 'judge-bench' | 'none';
 
 export interface DialogueLine {
   speaker?: SpeakerName;
@@ -169,6 +189,8 @@ export interface DialogueLine {
   addProfile?: ProfileId;
   updateProfile?: ProfileId;
   unlockLocation?: LocationId;
+  /** Progress flag set when this dialogue line is shown. */
+  setFlag?: string;
   furniture?: FurnitureType;
 }
 
@@ -244,6 +266,16 @@ export interface ContradictionFollowUp {
   successDialogue: DialogueLine[];
   pointTarget?: PointTargetContradiction;
   prompt?: string;
+  /** Optional ordered chain of evidence/profile/choice prompts after the contradiction. */
+  sequence?: TrialPresentStep[];
+}
+
+export interface TrialPresentStep {
+  evidence?: EvidenceId[];
+  profileTarget?: ProfileId[];
+  prompt?: string;
+  successDialogue: DialogueLine[];
+  choice?: ChoicePrompt;
 }
 
 export interface ContradictionRule {
@@ -265,6 +297,17 @@ export interface OpeningPresent {
   prompt?: string;
 }
 
+/**
+ * A plausible but premature present: the evidence really does bear on the
+ * statement, just not yet. The court answers and the player keeps their health.
+ * Hangs off the statement, not off `ContradictionRule`: a statement with no
+ * contradiction of its own can still deflect.
+ */
+export interface DeflectRule {
+  evidence: EvidenceId[];
+  dialogue: DialogueLine[];
+}
+
 export interface EvidenceDeflect {
   evidence: EvidenceId[];
   dialogue: DialogueLine[];
@@ -277,6 +320,8 @@ export interface Statement {
   text: string;
   pressText?: DialogueLine[];
   contradiction?: ContradictionRule;
+  /** Presents answered by the court instead of a penalty. */
+  deflect?: DeflectRule;
   /** Visible only after the statement with this id has been pressed. */
   unlockedBy?: string;
   /** Witness denial for these exhibits when they are not the resolving contradiction. */
@@ -288,7 +333,7 @@ export interface Testimony {
   witness: string;
   bgm: TrackName;
   statements: Statement[];
-  /** Overrides the day's penalty prosecutor (Case 5 day 3 after recusal). */
+  /** Overrides the day's penalty speaker for scripted court-role changes. */
   penaltyProsecutionSpeaker?: SpeakerName;
   penaltyProsecutionPose?: PoseName;
   /** Fallback deflects when the current statement has no matching entry. */
@@ -304,6 +349,8 @@ export interface ClimaxStage {
   presentTarget?: EvidenceId[];
   /** Replaces `presentTarget` when the court demands a person instead of an exhibit. */
   profileTarget?: ProfileId[];
+  /** Plausible evidence that bears on the climax question but is not its answer. */
+  deflects?: EvidenceDeflect[];
   /** Optional dialogue played upon presenting the correct exhibit, before pointing begins. */
   introDialogue?: DialogueLine[];
   /** Played when the player points at the wrong person or exhibit. */
@@ -339,6 +386,8 @@ export interface ClimaxDefinition {
   /** Opens the shared choices after this zero-based stage instead of after the final stage. */
   choicesAfterStage?: number;
   epilogue?: ClimaxEpilogue;
+  /** Health-0 guilty lines. When set, replaces the generic i18n game-over pair. */
+  guiltyDialogue?: DialogueLine[];
 }
 
 export interface TrialScript {
@@ -349,7 +398,7 @@ export interface TrialScript {
   testimony2?: Testimony;
   climax: ClimaxDefinition;
   openingPresent?: OpeningPresent;
-  /** Default Super Sam; Case 5 day 3 uses SECRETARIO after recusal. */
+  /** Defaults to Super Sam; scripts may override the penalty speaker. */
   penaltyProsecutionSpeaker?: SpeakerName;
   penaltyProsecutionPose?: PoseName;
 }

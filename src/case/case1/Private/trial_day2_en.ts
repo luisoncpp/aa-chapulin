@@ -128,7 +128,7 @@ export const CASE1_TESTIMONY_3_EN: Testimony = {
         { speaker: 'ALMA NEGRA', text: 'They fell, they rolled and they bounced, deckhand. And afterwards...', pose: 'almanegra_vendado' },
         { speaker: 'DEFENSA', text: 'Afterwards?', pose: 'donramon_idle' },
         { speaker: 'ALMA NEGRA', text: 'Afterwards somebody gathered them. One by one. I was flat on the floor with my ear to the boards and I heard him gather them, coin by coin, for a good while.', pose: 'almanegra_shock' },
-        { speaker: 'NARRADOR', text: 'A murmur runs through the gallery.', sfx: 'realization' },
+        { speaker: 'NARRADOR', text: 'A murmur runs through the gallery.', bg: 'assets/bg_gallery_characters.webp', furniture: 'none', sfx: 'realization' },
         { speaker: 'JUEZ', text: 'Good gracious! The attacker stayed to pick coins off the floor with an unconscious man at his feet?', pose: 'judge_shock' },
         { speaker: 'ALMA NEGRA', text: 'With an unconscious man and with the door wide open, Your Honor. That one was in no hurry... or could not be.', pose: 'almanegra_vendado' },
         { speaker: 'DEFENSA', text: '(Or could not be.)', pose: 'donramon_idle' }

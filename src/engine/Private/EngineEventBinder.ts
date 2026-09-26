@@ -6,6 +6,7 @@
 
 import type { SoundEngine } from '../../audio/index.js';
 import { closeHistoryModal, isAnyModalOpen } from './HistoryModal.js';
+import { closeSaveSlotModal } from './SaveSlotModal.js';
 import { bindEvidenceExamine } from './EvidenceExamine.js';
 import { bindCourtRecordEvents, type CourtRecordEventConfig } from './CourtRecordEvents.js';
 import type { InvestigationController } from './InvestigationController.js';
@@ -22,6 +23,7 @@ export interface EventBinderConfig extends CourtRecordEventConfig {
   onStartCase2?: () => void;
   onStartCase3?: () => void;
   onStartCase4?: () => void;
+  onStartCase5?: () => void;
   onStartTrialDebug?: () => void;
   onAdvance: () => void;
   onOpenHistory?: () => void;
@@ -46,7 +48,10 @@ export class EngineEventBinder {
 
   // @Section(Audio & Splash Bindings)
   private static bindStartAndAudio(config: EventBinderConfig): void {
-    const { dom, soundEngine, onStartGame, onStartCase0, onStartCase2, onStartCase3, onStartCase4, onStartTrialDebug, onToggleLanguage } = config;
+    const {
+      dom, soundEngine, onStartGame, onStartCase0, onStartCase2, onStartCase3,
+      onStartCase4, onStartCase5, onStartTrialDebug, onToggleLanguage
+    } = config;
     dom.btnStartGame?.addEventListener('click', /*onStartClick*/ () => onStartGame());
     dom.btnStartCase0?.addEventListener('click', /*onStartCase0Click*/ () => onStartCase0?.());
     dom.btnStartCase2?.addEventListener('click', /*onStartCase2Click*/ () => {
@@ -57,6 +62,9 @@ export class EngineEventBinder {
     });
     dom.btnStartCase4?.addEventListener('click', /*onStartCase4Click*/ () => {
       onStartCase4?.();
+    });
+    dom.btnStartCase5?.addEventListener('click', /*onStartCase5Click*/ () => {
+      onStartCase5?.();
     });
     dom.btnStartTrialDebug?.addEventListener('click', /*onStartTrialDebugClick*/ () => {
       onStartTrialDebug?.();
@@ -91,6 +99,10 @@ export class EngineEventBinder {
     dom.btnContinueGame?.addEventListener('click', /*onContinueClick*/ () => {
       onContinueGame?.();
     });
+    dom.btnCloseSaveSlots?.addEventListener('click', /*onCloseSaveSlots*/ (e) => {
+      e.stopPropagation();
+      closeSaveSlotModal(dom);
+    });
   }
 
   // @Section(Dialogue Advance Bindings)
@@ -120,7 +132,9 @@ export class EngineEventBinder {
       closeHistoryModal(dom);
     });
     document.addEventListener('keydown', /*onEscapeKey*/ (e) => {
-      if (e.code === 'Escape') closeHistoryModal(dom);
+      if (e.code !== 'Escape') return;
+      closeSaveSlotModal(dom);
+      closeHistoryModal(dom);
     });
   }
 

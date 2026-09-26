@@ -27,4 +27,4 @@ Escribir la bitácora de lentes y el esqueleto de pruebas relacionales **antes**
 
 - [[docs/lessons-learned/case-spec-fact-ledger.md]] — la lente determina el rendimiento; el ledger con columnas por riesgo
 - [[docs/lessons-learned/ledger-columns-follow-case-risk.md]] — reutilizar el método, no las columnas
-- [[tests/spec/Case5SpecConsistency.test.ts]] — las 11 pruebas relacionales que implementan este protocolo
+- El protocolo ya no se audita con pruebas documento-contra-documento ([[tests/spec/]] se eliminó por eso): la evidencia vive en las suites de contrato de caso, [[tests/case/ScriptIntegrity.test.ts]] y [[tests/state/CatalogIntegrity.test.ts]]

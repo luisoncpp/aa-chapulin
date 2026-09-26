@@ -34,6 +34,7 @@ export function notifyWitnessAddedStatement(
 export interface PressHintContext {
   testimony: Testimony | null;
   failedPresentCount: number;
+  pressedStatementIds: ReadonlySet<string>;
   script?: CaseScript;
 }
 
@@ -49,7 +50,7 @@ export function maybeQueuePressHint(
 
 function shouldQueuePressHint(ctx: PressHintContext): boolean {
   if (!ctx.testimony || ctx.failedPresentCount < 2) return false;
-  return testimonyHasHiddenStatements(ctx.testimony);
+  return testimonyHasHiddenStatements(ctx.testimony, ctx.pressedStatementIds);
 }
 
 function resolvePressHint(script?: CaseScript): DialogueLine[] {

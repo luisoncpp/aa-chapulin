@@ -15,9 +15,11 @@ const COURTROOM_URLS = [
   'assets/bg_defense.webp',
   'assets/bg_courtroom.webp',
   'assets/bg_judge.webp',
+  'assets/bg_gallery.webp',
   'assets/bg_witness.webp',
   'assets/court_podium.webp',
-  'assets/court_bench.webp'
+  'assets/court_bench.webp',
+  'assets/court_judge_bench.webp'
 ];
 
 export function prepareSceneVisuals(scene: InvestigationScene): void {
@@ -95,6 +97,11 @@ function addTestimony(testimony: Testimony | undefined, urls: Set<string>): void
     if (contradiction.followUp) {
       addLines(contradiction.followUp.successDialogue, urls);
       addPointTarget(contradiction.followUp.pointTarget, urls);
+      for (const step of contradiction.followUp.sequence ?? []) {
+        addLines(step.successDialogue, urls);
+        addLines(step.choice?.successDialogue, urls);
+        addLines(step.choice?.failDialogue, urls);
+      }
     }
   }
 }

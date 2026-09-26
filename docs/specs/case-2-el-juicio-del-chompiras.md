@@ -10,12 +10,13 @@ Documento de diseño narrativo, guión de diálogos y especificación técnica p
 | Fecha | Lente | Resultado |
 |---|---|---|
 | 2026-09-17 | Calendario y orden de actos | Cero hallazgos nuevos: el crimen queda el 21 de agosto, las jornadas el 22–23 y las referencias ES/EN coinciden. |
+| 2026-09-25 | Encuadres del narrador: galería del tribunal | Cero hallazgos. Se recorrieron los guiones completos de juicio, clímax y epílogo en ES/EN y sus menciones en este spec. Ningún narrador comenta la galería ni a sus espectadores; los cortes existentes muestran la lata del oro, la caída de Peterete o la sala de espera. No hay escena que cambiar. |
 
 **Regla de parada:** una nueva lente sin hallazgos sobre las secciones modificadas.
 
 ## 1. Resumen General del Caso (Case Synopsis)
 
-El legendario y milenario **"Chanfle de Oro"** (una estatuilla prehispánica maciza de oro puro y esmeraldas valorada en 5 millones de dólares) ha sido sustraída de la bóveda de máxima seguridad de la histórica **Hacienda del Marqués**, anexa al exclusivo **Gran Hotel & Restaurante de Doña Florinda**.
+El legendario y milenario **"Chanfle de Oro"** (una estatuilla prehispánica maciza de oro puro y esmeraldas que representa a una persona pateando una pelota, valorada en 5 millones de dólares) ha sido sustraído de la bóveda de máxima seguridad de la histórica **Hacienda del Marqués**, anexa al exclusivo **Gran Hotel & Restaurante de Doña Florinda**.
 
 La policía y el implacable fiscal **Super Sam** (*"Time is money!"*) encuentran en el interior de la bóveda sellada a **Aquiles Esquivel Madrazo, alias "El Chómpiras"**, un ex-carterista que intentaba reformarse trabajando como humilde limpiabotas y botones nocturno. El Chómpiras es hallado aturdido y tambaleante frente a la caja fuerte abierta y vacía, sosteniendo una pesada palanca de metal. Para Super Sam, se trata de un caso cerrado en tiempo récord (menos de 5 minutos).
 
@@ -72,7 +73,7 @@ timeline
 1. **Insignia de Abogado (`insignia_abogado`)**:
    - *Descripción*: La chapa oficial de Don Ramón. Demuestra su condición de letrado defensor (aunque esté algo abollada).
 2. **Chanfle de Oro (`chanfle_oro`)**:
-   - *Descripción*: Reliquia de oro puro macizo de 5 kg con incrustaciones de esmeraldas. Desaparecida de la caja fuerte de la hacienda.
+   - *Descripción*: Estatuilla prehispánica de oro puro macizo de 5 kg con incrustaciones de esmeraldas: una persona patea una pelota situada junto al pie, no la sostiene en la mano. Desaparecida de la caja fuerte de la hacienda.
 3. **Reloj de Péndulo Dañado (`reloj_pendulo`)**:
    - *Descripción*: Reloj electromecánico de la bóveda. Sus manecillas quedaron congeladas a las **9:15 PM** tras el corte eléctrico.
 4. **Informe de la Bóveda (`informe_boveda`)**:
@@ -520,11 +521,13 @@ DEFENSA (donramon_point): ¡PROTESTO! ¡Aquí está el Chanfle de Oro, oculto de
 SUPER SAM (supersam_slam): What?! ¡¿Una simple lata de betún para calzado?! [sfx: desk_slam]
 DEFENSA (donramon_slam): ¡Pesa más de 5 KILOS y de su junta brota polvo dorado! El señor Peterete vació el betún, introdujo la estatuilla de oro macizo y reselló la tapa con betún negro para que pareciera un inocente utensilio de trabajo. [sfx: desk_slam]
 CHAPULIN (chapulin_slam): ¡Y mis Antenitas de Vinil lo confirman — vibran justo hacia esta lata! ¡Ábranla y verán el brillo del oro! [sfx: chipote]
-NARRADOR: *¡¡¡CLAAANG-BRILLOOOO!!!* (La tapa cede y el resplandor dorado del Chanfle de Oro ilumina toda la sala del tribunal) [sfx: realization]
+NARRADOR: ¡¡¡CLAAANG-BRILLOOOO!!! (La tapa cede y el resplandor dorado del Chanfle de Oro ilumina toda la sala del tribunal) [sfx: realization]
 PETERETE (peterete_sweat): ¡G-grrrk! ¡E-esa es la lata del Chómpiras! ¡Esto solo demuestra que él escondió el oro en su propia lata! ¡Yo no tengo nada que ver!
 SUPER SAM (supersam_point): ¡Exactly! ¡El acusado tenía la lata y la palanca! ¡Sigue siendo el único culpable posible!
 DEFENSA (donramon_idle): (¡Rayos! Tienen razón, el oro en la lata del Chómpiras no incrimina directamente al Peterete... a menos que demuestre que el Chómpiras no pudo haberlo hecho, y que el Peterete tenía cómo abrir la caja.)
 ```
+
+La placa de esta revelación muestra la lata abierta sobre la mesa de la defensa, ante el fondo de `bg_defense`; no usa el ángulo de la fiscalía. Mesa, lata y pared comparten una cámara apenas elevada sobre la mesa: se ve el frente de la lata y una abertura poco profunda. Los paneles de madera deben conservar la nitidez y el diseño del fondo del juego.
 
 #### Elección de Prueba Clímax 2: La Inocencia del Chómpiras
 - **Presentar**: `frasco_valeriana` o `aroma_dulce`.

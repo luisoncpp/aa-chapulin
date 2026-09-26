@@ -59,14 +59,15 @@ sequenceDiagram
 7. **Evidence Automatic Grant**: If `line.addEvidence` is present, calls `gameState.addEvidence()`, plays realization SFX, and shows `#game-notification` (`notifEvidenceAdded`).
 8. **Evidence Description Update**: If `line.updateEvidence` is present, `gameState.updateEvidence()` applies catalog `updatedDesc`. Newly acquired items get the add toast; already owned items get `notifEvidenceUpdated` (same toast + realization SFX as a location unlock).
 9. **Location Unlock**: If `line.unlockLocation` is present and newly unlocked, realization SFX + `notifLocationUnlocked`.
-10. **Speaker Tag**: Updates `#speaker-name` text content.
-11. **Typewriter Effect**: Ordinary dialogue starts a 28ms `setInterval` timer appending characters one by one, playing `soundEngine.playTextBlip()` on every second non-whitespace character. UI instruction lines marked `instant` are committed in one step without the timer or text-blip SFX.
+10. **Progress Flag**: If `line.setFlag` is present, records it in `gameState.flags` as the line is displayed; save/load preserves it.
+11. **Speaker Tag**: Updates `#speaker-name` text content.
+12. **Typewriter Effect**: Ordinary dialogue starts a 28ms `setInterval` timer appending characters one by one, playing `soundEngine.playTextBlip()` on every second non-whitespace character. UI instruction lines marked `instant` are committed in one step without the timer or text-blip SFX.
 
 ## 4. Reads
 - `engine.dialogueQueue`
 - `typewriter.isTyping`
 - `typewriter.fullText`
-- `line` properties (`bg`, `bgm`, `sfx`, `cutin`, `pose`, `speaker`, `text`, `addEvidence`, `updateEvidence`, `unlockLocation`)
+- `line` properties (`bg`, `bgm`, `sfx`, `cutin`, `pose`, `speaker`, `text`, `addEvidence`, `updateEvidence`, `unlockLocation`, `setFlag`)
 
 ## 5. Writes
 - `typewriter.isTyping`

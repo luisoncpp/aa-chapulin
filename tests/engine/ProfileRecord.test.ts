@@ -10,6 +10,8 @@ import type { DomElements } from '../../src/engine/Private/DomElements.js';
 import { ModalManager } from '../../src/engine/Private/ModalManager.js';
 import { TrialController } from '../../src/engine/Private/TrialController.js';
 import { GameStateManager } from '../../src/state/index.js';
+import { i18n } from '../../src/i18n/index.js';
+import type { DialogueLine } from '../../src/types/index.js';
 import { FakeAudioContext } from '../fakes/FakeAudioContext.js';
 import { setupDomHarness } from '../fakes/DomHarness.js';
 
@@ -123,5 +125,37 @@ describe('Acta de Personajes in the Court Record', () => {
 
     dayTrial.handlePresentProfile('perfil_almanegra');
     expect(dayTrial.currentTestimony?.witness).toBe('Alma Negra');
+  });
+
+  it('keeps the formal penalty for repeated wrong opening profiles', () => {
+    const dayState = new GameStateManager();
+    dayState.beginNewCase(case1);
+    dayState.beginNextTrialDay(case1.adjournment!);
+    dayState.applyProgressionRules(case1);
+    dayState.populateTrialEvidence();
+    const queued: DialogueLine[][] = [];
+    const dayTrial = new TrialController({
+      dom, state: dayState, script: case1,
+      soundEngine: trial.deps.soundEngine, midiComposer: trial.deps.midiComposer,
+      onQueueDialogue: (dialogue, cb) => {
+        queued.push(dialogue);
+        cb?.();
+      },
+      onRenderLine: () => undefined,
+      onOpenCourtRecord: () => undefined
+    });
+
+    dayTrial.startTrial(/*skipFade=*/ true);
+    vi.advanceTimersByTime(1200);
+    dayTrial.handlePresentProfile('perfil_tripaseca');
+    dayTrial.handlePresentProfile('perfil_tripaseca');
+
+    expect(dayState.health).toBe(3);
+    expect(queued.some((dialogue) => dialogue.some((line) => line.text === i18n.t.pressHint)))
+      .toBe(false);
+    expect(queued.some((dialogue) => dialogue.some((line) => line.speaker === 'SUPER SAM')))
+      .toBe(true);
+    expect(queued.some((dialogue) => dialogue.some((line) => line.speaker === 'JUEZ')))
+      .toBe(true);
   });
 });

@@ -42,15 +42,33 @@ export const UI_ES: UiTranslations = {
   hudHistoryTitle: 'Historial de Diálogos (Message History)',
   historyModalTitle: 'HISTORIAL DE DIÁLOGOS',
   historyEmpty: 'Todavía no hay diálogos en el historial.',
+  slotSaveTitle: 'GUARDAR PARTIDA',
+  slotLoadTitle: 'CARGAR PARTIDA',
+  slotEmpty: 'Vacío',
+  slotOverwrite: '¿Sobrescribir esta partida?',
+  slotDeleteAsk: '¿Borrar esta partida?',
+  slotYes: 'Sí',
+  slotNo: 'No',
+  slotDelete: 'Borrar',
+  slotDay: (day: number) => `Día ${day}`,
+  caseSlotLabel: {
+    case0: 'Tutorial',
+    case1: 'Acto 2',
+    case2: 'Acto 1',
+    case3: 'Acto 3',
+    case4: 'Acto 4',
+    case5: 'Acto 5'
+  },
 
   splashTitle: 'EL CHAPULÍN COLORADO',
   splashSubtitle: 'ACE ATTORNEY: EL CASO DEL ESCUADRÓN COLORADO',
   splashTip: '¡Haz clic abajo para activar la música MIDI procedimental y comenzar!',
-  btnStartGame: '🔍 ACTO 2: EL ESCUADRÓN COLORADO',
+  btnStartGame: '🔍 ACTO 2: ROBO EN EL MUSEO',
   btnStartCase0: '⚖️ TUTORIAL: EL PRIMER JUICIO DE DON RAMÓN',
   btnStartCase2: '🔍 ACTO 1: EL JUICIO DEL CHÓMPIRAS',
   btnStartCase3: '🔍 ACTO 3: LA NOCHE DEL GRITO',
   btnStartCase4: '🔍 ACTO 4: CRIMEN EN EL GRAN HOTEL',
+  btnStartCase5: '🔍 ACTO 5: EL TOMO TRECE',
   btnStartTrialDebug: '⚖️ MODO DEBUG: INICIAR EN JUICIO',
   btnContinue: '📂 CONTINUAR PARTIDA (CONTINUE)',
   langToggleLabel: '🌐 Idioma: Español',
@@ -62,6 +80,7 @@ export const UI_ES: UiTranslations = {
     cross_exam_allegro: 'Interrogatorio — Allegro',
     cross_exam_presto: 'Interrogatorio — Presto',
     cross_exam_final: 'Interrogatorio Final — Confrontación',
+    cross_exam_careo: 'Interrogatorio Final — Careo',
     objection: '¡No contaban con mi astucia!',
     pursuit: '¡Que no panda el cúnico!',
     truth: 'Verdad — Cerrando el Cerco',
@@ -75,7 +94,10 @@ export const UI_ES: UiTranslations = {
     victory: '¡Síganme los buenos!',
     epilogue: '¡Síganme los buenos!',
     detention_center: 'Centro de Detención — Elegía',
-    kermes: 'Kermés — Feria Popular'
+    game_over: 'Culpable — Elegía del Veredicto',
+    kermes: 'Kermés — Feria Popular',
+    archivo: 'Archivo Judicial — Papel y Polvo',
+    cross_exam_grave: 'Interrogatorio — Grave'
   },
 
   locationMuseum: 'Museo de Antigüedades y Curiosidades - Escena del Crimen',
@@ -97,9 +119,11 @@ export const UI_ES: UiTranslations = {
   notifNoSaveFound: 'No se encontró ninguna partida guardada.',
   caseCompleteTitle: 'Caso concluido',
   caseCompleteBody: 'Has resuelto el caso.',
+  case5CompleteTitle: 'El Tomo Trece',
+  case5CompleteBody: 'DIECISIETE MESES',
 
   gameOverJudgeText: '¡La defensa ha agotado sus oportunidades! Declaro al acusado... ¡CULPABLE!',
   gameOverDefenseText: '¡Oh, no! ¡Debo intentarlo de nuevo desde el principio del juicio!',
-  penaltyProsecutionText: 'Time is money, and you are wasting mine! Esa prueba no contradice en absoluto el testimonio.',
+  penaltySecretaryText: 'Esa prueba no contradice en absoluto el testimonio.',
   penaltyJudgeText: '¡La fiscalía tiene razón! Penalizaré a la defensa por presentar pruebas irrelevantes.'
 };

@@ -7,13 +7,15 @@ import type { DialogueLine } from '../../../types/index.js';
 import { CASE2_CLIMAX_CHOICES } from './climax_choices.js';
 import { assembleCase2Climax } from './climax_shared.js';
 
+const GOLD_REVEAL_PLATE = 'assets/plate_revelacion_chanfle_lata.webp';
+
 const GOLD_REVEAL: DialogueLine[] = [
   { cutin: 'objection_protesto', speaker: 'DEFENSA', text: '¡PROTESTO!', sfx: 'whoosh', bgm: 'pursuit', pose: 'donramon_point' },
   { speaker: 'DEFENSA', text: "¡Aquí está el Chanfle de Oro, oculto dentro de la 'Lata de Grasa de Zapatos' del Chómpiras!", pose: 'donramon_point' },
   { speaker: 'SUPER SAM', text: 'What?! ¡¿Una simple lata de betún para calzado?!', pose: 'supersam_slam', sfx: 'desk_slam' },
   { speaker: 'DEFENSA', text: '¡Pesa más de 5 KILOS y de su junta brota polvo dorado! Peterete vació el betún, metió la estatuilla y reselló la tapa.', pose: 'donramon_slam', sfx: 'desk_slam' },
   { speaker: 'CHAPULIN', text: '¡Y mis Antenitas de Vinil lo confirman — vibran justo hacia esta lata! ¡Ábranla y verán el brillo del oro!', pose: 'chapulin_slam', sfx: 'chipote' },
-  { speaker: 'NARRADOR', text: '*¡¡¡CLAAANG-BRILLOOOO!!!* (La tapa cede y el resplandor del Chanfle de Oro ilumina la sala)', sfx: 'realization' },
+  { speaker: 'NARRADOR', text: '¡¡¡CLAAANG-BRILLOOOO!!! (La tapa cede y el resplandor del Chanfle de Oro ilumina la sala)', sfx: 'realization', bg: GOLD_REVEAL_PLATE, furniture: 'none' },
   { speaker: 'PETERETE', text: '¡G-grrrk! ¡E-esa es la lata del Chómpiras! ¡Esto solo demuestra que él escondió el oro en su propia lata! ¡Yo no tengo nada que ver!', pose: 'peterete_sweat' },
   { speaker: 'SUPER SAM', text: '¡Exactly! ¡El acusado tenía la lata y la palanca! ¡Sigue siendo el único culpable posible!', pose: 'supersam_point' },
   { speaker: 'DEFENSA', text: '(¡Rayos! Tienen razón, el oro en la lata del Chómpiras no incrimina al Peterete... a menos que demuestre que el Chómpiras no pudo haberlo hecho.)', pose: 'donramon_idle' }

@@ -11,6 +11,7 @@ import { hideCaseComplete } from './CaseComplete.js';
 import { dismissSplash, loadCase, type LaunchHost } from './EngineLaunch.js';
 import { applyTrialSnapshot, persistTrialSnapshot } from './TrialSnapshot.js';
 import { ModalManager } from './ModalManager.js';
+import { closeSaveSlotModal, openSaveSlotModal, type SlotPickerMode } from './SaveSlotModal.js';
 import { VisualEffects } from './VisualEffects.js';
 
 export interface PersistenceHost extends LaunchHost {
@@ -20,9 +21,14 @@ export interface PersistenceHost extends LaunchHost {
 }
 
 export function saveGame(host: PersistenceHost, storage?: Storage): boolean {
+  return commitSave(host, /*slotIndex=*/ 0, storage);
+}
+
+function commitSave(host: PersistenceHost, slotIndex: number, storage?: Storage): boolean {
   const activeStorage = storage ?? host.storage;
   const trialSnapshot = host.state.mode === 'TRIAL' ? persistTrialSnapshot(host.trial) : undefined;
-  const success = SaveManager.save(host.state.exportState(trialSnapshot), activeStorage);
+  const payload = host.state.exportState(trialSnapshot);
+  const success = SaveManager.saveToSlot(slotIndex, payload, activeStorage);
   if (!success) return false;
   host.soundEngine.playRealization();
   VisualEffects.showNotification(host.dom.gameNotificationEl, i18n.t.notifGameSaved);
@@ -30,8 +36,37 @@ export function saveGame(host: PersistenceHost, storage?: Storage): boolean {
   return true;
 }
 
+export function openSavePicker(host: PersistenceHost, mode: SlotPickerMode): void {
+  const storage = host.storage;
+  openSaveSlotModal({
+    dom: host.dom,
+    mode,
+    readSlots: () => SaveManager.listSlots(storage) ?? [],
+    onPick: (index) => pickSlot(host, mode, index),
+    onDelete: (index) => deleteAndRefresh(host, mode, index)
+  });
+}
+
+function pickSlot(host: PersistenceHost, mode: SlotPickerMode, index: number): void {
+  const ok = mode === 'save' ? commitSave(host, index) : loadFromSlot(host, index);
+  if (ok) closeSaveSlotModal(host.dom);
+}
+
+function deleteAndRefresh(host: PersistenceHost, mode: SlotPickerMode, index: number): void {
+  if (!SaveManager.deleteSlot(index, host.storage)) return;
+  updateContinueButton(host, host.storage);
+  openSavePicker(host, mode);
+}
+
+function loadFromSlot(host: PersistenceHost, index: number, storage?: Storage): boolean {
+  return finishLoad(host, SaveManager.loadSlot(index, storage ?? host.storage));
+}
+
 export function loadGame(host: PersistenceHost, storage?: Storage): boolean {
-  const data = SaveManager.load(storage ?? host.storage);
+  return finishLoad(host, SaveManager.loadNewest(storage ?? host.storage));
+}
+
+function finishLoad(host: PersistenceHost, data: SaveData | null): boolean {
   if (!data) {
     VisualEffects.showNotification(host.dom.gameNotificationEl, i18n.t.notifNoSaveFound);
     return false;

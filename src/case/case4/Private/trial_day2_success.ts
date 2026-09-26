@@ -107,7 +107,7 @@ export const CASE4_D2_T2_BAUL_SUCCESS: DialogueLine[] = [
   { speaker: 'RUFINO', text: 'Yo... yo no quería que el nombre de este hotel se viera envuelto en semejante...', pose: 'rufino_panic' },
   { speaker: 'SUPER SAM', text: '¿En semejante QUÉ?', pose: 'supersam_point' },
   { speaker: 'RUFINO', text: '¡Lo encontré muerto en mi habitación! Me asusté. Lo metí en el baúl y pedí que lo subieran.', pose: 'rufino_sweat' },
-  { speaker: 'NARRADOR', text: 'Un murmullo recorre la galería. El monóculo del conde tiembla, pero no llega a caerse.', bgm: 'suspense' },
+  { bg: 'assets/bg_gallery_characters.webp', furniture: 'none', speaker: 'NARRADOR', text: 'Un murmullo recorre la galería. El monóculo del conde tiembla, pero no llega a caerse.', bgm: 'suspense' },
   { speaker: 'BOTIJA', text: '...¿Yo lo subí? ¿Yo mandé ese baúl?', pose: 'botija_nervioso' },
   { speaker: 'RUFINO', text: 'Usted movió un baúl, buen hombre. No tenía por qué saber lo demás.', pose: 'rufino_sweat' },
   { speaker: 'BOTIJA', text: 'Don Ramón, yo revisé que la faja fuera enterita. Con estas manos.', pose: 'botija_llorando' },

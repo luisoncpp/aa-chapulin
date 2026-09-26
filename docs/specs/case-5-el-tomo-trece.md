@@ -1,6 +1,6 @@
 # Caso 5: El Tomo Trece — El Último Juicio de Don Ramón
 
-> **Estado: propuesta completa, sin implementar.** Ejecuta [[docs/plans/case-5-el-tomo-trece.md]] y [[docs/plans/arco-general-el-tomo-trece.md]] con cuatro ajustes aprobados por el autor, listados en §0. Contiene spoilers completos de los cinco episodios. Dirección de arte: [[docs/specs/artistic-direction.md]]. Configurado en [[src/case/case.group.md]].
+> **Estado: implementado en código**. La secuencia interactiva de §17.2 (esquina → oficio → hipótesis → cedulario → Genoveva → vale) está disponible en ES/EN; la identificación física de la ficha sigue reservada para E4. El plan [[docs/plans/case-5-el-tomo-trece.md]] no se reescribe aquí. Contiene spoilers completos de los cinco episodios. Dirección de arte: [[docs/specs/artistic-direction.md]]. Configurado en [[src/case/case.group.md]]. El BGM `truth` no se usa en este episodio.
 
 ### 0.0 Bitácora de auditoría ([[docs/lessons-learned/spec-audit-lens-log.md]])
 
@@ -24,8 +24,14 @@
 | 16 | **Canon heredado ↔ specs fuente** (cada re-declaración de los Casos 0–4 cotejada contra su documento fuente) | 2026-09-17 | 2 hallazgos aplicados: el residuo de la bolsa del Caso 1 quedaba cerrado sólo a medias —ahora Sam ata en pantalla la bolsa del museo a su oficina (I35)— y el panel E citaba un acta que el Caso 4 nunca produce, cuando su documento del 24 de octubre es el telegrama (I37). Aceptados sin arreglo por compatibles: «salió periódico», «lo condené yo mismo», «cuatro años de condena», «tengo el papel», «prueba decomisada». |
 | 17 | **Justicia de fallos con el nuevo conocimiento del jugador** (líneas de fallo de señalamientos, etapas y elección contra R1–R4) | 2026-09-17 | 4 hallazgos aplicados: el `failDialogue` de la elección diagnosticaba con las antenitas un error que no cometieron todas las opciones; la fila 3 de §20.1 decía «tres días» donde el acuse da cinco (I39); `cartoncitos` afirmaba hechos nunca demostrados sobre Nicanor y `zoclo` una antigüedad sin ancla; el fallo de la etapa 3 enunciaba un criterio que `tomo_caido` satisfacía literalmente. Convertidos en pruebas. |
 | 18 | **Re-verificación en paralelo de las lentes 15–17** sobre el documento corregido (confirma los arreglos y audita su radio de explosión) | 2026-09-17 | 9 hallazgos aplicados: el arreglo del Chómpiras asignaba un «turno de noche» que el Caso 4 contradice con escenas diurnas (corregido a «corría entre los dos», I36 actualizado); dos antigüedades de encierro sin sustento («ocho meses de proceso» y «ocho meses adentro» vs el juicio de dos días del Caso 2, I36); el criterio de la etapa 3 aún satisfacía `expediente_casimiro` (ahora «en ese estante… que no pudiera haber salido de él»); el fallo de la etapa 2 era falso para la insignia; «y son los últimos» afirmaba un estado de puntos no controlado; la fila de §21 conservaba la etiqueta «cliente misterioso»; el arte del panel C le ponía «etiqueta de botica» a un brebaje casero de Clotilde; D3-T2 decía «hallada» el 28 de agosto de una ficha hallada el 30; §3 prometía el tic de Casimiro «dos veces por frase» que el guion no ejecuta. Aceptados sin arreglo: 26 vs 20 años del Sargento (métricas distintas) y la Chimoltrufia sin ancla de su traslado al juzgado (su personaje es la sustituta eterna). |
-| 19 | **Segunda re-verificación en paralelo de las lentes 15–17** (confirma los arreglos de la 18 y audita su radio) | 2026-09-17 | 11 hallazgos aplicados: el relato §10.1 recordaba un intercambio del estrado invertido (Casimiro presumió «uno estudia el producto» en el Caso 0; la réplica «no estudió nada» era del Tripaseca en el Caso 1); el «corría entre los dos» implicaba un solo hotel cuando el Chómpiras pasó del de Florinda al Buena Vista (I36 reformulada); el Sargento pasó de Preventiva a judicial sin ancla (resuelto: «me pasaron a judicial con el ascenso»); su rencor citaba «poli» tres veces que el Caso 3 no muestra (resuelto con el regaño real del micrófono); L9 conservaba «hallada» con la fecha del abandono y fechaba el decomiso al día del crimen; la libreta de Casimiro citaba una fotografía de periódico sin ancla; «dos tercios del juicio» no reconstruía contra el Caso 0 (ahora «hasta el final del juicio»); «Con la mano levantada» contradecía el manotazo del Caso 1. Aceptados sin arreglo: la vivienda 4 de Don Ramón no se funde con la del Caso 0 (calles distintas) y la ventana de ascenso de octubre cabe entre el 26 y el 31. |
+| 19 | **Segunda re-verificación en paralelo de las lentes 15–17** (confirma los arreglos de la 18 y audita su radio) | 2026-09-17 | 11 hallazgos aplicados: el relato §10.1 recordaba un intercambio del estrado invertido (Casimiro presumió «uno estudia el producto» en el Caso 0; la réplica «no estudió nada» era del Tripaseca en el Caso 1); el «corría entre los dos» implicaba un solo hotel cuando el Chómpiras pasó del de Florinda al Buena Vista (I36 reformulada); el Sargento pasó de Preventiva a judicial sin ancla (resuelto: «me pasaron a judicial con el ascenso»); su rencor citaba «poli» tres veces que el Caso 3 no muestra (resuelto con el regaño real del micrófono); L9 conservaba «hallada» con la fecha del abandono y fechaba el decomiso al día del crimen; la libreta de Casimiro citaba una fotografía de periódico sin ancla; «dos tercios del juicio» no reconstruía contra el Caso 0 (ahora «hasta el final del juicio»); «Con la mano levantada» contradecía el manotazo del Caso 1. Aceptado entonces sin arreglo y **revocado en la lente 22**: la vivienda de Don Ramón se escribía «4», cuando el canon de la serie la fija en la **72** (la del Caso 0 sí es otra vecindad) y la ventana de ascenso de octubre cabe entre el 26 y el 31. |
 | 20 | **Tercera re-verificación en paralelo de las lentes 15–17** | 2026-09-17 | 5 hallazgos aplicados: «cuatro meses» de la bolsa vacía rebasaban el 28 de agosto (ahora «más de tres meses», dos vistas); el «gasto de preparación» de la boleta del Caso 3 era temporalmente imposible —la redención precede en doce días a la concepción del crimen— (ahora «gasto del culpable» en L5, §4.3, `panel_d` y F12); la memoria del Juez sobre el Tomo Trece decía «no pudo preguntárselo» cuando en el Caso 1 sí preguntó y la objeción cortó (cláusula retirada); «salió periódico» recibió ancla en pantalla («ficha incluida» en boca de Berrondo); el glosario ganó las entradas de Toribio, Nazario y Casimiro que el Caso 0 le exige, y su nota del Acta de Personajes ya no reserva la barra de pestañas al Caso 1. La lente de justicia rindió cero hallazgos en esta pasada (criterio de parada parcial). |
+| 21 | **Re-corrida con subagentes en paralelo de las lentes históricas de mayor rendimiento** (relaciones entre vistas, simulación de agentes y presentaciones, canon heredado ↔ specs fuente, defensa adversaria del culpable) **más las catastróficas menos revisadas** (contrato de motor, persistencia y tipos; solvabilidad, gating y conteos). Cada subagente sólo encontró; los arreglos se aplicaron en una sola pasada coordinada | 2026-09-18 | 24 hallazgos reportados, 20 únicos tras deduplicar 4 solapamientos entre lentes, todos aplicados: el `followUp` de D3-T1 leía en estrado las dos tiras del 4-XII un día antes de que E3 lo presentara como descubrimiento (I40); la defensa del día 2 alegaba el ofrecimiento del fichero sin fuente en pantalla y el Juez del día 3 lo contradecía (I41); Berrondo se declaraba síndico desde 1963 contra su «primera sindicatura» (I42); la coartada adjudicaba los ciento veinte escalones al tramo corto (I43); el fiscal firmaba 120 oficios/semana y 600/mes (I44); la caldera «llevaba cuatro días» dicho el 4 y el 6 (I45); la regla de §7.1 «la línea siguiente sin `bg` devuelve la cámara» era falsa en investigación y las 6 líneas tras lámina/relato no re-estampaban `bg` (I46); Genoveva era despedida con la carpeta de vales que E3 y §18.4 consultan (I47); el Juez ordenaba «esa fotografía» y el alguacil traía sólo el tomo (I48); las filas 3 y 4 de §20.1 negaban a Don Ramón el citatorio del lunes e invertían Nicanor/Sargento en el relevo (I49); §25 omitía las uniones cerradas `EvidenceId`/`ProfileId`/`PoseName` en un inventario declarado exhaustivo (I50); la cita del panel B perdía tres renglones y escribía «— 5 min.» donde la fuente imprime «5 min.» (I51); la etapa 2 del perfil de Berrondo adelantaba un dato que GIRO 2 no ejecuta (I52); la fila del actuario en §21 citaba como siembra y cobro bloques que no los contienen (I53); el alcance de las 47 partidas se deslizaba del depósito al huacal; §4.2 no declaraba ser vista derivada y colocaba el montacargas a las 16:45 fuera del presupuesto de §24.B (I54, I12). Solvabilidad y gating rindieron cero bloqueos (criterio de parada parcial de esa lente). |
+| 22 | **Canon de la serie sobre datos de identidad del elenco** (domicilios, nombres y números que el público ya conoce de *El Chavo del 8* / *El Chapulín Colorado*) | 2026-09-18 | 1 hallazgo aplicado: el domicilio de Don Ramón se escribía «vivienda 4» en las nueve líneas que lo citan (celda, vecindad, D2-T1, clímax E4 y E5) y en la lámina `examine_esquina_tarjeta`; el canon lo fija en la **casa 72** de la vecindad. Unificado a 72 en ES y EN y cubierto con prueba estructural. No se tocó la vivienda 4 del Caso 0 (domicilio de Toribio Pantoja, otra vecindad) ni el «setenta y nueve» del Caso 3 (edad del Doctor Chapatín). |
+| 23 | **Física del soborno de Super Sam** (lente abierta por el autor al leer D3-T2: «¿le pagaron pero perdió dinero?») | 2026-09-20 | 4 hallazgos aplicados, uno de ellos **revoca I35**. (a) El cobro llegaba dentro de una bolsa de lona, imposible: esa noche Sam **pierde** una bolsa y el día 1 del Caso 1 sube al estrado sin nada al hombro; ahora le devuelven un bulto envuelto en papel de estraza. (b) El cobro pesaba «seis kilos», que son la bolsa entera y no la sexta parte que el personaje declara haber perdido; ahora es **un kilo de seis**. (c) El robo del despacho no tenía fecha y el jugador no podía situarlo; ahora es la **mañana del 28 de agosto**, y Sam explica por qué no levantó el acta. (d) La presión 5 enumeraba en tríos con voz de informe; reescrita para que Sam **cuente**, que es su gesto, y se cite a sí mismo con la evasiva del Caso 1. I35 pasa de «dos bolsas distintas» a **una sola, la suya**: la que el Tripaseca usa como arma y deja vacía en el patio. El residuo del Caso 1 se cierra más fuerte, no más flojo. |
+| 24 | **Legibilidad de pruebas y presentaciones desviadas** (descripción del Acta ↔ prueba prematura ↔ contradicción del mismo testimonio) | 2026-09-20 | 1 hallazgo aplicado: `oficio_diligencia` no hacía legible en su descripción la copia enviada a la Sindicatura, y `huacal_9` podía presentarse razonablemente contra D3-T2.3 sin `deflect`; corregidos y convertidos en I55. |
+| 25 | **Cadena de conocimiento antes del vale** (aviso recibido ↔ nombre de Don Ramón ↔ consulta registrada ↔ procedencia de la esquina; simulación de las presentaciones de D4-T1) | 2026-09-21 | La consulta del cajón se infería de un vale demasiado específico y la pregunta trataba el registro como requisito físico. Replanteado el bloque: la esquina abre la investigación, oficio y acuse acreditan que el nombre estaba al alcance de Berrondo, y un vale sin calle confirma una consulta al cedulario el lunes. La ficha mutilada sólo se identifica en E4. Invariante I56. |
+| 26 | **Contrato visual de la galería en líneas del narrador** (descripciones visuales de la galería del tribunal y reacciones de sus espectadores en los cuatro días, testimonios, éxitos, clímax y epílogo; ES/EN y guion ↔ fuentes; excluye metáforas y galerías de museo) | 2026-09-25 | 28 eventos del guion sincronizados: 56 líneas fuente ES/EN y 28 entradas españolas del spec usan `bg_gallery_characters` con `furniture: 'none'`. Se corrigió la línea especial del forense del día 4. El barrido final no dejó descripciones o reacciones de la galería sin el fondo requerido. |
 
 **Regla:** cada nueva pasada declara aquí su lente antes de empezar; repetir una lente no cuenta como auditoría. El criterio de parada es una pasada con lente nueva que rinde cero hallazgos.
 
@@ -57,7 +63,7 @@ Caso 5 es el **último episodio** en orden de juego. Su trabajo es cerrar el arc
 | Locaciones de investigación | **12** (3 / 4 / 3 / 2). |
 | Giros | **4**, uno al cierre de cada jornada de juicio (el cuarto abre la jornada 4 en lugar de cerrarla). |
 | Entradas del Acta (pruebas) | **23**, todas con al menos una ranura de presentación (§5 y §10–18). |
-| Fichas del Acta de Personajes | **10**, dos con ranura de señalamiento. |
+| Fichas del Acta de Personajes | **10**, tres con ranura de presentación: Casimiro, Genoveva y Berrondo. |
 | Señalamientos (Present & Point) | 2. |
 | Penalizaciones | 5 puntos por jornada; se restauran al aplazar. |
 
@@ -70,7 +76,7 @@ Caso 5 es el **último episodio** en orden de juego. Su trabajo es cerrar el arc
 1. Durante los días 1 y 2, Berrondo es **coadyuvante de la fiscalía**. El Juez dice en pantalla que no se le toma declaración a un abogado porque la defensa esté incómoda. El jugador **no puede** tocarlo.
 2. El día 2 Berrondo **se ofrece voluntariamente** a declarar. Es él quien abre esa puerta, no la defensa.
 3. El día 3 declara ya **en calidad de investigado**, por decisión del Juez tras el giro 2.
-4. El **señalamiento interactivo de una persona** ocurre una sola vez, en la etapa 1 del clímax, y lo ordena el Juez. La defensa puede formular verbalmente la acusación después sin abrir otro señalamiento.
+4. La **acusación interactiva del culpable** ocurre una sola vez, en la etapa 1 del clímax, y la ordena el Juez. Antes se presenta el perfil de Casimiro para identificar a la víctima y el de Genoveva para pedir un registro, sin tratarlos como sospechosos. La defensa puede reiterar verbalmente la acusación después sin abrir otro señalamiento.
 
 Ningún testigo del episodio es tratado como sospechoso: Nicanor, el Sargento, el Señor Barriga, el Chómpiras, Super Sam y Genoveva son **honestos**, y de los seis, cuatro están equivocados y ninguno miente. Don Ramón **no** verbaliza que nunca antes acusó a nadie: ese recurso se gastó en el Caso 3 y repetirlo lo vuelve tic.
 
@@ -102,7 +108,7 @@ También está ahí la **máquina de escribir Olivetti Lexikon 80, partida 41 de
 
 Entre agosto y octubre, Don Ramón le destruyó **cuatro clientes en cuatro juicios seguidos**. No es venganza: el abogado es malo para el negocio y, además, es la única persona viva que ha visto las cuatro escenas. Está a una conexión de ver el patrón.
 
-El **29 de noviembre** llegan a la sindicatura dos cosas el mismo día: la **notificación** de que el 4 de diciembre, a las 17:00, un sentenciado abrirá el huacal 9 delante del actuario Hilario Balbuena; y la certeza de que ese sentenciado es **el único levantador vivo que puede nombrarlo**. Balbuena era el actuario habitual de esas diligencias sabatinas: cerraba el libro semanal de exhortos a las 17:00 en el juzgado contiguo y sus cuatro llegadas anteriores constaban entre las 17:18 y las 17:25. Berrondo había coincidido con él dos veces y confirmó con la Chimoltrufia que volvería a ser el asignado. Por eso podía prever, sin controlar el retraso exacto, que a las 17:00 todavía no estaría en el Archivo. Berrondo baja al sótano, escribe a máquina una nota, mete diecisiete meses de renta en un sobre amarillo y lo desliza bajo la puerta del Señor Barriga, antes de que éste lo encuentre a las nueve de la mañana. **La hora exacta de recepción de la notificación y de entrega del sobre no consta**; su orden relativo sí. Después arranca la esquina de una tarjeta de su cedulario —la del domicilio de Don Ramón, levantada en 1969 y **actualizada en agosto de este año**— y guarda el fragmento.
+El **29 de noviembre** llegan a la sindicatura dos cosas el mismo día: la **notificación** de que el 4 de diciembre, a las 17:00, Casimiro abrirá el huacal 9 delante del actuario Hilario Balbuena, **con Don Ramón citado a petición del interno**; y la certeza de que Casimiro es **el único levantador vivo que puede nombrarlo**. El nombre de Don Ramón figura tanto en el oficio remitido como en el asunto transcrito en el acuse que Berrondo firma. Balbuena era el actuario habitual de esas diligencias sabatinas: cerraba el libro semanal de exhortos a las 17:00 en el juzgado contiguo y sus cuatro llegadas anteriores constaban entre las 17:18 y las 17:25. Berrondo había coincidido con él dos veces y confirmó con la Chimoltrufia que volvería a ser el asignado. Por eso podía prever, sin controlar el retraso exacto, que a las 17:00 todavía no estaría en el Archivo. Berrondo baja al sótano, escribe a máquina una nota, mete diecisiete meses de renta en un sobre amarillo y lo desliza bajo la puerta del Señor Barriga, antes de que éste lo encuentre a las nueve de la mañana. **La hora exacta de recepción de la notificación y de entrega del sobre no consta**; su orden relativo sí. Después consulta su cedulario, arranca la esquina de la tarjeta del domicilio de Don Ramón —levantada en 1969 y **actualizada en agosto de este año**—, devuelve la tarjeta mutilada a su sitio y guarda el fragmento. El vale de ese lunes registra la consulta del cedulario, sin identificar cajón ni tarjeta.
 
 El 4 de diciembre entra a las 16:05 por el **acceso de peritos y auxiliares**, que tiene su propio libro y que nadie considera «visitas». Baja al sótano, revisa el huacal con el vale ordinario del día, lo sella y lo fecha, y sube en el **montacargas de carga** al primer piso. Ve a Don Ramón hablando con Casimiro y espera detrás de los estantes. Poco antes de las 16:50 baja por la escalera de servicio y devuelve el gafete en la ventanilla —el gafete sólo sirve para las salas de lectura; su credencial de síndico no caduca ni tiene horario—; la hora del libro es la de esa devolución. Vuelve a subir y se oculta otra vez.
 
@@ -128,7 +134,7 @@ Berrondo **no lo reconoció**. Casimiro fue uno de ciento diez distribuidores en
 
 | Personaje | Papel | Notas de escritura |
 |---|---|---|
-| **El Chapulín Colorado** | **Defensa titular (el jugador)** | Es la progresión que la serie venía dibujando sin decirlo: asesor en el 0, codefensor del 1 al 4, titular en el 5. Litiga con `chapulin_idle / point / slam / panic`. Sigue siendo él: destroza dos refranes y le tiemblan las antenitas. Pero cuando el Juez lo llama «licenciado», no corrige. |
+| **El Chapulín Colorado** | **Defensa titular (el jugador)** | Es la progresión que la serie venía dibujando sin decirlo: asesor en el 0, codefensor del 1 al 4, titular en el 5. Litiga con `chapulin_idle / point / slam / panic`. Sigue siendo él: destroza dos refranes, abandona un tercero (§22.1.1) y le tiemblan las antenitas. Pero cuando el Juez lo llama «licenciado», no corrige. |
 | **Don Ramón (Lic. Monchito)** | **Acusado** | Litiga desde el banquillo, como hizo el Chapulín en el Caso 1. Diecisiete meses de renta, pagados por un desconocido. Dice, por primera y única vez en la serie y con la voz de alguien que no está haciendo un chiste: *«¿Y ahora quién podrá defenderme?»* |
 | **Super Sam** | Fiscal | *«Time is money!»*. Este episodio le cobra su único arco: el día 3 declara contra sí mismo, voluntariamente, y se queda sin fiscalía. Nadie lo acorrala. Nadie se lo agradece. |
 | **Lic. Fulgencio Berrondo** | **Acusador coadyuvante y culpable único** | Setenta y un años. Síndico de la quiebra 114/1971 desde el 9 de marzo de 1971. Cortés, colegiado, impecable, **sin sanciones formales conocidas antes del homicidio**; esa reputación no acredita la licitud del uso de fondos de la sindicatura. Numera sus argumentos, cita tomos y **define palabras que nadie preguntó**. Conserva la compostura hasta las etapas finales del clímax. Durante los contrainterrogatorios sólo se demuestra una mentira de su coartada; las demás falsedades se desenmascaran en el clímax. Su derrota es quedarse sin vocabulario. |
@@ -141,7 +147,7 @@ Berrondo **no lo reconoció**. Casimiro fue uno de ciento diez distribuidores en
 | **La Chimoltrufia** | Oficina de correspondencia del juzgado (sólo investigación) | *«¡Como digo una cosa, digo otra!»*. Entrega, traspapela y recuerda al revés; pero el acuse que firmó existe y tiene una rúbrica. |
 | **Señor Barriga** | Casero de Don Ramón, testigo D2-T1 | Honesto y equivocado, como en el Caso 3. Diecisiete años esperando esa renta y no la iba a rechazar. *«¡Tenía que ser el Chavo del Ocho!»* no se dice aquí: su frase de este caso es contable. |
 
-**Sin sprite:** los dos custodios del pasillo (voz fuera de cuadro), el actuario Hilario Balbuena (llegada registrada a las 17:44, sin diálogo), la perita en documentoscopia (firma un dictamen que lee el Sargento), el agente de guardia del ministerio público (presente en la inspección, sin intervención) y el secretario de acuerdos (habla como `SECRETARIO`, sin pose, igual que `ALGUACIL` en los casos anteriores).
+**Sin sprite:** los dos custodios del pasillo (voz fuera de cuadro), el actuario Hilario Balbuena (llegada registrada a las 17:44, sin diálogo), la perita en documentoscopia (firma un dictamen que lee el Sargento) y el agente de guardia del ministerio público (presente en la inspección, sin intervención). El secretario de acuerdos habla como `SECRETARIO` desde la mesa de la fiscalía, con las poses `secretario_leyendo`, `secretario_leyendo_senala`, `secretario_leyendo_pagina` y `secretario_leyendo_mira`.
 
 **Cameos de epílogo, sin diálogo propio:** ninguno. El epílogo se juega con cinco personajes y termina donde empezó la serie.
 
@@ -188,7 +194,7 @@ Sólo lo que los argumentos necesitan. Todo lo que no esté aquí es libre para 
 
 | # | Hecho | Dónde se usa |
 |---|---|---|
-| P1 | El edificio tiene **dos accesos y dos libros**: el público (visitas) y el de peritos y auxiliares de la justicia. Nadie llama «visitas» al segundo. | GIRO 1 |
+| P1 | El edificio tiene **dos accesos y dos libros**: el público (visitas) y el de peritos y auxiliares de la justicia. Nadie llama «visitas» al segundo. **El segundo libro no se menciona durante la investigación del D1**: la investigación sólo establece que el libro de visitas lo firman las visitas/el público y que el personal no firma. La existencia del segundo libro se revela en el juicio (GIRO 1). | GIRO 1 |
 | P2 | La **escalera de servicio** conecta el patio de maniobras, el sótano y el extremo del pasillo 7 **sin pasar por ningún mostrador**. | GIRO 1, clímax E2 |
 | P3 | Desde la **reja del pasillo**, donde esperan los custodios, **no se ve la mesa de consulta**: los estantes la tapan. Se oyen voces; no se ve nada. | D1-T2, GIRO 4 |
 | P4 | El **libro de peritos** tiene dos columnas: *hora de entrada* y *hora de devolución de gafete*. **No tiene columna de salida.** | D2-T2 `followUp`, D4-T1 |
@@ -198,6 +204,8 @@ Sólo lo que los argumentos necesitan. Todo lo que no esté aquí es libre para 
 | P8 | El **montacargas de carga** comunica sótano, descanso del patio y primer piso por el mismo hueco que la escalera de servicio. Cada trayecto entre niveles extremos tarda noventa segundos. El Chómpiras usa el mando de cargador; Berrondo conserva un mando de síndico y sabe operarlo solo. | D3-T1; clímax E3; §24.B |
 
 ### 4.2 Cronología del sábado 4 de diciembre
+
+> **Vista derivada** del Libro de hechos (§24).
 
 > **Por qué un sábado.** El traslado de un interno en fin de semana cuesta menos, y el actuario no cobra hora extra si la diligencia se fija a las 17:00. Lo decidió así la fiscalía, por presupuesto, y lo dice Super Sam en el día 3 sin que nadie se lo pregunte. La consecuencia es que el Archivo estaba **casi vacío**: el libro **público** tiene catorce firmas (la última entrada a las 16:40), mientras el libro separado de peritos y auxiliares tiene cuatro asientos, incluidos el del actuario a las 17:44 y el del Sargento a las 17:52. El perito valuador aparece en ambos registros: su paso por el acceso público y su entrada profesional por la otra ventanilla son trámites distintos; Nicanor sólo da fe del primero.
 >
@@ -210,13 +218,13 @@ Las horas de autor **no son hechos judiciales**: la columna derecha dice hasta d
 | 3 dic | Revienta un tubo en el muro del pasillo 7. Mantenimiento pone la caldera y dos secadores al máximo y los deja así cuatro días. | `bitacora_caldera`, D4. Nicanor lo menciona desde el D1. |
 | 16:05 | Berrondo firma el **libro de peritos**. Recibe gafete. | `libro_peritos`, D2. |
 | 16:10–16:40 | Sótano. Con el vale ordinario de revisión, abre el huacal 9, revisa, cierra, sella y **fecha la primera tira del día**. | `huacal_9`, D3. Él mismo lo declara. |
-| 16:25 | Dos custodios entregan a Casimiro en la mesa de consulta del pasillo 7 y se quedan en la reja. | `parte_detencion`, anexo. |
+| 16:25 | Dos custodios entregan a Casimiro en la mesa de consulta del pasillo 7 y se quedan en la reja. | `hoja_relevo`. |
 | 16:40 | Don Ramón firma el **libro de visitas**. Sube. | `libro_visitas`, D1. |
+| 16:40–16:45 | Berrondo sube en el montacargas de carga y espera detrás del estante 7. | **Nunca se acredita con testigo.** Presupuestado en §24.B; se demuestra por el estante (clímax E3). |
 | 16:44–16:56 | Don Ramón y Casimiro hablan doce minutos. Los custodios oyen dos voces y no ven nada (P3). | Relato de §10.1. **La corte nunca tiene más que la palabra del acusado.** |
-| 16:45 | Berrondo sube en el montacargas de carga y espera detrás del estante 7. | **Nunca se acredita con testigo.** Se demuestra por el estante (clímax E3). |
 | 16:50 | Berrondo devuelve el gafete en la ventanilla y vuelve a subir. | `libro_peritos`. |
 | 16:58 | Don Ramón firma su salida. | `libro_visitas`. |
-| 17:00 | **Los dos custodios bajan a firmar el relevo.** | `parte_detencion` anexo. |
+| 17:00 | **Los dos custodios bajan a firmar el relevo.** | `hoja_relevo`. |
 | 17:02–17:03 | Golpe único con el **Tomo XI** del estante de consulta, desde atrás y desde arriba, cerrando el libro sobre la nuca. Deja caer el tomo. Acomoda la esquina de tarjeta en la mano derecha de la víctima. | `informe_forense_c5`, `tomo_caido`, `esquina_tarjeta`. |
 | 17:03–17:04:30 | Baja solo en el **montacargas de carga**. No usa la escalera. | `plano_archivo`; D3-T1; §24.B. |
 | 17:04:30–17:07:30 | Sin registrar otro vale, abre el huacal 9 y extrae un **Tomo XI de la edición de lujo**. | Dos sellos / un vale; clímax E3. |
@@ -224,16 +232,16 @@ Las horas de autor **no son hechos judiciales**: la columna derecha dice hasta d
 | 17:10:30–17:12 | Sube en el montacargas con el tomo de lujo de 3.4 kg. | P8; clímax E3. |
 | 17:12–17:12:30 | Llena la ranura 11. | `estante_consulta`. |
 | 17:12:30–17:14 | Baja hasta el descanso del patio y sale por el portón de maniobras. | P2, P8. |
-| 17:15 | El relevo de custodios llega a la **reja** y firma su entrada; si los relevos habían entrado antes al edificio, todavía no estaban vigilando el pasillo. | `parte_detencion`, anexo. |
+| 17:15 | El relevo de custodios llega a la **reja** y firma su entrada; si los relevos habían entrado antes al edificio, todavía no estaban vigilando el pasillo. | `hoja_relevo`. |
 | 17:35 | Nicanor sube a cerrar el pasillo y encuentra el cuerpo. | D1-T1. |
 | 17:44 | El actuario Hilario Balbuena entra por peritos y firma, ya después del hallazgo de las 17:35; la diligencia queda suspendida. Sus cuatro diligencias sabatinas anteriores constan entre 17:18 y 17:25; Berrondo había coincidido con él dos veces. | `libro_peritos`; D2 correspondencia. |
-| 18:40 | El médico legista toma temperatura. Con el modelo normal fija la muerte entre **17:00 y 17:30**. | `informe_forense_c5`. |
+| 18:40 | El médico forense toma temperatura. Con el modelo normal fija la muerte entre **17:00 y 17:30**. | `informe_forense_c5`. |
 | 19:05 | El Sargento toma la fotografía pericial de la escena. | L2. |
 | 21:40 | Detención de Don Ramón en la vecindad. Inventario: la insignia abollada, tres pesos, una libreta y **un recibo de renta a su nombre por diecisiete mensualidades**. | `parte_detencion`. |
 
 > **Nota de la hora del gafete.** Berrondo devuelve el gafete a las **16:50** y vuelve a subir por la escalera de servicio. Esa devolución es lo único que el libro registra. La fiscalía la interpreta inicialmente como «hora de salida», pero la defensa demuestra ya en D2-T2 que el encabezado impreso dice «devolución de gafete». El día 4 Genoveva confirma cómo asienta esa hora y admite que ella misma usaba el nombre equivocado: **el reglamento no la faculta para mirar la puerta del patio** (P4, P5).
 
-> **Nota de la ventana forense.** El legista trabajó con el modelo de enfriamiento de una sala a 20 °C. El pasillo 7 estaba a **31 °C** por los secadores. Corregido, el intervalo se desplaza a **16:35–17:05**, que es el giro 4 — y que mete a Don Ramón dentro de la ventana junto con Berrondo. **La hora deja de decidir nada y el caso se resuelve por el estante, el huacal y la máquina.**
+> **Nota de la ventana forense.** El forense trabajó con el modelo de enfriamiento de una sala a 20 °C. El pasillo 7 estaba a **31 °C** por los secadores. Corregido, el intervalo se desplaza a **16:35–17:05**, que es el giro 4 — y que mete a Don Ramón dentro de la ventana junto con Berrondo. **La hora deja de decidir nada y el caso se resuelve por el estante, el huacal y la máquina.**
 
 ### 4.3 Cronología de la serie que el episodio cobra
 
@@ -262,14 +270,15 @@ Veintitrés entradas. **Todas tienen al menos una ranura de presentación** (tab
 | ID | Obtención | Descripción inicial permitida | Ranura |
 |---|---|---|---|
 | `insignia_abogado` *(heredado)* | Inicio | Insignia abollada de Don Ramón. Se le cayó al drenaje en julio. Hoy la trae otro. | D1 `openingPresent`. |
-| `parte_detencion` *(heredado, icono nuevo)* | D1 celda | Parte del 4 de diciembre: detención de Ramón Valdés a las 21:40 en la vecindad. Inventario: una insignia de abogado, tres pesos, una libreta y un recibo de renta a su nombre por diecisiete mensualidades. **Anexo: hoja de relevo de custodia del Archivo, con las firmas de entrada y salida de los dos pares de custodios.** | D1-T2 contradicción. |
-| `esquina_tarjeta` **(nueva)** | D1 celda | Fotografía pericial del fragmento hallado en la mano derecha del occiso: esquina de cartulina crema, mecanografiada, con un domicilio incompleto. `detailedView`. | D1-T2 `followUp`. |
+| `parte_detencion` *(heredado, icono nuevo)* | D1 celda | Acta de detención del 4 de diciembre: detención de Ramón Valdés a las 21:40 en la vecindad. Inventario: una insignia de abogado, tres pesos, una libreta y un recibo de renta a su nombre por diecisiete mensualidades. | Sostiene el recibo de renta (giro 2). **Ya no lleva anexo.** |
+| `hoja_relevo` **(nueva)** | D1 celda | Hoja de relevo de custodia del Archivo Judicial, 4 de diciembre. Turno saliente: Rangel y Nieto firman su **salida** de la reja del pasillo 7 a las **17:00**. Turno entrante: Cadena y Solís firman su **entrada** a las **17:15**. Quince minutos sin custodio asentado en la reja. | D1-T2 contradicción resolutoria (declaración 6). La descripción debe declarar ambas horas: la brecha es la contradicción. |
+| `esquina_tarjeta` **(nueva)** | D1 celda | Fotografía pericial del fragmento hallado en la mano derecha de la víctima: esquina de cartulina crema, mecanografiada, con un domicilio incompleto. `detailedView`. | D1-T2 `followUp`; D4-T1, inicio de la cadena posterior. |
 | `informe_forense_c5` **(nueva)** | D1 pasillo 7 | Casimiro Lengua: golpe único en región occipital. Objeto pesado, **canto recto de cuatro centímetros**, sin aristas vivas. Temperatura tomada a las 18:40; intervalo estimado **17:00–17:30**. `updates[]` de **2 etapas**. | D1-T1 contradicción. |
-| `tomo_caido` **(nueva)** | D1 pasillo 7 | Tomo XI de *El Saber Universal*, edición económica, encuadernado en tela. Hallado a un metro del cuerpo, con sangre en el canto del lomo. **En la guarda, un sello de tinta violeta.** `detailedView`. | D3-T3 `followUp`. |
-| `estante_consulta` **(nueva)** | D1 pasillo 7 | Estante de consulta del pasillo 7. Veinticuatro ranuras numeradas; la colección de *El Saber Universal* donada al Archivo en 1971. `detailedView`. **Tablero del Señalamiento 2.** | Clímax E3 + **Señ. 2**. |
-| `libro_visitas` **(nueva)** | D1 vestíbulo | Libro de visitas del público, hoja del 4 de diciembre. Catorce firmas. La última: *R. Valdés, 16:40 / 16:58*. `detailedView`. | D1-T1 `followUp`. |
-| `plano_archivo` **(nueva)** | D1 vestíbulo | Plano de protección civil del Archivo Judicial, clavado con tachuelas junto al mostrador. Marca dos accesos, la escalera de servicio y los tres descansos del montacargas en sótano, patio y primer piso. `detailedView`. | D1-T3 contradicción. *(La etapa 3 del clímax lo cita de palabra pero no lo admite como presentación: sólo acepta `estante_consulta`.)* |
-| `expediente_casimiro` **(nueva)** | D1 pasillo 7 | Expediente de apelación del occiso, hallado **abierto sobre la mesa de consulta, en la foja 214**. En esa foja está pegada, como prueba decomisada en julio, una tarjeta de presentación. | D1-T3 `followUp`. |
+| `tomo_caido` **(nueva)** | D1 pasillo 7 | Tomo XI de *El Saber Universal*, edición económica, encuadernado en tela. Hallado a un metro del cuerpo, con sangre en el lomo. **En la guarda, un sello de tinta violeta.** `detailedView`. | D3-T3 `followUp` + **Clímax E3** (presentación correcta). |
+| `estante_consulta` **(nueva)** | D1 pasillo 7 | Estante de consulta del pasillo 7. Veinticuatro ranuras numeradas; la colección de *El Saber Universal* donada al Archivo en 1971. `detailedView`. **Tablero del Señalamiento 2.** | Lámina del Clímax E3 / **Señ. 2**. |
+| `libro_visitas` **(nueva)** | D1 vestíbulo | Libro de visitas del público, hoja del 4 de diciembre. Catorce firmas. La última: *R. Valdés, 16:40 / 16:58*. **La descripción declara que sólo firman los que vienen de visita y que el personal del edificio no firma**, de modo que presentarlo ante *«¿A quién no le exige firma ese libro?»* se sostiene con el dato ya obtenido en el vestíbulo (no requiere `updates`). `detailedView`. | D1-T1 `followUp`. |
+| `plano_archivo` **(nueva)** | D1 vestíbulo | Plano de protección civil del Archivo Judicial, clavado con tachuelas junto al mostrador. Marca dos accesos, la escalera de servicio y los tres descansos del montacargas en sótano, patio y primer piso. `detailedView`. | D1-T3 contradicción. *(La etapa 3 del clímax lo cita de palabra pero no lo admite como presentación: sólo acepta `tomo_caido`; la lámina del estante se abre después.)* |
+| `expediente_casimiro` **(nueva)** | D1 pasillo 7 | Expediente de apelación de la víctima, hallado **abierto sobre la mesa de consulta, en la página 214**. En esa página está pegada, como prueba decomisada en julio, una tarjeta de presentación. | D1-T3 `followUp`. |
 
 ### 5.2 Bloque B — El dinero y el aviso (día 2)
 
@@ -277,7 +286,7 @@ Veintitrés entradas. **Todas tienen al menos una ranura de presentación** (tab
 |---|---|---|---|
 | `recibo_renta` **(nueva)** | D2 vecindad | Recibo del Señor Barriga, 29 de noviembre, por diecisiete mensualidades. Concepto escrito de su puño: **«recibí de tercero no identificado, a cuenta del inquilino»**. | D2-T1 `followUp`. |
 | `nota_mecanografiada` **(nueva)** | D2 vecindad | Media cuartilla mecanografiada que venía en el sobre amarillo. Tres renglones en tercera persona y fórmula de oficio. Sin firma. `detailedView`. | D2-T1 contradicción. |
-| `acuse_notificacion` **(nueva)** | D2 correspondencia | Acuse del oficio 4471, entregado el 29 de noviembre en la sindicatura de la quiebra 114/1971. El asiento transcribe el asunto completo, **con el nombre del interno que promovió la diligencia**. Rubricado. `detailedView`. | D3-T3 contradicción. |
+| `acuse_notificacion` **(nueva)** | D2 correspondencia | Acuse del oficio 4471, entregado el 29 de noviembre en la sindicatura de la quiebra 114/1971. El asiento transcribe el asunto completo, **con Casimiro como promotor y Don Ramón como citado a petición suya**. Rubricado. `detailedView`. | D3-T3 contradicción; D4-T1, cadena del aviso. |
 | `credencial_sindico` **(nueva)** | D2 despacho | Credencial expedida por el juzgado Séptimo: *Fulgencio Berrondo, síndico, quiebra 114/1971*. **Vigente hasta la conclusión del concurso. Sin límite de horario. Acceso al depósito de bienes de la masa.** `detailedView`. | Clímax E2. |
 | `inventario_1971` **(nueva)** | D2 despacho | Inventario de la masa concursal, 14 de octubre de 1971. Cuarenta y siete partidas. Partida 12: *cedulario, 11,400 tarjetas*. Partida 41: *máquina de escribir Olivetti Lexikon 80*. Partida 44: *ejemplares de lujo sin vender, 210*. `detailedView`. | D3-T1 contradicción. |
 | `libro_peritos` **(nueva)** | D2 juicio, por orden del Juez | Libro de peritos y auxiliares de la justicia, hoja del 4 de diciembre. Cuatro asientos, incluido el del actuario Hilario Balbuena a las 17:44. Dos columnas: **hora de entrada** y **hora de devolución de gafete**. `detailedView`. | D2-T2 contradicción; **D4-T1 contradicción**. |
@@ -287,11 +296,11 @@ Veintitrés entradas. **Todas tienen al menos una ranura de presentación** (tab
 
 | ID | Obtención | Descripción inicial permitida | Ranura |
 |---|---|---|---|
-| `huacal_9` **(nueva)** | D3 bodega | Huacal de madera, quiebra 114/1971. En la tapa, **más de doscientas cincuenta tiras de sello encabalgadas**, cada una rubricada por el síndico y fechada con día de la semana. Las dos superiores llevan la fecha completa **`SÁB 4-XII`**. `detailedView`. | D3-T1 `followUp`. |
-| `fichero_cedulario` **(nueva)** | D3 bodega | Cedulario de once mil cuatrocientas siete tarjetas físicas en nueve cajones de madera. **Ordenado por calle, no por nombre.** Cada tarjeta trae domicilio, ingreso declarado, objetos de valor declarados, puntualidad de pago y estado de la chapa; las bajas permanecen archivadas con marca de inactividad. | D4-T1 `followUp`. |
-| `maquina_escribir` **(nueva)** | D3 bodega | Olivetti Lexikon 80, partida 41 del inventario de 1971. Cinta bicolor gastada hasta la tela. `updates[]` de **2 etapas**. `detailedView`. | Clímax E5, con `requiredUpdateStage: { maquina_escribir: 2 }`. |
-| `oficio_diligencia` **(nueva)** | D3 fiscalía | Oficio 4471 de la fiscalía, 26 de noviembre: ordena la diligencia fijada para el **sábado 4 de diciembre** a las 17:00 en el Archivo Judicial y designa al actuario Hilario Balbuena. Al calce, la lista de distribución. | D3-T2 contradicción. |
-| `efectos_casimiro` **(nueva)** | D3 penal | Efectos del occiso. Dos piezas: su libreta de pasta negra, escrita con letra de catálogo, y la copia al carbón del oficio que dirigió al ministerio público el 8 de noviembre. `detailedView` de dos paneles. | D3 `openingPresent`. |
+| `huacal_9` **(nueva)** | D3 bodega | Huacal de madera, quiebra 114/1971. En la tapa, **más de doscientas cincuenta tiras de sello encabalgadas**, cada una rubricada por el síndico y fechada con día de la semana. Las dos superiores llevan la fecha completa **`SÁB 4-XII`**. `detailedView`. | D3-T1 `followUp`; desvío en D3-T1 declaración 2. |
+| `fichero_cedulario` **(nueva)** | D3 bodega | Cedulario de once mil cuatrocientas siete tarjetas físicas en nueve cajones de madera. **Ordenado por calle, no por nombre.** Cada tarjeta trae domicilio, ingreso declarado, objetos de valor declarados, puntualidad de pago y estado de la chapa; las bajas permanecen archivadas con marca de inactividad. | D4-T1, presentación de la hipótesis de consulta; clímax E4. |
+| `maquina_escribir` **(nueva)** | D3 bodega | Olivetti Lexikon 80, partida 41 del inventario de 1971. Cinta bicolor gastada hasta la tela. `updates[]` de **2 etapas**. `detailedView`. | Clímax E5, con `requiredUpdateStage: { maquina_escribir: 2 }`; desvío en D3-T1 declaración 3. |
+| `oficio_diligencia` **(nueva)** | D3 fiscalía | Oficio 4471 de la fiscalía, 26 de noviembre: ordena la diligencia fijada para el **sábado 4 de diciembre** a las 17:00 en el Archivo Judicial, designa al actuario Hilario Balbuena y cita a **Ramón Valdés a petición de Casimiro**. Al calce, la lista de distribución dice: copia para la Actuaría adscrita, la Dirección del Archivo y la **Sindicatura de la quiebra 114/1971**. | D3-T2 contradicción; desvío en D3-T2 declaración 3; D4-T1, cadena del aviso. |
+| `efectos_casimiro` **(nueva)** | D3 penal | Efectos de la víctima. Dos piezas: su libreta de pasta negra, escrita con letra de catálogo, y la copia al carbón del oficio que dirigió al ministerio público el 8 de noviembre. `detailedView` de dos paneles. | D3 `openingPresent`. |
 
 ### 5.4 Bloque D — El día 4 y el clímax
 
@@ -306,7 +315,7 @@ El contador es lineal y satura: una tercera actualización se descartaría en si
 
 | Prueba | Etapa 1 | Etapa 2 |
 |---|---|---|
-| `informe_forense_c5` | Éxito del `followUp` de D1-T2: *«Ampliación: el calco corresponde a un canto recto de cuatro centímetros aplicado **de arriba abajo y por detrás**, con el objeto sostenido a dos manos y cerrado sobre la nuca. No hay arco de golpe: no se blandió, se cerró.»* | Éxito del `openingPresent` del día 4: *«Rectificación del legista: aplicado el coeficiente de una sala a 31 °C, el intervalo se corrige a **16:35–17:05**.»* |
+| `informe_forense_c5` | Éxito del `followUp` de D1-T2: *«Ampliación: el calco corresponde a un canto recto de cuatro centímetros aplicado **de arriba abajo y por detrás**, con el objeto sostenido a dos manos y cerrado sobre la nuca. No hay arco de golpe: no se blandió, se cerró.»* | Éxito del `openingPresent` del día 4: *«Rectificación del forense: aplicado el coeficiente de una sala a 31 °C, el intervalo se corrige a **16:35–17:05**.»* |
 | `maquina_escribir` | Éxito del `followUp` de D3-T1: *«Peritaje ocular: la barra de la ‘s’ minúscula está vencida nueve décimas de milímetro. Imprime media línea por debajo del renglón y medio grado inclinada a la izquierda.»* | Sala de calderas, día 4 (§16.2), al recibir el dictamen del Sargento: *«Dictamen de documentoscopia: los tres documentos cuestionados —la tarjeta de julio, la ficha de agosto y la nota del sobre— presentan el mismo defecto. **No fue posible cotejar contra el aparato: la máquina está en depósito judicial y se requiere orden para obtener muestra.**»* |
 
 ### 5.6 Reglas de redacción heredadas
@@ -330,13 +339,13 @@ Regla heredada intacta: **durante un contrainterrogatorio la tarjeta de persona 
 
 | Ficha | Alta | Descripción inicial | Etapas |
 |---|---|---|---|
-| `perfil_donramon` | D1 celda | *«El acusado. Abogado de banqueta. Diecisiete meses de renta atrasada que alguien le pagó sin decírselo. Es la sexta vez que pisa este juzgado y la primera que lo hace esposado.»* | **2.** (1) D1-T2: *«Estuvo doce minutos a solas con el occiso, sin testigo que viera la mesa.»* (2) GIRO 4: *«La ventana corregida lo incluye. Su defensa acaba de meterlo en ella.»* |
+| `perfil_donramon` | D1 celda | *«El acusado. Abogado de banqueta. Diecisiete meses de renta atrasada que alguien le pagó sin decírselo. Es la sexta vez que pisa este juzgado y la primera que lo hace esposado.»* | **2.** (1) D1-T2: *«Estuvo doce minutos a solas con la víctima, sin testigo que viera la mesa.»* (2) GIRO 4: *«La ventana corregida lo incluye. Su defensa acaba de meterlo en ella.»* |
 | `perfil_chapulin` | D1 celda | *«Defensor titular, por designación del propio acusado. No tiene título, tiene antenitas. Litiga con la insignia prestada de su cliente.»* | **1** (GIRO 3): *«Ganó tres jornadas seguidas y no ha demostrado todavía que alguien estuviera en ese pasillo.»* |
-| `perfil_casimiro` | D1 celda | *«La víctima. Sentenciado en julio por el asalto al cobrador Nazario Cuenca; su condena no está en discusión. Pidió declarar en el Archivo y pidió que estuviera su propio abogado contrario.»* | **2.** (1) D1-T3: *«Lo encontraron con su expediente abierto en la foja 214.»* (2) D3-T2: *«Ofreció entregar un fichero el 8 de noviembre. La fiscalía le contestó dieciocho días después.»* |
+| `perfil_casimiro` | D1 celda | *«La víctima. Sentenciado en julio por el asalto al cobrador Nazario Cuenca; su condena no está en discusión. Pidió declarar en el Archivo y pidió que estuviera su propio abogado contrario.»* | **2.** (1) D1-T3: *«Lo encontraron con su expediente abierto en la página 214.»* (2) D3-T2: *«Ofreció entregar un fichero el 8 de noviembre. La fiscalía le contestó dieciocho días después.»* |
 | `perfil_supersam` | D1 apertura | *«Fiscal. Cobra por caso cerrado. Lleva una bolsa de lona vacía desde agosto y nadie le ha preguntado por qué.»* | **1** (D3-T2): *«Declaró contra sí mismo sin que nadie se lo pidiera.»* |
-| `perfil_berrondo` | D1 apertura | *«Acusador coadyuvante. Abogado colegiado desde 1955. Síndico de una quiebra de 1971 que todavía no se cierra. Se ofreció a auxiliar a la fiscalía sin cobrar honorarios.»* | **3.** (1) D2-T2: *«Administra un cedulario de once mil cuatrocientas tarjetas y vende copias. No es delito.»* (2) GIRO 2: *«Las fichas que vende contienen datos que ninguna tarjeta de 1971 pudo traer.»* (3) D3-T3: *«Firmó el acuse de una diligencia que él mismo dijo desconocer.»* |
+| `perfil_berrondo` | D1 apertura | *«Acusador coadyuvante. Abogado colegiado desde 1955. Síndico de una quiebra de 1971 que todavía no se cierra. Se ofreció a auxiliar a la fiscalía sin cobrar honorarios.»* | **3.** (1) D2-T2: *«Administra un cedulario de once mil cuatrocientas tarjetas y vende copias. No es delito.»* (2) D2-T2: *«Concede que vender no es delito; la corte ordena inspeccionar su huacal de todos modos.»* (3) D3-T3: *«Firmó el acuse de una diligencia que él mismo dijo desconocer.»* |
 | `perfil_nicanor` | D1 vestíbulo | *«Conserje del Archivo Judicial. Treinta y un años de servicio. Encontró el cuerpo a las 17:35, subiendo a cerrar el pasillo.»* | **1** (D1-T3): *«Sacude el Tomo XI los lunes. El sábado del crimen vio el estante completo.»* |
-| `perfil_genoveva` | D2 juicio | *«Encargada de la ventanilla de peritos y auxiliares. Lleva el segundo libro del edificio. Contesta lo que se le pregunta y nada más.»* | **1** (D4-T1): *«Escribe la hora cuando le devuelven el gafete. No ve la puerta del patio y el reglamento no la obliga.»* |
+| `perfil_genoveva` | D2 juicio | *«Encargada de la ventanilla de peritos y auxiliares. Lleva el segundo libro del edificio y archiva los vales de consulta que se tramitan. Contesta lo que se le pregunta y nada más.»* | **1** (D4-T1): *«Escribe la hora cuando le devuelven el gafete. No ve la puerta del patio y el reglamento no la obliga.»* Presentación D4-T1 para pedirle el registro del 29 de noviembre. |
 | `perfil_sargento` | D1 pasillo 7 | *«Policía judicial. Pidió los análisis, no movió nada y lo asentó todo. Dice que aprendió en septiembre.»* | — |
 | `perfil_barriga` | D2 vecindad | *«Casero del acusado. Diecisiete años cobrándole. Recibió diecisiete meses en efectivo el 29 de noviembre y expidió recibo.»* | — |
 | `perfil_chompiras` | D3 bodega | *«Cargador del Archivo. Absuelto en agosto del robo del Chanfle de Oro. Es lo primero que le han dado con seguro y con aguinaldo, y no piensa perderlo.»* | **1** (D3-T1): *«Ayuda a destapar el huacal 9 desde septiembre y lo ha visto abierto seis o siete veces.»* |
@@ -345,7 +354,7 @@ Regla heredada intacta: **durante un contrainterrogatorio la tarjeta de persona 
 
 Dos, y sólo dos:
 
-1. **`openingPresent` del día 2** (enseñanza, baja presión). El Juez pide que conste en actas quién era el occiso y por qué estaba en el Archivo. Respuesta: `perfil_casimiro`.
+1. **`openingPresent` del día 2** (enseñanza, baja presión). El Juez pide que conste en actas quién era la víctima y por qué estaba en el Archivo. Respuesta: `perfil_casimiro`.
 2. **Clímax, etapa 1.** El Juez exige que la defensa diga **quién** estuvo en ese pasillo. Respuesta: `perfil_berrondo`. Es el único momento del episodio en que se acusa a una persona, y lo autoriza el Juez.
 
 ---
@@ -354,7 +363,7 @@ Dos, y sólo dos:
 
 ### 7.1 Qué es
 
-Un bloque a pantalla completa que muestra una imagen mientras alguien explica algo. Existe desde el Caso 0 (`[LÁMINA]`, el chiste del cartapacio) y no requiere motor nuevo: cada línea del bloque lleva `bg` + `furniture: 'none'` y habla `NARRADOR` sin `pose`, para que ningún sprite tape la imagen. La línea siguiente sin `bg` devuelve la cámara.
+Un bloque a pantalla completa que muestra una imagen mientras alguien explica algo. Existe desde el Caso 0 (`[LÁMINA]`, el chiste del cartapacio) y no requiere motor nuevo: cada línea del bloque lleva `bg` + `furniture: 'none'` y habla un personaje **sin `pose`**, para que ningún sprite tape la imagen; en el Caso 0 y en la mayoría del Caso 5 ese personaje es el `NARRADOR`, y la única excepción es la primera lámina de L7, donde explicar es trabajo de la `DEFENSA` (§17.1). En el estrado, la línea siguiente sin `bg` devuelve la cámara al fondo del juicio. En investigación y en los bloques posteriores a una lámina o a un relato, **cada** línea de diálogo debe re-estampar el `bg` de la escena activa; el motor no infiere el fondo del bloque anterior.
 
 El Caso 5 la convierte en una mecánica con reglas porque es el episodio que más conceptos ajenos tiene que explicar —una sindicatura, un cedulario, un plano con dos puertas, una curva de enfriamiento— y porque **explicarlos en diálogo de estrado los volvería ilegibles**.
 
@@ -371,13 +380,13 @@ El Caso 5 la convierte en una mecánica con reglas porque es el episodio que má
 
 | # | Dónde | Archivo | Qué explica |
 |---|---|---|---|
-| L1 | D1, vestíbulo | `plate_dos_accesos.webp` | El plano del Archivo: dos puertas, dos libros, la escalera de servicio. |
+| L1 | D1, vestíbulo | `plate_dos_accesos.webp` | El plano del Archivo: dos puertas y la escalera de servicio. La lámina no menciona el segundo libro (reserva de GIRO 1). |
 | L2 | D1, juicio, apertura | `plate_foto_pericial.webp` | Fotografía pericial de la escena: el cuerpo, el tomo caído, la mesa de consulta. Se muestra una vez y no se vuelve a mostrar. |
 | L3 | D2, despacho de Berrondo | `plate_masa_concursal.webp` | Qué es una masa concursal y por qué un huacal de 1971 sigue en un juzgado. **Chiste de palabra difícil** (§22.2). |
 | L4 | D2, despacho de Berrondo | `plate_anatomia_ficha.webp` | Anatomía de una tarjeta de cedulario: los seis campos que el vendedor llenaba en la puerta. |
 | L5 | D2, juicio, GIRO 2 | `plate_cinco_papeles.webp` | Los cinco expedientes en fila, con sus fechas. Es la imagen del arco. |
 | L6 | D3, bodega | `plate_huacal_sellos.webp` | Cómo se sella y se fecha un bien de la masa, y por qué las tiras se encabalgan. |
-| L7 | D4, juicio, GIRO 4 | `plate_curva_enfriamiento.webp` | La curva de enfriamiento a 20 °C y a 31 °C, superpuestas, con la ventana desplazada. |
+| L7 | D4, juicio, GIRO 4 | `examine_termografo.webp` y después `plate_curva_enfriamiento.webp` | **Dos imágenes seguidas.** La bitácora con su tira explica de dónde sale el dato del aire caliente, y lo explica la **`DEFENSA`** con su refrán abandonado (§22.1); luego la curva de enfriamiento a 20 °C y a 31 °C, superpuestas, con la ventana desplazada, que narra el `NARRADOR`. |
 | L8 | Clímax E3 | `plate_tomo_trece.webp` | Las veinticuatro ranuras, la ranura 13 vacía y por qué ese tomo nunca existió. |
 | L9 | Clímax E5 | `plate_cuatro_renglones.webp` | Los cuatro documentos en fila, con la misma ‘s’ caída marcada en los cuatro. |
 
@@ -390,16 +399,30 @@ El Caso 5 la convierte en una mecánica con reglas porque es el episodio que má
 - `[ENTREGAR id]` = `addEvidence`. `[ACTUALIZAR id]` = `updateEvidence`. `[ENTREGAR-PERFIL id]` / `[ACTUALIZAR-PERFIL id]` = los equivalentes del Acta de Personajes.
 - `[LÁMINA ruta]` … `[FIN LÁMINA]` = lámina explicativa (§7).
 - `[RELATO bg]` … `[FIN RELATO]` = **bloque de recuerdo**. Misma tecnología que la lámina (cada línea estampa `bg` + `furniture: 'none'`) pero **con sprites**: sirve para poner en pantalla una conversación que el jugador no presenció. Se usa **una sola vez en todo el episodio** (§10.1) y ninguna deducción depende de él: es lo que el acusado *dice* que pasó, y el guion lo trata como tal.
-- **El altavoz `DEFENSA` es el Chapulín.** Todas las líneas `DEFENSA` de este caso llevan `pose: chapulin_*`. Don Ramón habla como `DON RAMÓN` con `pose: donramon_*` desde el banquillo ([[docs/lessons-learned/defense-counsel-decoupling.md]]).
+- **El altavoz `DEFENSA` es el Chapulín.** Todas las líneas `DEFENSA` de este caso llevan `pose: chapulin_*` **salvo** las que hablan desde dentro de un bloque de lámina o de relato (§7.1), que van sin `pose` para que el sprite no tape la imagen: la primera lámina de L7 es el único caso del episodio. Don Ramón habla como `DON RAMÓN` con `pose: donramon_*` desde el banquillo ([[docs/lessons-learned/defense-counsel-decoupling.md]]).
 - Presionar es **gratuito y siempre produce contenido**. Ninguna contradicción exige presionar una paráfrasis para habilitarse; las dos declaraciones `unlockedBy` del caso las señaliza el Juez expresamente.
-- Presentar mal o señalar mal cuesta un punto, repite la pregunta y **no revela la respuesta**.
+- Presentar mal o señalar mal cuesta un punto, repite la pregunta y **no revela la respuesta**. La única excepción es la presentación desviada.
+- **Presentación desviada** (`deflect`, campo de la declaración) = prueba que de verdad toca la declaración, pero todavía no procede. **No cuesta salud**: la corte contesta, dice por qué no procede todavía, orienta hacia lo que falta probar sin nombrarlo, y devuelve al jugador a la misma declaración. Va sin `bgm` y sin `cutin`: no es un beat dramático. No aplica al `openingPresent` ni al `followUp`, donde responder mal a una pregunta expresa de la corte sigue costando un punto.
 - Cada testimonio tiene **una** contradicción resolutoria y a lo sumo un `followUp`. Contradicción y `followUp` encolan arreglos de diálogo **distintos** ([[docs/lessons-learned/contradiction-followup-plays-twice.md]]).
 - El `followUp` **cuelga de la regla de contradicción, no de una declaración**: el motor lo dispara en cuanto esa regla se resuelve. Cuando un encabezado menciona una declaración junto a un `followUp`, es contexto narrativo.
 - Ningún testimonio arranca en seco: lo precede el **llamado al estrado**, que la primera vez toma nombre y ocupación, después sólo recuerda la protesta, y **termina siempre en una línea del `JUEZ`** ordenando declarar ([[docs/specs/case-3-la-noche-del-grito.md]] §6.5).
 - La primera línea de diálogo del clímax fija `bgm` explícitamente ([[docs/lessons-learned/climax-bgm-line-override.md]]).
 - Toda línea del epílogo y de la sala de espera estampa `bg` + `furniture: 'none'` ([[docs/lessons-learned/trial-waiting-room-epilogue-staging.md]]).
-- Toda línea visible pronunciada por un personaje **con sprite** lleva `pose` explícita; `NARRADOR`, `SECRETARIO`, `ALGUACIL` y `CUSTODIO` son voces sin sprite y no llevan una pose prestada de otro personaje ([[docs/lessons-learned/case0-script-visual-contract.md]]).
+- Toda línea visible pronunciada por un personaje **con sprite** lleva `pose` explícita; `NARRADOR`, `ALGUACIL` y `CUSTODIO` son voces sin sprite y no llevan una pose prestada de otro personaje. En el Caso 5, `SECRETARIO` sí tiene busto propio: las líneas de lectura del libro en D2 lo declaran con una pose explícita y las demás líneas usan `secretario_leyendo` como fallback de la cámara de fiscalía ([[docs/lessons-learned/case0-script-visual-contract.md]]).
 - Los `hotspot` de examen apuntan a objetos **pintados en el fondo**, no a sprites ([[docs/lessons-learned/investigation-hotspot-targets-must-be-on-background.md]]).
+- **La campana del juzgado no se narra.** El motor toca el `sfx: bell` cuando se habilita el botón «Ir a Juicio» ([[docs/flows/investigation-flow.md#Unlocking & Launching Trial]]), que es el momento real en que se cierra la jornada. Una línea de `NARRADOR` con campana suena donde la puso el guionista, no donde el jugador termina de investigar.
+
+### 8.1 Vocabulario: el leguleyo caracteriza, no confunde
+
+El episodio transcurre en un juzgado, pero **el jugador nunca tiene que traducir**. Regla dura:
+
+- **«occiso», «foja», «legista» y «Ha lugar» están prohibidas** en todo lo que el juego usa para *preguntarle* algo al jugador (`prompt`, `promptQuestion`, `question` y `label` de `ChoiceOption`) y en toda la copia del Acta del Juicio y del Acta de Personajes (`name`, `desc`, `updates[]`, `detailedView.caption`). Ahí se dice **«la víctima», «página», «forense»** y el Juez concede con **«Concedido.»** — que ya es como concede en los Casos 1 y 2.
+- Como **rasgo de personaje**, «occiso» sobrevive **dos veces y sólo en boca de Berrondo** (§13.3 despacho y §11.1 su presentación ante la corte): es el síndico que habla en escritura, y el contraste con el Chapulín es el chiste. Ninguna deducción depende de esas dos líneas.
+- **«Leontina» es sólo de Berrondo.** El Chapulín, el Sargento y el NARRADOR dicen **«la cadena de oro»** / **«el señor de la cadena de oro»**. La primera vez que Berrondo la nombra en su despacho (§13.3) dispara el **chiste de palabra difícil** del Chapulín —«¿Leon... qué?» → Berrondo completa la sílaba y la define con `berrondo_definicion` → «¡Chanfle!»—, el mismo gag estrenado con *cartapacio* en el Caso 0. En inglés el objeto se llama **watch chain** para todos y **albert chain** sólo en boca de Berrondo, que es donde vive el gag.
+- El arte manda sobre la prosa: la mancha del Tomo XI va **«en el lomo»**, no «en el canto del lomo», porque la lámina no pinta el canto ([[docs/lessons-learned/present-point-cover-crop.md]]).
+- Nada «nace» si es una escalera, y una tarjeta no tiene «años de muerta»: lo disuelto es la compañía.
+
+Guardado por `tests/case/Case5Vocabulary.test.ts`, que recorre los `prompt` de los cuatro días y del clímax, las etiquetas de opción y ambos catálogos en ES y EN, y además fija en dos los usos de «occiso» en las fuentes.
 
 ---
 
@@ -430,7 +453,7 @@ La comprobación es **sólo de inventario**: nunca mira qué locaciones se visit
 
 | Jornada | `requiredEvidence` | Última locación y prueba que cierra |
 |---|---|---|
-| Día 1 | `parte_detencion`, `esquina_tarjeta`, `libro_visitas`, `plano_archivo`, `informe_forense_c5`, `tomo_caido`, `estante_consulta`, `expediente_casimiro` | **Pasillo 7** → `informe_forense_c5`, `tomo_caido`, `estante_consulta`, `expediente_casimiro` |
+| Día 1 | `parte_detencion`, `hoja_relevo`, `esquina_tarjeta`, `libro_visitas`, `plano_archivo`, `informe_forense_c5`, `tomo_caido`, `estante_consulta`, `expediente_casimiro` | **Pasillo 7** → `informe_forense_c5`, `tomo_caido`, `estante_consulta`, `expediente_casimiro` |
 | Día 2 | `recibo_renta`, `nota_mecanografiada`, `acuse_notificacion`, `credencial_sindico`, `inventario_1971`, `expediente_serie` | **Delegación** → `expediente_serie` |
 | Día 3 | `huacal_9`, `fichero_cedulario`, `maquina_escribir`, `oficio_diligencia`, `efectos_casimiro` | **Penal** → `efectos_casimiro` |
 | Día 4 | `bitacora_caldera` | **Calderas** → `bitacora_caldera` |
@@ -441,7 +464,7 @@ La comprobación es **sólo de inventario**: nunca mira qué locaciones se visit
 
 | Escena | Paso que desbloquea | Condición previa |
 |---|---|---|
-| `celda_c5` | Talk 3 → `archivo_vestibulo` | Talks 1 y 2 jugados (entregan `parte_detencion`, `esquina_tarjeta` y las tres primeras fichas de persona) |
+| `celda_c5` | Talk 3 → `archivo_vestibulo` | Talks 1 y 2 jugados (entregan `parte_detencion`, `hoja_relevo`, `esquina_tarjeta` y las tres primeras fichas de persona) |
 | `archivo_vestibulo` | Nicanor, tema 2 → `archivo_pasillo7` | `hotspot_libro`, `hotspot_plano` examinados |
 | `archivo_pasillo7` | `hotspot_mesa` entrega `expediente_casimiro` y **dispara el bloque de cierre** | `hotspot_cuerpo`, `hotspot_tomo`, `hotspot_estante` examinados |
 | `vecindad_c5` | Barriga, tema 3 → `correspondencia` | `hotspot_puerta`, `hotspot_sobre` examinados |
@@ -514,7 +537,6 @@ DON RAMÓN: Yo tampoco, joven, y llevo cinco juicios. [pose: donramon_idle]
 DEFENSA: (Tres fichas en el Acta de Personajes. Mi cliente, yo, y el pobre señor que ya no puede declarar.) [pose: chapulin_idle]
 ~~~
 
-> **MODO TUTORIAL (una sola vez, `instant: true`):** *El corazón amarillo del ACTA DEL JUICIO tiene dos pestañas: **PRUEBAS** y **PERSONAS**. En PERSONAS se guarda lo que sabes de cada quien y se actualiza sola.*
 
 #### Opciones de diálogo (Talk)
 
@@ -532,49 +554,53 @@ DON RAMÓN: Doce minutos, joven. Se los voy a contar completos, porque es lo ún
 **Bloque de relato** (§8). Única aparición en el episodio.
 
 ~~~dialogue
-[RELATO bg_archivo_pasillo7]
-NARRADOR: 4 de diciembre, 16:44. Pasillo 7 del Archivo Judicial. [bg: bg_archivo_pasillo7; furniture: none; bgm: suspense]
-CASIMIRO: Licenciado. Cuatro cuarenta y cuatro. Puntual usted, para ser de banqueta. [bg: bg_archivo_pasillo7; furniture: none; pose: casimiro_amable]
-DON RAMÓN: Señor Lengua. [bg: bg_archivo_pasillo7; furniture: none; pose: donramon_idle]
-CASIMIRO: No lo mandé llamar para pedirle perdón. Eso lo hacen los que tienen tiempo. [bg: bg_archivo_pasillo7; furniture: none; pose: casimiro_catalogo]
-CASIMIRO: Lo mandé llamar porque usted es el único que me creyó capaz de leer. [bg: bg_archivo_pasillo7; furniture: none; pose: casimiro_catalogo]
-DON RAMÓN: En el estrado me dijo usted que uno estudia el producto. [bg: bg_archivo_pasillo7; furniture: none; pose: donramon_idle]
-CASIMIRO: Y lo dije. Sólo que mi producto no eran los libros, licenciado: eran las puertas. [bg: bg_archivo_pasillo7; furniture: none; pose: casimiro_amable]
-NARRADOR: El sentenciado abre su expediente en la foja 214 y pone el dedo sobre una tarjeta pegada al papel. [bg: bg_archivo_pasillo7; furniture: none]
-CASIMIRO: Ésta me la decomisaron a mí en julio. Y en agosto, en el patio de un museo, apareció otra parecida. Salió periódico. [bg: bg_archivo_pasillo7; furniture: none; pose: casimiro_catalogo]
-CASIMIRO: Las dos las escribió la misma máquina, licenciado. Se lo digo yo, que me pasé nueve años tecleando en ella. [bg: bg_archivo_pasillo7; furniture: none; pose: casimiro_catalogo]
-DON RAMÓN: ¿Y dónde está esa máquina? [bg: bg_archivo_pasillo7; furniture: none; pose: donramon_shock]
-CASIMIRO: Abajo. A doce metros de donde estamos sentados. Cuatro cuarenta y nueve. [bg: bg_archivo_pasillo7; furniture: none; pose: casimiro_amable]
-CASIMIRO: Le voy a decir una cosa y después ya no le digo más hasta que venga el actuario. [bg: bg_archivo_pasillo7; furniture: none; pose: casimiro_catalogo]
-CASIMIRO: A usted le vendieron la puerta de su propia casa, licenciado. Está fichada desde el sesenta y nueve. [bg: bg_archivo_pasillo7; furniture: none; pose: casimiro_catalogo]
-DON RAMÓN: ...¿Cómo dice? [bg: bg_archivo_pasillo7; furniture: none; pose: donramon_shock]
-CUSTODIO: ¡Se acabó la visita! ¡Bajando! [bg: bg_archivo_pasillo7; furniture: none]
-CASIMIRO: Cuatro cincuenta y seis. Vaya usted con Dios. Yo aquí espero. [bg: bg_archivo_pasillo7; furniture: none; pose: casimiro_amable]
+[RELATO bg_archivo_pasillo7_d4]
+NARRADOR: 4 de diciembre, 16:44. Pasillo 7 del Archivo Judicial. [bg: bg_archivo_pasillo7_d4; furniture: none; bgm: suspense]
+CASIMIRO: Licenciado. Cuatro cuarenta y cuatro. Puntual usted, para ser de banqueta. [bg: bg_archivo_pasillo7_d4; furniture: none; pose: casimiro_amable]
+DON RAMÓN: Señor Lengua. [bg: bg_archivo_pasillo7_d4; furniture: none; pose: donramon_idle]
+CASIMIRO: No lo mandé llamar para pedirle perdón. Eso lo hacen los que tienen tiempo. [bg: bg_archivo_pasillo7_d4; furniture: none; pose: casimiro_catalogo]
+CASIMIRO: Lo mandé llamar porque usted es el único que me creyó capaz de leer. [bg: bg_archivo_pasillo7_d4; furniture: none; pose: casimiro_catalogo]
+DON RAMÓN: En el estrado me dijo usted que uno estudia el producto. [bg: bg_archivo_pasillo7_d4; furniture: none; pose: donramon_idle]
+CASIMIRO: Y lo dije. Sólo que mi producto no eran los libros, licenciado: eran las puertas. [bg: bg_archivo_pasillo7_d4; furniture: none; pose: casimiro_amable]
+NARRADOR: El sentenciado abre su expediente en la página 214 y pone el dedo sobre una tarjeta pegada al papel. [bg: bg_archivo_pasillo7_d4; furniture: none]
+CASIMIRO: Ésta me la decomisaron a mí en julio. Y en agosto, en el patio de un museo, apareció otra parecida. Salió periódico. [bg: bg_archivo_pasillo7_d4; furniture: none; pose: casimiro_catalogo]
+CASIMIRO: Las dos las escribió la misma máquina, licenciado. Se lo digo yo, que me pasé nueve años tecleando en ella. [bg: bg_archivo_pasillo7_d4; furniture: none; pose: casimiro_catalogo]
+DON RAMÓN: ¿Y dónde está esa máquina? [bg: bg_archivo_pasillo7_d4; furniture: none; pose: donramon_shock]
+CASIMIRO: Abajo. A doce metros de donde estamos sentados. Cuatro cuarenta y nueve. [bg: bg_archivo_pasillo7_d4; furniture: none; pose: casimiro_amable]
+CASIMIRO: Le voy a decir una cosa y después ya no le digo más hasta que venga el actuario. [bg: bg_archivo_pasillo7_d4; furniture: none; pose: casimiro_catalogo]
+CASIMIRO: A usted le vendieron la puerta de su propia casa, licenciado. Está fichada desde el sesenta y nueve. [bg: bg_archivo_pasillo7_d4; furniture: none; pose: casimiro_catalogo]
+DON RAMÓN: ...¿Cómo dice? [bg: bg_archivo_pasillo7_d4; furniture: none; pose: donramon_shock]
+CUSTODIO: ¡Se acabó la visita! ¡Bajando! [bg: bg_archivo_pasillo7_d4; furniture: none]
+CASIMIRO: Cuatro cincuenta y seis. Vaya usted con Dios. Yo aquí espero. [bg: bg_archivo_pasillo7_d4; furniture: none; pose: casimiro_amable]
 [FIN RELATO]
 ~~~
 
 ~~~dialogue
-DEFENSA: ...¿Y usted se fue? [pose: chapulin_panic]
-DON RAMÓN: Firmé mi salida a las cuatro cincuenta y ocho y me fui a la vecindad a que el casero no me viera llegar. [pose: donramon_sweat]
-DON RAMÓN: A las nueve y media de la noche tenía a la policía en la puerta. [pose: donramon_idle]
-DEFENSA: ¿Y de lo que le dijo? ¿Lo de la puerta de su casa? [pose: chapulin_idle]
-DON RAMÓN: Pensé que era el señor Lengua siendo el señor Lengua. Hablando bonito para que uno se quede pensando. [pose: donramon_sweat]
-DON RAMÓN: Llevo casi cuarenta horas pensando. [pose: donramon_sweat]
+DEFENSA: ...¿Y usted se fue? [bg: bg_detention; pose: chapulin_panic]
+DON RAMÓN: Firmé mi salida a las cuatro cincuenta y ocho y me fui a la vecindad a que el casero no me viera llegar. [bg: bg_detention; pose: donramon_sweat]
+DON RAMÓN: A las nueve y media de la noche tenía a la policía en la puerta. [bg: bg_detention; pose: donramon_idle]
+DEFENSA: ¿Y de lo que le dijo? ¿Lo de la puerta de su casa? [bg: bg_detention; pose: chapulin_idle]
+DON RAMÓN: Pensé que era el señor Lengua siendo el señor Lengua. Hablando bonito para que uno se quede pensando. [bg: bg_detention; pose: donramon_sweat]
+DON RAMÓN: Llevo casi cuarenta horas pensando. [bg: bg_detention; pose: donramon_sweat]
 ~~~
 
-**2. «Enséñeme el parte de detención»**
+**2. «Enséñeme el acta de detención»**
 
 ~~~dialogue
-NARRADOR: El alguacil desliza por la ranura una copia del parte del 4 de diciembre. [sfx: click]
+NARRADOR: El alguacil desliza por la ranura una copia del acta de detención del 4 de diciembre. [sfx: click]
 DEFENSA: (Detención a las nueve cuarenta de la noche. Inventario: una insignia de abogado, tres pesos, una libreta...) [pose: chapulin_idle]
 DEFENSA: (...y un recibo de renta a su nombre. Diecisiete mensualidades. Pagadas.) [pose: chapulin_panic]
 DEFENSA: ¡Don Ramón! ¡Aquí dice que usted pagó diecisiete meses de renta! [pose: chapulin_point]
 DON RAMÓN: Yo no pagué nada, joven. [pose: donramon_idle]
 DON RAMÓN: El lunes en la tarde el señor Barriga me detuvo en el patio, me dio un recibo y me dijo «gracias». [pose: donramon_sweat]
 DON RAMÓN: Me dijo «gracias», Chapulín. Nunca en diecisiete años me había dicho gracias. Yo creí que se estaba burlando. [pose: donramon_sweat]
-DEFENSA: (Y hay un anexo: la hoja de relevo de los custodios del Archivo. Dos firmas de entrada y dos de salida.) [pose: chapulin_idle]
-DEFENSA: (Me la guardo. Todavía no sé para qué sirve, pero un papel con horas siempre sirve.) [pose: chapulin_idle]
+DEFENSA: (Me quedo con el acta.) [pose: chapulin_idle]
 [ENTREGAR parte_detencion]
+NARRADOR: El alguacil desliza una segunda hoja, engrapada aparte: la hoja de relevo de custodia del Archivo. [sfx: click]
+DEFENSA: (Cuatro firmas y cuatro horas. Rangel y Nieto salen de la reja a las cinco en punto...) [pose: chapulin_idle]
+DEFENSA: (...y Cadena y Solís firman su entrada hasta las cinco y cuarto.) [pose: chapulin_panic]
+DEFENSA: (Quince minutos. Un papel con horas siempre sirve, y éste tiene un hueco.) [pose: chapulin_idle]
+[ENTREGAR hoja_relevo]
 ~~~
 
 **3. «¿Qué tenía el muerto en la mano?»** *(desbloquea `archivo_vestibulo`)*
@@ -583,7 +609,7 @@ DEFENSA: (Me la guardo. Todavía no sé para qué sirve, pero un papel con horas
 DON RAMÓN: Eso es lo que me tiene aquí. [pose: donramon_idle]
 NARRADOR: Entre las hojas del parte viene una fotografía pericial: una mano cerrada sobre un pedazo de cartulina.
 DEFENSA: Es una esquina. Rota. Con letras de máquina. [pose: chapulin_idle]
-DEFENSA: «...cindad de la calle del Espanto 8, viv. 4.» [pose: chapulin_point]
+DEFENSA: «...cindad de la calle del Espanto 8, viv. 72.» [pose: chapulin_point]
 DON RAMÓN: Mi casa, joven. Con el número de mi vivienda. [pose: donramon_sweat]
 DEFENSA: ¡Pero si esto no prueba nada! ¡Cualquiera puede escribir un domicilio! [pose: chapulin_panic]
 DON RAMÓN: Cualquiera puede. Pero fíjese bien en el pedazo. [pose: donramon_idle]
@@ -595,7 +621,7 @@ DEFENSA: ¡No contaban con mi astucia! [pose: chapulin_point]
 DON RAMÓN: Yo sí contaba, joven. Es lo único con lo que cuento. [pose: donramon_idle]
 ~~~
 
-> **`detailedView` de `esquina_tarjeta`** (`assets/examine_esquina_tarjeta.webp`): macro pericial del fragmento sobre fondo neutro con regla testigo. Cartulina crema. Texto mecanografiado incompleto, **con la única ‘s’ del fragmento, la de «Espanto», media línea por debajo de su renglón**. El borde roto es **recto y limpio**, sin pliegues ni sudor. Pie de lámina neutro: *«Fragmento hallado en la mano derecha del occiso. 3.1 × 2.4 cm.»* La dirección está mecanografiada **en cuatro renglones cortos**, con esta distribución dentro del fragmento: «...cindad de» / «la calle del» / «Espanto 8,» / «viv. 4.». La lámina **no** dice que el corte sea deliberado ni menciona la ‘s’: eso se argumenta en D1-T2 y en el clímax.
+> **`detailedView` de `esquina_tarjeta`** (`assets/examine_esquina_tarjeta.webp`): macro pericial del fragmento sobre fondo neutro con regla testigo. Cartulina crema. Texto mecanografiado incompleto, **con la única ‘s’ del fragmento, la de «Espanto», media línea por debajo de su renglón**. El borde roto es **recto y limpio**, sin pliegues ni sudor. Pie de lámina neutro: *«Fragmento hallado en la mano derecha del occiso. 3.1 × 2.4 cm.»* La dirección está mecanografiada **en cuatro renglones cortos**, con esta distribución dentro del fragmento: «...cindad de» / «la calle del» / «Espanto 8,» / «viv. 72.». La lámina **no** dice que el corte sea deliberado ni menciona la ‘s’: eso se argumenta en D1-T2 y en el clímax.
 
 ---
 
@@ -618,7 +644,7 @@ DEFENSA: Don Nicanor, ¿le puedo preguntar cosas? [pose: chapulin_idle]
 NICANOR: Pregunte, pero camine por la orilla. Y no me toque nada del pasillo siete, que ahí se murió un cristiano y todavía huele a humedad. [pose: nicanor_escoba]
 DEFENSA: ¿A humedad? [pose: chapulin_idle]
 NICANOR: Se reventó un tubo el tres de diciembre. La humedad se come el papel, joven. La humedad y los ratones. [pose: nicanor_idle]
-NICANOR: Pusieron la caldera y dos secadores al máximo y ahí llevan cuatro días. Aquello es un horno. [pose: nicanor_sweat]
+NICANOR: Pusieron la caldera y dos secadores al máximo desde el tres de diciembre. Aquello es un horno. [pose: nicanor_sweat]
 DEFENSA: (Un horno. Bueno. Por lo menos el muerto no se resfrió.) [pose: chapulin_idle]
 ~~~
 
@@ -635,8 +661,10 @@ NICANOR: Catorce. Yo las cuento dos veces: al cerrar y al día siguiente. [pose:
 DEFENSA: La última dice: «R. Valdés. Entrada cuatro cuarenta. Salida cuatro cincuenta y ocho.» [pose: chapulin_point]
 NICANOR: La hora de salida se la puse yo. Nadie sale de aquí sin que yo le ponga la hora. [pose: nicanor_idle]
 DEFENSA: ¿Y los policías que trajeron al señor Lengua? [pose: chapulin_idle]
-NICANOR: Uniformados no firman, joven. Nunca han firmado. El libro es para el público. [pose: nicanor_idle]
-DEFENSA: (O sea que este libro no dice quién estuvo en el edificio. Dice quién era público.) [pose: chapulin_idle]
+NICANOR: Uniformados no firman, joven. Nunca han firmado. Este libro es para las visitas: el que viene de fuera a consultar y nada más. [pose: nicanor_idle]
+DEFENSA: ¿Y el que trabaja en el edificio? [pose: chapulin_point]
+NICANOR: Ése entra a trabajar, joven, no viene de visita. Yo no me firmo a mí mismo. [pose: nicanor_idle]
+DEFENSA: (O sea que este libro no dice quién estuvo en el edificio. Nada más dice quién vino de visita.) [pose: chapulin_idle]
 [ENTREGAR libro_visitas]
 ~~~
 
@@ -650,11 +678,11 @@ DEFENSA: Planta baja, primer piso, sótano... ¡y dos puertas! [pose: chapulin_p
 NICANOR: Tres, si cuenta la del carbón, pero ésa lleva tapiada desde el cincuenta y ocho. [pose: nicanor_idle]
 DEFENSA: ¿Y ésta de acá, la del costado? [pose: chapulin_idle]
 NICANOR: Ésa es la ventanilla de peritos. Ahí no entra público: entran peritos, actuarios, notarios y síndicos. [pose: nicanor_idle]
-DEFENSA: ¿Y también firman un libro? [pose: chapulin_point]
-NICANOR: Pues claro. Su libro. El de ellos. [pose: nicanor_idle]
-DEFENSA: ...¿Hay dos libros? [pose: chapulin_panic]
-NICANOR: Joven, aquí hay libros hasta para apuntar los libros. [pose: nicanor_escoba]
-DEFENSA: (Dos puertas. Dos libros. Y la policía se llevó uno.) [pose: chapulin_idle]
+DEFENSA: ¿Y ésos pasan por su mostrador? [pose: chapulin_point]
+NICANOR: Ni por mi mostrador ni por mi libro. Entran por su ventanilla y yo ni les veo la cara. [pose: nicanor_idle]
+DEFENSA: ...¿Y entonces quién apunta a ésos? [pose: chapulin_panic]
+NICANOR: La señorita Genoveva, joven. Cada quien su puerta y cada quien su pena. [pose: nicanor_escoba]
+DEFENSA: (Dos puertas. Y la policía sólo miró una.) [pose: chapulin_idle]
 [ENTREGAR plano_archivo]
 ~~~
 
@@ -669,8 +697,8 @@ NARRADOR: Una escalera de servicio une el patio, el sótano y el extremo del pas
 ~~~
 
 ~~~dialogue
-DEFENSA: (Por esa escalera se puede subir del sótano al pasillo siete sin que nadie te vea la cara.) [pose: chapulin_idle]
-DEFENSA: (No contaban con mi astucia... ni yo tampoco, la verdad.) [pose: chapulin_idle]
+DEFENSA: (Por esa escalera se puede subir del sótano al pasillo siete sin que nadie te vea la cara.) [bg: bg_archivo_vestibulo; pose: chapulin_idle]
+DEFENSA: (No contaban con mi astucia... ni yo tampoco, la verdad.) [bg: bg_archivo_vestibulo; pose: chapulin_idle]
 ~~~
 
 **3. Carrito de expedientes (`hotspot_carrito`)**
@@ -698,10 +726,10 @@ NICANOR: Ni pienso. [pose: nicanor_idle]
 **«¿Quién más estuvo aquí esa tarde?»** *(desbloquea `archivo_pasillo7`)*
 
 ~~~dialogue
-NICANOR: Del público, catorce personas y todas antes de las cinco. El último fue su licenciado. [pose: nicanor_idle]
-DEFENSA: ¿Y de los que no son público? [pose: chapulin_point]
+NICANOR: De visita, catorce personas y todas antes de las cinco. El último fue su licenciado. [pose: nicanor_idle]
+DEFENSA: ¿Y los que no venían de visita? [pose: chapulin_point]
 NICANOR: De ésos no me consta. Yo tengo mi puerta y la señorita Genoveva tiene la suya. [pose: nicanor_idle]
-NICANOR: Cada quien su libro, joven. Aquí eso es como cada quien su tumba. [pose: nicanor_idle]
+NICANOR: Cada quien su puerta, joven. Aquí eso es como cada quien su tumba. [pose: nicanor_idle]
 DEFENSA: (Voy a tener que conocer a la señorita Genoveva.) [pose: chapulin_idle]
 NICANOR: Suba al siete si quiere. Ya levantaron la cinta esta mañana. Y no se recargue en el estante, que está enderezado. [pose: nicanor_escoba]
 DEFENSA: ¿Enderezado? [pose: chapulin_idle]
@@ -740,11 +768,11 @@ SARGENTO: Y le voy a decir una cosa que no debería: a mí este expediente no me
 ~~~dialogue
 NARRADOR: Una silueta de gis en el piso, entre el estante y la mesa de consulta. Boca abajo, con la cabeza hacia el estante.
 DEFENSA: Cayó de frente. Con la cara hacia los libros. [pose: chapulin_idle]
-SARGENTO: Golpe único en la nuca, mi Licenciado. El legista está preparando una ampliación sobre la dirección y el modo del impacto. [pose: pazguato_idle]
+SARGENTO: Golpe único en la nuca, mi Licenciado. El forense está preparando una ampliación sobre la dirección y el modo del impacto. [pose: pazguato_idle]
 DEFENSA: ¿Y la hora? [pose: chapulin_point]
 SARGENTO: Entre las cinco y las cinco y media. Le tomaron la temperatura a las seis cuarenta. [pose: pazguato_idle]
 DEFENSA: Sargento, ¿usted no siente que aquí hace un calor de fritanga? [pose: chapulin_idle]
-SARGENTO: Sí, pero el legista no vino a sentir. Vino a medir. [pose: pazguato_sweat]
+SARGENTO: Sí, pero el forense no vino a sentir. Vino a medir. [pose: pazguato_sweat]
 DEFENSA: (Ahí está el detalle... o a lo mejor no. Me lo apunto de todos modos.) [pose: chapulin_idle]
 [ENTREGAR informe_forense_c5]
 ~~~
@@ -756,7 +784,7 @@ DEFENSA: (Ahí está el detalle... o a lo mejor no. Me lo apunto de todos modos.
 ~~~dialogue
 NARRADOR: A un metro de la silueta, marcado con un cartelito de perito, un tomo grueso encuadernado en tela verde.
 DEFENSA: «El Saber Universal. Tomo XI. Ferrocarriles - Guatemala.» [pose: chapulin_idle]
-DEFENSA: Tiene sangre en el canto del lomo. [pose: chapulin_panic]
+DEFENSA: Tiene sangre en el lomo. [pose: chapulin_panic]
 SARGENTO: Dos kilos ochocientos. Es el arma, mi Licenciado. La fiscalía ya lo fotografió, lo marcó y ordenó que quedara aquí bajo resguardo; yo tengo la ficha pericial. [pose: pazguato_idle]
 DEFENSA: ¿Y este sellito morado de la primera hoja? [pose: chapulin_idle]
 SARGENTO: Ni idea. Está medio borrado y tiene letra chiquita. Con la lupa del Acta a lo mejor lo lee usted. [pose: pazguato_idle]
@@ -765,7 +793,7 @@ DEFENSA: (Con un libro, Chapulín. Con un libro.) [pose: chapulin_panic]
 [ENTREGAR tomo_caido]
 ~~~
 
-> **`detailedView` de `tomo_caido`** (`assets/examine_tomo_caido.webp`): dos vistas. Izquierda, el tomo cerrado de canto, tela verde oliva, tejuelo dorado «XI», mancha parda en el canto del lomo, regla testigo. Derecha, la guarda abierta con un **sello ovalado de tinta violeta, parcialmente corrido**, cuyo texto se lee con esfuerzo: *«DONACIÓN DEL SÍNDICO DE LA QUIEBRA 114/1971 · 14-X-1971»*. El pie de lámina describe el sello como objeto y **no lo interpreta**.
+> **`detailedView` de `tomo_caido`** (`assets/examine_tomo_caido.webp`): dos vistas. Izquierda, el tomo cerrado de canto, tela verde oliva, tejuelo dorado «XI», mancha parda en el lomo, regla testigo. Derecha, la guarda abierta con un **sello ovalado de tinta violeta, parcialmente corrido**, cuyo texto se lee con esfuerzo: *«DONACIÓN DEL SÍNDICO DE LA QUIEBRA 114/1971 · 14-X-1971»*. El pie de lámina describe el sello como objeto y **no lo interpreta**.
 
 **3. Estante de consulta (`hotspot_estante`)**
 
@@ -792,9 +820,9 @@ DEFENSA: (Las cuentas no me salen y no sé por qué. Me llevo el estante entero 
 ~~~dialogue
 NARRADOR: Una mesa larga de roble con una lámpara de pantalla verde. Sobre ella, un legajo abierto y atado con listón.
 DEFENSA: Es el expediente del señor Lengua. Su apelación. [pose: chapulin_idle]
-DEFENSA: Y está abierto en la foja doscientos catorce. [pose: chapulin_point]
+DEFENSA: Y está abierto en la página 214. [pose: chapulin_point]
 SARGENTO: Ahí lo dejó él. Nadie ha pasado esa hoja, mi Licenciado; tengo la fotografía de las siete de la noche y está igualita. [pose: pazguato_decidido]
-DEFENSA: En la foja doscientos catorce hay una tarjeta pegada con engrudo. [pose: chapulin_idle]
+DEFENSA: En la página 214 hay una tarjeta pegada con engrudo. [pose: chapulin_idle]
 DEFENSA: «Enciclopedias El Saber Universal, S.A.» Prueba decomisada al sentenciado en julio. [pose: chapulin_idle]
 SARGENTO: Esa sociedad está disuelta desde el setenta y uno. Lo dice ahí abajito, de puño y letra del secretario. [pose: pazguato_idle]
 DEFENSA: (Un hombre al que le quedaban cuatro años de condena pidió que lo trajeran hasta aquí para señalar una tarjeta vieja.) [pose: chapulin_idle]
@@ -807,14 +835,11 @@ DEFENSA: (Y lo mataron antes de que llegara el actuario.) [pose: chapulin_panic]
 ~~~dialogue
 SARGENTO: Mi Licenciado. Una cosa más y ya me callo. [pose: pazguato_sweat]
 SARGENTO: La fiscalía me pidió el libro de visitas y yo se lo di. [pose: pazguato_idle]
-DEFENSA: ¿Y el otro? [pose: chapulin_point]
-SARGENTO: ¿Cuál otro? [pose: pazguato_sweat]
-DEFENSA: El de peritos. El de la puerta del costado. [pose: chapulin_idle]
-SARGENTO: ...Nadie me lo pidió. [pose: pazguato_sweat]
-SARGENTO: Y yo no lo ofrecí, porque «visitas» son las visitas y peritos son peritos. [pose: pazguato_sweat]
-DEFENSA: (No lo diga en el juicio, Sargento. Deje que se les ocurra a ellos.) [pose: chapulin_idle]
-DEFENSA: (Y si no se les ocurre, ya me encargo yo.) [pose: chapulin_point]
-NARRADOR: Suena la campana del juzgado, al otro lado de la calle. [sfx: bell]
+DEFENSA: ¿Y le pidieron algo más? [pose: chapulin_point]
+SARGENTO: ...No, mi Licenciado. Me pidieron ése y nada más. [pose: pazguato_sweat]
+SARGENTO: Y yo contesto lo que me preguntan. Ése es mi defecto y también mi virtud. [pose: pazguato_sweat]
+DEFENSA: (Catorce firmas de visitas. Y nadie ha preguntado todavía quién entró sin ser visita.) [pose: chapulin_idle]
+DEFENSA: (Ya preguntaré yo, Sargento. Delante del juez.) [pose: chapulin_point]
 DEFENSA: ¡Síganme los buenos! ¡A la sala de audiencias! [pose: chapulin_point]
 SARGENTO: A sus órdenes, mi Licenciado. [pose: pazguato_saludo]
 ~~~
@@ -837,10 +862,10 @@ JUEZ: Licenciado Valdés, es la sexta vez que esta corte lo ve. Y es la primera 
 DON RAMÓN: A mí también se me hace raro, señor juez. Se ve todo más chiquito. [pose: donramon_sweat]
 SUPER SAM: Your Honor, la fiscalía va a ser breve, porque este caso ya me costó una noche. [pose: supersam_point]
 SUPER SAM: Un edificio cerrado. Un libro con catorce firmas. Un muerto. Y en la mano del muerto, el domicilio del último hombre que subió. [pose: supersam_slam; sfx: desk_slam]
-SUPER SAM: Motive? El occiso iba a declarar el sábado que las cuatro victorias de este señor entre agosto y octubre no fueron talento. Fueron información comprada. [pose: supersam_point]
+SUPER SAM: Motive? La víctima iba a declarar el sábado que las cuatro victorias de este señor entre agosto y octubre no fueron talento. Fueron información comprada. [pose: supersam_point]
 DON RAMÓN: ...¿Comprada con qué, señor fiscal? Llevo diecisiete meses sin pagar la renta. [pose: donramon_idle]
 SUPER SAM: ¡AH! ¡Pero la pagó! ¡El veintinueve de noviembre! ¡DIECISIETE MESES! ¡En efectivo! [pose: supersam_slam; sfx: desk_slam]
-NARRADOR: La galería estalla. El Juez golpea el mazo tres veces. [sfx: gavel]
+NARRADOR: La galería estalla. [sfx: gavel] [bg: bg_gallery_characters; furniture: none]
 JUEZ: ¡ORDEN! [sfx: gavel; pose: judge_gavel]
 JUEZ: Antes de nada: esta corte no ve a nadie en el estrado de la defensa. [pose: judge_shock]
 DEFENSA: ¡Aquí, señor juez! [pose: chapulin_slam; sfx: desk_slam]
@@ -863,13 +888,13 @@ JUEZ: Queda acreditada la defensa, bajo la responsabilidad del acusado que la de
 SUPER SAM: ¡Your Honor, esto es un circo con dos pistas! [pose: supersam_sweat]
 JUEZ: Es un circo con una sola pista, señor fiscal, y usted está en ella desde hace cinco meses. [pose: judge_thinking]
 [ENTREGAR-PERFIL perfil_supersam]
-NARRADOR: En la mesa de la fiscalía, a la derecha de Super Sam, hay un segundo hombre. Traje negro de tres piezas y leontina de oro. No se ha movido.
+NARRADOR: En la mesa de la fiscalía, a la derecha de Super Sam, hay un segundo hombre. Traje negro de tres piezas y una cadena de oro cruzándole el chaleco. No se ha movido.
 JUEZ: Y esta corte tampoco conoce al señor que acompaña a la fiscalía. [pose: judge_neutral]
 BERRONDO: Fulgencio Berrondo, señor juez. Abogado, cédula 4.882, colegiado desde 1955. [pose: berrondo_idle]
 BERRONDO: Comparezco como coadyuvante del ministerio público, sin honorarios, con la venia de esta corte. [pose: berrondo_idle]
 JUEZ: ¿Y a qué debemos el gusto, licenciado? [pose: judge_thinking]
 BERRONDO: A que el occiso fue, hace muchos años, distribuidor de una sociedad cuya liquidación tengo a mi cargo. Me pareció que debía estar presente. [pose: berrondo_idle]
-BERRONDO: *Coadyuvante*, del latín *coadiuvare*: el que ayuda junto con otro. No tomo la palabra salvo que se me conceda. [pose: berrondo_definicion]
+BERRONDO: «Coadyuvante», del latín «coadiuvare»: el que ayuda junto con otro. No tomo la palabra salvo que se me conceda. [pose: berrondo_definicion]
 DEFENSA: (¿Quién le preguntó qué quería decir?) [pose: chapulin_idle]
 [ENTREGAR-PERFIL perfil_berrondo]
 JUEZ: Se le tiene por presentado. Y esta corte quiere una respuesta clara a una sola pregunta antes que a ninguna otra: [pose: judge_thinking]
@@ -884,7 +909,7 @@ SUPER SAM: La fiscalía llama al conserje del Archivo Judicial, señor Nicanor T
 JUEZ: Antes de oírlo, que la secretaría ponga a la vista la fotografía pericial. Esta corte quiere saber de qué estamos hablando. [pose: judge_neutral]
 [LÁMINA assets/plate_foto_pericial.webp]
 NARRADOR: Fotografía pericial tomada a las 19:05 del 4 de diciembre. El cuerpo aparece boca abajo entre el estante y la mesa de consulta.
-NARRADOR: A un metro, un tomo encuadernado en tela con una mancha en el canto del lomo.
+NARRADOR: A un metro, un tomo encuadernado en tela con una mancha en el lomo.
 NARRADOR: Sobre la mesa, un legajo abierto y una lámpara encendida. En el muro, un estante de veinticuatro ranuras.
 [FIN LÁMINA]
 JUEZ: Testigo, diga su nombre y su ocupación. [pose: judge_neutral]
@@ -904,7 +929,6 @@ c5_d1t1_1 NICANOR: Yo abro a las ocho y cierro a las siete, y en medio no me mue
 c5_d1t1_2 NICANOR: El cuatro de diciembre firmaron catorce personas. La última fue el licenciado Valdés, a las cuatro cuarenta.
 c5_d1t1_3 NICANOR: A las cinco menos dos bajó, firmó su salida, y la hora se la puse yo con mi pluma.
 c5_d1t1_4 NICANOR: Después de él no entró nadie y no salió nadie. A las cinco treinta y cinco subí a cerrar y ahí estaba el pobre señor.
-c5_d1t1_5 NICANOR: Por mi puerta no pasa nadie sin firmar. Treinta y un años, señor juez. Nunca ha pasado.
 ~~~
 
 #### Presiones
@@ -943,7 +967,7 @@ NICANOR: Dijo: «Ojalá que no.» Yo no le entendí y no pregunté. [pose: nican
 DON RAMÓN: (No le entendí yo tampoco, don Nicanor. Todavía.) [pose: donramon_sweat]
 SUPER SAM: ¡«Ojalá que no»! ¡Your Honor, que conste en actas la frase de un hombre que acababa de cometer un homicidio! [pose: supersam_slam; sfx: desk_slam]
 DEFENSA: ¡PROTESTO! ¡Eso es interpretar, no es declarar! [sfx: desk_slam; cutin: objection_protesto; pose: chapulin_slam]
-JUEZ: Ha lugar. Consta la frase, no la interpretación. [pose: judge_neutral]
+JUEZ: Concedido. Consta la frase, no la interpretación. [pose: judge_neutral]
 ~~~
 
 **Declaración 4**
@@ -956,24 +980,15 @@ NICANOR: Con la caldera y los dos secadores puestos al máximo, licenciado, ahí
 DEFENSA: (Otra vez los secadores. Y otra vez nadie se detiene.) [pose: chapulin_idle]
 ~~~
 
-**Declaración 5**
+#### Contradicción resolutoria — declaraciones 3 **y** 4: **`informe_forense_c5`**
 
-~~~dialogue
-DEFENSA: ¡UN MOMENTO! «Por mi puerta.» Usted dijo «por mi puerta». [sfx: whoosh; pose: chapulin_point]
-NICANOR: Por mi puerta, sí señor. La del público. [pose: nicanor_idle]
-DEFENSA: ¿Y hay otras? [pose: chapulin_idle]
-SUPER SAM: ¡OBJECTION! ¡El testigo no es arquitecto! ¡Su declaración es sobre lo que él custodia! [pose: supersam_slam; sfx: desk_slam]
-JUEZ: Ha lugar. Defensa, limítese a la puerta del testigo. [pose: judge_neutral]
-DEFENSA: (Me la taparon. Bueno. Por ahí no era todavía.) [pose: chapulin_idle]
-~~~
-
-#### Contradicción resolutoria — declaración 4: **`informe_forense_c5`**
+La hora de salida («cinco menos dos», decl. 3) y el «nadie subió después» (decl. 4) sostienen los dos la misma colisión con el intervalo 17:00–17:30 del forense, y el alegato cita ambas. Las dos declaraciones comparten una sola `ContradictionRule` (mismo patrón que `c0_t2_2` / `c0_t2_3` del Caso 0), así que el juego acepta el informe sobre cualquiera de ellas.
 
 Pregunta visible: *«¿A qué hora murió ese hombre, según el propio perito de la fiscalía?»*
 
 ~~~dialogue
 DEFENSA: ¡PROTESTO! [sfx: desk_slam; cutin: objection_protesto; pose: chapulin_slam]
-DEFENSA: Señor juez, el informe del legista fija la muerte entre las cinco y las cinco y media de la tarde. [pose: chapulin_point]
+DEFENSA: Señor juez, el informe del forense fija la muerte entre las cinco y las cinco y media de la tarde. [pose: chapulin_point]
 DEFENSA: Y el acusado firmó su salida a las cinco menos dos. Lo dice el testigo y lo escribió el testigo con su propia pluma. [pose: chapulin_idle]
 SUPER SAM: ¡Dos minutos, counselor! ¡DOS! ¡El perito puso un intervalo, no un cronómetro! [pose: supersam_slam; sfx: desk_slam]
 DEFENSA: Entonces hagamos la cuenta del señor fiscal, señor juez. [pose: chapulin_point]
@@ -998,7 +1013,7 @@ NICANOR: Pues claro. Y a las cinco entraron otros dos, de relevo. [pose: nicanor
 DEFENSA: ¿Y firmaron? [pose: chapulin_idle]
 NICANOR: Uniformados no firman, licenciado. Nunca han firmado. Ni ellos, ni el cartero, ni yo, ni la señorita de la ventanilla. [pose: nicanor_idle]
 DEFENSA: Entonces ese día, dentro del edificio, hubo por lo menos cinco personas que no están en este libro. [pose: chapulin_slam; sfx: desk_slam]
-NARRADOR: Murmullo en la galería. [sfx: realization]
+NARRADOR: Murmullo en la galería. [sfx: realization] [bg: bg_gallery_characters; furniture: none]
 DEFENSA: Señor juez: este libro no dice quién estuvo en el Archivo. [pose: chapulin_point]
 DEFENSA: Dice quién era **público**. [pose: chapulin_idle]
 SUPER SAM: ¡Objection! ¡Un policía de custodia no asesina a su propio preso! [pose: supersam_sweat]
@@ -1020,9 +1035,9 @@ JUEZ: Queda bajo protesta de decir verdad. Su testimonio. [sfx: gavel; pose: jud
 **BGM:** `cross_exam_moderato`. Contiene la **primera de las dos declaraciones `unlockedBy`** del caso.
 
 ~~~dialogue
-c5_d1t2_1 SARGENTO: Recibí el aviso a las cinco treinta y ocho y llegué a las cinco cincuenta y dos con el legista.
+c5_d1t2_1 SARGENTO: Recibí el aviso a las cinco treinta y ocho y llegué a las cinco cincuenta y dos con el forense.
 c5_d1t2_2 SARGENTO: El cuerpo estaba boca abajo entre el estante siete y la mesa de consulta, con la cabeza hacia el estante.
-c5_d1t2_3 SARGENTO: A un metro, el Tomo XI de una enciclopedia, con sangre en el canto del lomo. Lo fotografié antes de tocarlo.
+c5_d1t2_3 SARGENTO: A un metro, el Tomo XI de una enciclopedia, con sangre en el lomo. Lo fotografié antes de tocarlo.
 c5_d1t2_4 SARGENTO: En la mano derecha traía cerrada una esquina de tarjeta, con un domicilio escrito a máquina.
 c5_d1t2_5 SARGENTO: Les tomé declaración a los custodios del pasillo. Los dos me dijeron que en toda la tarde no subió nadie más que el acusado.
 c5_d1t2_6 SARGENTO: [unlockedBy: c5_d1t2_5] ...A los dos pares de custodios, señor juez. Porque a las cinco en punto hubo relevo.
@@ -1039,7 +1054,7 @@ SUPER SAM: ¡Your salary is cut! [pose: supersam_point]
 SARGENTO: Ya no, señor fiscal. Desde octubre cobro por escalafón. [pose: pazguato_decidido]
 SUPER SAM: ...¿Desde cuándo? [pose: supersam_sweat]
 SARGENTO: Desde que usted firmó mi ascenso sin leerlo. Me pasaron a judicial con él. [pose: pazguato_decidido]
-NARRADOR: Risas en la galería. [sfx: realization]
+NARRADOR: Risas en la galería. [sfx: realization] [bg: bg_gallery_characters; furniture: none]
 JUEZ: ¡Orden! [sfx: gavel; pose: judge_gavel]
 ~~~
 
@@ -1060,7 +1075,7 @@ DON RAMÓN: (Estaba esperando al actuario. Me lo dijo: «Yo aquí espero».) [po
 DEFENSA: ¡UN MOMENTO! Descríbame el golpe, Sargento. [sfx: whoosh; pose: chapulin_point]
 SARGENTO: Uno solo. En la nuca. El informe preliminar sólo fija un canto recto de cuatro centímetros. [pose: pazguato_idle]
 DEFENSA: ¿Y con cuánta fuerza? [pose: chapulin_idle]
-SARGENTO: Todavía no consta si el objeto se blandió o se aplicó de otra manera. Pedí al legista que amplíe el análisis de las marcas. [pose: pazguato_sweat]
+SARGENTO: Todavía no consta si el objeto se blandió o se aplicó de otra manera. Pedí al forense que amplíe el análisis de las marcas. [pose: pazguato_sweat]
 JUEZ: ¿Está pendiente esa ampliación, entonces? [pose: judge_shock]
 SARGENTO: Sí, señor juez. No quiero confundir lo que vimos con lo que aún tiene que concluir el perito. [pose: pazguato_idle]
 DEFENSA: (Un canto recto de cuatro centímetros. Necesito el modo del golpe, no sólo el tamaño de la marca.) [pose: chapulin_idle]
@@ -1102,13 +1117,13 @@ SUPER SAM: ¡Irrelevante! ¡Un cambio de turno dura lo que dura un saludo! [pose
 DEFENSA: (Un saludo. Vamos a ver cuánto dura un saludo en este país.) [pose: chapulin_idle]
 ~~~
 
-#### Contradicción resolutoria — declaración 6: **`parte_detencion`**
+#### Contradicción resolutoria — declaración 6: **`hoja_relevo`**
 
 Pregunta visible: *«¿Cuánto tiempo estuvo esa reja sin nadie?»*
 
 ~~~dialogue
 DEFENSA: ¡PROTESTO! [sfx: desk_slam; cutin: objection_protesto; pose: chapulin_slam]
-DEFENSA: Señor juez, el anexo del parte de detención trae la hoja de relevo del Archivo, con cuatro firmas y cuatro horas. [pose: chapulin_point]
+DEFENSA: Señor juez, la hoja de relevo de custodia del Archivo trae cuatro firmas y cuatro horas. [pose: chapulin_point]
 DEFENSA: Rangel y Nieto firman su salida a las **cinco en punto**. [pose: chapulin_idle]
 DEFENSA: Cadena y Solís firman su entrada a las **cinco y cuarto**. [pose: chapulin_slam; sfx: desk_slam]
 JUEZ: ¡Quince minutos! [pose: judge_shock]
@@ -1116,16 +1131,16 @@ DEFENSA: Quince minutos con la reja del pasillo siete sin un solo custodio, señ
 DEFENSA: Justo en medio del intervalo en que murió ese hombre. [pose: chapulin_idle]
 SARGENTO: ...Es correcto. Y lo asenté yo, señor juez, y nadie me preguntó por ello hasta hoy. [pose: pazguato_decidido]
 SUPER SAM: ¡Su salary is...! ¡Ash! [pose: supersam_sweat]
-JUEZ: ¡Que se asiente! Entre las diecisiete horas y las diecisiete quince, el pasillo siete estuvo abierto y sin vigilancia. [sfx: gavel; pose: judge_gavel]
+JUEZ: ¡Que se asiente! Entre las 17:00 y las 17:15, el pasillo siete estuvo abierto y sin vigilancia. [sfx: gavel; pose: judge_gavel]
 SUPER SAM: ¡Abierto para el acusado, Your Honor! ¡Que ya había firmado su salida y podía volver a subir! [pose: supersam_point]
-DEFENSA: Por la escalera principal, que nace a tres metros del mostrador de un hombre que llevaba treinta y un años mirando esa puerta. [pose: chapulin_idle]
+DEFENSA: Por la escalera principal, cuyo primer escalón está a tres metros del mostrador de un hombre que llevaba treinta y un años mirando esa puerta. [pose: chapulin_idle]
 JUEZ: La corte concede el punto a la defensa y devuelve la pregunta a la fiscalía. [pose: judge_neutral]
 JUEZ: Y quiere además una explicación sobre ese papel liso, licenciado. [pose: judge_thinking]
 ~~~
 
 #### `followUp`: **`esquina_tarjeta`**
 
-Pregunta visible: *«¿Cómo llegó ese papel a la mano del occiso?»*
+Pregunta visible: *«¿Cómo llegó ese papel a la mano de la víctima?»*
 
 ~~~dialogue
 DEFENSA: ¡TOMA ESO! [sfx: desk_slam; cutin: objection_toma_eso; pose: chapulin_slam]
@@ -1137,7 +1152,7 @@ DEFENSA: Y hay más. La mano estaba **cerrada alrededor** del papel, no apretán
 JUEZ: ¿Qué está diciendo la defensa? [pose: judge_shock]
 DEFENSA: Que a ese hombre no le arrancaron una tarjeta. [pose: chapulin_idle]
 DEFENSA: Que alguien le abrió la mano después, le puso un pedacito de cartón adentro y se la volvió a cerrar. [pose: chapulin_slam; sfx: desk_slam; cutin: objection_protesto]
-NARRADOR: La galería se levanta. El Juez golpea el mazo cuatro veces. [sfx: gavel]
+NARRADOR: La galería se levanta. [sfx: gavel] [bg: bg_gallery_characters; furniture: none]
 JUEZ: ¡ORDEN! ¡ORDEN EN LA SALA! [sfx: gavel; pose: judge_gavel]
 [ACTUALIZAR informe_forense_c5]
 DEFENSA: Y con la ampliación que pedimos esta mañana, señor juez: el golpe entró de arriba abajo y por detrás, sin arco. [pose: chapulin_point]
@@ -1164,7 +1179,7 @@ JUEZ: Déjele la escoba. Y declare usted sobre lo que vio al subir. [sfx: gavel;
 c5_d1t3_1 NICANOR: A las cinco treinta y cinco subí por la escalera principal, como todos los días de mi vida.
 c5_d1t3_2 NICANOR: En el pasillo siete estaba el señor en el suelo, y el tomo a un metro de él.
 c5_d1t3_3 NICANOR: Lo demás estaba en su sitio: la mesa con su legajo abierto, la lámpara prendida y el estante derechito.
-c5_d1t3_4 NICANOR: Y como por mi escalera no subió nadie después del licenciado, concluí que nadie más pudo llegar al pasillo siete. Esa escalera nace a tres metros de mi mostrador.
+c5_d1t3_4 NICANOR: Y como por mi escalera no subió nadie después del licenciado, concluí que nadie más pudo llegar al pasillo siete. Esa escalera empieza a tres metros de mi mostrador.
 ~~~
 
 #### Presiones
@@ -1202,7 +1217,7 @@ JUEZ: ¿El hueco del trece? [pose: judge_thinking]
 NICANOR: Ése lleva vacío desde el setenta y uno. Es un tomo que anunciaron y nunca imprimieron. Yo le digo «el tomo trece» y ahí sigue, vacío. [pose: nicanor_idle]
 DEFENSA: (El tomo trece.) [pose: chapulin_idle]
 BERRONDO: (...) [pose: berrondo_idle]
-DEFENSA: (Ese señor de la leontina no se ha movido en toda la audiencia. Y acaba de mover un dedo.) [pose: chapulin_idle]
+DEFENSA: (Ese señor de la cadena de oro no se ha movido en toda la audiencia. Y acaba de mover un dedo.) [pose: chapulin_idle]
 ~~~
 
 > **La única vez que se nombra el título del episodio dentro del episodio**, y lo dice un conserje hablando de un mueble. Nadie lo comenta. La acotación de Berrondo es **una línea sin texto** (`...`) con `pose: berrondo_idle`: la primera y única reacción visible del culpable en todo el día 1.
@@ -1247,22 +1262,22 @@ NICANOR: Señor juez, en el Archivo hay libros hasta para apuntar los libros. [p
 
 #### `followUp`: **`expediente_casimiro`**
 
-Pregunta visible: *«¿Qué estaba haciendo el occiso cuando lo golpearon?»*
+Pregunta visible: *«¿Qué estaba haciendo la víctima cuando la golpearon?»*
 
 ~~~dialogue
 DEFENSA: ¡TOMA ESO! [sfx: desk_slam; cutin: objection_toma_eso; pose: chapulin_slam]
 DEFENSA: Don Nicanor dijo que todo estaba «en su sitio». Y entre las cosas que estaban en su sitio había un expediente abierto. [pose: chapulin_point]
-DEFENSA: Abierto en la foja doscientos catorce, señor juez. Y en la foja doscientos catorce hay una tarjeta pegada con engrudo. [pose: chapulin_idle]
+DEFENSA: Abierto en la página 214, señor juez. Y en la página 214 hay una tarjeta pegada con engrudo. [pose: chapulin_idle]
 JUEZ: Léala, licenciado. [sfx: gavel; pose: judge_gavel]
 DEFENSA: «Enciclopedias El Saber Universal, Sociedad Anónima.» Prueba decomisada al sentenciado en julio. [pose: chapulin_point]
 DEFENSA: Y al pie, de puño y letra del secretario: «sociedad disuelta desde 1971». [pose: chapulin_idle]
-DEFENSA: Don Nicanor sacude el Tomo XI cada lunes. El sábado del crimen vio el estante completo y el expediente abierto en esta foja. [pose: chapulin_point]
+DEFENSA: Don Nicanor sacude el Tomo XI cada lunes. El sábado del crimen vio el estante completo y el expediente abierto en esta página. [pose: chapulin_point]
 [ACTUALIZAR-PERFIL perfil_casimiro]
 [ACTUALIZAR-PERFIL perfil_nicanor]
-JUEZ: ¿Y qué venía a hacer ese hombre aquí con una tarjeta de once años de muerta? [pose: judge_thinking]
+JUEZ: ¿Y qué venía a hacer ese hombre aquí con la tarjeta de una compañía disuelta hace once años? [pose: judge_thinking]
 DEFENSA: Eso, señor juez, es exactamente lo que alguien no quiso que dijera. [pose: chapulin_slam; sfx: desk_slam]
 SUPER SAM: ¡OBJECTION! ¡Especulación! [pose: supersam_slam; sfx: desk_slam]
-JUEZ: Ha lugar. Pero la corte la anota igual, porque la va a necesitar. [pose: judge_neutral]
+JUEZ: Concedido. Pero la corte la anota igual, porque la va a necesitar. [pose: judge_neutral]
 ~~~
 
 ---
@@ -1278,7 +1293,7 @@ SUPER SAM: Your Honor, con todo respeto, ese libro es de trámite. Ahí firman v
 JUEZ: Señor fiscal: esta corte ha pasado toda la audiencia oyendo que por una puerta no entró nadie. [pose: judge_thinking]
 JUEZ: Y llevamos toda la audiencia sin que nadie me diga quién entró por la otra. [sfx: gavel; pose: judge_gavel]
 SUPER SAM: ...La fiscalía lo traerá. [pose: supersam_sweat]
-NARRADOR: En la mesa de la fiscalía, el hombre de la leontina saca una pluma y anota una sola línea en una libreta.
+NARRADOR: En la mesa de la fiscalía, el hombre de la cadena de oro saca una pluma y anota una sola línea en una libreta.
 DEFENSA: (Ese señor tomó nota. Lleva todo el día sin tomar nota y ahora toma nota.) [pose: chapulin_idle]
 DEFENSA: (Y ni siquiera sé por qué me fijo.) [pose: chapulin_idle]
 JUEZ: Mañana esta corte quiere dos cosas. [pose: judge_neutral]
@@ -1298,25 +1313,25 @@ DON RAMÓN: (No, joven. El primer día no se gana. El primer día nada más no s
 
 Ruta obligatoria: `vecindad_c5` → `correspondencia` → `despacho_berrondo` → `delegacion_c5`.
 
-### 12.1 Locación 1: La vecindad (`vecindad_c5`, `bg_despacho.webp`)
+### 12.1 Locación 1: La vecindad (`vecindad_c5`, `bg_despacho_c5.webp`)
 
-- **Personajes:** Señor Barriga (`barriga_idle`, `barriga_shock`, `barriga_enojado`).
+- **Personajes:** Señor Barriga (`barriga_idle`, `barriga_sorpresa`, `barriga_reclamo`, `barriga_confundido`).
 - **Música:** `investigation`.
-- Se reutiliza el fondo del despacho del Señor Barriga del Caso 3.
+- Se conserva la oficina del fondo del despacho del Señor Barriga del Caso 3, pero se usa una variante exclusiva del Caso 5 para que el escritorio pinte el sobre y los documentos que el hotspot examina.
 
 ~~~dialogue
-NARRADOR: 7 de diciembre, 8:30 AM. Despacho del Señor Barriga, en la vecindad de la calle del Espanto. [bg: bg_despacho; furniture: none; bgm: investigation]
-BARRIGA: ¡Ay, no! ¡Otra vez no! ¡Ya sé para qué viene! [pose: barriga_enojado]
+NARRADOR: 7 de diciembre, 8:30 AM. Despacho del Señor Barriga, en la vecindad de la calle del Espanto. [bg: bg_despacho_c5; furniture: none; bgm: investigation]
+BARRIGA: ¡Ay, no! ¡Otra vez no! ¡Ya sé para qué viene! [pose: barriga_reclamo]
 DEFENSA: Yo no le he dicho nada. [pose: chapulin_idle]
-BARRIGA: ¡Es que cada vez que alguien de esta vecindad me toca la puerta es para pedirme prórroga! [pose: barriga_enojado]
+BARRIGA: ¡Es que cada vez que alguien de esta vecindad me toca la puerta es para pedirme prórroga! [pose: barriga_reclamo]
 DEFENSA: Vengo por lo contrario, señor Barriga. Vengo por una renta que **sí** se pagó. [pose: chapulin_point]
 BARRIGA: ...Ah. [pose: barriga_idle]
-BARRIGA: Ésa. [pose: barriga_shock]
+BARRIGA: Ésa. [pose: barriga_sorpresa]
 BARRIGA: Mire, joven. Yo llevo diecisiete años cobrándole al señor Ramón. Diecisiete. [pose: barriga_idle]
-BARRIGA: Y el veintinueve de noviembre encontré un sobre amarillo debajo de mi puerta con diecisiete meses adentro. [pose: barriga_shock]
+BARRIGA: Y el veintinueve de noviembre encontré un sobre amarillo debajo de mi puerta con diecisiete meses adentro. [pose: barriga_sorpresa]
 BARRIGA: Yo me senté en el escalón y me estuve quieto diez minutos. [pose: barriga_idle]
 DEFENSA: ¿Por el gusto? [pose: chapulin_idle]
-BARRIGA: Por el susto. Cuando algo se arregla solo después de diecisiete años, uno sabe que algo se descompuso en otro lado. [pose: barriga_idle]
+BARRIGA: Por el susto. Cuando algo se arregla solo después de diecisiete años, uno sabe que algo se descompuso en otro lado. [pose: barriga_confundido]
 [ENTREGAR-PERFIL perfil_barriga]
 ~~~
 
@@ -1329,7 +1344,7 @@ NARRADOR: Una puerta de madera con el marco hinchado por la humedad y una rendij
 DEFENSA: Por aquí cabe un sobre sin doblarlo. [pose: chapulin_idle]
 BARRIGA: Por ahí me han pasado de todo: cartas, quejas, un pollo. [pose: barriga_idle]
 DEFENSA: ¿Un pollo? [pose: chapulin_panic]
-BARRIGA: Vivo. No pregunte. [pose: barriga_enojado]
+BARRIGA: Vivo. No pregunte. [pose: barriga_reclamo]
 DEFENSA: (Cualquiera pudo dejar ese sobre sin que nadie lo viera. Eso no me sirve de nada... o me sirve para todo.) [pose: chapulin_idle]
 ~~~
 
@@ -1338,17 +1353,17 @@ DEFENSA: (Cualquiera pudo dejar ese sobre sin que nadie lo viera. Eso no me sirv
 ~~~dialogue
 NARRADOR: Sobre el escritorio, un sobre de manila abierto y, al lado, media cuartilla mecanografiada.
 BARRIGA: Ahí está todo. El sobre, el papelito y la copia de mi recibo. Yo no soy de los que tiran papeles. [pose: barriga_idle]
-DEFENSA: «Adjunto el pago de diecisiete mensualidades vencidas a cargo del C. Ramón Valdés, inquilino de la vivienda 4.» [pose: chapulin_idle]
+DEFENSA: «Adjunto el pago de diecisiete mensualidades vencidas a cargo del C. Ramón Valdés, inquilino de la vivienda 72.» [pose: chapulin_idle]
 DEFENSA: «Se ruega expedir el recibo correspondiente y conservarlo. No se requiere respuesta.» [pose: chapulin_point]
 DEFENSA: ...Señor Barriga, ¿usted cree que Don Ramón escribe así? [pose: chapulin_idle]
 BARRIGA: Joven, el señor Ramón me manda los recados escritos en la envoltura de una torta. [pose: barriga_idle]
-BARRIGA: Y con faltas. [pose: barriga_enojado]
+BARRIGA: Y con faltas. [pose: barriga_reclamo]
 DEFENSA: (A máquina. En tercera persona. Y con «se ruega».) [pose: chapulin_idle]
 [ENTREGAR nota_mecanografiada]
 [ENTREGAR recibo_renta]
 ~~~
 
-> **`detailedView` de `nota_mecanografiada`** (`assets/examine_nota_renta.webp`): media cuartilla de papel cebolla fotografiada de plano con luz rasante. Tres renglones mecanografiados con tipografía de máquina mecánica de los sesenta, cinta bicolor gastada. **Defecto obligatorio: todas las eses minúsculas impresas media línea por debajo del renglón y medio grado inclinadas a la izquierda.** Sin firma, sin membrete, sin fecha. En la esquina inferior, una marca de liga. El pie de lámina describe el papel y **no menciona la ‘s’**.
+> **`detailedView` de `nota_mecanografiada`** (`assets/examine_nota_renta.webp`): media cuartilla de papel cebolla fotografiada de plano con luz rasante. Tres renglones mecanografiados con tipografía de máquina mecánica de los sesenta, cinta bicolor gastada. **Defecto obligatorio: cada `s` minúscula que pertenece al texto se imprime una sola vez, conservando su lugar en la palabra pero desplazada media línea por debajo del renglón y medio grado inclinada a la izquierda. No se conserva otra `s` en la línea base ni se añade otra `s` debajo.** Sin firma, sin membrete, sin fecha. En la esquina inferior, una marca de liga. El pie de lámina describe el papel y **no menciona la ‘s’**.
 
 #### Hablar con el Señor Barriga — el **tercer** tema desbloquea `correspondencia`
 
@@ -1366,11 +1381,11 @@ DEFENSA: (Otro señor con horario. En esta ciudad todos tienen horario menos yo.
 ~~~dialogue
 BARRIGA: Guardé esos mismos billetes en la caja fuerte de mi despacho. Diecisiete mensualidades, joven: cuatro mil doscientos cincuenta pesos. Eso no se guarda bajo el colchón. [pose: barriga_idle]
 DEFENSA: ¿Y el recibo? [pose: chapulin_idle]
-BARRIGA: Lo hice esa misma mañana y se lo di al señor Ramón el lunes en el patio. Le dije «gracias» y él puso una cara rarísima. [pose: barriga_shock]
+BARRIGA: Lo hice esa misma mañana y se lo di al señor Ramón el lunes en el patio. Le dije «gracias» y él puso una cara rarísima. [pose: barriga_sorpresa]
 DEFENSA: ¿Qué escribió usted en el concepto? [pose: chapulin_point]
 BARRIGA: Lo que pasó. «Recibí de tercero no identificado, a cuenta del inquilino.» [pose: barriga_idle]
 DEFENSA: ¿Por qué no puso el nombre de Don Ramón? [pose: chapulin_idle]
-BARRIGA: Porque no me lo dio él, joven. Yo seré casero, pero no soy mentiroso. [pose: barriga_enojado]
+BARRIGA: Porque no me lo dio él, joven. Yo seré casero, pero no soy mentiroso. [pose: barriga_reclamo]
 DEFENSA: (Este señor acaba de escribir, sin querer, la mejor prueba de la defensa. Y va a subir al estrado a decir que fue Don Ramón.) [pose: chapulin_idle]
 ~~~
 
@@ -1379,12 +1394,12 @@ DEFENSA: (Este señor acaba de escribir, sin querer, la mejor prueba de la defen
 ~~~dialogue
 BARRIGA: ¿Pues quién más iba a pagar la renta del señor Ramón? [pose: barriga_idle]
 DEFENSA: No lo sé. Eso es lo que vengo a averiguar. [pose: chapulin_idle]
-BARRIGA: Joven, yo no quiero que metan al señor Ramón a la cárcel. Me debe diecisiete meses. [pose: barriga_shock]
-BARRIGA: ...Me DEBÍA. Ay, ya ni sé. [pose: barriga_enojado]
+BARRIGA: Joven, yo no quiero que metan al señor Ramón a la cárcel. Me debe diecisiete meses. [pose: barriga_sorpresa]
+BARRIGA: ...Me DEBÍA. Ay, ya ni sé. [pose: barriga_confundido]
 DEFENSA: Señor Barriga, ¿me presta ese sobre y la nota? [pose: chapulin_point]
 BARRIGA: Llévese lo que quiera menos el recibo, que es mi comprobante fiscal. [pose: barriga_idle]
 DEFENSA: Llévame una copia entonces. [pose: chapulin_idle]
-BARRIGA: Dos pesos la copia. [pose: barriga_enojado]
+BARRIGA: Dos pesos la copia. [pose: barriga_reclamo]
 DEFENSA: ¡Se aprovechan de mi nobleza! [pose: chapulin_panic]
 DEFENSA: (Una nota a máquina, sin firma, escrita por alguien que sabe cómo se redacta un oficio.) [pose: chapulin_idle]
 DEFENSA: (¿Y quién redacta oficios todo el día? Los juzgados.) [pose: chapulin_point]
@@ -1418,9 +1433,9 @@ DEFENSA: (...Voy a necesitar el libro.) [pose: chapulin_idle]
 ~~~dialogue
 NARRADOR: Un libro empastado en tela azul, con una columna de firmas garabateadas al margen de cada asiento.
 DEFENSA: Veintinueve de noviembre... veintinueve de noviembre... [pose: chapulin_idle]
-DEFENSA: ¡Aquí! «Oficio 4471. Diligencia de cotejo documental **promovida por el interno C. Lengua**. Archivo Judicial, 4 de diciembre, 17:00 horas.» [pose: chapulin_point]
+DEFENSA: ¡Aquí! «Oficio 4471. Diligencia de cotejo documental **promovida por el interno C. Lengua**. Citado a petición del interno: Ramón Valdés. Archivo Judicial, 4 de diciembre, 17:00 horas.» [pose: chapulin_point]
 DEFENSA: «Entregado en: Sindicatura de la quiebra 114/1971.» [pose: chapulin_idle]
-DEFENSA: (Trae hasta el nombre del señor Lengua. Con todas sus letras.) [pose: chapulin_idle]
+DEFENSA: (Trae los nombres del señor Lengua y de Don Ramón. Con todas sus letras.) [pose: chapulin_idle]
 DEFENSA: ¿Sindi... qué? [pose: chapulin_panic]
 CHIMOLTRUFIA: Sindicatura, joven. Es donde vive el síndico. [pose: chimoltrufia_idle]
 DEFENSA: ¿Y el síndico qué es? ¿Un señor o un edificio? [pose: chapulin_idle]
@@ -1429,7 +1444,7 @@ DEFENSA: (Y aquí al margen hay una rúbrica. Alguien recibió ese aviso y firm�
 [ENTREGAR acuse_notificacion]
 ~~~
 
-> **`detailedView` de `acuse_notificacion`** (`assets/examine_acuse.webp`): asiento de libro de acuses fotografiado de plano. Renglón mecanografiado con los datos del oficio 4471 y, al margen derecho, **una rúbrica manuscrita a tinta azul, enérgica y muy pequeña, con dos rayas bajo el trazo**. Fecha estampada con fechador de hule: *29 NOV*. Sin nombre impreso: sólo la rúbrica.
+> **`detailedView` de `acuse_notificacion`** (`assets/examine_acuse.webp`): asiento de libro de acuses fotografiado de plano. Renglón mecanografiado con el oficio 4471, Casimiro como promotor, **Ramón Valdés como citado a petición del interno**, día, lugar y hora; al margen derecho, **una rúbrica manuscrita a tinta azul, enérgica y muy pequeña, con dos rayas bajo el trazo**. Fecha estampada con fechador de hule: *29 NOV*. Sin nombre impreso del receptor: sólo la rúbrica.
 
 #### Hablar con la Chimoltrufia — el **segundo** tema desbloquea `despacho_berrondo`
 
@@ -1462,8 +1477,8 @@ CHIMOLTRUFIA: Nadie, joven. Aquí nadie pregunta nada. Por eso me aburro. [pose:
 DEFENSA: Señorita, ¿me puede decir dónde está esa sindicatura? [pose: chapulin_point]
 CHIMOLTRUFIA: Claro. Calle de Donceles 14, segundo piso. Despacho del licenciado Berrondo. [pose: chimoltrufia_idle]
 DEFENSA: ...¿Berrondo? [pose: chapulin_panic]
-CHIMOLTRUFIA: Berrondo. Muy buen señor. Manda una canasta en Navidad. [pose: chimoltrufia_shock]
-DEFENSA: (El señor de la leontina. El que ayuda a la fiscalía sin cobrar.) [pose: chapulin_idle]
+CHIMOLTRUFIA: Berrondo. Muy buen señor. Manda una canasta en Navidad. [pose: chimoltrufia_idle]
+DEFENSA: (El señor de la cadena de oro. El que ayuda a la fiscalía sin cobrar.) [pose: chapulin_idle]
 DEFENSA: (Que no panda el cúnico, Chapulín. Que no panda.) [pose: chapulin_panic]
 ~~~
 
@@ -1480,7 +1495,11 @@ NARRADOR: 7 de diciembre, 11:30 AM. Donceles 14, segundo piso. Despacho del Lic.
 NARRADOR: Cuatro paredes de libros encuadernados en piel, del piso al techo, ordenados por tomo y por año.
 BERRONDO: Adelante, licenciado. Lo estaba esperando. [pose: berrondo_idle]
 DEFENSA: ¡¿A mí?! [pose: chapulin_panic]
-BERRONDO: Ayer, en la sala, se quedó usted mirando mi leontina durante cuarenta segundos. Un abogado que mira una leontina cuarenta segundos, viene. [pose: berrondo_idle]
+BERRONDO: Ayer, en la sala, se quedó usted mirando mi leontina durante cuarenta segundos. [pose: berrondo_idle]
+DEFENSA: ¿Leon... qué? [pose: chapulin_idle]
+BERRONDO: ...tina. Leontina. La cadena de oro que cruza el chaleco, del ojal al bolsillo del reloj. [pose: berrondo_definicion]
+DEFENSA: ¡Chanfle! [pose: chapulin_panic]
+BERRONDO: Un abogado que mira una leontina cuarenta segundos, viene. [pose: berrondo_idle]
 BERRONDO: Siéntese. ¿Café? Es de Coatepec. [pose: berrondo_idle]
 DEFENSA: (Este señor es el contrario y me está ofreciendo café.) [pose: chapulin_idle]
 DEFENSA: Licenciado, usted está ayudando al fiscal que quiere encerrar a mi cliente. [pose: chapulin_point]
@@ -1495,7 +1514,7 @@ DEFENSA: (No está actuando. Ése es el problema: no está actuando.) [pose: cha
 
 ~~~dialogue
 NARRADOR: Una vitrina de caoba con tres legajos exhibidos como si fueran trofeos, y un marco con una credencial.
-DEFENSA: «Fulgencio Berrondo. Síndico. Quiebra 114 diagonal 1971.» [pose: chapulin_idle]
+DEFENSA: «Fulgencio Berrondo. Síndico. Quiebra 114/1971.» [pose: chapulin_idle]
 BERRONDO: Enciclopedias El Saber Universal, Sociedad Anónima. Mi primera sindicatura y la última que me queda abierta. [pose: berrondo_idle]
 DEFENSA: ¿Once años abierta? [pose: chapulin_panic]
 BERRONDO: Once años, casi nueve meses. Hay acreedores que murieron esperando y herederos que no aparecen. [pose: berrondo_idle]
@@ -1677,12 +1696,11 @@ SARGENTO: Por eso me tembló la mano. [pose: pazguato_decidido]
 DEFENSA: (Cinco papeles de cinco casos que no se conocen entre ellos.) [pose: chapulin_idle]
 DEFENSA: (Y los cinco hablan del mismo negocio.) [pose: chapulin_panic]
 SARGENTO: Mi Licenciado. Le voy a pedir una cosa y perdóneme el atrevimiento. [pose: pazguato_sweat]
-SARGENTO: No lo diga hoy en la sala hasta que el señor de la leontina esté declarando. [pose: pazguato_decidido]
+SARGENTO: No lo diga hoy en la sala hasta que el señor de la cadena de oro esté declarando. [pose: pazguato_decidido]
 DEFENSA: ¿Y por qué? [pose: chapulin_idle]
 SARGENTO: Porque un coadyuvante puede objetar. Un testigo, no. [pose: pazguato_decidido]
 DEFENSA: (Sargento, ¿desde cuándo sabe usted de derecho?) [pose: chapulin_idle]
 SARGENTO: Desde septiembre, mi Licenciado. Es lo único bueno que me dejó septiembre. [pose: pazguato_saludo]
-NARRADOR: Suena la campana del juzgado. [sfx: bell]
 ~~~
 
 ---
@@ -1700,16 +1718,16 @@ SUPER SAM: Aquí está, Your Honor. Y le advierto que es de una insignificancia 
 NARRADOR: El alguacil deposita sobre la mesa un libro empastado en hule negro, mucho más delgado que el otro.
 JUEZ: Léalo, señor secretario. Hoja del cuatro de diciembre. [pose: judge_neutral]
 SECRETARIO: Cuatro asientos, señor juez.
-SECRETARIO: Uno. Hermenegildo Rosas, perito valuador. Entrada nueve diez, gafete devuelto nueve cuarenta.
-SECRETARIO: Dos. Licenciado Fulgencio Berrondo, síndico de la quiebra 114 diagonal 1971. Entrada dieciséis cero cinco, gafete devuelto dieciséis cincuenta.
-SECRETARIO: Tres. Licenciado Hilario Balbuena, actuario. Entrada diecisiete cuarenta y cuatro, gafete devuelto dieciocho cero cinco.
-SECRETARIO: Cuatro. Sargento Refugio Pazguato, policía judicial. Entrada diecisiete cincuenta y dos, gafete devuelto veintidós quince.
+SECRETARIO: Uno. Hermenegildo Rosas, perito valuador. Entrada 9:10, gafete devuelto 9:40.
+SECRETARIO: Dos. Licenciado Fulgencio Berrondo, síndico de la quiebra 114/1971. Entrada 16:05, gafete devuelto 16:50.
+SECRETARIO: Tres. Licenciado Hilario Balbuena, actuario. Entrada 17:44, gafete devuelto 18:05.
+SECRETARIO: Cuatro. Sargento Refugio Pazguato, policía judicial. Entrada 17:52, gafete devuelto 22:15.
 NARRADOR: Silencio absoluto en la sala. [bgm: suspense]
 DEFENSA: (...El segundo nombre es el señor que me dio café esta mañana.) [pose: chapulin_panic]
 SUPER SAM: ¡Your Honor, antes de que la galería empiece a inventar! [pose: supersam_slam; sfx: desk_slam]
-SUPER SAM: ¡El licenciado Berrondo es auxiliar de la justicia y estaba haciendo su trabajo! ¡Yo mismo lo invité a coadyuvar el lunes por la mañana, cuando él me comunicó su carácter de síndico del occiso! [pose: supersam_point]
-BERRONDO: Es exacto, señor juez. Yo se lo dije al señor fiscal el lunes por la mañana, antes de la primera audiencia. [pose: berrondo_idle]
-BERRONDO: Consideré que ocultarlo habría sido indigno y que declararlo sería útil. Me pareció que ambas cosas eran obvias. [pose: berrondo_idle]
+SUPER SAM: ¡El licenciado Berrondo es auxiliar de la justicia y estaba haciendo su trabajo! ¡Yo mismo lo invité a coadyuvar el lunes por la mañana, cuando él me comunicó su carácter de síndico de la víctima! [pose: supersam_point]
+BERRONDO: Es exacto, señor juez. Yo se lo dije al señor fiscal el lunes por la mañana, antes de la primera audiencia. [bg: bg_courtroom; pose: berrondo_idle]
+BERRONDO: Consideré que ocultarlo habría sido indigno y que declararlo sería útil. Me pareció que ambas cosas eran obvias. [bg: bg_courtroom; pose: berrondo_idle]
 JUEZ: ¿La defensa tiene algo que decir? [pose: judge_thinking]
 DEFENSA: ...La defensa tiene mucho que decir y no tiene todavía con qué decirlo, señor juez. [pose: chapulin_idle]
 JUEZ: Entonces la corte se lo va a impedir, licenciado, por su propio bien. [pose: judge_neutral]
@@ -1719,7 +1737,7 @@ DEFENSA: (Y ahí se cerró la puerta.) [pose: chapulin_idle]
 [ENTREGAR-PERFIL perfil_genoveva]
 DEFENSA: (La señorita de la ventanilla lleva ese libro. Me la apunto en el Acta, aunque hoy no me sirva.) [pose: chapulin_idle]
 JUEZ: Y antes de oír al testigo de hoy, esta corte quiere una cosa en actas, porque llevamos dos días hablando de un hombre como si fuera un mueble. [pose: judge_thinking]
-JUEZ: Defensa: **diga usted quién era el occiso y qué estaba haciendo en ese Archivo.** [sfx: gavel; pose: judge_gavel]
+JUEZ: Defensa: **diga usted quién era la víctima y qué estaba haciendo en ese Archivo.** [sfx: gavel; pose: judge_gavel]
 ~~~
 
 `openingPresent`: **`profileTarget: ['perfil_casimiro']`**. Pregunta visible: *«¿Quién era el hombre que murió en el pasillo 7?»*
@@ -1729,7 +1747,7 @@ DEFENSA: Casimiro Lengua, señor juez. [pose: chapulin_idle]
 DEFENSA: Sentenciado en julio por el asalto al cobrador Nazario Cuenca. Lo acusó la fiscalía que hoy comparece y lo venció el abogado que hoy está sentado en el banquillo. [pose: chapulin_point]
 DEFENSA: Su condena no está en discusión y esta defensa no va a pedir que se revise. Era culpable y lo sigue siendo. [pose: chapulin_idle]
 JUEZ: ¿Y qué hacía en el Archivo? [pose: judge_neutral]
-DEFENSA: Había ofrecido al ministerio público entregar un fichero a cambio de reducción de pena. [pose: chapulin_idle]
+DEFENSA: Venía a declarar en una diligencia de su apelación, señor juez. La diligencia la pidió él. [pose: chapulin_idle]
 DEFENSA: Y pidió que estuviera presente el único abogado que lo había vencido. [pose: chapulin_point]
 JUEZ: ¿Por qué pediría eso un hombre? [pose: judge_thinking]
 DON RAMÓN: Porque era el único que no le tenía miedo, señor juez. [pose: donramon_idle]
@@ -1737,7 +1755,7 @@ DON RAMÓN: A la gente como el señor Lengua le tienen miedo, o lástima, o asco
 JUEZ: Que se asiente. [sfx: gavel; pose: judge_gavel]
 SUPER SAM: Conmovedor. La fiscalía llama al testigo que cobró esa renta. [pose: supersam_point]
 SUPER SAM: Señor Zenón Barriga y Pesado, arrendador. [pose: supersam_point]
-BARRIGA: Presente. Y quiero aclarar de una vez que yo no quería venir. [pose: barriga_enojado]
+BARRIGA: Presente. Y quiero aclarar de una vez que yo no quería venir. [pose: barriga_reclamo]
 JUEZ: Nadie quiere venir, señor Barriga. Su testimonio. [sfx: gavel; pose: judge_gavel]
 ~~~
 
@@ -1763,7 +1781,7 @@ c5_d2t1_5 BARRIGA: Yo no vi a nadie. Pero tenía que ser él. ¿Quién más le i
 DEFENSA: ¡UN MOMENTO! ¿A las nueve en punto? [sfx: whoosh; cutin: objection_un_momento; pose: chapulin_point]
 BARRIGA: A las nueve. Desayuno antes de esa hora y salgo por el periódico a las nueve en punto desde 1954. [pose: barriga_idle]
 DEFENSA: Entonces el sobre pudo estar ahí desde la madrugada. [pose: chapulin_idle]
-BARRIGA: Pudo. Yo no duermo en la puerta, joven. [pose: barriga_enojado]
+BARRIGA: Pudo. Yo no duermo en la puerta, joven. [pose: barriga_reclamo]
 DEFENSA: (Nadie vio nada. Como siempre que las cosas están bien hechas.) [pose: chapulin_idle]
 ~~~
 
@@ -1771,14 +1789,14 @@ DEFENSA: (Nadie vio nada. Como siempre que las cosas están bien hechas.) [pose:
 
 ~~~dialogue
 DEFENSA: ¡UN MOMENTO! ¿Billetes nuevos? [sfx: whoosh; pose: chapulin_point]
-BARRIGA: Nuevecitos. De los de cien, con la banda del banco todavía puesta en dos fajos. [pose: barriga_shock]
+BARRIGA: Nuevecitos. De los de cien, con la banda del banco todavía puesta en dos fajos. [pose: barriga_sorpresa]
 JUEZ: ¿Con banda de banco? [pose: judge_thinking]
 BARRIGA: Con banda. Yo la guardé porque tenía un número. Se la di al Sargento. [pose: barriga_idle]
 SARGENTO: Y yo la rastreé, señor juez. Retiro de ventanilla del veintiséis de noviembre. Cuenta a nombre de una sindicatura. [pose: pazguato_decidido]
 NARRADOR: Murmullo. [sfx: realization]
-BERRONDO: Señor juez, con la venia: ese retiro es mío y está declarado. [pose: berrondo_idle]
-BERRONDO: Retiré cinco mil pesos el veintiséis para pagar honorarios de un notario en efectivo, cosa fea pero corriente. [pose: berrondo_idle]
-BERRONDO: El notario extendió factura y la tengo aquí. ¿La agrego? [pose: berrondo_idle]
+BERRONDO: Señor juez, con la venia: ese retiro es mío y está declarado. [bg: bg_courtroom; pose: berrondo_idle]
+BERRONDO: Retiré cinco mil pesos el veintiséis para pagar honorarios de un notario en efectivo, cosa fea pero corriente. [bg: bg_courtroom; pose: berrondo_idle]
+BERRONDO: El notario extendió factura y la tengo aquí. ¿La agrego? [bg: bg_courtroom; pose: berrondo_idle]
 JUEZ: ...Agréguela. [pose: judge_thinking]
 DEFENSA: (Contesta antes de que le pregunten. Y contesta bien.) [pose: chapulin_idle]
 DEFENSA: (Cinco mil menos cuatro mil doscientos cincuenta son setecientos cincuenta pesos. ¿Cuánto cobra un notario?) [pose: chapulin_idle]
@@ -1787,11 +1805,13 @@ DEFENSA: (Ese pedacito no me lo va a contestar hoy. Me lo guardo.) [pose: chapul
 
 > **Plante de precisión.** La factura del notario existe, es auténtica y es por setecientos cincuenta pesos; la fiscalía la admite sin discutirla. El resto del retiro **nunca se explica en el día 2**, y el Chapulín lo deja pasar en voz alta. Se cobra en el clímax, etapa 4.
 
+La intervención de Berrondo ocurre todavía desde la mesa de la fiscalía, antes de su declaración formal como testigo. Las líneas de esa intervención llevan `bg_courtroom` explícito para no heredar la cámara del testimonio que sigue.
+
 **Declaración 3**
 
 ~~~dialogue
 DEFENSA: ¡UN MOMENTO! Léale la nota a la corte, señor Barriga. [sfx: whoosh; pose: chapulin_point]
-BARRIGA: «Adjunto el pago de diecisiete mensualidades vencidas a cargo del C. Ramón Valdés, inquilino de la vivienda 4.» [pose: barriga_idle]
+BARRIGA: «Adjunto el pago de diecisiete mensualidades vencidas a cargo del C. Ramón Valdés, inquilino de la vivienda 72.» [pose: barriga_idle]
 BARRIGA: «Se ruega expedir el recibo correspondiente y conservarlo. No se requiere respuesta.» [pose: barriga_idle]
 JUEZ: ¿«Se ruega»? [pose: judge_thinking]
 BARRIGA: Se ruega, señor juez. Así dice. [pose: barriga_idle]
@@ -1802,7 +1822,7 @@ DEFENSA: (Y «conservarlo». ¿Por qué le importaría a nadie que el casero gua
 
 ~~~dialogue
 DEFENSA: ¡UN MOMENTO! ¿Qué cara puso mi cliente cuando le dio el recibo? [sfx: whoosh; pose: chapulin_point]
-BARRIGA: Cara de susto. [pose: barriga_shock]
+BARRIGA: Cara de susto. [pose: barriga_sorpresa]
 BARRIGA: Yo le dije «gracias, señor Ramón» y él me dijo «¿gracias de qué?» y se quedó parado como poste. [pose: barriga_idle]
 SUPER SAM: ¡Actuación! ¡Yo también sé poner cara de poste! [pose: supersam_point]
 DON RAMÓN: Póngala usted, señor fiscal, a ver si le sale. [pose: donramon_idle]
@@ -1814,8 +1834,8 @@ JUEZ: Lástima. [pose: judge_thinking]
 
 ~~~dialogue
 DEFENSA: ¡UN MOMENTO! Señor Barriga, ¿usted quiere que condenen a Don Ramón? [sfx: whoosh; pose: chapulin_point]
-BARRIGA: ¡Claro que no! [pose: barriga_shock]
-BARRIGA: Si lo encierran, ¿a quién le cobro? Uno no le cobra la renta a un preso. [pose: barriga_enojado]
+BARRIGA: ¡Claro que no! [pose: barriga_sorpresa]
+BARRIGA: Si lo encierran, ¿a quién le cobro? Uno no le cobra la renta a un preso. [pose: barriga_reclamo]
 BARRIGA: Yo nomás estoy diciendo lo único que se me ocurre, joven, porque no se me ocurre otra cosa. [pose: barriga_idle]
 DEFENSA: (Eso es exactamente lo que está pasando, señor juez. Y no es lo mismo que declarar.) [pose: chapulin_idle]
 ~~~
@@ -1830,8 +1850,8 @@ DEFENSA: Señor juez, esa nota está escrita **a máquina**, **en tercera person
 DEFENSA: «A cargo del C. Ramón Valdés.» Nadie paga su propia renta «a cargo» de sí mismo. [pose: chapulin_idle]
 DEFENSA: Y «se ruega expedir el recibo correspondiente». Señor Barriga: ¿cómo le escribe a usted mi cliente? [pose: chapulin_point]
 BARRIGA: En la envoltura de una torta, señor juez. [pose: barriga_idle]
-BARRIGA: Y con faltas. [pose: barriga_enojado]
-NARRADOR: Risas en la galería. [sfx: realization]
+BARRIGA: Y con faltas. [pose: barriga_reclamo]
+NARRADOR: Risas en la galería. [sfx: realization] [bg: bg_gallery_characters; furniture: none]
 DON RAMÓN: Son faltas de tiempo, no de ortografía. [pose: donramon_sweat]
 DEFENSA: ¡Mi cliente no tiene máquina de escribir, señor juez! ¡Mi cliente no tiene mesa donde ponerla! [pose: chapulin_slam; sfx: desk_slam]
 SUPER SAM: ¡Objection! ¡Se renta una máquina por dos pesos la hora en cualquier papelería! [pose: supersam_slam; sfx: desk_slam]
@@ -1850,12 +1870,12 @@ DEFENSA: El recibo lo escribió el señor Barriga con su propia mano el veintinu
 DEFENSA: Y en el concepto puso, textualmente: «**Recibí de tercero no identificado, a cuenta del inquilino.**» [pose: chapulin_slam; sfx: desk_slam]
 JUEZ: ¡Cáspita! El propio testigo asentó que no pudo identificar a quien dejó el dinero. [pose: judge_shock]
 DEFENSA: Eso no demuestra todavía quién pagó, señor juez. Demuestra que el recibo no acredita un pago personal de Don Ramón. [pose: chapulin_idle]
-BARRIGA: ¡Pues claro que lo asenté! ¡Yo seré casero, pero no soy mentiroso! [pose: barriga_enojado]
-BARRIGA: Si el señor Ramón me hubiera pagado, yo hubiera escrito «recibí del señor Ramón», ¡y hubiera puesto un dibujito! [pose: barriga_shock]
+BARRIGA: ¡Pues claro que lo asenté! ¡Yo seré casero, pero no soy mentiroso! [pose: barriga_reclamo]
+BARRIGA: Si el señor Ramón me hubiera pagado, yo hubiera escrito «recibí del señor Ramón», ¡y hubiera puesto un dibujito! [pose: barriga_sorpresa]
 DEFENSA: Señor Barriga, escribió usted la mejor prueba de esta defensa hace ocho días y sin saberlo. [pose: chapulin_idle]
-BARRIGA: ...¿De veras? [pose: barriga_shock]
+BARRIGA: ...¿De veras? [pose: barriga_confundido]
 DEFENSA: De veras. [pose: chapulin_idle]
-BARRIGA: Uy. Entonces no me cobre la consulta. [pose: barriga_idle]
+BARRIGA: Uy. Entonces no me cobre la consulta. [pose: barriga_aliviado]
 SUPER SAM: ¡OBJECTION! [sfx: desk_slam; cutin: objection_un_momento; pose: supersam_slam]
 SUPER SAM: ¡Your Honor! ¡Si un tercero pagó esa renta, entonces el acusado tiene un CÓMPLICE! [pose: supersam_point]
 SUPER SAM: ¡Alguien que le pagó diecisiete meses cinco días antes del homicidio! ¡Eso no lo exculpa: eso lo empeora! [pose: supersam_slam; sfx: desk_slam]
@@ -1863,18 +1883,18 @@ DEFENSA: (...Y tiene razón. Tiene razón y no me gusta nada.) [pose: chapulin_p
 JUEZ: La corte concede el punto a la fiscalía. [pose: judge_neutral]
 JUEZ: **Un tercero pagó.** Esta corte quiere saber quién, y quiere saberlo hoy. [sfx: gavel; pose: judge_gavel]
 JUEZ: El testigo puede retirarse. [pose: judge_neutral]
-NARRADOR: En la mesa de la fiscalía, el hombre de la leontina se pone de pie. [bgm: suspense]
-BERRONDO: Señor juez. Con la venia de esta corte y el permiso del señor fiscal. [pose: berrondo_idle]
+NARRADOR: En la mesa de la fiscalía, el hombre de la cadena de oro se pone de pie. [bgm: suspense]
+BERRONDO: Señor juez. Con la venia de esta corte y el permiso del señor fiscal. [bg: bg_courtroom; pose: berrondo_idle]
 SUPER SAM: ¿Licenciado? [pose: supersam_sweat]
-BERRONDO: Llevo dos días oyendo a la defensa rodear mi nombre sin pronunciarlo, y eso es malo para todos: para ella, para la corte y para mí. [pose: berrondo_idle]
-BERRONDO: **Solicito rendir declaración voluntaria.** Renuncio por este acto a mi carácter de coadyuvante mientras declare. [pose: berrondo_idle]
+BERRONDO: Llevo dos días oyendo a la defensa rodear mi nombre sin pronunciarlo, y eso es malo para todos: para ella, para la corte y para mí. [bg: bg_courtroom; pose: berrondo_idle]
+BERRONDO: **Solicito rendir declaración voluntaria.** Renuncio por este acto a mi carácter de coadyuvante mientras declare. [bg: bg_courtroom; pose: berrondo_idle]
 JUEZ: ¡Licenciado, nadie lo ha acusado de nada! [pose: judge_shock]
-BERRONDO: Todavía no, señor juez. Prefiero contestar antes que ser contestado. [pose: berrondo_idle]
+BERRONDO: Todavía no, señor juez. Prefiero contestar antes que ser contestado. [bg: bg_courtroom; pose: berrondo_idle]
 DEFENSA: (...Se abrió él solito la puerta que el juez me cerró en la cara.) [pose: chapulin_panic]
 DON RAMÓN: (Joven. Cuidado.) [pose: donramon_sweat]
 DON RAMÓN: (Un hombre que se sube al estrado sin que lo llamen es un hombre que ya sabe qué le van a preguntar.) [pose: donramon_idle]
 JUEZ: Que pase el licenciado Berrondo. Nombre, ocupación y protesta. [sfx: gavel; pose: judge_gavel]
-BERRONDO: Fulgencio Berrondo Ontiveros. Abogado postulante desde 1955, síndico de concursos desde 1963. [pose: berrondo_idle]
+BERRONDO: Fulgencio Berrondo Ontiveros. Abogado postulante desde 1955 y síndico desde marzo de 1971. [pose: berrondo_idle]
 BERRONDO: Protesto decir verdad, y agrego que en veintisiete años de ejercicio no he tenido una sola nota en mi expediente. [pose: berrondo_idle]
 JUEZ: La corte lo ha verificado esta mañana, y es cierto. Declare usted. [sfx: gavel; pose: judge_gavel]
 ~~~
@@ -1886,11 +1906,11 @@ JUEZ: La corte lo ha verificado esta mañana, y es cierto. Declare usted. [sfx: 
 **BGM:** `cross_exam_grave` (§23.7). Pista propia: Berrondo **no suena como los demás testigos**.
 
 ~~~dialogue
-c5_d2t2_1 BERRONDO: Soy síndico de la quiebra 114 diagonal 1971, Enciclopedias El Saber Universal, sociedad anónima, desde el 9 de marzo de ese año.
+c5_d2t2_1 BERRONDO: Soy síndico de la quiebra 114/1971, Enciclopedias El Saber Universal, sociedad anónima, desde el 9 de marzo de ese año.
 c5_d2t2_2 BERRONDO: Entre los bienes de esa masa hay un cedulario de once mil cuatrocientas tarjetas, inventariado, sellado y depositado en el sótano del Archivo Judicial.
 c5_d2t2_3 BERRONDO: Vendo copias de esa información a quien la pide y la paga. Es lícito, está declarado y pago impuestos por ello.
-c5_d2t2_4 BERRONDO: No conozco ni he conocido a ninguno de los sentenciados cuyos expedientes la defensa ha estado hojeando. Ni siquiera al occiso.
-c5_d2t2_5 BERRONDO: Y el cuatro de diciembre entré a las dieciséis cero cinco, revisé el huacal nueve y salí a las dieciséis cincuenta. Consta en el libro.
+c5_d2t2_4 BERRONDO: No conozco ni he conocido a ninguno de los sentenciados cuyos expedientes la defensa ha estado hojeando. Ni siquiera a la víctima.
+c5_d2t2_5 BERRONDO: Y el cuatro de diciembre entré a las 16:05, revisé el huacal nueve y salí a las 16:50. Consta en el libro.
 ~~~
 
 #### Presiones
@@ -1922,7 +1942,7 @@ DEFENSA: (Once años bajando los jueves a un sótano del juzgado. Y nadie le ha 
 ~~~dialogue
 DEFENSA: ¡UN MOMENTO! ¿Y no le da a usted ninguna vergüenza? [sfx: whoosh; pose: chapulin_point]
 SUPER SAM: ¡OBJECTION! ¡La vergüenza no es un hecho! [pose: supersam_slam; sfx: desk_slam]
-JUEZ: ...Ha lugar, aunque a esta corte le habría gustado la respuesta. [pose: judge_thinking]
+JUEZ: ...Concedido, aunque a esta corte le habría gustado la respuesta. [pose: judge_thinking]
 BERRONDO: Contesto igual, señor juez, si me lo permite. [pose: berrondo_idle]
 BERRONDO: No. No me da vergüenza. Yo vendo domicilios y hábitos de pago. [pose: berrondo_idle]
 BERRONDO: Los compran cobradores, abogados, aseguradoras y tres periódicos. Uno de ellos es el que publicó el caso de su cliente en agosto, ficha incluida. [pose: berrondo_idle]
@@ -1935,7 +1955,7 @@ DEFENSA: (Y eso, señor juez, es exactamente lo malo.) [pose: chapulin_idle]
 **Declaración 4**
 
 ~~~dialogue
-DEFENSA: ¡UN MOMENTO! ¿Ni al occiso? ¡Fue distribuidor de su propia empresa! [sfx: whoosh; pose: chapulin_point]
+DEFENSA: ¡UN MOMENTO! ¿Ni a la víctima? ¡Fue distribuidor de su propia empresa! [sfx: whoosh; pose: chapulin_point]
 BERRONDO: De la empresa que liquidé, licenciado. Que no es mi empresa: es mi expediente. [pose: berrondo_definicion]
 BERRONDO: Ciento diez distribuidores. Yo llegué cuando ya estaban despedidos. Para mí eran una partida del pasivo laboral. [pose: berrondo_idle]
 JUEZ: ¿No recuerda usted ni una cara? [pose: judge_shock]
@@ -1973,7 +1993,7 @@ DEFENSA: Ese libro **no tiene columna de salida**. [pose: chapulin_slam; sfx: de
 JUEZ: ¿Cómo dice? [pose: judge_shock]
 DEFENSA: Tiene dos columnas, señor juez, y están impresas: «hora de entrada» y «hora de devolución de gafete». [pose: chapulin_point]
 DEFENSA: Lo que este libro registra a las dieciséis cincuenta **no es que alguien saliera del edificio**. Es que alguien entregó un gafete en una ventanilla. [pose: chapulin_idle]
-NARRADOR: Murmullo en la galería. [sfx: realization]
+NARRADOR: Murmullo en la galería. [sfx: realization] [bg: bg_gallery_characters; furniture: none]
 SUPER SAM: ¡Objection! ¡Es la misma cosa! ¡Uno entrega el gafete y se va! [pose: supersam_slam; sfx: desk_slam]
 DEFENSA: Uno **normalmente** se va, señor fiscal. Eso no es lo mismo que constar. [pose: chapulin_point]
 BERRONDO: El licenciado tiene razón. [pose: berrondo_idle]
@@ -2018,7 +2038,7 @@ DEFENSA: Eso no es el recuerdo de un testigo. Es información doméstica convert
 JUEZ: ¿Y los otros cuatro paneles? [pose: judge_thinking]
 DEFENSA: Dan contexto sobre preparación, dinero y botín. No prueban que este testigo los vendiera, y no voy a fingir que lo prueban. [pose: chapulin_idle]
 DEFENSA: Pero el panel A nombra a la sociedad disuelta, el panel B muestra una ficha operativa, y el propio testigo admite que administra ese cedulario y vende copias. [pose: chapulin_slam; sfx: desk_slam]
-NARRADOR: La sala entera se inclina hacia adelante. [sfx: realization; bgm: pursuit]
+NARRADOR: La sala entera se inclina hacia adelante. [sfx: realization; bgm: pursuit] [bg: bg_gallery_characters; furniture: none]
 ~~~
 
 ---
@@ -2038,21 +2058,21 @@ NARRADOR: Quince de septiembre y veinticuatro de octubre. Un gasto del culpable 
 
 ~~~dialogue
 DEFENSA: Señor juez, no voy a decir que cinco casos prueban un solo vendedor. No lo prueban. [pose: chapulin_idle; bgm: objection]
-DEFENSA: Pero el panel A identifica a *El Saber Universal*, y el panel B contiene exactamente la clase de información que el testigo admite vender. [pose: chapulin_point]
+DEFENSA: Pero el panel A identifica a «El Saber Universal», y el panel B contiene exactamente la clase de información que el testigo admite vender. [pose: chapulin_point]
 DEFENSA: El catálogo de ese negocio son once mil cuatrocientas tarjetas que están **en el sótano de este juzgado**. [pose: chapulin_slam; sfx: desk_slam; cutin: objection_protesto]
 DEFENSA: Eso no prueba homicidio. Sí justifica que la corte inspeccione el huacal antes de aceptar que el vínculo es casualidad. [pose: chapulin_idle]
-NARRADOR: La galería se levanta entera. El Juez golpea el mazo cinco veces. [sfx: gavel]
+NARRADOR: La galería se levanta entera. [sfx: gavel] [bg: bg_gallery_characters; furniture: none]
 JUEZ: ¡ORDEN! ¡ORDEN EN LA SALA! [sfx: gavel; pose: judge_gavel]
 SUPER SAM: ¡OBJECTION! ¡Your Honor, vender no es matar! ¡Ni siquiera es robar! [pose: supersam_slam; sfx: desk_slam]
 SUPER SAM: ¡Aunque le hayan vendido una ficha a cuatro delincuentes, cada uno de ellos planeó y ejecutó lo suyo! ¡Los cuatro están condenados y los cuatro son culpables! [pose: supersam_point]
 DEFENSA: ...Y yo no he dicho lo contrario, señor fiscal. [pose: chapulin_idle]
 DEFENSA: Comprarle una herramienta a alguien no le quita a nadie la autoría de lo que hizo con ella. [pose: chapulin_idle]
-BERRONDO: Señor juez, agradezco esa precisión de la defensa más de lo que puedo decir. [pose: berrondo_idle]
-BERRONDO: Y agrego tres cosas, numeradas, y me callo. [pose: berrondo_definicion]
-BERRONDO: **Primera.** Todo lo que la defensa acaba de describir es lícito y yo lo he declarado antes de que ella lo descubriera. [pose: berrondo_idle]
-BERRONDO: **Segunda.** No hay una sola prueba de que yo haya vendido la ficha del museo, y la defensa lo sabe. [pose: berrondo_idle]
-BERRONDO: **Tercera.** Aunque la hubiera, vender información sigue sin ser delito en este país. [pose: berrondo_idle]
-BERRONDO: Puede esta corte censurarme moralmente. No puede procesarme. [pose: berrondo_idle]
+BERRONDO: Señor juez, agradezco esa precisión de la defensa más de lo que puedo decir. [bg: bg_courtroom; pose: berrondo_idle]
+BERRONDO: Y agrego tres cosas, numeradas, y me callo. [bg: bg_courtroom; pose: berrondo_definicion]
+BERRONDO: **Primera.** Todo lo que la defensa acaba de describir es lícito y yo lo he declarado antes de que ella lo descubriera. [bg: bg_courtroom; pose: berrondo_idle]
+BERRONDO: **Segunda.** No hay una sola prueba de que yo haya vendido la ficha del museo, y la defensa lo sabe. [bg: bg_courtroom; pose: berrondo_idle]
+BERRONDO: **Tercera.** Aunque la hubiera, vender información sigue sin ser delito en este país. [bg: bg_courtroom; pose: berrondo_idle]
+BERRONDO: Puede esta corte censurarme moralmente. No puede procesarme. [bg: bg_courtroom; pose: berrondo_idle]
 JUEZ: ...La corte concede las tres, licenciado, y lo hace con el estómago revuelto. [pose: judge_thinking]
 [ACTUALIZAR-PERFIL perfil_berrondo]
 DEFENSA: ¡Señor juez! [pose: chapulin_panic]
@@ -2062,8 +2082,8 @@ DEFENSA: (...Tiene razón. Otra vez tiene razón alguien que no es yo.) [pose: c
 JUEZ: Pero esta corte **sí** puede hacer una cosa. [pose: judge_thinking]
 JUEZ: Se ordena la **inspección judicial del huacal nueve** del depósito de bienes del Archivo Judicial, mañana a las nueve horas. [sfx: gavel; bgm: pursuit; pose: judge_gavel]
 JUEZ: Con presencia del síndico, del ministerio público, de la defensa y de la policía judicial. [pose: judge_neutral]
-BERRONDO: Estaré ahí a las nueve menos cuarto, señor juez, con la llave y con el inventario. [pose: berrondo_idle]
-BERRONDO: No tengo absolutamente nada que esconder. [pose: berrondo_idle]
+BERRONDO: Estaré ahí a las nueve menos cuarto, señor juez, con la llave y con el inventario. [bg: bg_courtroom; pose: berrondo_idle]
+BERRONDO: No tengo absolutamente nada que esconder. [bg: bg_courtroom; pose: berrondo_idle]
 NARRADOR: Y lo dice sin una sola gota de sudor, porque es verdad. [bgm: suspense]
 DEFENSA: (Es verdad. Ése es el problema. Todo lo que ha dicho hoy es verdad.) [pose: chapulin_idle]
 JUEZ: Se levanta la sesión. [sfx: gavel; pose: judge_gavel]
@@ -2224,19 +2244,19 @@ BERRONDO: Como usted quiera. Que tenga buena mañana. [pose: berrondo_idle]
 
 ### 14.2 Locación 2: Fiscalía (`fiscalia_c5`, `bg_fiscalia.webp`)
 
-- **Personajes:** Super Sam (`supersam_idle`, `supersam_sweat`, `supersam_point`).
+- **Personajes:** Super Sam (`supersam_sweat`, `supersam_point`). En esta locación no se usa `supersam_idle`: la bolsa de lona está doblada sobre la silla, no en su mano.
 - **Música:** `detention_center` (la única vez que suena fuera de una celda; el despacho del fiscal suena a celda a propósito).
 
 ~~~dialogue
 NARRADOR: 8 de diciembre, 11:20 AM. Despacho del agente del ministerio público Sam Sullivan. [bg: bg_fiscalia; furniture: none; bgm: detention_center]
 NARRADOR: Una calculadora de manivela, un cronómetro de bolsillo y, en un rincón, una bolsa de lona doblada y vacía.
-SUPER SAM: Counselor. [pose: supersam_idle]
+SUPER SAM: Counselor. [pose: supersam_sweat]
 DEFENSA: Señor fiscal. [pose: chapulin_idle]
 SUPER SAM: Si viene a que retire la acusación, la respuesta es no. Si viene a que le dé una prueba, la respuesta es no. [pose: supersam_point]
 SUPER SAM: Si viene a preguntarme por qué tengo cara de no haber dormido, la respuesta también es no. [pose: supersam_sweat]
 DEFENSA: Vengo por el oficio de la diligencia. [pose: chapulin_point]
 SUPER SAM: ...Ah. [pose: supersam_sweat]
-SUPER SAM: Ése sí se lo doy. [pose: supersam_idle]
+SUPER SAM: Ése sí se lo doy. [pose: supersam_sweat]
 ~~~
 
 #### Puntos de interés
@@ -2246,11 +2266,11 @@ SUPER SAM: Ése sí se lo doy. [pose: supersam_idle]
 ~~~dialogue
 NARRADOR: En el rincón, doblada sobre una silla, una bolsa de lona cruda con el sello de la fiscalía. Vacía y limpia.
 DEFENSA: ¿Y ésta? [pose: chapulin_idle]
-SUPER SAM: Ésa es mi bolsa. [pose: supersam_idle]
+SUPER SAM: Ésa es mi bolsa. [pose: supersam_sweat]
 DEFENSA: Está vacía. [pose: chapulin_idle]
 SUPER SAM: Desde agosto. [pose: supersam_sweat]
 DEFENSA: Señor fiscal, en agosto usted me acusó a mí. [pose: chapulin_point]
-SUPER SAM: Lo sé perfectamente, counselor. Cerré ese caso en cinco minutos. Five. [pose: supersam_idle]
+SUPER SAM: Lo sé perfectamente, counselor. Cerré ese caso en cinco minutos. Five. [pose: supersam_sweat]
 SUPER SAM: Y llevo más de tres meses cargando una bolsa vacía para que no se me olvide por qué los cerré tan rápido. [pose: supersam_sweat]
 DEFENSA: ...¿Perdón? [pose: chapulin_panic]
 SUPER SAM: Nada. Get out of my office. [pose: supersam_point]
@@ -2264,12 +2284,12 @@ DEFENSA: (No. No me lo va a decir hoy. Y si se lo saco a la fuerza, deja de ser 
 **«Deme el oficio de la diligencia»**
 
 ~~~dialogue
-SUPER SAM: Oficio 4471, del veintiséis de noviembre. Mío, firmado por mí, ordenado por mí. [pose: supersam_idle]
-DEFENSA: «Diligencia de cotejo documental. Archivo Judicial. Cuatro de diciembre, diecisiete horas.» [pose: chapulin_idle]
+SUPER SAM: Oficio 4471, del veintiséis de noviembre. Mío, firmado por mí, ordenado por mí. [pose: supersam_sweat]
+DEFENSA: «Diligencia de cotejo documental. Citado a petición del interno: Ramón Valdés. Archivo Judicial. Cuatro de diciembre, 17:00.» [pose: chapulin_idle]
 DEFENSA: Y al calce, la lista de distribución: «c.c.p. Actuaría adscrita. c.c.p. Dirección del Archivo. c.c.p. **Sindicatura de la quiebra 114/1971**.» [pose: chapulin_point]
-SUPER SAM: Es un trámite, counselor. Se notifica a quien tiene interés jurídico. Lo hace la máquina, no el hombre. [pose: supersam_idle]
+SUPER SAM: Es un trámite, counselor. Se notifica a quien tiene interés jurídico. Lo hace la máquina, no el hombre. [pose: supersam_sweat]
 DEFENSA: Señor fiscal, ¿usted sabía que ese oficio salía de aquí con esa lista? [pose: chapulin_point]
-SUPER SAM: ...Yo firmo ciento veinte oficios a la semana. [pose: supersam_sweat]
+SUPER SAM: ...Yo firmo ciento cuarenta oficios a la semana. [pose: supersam_sweat]
 SUPER SAM: Y hasta anteayer creía que eso era eficiencia. [pose: supersam_sweat]
 [ENTREGAR oficio_diligencia]
 ~~~
@@ -2280,13 +2300,13 @@ SUPER SAM: Y hasta anteayer creía que eso era eficiencia. [pose: supersam_sweat
 SUPER SAM: ...¿Cómo dice? [pose: supersam_sweat]
 DEFENSA: El señor Lengua le escribió el ocho de noviembre. Usted ordenó la diligencia el veintiséis. [pose: chapulin_point]
 DEFENSA: Dieciocho días, señor fiscal. Usted, que cobra por minuto. [pose: chapulin_idle]
-SUPER SAM: Era un preso ofreciendo un fichero a cambio de menos condena, counselor. Eso me llega todas las semanas. [pose: supersam_idle]
+SUPER SAM: Era un preso ofreciendo un fichero a cambio de menos condena, counselor. Eso me llega todas las semanas. [pose: supersam_sweat]
 SUPER SAM: Presos que ofrecen mapas del tesoro. Presos que ofrecen nombres. Presos que ofrecen a su madre. [pose: supersam_sweat]
 DEFENSA: ¿Y qué hizo usted con éste? [pose: chapulin_idle]
 SUPER SAM: Lo puse en un cajón. [pose: supersam_sweat]
 SUPER SAM: Y el veintiséis lo saqué porque estaba limpiando el cajón. [pose: supersam_sweat]
 NARRADOR: Super Sam se queda callado un momento largo, con la mano sobre la calculadora.
-SUPER SAM: Counselor. Vaya usted al penal y pida los efectos de ese hombre. [pose: supersam_idle]
+SUPER SAM: Counselor. Vaya usted al penal y pida los efectos de ese hombre. [pose: supersam_sweat]
 DEFENSA: ¿Y por qué me lo dice usted? [pose: chapulin_idle]
 SUPER SAM: Porque yo no los pedí. [pose: supersam_sweat]
 SUPER SAM: Time is money, counselor. Y hay días en que a uno le sale carísimo. [pose: supersam_sweat]
@@ -2303,12 +2323,12 @@ SUPER SAM: Time is money, counselor. Y hay días en que a uno le sale carísimo.
 ~~~dialogue
 NARRADOR: 8 de diciembre, 2:40 PM. Penal del Distrito, bodega de efectos personales. [bg: bg_penal_efectos; furniture: none; bgm: suspense]
 NARRADOR: Trescientas cajas de cartón numeradas en un estante metálico. En la etiqueta de la 214-J dice: LENGUA, CASIMIRO.
-SARGENTO: Caja doscientos catorce jota, mi Licenciado. Y fíjese en el número. [pose: pazguato_decidido]
-DEFENSA: Doscientos catorce. [pose: chapulin_idle]
-DEFENSA: Como la foja del expediente que dejó abierto. [pose: chapulin_panic]
+SARGENTO: Caja 214-J, mi Licenciado. Y fíjese en el número. [pose: pazguato_decidido]
+DEFENSA: 214. [pose: chapulin_idle]
+DEFENSA: Como la página del expediente que dejó abierto. [pose: chapulin_panic]
 SARGENTO: Coincidencia, mi Licenciado. Lo verifiqué: se las numeran por orden de ingreso. [pose: pazguato_idle]
 DEFENSA: ...Ya. [pose: chapulin_idle]
-DEFENSA: (Coincidencia. Pero yo me acordé de la foja por el número, y por eso vine.) [pose: chapulin_idle]
+DEFENSA: (Coincidencia. Pero yo me acordé de la página por el número, y por eso vine.) [pose: chapulin_idle]
 ~~~
 
 #### Punto de interés: la caja 214-J (`hotspot_caja`)
@@ -2353,7 +2373,6 @@ SARGENTO: El señor Ramón me cae mal desde el Caso del Grito. Estuvo allí el d
 SARGENTO: Y si mañana lo condenan, yo me voy a pasar el resto de mi vida sabiendo que tuve el libro de peritos en la mano el primer día y no lo entregué. [pose: pazguato_decidido]
 DEFENSA: Sargento, usted no hizo nada mal. [pose: chapulin_idle]
 SARGENTO: Yo no hice nada, mi Licenciado. Que es distinto y es peor. [pose: pazguato_decidido]
-NARRADOR: Suena la campana del juzgado a lo lejos. [sfx: bell]
 DEFENSA: ¡Síganme los buenos, Sargento! [pose: chapulin_point]
 SARGENTO: A sus órdenes, mi Licenciado. [pose: pazguato_saludo]
 ~~~
@@ -2373,21 +2392,21 @@ JUEZ: Consta que el depósito reúne mobiliario y tres mil doscientos tomos dist
 JUEZ: Consta también que todo ello está inventariado desde 1971 y que **nada de ello es robado**. [pose: judge_thinking]
 SUPER SAM: Your Honor, la fiscalía solicita que se archive esta línea de investigación y se resuelva sobre el acusado. [pose: supersam_point]
 JUEZ: La fiscalía la solicita todos los días y esta corte se la niega todos los días. Siéntese. [pose: judge_neutral]
-JUEZ: Antes de nada: esta corte lleva tres días sin que nadie le explique **por qué** estaba ese hombre en el Archivo. [pose: judge_thinking]
-JUEZ: Defensa: ¿qué venía a hacer el occiso? [sfx: gavel; pose: judge_gavel]
+JUEZ: Antes de nada: ayer esta corte oyó que ese hombre pidió esta diligencia para su apelación. Lo que nadie ha explicado todavía es **qué venía a señalar en ella**. [pose: judge_thinking]
+JUEZ: Defensa: ¿qué venía a hacer la víctima en esa diligencia? [sfx: gavel; pose: judge_gavel]
 ~~~
 
-`openingPresent`: **`efectos_casimiro`**. Pregunta visible: *«¿Qué iba a señalar el occiso en esa diligencia?»*
+`openingPresent`: **`efectos_casimiro`**. Pregunta visible: *«¿Qué iba a señalar la víctima en esa diligencia?»*
 
 ~~~dialogue
-DEFENSA: Los efectos personales del occiso, señor juez. Dos relojes parados, un moño y una libreta. [pose: chapulin_idle]
+DEFENSA: Los efectos personales de la víctima, señor juez. Dos relojes parados, un moño y una libreta. [pose: chapulin_idle]
 DEFENSA: Y en la libreta, cinco puntos numerados que este hombre escribió en el penal el ocho de noviembre. [pose: chapulin_point]
 JUEZ: Léalos. [sfx: gavel; pose: judge_gavel]
 DEFENSA: «Punto uno. La tarjeta que me decomisaron en julio tiene la ese caída. Tecleé nueve años en esa máquina y esa ese la miré caer renglón por renglón.» [pose: chapulin_idle]
 DEFENSA: «Punto dos. La ficha del museo que salió en el periódico en agosto tiene la ese caída.» [pose: chapulin_idle]
 DEFENSA: «Punto tres. Las escribió el mismo aparato. Un aparato no se corrige solo.» [pose: chapulin_idle]
 DEFENSA: «Punto cuatro. Yo sé dónde está ese aparato, porque tecleé en él de mil novecientos sesenta y dos a mil novecientos setenta y uno.» [pose: chapulin_point]
-NARRADOR: Murmullo en la galería. [sfx: realization]
+NARRADOR: Murmullo en la galería. [sfx: realization] [bg: bg_gallery_characters; furniture: none]
 DEFENSA: «Punto cinco. Lo que no sé es cómo decirlo sin que parezca que me quiero salvar. Y me quiero salvar.» [pose: chapulin_idle]
 NARRADOR: Silencio. [bgm: suspense]
 JUEZ: ...Que se asiente íntegra esa libreta. [sfx: gavel; pose: judge_gavel]
@@ -2428,7 +2447,7 @@ CHOMPIRAS: Desde el quince de septiembre, señor juez. Me lo consiguió el Sarge
 SARGENTO: Le conseguí una solicitud, señor juez. El trabajo se lo ganó él solo. [pose: pazguato_decidido]
 CHOMPIRAS: Y no, licenciado, no me quedé quieto: corría entre el Archivo y lo que cayera hasta noviembre. Por eso no he faltado ni un día: no duermo. [pose: chompiras_idle]
 CHOMPIRAS: Pero esto es lo primero que he cargado con seguro y con aguinaldo, y lo primero que vale más que yo y sigue sin ser mío al final. [pose: chompiras_relieved]
-NARRADOR: Risas suaves en la galería. [sfx: realization]
+NARRADOR: Risas suaves en la galería. [sfx: realization] [bg: bg_gallery_characters; furniture: none]
 ~~~
 
 **Declaración 2**
@@ -2465,6 +2484,26 @@ CHOMPIRAS: Abrirla toma dos minutos. Cerrar los cuatro broches y poner la tira, 
 DEFENSA: (Seis o siete en tres meses. Y son dos al mes. Las cuentas cuadran... salvo que alguna sobre.) [pose: chapulin_idle]
 ~~~
 
+#### Presentación desviada — declaración 2: **`huacal_9`**
+
+El jugador tiene la fotografía desde la inspección de la bodega y sabe que la tira de hasta arriba es del sábado. Presentarla aquí es razonar bien un turno antes de tiempo: la corte contesta y no cobra nada.
+
+~~~dialogue
+JUEZ: Defensa: esa fotografía prueba el día en que alguien abrió el huacal. El testigo está declarando qué hace él los jueves. [pose: judge_thinking]
+JUEZ: Mientras esta corte no sepa qué se guarda ahí dentro, una fecha suelta no contradice a nadie. Establezca primero el contenido. [pose: judge_neutral]
+DEFENSA: (Primero qué hay. Después quién lo abrió.) [pose: chapulin_idle]
+~~~
+
+#### Presentación desviada — declaración 3: **`maquina_escribir`**
+
+La máquina salió de ese mismo huacal el día anterior, así que presentarla contra «no hay más que libros viejos» es una refutación literal. Lo que no puede es sustituir al inventario: dice lo que hay hoy, no lo que el juzgado escribió en 1971.
+
+~~~dialogue
+JUEZ: Defensa: esa máquina se levantó ayer, en la inspección que esta corte ordenó. Dice lo que hay hoy en el huacal. [pose: judge_thinking]
+JUEZ: El testigo habla de lo que él ha visto desde septiembre. Para contradecirlo, tráigame lo que la corte escribió cuando selló ese depósito. [pose: judge_neutral]
+DEFENSA: (Lo que la corte escribió... cuando lo selló. En mil novecientos setenta y uno.) [pose: chapulin_idle]
+~~~
+
 #### Contradicción resolutoria — declaración 3: **`inventario_1971`**
 
 Pregunta visible: *«¿Qué dice el juzgado que hay dentro de ese huacal?»*
@@ -2472,14 +2511,14 @@ Pregunta visible: *«¿Qué dice el juzgado que hay dentro de ese huacal?»*
 ~~~dialogue
 DEFENSA: ¡PROTESTO! [sfx: desk_slam; cutin: objection_protesto; pose: chapulin_slam]
 DEFENSA: Señor juez, el testigo dice «libros viejos y unos cajones». Y es lo que él ve, y lo dice de buena fe. [pose: chapulin_idle]
-DEFENSA: Pero lo que hay dentro de ese huacal lo escribió este juzgado en 1971, y son cuarenta y siete partidas. [pose: chapulin_point]
+DEFENSA: Pero lo que la corte escribió de ese huacal en 1971 consta en el inventario de la masa: cuarenta y siete partidas. [pose: chapulin_point]
 DEFENSA: **Partida doce: cedulario, once mil cuatrocientas tarjetas.** [pose: chapulin_idle]
 DEFENSA: **Partida cuarenta y uno: máquina de escribir Olivetti Lexikon 80.** [pose: chapulin_slam; sfx: desk_slam]
 JUEZ: Que se asiente. [sfx: gavel; pose: judge_gavel]
 DEFENSA: Y una más, señor juez, porque nadie la ha leído en voz alta en once años. [pose: chapulin_point]
 DEFENSA: **Partida cuarenta y cuatro: ejemplares de la edición de lujo sin vender, doscientos diez.** [pose: chapulin_idle]
 JUEZ: ¿Edición de lujo? [pose: judge_thinking]
-DEFENSA: Media piel, señor juez, con cantoneras de latón en el canto del lomo. La que nadie compró. [pose: chapulin_idle]
+DEFENSA: Media piel, señor juez, con cantoneras de latón en el lomo. La que nadie compró. [pose: chapulin_idle]
 DEFENSA: Por eso quebró la empresa: dejó doscientas diez colecciones de lujo completas sin vender. [pose: chapulin_idle]
 BERRONDO: Doscientos diez ejemplares sueltos sin vender, licenciado. No doscientas diez colecciones completas. Fue un desastre memorable. [pose: berrondo_idle]
 DEFENSA: (Gracias, licenciado.) [pose: chapulin_idle]
@@ -2490,12 +2529,12 @@ DEFENSA: (Otra vez me corrigió. Y otra vez me dio un dato que no le pedí.) [po
 
 #### `followUp`: **`huacal_9`**
 
-Pregunta visible: *«¿Qué fecha completa aparece en las tiras superiores del huacal?»*
+Pregunta visible: *«¿Qué fecha completa aparece en la tira de hasta arriba del huacal?»*
 
 ~~~dialogue
 DEFENSA: ¡TOMA ESO! [sfx: desk_slam; cutin: objection_toma_eso; pose: chapulin_slam]
 DEFENSA: Señor juez, el testigo declaró que ese huacal se destapa **los jueves**. [pose: chapulin_point]
-DEFENSA: Y las dos tiras superiores dicen, con todas sus letras: **«SÁB cuatro de diciembre»**. La respuesta está escrita en la prueba que acabo de presentar. [pose: chapulin_slam; sfx: desk_slam]
+DEFENSA: Y la tira de hasta arriba dice, con todas sus letras: **«SÁB cuatro de diciembre»**. La respuesta está escrita en la prueba que acabo de presentar. [pose: chapulin_slam; sfx: desk_slam]
 JUEZ: ¡Cáspita! [pose: judge_shock]
 CHOMPIRAS: ¡Ah, pues sí! ¡El sábado yo no fui! ¡Yo los sábados juego dominó! [pose: chompiras_nervous]
 DEFENSA: ¿Y entonces quién le destapó el huacal? [pose: chapulin_point]
@@ -2506,7 +2545,7 @@ CHOMPIRAS: El licenciado Berrondo sabe manejarlo. Lo vi hacerlo dos veces cuando
 BERRONDO: Señor juez, yo lo declaré ayer: bajé el sábado porque una diligencia iba a tocar el bien. [pose: berrondo_idle]
 BERRONDO: Un depositario que sólo baja los jueves y deja pasar una diligencia en sábado merece una queja en el colegio. [pose: berrondo_idle]
 DEFENSA: (Otra vez tiene razón. Otra vez.) [pose: chapulin_idle]
-JUEZ: La corte anota la explicación y ordena que se agregue al acta la fotografía de la tapa del huacal. [sfx: gavel; pose: judge_gavel]
+JUEZ: La corte asienta la explicación. Sargento: sobre la fotografía que ya obra en autos, ¿cuántas tiras contó usted? [sfx: gavel; pose: judge_gavel]
 SARGENTO: Más de doscientas cincuenta tiras, señor juez. Las revisé con el perito. [pose: pazguato_decidido]
 SARGENTO: Y el perito dejó su dictamen ocular de la máquina. ¿Lo leo? [pose: pazguato_decidido]
 JUEZ: Léalo. [pose: judge_neutral]
@@ -2536,15 +2575,19 @@ SUPER SAM: Protesto decir verdad. Y le advierto a esta corte que le va a salir b
 
 ### 15.3 Testimonio 2 — Super Sam: *«Lo que cobré en agosto»*
 
-**BGM:** `cross_exam_grave`. El fiscal declara desde el estrado de testigos, con la bolsa de lona vacía sobre la mesa de la fiscalía, a la vista de la sala.
+**BGM:** `cross_exam_grave`. El fiscal declara desde el estrado de testigos, con la bolsa de lona sobre la mesa de la fiscalía, a la vista de la sala.
+
+> **Pose.** En este testimonio **no se usa `supersam_idle`**: ese sprite lleva la bolsa llena al hombro y aquí la bolsa está vacía sobre la mesa, no en su mano. Declaraciones 1–3 en `supersam_point` (todavía es el fiscal que cobra por caso cerrado) y 4–6 en `supersam_sweat`, de modo que el arco de la pose acompañe al de la confesión. Misma regla que §14.2 para el despacho.
+>
+> **Algodón.** Desde agosto Super Sam **rellena de algodón** la bolsa para cargarla: los sprites la pintan abultada y la ficción no puede contradecirlos. En su despacho está **doblada y plana** sobre la silla, tal como la pinta `bg_fiscalia` (§23.x), y ahí es donde el jugador descubre el truco. El algodón sirve a la vez de vanidad —«que no se me note el balance»— y de penitencia: levanta el mismo bulto y le faltan los mismos cinco kilos cien gramos. En el epílogo la bolsa queda floja y sin algodón, porque ya no necesita el recordatorio.
 
 ~~~dialogue
-c5_d3t2_1 SUPER SAM: Recibí el oficio del occiso el ocho de noviembre. Lo puse en un cajón y lo tuve dieciocho días.
+c5_d3t2_1 SUPER SAM: Recibí el oficio que me mandó el preso el ocho de noviembre. Lo puse en un cajón y lo tuve dieciocho días.
 c5_d3t2_2 SUPER SAM: El veintiséis lo saqué, y fijé la diligencia para el sábado cuatro de diciembre a las cinco de la tarde, porque el sábado el traslado cuesta la mitad.
 c5_d3t2_3 SUPER SAM: Nadie más supo de esa diligencia. Un oficio de la fiscalía no se publica en el periódico.
-c5_d3t2_4 SUPER SAM: Y ahora lo mío. El veintiocho de agosto de este año, alguien me pagó por llegar rápido a un museo y cerrar el caso en cinco minutos.
-c5_d3t2_5 SUPER SAM: Fue una vez. No tuvo nombre, no tuvo recibo y no se lo vendí a nadie. Fue un sobre, una hora y una bolsa de lona.
-c5_d3t2_6 SUPER SAM: Desde entonces cargo esa bolsa vacía. No por remordimiento. Por contabilidad.
+c5_d3t2_4 SUPER SAM: Y ahora lo mío. La mañana del veintiocho de agosto entré a mi despacho y mi bolsa no estaba. Seis kilos de moneda de plata de esta fiscalía.
+c5_d3t2_5 SUPER SAM: Esa misma noche me compraron con un kilo de mi propia plata, por llegar rápido a ese museo y cerrar el caso en cinco minutos.
+c5_d3t2_6 SUPER SAM: Desde entonces la cargo rellena de algodón. No por remordimiento. Por contabilidad.
 ~~~
 
 #### Presiones
@@ -2581,10 +2624,38 @@ DEFENSA: ¿Y los custodios? [pose: chapulin_idle]
 SUPER SAM: Los custodios se enteran la mañana del traslado. Es política. [pose: supersam_idle]
 DEFENSA: Entonces, según usted, el sábado por la mañana lo sabían cinco personas. [pose: chapulin_idle]
 SUPER SAM: Cinco. Y ninguna de ellas mató a nadie. [pose: supersam_point]
-DEFENSA: (Cinco personas... y una lista de distribución que él firmó sin leer.) [pose: chapulin_idle]
+DEFENSA: Señor juez, una pregunta de ignorante, ya que estamos. [pose: chapulin_idle]
+DEFENSA: Ese sótano guarda huacales de una empresa quebrada hace once años. Si la empresa ya no existe, ¿esas cajas de quién son? [pose: chapulin_point]
+JUEZ: De la masa, defensa. Y las administra un síndico. [pose: judge_neutral]
+DEFENSA: ¿Un sindi... qué? [pose: chapulin_idle]
+JUEZ: ...co. [pose: judge_thinking]
+DEFENSA: ¡Chanfle! [pose: chapulin_panic]
+JUEZ: La corte advierte que el término no es del dominio común. Se ilustrará para el acta. [pose: judge_thinking]
+JUEZ: Cuando un negocio quiebra, sus cosas no se quedan sin dueño: pasan a un bulto que la ley llama masa. [pose: judge_neutral]
+JUEZ: Un abogado nombrado por un juzgado la cuida, la reparte y responde de ella hasta que el concurso termina. A ése se le llama síndico. [pose: judge_neutral]
+DEFENSA: ¡Ah! ¡Entonces no es el dueño, es el que cuida lo que ya no tiene dueño! [pose: chapulin_point]
+JUEZ: Queda ilustrado el término. Continúe, defensa. [sfx: gavel; pose: judge_gavel]
+DEFENSA: (Cinco personas, según él. Pero eso lo dice él... no lo dice su oficio.) [pose: chapulin_idle]
 ~~~
 
 **Declaración 4**
+
+~~~dialogue
+DEFENSA: ¡UN MOMENTO! ¿Y cuándo levantó el acta? [sfx: whoosh; pose: chapulin_point]
+SUPER SAM: No la levanté. [pose: supersam_sweat]
+DEFENSA: ¿Le roban seis kilos de plata y no levanta un acta? [pose: chapulin_panic]
+SUPER SAM: Iba a hacerlo a mediodía. A las cinco de la tarde ya no tenía nada que denunciar. [pose: supersam_sweat]
+JUEZ: Explíquese, señor fiscal. [pose: judge_thinking]
+SUPER SAM: Un hombre comprado no denuncia a quien lo compró, Your Honor. Sale carísimo. [pose: supersam_sweat]
+DEFENSA: Esa noche quedó en el patio de carga de un museo una bolsa de lona vacía con el sello de su fiscalía. [pose: chapulin_point]
+SUPER SAM: ...Sí. [pose: supersam_sweat]
+DEFENSA: Usted la vio. La pusieron sobre la mesa de pruebas, delante de usted. [pose: chapulin_idle]
+SUPER SAM: Y dije que la fiscalía repartía bolsas como ésa. Para viáticos. Para muchas cosas. [pose: supersam_sweat]
+SUPER SAM: Eso fue lo que dije, counselor. **Era la mía.** [pose: supersam_sweat]
+NARRADOR: Nadie tose. [sfx: realization]
+~~~
+
+**Declaración 5**
 
 ~~~dialogue
 DEFENSA: ¡UN MOMENTO! Señor fiscal, usted no tiene por qué decir esto. [sfx: whoosh; pose: chapulin_point]
@@ -2594,23 +2665,15 @@ SUPER SAM: También lo sé. [pose: supersam_idle]
 DEFENSA: ¿Entonces por qué? [pose: chapulin_panic]
 SUPER SAM: Porque hay un hombre muerto que me escribió el ocho de noviembre y yo lo dejé dieciocho días en un cajón. [pose: supersam_sweat]
 SUPER SAM: Y porque si no lo digo yo hoy, mañana lo va a tener que sacar usted a golpes, y eso me cuesta más caro. [pose: supersam_idle]
-NARRADOR: Silencio absoluto. [bgm: suspense]
-~~~
-
-**Declaración 5**
-
-~~~dialogue
-DEFENSA: ¡UN MOMENTO! ¿Cuánto había en esa bolsa? [sfx: whoosh; pose: chapulin_point]
-SUPER SAM: Diez mil pesos en moneda de plata. Seis kilos. [pose: supersam_idle]
-DEFENSA: ¿Y quién se la dejó? [pose: chapulin_idle]
-SUPER SAM: No lo sé. Apareció en un callejón, a la hora que decía el sobre, con mi propia bolsa de lona sellada por mi propia fiscalía. [pose: supersam_sweat]
-SUPER SAM: Eso fue lo que más me asustó, counselor: que usaran **mi** bolsa. Alguien entró a mi oficina. [pose: supersam_sweat]
-DEFENSA: Señor fiscal, el veintiocho de agosto quedó en el patio de carga de ese museo una bolsa con el sello de su fiscalía. [pose: chapulin_point]
-SUPER SAM: ...Ya la había reconocido, counselor. [pose: supersam_sweat]
-DEFENSA: ¿Y dijo algo? [pose: chapulin_idle]
-SUPER SAM: Aquella noche no supe qué decir. Ahora ya sí: alguien entró a mi oficina, y de ahí salieron las dos. [pose: supersam_sweat]
-DEFENSA: ¿Y qué decía el sobre? [pose: chapulin_point]
-SUPER SAM: Una hora y una dirección. A máquina. [pose: supersam_idle]
+NARRADOR: Silencio absoluto.
+DEFENSA: ¿Cómo se lo entregaron? [pose: chapulin_idle]
+SUPER SAM: Un sobre por debajo de la puerta con una hora y una dirección. A esa hora, en ese callejón, había un bulto envuelto en papel de estraza. [pose: supersam_idle]
+SUPER SAM: Lo abrí ahí mismo y lo conté. Yo siempre cuento, counselor. Es lo único que sé hacer bien. [pose: supersam_sweat]
+DEFENSA: Un kilo de seis. [pose: chapulin_idle]
+SUPER SAM: Me devolvieron **la sexta parte de lo mío** y yo dije que sí. Ésa es toda mi tarifa, counselor. [pose: supersam_sweat]
+DON RAMÓN: (No lo remate, joven.) [pose: donramon_idle]
+DEFENSA: ¿Y el sobre qué más traía? [pose: chapulin_point]
+SUPER SAM: Abajo, un renglón que no me pedía nada. Estaba escrito como se escribe lo que ya está vendido. [pose: supersam_sweat]
 DEFENSA: (A máquina.) [pose: chapulin_panic]
 DEFENSA: ¿Lo conserva? [pose: chapulin_idle]
 SUPER SAM: Lo quemé en agosto. [pose: supersam_sweat]
@@ -2623,10 +2686,22 @@ SUPER SAM: Y ésa, counselor, es la única cosa de todo esto de la que de veras 
 
 ~~~dialogue
 DEFENSA: ¡UN MOMENTO! ¿«Por contabilidad»? [sfx: whoosh; pose: chapulin_point]
-SUPER SAM: Una bolsa vacía pesa cuatrocientos gramos, counselor. Un hombre que carga cuatrocientos gramos todos los días se acuerda todos los días. [pose: supersam_idle]
+SUPER SAM: Llena de plata pesaba seis kilos. Llena de algodón pesa novecientos gramos. [pose: supersam_point]
+SUPER SAM: Levanto la misma bolsa todos los días y me falta el mismo peso. Así no tengo que acordarme a propósito. [pose: supersam_sweat]
+DEFENSA: ¿Y el algodón para qué? [pose: chapulin_idle]
+SUPER SAM: Para que no se me note el balance, counselor. Un fiscal que cobra por caso cerrado no puede llegar al juzgado con la bolsa floja. [pose: supersam_sweat]
 SUPER SAM: A eso, en mi tierra, le llaman amortización. [pose: supersam_sweat]
 DEFENSA: En la mía le llaman conciencia. [pose: chapulin_idle]
-SUPER SAM: En la suya todo sale más barato. [pose: supersam_idle]
+SUPER SAM: En la suya todo sale más barato. [pose: supersam_point]
+~~~
+
+#### Presentación desviada — declaración 3: **`huacal_9`**
+
+La tapa del huacal es una presentación razonable, pero todavía prematura. Las tiras de arriba prueban que el síndico estuvo en el depósito y rubricó una apertura el sábado cuatro; no prueban por sí solas que conociera **esta diligencia** ni que la fiscalía se la hubiera notificado. La corte devuelve al jugador a la misma declaración y orienta hacia el oficio que contiene el aviso, sin cobrar penalización.
+
+~~~dialogue
+JUEZ: Defensa: esa tapa sí demuestra que el síndico estuvo allí y rubricó una apertura el sábado cuatro. [pose: judge_thinking]
+JUEZ: Pero estar en el depósito no prueba todavía que conociera esta diligencia ni que la fiscalía le avisara. Tráigame el oficio que contiene ese aviso. [pose: judge_neutral]
 ~~~
 
 #### Contradicción resolutoria — declaración 3: **`oficio_diligencia`**
@@ -2636,21 +2711,23 @@ Pregunta visible: *«¿A quién más le avisó la fiscalía?»*
 ~~~dialogue
 DEFENSA: ¡PROTESTO! [sfx: desk_slam; cutin: objection_protesto; pose: chapulin_slam]
 DEFENSA: Señor juez, el oficio 4471 lo firmó el propio fiscal el veintiséis de noviembre. [pose: chapulin_point]
-DEFENSA: Y al calce lleva la lista de distribución, impresa por la máquina de su propia oficina. [pose: chapulin_idle]
+DEFENSA: Y hasta abajo lleva la lista de a quién se le mandó copia, escrita por la máquina de su propia oficina. [pose: chapulin_idle]
 DEFENSA: «Con copia para: la Actuaría adscrita. La Dirección del Archivo. Y...» [pose: chapulin_idle]
-DEFENSA: «...la **Sindicatura de la quiebra ciento catorce diagonal mil novecientos setenta y uno**.» [pose: chapulin_slam; sfx: desk_slam; cutin: objection_toma_eso]
-NARRADOR: La galería se levanta. [sfx: realization; bgm: objection]
+DEFENSA: «...la **Sindicatura de la quiebra 114/1971**.» [pose: chapulin_slam; sfx: desk_slam; cutin: objection_toma_eso]
+NARRADOR: La galería se levanta. [sfx: realization; bgm: objection] [bg: bg_gallery_characters; furniture: none]
 SUPER SAM: ...¿Qué? [pose: supersam_sweat]
 JUEZ: ¡ORDEN! [sfx: gavel; pose: judge_gavel]
 SUPER SAM: Your Honor, yo no... eso lo pone la secretaría, eso lo pone la máquina... [pose: supersam_sweat]
-DEFENSA: Lo pone la ley, señor fiscal. Un bien de una masa concursal no se toca sin notificar al síndico. [pose: chapulin_point]
+DEFENSA: Lo pone la ley, señor fiscal. Nadie toca las cosas de una quiebra sin avisarle al síndico que las cuida. [pose: chapulin_point]
+DEFENSA: Y eso quiere decir que hubo una **sexta persona**, señor juez. Una oficina entera que el señor fiscal no contó. [pose: chapulin_point]
 DEFENSA: Su oficio hizo lo correcto. Y al hacer lo correcto le dijo a alguien el día, la hora, el lugar... [pose: chapulin_idle]
 DEFENSA: ...y el nombre del hombre que iba a estar sentado ahí. [pose: chapulin_slam; sfx: desk_slam]
-SUPER SAM: ...Six hundred. [pose: supersam_sweat]
+SUPER SAM: ...Seiscientos, Your Honor. [pose: supersam_sweat]
 JUEZ: ¿Cómo dice? [pose: judge_thinking]
-SUPER SAM: Que firmo seiscientos oficios al mes, Your Honor, y que no he leído el calce de ninguno en once años. [pose: supersam_sweat]
+SUPER SAM: Que firmo seiscientos oficios al mes, y que no he leído lo que va hasta abajo de ninguno en once años. [pose: supersam_sweat]
 [ACTUALIZAR-PERFIL perfil_supersam]
 [ACTUALIZAR-PERFIL perfil_casimiro]
+NARRADOR: El secretario levanta la pluma.
 JUEZ: Que se asiente. [sfx: gavel; pose: judge_gavel]
 JUEZ: Y que se asiente también que este tribunal no tiene todavía nada contra nadie, porque recibir una notificación legal no es un delito. [pose: judge_neutral]
 DEFENSA: (Ya lo sé, señor juez. Llevo tres días sabiéndolo.) [pose: chapulin_idle]
@@ -2667,21 +2744,22 @@ DEFENSA: ¡TOMA ESO! [sfx: desk_slam; cutin: objection_toma_eso; pose: chapulin_
 DEFENSA: Panel B, señor juez. La ficha que apareció en el patio de carga del museo el veintiocho de agosto. Seis renglones. [pose: chapulin_point]
 JUEZ: Léalos. [sfx: gavel; bgm: suspense; pose: judge_gavel]
 DEFENSA: «Uno. Chapa puerta de carga: vencida desde marzo. Se empuja.» [pose: chapulin_idle]
-DEFENSA: «Dos. Rejilla sala dos: dieciocho por veinticuatro.» [pose: chapulin_idle]
-DEFENSA: «Tres. Velador: veinte cuarenta y cinco bodega de proa; veintiuna cero cero bodega de popa. Copiado de su libreta.» [pose: chapulin_idle]
-DEFENSA: «Cuatro. Pastillas: farmacia de Insurgentes, mostrador de atrás.» [pose: chapulin_idle]
+DEFENSA: «Dos. Rejilla sala dos: dieciocho por veinticuatro. Malla floja en la esquina inferior. Da al patio.» [pose: chapulin_idle]
+DEFENSA: «Tres. Velador: veinte cuarenta y cinco bodega de proa; veintiuna cero cero bodega de popa. Copiado de su libreta; cuelga de un clavo en la caseta.» [pose: chapulin_idle]
+DEFENSA: «Cuatro. Pastillas de chiquitolina: farmacia de Insurgentes, mostrador de atrás.» [pose: chapulin_idle]
 DEFENSA: «Cinco. Rollo de cámara: se cambia los lunes. El martes queda un cuadro.» [pose: chapulin_idle]
 DEFENSA: Y seis. [pose: chapulin_point]
 DEFENSA: «**Servicio de cierre incluido. Cinco minutos.**» [pose: chapulin_slam; sfx: desk_slam]
 NARRADOR: Super Sam se queda mirando ese renglón. [bgm: suspense]
-SUPER SAM: ...¿Cinco minutos? [pose: supersam_sweat]
-DEFENSA: Usted cerró ese caso en cinco minutos, señor fiscal. Lo dijo usted mismo, en esta sala, en agosto. [pose: chapulin_idle]
+SUPER SAM: ...Ése es mi sobre. [pose: supersam_sweat]
+JUEZ: ¿Cómo que su sobre? [pose: judge_shock]
+SUPER SAM: El tercer renglón del sobre que me metieron por debajo de la puerta decía eso, Your Honor. Con esas palabras. [pose: supersam_sweat]
+DEFENSA: Y usted cerró ese caso en cinco minutos, señor fiscal. Lo dijo usted mismo, en esta sala, en agosto. [pose: chapulin_idle]
 DEFENSA: «Five.» Gritado con un manotazo. [pose: chapulin_idle]
 SUPER SAM: ...... [pose: supersam_sweat]
 DEFENSA: Señor fiscal, usted creyó que le habían dado un sobre. [pose: chapulin_point]
 DEFENSA: Y lo que le dieron fue el **renglón seis de un catálogo**. [pose: chapulin_slam; sfx: desk_slam; cutin: objection_toma_eso]
 SUPER SAM: ¡YO NO SOY UN RENGLÓN! [pose: supersam_breakdown; sfx: desk_slam]
-NARRADOR: El fiscal se dobla sobre el barandal del estrado. [sfx: realization]
 SUPER SAM: ¡Yo soy un hombre que cobra! ¡Cobrar no es ser un producto! [pose: supersam_breakdown]
 DEFENSA: Con precio y con duración, señor fiscal. Cinco minutos. [pose: chapulin_idle]
 DEFENSA: A eso, en su tierra, le llaman una tarifa. [pose: chapulin_idle]
@@ -2692,8 +2770,10 @@ JUEZ: Se le tiene por separado. El secretario de acuerdos continuará en represe
 JUEZ: Y esta corte le dice una cosa, señor Sullivan, porque no se la va a decir nadie más. [pose: judge_thinking]
 JUEZ: Lo que usted hizo hoy no lo absuelve. Pero no lo hizo por barato. [pose: judge_neutral]
 SUPER SAM: ...Thank you, Your Honor. [pose: supersam_sweat]
-DEFENSA: (Y ahora sí. Ahora ya nada más queda el señor de la leontina.) [pose: chapulin_idle]
+DEFENSA: (Y ahora sí. Ahora ya nada más queda el señor de la cadena de oro.) [pose: chapulin_idle]
 ~~~
+
+**Continuidad de la penalización por prueba incorrecta.** Hasta que el Juez acepta la separación, esa réplica genérica la da Super Sam. Desde la línea «El secretario de acuerdos continuará en representación social», la da el secretario. En el tercer día, la apertura, el testimonio 6 y el testimonio 7 antes de esa resolución corresponden a Super Sam; después de la resolución, también habla el secretario durante el resto del testimonio 7, el testimonio 8 y todo el día 4.
 
 ---
 
@@ -2711,7 +2791,7 @@ c5_d3t3_1 BERRONDO: Comparezco en calidad de investigado, por decisión de esta 
 c5_d3t3_2 BERRONDO: El cuatro de diciembre entré por la ventanilla de peritos a las dieciséis cero cinco y recibí un gafete de visita.
 c5_d3t3_3 BERRONDO: Bajé al sótano, abrí el huacal nueve, lo revisé, lo cerré y sellé la tapa con mi rúbrica y la fecha del día.
 c5_d3t3_4 BERRONDO: A las dieciséis cincuenta devolví el gafete en la ventanilla y salí por el patio de maniobras, donde tengo el automóvil.
-c5_d3t3_5 BERRONDO: Nunca subí al primer piso. No supe que el occiso estuviera en ese edificio hasta que lo leí en el periódico del domingo.
+c5_d3t3_5 BERRONDO: Nunca subí al primer piso. No supe que la víctima estuviera en ese edificio hasta que lo leí en el periódico del domingo.
 c5_d3t3_6 BERRONDO: [unlockedBy: c5_d3t3_5] ...Y si esta corte quiere saber por qué no lo supe, la respuesta es sencilla: porque nadie me lo dijo.
 ~~~
 
@@ -2748,8 +2828,8 @@ BERRONDO: Media hora larga. Hay que contar tarjetas por muestreo y cotejar contr
 DEFENSA: De las cuatro y diez a las cuatro cuarenta. [pose: chapulin_idle]
 BERRONDO: Aproximadamente. [pose: berrondo_idle]
 DEFENSA: Y de las cuatro cuarenta a las cuatro cincuenta, ¿qué hizo? [pose: chapulin_point]
-BERRONDO: Subir la escalera de servicio y caminar hasta la ventanilla. Son ciento veinte escalones y tengo setenta y un años. [pose: berrondo_idle]
-DEFENSA: (Diez minutos para ciento veinte escalones. Es razonable. Es tan razonable que da coraje.) [pose: chapulin_idle]
+BERRONDO: Subir la escalera de servicio hasta el patio y caminar hasta la ventanilla. Es una escalera larga, licenciado, y tengo setenta y un años. [pose: berrondo_idle]
+DEFENSA: (Diez minutos para salir del sótano y devolver un gafete... Es razonable. Es tan razonable que da coraje.) [pose: chapulin_idle]
 ~~~
 
 **Declaración 4**
@@ -2809,25 +2889,30 @@ BERRONDO: Si me hubieran avisado, yo lo sabría. [pose: berrondo_definicion]
 JUEZ: Eso no prueba una contradicción. Penalización a la defensa. [sfx: gavel; pose: judge_gavel]
 ~~~
 
+#### Presentación prematura — declaraciones 5 y 6: **`oficio_diligencia`**
+
+Presentar `oficio_diligencia` contra las declaraciones 5 o 6 toca el punto correcto, pero todavía no demuestra que Berrondo recibió el aviso. El script lo trata como `Statement.deflect`: la corte explica que el oficio acredita el envío de la notificación, conserva la salud del jugador y devuelve la misma declaración. La contradicción resolutoria sigue siendo **`acuse_notificacion`**, porque su rúbrica prueba la recepción.
+
 #### Contradicción resolutoria — declaración 5 y 6: **`acuse_notificacion`**
+
+Se acepta presentando `acuse_notificacion` contra **la declaración 5 o la 6**: ambas comparten una sola `ContradictionRule` (constante `ACUSE_CONTRADICCION` en [[src/case/case5/Private/trial_day3_t3.ts]] y su gemela en inglés), de modo que la contradicción resuelve desde cualquiera de las dos declaraciones, con o sin la declaración 6 desbloqueada.
 
 Pregunta visible: *«¿Es verdad que nadie le avisó?»*
 
 ~~~dialogue
 DEFENSA: ¡PROTESTO! [sfx: desk_slam; cutin: objection_protesto; pose: chapulin_slam; bgm: objection]
 DEFENSA: Señor juez, el libro de acuses del juzgado, hoja del veintinueve de noviembre. [pose: chapulin_point]
-DEFENSA: «Oficio 4471. Diligencia de cotejo documental **promovida por el interno C. Lengua**. Archivo Judicial, cuatro de diciembre, diecisiete horas.» [pose: chapulin_idle]
-DEFENSA: «Entregado en: Sindicatura de la quiebra ciento catorce diagonal setenta y uno.» [pose: chapulin_idle]
+DEFENSA: «Oficio 4471. Diligencia de cotejo documental **promovida por el interno C. Lengua**. Citado a petición del interno: Ramón Valdés. Archivo Judicial, cuatro de diciembre, 17:00.» [pose: chapulin_idle]
+DEFENSA: «Entregado en: Sindicatura de la quiebra 114/71.» [pose: chapulin_idle]
 DEFENSA: Y al margen, señor juez, una rúbrica. [pose: chapulin_slam; sfx: desk_slam]
-NARRADOR: La sala entera se vuelve hacia el estrado. [sfx: realization]
+NARRADOR: La sala entera se vuelve hacia el estrado. [sfx: realization] [bg: bg_gallery_characters; furniture: none]
 BERRONDO: ...... [pose: berrondo_idle]
 JUEZ: Licenciado Berrondo. ¿Es suya esa rúbrica? [pose: judge_neutral]
 BERRONDO: Es mía, señor juez. [pose: berrondo_idle]
-JUEZ: ¿Firmó usted de recibido el veintinueve de noviembre un oficio que decía el día, la hora, el lugar y el nombre? [pose: judge_shock]
+JUEZ: ¿Firmó usted de recibido el veintinueve de noviembre un oficio que decía el día, la hora, el lugar y los nombres de Casimiro y Don Ramón? [pose: judge_shock]
 BERRONDO: Lo firmé. [pose: berrondo_idle]
 JUEZ: ¡¿Y acaba de declarar bajo protesta que nadie le avisó?! [sfx: gavel; pose: judge_gavel]
 BERRONDO: ...Acabo de declararlo. [pose: berrondo_sweat]
-NARRADOR: Primera gota de sudor en tres jornadas. [sfx: realization; bgm: pursuit]
 DEFENSA: ¡Y la señorita de correspondencia se acuerda de usted, licenciado! [pose: chapulin_point]
 DEFENSA: ¡Se acuerda porque le dijo «señorita», y nadie le dice «señorita»! [pose: chapulin_slam; sfx: desk_slam]
 BERRONDO: ......Firmo doscientos acuses al mes, señor juez. [pose: berrondo_sweat]
@@ -2851,13 +2936,13 @@ DEFENSA: ¡TOMA ESO! [sfx: desk_slam; cutin: objection_toma_eso; pose: chapulin_
 DEFENSA: Señor juez, el arma de este homicidio es el Tomo XI de *El Saber Universal*, edición económica, encuadernado en tela. [pose: chapulin_point]
 DEFENSA: Y en la guarda tiene un sello de tinta violeta que nadie ha leído en voz alta en tres días. [pose: chapulin_idle]
 JUEZ: Léalo. [sfx: gavel; pose: judge_gavel]
-DEFENSA: «**Donación del síndico de la quiebra ciento catorce diagonal setenta y uno. Catorce de octubre de mil novecientos setenta y uno.**» [pose: chapulin_slam; sfx: desk_slam]
-NARRADOR: Murmullo largo en la galería. [sfx: realization]
+DEFENSA: «**Donación del síndico de la quiebra 114/71. Catorce de octubre de mil novecientos setenta y uno.**» [pose: chapulin_slam; sfx: desk_slam]
+NARRADOR: Murmullo largo en la galería. [sfx: realization] [bg: bg_gallery_characters; furniture: none]
 JUEZ: ¿Usted donó esos libros a ese Archivo, licenciado? [pose: judge_shock]
 BERRONDO: Yo los doné, señor juez. Veinticuatro ranuras y veintitrés tomos, porque el trece no existió nunca. [pose: berrondo_idle]
 BERRONDO: Nadie los quería. Eran veintitrés volúmenes pesados y el remate por kilo no cubría el flete. [pose: berrondo_idle]
 BERRONDO: Los regalé al juzgado para no pagar acarreo, y lo declaré, y hay recibo. [pose: berrondo_idle]
-DEFENSA: Señor juez: al occiso lo mataron con un libro que **regaló el testigo**. [pose: chapulin_point]
+DEFENSA: Señor juez: a la víctima la mataron con un libro que **regaló el testigo**. [pose: chapulin_point]
 BERRONDO: Hace once años, licenciado. Y a la vista de todos, en un pasillo público, durante once años. [pose: berrondo_idle]
 BERRONDO: Si haber donado un libro fuera indicio, la mitad de las bibliotecas de esta ciudad estaría procesada. [pose: berrondo_idle]
 JUEZ: ...La corte concede que el señor tiene razón. Otra vez. [pose: judge_thinking]
@@ -2870,7 +2955,7 @@ DEFENSA: (Otra vez.) [pose: chapulin_idle]
 
 ~~~dialogue
 JUEZ: Esta corte va a hacer una cuenta en voz alta, porque lleva tres días haciéndola por dentro. [sfx: gavel; bgm: suspense; pose: judge_gavel]
-JUEZ: El perito fija la muerte entre las diecisiete horas y las diecisiete treinta. [pose: judge_neutral]
+JUEZ: El perito fija la muerte entre las 17:00 y las 17:30. [pose: judge_neutral]
 JUEZ: El acusado firmó su salida a las dieciséis cincuenta y ocho. [pose: judge_neutral]
 JUEZ: Y el licenciado Berrondo devolvió su gafete a las dieciséis cincuenta. [pose: judge_thinking]
 NARRADOR: El Juez se quita los anteojos. [bgm: suspense]
@@ -2888,11 +2973,11 @@ SECRETARIO: La representación social sostiene la acusación, señor juez.
 JUEZ: Mañana es el cuarto día. Esta corte no va a conceder un quinto. [sfx: gavel; pose: judge_gavel]
 JUEZ: Defensa: mañana a las cuatro de la tarde usted pone a alguien dentro de ese pasillo, o esta corte dicta sentencia con lo que tiene. [pose: judge_neutral]
 JUEZ: Se levanta la sesión. [sfx: gavel; pose: judge_gavel]
-NARRADOR: La sala se vacía despacio. Super Sam sale sin la bolsa de lona, que se queda sobre la mesa.
-BERRONDO: Licenciado. [pose: berrondo_idle]
+NARRADOR: La sala se vacía despacio. Super Sam sale sin la bolsa de lona, que se queda sobre la mesa. [bg: bg_gallery_characters; furniture: none]
+BERRONDO: Licenciado. [bg: bg_courtroom; pose: berrondo_idle]
 DEFENSA: ...Licenciado. [pose: chapulin_idle]
-BERRONDO: Lo de la rúbrica estuvo muy bien encontrado. Y lo del sello del tomo, mejor. [pose: berrondo_idle]
-BERRONDO: Si alguna vez quiere usted ejercer de verdad, hable conmigo. Lo digo en serio. [pose: berrondo_idle]
+BERRONDO: Lo de la rúbrica estuvo muy bien encontrado. Y lo del sello del tomo, mejor. [bg: bg_courtroom; pose: berrondo_idle]
+BERRONDO: Si alguna vez quiere usted ejercer de verdad, hable conmigo. Lo digo en serio. [bg: bg_courtroom; pose: berrondo_idle]
 DEFENSA: (Y lo dice en serio. Eso es lo peor de todo: que lo dice en serio.) [pose: chapulin_idle]
 ~~~
 
@@ -2928,9 +3013,9 @@ DON RAMÓN: Un bochorno espantoso. Me quité el saco y me lo volví a poner porq
 DEFENSA: ¿Y el señor Lengua? [pose: chapulin_idle]
 DON RAMÓN: Sudaba. Se limpiaba la frente con el pañuelo cada dos frases. Yo pensé que eran los nervios. [pose: donramon_sweat]
 DEFENSA: ¿Y el conserje? [pose: chapulin_point]
-DON RAMÓN: El conserje me dijo en la puerta que llevaban cuatro días con la caldera al máximo por un tubo reventado. [pose: donramon_idle]
+DON RAMÓN: El conserje me dijo en la puerta que la caldera y los secadores llevaban al máximo desde el tres, por un tubo reventado. [pose: donramon_idle]
 DEFENSA: Don Ramón. [pose: chapulin_panic]
-DEFENSA: El legista calculó la hora de la muerte **con la temperatura del cuerpo**. [pose: chapulin_point]
+DEFENSA: El forense calculó la hora de la muerte **con la temperatura del cuerpo**. [pose: chapulin_point]
 DON RAMÓN: ...Sí. [pose: donramon_idle]
 DEFENSA: Y calculó suponiendo un cuarto normal. [pose: chapulin_idle]
 DON RAMÓN: ...Sí. [pose: donramon_shock]
@@ -3003,13 +3088,13 @@ SARGENTO: Eso no hay que adivinarlo, mi Licenciado. Hay un aparato que lo apunta
 
 ~~~dialogue
 NARRADOR: Atornillado al muro, un tambor de reloj con una tira de papel cuadriculado y una plumilla que raya una línea continua.
-SARGENTO: Termógrafo del Archivo, mi Licenciado. El tambor está aquí abajo, pero su sonda está cableada al pasillo siete: mide el aire de la escena. Lo pusieron en el sesenta y cuatro por la humedad. [pose: pazguato_idle]
+SARGENTO: Termógrafo del Archivo, mi Licenciado. El tambor está aquí abajo, pero su sonda está cableada al pasillo siete: mide el aire de la escena. Lo pusieron en el 64 por la humedad. [pose: pazguato_idle]
 SARGENTO: Da una vuelta por semana; cada domingo se retira y archiva la tira anterior y se coloca una nueva. [pose: pazguato_decidido]
 DEFENSA: Enséñeme la tira del sábado cuatro de diciembre. [pose: chapulin_point]
 NARRADOR: El Sargento desenrolla la tira de esa semana, retirada y archivada el domingo cinco: una línea de tinta sube y baja como una sierra.
 DEFENSA: Del tres al cinco... la línea se va para arriba y se queda. [pose: chapulin_idle]
 SARGENTO: Treinta y un grados, mi Licenciado. Sostenidos. [pose: pazguato_decidido]
-DEFENSA: ¿Y el legista con qué trabajó? [pose: chapulin_point]
+DEFENSA: ¿Y el forense con qué trabajó? [pose: chapulin_point]
 SARGENTO: Con veinte. Es el número que trae impreso la tabla. [pose: pazguato_sweat]
 DEFENSA: (Once grados. Once grados de diferencia.) [pose: chapulin_panic]
 [ENTREGAR bitacora_caldera]
@@ -3037,7 +3122,6 @@ CHOMPIRAS: Licenciado... ¿y si no se la da? [pose: chompiras_nervous]
 DEFENSA: Entonces Don Ramón se queda adentro, Chómpiras. [pose: chapulin_idle]
 CHOMPIRAS: ...Yo estuve dos noches adentro, y parecieron ocho meses. [pose: chompiras_nervous]
 CHOMPIRAS: Se lo digo nomás para que sepa cuánto dura. [pose: chompiras_idle]
-NARRADOR: Suena la campana del juzgado, a lo lejos, cuatro veces. [sfx: bell]
 DEFENSA: ¡Síganme los buenos! [pose: chapulin_point]
 ~~~
 
@@ -3055,45 +3139,54 @@ JUEZ: Se reanuda la audiencia. Esta corte anunció ayer que hoy dicta sentencia 
 JUEZ: Defensa: tiene usted la palabra y tiene usted una tarde. [pose: judge_neutral]
 DEFENSA: Señor juez, antes de llamar a mi testigo, la defensa tiene que rectificar una prueba. [pose: chapulin_idle]
 JUEZ: ¿Rectificar? [pose: judge_thinking]
-DEFENSA: El informe del legista. [pose: chapulin_point]
+DEFENSA: El informe del forense. [pose: chapulin_point]
 SECRETARIO: La representación social no se opone... aunque no entiende.
 DON RAMÓN: (Nadie entiende, señor secretario. Yo tampoco y es mi pellejo.) [pose: donramon_sweat]
 JUEZ: Presente la defensa lo que tenga. [sfx: gavel; pose: judge_gavel]
 ~~~
 
-`openingPresent`: **`bitacora_caldera`**. Pregunta visible: *«¿Con qué temperatura trabajó el legista?»*
+`openingPresent`: **`bitacora_caldera`**. Pregunta visible: *«¿Con qué temperatura trabajó el forense?»*
 
 ~~~dialogue
 DEFENSA: ¡La bitácora de mantenimiento del Archivo, señor juez, y la tira del termógrafo del pasillo siete! [pose: chapulin_slam; sfx: desk_slam]
 DEFENSA: El tres de diciembre reventó un tubo en el muro del pasillo siete. Pusieron la caldera y dos secadores al máximo y los dejaron cuatro días. [pose: chapulin_point]
 DEFENSA: El termógrafo del edificio, que lleva dieciocho años registrando datos en tiras cambiadas cada domingo, anotó **treinta y un grados sostenidos** en la del cuatro de diciembre. [pose: chapulin_idle]
-DEFENSA: Y el legista calculó la hora de la muerte con la tabla de una sala a **veinte**. [pose: chapulin_slam; sfx: desk_slam]
+DEFENSA: Y el forense calculó la hora de la muerte con la tabla de una sala a **veinte**. [pose: chapulin_slam; sfx: desk_slam]
 JUEZ: ¡Cáspita! ¿Y eso qué significa? [pose: judge_shock]
 ~~~
 
 **Lámina explicativa L7.**
 
 ~~~dialogue
+[LÁMINA assets/examine_termografo.webp]
+DEFENSA: Verá, señor juez: un cuerpo le tira el calor al aire, como quien tira la casa por la ventana... no, ése no es.
+DEFENSA: Lo cierto es que cuanto más frío está el aire, más rapidito se enfría el muerto... digo, el cuerpo. Bueno, la idea es esa.
+[FIN LÁMINA]
+
+Las dos líneas hablan con `bg` + `furniture: 'none'` y **sin `pose`** (§7.1, §8): el Chapulín explica sobre la bitácora y ningún sprite tapa la imagen. El remate del refrán abandonado está catalogado en §22.1.1.
+
+~~~dialogue
 [LÁMINA assets/plate_curva_enfriamiento.webp]
-NARRADOR: Un cuerpo pierde calor hacia el aire que lo rodea. Cuanto más frío el aire, más rápido se enfría.
 NARRADOR: La curva de abajo es la que usó el perito: una sala a veinte grados.
 NARRADOR: La curva de arriba es la del pasillo 7 esa tarde: treinta y un grados. El cuerpo se enfrió mucho más despacio.
 NARRADOR: A la misma temperatura medida a las 18:40, la curva de arriba pone la muerte veinticinco minutos antes.
 [FIN LÁMINA]
 ~~~
 
+> **Regreso a la sala.** La lámina deja el fondo en `plate_curva_enfriamiento` y `NARRADOR` no infiere cámara (§7.1), así que la narración de la galería estampa `bg_gallery_characters` explícito. `bg_judge` es un plano cercano del sillón y ya no muestra la sala. La línea siguiente de `SECRETARIO` vuelve sola al banquillo de la fiscalía.
+
 ~~~dialogue
-NARRADOR: El legista se pone de pie en la segunda fila de la galería, sin que nadie lo llame.
+NARRADOR: El forense se pone de pie en la segunda fila de la galería, sin que nadie lo llame. [bg: bg_gallery_characters; furniture: none]
 NARRADOR: Habla durante cuarenta segundos con el secretario, hace dos cuentas en un papel y asiente con la cabeza. [sfx: realization]
 SECRETARIO: Señor juez, el perito rectifica su dictamen. Con treinta y un grados, el intervalo se corrige.
 JUEZ: Dígalo. [sfx: gavel; pose: judge_gavel]
-SECRETARIO: De las dieciséis treinta y cinco a las diecisiete cero cinco.
+SECRETARIO: De las 16:35 a las 17:05.
 [ACTUALIZAR informe_forense_c5]
-NARRADOR: Rumor bajo en la galería, que tarda en crecer porque la sala tarda en entenderlo. [bgm: suspense]
+NARRADOR: Rumor bajo en la galería, que tarda en crecer porque la sala tarda en entenderlo. [bgm: suspense] [bg: bg_gallery_characters; furniture: none]
 SECRETARIO: ...Señor juez. Con la venia.
 SECRETARIO: El acusado firmó su entrada a las dieciséis cuarenta y su salida a las dieciséis cincuenta y ocho.
 SECRETARIO: La representación social hace notar que la defensa **acaba de meter a su propio cliente dentro de la ventana**.
-NARRADOR: La galería estalla. El Juez golpea el mazo cinco veces. [sfx: gavel]
+NARRADOR: La galería estalla. [sfx: gavel] [bg: bg_gallery_characters; furniture: none]
 JUEZ: ¡ORDEN! ¡ORDEN EN LA SALA! [sfx: gavel; pose: judge_gavel]
 JUEZ: ¡Licenciado Chapulín! ¿Usted sabe lo que acaba de hacer? [pose: judge_shock]
 DEFENSA: Lo sé, señor juez. Lo supe a las cinco cuarenta de la mañana. [pose: chapulin_idle]
@@ -3106,8 +3199,8 @@ JUEZ: ...Explíquese. [pose: judge_neutral]
 DEFENSA: El licenciado Berrondo entregó su gafete a las dieciséis cincuenta. [pose: chapulin_idle]
 DEFENSA: La fiscalía la trató como hora de salida hasta que impugnamos el encabezado el martes. [pose: chapulin_idle]
 DEFENSA: Antes, las dieciséis cincuenta quedaban **fuera** de la ventana del perito. [pose: chapulin_point]
-DEFENSA: Ahora entran en ella. Y como el libro no acredita salida, tampoco excluye que siguiera allí a las diecisiete cero dos. [pose: chapulin_slam; sfx: desk_slam]
-BERRONDO: ...... [pose: berrondo_idle]
+DEFENSA: Ahora entran en ella. Y como el libro no acredita salida, tampoco excluye que siguiera allí a las 17:02. [pose: chapulin_slam; sfx: desk_slam]
+BERRONDO: ...... [bg: bg_courtroom; pose: berrondo_idle]
 DON RAMÓN: (Ahí está, joven.) [pose: donramon_idle]
 DON RAMÓN: (Ahí está el detalle.) [pose: donramon_idle]
 JUEZ: La corte entiende. Y la corte advierte a la defensa que a partir de este momento juega sin red. [sfx: gavel; pose: judge_gavel]
@@ -3124,14 +3217,14 @@ JUEZ: Todo el mundo viene citado, señorita. Declare usted. [sfx: gavel; pose: j
 
 ### 17.2 Testimonio 1 — Srta. Genoveva Peñaloza: *«El reglamento de la ventanilla»*
 
-**BGM:** `cross_exam_allegro`.
+**BGM:** `cross_exam_final`.
 
 ~~~dialogue
 c5_d4t1_1 GENOVEVA: Mi ventanilla atiende a peritos, actuarios, notarios y síndicos. Es el único acceso de ese edificio que no es el público.
 c5_d4t1_2 GENOVEVA: El cuatro de diciembre atendí a cuatro personas, y las cuatro están en mi libro con su hora de entrada y su hora de salida.
 c5_d4t1_3 GENOVEVA: Al licenciado Berrondo le entregué un gafete de visita a las dieciséis cero cinco y se lo recibí a las dieciséis cincuenta.
 c5_d4t1_4 GENOVEVA: La hora la escribo yo, con mi pluma, cuando me ponen el gafete en el mostrador. El reglamento me faculta para eso.
-c5_d4t1_5 GENOVEVA: Y, por reglamento, toda apertura o extracción de la bodega de bienes exige vale. Los vales que se tramitan los lleno yo y los archivo yo.
+c5_d4t1_5 GENOVEVA: Los vales de la bodega los lleno yo y los archivo yo. Si alguien abre un bien sin tramitar uno, mi carpeta no registra esa apertura.
 ~~~
 
 #### Presiones
@@ -3145,7 +3238,7 @@ DEFENSA: ¿Y el portón del patio? [pose: chapulin_idle]
 GENOVEVA: Tampoco. [pose: genoveva_idle]
 DEFENSA: ¿Y no le parece raro? [pose: chapulin_point]
 GENOVEVA: El reglamento no me faculta para que me parezcan raras las cosas, señor. [pose: genoveva_reglamento]
-NARRADOR: Risas breves en la galería. [sfx: realization]
+NARRADOR: Risas breves en la galería. [sfx: realization] [bg: bg_gallery_characters; furniture: none]
 GENOVEVA: Y le suplico a la galería que no se ría. Yo llevo trece años haciendo exactamente lo que dice un papel, y por eso ese papel existe. [pose: genoveva_reglamento]
 JUEZ: La corte apoya a la testigo. [pose: judge_neutral]
 ~~~
@@ -3191,13 +3284,12 @@ GENOVEVA: Yo no custodio nada, señor juez. Yo registro. [pose: genoveva_reglame
 **Declaración 5**
 
 ~~~dialogue
-DEFENSA: ¡UN MOMENTO! ¿Qué es un vale de bodega? [sfx: whoosh; pose: chapulin_point]
-GENOVEVA: Una papeleta. El reglamento exige que quien vaya a mover, abrir o consultar un bien en depósito llene el vale y lo firme. [pose: genoveva_idle]
-DEFENSA: ¿Aunque él sea el depositario? [pose: chapulin_idle]
-GENOVEVA: Sobre todo si está bajo su responsabilidad, señor. El depósito no protege al juzgado: protege al depositario. [pose: genoveva_reglamento]
-DEFENSA: ¿Y qué se escribe en el vale? [pose: chapulin_point]
-GENOVEVA: Fecha, nombre, número de huacal... y qué se abrió. Con su rótulo exacto. [pose: genoveva_idle]
-DEFENSA: (Con su rótulo exacto.) [pose: chapulin_panic]
+DEFENSA: ¡UN MOMENTO! ¿Qué deja asentado un vale de bodega? [sfx: whoosh; pose: chapulin_point]
+GENOVEVA: Fecha, solicitante y bien u operación registrados. La persona firma la papeleta. [pose: genoveva_idle]
+DEFENSA: ¿La papeleta es necesaria para abrir físicamente el huacal? [pose: chapulin_idle]
+GENOVEVA: No, señor. El reglamento obliga a registrar la consulta; quien tiene acceso puede incumplirlo. [pose: genoveva_reglamento]
+DEFENSA: Entonces, si falta un vale, ¿usted puede asegurar que nadie abrió el huacal? [pose: chapulin_point]
+GENOVEVA: No. Sólo puedo decir qué aperturas quedaron registradas. [pose: genoveva_idle]
 ~~~
 
 #### Contradicción resolutoria — declaración 2: **`libro_peritos`**
@@ -3224,45 +3316,90 @@ DEFENSA: Un síndico que ya devolvió el gafete, ¿puede seguir dentro del edifi
 GENOVEVA: ...Sí, señor. [pose: genoveva_sweat]
 GENOVEVA: Con su credencial puede estar en el depósito de bienes a cualquier hora, todas las horas que quiera, y nadie tiene por qué saberlo. [pose: genoveva_reglamento]
 GENOVEVA: Es lo que dice el papel. [pose: genoveva_idle]
-NARRADOR: Rumor creciente en la galería. [sfx: realization; bgm: objection]
-BERRONDO: Señor juez, con la venia: eso es exacto y yo mismo lo declaré ayer. [pose: berrondo_idle]
-BERRONDO: No he ocultado nunca ninguna de esas dos cosas, porque las dos son perfectamente legales. [pose: berrondo_sweat]
+NARRADOR: Rumor creciente en la galería. [sfx: realization; bgm: objection] [bg: bg_gallery_characters; furniture: none]
+BERRONDO: Señor juez, con la venia: eso es exacto y yo mismo lo declaré ayer. [bg: bg_courtroom; pose: berrondo_idle]
+BERRONDO: No he ocultado nunca ninguna de esas dos cosas, porque las dos son perfectamente legales. [bg: bg_courtroom; pose: berrondo_sweat]
 DEFENSA: (Está sudando. Desde ayer está sudando.) [pose: chapulin_idle]
 JUEZ: Defensa: **estar en un sótano no es estar en un pasillo**. [pose: judge_neutral]
 JUEZ: Esta corte lleva cuatro días esperando que alguien suba una escalera. [pose: judge_thinking]
-DEFENSA: (Ya voy, señor juez. Nada más una cosa antes.) [pose: chapulin_idle]
+JUEZ: Señorita Peñaloza, tome asiento y permanezca a disposición de la corte. [pose: judge_neutral]
+GENOVEVA: Sí, señor juez. [pose: genoveva_idle]
+DEFENSA: (Estuvo en el edificio. Falta saber qué preparó antes de llegar.) [pose: chapulin_idle]
 ~~~
 
-#### `followUp`: **`fichero_cedulario`**
+#### Cadena posterior al testimonio: la preparación del montaje
 
-Pregunta visible: *«¿Qué habría que escribir en un vale para abrir ese cedulario?»*
+El primer paso sustituye el `followUp` anterior de D4-T1: se presenta `esquina_tarjeta`. Los pasos siguientes encadenan una presentación, una elección, otra presentación y la selección de un perfil mediante `ContradictionFollowUp.sequence`. Se mantiene una sola acusación interactiva del culpable, en E1. La elección aquí es una hipótesis de investigación, sin penalización: no pretende demostrar por sí misma que Berrondo leyó el aviso o arrancó una tarjeta.
+
+**1. Presentar `esquina_tarjeta`.** Pregunta visible: *«¿Qué hallazgo de la escena pudo prepararse para incriminar a Don Ramón?»* `tomo_caido` es una presentación desviada: fue el arma, pero existían otros Tomos XI y el libro por sí solo no pone el domicilio del acusado en la mano de Casimiro. Vuelve a la pregunta sin penalización.
+
+~~~dialogue
+JUEZ: Ese tomo importa, licenciado: fue el arma. Pero hay otros ejemplares del Tomo XI en circulación y el libro no señala por sí mismo a su cliente. Busque el rastro preparado para señalarlo. [pose: judge_thinking]
+~~~
 
 ~~~dialogue
 DEFENSA: ¡TOMA ESO! [sfx: desk_slam; cutin: objection_toma_eso; pose: chapulin_slam]
-DEFENSA: El cedulario del huacal nueve tiene nueve cajones, señor juez. Y cada cajón tiene un rótulo. [pose: chapulin_point]
-DEFENSA: Y los rótulos no son nombres. Son **calles**. [pose: chapulin_idle]
-DEFENSA: «Aguascalientes a Bucareli.» «Bucareli a Donceles.» «Donceles a Espanto.» [pose: chapulin_idle]
-DEFENSA: Señorita Peñaloza: si alguien abrió un cajón, su vale dice **qué calles**. [pose: chapulin_slam; sfx: desk_slam]
-GENOVEVA: ...Con su rótulo exacto, señor. Es el reglamento. [pose: genoveva_idle]
-JUEZ: Señorita, ¿trae usted esos vales? [pose: judge_neutral]
-GENOVEVA: Traigo los del año, señor juez. Vienen citados. [pose: genoveva_reglamento]
-NARRADOR: La testigo saca de una carpeta de hule un fajo de papeletas rosas atadas con una liga. [bgm: suspense]
-JUEZ: El del veintinueve de noviembre. [sfx: gavel; pose: judge_gavel]
-GENOVEVA: ...Hay uno, señor juez. [pose: genoveva_sweat]
-GENOVEVA: «Veintinueve de noviembre. Huacal nueve. Cedulario. Solicitante: licenciado Fulgencio Berrondo. Firma: F. Berrondo.» [pose: genoveva_idle]
-GENOVEVA: «Cajón: **Donceles a Espanto**.» [pose: genoveva_shock]
-NARRADOR: La galería entera se vuelve hacia la mesa de la fiscalía. [sfx: realization; bgm: pursuit]
-DEFENSA: ¡Y fíjese en la fecha, señor juez! El veintinueve de noviembre fue lunes. [pose: chapulin_point]
-DEFENSA: ¡Y el licenciado Berrondo declaró el martes que baja al huacal dos veces al mes — sólo los jueves! [pose: chapulin_slam; sfx: desk_slam]
-BERRONDO: ...... [pose: berrondo_sweat]
-DON RAMÓN: ...Señor juez. [pose: donramon_shock]
-DON RAMÓN: Yo vivo en la calle del Espanto número ocho. [pose: donramon_idle]
-DON RAMÓN: Y en la mano de ese muerto había una esquina de tarjeta que dice mi calle. [pose: donramon_shock]
+DEFENSA: La esquina de tarjeta que apareció cerrada en la mano de Casimiro llevaba el domicilio de Don Ramón. Alguien la puso allí para señalarlo. [pose: chapulin_point]
+DEFENSA: El cedulario bajo custodia del licenciado Berrondo guarda domicilios en tarjetas como ésta. Pido investigar si el fragmento salió de allí. [pose: chapulin_idle]
+BERRONDO: Una cartulina con un domicilio mecanografiado no es una tarjeta de mi cedulario, licenciado. Cualquiera que conozca al señor Valdés pudo escribir esas líneas. [bg: bg_courtroom; pose: berrondo_idle]
+BERRONDO: Hasta este juicio ni siquiera sabía que ese señor se llamaba Ramón Valdés. Y el sábado no esperaba encontrarlo en el Archivo. ¿Por qué habría de buscarlo en once mil tarjetas? [bg: bg_courtroom; pose: berrondo_idle]
+JUEZ: La corte acepta investigar el origen del fragmento. Todavía no lo tiene por identificado. [pose: judge_neutral]
+~~~
+
+**2. Presentar `oficio_diligencia`.** Pregunta visible: *«¿Qué documento emitido por la fiscalía nombraba al citado y se distribuyó a la Sindicatura?»* El oficio muestra la copia destinada a la Sindicatura y nombra a Don Ramón como citado; el `acuse_notificacion`, ya admitido en D3-T3, acredita que Berrondo recibió el aviso el 29. Presentar sólo el acuse en este paso es un desvío sin penalización: transcribe el asunto y acredita recepción, mientras el oficio completo muestra la orden de distribución. Ambos documentos deben concordar en el nombre.
+
+~~~dialogue
+DEFENSA: El acuse lleva el nombre de Don Ramón y la rúbrica del licenciado Berrondo. [pose: chapulin_point]
+JUEZ: Lo sabemos. Ahora muéstrenos el documento de la fiscalía que ordenó enviar el aviso a la Sindicatura. [pose: judge_neutral]
+~~~
+
+~~~dialogue
+DEFENSA: ¡PROTESTO! [sfx: desk_slam; cutin: objection_protesto; pose: chapulin_slam]
+DEFENSA: El oficio 4471 cita a Ramón Valdés a petición de Casimiro y ordena enviar una copia a la Sindicatura de la quiebra. [pose: chapulin_point]
+DEFENSA: El acuse del veintinueve lleva la firma del licenciado Berrondo. El nombre estuvo delante de él cinco días antes del crimen. [pose: chapulin_slam; sfx: desk_slam]
+BERRONDO: Ya rectifiqué mi declaración sobre ese acuse. Firmé de recibido y no presté atención al asunto; recibo papeles así todos los días. [bg: bg_courtroom; pose: berrondo_idle]
+BERRONDO: Que el nombre estuviera escrito no demuestra que yo lo leyera, ni que buscara al señor Valdés en mi cedulario. [bg: bg_courtroom; pose: berrondo_idle]
+JUEZ: La objeción es válida. El oficio acredita qué podía saber, no qué hizo después de firmarlo. [pose: judge_thinking]
+DEFENSA: (Tiene razón. Otra vez.) [pose: chapulin_panic]
+DON RAMÓN: (Joven, no tenemos una prueba de que se haya detenido a leerlo.) [pose: donramon_sweat]
+DEFENSA: (Que no panda el cúnico. Si preparó algo, quizá dejó un rastro que sí podamos comprobar.) [pose: chapulin_idle]
+~~~
+
+**3. Elección y presentación de investigación.** Primera pregunta visible: *«Si Berrondo preparó el montaje antes del sábado, ¿qué hipótesis podemos comprobar?»* Opciones `esperar` («Esperó al sábado e improvisó») y **`planear`** («Buscó de antemano una pieza para incriminar a Don Ramón»). Una elección errónea recibe una réplica orientadora y repite la pregunta sin penalización. Después se pregunta *«Si pensó usar una tarjeta, ¿qué bien habría consultado para comprobar que Don Ramón seguía fichado?»*; se presenta **`fichero_cedulario`**. La elección y la presentación orientan la búsqueda: no demuestran que Berrondo leyó el aviso, abrió el huacal ni sacó la ficha.
+
+Si se elige `esperar`:
+
+~~~dialogue
+DON RAMÓN: (Si improvisó el sábado, no encontraremos hoy un paso anterior que comprobar.) [pose: donramon_idle]
+DEFENSA: (Entonces volvamos a lo que pudo preparar antes.) [pose: chapulin_idle]
+~~~
+
+Tras elegir `planear` y presentar `fichero_cedulario`:
+
+~~~dialogue
+DEFENSA: (Berrondo guarda cada papel y devuelve cada cosa a su sitio. Si preparó el señuelo, pudo comprobar antes si existía una ficha de Don Ramón.) [pose: chapulin_idle]
+DON RAMÓN: (Eso todavía es una hipótesis, joven.) [pose: donramon_idle]
+DEFENSA: (El cedulario reúne las fichas de domicilio. Si eligió una tarjeta, ahí pudo comprobar que la de Don Ramón seguía archivada.) [pose: chapulin_point]
+DON RAMÓN: (¿Y cómo demostramos que fue a consultarlo?) [pose: donramon_idle]
+DEFENSA: (Busquemos un registro. Si no existe, no diremos que consultó nada.) [pose: chapulin_point]
+~~~
+
+**4. Presentar `perfil_genoveva`.** Pregunta visible: *«¿Quién puede consultar los registros de la bodega y decirnos si hubo una consulta anterior al crimen?»* Genoveva permanece en la sala tras bajar del estrado; el juez la llama de nuevo. Un perfil erróneo devuelve al jugador a la selección sin penalización, pues la pregunta busca una fuente para comprobar una hipótesis.
+
+~~~dialogue
+DEFENSA: Señor juez, solicito que vuelva al estrado la señorita Peñaloza. Ella archiva los vales que se tramitan en la bodega. [pose: chapulin_point]
+JUEZ: Señorita, revise su carpeta. ¿Consta alguna consulta del cedulario por el licenciado Berrondo el veintinueve de noviembre? [pose: judge_neutral]
+NARRADOR: Genoveva abre una carpeta de hule y separa las papeletas rosas atadas con una liga. [bgm: suspense]
+GENOVEVA: Sí, señor juez. «Veintinueve de noviembre. Huacal 9. Bien consultado: cedulario. Solicitante: licenciado Fulgencio Berrondo. Firma: F. Berrondo.» [pose: genoveva_sweat]
+DEFENSA: Ese día fue lunes. Licenciado, usted declaró que sólo baja al huacal los jueves. [pose: chapulin_slam; sfx: desk_slam]
+BERRONDO: El vale registra una consulta extraordinaria. No dice qué tarjeta miré, y mi cargo me permite consultar ese bien. [bg: bg_courtroom; pose: berrondo_idle]
+JUEZ: Así se asentará. La consulta ocurrió el mismo día de la notificación, pero el vale no fija la hora ni prueba qué tarjeta sacó. [pose: judge_neutral]
+DON RAMÓN: La esquina de la mano de Casimiro lleva mi domicilio. Quiero que se compare con el fichero. [pose: donramon_shock]
+SECRETARIO: Recibo la carpeta, señor juez.
+JUEZ: Queda en resguardo del tribunal. Señorita Peñaloza, permanezca a disposición de esta corte. [pose: judge_neutral]
 NARRADOR: El Juez se pone de pie. [sfx: gavel]
 JUEZ: ¡ORDEN! [sfx: gavel; pose: judge_gavel]
-JUEZ: La testigo puede retirarse. [pose: judge_neutral]
-JUEZ: Licenciado Chapulín. [pose: judge_thinking]
-JUEZ: Esta corte lleva cuatro días prohibiéndole a usted señalar a una persona, y hoy se lo va a ordenar. [sfx: gavel; pose: judge_gavel]
+JUEZ: Licenciado Chapulín. Esta corte lleva cuatro días prohibiéndole señalar a una persona, y hoy se lo va a ordenar. [sfx: gavel; pose: judge_gavel]
 ~~~
 
 ---
@@ -3276,8 +3413,7 @@ JUEZ: Esta corte lleva cuatro días prohibiéndole a usted señalar a una person
 ### 18.0 Entrada al clímax
 
 ~~~dialogue
-JUEZ: Licenciado: esta corte le ha impedido durante cuatro días señalar a una persona, y ha hecho bien. [sfx: gavel; bgm: pursuit; pose: judge_gavel]
-JUEZ: Se señalan hechos. Las personas vienen al final o no vienen. [pose: judge_neutral]
+JUEZ: Se señalan hechos. Las personas vienen al final o no vienen. [bgm: pursuit; pose: judge_neutral]
 JUEZ: Hoy los hechos ya no dejan a nadie más de pie. [pose: judge_thinking]
 JUEZ: **Diga usted un nombre y respáldelo con el Acta.** [sfx: gavel; pose: judge_gavel]
 DEFENSA: (Don Ramón. ¿Lo digo?) [pose: chapulin_idle]
@@ -3292,7 +3428,7 @@ DON RAMÓN: (Dígalo.) [pose: donramon_shock]
 
 `prompt`: **«¿A quién señalan las pruebas que esta corte ha admitido?»**
 
-> El Acta se abre en la pestaña **PERSONAS** y el botón dice `¡Señalar a esta persona!`. Es el único **señalamiento interactivo de persona** del episodio; la imputación vuelve a enunciarse verbalmente en E5.
+> El Acta se abre en la pestaña **PERSONAS** y el botón dice `¡Señalar a esta persona!`. Es la única **acusación interactiva** del episodio; las presentaciones anteriores de Casimiro y Genoveva sólo identifican a la víctima y a la encargada de los registros. La imputación vuelve a enunciarse verbalmente en E5.
 
 `failDialogue` (persona equivocada):
 
@@ -3309,19 +3445,19 @@ JUEZ: La corte le repite la pregunta, y le advierte que le quedan menos oportuni
 DEFENSA: ¡PROTESTO! [sfx: desk_slam; cutin: objection_protesto; pose: chapulin_slam; bgm: pursuit]
 DEFENSA: El hombre que estuvo en ese pasillo está sentado en la mesa de la fiscalía, señor juez. [pose: chapulin_point]
 DEFENSA: **El licenciado Fulgencio Berrondo.** [pose: chapulin_slam; sfx: desk_slam]
-NARRADOR: La galería se levanta entera. [sfx: realization]
-BERRONDO: ...... [pose: berrondo_idle]
+NARRADOR: La galería se levanta entera. [sfx: realization] [bg: bg_gallery_characters; furniture: none]
+BERRONDO: ...... [bg: bg_courtroom; pose: berrondo_idle]
 SECRETARIO: ¡La representación social objeta! ¡El licenciado Berrondo auxilió a esta fiscalía durante tres días!
 JUEZ: La corte comparte la objeción **en principio**. Defensa, fundamente o retire. [pose: judge_neutral]
-DEFENSA: Con cuatro cosas, señor juez. Cuatro cosas que dijo él, delante de usted, sin que nadie se las sacara. [pose: chapulin_idle]
-DEFENSA: **Primera.** Firmó el veintinueve de noviembre un acuse que decía el día, la hora, el lugar y el nombre. [pose: chapulin_point]
-DEFENSA: **Segunda.** El veintinueve de noviembre, el mismo día, abrió con vale el cajón que va de Donceles a la calle del Espanto. [pose: chapulin_idle]
+DEFENSA: Con cuatro datos, señor juez. Cuatro datos que ya obran en autos. [pose: chapulin_idle]
+DEFENSA: **Primera.** Firmó el veintinueve de noviembre un acuse que decía el día, la hora, el lugar y los nombres de Casimiro y Don Ramón. [pose: chapulin_point]
+DEFENSA: **Segunda.** El veintinueve de noviembre, el mismo día, revisó el cedulario. [pose: chapulin_idle]
 DEFENSA: **Tercera.** El cuatro de diciembre estuvo dentro de ese edificio en una hora que ahora cae dentro de la ventana del perito. [pose: chapulin_point]
 DEFENSA: **Cuarta.** Y ayer declaró bajo protesta que nadie le había avisado, cuando su propia rúbrica decía lo contrario. [pose: chapulin_slam; sfx: desk_slam]
-BERRONDO: Señor juez, la cuarta la rectifiqué yo mismo y me disculpé. [pose: berrondo_sweat]
+BERRONDO: Señor juez, la cuarta la rectifiqué yo mismo y me disculpé. [bg: bg_courtroom; pose: berrondo_sweat]
 DEFENSA: Se disculpó cuando le enseñé la rúbrica, licenciado. No antes. [pose: chapulin_idle]
 DEFENSA: Y es la primera vez en cuatro días que usted hace algo **después** y no antes. [pose: chapulin_point]
-BERRONDO: ...... [pose: berrondo_sweat]
+BERRONDO: ...... [bg: bg_courtroom; pose: berrondo_sweat]
 JUEZ: La corte permite a la defensa continuar. [sfx: gavel; pose: judge_gavel]
 JUEZ: Pero le advierto una cosa, licenciado: cuatro datos no son cuatro pruebas. [pose: judge_neutral]
 JUEZ: Este hombre entregó su gafete a las dieciséis cincuenta. [pose: judge_thinking]
@@ -3353,12 +3489,12 @@ JUEZ: «Acceso al depósito de bienes de la masa.» [pose: judge_shock]
 DEFENSA: Sin límite de horario, señor juez. Lo firmó un juez de este mismo edificio en 1971. [pose: chapulin_idle]
 DEFENSA: Ese gafete de latón que devolvió a las cuatro cincuenta no era su permiso para estar adentro. [pose: chapulin_point]
 DEFENSA: Era su permiso para estar **arriba**. [pose: chapulin_slam; sfx: desk_slam]
-NARRADOR: Murmullo largo en la galería. [sfx: realization]
-BERRONDO: Es correcto, licenciado, y lo declaré ayer. [pose: berrondo_sweat]
-BERRONDO: Yo podía quedarme en ese sótano hasta la madrugada si quería. Y no me quedé. [pose: berrondo_idle]
+NARRADOR: Murmullo largo en la galería. [sfx: realization] [bg: bg_gallery_characters; furniture: none]
+BERRONDO: Es correcto, licenciado, y lo declaré ayer. [bg: bg_courtroom; pose: berrondo_sweat]
+BERRONDO: Yo podía quedarme en ese sótano hasta la madrugada si quería. Y no me quedé. [bg: bg_courtroom; pose: berrondo_idle]
 DEFENSA: ¿Y quién lo vio irse? [pose: chapulin_point]
-BERRONDO: Nadie, licenciado. Ya lo dijimos: el portón no tiene garita. [pose: berrondo_idle]
-BERRONDO: Pero esa moneda cae de los dos lados. Que nadie me viera salir tampoco prueba que me quedara. [pose: berrondo_idle]
+BERRONDO: Nadie, licenciado. Ya lo dijimos: el portón no tiene garita. [bg: bg_courtroom; pose: berrondo_idle]
+BERRONDO: Pero esa moneda cae de los dos lados. Que nadie me viera salir tampoco prueba que me quedara. [bg: bg_courtroom; pose: berrondo_idle]
 JUEZ: ...La corte tiene que concederlo. Otra vez. [pose: judge_thinking]
 JUEZ: Licenciado Chapulín: usted ha demostrado que ese hombre **pudo** quedarse en el sótano. [pose: judge_neutral]
 JUEZ: Y el sótano no es el pasillo siete. [pose: judge_thinking]
@@ -3369,7 +3505,7 @@ DEFENSA: (Piensa, Chapulín. ¿Qué cosa de ese pasillo nadie ha podido explicar
 
 ---
 
-### 18.3 Etapa 3 — ¿SUBIÓ? (`presentTarget: ['estante_consulta']`) — **Señalamiento 2**
+### 18.3 Etapa 3 — ¿SUBIÓ? (`presentTarget: ['tomo_caido']`; `deflects: ['esquina_tarjeta']`) — **Señalamiento 2**
 
 `prompt`: **«¿Qué prueba que alguien volvió al primer piso después del golpe?»**
 
@@ -3379,6 +3515,13 @@ DEFENSA: (Piensa, Chapulín. ¿Qué cosa de ese pasillo nadie ha podido explicar
 JUEZ: Eso no demuestra que alguien volviera al primer piso después del golpe. [pose: judge_thinking]
 JUEZ: Esta corte necesita una cosa que **siguiera en ese estante después del golpe** y que no pudiera haber salido de él. [pose: judge_neutral]
 SECRETARIO: Un punto menos para la defensa, señor juez. [sfx: damage]
+~~~
+
+`deflects` — `esquina_tarjeta`:
+
+~~~dialogue
+JUEZ: La esquina de la tarjeta compromete al licenciado Berrondo, pero no demuestra que alguien volviera al primer piso después del golpe. [pose: judge_thinking]
+JUEZ: La corte necesita lo que siguiera arriba y no pudiera llegar solo. [pose: judge_neutral]
 ~~~
 
 `introDialogue` (antes del señalamiento):
@@ -3394,10 +3537,10 @@ NARRADOR: Silencio absoluto en la sala. [bgm: suspense]
 JUEZ: ...Veinticuatro tomos. [pose: judge_shock]
 DEFENSA: Veinticuatro tomos para veinticuatro ranuras... y una ranura que lleva vacía desde 1971. [pose: chapulin_point]
 DEFENSA: Sobran las cuentas, señor juez. Sobra **uno**. [pose: chapulin_slam; sfx: desk_slam]
-JUEZ: ¡Que traigan esa fotografía a la vista de esta corte! ¡AHORA! [sfx: gavel; pose: judge_gavel]
+JUEZ: ¡Que traigan ese tomo a la vista de esta corte! ¡AHORA! [sfx: gavel; pose: judge_gavel]
 ~~~
 
-> Bloque mapeado a `ClimaxStage.introDialogue`: el motor lo encola **antes** de abrir el señalamiento y sólo reproduce el `successDialogue` de la etapa después del acierto ([[src/engine/Private/TrialClimaxPresent.ts]]).
+> Bloque mapeado a `ClimaxStage.introDialogue`: el motor lo encola **antes** de abrir el señalamiento y sólo reproduce el `successDialogue` de la etapa después de presentar correctamente `tomo_caido` ([[src/engine/Private/TrialClimaxPresent.ts]]). La presentación desviada de `esquina_tarjeta` conserva la etapa pendiente y no penaliza.
 
 **Señalamiento sobre la lámina de `estante_consulta`.** Pregunta visible: *«Señala lo que no debería estar en ese estante.»* Zona correcta: `lomo_11`.
 
@@ -3414,14 +3557,14 @@ JUEZ: ¡Que traigan esa fotografía a la vista de esta corte! ¡AHORA! [sfx: gav
 ~~~dialogue
 DEFENSA: ¡AQUÍ, SEÑOR JUEZ! ¡LA RANURA ONCE! [pose: chapulin_slam; sfx: desk_slam; cutin: objection_toma_eso]
 DEFENSA: Veintidós lomos de tela verde... y uno de media piel con cantoneras de latón. [pose: chapulin_point]
-NARRADOR: La sala entera se inclina hacia la lámina. [sfx: realization; bgm: pursuit]
-JUEZ: ¡Alguacil! ¡Que suban ese tomo a esta sala! [sfx: gavel; pose: judge_gavel]
-NARRADOR: Cuatro minutos. Nadie se sienta. [bgm: suspense]
-NARRADOR: El alguacil deposita sobre el estrado un volumen pesado, encuadernado en media piel, con cantoneras de latón en el canto del lomo.
+NARRADOR: La sala entera se inclina hacia la lámina. [sfx: realization; bgm: pursuit] [bg: bg_gallery_characters; furniture: none]
+JUEZ: ¡Alguacil! ¡Que traigan a esta corte esa fotografía... y el tomo que en ella sobra! ¡AHORA! [sfx: gavel; pose: judge_gavel]
+NARRADOR: Cuatro minutos. Nadie se sienta. [bgm: suspense] [bg: bg_gallery_characters; furniture: none]
+NARRADOR: El alguacil deposita sobre el estrado la fotografía pericial del estante y, junto a ella, un volumen pesado, encuadernado en media piel, con cantoneras de latón en el lomo.
 JUEZ: Ábralo por la guarda, señor secretario. [pose: judge_neutral]
 SECRETARIO: Hay un sello, señor juez. De tinta violeta.
-SECRETARIO: «Q guion ciento catorce diagonal mil novecientos setenta y uno. **Masa concursal. Huacal nueve.**»
-NARRADOR: La galería estalla. El Juez golpea el mazo seis veces. [sfx: gavel; bgm: objection]
+SECRETARIO: «Q-114/1971. **Masa concursal. Huacal 9.**»
+NARRADOR: La galería estalla. [sfx: gavel; bgm: objection] [bg: bg_gallery_characters; furniture: none]
 JUEZ: ¡ORDEN! ¡ORDEN! [sfx: gavel; pose: judge_gavel]
 DEFENSA: ¡Señor juez, ese tomo es de la edición de lujo! [pose: chapulin_point]
 DEFENSA: ¡Doscientos diez ejemplares sin vender desde 1971, partida cuarenta y cuatro del inventario! [pose: chapulin_idle]
@@ -3446,10 +3589,10 @@ JUEZ: Secretario, coteje ahora la carpeta de vales que exhibió la señorita Pe�
 SECRETARIO: Un vale, señor juez. Revisión inicial del contenido; ninguna extracción posterior registrada.
 DEFENSA: Dos sellos firmados, un solo vale. La segunda apertura la hizo la misma mano y no la registró nadie. [pose: chapulin_point]
 JUEZ: ¡Que se asiente! [sfx: gavel; pose: judge_gavel]
-BERRONDO: ...Señor juez. [pose: berrondo_sweat]
-BERRONDO: Un estante incompleto es un desorden. [pose: berrondo_sweat]
-BERRONDO: Yo no soporto los desórdenes. Nunca los he soportado. [pose: berrondo_panic]
-BERRONDO: Eso... eso no es un delito. [pose: berrondo_panic]
+BERRONDO: ...Señor juez. [bg: bg_courtroom; pose: berrondo_sweat]
+BERRONDO: Un estante incompleto es un desorden. [bg: bg_courtroom; pose: berrondo_sweat]
+BERRONDO: Yo no soporto los desórdenes. Nunca los he soportado. [bg: bg_courtroom; pose: berrondo_panic]
+BERRONDO: Eso... eso no es un delito. [bg: bg_courtroom; pose: berrondo_panic]
 DEFENSA: No, licenciado. [pose: chapulin_idle]
 DEFENSA: **Es una firma.** [pose: chapulin_slam; sfx: desk_slam; cutin: objection_toma_eso]
 ~~~
@@ -3517,14 +3660,14 @@ DON RAMÓN: Que lo comprara legalmente no lo vuelve inocente, señor juez. **És
 JUEZ: ...Que se asiente íntegra la intervención del acusado. [sfx: gavel; pose: judge_gavel]
 DEFENSA: (Don Ramón...) [pose: chapulin_idle]
 DON RAMÓN: (Ya cállese, joven, que me está saliendo bien.) [pose: donramon_idle]
-JUEZ: Señorita Peñaloza, no se retire todavía. [pose: judge_neutral]
-JUEZ: Esta corte ordena que se traiga a esta sala el cajón «Donceles a Espanto» del cedulario del huacal nueve. [sfx: gavel; bgm: pursuit; pose: judge_gavel]
-BERRONDO: ¡Señor juez, ese cajón tiene mil trescientas tarjetas! ¡Nos va a tomar la noche entera! [pose: berrondo_panic]
-JUEZ: Está ordenado por calle, licenciado. Usted mismo lo declaró. [pose: judge_neutral]
-JUEZ: Y esta corte tiene la suerte de contar hoy con alguien que sabe exactamente qué calle buscar. [pose: judge_thinking]
+JUEZ: Señorita Peñaloza: su carpeta de vales ya está en poder del secretario. [pose: judge_neutral]
+JUEZ: El vale no identifica una tarjeta. Si vamos a comprobar el origen de esa esquina, necesitamos buscar la ficha por su domicilio. [pose: judge_thinking]
 JUEZ: Acusado: **dicte usted su domicilio al secretario**. [sfx: gavel; pose: judge_gavel]
-DON RAMÓN: ...Vecindad de la calle del Espanto número ocho, vivienda cuatro. [pose: donramon_idle]
+DON RAMÓN: ...Vecindad de la calle del Espanto número ocho, vivienda setenta y dos. [pose: donramon_idle]
 DON RAMÓN: Ciudad de México. [pose: donramon_sweat]
+JUEZ: El fichero está ordenado por calle. Tráigase el cajón «Donceles a Espanto» del huacal nueve. [sfx: gavel; bgm: pursuit; pose: judge_gavel]
+BERRONDO: ¡Señor juez, ese cajón tiene mil trescientas tarjetas! ¡Nos va a tomar la noche entera! [bg: bg_courtroom; pose: berrondo_panic]
+JUEZ: El acusado acaba de darnos la dirección exacta. [pose: judge_neutral]
 NARRADOR: El secretario recorre el cajón con el dedo durante cuarenta segundos. La sala no respira. [bgm: suspense]
 SECRETARIO: ...La tengo, señor juez.
 [ENTREGAR ficha_domicilio]
@@ -3549,20 +3692,20 @@ SECRETARIO: Un punto menos, señor juez. [sfx: damage]
 
 ~~~dialogue
 DEFENSA: ¡PROTESTO! [sfx: desk_slam; cutin: objection_protesto; pose: chapulin_slam]
-DEFENSA: La tarjeta del cedulario correspondiente a la vecindad de la calle del Espanto número ocho, vivienda cuatro. [pose: chapulin_point]
+DEFENSA: La tarjeta del cedulario correspondiente a la vecindad de la calle del Espanto número ocho, vivienda setenta y dos. [pose: chapulin_point]
 JUEZ: Léala, licenciado. Campo por campo. [sfx: gavel; bgm: suspense; pose: judge_gavel]
-DEFENSA: «Domicilio: vecindad de la calle del Espanto ocho, vivienda cuatro.» [pose: chapulin_idle]
+DEFENSA: «Domicilio: vecindad de la calle del Espanto ocho, vivienda setenta y dos.» [pose: chapulin_idle]
 DEFENSA: «Ingreso declarado: variable. Oficio: abogado sin despacho.» [pose: chapulin_idle]
 DEFENSA: «Objetos de valor declarados: **ninguno**.» [pose: chapulin_idle]
 DEFENSA: «Puntualidad de pago: **catorce meses de atraso**.» [pose: chapulin_point]
 DEFENSA: «Observaciones del vendedor: no insistir.» [pose: chapulin_idle]
 DEFENSA: Y el último campo de la columna izquierda, señor juez. El de abajo del todo. [pose: chapulin_point]
 DEFENSA: «Estado de la puerta: **chapa vencida. Se empuja.**» [pose: chapulin_slam; sfx: desk_slam]
-NARRADOR: Murmullo largo y feo en la galería. [sfx: realization]
+NARRADOR: Murmullo largo y feo en la galería. [sfx: realization] [bg: bg_gallery_characters; furniture: none]
 JUEZ: ¿De cuándo es esa tarjeta? [pose: judge_shock]
 DEFENSA: Levantada en mil novecientos sesenta y nueve. [pose: chapulin_idle]
 DEFENSA: Y **actualizada en agosto de este año**. [pose: chapulin_slam; sfx: desk_slam]
-NARRADOR: La sala estalla. [sfx: gavel; bgm: pursuit]
+NARRADOR: La sala estalla. [sfx: gavel; bgm: pursuit] [bg: bg_gallery_characters; furniture: none]
 JUEZ: ¡ORDEN! [sfx: gavel; pose: judge_gavel]
 DEFENSA: Señor juez, a este hombre lo tenían fichado. [pose: chapulin_point]
 DEFENSA: No como abogado. No como enemigo. [pose: chapulin_idle]
@@ -3572,11 +3715,11 @@ DON RAMÓN: En agosto yo debía catorce meses. Es verdad. [pose: donramon_idle]
 DON RAMÓN: Y alguien se tomó la molestia de anotarlo. [pose: donramon_sweat]
 DEFENSA: Y hay una cosa más, señor juez, y es la que me tiene aquí parado. [pose: chapulin_point]
 DEFENSA: A esta tarjeta **le falta la esquina inferior derecha**. [pose: chapulin_idle]
-JUEZ: ¡Alguacil! ¡El fragmento hallado en la mano del occiso! [sfx: gavel; pose: judge_gavel]
+JUEZ: ¡Alguacil! ¡El fragmento hallado en la mano de la víctima! [sfx: gavel; pose: judge_gavel]
 NARRADOR: El alguacil pone el sobrecito de papel encerado sobre la mesa del secretario y saca el pedazo con pinzas. [bgm: suspense]
 NARRADOR: El secretario acerca el fragmento a la tarjeta. [sfx: realization]
 SECRETARIO: ...Empata, señor juez.
-SECRETARIO: Diente por diente. Y los cuatro renglones del campo domicilio se completan: «...cindad de la calle del Espanto 8, viv. 4.»
+SECRETARIO: Diente por diente. Y los cuatro renglones del campo domicilio se completan: «...cindad de la calle del Espanto 8, viv. 72.»
 NARRADOR: Silencio absoluto. [bgm: suspense]
 DEFENSA: Y no sólo empata el papel, señor juez. [pose: chapulin_point]
 DEFENSA: El retiro de la sindicatura fue de cinco mil pesos. La factura auténtica del notario, de setecientos cincuenta. [pose: chapulin_idle]
@@ -3585,13 +3728,13 @@ DEFENSA: La nota hizo que existiera un recibo a nombre de mi cliente y que Barri
 DEFENSA: Barriga conservó la copia y entregó el original a Don Ramón; por eso apareció en su bolsillo. La nota **no ordenaba esa entrega**, pero el montaje aprovechó que ocurriera. [pose: chapulin_point]
 JUEZ: Licenciado Berrondo. [pose: judge_neutral]
 JUEZ: El pedazo de papel que apareció en la mano de un hombre asesinado salió de **una tarjeta de su cedulario, guardado bajo su custodia**. [pose: judge_shock]
-BERRONDO: ...Cualquiera pudo arrancarla, señor juez. [pose: berrondo_panic]
+BERRONDO: ...Cualquiera pudo arrancarla, señor juez. [bg: bg_courtroom; pose: berrondo_panic]
 DEFENSA: Cualquiera **no**, licenciado. [pose: chapulin_point]
 DEFENSA: Porque cualquiera se habría llevado la tarjeta. [pose: chapulin_idle]
 DEFENSA: Y usted la volvió a meter en su cajón. [pose: chapulin_slam; sfx: desk_slam]
 DEFENSA: Mutilada, sin una esquina, pero **en su sitio**. [pose: chapulin_point]
 DEFENSA: Igual que el estante. [pose: chapulin_idle]
-BERRONDO: ¡...! [pose: berrondo_panic]
+BERRONDO: ¡...! [bg: bg_courtroom; pose: berrondo_panic]
 JUEZ: La corte ordena la detención preventiva del licenciado Fulgencio Berrondo. [sfx: gavel; pose: judge_gavel]
 SECRETARIO: Señor juez, con la venia... la representación social hace notar que todo esto sigue siendo circunstancial.
 JUEZ: ...Lo es. [pose: judge_thinking]
@@ -3626,20 +3769,20 @@ SECRETARIO: ¡El dictamen de documentoscopia obra en autos, señor juez, y dice 
 DEFENSA: ¡Porque hace falta una orden de esta corte para usar un bien en depósito! [pose: chapulin_point]
 DEFENSA: ¡Y llevo cuatro días esperando para pedírsela! [pose: chapulin_slam; sfx: desk_slam]
 JUEZ: **Concedida.** [sfx: gavel; pose: judge_gavel]
-BERRONDO: ¡SEÑOR JUEZ! [pose: berrondo_panic]
-BERRONDO: ¡Ese aparato es un bien de la masa concursal! ¡Usarlo altera el depósito! [pose: berrondo_panic]
+BERRONDO: ¡SEÑOR JUEZ! [bg: bg_courtroom; pose: berrondo_panic]
+BERRONDO: ¡Ese aparato es un bien de la masa concursal! ¡Usarlo altera el depósito! [bg: bg_courtroom; pose: berrondo_panic]
 JUEZ: Lo altera, licenciado. Y la corte responde de ello. [pose: judge_neutral]
 JUEZ: Alguacil: la máquina, a esta sala. En su carrito. [sfx: gavel; pose: judge_gavel]
-NARRADOR: Once minutos. Nadie se mueve de la galería. [bgm: suspense]
+NARRADOR: Once minutos. Nadie se mueve de la galería. [bgm: suspense] [bg: bg_gallery_characters; furniture: none]
 NARRADOR: El alguacil entra empujando un carrito de metal con una máquina de escribir negra, con el número 41 pintado a plantilla en el costado. [sfx: whoosh]
 NARRADOR: La pone sobre la mesa del secretario. La sala entera puede oír el papel entrando en el rodillo. [sfx: click]
-JUEZ: Señor secretario. Escriba usted, al dictado, el texto del fragmento hallado en la mano del occiso, respetando sus cuatro renglones. [sfx: gavel; pose: judge_gavel]
-DEFENSA: «...cindad de la calle del Espanto 8, viv. 4.» [pose: chapulin_idle]
+JUEZ: Señor secretario. Escriba usted, al dictado, el texto del fragmento hallado en la mano de la víctima, respetando sus cuatro renglones. [sfx: gavel; pose: judge_gavel]
+DEFENSA: «...cindad de la calle del Espanto 8, viv. 72.» [pose: chapulin_idle]
 NARRADOR: El secretario mecanografía el fragmento en una sala en la que no se oye nada más que las teclas. [sfx: text]
 NARRADOR: El secretario saca la hoja del rodillo y la levanta. [sfx: realization]
 SECRETARIO: ...Señor juez.
 SECRETARIO: Todas las eses están media línea por debajo del renglón.
-NARRADOR: La galería se levanta entera. [sfx: realization; bgm: objection]
+NARRADOR: La galería se levanta entera. [sfx: realization; bgm: objection] [bg: bg_gallery_characters; furniture: none]
 JUEZ: ¡ORDEN! ¡ORDEN EN LA SALA! [sfx: gavel; pose: judge_gavel]
 ~~~
 
@@ -3657,7 +3800,7 @@ NARRADOR: Hoy, en esta sala. Una muestra recién mecanografiada. La ese, media l
 ~~~dialogue
 DEFENSA: Cuatro papeles, señor juez. Una máquina. [pose: chapulin_point]
 DEFENSA: El cotejo identifica la máquina de los papeles; no identifica por sí solo a quien la usó, y menos aún al homicida. [pose: chapulin_idle]
-DEFENSA: Pero el oficio prueba que Berrondo conocía la diligencia; el vale acredita qué cajón consultó; las dos tiras muestran dos aperturas el día del crimen, aunque solo una quedó registrada. [pose: chapulin_point]
+DEFENSA: El oficio nombraba a Don Ramón y Berrondo firmó el acuse; el vale registra que consultó el cedulario aquel lunes, sin decir qué ficha miró. Las dos tiras muestran dos aperturas el día del crimen, aunque solo una quedó registrada. [pose: chapulin_point]
 DEFENSA: El tomo de lujo salió de ese huacal y apareció donde faltaba el arma; la tarjeta mutilada enlaza el fichero con el fragmento puesto en la mano de Casimiro. Es la combinación de esos rastros con el acceso de Berrondo y sus propias palabras sobre el estante lo que sostiene la acusación. [pose: chapulin_slam; sfx: desk_slam]
 DEFENSA: Y abrir ese huacal, señor juez, ha dejado once años de tiras firmadas por una sola mano: la suya. Sacar la máquina sin orden habría sido **disponer de un bien ajeno**. [pose: chapulin_idle]
 DEFENSA: Me lo dijo él en su despacho el martes, tomándose un café conmigo. [pose: chapulin_point]
@@ -3671,18 +3814,18 @@ DEFENSA: Y no se llevó la máquina porque no era suya. [pose: chapulin_slam; sf
 ### 18.7 Ruptura de Berrondo
 
 ~~~dialogue
-BERRONDO: ...... [pose: berrondo_panic]
-BERRONDO: Yo no heredé un archivo muerto. [pose: berrondo_breakdown; bgm: pursuit]
-BERRONDO: ¡Yo lo mantuve **vivo**! [pose: berrondo_breakdown; sfx: desk_slam]
-NARRADOR: El licenciado Berrondo se levanta de la mesa de la fiscalía. Se le cae la leontina del chaleco y no la recoge. [sfx: realization]
-BERRONDO: ¡Once mil cuatrocientas familias le abrieron la puerta a un vendedor y le contaron todo lo que tenían! [pose: berrondo_breakdown]
-BERRONDO: ¡Yo no fui a ninguna casa! ¡Yo no toqué ninguna puerta! ¡Yo no le puse la mano encima a nadie en veintisiete años! [pose: berrondo_breakdown]
+BERRONDO: ...... [bg: bg_courtroom; pose: berrondo_panic]
+BERRONDO: Yo no heredé un archivo muerto. [bg: bg_courtroom; pose: berrondo_breakdown; bgm: pursuit]
+BERRONDO: ¡Yo lo mantuve **vivo**! [bg: bg_courtroom; pose: berrondo_breakdown; sfx: desk_slam]
+NARRADOR: El licenciado Berrondo se levanta de la mesa de la fiscalía. Se le cae la cadena de oro del chaleco y no la recoge. [sfx: realization]
+BERRONDO: ¡Once mil cuatrocientas familias le abrieron la puerta a un vendedor y le contaron todo lo que tenían! [bg: bg_courtroom; pose: berrondo_breakdown]
+BERRONDO: ¡Yo no fui a ninguna casa! ¡Yo no toqué ninguna puerta! ¡Yo no le puse la mano encima a nadie en veintisiete años! [bg: bg_courtroom; pose: berrondo_breakdown]
 DEFENSA: Hasta el sábado. [pose: chapulin_idle]
-BERRONDO: ¡Ese hombre iba a decir mi nombre! [pose: berrondo_breakdown]
+BERRONDO: ¡Ese hombre iba a decir mi nombre! [bg: bg_courtroom; pose: berrondo_breakdown]
 NARRADOR: Silencio absoluto. [bgm: suspense]
-BERRONDO: ...Ese hombre iba a decir mi nombre. [pose: berrondo_panic]
-BERRONDO: Y no me acordaba de él. [pose: berrondo_panic]
-BERRONDO: Estuve dos horas el sábado en la noche buscándolo en una fotografía de mil novecientos sesenta y nueve, y no me acordaba de él. [pose: berrondo_breakdown]
+BERRONDO: ...Ese hombre iba a decir mi nombre. [bg: bg_courtroom; pose: berrondo_panic]
+BERRONDO: Y no me acordaba de él. [bg: bg_courtroom; pose: berrondo_panic]
+BERRONDO: Estuve dos horas el sábado en la noche buscándolo en una fotografía de mil novecientos sesenta y nueve, y no me acordaba de él. [bg: bg_courtroom; pose: berrondo_breakdown]
 DON RAMÓN: Él sí se acordaba de usted, licenciado. [pose: donramon_idle]
 NARRADOR: Don Ramón habla desde el banquillo, sin levantar la voz. [bgm: suspense]
 DON RAMÓN: Hablaba igualito que usted. [pose: donramon_idle]
@@ -3691,19 +3834,19 @@ DON RAMÓN: Yo creí desde julio que era una manía de vendedor de enciclopedias
 DON RAMÓN: Y resulta que era usted. [pose: donramon_idle]
 DON RAMÓN: Ese señor se aprendió su manera de hablar en una asamblea de liquidación, en mil novecientos setenta y uno, y la trajo puesta once años. [pose: donramon_idle]
 DON RAMÓN: Fue lo único que le quedó del trabajo que usted le quitó. [pose: donramon_shock]
-BERRONDO: ...... [pose: berrondo_breakdown]
+BERRONDO: ...... [bg: bg_courtroom; pose: berrondo_breakdown]
 JUEZ: Licenciado Berrondo. [pose: judge_neutral]
 JUEZ: Esta corte va a asentar el delito por el que queda usted a disposición del ministerio público. [sfx: gavel; pose: judge_gavel]
 JUEZ: ¿Tiene algo que declarar? [pose: judge_neutral]
-BERRONDO: ...Homicidio. [pose: berrondo_breakdown]
-BERRONDO: Del latín *homo*, hombre. Y *caedere*... [pose: berrondo_breakdown]
-NARRADOR: El licenciado Berrondo se queda con la boca abierta. [bgm: suspense]
-BERRONDO: ...*caedere*... [pose: berrondo_breakdown]
+BERRONDO: ...Homicidio. [bg: bg_courtroom; pose: berrondo_breakdown]
+BERRONDO: Del latín *homo*, hombre. Y *caedere*... [bg: bg_courtroom; pose: berrondo_breakdown]
+BERRONDO: ... [bg: bg_courtroom; pose: berrondo_breakdown; bgm: suspense]
+BERRONDO: ...*caedere*... [bg: bg_courtroom; pose: berrondo_breakdown]
 NARRADOR: No sigue.
 NARRADOR: Por primera vez en veintisiete años, el licenciado Fulgencio Berrondo no encuentra una palabra. [sfx: realization]
 DON RAMÓN: Matar. [pose: donramon_idle]
 DON RAMÓN: Se dice matar, licenciado. [pose: donramon_idle]
-NARRADOR: Berrondo se sienta. Se queda mirando la leontina en el piso y no la recoge. [bgm: suspense]
+NARRADOR: Berrondo se sienta. Se queda mirando la cadena de oro en el piso y no la recoge. [bgm: suspense]
 JUEZ: Que se lleven al detenido. [sfx: gavel; pose: judge_gavel]
 ~~~
 
@@ -3725,8 +3868,7 @@ JUEZ: En cuanto al acusado. [pose: judge_thinking]
 JUEZ: Ramón Valdés subió una escalera porque un hombre al que él mismo había vencido le pidió que estuviera presente. [pose: judge_neutral]
 JUEZ: Estuvo doce minutos. Bajó. Firmó su salida con buena letra. Y le dijo al conserje «ojalá que no». [pose: judge_thinking]
 JUEZ: Esta corte dicta su veredicto. [sfx: gavel; pose: judge_gavel]
-NARRADOR: ¡INOCENTE! [cutin: objection_inocente; sfx: gavel; bgm: victory]
-NARRADOR: Cae confeti sobre la sala de audiencias.
+JUEZ: ¡INOCENTE! [cutin: objection_inocente; sfx: gavel; bgm: victory; pose: judge_gavel]
 DEFENSA: ¡SÍGANME LOS BUENOS! [pose: chapulin_point]
 DON RAMÓN: ...... [pose: donramon_shock]
 DON RAMÓN: Con permisito, dijo Monchito. [pose: donramon_idle]
@@ -3747,7 +3889,7 @@ JUEZ: No es agradable decir esto. Esta corte respeta al acusado y lo ha respetad
 JUEZ: Pero un tribunal no absuelve por respeto. [pose: judge_neutral]
 JUEZ: Ramón Valdés estuvo a solas con la víctima dentro de la hora de su muerte, y en la mano del muerto estaba su domicilio. [pose: judge_neutral]
 JUEZ: Esta corte dicta su veredicto. [sfx: gavel; pose: judge_gavel]
-NARRADOR: ¡CULPABLE! [cutin: objection_culpable; sfx: gavel]
+JUEZ: ¡CULPABLE! [cutin: objection_culpable; sfx: gavel; pose: judge_gavel]
 DON RAMÓN: ...Está bien, joven. [pose: donramon_idle]
 DON RAMÓN: Inténtelo otra vez. [pose: donramon_idle]
 ~~~
@@ -3760,14 +3902,14 @@ Cada línea estampa `bg: bg_waiting_room; furniture: none` ([[docs/lessons-learn
 NARRADOR: 9 de diciembre, 20:10. Sala de espera del tribunal. [bg: bg_waiting_room; furniture: none; bgm: epilogue]
 BARRIGA: Señor Ramón. Tengo que decirle una cosa y no me va a gustar decirla. [bg: bg_waiting_room; furniture: none; pose: barriga_idle]
 DON RAMÓN: Dígala, señor Barriga. [bg: bg_waiting_room; furniture: none; pose: donramon_idle]
-BARRIGA: Los cuatro mil doscientos cincuenta pesos son prueba en un expediente penal. [bg: bg_waiting_room; furniture: none; pose: barriga_shock]
+BARRIGA: Los cuatro mil doscientos cincuenta pesos son prueba en un expediente penal. [bg: bg_waiting_room; furniture: none; pose: barriga_sorpresa]
 BARRIGA: Me los pidió el juzgado esta tarde y se los tuve que dar. [bg: bg_waiting_room; furniture: none; pose: barriga_idle]
-BARRIGA: Yo había asentado el pago, pero esos billetes se usaron para incriminarlo y ahora están a disposición del juzgado. Que el tribunal los conserve como prueba **no anula por sí solo el recibo**. [bg: bg_waiting_room; furniture: none; pose: barriga_shock]
+BARRIGA: Yo había asentado el pago, pero esos billetes se usaron para incriminarlo y ahora están a disposición del juzgado. Que el tribunal los conserve como prueba **no anula por sí solo el recibo**. [bg: bg_waiting_room; furniture: none; pose: barriga_sorpresa]
 DON RAMÓN: Señor Barriga: no quiero que ese asesino haya pagado mi renta. ¿Podemos retirar el abono de nuestras cuentas y dejar que el juzgado resuelva qué hacer con el dinero? [bg: bg_waiting_room; furniture: none; pose: donramon_idle]
-BARRIGA: Si usted me lo pide, sí. Haré constar que retiramos el abono por acuerdo de los dos; conservaré la copia y la constancia de la rectificación. [bg: bg_waiting_room; furniture: none; pose: barriga_idle]
+BARRIGA: Si usted me lo pide, sí. Haré constar que retiramos el abono por acuerdo de los dos; conservaré la copia y la constancia de la rectificación. [bg: bg_waiting_room; furniture: none; pose: barriga_aliviado]
 DON RAMÓN: Se lo pido. [bg: bg_waiting_room; furniture: none; pose: donramon_idle]
-BARRIGA: ...Entonces vuelve a deberme diecisiete meses. [bg: bg_waiting_room; furniture: none; pose: barriga_enojado]
-BARRIGA: Dieciocho el sábado. [bg: bg_waiting_room; furniture: none; pose: barriga_enojado]
+BARRIGA: ...Entonces vuelve a deberme diecisiete meses. [bg: bg_waiting_room; furniture: none; pose: barriga_reclamo]
+BARRIGA: Dieciocho el sábado. [bg: bg_waiting_room; furniture: none; pose: barriga_reclamo]
 DEFENSA: ¡Pero eso no es justo! ¡Ese dinero lo pagó el asesino! [bg: bg_waiting_room; furniture: none; pose: chapulin_panic]
 BARRIGA: Por eso mismo, joven. Porque lo pagó el asesino. [bg: bg_waiting_room; furniture: none; pose: barriga_idle]
 DON RAMÓN: Déjelo, Chapulín. [bg: bg_waiting_room; furniture: none; pose: donramon_idle]
@@ -3781,15 +3923,15 @@ SARGENTO: Y llevo veintiséis años siendo Sargento. [bg: bg_waiting_room; furni
 DON RAMÓN: Pues siga siendo Sargento, hombre. Al fin que nadie le hace caso a los papeles. [bg: bg_waiting_room; furniture: none; pose: donramon_idle]
 SARGENTO: ...A sus órdenes, mi Licenciado. [bg: bg_waiting_room; furniture: none; pose: pazguato_saludo]
 NARRADOR: Por el otro extremo del pasillo sale Super Sam, con el portafolios en una mano y la calculadora de manivela bajo el brazo. [bg: bg_waiting_room; furniture: none; sfx: whoosh]
-SUPER SAM: Counselor. [bg: bg_waiting_room; furniture: none; pose: supersam_idle]
+SUPER SAM: Counselor. [bg: bg_waiting_room; furniture: none; pose: supersam_sweat]
 DEFENSA: Señor fiscal. [bg: bg_waiting_room; furniture: none; pose: chapulin_idle]
-SUPER SAM: Ya no. Me suspendieron esta tarde. Seis meses y probablemente para siempre. [bg: bg_waiting_room; furniture: none; pose: supersam_idle]
+SUPER SAM: Ya no. Me suspendieron esta tarde. Seis meses y probablemente para siempre. [bg: bg_waiting_room; furniture: none; pose: supersam_sweat]
 DON RAMÓN: Lo siento. [bg: bg_waiting_room; furniture: none; pose: donramon_idle]
 SUPER SAM: No lo sienta. Me salió barato. [bg: bg_waiting_room; furniture: none; pose: supersam_sweat]
 SUPER SAM: Un hombre al que dejé dieciocho días en un cajón pagó la diferencia. [bg: bg_waiting_room; furniture: none; pose: supersam_sweat]
 DEFENSA: Señor fiscal... ¿y la bolsa? [bg: bg_waiting_room; furniture: none; pose: chapulin_idle]
-SUPER SAM: La dejé en la sala de audiencias. El secretario despejó la mesa y la sacó a esta sala de espera. [bg: bg_waiting_room; furniture: none; pose: supersam_idle]
-SUPER SAM: Ya me acuerdo solo. [bg: bg_waiting_room; furniture: none; pose: supersam_idle]
+SUPER SAM: La dejé en la sala de audiencias. El secretario despejó la mesa y la sacó a esta sala de espera. [bg: bg_waiting_room; furniture: none; pose: supersam_sweat]
+SUPER SAM: Ya me acuerdo solo. [bg: bg_waiting_room; furniture: none; pose: supersam_sweat]
 NARRADOR: El fiscal sigue de largo. No dice «time is money». [bg: bg_waiting_room; furniture: none; sfx: whoosh]
 DEFENSA: Don Ramón, su insignia. [bg: bg_waiting_room; furniture: none; pose: chapulin_point]
 DON RAMÓN: Quédesela un rato más, joven. Yo hoy no la merezco tanto. [bg: bg_waiting_room; furniture: none; pose: donramon_sweat]
@@ -3844,7 +3986,7 @@ La defensa **nunca** abre señalando personas. Cada bloque ataca **un hecho**. L
 | D3-T3 (Berrondo) | *«Nadie me avisó.»* | **Primera mentira demostrada del episodio**, y el testigo la rectifica en el acto. Sigue sin haber acusación. |
 | GIRO 3 | — | La defensa **pierde**: probó una ruta posible, pero todavía no probó que Berrondo permaneciera o regresara al pasillo. |
 | GIRO 4 | *«La hora estaba mal medida.»* | A nadie, y de paso **a su propio cliente**. |
-| D4-T1 (Genoveva) | *«Mi libro dice quién estuvo.»* | A nadie. Aunque la defensa ya leyó correctamente el encabezado el día 2, la testigo reconoce en pantalla que llevaba trece años llamando «salida» a la devolución del gafete. |
+| D4-T1 (Genoveva) | *«Mi libro dice quién estuvo.»* | A nadie. La testigo reconoce que llevaba trece años llamando «salida» a la devolución del gafete. La cadena posterior usa la esquina para investigar una preparación, el oficio para mostrar que Don Ramón fue citado y el vale para comprobar una consulta al cedulario; ninguno prueba todavía qué tarjeta se consultó. |
 | Clímax E1 | — | **Aquí, y sólo aquí.** La transición no la hace la defensa: el Juez le **ordena** decir un nombre y respaldarlo con el Acta. Mecánicamente, el juego **no deja** señalar a una persona antes de este punto. |
 
 > **Por qué importa en este episodio.** El culpable pasa dos jornadas **en la mesa de la fiscalía**, ayudando a la acusación, jurídicamente intocable y personalmente encantador. El jugador sospecha de él desde el día 2 —la Chimoltrufia se lo dice casi todo en la jornada 2— y **no puede hacer absolutamente nada** hasta el día 4. Esa impotencia es el motor del episodio y sustituye a la sospecha fácil de los casos anteriores.
@@ -3857,13 +3999,13 @@ La defensa **nunca** abre señalando personas. Cada bloque ataca **un hecho**. L
 |---|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
 | Estuvo dentro del edificio en la ventana corregida (16:35–17:05) | ✓ | ✓ | ✗ | ✗ (sábado libre) | ✗ | ✓ | ✓ |
 | Pudo llegar al pasillo 7 sin cruzar un mostrador | ✗ | ✓ | ✗ | ✓ | ✗ | ✓ | ✓ |
-| Sabía con cinco días de anticipación el día, la hora y el nombre | ✗ | ✗ | ✗ | ✗ | ✓ | ✗ | ✓ |
-| Sabía que a las 17:00 había relevo de custodios | ✗ | ✗ | ✓ | ✗ | ✗ | ✗ | ✓ |
+| Tenía con cinco días de anticipación el día, la hora y el nombre de Don Ramón | ✓ | ✗ | ✗ | ✗ | ✓ | ✗ | ✓ |
+| Sabía que a las 17:00 había relevo de custodios | ✗ | ✓ | ✗ | ✗ | ✗ | ✗ | ✓ |
 | Podía abrir el huacal 9 | ✗ | ✗ | ✗ | ✗ (sólo destapa acompañado) | ✗ | ✗ | ✓ |
 | Podía sacar un ejemplar de la edición de lujo | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✓ |
 | Tenía acceso al cedulario y a la tarjeta del domicilio | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✓ |
 | Tenía acceso a la máquina de la partida 41 | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ | ✓ |
-| Tenía motivo para callar al occiso | ✓ *(según la fiscalía)* | ✗ | ✗ | ✗ | ✓ *(vergüenza)* | ✗ | ✓ |
+| Tenía motivo para callar a la víctima | ✓ *(según la fiscalía)* | ✗ | ✗ | ✗ | ✓ *(vergüenza)* | ✗ | ✓ |
 
 Super Sam coincide con Berrondo en dos casillas y **por eso el episodio lo pone en el estrado**: el jugador tiene que descartarlo con hechos, no con simpatía. **La fila 2 no descarta por sí sola**: Nicanor y Genoveva también la marcan —él por su propia escalera, ella por la puerta de su ventanilla, que da al patio (P1, P2)—. Lo que descarta es el bloque del sótano: las cuatro casillas que ninguna persona de este juicio salvo el síndico puede marcar. **La fila 3 y la fila 4 no son alegatos del estrado**: la primera se acredita con el acuse y el oficio; la segunda sólo con lo que el jugador oyó en correspondencia (F18), y por eso el clímax no la invoca.
 
@@ -3884,27 +4026,28 @@ Este episodio cierra **su misterio central** y da respuesta al origen de la bols
 | Los uniformados no firman el libro de visitas | D1 vestíbulo | **D1-T1 `followUp`**: el libro no es un censo |
 | La escalera de servicio en el plano | D1 vestíbulo (`hotspot_plano`, lámina L1) | **D1-T3 contradicción** y **GIRO 1** |
 | El agujero de quince minutos del relevo | D1 celda (anexo del parte); D1-T2 decl. 6 | **D1-T2 contradicción**; explica la ventana material del crimen |
-| El fragmento liso, sin arrugas, en la mano cerrada | D1 celda; D1-T2 presión 4 | **D1-T2 `followUp`** (fue colocado) y **clímax E4** (empata con la tarjeta) |
+| El fragmento liso, sin arrugas, en la mano cerrada | D1 celda; D1-T2 presión 4 | **D1-T2 `followUp`**: fue colocado; **D4-T1**: impulsa la búsqueda de una consulta; **clímax E4**: empata con la tarjeta |
 | «Ojalá que no», dicho por Don Ramón al conserje | D1-T1 presión 3 | **Epílogo**: era la respuesta a lo que Casimiro le había dicho a las 16:56 |
 | El montacargas, sus tres descansos y los dos mandos | D1 vestíbulo (`hotspot_carrito`, `plano_archivo`) | **D3-T1**: Chómpiras fija noventa segundos por trayecto y confirma que Berrondo conserva el mando de síndico; **clímax E3**: hace posible el circuito completo de §24.B |
-| El actuario habitual y su retraso sabatino | D2 correspondencia; cuatro antecedentes en el libro profesional | **D2-T2**: Balbuena entra a las 17:44; **§24.A/F16**: Berrondo podía prever su ausencia a las 17:00 sin controlar la hora exacta |
+| El actuario habitual y su retraso sabatino | D2 correspondencia (Chimoltrufia nombra a Balbuena); `acuse_notificacion` y `oficio_diligencia` (designan la diligencia) | **D2-T2**: Balbuena entra a las 17:44; **F16**: Berrondo podía prever su ausencia a las 17:00 sin controlar la hora exacta |
 | El billete con banda de banco | D2-T1 presión 2 | Rastreado al retiro del 26 de noviembre; la factura explica $750 y **el sobrante de $4,250 se cobra en el clímax E4** como dinero destinado a la renta |
 | «Se ruega expedir el recibo **y conservarlo**» | D2 vecindad; D2-T1 presión 3 | **Clímax E4**: Berrondo creó un rastro documental a nombre del acusado; Barriga guardó copia y entregó el original a Don Ramón. La entrega fue aprovechada para incriminarlo, pero no está ordenada literalmente por la nota. |
 | La rúbrica del margen del acuse | D2 correspondencia; `detailedView` | **D3-T3 contradicción** |
+| Don Ramón citado a petición de Casimiro en el oficio y el acuse | D2 correspondencia; D3 fiscalía | **D4-T1, cadena posterior**: el nombre estuvo al alcance de Berrondo antes del sábado; la firma sola no prueba que leyera el asunto |
 | «¿Iba a haber policía?» / «A las cinco cambian de turno» | D2 correspondencia (Chimoltrufia) | **D2 correspondencia**, en el acto: el Chapulín enuncia en voz alta que alguien pudo planear esos quince minutos. Es conocimiento del **jugador**, no del estrado: la Chimoltrufia nunca declara y nunca nombra a nadie, así que ninguna etapa del clímax lo alega. Sostiene la fila 4 de §20.1 y F18, no una imputación |
 | El campo «estado de la puerta» del cedulario | D2 despacho (lámina L4) | **Clímax E4**: la tarjeta de Don Ramón dice «chapa vencida. Se empuja» |
 | «Vender información no es delito» | D2 despacho; D2-T2 decl. 3; GIRO 2 | **Veredicto**: el Juez lo hace constar por escrito y da vista sin poder procesarlo |
 | Las siete altas del cedulario | D3 bodega (`hotspot_cajones`) | **D3 bodega**: se constata que el fichero sigue creciendo; **clímax E4**: la ficha del acusado, actualizada en agosto, demuestra uso reciente concreto |
 | Las más de doscientas cincuenta tiras de sello encabalgadas | D3 bodega (`hotspot_huacal`, lámina L6, `detailedView`) | **Clímax E3**: dos tiras con fecha del 4 de diciembre |
-| «Los jueves» | D2-T2 presión 2 (Berrondo); D3-T1 decl. 2 (Chómpiras) | **D3-T1 `followUp`**: el 4 de diciembre fue sábado; **D4-T1 `followUp`**: el vale del 29 de noviembre, un lunes, refuta la rutina |
+| «Los jueves» | D2-T2 presión 2 (Berrondo); D3-T1 decl. 2 (Chómpiras) | **D3-T1 `followUp`**: el 4 de diciembre fue sábado; **D4-T1, cadena posterior**: el vale del 29 de noviembre, un lunes, refuta la rutina |
 | La edición de lujo con cantoneras de latón | D3-T1 contradicción (la corrige el propio Berrondo) | **Clímax E3** |
-| El cedulario ordenado por calle | D3 bodega; D4-T1 decl. 5 | **D4-T1 `followUp`** (el vale) y **clímax E4** (el acusado dicta su domicilio) |
+| El cedulario ordenado por calle | D3 bodega | **Clímax E4**: el acusado dicta su domicilio y el juez localiza el cajón correspondiente. El vale del lunes no identifica cajón. |
 | «El gafete es del edificio, la credencial es del concurso» | D3-T3 presión 2 (lo dice Berrondo) | **Clímax E2** |
 | La libreta de Casimiro y sus cinco puntos | D3 penal | **D3 `openingPresent`** y **clímax E5** |
 | Los dos relojes parados de Casimiro | D3 penal (`hotspot_caja`) | **Epílogo**: *«Y los dos daban la hora bien.»* |
 | Los dieciocho días en un cajón | D3 fiscalía; D3-T2 decl. 1 | **Epílogo**: la suspensión de Super Sam |
 | «Servicio de cierre incluido — 5 min» *(residuo del Caso 1)* | D2 delegación (panel B de `expediente_serie`) | **D3-T2 `followUp`**: el fiscal era el renglón seis |
-| El origen de la bolsa de lona *(residuo del Caso 1)* | D3 fiscalía (`hotspot_bolsa`) | **D3-T2 declaraciones 4 a 6**: lo declara él mismo |
+| El origen de la bolsa de lona *(residuo del Caso 1)* | D3 fiscalía (`hotspot_bolsa`) | **D3-T2, presión de la declaración 5**: era su propia bolsa, robada la mañana del 28, y él lo calla en el estrado del Caso 1 |
 | «El Tomo Trece» *(residuo del Caso 1)* | D1-T3 presión 3 (Nicanor, hablando de un mueble) | **Clímax E3, lámina L8**: el Juez pregunta por fin qué es y esta vez se le contesta |
 | Quién escribió la ficha del museo *(residuo del Caso 1)* | D2 delegación (panel B) | **Clímax E5**: Olivetti identificada y atribución del montaje por cadena de acceso y pruebas; **el cotejo tipográfico, aisladamente, no individualiza al mecanógrafo**. |
 | La ese caída | `detailedView` de `esquina_tarjeta`, `nota_mecanografiada` y `expediente_serie`; libreta de Casimiro | **Clímax E5**, con la máquina escribiendo en la sala |
@@ -3912,6 +4055,7 @@ Este episodio cierra **su misterio central** y da respuesta al origen de la bols
 | Los $12,000 del Caso 3 | Panel D | **Lámina L5**: Aniceto los pagó para desempeñar el micrófono. No se presentan como dinero recibido ni como pago de Berrondo. |
 | Las Antenitas de Vinil | D3 bodega | **Clímax, elección**: la quietud desconcierta al Chapulín, pero no descarta enemigos ni pistas y no acredita propiedad. La adjudicación documentada demuestra que el cedulario no fue robado. |
 | Los dos refranes destrozados del Chapulín | D2 despacho; epílogo | Chistes y **pista menor** (Berrondo corrige igual que Jirafales y que Aniceto). **No** son el mecanismo del clímax: eso se gastó en el Caso 3 |
+| El refrán abandonado del Chapulín (§22.1.1) | D4, lámina L7 (bitácora) | **Explicación física en su boca**: el tropiezo permite dar el dato del enfriamiento sin que suene a perito. Se gasta una vez y nadie lo corrige |
 | La renta de diecisiete meses | D1 apertura y todo el episodio | **Epílogo**: hay que devolverla |
 
 ### 21.1 Lo que este episodio decide NO resolver, y por qué no es un cabo suelto
@@ -3942,7 +4086,7 @@ El sobre mecanografiado que Super Sam recibió en agosto **fue quemado por él e
 | **Srta. Genoveva Peñaloza** | *«El reglamento no me faculta.»* | Es exacta, no hostil. Su momento es descubrir que llevaba trece años leyendo mal un encabezado, y el guion **no se ríe de ella**: el Chapulín la defiende en voz alta. |
 | **El Juez** | Sin latiguillo. *«¡Cáspita!»* | Su rasgo es **enunciar en voz alta la pregunta abierta** al final de cada bloque. Hay que respetarlo en las once transiciones. Rasgo nuevo del episodio: admite en pantalla que se equivocó en agosto. |
 
-### 22.1 Los dos refranes destrozados del Chapulín (intocables)
+### 22.1 Los refranes del Chapulín
 
 El Chapulín no se equivoca al azar: **toma dos refranes emparentados y empalma la primera mitad de uno con la segunda mitad del otro**. El resultado es gramatical y absurdo a la vez. Son dos en todo el episodio.
 
@@ -3958,7 +4102,15 @@ El Chapulín no se equivoca al azar: **toma dos refranes emparentados y empalma 
 
 **En inglés no se traducen: se sustituyen.** Un refrán empalmado no sobrevive a la traducción literal. La versión inglesa toma **dos proverbios ingleses emparentados** y empalma la primera mitad de uno con la segunda del otro, conservando las dos funciones: que el resultado sea gramatical y absurdo, y que Berrondo pueda citar el origen de cada mitad. El segundo, además, tiene que seguir describiendo lo que pasó en el epílogo.
 
-**Prohibido:** inventar un tercero de relleno; repetir los del Caso 1 (*«Camarón que se duerme... a hierro muere»*, *«En casa del herrero... no entran moscas»*) o los del Caso 3 (*«Perro que ladra... no muerde, porque no puede hacer las dos cosas al mismo tiempo»*, *«El que a hierro mata... acaba con la casa llena de fierros»*, *«El que mucho abarca... poco aprieta el cinturón»*); **y, sobre todo, hacer que un refrán destrozado sea la clave del clímax**, que es lo que hizo el Caso 3 y repetirlo lo volvería tic.
+**Prohibido:** inventar un tercer refrán **empalmado**; repetir los del Caso 1 (*«Camarón que se duerme... a hierro muere»*, *«En casa del herrero... no entran moscas»*) o los del Caso 3 (*«Perro que ladra... no muerde, porque no puede hacer las dos cosas al mismo tiempo»*, *«El que a hierro mata... acaba con la casa llena de fierros»*, *«El que mucho abarca... poco aprieta el cinturón»*); **y, sobre todo, hacer que un refrán destrozado sea la clave del clímax**, que es lo que hizo el Caso 3 y repetirlo lo volvería tic.
+
+#### 22.1.1 El refrán abandonado (uno solo, en L7)
+
+El Chapulín tiene un tercer tropiezo, pero **de otra clase**: no empalma dos refranes, sino que **arranca uno y lo deja a medias**, se oye equivocado, lo niega en voz alta y se rinde.
+
+> Día 4, lámina de la bitácora (§17.1): *«...un cuerpo le tira el calor al aire, como quien tira la casa por la ventana... no, ése no es.»* — y cierra con *«Bueno, la idea es esa.»*
+
+Existe porque en ese tramo la explicación del enfriamiento es suya y no del `NARRADOR`: el caso necesita dar el dato físico sin que el abogado suene a perito, y el tropiezo deja claro que lo entendió a medias, que es exactamente su lugar en el episodio. Se usa **una vez**, no reemplaza a los dos empalmados y **no lleva corrección de nadie**: el remate *«Bueno, la idea es esa»* es la única aceptación de derrota que se permite, y la lámina siguiente ya dice la física bien. En inglés se sustituye por un dicho inglés que también se pueda abandonar a media frase —nunca se traduce *«tirar la casa por la ventana»*—, conservando el «no, ése no es» y el cierre «la idea es esa».
 
 ### 22.2 El chiste de palabra difícil (§12.3)
 
@@ -3979,16 +4131,16 @@ El jugador que venga del Caso 0 recibe el golpe aquí, tres jornadas antes de qu
 
 Repetir este bloque **completo** en cada prompt de generación. **No se hereda por contexto**: si no está escrito en el prompt, el modelo lo pierde. Ésta es la causa número uno de assets inservibles en este proyecto.
 
-> **Estilo:** ilustración 2D estilo *Capcom Ace Attorney* (linaje GBA / Nintendo DS) en alta definición. Cel-shading de colores planos con terminador de sombra duro (dos tonos por superficie, sin degradados suaves). **Contorno oscuro nítido y continuo** en carbón `#1A1A1A`, más grueso en la silueta exterior que en los detalles internos. Anatomía facial expresiva y exagerada, al borde de la caricatura. Codificación cromática por colores primarios saturados.
+> **Estilo:** ilustración 2D estilo *Capcom Ace Attorney* (linaje GBA / Nintendo DS) en alta definición. . **Contorno oscuro nítido y continuo** en carbón `#1A1A1A`, más grueso en la silueta exterior que en los detalles internos. Anatomía facial expresiva y exagerada, al borde de la caricatura. Codificación cromática por colores primarios saturados.
 > **Tema:** televisión mexicana de los años setenta, universo Chespirito / El Chapulín Colorado. Melodrama de tribunal tratado en serio por el sistema, absurdo en los personajes. Este episodio añade un registro propio: **papel, madera y polvo**. Archivo judicial, expedientes atados con listón, madera barnizada, latón envejecido, luz de tungsteno.
-> **Prohibido:** fotorrealismo, render 3D, acuarela, degradados suaves, texturas fotográficas, anime moderno, estética de cómic americano de superhéroes, marcas de agua, texto en inglés dentro de la imagen (salvo las variantes EN exigidas en §23.3), y **cualquier tono rosa o magenta en el primer plano**, porque el pipeline cromatiza sobre magenta puro `#FF00FF` ([[docs/specs/artistic-direction.md]] §5).
+> **Prohibido:** fotorrealismo, render 3D, acuarela, texturas fotográficas, anime moderno, estética de cómic americano de superhéroes, marcas de agua, texto en inglés dentro de la imagen (salvo las variantes EN exigidas en §23.3), y **cualquier tono rosa o magenta en el primer plano**, porque el pipeline cromatiza sobre magenta puro `#FF00FF` ([[docs/specs/artistic-direction.md]] §5).
 
 ### 23.1 Fondos nuevos (8) — 1536 × 1024, recorte `cover` a 960 × 540
 
 | Archivo | Escena | Dirección de arte detallada |
 |---|---|---|
 | `bg_archivo_vestibulo.webp` | Vestíbulo del Archivo Judicial, mañana | Vestíbulo público de un edificio de gobierno mexicano de los años treinta reconvertido en archivo. Piso de **granito pulido en damero gris y crema**, encerado hasta el espejo, con el reflejo alargado de dos lámparas colgantes de tulipa opalina. A la derecha, un **mostrador de madera oscura de dos metros con reja de latón torneado** hasta media altura; sobre él, **un libro grande abierto con una pluma atada a un cordel**, un timbre de recepción y un tintero. Detrás del mostrador, un muro de casilleros de madera numerados. A la izquierda, **clavado con cuatro tachuelas, un plano amarillento de protección civil** con las salidas marcadas en rojo, y bajo él un extintor de cobre. Al fondo al centro, el arranque de una **escalera principal de piedra con barandal de hierro forjado**. En primer plano izquierdo, un **carrito de metal con legajos atados con listón rojo**. Junto al zoclo, una enceradora eléctrica de los cincuenta con el cable enrollado. Luz de mañana entrando por un ventanal alto, con polvo suspendido. Sin personajes, sin texto legible. |
-| `bg_archivo_pasillo7.webp` | Pasillo 7, primer piso, escena del crimen | Pasillo estrecho y largo entre **estanterías de madera oscura del piso al techo**, cargadas de legajos atados con listón, vistas en perspectiva de un punto de fuga. Techo alto con una tubería vista. A la derecha, al frente, **un estante distinto de los demás: un mueble de consulta con veinticuatro ranuras numeradas con cartoncitos escritos a mano**, con veintidós lomos de tela verde oliva idénticos, **la ranura 13 vacía y oscura** y, en la ranura 11, **un lomo de media piel color vino con nervios y dos cantoneras de latón**. A la izquierda, **una mesa larga de roble con una lámpara de pantalla verde encendida** y un legajo abierto sobre ella; una silla volcada hacia atrás. En el piso, entre la mesa y el estante, **una silueta de cuerpo marcada con gis blanco, boca abajo, con la cabeza hacia el estante**, y a un metro, **un tomo grueso de tela verde caído con el lomo hacia arriba**, con un cartelito numerado de perito al lado. Al fondo del pasillo, **una puerta metálica gris entreabierta** (la de servicio) y, en el muro de la izquierda, **una rejilla de ventilación grande con el aire visiblemente caliente** (línea de calor sutil, nunca vapor fotográfico). Al fondo opuesto, una reja de barrotes que cierra el pasillo. Luz de tungsteno amarilla, ambiente cálido y opresivo. Sin personajes vivos, sin texto legible. |
+| `bg_archivo_pasillo7.webp` | Pasillo 7, primer piso, escena del crimen | Pasillo estrecho y largo entre **estanterías de madera oscura del piso al techo**, cargadas de legajos atados con listón, vistas en perspectiva de un punto de fuga. Techo alto con una tubería vista. A la derecha, al frente, **un estante distinto de los demás: un mueble de consulta alto, de madera oscura, con una sola banda horizontal continua de veinticuatro ranuras numeradas con cartoncitos escritos a mano** —no dos filas apiladas ni una consola baja—, con veintidós lomos de tela verde oliva idénticos, **la ranura 13 vacía y oscura** y, en la ranura 11, **un lomo de media piel color vino con nervios y dos cantoneras de latón**. A la izquierda, **una mesa larga de roble con una lámpara de pantalla verde encendida** y un legajo abierto sobre ella; una silla volcada hacia atrás. En el piso, entre la mesa y el estante, **una silueta de cuerpo marcada con gis blanco, boca abajo, con la cabeza hacia el estante**, y a un metro, **un tomo grueso de tela verde caído con el lomo hacia arriba**, con un cartelito numerado de perito al lado. Al fondo del pasillo, **una puerta metálica gris entreabierta** (la de servicio) y, en el muro de la izquierda, **una rejilla de ventilación grande con el aire visiblemente caliente** (línea de calor sutil, nunca vapor fotográfico). Al fondo opuesto, una reja de barrotes que cierra el pasillo. Luz de tungsteno amarilla, ambiente cálido y opresivo. Sin personajes vivos, sin texto legible. |
 | `bg_correspondencia.webp` | Oficina de correspondencia del juzgado | Oficina pequeña y atiborrada. Ocupa casi todo el cuadro una **ventanilla de madera barnizada de setenta centímetros con un arco de latón** y una repisa gastada por los codos. Detrás, **casilleros de madera de pared a pared con etiquetas manuscritas**, rebosantes de sobres; fajos de oficios atados con hilo sobre el suelo. A la derecha, un **fechador de hule sobre una almohadilla de tinta morada** y un libro empastado en tela azul, abierto, con firmas garabateadas al margen. Un calendario de pared de barbería con una señorita de los setenta y las hojas dobladas. Un ventilador de aspas encima de un archivero, apagado. Luz fluorescente verdosa. Sin personajes, sin texto legible. |
 | `bg_despacho_berrondo.webp` | Despacho del Lic. Berrondo | Despacho de abogado antiguo y **obsesivamente ordenado**. Cuatro paredes de **librerías de caoba con vidrio corredizo**, del piso al techo, con volúmenes encuadernados en piel granate y tejuelos dorados **perfectamente alineados, todos a la misma distancia del canto del estante**. Al centro, un escritorio de caoba con superficie de cuero verde, **absolutamente despejado salvo por un secante, un tintero y una taza de café en su platito**. Detrás, una **vitrina de caoba con tres legajos exhibidos como trofeos** y una credencial enmarcada. A la izquierda, una **fotografía de grupo enmarcada, en sepia**, con cincuenta hombres de traje frente a un edificio y una banda de tela cruzada. Alfombra persa desgastada en el centro exacto de la habitación. Ventana con visillos y luz de mediodía filtrada. **Ni un papel fuera de sitio en todo el cuadro.** Sin personajes, sin texto legible. |
 | `bg_bodega_masa.webp` | Bodega de bienes en depósito, sótano | Sótano de bóveda de ladrillo con vigas de hierro remachado. **Catorce huacales de madera rubia: doce apilados de dos en dos y dos apoyados en el suelo**, numerados con plantilla negra, con las **tapas encostradas de tiras de papel sellado encabalgadas como escamas**, amarilleando hacia abajo. Al frente, el **huacal 9, de gran formato y abierto**, con cuatro cierres de palanca reutilizables visibles en el borde y la tapa recargada al lado; dentro, **nueve cajones de madera con tiradores de latón y etiquetas manuscritas**, un compartimento lateral de **ejemplares de lujo encuadernados en piel** y, al fondo, **una máquina de escribir negra con el carro cromado, envuelta a medias en una funda de hule**, con el número **41** pintado a plantilla en blanco en el costado. Una **pata de cabra colgada de un clavo** en la viga. Un foco pelón colgando de un cable. Al fondo a la izquierda, el arranque de una **escalera de servicio de hierro** y la reja de un montacargas. Suelo de cemento con marcas de arrastre. Frío visual salvo por el foco. Sin personajes, sin texto legible. |
@@ -3996,9 +4148,11 @@ Repetir este bloque **completo** en cada prompt de generación. **No se hereda p
 | `bg_penal_efectos.webp` | Bodega de efectos personales del penal | Cuarto largo con **estantería metálica industrial de piso a techo, llena de cajas de cartón numeradas con plantilla**, todas iguales. Al frente, sobre una mesa de trabajo de acero, **una caja abierta** con su tapa al lado y su etiqueta visible. Alrededor, un flexo de cuello de ganso, un libro de registro y un sello. Piso de concreto pintado de gris. Reja de seguridad al fondo con un candado. Luz fluorescente dura y fría, sin calidez. Sin personajes, sin texto legible. |
 | `bg_archivo_caldera.webp` | Sala de calderas del Archivo | Cuarto de máquinas estrecho, ya enfriado tras dos días sin calefacción extraordinaria. Al centro, una **caldera de hierro remachado con manómetros de latón y una puertecilla de fogón**, con tuberías gordas que suben por el muro y se pierden en el techo. A los lados, **dos secadores industriales sobre ruedas apuntando a un ducto** abierto en el muro. En el muro de la derecha, atornillado, **un termógrafo: una caja de madera con tapa de vidrio, un tambor de reloj y una tira de papel cuadriculado con una línea de tinta que sube y se aplana; un cable asciende por el muro hasta la sonda remota del primer piso**. Junto a él, un clavo con una bitácora colgada de un cordel. Suelo húmedo con una mancha oscura bajo un tubo remendado con tela y alambre. Fogón apagado; luz de un foco blanco. Sin personajes, sin texto legible. |
 
-**Fondos reutilizados sin cambios:** `bg_detention.webp` (celda, días 1 y 4), `bg_despacho.webp` (vecindad del Señor Barriga, Caso 3), `bg_delegacion.webp` (Casos 3 y 4), `bg_courtroom.webp`, `bg_defense.webp`, `bg_judge.webp`, `bg_witness.webp`, `bg_waiting_room.webp`.
+**Fondos reutilizados sin cambios:** `bg_detention.webp` (celda, días 1 y 4), `bg_despacho.webp` (vecindad del Señor Barriga, Caso 3), `bg_delegacion.webp` (Casos 3 y 4), `bg_courtroom.webp`, `bg_defense.webp`, `bg_judge.webp`, `bg_witness.webp`, `bg_waiting_room.webp`. La galería del juicio del día 4 usa `bg_gallery_characters.webp` (`docs/specs/common/bg_gallery.md`).
 
-### 23.2 Sprites nuevos — tres familias
+`bg_despacho_c5.webp` es una variante del despacho del Caso 3 para el Caso 5: conserva la oficina y cambia únicamente los objetos sobre el escritorio para satisfacer `hotspot_sobre`.
+
+### 23.2 Sprites nuevos — cuatro familias
 
 #### A. Lic. Fulgencio Berrondo (5 poses + 1 plano de objeto opcional)
 
@@ -4036,7 +4190,18 @@ Repetir este bloque **completo** en cada prompt de generación. **No se hereda p
 | `genoveva_sweat` | Cuando algo se sale del reglamento | Misma silueta. **Una gota de sudor en la sien**, cejas subiendo por el centro, la mano derecha subiendo hacia los anteojos sin llegar a tocarlos. La carpeta baja un par de centímetros. |
 | `genoveva_shock` | Al descubrir el encabezado de la columna | Misma silueta. **Ojos enormes tras los anteojos, boca abierta pequeña, el lápiz cayéndosele de detrás de la oreja.** La carpeta se le escurre del brazo (dibujada a medio resbalar). Es el único momento en que pierde la compostura en todo el episodio. |
 
-**Sprites reutilizados sin cambios:** `donramon_idle / slam / shock / point / sweat / panic`; `chapulin_idle / point / panic / slam`; `supersam_idle / slam / point / sweat / breakdown`; `judge_neutral / gavel / shock / thinking`; `pazguato_idle / saludo / sweat / decidido`; `barriga_idle / shock / enojado`; `chompiras_idle / nervous / crying / relieved`; `chimoltrufia_idle / confundida / shock`; `casimiro_amable / catalogo` (sólo en el bloque de relato de §10.1).
+#### D. Señor Barriga, versión sana del Caso 5 (4 poses)
+
+**Identidad:** hombre adulto y muy corpulento, casero de la vecindad. Rostro redondo, bigote negro ancho, cejas pesadas, sombrero café, saco café, camisa blanca, corbata mostaza, pañuelo blanco y maletín café bajo el brazo izquierdo. Estas cuatro poses son la familia visual propia del Caso 5: siempre está de pie, sin vendas, sin silla de ruedas y sin objetos médicos. Mantener el mismo encuadre de busto hasta la cintura, la misma escala y la misma línea inferior que `barriga_idle`.
+
+| Pose | Uso | Descripción |
+|---|---|---|
+| `barriga_sorpresa` | Sobre, dinero o noticia inesperada | Misma silueta sana. Ojos muy abiertos, boca abierta y mano derecha levantada con la palma visible. El maletín permanece bajo el brazo izquierdo. |
+| `barriga_reclamo` | Quejas, regaños y cobros | Misma silueta sana. Ceño fruncido, mirada severa y dedo índice derecho levantado como quien dicta una regla de renta. El maletín permanece bajo el brazo izquierdo. |
+| `barriga_confundido` | Cuando Barriga corrige su propia conclusión | Misma silueta sana. Un dedo toca la mejilla, la mirada se desvía hacia arriba y la boca queda torcida, con perplejidad cómica. El maletín permanece bajo el brazo izquierdo. |
+| `barriga_aliviado` | Cuando entiende la deducción o acepta el acuerdo | Misma silueta sana. Ojos cerrados, una mano abierta sobre el pecho y gesto de alivio contenido, todavía gruñón. El maletín permanece bajo el brazo izquierdo. |
+
+**Sprites reutilizados sin cambios:** `donramon_idle / slam / shock / point / sweat / panic`; `chapulin_idle / point / panic / slam`; `supersam_idle / slam / point / sweat / breakdown`; `judge_neutral / gavel / shock / thinking`; `pazguato_idle / saludo / sweat / decidido`; `barriga_idle`; `chompiras_idle / nervous / crying / relieved`; `chimoltrufia_idle / confundida / shock`; `casimiro_amable / catalogo` (sólo en el bloque de relato de §10.1).
 
 > **Verificación previa obligatoria.** Antes de presupuestar, correr [[verify_assets.py]]. `barriga_vendado` **no** se usa aquí; `casimiro_sweat`, `casimiro_panic` y `casimiro_breakdown` **tampoco**: en el relato de §10.1 Casimiro está tranquilo, y dibujarlo angustiado sería adelantar el final. `chompiras_crying` sólo se usa si se escribe el remate alternativo del veredicto.
 >
@@ -4046,19 +4211,21 @@ Repetir este bloque **completo** en cada prompt de generación. **No se hereda p
 
 Las zonas de los dos señalamientos **se miden sobre el WebP ya generado**, nunca sobre las coordenadas supuestas de este documento ([[docs/lessons-learned/present-point-cover-crop.md]]).
 
+**Aclaración de vocabulario para `examine_estante_consulta`:** en esta placa, "regla" nombra el conjunto de condiciones que debe cumplir la imagen, no un instrumento para medir. No pintar una regla, escuadra, cinta métrica ni otro patrón de medición debajo del mueble. Las filas que dicen explícitamente "regla testigo" para otras placas sí describen un objeto físico y no cambian por esta aclaración.
+
 | Archivo | Prueba | Contenido obligatorio |
 |---|---|---|
-| `examine_esquina_tarjeta.webp` | `esquina_tarjeta` | Macro pericial sobre fondo gris neutro con **regla testigo de 5 cm**. Fragmento de cartulina crema de 3.1 × 2.4 cm. Texto mecanografiado incompleto dispuesto en **cuatro renglones cortos, no en uno solo**: «...cindad de» / «la calle del» / «Espanto 8,» / «viv. 4.». La **ese de «Espanto»** aparece media línea por debajo de su renglón. El borde roto, **recto y limpio**, sin pliegues ni manchas de sudor. |
+| `examine_esquina_tarjeta.webp` | `esquina_tarjeta` | Macro pericial sobre fondo gris neutro con **regla testigo de 5 cm**. Fragmento de cartulina crema de 3.1 × 2.4 cm. Texto mecanografiado incompleto dispuesto en **cuatro renglones cortos, no en uno solo**: «...cindad de» / «la calle del» / «Espanto 8,» / «viv. 72.». La **ese de «Espanto»** aparece media línea por debajo de su renglón. El borde roto, **recto y limpio**, sin pliegues ni manchas de sudor. |
 | `examine_libro_visitas.webp` | `libro_visitas` | Hoja rayada de libro grande, fotografiada de plano. Catorce renglones manuscritos con **nombre, asunto y dos columnas de hora**. El asiento 14: *R. Valdés · «diligencia sala 7» · 16:40 · 16:58*. Sello de goma al margen: **«LIBRO DE VISITAS DEL PÚBLICO»**. Tintas distintas entre asientos. |
 | `examine_libro_peritos.webp` | `libro_peritos` | Libro más pequeño, empastado en hule negro. Cuatro asientos: Rosas, Berrondo, Balbuena y Pazguato. El tercero muestra entrada `17:44` y devolución `18:05`. **Los encabezados impresos de las columnas son legibles y son el argumento del día 4: «HORA DE ENTRADA» y «HORA DE DEVOLUCIÓN DE GAFETE».** Ninguna tachadura. |
 | `examine_plano_archivo.webp` | `plano_archivo` | Plano de protección civil amarillento, con marcas de tachuela en las cuatro esquinas. Planta baja, primer piso y sótano en tres recuadros. Salidas en rojo. **La escalera de servicio y el hueco contiguo del montacargas atraviesan los tres niveles; el montacargas tiene descansos en sótano, patio y primer piso.** Leyenda ilegible salvo cuatro rótulos: «ACCESO PÚBLICO», «PERITOS Y AUXILIARES», «PATIO DE MANIOBRAS» y «MONTACARGAS». |
-| `examine_nota_renta.webp` | `nota_mecanografiada` | Media cuartilla de papel cebolla con luz rasante. Tres renglones mecanografiados, cinta bicolor gastada. **La ese, media línea abajo y medio grado a la izquierda.** Sin firma, sin membrete, sin fecha. Marca circular de liga en una esquina. Al lado, el sobre de manila abierto, sin timbres. |
-| `examine_acuse.webp` | `acuse_notificacion` | Asiento de libro de acuses, plano. Renglón mecanografiado con el oficio 4471 y el nombre del interno. Al margen derecho, **una rúbrica manuscrita a tinta azul, muy pequeña y enérgica, con dos rayas bajo el trazo**. Fechador de hule morado: *29 NOV*. |
+| `examine_nota_renta.webp` | `nota_mecanografiada` | Media cuartilla de papel cebolla con luz rasante. Tres renglones mecanografiados, cinta bicolor gastada. **Cada `s` minúscula del texto se imprime una sola vez dentro de su palabra, media línea abajo y medio grado a la izquierda; no se duplica ni se añade una `S/s` separada.** Sin firma, sin membrete, sin fecha. Marca circular de liga en una esquina. Al lado, el sobre de manila abierto, sin timbres. |
+| `examine_acuse.webp` | `acuse_notificacion` | Asiento de libro de acuses, plano. Renglón mecanografiado con el oficio 4471, **Casimiro como promotor y Ramón Valdés como citado a petición suya**. Al margen derecho, **una rúbrica manuscrita a tinta azul, muy pequeña y enérgica, con dos rayas bajo el trazo**. Fechador de hule morado: *29 NOV*. |
 | `examine_credencial.webp` | `credencial_sindico` | Copia certificada de una credencial de cartulina: **fotografía en blanco y negro de un hombre mayor de traje oscuro y lentes de media luna**, sello seco en relieve del Juzgado Séptimo y tres renglones impresos legibles: *«Vigente hasta la conclusión del concurso»*, *«Sin límite de horario»*, *«Acceso al depósito de bienes de la masa»*. Segunda vista del reverso con firma de 1971. |
 | `examine_inventario.webp` | `inventario_1971` | Dos folios mecanografiados en papel revolución, grapados, con el membrete del juzgado. Columna de partidas numeradas. **Legibles y destacadas por su posición, no por un realce: la 12 (cedulario, 11,400 tarjetas), la 41 (máquina de escribir Olivetti Lexikon 80) y la 44 (ejemplares de lujo sin vender, 210).** Sin flechas ni círculos. |
-| `examine_expediente_serie.webp` | `expediente_serie` | **Tablero del Señalamiento 1.** Cinco paneles en fila sobre una mesa de peritajes, cada uno con su etiqueta de fecha escrita a máquina. **A (12 JUL):** tarjeta de presentación de «Enciclopedias El Saber Universal, S.A.», con las eses minúsculas media línea por debajo del renglón y medio grado inclinadas a la izquierda. **B (28 AGO):** ficha de cartulina con seis renglones mecanografiados legibles y las eses minúsculas media línea por debajo del renglón y medio grado inclinadas a la izquierda. **C (21 AGO):** un frasco de vidrio ámbar con etiqueta manuscrita y un molde de cera agrietado. **D (15 SEP):** boleta de empeño del Monte de Piedad con la cifra «$12,000» y la palabra «EFECTIVO» legibles. **E (24 OCT):** telegrama mecanografiado con su acuse de recibo, reclamando la parte de un collar. Zonas: `panel_a`, `panel_b`, `panel_c`, `panel_d`, `panel_e`. **Sin flechas, sin círculos, sin realces: la lámina no puede señalar la respuesta.** |
-| `examine_tomo_caido.webp` | `tomo_caido` | Dos vistas. Izquierda: tomo cerrado de canto sobre mesa de peritajes, **tela verde oliva, tejuelo dorado «XI»**, mancha parda en el canto del lomo, regla testigo. Derecha: la guarda abierta con **un sello ovalado de tinta violeta, parcialmente corrido**: *«DONACIÓN DEL SÍNDICO DE LA QUIEBRA 114/1971 · 14-X-1971»*. |
-| `examine_estante_consulta.webp` | `estante_consulta` | **Tablero del Señalamiento 2.** Fotografía pericial en color desaturado del estante de consulta, de frente, con regla testigo apoyada abajo. Veinticuatro ranuras con **cartoncitos numerados escritos a mano**. Veintidós lomos de **tela verde oliva idénticos**, la **ranura 13 vacía y oscura**, y en la **ranura 11 un lomo distinto: media piel color vino con nervios y dos cantoneras de latón en el canto**, media pulgada más grueso que sus vecinos. Abajo, el zoclo con polvo. Zonas: `lomo_11`, `hueco_13`, `cartoncitos`, `tomo_i`, `zoclo`. **Ni una flecha, ni un círculo, ni un realce de color.** |
+| `examine_expediente_serie.webp` | `expediente_serie` | **Tablero del Señalamiento 1.** Cinco paneles en fila sobre una mesa de peritajes, cada uno con su etiqueta de fecha escrita a máquina. **A (12 JUL):** tarjeta de presentación de «Enciclopedias El Saber Universal, S.A.», con las eses minúsculas media línea por debajo del renglón y medio grado inclinadas a la izquierda. **B (28 AGO):** ficha de cartulina con seis renglones mecanografiados legibles y las eses minúsculas media línea por debajo del renglón y medio grado inclinadas a la izquierda: «1. Chapa puerta de carga: vencida desde marzo. Se empuja.» «2. Rejilla sala dos: dieciocho por veinticuatro. Malla floja en la esquina inferior. Da al patio.» «3. Velador: veinte cuarenta y cinco bodega de proa; veintiuna cero cero bodega de popa. Copiado de su libreta; cuelga de un clavo en la caseta.» «4. Pastillas de chiquitolina: farmacia de Insurgentes, mostrador de atrás.» «5. Rollo de cámara: se cambia los lunes. El martes queda un cuadro.» «6. Servicio de cierre incluido. Cinco minutos.» **C (21 AGO):** un frasco de vidrio ámbar con etiqueta manuscrita y un molde de cera agrietado. **D (15 SEP):** boleta de empeño del Monte de Piedad con la cifra «$12,000» y la palabra «EFECTIVO» legibles. **E (24 OCT):** telegrama mecanografiado con su acuse de recibo, reclamando la parte de un collar. Zonas: `panel_a`, `panel_b`, `panel_c`, `panel_d`, `panel_e`. **Sin flechas, sin círculos, sin realces: la lámina no puede señalar la respuesta.** |
+| `examine_tomo_caido.webp` | `tomo_caido` | Dos vistas. Izquierda: tomo cerrado de canto sobre mesa de peritajes, **tela verde oliva, tejuelo dorado «XI»**, mancha parda en el lomo, regla testigo. Derecha: la guarda abierta con **un sello ovalado de tinta violeta, parcialmente corrido**: *«DONACIÓN DEL SÍNDICO DE LA QUIEBRA 114/1971 · 14-X-1971»*. |
+| `examine_estante_consulta.webp` | `estante_consulta` | **Tablero del Señalamiento 2.** Fotografía pericial en color desaturado del estante de consulta, completamente de frente. El mueble tiene **una sola banda horizontal continua de veinticuatro ranuras claramente separadas**, no dos filas apiladas. Veinticuatro ranuras con **cartoncitos numerados escritos a mano**. Veintidós lomos de **tela verde oliva idénticos**, la **ranura 13 vacía y oscura**, y en la **ranura 11 un lomo distinto: media piel color vino con nervios y dos cantoneras de latón en el canto**, media pulgada más grueso que sus vecinos. Abajo, sólo el zócalo con polvo; no pintar una regla ni ningún instrumento de medición. Zonas: `lomo_11`, `hueco_13`, `cartoncitos`, `tomo_i`, `zoclo`. **Ni una flecha, ni un círculo, ni un realce de color.** |
 | `examine_huacal9.webp` | `huacal_9` | Tapa de huacal fotografiada en picado con **luz rasante para que las capas de papel proyecten sombra**. Más de doscientas cincuenta tiras de sello engomado encabalgadas como escamas, amarilleando hacia abajo, cada una con rúbrica y fecha manuscritas en el formato institucional `DÍA D-MES`. **La de hasta arriba es blanca y limpia, fechada «SÁB 4-XII»; bajo ella asoma otra, también «SÁB 4-XII», medio tapada.** El pie de lámina no comenta que sean dos, pero la fecha completa es legible. |
 | `examine_maquina.webp` | `maquina_escribir` | Dos vistas. Izquierda: Olivetti Lexikon 80 negra de tres cuartos sobre funda de hule, carro cromado, cinta bicolor gastada hasta la tela, con el número **41** pintado a plantilla en blanco en el costado. Derecha: **macro del abanico de barras de tipos**, con la barra de la **‘s’ minúscula visiblemente torcida hacia la izquierda** respecto de sus vecinas. |
 | `examine_ficha_domicilio.webp` | `ficha_domicilio` | Tarjeta de cedulario de cartulina crema, formato apaisado, fotografiada de plano. **Seis campos impresos en dos columnas, cinco a la izquierda y el domicilio a la derecha en cuatro renglones cortos**, con el estado de la puerta en la parte inferior izquierda; respuestas mecanografiadas legibles y texto exacto de §18.5. La columna derecha termina en la esquina inferior derecha, de donde sale el fragmento de §10.1. Las fechas «1969» y «VIII» anotadas a mano en el ángulo superior. **A la tarjeta le falta la esquina inferior derecha, con el mismo borde recto y limpio del fragmento.** Todas las eses, media línea abajo. |
@@ -4067,9 +4234,9 @@ Las zonas de los dos señalamientos **se miden sobre el WebP ya generado**, nunc
 
 **Variantes localizadas al inglés (14):** `examine_esquina_tarjeta_en.webp`, `examine_libro_visitas_en.webp`, `examine_libro_peritos_en.webp`, `examine_plano_archivo_en.webp`, `examine_nota_renta_en.webp`, `examine_acuse_en.webp`, `examine_credencial_en.webp`, `examine_inventario_en.webp`, `examine_expediente_serie_en.webp`, `examine_tomo_caido_en.webp`, `examine_ficha_domicilio_en.webp`, `examine_termografo_en.webp`, `examine_efectos_en.webp` y **`examine_huacal9_en.webp`**. En todas, el texto legible sostiene un argumento y debe coincidir con el catálogo inglés; composición, defectos mecánicos, fechas y marcas físicas permanecen iguales.
 
-> **Por qué el huacal también se localiza.** Su argumento no es un número: es la **abreviatura del día de la semana**. El `followUp` de D3-T1 se gana leyendo `SÁB` en las dos tiras superiores, y esa abreviatura es española. La variante inglesa usa `SAT 4-XII` y el diálogo inglés lee el mismo día. Sólo `examine_estante_consulta.webp` y `examine_maquina.webp` se comparten: sus marcas operativas son números y geometría, y el defecto de la máquina es la letra `s`, que es la misma en los dos idiomas.
+> **Por qué el huacal también se localiza.** Su argumento no es un número: es la **abreviatura del día de la semana**. El `followUp` de D3-T1 se gana leyendo `SÁB` en la tira superior, y esa abreviatura es española. La variante inglesa usa `SAT 4-XII` y el diálogo inglés lee el mismo día. Sólo `examine_estante_consulta.webp` y `examine_maquina.webp` se comparten: sus marcas operativas son números y geometría, y el defecto de la máquina es la letra `s`, que es la misma en los dos idiomas.
 
-> **Regla de localización del defecto tipográfico.** El caso entero se cierra sobre **la `s` minúscula caída**. Toda línea traducida que se imprima dentro de una lámina cuestionada —el domicilio del fragmento y de la ficha, los tres renglones de la nota, los seis de la ficha del museo, la tarjeta de julio— **debe seguir conteniendo al menos una `s` minúscula visible**, y el fragmento de `esquina_tarjeta` debe conservar su reparto en cuatro renglones con la `s` dentro del pedazo. Si una traducción elimina la `s` del trozo visible, se reescribe la traducción, nunca la lámina.
+> **Regla de localización del defecto tipográfico.** El caso entero se cierra sobre **la `s` minúscula caída**. Toda línea traducida que se imprima dentro de una lámina cuestionada —el domicilio del fragmento y de la ficha, los tres renglones de la nota, los seis de la ficha del museo, la tarjeta de julio— **debe seguir conteniendo al menos una `s` minúscula visible**, y cada `s` debe ser el único glifo de esa letra dentro de su palabra, desplazado hacia abajo: nunca una `s` duplicada ni una `S/s` añadida debajo. El fragmento de `esquina_tarjeta` debe conservar su reparto en cuatro renglones con la `s` dentro del pedazo. Si una traducción elimina la `s` del trozo visible, se reescribe la traducción, nunca la lámina.
 
 ### 23.4 Láminas explicativas (9) — 1280 × 720
 
@@ -4078,7 +4245,7 @@ Estilo distinto de las de examen: **no son fotografías periciales, son ilustrac
 | Archivo | Contenido |
 |---|---|
 | `plate_dos_accesos.webp` | Corte axonométrico del Archivo en tres niveles, con las dos puertas en rojo, la escalera de servicio en línea de puntos y el hueco contiguo del montacargas con sus tres descansos. Sin rótulos. |
-| `plate_foto_pericial.webp` | Fotografía pericial en blanco y negro de grano grueso de la escena completa del pasillo 7, tomada **desde el interior del pasillo, junto a la mesa**, para mostrar cuerpo, tomo y mesa; desde la reja la mesa queda oculta por estantes. Única lámina de esta tanda que **no** es ilustrativa. |
+| `plate_foto_pericial.webp` | Fotografía pericial en blanco y negro de grano grueso, con **render 2D cel-shaded de Ace Attorney y sin fotorrealismo**, de la escena completa del pasillo 7, tomada **desde el interior del pasillo, junto a la mesa**, para mostrar cuerpo, tomo y mesa; desde la reja la mesa queda oculta por estantes. Única lámina de esta tanda que **no** es ilustrativa. |
 | `plate_masa_concursal.webp` | Diagrama: una empresa dibujada como un edificio que se desploma; debajo, sus bienes cayendo dentro de un huacal sellado; una mano con una llave sobre el huacal; alrededor, una fila de acreedores esperando. |
 | `plate_anatomia_ficha.webp` | Una tarjeta de cedulario ampliada, con sus **seis campos vacíos** señalados por llaves tipográficas. El sexto —el de abajo— dibujado como una puerta con su chapa. Sin texto: la lámina se lee con la narración. |
 | `plate_cinco_papeles.webp` | Cinco papeles en fila sobre un fondo crema, cada uno con su fecha escrita como en un calendario de taco. Una línea de tiempo corre bajo ellos de julio a octubre. |
@@ -4087,11 +4254,11 @@ Estilo distinto de las de examen: **no son fotografías periciales, son ilustrac
 | `plate_tomo_trece.webp` | Una colección de veinticuatro lomos dibujados en fila, con el decimotercero dibujado sólo en contorno punteado y vacío. Debajo, una publicidad de época recortada de periódico, ilegible. |
 | `plate_cuatro_renglones.webp` | Cuatro tiras de papel apiladas en escalera, cada una con un renglón mecanografiado y **la ese de cada renglón alineada en la misma vertical, media línea por debajo del resto**. Es la única lámina explicativa con texto legible, y por eso necesita variante EN: `plate_cuatro_renglones_en.webp`. |
 
-### 23.5 Iconos de prueba (22 nuevos) y de persona (10 nuevos)
+### 23.5 Iconos de prueba (23 nuevos) y de persona (10 nuevos)
 
 **Iconos de prueba** — `assets/<id>.webp`, estilo de icono de Acta ya establecido (objeto centrado, fondo transparente, contorno carbón).
 
-`parte_detencion_c5` *(nombre distinto obligatorio: el id colisiona con los Casos 0 y 1)*, `esquina_tarjeta`, `informe_forense_c5` *(nombre distinto obligatorio: el id colisiona con el Caso 4)*, `tomo_caido`, `estante_consulta`, `libro_visitas`, `plano_archivo`, `expediente_casimiro`, `recibo_renta`, `nota_mecanografiada`, `acuse_notificacion`, `credencial_sindico`, `inventario_1971`, `libro_peritos`, `expediente_serie`, `huacal_9`, `fichero_cedulario`, `maquina_escribir`, `oficio_diligencia`, `efectos_casimiro`, `bitacora_caldera`, `ficha_domicilio`.
+`parte_detencion_c5` *(nombre distinto obligatorio: el id colisiona con los Casos 0 y 1)*, `hoja_relevo` *(pendiente: hoy reutiliza `assets/bitacora_transmision.webp` del Caso 3 como marcador)*, `esquina_tarjeta`, `informe_forense_c5` *(nombre distinto obligatorio: el id colisiona con el Caso 4)*, `tomo_caido`, `estante_consulta`, `libro_visitas`, `plano_archivo`, `expediente_casimiro`, `recibo_renta`, `nota_mecanografiada`, `acuse_notificacion`, `credencial_sindico`, `inventario_1971`, `libro_peritos`, `expediente_serie`, `huacal_9`, `fichero_cedulario`, `maquina_escribir`, `oficio_diligencia`, `efectos_casimiro`, `bitacora_caldera`, `ficha_domicilio`.
 
 **Icono reutilizado:** `insignia_abogado`.
 
@@ -4170,7 +4337,7 @@ Este apartado manda sobre las cronologías, el guion, la tabla de descarte y la 
 | **F14** | Reparto del collar del Caso 4 | Rufino / Cuajinais | Octubre | Pago prometido y no realizado | Lámina L5, veredicto | Es contexto de botín. No prueba relación comercial con Berrondo. |
 | **F15** | Rutina de apertura del huacal | A1, empleados sucesivos, A6 | 1971–1982 | Síndico abre; empleado destapa acompañado | D3-T1 | La rutina tiene once años y dejó más de 250 tiras permanentes. Chómpiras sólo conoce su tramo desde septiembre. |
 | **F16** | Llegada habitual y llegada real del actuario | A1, A5, A10 | Cuatro sábados anteriores / 4 dic, 17:44 | Juzgado contiguo → acceso de peritos | D2 correspondencia; D2-T2 | A1 podía prever que A10 no estaría a las 17:00. El asiento real explica su ausencia durante el crimen; no coloca a A1 en el pasillo. |
-| **F17** | Vale del 29 de noviembre | A1, A5 | 29 nov | Solicitante: licenciado Fulgencio Berrondo; firma: F. Berrondo; cajón Donceles a Espanto | D4-T1; clímax E1 | Atribuye a A1 la consulta del cajón que contenía la ficha de Don Ramón. La fecha es un lunes y refuta la rutina de los jueves declarada por A1. Sin nombre y firma sólo probaría que alguien consultó el cajón. |
+| **F17** | Vale del 29 de noviembre | A1, A5 | 29 nov | Solicitante: licenciado Fulgencio Berrondo; firma: F. Berrondo; huacal 9; bien consultado: cedulario. **Sin calle, cajón ni tarjeta.** | D4-T1, cadena posterior; clímax E1 | Atribuye a A1 una consulta registrada del cedulario el mismo día en que recibió el aviso. La fecha es un lunes y refuta su rutina declarada de los jueves. No prueba qué tarjeta miró, cuándo arrancó la esquina ni que el vale fuera necesario para abrir el huacal. |
 | **F18** | Conocimiento del relevo de custodios y del retraso del actuario | A1, Chimoltrufia | 29 nov, ventanilla de correspondencia | Chimoltrufia → A1, de viva voz, al entregar el acuse | D2 correspondencia (**sólo investigación**) | Acredita, **para el jugador**, que A1 supo que a las 17:00 cambian de turno y que Balbuena nunca llega antes de las 17:15. **Nunca se alega en el estrado:** la Chimoltrufia no declara y no nombra a nadie. Sostiene la fila 4 de §20.1; no es uno de los cuatro datos de E1 ni interviene en ninguna etapa del clímax. |
 
 ### 24.D Invariantes
@@ -4195,10 +4362,10 @@ Este apartado manda sobre las cronologías, el guion, la tabla de descarte y la 
 | **I29** | Las filas de §4.2 van en orden cronológico estricto. | Que una fila se lea antes del hecho al que su propio texto remite. |
 | **I30** | Una lámina sólo se comparte entre idiomas si **ningún** dato que sostiene un argumento es prosa ni abreviatura de idioma. `SÁB` es abreviatura española, así que `examine_huacal9` se localiza. | Compartir una lámina cuyo argumento el jugador inglés no puede leer. |
 | **I31** | Toda línea traducida impresa en una lámina cuestionada conserva al menos una `s` minúscula visible, y el fragmento conserva sus cuatro renglones. | Dejar sin defecto visible los documentos sobre los que se cierra el caso. |
-| **I32** | Los dos refranes empalmados y el chiste de palabra difícil se **sustituyen** en inglés por equivalentes que conserven su función; no se traducen literalmente ni se reescriben los casos anteriores. | Perder el chiste, la corrección de Berrondo o el eco del Caso 0 al localizar. |
+| **I32** | Los dos refranes empalmados y el chiste de palabra difícil se **sustituyen** en inglés por equivalentes que conserven su función; no se traducen literalmente ni se reescriben los casos anteriores. El refrán abandonado de §22.1.1 se sustituye igual, por un dicho inglés abandonable a media frase, y conserva su «no, ése no es» y su cierre. | Perder el chiste, la corrección de Berrondo, el eco del Caso 0 o el tropiezo de L7 al localizar. |
 | **I13** | Toda persona esperada o presente entre 17:00 y 17:35 aparece en §24.A con hora, acceso y registro. A10 entra a las 17:44, después del hallazgo; los custodios cubren 17:00–17:15 como ausencia. | Borrar al actuario o convertir los libros en censos incompletos sin explicación. |
-| **I14** | Todo documento usado para atribuir una acción identifica al actor **en pantalla, en el bloque que lo usa**. F17 muestra solicitante y firma; la segunda tira del 4-XII se lee con su rúbrica dentro de E3. | Afirmar que Berrondo abrió un cajón con un vale anónimo, o cargarle una apertura clandestina descrita como si no llevara firma. |
-| **I15** | La prueba exigida en cada presentación contiene la respuesta visible. El `followUp` de D3-T1 exige `huacal_9`, cuyas dos tiras superiores dicen «SÁB 4-XII». | Exigir conocimiento de calendario externo o una respuesta ausente del Acta. |
+| **I14** | Todo documento usado para atribuir una acción identifica al actor **en pantalla, en el bloque que lo usa**. F17 muestra solicitante y firma; la segunda tira del 4-XII se lee con su rúbrica dentro de E3. | Atribuir a Berrondo una consulta anónima, o cargarle una apertura clandestina descrita como si no llevara firma. |
+| **I15** | La prueba exigida en cada presentación contiene la respuesta visible. El `followUp` de D3-T1 exige `huacal_9`, cuya tira superior dice «SÁB 4-XII». | Exigir conocimiento de calendario externo o una respuesta ausente del Acta. |
 | **I16** | Cada conclusión conserva el alcance de su prueba: el recibo no identifica al pagador; la muestra identifica la máquina, no al mecanógrafo ni al homicida; el dictamen inicial no excluye por sí solo dos minutos. | Convertir indicios circunstanciales en identificaciones directas. |
 | **I17** | La espera de A1 tras los estantes termina antes de las 16:50; la hora del libro es la de la devolución del gafete. Ninguna vista narra esperar hasta las 16:50 y bajar entonces. | Hacer imposible la devolución registrada o mover la hora del libro. |
 | **I18** | Ningún personaje declara haber leído el libro de peritos antes de que la corte ordene producirlo (GIRO 1). El conocimiento de la fiscalía sobre la notificación de A1 procede del aviso del propio A1 el lunes. | Dotar a un honesto de una lectura imposible y romper la sorpresa de D3-T2. |
@@ -4207,19 +4374,36 @@ Este apartado manda sobre las cronologías, el guion, la tabla de descarte y la 
 | **I21** | Cada lámina de §7.3 declara la locación donde el guion la reproduce, y los archivos declarados y reproducidos coinciden uno a uno. | Mover una lámina a una escena donde su locación declarada no existe. |
 | **I22** | El Sargento trata de «mi licenciado» a Don Ramón desde el Caso del Grito (15 de septiembre de 1982); toda antigüedad que él declara en primera persona arranca ahí y ninguna línea le atribuye trato anterior con el acusado. | Fechar su trato con Don Ramón en julio («cinco meses») cuando su debut es septiembre y el único «cinco meses» del episodio es el del fiscal, visto desde julio. |
 | **I23** | De los cuatro juicios que Don Ramón ganó entre agosto y octubre, el Sargento sólo estuvo en dos (Casos 3 y 4). | Atribuirle asistencia a juicios donde no aparece y romper la honestidad de su «yo estuve en…». |
-| **I24** | Los tres documentos que coteja la documentoscopia (tarjeta de julio, ficha de agosto, nota del sobre) muestran la ese caída en la vista donde el jugador los examina, y ningún pie de lámina la nombra. | Sostener el dictamen del §16.2 y la lámina L9 con documentos que no enseñan el defecto. |
+| **I24** | Los tres documentos que coteja la documentoscopia (tarjeta de julio, ficha de agosto, nota del sobre) muestran, en la vista donde el jugador los examina, cada `s` minúscula original una sola vez, desplazada media línea abajo y medio grado a la izquierda; ningún documento añade una `S/s` duplicada debajo y ningún pie de lámina nombra el defecto. | Sostener el dictamen del §16.2 y la lámina L9 con documentos que no enseñan el defecto o que lo representan como una letra extra. |
 | **I25** | Cada fila de §20 describe una conducta que el guion ejecuta en ese bloque. | Derivar la escalera de sospecha de una conducta que nunca ocurre en pantalla (pedir al fiscal que no se acuse, cuando Don Ramón dice «Déjelo»). |
 | **I33** | Toda vista que describe el panel C —§4.3, la delegación del día 2, la lámina L5 y `examine_expediente_serie`— lo describe como el frasco de valeriana que compró y el molde de cera que dejó al copiar una llave **el propio culpable del Caso 2**, identificado en ese episodio; ninguna vista lo presenta como compra sin identificar, como dos compras ni como una compra distinta. | Que una lámina describa otra compra o que el episodio reviva como cabo abierto un comprador que el Acto 1 vio identificado en pantalla. |
 | **I34** | El Sargento narra los cinco legajos en el orden de sus fechas (12 jul, 21 ago, 28 ago, 15 sep, 24 oct); las letras de panel conservan su identidad aunque B (28 ago) y C (21 ago) no queden ascendentes en el tablero. | Narrar «por fecha» un orden que no es el de las fechas, o romper la identidad probatoria de los paneles al reordenarlos. |
-| **I35** | El pago al fiscal y el pago del ladrón del museo salieron **de la misma oficina en dos bolsas distintas**, ambas selladas por la fiscalía; Super Sam reconoce en pantalla, en D3-T2, que la bolsa vacía del patio de carga del museo era de su fiscalía y que «de ahí salieron las dos». | Cerrar el residuo del Caso 1 con una sola bolsa (ya gastada por Tripaseca a las 20:40) o dejar el origen de la bolsa del museo sin el ancla que el testimonio de Sam aporta. |
+| **I35** | Del despacho del fiscal salió **una sola bolsa: la suya**, con seis kilos de moneda de plata, robada la mañana del 28 de agosto. Ésa es el arma del Caso 1 y la que aparece vacía en el patio de carga. A Super Sam le devolvieron **un kilo de esos seis**, envuelto en papel de estraza, en un callejón y **no en una bolsa**; él lo reconoce en pantalla en D3-T2, incluida su propia evasiva del Caso 1 («la fiscalía reparte bolsas como ésa»). | Pagarle al fiscal dentro de una bolsa de lona —esa noche perdió una, no ganó ninguna, y el día 1 del Caso 1 sube al estrado sin nada al hombro— o darle seis kilos de cobro, que serían la bolsa entera y no una parte. |
 | **I36** | El ingreso del Chómpiras al Archivo (15 de septiembre) convive en pantalla con sus empleos de hotelero —dos hoteles distintos entre agosto y octubre, sin turnos que el Caso 4 contradiga con sus escenas diurnas—, corriendo entre el Archivo y lo que cayera hasta noviembre; el Sargento lo ancla en agosto («me escoltó cuando me arrestaron»); su trabajo del Archivo se describe por sus prestaciones (seguro y aguinaldo), nunca como «la primera vez que le pagan por cargar» ni «su primer trabajo fijo», y ninguna antigüedad de encierro o proceso suya excede lo que el Caso 2 muestra: un juicio de dos días y dos noches de detención. | Hacer declarar a un testigo un historial imposible frente al Caso 4 o al propio Caso 2. |
 | **I37** | Cada panel del `expediente_serie` describe un documento que su caso fuente muestra o deja en el expediente: el panel E es el **telegrama del 24 de octubre** de Cuajinais, no un acta. | Citar como panel un documento (acta con fotografía) que ningún episodio produjo. |
 | **I38** | Don Ramón compareció ante esta misma corte en los Casos 0, 1, 2, 3 y 4 —el Caso 2 también lo presidió el Juez regular, no Jirafales—, de modo que el Caso 5 es la **sexta** vez que lo ve y la insignia ha litigado **cinco** veces. | Contar como si el Caso 2 tuviera otro juez y dejar los conteos de la corte en quinta/cuatro. |
 | **I39** | La anticipación que alega la fila 3 de §20.1 se mide desde el acuse del 29 de noviembre: **cinco días**. | Inventar plazos que las fechas canónicas del Libro de hechos no sostienen. |
+| **I40** | El `followUp` de D3-T1 sólo lee en estrado la **tira superior** del 4-XII; la segunda tira del mismo día se argumenta en el clímax E3. | Adelantar en D3-T1 un descubrimiento reservado a la etapa 3 del clímax. |
+| **I41** | La defensa no alega en D2 el ofrecimiento del fichero sin una fuente ya en pantalla; el Juez del D3 no niega una explicación que el guion ya entregó en D2. | Inventar en el estrado un hecho que el Acta aún no muestra o contradecir el openingPresent del día 2. |
+| **I42** | Berrondo se declara síndico desde **1971**, coherente con su «primera sindicatura» de esa quiebra. | Mezclar antigüedades de ejercicio (1955/1963) con la fecha de la sindicatura abierta (1971). |
+| **I43** | La coartada de Berrondo para el tramo 16:40–16:50 no asigna al recorrido corto hasta la ventanilla los **ciento veinte** escalones del sótano al primer piso. | Nombrar un conteo de escalones en el diálogo de la coartada o confundir el tramo corto con la métrica de §24.B. |
+| **I44** | Super Sam declara un solo volumen de oficios compatible con su cifra mensual (**ciento cuarenta por semana** frente a seiscientos por mes). | Firmar a la vez 120 por semana y 600 por mes sin que las cifras cuadren. |
+| **I45** | Nicanor y Don Ramón cuentan la caldera **desde el tres de diciembre**; «los dejaron cuatro días» sólo aparece en §17.1 como total de calefacción (3→7). | Usar «seis días» para la caldera o repetir «cuatro días» fuera de §17.1 como si el calendario no avanzara. |
+| **I46** | §7.1 distingue el retorno de cámara en estrado del re-estampado obligatorio de `bg` tras lámina o relato en investigación. | Afirmar que «la línea siguiente sin `bg` devuelve la cámara» en bloques donde el motor no lo hace. |
+| **I47** | Genoveva no se retira antes de que el secretario reciba la carpeta de vales que E3 y §18.4 consultan después. | Despedir a la testigo dejando en el aire un documento que el clímax necesita como ya incorporado al expediente. |
+| **I48** | En la etapa 3 del clímax el Juez ordena traer la **fotografía pericial y el tomo** que sobra en ella; el alguacil deposita ambos. | Pedir sólo el tomo o una fotografía que el éxito del señalamiento no trae a la vista. |
+| **I49** | La fila 3 de §20.1 marca a Don Ramón con el citatorio del lunes; la fila 4 marca a **Nicanor** (no al Sargento) como quien conoce el relevo de las 17:00. | Negar al acusado un aviso que el guion muestra y atribuir al Sargento un dato institucional que declara el conserje. |
+| **I50** | §25 enumera las uniones cerradas `EvidenceId`, `ProfileId` y `PoseName` que el Caso 5 exige ampliar antes de compilar. | Declarar el inventario de integración exhaustivo sin nombrar los tipos que el motor cierra. |
+| **I51** | El panel B de `examine_expediente_serie` reproduce los **seis** renglones de la ficha del museo, con «5 min.» y sin guion tipográfico inventado. | Resumir el panel B en menos renglones o escribir «— 5 min.» donde la fuente imprime «5 min.» |
+| **I52** | La etapa 2 de `perfil_berrondo` cita un dato de D2-T2, no un argumento reservado a GIRO 2. | Adelantar en la ficha de persona una deducción que el guion aún no ejecutó. |
+| **I53** | La fila del actuario en §21 siembra y cobra sólo en bloques que realmente lo mencionan (correspondencia, acuse/oficio, D2-T2, F16). | Citar como siembra o cobro un bloque que no contiene al actuario. |
+| **I54** | Las cuarenta y siete partidas pertenecen al **inventario de la masa concursal**, no al contenido físico del huacal; §4.2 es vista derivada y el montacargas de las 16:40–16:45 cabe en §24.B. | Conflar inventario con cajones del huacal, tratar §4.2 como fuente autónoma o aislar un trayecto ya presupuestado. |
+| **I55** | La descripción de `oficio_diligencia` enumera la copia para la **Sindicatura de la quiebra 114/1971**; en D3-T2.3, `huacal_9` es un `deflect` porque prueba la presencia sabatina del síndico, pero no que conociera esta diligencia. | Exigir que el jugador adivine la sindicatura desde una lista de distribución resumida o penalizar una presentación razonable de la tapa del huacal antes del oficio. |
+| **I56** | El oficio y el acuse recibido el 29-XI nombran a Don Ramón como citado. En D4-T1 se presentan, en orden, esquina → oficio → hipótesis de preparación → cedulario → Genoveva → vale. El vale sólo registra una consulta del cedulario en el huacal 9, sin cajón ni ficha; la ficha se identifica por encaje físico en E4. La ausencia de vale no impide abrir el huacal. La prueba de secuencia del motor comprueba ese orden y que ninguna vista atribuya calle o tarjeta al vale. | Convertir una hipótesis sobre la preparación en una prueba de lectura o extracción, exigir una papeleta como llave, o revelar la ficha mutilada antes de E4. |
 
 ### 24.E Puntos abiertos y puerta de cierre
 
-No quedan puntos abiertos en la posibilidad material del crimen, la asistencia prevista, la atribución de documentos ni la suficiencia de las respuestas interactivas. Si una revisión futura encuentra uno, debe registrarlo aquí antes de corregir el guion y convertir la corrección en una invariante de §24.D. Una nueva auditoría no se considera cerrada con una lista de cambios aislados.
+La cadena revisada de D4-T1 está implementada en el guion ES/EN y en el soporte de `ContradictionFollowUp.sequence`; las láminas del oficio y el acuse siguen siendo los recursos documentales que debe producir la auditoría de arte. Si una revisión futura encuentra otro punto abierto, debe registrarlo aquí antes de corregir el guion y convertir la corrección en una invariante de §24.D. Una nueva auditoría no se considera cerrada con una lista de cambios aislados.
 
 Pasada del 2026-09-17 (lentes 8 y 9): ocho hallazgos registrados y corregidos en el mismo pase — seis como invariantes I17–I21 con pruebas relacionales, la suma de §9 bajo prueba propia y la fila de audio en §25. Ninguno dejó un punto abierto.
 
@@ -4235,9 +4419,13 @@ Pasada del 2026-09-17 (lentes 15, 16 y 17 en paralelo — simulación de agentes
 
 Pasada del 2026-09-17 (lente 18, re-verificación en paralelo de las lentes 15–17 sobre el documento corregido): nueve hallazgos registrados y corregidos en el mismo pase — el propio arreglo I36 asignaba al hotel del Chómpiras un «turno de noche» que sus escenas diurnas del Caso 4 desmienten, y dos antigüedades de encierro («ocho meses») no cabían en el juicio de dos días del Caso 2 (I36 reformulada); el criterio de la etapa 3 todavía se satisfacía con `expediente_casimiro`, el de la etapa 2 era falso para la insignia y «y son los últimos» afirmaba un estado de puntos que el guion no controla; la fila de §21 conservaba la etiqueta «cliente misterioso» (I33); el arte del panel C exhibía una «etiqueta de botica» para un brebaje casero, D3-T2 decía «hallada» con la fecha del abandono y §3 prometía un tic que el guion no ejecuta. Quedan aceptados sin arreglo, por compatibles: los 26 frente a 20 años del Sargento (métricas de rango y de oficio) y el traslado de la Chimoltrufia al juzgado sin ancla (la sustitución es su carácter). Ninguno de los aplicados dejó un punto abierto.
 
-Pasada del 2026-09-17 (lente 19, segunda re-verificación en paralelo de las lentes 15–17): once hallazgos registrados y corregidos en el mismo pase — el relato de §10.1 recordaba invertido el intercambio del estrado del Caso 0 (Casimiro presumió «uno estudia el producto»; el «no estudió nada» era del Tripaseca en el Caso 1); «corría entre los dos» implicaba un solo hotel cuando el Chómpiras pasó del de Doña Florinda al Buena Vista (I36 reformulada); el Sargento cambiaba de corporación sin ancla (resuelto: «me pasaron a judicial con el ascenso») y su rencor citaba un «poli» que el Caso 3 no muestra (resuelto con el regaño real del micrófono); L9 conservaba el verbo «hallada» con la fecha del abandono y fechaba el decomiso al día del crimen; la libreta citaba una fotografía de periódico sin ancla; «dos tercios del juicio» no reconstruía contra el Caso 0 («hasta el final del juicio»); y el «Five» se recordaba con la mano alzada donde el Caso 1 registra manotazo. Queda aceptado sin arreglo, por compatible: la vivienda 4 de Don Ramón y la del Caso 0 son de vecindades distintas. Ninguno de los aplicados dejó un punto abierto.
+Pasada del 2026-09-17 (lente 19, segunda re-verificación en paralelo de las lentes 15–17): once hallazgos registrados y corregidos en el mismo pase — el relato de §10.1 recordaba invertido el intercambio del estrado del Caso 0 (Casimiro presumió «uno estudia el producto»; el «no estudió nada» era del Tripaseca en el Caso 1); «corría entre los dos» implicaba un solo hotel cuando el Chómpiras pasó del de Doña Florinda al Buena Vista (I36 reformulada); el Sargento cambiaba de corporación sin ancla (resuelto: «me pasaron a judicial con el ascenso») y su rencor citaba un «poli» que el Caso 3 no muestra (resuelto con el regaño real del micrófono); L9 conservaba el verbo «hallada» con la fecha del abandono y fechaba el decomiso al día del crimen; la libreta citaba una fotografía de periódico sin ancla; «dos tercios del juicio» no reconstruía contra el Caso 0 («hasta el final del juicio»); y el «Five» se recordaba con la mano alzada donde el Caso 1 registra manotazo. Quedó aceptado sin arreglo, por compatible, que la vivienda de Don Ramón y la del Caso 0 fueran de vecindades distintas; la lente 22 revocó el número: la de Don Ramón es la 72. Ninguno de los aplicados dejó un punto abierto.
 
 Pasada del 2026-09-17 (lente 20, tercera re-verificación en paralelo de las lentes 15–17): cinco hallazgos registrados y corregidos en el mismo pase — los «cuatro meses» de la bolsa vacía rebasaban el plazo real (más de tres meses); la boleta del Caso 3 se presentaba como «gasto de preparación» cuando la redención precede en doce días a la concepción del crimen («gasto del culpable» en L5, §4.3, `panel_d` y F12); la memoria del Juez comprimía el momento del Tomo Trece («no pudo preguntárselo», cuando en el Caso 1 preguntó y la objeción cortó); «salió periódico» recibió su ancla en pantalla («ficha incluida», en boca de Berrondo); y el glosario ganó las entradas de Caso 0 que su propia regla exige. La lente de justicia rindió cero hallazgos en esta pasada. Ninguno de los aplicados dejó un punto abierto.
+
+Pasada del 2026-09-18 (lente 21, re-corrida con subagentes en paralelo de las lentes históricas de mayor rendimiento más las catastróficas menos revisadas): veinte hallazgos únicos registrados y corregidos en el mismo pase — el `followUp` de D3-T1, la defensa del día 2 y el Juez del día 3 sobre el fichero, la antigüedad sindical de Berrondo, la coartada de escalones, el volumen de oficios de Sam, la caldera en D1 frente a D4, la regla de §7.1 y los re-estampados de `bg`, la carpeta de vales de Genoveva, la orden del tomo en E3, las filas 3 y 4 de §20.1, las uniones cerradas de §25, el panel B del tablero, la etapa 2 de `perfil_berrondo`, la fila del actuario en §21, el alcance del inventario de 1971 y la vista derivada de §4.2 (I40–I54). Las lentes de solvabilidad y gating rindieron cero bloqueos. Ninguno de los aplicados dejó un punto abierto.
+
+Pasada del 2026-09-18 (lente 22, canon de la serie sobre datos de identidad del elenco): un hallazgo registrado y corregido — el domicilio de Don Ramón se dictaba y se leía como «vivienda 4» / «viv. 4.» en las nueve líneas del guion que lo citan y en la descripción de arte del fragmento, contra el canon de la serie, que lo sitúa en la **casa 72** de la vecindad. Unificado a 72 en ES y EN; la lámina `examine_esquina_tarjeta.webp` debe reimprimirse con «viv. 72.». Quedan intactos, por ser otra cosa: la vivienda 4 del Caso 0 (domicilio de Toribio Pantoja, en otra vecindad) y el «setenta y nueve» del Caso 3 (edad del Doctor Chapatín). Ninguno dejó un punto abierto.
 
 ---
 
@@ -4251,9 +4439,14 @@ El caso no requiere una mecánica jugable nueva, pero **no funciona sin cambios 
 | Cuarta jornada | Ampliar `TrialDay` a `1 | 2 | 3 | 4` y hacer que el enrutador recorra el tercer `adjournment.next` en lugar de devolver `null` después del día 3. |
 | Persistencia | Actualizar validación y pruebas de guardado para aceptar `case5` y `trialDay: 4`. Sólo subir versión o migrar si el formato almacenado cambia de manera incompatible. |
 | Arranque y precarga | Incluir Case 5 en el registro público, el arranque de depuración, la selección de episodio y la precarga de fondos, sprites, láminas e iconos. |
-| Audio | Ampliar `TrackName` y `TrackCatalog` con `archivo` y `cross_exam_grave` (§23.7). `SFXName` ya cubre todos los efectos que el guion usa (`text`, `click`, `bell`, `whoosh`, `realization`, `damage`). |
+| Audio | Ampliar `TrackName` y `TrackCatalog` con `archivo` y `cross_exam_grave` (§23.7). `SFXName` ya cubre todos los efectos que el guion usa (`text`, `click`, `bell`, `whoosh`, `realization`, `damage`, `gavel`, `desk_slam`). |
+| Tipos cerrados | Ampliar las uniones `EvidenceId`, `ProfileId` y `PoseName` en `src/types/Private/` con **cada** identificador nuevo del Caso 5 antes de registrar catálogos o guiones. El inventario de integración no se considera exhaustivo si omite alguna de las tres uniones. |
 | Pruebas compartidas | Extender las matrices que enumeran casos o jornadas, incluido llamado al estrado, avance de aplazamientos, guardado/carga, catálogo aislado, `requiredEvidence` y rutas ES/EN. |
 
 Archivos mínimos que hoy contienen límites explícitos: [[src/types/Private/state.ts]], [[src/engine/Private/TrialDayRouter.ts]], [[src/case/index.ts]], [[src/engine/Private/EngineDebugBootstrap.ts]] y [[src/state/Private/SaveManager.ts]]. La implementación debe buscar además enumeraciones exhaustivas de `case4` y `trialDay === 3`; esta tabla no sustituye esa búsqueda.
+
+Pasada del 2026-09-20 (lente 23, física del soborno de Super Sam): cuatro hallazgos registrados y corregidos en el mismo pase, abiertos por una lectura del autor sobre D3-T2 —el testimonio hacía que al fiscal le pagaran y a la vez perdiera dinero, sin que el guion dijera cuál de las dos cosas era el chiste—. El pago venía dentro de una bolsa de lona cuando esa noche Sam pierde la suya y no gana ninguna; pesaba seis kilos, que son la bolsa completa y no la parte que él dice haber recuperado; el robo del despacho no estaba fechado; y la presión enumeraba en tríos, con una voz que no era la del personaje. **Se revoca I35**: ya no son dos bolsas de la misma oficina sino una sola, la del propio fiscal, robada la mañana del 28 de agosto con seis kilos de plata dentro. Esa bolsa es el arma del Caso 1 y la que aparece vacía en el patio de carga; a Sam le devuelven un kilo de esos seis, envuelto, en un callejón. El residuo del Caso 1 queda cerrado con más fuerza que antes: a la pregunta «¿dónde estaba esa bolsa la noche del veintiocho?» el testimonio contesta que en la mano del hombre que mató al velador, y Sam repite en el estrado la evasiva exacta con la que la tapó entonces. Ninguno de los aplicados dejó un punto abierto.
+
+Pasada del 2026-09-20 (lente 24, legibilidad de pruebas y presentaciones desviadas): un hallazgo aplicado —la descripción de `oficio_diligencia` resumía demasiado su lista de distribución y D3-T2.3 no aceptaba como `deflect` la tapa del huacal, aunque el jugador ya sabía que el síndico estuvo allí el sábado—. La descripción ahora nombra la Sindicatura y la tapa orienta hacia el oficio sin penalización. Ninguno dejó un punto abierto.
 
 <!-- APPEND-HERE -->

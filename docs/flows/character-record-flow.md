@@ -13,7 +13,7 @@ Case 1 mechanises the step from "somebody else was standing there" to "that pers
 | Module | Responsibility |
 |---|---|
 | [[src/state/Private/ProfileInventory.ts]] | Owned profiles + linear saturating stage counter. |
-| [[src/state/Private/ProfileCatalog.ts]] | Per-case catalogue; `{}` for every case but Case 1. |
+| [[src/state/Private/ProfileCatalog.ts]] | Per-case catalogue; Case 1 and Case 5 maps, `{}` for Cases 0, 2, 3, and 4. |
 | [[src/engine/Private/CourtRecordTabs.ts]] | Tab bar, card lists, which present button is visible. |
 | [[src/engine/Private/ProfilePresent.ts]] | Routes a person present to the opening slot or the climax stage. |
 | [[src/engine/Private/DialogueFlow.ts]] | `addProfile` / `updateProfile` on a dialogue line. |
@@ -23,7 +23,7 @@ Case 1 mechanises the step from "somebody else was standing there" to "that pers
 ```mermaid
 flowchart TD
     Open["Player opens the Acta"] --> HasProfiles{"state.profiles.owned.length > 0?"}
-    HasProfiles -- no --> Single["No tab bar: evidence panel only (Cases 0, 2, 3, 4)"]
+    HasProfiles -- no --> Single["No tab bar: evidence panel only (cases without profiles)"]
     HasProfiles -- yes --> Asking{"trial.isAwaitingProfile()?"}
     Asking -- no --> Read["Tabs visible. PERSONAS is readable; profile cards carry no button"]
     Asking -- yes --> Point["Tabs hidden. Acta opens directly on PERSONAS. Button reads ¡Señalar a esta persona!"]

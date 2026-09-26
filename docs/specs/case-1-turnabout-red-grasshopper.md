@@ -1,6 +1,6 @@
 # Caso 1: El Juicio del Chapulín Colorado — La Chicharra de Oro
 
-> **Estado: implementada.** El guion, la mecánica, las pruebas y el arte de §18 viven ya en [[src/case/case1/index.ts]] y [[process_case1_assets.py]]. La versión anterior (una jornada, tres contradicciones en línea recta) sigue en el historial de git. Pendiente el recorrido cronometrado de §22. Las cajas de hotspots y de todos los `pointTarget` están medidas sobre los WebP de 960 × 540 ([[tests/case/Case1Hotspots.test.ts]], [[docs/lessons-learned/present-point-cover-crop.md]]). Esta reescritura ejecuta [[docs/plans/case-1-reconstruccion-narrativa.md]] con tres ajustes aprobados por el autor: **90 minutos** en lugar de 70–85, **tres testigos distintos en el estrado** en lugar de uno solo recurrente, y un **Acta de Personajes** (mecánica nueva, §6).
+> **Estado: implementada.** El guion, la mecánica, las pruebas y el arte de §18 viven ya en [[src/case/case1/index.ts]] y [[process_case1_assets.py]]. La versión anterior (una jornada, tres contradicciones en línea recta) sigue en el historial de git. Pendiente el recorrido cronometrado de §22. Las cajas de hotspots y de todos los `pointTarget` están medidas sobre los WebP de 960 × 540 ([[tests/case/ScriptIntegrity.test.ts]], [[docs/lessons-learned/present-point-cover-crop.md]]). Esta reescritura ejecuta [[docs/plans/case-1-reconstruccion-narrativa.md]] con tres ajustes aprobados por el autor: **90 minutos** en lugar de 70–85, **tres testigos distintos en el estrado** en lugar de uno solo recurrente, y un **Acta de Personajes** (mecánica nueva, §6).
 
 Configurado en [[src/case/case.group.md]]. Dirección de arte: [[docs/specs/artistic-direction.md]].
 
@@ -14,6 +14,7 @@ Configurado en [[src/case/case.group.md]]. Dirección de arte: [[docs/specs/arti
 | 2026-09-17 | Simulación de presentaciones | Cero hallazgos nuevos: D2-T2 → Señalamiento 1 → `pastillas_chiquitolina`, D2-T3 → tres señalamientos encadenados → `bolsa_dolares`, y la etapa 3 del clímax conservan el orden y la prueba de cada transición. |
 | 2026-09-17 | Calendario y orden de actos | Cero hallazgos nuevos: el museo queda en 28–30 de agosto y sus referencias de guion, catálogo y spec coinciden. |
 | 2026-09-17 | Canon heredado desde el Caso 5 (lente del nuevo orden de actos) | Dos restos de la fechación antigua en `perfil_supersam` y en el Talk 1 de D1 — la bolsa preguntada por la noche del veintiuno —; corregidos a la noche del 28. El resto de los datos heredados (ficha, bolsa, cinco minutos, «el Tomo Trece») verifica contra el Caso 5. |
+| 2026-09-25 | Cámara narrativa de la galería del tribunal (ES/EN, juicios y clímax) | 16 reacciones del público sincronizadas con `assets/bg_gallery_characters.webp` y `furniture: none` en el spec y en los dos guiones. Se excluyeron la galería del museo, las declaraciones de personajes y el lobby, que no contiene un corte a espectadores. |
 
 **Regla de parada:** una nueva lente sin hallazgos sobre las secciones modificadas.
 
@@ -127,7 +128,7 @@ Catorce entradas. Once se presentan durante los contrainterrogatorios y el clím
 | `antenitas_vinil` *(heredado)* | D1 detención | Pueden vibrar cerca de un enemigo o de una pista importante, sin identificar qué las activó. Vibraron a las 20:45 del 28 de agosto. | Clímax, etapa 2. |
 | `chicharra_oro` *(heredado)* | D1 museo | Ficha de la pieza robada: cigarra de oro macizo, **1.2 kg**, filigrana de canto vivo, montada sobre base de resonancia. Al separarla de la base suena, y quien la oye queda inmóvil cerca de un minuto. | D2-T1 `followUp`. |
 | `vitrina_rota` **(nueva)** | D1 museo | Vitrina de la sala 2, reventada. No quedaron vidrios dentro de la vitrina. Pedestal de madera a la altura de la cintura. Junto a ella, la jaula del perico histórico volcada. `detailedView`. | D2-T2 contradicción + **Señalamiento 1**. |
-| `rejilla_ducto` **(nueva)** | D1 museo | Rejilla del ducto de la sala 2, 18 × 24 cm, cuatro tornillos con la pintura sin romper. Esquina inferior con el alambre cortado, doblado hacia arriba y vuelto a acomodar; dos marcas paralelas en el polvo del lateral interior. Un hilo de casimir crema con raya, recogido de la malla. `detailedView`. | Clímax, etapa 3. |
+| `rejilla_ducto` **(nueva)** | D1 museo | Rejilla del ducto de la sala 2, 18 × 24 cm, cuatro tornillos con la pintura sin romper. Alambre de la esquina inferior cortado; dos marcas paralelas en el polvo del lateral interior. Un hilo de casimir crema con raya, recogido de la malla. `detailedView`. | Clímax, etapa 3. |
 | `informe_medico` *(heredado)* | D1 clínica | Alma Negra: golpe único en la región occipital. Objeto pesado, denso, **sin aristas**. Coma. Sin aptitud para declarar. `updates[]` de **2 etapas**. | D1-T2 contradicción. |
 | `bolsa_dolares` *(heredado)* | D2 patio de carga | Bolsa de lona con el sello de la fiscalía, hallada **vacía** junto a la camioneta. Tizne de lona encerada y una moneda de plata atorada en la costura. `detailedView`. | D2-T3 `followUp`. |
 | `ficha_museo` **(nueva)** | D2 patio de carga | Tarjeta mecanografiada hallada en la guantera de una camioneta sin placas. Seis renglones. Impresa al reverso de una papelería de "Enciclopedias El Saber Universal, S.A.". `detailedView`. | Clímax, etapa 4. |
@@ -423,14 +424,14 @@ NARRADOR: En el muro, arriba del zoclo, una rejilla metálica pequeña.
 DEFENSA: Dieciocho por veinticuatro. Por ahí no pasa ni un gato. [pose: donramon_idle]
 DEFENSA: Cuatro tornillos, y la pintura de los cuatro está entera. Nadie los ha aflojado desde que pintaron el muro. [pose: donramon_shock]
 FLORINDA: Esa rejilla da al patio de carga. Lleva ahí desde que el museo era fábrica de botones. [pose: florinda_idle]
-DEFENSA: La esquina inferior de la malla tiene el alambre cortado, doblado hacia arriba y vuelto a acomodar. [pose: donramon_shock]
+DEFENSA: La esquina inferior de la malla tiene el alambre cortado. [pose: donramon_shock]
 DEFENSA: Y en el lateral interior faltan dos rayitas paralelas de polvo. Hay algo atorado entre los rombos. [pose: donramon_idle]
 NARRADOR: Don Ramón extrae con una pinza un hilo de casimir crema con raya y lo guarda en un sobre de papel encerado. [sfx: whoosh]
 DEFENSA: (Sin marcas de palanca y sin tornillos tocados. No sé todavía qué significan esas rayas ni el hilo, pero vinieron del lado de adentro.) [pose: donramon_idle]
 [ENTREGAR rejilla_ducto]
 ~~~
 
-> **`detailedView` de `rejilla_ducto`** (`assets/examine_rejilla_ducto.webp`): la rejilla de frente con la cinta métrica del perito encima, los cuatro tornillos intactos, el alambre de la esquina inferior **cortado, doblado hacia arriba y vuelto a acomodar**, **dos rayitas paralelas sin polvo en el lateral interior** y el punto de la malla del que se recogió **un hilo de casimir crema con raya**. El hilo mide **tres milímetros**. El pie de lámina describe lo que se ve y registra el hilo embalado, nunca lo que significa: las rayitas y el hilo los dejaron **dos personas distintas**, y descubrir eso es el trabajo del clímax (§13.3 y §13.4).
+> **`detailedView` de `rejilla_ducto`** (`assets/examine_rejilla_ducto.webp`): la rejilla de frente con la cinta métrica del perito encima, los cuatro tornillos intactos, el alambre de la esquina inferior **cortado**, **dos rayitas paralelas sin polvo en el lateral interior** y el punto de la malla del que se recogió **un hilo de casimir crema con raya**. El hilo mide **tres milímetros**. El pie de lámina describe lo que se ve y registra el hilo embalado, nunca lo que significa: las rayitas y el hilo los dejaron **dos personas distintas**, y descubrir eso es el trabajo del clímax (§13.3 y §13.4).
 
 3. **Cédula de la pieza robada (`hotspot_cedula`)**
 
@@ -781,7 +782,7 @@ DEFENSA: Pero el Chipote chilla al apretarlo. El informe exige un objeto **pesad
 DEFENSA: Con la ampliación urgente que pedí esta mañana: el calco de la herida corresponde a un objeto **flexible**, que se deformó al golpear. Y la trayectoria viene **de arriba hacia abajo y por detrás**. [pose: donramon_point]
 JUEZ: ¿Flexible y pesado a la vez? [pose: judge_shock]
 DEFENSA: Un saco, señor juez. Un saco lleno de moneda metálica. [pose: donramon_slam; sfx: desk_slam]
-NARRADOR: Murmullo en la galería. [sfx: realization]
+NARRADOR: Murmullo en la galería. [bg: assets/bg_gallery_characters.webp; furniture: none; sfx: realization]
 TRIPASECA: ...Pos yo nomás dije lo que oí. [pose: tripaseca_sweat]
 [ACTUALIZAR-PERFIL perfil_tripaseca]
 SUPER SAM: ¡Objection! ¡Un saco de monedas! ¡¿De dónde iba a sacar el acusado un saco de monedas?! [pose: supersam_slam; sfx: desk_slam]
@@ -815,7 +816,7 @@ DEFENSA: De canto vivo, señor juez. Con aristas. Y la herida no tiene ni una. [
 DEFENSA: En ese museo **no hay** un objeto que haya podido hacer esa herida. [pose: donramon_slam; sfx: desk_slam]
 JUEZ: Entonces el arma entró de la calle. [pose: judge_shock]
 DEFENSA: Entró de la calle, señor juez, en la mano de alguien, y volvió a salir en la mano de alguien. Porque tampoco apareció adentro. [pose: donramon_point]
-NARRADOR: La sala estalla. El Juez golpea el mazo tres veces. [sfx: gavel]
+NARRADOR: La sala estalla. El Juez golpea el mazo tres veces. [bg: assets/bg_gallery_characters.webp; furniture: none; sfx: gavel]
 JUEZ: ¡ORDEN! [sfx: gavel; pose: judge_gavel]
 JUEZ: Alguien caminó hasta ese museo cargando un saco de moneda metálica la noche del veintiocho de agosto. [pose: judge_neutral]
 DEFENSA: (Alguien con un saco de moneda... a cinco minutos del museo... y con tanta prisa por cerrar el caso.) [pose: donramon_idle]
@@ -824,7 +825,7 @@ DEFENSA: Señor juez, la defensa tiene una sola pregunta y va dirigida a la fisc
 SUPER SAM: ¡¿A MÍ?! [pose: supersam_sweat]
 DEFENSA: A usted. Señor fiscal: usted trae al hombro, todos los días, desde que yo lo conozco, una bolsa de lona con el sello de la fiscalía llena de moneda de plata. [pose: donramon_idle]
 DEFENSA: Hoy no la trae. **¿Dónde estaba esa bolsa la noche del veintiocho?** [pose: donramon_slam; sfx: desk_slam; cutin: objection_protesto]
-NARRADOR: Silencio absoluto. [bgm: suspense]
+NARRADOR: Silencio absoluto. [bg: assets/bg_gallery_characters.webp; furniture: none; bgm: suspense]
 SUPER SAM: ...Your Honor. [pose: supersam_sweat]
 JUEZ: Fiscalía, conteste. [pose: judge_neutral]
 SUPER SAM: La fiscalía **no va a contestar esa pregunta**. [pose: supersam_sweat]
@@ -932,7 +933,7 @@ DEFENSA: Ya sé, joven. Y eso es justo lo que no me gusta: que cualquiera podía
 ~~~dialogue
 NARRADOR: Del lado del patio, la rejilla del ducto de la sala 2, al ras del suelo.
 DEFENSA: La misma rejilla de ayer, vista por fuera. Dieciocho por veinticuatro. [pose: donramon_idle]
-DEFENSA: (Tornillos con la pintura entera. Pero el alambre de la esquina de abajo está cortado, doblado hacia arriba y vuelto a acomodar.) [pose: donramon_shock]
+DEFENSA: (Tornillos con la pintura entera. Pero el alambre de la esquina de abajo está cortado.) [pose: donramon_shock]
 CHAPULIN: Licenciado, por ahí no pasa ni un gato. [pose: chapulin_idle]
 DEFENSA: No, joven. Por ahí no pasa ni un gato. [pose: donramon_idle]
 DEFENSA: (Ni un gato. Pero un ratón sí.) [pose: donramon_shock]
@@ -1032,7 +1033,7 @@ FLORINDA: Si no cruzan la luz, no retrata ni un elefante. Por eso digo que no si
 DEFENSA: (Pegado a este muro se sale sin gastar el último cuadro.) [pose: donramon_shock]
 ~~~
 
-> **Geometría de hotspots** (porcentajes del 960 × 540, ES = EN, [[tests/case/Case1Hotspots.test.ts]]): `hotspot_camara` `(76, 1, 13, 16)`; `hotspot_foto` `(70, 75, 22, 21)`; `hotspot_bitacora_rollo` `(88, 16, 11, 48)`; `hotspot_acceso_carga` `(36, 18, 7, 30)`; `hotspot_muro_ciego` `(66, 65, 16, 10)`; `hotspot_espejo` `(49, 23, 21, 34)`.
+> **Geometría de hotspots** (porcentajes del 960 × 540, ES = EN, [[tests/case/ScriptIntegrity.test.ts]]): `hotspot_camara` `(76, 1, 13, 16)`; `hotspot_foto` `(70, 75, 22, 21)`; `hotspot_bitacora_rollo` `(88, 16, 11, 48)`; `hotspot_acceso_carga` `(36, 18, 7, 30)`; `hotspot_muro_ciego` `(66, 65, 16, 10)`; `hotspot_espejo` `(49, 23, 21, 34)`.
 
 6. **Espejo veneciano (`hotspot_espejo`)** — *(requiere `hotspot_camara`, `hotspot_foto` y `hotspot_bitacora_rollo`; desbloquea `clinica_d2`; entrega `plano_pasillo`)*. La condición no es burocrática: la línea de remate da por sabido que la cámara apunta al espejo, y eso lo entrega `hotspot_camara`.
 
@@ -1231,7 +1232,7 @@ DEFENSA: ¡UN MOMENTO! Cuénteme esas monedas. [sfx: whoosh; pose: donramon_poin
 ALMA NEGRA: Cayeron, rodaron y brincaron, grumete. Y después... [pose: almanegra_vendado]
 DEFENSA: ¿Después? [pose: donramon_idle]
 ALMA NEGRA: Después alguien las juntó. Una por una. Yo estaba tirado con la oreja en el piso y lo oí juntarlas, moneda por moneda, un buen rato. [pose: almanegra_shock]
-NARRADOR: Murmullo en la galería. [sfx: realization]
+NARRADOR: Murmullo en la galería. [bg: assets/bg_gallery_characters.webp; furniture: none; sfx: realization]
 JUEZ: ¡Cáspita! ¿El agresor se quedó a recoger monedas del suelo con un hombre desmayado a sus pies? [pose: judge_shock]
 ALMA NEGRA: Con un hombre desmayado y con la puerta abierta, señor juez. Ése no tenía prisa... o no podía tenerla. [pose: almanegra_vendado]
 DEFENSA: (O no podía tenerla.) [pose: donramon_idle]
@@ -1387,7 +1388,7 @@ TRIPASECA: ...¿Y eso qué? [pose: tripaseca_sweat]
 DEFENSA: Que un vidrio no se va del lado por donde le pegaron, señor Tripaseca. Usted mismo lo dijo hace un minuto: "eso lo sabe cualquiera". [pose: donramon_point]
 DEFENSA: Esta vitrina **se rompió desde adentro**. [pose: donramon_slam; sfx: desk_slam]
 [ACTUALIZAR-PERFIL perfil_tripaseca]
-NARRADOR: La sala estalla. [sfx: realization; bgm: objection]
+NARRADOR: La sala estalla. [bg: assets/bg_gallery_characters.webp; furniture: none; sfx: realization; bgm: objection]
 JUEZ: ¡ORDEN! ¡ORDEN EN LA SALA! [sfx: gavel; pose: judge_gavel]
 JUEZ: ¡¿Desde adentro?! ¡Es una vitrina de ochenta centímetros! [pose: judge_shock]
 SUPER SAM: ¡IMPOSSIBLE! ¡Ahí no cabe un hombre! ¡No cabe ni un niño! [pose: supersam_slam; sfx: desk_slam]
@@ -1405,7 +1406,7 @@ DEFENSA: Pastillas de Chiquitolina. Reducen a quien las toma al tamaño de un ra
 JUEZ: ¡¿Quince minutos?! [pose: judge_shock]
 DEFENSA: Quince. Ni uno más. Y cuando se acaban, uno vuelve a su tamaño **donde esté**. [pose: donramon_point]
 DEFENSA: Señor juez: el ladrón no rompió la vitrina. El ladrón **creció** dentro de la vitrina. [pose: donramon_slam; sfx: desk_slam; cutin: objection_toma_eso]
-NARRADOR: Silencio. Después, el escándalo. [sfx: realization]
+NARRADOR: Silencio. Después, el escándalo. [bg: assets/bg_gallery_characters.webp; furniture: none; sfx: realization]
 SUPER SAM: ¡¡UN MOMENTO!! ¡¡UN MOMENTO!! [sfx: desk_slam; cutin: objection_un_momento; pose: supersam_slam]
 SUPER SAM: ¡Your Honor! ¡¿Y QUIÉN, en toda esta ciudad, carga pastillas que encogen a la gente?! [pose: supersam_point]
 SUPER SAM: ¡EL ACUSADO! ¡Vienen listadas en su propio informe de detención! ¡La defensa acaba de acusar a su propio cliente! [pose: supersam_slam; sfx: desk_slam]
@@ -1565,7 +1566,7 @@ DEFENSA: Usted colocó a mi cliente detrás de ese marco. Pero detrás del Chapu
 JUEZ: Entonces, ¿dónde estaba? [pose: judge_shock]
 DEFENSA: Aquí, delante del espejo. Corría hacia él, alejándose del acceso de carga. [pose: donramon_point]
 DEFENSA: La foto no demuestra una salida. Demuestra que a las nueve cruzó la franja iluminada del pasillo interior. [pose: donramon_slam; sfx: desk_slam; cutin: objection_toma_eso]
-NARRADOR: Escándalo en la galería [sfx: gavel]
+NARRADOR: Escándalo en la galería [bg: assets/bg_gallery_characters.webp; furniture: none; sfx: gavel]
 JUEZ: ¡ORDEN! ¡ORDEN! [sfx: gavel; pose: judge_gavel]
 DEFENSA: Y en la sala dos hay algo que dice lo mismo sin espejos de por medio, señor juez. [pose: donramon_point]
 DEFENSA: La jaula del perico histórico quedó volcada hacia dentro desde el acceso del pasillo a la sala dos. [pose: donramon_idle]
@@ -1604,7 +1605,7 @@ DEFENSA: Bolsa de lona de ochenta y dos por cincuenta. Vacía. Tiznada por fuera
 DEFENSA: Y con **una moneda de plata atorada en la costura reventada**. [pose: donramon_slam; sfx: desk_slam; ACTUALIZAR informe_medico]
 DEFENSA: El laboratorio comparó esa moneda con las partículas metálicas de la herida del velador. [pose: donramon_point]
 DEFENSA: Plata al noventa por ciento. **La misma aleación.** [pose: donramon_slam; sfx: desk_slam; cutin: objection_toma_eso]
-NARRADOR: La galería se levanta. Alma Negra se agarra del brazo de la silla. [sfx: realization]
+NARRADOR: La galería se levanta. Alma Negra se agarra del brazo de la silla. [bg: assets/bg_gallery_characters.webp; furniture: none; sfx: realization]
 ALMA NEGRA: ¡Ésas! ¡Ésas fueron las que oí rodar, por mil demonios! [pose: almanegra_shock]
 JUEZ: ¡El arma del delito ha sido identificada! [sfx: gavel; pose: judge_gavel]
 JUEZ: Que quede asentado: al velador Alma Negra lo golpearon con esta bolsa de lona llena de moneda de plata, y esta bolsa salió del museo por la puerta de carga. [pose: judge_neutral]
@@ -1681,7 +1682,7 @@ JUEZ: La corte le repite la pregunta. Y le advierte que no se la va a repetir mu
 DEFENSA: ¡PROTESTO! [sfx: desk_slam; cutin: objection_protesto; pose: donramon_slam; bgm: pursuit]
 DEFENSA: Señor juez, el hombre que estuvo parado sobre ese pedestal está sentado en el estrado de los testigos. [pose: donramon_point]
 DEFENSA: **El Tripaseca.** [pose: donramon_slam; sfx: desk_slam]
-NARRADOR: La galería se levanta entera. [sfx: realization]
+NARRADOR: La galería se levanta entera. [bg: assets/bg_gallery_characters.webp; furniture: none; sfx: realization]
 TRIPASECA: ¡¿YO?! ¡Yo nomás pasaba! [pose: tripaseca_sweat]
 SUPER SAM: ¡OBJECTION! ¡Your Honor, el testigo de la fiscalía no es un sospechoso! ¡La defensa está desesperada! [pose: supersam_slam; sfx: desk_slam]
 JUEZ: La corte comparte la objeción **en principio**. Defensa, fundamente o retire. [pose: judge_neutral]
@@ -1725,7 +1726,7 @@ JUEZ: ¡ALGUACIL! ¡Revise el gabán del testigo! [sfx: gavel; pose: judge_gavel
 TRIPASECA: ¡No me toque! ¡No me toque, que yo soy comerciante honrado! [pose: tripaseca_panic]
 NARRADOR: El alguacil mete la mano en el forro del gabán del testigo. [sfx: whoosh]
 NARRADOR: Y saca una cigarra de oro macizo del tamaño de las dos manos. [sfx: chicharra; cutin: objection_toma_eso]
-NARRADOR: La sala entera se queda inmóvil, y no por la chicharra. [bgm: pursuit]
+NARRADOR: La sala entera se queda inmóvil, y no por la chicharra. [bg: assets/bg_gallery_characters.webp; furniture: none; bgm: pursuit]
 FLORINDA: ¡MI CHICHARRA! [pose: florinda_shock]
 CHAPULIN: ¡Se lo dije, doña Florinda! ¡Camarón que se duerme...! [pose: chapulin_point]
 DEFENSA: ...a hierro muere. [pose: donramon_idle]
@@ -1774,7 +1775,7 @@ Fallo: *"Licenciado, los tornillos tienen la pintura entera. Busque por dónde p
 
 ~~~dialogue
 DEFENSA: ¡AQUÍ, señor juez! ¡En la esquina inferior de la malla! [sfx: desk_slam; cutin: objection_toma_eso; pose: donramon_slam; bgm: objection]
-DEFENSA: El alambre no está roto por viejo. Está cortado, doblado hacia arriba y vuelto a acomodar. [pose: donramon_point]
+DEFENSA: El alambre no está roto por viejo. Está cortado. [pose: donramon_point]
 DEFENSA: Por ese hueco no pasa una persona normal, ni un gato, ni un perro. Pero alguien que mide diez centímetros entra y sale como por su casa. [pose: donramon_idle]
 CHAPULIN: ¡Chanfle! ¡Es una gatera para ratones! [pose: chapulin_point]
 JUEZ: La corte concede que por ahí cabría un hombre encogido... pero un momento, licenciado. [pose: judge_thinking]
@@ -1793,7 +1794,7 @@ DEFENSA: ¡Miren el lateral interior del marco! El que da hacia la sala. [pose: 
 JUEZ: ¡Cáspita! Todo el marco tiene una capa de polvo de años... ¡excepto dos rayitas perfectamente limpias y paralelas! [pose: judge_shock]
 DEFENSA: Separadas exactamente por un centímetro y medio, señor juez. El ancho exacto de una cinta métrica estándar. [pose: donramon_slam; sfx: desk_slam]
 DEFENSA: Alguien apoyó la cinta en ese lateral y midió el hueco de dieciocho por veinticuatro centímetros. Lo hizo de día, desde la sala y sin ninguna prisa. [pose: donramon_idle]
-NARRADOR: Murmullo de asombro en la galería. [sfx: realization]
+NARRADOR: Murmullo de asombro en la galería. [bg: assets/bg_gallery_characters.webp; furniture: none; sfx: realization]
 TRIPASECA: ¡Momento, momento! ¡Pamplinas! [pose: tripaseca_sweat]
 TRIPASECA: ¿Unas rayitas de cinta métrica? ¡Eso lo pudo haber hecho cualquiera! Un albañil, el conserje, el señor que vino a cambiar los zoclos... ¡o un curioso que pasaba por ahí! [pose: tripaseca_smug]
 SUPER SAM: ¡Excellent objection! ¡Tener marcas en una pared no vincula a mi testigo con este delito! ¡Falta la conexión personal! [pose: supersam_point]
@@ -1814,9 +1815,9 @@ DEFENSA: Un hilo de casimir crema con raya, señor juez. De tres milímetros de 
 JUEZ: ¿Tres milímetros? Licenciado, eso no es un hilo. Eso es una pelusa. [pose: judge_thinking]
 DEFENSA: Para un hombre del tamaño de usted, señor juez, es una pelusa. [pose: donramon_idle]
 DEFENSA: Para un hombre del tamaño de un ratón, es media solapa. [pose: donramon_slam; sfx: desk_slam]
-NARRADOR: Murmullo en la galería. [sfx: realization]
+NARRADOR: Murmullo en la galería. [bg: assets/bg_gallery_characters.webp; furniture: none; sfx: realization]
 DEFENSA: Señor juez, le pido a la corte que compare ese hilo con el traje que el testigo trae puesto en este momento. [pose: donramon_slam; sfx: desk_slam; cutin: objection_toma_eso]
-NARRADOR: Todas las cabezas de la sala giran hacia el estrado. El testigo se aprieta las solapas del saco de raya crema. [sfx: realization]
+NARRADOR: Todas las cabezas de la sala giran hacia el estrado. El testigo se aprieta las solapas del saco de raya crema. [bg: assets/bg_gallery_characters.webp; furniture: none; sfx: realization]
 TRIPASECA: ...Hay mil trajes iguales. [pose: tripaseca_panic]
 JUEZ: Habrá mil, pero sólo uno está sentado en el estrado de esta corte. Alguacil, tome la muestra. [sfx: gavel; pose: judge_gavel]
 NARRADOR: El perito tarda cuatro minutos. Nadie se mueve. [bgm: suspense]
@@ -1900,7 +1901,7 @@ DEFENSA: La chapa vencida desde marzo. La rejilla de dieciocho por veinticuatro.
 JUEZ: ¡Esos tres, más esta ronda, son exactamente los cuatro datos que la defensa fue sacando en dos días! [pose: judge_shock]
 DEFENSA: Los cuatro, señor juez. Ni uno de más. [pose: donramon_point]
 DEFENSA: Este juicio se pasó dos días descubriendo, uno por uno, los cuatro datos que alguien ya traía escritos en una tarjeta de veinte centavos. [pose: donramon_idle]
-NARRADOR: El escándalo de la galería tarda medio minuto en bajar. [sfx: realization; bgm: pursuit]
+NARRADOR: El escándalo de la galería tarda medio minuto en bajar. [bg: assets/bg_gallery_characters.webp; furniture: none; sfx: realization; bgm: pursuit]
 JUEZ: Licenciado... el renglón cuatro nombra una farmacia. [pose: judge_thinking]
 DEFENSA: Ése no lo demostró esta defensa, señor juez. Lo dice la tarjeta. Si alguien vendió esas pastillas, que lo vea el ministerio público. [pose: donramon_idle]
 JUEZ: Señor Tripaseca. Esta corte le pregunta por última vez. ¿Quién escribió esa tarjeta? [pose: judge_neutral]
@@ -1913,7 +1914,7 @@ TRIPASECA: ¡Yo no estudié nada! ¡¿Quién estudia?! ¡ESO SE COMPRA! [pose: t
 TRIPASECA: ¡Uno paga y le dan el papelito! ¡Las medidas, los horarios, todo! ¡Así se trabaja ahora! [pose: tripaseca_breakdown]
 JUEZ: ¿A QUIÉN le pagó usted? [sfx: gavel; pose: judge_gavel]
 TRIPASECA: ¡Al Tomo Trece! [pose: tripaseca_breakdown]
-NARRADOR: Silencio absoluto en la sala. [bgm: suspense]
+NARRADOR: Silencio absoluto en la sala. [bg: assets/bg_gallery_characters.webp; furniture: none; bgm: suspense]
 JUEZ: ...¿Al qué? [pose: judge_thinking]
 TRIPASECA: Al Tomo Trece. [pose: tripaseca_breakdown]
 JUEZ: ¿Y eso qué es? ¿Una persona? ¿Un lugar? [pose: judge_shock]
@@ -1945,7 +1946,7 @@ SUPER SAM: ...La fiscalía toma nota. [pose: supersam_sweat]
 JUEZ: En cuanto al acusado. [pose: judge_neutral]
 JUEZ: Entró por una puerta abierta, con las manos vacías, a auxiliar a un hombre al que no conocía, y lo detuvieron por llegar tarde. [pose: judge_thinking]
 JUEZ: Esta corte dicta su veredicto. [sfx: gavel; pose: judge_gavel]
-NARRADOR: ¡INOCENTE! [cutin: objection_inocente; sfx: gavel; bgm: victory]
+JUEZ: ¡INOCENTE! [cutin: objection_inocente; sfx: gavel; bgm: victory; pose: judge_gavel]
 NARRADOR: [confeti visual sobre la sala de audiencias]
 CHAPULIN: ¡SÍGANME LOS BUENOS! [pose: chapulin_point]
 DEFENSA: ¡Con permisito, dijo Monchito! [pose: donramon_point]
@@ -2066,7 +2067,7 @@ Ninguna pista se introduce sin pagarse. Verificación pieza por pieza.
 | Dos rayitas de cinta métrica en el lateral interior | D1 museo (`hotspot_rejilla`; visibles también en `detailedView`) | Clímax etapa 3, segundo `pointTarget` (`rejilla_marcas_cinta`) |
 | Cristal en abanico fuera de la huella de la vitrina | D1 museo (`hotspot_vitrina`, lámina) | D2-T2 contradicción + Señalamiento 1 |
 | Marco de la vitrina doblado hacia afuera | D1 museo (lámina de `vitrina_rota`) | Citado en el éxito de D2-T2; deliberadamente **no es zona clicable** (§23.D, I4) |
-| Esquina inferior: alambre cortado, doblado y reacomodado | D1 museo (`hotspot_rejilla`); D2 patio (`hotspot_rejilla_exterior`) | D2-T2 `followUp`; clímax etapa 3, primer `pointTarget` (`rejilla_esquina_abierta`) |
+| Esquina inferior: alambre cortado | D1 museo (`hotspot_rejilla`); D2 patio (`hotspot_rejilla_exterior`) | D2-T2 `followUp`; clímax etapa 3, primer `pointTarget` (`rejilla_esquina_abierta`) |
 | Cuatro tornillos con la pintura entera | D1 museo (`hotspot_rejilla`) | Clímax etapa 3, como prueba **negativa**: nadie desmontó la rejilla |
 | Posición del cuerpo (cabeza a la puerta, pies a la vitrina) | D1-T1 declaración 3 | D2-T1: la víctima daba la espalda a la vitrina cuando la golpearon |
 | Renta de 14 meses de Don Ramón | D1 detención; D1 apertura | Epílogo |
@@ -2131,9 +2132,9 @@ El Chapulín no se equivoca al azar: **toma dos refranes emparentados y empalma 
 
 Repetir este bloque **completo** en cada prompt de generación. No se hereda por contexto: si no está escrito en el prompt, el modelo lo pierde.
 
-> **Estilo:** ilustración 2D estilo *Capcom Ace Attorney* (linaje GBA / Nintendo DS) en alta definición. Cel-shading de colores planos con terminador de sombra duro (dos tonos por superficie, sin degradados suaves). **Contorno oscuro nítido y continuo** en carbón `#1A1A1A`, más grueso en la silueta exterior que en los detalles internos. Anatomía facial expresiva y exagerada, al borde de la caricatura. Codificación cromática por colores primarios saturados.
+> **Estilo:** ilustración 2D estilo *Capcom Ace Attorney* (linaje GBA / Nintendo DS) en alta definición. . **Contorno oscuro nítido y continuo** en carbón `#1A1A1A`, más grueso en la silueta exterior que en los detalles internos. Anatomía facial expresiva y exagerada, al borde de la caricatura. Codificación cromática por colores primarios saturados.
 > **Tema:** televisión mexicana de los años setenta, universo Chespirito / El Chapulín Colorado. Melodrama de tribunal tratado en serio por el sistema, absurdo en los personajes.
-> **Prohibido:** fotorrealismo, render 3D, acuarela, degradados suaves, texturas fotográficas, anime moderno, estética de cómic americano de superhéroes, marcas de agua, texto en inglés dentro de la imagen. La única excepción es el texto localizado exigido en `examine_ficha_museo_en.webp` (§21).
+> **Prohibido:** fotorrealismo, render 3D, acuarela, texturas fotográficas, anime moderno, estética de cómic americano de superhéroes, marcas de agua, texto en inglés dentro de la imagen. La única excepción es el texto localizado exigido en `examine_ficha_museo_en.webp` (§21).
 > **Prohibido el magenta / rosa (`#FF00FF` y vecinos) en los sujetos pintados y en todos los assets finales**, porque es la clave de croma del pipeline ([[process_assets.py]]). La única excepción es el fondo `#FF00FF` puro de las hojas de sprites brutas, que el pipeline elimina antes de exportar.
 > **Paleta base de la serie:** rojo carmesí `#C0392B`, amarillo canario `#F1C40F`, azul marino `#1B263B`, verde dólar `#2A9D8F`, oro `#E9C46A`, piel cálida `#F5CBA7`, contorno `#1A1A1A`.
 
@@ -2190,7 +2191,7 @@ Todas a 960 × 540. **Las zonas de señalamiento se miden sobre el WebP ya gener
 | Archivo | Prueba | Contenido obligatorio |
 |---|---|---|
 | `examine_vitrina_rota.webp` | `vitrina_rota` | Fotografía pericial en color desaturado, con regla testigo de 30 cm en el piso. Se ven: el pedestal de madera vacío, el marco metálico **doblado hacia afuera**, la alfombra de vidrio **fuera de la huella de la vitrina** extendiéndose en abanico hacia la izquierda (puerta), la rejilla del muro del fondo y, en primer plano, la jaula volcada. **Tablero del Señalamiento 1** (zonas `cristal_afuera`, `pedestal`, `rejilla`, `jaula_perico`, `regla_testigo` y `vitrina_resto`). El marco doblado hacia afuera **se dibuja** en la lámina —es parte del argumento del éxito— pero **no es una zona clicable**: penalizar al jugador por señalar algo que la defensa usa como prueba sería mentirle. Sin flechas, sin círculos, sin anotaciones: la lámina **no** debe señalar la respuesta. |
-| `examine_rejilla_ducto.webp` | `rejilla_ducto` | Macro de la rejilla desde el lado de la sala. Malla de rombos, cuatro tornillos con la pintura verde intacta, el **alambre de la esquina inferior cortado, doblado hacia arriba y vuelto a acomodar**. En el **lateral interior del marco**, el polvo limpio en **dos rayitas paralelas separadas 1.5 cm**. Atorado en la malla, del lado interior, **un hilo de casimir crema con raya**. Cinta métrica del perito apoyada en el borde. Es la lámina de los tres pasos encadenados del clímax, etapa 3: `rejilla_esquina_abierta`, `rejilla_marcas_cinta` y `rejilla_hilo_traje`. |
+| `examine_rejilla_ducto.webp` | `rejilla_ducto` | Macro de la rejilla desde el lado de la sala. Malla de rombos, cuatro tornillos con la pintura verde intacta y el **alambre de la esquina inferior cortado**. En el **lateral interior del marco**, el polvo limpio en **dos rayitas paralelas separadas 1.5 cm**. Atorado en la malla, del lado interior, **un hilo de casimir crema con raya**. Cinta métrica del perito apoyada en el borde. Es la lámina de los tres pasos encadenados del clímax, etapa 3: `rejilla_esquina_abierta`, `rejilla_marcas_cinta` y `rejilla_hilo_traje`. |
 | `examine_foto_crimen.webp` | `foto_crimen` | Ampliación 8× en blanco y negro de grano grueso, con hora impresa "21:00" en la esquina inferior derecha y bordes de moldura tallada visibles (es el marco del espejo). Figura corriendo **de tres cuartos hacia la cámara** (nunca de espaldas: el pecho y las manos son el argumento), con capucha y capa: **emblema de corazón en el pecho con la C realmente invertida**, **las dos manos abiertas y vacías a la altura de la cintura**, **el Chipote Chillón colgado del cinturón**, **losetas ajedrezadas en el tercio inferior** (zona `piso_pasillo`), y al fondo el **interior reflejado** (cuadro colgado, no puerta ni camioneta). **Tablero del Señalamiento 2** (zonas `emblema_pecho`, `manos`, `marco_espejo`, `piso_pasillo`, `pasillo_reflejado`). El plano del pasillo **no** va en esta lámina. |
 | `examine_plano_pasillo.webp` | `plano_pasillo` | Croquis en planta del pasillo de servicio: patio y puerta a un lado, cámara junto al acceso, espejo al fondo, salas ramificadas antes del cristal. Sin flechas de marcha ni figura del acusado. Consulta en el Acta y tablero del 3.er señalamiento encadenado de D2-T3 (zona `pared_fondo_pintura` `[14, 50, 21, 81]`). |
 | `examine_bolsa_dolares.webp` | `bolsa_dolares` | Bolsa de lona cruda abierta y volteada sobre una mesa de peritajes, con **sello estampado en tinta verde de la Fiscalía** parcialmente borroso, tizne negro graso en el exterior, la **costura del fondo reventada** y **una moneda de plata atorada de canto** en esa costura. Regla testigo al lado. |
@@ -2204,7 +2205,7 @@ Todas a 960 × 540. **Las zonas de señalamiento se miden sobre el WebP ya gener
 | Archivo | Contenido |
 |---|---|
 | `assets/vitrina_rota.webp` | Vitrina de museo reventada sobre pedestal, esquirlas volando hacia el espectador. |
-| `assets/rejilla_ducto.webp` | Rejilla metálica rectangular de malla de rombos, con el alambre de la esquina inferior cortado y doblado. |
+| `assets/rejilla_ducto.webp` | Rejilla metálica rectangular de malla de rombos, con el alambre de la esquina inferior cortado. |
 | `assets/ficha_museo.webp` | Tarjeta de cartulina con renglones mecanografiados sugeridos (ilegibles a tamaño de icono) y una esquina doblada. |
 | `assets/bitacora_ronda.webp` | Libreta de bolsillo de tapas negras manchadas de café, con un clavo y un cordel. |
 | `assets/parte_detencion_c1.webp` | **Obligatorio nombre distinto:** el `EvidenceId` `parte_detencion` ya existe en el Caso 0 y colisionaría en `assets/parte_detencion.webp` ([[docs/lessons-learned/shared-evidence-id-filenames.md]]). Carpeta de parte policial con clip y una fotografía de un chipote asomando. |
@@ -2359,7 +2360,7 @@ Sólo lo que los argumentos necesitan. Todo lo que no esté aquí es libre para 
 | 1 | Cristal en abanico fuera de la huella de la vitrina | A1 | 20:55 | completo | D1 | `vitrina_rota`, lámina | D2-T2 contradicción + **Señ. 1** | La vitrina se rompió desde adentro |
 | 2 | Marco de la vitrina doblado hacia afuera | A1 | 20:55 | completo | D2 | Dibujado en la lámina, **no es zona clicable** | Citado en el éxito de D2-T2 | Corrobora 1 |
 | 3 | Pedestal de madera a la altura de la cintura, sin astillar | A5 | — | — | — | `vitrina_rota` | D1-T2 presión 2; clímax etapa 1 | Explica un golpe desde arriba |
-| 4 | Esquina inferior: alambre cortado, doblado hacia arriba y reacomodado | A1 | 20:40 | **ratón** | Del patio hacia la sala | `rejilla_ducto` | Clímax etapa 3 | Hubo un paso sin desatornillar nada |
+| 4 | Esquina inferior: alambre cortado | A1 | 20:40 | **ratón** | Del patio hacia la sala | `rejilla_ducto` | Clímax etapa 3 | Hubo un paso sin desatornillar nada |
 | 5 | Cuatro tornillos con la pintura entera | A5 | — | — | — | `rejilla_ducto` | Clímax etapa 3 | Nadie desmontó la rejilla (negativa) |
 | 6 | Dos rayitas paralelas de 1.5 cm sin polvo en el lateral **interior** | **A2** | Días antes | completo | D7 | `rejilla_ducto` | Clímax etapa 3, **como contraste** | Alguien midió el hueco de día desde la sala: **no fue A1** |
 | 7 | Hilo de casimir crema con raya, **3 mm**, en la malla por dentro | A1 | 20:40 | **ratón** | D7 | `rejilla_ducto` | Clímax etapa 3 | A1 pasó por ahí **y pasó reducido** |

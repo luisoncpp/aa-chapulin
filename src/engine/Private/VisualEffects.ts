@@ -7,11 +7,12 @@
 import type { CutinName, DialogueLine, FurnitureType, PoseName } from '../../types/index.js';
 import type { DomElements } from './DomElements.js';
 import { applyStageFrame, resolveStageFrame } from './StageLayout.js';
-import { inferTrialBackground, resolveEffectivePose } from './TrialSpeakerStaging.js';
+import { inferTrialBackground, resolveEffectivePose as resolveTrialSpeakerPose } from './TrialSpeakerStaging.js';
 
-const FURNITURE_ASSETS: Record<'podium' | 'bench', string> = {
+const FURNITURE_ASSETS: Record<Exclude<FurnitureType, 'none'>, string> = {
   podium: 'assets/court_podium.webp',
-  bench: 'assets/court_bench.webp'
+  bench: 'assets/court_bench.webp',
+  'judge-bench': 'assets/court_judge_bench.webp'
 };
 
 export class VisualEffects {
@@ -61,7 +62,7 @@ export class VisualEffects {
   }
 
   public static resolveEffectivePose(line: DialogueLine, isTrialMode: boolean): PoseName | null {
-    return resolveEffectivePose(line, /*isTrialMode=*/ isTrialMode);
+    return resolveTrialSpeakerPose(line, /*isTrialMode=*/ isTrialMode);
   }
 
   public static updateStagingForLine(
@@ -89,6 +90,7 @@ export class VisualEffects {
     if (!isTrialMode) return 'none';
     if (bg.includes('bg_witness')) return 'podium';
     if (bg.includes('bg_defense') || bg.includes('bg_courtroom')) return 'bench';
+    if (bg.includes('bg_judge')) return 'judge-bench';
     return 'none';
   }
 

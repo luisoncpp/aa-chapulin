@@ -68,6 +68,8 @@ describe('I18nService Subsystem', () => {
     expect(UI_EN.notifEvidenceAdded('Badge')).toContain('Badge');
     expect(UI_ES.caseCompleteTitle).toBe('Caso concluido');
     expect(UI_EN.caseCompleteTitle).toBe('Case complete');
+    expect(UI_ES.case5CompleteBody).toBe('DIECISIETE MESES');
+    expect(UI_EN.case5CompleteBody).toBe('SEVENTEEN MONTHS');
   });
 
   it('verifies bilingual evidence catalogs have matching keys and contents', () => {

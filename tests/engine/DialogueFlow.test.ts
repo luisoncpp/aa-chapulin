@@ -48,6 +48,11 @@ describe('DialogueFlow', () => {
     expect(flow.getHistory()).toEqual([{ speaker: 'DEFENSA', text: 'Uno.' }]);
   });
 
+  it('sets a progress flag when its dialogue marker is shown', () => {
+    flow.renderDialogueLine({ speaker: 'JUEZ', text: 'Se le tiene por separado.', setFlag: 'case5_super_sam_recused' });
+    expect(state.flags.case5_super_sam_recused).toBe(true);
+  });
+
   it('keeps the message history when the pending queue is cleared', () => {
     flow.queueDialogue([{ speaker: 'DEFENSA', text: 'Uno.' }]);
     vi.runAllTimers();

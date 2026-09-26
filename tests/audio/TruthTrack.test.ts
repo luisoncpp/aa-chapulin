@@ -6,7 +6,7 @@ import { TRACK_CATALOG } from '../../src/audio/Private/TrackCatalog.js';
 describe('Truth reveal soundtrack', () => {
   it('keeps every channel aligned, in MIDI range, and on valid drum symbols', () => {
     const track = TRACK_CATALOG.truth;
-    expect(track.length % 20).toBe(0); // written in 5/4: 20-step bars
+    expect(track.length % 16).toBe(0); // written in 4/4: the loop seam must land on a bar line
     for (const channel of [track.bass!, track.lead!, track.chords!]) {
       expect(channel).toHaveLength(track.length);
       for (const note of channel.flat()) {

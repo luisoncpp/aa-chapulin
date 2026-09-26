@@ -1098,6 +1098,7 @@ body {
     overflow-x: clip;
     overflow-y: auto;
     text-align: center;
+    white-space: pre-line;
     scrollbar-width: thin;
 }
 
@@ -1219,6 +1220,97 @@ body {
 #history-list::-webkit-scrollbar-thumb {
     background: #556;
     border-radius: 4px;
+}
+
+.save-slot-window {
+    width: 760px;
+    height: auto;
+    max-height: calc(100% - 32px);
+}
+
+.save-slot-list {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.save-slot-row {
+    display: flex;
+    gap: 8px;
+    align-items: stretch;
+}
+
+.save-slot-main {
+    flex: 1;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    text-align: left;
+    background: #1c2836;
+    border: 2px solid #ffd700;
+    color: #f5f0e6;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    line-height: 1.5;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.save-slot-main:disabled {
+    opacity: 0.45;
+    cursor: default;
+}
+
+.save-slot-index {
+    color: #ffd700;
+    min-width: 18px;
+}
+
+.save-slot-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.save-slot-side,
+.save-slot-confirm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    min-width: 168px;
+}
+
+.save-slot-confirm p,
+.save-slot-delete,
+.save-slot-yes,
+.save-slot-no {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    line-height: 1.4;
+}
+
+.save-slot-confirm p {
+    color: #ffd700;
+    margin: 0;
+}
+
+.save-slot-delete,
+.save-slot-yes,
+.save-slot-no {
+    background: #1c2836;
+    border: 2px solid #ffd700;
+    color: #f5f0e6;
+    cursor: pointer;
+    padding: 6px;
+}
+
+.save-slot-yes {
+    background: #1e4d2b;
 }
 
 .history-entry {

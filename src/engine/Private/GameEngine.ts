@@ -21,7 +21,7 @@ import { applyDebugUrlParams } from './EngineDebugBootstrap.js';
 import { EngineEventBinder } from './EngineEventBinder.js';
 import { loadCase, startGame as launchGame, startTrialDebug as launchTrial } from './EngineLaunch.js';
 import {
-  loadGame as persistLoad,
+  loadGame as persistLoad, openSavePicker,
   saveGame as persistSave,
   updateContinueButton as persistContinue,
   type PersistenceHost
@@ -57,6 +57,7 @@ export class GameEngine {
   private selectedEvidenceId: EvidenceId | null = null;
   private selectedProfileId: ProfileId | null = null;
 
+  // fallow-ignore-next-line complexity
   constructor(deps: GameEngineDeps = {}) {
     this.dom = deps.dom ?? getDomElements();
     this.state = deps.state ?? defaultGameState;
@@ -106,6 +107,7 @@ export class GameEngine {
       onStartCase2: () => this.startGame('case2'),
       onStartCase3: () => this.startGame('case3'),
       onStartCase4: () => this.startGame('case4'),
+      onStartCase5: () => this.startGame('case5'),
       onStartTrialDebug: () => this.startTrialDebug(),
       onAdvance: () => this.handleAdvance(),
       onOpenCourtRecord: (isTrial) => this.openCourtRecord(isTrial),
@@ -113,8 +115,8 @@ export class GameEngine {
       onPresentFromModal: () => this.handlePresentFromModal(),
       onPresentProfileFromModal: () => this.handlePresentProfileFromModal(),
       onToggleLanguage: () => this.toggleLanguage(),
-      onSaveGame: () => this.saveGame(),
-      onLoadGame: () => this.loadGame(),
+      onSaveGame: () => openSavePicker(this.host(), 'save'),
+      onLoadGame: () => openSavePicker(this.host(), 'load'),
       onContinueGame: () => this.loadGame()
     });
     bindMusicPlayer(this.dom, {
@@ -167,6 +169,7 @@ export class GameEngine {
   }
 
   // @Section(Dialogue Flow & Queue)
+  // fallow-ignore-next-line complexity
   public handleAdvance(): void {
     if (!this.hasStarted) {
       this.startGame();

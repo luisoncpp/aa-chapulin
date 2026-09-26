@@ -132,7 +132,8 @@ describe('TrialController', () => {
     controller.handlePresentEvidence('insignia_abogado');
 
     expect(state.health).toBe(4);
-    expect(queuedDialogues.some((d) => d.some((l) => l.text.includes('Time is money')))).toBe(true);
+    expect(queuedDialogues.some((dialogue) => dialogue.some((line) => line.speaker === 'SUPER SAM'))).toBe(true);
+    expect(queuedDialogues.some((dialogue) => dialogue.some((line) => line.speaker === 'SECRETARIO'))).toBe(false);
   });
 
   it('progresses from testimony 1 to testimony 2 through contradiction', () => {
@@ -193,6 +194,39 @@ describe('TrialController', () => {
     controller.handlePresentEvidence('insignia_abogado');
 
     expect(state.health).toBe(4);
+  });
+
+  it('deflects a plausible climax present without penalty or stage advance', () => {
+    const script = JSON.parse(JSON.stringify(CASE_SCRIPT));
+    script.trial.climax = {
+      dialogue: [{ speaker: 'JUEZ', text: 'Presente la prueba.' }],
+      presentTarget: ['chipote_chillon'],
+      stages: [{
+        presentTarget: ['tomo_caido'],
+        deflects: [{
+          evidence: ['esquina_tarjeta'],
+          dialogue: [{ speaker: 'JUEZ', text: 'Eso apunta a Berrondo, pero no demuestra el regreso.' }]
+        }],
+        successDialogue: [{ speaker: 'JUEZ', text: 'Correcto.' }]
+      }],
+      verdict: [{ speaker: 'JUEZ', text: '¡INOCENTE!' }]
+    };
+    const climaxController = new TrialController({
+      dom, state, script,
+      soundEngine: soundEngineInstance,
+      midiComposer: midiComposerInstance,
+      onQueueDialogue: (dlg, cb) => { queuedDialogues.push(dlg); if (cb) cb(); },
+      onRenderLine: (line) => renderedLines.push(line),
+      onOpenCourtRecord: (isTrialPresent) => { courtRecordOpenedWithTrial = isTrialPresent; }
+    });
+
+    climaxController.startClimax();
+    climaxController.handlePresentEvidence('esquina_tarjeta');
+
+    expect(state.health).toBe(5);
+    expect(climaxController.climaxStageIdx).toBe(0);
+    expect(courtRecordOpenedWithTrial).toBe(true);
+    expect(queuedDialogues.some((d) => d.some((l) => l.text.includes('no demuestra')))).toBe(true);
   });
 
   it('triggers game over when a wrong climax present exhausts health', () => {

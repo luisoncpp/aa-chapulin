@@ -6,7 +6,7 @@ import { CASE0_WITNESS_CALL_T1, CASE0_WITNESS_RECALL_T2 } from './witness_calls.
 
 export const CASE0_TRIAL_INTRO: DialogueLine[] = [
   ...CASE0_LOBBY_INTRO,
-  { bg: 'assets/bg_judge.webp', furniture: 'none', speaker: 'JUEZ', pose: 'judge_gavel', text: '¡Silencio en la sala! Se abre la audiencia por el asalto al cobrador Nazario Cuenca.', sfx: 'gavel', bgm: 'trial' },
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_gavel', text: '¡Silencio en la sala! Se abre la audiencia por el asalto al cobrador Nazario Cuenca.', sfx: 'gavel', bgm: 'trial' },
   { speaker: 'SUPER SAM', pose: 'supersam_idle', text: 'Your Honor, este caso lo resolví en once minutos. ELEVEN! Un muchacho que debía dos meses de renta, un cobrador en el suelo y un cartapacio de cobranza que voló. Time is money.' },
   { speaker: 'JUEZ', pose: 'judge_neutral', text: '¿La defensa está lista? ...¿La defensa está presente?' },
   { speaker: 'DEFENSA', pose: 'donramon_idle', text: '¡Aquí, aquí! Perdón, señor juez, es que la puerta de la sala pesa más que mi cliente.' },
@@ -53,10 +53,13 @@ export const CASE0_TESTIMONY_1: Testimony = {
       evidence: ['parte_detencion'],
       successDialogue: [
         { speaker: 'DEFENSA', pose: 'donramon_slam', cutin: 'objection_protesto', sfx: 'desk_slam', text: '¡PROTESTO! ¡Ese cartapacio no aparece en ninguna parte de este expediente!', bgm: 'objection' },
-        { speaker: 'DEFENSA', pose: 'donramon_point', text: 'El informe de detención dice que a las 14:15 mi cliente llevaba una barra de hielo, cuarenta centavos y un recibo. Del cartapacio de cobranza, nada.' },
+        { speaker: 'DEFENSA', pose: 'donramon_point', text: 'El informe de detención asienta que a las 14:15 mi cliente llegó cargando una barra de hielo enorme, con las dos manos. Ninguna mano libre.' },
+        { speaker: 'DEFENSA', pose: 'donramon_point', text: 'Y el inventario del parte es corto: la barra de hielo, cuarenta centavos y un recibo. De un cartapacio en esa mano, ni rastro.' },
         { speaker: 'CASIMIRO', pose: 'casimiro_sweat', text: 'Uno dice “con el cartapacio” por decir. Es una figura retórica. Sinécdoque, si me permite. Del latín charta, por cierto.' },
         { speaker: 'CHAPULÍN', pose: 'chapulin_point', text: '¡Chanfle! ¿Y el grito también fue una sinécdoque?' },
-        { speaker: 'JUEZ', pose: 'judge_shock', text: 'La corte concede que un objeto no localizado no acredita nada por sí solo. Pero esa hora se vuelve decisiva.' }
+        { speaker: 'JUEZ', pose: 'judge_shock', text: '¡Cáspita! Testigo, la corte no le pidió literatura.' },
+        { speaker: 'SUPER SAM', pose: 'supersam_slam', sfx: 'desk_slam', text: '¡Irrelevante! ¡El muchacho tuvo cuarenta minutos para esconder ese cartapacio donde quisiera!' },
+        { speaker: 'JUEZ', pose: 'judge_neutral', text: 'La corte concede que un objeto no localizado no acredita nada por sí solo. Pero el parte asienta que el detenido no tenía ninguna mano libre. Esa hora se vuelve decisiva: ¿dónde estaba el acusado a la una en punto?' }
       ],
       followUp: {
         evidence: ['recibo_hielo'], prompt: '¿Dónde estaba el acusado a la una de la tarde?', successDialogue: [

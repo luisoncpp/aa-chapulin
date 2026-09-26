@@ -12,7 +12,7 @@ const T4_SUCCESS: DialogueLine[] = [
   { speaker: 'SUPER SAM', text: 'A paper written by the defendant himself! Objection!', pose: 'supersam_slam', sfx: 'desk_slam' },
   { speaker: 'DEFENSA', text: 'Then look at his paper bag — the one the sergeant lifted from the scene! Empty ampule and freshly used syringe! My client had just injected someone in the alley, Mr. Prosecutor, not cracked a safe!', pose: 'donramon_point' },
   { speaker: 'NONO', text: 'IT WAS ME!', sfx: 'realization', pose: 'nono_llorando' },
-  { speaker: 'NARRADOR', text: '(Young Ñoño stands in the gallery, face soaked.)' },
+  { speaker: 'NARRADOR', bg: 'assets/bg_gallery_characters.webp', furniture: 'none', text: '(Young Ñoño stands in the gallery, face soaked.)' },
   { speaker: 'NONO', text: 'It was me! I went down to the alley at ten forty-five because I couldn\'t breathe! The doctor was ALREADY there, waiting for me! He\'s been injecting me in secret for a year without charging so my daddy won\'t learn my heart is bad!', pose: 'nono_llorando' },
   { speaker: 'CHAPATIN', text: 'Imprudent boy! That was professional secrecy!', pose: 'chapatin_enojado' },
   { speaker: 'CHAPATIN', text: '...And lower your voice, or your blood pressure will spike.', pose: 'chapatin_conmovido' },

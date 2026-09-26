@@ -11,7 +11,7 @@ export const CASE3_T4_SUCCESS: DialogueLine[] = [
   { speaker: 'SUPER SAM', text: '¡Un papel escrito por el propio acusado! ¡Objection!', pose: 'supersam_slam', sfx: 'desk_slam' },
   { speaker: 'DEFENSA', text: '¡Entonces vea su bolsa de papel, la que el sargento levantó de la escena! ¡Ampolleta vacía y jeringa recién usada! ¡Mi cliente venía de inyectar a alguien en el callejón, señor fiscal, no de asaltar una caja fuerte!', pose: 'donramon_point' },
   { speaker: 'NONO', text: '¡ERA YO!', sfx: 'realization', pose: 'nono_llorando' },
-  { speaker: 'NARRADOR', text: '(El joven Ñoño se pone de pie en la galería, con la cara empapada.)' },
+  { speaker: 'NARRADOR', bg: 'assets/bg_gallery_characters.webp', furniture: 'none', text: '(El joven Ñoño se pone de pie en la galería, con la cara empapada.)' },
   { speaker: 'NONO', text: '¡Era yo! ¡Yo bajé al callejón a las diez cuarenta y cinco porque me faltaba el aire! ¡El doctor YA estaba ahí, esperándome! ¡Lleva un año inyectándome a escondidas y sin cobrarme para que mi papi no se entere de que estoy malo del corazón!', pose: 'nono_llorando' },
   { speaker: 'CHAPATIN', text: '¡Muchacho imprudente! ¡Eso era secreto profesional!', pose: 'chapatin_enojado' },
   { speaker: 'CHAPATIN', text: '...Y baje la voz, que se le va a subir la presión.', pose: 'chapatin_conmovido' },

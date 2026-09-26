@@ -11,7 +11,8 @@ import { VisualEffects } from './VisualEffects.js';
 
 const FURNITURE_URLS = {
   podium: 'assets/court_podium.webp',
-  bench: 'assets/court_bench.webp'
+  bench: 'assets/court_bench.webp',
+  'judge-bench': 'assets/court_judge_bench.webp'
 } as const;
 
 let commitGeneration = 0;
@@ -76,6 +77,6 @@ function furnitureAssetUrl(
   bgHint: string
 ): string | null {
   const furniture = line.furniture ?? VisualEffects.inferFurniture(isTrialMode, bgHint);
-  if (furniture !== 'podium' && furniture !== 'bench') return null;
+  if (furniture === 'none') return null;
   return FURNITURE_URLS[furniture];
 }

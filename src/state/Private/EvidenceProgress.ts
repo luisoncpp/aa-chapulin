@@ -22,9 +22,12 @@ export function resolveEvidenceDescription(
   stage: number
 ): string {
   if (!item) return '';
-  if (item.updates && stage > 0) {
-    const idx = Math.min(stage - 1, item.updates.length - 1);
-    return item.updates[idx] ?? item.desc;
+  // `updates[]` entries are written as addenda, so the Acta shows the original
+  // description plus every addendum unlocked so far. Legacy `updatedDesc` is a
+  // full rewrite and still replaces the original.
+  if (item.updates?.length && stage > 0) {
+    const revealed = item.updates.slice(0, Math.min(stage, item.updates.length));
+    return [item.desc, ...revealed].join('\n\n');
   }
   if (stage > 0 && item.updatedDesc) return item.updatedDesc;
   return item.desc;

@@ -95,6 +95,7 @@ export function setupDomHarness(): DomElements {
         <button id="btn-start-case2">CASO 2</button>
         <button id="btn-start-case3">CASO 3</button>
         <button id="btn-start-case4">CASO 4</button>
+        <button id="btn-start-case5">CASO 5</button>
         <button id="btn-start-trial-debug">MODO DEBUG</button>
       </div>
       <div id="court-record-modal" class="game-modal hidden">
@@ -142,6 +143,15 @@ export function setupDomHarness(): DomElements {
         <div class="modal-header"><h2>DESPLAZARSE</h2></div>
         <button id="btn-close-move">X</button>
         <div id="move-locations-list"></div>
+      </div>
+      <div id="save-slot-modal" class="game-modal hidden">
+        <div class="modal-window save-slot-window">
+          <div class="modal-header">
+            <h2 id="save-slot-title">GUARDAR</h2>
+            <button id="btn-close-save-slots" class="close-btn">X</button>
+          </div>
+          <div id="save-slot-list" class="save-slot-list"></div>
+        </div>
       </div>
       <div id="history-modal" class="game-modal hidden">
         <div class="modal-window">

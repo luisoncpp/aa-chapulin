@@ -1,9 +1,4 @@
 // @Architecture(descriptionShort="Caches and strongly types DOM element handles", type="util", icon="panel")
-/**
- * Strongly-Typed Cached DOM Element References
- * Lookup helper for [[./GameEngine.ts]].
- */
-
 export interface DomElements {
   gameScreen: HTMLElement;
   bgEl: HTMLElement;
@@ -60,6 +55,10 @@ export interface DomElements {
   btnCloseHistory?: HTMLButtonElement;
   historyModalEl?: HTMLElement;
   historyListEl?: HTMLElement;
+  saveSlotModalEl?: HTMLElement;
+  saveSlotTitleEl?: HTMLElement;
+  saveSlotListEl?: HTMLElement;
+  btnCloseSaveSlots?: HTMLButtonElement;
   btnLoadGame?: HTMLButtonElement;
   btnContinueGame?: HTMLButtonElement;
   gameNotificationEl: HTMLElement;
@@ -68,6 +67,7 @@ export interface DomElements {
   btnStartCase2?: HTMLButtonElement;
   btnStartCase3?: HTMLButtonElement;
   btnStartCase4?: HTMLButtonElement;
+  btnStartCase5?: HTMLButtonElement;
   btnStartTrialDebug?: HTMLButtonElement;
   btnEvidenceExamine?: HTMLButtonElement;
   btnCloseExamine?: HTMLButtonElement;
@@ -158,6 +158,10 @@ export function getDomElements(): DomElements {
     btnCloseHistory: opt<HTMLButtonElement>('btn-close-history'),
     historyModalEl: opt('history-modal'),
     historyListEl: opt('history-list'),
+    saveSlotModalEl: opt('save-slot-modal'),
+    saveSlotTitleEl: opt('save-slot-title'),
+    saveSlotListEl: opt('save-slot-list'),
+    btnCloseSaveSlots: opt<HTMLButtonElement>('btn-close-save-slots'),
     btnLoadGame: document.getElementById('btn-load-game') as HTMLButtonElement,
     btnContinueGame: document.getElementById('btn-continue-game') as HTMLButtonElement,
     gameNotificationEl: document.getElementById('game-notification')!,
@@ -166,6 +170,7 @@ export function getDomElements(): DomElements {
     btnStartCase2: document.getElementById('btn-start-case2') as HTMLButtonElement,
     btnStartCase3: document.getElementById('btn-start-case3') as HTMLButtonElement,
     btnStartCase4: opt<HTMLButtonElement>('btn-start-case4'),
+    btnStartCase5: opt<HTMLButtonElement>('btn-start-case5'),
     btnStartTrialDebug: opt<HTMLButtonElement>('btn-start-trial-debug'),
     btnEvidenceExamine: opt<HTMLButtonElement>('btn-evidence-examine'),
     btnCloseExamine: opt<HTMLButtonElement>('btn-close-examine'),

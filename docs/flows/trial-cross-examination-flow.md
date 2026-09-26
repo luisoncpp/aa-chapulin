@@ -33,8 +33,9 @@ Case 0 is the courtroom-only entry: its splash/debug launch seeds the opening Co
    - Retrieves visible statement `pressText` (navigation uses [[src/engine/Private/StatementUnlock.ts]]). Case 0 gives every statement a press response, so pressing always produces an intentional dialogue beat.
    - Hides trial controls.
    - Queues press dialogue. The response begins with the defense's localized `¡UN MOMENTO!` / `HOLD IT!` line using the `objection_un_momento` cut-in and `whoosh` SFX, then continues with the witness's added detail.
+   - Press dialogue inherits the active testimony's music; press responses must not declare a `bgm`, because pressing is an interruption inside the same cross-examination rather than a narrative cue change.
    - Records the statement id. If another statement has `unlockedBy` matching it, a toast ("El testigo ha añadido una declaración") plays, and the cursor jumps to the new line.
-   - After two failed presents on a testimony that still has hidden lines, `onPresentPenalty` queues a press hint instead of Super Sam / SECRETARIO. Speaker follows who is counsel: Cases 0–4 omit `CaseScript.pressHint` so Chapulín coaches Don Ramón; a swapped bench (Chapulín as `DEFENSA`) must script the client delivering the hint. Pressing itself still has no extra penalty.
+   - After two failed presents on a normal testimony statement that still has unrevealed hidden lines, `onPresentPenalty` queues a press hint instead of Super Sam / SECRETARIO. Once all pressure-unlocked lines are visible, later penalties use the normal court response. Speaker follows who is counsel: Cases 0–4 omit `CaseScript.pressHint` so Chapulín coaches Don Ramón; a swapped bench (Chapulín as `DEFENSA`) must script the client delivering the hint. Pressing itself still has no extra penalty. Direct court prompts (`openingPresent` and pending `followUp`) never use this hint.
 
 ### Presenting Evidence & Contradiction Evaluation
 1. Player clicks "📜 Presentar" (`#btn-trial-present`) on HUD or inside Court Record modal.
@@ -43,18 +44,20 @@ Case 0 is the courtroom-only entry: its splash/debug launch seeds the opening Co
    - **Correct Evidence**:
      1. If the matched rule has `pointTarget`, open `#present-point-overlay` first ([[docs/flows/present-point-flow.md]]). Parent `successDialogue` waits for a correct click.
      2. If the matched rule has `requiresExamine` and that evidence has not been opened with `EXAMINE DETAIL`, queue the localized instruction and reopen the Acta without applying a penalty.
-     3. Queues `successDialogue` (displays `¡PROTESTO!` or `¡TOMA ESO!`, desk slams, realization sound, BGM switches to `objection` or `pursuit`).
+     3. Queues `successDialogue` (displays `¡PROTESTO!` or `¡TOMA ESO!`, desk slams, realization sound, BGM switches to `objection` or `pursuit`). That cue then plays until another line declares `bgm`, so the block must hand the testimony loop back on the line where routine court business resumes — see [[docs/flows/audio-synthesis-flow.md#Trial Reveal Cue]].
      4. If `followUp` is set, reopen the Acta for `followUp.evidence` (wrong = penalty; correct may also `pointTarget` then `followUp.successDialogue`). If `followUp.prompt` is set, that question is shown on the HUD and inside the Court Record window.
    5. On finish callback, launches the next testimony while `index + 1` remains in the active array; after the array is exhausted it either enters adjournment or starts the climax. Case 0 testimony 2 keeps its recess lobby scene and the courtroom delivery of the briefcase and encyclopedia card inside that success dialogue, so both items enter the Acta before testimony 3 begins.
    - Case 0 testimony 2 accepts `foto_patio` from either `c0_t2_2` or `c0_t2_3`; both claims use the same examine-detail and Present & Point flow.
+   - Several statements may share one `ContradictionRule` object whenever they carry the same claim; the rule (and its `followUp`) then resolves from any of them. Case 5 day-1 testimony 1 accepts `informe_forense_c5` on `c5_d1t1_3` or `c5_d1t1_4`.
    - **Point tutorial timing**: Any instruction that teaches the Present & Point click belongs in the active `pointTarget.promptQuestion`, because the rule's `successDialogue` is queued only after the player has already clicked the correct zone.
+   - **Deflected Evidence** (`stmt.deflect`): the presented item does bear on the statement but not yet. Queues `deflect.dialogue` and restores the same statement, with no `takePenalty`, no `damage` SFX and no `failedPresentCount` bump (so it never advances the press hint). Checked only against the current statement: `openingPresent` and `followUp` answers still penalize. Case 5 day 3 deflects `huacal_9` and `maquina_escribir` on T6, `huacal_9` on T7, and `oficio_diligencia` on T8 statements `c5_d3t3_5` and `c5_d3t3_6`.
    - **Incorrect Evidence**:
      1. If the current statement (else the testimony) has a matching `deflects` entry, apply the penalty and queue that witness denial. Do not queue Super Sam or the press hint — presenting this exhibit already has a specific response. Resume the statement after the lines; health 0 still goes through game-over after the deflect.
      2. Otherwise `onPresentPenalty`: `gameState.takePenalty()` in [[src/state/Private/GameStateManager.ts#Penalty & Health]].
      3. Calls `ModalManager.updateHealthUI()` (one green `!` turns dark gray).
      4. Plays `damage` SFX and shakes screen.
-     5. Queues judge/prosecutor penalty dialogue. Speaker and poses come from optional `CaseScript` / trial-day / `Testimony` court-role fields; Cases 0–4 keep DEFENSA + Don Ramón and SUPER SAM. After a recusal the testimony can set `penaltyProsecutionSpeaker: 'SECRETARIO'` with no pose so Super Sam does not return.
-     6. After two failed presents on a testimony that still has `unlockedBy` lines, `onPresentPenalty` queues a press hint instead of the prosecutor — except a matching deflect, which still plays the witness.
+     5. Queues the court penalty in the order `DEFENSA` protest, `SECRETARIO` finding, then `JUEZ` ratification. The Secretary uses `secretario_leyendo` and `bg_courtroom`; this keeps the prosecution represented without giving Super Sam an automatic scolding line.
+     6. After two failed presents on a normal testimony statement that still has unrevealed `unlockedBy` lines, `onPresentPenalty` queues a press hint instead of the Secretary — except a matching deflect, which still plays the witness. Wrong answers to `openingPresent` or `followUp` questions always keep the formal Secretary + Judge penalty because the court is asking for evidence directly.
      7. If `gameState.gameOver` (health == 0): queues Game Over dialogue, resets health, and restarts trial.
      8. If health > 0: restores current statement and re-reveals trial controls after dialogue finishes.
 
@@ -63,6 +66,7 @@ Case 0 is the courtroom-only entry: its splash/debug launch seeds the opening Co
 2. Court Record opens in presentation mode (`isTrialPresent: true`). If closed by the player, advancing dialogue (Click / Space / Enter) or clicking the top HUD Court Record button (`#btn-court-record`) reopens the Court Record in presentation mode (`isTrialPresent: true`) **only while a present is still required**. Closing the Acta clears both prompt banners, so the climax question cannot float over subsequent dialogue; reopening a pending present repaints it. After the last correct present (no `choices`) or the last correct choice, `isAwaitingEvidence()` is false: idle clicks during confetti or the lobby fade must not reopen the Acta. If the current `ClimaxStage` has `prompt`, that question appears in the HUD and inside the Acta only while the Acta is open.
 3. Player presents a `presentTarget` for the current climax stage (`climax.stages` when set; otherwise `climax.presentTarget`):
    - Wrong item: penalty and incorrect-clue toast; Court Record stays open on the same stage. If that penalty sets health to 0, queue the guilty (`CULPABLE`) game-over lines and restart the trial instead of reopening the Court Record.
+   - Deflected item (`stage.deflects`): queues its dialogue, costs no health, and reopens the Court Record on the same stage; it does not advance the climax.
    - Correct item on a non-final stage: if the stage has `pointTarget`, Present & Point first; then queues that stage's `successDialogue`, then opens the Court Record again.
    - Correct item on the final stage without `choices`: queues `stage.successDialogue`, then `climax.verdict` with confetti and optional epilogue. Case 1 has no `stages` array, so this is `verdict` only.
    - Correct item on the final stage with `choices` (Case 2): queues that stage's `successDialogue` (wax mold + judge question), then opens `#choice-prompt-modal`. Wrong choice: penalty + `failDialogue`, same prompt reopens. A wrong choice that exhausts health queues the guilty game-over lines and restarts the trial. Correct choice: `successDialogue`, then next prompt or verdict on the last one.
@@ -99,11 +103,11 @@ Case 0 is the courtroom-only entry: its splash/debug launch seeds the opening Co
 - [[src/engine/Private/ModalManager.ts]]
 - [[src/state/Private/GameStateManager.ts]]
 - [[src/engine/Private/TrialPresent.ts]]
-- [[src/engine/Private/TrialDeflect.ts]]
 - [[src/engine/Private/TrialDayRouter.ts]]
+- [[src/engine/Private/TrialDeflect.ts]]
 - [[src/case/case1/Private/trial_day1.ts]] / [[src/case/case2/index.ts]]
 - [[src/case/case1/Private/climax.ts]] / [[src/case/case2/Private/climax.ts]]
 
 ## 8. Common Failure Modes
-- **Wrong Evidence Penalty**: Presenting evidence that does not match `stmt.contradiction.evidence` and has no `deflects` entry.
+- **Wrong Evidence Penalty**: Presenting evidence that does not match `stmt.contradiction.evidence`, `stmt.deflect.evidence`, or a matching `deflects` entry. Before shipping a cross-examination, ask which item a player who understood the case would reach for on each statement; deflect it instead of charging a point when the script calls for an early answer ([[docs/lessons-learned/plausible-present-is-not-a-mistake.md]]).
 - **Game Over on 5 Penalties**: Life bar depletion resets health and restarts the trial phase.

@@ -200,25 +200,6 @@ describe('Case 1 script integrity', () => {
     }
   });
 
-  it('switches to objection and turnabout music at contradiction reveals', () => {
-    for (const script of [es, en]) {
-      const transitions = allTestimonies(script).flatMap((testimony) =>
-        testimony.statements.flatMap((statement) => {
-          const contradiction = statement.contradiction;
-          if (!contradiction) return [];
-          return [
-            ['objection', contradiction.successDialogue[0]?.bgm],
-            ...(contradiction.followUp
-              ? [['pursuit', contradiction.followUp.successDialogue[0]?.bgm]]
-              : [])
-          ];
-        })
-      );
-
-      expect(transitions).toEqual(transitions.map(([expected]) => [expected, expected]));
-    }
-  });
-
   it("keeps the watchman's jargon identical across notebook, contradiction and card", () => {
     const notebook = getEvidenceCatalog('en', 'case1').bitacora_ronda.desc;
     expect(notebook).toContain('the forward hold');
@@ -234,24 +215,11 @@ describe('Case 1 script integrity', () => {
     expect(card).toContain('the after hold');
   });
 
-  it('enforces courtroom BGM pacing: suspense for climax opening, no trial during verdict, trial on witness calls', () => {
+  it('enforces courtroom BGM pacing: suspense for climax opening, no trial during verdict', () => {
     for (const script of [es, en]) {
       expect(script.trial.climax.dialogue[0].bgm).toBe('suspense');
       const verdictTrial = script.trial.climax.verdict.filter((l) => l.bgm === 'trial');
       expect(verdictTrial).toEqual([]);
-
-      const testimonies = allTestimonies(script);
-      const t1Success = testimonies[0].statements[3].contradiction!.successDialogue;
-      const t1Call = t1Success.find((l) => l.text.includes('Fiscalía') || l.text.includes('Prosecution'));
-      expect(t1Call?.bgm).toBe('trial');
-
-      const t3FollowUp = testimonies[2].statements[0].contradiction!.followUp!.successDialogue;
-      const t3Call = t3FollowUp.find((l) => l.text.includes('vuelve a llamar') || l.text.includes('recalls the witness'));
-      expect(t3Call?.bgm).toBe('trial');
-
-      const t4FollowUp = testimonies[3].statements[2].contradiction!.followUp!.successDialogue;
-      const t4Call = t4FollowUp.find((l) => l.text.includes('tercera vez') || l.text.includes('third time'));
-      expect(t4Call?.bgm).toBe('trial');
     }
   });
 

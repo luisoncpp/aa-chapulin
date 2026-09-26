@@ -8,6 +8,12 @@
 
 Contiene spoilers completos. La comunicación con el usuario debe limitarse al estado del trabajo y su alcance, salvo que pida conocer la trama.
 
+## 0.0 Bitácora de auditoría
+
+| Fecha | Lente | Resultado y cierre |
+| --- | --- | --- |
+| 2026-09-25 | Contrato visual de galería: líneas de NARRADOR en juicios ES/EN y correspondencia con el guion | Se encontró y corrigió la reacción al murmullo de la galería en D2-T2 en ambos idiomas. El spec y los dos guiones asignan `assets/bg_gallery_characters.webp` con `furniture: 'none'`. Revisión completa de los guiones de juicio, clímax y epílogo; cero hallazgos restantes en esta lente. |
+
 ## 1. Objetivo y reglas de diseño
 
 Episodio de aproximadamente dos horas, con tres investigaciones y tres juicios. Se conservan el hotel, Botija, el reparto y las mecánicas de examen del Acta y señalamiento. Se reescriben las deducciones, los testimonios y su distribución. El presupuesto de duración aparece en §17; requiere comprobación jugando.
@@ -774,7 +780,7 @@ JUEZ: Señor Rufián, su recepción y la apertura posterior están documentadas.
 RUFINO: Yo... yo no quería que el nombre de este hotel se viera envuelto en semejante...
 SUPER SAM: ¿En semejante QUÉ?
 RUFINO: ¡Lo encontré muerto en mi habitación! Me asusté. Lo metí en el baúl y pedí que lo subieran.
-NARRADOR: Un murmullo recorre la galería. El monóculo del conde tiembla, pero no llega a caerse.
+NARRADOR [bg: assets/bg_gallery_characters.webp; furniture: none]: Un murmullo recorre la galería. El monóculo del conde tiembla, pero no llega a caerse.
 [pausa; música suspense]
 BOTIJA: ...¿Yo lo subí? ¿Yo mandé ese baúl?
 RUFINO: Usted movió un baúl, buen hombre. No tenía por qué saber lo demás.
@@ -1418,7 +1424,7 @@ Trabajo de implementación pendiente:
 - Reescribir los guiones de `src/case/case4/Private/` en español y su par `_en`, incluida la escena nueva delegacion_d3 y su registro en el índice del caso.
 - Este documento es el único spec del caso y fija el guion en español; no existe una versión inglesa del spec y no debe crearse. La versión inglesa se escribe directamente en los archivos `_en`, adaptando y no traduciendo: las mezclas de refranes de Chapulín necesitan dos refranes ingleses que se crucen igual de mal y terminen en su fórmula de rendirse, y los latiguillos en inglés de Super Sam (“Time is money”, “counselor”) pierden el contraste bilingüe en un guion inglés, así que su carácter se traslada al vocabulario financiero, no a la lengua. Los identificadores, horas, ids de zona y estructura de escenas son idénticos en ambos idiomas.
 - Ampliar `EvidenceId` en `src/types/Private/evidence.ts` y actualizar `EvidenceCatalogCase4Es.ts` y `EvidenceCatalogCase4En.ts` con las 18 fichas y sus arrays `updates[]` completos. Revisar colisiones de nombre de archivo de icono con casos anteriores.
-- Actualizar `tests/case/Case4Trial.test.ts`, `tests/case/Case4Hotspots.test.ts` y `tests/engine/TrialFollowUp.test.ts`; añadir cobertura de las dos rutas de D2-T1, del gating por jornada y de los cuatro señalamientos nuevos.
+- Actualizar `tests/case/Case4Trial.test.ts`, `tests/case/ScriptIntegrity.test.ts` y `tests/engine/TrialFollowUp.test.ts`; añadir cobertura de las dos rutas de D2-T1, del gating por jornada y de los cuatro señalamientos nuevos.
 - Regenerar las láminas de examen y medir de nuevo las zonas sobre el WebP producido.
 
 Documentación a actualizar **cuando la implementación exista**, no antes: las filas de Chimoltrufia y Chómpiras en el glosario describen todavía la versión vigente del juego; `docs/flows/present-point-flow.md` y `docs/flows/evidence-examine-flow.md` deben recoger los nuevos señalamientos; `docs/architecture/case-scripting.md` solo cambia si aparece una escena o un campo nuevo.

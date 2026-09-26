@@ -9,4 +9,4 @@ Fix that must be preserved:
 - Overflow: `overflow-x: clip` and `overflow-y: auto` (never a single `overflow: auto`). `hidden` still creates a scroll container; Windows often paints a disabled horizontal track next to a vertical bar.
 - WebKit: set `::-webkit-scrollbar { height: 0 }` so a leftover X track cannot show.
 
-Regression: [[tests/engine/CourtRecordLayout.test.ts]].
+Regression: none automated — the earlier `style.css` property-mirror test was removed as duplicated implementation state; verify visually against [[style.css]].

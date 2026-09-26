@@ -128,7 +128,7 @@ export const CASE1_TESTIMONY_3: Testimony = {
         { speaker: 'ALMA NEGRA', text: 'Cayeron, rodaron y brincaron, grumete. Y después...', pose: 'almanegra_vendado' },
         { speaker: 'DEFENSA', text: '¿Después?', pose: 'donramon_idle' },
         { speaker: 'ALMA NEGRA', text: 'Después alguien las juntó. Una por una. Yo estaba tirado con la oreja en el piso y lo oí juntarlas, moneda por moneda, un buen rato.', pose: 'almanegra_shock' },
-        { speaker: 'NARRADOR', text: 'Murmullo en la galería.', sfx: 'realization' },
+        { speaker: 'NARRADOR', text: 'Murmullo en la galería.', bg: 'assets/bg_gallery_characters.webp', furniture: 'none', sfx: 'realization' },
         { speaker: 'JUEZ', text: '¡Cáspita! ¿El agresor se quedó a recoger monedas del suelo con un hombre desmayado a sus pies?', pose: 'judge_shock' },
         { speaker: 'ALMA NEGRA', text: 'Con un hombre desmayado y con la puerta abierta, señor juez. Ése no tenía prisa... o no podía tenerla.', pose: 'almanegra_vendado' },
         { speaker: 'DEFENSA', text: '(O no podía tenerla.)', pose: 'donramon_idle' }

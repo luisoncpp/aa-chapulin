@@ -85,7 +85,7 @@ export const CASE1_PATIO_EN: InvestigationScene = {
       dialogue: [
         { speaker: 'NARRADOR', text: 'On the yard side, the gallery 2 duct grate, flush with the ground.' },
         { speaker: 'DEFENSA', text: 'The same grate as yesterday, seen from outside. Eighteen by twenty-four.', pose: 'donramon_idle' },
-        { speaker: 'DEFENSA', text: '(Screws with the paint intact. But the bottom corner of the mesh is loose, as if someone had bent it up and set it back.)', pose: 'donramon_shock' },
+        { speaker: 'DEFENSA', text: '(Screws with the paint intact. But the wire at the bottom corner of the mesh is cut.)', pose: 'donramon_shock' },
         { speaker: 'CHAPULIN', text: 'Counselor, not even a cat could get through there.', pose: 'chapulin_idle' },
         { speaker: 'DEFENSA', text: 'No, young man. Not even a cat.', pose: 'donramon_idle' },
         { speaker: 'DEFENSA', text: '(Not a cat. But a mouse could.)', pose: 'donramon_shock' },

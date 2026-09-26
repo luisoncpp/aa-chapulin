@@ -9,6 +9,7 @@ import type { Language } from '../../types/index.js';
 import { fillCaseCompleteCopy } from './CaseComplete.js';
 import type { DomElements } from './DomElements.js';
 import { refreshMusicPlayerCopy } from './MusicPlayer/index.js';
+import { refreshSaveSlotModal } from './SaveSlotModal.js';
 
 export class UiLanguageUpdater {
   public static updateUi(dom: DomElements, lang: Language): void {
@@ -55,6 +56,7 @@ export class UiLanguageUpdater {
     if (dom.btnStartCase2) dom.btnStartCase2.textContent = t.btnStartCase2;
     if (dom.btnStartCase3) dom.btnStartCase3.textContent = t.btnStartCase3;
     if (dom.btnStartCase4) dom.btnStartCase4.textContent = t.btnStartCase4;
+    if (dom.btnStartCase5) dom.btnStartCase5.textContent = t.btnStartCase5;
     if (dom.btnStartTrialDebug) dom.btnStartTrialDebug.textContent = t.btnStartTrialDebug;
     fillCaseCompleteCopy(dom, lang);
     refreshMusicPlayerCopy(dom);
@@ -76,5 +78,6 @@ export class UiLanguageUpdater {
     const historyHeader = dom.historyModalEl?.querySelector('.modal-header h2');
     if (historyHeader) historyHeader.textContent = t.historyModalTitle;
     if (dom.presentBtnEl) dom.presentBtnEl.textContent = t.modalPresentBtn;
+    refreshSaveSlotModal();
   }
 }

@@ -1,63 +1,20 @@
 // @Architecture(descriptionShort="Serializes and persists game progress in browser storage", type="service", icon="database")
 /**
  * Browser Storage Persistence & Save Manager
- * Handles serialization, schema validation, and storage errors for [[./GameStateManager.ts]].
+ * Facade over [[./SaveSlots.ts]] for [[./GameStateManager.ts]].
  */
 
-import type {
-  CaseId, EvidenceId, GameFlags, GameMode, Language, LocationId, ProfileId, TrialDay
-} from '../../types/index.js';
+import { isValidSaveData, type SaveData } from './SaveSchema.js';
+import {
+  clearSlots, deleteSlot as removeSlot, loadSlot as readSlot, newestSlot, readSlotList,
+  saveToSlot as writeSlot
+} from './SaveSlots.js';
 
-export interface TrialStateSnapshot {
-  phase: 'IDLE' | 'TESTIMONY' | 'CLIMAX';
-  testimonyIndex?: number | null;
-  /** Legacy v1 field retained so existing browser saves can be restored. */
-  testimonyKey?: 'testimony1' | 'testimony2' | null;
-  statementIdx: number;
-  trialDay?: TrialDay;
-  climaxStageIdx?: number;
-  climaxChoiceIdx?: number;
-  climaxResolved?: boolean;
-  pressedStatementIds?: string[];
-}
-
-export interface SaveData {
-  version: number;
-  timestamp: number;
-  mode: GameMode;
-  currentLocation: LocationId;
-  unlockedLocations?: LocationId[];
-  language: Language;
-  health: number;
-  gameOver: boolean;
-  inventory: EvidenceId[];
-  flags: GameFlags;
-  evidenceUpdateStage?: Record<string, number>;
-  profiles?: ProfileId[];
-  profileUpdateStage?: Record<string, number>;
-  trial?: TrialStateSnapshot;
-  caseId?: CaseId;
-  trialDay?: TrialDay;
-}
-
-// fallow-ignore-next-line unused-export
-export const SAVE_STORAGE_KEY = 'ace_attorney_save_data';
-export const CURRENT_SAVE_VERSION = 2;
-
-/**
- * Brings a v1 payload up to the current schema. v1 predates the Acta de
- * Personajes, so it simply gains the two empty character-record fields.
- * Without this, bumping the version would erase every published case's saves.
- */
-function migrateSave(data: SaveData): SaveData {
-  if (data.version >= CURRENT_SAVE_VERSION) return data;
-  return {
-    ...data,
-    profiles: data.profiles ?? [],
-    profileUpdateStage: data.profileUpdateStage ?? {},
-    version: CURRENT_SAVE_VERSION
-  };
-}
+export {
+  CURRENT_SAVE_VERSION,
+  type SaveData,
+  type TrialStateSnapshot
+} from './SaveSchema.js';
 
 export class SaveManager {
   // fallow-ignore-next-line complexity
@@ -73,66 +30,56 @@ export class SaveManager {
     return null;
   }
 
-  // @Section(Save Operations)
   public static save(data: SaveData, customStorage?: Storage): boolean {
-    const storage = SaveManager.getStorage(customStorage);
-    if (!storage) return false;
-    try {
-      const payload = JSON.stringify(data);
-      storage.setItem(SAVE_STORAGE_KEY, payload);
-      return true;
-    } catch {
-      return false;
-    }
+    return SaveManager.saveToSlot(/*index=*/ 0, data, customStorage);
   }
 
-  // @Section(Load Operations)
-  // fallow-ignore-next-line complexity
+  public static saveToSlot(index: number, data: SaveData, customStorage?: Storage): boolean {
+    const storage = SaveManager.getStorage(customStorage);
+    if (!storage) return false;
+    return writeSlot(index, data, storage);
+  }
+
   public static load(customStorage?: Storage): SaveData | null {
+    return SaveManager.loadNewest(customStorage);
+  }
+
+  public static loadNewest(customStorage?: Storage): SaveData | null {
+    const slots = SaveManager.listSlots(customStorage);
+    if (!slots) return null;
+    return newestSlot(slots);
+  }
+
+  public static loadSlot(index: number, customStorage?: Storage): SaveData | null {
     const storage = SaveManager.getStorage(customStorage);
     if (!storage) return null;
-    try {
-      const raw = storage.getItem(SAVE_STORAGE_KEY);
-      if (!raw) return null;
-      const parsed = JSON.parse(raw);
-      if (!SaveManager.isValidSave(parsed)) return null;
-      return migrateSave(parsed);
-    } catch {
-      return null;
-    }
+    return readSlot(index, storage);
+  }
+
+  public static listSlots(customStorage?: Storage): (SaveData | null)[] | null {
+    const storage = SaveManager.getStorage(customStorage);
+    if (!storage) return null;
+    return readSlotList(storage);
+  }
+
+  public static deleteSlot(index: number, customStorage?: Storage): boolean {
+    const storage = SaveManager.getStorage(customStorage);
+    if (!storage) return false;
+    return removeSlot(index, storage);
   }
 
   public static hasSave(customStorage?: Storage): boolean {
-    return SaveManager.load(customStorage) !== null;
+    const slots = SaveManager.listSlots(customStorage);
+    return !!slots?.some((slot) => slot !== null);
   }
 
   public static clear(customStorage?: Storage): void {
     const storage = SaveManager.getStorage(customStorage);
     if (!storage) return;
-    try {
-      storage.removeItem(SAVE_STORAGE_KEY);
-    } catch {
-      // Ignored
-    }
+    clearSlots(storage);
   }
 
-  // @Section(Schema Validation)
-  // fallow-ignore-next-line complexity
   public static isValidSave(data: unknown): data is SaveData {
-    if (!data || typeof data !== 'object') return false;
-    const d = data as Partial<SaveData>;
-    if (typeof d.version !== 'number') return false;
-    if (d.version < 1 || d.version > CURRENT_SAVE_VERSION) return false;
-    if (typeof d.timestamp !== 'number') return false;
-    if (d.mode !== 'INVESTIGATION' && d.mode !== 'TRIAL') return false;
-    if (typeof d.health !== 'number' || d.health < 0) return false;
-    if (!Array.isArray(d.inventory)) return false;
-    if (!d.flags || typeof d.flags !== 'object') return false;
-    if (d.unlockedLocations !== undefined && !Array.isArray(d.unlockedLocations)) return false;
-    if (d.language !== 'es' && d.language !== 'en') return false;
-    if (d.trial?.testimonyIndex !== undefined &&
-        (d.trial.testimonyIndex !== null &&
-          (!Number.isInteger(d.trial.testimonyIndex) || d.trial.testimonyIndex < 0))) return false;
-    return true;
+    return isValidSaveData(data);
   }
 }

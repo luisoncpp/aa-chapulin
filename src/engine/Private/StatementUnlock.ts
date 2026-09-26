@@ -6,7 +6,7 @@
 
 import type { Statement, Testimony } from '../../types/index.js';
 
-export function visibleStatements(testimony: Testimony, pressedIds: Set<string>): Statement[] {
+export function visibleStatements(testimony: Testimony, pressedIds: ReadonlySet<string>): Statement[] {
   return testimony.statements.filter(
     (stmt) => !stmt.unlockedBy || pressedIds.has(stmt.unlockedBy)
   );
@@ -16,6 +16,11 @@ export function findUnlockedByPress(testimony: Testimony, pressedId: string): St
   return testimony.statements.find((stmt) => stmt.unlockedBy === pressedId) ?? null;
 }
 
-export function testimonyHasHiddenStatements(testimony: Testimony): boolean {
-  return testimony.statements.some((stmt) => Boolean(stmt.unlockedBy));
+export function testimonyHasHiddenStatements(
+  testimony: Testimony,
+  pressedIds: ReadonlySet<string>
+): boolean {
+  return testimony.statements.some(
+    (stmt) => stmt.unlockedBy !== undefined && !pressedIds.has(stmt.unlockedBy)
+  );
 }

@@ -68,6 +68,8 @@ describe('OpeningPresent', () => {
     pending[0]!();
     controller.handlePresentEvidence('insignia_abogado');
     expect(state.health).toBe(4);
+    expect(queued[1].some((line) => line.speaker === 'SUPER SAM')).toBe(true);
+    expect(queued[1].some((line) => line.speaker === 'JUEZ')).toBe(true);
     pending[1]!();
     expect(courtRecordOpened).toBe(true);
     courtRecordOpened = false;

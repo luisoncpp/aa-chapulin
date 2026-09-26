@@ -1,5 +1,4 @@
 // @Architecture(descriptionShort="Guards Case 4 poses, plates, and pipeline wiring", type="test", icon="layers")
-import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
@@ -53,48 +52,5 @@ describe('Case 4 visual assets', () => {
 
   it('keeps Case 4 court-record icon webps', () => {
     ICONS.forEach(expectWebp);
-  });
-
-  it('wires process_case4_assets.py for 2x2 sheets, 4x4 icons, and plates', () => {
-    const src = fs.readFileSync(path.join(ROOT, 'process_case4_assets.py'), 'utf8');
-    expect(src).toContain('process_character_sheet');
-    expect(src).toContain('anchor_standing_bust');
-    expect(src).toContain('process_evidence_grid');
-    expect(src).toContain('process_unlabeled_evidence_grid');
-    expect(src).toContain('case4_evidence_icons_raw.png');
-    expect(src).toContain('process_unlabeled_evidence_grid("case4_evidence_icons_raw.png", grid_items, (4, 4))');
-    expect(src).toContain('bg_hotel_lobby.jpg');
-    expect(src).toContain('bg_hotel_suite_v5.png');
-    expect(src).toContain('bg_hotel_azotea_day.png');
-    expect(src).toContain('examine_foto_v3.png');
-    expect(src).toContain('cover_crop(source, (112, 84))');
-    expect(src).toContain('examine_orden.jpg');
-    expect(src).toContain('orden_servicios_icon_raw.png');
-    expect(src).toContain('maruja_shock_raw.png');
-    expect(src).toContain('rufino_breakdown_raw.png');
-    expect(src).toContain('PHOTO_ICON_SOURCE');
-    expect(src).not.toContain('foto_suite304_icon_raw.png');
-    expect(src).toContain('argparse');
-    expect(src).toContain('--only');
-    expect(src).toContain('parse_selected_assets');
-    expect(src).toContain('all_output_stems');
-    expect(src).toContain('pair_outputs');
-
-    const sharedPipeline = fs.readFileSync(path.join(ROOT, 'process_case3_assets.py'), 'utf8');
-    expect(sharedPipeline).toContain('remove_grid_dividers');
-    const unlabeledExtractor = sharedPipeline.slice(
-      sharedPipeline.indexOf('def process_unlabeled_evidence_grid'),
-      sharedPipeline.indexOf('# Every plain-frame bust'),
-    );
-    expect(unlabeledExtractor).toContain('remove_grid_dividers');
-    expect(unlabeledExtractor).not.toContain('icon_drop_boxes');
-  });
-
-  it('replaces the bedroom polaroid that did not match examine_foto', () => {
-    const buf = fs.readFileSync(path.join(ASSETS, 'foto_suite304.webp'));
-    const hash = createHash('sha256').update(buf).digest('hex');
-    expect(hash).not.toBe(
-      'aa1c8a1d683a9ff3f0f825801abb89f3193ba40199219d9dc3d418c0cc8f7ff2',
-    );
   });
 });

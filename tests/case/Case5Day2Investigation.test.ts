@@ -1,0 +1,115 @@
+// @Architecture(descriptionShort="Unit tests for Case 5 day 2 Spanish investigation scenes", type="test", icon="layers")
+import { describe, expect, it } from 'vitest';
+import { getCaseScript } from '../../src/case/index.js';
+import { CASE5_DAY2_EVIDENCE } from '../../src/case/case5/Private/progress.js';
+import type { CaseScript, DialogueLine, EvidenceId } from '../../src/types/index.js';
+import { assertInvestigationParity } from './case5Parity.js';
+
+type Script = ReturnType<typeof getCaseScript>;
+
+const DAY2_LOCATIONS = [
+  'vecindad_c5',
+  'correspondencia',
+  'despacho_berrondo',
+  'delegacion_c5'
+] as const;
+
+function sceneLines(script: Script, locationId: string): DialogueLine[] {
+  const scene = script.investigation[locationId];
+  return [
+    ...scene.intro,
+    ...scene.hotspots.flatMap((h) => h.dialogue),
+    ...scene.talkOptions.flatMap((o) => o.dialogue)
+  ];
+}
+
+function lastLocationOfDay(script: Script, entry: string): string {
+  let current = entry;
+  const seen = new Set<string>([current]);
+  for (;;) {
+    const next = sceneLines(script, current).find((l) => l.unlockLocation)?.unlockLocation;
+    if (!next || seen.has(next)) return current;
+    seen.add(next);
+    current = next;
+  }
+}
+
+function evidenceFrom(lines: DialogueLine[]): EvidenceId[] {
+  return lines.flatMap((l) => [l.addEvidence, l.updateEvidence].filter(Boolean) as EvidenceId[]);
+}
+
+function allDay2Lines(es: CaseScript): DialogueLine[] {
+  return DAY2_LOCATIONS.flatMap((loc) => sceneLines(es, loc));
+}
+
+describe('Case 5 day 2 investigation (Spanish)', () => {
+  const es = getCaseScript('es', 'case5') as CaseScript;
+  const en = getCaseScript('en', 'case5') as CaseScript;
+
+  it('includes four day-2 locations plus three day-1 locations', () => {
+    expect(Object.keys(es.investigation)).toEqual(
+      expect.arrayContaining([...DAY2_LOCATIONS, 'celda_c5', 'archivo_vestibulo', 'archivo_pasillo7'])
+    );
+  });
+
+  it('walks unlockLocation from vecindad_c5 to delegacion_c5', () => {
+    expect(lastLocationOfDay(es, 'vecindad_c5')).toBe('delegacion_c5');
+  });
+
+  it('grants every CASE5_DAY2_EVIDENCE id across the four scenes', () => {
+    const granted = new Set(evidenceFrom(allDay2Lines(es)));
+    CASE5_DAY2_EVIDENCE.forEach((id) => {
+      expect(granted.has(id), `${id} missing from day-2 investigation`).toBe(true);
+    });
+  });
+
+  it('anchors expediente_serie on delegacion_c5 only', () => {
+    const earlier = new Set(
+      ['vecindad_c5', 'correspondencia', 'despacho_berrondo'].flatMap((loc) => evidenceFrom(sceneLines(es, loc)))
+    );
+    const delegacion = evidenceFrom(sceneLines(es, 'delegacion_c5'));
+    expect(earlier.has('expediente_serie')).toBe(false);
+    expect(delegacion).toContain('expediente_serie');
+  });
+
+  it('never uses truth BGM in day-2 investigation', () => {
+    allDay2Lines(es).forEach((line) => {
+      expect(line.bgm).not.toBe('truth');
+    });
+  });
+
+  it('keeps DEFENSA on chapulin poses and bans slam poses in investigation', () => {
+    allDay2Lines(es).forEach((line) => {
+      if (line.speaker === 'DEFENSA' && line.pose) {
+        expect(line.pose.startsWith('chapulin_'), `${line.pose} on DEFENSA`).toBe(true);
+        expect(line.pose).not.toBe('chapulin_slam');
+      }
+      expect(line.pose).not.toBe('donramon_slam');
+    });
+  });
+
+  it('uses a calm pose when Chimoltrufia praises Berrondo', () => {
+    const line = sceneLines(es, 'correspondencia').find(
+      (entry) => entry.text === 'Berrondo. Muy buen señor. Manda una canasta en Navidad.'
+    );
+    const englishLine = sceneLines(en, 'correspondencia').find(
+      (entry) => entry.text === 'Berrondo. A very fine gentleman. He sends a basket at Christmas.'
+    );
+    expect(line?.speaker).toBe('CHIMOLTRUFIA');
+    expect(englishLine?.speaker).toBe('CHIMOLTRUFIA');
+  });
+
+  it('adds perfil_barriga at vecindad per spec', () => {
+    const profiles = sceneLines(es, 'vecindad_c5').flatMap((l) => [l.addProfile].filter(Boolean));
+    expect(profiles).toContain('perfil_barriga');
+  });
+
+  it('labels Barriga\'s location as his office in the move menu', () => {
+    expect(es.investigation.vecindad_c5.name).toBe('Despacho del Señor Barriga');
+    expect(en.investigation.vecindad_c5.name).toBe("Mr. Barriga's Office");
+  });
+
+  it('mirrors Spanish day-2 investigation structure in English without Spanish leakage', () => {
+    assertInvestigationParity(en, es, DAY2_LOCATIONS, allDay2Lines(en));
+  });
+});

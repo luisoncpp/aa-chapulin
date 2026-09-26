@@ -13,7 +13,7 @@ export const CASE5_DAY3_OPENING_PRESENT_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'DEFENSA', text: '"Point two. The museum card that appeared in the newspaper in August has the dropped s."', pose: 'chapulin_idle' },
   { speaker: 'DEFENSA', text: '"Point three. The same machine typed both. A machine does not correct itself."', pose: 'chapulin_idle' },
   { speaker: 'DEFENSA', text: '"Point four. I know where that machine is, because I typed on it from 1962 to 1971."', pose: 'chapulin_point' },
-  { speaker: 'NARRADOR', text: 'Murmurs in the gallery.', sfx: 'realization' },
+  { bg: 'assets/bg_gallery_characters.webp', furniture: 'none', speaker: 'NARRADOR', text: 'Murmurs in the gallery.', sfx: 'realization' },
   { speaker: 'DEFENSA', text: '"Point five. What I do not know is how to say it without looking like I am trying to save myself. And I am trying to save myself."', pose: 'chapulin_idle' },
   { speaker: 'NARRADOR', text: 'Silence.', bgm: 'suspense' },
   { speaker: 'JUEZ', text: 'Let the full notebook be entered.', sfx: 'gavel', pose: 'judge_gavel' },

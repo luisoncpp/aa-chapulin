@@ -1,0 +1,34 @@
+Mode: built-in image_gen, paint over a layout guide.
+References, in order:
+  IMAGE 1 tools/gallery_guide/out/full_empty_guide.png (LAYOUT: geometry, camera and scale; authoritative)
+  IMAGE 2 assets/bg_gallery.webp                     (STYLE: galleries, parapets, columns, sconces, palette)
+  IMAGE 3 assets/bg_judge.webp                       (judge chair, carved posts, circular scales)
+  IMAGE 4 assets/judge_neutral.webp                  (judge identity)
+  IMAGE 5 assets/court_judge_bench.webp              (gold-lipped judge bench)
+  IMAGE 6 assets/bg_defense.webp                     (left wall: plain mahogany paneling)
+  IMAGE 7 assets/bg_courtroom.webp                   (right wall: burgundy curtains, scales crest)
+  IMAGE 8 assets/court_podium.webp                   (witness podium and microphone)
+  IMAGE 9 assets/bg_witness.webp                     (wood plank floor)
+Fact sheet: docs/specs/common/bg_gallery.md
+
+Paint a finished 16:9 courtroom background over IMAGE 1. IMAGE 1 is a flat 3D blockout: KEEP ITS CAMERA, FRAMING AND EVERY PROPORTION EXACTLY. Every shape keeps its position and size; only paint surface detail onto it. Color key of IMAGE 1: beige planes = walls and ceiling; dark brown boxes = mahogany woodwork; thin gold lines = brass trim; tan floor = wood planks; grey silhouettes = seated spectators; dark blue-grey silhouette = the judge; gold disc = the circular scales emblem.
+
+Scene: symmetrical establishing shot of the whole courtroom, camera standing behind the well, slightly above head height, facing the judge.
+
+Galleries: on both sides, raised spectator galleries with three stepped rows of seating behind a SOLID mahogany parapet with a brass cap, exactly where IMAGE 1 draws them. Below the left gallery, the plain mahogany paneling of IMAGE 6, running unbroken to the floor. Below the right gallery, the prosecution wall of IMAGE 7 with burgundy curtains, gold tiebacks and the central gold scales crest.
+
+Spectators: paint each grey silhouette as a seated 1970s Mexican period spectator (suits, hats, dresses, rebozos) at EXACTLY the silhouette's size and position. Generic extras only: no face or costume of a named character.
+
+Counsel desks: the two long brown boxes in the middle distance are two SEPARATE, EMPTY mahogany desks, parallel to the side walls, facing each other across the aisle, with flat tops, paneled sides and continuous brass trim. No lawyers, no papers, no chairs.
+
+Judge: at the far center, exactly where and as large as the blue-grey silhouette: the same bald white-bearded judge in black robes as IMAGE 4, neutral expression, seated. He is SMALL at this distance; do not enlarge him. His black tufted chair from IMAGE 3 is NO WIDER THAN HIS SHOULDERS and its crest sits at his head height. The circular scales emblem sits just above it, about one chair wide. In front, IMAGE 5's mahogany bench with a bright continuous gold lip, about seven of his shoulder-widths long; the lip covers his belly, not his chest. The bench front runs down to the floor as a tall paneled wall, because the judge sits on a raised platform.
+
+Witness podium: in the near center, the podium of IMAGE 8 seen from BEHIND, empty. The U opening faces the camera and runs off the bottom edge; the closed panel is at the far end, toward the judge, and from here we see its plain inner face. Both sides keep IMAGE 8's projecting cap, two thin posts and stepped base. IMAGE 8's brass gooseneck microphone, with its gold ribbed capsule, sits on the far panel and points back toward the camera. Room inside for ONE person only.
+
+Scale rule for all furniture: desk tops, podium rails and gallery parapets reach the HIP of a standing adult (about 0.95 m). Never knee-high, never chest-high.
+
+Upper walls and ceiling: fluted columns, brass wall sconces with warm amber glow, stone-and-wood paneling like IMAGE 2; coffered wooden ceiling. Floor: long brown wood planks from IMAGE 9 receding toward the judge.
+
+Nothing else: no lawyers, no witness, no ropes, no stanchions, no second judge chair, no marble, no tiles.
+
+Finish: crisp 2D cel-shaded illustrated game background matching IMAGE 2 and IMAGE 3: clean charcoal line art, broad flat two-tone surfaces, mahogany #3D2314, brass #C5A059, stone #7F8C8D, amber #F39C12, burgundy velvet #581825. Gold trim lines straight, continuous, uniform width. No text, no watermark, no photorealism, no 3D render, no watercolor, no magenta.

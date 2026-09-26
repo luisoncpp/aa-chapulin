@@ -13,7 +13,7 @@ export const CASE5_DAY3_OPENING_PRESENT_SUCCESS: DialogueLine[] = [
   { speaker: 'DEFENSA', text: '«Punto dos. La ficha del museo que salió en el periódico en agosto tiene la ese caída.»', pose: 'chapulin_idle' },
   { speaker: 'DEFENSA', text: '«Punto tres. Las escribió el mismo aparato. Un aparato no se corrige solo.»', pose: 'chapulin_idle' },
   { speaker: 'DEFENSA', text: '«Punto cuatro. Yo sé dónde está ese aparato, porque tecleé en él de mil novecientos sesenta y dos a mil novecientos setenta y uno.»', pose: 'chapulin_point' },
-  { speaker: 'NARRADOR', text: 'Murmullo en la galería.', sfx: 'realization' },
+  { bg: 'assets/bg_gallery_characters.webp', furniture: 'none', speaker: 'NARRADOR', text: 'Murmullo en la galería.', sfx: 'realization' },
   { speaker: 'DEFENSA', text: '«Punto cinco. Lo que no sé es cómo decirlo sin que parezca que me quiero salvar. Y me quiero salvar.»', pose: 'chapulin_idle' },
   { speaker: 'NARRADOR', text: 'Silencio.', bgm: 'suspense' },
   { speaker: 'JUEZ', text: '...Que se asiente íntegra esa libreta.', sfx: 'gavel', pose: 'judge_gavel' },

@@ -8,6 +8,12 @@
 
 Contiene spoilers completos. La comunicación con el usuario debe limitarse al estado y alcance del trabajo, salvo que pida conocer la trama.
 
+## 0.0 Bitácora de auditoría
+
+| Fecha | Lente | Alcance | Resultado |
+| --- | --- | --- | --- |
+| 2026-09-25 | Cortes visuales del narrador sobre la galería | Guiones de juicio ES/EN, apertura y lobby, receso, clímax/epílogo y menciones del spec; sólo narración referida a espectadores del tribunal | Cero hallazgos: no hay cortes del narrador que comenten la galería. Las referencias a la sala de espera y al estrado describen otros encuadres. Contrato fijado en §6. |
+
 ## 1. Objetivo y reglas de diseño
 
 Episodio de 35 a 45 minutos, un solo día, un solo modo. Es el primer contacto del jugador con el juego: enseña **todas** las mecánicas implementadas y no introduce ninguna que los casos 1–4 no usen.
@@ -103,6 +109,7 @@ Las descripciones iniciales no dicen "prueba definitiva" ni nombran la solución
 
 - `[ENTREGAR id]` equivale a `addEvidence` en una línea de diálogo.
 - `[ACTUALIZAR id]` equivale a `updateEvidence` con un texto siguiente definido.
+- Cuando `NARRADOR` haga un corte visual para comentar la galería del tribunal o a sus espectadores, la línea debe mostrar `assets/bg_gallery_characters.webp` con `furniture: 'none'`, conforme a [[docs/specs/common/bg_gallery.md]]. No aplicar este fondo a la sala de espera, al estrado ni a usos metafóricos de «galería».
 - `MODO TUTORIAL:` marca lámina de instrucción con `instant: true`.
 - Presionar es gratuito y siempre produce contenido: ninguna contradicción exige presionar una paráfrasis para habilitarse.
 - Presentar una prueba incorrecta o señalar una zona incorrecta cuesta un punto, muestra la pregunta otra vez y **no revela la respuesta**.

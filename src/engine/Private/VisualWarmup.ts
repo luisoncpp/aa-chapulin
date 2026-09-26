@@ -15,9 +15,11 @@ const COURTROOM_URLS = [
   'assets/bg_defense.webp',
   'assets/bg_courtroom.webp',
   'assets/bg_judge.webp',
+  'assets/bg_gallery.webp',
   'assets/bg_witness.webp',
   'assets/court_podium.webp',
-  'assets/court_bench.webp'
+  'assets/court_bench.webp',
+  'assets/court_judge_bench.webp'
 ];
 
 export function prepareSceneVisuals(scene: InvestigationScene): void {

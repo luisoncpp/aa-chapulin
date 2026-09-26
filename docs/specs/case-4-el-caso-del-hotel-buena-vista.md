@@ -8,6 +8,12 @@
 
 Contiene spoilers completos. La comunicación con el usuario debe limitarse al estado del trabajo y su alcance, salvo que pida conocer la trama.
 
+## 0.0 Bitácora de auditoría
+
+| Fecha | Lente | Resultado y cierre |
+| --- | --- | --- |
+| 2026-09-25 | Contrato visual de galería: líneas de NARRADOR en juicios ES/EN y correspondencia con el guion | Se encontró y corrigió la reacción al murmullo de la galería en D2-T2 en ambos idiomas. El spec y los dos guiones asignan `assets/bg_gallery_characters.webp` con `furniture: 'none'`. Revisión completa de los guiones de juicio, clímax y epílogo; cero hallazgos restantes en esta lente. |
+
 ## 1. Objetivo y reglas de diseño
 
 Episodio de aproximadamente dos horas, con tres investigaciones y tres juicios. Se conservan el hotel, Botija, el reparto y las mecánicas de examen del Acta y señalamiento. Se reescriben las deducciones, los testimonios y su distribución. El presupuesto de duración aparece en §17; requiere comprobación jugando.
@@ -774,7 +780,7 @@ JUEZ: Señor Rufián, su recepción y la apertura posterior están documentadas.
 RUFINO: Yo... yo no quería que el nombre de este hotel se viera envuelto en semejante...
 SUPER SAM: ¿En semejante QUÉ?
 RUFINO: ¡Lo encontré muerto en mi habitación! Me asusté. Lo metí en el baúl y pedí que lo subieran.
-NARRADOR: Un murmullo recorre la galería. El monóculo del conde tiembla, pero no llega a caerse.
+NARRADOR [bg: assets/bg_gallery_characters.webp; furniture: none]: Un murmullo recorre la galería. El monóculo del conde tiembla, pero no llega a caerse.
 [pausa; música suspense]
 BOTIJA: ...¿Yo lo subí? ¿Yo mandé ese baúl?
 RUFINO: Usted movió un baúl, buen hombre. No tenía por qué saber lo demás.

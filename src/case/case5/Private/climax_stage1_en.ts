@@ -18,7 +18,7 @@ export const CASE5_CLIMAX_STAGE1_EN: ClimaxStage = {
     { speaker: 'DEFENSA', text: 'OBJECTION!', sfx: 'desk_slam', cutin: 'objection_protesto', pose: 'chapulin_slam', bgm: 'pursuit' },
     { speaker: 'DEFENSA', text: 'The man who was in that hallway is sitting at the prosecution table, Your Honor.', pose: 'chapulin_point' },
     { speaker: 'DEFENSA', text: 'Attorney Fulgencio Berrondo.', pose: 'chapulin_slam', sfx: 'desk_slam' },
-    { speaker: 'NARRADOR', text: 'The whole gallery rises.', sfx: 'realization' },
+    { bg: 'assets/bg_gallery_characters.webp', furniture: 'none', speaker: 'NARRADOR', text: 'The whole gallery rises.', sfx: 'realization' },
     { speaker: 'BERRONDO', text: '......', pose: 'berrondo_idle', bg: 'assets/bg_courtroom.webp' },
     { speaker: 'SECRETARIO', text: 'The prosecution objects! Attorney Berrondo assisted this office for three days!' },
     { speaker: 'JUEZ', text: 'The court shares the objection in principle. Defense, justify it or withdraw.', pose: 'judge_neutral' },

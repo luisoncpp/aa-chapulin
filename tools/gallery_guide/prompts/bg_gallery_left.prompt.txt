@@ -1,0 +1,23 @@
+Mode: built-in image_gen, paint over a layout guide.
+References, in order:
+  IMAGE 1 tools/gallery_guide/out/left_guide.png   (LAYOUT: geometry, camera and scale; authoritative)
+  IMAGE 2 assets/bg_gallery.webp                   (STYLE: galleries, parapet, columns, sconces, palette)
+  IMAGE 3 assets/bg_judge.webp                     (judge chair, carved posts, circular scales)
+  IMAGE 4 assets/judge_neutral.webp                (judge identity)
+  IMAGE 5 assets/court_judge_bench.webp            (gold-lipped judge bench)
+  IMAGE 6 assets/bg_defense.webp                   (plain mahogany wall under the gallery)
+Fact sheet: docs/specs/common/bg_gallery_left.md
+
+Paint a finished 16:9 courtroom background over IMAGE 1. IMAGE 1 is a flat 3D blockout: KEEP ITS CAMERA, FRAMING AND EVERY PROPORTION EXACTLY. Every shape keeps its position and size; only paint surface detail onto it. Color key of IMAGE 1: beige planes = walls and ceiling; dark brown boxes = mahogany woodwork; thin gold lines = brass trim; grey silhouettes = seated spectators; dark blue-grey silhouette = the judge; gold disc = the circular scales emblem.
+
+Scene: the LEFT spectator gallery of the courtroom, seen from above the aisle and turned toward the far corner where the judge sits. On the left, a raised gallery with three stepped rows of seating behind a SOLID mahogany parapet with a brass cap. The parapet top runs diagonally exactly where IMAGE 1 draws its gold line. Below the parapet, the plain mahogany paneling of IMAGE 6.
+
+Spectators: paint each grey silhouette as a seated 1970s Mexican period spectator (suits, hats, dresses, rebozos) at EXACTLY the silhouette's size and position. They are generic extras: do not give any of them the face or costume of a named character. Scale rule: the parapet reaches the HIP of a standing adult; seated spectators show only head and shoulders above the front parapet. Never make the parapet knee-high or the people oversized.
+
+Judge: bottom-right corner, cut by the frame edge, exactly where the blue-grey silhouette is and at the SAME size: the same bald white-bearded judge in black robes as IMAGE 4, neutral expression, seated. His black tufted chair from IMAGE 3 is NO WIDER THAN HIS SHOULDERS and its crest sits at his head height, not above it. The circular scales emblem sits just above the chair, about one chair wide. The bench in front is IMAGE 5's mahogany bench with a bright continuous gold lip; the lip covers his belly, not his chest. Only its left end is visible; it leaves the frame at the right.
+
+Upper wall (the large beige area): light stone-and-wood gallery wall with fluted columns and brass wall sconces with warm amber glow, like IMAGE 2. Fill it with architecture; do not leave it flat. The ceiling band at the top is a coffered wooden ceiling.
+
+Nothing else: no counsel desks, no lawyers, no witness podium, no ropes, no stanchions, no second judge chair.
+
+Finish: crisp 2D cel-shaded illustrated game background matching IMAGE 2 and IMAGE 3: clean charcoal line art, broad flat two-tone surfaces, mahogany #3D2314, brass #C5A059, stone #7F8C8D, amber #F39C12, burgundy velvet #581825. Gold trim lines straight, continuous, uniform width. No text, no watermark, no photorealism, no 3D render, no watercolor, no magenta.

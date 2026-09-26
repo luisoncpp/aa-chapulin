@@ -22,5 +22,5 @@ Explicit `line.bg` continues to override when a scene requires a specific cutawa
 Furniture inference (e.g. `podium` vs `bench` vs `none`) cannot rely on previous DOM background state when background switching is asynchronous or separated from staging. Staging must first resolve the target camera angle, then resolve the matching foreground furniture and stage frame against that resolved angle:
 - Witness background -> `podium`
 - Defense and Prosecution backgrounds (`bg_defense.jpg`, `bg_courtroom.jpg`) -> `bench`
-- Judge background (`bg_judge.jpg`) -> `none` (judge bench is part of the judge perspective background)
+- Judge background (`bg_judge.webp`) -> `judge-bench` (`court_judge_bench.webp`, same stand frame as the defense desk). A line that sets `furniture: 'none'` keeps the plate bare.
 - Non-trial investigation scenes -> `none`

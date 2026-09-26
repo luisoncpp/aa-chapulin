@@ -6,6 +6,7 @@
 
 import type { SoundEngine } from '../../audio/index.js';
 import { closeHistoryModal, isAnyModalOpen } from './HistoryModal.js';
+import { closeSaveSlotModal } from './SaveSlotModal.js';
 import { bindEvidenceExamine } from './EvidenceExamine.js';
 import { bindCourtRecordEvents, type CourtRecordEventConfig } from './CourtRecordEvents.js';
 import type { InvestigationController } from './InvestigationController.js';
@@ -98,6 +99,10 @@ export class EngineEventBinder {
     dom.btnContinueGame?.addEventListener('click', /*onContinueClick*/ () => {
       onContinueGame?.();
     });
+    dom.btnCloseSaveSlots?.addEventListener('click', /*onCloseSaveSlots*/ (e) => {
+      e.stopPropagation();
+      closeSaveSlotModal(dom);
+    });
   }
 
   // @Section(Dialogue Advance Bindings)
@@ -127,7 +132,9 @@ export class EngineEventBinder {
       closeHistoryModal(dom);
     });
     document.addEventListener('keydown', /*onEscapeKey*/ (e) => {
-      if (e.code === 'Escape') closeHistoryModal(dom);
+      if (e.code !== 'Escape') return;
+      closeSaveSlotModal(dom);
+      closeHistoryModal(dom);
     });
   }
 

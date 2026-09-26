@@ -49,7 +49,7 @@ const BAUL_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'RUFINO', text: 'I... I did not want the name of this hotel dragged into such a...', pose: 'rufino_panic' },
   { speaker: 'SUPER SAM', text: 'Such a WHAT?', pose: 'supersam_point' },
   { speaker: 'RUFINO', text: 'I found him dead in my room! I panicked. I put him in the trunk and asked for it to be taken up.', pose: 'rufino_sweat' },
-  { speaker: 'NARRADOR', text: 'A murmur runs through the gallery. The count\'s monocle trembles, but does not quite fall.', bgm: 'suspense' },
+  { bg: 'assets/bg_gallery_characters.webp', furniture: 'none', speaker: 'NARRADOR', text: 'A murmur runs through the gallery. The count\'s monocle trembles, but does not quite fall.', bgm: 'suspense' },
   { speaker: 'BOTIJA', text: '...I took him up? I sent that trunk?', pose: 'botija_nervioso' },
   { speaker: 'RUFINO', text: 'You moved a trunk, my good man. You had no reason to know the rest.', pose: 'rufino_sweat' },
   { speaker: 'BOTIJA', text: 'Don Ramón, I checked that the strap was whole. With these hands.', pose: 'botija_llorando' },

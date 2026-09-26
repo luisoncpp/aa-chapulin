@@ -32,7 +32,7 @@ export const CASE5_TESTIMONY_9_EN: Testimony = {
         { speaker: 'GENOVEVA', text: 'Neither.', pose: 'genoveva_idle' },
         { speaker: 'DEFENSA', text: 'And that does not strike you as odd?', pose: 'chapulin_point' },
         { speaker: 'GENOVEVA', text: 'The regulations do not authorize me to find things odd, sir.', pose: 'genoveva_reglamento' },
-        { speaker: 'NARRADOR', text: 'Brief laughter in the gallery.', sfx: 'realization' },
+        { bg: 'assets/bg_gallery_characters.webp', furniture: 'none', speaker: 'NARRADOR', text: 'Brief laughter in the gallery.', sfx: 'realization' },
         { speaker: 'GENOVEVA', text: 'And I beg the gallery not to laugh. I have spent thirteen years doing exactly what a paper says, and that is why the paper exists.', pose: 'genoveva_reglamento' },
         { speaker: 'JUEZ', text: 'The court supports the witness.', pose: 'judge_neutral' }
       ]

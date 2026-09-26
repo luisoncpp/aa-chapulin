@@ -6,7 +6,7 @@ import { CASE0_WITNESS_CALL_T1, CASE0_WITNESS_RECALL_T2 } from './witness_calls.
 
 export const CASE0_TRIAL_INTRO: DialogueLine[] = [
   ...CASE0_LOBBY_INTRO,
-  { bg: 'assets/bg_judge.webp', furniture: 'none', speaker: 'JUEZ', pose: 'judge_gavel', text: '¡Silencio en la sala! Se abre la audiencia por el asalto al cobrador Nazario Cuenca.', sfx: 'gavel', bgm: 'trial' },
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_gavel', text: '¡Silencio en la sala! Se abre la audiencia por el asalto al cobrador Nazario Cuenca.', sfx: 'gavel', bgm: 'trial' },
   { speaker: 'SUPER SAM', pose: 'supersam_idle', text: 'Your Honor, este caso lo resolví en once minutos. ELEVEN! Un muchacho que debía dos meses de renta, un cobrador en el suelo y un cartapacio de cobranza que voló. Time is money.' },
   { speaker: 'JUEZ', pose: 'judge_neutral', text: '¿La defensa está lista? ...¿La defensa está presente?' },
   { speaker: 'DEFENSA', pose: 'donramon_idle', text: '¡Aquí, aquí! Perdón, señor juez, es que la puerta de la sala pesa más que mi cliente.' },

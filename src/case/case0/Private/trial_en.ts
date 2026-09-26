@@ -6,7 +6,7 @@ import { CASE0_WITNESS_CALL_T1_EN, CASE0_WITNESS_RECALL_T2_EN } from './witness_
 
 export const CASE0_TRIAL_INTRO_EN: DialogueLine[] = [
   ...CASE0_LOBBY_INTRO_EN,
-  { bg: 'assets/bg_judge.webp', furniture: 'none', speaker: 'JUEZ', pose: 'judge_gavel', text: 'Order in the court! The hearing over the assault of rent collector Nazario Cuenca is now open.', sfx: 'gavel', bgm: 'trial' },
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_gavel', text: 'Order in the court! The hearing over the assault of rent collector Nazario Cuenca is now open.', sfx: 'gavel', bgm: 'trial' },
   { speaker: 'SUPER SAM', pose: 'supersam_idle', text: 'Your Honor, I solved this case in eleven minutes. ELEVEN! A boy behind on rent, a collector on the floor, and a collection file gone. Time is money.' },
   { speaker: 'JUEZ', pose: 'judge_neutral', text: 'Is the defense ready? ...Is the defense present?' },
   { speaker: 'DEFENSA', pose: 'donramon_idle', text: 'Here, here! Sorry, Your Honor. The courtroom door weighs more than my client.' },

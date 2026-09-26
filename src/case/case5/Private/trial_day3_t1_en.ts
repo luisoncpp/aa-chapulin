@@ -31,7 +31,7 @@ export const CASE5_TESTIMONY_6_EN: Testimony = {
         { speaker: 'CHOMPIRAS', text: 'Since September 15, Your Honor. The Sergeant got me the job.', pose: 'chompiras_idle' },
         { speaker: 'SARGENTO', text: 'I got him an application, Your Honor. He earned the job himself.', pose: 'pazguato_decidido' },
         { speaker: 'CHOMPIRAS', text: 'It is the first time in my life I get paid to haul something that is not mine and still is not mine at the end.', pose: 'chompiras_relieved' },
-        { speaker: 'NARRADOR', text: 'Soft laughter in the gallery.', sfx: 'realization' }
+        { bg: 'assets/bg_gallery_characters.webp', furniture: 'none', speaker: 'NARRADOR', text: 'Soft laughter in the gallery.', sfx: 'realization' }
       ]
     },
     {

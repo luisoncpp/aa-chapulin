@@ -183,6 +183,52 @@ def slam_waist_notch_top(img: Image.Image) -> int | None:
     return None
 
 
+def strip_dark_red_fringe(img: Image.Image) -> Image.Image:
+    """Pull leftover red halo off the contour. The judge raw was keyed from a dark-red field."""
+    arr = np.array(img)
+    fg = arr[:, :, 3] > 8
+    eroded = ndimage.binary_erosion(fg, structure=np.ones((3, 3)), iterations=2)
+    r = arr[:, :, 0].astype(np.int16)
+    g = arr[:, :, 1].astype(np.int16)
+    b = arr[:, :, 2].astype(np.int16)
+    red = fg & ~eroded & (r > g + 25) & (r > b + 25)
+    arr[:, :, 0] = np.where(red, np.maximum(g, b), arr[:, :, 0])
+    return Image.fromarray(arr, mode="RGBA")
+
+
+def place_hem_on_canvas(img: Image.Image) -> Image.Image:
+    """Park the robe hem 5px above a 512 floor, matching the other judge poses."""
+    arr = np.array(img)
+    ys, xs = np.where(arr[:, :, 3] > 8)
+    crop = img.crop((int(xs.min()), int(ys.min()), int(xs.max()) + 1, int(ys.max()) + 1))
+    canvas, hem_gap, max_span = 512, 5, 500
+    scale = min(max_span / crop.size[0], (canvas - hem_gap - 8) / crop.size[1])
+    resized = crop.resize(
+        (max(1, int(round(crop.size[0] * scale))), max(1, int(round(crop.size[1] * scale)))),
+        Image.Resampling.LANCZOS,
+    )
+    out = Image.new("RGBA", (canvas, canvas), (0, 0, 0, 0))
+    px = (canvas - resized.size[0]) // 2
+    py = canvas - hem_gap - resized.size[1]
+    out.paste(resized, (px, py), resized)
+    return out
+
+
+def process_judge_neutral_body() -> None:
+    """Body-only neutral. The bench and the chair are other layers."""
+    raw_path = find_asset_file("judge_neutral_raw.png")
+    if not os.path.exists(raw_path):
+        print("Warning: judge_neutral_raw.png not found; sheet cell kept")
+        return
+    img = Image.open(raw_path)
+    cleaned = remove_bg_magenta_vectorized(img, threshold=165.0, despill_depth=4)
+    cleaned = clean_edges_vectorized(cleaned, depth=5)
+    filtered = extract_primary_components_fast(cleaned, min_area_fraction=0.10)
+    placed = place_hem_on_canvas(despill_final(strip_dark_red_fringe(filtered)))
+    placed.save(os.path.join(DEST_DIR, "judge_neutral.webp"), "WEBP", quality=85, method=6)
+    print(f"  [OK] Processed body-only judge_neutral.webp ({placed.size})")
+
+
 def shift_slam_to_notch(img: Image.Image, target_row: int) -> Image.Image:
     """Translate a slam pose down so its waist notch matches bench-slam geometry."""
     notch = slam_waist_notch_top(img)
@@ -445,6 +491,8 @@ def run_all_fixes():
         None,
         None
     )
+    # Overwrites the sheet cell. That cell still paints a desk and a chair.
+    process_judge_neutral_body()
 
     # 5. Doña Florinda (Museum Curator)
     flor_drop = [
@@ -493,6 +541,13 @@ def run_all_fixes():
         "court_bench.webp",
         crop_box=(158, 127, 1218, 768)
     )
+    # Row 0 of the crop is the far lip of the judge's counter. See
+    # docs/specs/common/court_judge_bench.md
+    process_standalone_prop(
+        "court_judge_bench_raw.png",
+        "court_judge_bench.webp",
+        crop_box=(117, 130, 1035, 818)
+    )
 
     # 7. Objection Cut-Ins
     process_cutins("ui_objection_cutins_1787377615093.jpg")
@@ -506,7 +561,7 @@ def run_all_fixes():
     # 10. Backgrounds
     bgs = [
         ("court_witness_stand_1787377876023.jpg", "bg_witness.webp"),
-        ("court_judge_view_1787377926397.jpg", "bg_judge.webp"),
+        ("bg_judge_close.png", "bg_judge.webp"),
         ("bg_museum.jpg", "bg_museum.webp"),
         ("detention_center_room_1787377837506.jpg", "bg_detention.webp"),
         ("bg_prosecution_curtains_arch_1787633685599.jpg", "bg_courtroom.webp"),

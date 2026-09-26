@@ -27,6 +27,11 @@ describe('GameEngine Save and Load Feature', () => {
   let engine: GameEngine;
   let storage: MemoryStorage;
 
+  function clickSlot(index: number): void {
+    const buttons = dom.saveSlotListEl?.querySelectorAll<HTMLButtonElement>('.save-slot-main');
+    buttons?.[index]?.click();
+  }
+
   beforeEach(() => {
     vi.useFakeTimers();
     dom = setupDomHarness();
@@ -76,8 +81,9 @@ describe('GameEngine Save and Load Feature', () => {
     state.flags.talked_florinda_crime = false;
     state.currentLocation = 'detention';
 
-    // Click in-game Load button
+    // Click in-game Load button, then the occupied slot
     dom.btnLoadGame?.click();
+    clickSlot(0);
 
     expect(state.hasEvidence('chipote_chillon')).toBe(true);
     expect(state.flags.talked_florinda_crime).toBe(true);
@@ -116,8 +122,9 @@ describe('GameEngine Save and Load Feature', () => {
     dom.btnNextStatement.click();
     dom.btnNextStatement.click();
 
-    // Save game during trial
+    // Save game during trial into the first empty slot
     dom.btnSaveGame?.click();
+    clickSlot(0);
     expect(SaveManager.hasSave(storage)).toBe(true);
 
     // Simulate new session loading save in trial
@@ -145,6 +152,7 @@ describe('GameEngine Save and Load Feature', () => {
     engine.saveGame();
 
     dom.btnLoadGame?.click();
+    clickSlot(0);
     vi.advanceTimersByTime(400);
 
     dom.btnHistory?.click();
@@ -205,5 +213,81 @@ describe('GameEngine Save and Load Feature', () => {
     expect(loaded).toBe(true);
     expect(state.unlockedLocations).toContain('detention');
     expect(state.unlockedLocations).toContain('detention');
+  });
+
+  it('saves through the slot list into an empty row and closes it', () => {
+    engine.startGame();
+    vi.advanceTimersByTime(400);
+    state.addEvidence('chipote_chillon');
+
+    dom.btnSaveGame?.click();
+    clickSlot(1);
+
+    expect(SaveManager.loadSlot(1, storage)?.inventory).toContain('chipote_chillon');
+    expect(SaveManager.loadSlot(0, storage)).toBeNull();
+    expect(dom.saveSlotModalEl?.classList.contains('hidden')).toBe(true);
+  });
+
+  it('keeps the occupied slot until overwrite is confirmed', () => {
+    engine.startGame();
+    vi.advanceTimersByTime(400);
+    state.addEvidence('chipote_chillon');
+    engine.saveGame();
+    state.addEvidence('antenitas_vinil');
+
+    dom.btnSaveGame?.click();
+    clickSlot(0);
+    expect(SaveManager.loadSlot(0, storage)?.inventory).not.toContain('antenitas_vinil');
+
+    dom.saveSlotListEl?.querySelector<HTMLButtonElement>('.save-slot-yes')?.click();
+    expect(SaveManager.loadSlot(0, storage)?.inventory).toContain('antenitas_vinil');
+  });
+
+  it('deletes a slot and hides Continue when none remain', () => {
+    state.addEvidence('chipote_chillon');
+    engine.saveGame();
+    expect(dom.btnContinueGame?.classList.contains('hidden')).toBe(false);
+
+    dom.btnLoadGame?.click();
+    dom.saveSlotListEl?.querySelector<HTMLButtonElement>('.save-slot-delete')?.click();
+    dom.saveSlotListEl?.querySelector<HTMLButtonElement>('.save-slot-yes')?.click();
+
+    expect(SaveManager.hasSave(storage)).toBe(false);
+    expect(dom.btnContinueGame?.classList.contains('hidden')).toBe(true);
+  });
+
+  it('continues from the newest slot when an earlier slot is older', () => {
+    engine.startGame();
+    vi.advanceTimersByTime(400);
+    const older = state.exportState();
+    older.timestamp = 1;
+    older.inventory = ['insignia_abogado'];
+    SaveManager.saveToSlot(0, older, storage);
+
+    state.addEvidence('pastillas_chiquitolina');
+    const newer = state.exportState();
+    newer.timestamp = older.timestamp + 1;
+    SaveManager.saveToSlot(2, newer, storage);
+    state.inventory = ['insignia_abogado'];
+    engine.updateContinueButton();
+
+    dom.btnContinueGame?.click();
+    vi.advanceTimersByTime(400);
+
+    expect(state.hasEvidence('pastillas_chiquitolina')).toBe(true);
+  });
+
+  it('redraws the open slot list in the new language', () => {
+    engine.startGame();
+    vi.advanceTimersByTime(400);
+    engine.saveGame();
+    dom.btnSaveGame?.click();
+
+    expect(dom.saveSlotTitleEl?.textContent).toContain('GUARDAR');
+    expect(dom.saveSlotListEl?.textContent).toContain('Centro de Detención');
+
+    engine.setLanguage('en');
+    expect(dom.saveSlotTitleEl?.textContent).toContain('SAVE');
+    expect(dom.saveSlotListEl?.textContent).toContain('Detention Centre');
   });
 });

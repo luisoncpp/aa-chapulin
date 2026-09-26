@@ -58,7 +58,7 @@ const REJILLA_CINTA_POINT_TARGET: PointTargetContradiction = {
     { speaker: 'JUEZ', text: '¡Cáspita! Todo el marco tiene una capa de polvo de años... ¡excepto dos rayitas perfectamente limpias y paralelas!', pose: 'judge_shock' },
     { speaker: 'DEFENSA', text: 'Separadas exactamente por un centímetro y medio, señor juez. El ancho exacto de una cinta métrica estándar.', pose: 'donramon_slam', sfx: 'desk_slam' },
     { speaker: 'DEFENSA', text: 'Alguien apoyó la cinta en ese lateral y midió el hueco de dieciocho por veinticuatro centímetros. Lo hizo de día, desde la sala y sin ninguna prisa.', pose: 'donramon_idle' },
-    { speaker: 'NARRADOR', text: 'Murmullo de asombro en la galería.', sfx: 'realization' },
+    { speaker: 'NARRADOR', text: 'Murmullo de asombro en la galería.', bg: 'assets/bg_gallery_characters.webp', furniture: 'none', sfx: 'realization' },
     { speaker: 'TRIPASECA', text: '¡Momento, momento! ¡Pamplinas!', pose: 'tripaseca_sweat' },
     { speaker: 'TRIPASECA', text: '¿Unas rayitas de cinta métrica? ¡Eso lo pudo haber hecho cualquiera! Un albañil, el conserje, el señor que vino a cambiar los zoclos... ¡o un curioso que pasaba por ahí!', pose: 'tripaseca_smug' },
     { speaker: 'SUPER SAM', text: '¡Excellent objection! ¡Tener marcas en una pared no vincula a mi testigo con este delito! ¡Falta la conexión personal!', pose: 'supersam_point' },

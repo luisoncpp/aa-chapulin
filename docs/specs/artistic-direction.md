@@ -93,11 +93,13 @@ graph TD
     I --> I3[Court Waiting Room: Benches, Doors, Amber Dust]
 ```
 
-### 1. Courtroom Environments (`bg_defense.jpg`, `bg_courtroom.jpg`, `bg_witness.jpg`, `bg_judge.jpg`)
+### 1. Courtroom Environments (`bg_defense.jpg`, `bg_courtroom.jpg`, `bg_witness.jpg`, `bg_judge.jpg`, `bg_gallery.webp`)
 * **Palette**: Mahogany wood (`#3D2314`), Gilded Brass (`#C5A059`), Classical Stone Grey (`#7F8C8D`), Warm Amber Lighting (`#F39C12`), Burgundy Velvet (`#581825`).
 * **Atmosphere**: Grand judicial hall with classical arches, elevated witness podium, and prominent Scales of Justice wall carvings.
   * `bg_defense.jpg`: Close-up eye-level perspective of the defense stand's back wall with rich mahogany wainscoting and vertical wood planks.
   * `bg_courtroom.jpg`: Close-up eye-level perspective of the prosecution stand's back wall, matching the defense scale and horizon line while featuring a central carved wooden arch with golden Scales of Justice crest, illuminated pilasters, and elegant burgundy velvet side drapes with gold tiebacks (solid wood wall, no windows).
+  * `bg_gallery.webp`: Wide shot from the well, facing the seated judge. Same cel shading and palette as the approved courtroom plates. Four generic spectators sit in each raised side gallery, looking inward toward the central aisle. The solid paneled defense and prosecution back walls extend to the floor behind their separate empty desks. The judge has a gold-lipped desk in front of the single black chair and circular scales. The witness podium is in the near center aisle with its open rear toward the camera, a one-person interior, projecting side caps, two slim posts, and one ribbed brass microphone. The floor is dark wooden planks. No ropes, lawyers, or witness. Narrator cutaway only. 1376×768. The 2026-09-24 image was generated from the flat guide and approved close-up assets; its known scale drift is recorded in `docs/specs/common/bg_gallery.md`. This lossless WebP is maintained directly in `assets/`; `process_assets.py` must not replace it from older `tools/raw/` drafts.
+  * `bg_gallery_empty.webp` / `bg_gallery_judge.webp`: Earlier paired empty-room variants, separate from the populated `bg_gallery.webp`. The judge variant seats the neutral judge in the existing central chair, behind the gold-lipped desk. Every part of the room outside the judge's small region is pixel-identical to the empty variant.
 
 ### 2. Museum of Curiosities (`bg_museum.jpg`)
 * **Palette**: Rich Burgundy Carpeting (`#78281F`), Night Blue Moonlight (`#1B4F72`), Ornate Walnut (`#4A235A`), Caution Gold (`#F4D03F`).

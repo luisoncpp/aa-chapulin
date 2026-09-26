@@ -65,6 +65,9 @@ describe('StageLayout composition frames', () => {
     expect(resolveStageFrame('bench', 'donramon_shock')).toBe('bench-stand');
     expect(resolveStageFrame('bench', null)).toBe('bench-stand');
     expect(resolveStageFrame('podium', 'tripaseca_smug')).toBe('podium');
+    expect(resolveStageFrame('judge-bench', 'judge_gavel')).toBe('judge-stand');
+    expect(resolveStageFrame('judge-bench', 'judge_shock')).toBe('judge-stand');
+    expect(resolveStageFrame('judge-bench', 'judge_thinking')).toBe('judge-stand');
     expect(resolveStageFrame('none', 'chapulin_slam')).toBe('plain');
   });
 
@@ -137,6 +140,18 @@ describe('StageLayout composition frames', () => {
 
     applyStageFrame(dom.gameScreen, 'plain', 'almanegra_vendado');
     expect(dom.gameScreen.dataset.stageContact).toBe('false');
+  });
+
+  it('drops the judge bench below the defense desk and sinks only the gavel', () => {
+    const dom = setupDomHarness();
+    expect(STAGE_FRAMES['judge-stand'].furnitureHeight).toBeLessThan(STAGE_FRAMES['bench-stand'].furnitureHeight);
+
+    applyStageFrame(dom.gameScreen, 'judge-stand', 'judge_thinking');
+    expect(dom.gameScreen.style.getPropertyValue('--char-baseline')).toBe('34.00%');
+
+    applyStageFrame(dom.gameScreen, 'judge-stand', 'judge_gavel');
+    expect(dom.gameScreen.style.getPropertyValue('--char-baseline')).toBe('28.00%');
+    expect(dom.gameScreen.style.getPropertyValue('--furniture-height')).toBe('38.00%');
   });
 
   it('aligns plain frame character baseline with the dialogue box top edge', () => {

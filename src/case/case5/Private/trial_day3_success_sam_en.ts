@@ -11,7 +11,7 @@ export const CASE5_D3_T2_OFICIO_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'DEFENSA', text: 'And down at the bottom is the list of who was sent a copy, printed on his own office machine.', pose: 'chapulin_idle' },
   { speaker: 'DEFENSA', text: '"Copy to: the assigned court clerk. The Archive Directorate. And..."', pose: 'chapulin_idle' },
   { speaker: 'DEFENSA', text: '"...the Syndicate for bankruptcy 114/1971."', pose: 'chapulin_slam', sfx: 'desk_slam', cutin: 'objection_toma_eso' },
-  { speaker: 'NARRADOR', text: 'The gallery rises.', sfx: 'realization', bgm: 'objection' },
+  { bg: 'assets/bg_gallery_characters.webp', furniture: 'none', speaker: 'NARRADOR', text: 'The gallery rises.', sfx: 'realization', bgm: 'objection' },
   { speaker: 'SUPER SAM', text: '...What?', pose: 'supersam_sweat' },
   { speaker: 'JUEZ', text: 'ORDER!', sfx: 'gavel', pose: 'judge_gavel' },
   { speaker: 'SUPER SAM', text: 'Your Honor, I did not... the secretariat puts that in, the machine puts that in...', pose: 'supersam_sweat' },

@@ -101,10 +101,12 @@ Case 1 adds a second inventory, the **Acta de Personajes** ([[src/state/Private/
 - `populateTrialEvidence()` in [[src/state/Private/GameStateManager.ts#Trial Debug Setup]] adds `debugEvidence`, unlocks `debugUnlockLocations`, sets `flags.ready_for_trial = true`, and switches `mode` to `'TRIAL'`. Those lists come from the active `CaseScript` (Case 1 extra `bolsa_dolares`; Case 2 debug uses day-1 evidence + `boveda` / `restaurante`).
 
 ### 7. Browser Storage Persistence (`SaveManager`)
-- `SaveManager` in [[src/state/Private/SaveManager.ts]] provides persistence in `window.localStorage` under key `'ace_attorney_save_data'`.
+- Eight slots live in `window.localStorage` under `'ace_attorney_save_slots'` ([[src/state/Private/SaveSlots.ts]]). `SaveManager` in [[src/state/Private/SaveManager.ts]] is the facade: `listSlots`, `saveToSlot`, `loadSlot`, `loadNewest`, `deleteSlot`. `save()` still writes slot 0 and `load()` still returns the newest timestamp, so Continue and older callers keep a single-save shape.
+- The HUD Save and Load buttons open the slot list ([[src/engine/Private/SaveSlotModal.ts]]). An empty row saves immediately. An occupied row asks before overwrite. Delete asks, then removes that slot only. Title Continue calls `loadNewest` and does not open the list.
+- A payload written before slots, under `'ace_attorney_save_data'`, is copied into slot 0 on the first read and the old key is removed after the envelope write succeeds. If that write fails, the old key stays.
 - `exportState(trialSnapshot)` serializes game progression, unlocked locations, inventory, flags, health, mode, language, `caseId`, `trialDay`, and active trial testimony statements.
-- `restoreState(data)` rehydrates game state and validates schema versioning (`CURRENT_SAVE_VERSION = 2`).
-- **v1 → v2 migration.** Version 2 added `profiles` and `profileUpdateStage`. `isValidSave` accepts any version in `[1, CURRENT_SAVE_VERSION]` and `load()` runs `migrateSave`, which fills the two new fields on a v1 payload and stamps the new version. Validating on equality instead would silently delete every save of Cases 0, 2, 3 and 4 from the Continue screen. `tests/state/SaveManagerV2.test.ts` pins a literal v1 payload against that.
+- `restoreState(data)` rehydrates game state and validates schema versioning (`CURRENT_SAVE_VERSION = 2`). Slot count is not a schema version: do not bump `CURRENT_SAVE_VERSION` for a storage-envelope change.
+- **v1 → v2 migration.** Version 2 added `profiles` and `profileUpdateStage`. `isValidSave` accepts any version in `[1, CURRENT_SAVE_VERSION]` and each slot read runs `migrateSave`, which fills the two new fields on a v1 payload and stamps the new version. Validating on equality instead would silently delete every save of Cases 0, 2, 3 and 4 from the Continue screen. `tests/state/SaveManagerV2.test.ts` pins a literal v1 payload against that. A corrupt slot becomes empty and does not drop its siblings.
 
 ### 8. Scene Intro Tracking (`isIntroPlayed` & `markIntroPlayed`)
 - Tracks completed opening and event-driven scene entrance dialogues in `flags` via keys `intro_<id>`.

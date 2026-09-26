@@ -105,6 +105,7 @@ describe('Asset Integrity & Existence', () => {
       'bg_courtroom.webp',
       'bg_witness.webp',
       'bg_judge.webp',
+      'bg_gallery.webp',
       'bg_museum.webp',
       'bg_detention.webp',
       'bg_waiting_room.webp'

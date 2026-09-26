@@ -40,7 +40,8 @@ export type TrackName =
   | 'cross_exam_presto'
   | 'archivo'
   | 'cross_exam_grave'
-  | 'cross_exam_final';
+  | 'cross_exam_final'
+  | 'cross_exam_careo';
 
 export type InstrumentWaveType = 'sine' | 'square' | 'sawtooth' | 'triangle';
 

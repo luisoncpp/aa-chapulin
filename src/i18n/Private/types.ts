@@ -4,7 +4,7 @@
  * Consumed by [[./I18nService.ts]], [[./ui_es.ts]], and [[./ui_en.ts]].
  */
 
-import type { Language, TrackName } from '../../types/index.js';
+import type { CaseId, Language, TrackName } from '../../types/index.js';
 
 export interface UiTranslations {
   // Navigation Buttons
@@ -46,6 +46,16 @@ export interface UiTranslations {
   hudHistoryTitle: string;
   historyModalTitle: string;
   historyEmpty: string;
+  slotSaveTitle: string;
+  slotLoadTitle: string;
+  slotEmpty: string;
+  slotOverwrite: string;
+  slotDeleteAsk: string;
+  slotYes: string;
+  slotNo: string;
+  slotDelete: string;
+  slotDay: (day: number) => string;
+  caseSlotLabel: Record<CaseId, string>;
 
   // Splash Screen
   splashTitle: string;

@@ -21,7 +21,7 @@ import type { FurnitureType, PoseName } from '../../types/index.js';
  */
 const CHAPATIN_HEIGHT_SCALE = 0.85;
 
-export type StageFrameId = 'plain' | 'bench-stand' | 'bench-slam' | 'podium';
+export type StageFrameId = 'plain' | 'bench-stand' | 'bench-slam' | 'podium' | 'judge-stand';
 
 export interface StageFrame {
   /** Character sprite box height, as a fraction of stage height. */
@@ -105,8 +105,22 @@ export const STAGE_FRAMES: Record<StageFrameId, StageFrame> = {
     furnitureHeight: 0.42,
     furnitureBaseline: 0,
     surfaceContact: false
+  },
+  // Lower than the defense desk so the thinking beard clears the lip. The defense
+  // frames stay at 0.457; this box is only for the judge.
+  'judge-stand': {
+    characterHeight: 0.62,
+    characterBaseline: 0.34,
+    characterLayer: 2,
+    furnitureWidth: 1,
+    furnitureHeight: 0.38,
+    furnitureBaseline: 0,
+    surfaceContact: false
   }
 };
+
+/** Sinks judge_gavel onto the lowered lip. His strike is painted at the canvas floor. */
+const JUDGE_GAVEL_BASELINE_OFFSET = -0.06;
 
 // @Section(Frame Resolution)
 /** Poses drawn with both palms planted on a surface, which must paint over the counter. */
@@ -125,6 +139,7 @@ function isRestingPose(pose?: PoseName): boolean {
 
 export function resolveStageFrame(furniture: FurnitureType, pose: PoseName): StageFrameId {
   if (furniture === 'podium') return 'podium';
+  if (furniture === 'judge-bench') return 'judge-stand';
   if (furniture !== 'bench') return 'plain';
   return isSurfaceContactPose(pose) ? 'bench-slam' : 'bench-stand';
 }
@@ -138,14 +153,20 @@ export function applyStageFrame(
   const frame = STAGE_FRAMES[frameId];
   const style = gameScreenEl.style;
   const height = frame.characterHeight * characterHeightScale(pose);
+  const baseline = frame.characterBaseline + poseBaselineOffset(frameId, pose);
   gameScreenEl.dataset.stageFrame = frameId;
   gameScreenEl.dataset.stageContact = String(frame.surfaceContact || isRestingPose(pose));
   style.setProperty('--char-height', toPercent(height));
-  style.setProperty('--char-baseline', toPercent(frame.characterBaseline));
+  style.setProperty('--char-baseline', toPercent(baseline));
   style.setProperty('--char-layer', String(frame.characterLayer));
   style.setProperty('--furniture-width', toPercent(frame.furnitureWidth));
   style.setProperty('--furniture-height', toPercent(frame.furnitureHeight));
   style.setProperty('--furniture-baseline', toPercent(frame.furnitureBaseline));
+}
+
+function poseBaselineOffset(frameId: StageFrameId, pose?: PoseName): number {
+  if (frameId !== 'judge-stand' || pose !== 'judge_gavel') return 0;
+  return JUDGE_GAVEL_BASELINE_OFFSET;
 }
 
 function characterHeightScale(pose?: PoseName): number {

@@ -31,7 +31,7 @@ export const CASE5_TESTIMONY_6: Testimony = {
         { speaker: 'CHOMPIRAS', text: 'Desde el quince de septiembre, señor juez. Me lo consiguió el Sargento.', pose: 'chompiras_idle' },
         { speaker: 'SARGENTO', text: 'Le conseguí una solicitud, señor juez. El trabajo se lo ganó él solo.', pose: 'pazguato_decidido' },
         { speaker: 'CHOMPIRAS', text: 'Es la primera vez en mi vida que me pagan por cargar algo que no es mío y que sigue sin ser mío al final.', pose: 'chompiras_relieved' },
-        { speaker: 'NARRADOR', text: 'Risas suaves en la galería.', sfx: 'realization' }
+        { bg: 'assets/bg_gallery_characters.webp', furniture: 'none', speaker: 'NARRADOR', text: 'Risas suaves en la galería.', sfx: 'realization' }
       ]
     },
     {

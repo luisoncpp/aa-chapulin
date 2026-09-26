@@ -22,7 +22,7 @@ export const CASE5_CLIMAX_STAGE2_EN: ClimaxStage = {
     { speaker: 'DEFENSA', text: 'No hour limit, Your Honor. A judge in this same building signed it in 1971.', pose: 'chapulin_idle' },
     { speaker: 'DEFENSA', text: 'That brass badge he returned at four fifty was not his permit to be inside.', pose: 'chapulin_point' },
     { speaker: 'DEFENSA', text: 'It was his permit to be upstairs.', pose: 'chapulin_slam', sfx: 'desk_slam' },
-    { speaker: 'NARRADOR', text: 'A long murmur runs through the gallery.', sfx: 'realization' },
+    { bg: 'assets/bg_gallery_characters.webp', furniture: 'none', speaker: 'NARRADOR', text: 'A long murmur runs through the gallery.', sfx: 'realization' },
     { speaker: 'BERRONDO', text: 'That is correct, counselor, and I said so yesterday.', pose: 'berrondo_sweat', bg: 'assets/bg_courtroom.webp' },
     { speaker: 'BERRONDO', text: 'I could have stayed in that basement until dawn if I wanted. And I did not stay.', pose: 'berrondo_idle', bg: 'assets/bg_courtroom.webp' },
     { speaker: 'DEFENSA', text: 'And who saw you leave?', pose: 'chapulin_point' },

@@ -32,7 +32,7 @@ export const CASE5_TESTIMONY_2: Testimony = {
         { speaker: 'SARGENTO', text: 'Ya no, señor fiscal. Desde octubre cobro por escalafón.', pose: 'pazguato_decidido' },
         { speaker: 'SUPER SAM', text: '...¿Desde cuándo?', pose: 'supersam_sweat' },
         { speaker: 'SARGENTO', text: 'Desde que usted firmó mi ascenso sin leerlo.', pose: 'pazguato_decidido' },
-        { speaker: 'NARRADOR', text: 'Risas en la galería.', sfx: 'realization' },
+        { bg: 'assets/bg_gallery_characters.webp', furniture: 'none', speaker: 'NARRADOR', text: 'Risas en la galería.', sfx: 'realization' },
         { speaker: 'JUEZ', text: '¡Orden!', sfx: 'gavel', pose: 'judge_gavel' }
       ]
     },

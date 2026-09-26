@@ -9,6 +9,7 @@ import type { Language } from '../../types/index.js';
 import { fillCaseCompleteCopy } from './CaseComplete.js';
 import type { DomElements } from './DomElements.js';
 import { refreshMusicPlayerCopy } from './MusicPlayer/index.js';
+import { refreshSaveSlotModal } from './SaveSlotModal.js';
 
 export class UiLanguageUpdater {
   public static updateUi(dom: DomElements, lang: Language): void {
@@ -77,5 +78,6 @@ export class UiLanguageUpdater {
     const historyHeader = dom.historyModalEl?.querySelector('.modal-header h2');
     if (historyHeader) historyHeader.textContent = t.historyModalTitle;
     if (dom.presentBtnEl) dom.presentBtnEl.textContent = t.modalPresentBtn;
+    refreshSaveSlotModal();
   }
 }

@@ -25,6 +25,7 @@ flowchart TD
     TrackCatalog --> TurnaroundTracks[TurnaroundTracks]
     TrackCatalog --> TruthTracks[TruthTracks]
     TrackCatalog --> FinalConfrontationTrack[FinalConfrontationTrack]
+    TrackCatalog --> CareoTrack[CareoTrack]
     TrackCatalog --> AtmosphereTracks[AtmosphereTracks]
     TrackCatalog --> InvestigationTracks[InvestigationTracks]
 ```
@@ -60,7 +61,7 @@ Real-time step sequencer delegating voice rendering to [[src/audio/Private/Synth
   $$f = 440 \times 2^{\frac{m - 69}{12}}$$
 - **Anti-Fatigue Multi-Section Loop Design**:
   All soundtrack themes feature 64 to 400 steps (~25–45s loop duration) structured into 4 narrative phrases (Exposition, Tension/Development, Climax, and Cadence Turnaround) with polyphonic harmonic backing and breathing rests to prevent ear fatigue during extended gameplay sessions.
-- **Meter is a free parameter**: the sequencer advances one 16th per tick and wraps on `step % track.length`, with no concept of a bar or a time signature. A track is therefore in whatever meter its own note grouping implies — `truth` is in 5/4 as 16 bars of 20 steps (`length: 320`). Only the composition has to agree with itself; nothing in the engine requires a multiple of 16.
+- **Meter is a free parameter**: the sequencer advances one 16th per tick and wraps on `step % track.length`, with no concept of a bar or a time signature. A track is therefore in whatever meter its own note grouping implies (5/4 = 20-step bars, 9/8 = 18). Only the composition has to agree with itself; nothing in the engine requires a multiple of 16.
 
 ### Track Catalog ([[src/audio/Private/TrackCatalog.ts]])
 
@@ -79,12 +80,12 @@ Modularized into private track collections under `src/audio/Private/tracks/`:
     - `game_over` is a catalog alias of the same composition. It is the somber cue the engine forces on the first CULPABLE line when the health bar empties, in every case and at every penalty site.
 12. `suspense` (116 BPM, 128 steps) - D Minor final-showdown habanera for the climax verdict dilemma: staccato tango heartbeat groove, Dm-Bb-A7 harmonic minor pressure, and chromatic turnaround ([[src/audio/Private/tracks/AtmosphereTracks.ts]])
 13. `victory` (136 BPM, 128 steps) - Celebratory G Major case resolution march ("¡Síganme los buenos!") ([[src/audio/Private/tracks/AtmosphereTracks.ts]])
-14. `truth` (126 BPM, 320 steps, ~38 seconds) - "Cerrando el Cerco", the big-reveal theme. **The only track not in 4/4**: 16 bars of 5/4 written as 20-step bars, since the sequencer has no bar concept (see Invariants). Grouped **3+2** throughout — bass and kick accent beats 1 and 4, snare answers on 3 and 5 — which is what makes the five felt rather than counted. E minor; drive comes from subdivision over a moderate pulse, not from tempo. Three rules carry the tension and should not be "tidied" away:
-    - **The bass climbs chromatically for eleven semitones**, E up to D#, so no section plateaus. The dominant is not reached until bar 9 and the climb continues *past* it (C, C#, D), denying the ear its expected landing. An earlier draft used a descending circle of fifths, which resolves into itself at every step and audibly released the tension mid-loop.
-    - **Tension comes from hollow fifths with no third** (the mode stays ambiguous) sliding chromatically: each chord is consonant alone, the *motion* unsettles. Stacked dissonance was tried and rejected — minor 9ths against the bass and high minor-2nd tremolos are physically harsh rather than tense.
-    - **Every one of the 16 bars is different.** A 20-bar draft sat on a B pedal for its final eight bars with one transposed lead cell, and the ending went dead from repetition.
+14. `truth` (96 BPM, 384 steps, 60 seconds) - "Atando Cabos", the big-reveal theme. B minor, 24 bars of 4/4 in six 4-bar sections. Rules that carry it and should not be flattened:
+    - **The chords channel is a 16th-note broken-chord ostinato**, one note per step, grouped 3+3+2 per half bar; kick and bass hit the same accents. This is the piano right hand shared by the series' truth themes: clockwork thinking under the explanation. The lead stays free for the theme.
+    - **No minor 2nds or 9ths between the lead and what sounds under it.** Every note has a fixed engine length (lead ~3 steps), so a passing G still rings against an F# pedal and sounds harsh rather than tense. G-rooted bars drop the pedal to D for that reason.
+    - **The theme is a 3+3+2 rhythm sequenced upward a step per bar** in section B. That climb is the "closing in"; the release is withheld for `victory`.
 
-    Shape: hollow fifths sliding up over a heartbeat kick while a three-note motif is introduced quietly with silence around it (bars 1–4); first full triads and an 8th-note line, G / E/G# / Am / Bb (5–8); 16ths, syncopated and gapped, B7 / C / C#m / D (9–12); then unbroken 16ths as the push, a one-bar **hole** of bass and a bare descending arpeggio, the **apex** — a scalar run to A6, the highest note in the piece, heard once and hammered — and a liquidation sliding the fifths and bass chromatically back down into bar 1 (13–16) ([[src/audio/Private/tracks/TruthTracks.ts]]).
+    Shape: lament bass B-A-G-F# under an F# pedal, ostinato alone (1–4); the theme enters (5–8); climbing bass Em-F#m-G-A with the theme sequenced up (9–12); breakthrough D-E-F#sus4-F# with the lead hammering upward into a snare roll (13–16); the **apex**, where the ostinato becomes 3+3+2 block stabs over octave bass and the lead peaks at G6 before landing on B (17–20); the **hole** (ostinato and one kick), a low echo of the theme, then a Neapolitan C to F#7 turnaround with a chromatic bass climb into bar 1 (21–24) ([[src/audio/Private/tracks/TruthTracks.ts]]).
 
 15. `cross_exam_final` (158 BPM, 384 steps, ~36 seconds) - "Confrontación Final", the theme for the **last cross-examination of a case**: the witness is still standing but the defense already knows. F minor, 24 bars of 4/4 in six 4-bar sections. It is deliberately not another variation of the `cross_exam_*` family (those are one 8-bar loop restated) — it is a through-composed arc, because the final testimony is the longest stretch of uninterrupted reading in a case. Rules that carry it and should not be flattened:
     - **The bass is unbroken 16th notes on the root**, the one gesture borrowed from the piano left hand of the Ace Attorney confrontation themes. It stops exactly once, in bar 17, and that silence is the loudest bar in the piece.
@@ -92,6 +93,14 @@ Modularized into private track collections under `src/audio/Private/tracks/`:
     - **Bars 13–20 modulate up a minor third to Ab minor** and come back without a cadence, so the loop never sounds finished. The lift is the accusation escalating; the ear has settled into F by bar 12 and is moved off it.
 
     Shape: the accusation stated plainly in the mid register, Fm-Fm-Db-C (1–4); a cycle of fourths, Fm-Bbm-Eb-Ab, with the lead climbing an octave (5–8); 16ths at the top of the F minor tension, Db-Eb-Fm-C7 (9–12); the modulation, hammered repeated notes over an octave-jumping bass (13–16); the **hole** — bar 17 drops bass and drums to a single crash — then the **apex** run to B6 and a scalar walk back down (17–20); recap at the original height with a chromatic bass turnaround and drum fill into bar 1 (21–24) ([[src/audio/Private/tracks/FinalConfrontationTrack.ts]]).
+
+16. `cross_exam_careo` (164 BPM, 512 steps, ~47 seconds) - "Careo", an alternative bed for the same role as `cross_exam_final`, modelled on the piano writing of the Investigations 2 confrontation presto. D minor, 32 bars in eight 4-bar sections. No case cues it yet; audition it in the jukebox before swapping a `bgm`. Rules that carry it and should not be flattened:
+    - **Every phrase ends on the dominant or a leading tone.** Each 4-bar phrase is an unanswered question; the only tonic arrival (bar 25) goes straight back into the question.
+    - **Chords are the piano left hand**: 8th pumps in the exposition, then a gallop (8th + two 16ths) that the bass doubles with an octave on the last 16th.
+    - **Keys pivot on one enharmonic note**: C#6 becomes Db (Dm → Fm, bar 9), and Db6 becomes C# again (Bbm → A7 → D major, bars 15–17).
+    - **Bars 13–16 are stop-time** (two hits per bar and a ticking hat), then a snare roll into the only major-key section.
+
+    Shape: the question, Dm-Dm-Bb-A (1–4); a hammered answer over a lament bass, Dm-C-Bb-A7 (5–8); the question a minor third up, Fm-Fm-Db-C7 (9–12); stop-time gasp and a scalar run, Fm-Db-Bbm-A7 (13–16); D major, the defense believes, D-Bm-G-A (17–20); deceptive Bb with the hammer climbing, Bb-C-Dm-A7/E (21–24); the **apex**, bar 1 an octave up, peaking at Bb6, Dm-Bb-Gm-A7 (25–28); the breath, low widening fragments and a chromatic pickup into bar 1, Bb-Gm-Bb-A7 (29–32) ([[src/audio/Private/tracks/CareoTrack.ts]]).
 
 ### Terraza Bar
 

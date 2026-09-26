@@ -22,7 +22,7 @@ export const CASE5_CLIMAX_STAGE2: ClimaxStage = {
     { speaker: 'DEFENSA', text: 'Sin límite de horario, señor juez. Lo firmó un juez de este mismo edificio en 1971.', pose: 'chapulin_idle' },
     { speaker: 'DEFENSA', text: 'Ese gafete de latón que devolvió a las cuatro cincuenta no era su permiso para estar adentro.', pose: 'chapulin_point' },
     { speaker: 'DEFENSA', text: 'Era su permiso para estar arriba.', pose: 'chapulin_slam', sfx: 'desk_slam' },
-    { speaker: 'NARRADOR', text: 'Murmullo largo en la galería.', sfx: 'realization' },
+    { bg: 'assets/bg_gallery_characters.webp', furniture: 'none', speaker: 'NARRADOR', text: 'Murmullo largo en la galería.', sfx: 'realization' },
     { speaker: 'BERRONDO', text: 'Es correcto, licenciado, y lo declaré ayer.', pose: 'berrondo_sweat', bg: 'assets/bg_courtroom.webp' },
     { speaker: 'BERRONDO', text: 'Yo podía quedarme en ese sótano hasta la madrugada si quería. Y no me quedé.', pose: 'berrondo_idle', bg: 'assets/bg_courtroom.webp' },
     { speaker: 'DEFENSA', text: '¿Y quién lo vio irse?', pose: 'chapulin_point' },

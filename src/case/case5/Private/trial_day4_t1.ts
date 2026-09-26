@@ -32,7 +32,7 @@ export const CASE5_TESTIMONY_9: Testimony = {
         { speaker: 'GENOVEVA', text: 'Tampoco.', pose: 'genoveva_idle' },
         { speaker: 'DEFENSA', text: '¿Y no le parece raro?', pose: 'chapulin_point' },
         { speaker: 'GENOVEVA', text: 'El reglamento no me faculta para que me parezcan raras las cosas, señor.', pose: 'genoveva_reglamento' },
-        { speaker: 'NARRADOR', text: 'Risas breves en la galería.', sfx: 'realization' },
+        { bg: 'assets/bg_gallery_characters.webp', furniture: 'none', speaker: 'NARRADOR', text: 'Risas breves en la galería.', sfx: 'realization' },
         { speaker: 'GENOVEVA', text: 'Y le suplico a la galería que no se ría. Yo llevo trece años haciendo exactamente lo que dice un papel, y por eso ese papel existe.', pose: 'genoveva_reglamento' },
         { speaker: 'JUEZ', text: 'La corte apoya a la testiga.', pose: 'judge_neutral' }
       ]

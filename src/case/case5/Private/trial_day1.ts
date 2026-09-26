@@ -24,7 +24,7 @@ export const CASE5_TRIAL_INTRO_FULL: DialogueLine[] = [
   { speaker: 'SUPER SAM', pose: 'supersam_point', text: 'Motive? La víctima iba a declarar el sábado que las cuatro victorias de este señor entre agosto y octubre no fueron talento. Fueron información comprada.' },
   { speaker: 'DON RAMÓN', pose: 'donramon_idle', text: '...¿Comprada con qué, señor fiscal? Llevo diecisiete meses sin pagar la renta.' },
   { speaker: 'SUPER SAM', pose: 'supersam_slam', text: '¡AH! ¡Pero la pagó! ¡El veintinueve de noviembre! ¡DIECISIETE MESES! ¡En efectivo!', sfx: 'desk_slam' },
-  { speaker: 'NARRADOR', text: 'La galería estalla.', sfx: 'gavel' },
+  { bg: 'assets/bg_gallery_characters.webp', furniture: 'none', speaker: 'NARRADOR', text: 'La galería estalla.', sfx: 'gavel' },
   { speaker: 'JUEZ', pose: 'judge_gavel', text: '¡ORDEN!', sfx: 'gavel' },
   { speaker: 'JUEZ', pose: 'judge_shock', text: 'Antes de nada: esta corte no ve a nadie en el estrado de la defensa.' },
   { speaker: 'DEFENSA', pose: 'chapulin_slam', text: '¡Aquí, señor juez!', sfx: 'desk_slam' },

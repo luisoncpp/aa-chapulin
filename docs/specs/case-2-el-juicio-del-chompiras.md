@@ -10,6 +10,7 @@ Documento de diseño narrativo, guión de diálogos y especificación técnica p
 | Fecha | Lente | Resultado |
 |---|---|---|
 | 2026-09-17 | Calendario y orden de actos | Cero hallazgos nuevos: el crimen queda el 21 de agosto, las jornadas el 22–23 y las referencias ES/EN coinciden. |
+| 2026-09-25 | Encuadres del narrador: galería del tribunal | Cero hallazgos. Se recorrieron los guiones completos de juicio, clímax y epílogo en ES/EN y sus menciones en este spec. Ningún narrador comenta la galería ni a sus espectadores; los cortes existentes muestran la lata del oro, la caída de Peterete o la sala de espera. No hay escena que cambiar. |
 
 **Regla de parada:** una nueva lente sin hallazgos sobre las secciones modificadas.
 

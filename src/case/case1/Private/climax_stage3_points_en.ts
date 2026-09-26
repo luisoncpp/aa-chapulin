@@ -58,7 +58,7 @@ const REJILLA_CINTA_POINT_TARGET_EN: PointTargetContradiction = {
     { speaker: 'JUEZ', text: 'Great Scott! The entire frame carries years of dust... except for two perfectly clean parallel strips!', pose: 'judge_shock' },
     { speaker: 'DEFENSA', text: 'Separated by exactly one and a half centimetres, Your Honor. The exact width of a standard tape measure.', pose: 'donramon_slam', sfx: 'desk_slam' },
     { speaker: 'DEFENSA', text: 'Someone rested the tape on that lip and measured the eighteen-by-twenty-four opening. Standing up, by day, from the gallery and in no hurry at all.', pose: 'donramon_idle' },
-    { speaker: 'NARRADOR', text: 'A murmur of astonishment runs through the gallery.', sfx: 'realization' },
+    { speaker: 'NARRADOR', text: 'A murmur of astonishment runs through the gallery.', bg: 'assets/bg_gallery_characters.webp', furniture: 'none', sfx: 'realization' },
     { speaker: 'TRIPASECA', text: 'Wait a minute, wait a minute! Rubbish!', pose: 'tripaseca_sweat' },
     { speaker: 'TRIPASECA', text: 'A couple of tape measure marks? Anyone could have done that! A bricklayer, the janitor, the guy replacing the baseboards... or some curious tourist passing by!', pose: 'tripaseca_smug' },
     { speaker: 'SUPER SAM', text: 'Excellent objection! Having marks on a wall does not link my witness to this crime! We lack the personal connection!', pose: 'supersam_point' },

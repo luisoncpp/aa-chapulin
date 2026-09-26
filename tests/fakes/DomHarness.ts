@@ -144,6 +144,15 @@ export function setupDomHarness(): DomElements {
         <button id="btn-close-move">X</button>
         <div id="move-locations-list"></div>
       </div>
+      <div id="save-slot-modal" class="game-modal hidden">
+        <div class="modal-window save-slot-window">
+          <div class="modal-header">
+            <h2 id="save-slot-title">GUARDAR</h2>
+            <button id="btn-close-save-slots" class="close-btn">X</button>
+          </div>
+          <div id="save-slot-list" class="save-slot-list"></div>
+        </div>
+      </div>
       <div id="history-modal" class="game-modal hidden">
         <div class="modal-window">
           <div class="modal-header"><h2>HISTORIAL</h2><button id="btn-close-history" class="close-btn">X</button></div>

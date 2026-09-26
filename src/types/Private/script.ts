@@ -170,7 +170,7 @@ export type CutinName =
   | 'objection_culpable'
   | 'objection_inocente';
 
-export type FurnitureType = 'podium' | 'bench' | 'none';
+export type FurnitureType = 'podium' | 'bench' | 'judge-bench' | 'none';
 
 export interface DialogueLine {
   speaker?: SpeakerName;

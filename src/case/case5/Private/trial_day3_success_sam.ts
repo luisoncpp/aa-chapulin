@@ -11,7 +11,7 @@ export const CASE5_D3_T2_OFICIO_SUCCESS: DialogueLine[] = [
   { speaker: 'DEFENSA', text: 'Y hasta abajo lleva la lista de a quién se le mandó copia, escrita por la máquina de su propia oficina.', pose: 'chapulin_idle' },
   { speaker: 'DEFENSA', text: '«Con copia para: la Actuaría adscrita. La Dirección del Archivo. Y...»', pose: 'chapulin_idle' },
   { speaker: 'DEFENSA', text: '«...la Sindicatura de la quiebra 114/1971.»', pose: 'chapulin_slam', sfx: 'desk_slam', cutin: 'objection_toma_eso' },
-  { speaker: 'NARRADOR', text: 'La galería se levanta.', sfx: 'realization', bgm: 'objection' },
+  { bg: 'assets/bg_gallery_characters.webp', furniture: 'none', speaker: 'NARRADOR', text: 'La galería se levanta.', sfx: 'realization', bgm: 'objection' },
   { speaker: 'SUPER SAM', text: '...¿Qué?', pose: 'supersam_sweat' },
   { speaker: 'JUEZ', text: '¡ORDEN!', sfx: 'gavel', pose: 'judge_gavel' },
   { speaker: 'SUPER SAM', text: 'Your Honor, yo no... eso lo pone la secretaría, eso lo pone la máquina...', pose: 'supersam_sweat' },

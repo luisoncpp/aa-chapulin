@@ -290,15 +290,16 @@ describe('VisualEffects Subsystem', () => {
     expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(false);
     expect(dom.gameScreen.dataset.stageFrame).toBe('bench-slam');
 
-    // 3. Judge talks -> switches to judge background and hides furniture
+    // 3. Judge talks -> judge background and the judge bench, not the defense desk
     VisualEffects.updateStagingForLine(
       dom,
       { speaker: 'JUEZ', pose: 'judge_thinking', text: '¡Vaya sonido!' },
       /*isTrialMode=*/ true
     );
     expect(dom.bgEl.style.backgroundImage).toContain('assets/bg_judge.webp');
-    expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(true);
-    expect(dom.gameScreen.dataset.stageFrame).toBe('plain');
+    expect(dom.courtFurnitureSpriteEl.src).toContain('assets/court_judge_bench.webp');
+    expect(dom.courtFurnitureContainerEl.classList.contains('hidden')).toBe(false);
+    expect(dom.gameScreen.dataset.stageFrame).toBe('judge-stand');
 
     // 4. Witness talks -> switches back to witness background and shows podium
     VisualEffects.updateStagingForLine(

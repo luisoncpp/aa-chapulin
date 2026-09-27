@@ -7,7 +7,7 @@ export const CASE0_WITNESS_CALL_T1: DialogueLine[] = [
   { speaker: 'CASIMIRO', pose: 'casimiro_amable', text: 'Voy subiendo, voy subiendo. Al estrado, del latín stratum: “lo que se extiende”.' },
   { speaker: 'DEFENSA', pose: 'donramon_sweat', text: '(Este señor le pone nota al pie hasta a los escalones. De aquí salgo con barba.)' },
   { speaker: 'JUEZ', pose: 'judge_neutral', text: 'Testigo, diga su nombre y su ocupación.' },
-  { speaker: 'CASIMIRO', pose: 'casimiro_catalogo', text: 'Casimiro Lengua, para servirle: distribuidor autorizado de Enciclopedias El Saber Universal. Del latín encyclopaedia, “instrucción en círculo”.' },
+  { speaker: 'CASIMIRO', pose: 'casimiro_catalogo', text: 'Casimiro Lengua, para servirle: distribuidor autorizado de Enciclopedias El Saber Universal. Del latín encyclopaedia, “instrucción en círculo”.', addProfile: 'perfil_casimiro' },
   { speaker: 'JUEZ', pose: 'judge_neutral', text: 'Su testimonio, por favor. Únicamente lo que percibió.' }
 ];
 

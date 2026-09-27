@@ -17,7 +17,7 @@ export const CASE4_CALL_CECILIO: DialogueLine[] = [
   { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_sweat', text: 'Yo soy el fiscal. El juez está allá arriba.' },
   { bg: 'assets/bg_witness.webp', speaker: 'CECILIO', pose: 'cecilio_shock', text: '¡Ah! Pues tiene usted una voz muy autoritaria para estar tan abajo.' },
   { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_neutral', text: 'Testigo, diga su nombre y su ocupación.' },
-  { bg: 'assets/bg_witness.webp', speaker: 'CECILIO', pose: 'cecilio_idle', text: 'Cecilio Buenavista, propietario y gerente del Gran Hotel Buena Vista. Treinta y un años al frente de esa recepción, señor juez.' },
+  { bg: 'assets/bg_witness.webp', speaker: 'CECILIO', pose: 'cecilio_idle', text: 'Cecilio Buenavista, propietario y gerente del Gran Hotel Buena Vista. Treinta y un años al frente de esa recepción, señor juez.', updateProfile: 'perfil_cecilio' },
   { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_sweat', text: '(Treinta y un años viendo entrar gente. Lástima que nunca de cerca.)' },
   { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_gavel', text: 'Proceda con su testimonio. Únicamente lo que percibió aquella noche.', sfx: 'gavel' }
 ];

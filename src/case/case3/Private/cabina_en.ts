@@ -29,7 +29,7 @@ const CABINA_HOTSPOTS_EN: Hotspot[] = [
     label: 'Booth Microphone',
     x: 52, y: 24, w: 16, h: 40,
     dialogue: [
-      { speaker: 'CHIMOLTRUFIA', text: 'Ay, the boy unplugs it every night when we finish. ¡Como digo una cosa, digo otra!: I tell him to leave it, and he coils it up.', pose: 'chimoltrufia_idle', addEvidence: 'microfono_cabina' }
+      { speaker: 'CHIMOLTRUFIA', text: 'Ay, the boy unplugs it every night when we finish. ¡Como digo una cosa, digo otra!: I tell him to leave it, and he coils it up.', pose: 'chimoltrufia_idle', addEvidence: 'microfono_cabina', addProfile: 'perfil_chimoltrufia' }
     ]
   },
   {
@@ -68,7 +68,7 @@ export const CASE3_CABINA_EN: InvestigationScene = {
   idlePose: 'pazguato_idle',
   intro: [
     { speaker: 'NARRADOR', text: 'September 16, 11:00 AM. Radio station XEVC, second floor of Edificio Barriga.' },
-    { speaker: 'SARGENTO', text: '¡A sus órdenes, mi Licenciado! Sergeant Refugio Pazguato, at your service and justice\'s.', pose: 'pazguato_saludo' },
+    { speaker: 'SARGENTO', text: '¡A sus órdenes, mi Licenciado! Sergeant Refugio Pazguato, at your service and justice\'s.', pose: 'pazguato_saludo', addProfile: 'perfil_sargento' },
     { speaker: 'DEFENSA', text: 'Does the prosecution know you\'re letting us in?', pose: 'donramon_idle' },
     { speaker: 'SARGENTO', text: 'Uh... no. And please don\'t tell Super Sam — he\'s docked me three paychecks already. But I... I don\'t think the little doctor did it.', pose: 'pazguato_sweat' },
     { speaker: 'CHAPULIN', text: 'That\'s the spirit! ¡Síganme los buenos!', pose: 'chapulin_idle' }
@@ -79,7 +79,7 @@ export const CASE3_CABINA_EN: InvestigationScene = {
       id: 'about_informe',
       label: 'The medical report',
       dialogue: [
-        { speaker: 'SARGENTO', text: 'Here\'s the report, mi Licenciado. I had it folded in four... inside a bean torta. Don\'t worry, I removed the bean.', pose: 'pazguato_saludo', addEvidence: 'informe_barriga' },
+        { speaker: 'SARGENTO', text: 'Here\'s the report, mi Licenciado. I had it folded in four... inside a bean torta. Don\'t worry, I removed the bean.', pose: 'pazguato_saludo', addEvidence: 'informe_barriga', addProfile: 'perfil_barriga' },
         { speaker: 'DEFENSA', text: '(Red wool fibers in the hair... Contusion with an octagonal mark. Noted.)', pose: 'donramon_idle' }
       ]
     },
@@ -87,7 +87,8 @@ export const CASE3_CABINA_EN: InvestigationScene = {
       id: 'about_who_else',
       label: 'Who else was in the building?',
       dialogue: [
-        { speaker: 'SARGENTO', text: 'Young Ñoño at the console, Mrs. Chimoltrufia in Cabina C, and Don Aniceto... poor Don Aniceto, we found him tied up in the storeroom. Whoever did that had a steady hand.', pose: 'pazguato_sweat', unlockLocation: 'plaza_kermes' },
+        { speaker: 'SARGENTO', text: 'Young Ñoño was at the console.', pose: 'pazguato_sweat', addProfile: 'perfil_nono' },
+        { speaker: 'SARGENTO', text: 'Mrs. Chimoltrufia was in Cabina C. And Don Aniceto... poor Don Aniceto, we found him tied up in the storeroom. Whoever did that had a steady hand.', pose: 'pazguato_sweat', unlockLocation: 'plaza_kermes', addProfile: 'perfil_chimoltrufia' },
         { speaker: 'CHAPULIN', text: 'We should talk to the people in the plaza!', pose: 'chapulin_point' }
       ]
     }

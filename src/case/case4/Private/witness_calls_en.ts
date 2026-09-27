@@ -15,7 +15,7 @@ export const CASE4_CALL_CECILIO_EN: DialogueLine[] = [
   { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_sweat', text: 'I am the prosecutor. The judge is up there.' },
   { bg: 'assets/bg_witness.webp', speaker: 'CECILIO', pose: 'cecilio_shock', text: 'Ah! You have a very commanding voice for a man that far down.' },
   { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_neutral', text: 'Witness, state your name and your occupation.' },
-  { bg: 'assets/bg_witness.webp', speaker: 'CECILIO', pose: 'cecilio_idle', text: 'Cecilio Buenavista, owner and manager of the Gran Hotel Buena Vista. Thirty-one years behind that front desk, Your Honor.' },
+  { bg: 'assets/bg_witness.webp', speaker: 'CECILIO', pose: 'cecilio_idle', text: 'Cecilio Buenavista, owner and manager of the Gran Hotel Buena Vista. Thirty-one years behind that front desk, Your Honor.', updateProfile: 'perfil_cecilio' },
   { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_sweat', text: '(Thirty-one years watching people walk in. Pity it was never from up close.)' },
   { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_gavel', text: 'Proceed with your testimony. Only what you perceived that night.', sfx: 'gavel' }
 ];

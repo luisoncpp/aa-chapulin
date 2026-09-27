@@ -1,7 +1,7 @@
 // @Architecture(descriptionShort="Acta tab visibility and person present slots", type="test", icon="dialog")
 /**
- * Spec §6.1: the tab bar must not exist for the cases that declare no profiles,
- * and a person is only presentable when the court asks for one.
+ * The tab bar needs an owned person to display, and a person is only
+ * presentable when the court asks for one.
  */
 import { describe, expect, it, beforeEach, vi } from 'vitest';
 import { MidiMusicComposer, SoundEngine } from '../../src/audio/index.js';
@@ -50,14 +50,14 @@ describe('Acta de Personajes in the Court Record', () => {
     });
   });
 
-  it('hides the tab bar for a case that declares no profiles', () => {
-    const case2State = new GameStateManager();
-    case2State.beginNewCase(getCaseScript('es', 'case2'));
-    case2State.populateTrialEvidence();
+  it('hides the tab bar before any character has been filed', () => {
+    const emptyProfileState = new GameStateManager();
+    emptyProfileState.beginNewCase(getCaseScript('es', 'case0'));
+    emptyProfileState.populateTrialEvidence();
     ModalManager.openCourtRecord({
-      dom, state: case2State, isTrialPresent: true, onSelect: () => undefined
+      dom, state: emptyProfileState, isTrialPresent: true, onSelect: () => undefined
     });
-    expect(case2State.profiles.owned).toEqual([]);
+    expect(emptyProfileState.profiles.owned).toEqual([]);
     expect(dom.recordTabsEl.classList.contains('hidden')).toBe(true);
     expect(dom.presentProfileBtnEl.style.display).toBe('none');
   });

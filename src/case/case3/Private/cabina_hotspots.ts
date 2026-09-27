@@ -29,7 +29,7 @@ export const CABINA_HOTSPOTS: Hotspot[] = [
     label: 'Micrófono de la Cabina',
     x: 52, y: 24, w: 16, h: 40,
     dialogue: [
-      { speaker: 'CHIMOLTRUFIA', text: 'Ay, es que el muchacho lo desconecta cada noche al acabar. Como digo una cosa, digo otra: yo le digo que lo deje, y él lo enrolla.', pose: 'chimoltrufia_idle', addEvidence: 'microfono_cabina' }
+      { speaker: 'CHIMOLTRUFIA', text: 'Ay, es que el muchacho lo desconecta cada noche al acabar. Como digo una cosa, digo otra: yo le digo que lo deje, y él lo enrolla.', pose: 'chimoltrufia_idle', addEvidence: 'microfono_cabina', addProfile: 'perfil_chimoltrufia' }
     ]
   },
   {

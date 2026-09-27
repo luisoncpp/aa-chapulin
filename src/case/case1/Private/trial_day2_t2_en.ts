@@ -40,7 +40,7 @@ const CASE1_D2_T2_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'DEFENSA', text: 'And the frame is bent outward, not inward.', pose: 'donramon_idle' },
   { speaker: 'TRIPASECA', text: '...And what of it?', pose: 'tripaseca_sweat' },
   { speaker: 'DEFENSA', text: 'That glass does not travel to the side it was struck from, Mr. Tripaseca. You said it yourself a minute ago: "anybody knows that".', pose: 'donramon_point' },
-  { speaker: 'DEFENSA', text: 'This display case was broken from the inside.', pose: 'donramon_slam', sfx: 'desk_slam', updateProfile: 'perfil_tripaseca' },
+  { speaker: 'DEFENSA', text: 'This display case was broken from the inside.', pose: 'donramon_slam', sfx: 'desk_slam' },
   { speaker: 'NARRADOR', text: 'The room erupts.', bg: 'assets/bg_gallery_characters.webp', furniture: 'none', sfx: 'realization', bgm: 'objection' },
   { speaker: 'JUEZ', text: 'ORDER! ORDER IN THE COURT!', sfx: 'gavel', pose: 'judge_gavel' },
   { speaker: 'JUEZ', text: 'From the inside?! It is an eighty-centimetre case!', pose: 'judge_shock' },
@@ -99,7 +99,7 @@ export const CASE1_TESTIMONY_4_EN: Testimony = {
       text: 'That door has had a broken latch since March. You push it and you are in. No magic required.',
       pressText: [
         { speaker: 'DEFENSA', text: 'HOLD IT! Since March, you said?', sfx: 'whoosh', cutin: 'objection_un_momento', pose: 'donramon_point' },
-        { speaker: 'TRIPASECA', text: 'Since March.', pose: 'tripaseca_smug' },
+        { speaker: 'TRIPASECA', text: 'Since March.', pose: 'tripaseca_smug', updateProfile: 'perfil_tripaseca' },
         { speaker: 'DEFENSA', text: "And how do you know which month the service door latch of a museum broke?", pose: 'donramon_shock' },
         { speaker: 'TRIPASECA', text: '...Well, you can see it. You can see it is old.', pose: 'tripaseca_sweat' },
         { speaker: 'DEFENSA', text: '"Old" you can see. "March" you cannot see, Mr. Tripaseca. March you know.', pose: 'donramon_point' },

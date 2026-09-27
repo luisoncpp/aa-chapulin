@@ -13,7 +13,7 @@ export const CASE4_HOTEL_SUITE_EN: InvestigationScene = {
   idlePose: 'pazguato_idle',
   intro: [
     { speaker: 'NARRADOR', text: 'October 25, 11:00 AM. Presidential Suite 304.' },
-    { speaker: 'SARGENTO', text: 'At your service, counselor! Sergeant Refugio Pazguato, of the police... for now.', pose: 'pazguato_saludo' },
+    { speaker: 'SARGENTO', text: 'At your service, counselor! Sergeant Refugio Pazguato, of the police... for now.', pose: 'pazguato_saludo', addProfile: 'perfil_sargento' },
     { speaker: 'DEFENSA', text: 'For now?', pose: 'donramon_idle' },
     { speaker: 'SARGENTO', text: 'Prosecutor Super Sam docks my pay every time I let a defense through. That makes two.', pose: 'pazguato_sweat' },
     { speaker: 'CHAPULIN', text: 'Then why are you letting us through?', pose: 'chapulin_idle' },

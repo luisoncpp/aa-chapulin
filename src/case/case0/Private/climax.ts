@@ -40,8 +40,8 @@ export const CASE0_CLIMAX: ClimaxDefinition = {
         { speaker: 'CHAPULÍN', pose: 'chapulin_point', text: '¡La misma mano tiznada tocó las dos cosas!' },
         { speaker: 'DEFENSA', pose: 'donramon_point', text: 'Ese hombre entró a robar la lata. La tenía en sus manos cuando el cobrador abrió la puerta.' },
         { speaker: 'CASIMIRO', pose: 'casimiro_breakdown', text: '¡ERA UN VIEJO CON UN MALETÍN LLENO! ¡Y ese muchacho no tenía nada!' },
-        { speaker: 'NARRADOR', text: 'Los tomos se le caen del maletín. Por primera vez, el testigo no mira los relojes.' },
-        { speaker: 'SUPER SAM', pose: 'supersam_idle', text: 'La fiscalía retira la acusación contra Toribio Pantoja.' }
+        { bg: 'assets/bg_witness.webp', furniture: 'podium', speaker: 'NARRADOR', pose: 'casimiro_breakdown', text: 'Los tomos se le caen del maletín. Por primera vez, el testigo no mira los relojes.' },
+        { speaker: 'SUPER SAM', pose: 'supersam_idle', text: 'La fiscalía retira la acusación contra Toribio Pantoja.', updateProfile: 'perfil_supersam' }
       ]
     }
   ],
@@ -68,11 +68,11 @@ export const CASE0_CLIMAX: ClimaxDefinition = {
   ],
   verdict: [
     { speaker: 'JUEZ', pose: 'judge_gavel', text: 'Por lo escuchado hoy, este tribunal declara al acusado Toribio Pantoja...', sfx: 'gavel' },
-    { speaker: 'JUEZ', pose: 'judge_gavel', text: '¡INOCENTE!', cutin: 'objection_inocente', bgm: 'victory' },
+    { speaker: 'JUEZ', pose: 'judge_gavel', text: '¡INOCENTE!', cutin: 'objection_inocente', bgm: 'victory', updateProfile: 'perfil_toribio' },
     { speaker: 'TORIBIO', pose: 'toribio_aliviado', text: '¡Licenciado! ¡Licenciado, gané! ...¿ganamos?' },
         { speaker: 'DEFENSA', pose: 'donramon_idle', text: 'Ganó usted. Yo nomás hablé.' },
     { speaker: 'CHAPULÍN', pose: 'chapulin_idle', text: 'Se presiona gratis, se presenta con cuidado y se mira todo de cerquita.' },
-    { speaker: 'JUEZ', pose: 'judge_gavel', text: 'Se ordena la detención de Casimiro Lengua y la devolución del cartapacio de cobranza. Se cierra la audiencia.', sfx: 'gavel' }
+    { speaker: 'JUEZ', pose: 'judge_gavel', text: 'Se ordena la detención de Casimiro Lengua y la devolución del cartapacio de cobranza. Se cierra la audiencia.', sfx: 'gavel', updateProfile: 'perfil_casimiro' }
   ],
   epilogue: {
     bg: EPILOGUE_BG,

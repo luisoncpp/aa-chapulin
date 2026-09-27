@@ -21,7 +21,7 @@ export const CASE2_CLIMAX_CHOICES: ChoicePrompt[] = [
       { speaker: 'JUEZ', text: '¡La defensa recibirá una penalización si no deja de perder el tiempo!', pose: 'judge_shock' }
     ],
     successDialogue: [
-      { speaker: 'DEFENSA', text: '¡La clave no es cómo iba vestido, sino CUÁNDO fue! Doña Clotilde dijo que el hombre fue a comprar la esencia la tarde del 21 de agosto.', pose: 'donramon_point' },
+      { speaker: 'DEFENSA', text: '¡La clave no es cómo iba vestido, sino CUÁNDO fue! Doña Clotilde dijo que el hombre fue a comprar la esencia la tarde del 21 de agosto.', pose: 'donramon_point', updateProfile: 'perfil_clotilde' },
       { speaker: 'JUEZ', text: '¿La tarde del 21 de agosto? ¿Y por qué es tan importante esa hora específica?', pose: 'judge_neutral' }
     ]
   },
@@ -40,10 +40,10 @@ export const CASE2_CLIMAX_CHOICES: ChoicePrompt[] = [
       { speaker: 'JUEZ', text: 'Licenciado, si va a hacer acusaciones infundadas me veré obligado a penalizarlo.', pose: 'judge_gavel', sfx: 'gavel' }
     ],
     successDialogue: [
-      { speaker: 'DEFENSA', text: '¡Y según las reglas del hotel, la única persona que portaba la llave maestra original esa tarde era el JEFE DE SEGURIDAD!', pose: 'donramon_slam', sfx: 'desk_slam' },
+      { speaker: 'DEFENSA', text: '¡Y según las reglas del hotel, la única persona que portaba la llave maestra original esa tarde era el JEFE DE SEGURIDAD!', pose: 'donramon_slam', sfx: 'desk_slam', updateProfile: 'perfil_peterete' },
       { speaker: 'DEFENSA', text: '¡Usted compró la valeriana, copió su propia llave, durmió al Chómpiras, abrió la caja y metió el oro en la lata!', pose: 'donramon_point' },
       { speaker: 'PETERETE', text: '¡¡¡NOOOOOOOOOOOO!!! ¡¡¡MI PLAN PERFECTO DE CINCO MILLONES DE DÓLARES ARRUINADO POR UN LIMPIABOTAS Y UN DEFENSOR DEL NECAXA!!!', pose: 'peterete_breakdown', sfx: 'damage' },
-      { speaker: 'NARRADOR', text: '(El Peterete se abofetea con su fedora hasta caer desplomado en el estrado).' },
+      { speaker: 'NARRADOR', text: '(El Peterete se abofetea con su fedora hasta caer desplomado en el estrado).', bg: 'assets/bg_witness.webp', furniture: 'podium', pose: 'peterete_breakdown' },
       { speaker: 'SUPER SAM', text: 'OH NOOO! ¡My fees! ¡My bonus! ¡Time is money and I lost my dollars!', pose: 'supersam_breakdown' },
       { speaker: 'JUEZ', text: '¡Silencio y orden! Habiendo aparecido la prueba reina, demostrado el método y confesado el verdadero culpable, ¡este juzgado emite su veredicto definitivo!', pose: 'judge_gavel', sfx: 'gavel' },
       { cutin: 'objection_inocente', speaker: 'JUEZ', text: '¡Declaro al acusado, Aquiles Esquivel Madrazo... INOCENTE!', sfx: 'whoosh', bgm: 'victory', pose: 'judge_gavel' }

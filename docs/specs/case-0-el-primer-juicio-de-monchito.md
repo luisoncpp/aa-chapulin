@@ -13,6 +13,8 @@ Contiene spoilers completos. La comunicación con el usuario debe limitarse al e
 | Fecha | Lente | Alcance | Resultado |
 | --- | --- | --- | --- |
 | 2026-09-25 | Cortes visuales del narrador sobre la galería | Guiones de juicio ES/EN, apertura y lobby, receso, clímax/epílogo y menciones del spec; sólo narración referida a espectadores del tribunal | Cero hallazgos: no hay cortes del narrador que comenten la galería. Las referencias a la sala de espera y al estrado describen otros encuadres. Contrato fijado en §6. |
+| 2026-09-26 | Reacción colectiva narrada, aunque no diga «galería» | Todos los bloques de narrador ES/EN de apertura, testimonios y presiones, llamadas de testigo, lobby/receso, clímax y epílogo; se revisaron estallidos, murmullos, risas, silencios y miradas colectivas | Cero hallazgos. Las líneas de narrador describen objetos/peritajes, caídas del testigo, timbres o sala de espera; no hay reacción colectiva que requiera el plano del público. La pasada anterior usó una lente literal de galería y podía omitir paráfrasis, pero en este caso no hay ninguna. |
+| 2026-09-27 | Encuadres de los hallazgos del receso y la caída de Casimiro | Guiones ES/EN del lobby y clímax, más §10 y §12; líneas que incorporan las pruebas y narran la confesión | Hallazgo: el cartapacio y la tarjeta heredaban encuadres de sala sin marcar; la caída de los tomos no mostraba a Casimiro rompiéndose. El cartapacio ahora usa su lámina con `furniture: none`, la tarjeta el banco de defensa y la caída el estrado del testigo con `casimiro_breakdown`, también en el spec. |
 
 ## 1. Objetivo y reglas de diseño
 
@@ -104,6 +106,23 @@ Nueve entradas. Las siete de origen "Corte" están en el Acta antes de la primer
 | `tarjeta_enciclopedias` | Receso, tras T2 | Tarjeta de presentación del testigo: "Enciclopedias El Saber Universal, S.A.". La sociedad está disuelta desde 1971. Sin hoja de ruta, sin pedidos, tres tomos de muestra con el lomo roto. | `followUp` de T3. |
 
 Las descripciones iniciales no dicen "prueba definitiva" ni nombran la solución de un señalamiento (ver [[docs/lessons-learned/climax-stage-prompt-spoils-answer.md]]). La lámina de `foto_patio` muestra el andamio; la ficha corta no lo menciona, para que el hallazgo ocurra en el examen y no en la lista. La ficha de `lata_ahorros` no insinúa que la mesa sea el dato raro: eso lo dice Toribio en el clímax.
+
+### 5.1 Acta de Personajes
+
+El Caso 0 incluye una ficha por cada personaje de su reparto con nombre propio: Don Ramón, El Chapulín Colorado, Super Sam, Toribio Pantoja, Casimiro Lengua y Don Nazario Cuenca. El Juez no recibe ficha: el spec lo define solo por su cargo, sin identidad personal. Cada ficha aparece en el Acta cuando el personaje se presenta por primera vez en pantalla o en diálogo; no se precargan perfiles de personajes que aún no han sido presentados.
+
+La primera descripción contiene únicamente lo que la corte y el jugador saben en ese momento. Se actualiza al conocerse un dato importante nuevo, en la línea de diálogo que lo establece o inmediatamente después. El Caso 0 es el tutorial previo al Acto 1, no un acto numerado: sus altas y actualizaciones siguen el orden de revelación dentro de este juicio, y `case0` nunca sirve como etapa de progreso. En los episodios numerados, la progresión sigue el **número de acto en el orden de juego**, nunca el número o id del caso; los días, testimonios y clímax son hitos dentro de su acto, no actos nuevos por sí solos. Un perfil no adelanta una conclusión que el guion aún no haya demostrado. En particular, Casimiro empieza como el testigo que él dice ser; su culpabilidad solo puede constar después de quedar probada en el clímax. Ninguna descripción puede tomar datos del autor, del futuro de la serie o de otro caso.
+
+| Personaje | Primera aparición y contenido permitido | Hitos de actualización permitidos |
+| --- | --- | --- |
+| Don Ramón | Pre-juicio: abogado defensor en su primer juicio, con catorce meses de renta atrasada. | No requiere actualización: no se descubre información nueva sobre él durante el caso. |
+| El Chapulín Colorado | Pre-juicio: acompaña a Don Ramón como asesor y explica las reglas del juicio. | No requiere actualización: no aporta pruebas ni se descubre información nueva sobre él. |
+| Super Sam | Apertura: fiscal del caso, convencido inicialmente de que la deuda y la presencia de Toribio bastan para acusarlo. | Al retirar la acusación: la fiscalía reconoce que la evidencia contra Toribio no se sostiene. No convertir su cambio de postura en conocimiento de la culpabilidad de Casimiro antes del veredicto. |
+| Toribio Pantoja | Pre-juicio: paletero de veinte años, acusado de agredir a Don Nazario; la deuda de renta y que lo encontraron junto a la víctima son los motivos de sospecha conocidos. | Después de que el recibo y el parte se confrontan en T1: su salida a la hielería y los dos sellos de hora respaldan su coartada. Tras el veredicto: queda declarado inocente. No presentar la exoneración como conocida antes de que la corte la dicte. |
+| Casimiro Lengua | Al ser llamado por primera vez en T1: testigo de la fiscalía que se identifica como distribuidor autorizado de enciclopedias. No llamarlo culpable, ladrón ni sospechoso en esta ficha inicial. | Después de presentar la tarjeta en T3: su credencial comercial queda desacreditada por la sociedad disuelta y la falta de actividad comprobable. Después de la etapa 2 del clímax/veredicto: se establece que agredió a Don Nazario y tomó el cartapacio. No incluir en ninguna etapa hechos de Casimiro del Caso 5. |
+| Don Nazario Cuenca | Cuando se presenta su situación en la apertura/Acta: cobrador de rentas agredido en la vivienda 4; sobrevivió, tiene amnesia del episodio y no puede declarar. | Cuando el testimonio de Toribio y el informe fijan la dirección y naturaleza del golpe: precisar únicamente esos datos ya acreditados. No identificar el arma ni al agresor antes de las deducciones correspondientes del clímax. |
+
+El guion ES y EN debe conservar los mismos hitos, orden de desbloqueo y límites de conocimiento. La redacción puede sonar natural en cada idioma, pero ninguna versión puede incluir antes una revelación que la otra todavía no ha alcanzado. Estos perfiles son información del Acta, no pistas para presentar ni sustitutos de las pruebas.
 
 ## 6. Convenciones de guion
 
@@ -369,13 +388,14 @@ DEFENSA: Vamos para adentro, Toribio. Agárrate fuerte, que a ese vendedor de en
 
 ### 10.2 Reanudación en la sala y entrega de pruebas
 
-Fondo `bg_courtroom`. Transición tras el receso y entrada de las dos nuevas piezas del Acta.
+Fondo de sala `bg_courtroom`. La transición tras el receso entra por `assets/bg_judge.webp` con `furniture: none`; el hallazgo del cartapacio usa `assets/examine_maletin_cobranza.webp` con `furniture: none`, y la línea de la tarjeta usa `assets/bg_defense.webp` con `furniture: bench`. No se muestra pose de alguacil ni se escenifica la entrega; la narración conserva el texto de la tarjeta.
 
 ~~~dialogue
 NARRADOR: Veinte minutos después. De vuelta en la sala, el alguacil deposita sobre el estrado el maletín de muestras del testigo. [bgm: suspense]
 JUEZ: Que conste en acta lo que se encontró dentro.
-NARRADOR: Entre los tomos del lomo roto, plegado y sin un centavo, un cartapacio de fuelle lleno de papeles: la lista de rentas de la vecindad, separador por separador.
+NARRADOR: Entre los tomos del lomo roto, plegado y sin un centavo, un cartapacio de fuelle lleno de papeles: la lista de rentas de la vecindad, separador por separador. [bg: assets/examine_maletin_cobranza.webp; furniture: none]
 [ENTREGAR maletin_cobranza]
+NARRADOR: El alguacil entrega a la defensa la tarjeta de Enciclopedias El Saber Universal. [bg: assets/bg_defense.webp; furniture: bench]
 [ENTREGAR tarjeta_enciclopedias]
 SUPER SAM: Your Honor... la fiscalía solicita autorización para tomarle declaración a este testigo en calidad de investigado. Y solicita que el tiempo del receso se le cargue a la defensa.
 JUEZ: Autorizada la primera. Denegada la segunda.
@@ -501,7 +521,7 @@ DEFENSA: Ese hombre entró por la lata, señor juez. Estaba con ella en las mano
 DEFENSA: Y no se llevó los cuarenta pesos porque a las 13:20 ya tenía en el suelo a un señor de metro ochenta y un cartapacio de cobranza a los pies. Cambió de negocio a media faena.
 CASIMIRO: ¡ERA UN VIEJO CON UN MALETÍN LLENO! [sfx: desk_slam; pose: casimiro_breakdown]
 CASIMIRO: ¡Y ese muchacho no tenía nada! ¡Nada! ¡Una lata con cuarenta pesos y la plancha de su mamá!
-NARRADOR: Los tomos se le caen del maletín. Por primera vez, el testigo no mira sus relojes.
+NARRADOR: Los tomos se le caen del maletín. Por primera vez, el testigo no mira sus relojes. [bg: assets/bg_witness.webp; furniture: podium; pose: casimiro_breakdown]
 [pausa]
 SUPER SAM: ...Your Honor. La fiscalía retira la acusación contra Toribio Pantoja. Y factura este juicio como *asalto*, no como *robo de vivienda*, que paga distinto.
 JUEZ: La corte tomará nota de su sensibilidad, señor fiscal. [sfx: gavel]

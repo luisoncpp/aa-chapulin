@@ -14,7 +14,7 @@ export const CASE1_PROFILES_EN: ProfileCatalogMap = {
     icon: 'assets/profile_perfil_chapulin.webp',
     desc: 'The defendant. Professional hero. Arrested at 9:07 PM beside the night watchman, his Chipote Chillón in his hand. Says he arrived late.',
     updates: [
-      'He is 5’4”. The watchman is 6’3” in boots. To strike him from above, he would have had to be standing on something.'
+      'He is 1.62 m (5’4”). The watchman is 6’3” in boots. To strike him from above, he would have had to be standing on something.'
     ]
   },
   perfil_donramon: {
@@ -31,7 +31,7 @@ export const CASE1_PROFILES_EN: ProfileCatalogMap = {
     icon: 'assets/profile_perfil_supersam.webp',
     desc: 'Prosecutor. Paid by the closed case. Closed this one in five minutes. Today he took the floor without his dollar bag on his shoulder.',
     updates: [
-      'He refused to say where his canvas bag was on the night of the 21st, and he asked for the recess himself.'
+      'He refused to say where his canvas bag was on the night of the 28th, and he asked for the recess himself.'
     ]
   },
   perfil_tripaseca: {

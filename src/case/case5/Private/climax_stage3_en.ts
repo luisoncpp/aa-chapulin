@@ -28,7 +28,7 @@ export const CASE5_CLIMAX_STAGE3_EN: ClimaxStage = {
     { speaker: 'DEFENSA', text: 'Twenty-three volumes and the gap for thirteen.', pose: 'chapulin_idle' },
     { speaker: 'JUEZ', text: 'And?', pose: 'judge_thinking' },
     { speaker: 'DEFENSA', text: 'And on the floor, a meter from the body, there was another volume.', pose: 'chapulin_slam', sfx: 'desk_slam' },
-    { speaker: 'NARRADOR', text: 'Absolute silence in the room.', bgm: 'suspense' },
+    { bg: 'assets/bg_gallery_characters.webp', furniture: 'none', speaker: 'NARRADOR', text: 'Absolute silence in the room.', bgm: 'suspense' },
     { speaker: 'JUEZ', text: '...Twenty-four volumes.', pose: 'judge_shock' },
     { speaker: 'DEFENSA', text: 'Twenty-four volumes for twenty-four slots... and one slot empty since 1971.', pose: 'chapulin_point' },
     { speaker: 'DEFENSA', text: 'The count is off, Your Honor. One too many.', pose: 'chapulin_slam', sfx: 'desk_slam' },

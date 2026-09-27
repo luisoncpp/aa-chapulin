@@ -71,7 +71,7 @@ export const CASE4_DETENTION_D3: InvestigationScene = {
         { speaker: 'CHIMOLTRUFIA', text: 'Lo pensé dos días. Y me dio más coraje pensarlo que preguntártelo.', pose: 'chimoltrufia_confundida' },
         { speaker: 'BOTIJA', text: 'Le dije que no. Le dije que no delante de todo el pasillo.', pose: 'botija_nervioso' },
         { speaker: 'DEFENSA', text: 'Eso lo oyó gente. Y por eso el fiscal cree que discutieron por dinero.', pose: 'donramon_idle' },
-        { speaker: 'BOTIJA', text: 'Discutimos porque no quise. Es la primera vez que me acusan de algo por decir que no.', pose: 'botija_llorando' },
+        { speaker: 'BOTIJA', text: 'Discutimos porque no quise. Es la primera vez que me acusan de algo por decir que no.', pose: 'botija_llorando', updateProfile: 'perfil_botija' },
         { speaker: 'DEFENSA', text: 'Vamos a la delegación a cerrar la cadena.', pose: 'donramon_point', unlockLocation: 'delegacion_d3' }
       ]
     }

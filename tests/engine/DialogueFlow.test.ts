@@ -1,7 +1,7 @@
 // @Architecture(descriptionShort="Unit tests for dialogue queue, evidence, and location unlocks", type="test", icon="layers")
 import { describe, expect, it, beforeEach, vi } from 'vitest';
 import { MidiMusicComposer, SoundEngine } from '../../src/audio/index.js';
-import { CASE_SCRIPT } from '../../src/case/index.js';
+import { CASE_SCRIPT, getCaseScript } from '../../src/case/index.js';
 import { DialogueFlow } from '../../src/engine/Private/DialogueFlow.js';
 import { DialogueHistory } from '../../src/engine/Private/DialogueHistory.js';
 import type { DomElements } from '../../src/engine/Private/DomElements.js';
@@ -114,6 +114,11 @@ describe('DialogueFlow', () => {
     expect(dom.speakerBoxEl.textContent).toBe('');
   });
 
+  it('clears the speaker tag when a line has no text', () => {
+    flow.renderDialogueLine({ speaker: 'NARRADOR', text: '', instant: true });
+    expect(dom.speakerBoxEl.textContent).toBe('');
+  });
+
   it('hides the sprite for narrator lines without a pose', () => {
     dom.charSpriteEl.classList.remove('hidden');
     flow.renderDialogueLine({ speaker: 'NARRADOR', text: 'Noche.' });
@@ -125,28 +130,132 @@ describe('DialogueFlow', () => {
 
     expect(dom.confettiContainerEl.children).toHaveLength(80);
     expect(dom.dialogueTextEl.textContent).toBe('');
+    expect(dom.speakerBoxEl.textContent).toBe('');
+  });
+
+  const noticeText = () => document.getElementById('record-notice-text')!.textContent ?? '';
+  const noticeIcon = () => document.getElementById('record-notice-icon') as HTMLImageElement;
+  const noticeShown = () => !dom.recordNoticeEl.classList.contains('hidden');
+  /** Finishes typing the current line and presses advance once. */
+  const finishLineAndAdvance = () => {
+    vi.runAllTimers();
+    return flow.handleAdvance();
+  };
+
+  it('holds a Court Record notice until the player advances past the line', () => {
+    dom.charSpriteEl.classList.remove('hidden');
+    flow.queueDialogue([
+      { speaker: 'DEFENSA', text: 'Mira esto.', pose: 'donramon_idle', addEvidence: 'chipote_chillon' },
+      { speaker: 'DEFENSA', text: 'Sigo.', pose: 'donramon_idle' }
+    ]);
+    expect(state.hasEvidence('chipote_chillon')).toBe(true);
+    vi.runAllTimers();
+    expect(noticeShown()).toBe(false);
+    expect(dom.gameNotificationEl.classList.contains('hidden')).toBe(true);
+
+    expect(flow.handleAdvance()).toBe(true);
+    expect(noticeShown()).toBe(true);
+    expect(noticeText()).toContain(state.allEvidence.chipote_chillon.name);
+    expect(noticeIcon().getAttribute('src')).toBe(state.allEvidence.chipote_chillon.icon);
+    expect(dom.charSpriteEl.classList.contains('hidden')).toBe(true);
+    expect(dom.dialogueBoxEl.classList.contains('hidden')).toBe(true);
+
+    expect(flow.handleAdvance()).toBe(true);
+    expect(noticeShown()).toBe(false);
+    expect(dom.dialogueBoxEl.classList.contains('hidden')).toBe(false);
+    expect(dom.charSpriteEl.classList.contains('hidden')).toBe(false);
+    expect(flow.getHistory().map((entry) => entry.text)).toEqual(['Mira esto.', 'Sigo.']);
+  });
+
+  it('shows one card per Court Record change, in order, with the character wording for profiles', () => {
+    state.beginNewCase(getCaseScript('es', 'case1'));
+    flow.renderDialogueLine({
+      speaker: 'DEFENSA',
+      text: 'Dos cosas.',
+      addEvidence: 'chipote_chillon',
+      addProfile: 'perfil_tripaseca'
+    });
+    finishLineAndAdvance();
+    expect(noticeText()).toContain('Acta del Juicio');
+    flow.handleAdvance();
+    expect(noticeShown()).toBe(true);
+    expect(noticeText()).toContain('Acta de Personajes');
+    expect(noticeIcon().getAttribute('src')).toBe(state.profiles.catalog.perfil_tripaseca!.icon);
+    expect(flow.handleAdvance()).toBe(false);
+    expect(noticeShown()).toBe(false);
+  });
+
+  it('runs the completion callback in the same press that dismisses the last card', () => {
+    const onComplete = vi.fn();
+    flow.queueDialogue([{ speaker: 'DEFENSA', text: 'Fin.', addEvidence: 'chipote_chillon' }], onComplete);
+    finishLineAndAdvance();
+    expect(onComplete).not.toHaveBeenCalled();
+    expect(flow.handleAdvance()).toBe(true);
+    expect(onComplete).toHaveBeenCalledTimes(1);
+    expect(noticeShown()).toBe(false);
+  });
+
+  it('keeps the advance arrow while a notice is still due after the last line', () => {
+    flow.queueDialogue([{ speaker: 'DEFENSA', text: 'Fin.', addEvidence: 'chipote_chillon' }]);
+    expect(dom.dialogueArrowEl.classList.contains('hidden')).toBe(false);
+    expect(finishLineAndAdvance()).toBe(true);
+    expect(flow.handleAdvance()).toBe(false);
+    expect(dom.dialogueArrowEl.classList.contains('hidden')).toBe(true);
+  });
+
+  it('restores the stage when the queue is cleared while a card is up', () => {
+    dom.charSpriteEl.classList.remove('hidden');
+    flow.renderDialogueLine({ speaker: 'DEFENSA', text: 'Uno.', pose: 'donramon_idle', addEvidence: 'chipote_chillon' });
+    finishLineAndAdvance();
+    flow.clear();
+    expect(noticeShown()).toBe(false);
+    expect(dom.dialogueBoxEl.classList.contains('hidden')).toBe(false);
+    expect(dom.charSpriteEl.classList.contains('hidden')).toBe(false);
   });
 
   it('skips evidence notification when the item is already in inventory', () => {
     state.addEvidence('chipote_chillon');
-    dom.gameNotificationEl.textContent = '';
     flow.renderDialogueLine({
       speaker: 'DEFENSA',
       text: 'Ya lo tengo.',
       addEvidence: 'chipote_chillon'
     });
-    expect(dom.gameNotificationEl.textContent).toBe('');
+    expect(finishLineAndAdvance()).toBe(false);
+    expect(noticeShown()).toBe(false);
+  });
+
+  it('does not announce returning Act 3 characters as new Court Record entries', () => {
+    state.beginNewCase(getCaseScript('es', 'case3'));
+
+    flow.renderDialogueLine({
+      speaker: 'DON RAMON',
+      text: 'Presentación del defensor.',
+      addProfile: 'perfil_donramon'
+    });
+
+    expect(state.hasProfile('perfil_donramon')).toBe(true);
+    finishLineAndAdvance();
+    expect(noticeShown()).toBe(false);
   });
 
   it('skips location unlock when the location is already open', () => {
     expect(state.unlockLocation('detention')).toBe(true);
-    dom.gameNotificationEl.textContent = '';
     flow.renderDialogueLine({
       speaker: 'FLORINDA',
       text: 'Otra vez.',
       unlockLocation: 'detention'
     });
-    expect(dom.gameNotificationEl.textContent).toBe('');
+    finishLineAndAdvance();
+    expect(noticeShown()).toBe(false);
+  });
+
+  it('hides the icon on location unlock cards so the scene plate is not spoiled', () => {
+    flow.renderDialogueLine({ speaker: 'DEFENSA', text: 'Al museo.', unlockLocation: 'museo_sala2' });
+    finishLineAndAdvance();
+    expect(noticeShown()).toBe(true);
+    expect(noticeIcon().classList.contains('hidden')).toBe(true);
+    expect(noticeIcon().getAttribute('src')).toBeNull();
+    expect(noticeText()).toContain(CASE_SCRIPT.investigation.museo_sala2!.name);
   });
 
   it('falls back to the location id when the scene has no name or title', () => {
@@ -155,22 +264,23 @@ describe('DialogueFlow', () => {
       text: 'Nuevo sitio.',
       unlockLocation: 'boveda'
     });
-    expect(dom.gameNotificationEl.textContent).toContain('boveda');
+    finishLineAndAdvance();
+    expect(noticeText()).toContain('boveda');
   });
 
   it('notifies when an owned court-record description is updated', () => {
     state.addEvidence('chipote_chillon');
-    dom.gameNotificationEl.textContent = '';
     flow.renderDialogueLine({
       speaker: 'DEFENSA',
       text: 'SQUIIIIK!',
       updateEvidence: 'chipote_chillon'
     });
     expect(state.isEvidenceUpdated('chipote_chillon')).toBe(true);
-    expect(dom.gameNotificationEl.textContent).toContain('actualizada');
+    finishLineAndAdvance();
+    expect(noticeText()).toContain('actualizada');
   });
 
-  it('treats a first-time description update as an add, not a second toast', () => {
+  it('treats a first-time description update as an add, not a second notice', () => {
     flow.renderDialogueLine({
       speaker: 'DEFENSA',
       text: 'SQUIIIIK!',
@@ -178,19 +288,21 @@ describe('DialogueFlow', () => {
     });
     expect(state.hasEvidence('chipote_chillon')).toBe(true);
     expect(state.isEvidenceUpdated('chipote_chillon')).toBe(true);
-    expect(dom.gameNotificationEl.textContent).toContain('Añadido');
-    expect(dom.gameNotificationEl.textContent).not.toContain('actualizada');
+    finishLineAndAdvance();
+    expect(noticeText()).toContain('Añadido');
+    expect(flow.handleAdvance()).toBe(false);
+    expect(noticeShown()).toBe(false);
   });
 
   it('skips the description-update notification when already revised', () => {
     state.addEvidence('chipote_chillon');
     expect(state.updateEvidence('chipote_chillon')).toBe(true);
-    dom.gameNotificationEl.textContent = '';
     flow.renderDialogueLine({
       speaker: 'DEFENSA',
       text: 'Otra vez.',
       updateEvidence: 'chipote_chillon'
     });
-    expect(dom.gameNotificationEl.textContent).toBe('');
+    finishLineAndAdvance();
+    expect(noticeShown()).toBe(false);
   });
 });

@@ -12,7 +12,7 @@ export const CASE4_HOTEL_TERRAZA_EN: InvestigationScene = {
   idlePose: 'maruja_idle',
   intro: [
     { speaker: 'NARRADOR', text: 'October 25, 12:00 PM. Hotel terrace.' },
-    { speaker: 'MARUJA', text: 'If you come about the noise, I will answer. If you ask what I lost at the tables, that has nothing to do with anything.', pose: 'maruja_idle' },
+    { speaker: 'MARUJA', text: 'If you come about the noise, I will answer. If you ask what I lost at the tables, that has nothing to do with anything.', pose: 'maruja_idle', addProfile: 'perfil_maruja' },
     { speaker: 'DEFENSA', text: 'I had not asked anything yet.', pose: 'donramon_idle' },
     { speaker: 'MARUJA', text: 'That is why I said it first. This way all three of us save time.', pose: 'maruja_abanico' },
     { speaker: 'CHAPULIN', text: 'Good heavens! You answer faster than a person can ask.', pose: 'chapulin_idle' },
@@ -72,10 +72,10 @@ export const CASE4_HOTEL_TERRAZA_EN: InvestigationScene = {
       dialogue: [
         { speaker: 'MARUJA', text: 'Before you go on... this one is from that night. Mr. Gómez gave it to me when he uncorked the bottle.', pose: 'maruja_nerviosa' },
         { speaker: 'DEFENSA', text: 'He gave it to you?', pose: 'donramon_point' },
-        { speaker: 'MARUJA', text: 'He pulled it out, placed it in my hand like a man offering a flower, and then he poured. I left with the cork in my purse.', pose: 'maruja_idle' },
+        { speaker: 'MARUJA', text: 'He pulled it out, placed it in my hand like a man offering a flower, and then he poured. I left with the cork in my purse.', pose: 'maruja_idle', updateProfile: 'perfil_maruja' },
         { speaker: 'SARGENTO', text: 'Then that stopper left the room before you did... and before he drank.', pose: 'pazguato_saludo' },
         { speaker: 'MARUJA', text: 'I kept it because the gentleman was kind. Nobody warned me it would turn into evidence.', pose: 'maruja_nerviosa' },
-        { speaker: 'NARRADOR', text: 'The Sergeant bags it, numbers it, and logs the delivery hour in tiny, perfect handwriting.' },
+        { speaker: 'NARRADOR', text: 'The Sergeant bags it, numbers it, and logs the delivery hour in tiny, perfect handwriting.', updateProfile: 'perfil_sargento' },
         { speaker: 'SARGENTO', text: 'It stays as an annex to my report. With my signature and yours.', pose: 'pazguato_decidido', updateEvidence: 'informe_policial' },
         { speaker: 'CHAPULIN', text: 'And what is that for, Sergeant? It is a cork!', pose: 'chapulin_idle' },
         { speaker: 'SARGENTO', text: 'It is so that in a month nobody can argue with me about where this cork has been. Because it will be written down.', pose: 'pazguato_idle' },

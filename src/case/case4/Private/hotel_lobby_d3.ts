@@ -21,7 +21,7 @@ export const CASE4_HOTEL_LOBBY_D3: InvestigationScene = {
     { speaker: 'CHIMOLTRUFIA', text: 'No se sienta mal, joven, que a mí me dijo "muchacho".', pose: 'chimoltrufia_shock' },
     { speaker: 'DEFENSA', text: 'Señora, necesitamos folios originales. No el libro de turno.', pose: 'donramon_point' },
     { speaker: 'CHIMOLTRUFIA', text: 'Ay, licenciado, ¿usted cree que yo estoy para andar de secretaria con mi marido encerrado? Y como digo una cosa digo otra: dígame cuáles y se los saco en dos minutos.', pose: 'chimoltrufia_idle' },
-    { speaker: 'DEFENSA', text: '(Catorce años en este mostrador. Es la única persona del hotel que sabe dónde está todo.)', pose: 'donramon_idle' }
+    { speaker: 'DEFENSA', text: '(Catorce años en este mostrador. Es la única persona del hotel que sabe dónde está todo.)', pose: 'donramon_idle', updateProfile: 'perfil_chimoltrufia' }
   ],
   hotspots: [
     {
@@ -55,7 +55,7 @@ export const CASE4_HOTEL_LOBBY_D3: InvestigationScene = {
       label: 'El salón de juego',
       dialogue: [
         { speaker: 'CHIMOLTRUFIA', text: 'Rondas firmadas por los jugadores entre las 23:10 y las 23:25.', pose: 'chimoltrufia_idle', addEvidence: 'boleta_baccarat' },
-        { speaker: 'DEFENSA', text: 'Esta boleta confirma que el señor Rufián estaba en la mesa de baccarat cuando sonó el estruendo.', pose: 'donramon_idle' },
+        { speaker: 'DEFENSA', text: 'Esta boleta confirma que el señor Rufián estaba en la mesa de baccarat cuando sonó el estruendo.', pose: 'donramon_idle', updateProfile: 'perfil_rufino' },
         { speaker: 'CHAPULIN', text: '¡Ay, no! ¿Entonces perdimos?', pose: 'chapulin_panic' },
         { speaker: 'DEFENSA', text: 'No, Chapulín. Perdimos una idea que nunca tuvimos.', pose: 'donramon_idle' },
         { speaker: 'CHAPULIN', text: 'Ah, bueno. Ésas son las que menos duelen.', pose: 'chapulin_idle' },
@@ -69,7 +69,7 @@ export const CASE4_HOTEL_LOBBY_D3: InvestigationScene = {
       id: 'telegrama_noche',
       label: 'El telegrama de esa noche',
       dialogue: [
-        { speaker: 'CHIMOLTRUFIA', text: 'Copia de archivo y acuse de recepción firmado a las 20:50. Reclamación de una parte del Collar de Cleopatra y amenaza de acudir a la policía.', pose: 'chimoltrufia_idle', addEvidence: 'nota_amenaza' }
+        { speaker: 'CHIMOLTRUFIA', text: 'Copia de archivo y acuse de recepción firmado a las 20:50. Reclamación de una parte del Collar de Cleopatra y amenaza de acudir a la policía.', pose: 'chimoltrufia_idle', addEvidence: 'nota_amenaza', updateProfile: 'perfil_cuajinais' }
       ]
     },
     {

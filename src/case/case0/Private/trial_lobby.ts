@@ -4,16 +4,18 @@ import { CASE0_WITNESS_RECALL_T3 } from './witness_calls.js';
 
 const WAITING_ROOM = 'assets/bg_waiting_room.webp';
 const JUDGE = 'assets/bg_judge.webp';
+const EXAMINE_MALETIN = 'assets/examine_maletin_cobranza.webp';
+const DEFENSE = 'assets/bg_defense.webp';
 
 export const CASE0_LOBBY_INTRO: DialogueLine[] = [
   { bg: WAITING_ROOM, furniture: 'none', speaker: 'NARRADOR', text: '13 de julio, 09:45. Sala de espera del tribunal.', bgm: 'suspense' },
-  { bg: WAITING_ROOM, furniture: 'none', speaker: 'TORIBIO', pose: 'toribio_llorando', text: '¡Licenciado! ¡Licenciado Don Ramón! ¡Por su madrecita santa, dígame la verdad! ¿Me van a mandar a las Islas Marías?' },
-  { bg: WAITING_ROOM, furniture: 'none', speaker: 'DEFENSA', pose: 'donramon_idle', text: '¡Cálmate, Toribio, cálmate! ¡No te me achicopales antes de tiempo! Con el Licenciado Don Ramón en la defensa estás en las mejores manos...' },
+  { bg: WAITING_ROOM, furniture: 'none', speaker: 'TORIBIO', pose: 'toribio_llorando', text: '¡Licenciado! ¡Licenciado Don Ramón! ¡Por su madrecita santa, dígame la verdad! ¿Me van a mandar a las Islas Marías?', addProfile: 'perfil_toribio' },
+  { bg: WAITING_ROOM, furniture: 'none', speaker: 'DEFENSA', pose: 'donramon_idle', text: '¡Cálmate, Toribio, cálmate! ¡No te me achicopales antes de tiempo! Con el Licenciado Don Ramón en la defensa estás en las mejores manos...', addProfile: 'perfil_donramon' },
   { bg: WAITING_ROOM, furniture: 'none', speaker: 'DEFENSA', pose: 'donramon_sweat', text: '(Aunque la verdad es que me tiemblan las corvas... Primera vez que piso este juzgado de corbata y no porque me citó el casero.)' },
   { bg: WAITING_ROOM, furniture: 'none', speaker: 'TORIBIO', pose: 'toribio_nervioso', text: '¡Es que yo soy inocente, licenciado! Yo nomás salí a la hielería por mi barra para las paletas. Cuando regresé a mi cuarto, ¡don Nazario ya estaba tirado como fardo!' },
   { bg: WAITING_ROOM, furniture: 'none', speaker: 'DEFENSA', pose: 'donramon_idle', text: 'Te creo, muchacho, te creo. Pero allá adentro hay un fiscal güero que cobra por palabra y que dice que en once minutos te refunde en el bote.' },
   { bg: WAITING_ROOM, furniture: 'none', speaker: 'TORIBIO', pose: 'toribio_llorando', text: '¡Ay, mamacita linda! ¡¿Y ahora quién podrá defenderme?!' },
-  { bg: WAITING_ROOM, furniture: 'none', speaker: 'CHAPULIN', pose: 'chapulin_idle', text: '¡YOOOOO!', sfx: 'whoosh' },
+  { bg: WAITING_ROOM, furniture: 'none', speaker: 'CHAPULIN', pose: 'chapulin_idle', text: '¡YOOOOO!', sfx: 'whoosh', addProfile: 'perfil_chapulin' },
   { bg: WAITING_ROOM, furniture: 'none', speaker: 'TORIBIO', pose: 'toribio_nervioso', text: '¡¿El Chapulín Colorado?!' },
   { bg: WAITING_ROOM, furniture: 'none', speaker: 'CHAPULIN', pose: 'chapulin_idle', text: '¡No contaban con mi astucia! ¡Que no panda el cúnico! Mis antenitas de vinil detectaron una sobredosis de pánico procesal en este pasillo.' },
   { bg: WAITING_ROOM, furniture: 'none', speaker: 'DEFENSA', pose: 'donramon_shock', text: '¡Chapulín! ¡Menos mal que llegas! Oye... ¿tú de veras sabes de juicios y leyes?' },
@@ -56,8 +58,8 @@ export const CASE0_T2_RECESS_AND_RESUMPTION: DialogueLine[] = [
   { bg: WAITING_ROOM, furniture: 'none', speaker: 'DEFENSA', pose: 'donramon_idle', text: 'Vamos para adentro, Toribio. Agárrate fuerte, que a ese vendedor de enciclopedias le vamos a leer la cartilla completa.' },
   { bg: JUDGE, furniture: 'none', speaker: 'NARRADOR', text: 'Veinte minutos después. De vuelta en la sala, el alguacil deposita sobre el estrado el maletín de muestras del testigo.', bgm: 'suspense' },
   { speaker: 'JUEZ', pose: 'judge_neutral', text: 'Que conste en acta lo que se encontró dentro.' },
-  { speaker: 'NARRADOR', text: 'Entre los tomos del lomo roto, plegado y sin un centavo, un cartapacio de fuelle lleno de papeles: la lista de rentas de la vecindad, separador por separador.', addEvidence: 'maletin_cobranza' },
-  { speaker: 'NARRADOR', text: 'El alguacil entrega a la defensa la tarjeta de Enciclopedias El Saber Universal.', addEvidence: 'tarjeta_enciclopedias' },
+  { bg: EXAMINE_MALETIN, furniture: 'none', speaker: 'NARRADOR', text: 'Entre los tomos del lomo roto, plegado y sin un centavo, un cartapacio de fuelle lleno de papeles: la lista de rentas de la vecindad, separador por separador.', addEvidence: 'maletin_cobranza' },
+  { bg: DEFENSE, furniture: 'bench', speaker: 'NARRADOR', text: 'El alguacil entrega a la defensa la tarjeta de Enciclopedias El Saber Universal.', addEvidence: 'tarjeta_enciclopedias' },
   { speaker: 'SUPER SAM', pose: 'supersam_slam', text: 'Your Honor... la fiscalía solicita autorización para tomarle declaración a este testigo en calidad de investigado. Y solicita que el tiempo del receso se le cargue a la defensa.', sfx: 'desk_slam' },
   { speaker: 'JUEZ', pose: 'judge_neutral', text: 'Autorizada la primera. Denegada la segunda.' },
   { speaker: 'CHAPULIN', pose: 'chapulin_point', text: '¡Y ahora sí, Don Ramón, el testigo va a testificar de su propio caso!' },

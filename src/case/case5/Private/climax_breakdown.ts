@@ -9,7 +9,7 @@ export const CASE5_CLIMAX_BREAKDOWN: DialogueLine[] = [
   { speaker: 'BERRONDO', text: '......', pose: 'berrondo_panic', bg: 'assets/bg_courtroom.webp' },
   { speaker: 'BERRONDO', text: 'Yo no heredé un archivo muerto.', pose: 'berrondo_breakdown', bgm: 'pursuit', bg: 'assets/bg_courtroom.webp' },
   { speaker: 'BERRONDO', text: '¡Yo lo mantuve vivo!', pose: 'berrondo_breakdown', sfx: 'desk_slam', bg: 'assets/bg_courtroom.webp' },
-  { speaker: 'NARRADOR', text: 'El licenciado Berrondo se levanta de la mesa de la fiscalía. Se le cae la cadena de oro del chaleco y no la recoge.', sfx: 'realization' },
+  { speaker: 'NARRADOR', text: 'El licenciado Berrondo se levanta de la mesa de la fiscalía. Se le cae la cadena de oro del chaleco y no la recoge.', pose: 'berrondo_breakdown', sfx: 'realization' },
   { speaker: 'BERRONDO', text: '¡Once mil cuatrocientas familias le abrieron la puerta a un vendedor y le contaron todo lo que tenían!', pose: 'berrondo_breakdown', bg: 'assets/bg_courtroom.webp' },
   { speaker: 'BERRONDO', text: '¡Yo no fui a ninguna casa! ¡Yo no toqué ninguna puerta! ¡Yo no le puse la mano encima a nadie en veintisiete años!', pose: 'berrondo_breakdown', bg: 'assets/bg_courtroom.webp' },
   { speaker: 'DEFENSA', text: 'Hasta el sábado.', pose: 'chapulin_idle' },
@@ -35,9 +35,9 @@ export const CASE5_CLIMAX_BREAKDOWN: DialogueLine[] = [
   { speaker: 'BERRONDO', text: '...', pose: 'berrondo_breakdown', bgm: 'suspense', bg: 'assets/bg_courtroom.webp' },
   { speaker: 'BERRONDO', text: '...caedere...', pose: 'berrondo_breakdown', bg: 'assets/bg_courtroom.webp' },
   { speaker: 'NARRADOR', text: 'No sigue.' },
-  { speaker: 'NARRADOR', text: 'Por primera vez en veintisiete años, el licenciado Fulgencio Berrondo no encuentra una palabra.', sfx: 'realization' },
+  { speaker: 'NARRADOR', text: 'Por primera vez en veintisiete años, el licenciado Fulgencio Berrondo no encuentra una palabra.', pose: 'berrondo_breakdown', sfx: 'realization' },
   { speaker: 'DON RAMÓN', text: 'Matar.', pose: 'donramon_idle' },
   { speaker: 'DON RAMÓN', text: 'Se dice matar, licenciado.', pose: 'donramon_idle' },
-  { speaker: 'NARRADOR', text: 'Berrondo se sienta. Se queda mirando la cadena de oro en el piso y no la recoge.', bgm: 'suspense' },
+  { bg: 'assets/bg_courtroom.webp', furniture: 'bench', speaker: 'NARRADOR', text: 'Berrondo se sienta. Se queda mirando la cadena de oro en el piso y no la recoge.', bgm: 'suspense' },
   { speaker: 'JUEZ', text: 'Que se lleven al detenido.', sfx: 'gavel', pose: 'judge_gavel' }
 ];

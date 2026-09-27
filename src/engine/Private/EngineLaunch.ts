@@ -4,7 +4,7 @@
  */
 
 import type { SoundEngine } from '../../audio/index.js';
-import { getCaseScript } from '../../case/index.js';
+import { peekCaseScript, rememberCasePair, type ScriptResolver } from '../../case/loadCaseScript.js';
 import type { GameStateManager } from '../../state/index.js';
 import type { CaseId, CaseScript, TrialDay } from '../../types/index.js';
 import { hideCaseComplete } from './CaseComplete.js';
@@ -24,11 +24,18 @@ export interface LaunchHost {
   getScript: () => CaseScript;
   setScript: (script: CaseScript) => void;
   markStarted: () => void;
+  resolveScript?: ScriptResolver;
 }
 
 export function loadCase(host: LaunchHost, caseId: CaseId): void {
   host.state.caseId = caseId;
-  const script = getCaseScript(host.state.language, caseId);
+  if (host.resolveScript) {
+    rememberCasePair(caseId, {
+      es: host.resolveScript('es', caseId),
+      en: host.resolveScript('en', caseId)
+    });
+  }
+  const script = peekCaseScript(host.state.language, caseId) ?? host.getScript();
   host.setScript(script);
   host.investigation.setScript(script);
   host.trial.setScript(script);

@@ -23,7 +23,7 @@ const GOLD_REVEAL: DialogueLine[] = [
 
 const CHOMPIRAS_ASLEEP: DialogueLine[] = [
   { cutin: 'objection_toma_eso', speaker: 'DEFENSA', text: "TAKE THAT! Chómpiras couldn't have stashed the gold because he was sound asleep!", sfx: 'whoosh', pose: 'donramon_point' },
-  { speaker: 'DEFENSA', text: 'Someone pumped this Valerian Essence through the vent. A sedative so strong it knocked him out for 30 minutes!', pose: 'donramon_slam', sfx: 'desk_slam' },
+  { speaker: 'DEFENSA', text: 'Someone pumped this Valerian Essence through the vent. A sedative so strong it knocked him out for 30 minutes!', pose: 'donramon_slam', sfx: 'desk_slam', updateProfile: 'perfil_chompiras' },
   { speaker: 'PETERETE', text: 'B-but the safe opened with a key! I returned the master key to custody at 8:30 PM! Nobody else had a way to open it!', pose: 'peterete_panic' }
 ];
 

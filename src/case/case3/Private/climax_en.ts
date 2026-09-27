@@ -41,7 +41,7 @@ const STAGE4: DialogueLine[] = [
   { speaker: 'JUEZ', text: 'And who is treasurer of the Kermés Fund?!', pose: 'judge_shock' },
   { speaker: 'BARRIGA', text: '...Aniceto. Aniceto Rebollar. For twenty-five years.', pose: 'barriga_vendado' },
   { speaker: 'DEFENSA', text: 'Twenty-eight thousand went to pay the station transmitter debt! And twelve thousand to redeem THIS!', sfx: 'desk_slam', pose: 'donramon_slam' },
-  { speaker: 'NARRADOR', text: '(Don Ramón lifts the Golden Microphone. The plaque gleams: "A Aniceto Rebollar, 25 años de La Voz de Oro".)' },
+  { speaker: 'NARRADOR', text: '(Don Ramón lifts the Golden Microphone. The plaque gleams: "A Aniceto Rebollar, 25 años de La Voz de Oro".)', bg: 'assets/bg_defense.webp', furniture: 'bench', pose: 'donramon_idle' },
   { speaker: 'DEFENSA', text: 'The murder weapon is your own trophy, Mr. Rebollar! Redeemed with kermés money, grabbed from the pedestal when the only man who knew said he\'d announce it on air!', pose: 'donramon_point' },
   { speaker: 'ANICETO', text: 'Y-you can\'t prove that voice is mine! It\'s a tape! A tape has no face!', sfx: 'damage', pose: 'aniceto_panic' },
   { speaker: 'SUPER SAM', text: 'He\'s right... Without the voice, this is all paperwork. Time is money and this is... paperwork.', pose: 'supersam_sweat' },

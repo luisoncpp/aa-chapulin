@@ -12,8 +12,9 @@ export const CASE5_PROFILES_EN: ProfileCatalogMap = {
     name: 'Don Ramón',
     role: 'The defendant',
     icon: 'assets/profile_perfil_donramon.webp',
-    desc: 'The defendant. A street-corner lawyer. Seventeen months of back rent that someone paid without telling him. Fifth time in this courthouse, first time in handcuffs.',
+    desc: 'Accused of murdering Casimiro Lengua. A street-corner lawyer. Sixth time in this courthouse, first time in handcuffs.',
     updates: [
+      'The report records seventeen months of rent paid in cash; Ramon says he did not pay it.',
       'He was alone with the victim for twelve minutes, with no witness who saw the table.',
       'The corrected window includes him. His defense just put him inside it.'
     ]
@@ -33,9 +34,10 @@ export const CASE5_PROFILES_EN: ProfileCatalogMap = {
     name: 'Casimiro Lengua',
     role: 'The victim',
     icon: 'assets/profile_perfil_casimiro.webp',
-    desc: 'The victim. Sentenced in July for assaulting collector Nazario Cuenca; that conviction is not in dispute. Asked to testify at the Archive and asked for his own opposing counsel to be present.',
+    desc: 'The victim. Sentenced in July for assaulting collector Nazario Cuenca; that conviction is not in dispute.',
     updates: [
       'They found him with his file open at page 214.',
+      'He asked to testify at a hearing for his appeal and asked for the lawyer who beat him to be there.',
       'He offered to hand over a card file on November 8. The prosecution answered eighteen days later.'
     ]
   },
@@ -44,9 +46,11 @@ export const CASE5_PROFILES_EN: ProfileCatalogMap = {
     name: 'Super Sam',
     role: 'Prosecutor',
     icon: 'assets/profile_perfil_supersam.webp',
-    desc: 'Prosecutor. Paid by the closed case. Since August he has carried his canvas bag stuffed with cotton and nobody has asked why.',
+    desc: 'Prosecutor. Paid by the closed case.',
     updates: [
-      'He testified against himself without anyone asking him to.'
+      'Since August he has carried an empty bag to remember why he closed that case in five minutes.',
+      'He signed six hundred letters a month for eleven years without reading the distribution list.',
+      'He admitted taking one kilo of the six stolen from him and filling the bag with cotton to remember what he is still missing.'
     ]
   },
   perfil_berrondo: {
@@ -54,8 +58,9 @@ export const CASE5_PROFILES_EN: ProfileCatalogMap = {
     name: 'Fulgencio Berrondo',
     role: 'Assisting accuser',
     icon: 'assets/profile_perfil_berrondo.webp',
-    desc: 'Assisting accuser. Licensed attorney since 1955. Syndic of a 1971 bankruptcy that still has not closed. Offered to assist the prosecution without charging fees.',
+    desc: 'Assisting accuser. Licensed attorney since 1955. Introduced himself to the prosecution as trustee for the victim and offered to assist without charging fees.',
     updates: [
+      'His first trusteeship, bankruptcy 114/1971, is the only one still open, for eleven years now.',
       'He runs a card file of eleven thousand four hundred cards and sells copies. Not a crime.',
       'Concedes selling is not a crime; the court orders inspection of his crate anyway.',
       'He signed the acknowledgment for a diligence he himself said he did not know.'
@@ -66,9 +71,9 @@ export const CASE5_PROFILES_EN: ProfileCatalogMap = {
     name: 'Nicanor Tolentino',
     role: 'Janitor',
     icon: 'assets/profile_perfil_nicanor.webp',
-    desc: 'Janitor of the Judicial Archive. Thirty-one years of service. Found the body at 5:35 PM while going up to close the corridor.',
+    desc: 'Janitor of the Judicial Archive. Thirty-one years of service. He found the victim.',
     updates: [
-      'He dusts Volume XI on Mondays. On the Saturday of the crime he saw the shelf complete.'
+      'He dusts Volume XI on Mondays. On the Saturday of the crime he saw the shelf complete; he found the victim at 5:35 PM while going up to close the corridor.'
     ]
   },
   perfil_genoveva: {
@@ -76,9 +81,9 @@ export const CASE5_PROFILES_EN: ProfileCatalogMap = {
     name: 'Genoveva Peñaloza',
     role: 'Badge window clerk',
     icon: 'assets/profile_perfil_genoveva.webp',
-    desc: 'Clerk at the experts and auxiliaries window. Keeps the building’s second logbook. Answers what she is asked and nothing more.',
+    desc: 'Clerk at the courthouse window. Keeps the experts and auxiliaries logbook.',
     updates: [
-      'She writes the time when they return the badge. She cannot see the courtyard door and the rules do not require her to.'
+      'She records when each badge is returned and files the consultation slips. She cannot see the courtyard door, and the rules do not require her to.'
     ]
   },
   perfil_sargento: {
@@ -93,14 +98,14 @@ export const CASE5_PROFILES_EN: ProfileCatalogMap = {
     name: 'Señor Barriga',
     role: 'Landlord',
     icon: 'assets/profile_perfil_barriga.webp',
-    desc: 'The defendant’s landlord. Seventeen years collecting from him. Received seventeen months in cash on November 29 and issued a receipt.'
+    desc: 'The defendant’s landlord. Seventeen years collecting from him.'
   },
   perfil_chompiras: {
     id: 'perfil_chompiras',
     name: 'El Chómpiras',
     role: 'Porter',
     icon: 'assets/profile_perfil_chompiras.webp',
-    desc: 'Archive porter. Acquitted in August of stealing the Golden Chanfle. First steady job he has had and he does not intend to lose it.',
+    desc: 'Archive porter. Acquitted in August of stealing the Golden Chanfle. It is the first job with insurance and a Christmas bonus he has had, and he does not intend to lose it.',
     updates: [
       'He has helped unseal Crate 9 since September and has seen it open six or seven times.'
     ]

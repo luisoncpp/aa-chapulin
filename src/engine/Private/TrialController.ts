@@ -23,7 +23,7 @@ import { handleProfilePresent, isAwaitingProfile } from './ProfilePresent.js';
 import { isPresentPointActive } from './PresentPoint.js';
 import { visibleStatements } from './StatementUnlock.js';
 import { restoreTrialFromSnapshot } from './TrialRestore.js';
-import { paintCourtroomPlate } from './TrialOpening.js';
+import { fadeAcrossGallery, paintCourtroomPlate, splitTrialIntroAtGallery } from './TrialOpening.js';
 import { fadeThroughBlack } from './SceneFade.js';
 import { VisualEffects } from './VisualEffects.js';
 import { warmTrialVisuals } from './VisualWarmup.js';
@@ -105,16 +105,28 @@ export class TrialController {
   public startTrial(skipFade = false): void {
     warmTrialVisuals(this.script, this.deps.state.trialDay);
     const intro = getActiveTrial(this.script, this.deps.state.trialDay).intro;
+    const introParts = splitTrialIntroAtGallery(this.script, this.deps.state.trialDay);
     const afterIntro = /*onComplete*/ () => afterTrialIntro(this);
+    const queueIntro = /*startTrialIntro*/ () => {
+      if (!introParts) {
+        this.deps.onQueueDialogue(intro, afterIntro);
+        return;
+      }
+      this.deps.onQueueDialogue(introParts.waitingRoom, /*onLobbyComplete*/ () => {
+        fadeAcrossGallery(this.deps.dom, /*onGalleryComplete*/ () => {
+          this.deps.onQueueDialogue(introParts.courtroom, afterIntro);
+        }, { caseId: this.deps.state.caseId, trialDay: this.deps.state.trialDay });
+      });
+    };
     if (skipFade) {
       this.enterCourtroom();
-      this.deps.onQueueDialogue(intro, afterIntro);
+      queueIntro();
       return;
     }
     fadeThroughBlack(
       this.deps.dom.flashEl,
       /*onCovered*/ () => this.enterCourtroom(),
-      /*onRevealed*/ () => this.deps.onQueueDialogue(intro, afterIntro)
+      /*onRevealed*/ queueIntro
     );
   }
 

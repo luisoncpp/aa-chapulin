@@ -6,7 +6,7 @@
  */
 
 import type { CaseId, Language, ProfileCatalogMap, ProfileId } from '../../types/index.js';
-import { getProfileCatalog } from './ProfileCatalog.js';
+import { getPreviouslyKnownProfileIds, getProfileCatalog } from './ProfileCatalog.js';
 
 export type ProfileStageMap = Record<string, number>;
 
@@ -17,6 +17,10 @@ export class ProfileInventory {
 
   public setCatalog(lang: Language, caseId?: CaseId): void {
     this.catalog = getProfileCatalog(lang, caseId);
+  }
+
+  public seedPreviouslyKnown(caseId: CaseId): void {
+    this.owned = getPreviouslyKnownProfileIds(caseId).filter((id) => Boolean(this.catalog[id]));
   }
 
   public clear(): void {

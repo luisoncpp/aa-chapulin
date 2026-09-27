@@ -15,10 +15,10 @@ export const CASE2_DETENTION_EN: InvestigationScene = {
   intro: [
     { speaker: 'NARRADOR', text: 'August 22, 10:00 AM. City Detention Center.' },
     { speaker: 'DEFENSA', text: 'Well, here we are. According to the police, the suspect is a dangerous international bandit...', pose: 'donramon_idle' },
-    { speaker: 'CHAPULIN', text: 'Calm down, Don Ramón! Don\'t panic! My vinyl antennae say the accused is harmless... or very absent-minded.', pose: 'chapulin_idle' },
-    { speaker: 'CHOMPIRAS', text: 'Waaaah! It wasn\'t me, boss! I didn\'t steal any chanfle of anything! The only thing I\'ve ever stolen was two sweet rolls, and I gave them back bitten!', pose: 'chompiras_crying' },
+    { speaker: 'CHAPULIN', text: 'Calm down, Don Ramón! Don\'t panic! My vinyl antennae say the accused is harmless... or very absent-minded.', pose: 'chapulin_idle', addProfile: 'perfil_chapulin' },
+    { speaker: 'CHOMPIRAS', text: 'Waaaah! It wasn\'t me, boss! I didn\'t steal any chanfle of anything! The only thing I\'ve ever stolen was two sweet rolls, and I gave them back bitten!', pose: 'chompiras_crying', addProfile: 'perfil_chompiras' },
     { speaker: 'DEFENSA', text: '(Quite the look for a criminal mastermind... he looks like me when the landlord comes.)', pose: 'donramon_sweat' },
-    { speaker: 'DEFENSA', text: 'Easy, kid. I\'m Don Ramón, your defense attorney, and I brought El Chapulín Colorado.', pose: 'donramon_point', addEvidence: 'chanfle_oro' },
+    { speaker: 'DEFENSA', text: 'Easy, kid. I\'m Don Ramón, your defense attorney, and I brought El Chapulín Colorado.', pose: 'donramon_point', addEvidence: 'chanfle_oro', addProfile: 'perfil_donramon' },
     { speaker: 'CHOMPIRAS', text: 'El Chapulín Colorado! They didn\'t count on my cunning! I mean... on his!', pose: 'chompiras_relieved' }
   ],
   hotspots: [

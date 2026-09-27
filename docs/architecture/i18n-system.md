@@ -10,10 +10,10 @@ Case 0 has independent Spanish and English script/catalog modules. Changing lang
 graph TD
     Engine[Presentation & GameEngine] -->|setLanguage| I18n[I18nService]
     Engine -->|updateUi| Updater[UiLanguageUpdater]
-    Engine -->|setScript| Case[Case Narrative Facade]
+    Engine -->|peekCaseScript| Case[Cached case module]
     State[GameStateManager] -->|getEvidenceCatalog| Evidence[EvidenceCatalog]
     I18n -->|UI Dictionaries| Dictionaries[ui_es / ui_en]
-    Case -->|Bilingual Scripts| Scripts[Case 1 and Case 2 ES / EN]
+    Case -->|Bilingual Scripts| Scripts[Active case ES / EN]
 ```
 
 ## Public Facade (`src/i18n/index.ts`)
@@ -29,7 +29,7 @@ The internationalization deep module exposes:
 1. **Trigger**: Player clicks the language toggle button (`#btn-lang-toggle` in top HUD or `#btn-lang-splash` in start splash overlay) or loads a URL parameter (`?lang=en`).
 2. **State & i18n Update**: `GameEngine.setLanguage(lang)` invokes `i18n.setLanguage(lang)` and `gameState.setLanguage(lang)`.
 3. **Evidence Reload**: `gameState.allEvidence` is repopulated with localized titles, `desc`, and optional `updatedDesc` via `getEvidenceCatalog(lang)`. Update flags stay on `gameState.flags`, so language switch keeps the revised text in the new locale.
-4. **Script Swap**: Investigation and trial controllers receive the matching localized narrative graph via `getCaseScript(lang, caseId)` (Case 1 and Case 2 both have ES/EN scripts).
+4. **Script Swap**: Investigation and trial controllers receive the matching localized narrative graph from the already-loaded case module (`peekCaseScript`). Both languages of that case were fetched together on start or continue.
 5. **DOM Synchronization**: `UiLanguageUpdater.updateUi(dom, lang)` updates all button labels, modal headers, HUD banners, tooltip templates, and the case-complete overlay copy without requiring a full page reload.
 
 ## Structural Invariants

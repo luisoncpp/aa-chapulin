@@ -1,0 +1,4 @@
+Edit target: bg_gallery_characters_supersam_standing.png.
+Remove the entire money bag, its dollar symbol, and the raised hand grip. Replace that arm with a natural empty-handed arm resting at his side or on his hip. Preserve the same single character, left-facing side profile, blond pompadour, face and expression, blue suit, chest dollar emblem, red-and-white striped tie, stars-and-stripes cape, red trunks and boots, cel-shaded line art, full standing body and foot placement. Keep proportions close to the original. No bag, cash, coin, money prop, desk, scenery, text, or watermark. Genuine transparent RGBA background.
+
+Generated with the built-in image_gen edit tool on 2026-09-27. The approved source is bg_gallery_characters_supersam_standing_no_bag.png.

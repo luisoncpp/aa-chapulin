@@ -7,7 +7,9 @@ Documento de diseño narrativo, guión de diálogos y especificación técnica p
 
 | Fecha | Lente | Resultado |
 |---|---|---|
-| 2026-09-25 | Contrato visual de la galería en los cortes de NARRADOR (juicios ES/EN) | Hallazgo corregido: el corte de Ñoño de pie en la galería durante el éxito de la contradicción 4 ahora usa `assets/bg_gallery_characters.webp` con `furniture: 'none'` en ambos idiomas y en el guion. Sin otros cortes visuales de narrador sobre la galería en los juicios del Caso 3. |
+| 2026-09-25 | Contrato visual de la galería en los cortes de NARRADOR (juicios ES/EN) | Hallazgo corregido: el corte de Ñoño de pie en la galería durante el éxito de la contradicción 4 usa `assets/bg_gallery_characters.webp` con `furniture: 'none'` en ambos idiomas y en el guion. Esta pasada buscó referencias literales a la galería; no cubrió reacciones colectivas descritas por paráfrasis como «la sala estalla». |
+| 2026-09-26 | Cobertura semántica de reacciones colectivas (juicios/clímax ES/EN) | Los beats colectivos —la sala estalla al probarse el grito grabado, silencio al caer la acusación y silencio al entrar Barriga— usan `bg_gallery_characters.webp`/`none`; los beats individuales de juez y testigo usan su encuadre propio. Candidatas descartadas: la reproducción en la Delegación queda muda (sala de investigación); el «Silencio.» del clímax y los silencios posteriores enfocan a Aniceto; el epílogo ocurre en la sala de espera; la acotación parentética «La sala vuelve a compadecerlo» pertenece a una línea de SUPER SAM, fuera del alcance NARRADOR/NARRATOR. |
+| 2026-09-27 | Encuadre de reacciones mixtas y acciones de utilería (Caso 3 ES/EN) | Separados galería, juez y testigos en los beats mixtos; encuadradas en defensa la operación de la cinta y la exhibición narrada del trofeo. Los sprites idle de Don Ramón y Aniceto no dibujan el Micrófono de Oro en sus manos. |
 
 **Cierre de esta pasada:** lente agotada tras recorrer los guiones de juicio, clímax y epílogo en español e inglés y cotejarlos con las menciones de juicio del spec. La regla de cámara se alinea con [[docs/specs/common/bg_gallery.md]].
 
@@ -113,6 +115,31 @@ timeline
 | 15 | `cartucho_corte` | Cartucho de Corte de Estación | Cartucho rotulado "IDENTIFICACIÓN XEVC", rescatado de la basura por el Sargento. | **D3:** contiene el grito de las 11:03. **Debajo de la voz se alcanza a oír el aviso del niño extraviado.** | D3-T2 |
 | 16 | `cinta_sketch` | Cinta "El Casero Cascarrabias" | Sketch semanal de XEVC: un personaje que imita la voz del Señor Barriga y cierra siempre con *"¡Tenía que ser el Chavo del Ocho!"*. Se graba en la Cabina A. | — | Clímax E3 |
 | 17 | `boleta_empeno` | Boleta de Empeño | Del Monte de Piedad: un micrófono de bronce empeñado en junio y **desempeñado el 3 de septiembre por $12,000 en efectivo**. Firma del titular: *A. Rebollar*. | — | Clímax E4 |
+
+---
+
+## 4.1 Acta de Personajes
+
+El Caso 3 declara perfiles y muestra la pestaña **PERSONAS** del Acta. El orden de juego llama a este episodio **Acto 3**; `case3` es sólo el identificador del catálogo y nunca se usa como etapa de progreso. Cada alta y actualización de esta tabla pertenece al **Acto 3** y se ancla al día/escena/testimonio de este caso. Los perfiles de personajes ya presentes en actos anteriores se incorporan silenciosamente al empezar, usando la descripción inicial de este catálogo; sus líneas `addProfile` no repiten la notificación. El resto de las fichas se agrega en la primera presentación explícita. Sólo se actualiza después de que el jugador conoce un dato nuevo. La descripción visible en cada punto debe limitarse a hechos ya establecidos: no anticipar identidades, móviles, engaños ni revelaciones posteriores. Mantener las mismas etapas en ES y EN.
+
+Icono: retrato del personaje correspondiente en `assets/profile_<id>.webp`. Quico no recibe ficha: sólo se oye fuera de cuadro y no es presentado como personaje visible. No añadir ranuras de señalamiento; estas fichas son información de lectura.
+
+| Ficha | Alta (Acto 3) | Descripción inicial | Actualizaciones, en orden (Acto 3) |
+|---|---|---|---|
+| `perfil_donramon` | D1, presentación en el Centro de Detención | *«Abogado defensor del Doctor Chapatín. Quince meses de renta atrasada con el Señor Barriga.»* | — |
+| `perfil_chapulin` | D1, presentación en el Centro de Detención | *«Co-defensor. Héroe de antenitas y refranes que rara vez llegan enteros.»* | — |
+| `perfil_chapatin` | D1, presentación en el Centro de Detención | *«Acusado de atacar al Señor Barriga. Médico anciano y gruñón. Lleva una bolsa de papel que usa como arma.»* | **D1, investigación en el Centro de Detención:** *«Se niega a revelar dónde estuvo después de salir de la cabina e invoca el secreto profesional.»* · **D2, T2:** *«El registro de su clínica y el testimonio de Ñoño confirman que atendió en secreto a un paciente en el callejón a las 10:50 PM.»* |
+| `perfil_sargento` | D1, presentación en XEVC | *«Policía Preventiva, grado de sargento. Participó en el hallazgo del Doctor Chapatín junto a la víctima.»* | **D1, T1:** *«Admite que movió el trofeo antes de fotografiar la escena.»* · **D3, investigación en la Delegación:** *«Pasó la noche buscando en la basura y recuperó el cartucho de corte de estación.»* |
+| `perfil_chimoltrufia` | D1, primera presentación en XEVC | *«Locutora —o ayudante, o encargada del café— de la sección de horóscopos de XEVC.»* | **D1, T2:** *«Estaba en la Cabina C y oyó pasar el carrito de discos por el pasillo; creyó que era el conserje.»* |
+| `perfil_florinda` | D1, presentación en la Plaza de la Kermés | *«Presidenta del comité vecinal y encargada del puesto de la kermés.»* | **D1, investigación en la Plaza:** *«Confirma que el Señor Barriga estaba vivo en la plaza a las 9:40 PM, buscando a Quico.»* |
+| `perfil_jirafales` | D1, presentación en la Plaza de la Kermés | *«Maestro de ceremonias del Grito. Lleva un minutario de la noche.»* | **D1, investigación en la Plaza:** *«Su libreto registra el aviso del niño extraviado a las 9:40 PM.»* |
+| `perfil_aniceto` | D1, presentación en la Plaza de la Kermés | *«Locutor titular de XEVC. Lleva veinticinco años al aire y habla con una dicción impecable.»* | **D2, T2:** *«Declaró que lo encontraron atado y amordazado en la bodega; la corte lo trata como una segunda víctima.»* · **D3, clímax, después de la trampa de voz y su confesión:** *«La voz del cartucho es la suya. Confesó haber fabricado el grito, montado su rescate y usado el dinero del Fondo para recuperar su trofeo.»* |
+| `perfil_nono` | D1, primera presentación nominal en XEVC | *«Operador de consola de XEVC e hijo del Señor Barriga. Dice que estuvo en la consola durante el Grito.»* | **D2, T2:** *«Reveló que tiene un problema del corazón y que el Doctor Chapatín lo atiende en secreto.»* |
+| `perfil_supersam` | D1, apertura del juicio | *«Fiscal acusador. Quiere cerrar el caso antes de la hora de comer.»* | **D2, T2:** *«Defiende la declaración de Aniceto como la de una segunda víctima, incluso después de que la coartada del acusado queda establecida.»* |
+| `perfil_barriga` | D1, primera identificación de la víctima en XEVC | *«Casero, dueño de XEVC y víctima del ataque. Sigue en coma.»* | **D3, T1:** *«Despertó y declaró. Había descubierto un faltante de $40,000 y se lo contó a una persona de confianza en su despacho.»* |
+| `perfil_juez` | D1, apertura del juicio | *«Juez de la Corte. Bondadoso, influenciable y aficionado a los programas de radio de XEVC.»* | — |
+
+**Regla de sincronización:** poner `addProfile` en la línea de primera presentación para personajes nuevos; si el ID ya apareció en un acto anterior, el perfil ya estará disponible y la línea será inocua. Poner `updateProfile` sólo después del testimonio, evidencia o giro que establece información nueva en el Acto 3. En particular, no registrar en el Acta antes de la trampa y confesión que Aniceto fabricó la grabación o el montaje, ni antes del testimonio de Ñoño la naturaleza de su tratamiento. Los rótulos D1/D2/D3 son días internos del Caso 3, no números de caso ni de acto globales.
 
 ---
 
@@ -629,7 +656,8 @@ DEFENSA (donramon_point): ¡PROTESTO! ¡Ese grito NO entró por ningún micrófo
 DEFENSA (donramon_slam): ¡La bitácora de la propia consola lo dice con todas sus letras: 23:03, CORTE DE ESTACIÓN, CARTUCHO 3, AUTOMÁTICO! [sfx: desk_slam]
 JUEZ (judge_shock): ¡¿Automático?! ¡¿Quiere decir que la máquina lo disparó sola?!
 DEFENSA (donramon_point): Sola, señor Juez. Y por si quedara duda: el micrófono de la Cabina B tenía el cable enrollado y desconectado desde las diez para las diez de la noche. ¡De esa cabina no salió al aire ni un suspiro!
-NARRADOR: (La sala estalla. El Juez golpea el mazo cuatro veces y nadie lo oye.) [sfx: gavel]
+NARRADOR: (La sala estalla.) [bg: assets/bg_gallery_characters.webp; furniture: none]
+NARRADOR (judge_gavel): (El Juez golpea el mazo cuatro veces y nadie lo oye.) [bg: assets/bg_judge.webp; furniture: judge-bench; sfx: gavel]
 CHAPULIN (chapulin_slam): ¡Lo sospeché desde un principio! ¡El grito que oyeron dos mil personas era una GRABACIÓN! [sfx: desk_slam]
 SUPER SAM (supersam_sweat): ¡¿A canned scream?! But... but that means...
 DEFENSA (donramon_idle): Significa dos cosas, señor fiscal. Una: nadie sabe a qué hora atacaron realmente al Señor Barriga. Y dos, la fea...
@@ -677,7 +705,7 @@ DEFENSA (donramon_slam): ¡Esta es la libreta de consultas de su clínica! ¡15 
 SUPER SAM (supersam_slam): ¡Un papel escrito por el propio acusado! ¡Objection!
 DEFENSA (donramon_point): ¡Entonces vea su bolsa de papel, la que el sargento levantó de la escena! ¡Ampolleta vacía y jeringa recién usada! ¡Mi cliente venía de inyectar a alguien en el callejón, señor fiscal, no de asaltar una caja fuerte!
 NONO (nono_llorando): ¡ERA YO! [sfx: realization]
-NARRADOR: (El joven Ñoño se pone de pie en la galería, con la cara empapada.) [bg: assets/bg_gallery_characters.webp; furniture: none]
+NARRADOR (nono_llorando): (El joven Ñoño se pone de pie en la galería, con la cara empapada.) [bg: assets/bg_gallery_characters.webp; furniture: none]
 NONO (nono_llorando): ¡Era yo! ¡Yo bajé al callejón a las diez cuarenta y cinco porque me faltaba el aire! ¡El doctor YA estaba ahí, esperándome! ¡Lleva un año inyectándome a escondidas y sin cobrarme para que mi papi no se entere de que estoy malo del corazón!
 CHAPATIN (chapatin_enojado): ¡Muchacho imprudente! ¡Eso era secreto profesional!
 CHAPATIN (chapatin_conmovido): ...Y baje la voz, que se le va a subir la presión.
@@ -784,7 +812,8 @@ DEFENSA (donramon_idle): (Que hable. Es justo lo que necesito.)
 
 [LLAMADO AL ESTRADO - SEÑOR BARRIGA]
 JUEZ (judge_neutral): Que pase la víctima. La corte autoriza que declare sentado.
-NARRADOR: (Dos enfermeros empujan la silla de ruedas hasta el estrado. La sala entera se queda callada.)
+NARRADOR (barriga_vendado): (Dos enfermeros empujan la silla de ruedas hasta el estrado.) [bg: assets/bg_witness.webp; furniture: podium]
+NARRADOR: (La sala entera se queda callada.) [bg: assets/bg_gallery_characters.webp; furniture: none]
 BARRIGA (barriga_vendado): Buenas tardes. Perdonen que no me ponga de pie.
 JUEZ (judge_neutral): Nadie se lo pide, señor. Para el acta: su nombre y su ocupación.
 BARRIGA (barriga_vendado): Barriga. Dueño y director de la radiodifusora XEVC... y casero, señor Juez. Aunque hoy vengo nomás de víctima.
@@ -826,7 +855,8 @@ JUEZ (judge_thinking): ¿Y eso qué significa, Licenciado?
 DEFENSA (donramon_slam): ¡Que quien la ató estaba de FRENTE a esa boca! ¡Nadie amordaza a otro por la espalda y va a hacerle el nudo por delante! [sfx: desk_slam]
 CHAPULIN (chapulin_slam): ¡Y hay más! ¡Veinte minutos amarrado y las muñecas sin una raspadura! ¡Y en el polvo del piso no hay ni una marca de forcejeo, nomás la sentadita! [sfx: desk_slam]
 CHAPATIN (chapatin_enojado): ¡Yo lo revisé esa noche! ¡Ese señor no forcejeó ni un segundo! ¡Y si alguien lo duda que venga y le explico con la bolsa!
-NARRADOR: (Silencio absoluto en la sala. Don Aniceto Rebollar deja de sonreír por primera vez en veinticinco años.) [sfx: realization]
+NARRADOR: (Silencio absoluto en la sala.) [bg: assets/bg_gallery_characters.webp; furniture: none]
+NARRADOR (aniceto_sweat): (Don Aniceto Rebollar deja de sonreír por primera vez en veinticinco años.) [bg: assets/bg_witness.webp; furniture: podium; sfx: realization]
 JUEZ (judge_shock): ¡¿Está usted diciendo que la segunda víctima... se ató sola?!
 BARRIGA (barriga_shock): No... No, no, no. Licenciado, usted no entiende. Yo a ese hombre le confié las cuentas veinticinco años.
 DEFENSA (donramon_idle): Lo sé, señor Barriga. Por eso le confió también el secreto. Y por eso... es el único que pudo usarlo.
@@ -935,7 +965,7 @@ DEFENSA (donramon_point): ¡Y el calcado del Libro Verde dice: "Faltan cuarenta 
 JUEZ (judge_shock): ¡¿Y quién es el tesorero del Fondo de la Kermés?!
 BARRIGA (barriga_vendado): ...Aniceto. Aniceto Rebollar. Desde hace veinticinco años.
 DEFENSA (donramon_slam): ¡Veintiocho mil pesos se fueron en pagar el adeudo del transmisor de la estación! ¡Y doce mil, en rescatar ESTO! [sfx: desk_slam]
-NARRADOR: (Don Ramón levanta el Micrófono de Oro. La placa brilla: "A Aniceto Rebollar, 25 años de La Voz de Oro".)
+NARRADOR (donramon_idle): (Don Ramón levanta el Micrófono de Oro. La placa brilla: "A Aniceto Rebollar, 25 años de La Voz de Oro".) [bg: assets/bg_defense.webp; furniture: bench]
 DEFENSA (donramon_point): ¡El arma del crimen es su propio trofeo, señor Rebollar! ¡El que rescató con el dinero de la kermés, y el que agarró del pedestal cuando el único hombre que lo sabía le dijo que lo iba a decir al aire!
 ANICETO (aniceto_panic): ¡N-no pueden probar que esa voz sea la mía! ¡Es una cinta! ¡Una cinta no tiene cara! [sfx: damage]
 SUPER SAM (supersam_sweat): He's right... Sin la voz, todo esto son papeles. Time is money and this is... paperwork.
@@ -977,13 +1007,13 @@ JUEZ (judge_gavel): ¡No haga usted payasadas en mi tribunal! [sfx: damage]
 [OPCIÓN CORRECTA — LA TRAMPA]
 DEFENSA (donramon_idle): Chapulín. La cinta del sketch. Y hágame usted un favor... dígala como usted dice los refranes.
 CHAPULIN (chapulin_point): ¡Con muchísimo gusto! ¡Todos mis movimientos están fríamente calculados!
-NARRADOR: (Suena la cinta. La voz del "Casero Cascarrabias" arranca su frase famosa... y el Chapulín le baja el volumen y la completa él.)
+NARRADOR: (Suena la cinta. La voz del "Casero Cascarrabias" arranca su frase famosa... y el Chapulín le baja el volumen y la completa él.) [bg: assets/bg_defense.webp; furniture: bench]
 CHAPULIN (chapulin_slam): "¡TENÍA QUE SER... EL CHANGO DEL OCHO!" [sfx: chipote]
 NARRADOR: (Silencio.)
-NARRADOR: (Don Aniceto Rebollar, veinticinco años al aire, cierra los ojos. Le tiembla el labio. No puede. No puede dejarlo pasar.)
+NARRADOR (aniceto_sweat): (Don Aniceto Rebollar, veinticinco años al aire, cierra los ojos. Le tiembla el labio. No puede. No puede dejarlo pasar.) [bg: assets/bg_witness.webp; furniture: podium]
 ANICETO (aniceto_breakdown): ¡¡¡ES "EL CHAVO DEL OCHO", ANIMAL!!! ¡¡¡"TE-NÍ-A QUE SER EL CHAVO DEL OCHO"!!! [sfx: realization, bgm: objection]
 NARRADOR: (Lo grita con la voz del Señor Barriga. Exacta. Redonda. Idéntica al cartucho. Dos mil personas la oyeron el 15 de septiembre y ciento veinte la oyen ahora.)
-NARRADOR: (Don Aniceto se queda con la boca abierta, oyéndose a sí mismo rebotar en las paredes del tribunal.)
+NARRADOR (aniceto_panic): (Don Aniceto se queda con la boca abierta, oyéndose a sí mismo rebotar en las paredes del tribunal.) [bg: assets/bg_witness.webp; furniture: podium]
 DEFENSA (donramon_point): Gracias, don Aniceto. Acaba usted de confesar con su mejor voz. [cutin: objection_protesto, sfx: whoosh]
 ```
 
@@ -1001,7 +1031,7 @@ ANICETO (aniceto_breakdown): ¡NO! ¡Tú ibas a decir mi nombre! ¡MI NOMBRE! ¡
 ANICETO (aniceto_breakdown): ¡Y sabía que el doctor iba a subir corriendo! ¡Lo sabía! ¡Es médico! ¡Los médicos siempre corren! [sfx: damage]
 NARRADOR: (Empieza a hablar con la voz de Barriga. Luego con la de Doña Florinda. Luego con la del Profesor. Luego con la del propio Juez. Veinticinco años de voces saliéndosele todas juntas por la misma garganta.)
 ANICETO (aniceto_breakdown): "...Aquí XEVC... La Voz de la Vecindad... transmitiendo para usted... desde... desde..."
-NARRADOR: (Se abraza al Micrófono de Oro y se queda callado. Por primera vez en veinticinco años, callado de verdad.)
+NARRADOR (aniceto_idle): (Se abraza al Micrófono de Oro y se queda callado. Por primera vez en veinticinco años, callado de verdad.) [bg: assets/bg_witness.webp; furniture: podium]
 SUPER SAM (supersam_breakdown): OH NOOO! ¡Tres días! ¡THREE DAYS! ¡Mis honorarios! ¡Mi bono! ¡Mi hora de la comida! [sfx: damage]
 JUEZ (judge_gavel): ¡Orden! Habiendo quedado establecido el método, el móvil y el autor... este tribunal emite su veredicto. [sfx: gavel]
 JUEZ (judge_gavel): ¡Declaro al acusado, el Doctor Chapatín... INOCENTE! [cutin: objection_inocente, sfx: whoosh, bgm: victory]
@@ -1009,6 +1039,8 @@ NARRADOR: (Cae confeti sobre la sala. El doctor lo mira con desconfianza, como s
 CHAPATIN (chapatin_conmovido): ...Hmpf. Ya era hora.
 CHAPULIN (chapulin_point): ¡Síganme los buenos!
 ```
+
+**Contrato visual de utilería:** estas dos acciones se narran, pero los sprites `donramon_idle` y `aniceto_idle` no dibujan el Micrófono de Oro en sus manos.
 
 ---
 

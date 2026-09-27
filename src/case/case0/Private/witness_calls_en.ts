@@ -7,7 +7,7 @@ export const CASE0_WITNESS_CALL_T1_EN: DialogueLine[] = [
   { speaker: 'CASIMIRO', pose: 'casimiro_amable', text: 'Climbing, climbing. To the stand. From the Latin stare, “to stand upright”.' },
   { speaker: 'DEFENSA', pose: 'donramon_sweat', text: '(This man footnotes the staircase. I am going to grow a beard in here.)' },
   { speaker: 'JUEZ', pose: 'judge_neutral', text: 'Witness, state your name and occupation.' },
-  { speaker: 'CASIMIRO', pose: 'casimiro_catalogo', text: 'Casimiro Lengua, at your service: authorized distributor for The Universal Knowledge Encyclopedias. From the Latin encyclopaedia, “instruction in a circle”.' },
+  { speaker: 'CASIMIRO', pose: 'casimiro_catalogo', text: 'Casimiro Lengua, at your service: authorized distributor for The Universal Knowledge Encyclopedias. From the Latin encyclopaedia, “instruction in a circle”.', addProfile: 'perfil_casimiro' },
   { speaker: 'JUEZ', pose: 'judge_neutral', text: 'Your testimony, please. Only what you perceived.' }
 ];
 

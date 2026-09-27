@@ -37,7 +37,7 @@ export const CASE3_CLIMAX_STAGE4: DialogueLine[] = [
   { speaker: 'JUEZ', text: '¡¿Y quién es el tesorero del Fondo de la Kermés?!', pose: 'judge_shock' },
   { speaker: 'BARRIGA', text: '...Aniceto. Aniceto Rebollar. Desde hace veinticinco años.', pose: 'barriga_vendado' },
   { speaker: 'DEFENSA', text: '¡Veintiocho mil pesos se fueron en pagar el adeudo del transmisor de la estación! ¡Y doce mil, en rescatar ESTO!', sfx: 'desk_slam', pose: 'donramon_slam' },
-  { speaker: 'NARRADOR', text: '(Don Ramón levanta el Micrófono de Oro. La placa brilla: "A Aniceto Rebollar, 25 años de La Voz de Oro".)' },
+  { speaker: 'NARRADOR', text: '(Don Ramón levanta el Micrófono de Oro. La placa brilla: "A Aniceto Rebollar, 25 años de La Voz de Oro".)', bg: 'assets/bg_defense.webp', furniture: 'bench', pose: 'donramon_idle' },
   { speaker: 'DEFENSA', text: '¡El arma del crimen es su propio trofeo, señor Rebollar! ¡El que rescató con el dinero de la kermés, y el que agarró del pedestal cuando el único hombre que lo sabía le dijo que lo iba a decir al aire!', pose: 'donramon_point' },
   { speaker: 'ANICETO', text: '¡N-no pueden probar que esa voz sea la mía! ¡Es una cinta! ¡Una cinta no tiene cara!', sfx: 'damage', pose: 'aniceto_panic' },
   { speaker: 'SUPER SAM', text: "He's right... Sin la voz, todo esto son papeles. Time is money and this is... paperwork.", pose: 'supersam_sweat' },

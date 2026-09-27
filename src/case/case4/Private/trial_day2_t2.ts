@@ -59,7 +59,7 @@ export const CASE4_TESTIMONY_4: Testimony = {
       text: 'Y la faja iba enterita cuando el conde lo recibió. Yo firmé el talón junto al Botija.',
       pressText: [
         { speaker: 'DEFENSA', text: '¡UN MOMENTO!', cutin: 'objection_un_momento', sfx: 'whoosh', pose: 'donramon_point' },
-        { speaker: 'CHOMPIRAS', text: 'Número y faja confirmados. La faja se rompe después de que Rufino recibe el envío. Botija no dispone de intervalo oculto en la cabina.', pose: 'chompiras_idle' }
+        { speaker: 'CHOMPIRAS', text: 'Número y faja confirmados. La faja se rompe después de que Rufino recibe el envío. Botija no dispone de intervalo oculto en la cabina.', pose: 'chompiras_idle', updateProfile: 'perfil_chompiras' }
       ]
     }
   ]

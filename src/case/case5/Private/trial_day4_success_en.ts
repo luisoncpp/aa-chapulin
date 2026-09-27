@@ -57,7 +57,7 @@ export const CASE5_D4_T1_LIBRO_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'GENOVEVA', text: '...It does.', pose: 'genoveva_idle' },
   { speaker: 'DEFENSA', text: 'Read the court the printed header of the second column.', pose: 'chapulin_slam', sfx: 'desk_slam' },
   { speaker: 'GENOVEVA', text: '..."Time badge returned".', pose: 'genoveva_sweat' },
-  { speaker: 'NARRADOR', text: 'Silence in the courtroom.', sfx: 'realization' },
+  { bg: 'assets/bg_gallery_characters.webp', furniture: 'none', speaker: 'NARRADOR', text: 'Silence in the courtroom.', sfx: 'realization' },
   { speaker: 'GENOVEVA', text: '......', pose: 'genoveva_shock' },
   { speaker: 'GENOVEVA', text: 'Thirteen years.', pose: 'genoveva_shock' },
   { speaker: 'GENOVEVA', text: 'Thirteen years calling a column that says something else "time of departure".', pose: 'genoveva_sweat' },

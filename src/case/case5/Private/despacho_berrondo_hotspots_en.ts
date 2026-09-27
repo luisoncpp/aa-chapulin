@@ -16,7 +16,7 @@ export const CASE5_BERRONDO_HOTSPOTS_EN: Hotspot[] = [
       { speaker: 'DEFENSA', text: '"Fulgencio Berrondo. Trustee. Bankruptcy 114/1971."', pose: 'chapulin_idle' },
       { speaker: 'BERRONDO', text: 'Enciclopedias El Saber Universal, S.A. My first trusteeship and the last one I still have open.', pose: 'berrondo_idle' },
       { speaker: 'DEFENSA', text: 'Eleven years open?', pose: 'chapulin_panic' },
-      { speaker: 'BERRONDO', text: 'Eleven years, almost nine months. Some creditors died waiting and heirs never showed up.', pose: 'berrondo_idle' },
+      { speaker: 'BERRONDO', text: 'Eleven years, almost nine months. Some creditors died waiting and heirs never showed up.', pose: 'berrondo_idle', updateProfile: 'perfil_berrondo' },
       { speaker: 'BERRONDO', text: 'A bankruptcy does not close when you want, counselor. It closes when there is nobody left to owe.', pose: 'berrondo_idle' },
       { speaker: 'DEFENSA', text: 'And that credential still works for something?', pose: 'chapulin_idle' },
       { speaker: 'BERRONDO', text: 'It works for everything. Here, take a certified copy; I have had one ready for years because people ask for it often.', pose: 'berrondo_idle', addEvidence: 'credencial_sindico' },

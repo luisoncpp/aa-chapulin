@@ -174,6 +174,7 @@ export class GameStateManager {
     this.allEvidence = getEvidenceCatalog(this.language, script.id);
     this.profiles.clear();
     this.profiles.setCatalog(this.language, script.id);
+    this.profiles.seedPreviouslyKnown(script.id);
     this.resetHealth();
     this.applyProgressionRules(script);
   }

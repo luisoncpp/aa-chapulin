@@ -19,7 +19,22 @@ export type ProfileId =
   | 'perfil_genoveva'
   | 'perfil_sargento'
   | 'perfil_barriga'
-  | 'perfil_chompiras';
+  | 'perfil_chompiras'
+  | 'perfil_toribio'
+  | 'perfil_nazario'
+  | 'perfil_peterete'
+  | 'perfil_jaimito'
+  | 'perfil_clotilde'
+  | 'perfil_chapatin'
+  | 'perfil_chimoltrufia'
+  | 'perfil_aniceto'
+  | 'perfil_nono'
+  | 'perfil_juez'
+  | 'perfil_botija'
+  | 'perfil_cecilio'
+  | 'perfil_rufino'
+  | 'perfil_maruja'
+  | 'perfil_cuajinais';
 
 export interface ProfileItem {
   id: ProfileId;

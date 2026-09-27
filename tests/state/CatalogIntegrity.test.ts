@@ -65,10 +65,10 @@ describe('Evidence catalog integrity', () => {
 });
 
 describe('Profile catalog integrity', () => {
-  const WITH_PROFILES: readonly CaseId[] = ['case1', 'case5'];
-  const WITHOUT_PROFILES: readonly CaseId[] = ['case0', 'case2', 'case3', 'case4'];
+  const WITH_PROFILES: readonly CaseId[] = ['case0', 'case1', 'case2', 'case3', 'case4', 'case5'];
+  const WITHOUT_PROFILES: readonly CaseId[] = [];
 
-  it('declares profiles only for the cases that use the Acta de Personajes', () => {
+  it('declares profile catalogs for every case that uses the Acta de Personajes', () => {
     for (const caseId of WITHOUT_PROFILES) {
       for (const language of LANGUAGES) {
         expect(getProfileCatalog(language, caseId)).toEqual({});

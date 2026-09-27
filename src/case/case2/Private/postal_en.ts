@@ -14,7 +14,7 @@ export const CASE2_POSTAL_EN: InvestigationScene = {
   idlePose: 'jaimito_idle',
   intro: [
     { speaker: 'NARRADOR', text: 'August 23, 9:00 AM. Rear Alley and Postal Stand.' },
-    { speaker: 'JAIMITO', text: 'Good morning... I came to deliver these letters, but I want to avoid fatigue...', pose: 'jaimito_tired' },
+    { speaker: 'JAIMITO', text: 'Good morning... I came to deliver these letters, but I want to avoid fatigue...', pose: 'jaimito_tired', addProfile: 'perfil_jaimito' },
     { speaker: 'DEFENSA', text: 'Don Jaimito, sorry to bother you, but on the night of the theft you parked your mail cart in this alley, right under the hacienda dumbwaiter.', pose: 'donramon_idle' },
     { speaker: 'JAIMITO', text: 'Ah, yes! In my hometown, Tangamandapio, carts are left in the shade of the guava trees...', pose: 'jaimito_idle' },
     { speaker: 'CHAPULIN', text: 'Don Jaimito, do you recall Mr. Peterete handing you a package on the 21st at 9:30 PM?', pose: 'chapulin_idle' },
@@ -35,7 +35,7 @@ export const CASE2_POSTAL_EN: InvestigationScene = {
       x: 13, y: 30, w: 16, h: 28,
       dialogue: [
         { speaker: 'DEFENSA', text: 'This 9:30 PM entry is stamped with an irregular hand stamp... not the official mechanical stamp you always carry.', pose: 'donramon_point', addEvidence: 'registro_postal' },
-        { speaker: 'JAIMITO', text: 'I stamped nothing! The official stamp never leaves me, to avoid the fatigue of looking for it.', pose: 'jaimito_proud' }
+        { speaker: 'JAIMITO', text: 'I stamped nothing! The official stamp never leaves me, to avoid the fatigue of looking for it.', pose: 'jaimito_proud', updateProfile: 'perfil_jaimito' }
       ]
     },
     {

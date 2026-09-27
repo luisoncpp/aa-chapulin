@@ -37,8 +37,8 @@ Operational guide for player actions during the crime scene investigation phase.
    - `#dialogue-box` and `#game-screen` temporarily remove `.examine-mode` to display dialogue at full height (120px) with speaker tag and typewriter effects.
    - `#examine-nav` and `#investigation-controls` are both hidden during dialogue playback.
    - Hotspot dialogue array is queued via `queueDialogue()`.
-   - Any `line.addEvidence` adds the item and shows `#game-notification` (`notifEvidenceAdded`) with realization SFX.
-   - Any `line.updateEvidence` advances one catalog stage and shows `#game-notification`. The Acta then shows the original `desc` plus every revealed `updates[]` addendum (legacy `updatedDesc` replaces instead).
+   - Any `line.addEvidence` adds the item at once; its `#record-notice` card (`notifEvidenceAdded`) shows after the player advances past the line.
+   - Any `line.updateEvidence` advances one catalog stage; its card follows the line the same way. The Acta then shows the original `desc` plus every revealed `updates[]` addendum (legacy `updatedDesc` replaces instead).
    - On dialogue completion callback:
      - `gameState.markHotspotExamined(h.id)` records completion.
      - `notifyNewlyUnlocked()` checks for newly unlocked talk topics.

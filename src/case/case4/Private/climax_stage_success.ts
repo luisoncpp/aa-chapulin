@@ -70,7 +70,7 @@ export const CASE4_CLIMAX_STAGE2_SUCCESS: DialogueLine[] = [
   { speaker: 'MARUJA', text: 'Y yo se lo vi puesto en la puerta de la 204, cuando firmó el recibo del vino.', pose: 'maruja_idle' },
   { speaker: 'DEFENSA', text: 'Botija nunca lo tuvo, y nadie ha declarado habérselo prestado esa noche.', pose: 'donramon_point' },
   { speaker: 'SARGENTO', text: 'Yo se lo incauté ayer por la tarde, cuando el tribunal ordenó su custodia. No hubo una sola noche para deshacerse de él.', pose: 'pazguato_decidido' },
-  { speaker: 'DEFENSA', text: 'Y ahí se cierra lo que quedó abierto hace un momento: quien guardó el cierre nunca tuvo este anillo, y la pieza que dejó ese fragmento lleva bajo custodia desde ayer.', pose: 'donramon_idle' },
+  { speaker: 'DEFENSA', text: 'Y ahí se cierra lo que quedó abierto hace un momento: quien guardó el cierre nunca tuvo este anillo, y la pieza que dejó ese fragmento lleva bajo custodia desde ayer.', pose: 'donramon_idle', updateProfile: 'perfil_rufino' },
   { speaker: 'JUEZ', text: 'El tribunal da por resuelta esa posibilidad.', pose: 'judge_gavel', sfx: 'gavel' },
   { speaker: 'DEFENSA', text: 'Señor Rufián: usted se quedó solo con una botella cerrada... y el pedazo que le falta a su anillo estaba dentro de ese corcho.', pose: 'donramon_point', cutin: 'objection_toma_eso', sfx: 'whoosh', bgm: 'objection' },
   { speaker: 'RUFINO', text: '...', pose: 'rufino_panic' },

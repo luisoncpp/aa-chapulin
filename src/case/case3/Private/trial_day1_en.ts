@@ -8,8 +8,8 @@ import { CASE3_CALL_CHIMOLTRUFIA_EN, CASE3_CALL_SARGENTO_EN } from './witness_ca
 
 export const CASE3_TRIAL_INTRO_EN: DialogueLine[] = [
   { bg: 'assets/bg_waiting_room.webp', furniture: 'none', speaker: 'NARRADOR', text: 'September 16, 6:00 PM. High Court - Waiting Room.', bgm: 'trial' },
-  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_gavel', text: 'Silence in the court! The trial of Doctor Chapatín is now in session.', sfx: 'gavel', bgm: 'trial' },
-  { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_slam', text: 'Time is money, Your Honor! Two thousand witnesses heard the victim scream the defendant\'s name!', sfx: 'desk_slam' },
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_gavel', text: 'Silence in the court! The trial of Doctor Chapatín is now in session.', sfx: 'gavel', bgm: 'trial', addProfile: 'perfil_juez' },
+  { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_slam', text: 'Time is money, Your Honor! Two thousand witnesses heard the victim scream the defendant\'s name!', sfx: 'desk_slam', addProfile: 'perfil_supersam' },
   { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_point', text: 'And three minutes later they found him on top of the body! I want a verdict before my lunch hour!' },
   { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_slam', text: 'OBJECTION! ¡Con permisito, dijo Monchito!', sfx: 'desk_slam' },
   { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_point', text: 'The defense maintains that no crime was committed in that booth.' },
@@ -78,7 +78,7 @@ export const CASE3_TESTIMONY_1_EN: Testimony = {
       text: 'The crime happened right there, in that booth. The weapon was beside the body.',
       pressText: [
         { speaker: 'DEFENSA', text: 'HOLD IT!', cutin: 'objection_un_momento', sfx: 'whoosh', pose: 'donramon_point' },
-        { speaker: 'SARGENTO', text: 'Well... for the photo it looked better neat, so I moved it before...', pose: 'pazguato_sweat' },
+        { speaker: 'SARGENTO', text: 'Well... for the photo it looked better neat, so I moved it before...', pose: 'pazguato_sweat', updateProfile: 'perfil_sargento' },
         { speaker: 'SUPER SAM', text: 'YOUR SALARY IS CUT! Another paycheck!', pose: 'supersam_slam', sfx: 'desk_slam' },
         { speaker: 'SARGENTO', text: 'That makes four, my prosecutor. At this rate I\'ll owe you.', pose: 'pazguato_sweat' }
       ],

@@ -8,6 +8,8 @@ Technical guide for the presentation and game engine deep module ([[src/engine/i
 
 `EngineLaunch.startGame` has a dedicated Case 0 branch. It calls `GameStateManager.beginTrialOnlyCase`, grants the initial evidence without advancing `updates[]`, sets `mode = 'TRIAL'`, and starts `TrialController` directly. Normal cases continue through investigation startup; URL debug parsing accepts `case=0`.
 
+`GameEngine.init` binds splash controls and shows Continue after a `localStorage` check. It does not download case scripts. Starting an act, a debug trial URL, or restoring a slot loads that case through [[src/case/loadCaseScript.ts]]. Tests inject `resolveScript: getCaseScript` so those paths stay synchronous.
+
 The `src/engine/` module is organized into encapsulated deep module components with a thin public interface ([[src/engine/index.ts]]):
 
 ```mermaid
@@ -37,7 +39,7 @@ flowchart TD
     
     Coordinator --> State[src/state/index.ts]
     Coordinator --> Audio[src/audio/index.ts]
-    Coordinator --> Script[src/case/index.ts]
+    Coordinator --> Script[src/case/loadCaseScript.ts]
 ```
 
 ## Core Responsibilities
@@ -46,6 +48,7 @@ flowchart TD
    - `queueDialogue(dialogueArray, onComplete)` maintains a FIFO queue of dialogue line objects.
    - `handleAdvance()` advances dialogue on user input (Click / Space / Enter) and returns a boolean. If typewriter animation is running, it instantly reveals the complete line; otherwise, it dequeues the next line, triggers `onComplete`, or returns `false` when idle. When idle during a climax present (`isAwaitingEvidence()`), `GameEngine.handleAdvance()` reopens the Court Record in presentation mode. After the climax is settled (verdict, confetti, waiting-room epilogue) that reopen must not fire.
    - The blinking `#dialogue-arrow` is a promise that a click advances. `DialogueFlow` toggles `.hidden` on it after every render: visible only while a queued line or an `onComplete` callback is still pending. Cross-examination statements are rendered outside the queue (`renderDialogueLine` direct), so the arrow stays hidden there, where clicking the box does nothing.
+   - **Record notices** ([[src/engine/Private/RecordNoticeQueue.ts]], owned by `DialogueFlow`): Court Record / Acta de Personajes / location changes from a line mutate state at render but are displayed only after the player advances past that line, one centered `#record-notice` card each. `handleAdvance` drains them before the queue; cards hide `#character-sprite` and `#dialogue-box` and restore their prior visibility; the last dismissal falls through to the next line in the same press. Pending cards also keep `#dialogue-arrow` visible. Not a modal, not recorded in history.
 
    - **Message history** ([[src/engine/Private/DialogueHistory.ts]], rendered by [[src/engine/Private/HistoryModal.ts]]): every rendered line is appended to a capped 150-entry session backlog, opened from the 📜 HUD button (`#btn-history` → `#history-modal`). It is deliberately session-only: `SaveManager` does not serialize it, and a load clears it because the engine re-queues dialogue for the restored scene.
 
@@ -79,7 +82,7 @@ flowchart TD
    - **Cut-in Animation**: `showCutin(cutinName)` triggers zoom, shake, and flash animations for `¡PROTESTO!`, `¡UN MOMENTO!`, `¡TOMA ESO!`, and `¡INOCENTE!`.
    - **Screen Shake**: `shakeScreen(durationMs)` applies CSS shake keyframes (`aaShake`).
    - **Screen Flash**: `flashScreen()` fades in an opaque white flash overlay.
-   - **Location Fade**: [[src/engine/Private/SceneFade.ts]] covers `#screen-flash` in black. `fadeThroughBlack` swaps the plate while opaque, waits for an asynchronous plate commit when needed, then reveals. Debug and mid-flow trial entries paint the first intro courtroom shot during the black cover (not after the reveal); the direct Case 0 splash launch skips that second cover so its courtroom plate is revealed by the splash fade alone. Leaving trial for investigation day 2 does the same in reverse: postal background, no bench, no courtroom sprite, `plain` frame. Also used after a Not Guilty so the waiting room is not a hard cut. `fadeToBlack` stays covered for the case-complete plate ([[src/engine/Private/CaseComplete.ts]]) after the last verdict or epilogue line.
+   - **Location Fade**: [[src/engine/Private/SceneFade.ts]] covers `#screen-flash` in black. `fadeThroughBlack` swaps the plate while opaque, waits for an asynchronous plate commit when needed, then reveals. Debug and mid-flow trial entries paint the first waiting-room shot during the black cover. After the waiting-room intro, [[src/engine/Private/TrialOpening.ts]] fades to the gallery plate without dialogue, holds the shot briefly, then resumes the courtroom intro automatically. Case 1 day 1 selects the no-bag gallery plate; all other trials retain the standard gallery plate. The direct Case 0 splash launch skips that second cover so its waiting-room plate is revealed by the splash fade alone. Leaving trial for investigation day 2 does the same in reverse: postal background, no bench, no courtroom sprite, `plain` frame. Also used after a Not Guilty so the waiting room is not a hard cut. `fadeToBlack` stays covered for the case-complete plate ([[src/engine/Private/CaseComplete.ts]]) after the last verdict or epilogue line.
    - **Confetti Victory**: `triggerConfetti()` runs on the verdict camera. Case 2 clears it during the black cover before the waiting-room epilogue. Case 1 has no epilogue, so confetti stays up.
 
 6. **Investigation & Examination Mode** ([[src/engine/Private/InvestigationController.ts#Examine Mode & Tooltips]]):
@@ -94,7 +97,7 @@ flowchart TD
 
 7. **Debug Trial Launch** ([[src/engine/Private/EngineDebugBootstrap.ts]], [[src/engine/Private/EngineLaunch.ts]]):
    - `applyDebugUrlParams` reads query/hash (`lang=en`, `case=2|3|4`, `trial`) during `GameEngine.init()`.
-   - `startTrialDebug()` bypasses investigation, dismisses splash, populates debug evidence, and launches the active case's courtroom.
+   - `startTrialDebug()` loads the active `caseId` module if needed, bypasses investigation, dismisses splash, populates debug evidence, and launches the courtroom.
    - Also triggerable via URL params (`?trial`) or `window.gameEngine.startTrialDebug()`.
    - Case 2 day-1 adjournment returns to investigation through [[src/engine/Private/AdjournmentHandler.ts]] (`fadeThroughBlack`, then `resetTrialLaunchButton` and `startInvestigation` with the postal plate painted while covered and the intro queued after the reveal).
 

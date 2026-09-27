@@ -37,7 +37,7 @@ export const CASE4_D1_T1_POINT_SUCCESS: DialogueLine[] = [
   { speaker: 'JUEZ', text: '¡Cáspita! ¿Entonces alguien pudo intervenir después de que entrara el acusado?', pose: 'judge_shock' },
   { speaker: 'DEFENSA', text: 'Pudo. Eso es lo que demuestra esta pieza. Quién fue, todavía no.', pose: 'donramon_idle' },
   { speaker: 'SUPER SAM', text: '¡Y tampoco demuestra que el fontanero no la echara con su propia mano!', pose: 'supersam_slam', sfx: 'desk_slam' },
-  { speaker: 'DEFENSA', text: 'Correcto, señor fiscal. Por eso ahora vamos a revisar su homicidio. Que ya se le está haciendo tarde.', pose: 'donramon_idle' },
+  { speaker: 'DEFENSA', text: 'Correcto, señor fiscal. Por eso ahora vamos a revisar su homicidio. Que ya se le está haciendo tarde.', pose: 'donramon_idle', updateProfile: 'perfil_cecilio' },
   ...CASE4_CALL_SARGENTO
 ];
 
@@ -69,8 +69,8 @@ export const CASE4_D1_T2_ALMOHADA_SUCCESS: DialogueLine[] = [
   { speaker: 'CHAPULIN', text: '¡Le pusieron almohada al muerto! ¡Y luego dicen que el raro soy yo!', pose: 'chapulin_idle' },
   { speaker: 'SARGENTO', text: 'Por ese orificio pedimos la comparación, mi licenciado. En cuanto salga la balística la incorporo.', pose: 'pazguato_saludo' },
   { speaker: 'DEFENSA', text: 'No digo que fuera silencioso, señor juez. Digo que ese tiro no es el estruendo que oyó el hotel entero, y hasta hoy los estábamos cobrando como uno solo.', pose: 'donramon_idle' },
-  { speaker: 'JUEZ', text: 'Queda descartado que la bala causara la muerte a las 23:15.', pose: 'judge_gavel', sfx: 'gavel' },
-  { speaker: 'SUPER SAM', text: '...La fiscalía retira esa reconstrucción. ¡Pero el acusado le subió la bebida a la víctima y esa misma tarde se pelearon!', pose: 'supersam_slam', sfx: 'desk_slam' },
+  { speaker: 'JUEZ', text: 'Queda descartado que la bala causara la muerte a las 23:15.', pose: 'judge_gavel', sfx: 'gavel', updateProfile: 'perfil_cuajinais' },
+  { speaker: 'SUPER SAM', text: '...La fiscalía retira esa reconstrucción. ¡Pero el acusado le subió la bebida a la víctima y esa misma tarde se pelearon!', pose: 'supersam_slam', sfx: 'desk_slam', updateProfile: 'perfil_supersam' },
   { speaker: 'DEFENSA', text: 'Un pleito no es una causa de muerte, señor fiscal. Si lo fuera, mi casero llevaría dieciséis meses tieso.', pose: 'donramon_idle' },
   { speaker: 'SUPER SAM', text: 'Precisely! Por eso pido toxicología y reconstrucción del servicio. Un fiscal serio no ignora una autopsia: la vuelve a facturar.', pose: 'supersam_sweat' },
   { speaker: 'JUEZ', text: 'Se amplía la investigación. La hora del ruido deja de ser la hora del homicidio.', pose: 'judge_gavel', sfx: 'gavel' }

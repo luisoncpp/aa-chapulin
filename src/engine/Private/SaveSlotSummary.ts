@@ -3,7 +3,7 @@
  * Text shown on one row of [[./SaveSlotModal.ts]].
  */
 
-import { getCaseScript } from '../../case/index.js';
+import { peekCaseScript } from '../../case/loadCaseScript.js';
 import { i18n } from '../../i18n/index.js';
 import type { SaveData } from '../../state/index.js';
 
@@ -42,6 +42,6 @@ function trialPlace(data: SaveData): string {
 
 function investigationPlace(data: SaveData): string {
   const caseId = data.caseId ?? 'case1';
-  const scene = getCaseScript(i18n.getLanguage(), caseId).investigation[data.currentLocation];
+  const scene = peekCaseScript(i18n.getLanguage(), caseId)?.investigation[data.currentLocation];
   return scene?.title ?? data.currentLocation;
 }

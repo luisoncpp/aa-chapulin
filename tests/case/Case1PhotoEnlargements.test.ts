@@ -30,6 +30,7 @@ describe('Case 1 crime-photo enlargements', () => {
 
       expect(visualLines).toEqual([
         expect.objectContaining({ bg: EMBLEM_ENLARGEMENT, furniture: 'none' }),
+        expect.objectContaining({ bg: 'assets/bg_gallery_characters.webp', furniture: 'none' }),
         expect.objectContaining({ bg: HANDS_ENLARGEMENT, furniture: 'none' })
       ]);
       expect(success.map((line) => line.text).join(' ')).not.toMatch(

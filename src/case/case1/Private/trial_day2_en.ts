@@ -45,7 +45,7 @@ const CASE1_D2_T1_FOLLOWUP_EN: DialogueLine[] = [
   { speaker: 'DEFENSA', text: '"Golden Paralyzing Chicharra. Mounted on a resonance base."', pose: 'donramon_point' },
   { speaker: 'JUEZ', text: 'Explain yourself.', pose: 'judge_thinking' },
   { speaker: 'DEFENSA', text: 'That if you lift it off its base, it sounds. And whoever hears it goes stiff for about a minute. That is why it sat under glass and not under lock: the museum itself used it as an alarm.', pose: 'donramon_slam', sfx: 'desk_slam' },
-  { speaker: 'NARRADOR', text: 'The Judge freezes with the gavel half raised.', sfx: 'chicharra' },
+  { speaker: 'NARRADOR', text: 'The Judge freezes with the gavel half raised.', bg: 'assets/bg_judge.webp', furniture: 'judge-bench', pose: 'judge_neutral', sfx: 'chicharra' },
   { speaker: 'JUEZ', text: 'Are you telling this court that the thief paralysed himself?!', pose: 'judge_shock' },
   { speaker: 'DEFENSA', text: 'I am telling you he lifted it at five to nine and stood there, unable to move a finger, for a long minute.', pose: 'donramon_point' },
   { speaker: 'DEFENSA', text: 'And that in that minute a six-foot-three watchman came running in.', pose: 'donramon_idle' },

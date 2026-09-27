@@ -9,7 +9,7 @@ const T2_SUCCESS: DialogueLine[] = [
   { cutin: 'objection_toma_eso', speaker: 'DEFENSA', text: 'TAKE THAT!', sfx: 'whoosh', bgm: 'pursuit', pose: 'donramon_point' },
   { speaker: 'DEFENSA', text: 'Mr. Peterete, your lies collapse under their own weight!', pose: 'donramon_point' },
   { speaker: 'PETERETE', text: 'L-lies? Watch your words, shyster!', pose: 'peterete_sweat' },
-  { speaker: 'DEFENSA', text: 'The Vault Report states categorically that the bolts suffered NO crowbar damage!', sfx: 'desk_slam', pose: 'donramon_slam' },
+  { speaker: 'DEFENSA', text: 'The Vault Report states categorically that the bolts suffered NO crowbar damage!', sfx: 'desk_slam', pose: 'donramon_slam', updateProfile: 'perfil_peterete' },
   { speaker: 'DEFENSA', text: 'The lock was opened smoothly with a MASTER KEY. And the crowbar has NAVY-BLUE paint from the generator box.', pose: 'donramon_point' },
   { speaker: 'CHAPULIN', text: 'They planted the crowbar in Chómpiras\'s hands while he slept from a sleeping gas!', pose: 'chapulin_point' },
   { speaker: 'JUEZ', text: 'Sleeping gas?! This changes a crude theft into a premeditated conspiracy!', pose: 'judge_shock' },

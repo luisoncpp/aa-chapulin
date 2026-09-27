@@ -14,7 +14,7 @@ export const CASE2_RESTAURANTE: InvestigationScene = {
   idlePose: 'jirafales_idle',
   intro: [
     { speaker: 'NARRADOR', text: '22 de Agosto, 1:00 PM. Restaurante de Doña Florinda.' },
-    { speaker: 'JIRAFALES', text: '¡Ah, Don Ramón! He escuchado sobre la penosa situación del señor Chómpiras. Como hombre de ciencia y educación, abogo por la verdad absoluta.', pose: 'jirafales_idle' },
+    { speaker: 'JIRAFALES', text: '¡Ah, Don Ramón! He escuchado sobre la penosa situación del señor Chómpiras. Como hombre de ciencia y educación, abogo por la verdad absoluta.', pose: 'jirafales_idle', addProfile: 'perfil_jirafales' },
     { speaker: 'DEFENSA', text: 'Profesor, usted que es un pozo de sabiduría, ¿estaba cenando aquí anoche con Doña Florinda?', pose: 'donramon_idle' },
     { speaker: 'JIRAFALES', text: 'En efecto. Degustábamos una exquisita taza de café de olla cuando, de súbito, a las 9:15 PM las luces sufrieron un apagón momentáneo.', pose: 'jirafales_smoking' },
     { speaker: 'DEFENSA', text: '¡¿A las 9:15 PM?! ¡Justo la hora en que se detuvo el reloj de la bóveda!', pose: 'donramon_point' },
@@ -26,7 +26,7 @@ export const CASE2_RESTAURANTE: InvestigationScene = {
       label: 'Plano Arquitectónico',
       x: 36, y: 48, w: 22, h: 22,
       dialogue: [
-        { speaker: 'JIRAFALES', text: 'Tenga este plano. La bóveda carece de ventanas y puertas al exterior; sólo posee el ducto de ventilación y un antiguo montaplatos de lavandería que conecta con el callejón trasero.', pose: 'jirafales_idle', addEvidence: 'plano_hacienda' }
+        { speaker: 'JIRAFALES', text: 'Tenga este plano. La bóveda carece de ventanas y puertas al exterior; sólo posee el ducto de ventilación y un antiguo montaplatos de lavandería que conecta con el callejón trasero.', pose: 'jirafales_idle', addEvidence: 'plano_hacienda', updateProfile: 'perfil_jirafales' }
       ]
     },
     {

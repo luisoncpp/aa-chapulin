@@ -49,7 +49,7 @@ export const CASE4_HOTEL_SUITE204: InvestigationScene = {
       id: 'el_baul',
       label: 'El baúl',
       dialogue: [
-        { speaker: 'RUFINO', text: 'Reconozco la propiedad de B-17: firmé salida y recepción. Ayudé a acomodar cosas del invitado.', pose: 'rufino_smug' },
+        { speaker: 'RUFINO', text: 'Reconozco la propiedad de B-17: firmé salida y recepción. Ayudé a acomodar cosas del invitado.', pose: 'rufino_smug', updateProfile: 'perfil_rufino' },
         { speaker: 'DEFENSA', text: '(Esta explicación quedará expuesta a contraste.)', pose: 'donramon_point' }
       ]
     },

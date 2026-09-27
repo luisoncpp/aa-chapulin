@@ -97,7 +97,7 @@ export const CASE5_TESTIMONY_7_EN: Testimony = {
         { speaker: 'DEFENSA', text: 'You saw it. They set it on the evidence table in front of you.', pose: 'chapulin_idle' },
         { speaker: 'SUPER SAM', text: 'And I said the prosecution hands out bags like that. For expenses. For many things.', pose: 'supersam_sweat' },
         { speaker: 'SUPER SAM', text: 'That is what I said, counselor. It was mine.', pose: 'supersam_sweat' },
-        { speaker: 'NARRADOR', text: 'Nobody coughs.', sfx: 'realization' }
+        { bg: 'assets/bg_gallery_characters.webp', furniture: 'none', speaker: 'NARRADOR', text: 'Nobody coughs.', sfx: 'realization' }
       ]
     },
     {
@@ -114,7 +114,7 @@ export const CASE5_TESTIMONY_7_EN: Testimony = {
         { speaker: 'DEFENSA', text: 'Then why?', pose: 'chapulin_panic' },
         { speaker: 'SUPER SAM', text: 'Because there is a dead man who wrote to me on November 8 and I left him eighteen days in a drawer.', pose: 'supersam_sweat' },
         { speaker: 'SUPER SAM', text: 'And because if I do not say it today, tomorrow you will have to beat it out of me, and that costs me more.', pose: 'supersam_sweat' },
-        { speaker: 'NARRADOR', text: 'Absolute silence.' },
+        { bg: 'assets/bg_gallery_characters.webp', furniture: 'none', speaker: 'NARRADOR', text: 'Absolute silence.' },
         { speaker: 'DEFENSA', text: 'How was it delivered?', pose: 'chapulin_idle' },
         { speaker: 'SUPER SAM', text: 'An envelope under my door with an hour and an address. At that hour, in that alley, there was a bundle wrapped in butcher paper.', pose: 'supersam_sweat' },
         { speaker: 'SUPER SAM', text: 'I opened it right there and counted it. I always count, counselor. It is the one thing I do well.', pose: 'supersam_sweat' },
@@ -138,7 +138,7 @@ export const CASE5_TESTIMONY_7_EN: Testimony = {
         MOMENTO,
         { speaker: 'DEFENSA', text: '"For accounting"?', pose: 'chapulin_point' },
         { speaker: 'SUPER SAM', text: 'Full of silver it weighed six kilos. Full of cotton it weighs nine hundred grams.', pose: 'supersam_point' },
-        { speaker: 'SUPER SAM', text: 'I lift the same bag every day and the same weight is missing. That way I do not have to remember on purpose.', pose: 'supersam_sweat' },
+        { speaker: 'SUPER SAM', text: 'I lift the same bag every day and the same weight is missing. That way I do not have to remember on purpose.', pose: 'supersam_sweat', updateProfile: 'perfil_supersam' },
         { speaker: 'DEFENSA', text: 'And what is the cotton for?', pose: 'chapulin_idle' },
         { speaker: 'SUPER SAM', text: 'So the balance does not show, counselor. A prosecutor paid by the closed case cannot walk into court with a slack bag.', pose: 'supersam_sweat' },
         { speaker: 'SUPER SAM', text: 'In my country, they call that amortization.', pose: 'supersam_sweat' },

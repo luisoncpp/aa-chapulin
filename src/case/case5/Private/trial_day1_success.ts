@@ -102,7 +102,7 @@ export const CASE5_D1_T3_PLANO_SUCCESS: DialogueLine[] = [
   { speaker: 'NICANOR', text: 'Ésos entran por la ventanilla de la señorita Genoveva.', pose: 'nicanor_idle' },
   { speaker: 'JUEZ', text: '¿Y firman?', pose: 'judge_shock' },
   { speaker: 'NICANOR', text: 'Su libro, señor juez. El de ellos.', pose: 'nicanor_idle' },
-  { speaker: 'NARRADOR', text: 'Silencio absoluto en la sala.', bgm: 'suspense' },
+  { bg: 'assets/bg_gallery_characters.webp', furniture: 'none', speaker: 'NARRADOR', text: 'Silencio absoluto en la sala.', bgm: 'suspense' },
   { speaker: 'JUEZ', text: '...¿Hay dos libros?', pose: 'judge_shock' },
   { speaker: 'NICANOR', text: 'Señor juez, en el Archivo hay libros hasta para apuntar los libros.', pose: 'nicanor_escoba' }
 ];
@@ -125,7 +125,7 @@ export const CASE5_D1_T3_EXPEDIENTE_GIRO_SUCCESS: DialogueLine[] = [
   { speaker: 'JUEZ', text: 'Señor fiscal: esta corte ha pasado toda la audiencia oyendo que por una puerta no entró nadie.', pose: 'judge_thinking' },
   { speaker: 'JUEZ', text: 'Y llevamos toda la audiencia sin que nadie me diga quién entró por la otra.', sfx: 'gavel', pose: 'judge_gavel' },
   { speaker: 'SUPER SAM', text: '...La fiscalía lo traerá.', pose: 'supersam_sweat' },
-  { speaker: 'NARRADOR', text: 'En la mesa de la fiscalía, el hombre de la cadena de oro saca una pluma y anota una sola línea en una libreta.', bgm: 'suspense' },
+  { bg: 'assets/bg_courtroom.webp', furniture: 'bench', speaker: 'NARRADOR', text: 'En la mesa de la fiscalía, el hombre de la cadena de oro saca una pluma y anota una sola línea en una libreta.', bgm: 'suspense' },
   { speaker: 'DEFENSA', text: '(Ese señor tomó nota. Lleva todo el día sin tomar nota y ahora toma nota.)', pose: 'chapulin_idle' },
   { speaker: 'DEFENSA', text: '(Y ni siquiera sé por qué me fijo.)', pose: 'chapulin_idle' },
   { speaker: 'JUEZ', text: 'Mañana esta corte quiere dos cosas.', pose: 'judge_neutral' },
@@ -145,7 +145,7 @@ export const CASE5_D1_OPENING_BADGE_SUCCESS: DialogueLine[] = [
   { speaker: 'JUEZ', text: 'Queda acreditada la defensa, bajo la responsabilidad del acusado que la designó.', sfx: 'gavel', pose: 'judge_gavel' },
   { speaker: 'SUPER SAM', text: '¡Your Honor, esto es un circo con dos pistas!', pose: 'supersam_sweat' },
   { speaker: 'JUEZ', text: 'Es un circo con una sola pista, señor fiscal, y usted está en ella desde hace cinco meses.', pose: 'judge_thinking' },
-  { speaker: 'NARRADOR', text: 'En la mesa de la fiscalía, a la derecha de Super Sam, hay un segundo hombre. Traje negro de tres piezas y una cadena de oro cruzándole el chaleco. No se ha movido.', addProfile: 'perfil_supersam' },
+  { bg: 'assets/bg_courtroom.webp', furniture: 'bench', speaker: 'NARRADOR', text: 'En la mesa de la fiscalía, a la derecha de Super Sam, hay un segundo hombre. Traje negro de tres piezas y una cadena de oro cruzándole el chaleco. No se ha movido.', pose: 'berrondo_idle' },
   { speaker: 'JUEZ', text: 'Y esta corte tampoco conoce al señor que acompaña a la fiscalía.', pose: 'judge_neutral' },
   { speaker: 'BERRONDO', text: 'Fulgencio Berrondo, señor juez. Abogado, cédula 4.882, colegiado desde 1955.', pose: 'berrondo_idle' },
   { speaker: 'BERRONDO', text: 'Comparezco como coadyuvante del ministerio público, sin honorarios, con la venia de esta corte.', pose: 'berrondo_idle' },

@@ -1,7 +1,7 @@
 // @Architecture(descriptionShort="Integration tests for the message history HUD button", type="test", icon="layout")
 import { describe, expect, it, beforeEach, vi } from 'vitest';
 import { MidiMusicComposer, SoundEngine } from '../../src/audio/index.js';
-import { CASE_SCRIPT } from '../../src/case/index.js';
+import { CASE_SCRIPT, getCaseScript } from '../../src/case/index.js';
 import type { DomElements } from '../../src/engine/Private/DomElements.js';
 import { GameEngine } from '../../src/engine/index.js';
 import { GameStateManager } from '../../src/state/index.js';
@@ -21,6 +21,7 @@ describe('GameEngine message history', () => {
       dom,
       state: new GameStateManager(),
       script: CASE_SCRIPT,
+      resolveScript: getCaseScript,
       soundEngine,
       midiComposer: new MidiMusicComposer(soundEngine)
     });

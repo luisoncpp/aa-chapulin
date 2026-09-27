@@ -62,7 +62,7 @@ export const CASE3_TESTIMONY_4: Testimony = {
       pressText: [
         { speaker: 'DEFENSA', text: '¡UN MOMENTO!', cutin: 'objection_un_momento', sfx: 'whoosh', pose: 'donramon_point' },
         { speaker: 'SUPER SAM', text: '¡La fiscalía exige respeto para la segunda víctima de este monstruo!', pose: 'supersam_slam', sfx: 'desk_slam' },
-        { speaker: 'JUEZ', text: 'La corte pide respeto para don Aniceto Rebollar.', pose: 'judge_neutral' },
+        { speaker: 'JUEZ', text: 'La corte pide respeto para don Aniceto Rebollar.', pose: 'judge_neutral', updateProfile: 'perfil_aniceto' },
         { speaker: 'DEFENSA', text: 'Con todo respeto, señor Juez. Solo buscamos la verdad.', pose: 'donramon_idle' }
       ]
     }

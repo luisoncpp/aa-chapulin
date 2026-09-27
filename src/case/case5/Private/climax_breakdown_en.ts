@@ -9,7 +9,7 @@ export const CASE5_CLIMAX_BREAKDOWN_EN: DialogueLine[] = [
   { speaker: 'BERRONDO', text: '......', pose: 'berrondo_panic', bg: 'assets/bg_courtroom.webp' },
   { speaker: 'BERRONDO', text: 'I did not inherit a dead archive.', pose: 'berrondo_breakdown', bgm: 'pursuit', bg: 'assets/bg_courtroom.webp' },
   { speaker: 'BERRONDO', text: 'I kept it alive!', pose: 'berrondo_breakdown', sfx: 'desk_slam', bg: 'assets/bg_courtroom.webp' },
-  { speaker: 'NARRADOR', text: 'Attorney Berrondo rises from the prosecution table. The watch chain falls from his vest and he does not pick it up.', sfx: 'realization' },
+  { speaker: 'NARRADOR', text: 'Attorney Berrondo rises from the prosecution table. The watch chain falls from his vest and he does not pick it up.', pose: 'berrondo_breakdown', sfx: 'realization' },
   { speaker: 'BERRONDO', text: 'Eleven thousand four hundred families opened the door to a salesman and told him everything they owned!', pose: 'berrondo_breakdown', bg: 'assets/bg_courtroom.webp' },
   { speaker: 'BERRONDO', text: 'I never went to any house! I never knocked on any door! I never laid a hand on anyone in twenty-seven years!', pose: 'berrondo_breakdown', bg: 'assets/bg_courtroom.webp' },
   { speaker: 'DEFENSA', text: 'Until Saturday.', pose: 'chapulin_idle' },
@@ -35,9 +35,9 @@ export const CASE5_CLIMAX_BREAKDOWN_EN: DialogueLine[] = [
   { speaker: 'BERRONDO', text: '...', pose: 'berrondo_breakdown', bgm: 'suspense', bg: 'assets/bg_courtroom.webp' },
   { speaker: 'BERRONDO', text: '...caedere...', pose: 'berrondo_breakdown', bg: 'assets/bg_courtroom.webp' },
   { speaker: 'NARRADOR', text: 'He does not continue.' },
-  { speaker: 'NARRADOR', text: 'For the first time in twenty-seven years, Attorney Fulgencio Berrondo cannot find a word.', sfx: 'realization' },
+  { speaker: 'NARRADOR', text: 'For the first time in twenty-seven years, Attorney Fulgencio Berrondo cannot find a word.', pose: 'berrondo_breakdown', sfx: 'realization' },
   { speaker: 'DON RAMÓN', text: 'Kill.', pose: 'donramon_idle' },
   { speaker: 'DON RAMÓN', text: 'You say kill, counselor.', pose: 'donramon_idle' },
-  { speaker: 'NARRADOR', text: 'Berrondo sits down. He stares at the gold chain on the floor and does not pick it up.', bgm: 'suspense' },
+  { bg: 'assets/bg_courtroom.webp', furniture: 'bench', speaker: 'NARRADOR', text: 'Berrondo sits down. He stares at the gold chain on the floor and does not pick it up.', bgm: 'suspense' },
   { speaker: 'JUEZ', text: 'Remove the prisoner.', sfx: 'gavel', pose: 'judge_gavel' }
 ];

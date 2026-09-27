@@ -97,7 +97,7 @@ export const CASE5_TESTIMONY_7: Testimony = {
         { speaker: 'DEFENSA', text: 'Usted la vio. La pusieron sobre la mesa de pruebas, delante de usted.', pose: 'chapulin_idle' },
         { speaker: 'SUPER SAM', text: 'Y dije que la fiscalía repartía bolsas como ésa. Para viáticos. Para muchas cosas.', pose: 'supersam_sweat' },
         { speaker: 'SUPER SAM', text: 'Eso fue lo que dije, counselor. Era la mía.', pose: 'supersam_sweat' },
-        { speaker: 'NARRADOR', text: 'Nadie tose.', sfx: 'realization' }
+        { bg: 'assets/bg_gallery_characters.webp', furniture: 'none', speaker: 'NARRADOR', text: 'Nadie tose.', sfx: 'realization' }
       ]
     },
     {
@@ -114,7 +114,7 @@ export const CASE5_TESTIMONY_7: Testimony = {
         { speaker: 'DEFENSA', text: '¿Entonces por qué?', pose: 'chapulin_panic' },
         { speaker: 'SUPER SAM', text: 'Porque hay un hombre muerto que me escribió el ocho de noviembre y yo lo dejé dieciocho días en un cajón.', pose: 'supersam_sweat' },
         { speaker: 'SUPER SAM', text: 'Y porque si no lo digo yo hoy, mañana lo va a tener que sacar usted a golpes, y eso me cuesta más caro.', pose: 'supersam_sweat' },
-        { speaker: 'NARRADOR', text: 'Silencio absoluto.' },
+        { bg: 'assets/bg_gallery_characters.webp', furniture: 'none', speaker: 'NARRADOR', text: 'Silencio absoluto.' },
         { speaker: 'DEFENSA', text: '¿Cómo se lo entregaron?', pose: 'chapulin_idle' },
         { speaker: 'SUPER SAM', text: 'Un sobre por debajo de la puerta con una hora y una dirección. A esa hora, en ese callejón, había un bulto envuelto en papel de estraza.', pose: 'supersam_sweat' },
         { speaker: 'SUPER SAM', text: 'Lo abrí ahí mismo y lo conté. Yo siempre cuento, counselor. Es lo único que sé hacer bien.', pose: 'supersam_sweat' },
@@ -138,7 +138,7 @@ export const CASE5_TESTIMONY_7: Testimony = {
         MOMENTO,
         { speaker: 'DEFENSA', text: '¿«Por contabilidad»?', pose: 'chapulin_point' },
         { speaker: 'SUPER SAM', text: 'Llena de plata pesaba seis kilos. Llena de algodón pesa novecientos gramos.', pose: 'supersam_point' },
-        { speaker: 'SUPER SAM', text: 'Levanto la misma bolsa todos los días y me falta el mismo peso. Así no tengo que acordarme a propósito.', pose: 'supersam_sweat' },
+        { speaker: 'SUPER SAM', text: 'Levanto la misma bolsa todos los días y me falta el mismo peso. Así no tengo que acordarme a propósito.', pose: 'supersam_sweat', updateProfile: 'perfil_supersam' },
         { speaker: 'DEFENSA', text: '¿Y el algodón para qué?', pose: 'chapulin_idle' },
         { speaker: 'SUPER SAM', text: 'Para que no se me note el balance, counselor. Un fiscal que cobra por caso cerrado no puede llegar al juzgado con la bolsa floja.', pose: 'supersam_sweat' },
         { speaker: 'SUPER SAM', text: 'A eso, en mi tierra, le llaman amortización.', pose: 'supersam_sweat' },

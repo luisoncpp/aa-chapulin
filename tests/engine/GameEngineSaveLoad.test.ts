@@ -1,7 +1,7 @@
 // @Architecture(descriptionShort="Integration tests for GameEngine save and load game feature", type="test", icon="layout")
 import { describe, expect, it, beforeEach, vi } from 'vitest';
 import { MidiMusicComposer, SoundEngine } from '../../src/audio/index.js';
-import { CASE_SCRIPT } from '../../src/case/index.js';
+import { CASE_SCRIPT, getCaseScript } from '../../src/case/index.js';
 import type { DomElements } from '../../src/engine/Private/DomElements.js';
 import { GameEngine } from '../../src/engine/index.js';
 import { SCENE_FADE_MS } from '../../src/engine/Private/SceneFade.js';
@@ -46,6 +46,7 @@ describe('GameEngine Save and Load Feature', () => {
       dom,
       state,
       script: CASE_SCRIPT,
+      resolveScript: getCaseScript,
       soundEngine: soundEngineInstance,
       midiComposer: midiComposerInstance,
       storage
@@ -99,8 +100,10 @@ describe('GameEngine Save and Load Feature', () => {
     // Verify continue button is visible
     expect(dom.btnContinueGame?.classList.contains('hidden')).toBe(false);
 
-    // Click continue on splash card
     dom.btnContinueGame?.click();
+    expect(dom.saveSlotModalEl?.classList.contains('hidden')).toBe(false);
+    expect(dom.saveSlotTitleEl?.textContent).toContain('CARGAR');
+    clickSlot(0);
     vi.advanceTimersByTime(400);
 
     expect(dom.startSplashOverlayEl.classList.contains('hidden')).toBe(true);
@@ -133,6 +136,7 @@ describe('GameEngine Save and Load Feature', () => {
       dom,
       state: freshState,
       script: CASE_SCRIPT,
+      resolveScript: getCaseScript,
       soundEngine: soundEngineInstance,
       midiComposer: midiComposerInstance,
       storage
@@ -256,7 +260,7 @@ describe('GameEngine Save and Load Feature', () => {
     expect(dom.btnContinueGame?.classList.contains('hidden')).toBe(true);
   });
 
-  it('continues from the newest slot when an earlier slot is older', () => {
+  it('opens the slot list from Continue and loads the chosen slot', () => {
     engine.startGame();
     vi.advanceTimersByTime(400);
     const older = state.exportState();
@@ -272,6 +276,8 @@ describe('GameEngine Save and Load Feature', () => {
     engine.updateContinueButton();
 
     dom.btnContinueGame?.click();
+    expect(dom.saveSlotModalEl?.classList.contains('hidden')).toBe(false);
+    clickSlot(2);
     vi.advanceTimersByTime(400);
 
     expect(state.hasEvidence('pastillas_chiquitolina')).toBe(true);

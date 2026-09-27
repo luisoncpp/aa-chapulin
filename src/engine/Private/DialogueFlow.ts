@@ -13,6 +13,7 @@ import type { DialogueHistory, HistoryEntry } from './DialogueHistory.js';
 import type { DomElements } from './DomElements.js';
 import type { InvestigationController } from './InvestigationController.js';
 import type { Typewriter } from './Typewriter.js';
+import { RecordNoticeQueue } from './RecordNoticeQueue.js';
 import { presentDialogueVisuals } from './StageCommit.js';
 import { setStagingCaseId } from './TrialCaseStaging.js';
 import { VisualEffects } from './VisualEffects.js';
@@ -31,31 +32,43 @@ export interface DialogueFlowDeps {
 export class DialogueFlow {
   private queue: DialogueLine[] = [];
   private onQueueFinish: (() => void) | null = null;
+  private readonly notices: RecordNoticeQueue;
 
-  constructor(private readonly deps: DialogueFlowDeps) {}
+  constructor(private readonly deps: DialogueFlowDeps) {
+    this.notices = new RecordNoticeQueue(deps.dom, deps.soundEngine);
+  }
 
   /** Clears the pending queue only; the message history survives queue resets. */
   public clear(): void {
     this.queue = [];
     this.onQueueFinish = null;
+    this.notices.clear();
     this.refreshAdvanceArrow();
   }
 
+  /** Order: finish typing, then the line's record notices, then the next line or callback. */
   public handleAdvance(): boolean {
     if (this.deps.typewriter.isTyping) {
       this.deps.typewriter.completeImmediately();
+      return true;
+    }
+    if (this.notices.advance()) {
+      this.refreshAdvanceArrow();
       return true;
     }
     if (this.queue.length > 0) {
       this.renderDialogueLine(this.queue.shift()!);
       return true;
     }
-    if (!this.onQueueFinish) return false;
+    return this.finishQueue();
+  }
+
+  private finishQueue(): boolean {
     const cb = this.onQueueFinish;
     this.onQueueFinish = null;
     this.refreshAdvanceArrow();
-    cb();
-    return true;
+    cb?.();
+    return cb !== null;
   }
 
   public queueDialogue(dialogueArray: DialogueLine[], onComplete: (() => void) | null = null): void {
@@ -108,7 +121,7 @@ export class DialogueFlow {
    * outside the queue, so this hides the arrow there too.
    */
   private refreshAdvanceArrow(): void {
-    const canAdvance = this.queue.length > 0 || this.onQueueFinish !== null;
+    const canAdvance = this.queue.length > 0 || this.onQueueFinish !== null || this.notices.hasPending;
     this.deps.dom.dialogueArrowEl.classList.toggle('hidden', !canAdvance);
   }
 
@@ -120,7 +133,7 @@ export class DialogueFlow {
       this.deps.investigation.currentLocationCharPose = effectivePose;
     }
     presentDialogueVisuals(this.deps.dom, line, /*isTrialMode=*/ isTrial);
-    this.deps.dom.speakerBoxEl.textContent = line.speaker || '';
+    this.deps.dom.speakerBoxEl.textContent = line.text ? (line.speaker || '') : '';
   }
 
   private grantEvidenceIfPresent(evidenceId?: EvidenceId): void {
@@ -128,7 +141,7 @@ export class DialogueFlow {
     const added = this.deps.state.addEvidence(evidenceId);
     if (!added) return;
     const item = this.deps.state.allEvidence[evidenceId];
-    this.showProgressNotification(i18n.t.notifEvidenceAdded(item.name));
+    this.notices.push({ iconSrc: item.icon, message: i18n.t.notifEvidenceAdded(item.name) });
   }
 
   // fallow-ignore-next-line complexity
@@ -139,14 +152,14 @@ export class DialogueFlow {
     const updated = this.deps.state.updateEvidence(evidenceId);
     if (!alreadyHeld || !updated) return;
     const item = this.deps.state.allEvidence[evidenceId];
-    this.showProgressNotification(i18n.t.notifEvidenceUpdated(item.name));
+    this.notices.push({ iconSrc: item.icon, message: i18n.t.notifEvidenceUpdated(item.name) });
   }
 
   private grantProfileIfPresent(profileId?: ProfileId): void {
     if (!profileId) return;
     if (!this.deps.state.addProfile(profileId)) return;
     const item = this.deps.state.profiles.catalog[profileId];
-    if (item) this.showProgressNotification(i18n.t.notifEvidenceAdded(item.name));
+    if (item) this.notices.push({ iconSrc: item.icon, message: i18n.t.notifProfileAdded(item.name) });
   }
 
   // fallow-ignore-next-line complexity
@@ -157,7 +170,7 @@ export class DialogueFlow {
     const updated = this.deps.state.updateProfile(profileId);
     if (!alreadyHeld || !updated) return;
     const item = this.deps.state.profiles.catalog[profileId];
-    if (item) this.showProgressNotification(i18n.t.notifEvidenceUpdated(item.name));
+    if (item) this.notices.push({ iconSrc: item.icon, message: i18n.t.notifProfileUpdated(item.name) });
   }
 
   // fallow-ignore-next-line complexity
@@ -167,16 +180,11 @@ export class DialogueFlow {
     if (!unlocked) return;
     const scene = this.deps.getScript().investigation[locationId];
     const locName = scene?.name ?? scene?.title ?? locationId;
-    this.showProgressNotification(i18n.t.notifLocationUnlocked(locName));
+    this.notices.push({ iconSrc: null, message: i18n.t.notifLocationUnlocked(locName) });
   }
 
   private setProgressFlagIfPresent(flag?: string): void {
     if (flag) this.deps.state.flags[flag] = true;
-  }
-
-  private showProgressNotification(msg: string): void {
-    this.deps.soundEngine.playRealization();
-    VisualEffects.showNotification(this.deps.dom.gameNotificationEl, msg);
   }
 
   // fallow-ignore-next-line complexity

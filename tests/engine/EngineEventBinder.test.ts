@@ -102,6 +102,10 @@ describe('EngineEventBinder', () => {
     expect(advanced).toBe(true);
 
     advanced = false;
+    dom.recordNoticeEl.click();
+    expect(advanced).toBe(true);
+
+    advanced = false;
     document.dispatchEvent(new KeyboardEvent('keydown', { code: 'Space' }));
     expect(advanced).toBe(true);
 

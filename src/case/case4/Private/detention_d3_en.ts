@@ -68,7 +68,7 @@ export const CASE4_DETENTION_D3_EN: InvestigationScene = {
         { speaker: 'CHIMOLTRUFIA', text: 'I thought it for two days. And it angered me more to think it than to ask.', pose: 'chimoltrufia_confundida' },
         { speaker: 'BOTIJA', text: 'I told him no. I told him no in front of the whole corridor.', pose: 'botija_nervioso' },
         { speaker: 'DEFENSA', text: 'People heard that. And that is why the prosecutor thinks you argued over money.', pose: 'donramon_idle' },
-        { speaker: 'BOTIJA', text: 'We argued because I refused. First time I am charged with something for saying no.', pose: 'botija_llorando' },
+        { speaker: 'BOTIJA', text: 'We argued because I refused. First time I am charged with something for saying no.', pose: 'botija_llorando', updateProfile: 'perfil_botija' },
         { speaker: 'DEFENSA', text: 'To the precinct to close the chain.', pose: 'donramon_point', unlockLocation: 'delegacion_d3' }
       ]
     }

@@ -50,7 +50,7 @@ export const CASE3_TESTIMONY_2_EN: Testimony = {
       text: 'And nobody walked that hallway all night except the little doctor, who left cursing at 10:40.',
       pressText: [
         { speaker: 'DEFENSA', text: 'HOLD IT!', cutin: 'objection_un_momento', sfx: 'whoosh', pose: 'donramon_point' },
-        { speaker: 'CHIMOLTRUFIA', text: 'Well, walk-walk nobody... but around ten-fifty I heard the record cart\'s wheels squeaking. Must\'ve been the janitor hauling discs — heavily loaded, that cart!', pose: 'chimoltrufia_confundida' },
+        { speaker: 'CHIMOLTRUFIA', text: 'Well, walk-walk nobody... but around ten-fifty I heard the record cart\'s wheels squeaking. Must\'ve been the janitor hauling discs — heavily loaded, that cart!', pose: 'chimoltrufia_confundida', updateProfile: 'perfil_chimoltrufia' },
         { speaker: 'DEFENSA', text: '(There it is. At 10:50 someone was pushing something heavy down that hall... and the doctor had already left at 10:40.)', pose: 'donramon_idle' }
       ]
     },

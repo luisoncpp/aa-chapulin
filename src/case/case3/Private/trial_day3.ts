@@ -49,7 +49,7 @@ export const CASE3_TESTIMONY_5: Testimony = {
       pressText: [
         { speaker: 'DEFENSA', text: '¡UN MOMENTO!', cutin: 'objection_un_momento', sfx: 'whoosh', pose: 'donramon_point' },
         { speaker: 'DEFENSA', text: '¿A quién le confió el secreto del faltante?', pose: 'donramon_idle' },
-        { speaker: 'BARRIGA', text: 'Se lo dije a las ocho de la noche, en mi despacho, mientras guardaba el Libro Verde en la caja fuerte. Me acuerdo clarito porque él me detuvo la puerta mientras yo marcaba la combinación.', pose: 'barriga_vendado' }
+        { speaker: 'BARRIGA', text: 'Se lo dije a las ocho de la noche, en mi despacho, mientras guardaba el Libro Verde en la caja fuerte. Me acuerdo clarito porque él me detuvo la puerta mientras yo marcaba la combinación.', pose: 'barriga_vendado', updateProfile: 'perfil_barriga' }
       ]
     },
     {

@@ -5,7 +5,7 @@ Operational guide for player save game persistence and restoration flows using b
 ## 1. Triggers
 - **In-Game Save**: Player clicks "💾" (`#btn-save-game`) on the top HUD bar. That opens the slot list (`#save-slot-modal`).
 - **In-Game Load**: Player clicks "📂" (`#btn-load-game`) on the top HUD bar. Same list, in load mode.
-- **Title / Splash Continue**: Player clicks "📂 CONTINUAR PARTIDA" (`#btn-continue-game`) on the start splash screen. This does not open the list.
+- **Title / Splash Continue**: Player clicks "📂 CONTINUAR PARTIDA" (`#btn-continue-game`) on the start splash screen. That opens the same list in load mode, above the splash.
 
 ## 2. Entry Points
 - `openSavePicker()` in [[src/engine/Private/EnginePersistence.ts]]
@@ -36,14 +36,14 @@ Operational guide for player save game persistence and restoration flows using b
 3. If that slot is missing or invalid, `#game-notification` shows `i18n.t.notifNoSaveFound` and runtime state is left alone.
 
 ### Continue Sequence
-1. Player clicks `#btn-continue-game`.
-2. `SaveManager.loadNewest()` returns the valid slot with the greatest `timestamp`.
-3. The button is hidden when no slot is valid. On boot, `hasSave` also adopts a legacy single save (see below) so an older Continue still appears.
+1. Player clicks `#btn-continue-game`. The button is hidden when no slot is valid. On boot, `GameEngine.init` checks `hasSave` after the engine, audio, and UI bind — not after every case script. A legacy single save is still adopted so an older Continue still appears.
+2. The click opens the load list (`#save-slot-modal`, above the splash) with no case module fetch. Occupied rows show the i18n case name, the place (scene title if that case is already cached, otherwise the saved location id; trial rows use courtroom plus day), and the local time. Empty rows are not selectable.
+3. Choosing an occupied row fetches that slot's case module only, then follows the Load Game sequence. `loadGame()` still returns the newest slot for callers that do not go through the button.
 
 ### Restore
 1. Splash overlay is dismissed and Web Audio API synthesizer is initialized (if not yet started).
 2. `gameState.restoreState(data)` restores health, inventory, flags, location, unlocked locations, and mode.
-3. `gameEngine.setLanguage(data.language)` synchronizes runtime dictionaries and UI strings.
+3. `loadCase` applies the cached script for `data.caseId`; `gameEngine.setLanguage(data.language)` synchronizes runtime dictionaries and UI strings.
 4. `ModalManager.updateHealthUI()` renders health points on `#health-bar`.
 5. Dialogue queue and message history are cleared.
 6. **Investigation Mode**: `investigation.startInvestigation(data.currentLocation)` initializes the crime scene.

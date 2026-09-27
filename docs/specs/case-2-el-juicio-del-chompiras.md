@@ -11,6 +11,8 @@ Documento de diseño narrativo, guión de diálogos y especificación técnica p
 |---|---|---|
 | 2026-09-17 | Calendario y orden de actos | Cero hallazgos nuevos: el crimen queda el 21 de agosto, las jornadas el 22–23 y las referencias ES/EN coinciden. |
 | 2026-09-25 | Encuadres del narrador: galería del tribunal | Cero hallazgos. Se recorrieron los guiones completos de juicio, clímax y epílogo en ES/EN y sus menciones en este spec. Ningún narrador comenta la galería ni a sus espectadores; los cortes existentes muestran la lata del oro, la caída de Peterete o la sala de espera. No hay escena que cambiar. |
+| 2026-09-26 | Reacciones colectivas narradas sin mención explícita de la galería | Cero hallazgos. La pasada anterior pudo dejar fuera acciones del público descritas por verbos de reacción sin nombrar la galería; esta revisión buscó murmullos, risas, silencios y movimientos colectivos en todos los guiones de juicio, presiones, clímax y epílogo ES/EN. No aparecen reacciones colectivas narradas. La apertura de la lata y la caída de Peterete son tomas de objeto y testigo; los encabezados de sala de espera son transiciones de locación. |
+| 2026-09-27 | Encuadre del narrador durante la caída de Peterete | Hallazgo en ES/EN: la línea del narrador no fijaba encuadre ni pose para la caída. Se conserva `bg_witness.webp` con `podium` y se explicita la pose existente `peterete_breakdown` en ambos guiones y en esta escena. |
 
 **Regla de parada:** una nueva lente sin hallazgos sobre las secciones modificadas.
 
@@ -98,6 +100,28 @@ timeline
     - *Descripción*: Lata grande de betún negro con el logotipo del Chómpiras. Es inusualmente pesada (~5.3 kg: 5 kg del Chanfle + lata) y de su junta brota polvo dorado brillante. Fue la lata vacía que Chómpiras llevó a la bóveda por encargo de Peterete.
 14. **Antenitas de Vinil (`antenitas_vinil`)**:
     - *Descripción*: Antenas de vinil del Chapulín Colorado. Vibran con frecuencia ultrasónica al detectar la presencia de objetos robados o enemigos.
+
+### Acta de Personajes (Character Record)
+
+Este caso declara fichas para las nueve personas con identidad propia del elenco: defensa, co-defensor, fiscal, acusado y personas que intervienen en la investigación o el juicio. El Juez, como cargo sin identidad individual en este guion, no recibe ficha.
+
+Los perfiles que ya aparecieron en el Caso 0 se incorporan silenciosamente al abrir el Acto 1, con la descripción inicial de este catálogo; sus líneas `addProfile` no repiten la notificación. El resto de las fichas se incorpora (`[ENTREGAR-PERFIL id]`) en la primera escena donde se presenta a esa persona, no al revelar su papel futuro. Cuando una escena o testimonio aporta un dato nuevo conocido por el jugador, la línea correspondiente avanza la ficha (`[ACTUALIZAR-PERFIL id]`). Las etapas siguen el orden narrativo del **Acto 1**; Día 1 y Día 2 sólo ubican el momento dentro del acto. No se debe usar el número de caso como contador ni adelantar una actualización porque pertenezca a otro caso.
+
+Las descripciones son texto visible en el Acta y deben limitarse estrictamente a lo establecido hasta ese hito. En particular, las fichas no pueden anticipar la identidad del comprador misterioso, la autoría del robo, el destino del Chanfle, ni una conclusión de culpabilidad antes de que el diálogo y las pruebas correspondientes la establezcan. La redacción puede describir sospechas como sospechas, nunca convertirlas en hechos. Cada estado de ficha en la tabla reemplaza al anterior; no se combinan etapas futuras con el texto inicial.
+
+| Ficha | Alta y descripción inicial | Actualizaciones en orden narrativo del Acto 1 |
+|---|---|---|
+| `perfil_donramon` | **Día 1, Centro de Detención**, cuando se presenta al cliente: *"Abogado defensor de El Chómpiras. Lleva catorce meses de renta atrasada y trabaja con el Chapulín Colorado."* | — |
+| `perfil_chapulin` | **Día 1, Centro de Detención**, cuando Don Ramón lo presenta: *"Héroe y co-defensor de El Chómpiras. Sus antenitas de vinil detectan pistas, aunque no explican por sí solas qué las hizo vibrar."* | — |
+| `perfil_chompiras` | **Día 1, Centro de Detención**, al conocer al acusado: *"Aquiles Esquivel Madrazo, conocido como El Chómpiras. Está acusado de robar el Chanfle de Oro."* **(1)** Día 2, juicio, cuando la valeriana explica lo ocurrido en la bóveda: *"El residuo del ducto coincide con la esencia sedante. La evidencia indica que estuvo profundamente dormido durante parte del robo."* |
+| `perfil_florinda` | **Día 1, llegada a la bóveda**, al aparecer como propietaria del restaurante anexo: *"Dueña del restaurante junto a la hacienda."* **(1)** Día 1, testimonio, después de precisar lo que vio al sonar la alarma: *"Notó un parpadeo de las luces a las 9:15 PM y encontró al Chómpiras dentro de la bóveda cuando sonó la alarma."* |
+| `perfil_peterete` | **Día 1, llegada a la bóveda**, al presentarse como jefe de seguridad: *"Jefe de seguridad de la hacienda y perito valuador. Participa en la inspección de la bóveda."* **(1)** Día 1, testimonio 2, al conocerse su afirmación sobre la hora y el forcejeo: *"Sostiene que el Chómpiras abrió la caja fuerte durante el apagón y que el robo ocurrió a las 10:00 PM."* **(2)** Día 2, tras la contradicción postal: *"La multa y el registro postal contradicen su relato de que estuvo en la oficina de correos a las 9:30 PM."* **(3)** Día 2, tras la contradicción del plano: *"El plano muestra un montaplatos entre la bóveda y el callejón. El testigo había afirmado que no existía una salida al exterior."* **(4)** Clímax, después de la prueba del molde y la identificación por hora: *"El molde reproduce la llave maestra. La hora de compra de la esencia coincide con el periodo en que el jefe de seguridad tenía acceso a la llave original."* |
+| `perfil_jirafales` | **Día 1, restaurante**, al saludar a Don Ramón: *"Profesor y huésped del restaurante de Doña Florinda la noche del robo. Se interesa por la arquitectura y la precisión."* **(1)** Día 1, al entregar el plano: *"Su plano muestra el ducto de ventilación y un montaplatos que conecta la bóveda con el callejón."* |
+| `perfil_jaimito` | **Día 2, oficina postal y callejón**, al encontrarse con él: *"Cartero de Tangamandapio. Su carrito de correo estuvo en el callejón trasero de la hacienda."* **(1)** Día 2, al presentar la multa y el registro: *"La multa municipal sitúa su carrito abandonado a las 9:30 PM; Jaimito recuerda que dormía en el parque."* |
+| `perfil_clotilde` | **Día 2, casa y laboratorio botánico**, al conocerla: *"Vecina aficionada a la botánica. Prepara una esencia de rosas y valeriana."* **(1)** Día 2, tras su relato del comprador: *"Un cliente elegante compró tres frascos la tarde anterior al robo; Clotilde recuerda su sombrero y bufanda, pero no da su nombre."* |
+| `perfil_supersam` | **Día 1, apertura del juicio**, cuando presenta la acusación: *"Fiscal del caso. Pide un veredicto rápido contra El Chómpiras y sostiene que fue hallado con la herramienta del delito."* | — |
+
+Las altas y actualizaciones deben dispararse en la línea de diálogo en que cada hecho se presenta o queda confirmado. Las descripciones de etapa deben mantenerse spoiler-safe en español e inglés; la versión inglesa conserva el mismo límite de conocimiento y el mismo orden de hitos.
 
 ---
 
@@ -588,7 +612,7 @@ DEFENSA (donramon_slam): Y según las reglas del hotel, ¡la única persona que 
 PETERETE (peterete_sweat): ¡P-pero la llave regresó a custodia! ¡¿Cómo abrí la caja fuerte a las 9:15?!
 DEFENSA (donramon_point): ¡Usted fue a comprarle la esencia de valeriana, y aprovechó para copiar su propia llave en la cera de sus veladoras! ¡Usted durmió al Chómpiras, abrió la caja con su copia, metió el oro en la lata y la tiró por el montaplatos!
 PETERETE (peterete_breakdown): ¡¡¡NOOOOOOOOOOOO!!! ¡¡¡MI PLAN PERFECTO DE CINCO MILLONES DE DÓLARES ARRUINADO POR UN LIMPIABOTAS Y UN DEFENSOR DEL NECAXA!!! [sfx: damage]
-NARRADOR: (El Peterete comienza a propinarse sonoras bofetadas con su propio sombrero fedora mientras gira desquiciado por el estrado de los testigos hasta caer desplomado).
+NARRADOR (pose: peterete_breakdown; bg: assets/bg_witness.webp; furniture: podium): (El Peterete comienza a propinarse sonoras bofetadas con su propio sombrero fedora mientras gira desquiciado por el estrado de los testigos hasta caer desplomado).
 SUPER SAM (supersam_breakdown): OH NOOO! ¡My fees! ¡My bonus! ¡Time is money and I lost my dollars!
 JUEZ (judge_gavel): ¡Silencio y orden! Habiendo aparecido la prueba reina, demostrado el método y confesado el verdadero culpable, ¡este juzgado emite su veredicto definitivo! [sfx: gavel]
 JUEZ (judge_gavel): ¡Declaro al acusado, Aquiles Esquivel Madrazo... INOCENTE! [cutin: objection_culpable, sfx: whoosh, bgm: victory]

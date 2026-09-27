@@ -12,7 +12,7 @@ export const CASE4_HOTEL_TERRAZA_D2_EN: InvestigationScene = {
   idlePose: 'chompiras_idle',
   intro: [
     { speaker: 'NARRADOR', text: 'October 26, 11:00 AM. Terrace. The freight-elevator bellhop is minding the counter.' },
-    { speaker: 'CHOMPIRAS', text: 'Counselor! Are you the one getting Botija out? Because if you do not get him out, I am left with nobody to help me with the trunks.', pose: 'chompiras_idle' },
+    { speaker: 'CHOMPIRAS', text: 'Counselor! Are you the one getting Botija out? Because if you do not get him out, I am left with nobody to help me with the trunks.', pose: 'chompiras_idle', addProfile: 'perfil_chompiras' },
     { speaker: 'DEFENSA', text: 'I am getting him out. Do the two of you know each other from before?', pose: 'donramon_idle' },
     { speaker: 'CHOMPIRAS', text: 'From before before. But we do not talk about that anymore, right? We are uniformed men now.', pose: 'chompiras_nervous' },
     { speaker: 'CHAPULIN', text: 'How beautiful it is to reform!', pose: 'chapulin_idle' },

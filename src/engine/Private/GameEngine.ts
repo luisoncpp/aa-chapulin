@@ -5,39 +5,38 @@
  */
 
 import { midiComposer as defaultMidiComposer, soundEngine as defaultSoundEngine, type MidiMusicComposer, type SoundEngine } from '../../audio/index.js';
-import { CASE_SCRIPT as defaultCaseScript, getCaseScript } from '../../case/index.js';
+import {
+  EMPTY_CASE_SCRIPT, lookupBoundScript, type ScriptResolver
+} from '../../case/loadCaseScript.js';
 import { i18n } from '../../i18n/index.js';
 import { gameState as defaultGameState, type GameStateManager } from '../../state/index.js';
 import type {
-  CaseId, CaseScript, DialogueLine, EvidenceId, Language, LocationId, ProfileId
+  CaseId, CaseScript, DialogueLine, EvidenceId, Language, LocationId, ProfileId, TrialDay
 } from '../../types/index.js';
 import { handleAdjournment } from './AdjournmentHandler.js';
-import { applyClimaxPresentPrompt } from './ClimaxPresentPrompt.js';
 import { DialogueFlow } from './DialogueFlow.js';
 import { DialogueHistory } from './DialogueHistory.js';
-import { openHistoryModal } from './HistoryModal.js';
 import { getDomElements, type DomElements } from './DomElements.js';
-import { applyDebugUrlParams } from './EngineDebugBootstrap.js';
-import { EngineEventBinder } from './EngineEventBinder.js';
+import { initGameEngine } from './EngineInit.js';
+import { applyEngineLanguage } from './EngineLanguage.js';
 import { loadCase, startGame as launchGame, startTrialDebug as launchTrial } from './EngineLaunch.js';
+import { requestStartGame, requestTrialDebug } from './EnginePlayStart.js';
+import { openEngineCourtRecord } from './EnginePresentModal.js';
 import {
-  loadGame as persistLoad, openSavePicker,
+  loadGame as persistLoad,
   saveGame as persistSave,
   updateContinueButton as persistContinue,
   type PersistenceHost
 } from './EnginePersistence.js';
 import { InvestigationController } from './InvestigationController.js';
-import { ModalManager } from './ModalManager.js';
-import { rebindPresentPointScript } from './PresentPoint.js';
 import { TrialController } from './TrialController.js';
 import { Typewriter } from './Typewriter.js';
-import { bindMusicPlayer, stopMusicPlayerIfOpen } from './MusicPlayer/index.js';
-import { UiLanguageUpdater } from './UiLanguageUpdater.js';
 
 export interface GameEngineDeps {
   dom?: DomElements;
   state?: GameStateManager;
   script?: CaseScript;
+  resolveScript?: ScriptResolver;
   soundEngine?: SoundEngine;
   midiComposer?: MidiMusicComposer;
   storage?: Storage;
@@ -53,7 +52,9 @@ export class GameEngine {
   private readonly trial: TrialController;
   private readonly dialogue: DialogueFlow;
   private readonly storage?: Storage;
+  private readonly resolveScript?: ScriptResolver;
   private hasStarted = false;
+  private launching = false;
   private selectedEvidenceId: EvidenceId | null = null;
   private selectedProfileId: ProfileId | null = null;
 
@@ -61,7 +62,8 @@ export class GameEngine {
   constructor(deps: GameEngineDeps = {}) {
     this.dom = deps.dom ?? getDomElements();
     this.state = deps.state ?? defaultGameState;
-    this.script = deps.script ?? defaultCaseScript;
+    this.script = deps.script ?? EMPTY_CASE_SCRIPT;
+    this.resolveScript = deps.resolveScript;
     this.soundEngine = deps.soundEngine ?? defaultSoundEngine;
     this.midiComposer = deps.midiComposer ?? defaultMidiComposer;
     this.storage = deps.storage;
@@ -74,7 +76,7 @@ export class GameEngine {
       dom: this.dom, state: this.state, script: this.script, soundEngine: this.soundEngine,
       midiComposer: this.midiComposer, onQueueDialogue: (dlg, cb) => this.queueDialogue(dlg, cb),
       onRenderLine: (line) => this.renderDialogueLine(line),
-      onOpenCourtRecord: (isTrialPresent) => this.openCourtRecord(isTrialPresent),
+      onOpenCourtRecord: (isTrialPresent) => openEngineCourtRecord(this.presentHost(), isTrialPresent),
       onAdjourn: (location) => this.handleAdjournment(location)
     });
     this.dialogue = new DialogueFlow({
@@ -93,57 +95,41 @@ export class GameEngine {
       getScript: () => this.script,
       setScript: (script) => { this.script = script; },
       markStarted: () => { this.hasStarted = true; },
-      setLanguage: (lang) => this.setLanguage(lang)
+      setLanguage: (lang) => this.setLanguage(lang),
+      resolveScript: this.resolveScript
     };
   }
 
-  // @Section(Initialization & Bootstrapping)
   public init(): void {
-    EngineEventBinder.bind({
-      dom: this.dom, soundEngine: this.soundEngine,
-      investigation: this.investigation, trial: this.trial,
-      onStartGame: () => this.startGame('case1'),
-      onStartCase0: () => this.startGame('case0'),
-      onStartCase2: () => this.startGame('case2'),
-      onStartCase3: () => this.startGame('case3'),
-      onStartCase4: () => this.startGame('case4'),
-      onStartCase5: () => this.startGame('case5'),
-      onStartTrialDebug: () => this.startTrialDebug(),
+    initGameEngine({
+      dom: this.dom, soundEngine: this.soundEngine, midiComposer: this.midiComposer,
+      investigation: this.investigation, trial: this.trial, state: this.state,
+      dialogue: this.dialogue, persist: () => this.host(), present: () => this.presentHost(),
+      startGame: (caseId) => this.startGame(caseId),
+      startTrialDebug: (day) => this.startTrialDebug(day),
       onAdvance: () => this.handleAdvance(),
-      onOpenCourtRecord: (isTrial) => this.openCourtRecord(isTrial),
-      onOpenHistory: () => openHistoryModal(this.dom, this.dialogue.getHistory()),
-      onPresentFromModal: () => this.handlePresentFromModal(),
-      onPresentProfileFromModal: () => this.handlePresentProfileFromModal(),
-      onToggleLanguage: () => this.toggleLanguage(),
-      onSaveGame: () => openSavePicker(this.host(), 'save'),
-      onLoadGame: () => openSavePicker(this.host(), 'load'),
-      onContinueGame: () => this.loadGame()
-    });
-    bindMusicPlayer(this.dom, {
-      composer: this.midiComposer,
-      soundEngine: this.soundEngine
-    });
-    ModalManager.updateHealthUI(this.dom.healthBarEl, this.state.health, this.state.maxHealth);
-    this.setLanguage(this.state.language);
-    this.updateContinueButton();
-    applyDebugUrlParams({
+      toggleLanguage: () => this.toggleLanguage(),
       setLanguage: (lang) => this.setLanguage(lang),
-      loadCase: (caseId) => loadCase(this.host(), caseId),
-      startTrialDebug: (day) => this.startTrialDebug(day)
+      updateContinue: () => this.updateContinueButton(),
+      prepareDebugCase: (caseId) => this.prepareDebugCase(caseId)
     });
   }
 
+  private prepareDebugCase(caseId: CaseId): void {
+    this.state.caseId = caseId;
+    if (this.resolveScript) loadCase(this.host(), caseId);
+  }
+
   public setLanguage(lang: Language): void {
-    i18n.setLanguage(lang);
-    this.state.setLanguage(lang);
-    this.script = getCaseScript(lang, this.state.caseId);
-    this.state.applyProgressionRules(this.script);
-    this.investigation.setScript(this.script);
-    this.trial.setScript(this.script);
-    rebindPresentPointScript(this.script);
-    UiLanguageUpdater.updateUi(this.dom, lang);
-    const isCourtRecordOpen = !this.dom.courtRecordModalEl.classList.contains('hidden');
-    applyClimaxPresentPrompt(this.dom, isCourtRecordOpen ? this.trial.getPresentPrompt() : null);
+    applyEngineLanguage({
+      lang,
+      state: this.state,
+      script: lookupBoundScript(lang, this.state.caseId, this.resolveScript),
+      setScript: (script) => { this.script = script; },
+      investigation: this.investigation,
+      trial: this.trial,
+      dom: this.dom
+    });
   }
 
   public toggleLanguage(): void {
@@ -151,13 +137,24 @@ export class GameEngine {
   }
 
   public startGame(caseId: CaseId = 'case1'): void {
-    stopMusicPlayerIfOpen(this.dom);
-    this.dialogue.clearHistory();
-    launchGame(this.host(), caseId);
+    requestStartGame(this.playGate(), caseId);
   }
 
-  public startTrialDebug(day?: import('../../types/index.js').TrialDay): void {
-    launchTrial(this.host(), day);
+  public startTrialDebug(day?: TrialDay): void {
+    requestTrialDebug(this.playGate(), day);
+  }
+
+  private playGate() {
+    return {
+      resolveScript: this.resolveScript,
+      hasStarted: () => this.hasStarted,
+      launching: () => this.launching,
+      caseId: () => this.state.caseId,
+      markLaunching: (busy: boolean) => { this.launching = busy; },
+      clearHistory: () => this.dialogue.clearHistory(),
+      launchGame: (id: CaseId) => launchGame(this.host(), id),
+      launchTrial: (day?: TrialDay) => launchTrial(this.host(), day)
+    };
   }
 
   public saveGame(storage?: Storage): boolean { return persistSave(this.host(), storage); }
@@ -168,10 +165,9 @@ export class GameEngine {
     handleAdjournment(this.investigation, location, /*flashEl=*/ this.dom.flashEl);
   }
 
-  // @Section(Dialogue Flow & Queue)
   // fallow-ignore-next-line complexity
   public handleAdvance(): void {
-    if (!this.hasStarted) {
+    if (!this.hasStarted && this.state.mode !== 'TRIAL') {
       this.startGame();
       return;
     }
@@ -179,7 +175,7 @@ export class GameEngine {
     const advanced = this.dialogue.handleAdvance();
     if (!advanced && this.trial.isAwaitingEvidence()) {
       if (this.dom.courtRecordModalEl.classList.contains('hidden')) {
-        this.openCourtRecord(/*isTrialPresent=*/ true);
+        openEngineCourtRecord(this.presentHost(), /*isTrialPresent=*/ true);
       }
     }
   }
@@ -192,31 +188,12 @@ export class GameEngine {
     this.dialogue.renderDialogueLine(line);
   }
 
-  // @Section(Evidence Presentation Handling)
-  private openCourtRecord(isTrialPresent: boolean): void {
-    const shouldPresent = isTrialPresent || this.trial.isAwaitingEvidence();
-    const isProfilePresent = shouldPresent && this.trial.isAwaitingProfile();
-    applyClimaxPresentPrompt(this.dom, shouldPresent ? this.trial.getPresentPrompt() : null);
-    ModalManager.openCourtRecord({
-      dom: this.dom, state: this.state, isTrialPresent: shouldPresent, isProfilePresent,
-      onSelect: (id) => { this.selectedEvidenceId = id; },
-      onSelectProfile: (id) => { this.selectedProfileId = id; }
-    });
-  }
-
-  private handlePresentProfileFromModal(): void {
-    if (!this.selectedProfileId) return;
-    const profileId = this.selectedProfileId;
-    ModalManager.closeCourtRecord(this.dom);
-    applyClimaxPresentPrompt(this.dom, null);
-    this.trial.handlePresentProfile(profileId);
-  }
-
-  private handlePresentFromModal(): void {
-    if (!this.selectedEvidenceId) return;
-    const evId = this.selectedEvidenceId;
-    ModalManager.closeCourtRecord(this.dom);
-    applyClimaxPresentPrompt(this.dom, null);
-    this.trial.handlePresentEvidence(evId);
+  private presentHost() {
+    return {
+      dom: this.dom, state: this.state, trial: this.trial,
+      selectedEvidenceId: this.selectedEvidenceId, selectedProfileId: this.selectedProfileId,
+      setEvidenceId: (id: EvidenceId | null) => { this.selectedEvidenceId = id; },
+      setProfileId: (id: ProfileId | null) => { this.selectedProfileId = id; }
+    };
   }
 }

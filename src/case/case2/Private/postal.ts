@@ -14,7 +14,7 @@ export const CASE2_POSTAL: InvestigationScene = {
   idlePose: 'jaimito_idle',
   intro: [
     { speaker: 'NARRADOR', text: '23 de Agosto, 9:00 AM. Callejón Trasero y Puesto Postal.' },
-    { speaker: 'JAIMITO', text: 'Buenos días... Vengo a entregar estas cartas, pero es que quiero evitar la fatiga...', pose: 'jaimito_tired' },
+    { speaker: 'JAIMITO', text: 'Buenos días... Vengo a entregar estas cartas, pero es que quiero evitar la fatiga...', pose: 'jaimito_tired', addProfile: 'perfil_jaimito' },
     { speaker: 'DEFENSA', text: 'Don Jaimito, perdone la molestia, pero la noche del robo usted estacionó su carrito de correos en este callejón, justo debajo del montaplatos de la hacienda.', pose: 'donramon_idle' },
     { speaker: 'JAIMITO', text: '¡Ah, sí! Es que en mi pueblo natal, Tangamandapio, los carritos se dejan a la sombra de los árboles de guayaba...', pose: 'jaimito_idle' },
     { speaker: 'CHAPULIN', text: 'Don Jaimito, ¿recuerda si el señor Peterete le entregó algún paquete la noche del 21 a las 9:30 PM?', pose: 'chapulin_idle' },
@@ -35,7 +35,7 @@ export const CASE2_POSTAL: InvestigationScene = {
       x: 13, y: 30, w: 16, h: 28,
       dialogue: [
         { speaker: 'DEFENSA', text: 'Esta entrada de las 9:30 PM está estampada con un sello manual irregular... no con el sello mecánico oficial que usted lleva encima.', pose: 'donramon_point', addEvidence: 'registro_postal' },
-        { speaker: 'JAIMITO', text: '¡Yo no sellé nada! El sello oficial nunca se me separa, para evitar la fatiga de buscarlo.', pose: 'jaimito_proud' }
+        { speaker: 'JAIMITO', text: '¡Yo no sellé nada! El sello oficial nunca se me separa, para evitar la fatiga de buscarlo.', pose: 'jaimito_proud', updateProfile: 'perfil_jaimito' }
       ]
     },
     {

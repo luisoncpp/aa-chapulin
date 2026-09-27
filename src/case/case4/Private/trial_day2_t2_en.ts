@@ -44,12 +44,13 @@ const BAUL_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'SUPER SAM', text: 'The man could have kept his clothes in there! People travel with clothes!', pose: 'supersam_point' },
   { speaker: 'DEFENSA', text: 'Yes. And almost always wearing them. Let us count it slowly: a victim already dead before ten, a trunk going up at 22:20, the cloth of his suit snagged inside, and eighty kilos vanishing on the third floor...', pose: 'donramon_idle' },
   { speaker: 'CHAPULIN', text: 'And the third floor is where the dead man turned up!', pose: 'chapulin_point' },
-  { speaker: 'DEFENSA', text: 'The defense holds that B-17 went up with the body inside. And I ask the gentleman who received it to tell us what he took out.', cutin: 'objection_toma_eso', sfx: 'desk_slam', bgm: 'objection', pose: 'donramon_slam' },
+  { speaker: 'DEFENSA', text: 'The defense holds that B-17 went up with the body inside. And I ask the gentleman who received it to tell us what he took out.', cutin: 'objection_toma_eso', sfx: 'desk_slam', bgm: 'objection', pose: 'donramon_slam', updateProfile: 'perfil_supersam' },
   { speaker: 'JUEZ', text: 'Mr. Rufián, your reception and the later opening are documented. Answer this court.', pose: 'judge_gavel', sfx: 'gavel' },
   { speaker: 'RUFINO', text: 'I... I did not want the name of this hotel dragged into such a...', pose: 'rufino_panic' },
   { speaker: 'SUPER SAM', text: 'Such a WHAT?', pose: 'supersam_point' },
   { speaker: 'RUFINO', text: 'I found him dead in my room! I panicked. I put him in the trunk and asked for it to be taken up.', pose: 'rufino_sweat' },
-  { bg: 'assets/bg_gallery_characters.webp', furniture: 'none', speaker: 'NARRADOR', text: 'A murmur runs through the gallery. The count\'s monocle trembles, but does not quite fall.', bgm: 'suspense' },
+  { bg: 'assets/bg_gallery_characters.webp', furniture: 'none', speaker: 'NARRADOR', text: 'A murmur runs through the gallery.' },
+  { bg: 'assets/bg_witness.webp', furniture: 'podium', speaker: 'NARRADOR', text: 'The count\'s monocle trembles, but does not quite fall.', bgm: 'suspense', pose: 'rufino_sweat' },
   { speaker: 'BOTIJA', text: '...I took him up? I sent that trunk?', pose: 'botija_nervioso' },
   { speaker: 'RUFINO', text: 'You moved a trunk, my good man. You had no reason to know the rest.', pose: 'rufino_sweat' },
   { speaker: 'BOTIJA', text: 'Don Ramón, I checked that the strap was whole. With these hands.', pose: 'botija_llorando' },
@@ -105,7 +106,7 @@ export const CASE4_TESTIMONY_4_EN: Testimony = {
       text: 'And the strap was whole when the count received it. I signed the stub beside Botija.',
       pressText: [
         { speaker: 'DEFENSA', text: 'HOLD IT!', cutin: 'objection_un_momento', sfx: 'whoosh', pose: 'donramon_point' },
-        { speaker: 'CHOMPIRAS', text: 'Number and strap confirmed. The strap breaks after Rufino takes delivery. Botija holds no hidden cabin stretch.', pose: 'chompiras_idle' }
+        { speaker: 'CHOMPIRAS', text: 'Number and strap confirmed. The strap breaks after Rufino takes delivery. Botija holds no hidden cabin stretch.', pose: 'chompiras_idle', updateProfile: 'perfil_chompiras' }
       ]
     }
   ]

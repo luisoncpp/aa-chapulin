@@ -1,0 +1,49 @@
+Use case: sketch-to-render.
+Asset type: 16:9 courtroom establishing background for a 2D Ace Attorney-style game, shared across Spanish and English.
+Method: IMAGE 1 is the actual flat-color target to paint. Make a new painting over its exact shapes and silhouettes, using the approved close-up assets only for identity, detail and style. Do not use any previously generated gallery panorama or edited candidate. Treat IMAGE 1 like a locked tracing layer: its furniture borders, heads, bench position and camera cannot move.
+
+Input images, in order:
+1. tools/gallery_guide/out/full_empty_guide.png — authoritative camera, framing, locations and scale of all major shapes.
+2. assets/bg_judge.webp — identity of the central carved wood backdrop, flanking carved posts, black tufted chair and circular gold scales.
+3. assets/judge_neutral.webp — identity of the small seated judge: bald crown, white beard, black robe, neutral expression.
+4. assets/bg_courtroom.webp — burgundy curtains with gold tiebacks and central gold scales crest on the right wall.
+5. assets/court_podium.webp — witness podium and single ribbed brass gooseneck microphone.
+
+Composition: a symmetric wide shot from the courtroom well, camera slightly above standing head height, facing the distant judge. Paint over the guide's geometry. Keep its camera, vanishing point, silhouettes, spacing and relative proportions. The near witness podium is centered at the bottom, two separate empty counsel desks flank the aisle, the elevated judge bench is at the far center, and raised spectator galleries occupy both sides. No cropping away any of these.
+
+Galleries: each side has stepped rows of seated spectators above a solid paneled mahogany parapet with one straight, continuous brass cap. No open balustrade. Under the left gallery, plain mahogany paneling descends unbroken to the floor. Under the right gallery, burgundy curtains, gold tiebacks and one carved central scales crest descend to the floor. Preserve the guide's gallery heights.
+
+Spectators: turn each grey guide silhouette into a generic seated spectator in 1970s Mexican period clothing, with four visible on each side. Respect each silhouette's position and size. On the left gallery, faces and eyes point diagonally right and inward across the parapet toward the witness podium and center aisle. On the right gallery, faces and eyes point diagonally left and inward. Show clear three-quarter or side profiles, heads upright with only a slight downward eye line into the well. Nobody looks at the camera, straight forward, or down into their lap. No named character costume or face.
+
+Judge area: use the dark carved backdrop and two vertical carved posts from image 2, with optional fluted pillars immediately outside them. One small black tufted chair sits directly behind the bench, no wider than the judge's shoulders. Its crest ends near his head. A circular gold scales emblem about one chair wide sits just above the chair. Seat the judge exactly at the small dark silhouette's position and scale in the guide. The bench spans about seven judge shoulder widths, its gold lip covers his belly rather than chest, and its paneled front reaches the floor of the raised platform.
+
+Counsel desks: two separate empty mahogany desks, one left and one right, parallel to their walls and facing each other across the aisle. Flat tops, paneled sides, hip-high working surfaces, straight continuous uniform brass edges. No lawyers, papers or chairs.
+
+Witness podium: one-person U shape in the near center, seen from behind. Its open end faces the camera and runs off the bottom edge; its closed panel and microphone face the judge. The inside face of the far panel is plain. Left and right top rails meet the far panel at the same physical height, with no raised side-rail towers. Both outer sides retain image 5's projecting ornaments, one slim post per side (two total), and stepped bases. One brass gooseneck microphone sits on the far panel, with a gold ribbed capsule, dark slots, curved neck and round base; it points back toward the witness position near the camera.
+
+Room: fluted columns, warm brass wall sconces, stone and mahogany upper walls, coffered wood ceiling. Long dark brown wooden floor planks recede toward the judge. Desk tops, podium rails and gallery parapets are hip-high for a standing adult, about 0.95 m, never knee-high or chest-high.
+
+Style: crisp finished 2D cel-shaded courtroom illustration, clean charcoal line art, broad flat two-tone surfaces and restrained warm highlights, consistent with the approved close-up assets. Mahogany #3D2314, brass #C5A059, stone #7F8C8D, amber #F39C12, burgundy velvet #581825. Draw every brass edge cleanly: straight, continuous, uniform width, with crisp coherent corners and no blurry seams.
+
+Exclude: witness, lawyers, second judge chair, ropes, stanchions, velvet aisle, marble, tiles, extra podiums, extra microphones, text, case numbers, watermarks, photorealism, 3D render appearance, watercolor, magenta.
+
+Critical guide geometry, expressed as percentages of the full canvas. Use these positions even when the close-up references suggest larger furniture:
+- Spectator heads stay in the upper side strips, x 0–23% on the left and x 77–100% on the right, y 24–36%. Show four on each side, all gazing inward across the room.
+- The judge's head is at x 50%, y 45%, only about 4% of the canvas width. The judge's torso remains behind the bench. Do not enlarge the judge.
+- The circular scales emblem is centered x 50%, y 39%, around 4% of the canvas width. Keep it just above the chair, not a giant arch-sized crest.
+- The gold-lipped judge bench spans only x 40–60%, with its top lip at y 49% and paneled front down to y 68%. Do not lift or widen it to fill the judge niche.
+- The left counsel desk lies x 15–31% and the right counsel desk x 69–85%; their near ends extend down to y 86%, far ends begin around y 63%.
+- The witness podium occupies x 42.5–57.5%, its far rail starts at y 73%, and the open U continues off the bottom edge. Do not widen it or pull it upward.
+- The guide's side parapets begin at the left and right edges and finish around x 25% and x 75%, respectively. The carved judge backdrop should fit behind the small bench without large stone columns crowding the center.
+
+The intended result is a clean first-generation painting of the supplied blockout, with detailed materials inside its silhouettes, not a redesign of its geometry.
+
+Final geometry priority: if an attractive architectural detail conflicts with the guide, omit that detail. Keep the judge below the small scales disk at the guide's exact height and keep the bench top exactly at the guide's gold horizontal line. The podium's open U stays at the guide's width and depth, and both side ornaments plus the two narrow posts in total must remain readable. No rail on one side may rise higher than the corresponding rail on the other side.
+
+Podium identity is a pass/fail requirement. Do not simplify it into a generic three-panel lectern. In the close foreground, on BOTH outer sides, paint a short projecting horizontal wooden wing/cap beyond the main U wall, with ONE slender vertical post on each side connecting the wing to a stepped base. The side ornaments must be visible at game resolution. Keep the central U narrow and empty, with floor planks visible inside. The far horizontal counter and the two side counter rails have the same real-world height. Put the single ribbed gold microphone on the far counter, pointing toward the camera.
+
+Final correction priorities for this independent first-generation render:
+1. Every spectator, including the second person from the left, has an upright head and looks horizontally across the room toward the central witness podium. No chin tucked down, eyes in lap, or face turned toward the camera. Left row faces right; right row faces left.
+2. The gold scales ring is only about as wide as the black judge chair and hangs directly above it. Do not make a wall-sized emblem.
+3. Place the judge bench's gold lip at the same vertical line as IMAGE 1, just below the judge's visible torso. Do not raise the bench or stretch the judge.
+4. Keep the projecting side caps and slim posts of the podium from IMAGE 5 clear and symmetric.

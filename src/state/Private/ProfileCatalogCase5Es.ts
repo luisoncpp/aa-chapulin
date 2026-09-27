@@ -12,8 +12,9 @@ export const CASE5_PROFILES_ES: ProfileCatalogMap = {
     name: 'Don Ramón',
     role: 'Acusado',
     icon: 'assets/profile_perfil_donramon.webp',
-    desc: 'El acusado. Abogado de banqueta. Diecisiete meses de renta atrasada que alguien le pagó sin decírselo. Es la quinta vez que pisa este juzgado y la primera que lo hace esposado.',
+    desc: 'Acusado de asesinar a Casimiro Lengua. Abogado de banqueta. Es la sexta vez que pisa este juzgado y la primera que lo hace esposado.',
     updates: [
+      'El acta registra diecisiete mensualidades de renta pagadas en efectivo; Ramón dice que él no pagó.',
       'Estuvo doce minutos a solas con la víctima, sin testigo que viera la mesa.',
       'La ventana corregida lo incluye. Su defensa acaba de meterlo en ella.'
     ]
@@ -33,9 +34,10 @@ export const CASE5_PROFILES_ES: ProfileCatalogMap = {
     name: 'Casimiro Lengua',
     role: 'Víctima',
     icon: 'assets/profile_perfil_casimiro.webp',
-    desc: 'La víctima. Sentenciado en julio por el asalto al cobrador Nazario Cuenca; su condena no está en discusión. Pidió declarar en el Archivo y pidió que estuviera su propio abogado contrario.',
+    desc: 'La víctima. Sentenciado en julio por el asalto al cobrador Nazario Cuenca; su condena no está en discusión.',
     updates: [
       'Lo encontraron con su expediente abierto en la página 214.',
+      'Pidió declarar en una diligencia de su apelación y que estuviera presente el abogado que lo venció.',
       'Ofreció entregar un fichero el 8 de noviembre. La fiscalía le contestó dieciocho días después.'
     ]
   },
@@ -44,9 +46,11 @@ export const CASE5_PROFILES_ES: ProfileCatalogMap = {
     name: 'Super Sam',
     role: 'Fiscal',
     icon: 'assets/profile_perfil_supersam.webp',
-    desc: 'Fiscal. Cobra por caso cerrado. Desde agosto carga su bolsa de lona rellena de algodón y nadie le ha preguntado por qué.',
+    desc: 'Fiscal. Cobra por caso cerrado.',
     updates: [
-      'Declaró contra sí mismo sin que nadie se lo pidiera.'
+      'Desde agosto carga una bolsa vacía para recordar por qué cerró aquel caso en cinco minutos.',
+      'Firmó seiscientos oficios al mes durante once años sin leer la lista de distribución.',
+      'Admitió que cobró un kilo de los seis que le robaron y rellena la bolsa con algodón para recordar lo que todavía le falta.'
     ]
   },
   perfil_berrondo: {
@@ -54,8 +58,9 @@ export const CASE5_PROFILES_ES: ProfileCatalogMap = {
     name: 'Fulgencio Berrondo',
     role: 'Acusador coadyuvante',
     icon: 'assets/profile_perfil_berrondo.webp',
-    desc: 'Acusador coadyuvante. Abogado colegiado desde 1955. Síndico de una quiebra de 1971 que todavía no se cierra. Se ofreció a auxiliar a la fiscalía sin cobrar honorarios.',
+    desc: 'Acusador coadyuvante. Abogado colegiado desde 1955. Se presentó ante la fiscalía como síndico de la víctima y ofreció auxiliarla sin cobrar honorarios.',
     updates: [
+      'Su primera sindicatura, la quiebra 114/1971, es la única que sigue abierta, desde hace once años.',
       'Administra un cedulario de once mil cuatrocientas tarjetas y vende copias. No es delito.',
       'Concede que vender no es delito; la corte ordena inspeccionar su huacal de todos modos.',
       'Firmó el acuse de una diligencia que él mismo dijo desconocer.'
@@ -66,9 +71,9 @@ export const CASE5_PROFILES_ES: ProfileCatalogMap = {
     name: 'Nicanor Tolentino',
     role: 'Conserje',
     icon: 'assets/profile_perfil_nicanor.webp',
-    desc: 'Conserje del Archivo Judicial. Treinta y un años de servicio. Encontró el cuerpo a las 17:35, subiendo a cerrar el pasillo.',
+    desc: 'Conserje del Archivo Judicial. Treinta y un años de servicio. Fue quien encontró a la víctima.',
     updates: [
-      'Sacude el Tomo XI los lunes. El sábado del crimen vio el estante completo.'
+      'Sacude el Tomo XI los lunes. El sábado del crimen vio el estante completo; el hallazgo fue a las 17:35, cuando subía a cerrar el pasillo.'
     ]
   },
   perfil_genoveva: {
@@ -76,9 +81,9 @@ export const CASE5_PROFILES_ES: ProfileCatalogMap = {
     name: 'Genoveva Peñaloza',
     role: 'Encargada de ventanilla',
     icon: 'assets/profile_perfil_genoveva.webp',
-    desc: 'Encargada de la ventanilla de peritos y auxiliares. Lleva el segundo libro del edificio. Contesta lo que se le pregunta y nada más.',
+    desc: 'Empleada de la ventanilla judicial. Lleva el libro de peritos y auxiliares.',
     updates: [
-      'Escribe la hora cuando le devuelven el gafete. No ve la puerta del patio y el reglamento no la obliga.'
+      'Registra cuándo se devuelve cada gafete y archiva los vales de consulta. No ve la puerta del patio y el reglamento no la obliga.'
     ]
   },
   perfil_sargento: {
@@ -93,14 +98,14 @@ export const CASE5_PROFILES_ES: ProfileCatalogMap = {
     name: 'Señor Barriga',
     role: 'Casero',
     icon: 'assets/profile_perfil_barriga.webp',
-    desc: 'Casero del acusado. Diecisiete años cobrándole. Recibió diecisiete meses en efectivo el 29 de noviembre y expidió recibo.'
+    desc: 'Casero del acusado. Diecisiete años cobrándole.'
   },
   perfil_chompiras: {
     id: 'perfil_chompiras',
     name: 'El Chómpiras',
     role: 'Cargador',
     icon: 'assets/profile_perfil_chompiras.webp',
-    desc: 'Cargador del Archivo. Absuelto en agosto del robo del Chanfle de Oro. Es el primer trabajo fijo que tiene y no piensa perderlo.',
+    desc: 'Cargador del Archivo. Absuelto en agosto del robo del Chanfle de Oro. Es lo primero que le han dado con seguro y con aguinaldo, y no piensa perderlo.',
     updates: [
       'Ayuda a destapar el huacal 9 desde septiembre y lo ha visto abierto seis o siete veces.'
     ]

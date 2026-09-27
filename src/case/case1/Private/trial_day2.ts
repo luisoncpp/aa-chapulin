@@ -45,7 +45,7 @@ const CASE1_D2_T1_FOLLOWUP: DialogueLine[] = [
   { speaker: 'DEFENSA', text: '"Chicharra Paralizadora de Oro. Montada sobre base de resonancia."', pose: 'donramon_point' },
   { speaker: 'JUEZ', text: 'Explíquese.', pose: 'judge_thinking' },
   { speaker: 'DEFENSA', text: 'Que si usted la levanta de su base, suena. Y el que la oye se queda tieso alrededor de un minuto. Por eso está bajo cristal y no bajo llave: el propio museo la usaba de alarma.', pose: 'donramon_slam', sfx: 'desk_slam' },
-  { speaker: 'NARRADOR', text: 'El Juez se queda con el mazo a media altura.', sfx: 'chicharra' },
+  { speaker: 'NARRADOR', text: 'El Juez se queda con el mazo a media altura.', bg: 'assets/bg_judge.webp', furniture: 'judge-bench', pose: 'judge_neutral', sfx: 'chicharra' },
   { speaker: 'JUEZ', text: '¡¿Está usted diciendo que el ladrón se paralizó a sí mismo?!', pose: 'judge_shock' },
   { speaker: 'DEFENSA', text: 'Estoy diciendo que la levantó a las nueve menos cinco y se quedó ahí parado, sin poder mover un dedo, durante un minuto largo.', pose: 'donramon_point' },
   { speaker: 'DEFENSA', text: 'Y que en ese minuto entró corriendo un velador de un metro noventa y dos.', pose: 'donramon_idle' },

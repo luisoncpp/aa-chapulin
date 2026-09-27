@@ -15,7 +15,7 @@ export const CASE5_BERRONDO_HOTSPOTS: Hotspot[] = [
       { speaker: 'DEFENSA', text: '«Fulgencio Berrondo. Síndico. Quiebra 114/1971.»', pose: 'chapulin_idle' },
       { speaker: 'BERRONDO', text: 'Enciclopedias El Saber Universal, Sociedad Anónima. Mi primera sindicatura y la última que me queda abierta.', pose: 'berrondo_idle' },
       { speaker: 'DEFENSA', text: '¿Once años abierta?', pose: 'chapulin_panic' },
-      { speaker: 'BERRONDO', text: 'Once años, casi nueve meses. Hay acreedores que murieron esperando y herederos que no aparecen.', pose: 'berrondo_idle' },
+      { speaker: 'BERRONDO', text: 'Once años, casi nueve meses. Hay acreedores que murieron esperando y herederos que no aparecen.', pose: 'berrondo_idle', updateProfile: 'perfil_berrondo' },
       { speaker: 'BERRONDO', text: 'Un concurso no se cierra cuando uno quiere, licenciado. Se cierra cuando ya no queda nadie a quien deberle.', pose: 'berrondo_idle' },
       { speaker: 'DEFENSA', text: '¿Y esa credencial sirve para algo todavía?', pose: 'chapulin_idle' },
       { speaker: 'BERRONDO', text: 'Sirve para todo. Tenga, llévese una copia certificada; la tengo hecha desde hace años porque me la piden mucho.', pose: 'berrondo_idle', addEvidence: 'credencial_sindico' },

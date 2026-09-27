@@ -36,7 +36,7 @@ export const CASE3_CALL_CHIMOLTRUFIA: DialogueLine[] = [
 export const CASE3_CALL_NONO: DialogueLine[] = [
   { speaker: 'SUPER SAM', pose: 'supersam_slam', sfx: 'desk_slam', text: '¡Objection! ¡Si la defensa lo llama en un minuto, la fiscalía lo llama en treinta segundos! ¡Que suba el muchacho!' },
   { speaker: 'JUEZ', pose: 'judge_neutral', text: 'Suba el testigo. Diga su nombre y su ocupación.' },
-  { speaker: 'NONO', pose: 'nono_nervioso', text: 'Ñoño, señor Juez... hijo del señor Barriga. Y soy el operador de la consola de la XEVC.' },
+  { speaker: 'NONO', pose: 'nono_nervioso', text: 'Ñoño, señor Juez... hijo del señor Barriga. Y soy el operador de la consola de la XEVC.', addProfile: 'perfil_nono' },
   { speaker: 'JUEZ', pose: 'judge_thinking', text: '¿Y cuál de las dos le anoto como ocupación: operador, o hijo de la víctima?' },
   { speaker: 'NONO', pose: 'nono_llorando', text: 'Las dos me están saliendo muy mal, señor Juez.' },
   { speaker: 'DEFENSA', pose: 'donramon_idle', text: '(Ay, muchacho. Yo tengo una hija de tu edad y esa cara me la sé de memoria.)' },
@@ -46,7 +46,7 @@ export const CASE3_CALL_NONO: DialogueLine[] = [
 /** Day 2 · Testimony 2 — Don Aniceto's first appearance. He cannot let a mispronunciation pass. */
 export const CASE3_CALL_ANICETO: DialogueLine[] = [
   { speaker: 'JUEZ', pose: 'judge_neutral', text: 'Que pase el testigo. Diga su nombre y su ocupación para el acta.' },
-  { speaker: 'ANICETO', pose: 'aniceto_idle', text: 'Aniceto Rebollar, locutor titular de la XEVC. Veinticinco años al aire, señor Juez, sin faltar una noche.' },
+  { speaker: 'ANICETO', pose: 'aniceto_idle', text: 'Aniceto Rebollar, locutor titular de la XEVC. Veinticinco años al aire, señor Juez, sin faltar una noche.', addProfile: 'perfil_aniceto' },
   { speaker: 'SUPER SAM', pose: 'supersam_point', text: '¡The star announcer! ¡El de la voz de oro! ¡Míster Re-BÓ-llar!' },
   { speaker: 'ANICETO', pose: 'aniceto_idle', text: 'Rebollár, señor fiscal. Aguda. Termina en erre, y toda palabra terminada en erre carga la fuerza al final. "Re-BÓ-llar" lo dicen los que leen de corrido sin entender lo que leen.' },
   { speaker: 'SUPER SAM', pose: 'supersam_sweat', text: '...Grrr.' },
@@ -57,10 +57,11 @@ export const CASE3_CALL_ANICETO: DialogueLine[] = [
 /** Day 3 · Testimony 1 — Señor Barriga, wheeled in awake for the first time. */
 export const CASE3_CALL_BARRIGA: DialogueLine[] = [
   { speaker: 'JUEZ', pose: 'judge_neutral', text: 'Que pase la víctima. La corte autoriza que declare sentado.' },
-  { speaker: 'NARRADOR', text: '(Dos enfermeros empujan la silla de ruedas hasta el estrado. La sala entera se queda callada.)' },
+  { speaker: 'NARRADOR', bg: 'assets/bg_witness.webp', furniture: 'podium', pose: 'barriga_vendado', text: '(Dos enfermeros empujan la silla de ruedas hasta el estrado.)' },
+  { speaker: 'NARRADOR', bg: 'assets/bg_gallery_characters.webp', furniture: 'none', text: '(La sala entera se queda callada.)' },
   { speaker: 'BARRIGA', pose: 'barriga_vendado', text: 'Buenas tardes. Perdonen que no me ponga de pie.' },
   { speaker: 'JUEZ', pose: 'judge_neutral', text: 'Nadie se lo pide, señor. Para el acta: su nombre y su ocupación.' },
-  { speaker: 'BARRIGA', pose: 'barriga_vendado', text: 'Barriga. Dueño y director de la radiodifusora XEVC... y casero, señor Juez. Aunque hoy vengo nomás de víctima.' },
+  { speaker: 'BARRIGA', pose: 'barriga_vendado', text: 'Barriga. Dueño y director de la radiodifusora XEVC... y casero, señor Juez. Aunque hoy vengo nomás de víctima.', addProfile: 'perfil_barriga' },
   { speaker: 'DEFENSA', pose: 'donramon_sweat', text: '(De todos los estrados del mundo, me tenía que tocar interrogar al mío.)' },
   { speaker: 'JUEZ', pose: 'judge_gavel', sfx: 'gavel', text: 'La corte agradece su esfuerzo, señor Barriga. Rinda su testimonio.' }
 ];

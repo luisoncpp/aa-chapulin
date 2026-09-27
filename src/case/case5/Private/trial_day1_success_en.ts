@@ -102,7 +102,7 @@ export const CASE5_D1_T3_PLANO_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'NICANOR', text: 'They come in through Miss Genoveva\'s window.', pose: 'nicanor_idle' },
   { speaker: 'JUEZ', text: 'And do they sign?', pose: 'judge_shock' },
   { speaker: 'NICANOR', text: 'Their book, Your Honor. Not mine.', pose: 'nicanor_idle' },
-  { speaker: 'NARRADOR', text: 'Absolute silence in the courtroom.', bgm: 'suspense' },
+  { bg: 'assets/bg_gallery_characters.webp', furniture: 'none', speaker: 'NARRADOR', text: 'Absolute silence in the courtroom.', bgm: 'suspense' },
   { speaker: 'JUEZ', text: '...There are two books?', pose: 'judge_shock' },
   { speaker: 'NICANOR', text: 'Your Honor, in the Archive there are books to log the books.', pose: 'nicanor_escoba' }
 ];
@@ -125,7 +125,7 @@ export const CASE5_D1_T3_EXPEDIENTE_GIRO_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'JUEZ', text: 'Prosecutor: this court has spent the whole hearing hearing that nobody came in through one door.', pose: 'judge_thinking' },
   { speaker: 'JUEZ', text: 'And we have spent the whole hearing without anyone telling me who came in through the other.', sfx: 'gavel', pose: 'judge_gavel' },
   { speaker: 'SUPER SAM', text: '...The prosecution will bring it.', pose: 'supersam_sweat' },
-  { speaker: 'NARRADOR', text: 'At the prosecution table, the man with the gold watch chain takes out a pen and writes a single line in a notebook.', bgm: 'suspense' },
+  { bg: 'assets/bg_courtroom.webp', furniture: 'bench', speaker: 'NARRADOR', text: 'At the prosecution table, the man with the gold watch chain takes out a pen and writes a single line in a notebook.', bgm: 'suspense' },
   { speaker: 'DEFENSA', text: '(That man took a note. He has gone all day without taking notes, and now he takes a note.)', pose: 'chapulin_idle' },
   { speaker: 'DEFENSA', text: '(And I do not even know why I noticed.)', pose: 'chapulin_idle' },
   { speaker: 'JUEZ', text: 'Tomorrow this court wants two things.', pose: 'judge_neutral' },
@@ -145,7 +145,7 @@ export const CASE5_D1_OPENING_BADGE_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'JUEZ', text: 'The defense is credentialed, under the responsibility of the defendant who appointed it.', sfx: 'gavel', pose: 'judge_gavel' },
   { speaker: 'SUPER SAM', text: 'Your Honor, this is a two-ring circus!', pose: 'supersam_sweat' },
   { speaker: 'JUEZ', text: 'It is a one-ring circus, prosecutor, and you have been in it for five months.', pose: 'judge_thinking' },
-  { speaker: 'NARRADOR', text: 'At the prosecution table, to Super Sam\'s right, sits a second man. Three-piece black suit and gold watch chain. He has not moved.', addProfile: 'perfil_supersam' },
+  { bg: 'assets/bg_courtroom.webp', furniture: 'bench', speaker: 'NARRADOR', text: 'At the prosecution table, to Super Sam\'s right, sits a second man. Three-piece black suit and gold watch chain. He has not moved.', pose: 'berrondo_idle' },
   { speaker: 'JUEZ', text: 'And this court does not know the gentleman accompanying the prosecution either.', pose: 'judge_neutral' },
   { speaker: 'BERRONDO', text: 'Fulgencio Berrondo, Your Honor. Attorney, bar number 4,882, admitted since 1955.', pose: 'berrondo_idle' },
   { speaker: 'BERRONDO', text: 'I appear as amicus to the public ministry, without fee, with this court\'s leave.', pose: 'berrondo_idle' },

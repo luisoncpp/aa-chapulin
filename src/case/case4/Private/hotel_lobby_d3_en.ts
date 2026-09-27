@@ -19,7 +19,7 @@ export const CASE4_HOTEL_LOBBY_D3_EN: InvestigationScene = {
     { speaker: 'CHIMOLTRUFIA', text: 'Do not feel bad, young man. He called me "sonny".', pose: 'chimoltrufia_shock' },
     { speaker: 'DEFENSA', text: 'Ma\'am, we need original folios. Not the shift log.', pose: 'donramon_point' },
     { speaker: 'CHIMOLTRUFIA', text: 'Oh, counselor, do you think I am in any state to play secretary with my husband locked up? And like I say one thing I say another: tell me which ones and I will have them out in two minutes.', pose: 'chimoltrufia_idle' },
-    { speaker: 'DEFENSA', text: '(Fourteen years behind that counter. She is the only person in this hotel who knows where everything is.)', pose: 'donramon_idle' }
+    { speaker: 'DEFENSA', text: '(Fourteen years behind that counter. She is the only person in this hotel who knows where everything is.)', pose: 'donramon_idle', updateProfile: 'perfil_chimoltrufia' }
   ],
   hotspots: [
     {
@@ -53,7 +53,7 @@ export const CASE4_HOTEL_LOBBY_D3_EN: InvestigationScene = {
       label: 'The gaming salon',
       dialogue: [
         { speaker: 'CHIMOLTRUFIA', text: 'Rounds signed by the players between 23:10 and 23:25.', pose: 'chimoltrufia_idle', addEvidence: 'boleta_baccarat' },
-        { speaker: 'DEFENSA', text: 'This slip confirms Mr. Rufián was at the baccarat table when the bang sounded.', pose: 'donramon_idle' },
+        { speaker: 'DEFENSA', text: 'This slip confirms Mr. Rufián was at the baccarat table when the bang sounded.', pose: 'donramon_idle', updateProfile: 'perfil_rufino' },
         { speaker: 'CHAPULIN', text: 'Oh no! Then we lost?', pose: 'chapulin_panic' },
         { speaker: 'DEFENSA', text: 'No, Chapulín. We lost an idea we never held.', pose: 'donramon_idle' },
         { speaker: 'CHAPULIN', text: 'Ah, good. Those are the ones that hurt least.', pose: 'chapulin_idle' },
@@ -67,7 +67,7 @@ export const CASE4_HOTEL_LOBBY_D3_EN: InvestigationScene = {
       id: 'telegrama_noche',
       label: 'That night’s telegram',
       dialogue: [
-        { speaker: 'CHIMOLTRUFIA', text: 'Filed copy and receipt signed at 20:50. A Cleopatra Necklace share claim with a threat to go to the police.', pose: 'chimoltrufia_idle', addEvidence: 'nota_amenaza' }
+        { speaker: 'CHIMOLTRUFIA', text: 'Filed copy and receipt signed at 20:50. A Cleopatra Necklace share claim with a threat to go to the police.', pose: 'chimoltrufia_idle', addEvidence: 'nota_amenaza', updateProfile: 'perfil_cuajinais' }
       ]
     },
     {

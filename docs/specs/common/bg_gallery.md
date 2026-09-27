@@ -1,10 +1,10 @@
 # bg_gallery — hoja de hechos
 
-Clase: `bg`. Espec: [[docs/specs/artistic-direction.md]] §3. Fondo panorámico: `assets/bg_gallery.webp`. Variante con abogados: `assets/bg_gallery_characters.webp`. Ambos miden 1376×768 y usan el marco de `bg_defense`, `bg_courtroom`, `bg_judge` y `bg_witness`.
+Clase: `bg`. Espec: [[docs/specs/artistic-direction.md]] §3. Fondo panorámico: `assets/bg_gallery.webp`. Variante con abogados: `assets/bg_gallery_characters.webp`. Variante sin el saco de Super Sam: `assets/bg_gallery_characters_sam_no_bag.webp`. Las tres miden 1376×768 y usan el marco de `bg_defense`, `bg_courtroom`, `bg_judge` y `bg_witness`.
 
 ## Mapa semántico y alcance
 
-Plano de la sala desde el pozo, de frente al juez. Cuando una línea de `NARRADOR` describe la galería del tribunal o la reacción de sus espectadores durante el juicio, debe mostrar `assets/bg_gallery_characters.webp` y declarar `furniture: 'none'`. La variante incluye a Don Ramón y el Chapulín tras la mesa de defensa y a Super Sam tras la mesa de fiscalía. No es la cámara del juez, ni la de la defensa, ni la de la fiscalía.
+Plano de la sala desde el pozo, de frente al juez. Cuando una línea de `NARRADOR` describe la galería del tribunal o la reacción de sus espectadores durante el juicio, debe mostrar `assets/bg_gallery_characters.webp` y declarar `furniture: 'none'`, salvo las cuatro tomas del juicio del Día 1 del Caso 1, que usan `assets/bg_gallery_characters_sam_no_bag.webp`. Ambas variantes incluyen a Don Ramón y el Chapulín tras la mesa de defensa y a Super Sam tras la mesa de fiscalía. No es la cámara del juez, ni la de la defensa, ni la de la fiscalía.
 
 La galería ocupa dos gradas laterales elevadas por encima de los fondos de defensa y fiscalía. Los paneles de esos fondos bajan hasta el suelo detrás de cada mesa y no dejan ver las gradas en los planos cercanos. El estrado del juez queda al fondo, con el escritorio delante de la silla. Defensa y fiscalía tienen mesas independientes frente a frente. En primer plano, el lado abierto del podio de testigos mira a la cámara; el testigo miraría al juez.
 
@@ -35,7 +35,7 @@ Guía de escala: `tools/gallery_guide/out/full_empty_guide.png` para generar (si
 
 ### F4 Contrato en pantalla
 
-- [ ] `PINTAR` — Toda línea de `NARRADOR` que describa visualmente la galería del tribunal o la reacción de sus espectadores durante un juicio estampa `assets/bg_gallery_characters.webp` con `furniture: 'none'`; la variante muestra a la defensa y fiscalía frente a frente y deja la reacción de los espectadores en la misma composición. Se comparte entre ES y EN.
+- [ ] `PINTAR` — Toda línea de `NARRADOR` que describa visualmente la galería del tribunal o la reacción de sus espectadores durante un juicio estampa `assets/bg_gallery_characters.webp` con `furniture: 'none'`, salvo las cuatro tomas del juicio del Día 1 del Caso 1, que estampan `assets/bg_gallery_characters_sam_no_bag.webp`. Ambas variantes muestran a la defensa y fiscalía frente a frente y dejan la reacción de los espectadores en la misma composición. Se comparten entre ES y EN.
 - [ ] `NO CONTRADECIR` — El nombre del archivo no contiene `bg_judge`, `bg_defense`, `bg_courtroom` ni `bg_witness`. Si lo contuviera, el juicio le colgaría una mesa (`docs/live/glossary.md`).
 
 ### F5 Estilo
@@ -153,3 +153,21 @@ Los tres personajes se generaron como recortes RGBA aislados usando sus poses `*
 **Defectos confirmados:** ninguno en los recortes de personajes, cantos y esquinas revisados. La exclusión de abogados de F1 sólo se aplica al fondo canónico sin personajes.
 
 **Comprobación de píxeles:** el WebP sin pérdida mide 1376×768. Comparado con `bg_gallery.webp`, no cambia ningún píxel fuera de las zonas de inserción ni sobre las dos máscaras de mesa restauradas.
+
+## Variante con Super Sam sin saco 2026-09-27
+
+`assets/bg_gallery_characters_sam_no_bag.webp` conserva la sala, los espectadores, Don Ramón y el Chapulín de la variante aprobada. Super Sam permanece de pie tras la mesa de fiscalía, de perfil hacia la defensa y con las manos vacías. Se usa en las cuatro reacciones de galería del Testimonio 2 del Día 1 del Caso 1 (`trial_day1_t2.ts` y su espejo inglés), cuando Sam aparece sin el saco. La variante no sustituye `bg_gallery_characters.webp`; las líneas declaran `furniture: 'none'`.
+
+**Hechos de la variante:** `PINTAR` a Don Ramón y el Chapulín tras la mesa izquierda y a Super Sam sin saco tras la mesa derecha. `AUSENTE` saco de dinero, monedas u otro objeto sostenido por Super Sam. `NO CONTRADECIR` el fondo `bg_gallery.webp`, los ocho espectadores sentados, el juez, el podio, las dos mesas y sus bordes. F2, F3, F5 y F6 siguen el contrato compartido de la lámina original: sin texto añadido, fecha ni número de caso, mismo cel-shading y una sola imagen para ES y EN.
+
+`tools/compose_gallery_sam_no_bag.py` reutiliza la posición de las figuras y la máscara de mesas de `tools/compose_gallery_characters.py`. La nueva fuente RGBA y su prompt están en `tools/masters/bg_gallery_characters_supersam_standing_no_bag.*`. El WebP final es sin pérdida y mide 1376×768.
+
+## Hallazgos de auditoría 2026-09-27 — `bg_gallery_characters_sam_no_bag.webp`
+
+**Veredicto:** cumple en contenido, pose, exclusión del saco, estilo y preservación de la sala para esta variante.
+
+**Cumple:** F1: el recorte izquierdo muestra a Don Ramón delante del Chapulín, ambos hacia la derecha y ocultos por la mesa; coincide píxel por píxel con la variante aprobada. El recorte derecho muestra a Super Sam de perfil hacia la izquierda, con las manos vacías; la mesa tapa su parte inferior y el canto no tiene franja ni picos. La zona donde estaba el saco coincide con el fondo limpio. Los espectadores, juez, podio, paredes y suelo también coinciden con el fondo limpio fuera de las columnas de inserción. F2–F3: no se añadió texto, fecha ni cifra de caso. F4: el nombre evita los prefijos que activarían mobiliario dinámico y exige `furniture: 'none'` cuando un guion lo use. F5–F6: conserva el cel-shading y no requiere imagen por idioma.
+
+**Defectos confirmados:** ninguno en los recortes de personajes, exclusión del saco y bordes de las mesas revisados.
+
+**Comprobación de píxeles:** 0 píxeles cambiados fuera de las columnas de las dos mesas respecto de `bg_gallery.webp`; 0 píxeles distintos en la mitad izquierda respecto de `bg_gallery_characters.webp`; 0 píxeles distintos en el panel visible de la mesa derecha bajo la máscara. El recorte de la antigua zona del saco coincide con `bg_gallery.webp`.

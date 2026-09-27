@@ -23,7 +23,7 @@ const T3_SUCCESS: DialogueLine[] = [
   { cutin: 'objection_protesto', speaker: 'DEFENSA', text: '¡PROTESTO!', sfx: 'whoosh', bgm: 'objection', pose: 'donramon_point' },
   { speaker: 'DEFENSA', text: '¡Señor Peterete, su coartada es más falsa que un billete de tres dólares de Super Sam!', pose: 'donramon_point' },
   { speaker: 'SUPER SAM', text: 'Hey! ¡Mis dólares son 100% auténticos!', pose: 'supersam_sweat' },
-  { speaker: 'DEFENSA', text: '¡Esta Multa de Tránsito y el Registro Postal demuestran que a las 9:30 PM el carrito estaba abandonado y no había cartero para recibirle nada!', sfx: 'desk_slam', pose: 'donramon_slam' },
+  { speaker: 'DEFENSA', text: '¡Esta Multa de Tránsito y el Registro Postal demuestran que a las 9:30 PM el carrito estaba abandonado y no había cartero para recibirle nada!', sfx: 'desk_slam', pose: 'donramon_slam', updateProfile: 'perfil_peterete' },
   { speaker: 'DEFENSA', text: '¡Usted mismo estampó un sello falso en el registro para fabricarse una coartada!', pose: 'donramon_point' },
   { speaker: 'PETERETE', text: '¡G-grrrk! ¡Maldito cartero holgazán!', pose: 'peterete_sweat' },
   { speaker: 'SUPER SAM', text: 'Your Honor... la fiscalía retira la coartada postal. Pero el acusado sigue siendo el único que estuvo dentro de la bóveda.', pose: 'supersam_sweat' },

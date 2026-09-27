@@ -10,12 +10,14 @@ import type {
 import { invalidateStagingCommit } from './StageCommit.js';
 import { warmUrls } from './ImageDecode.js';
 import { getActiveTrial } from './TrialDayRouter.js';
+import { getTrialGalleryBackground } from './TrialOpening.js';
 
 const COURTROOM_URLS = [
   'assets/bg_defense.webp',
   'assets/bg_courtroom.webp',
   'assets/bg_judge.webp',
   'assets/bg_gallery.webp',
+  'assets/bg_gallery_characters.webp',
   'assets/bg_witness.webp',
   'assets/court_podium.webp',
   'assets/court_bench.webp',
@@ -55,6 +57,7 @@ function addIntro(intro: InvestigationScene['intro'] | undefined, urls: Set<stri
 
 export function warmTrialVisuals(script: CaseScript, trialDay: TrialDay): void {
   const urls = new Set<string>(COURTROOM_URLS);
+  urls.add(getTrialGalleryBackground(script.id, trialDay));
   addTrialVisuals(script, trialDay, urls);
   warmUrls([...urls]);
 }

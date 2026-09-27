@@ -7,7 +7,7 @@ import { CASE0_WITNESS_CALL_T1_EN, CASE0_WITNESS_RECALL_T2_EN } from './witness_
 export const CASE0_TRIAL_INTRO_EN: DialogueLine[] = [
   ...CASE0_LOBBY_INTRO_EN,
   { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_gavel', text: 'Order in the court! The hearing over the assault of rent collector Nazario Cuenca is now open.', sfx: 'gavel', bgm: 'trial' },
-  { speaker: 'SUPER SAM', pose: 'supersam_idle', text: 'Your Honor, I solved this case in eleven minutes. ELEVEN! A boy behind on rent, a collector on the floor, and a collection file gone. Time is money.' },
+  { speaker: 'SUPER SAM', pose: 'supersam_idle', text: 'Your Honor, I solved this case in eleven minutes. ELEVEN! A boy behind on rent, a collector on the floor, and a collection file gone. Time is money.', addProfile: 'perfil_supersam' },
   { speaker: 'JUEZ', pose: 'judge_neutral', text: 'Is the defense ready? ...Is the defense present?' },
   { speaker: 'DEFENSA', pose: 'donramon_idle', text: 'Here, here! Sorry, Your Honor. The courtroom door weighs more than my client.' },
   { speaker: 'CHAPULÍN', pose: 'chapulin_idle', text: 'You did not count on my legal assistance!' },
@@ -65,9 +65,9 @@ export const CASE0_TESTIMONY_1_EN: Testimony = {
           { speaker: 'TORIBIO', pose: 'toribio_nervioso', text: 'The block would not fit, counselor. They had to split it. No ice, no paletas; no paletas, no rent.' },
           { speaker: 'CASIMIRO', pose: 'casimiro_sweat', text: 'Two blocks can be crossed at a run. Volume three, “athletics.”' },
           { speaker: 'DEFENSA', pose: 'donramon_point', text: 'Running both ways with a six-kilo block, unseen by the ice seller.' },
-          { speaker: 'DEFENSA', pose: 'donramon_point', text: 'Furthermore, the medical report indicates the blow came from behind and above.', updateEvidence: 'informe_lesiones' },
+          { speaker: 'DEFENSA', pose: 'donramon_point', text: 'Furthermore, the medical report indicates the blow came from behind and above.', updateEvidence: 'informe_lesiones', updateProfile: 'perfil_nazario' },
           { speaker: 'CHAPULÍN', pose: 'chapulin_point', text: 'From behind! Like my landlord’s collectors!' },
-          { speaker: 'JUEZ', pose: 'judge_shock', text: 'The impact window remains open, but at one o’clock sharp the defendant was in line at the ice shop.' },
+          { speaker: 'JUEZ', pose: 'judge_shock', text: 'The impact window remains open, but at one o’clock sharp the defendant was in line at the ice shop.', updateProfile: 'perfil_toribio' },
           { speaker: 'SUPER SAM', pose: 'supersam_slam', sfx: 'desk_slam', text: 'Then the witness got the clock wrong! Move the time and the case survives!' },
           { speaker: 'JUEZ', pose: 'judge_neutral', text: 'Witness, explain how you know it was exactly one.' },
           { speaker: 'CHAPULÍN', pose: 'chapulin_point', text: 'There it is, Don Ramón. We have just been given the second testimony.' },
@@ -140,7 +140,7 @@ export const CASE0_TESTIMONY_3_EN: Testimony = {
       ], followUp: {
         evidence: ['tarjeta_enciclopedias'], prompt: 'What does the witness\'s occupation say about his presence in the neighborhood?', successDialogue: [
           { speaker: 'DEFENSA', pose: 'donramon_slam', cutin: 'objection_toma_eso', sfx: 'desk_slam', text: 'This man does not sell encyclopedias!', bgm: 'pursuit' },
-          { speaker: 'DEFENSA', pose: 'donramon_point', text: 'The company dissolved in 1971. No route sheet, no orders, and three volumes with broken spines.' },
+          { speaker: 'DEFENSA', pose: 'donramon_point', text: 'The company dissolved in 1971. No route sheet, no orders, and three volumes with broken spines.', updateProfile: 'perfil_casimiro' },
           { speaker: 'CASIMIRO', pose: 'casimiro_panic', text: 'A professional prepares! A professional studies the product!' },
           { speaker: 'DEFENSA', pose: 'donramon_point', text: 'You do not knock on doors to sell. You knock to learn which ones open.' },
           { speaker: 'DEFENSA', pose: 'donramon_slam', sfx: 'desk_slam', text: 'And that is why he never threw the file away, Your Honor. The money went into his pocket; the papers he kept. That list says who paid, who owes, and which house keeps cash. It is the only catalogue this man knows how to read.' },
@@ -180,7 +180,7 @@ export const CASE0_OPENING_PRESENT_EN: OpeningPresent = {
     { speaker: 'DEFENSA', pose: 'donramon_slam', cutin: 'objection_protesto', sfx: 'desk_slam', text: 'OBJECTION! Pardon me, said Monchito!' },
     { speaker: 'DEFENSA', pose: 'donramon_point', text: 'My client was there because he lives there, prosecutor. With that logic, you would accuse the shelf.' },
     { speaker: 'JUEZ', pose: 'judge_thinking', text: 'This court also wants to know why the victim is not testifying.' },
-    { speaker: 'SUPER SAM', pose: 'supersam_point', text: 'Amnesia, Your Honor. From the blow. Very inconvenient for my budget.' },
+    { speaker: 'SUPER SAM', pose: 'supersam_point', text: 'Amnesia, Your Honor. From the blow. Very inconvenient for my budget.', addProfile: 'perfil_nazario' },
     { speaker: 'JUEZ', pose: 'judge_neutral', text: 'Then this trial rests on a single witness. Pressing costs no credibility, but presenting evidence does. Use them accordingly.' },
     { speaker: 'CHAPULÍN', pose: 'chapulin_point', text: 'One more thing, Don Ramón: some pieces of evidence hide details. Select them in the COURT RECORD and click EXAMINE DETAIL to view them up close.' },
     { speaker: 'EXAMINE MODE', text: 'If a piece of evidence offers EXAMINE DETAIL, inspect it before presenting: the enlarged view will help you find the correct detail.', instant: true },

@@ -16,7 +16,7 @@ export const CASE3_DELEGACION_D3_EN: InvestigationScene = {
     { speaker: 'NARRADOR', text: 'September 18, 4:00 PM. The sergeant hasn\'t changed uniforms since last night. And doesn\'t plan to.' },
     { speaker: 'SARGENTO', text: '¡Mi Licenciado! All night in the station trash bins! Eight hours! With these little hands!', pose: 'pazguato_decidido' },
     { speaker: 'CHAPULIN', text: 'And with my vinyl antennae! They vibrated nasty over the alley bin!', pose: 'chapulin_point' },
-    { speaker: 'SARGENTO', text: 'There it was, mi Licenciado. Under the peels. Cartridge three.', pose: 'pazguato_decidido', addEvidence: 'cartucho_corte' },
+    { speaker: 'SARGENTO', text: 'There it was, mi Licenciado. Under the peels. Cartridge three.', pose: 'pazguato_decidido', addEvidence: 'cartucho_corte', updateProfile: 'perfil_sargento' },
     { speaker: 'NARRADOR', text: '(They put the cartridge in the machine. The room goes silent.)', sfx: 'realization' },
     { speaker: 'BARRIGA', text: '¡Doctor Chapatín, no! ¡Auxilio! ...' },
     { speaker: 'DEFENSA', text: 'Again. Turn up what\'s BEHIND the voice.', pose: 'donramon_shock' },

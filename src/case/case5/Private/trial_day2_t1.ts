@@ -45,7 +45,7 @@ export const CASE5_TESTIMONY_4: Testimony = {
         { speaker: 'JUEZ', text: '¿Con banda de banco?', pose: 'judge_thinking' },
         { speaker: 'BARRIGA', text: 'Con banda. Yo la guardé porque tenía un número. Se la di al Sargento.', pose: 'barriga_idle' },
         { speaker: 'SARGENTO', text: 'Y yo la rastreé, señor juez. Retiro de ventanilla del veintiséis de noviembre. Cuenta a nombre de una sindicatura.', pose: 'pazguato_decidido' },
-        { speaker: 'NARRADOR', text: 'Murmullo.', sfx: 'realization' },
+        { bg: 'assets/bg_gallery_characters.webp', furniture: 'none', speaker: 'NARRADOR', text: 'Murmullo.', sfx: 'realization' },
         { speaker: 'BERRONDO', text: 'Señor juez, con la venia: ese retiro es mío y está declarado.', pose: 'berrondo_idle', bg: 'assets/bg_courtroom.webp' },
         { speaker: 'BERRONDO', text: 'Retiré cinco mil pesos el veintiséis para pagar honorarios de un notario en efectivo, cosa fea pero corriente.', pose: 'berrondo_idle', bg: 'assets/bg_courtroom.webp' },
         { speaker: 'BERRONDO', text: 'El notario extendió factura y la tengo aquí. ¿La agrego?', pose: 'berrondo_idle', bg: 'assets/bg_courtroom.webp' },

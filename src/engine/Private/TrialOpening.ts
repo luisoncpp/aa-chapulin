@@ -5,11 +5,60 @@
 
 import { i18n } from '../../i18n/index.js';
 import type { GameStateManager } from '../../state/index.js';
-import type { CaseScript, TrialDay } from '../../types/index.js';
+import type { CaseId, CaseScript, DialogueLine, TrialDay } from '../../types/index.js';
 import type { DomElements } from './DomElements.js';
 import { getActiveTrial } from './TrialDayRouter.js';
+import { fadeToGalleryShot } from './SceneFade.js';
 import { presentDialogueVisuals } from './StageCommit.js';
 import { setStagingCaseId } from './TrialCaseStaging.js';
+
+const WAITING_ROOM_BG = 'assets/bg_waiting_room.webp';
+const GALLERY_BG = 'assets/bg_gallery_characters.webp';
+const CASE1_DAY1_GALLERY_BG = 'assets/bg_gallery_characters_sam_no_bag.webp';
+const GALLERY_HOLD_MS = 1000;
+
+export function getTrialGalleryBackground(caseId: CaseId, trialDay: TrialDay): string {
+  return caseId === 'case1' && trialDay === 1 ? CASE1_DAY1_GALLERY_BG : GALLERY_BG;
+}
+
+export interface TrialIntroParts {
+  waitingRoom: DialogueLine[];
+  courtroom: DialogueLine[];
+}
+
+export function splitTrialIntroAtGallery(
+  script: CaseScript,
+  trialDay: TrialDay
+): TrialIntroParts | null {
+  const intro = getActiveTrial(script, trialDay).intro;
+  const lobbyEnd = intro.findIndex((line) => line.bg !== WAITING_ROOM_BG);
+  if (lobbyEnd <= 0) return null;
+  return { waitingRoom: intro.slice(0, lobbyEnd), courtroom: intro.slice(lobbyEnd) };
+}
+
+export function fadeAcrossGallery(
+  dom: DomElements,
+  onComplete: () => void,
+  trial: { caseId: CaseId; trialDay: TrialDay }
+): void {
+  const bg = getTrialGalleryBackground(trial.caseId, trial.trialDay);
+  const shot: DialogueLine = { text: '', bg, furniture: 'none' };
+  fadeToGalleryShot(dom.flashEl, {
+    onCovered: () => {
+      dom.dialogueBoxEl.classList.add('hidden');
+      dom.dialogueArrowEl.classList.add('hidden');
+      dom.speakerBoxEl.textContent = '';
+      dom.dialogueTextEl.textContent = '';
+      return presentDialogueVisuals(dom, shot, /*isTrialMode=*/ true);
+    },
+    onRevealed: () => {
+      setTimeout(/*continueAfterGalleryShot*/ () => {
+        dom.dialogueBoxEl.classList.remove('hidden');
+        onComplete();
+      }, /*delayInMs=*/ GALLERY_HOLD_MS);
+    }
+  });
+}
 
 interface CourtroomPaintDeps {
   dom: DomElements;
@@ -32,12 +81,12 @@ function paintOpeningShot(dom: DomElements, script: CaseScript, trialDay: TrialD
   if (!first) return;
   const ready = presentDialogueVisuals(dom, first, /*isTrialMode=*/ true);
   if (!ready) {
-    dom.speakerBoxEl.textContent = first.speaker || '';
+    dom.speakerBoxEl.textContent = '';
     dom.dialogueTextEl.textContent = '';
     return;
   }
   return ready.then(() => {
-    dom.speakerBoxEl.textContent = first.speaker || '';
+    dom.speakerBoxEl.textContent = '';
     dom.dialogueTextEl.textContent = '';
   });
 }

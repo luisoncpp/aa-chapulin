@@ -7,7 +7,7 @@ import type { DialogueLine, Testimony } from '../../../types/index.js';
 
 const T4_SUCCESS: DialogueLine[] = [
   { cutin: 'objection_toma_eso', speaker: 'DEFENSA', text: '¡TOMA ESO!', sfx: 'whoosh', bgm: 'pursuit', pose: 'donramon_point' },
-  { speaker: 'DEFENSA', text: '¡No hay ventanas, pero el Plano Arquitectónico del Profesor revela un antiguo MONTAPLATOS DE LAVANDERÍA que sí es una salida al exterior!', sfx: 'desk_slam', pose: 'donramon_point' },
+  { speaker: 'DEFENSA', text: '¡No hay ventanas, pero el Plano Arquitectónico del Profesor revela un antiguo MONTAPLATOS DE LAVANDERÍA que sí es una salida al exterior!', sfx: 'desk_slam', pose: 'donramon_point', updateProfile: 'perfil_peterete' },
   { speaker: 'DEFENSA', text: 'El montaplatos comunica la bóveda directamente con el callejón trasero donde reposaba el carrito postal.', pose: 'donramon_slam', sfx: 'desk_slam' },
   { speaker: 'JIRAFALES', text: '¡¡¡TA-TA-TA-TA-TAAAAAA!!! ¡Exactamente como lo diseñó el Marqués en 1892!', pose: 'jirafales_angry' },
   { speaker: 'PETERETE', text: '¡P-pero la policía revisó al sospechoso y no había ningún Chanfle de Oro a la vista! ¡¿Dónde está la prueba material?!', pose: 'peterete_panic' }

@@ -23,7 +23,7 @@ const GOLD_REVEAL: DialogueLine[] = [
 
 const CHOMPIRAS_ASLEEP: DialogueLine[] = [
   { cutin: 'objection_toma_eso', speaker: 'DEFENSA', text: '¡TOMA ESO! ¡El Chómpiras no pudo haber guardado el oro porque estaba profundamente dormido!', sfx: 'whoosh', pose: 'donramon_point' },
-  { speaker: 'DEFENSA', text: "Alguien bombeó esta 'Esencia de Valeriana' por el ducto. ¡Un sedante tan potente que lo dejó inconsciente por 30 minutos!", pose: 'donramon_slam', sfx: 'desk_slam' },
+  { speaker: 'DEFENSA', text: "Alguien bombeó esta 'Esencia de Valeriana' por el ducto. ¡Un sedante tan potente que lo dejó inconsciente por 30 minutos!", pose: 'donramon_slam', sfx: 'desk_slam', updateProfile: 'perfil_chompiras' },
   { speaker: 'PETERETE', text: '¡P-pero la caja fuerte se abrió con llave! ¡Yo devolví la llave maestra a custodia a las 8:30 PM! ¡Nadie más tenía cómo abrirla!', pose: 'peterete_panic' }
 ];
 

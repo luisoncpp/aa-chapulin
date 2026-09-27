@@ -7,7 +7,7 @@ import type { DialogueLine, Testimony } from '../../../types/index.js';
 
 const T4_SUCCESS: DialogueLine[] = [
   { cutin: 'objection_toma_eso', speaker: 'DEFENSA', text: 'TAKE THAT!', sfx: 'whoosh', bgm: 'pursuit', pose: 'donramon_point' },
-  { speaker: 'DEFENSA', text: 'There are no windows, but the Professor\'s Blueprint reveals an old LAUNDRY DUMBWAITER that IS an exit to the outside!', sfx: 'desk_slam', pose: 'donramon_point' },
+  { speaker: 'DEFENSA', text: 'There are no windows, but the Professor\'s Blueprint reveals an old LAUNDRY DUMBWAITER that IS an exit to the outside!', sfx: 'desk_slam', pose: 'donramon_point', updateProfile: 'perfil_peterete' },
   { speaker: 'DEFENSA', text: 'The dumbwaiter connects the vault directly to the rear alley where the mail cart sat.', pose: 'donramon_slam', sfx: 'desk_slam' },
   { speaker: 'JIRAFALES', text: 'TA-TA-TA-TA-TAAAAAA!!! Exactly as the Marquis designed it in 1892!', pose: 'jirafales_angry' },
   { speaker: 'PETERETE', text: 'B-but the police searched the suspect and there was no Golden Chanfle in sight! Where is the physical proof?!', pose: 'peterete_panic' }

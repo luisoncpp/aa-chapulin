@@ -6,6 +6,7 @@
 import { i18n } from '../../i18n/index.js';
 import { SaveManager, type SaveData } from '../../state/index.js';
 import type { Language } from '../../types/index.js';
+import { ensureCasePair } from '../../case/loadCaseScript.js';
 import type { DialogueFlow } from './DialogueFlow.js';
 import { hideCaseComplete } from './CaseComplete.js';
 import { dismissSplash, loadCase, type LaunchHost } from './EngineLaunch.js';
@@ -37,6 +38,10 @@ function commitSave(host: PersistenceHost, slotIndex: number, storage?: Storage)
 }
 
 export function openSavePicker(host: PersistenceHost, mode: SlotPickerMode): void {
+  presentPicker(host, mode);
+}
+
+function presentPicker(host: PersistenceHost, mode: SlotPickerMode): void {
   const storage = host.storage;
   openSaveSlotModal({
     dom: host.dom,
@@ -48,8 +53,25 @@ export function openSavePicker(host: PersistenceHost, mode: SlotPickerMode): voi
 }
 
 function pickSlot(host: PersistenceHost, mode: SlotPickerMode, index: number): void {
-  const ok = mode === 'save' ? commitSave(host, index) : loadFromSlot(host, index);
-  if (ok) closeSaveSlotModal(host.dom);
+  if (mode === 'save') {
+    if (commitSave(host, index)) closeSaveSlotModal(host.dom);
+    return;
+  }
+  if (host.resolveScript) {
+    if (loadFromSlot(host, index)) closeSaveSlotModal(host.dom);
+    return;
+  }
+  void pickLoadWhenReady(host, index);
+}
+
+async function pickLoadWhenReady(host: PersistenceHost, index: number): Promise<void> {
+  const data = SaveManager.loadSlot(index, host.storage);
+  if (!data) {
+    finishLoad(host, null);
+    return;
+  }
+  await ensureCasePair(data.caseId ?? 'case1');
+  if (finishLoad(host, data)) closeSaveSlotModal(host.dom);
 }
 
 function deleteAndRefresh(host: PersistenceHost, mode: SlotPickerMode, index: number): void {

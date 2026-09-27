@@ -91,6 +91,11 @@ body {
     z-index: 70;
 }
 
+/* The title splash is z-index 60. Continue opens this list on top of it. */
+#save-slot-modal {
+    z-index: 80;
+}
+
 .music-player-window {
     width: 820px;
     height: 420px;
@@ -640,14 +645,19 @@ body {
     pointer-events: none;
 }
 
-#dialogue-box {
-    position: relative;
-    width: 100%;
-    height: 120px;
+/* Shared frame: the Court Record notice card wears the dialogue box's plate. */
+#dialogue-box,
+#record-notice {
     background: rgba(10, 20, 45, 0.92);
-    border: 3px solid #e0a800;
     border-radius: 8px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.9), inset 0 0 10px rgba(0, 100, 255, 0.3);
+}
+
+#dialogue-box {
+    position: relative;
+    border: 3px solid #e0a800;
+    width: 100%;
+    height: 120px;
     padding: 18px 24px;
     cursor: pointer;
     pointer-events: auto;
@@ -670,6 +680,10 @@ body {
     color: #ffffff;
     text-shadow: 1px 1px 2px #000;
     letter-spacing: 1px;
+}
+
+#speaker-tag:has(#speaker-name:empty) {
+    display: none;
 }
 
 #dialogue-text {
@@ -727,6 +741,55 @@ body {
 @keyframes blinkArrow {
     0% { transform: translateY(0); opacity: 0.3; }
     100% { transform: translateY(4px); opacity: 1; }
+}
+
+/* --- COURT RECORD NOTICE (replaces the dialogue box until advanced) --- */
+#record-notice {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 520px;
+    max-width: calc(100% - 40px);
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding: 22px 28px 30px;
+    border: 3px solid #e0a800;
+    cursor: pointer;
+    animation: recordNoticeIn 0.18s ease-out;
+}
+
+#record-notice-icon {
+    width: 110px;
+    height: 110px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.45));
+}
+
+#record-notice-text {
+    font-size: 24px;
+    line-height: 1.3;
+    color: #f1f2f6;
+    text-align: center;
+    text-shadow: 1px 1px 2px #000;
+    word-break: break-word;
+}
+
+#record-notice-arrow {
+    position: absolute;
+    bottom: 8px;
+    right: 15px;
+    font-size: 20px;
+    color: #ffd700;
+    animation: blinkArrow 0.8s infinite alternate;
+}
+
+@keyframes recordNoticeIn {
+    from { opacity: 0; transform: translate(-50%, -50%) scale(0.92); }
+    to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
 }
 
 /* --- BOTTOM CONTROLS (Investigation & Trial) --- */
@@ -971,17 +1034,6 @@ body {
     overflow-y: auto;
     padding-top: 2px;
     padding-right: 4px;
-    scrollbar-width: thin;
-}
-
-#evidence-grid::-webkit-scrollbar {
-    width: 8px;
-    height: 0;
-}
-
-#evidence-grid::-webkit-scrollbar-thumb {
-    background: #556;
-    border-radius: 4px;
 }
 
 .evidence-card {
@@ -1099,16 +1151,6 @@ body {
     overflow-y: auto;
     text-align: center;
     white-space: pre-line;
-    scrollbar-width: thin;
-}
-
-#evidence-description::-webkit-scrollbar {
-    width: 8px;
-}
-
-#evidence-description::-webkit-scrollbar-thumb {
-    background: #556;
-    border-radius: 4px;
 }
 
 #btn-modal-present {
@@ -1209,17 +1251,37 @@ body {
     text-align: left;
 }
 
-#history-list::-webkit-scrollbar {
+#history-list::-webkit-scrollbar,
+.save-slot-list::-webkit-scrollbar,
+#evidence-grid::-webkit-scrollbar,
+#evidence-description::-webkit-scrollbar {
     width: 8px;
 }
 
-#history-list::-webkit-scrollbar-track {
+#history-list::-webkit-scrollbar-track,
+.save-slot-list::-webkit-scrollbar-track,
+#evidence-grid::-webkit-scrollbar-track,
+#evidence-description::-webkit-scrollbar-track {
     background: #223;
 }
 
-#history-list::-webkit-scrollbar-thumb {
+#history-list::-webkit-scrollbar-thumb,
+.save-slot-list::-webkit-scrollbar-thumb,
+#evidence-grid::-webkit-scrollbar-thumb,
+#evidence-description::-webkit-scrollbar-thumb {
     background: #556;
     border-radius: 4px;
+}
+
+#history-list::-webkit-scrollbar-button,
+.save-slot-list::-webkit-scrollbar-button,
+#evidence-grid::-webkit-scrollbar-button,
+#evidence-description::-webkit-scrollbar-button {
+    display: none;
+}
+
+#evidence-grid::-webkit-scrollbar {
+    height: 0;
 }
 
 .save-slot-window {

@@ -1,7 +1,7 @@
 // @Architecture(descriptionShort="Unit tests for splash dismissal and case launch helpers", type="test", icon="bolt")
 import { describe, expect, it, beforeEach, vi } from 'vitest';
 import { MidiMusicComposer, SoundEngine } from '../../src/audio/index.js';
-import { CASE_SCRIPT } from '../../src/case/index.js';
+import { CASE_SCRIPT, getCaseScript } from '../../src/case/index.js';
 import type { DomElements } from '../../src/engine/Private/DomElements.js';
 import {
   dismissSplash,
@@ -37,7 +37,8 @@ describe('EngineLaunch', () => {
       hasStarted: false,
       getScript: () => script,
       setScript: (next) => { script = next; },
-      markStarted: () => { host.hasStarted = true; }
+      markStarted: () => { host.hasStarted = true; },
+      resolveScript: getCaseScript
     };
   });
 

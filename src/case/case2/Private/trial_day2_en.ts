@@ -23,7 +23,7 @@ const T3_SUCCESS: DialogueLine[] = [
   { cutin: 'objection_protesto', speaker: 'DEFENSA', text: 'OBJECTION!', sfx: 'whoosh', bgm: 'objection', pose: 'donramon_point' },
   { speaker: 'DEFENSA', text: 'Mr. Peterete, your alibi is faker than a three-dollar bill from Super Sam!', pose: 'donramon_point' },
   { speaker: 'SUPER SAM', text: 'Hey! My dollars are 100% authentic!', pose: 'supersam_sweat' },
-  { speaker: 'DEFENSA', text: 'This Traffic Citation and Postal Ledger prove that at 9:30 PM the cart was abandoned and no mailman was there to receive anything!', sfx: 'desk_slam', pose: 'donramon_slam' },
+  { speaker: 'DEFENSA', text: 'This Traffic Citation and Postal Ledger prove that at 9:30 PM the cart was abandoned and no mailman was there to receive anything!', sfx: 'desk_slam', pose: 'donramon_slam', updateProfile: 'perfil_peterete' },
   { speaker: 'DEFENSA', text: 'You yourself stamped a fake seal in the ledger to manufacture an alibi!', pose: 'donramon_point' },
   { speaker: 'PETERETE', text: 'G-grrrk! Damn that lazy mailman!', pose: 'peterete_sweat' },
   { speaker: 'SUPER SAM', text: 'Your Honor... the prosecution withdraws the postal alibi. But the defendant is still the only man who was inside that vault.', pose: 'supersam_sweat' },

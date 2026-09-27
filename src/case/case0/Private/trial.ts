@@ -7,7 +7,7 @@ import { CASE0_WITNESS_CALL_T1, CASE0_WITNESS_RECALL_T2 } from './witness_calls.
 export const CASE0_TRIAL_INTRO: DialogueLine[] = [
   ...CASE0_LOBBY_INTRO,
   { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_gavel', text: '¡Silencio en la sala! Se abre la audiencia por el asalto al cobrador Nazario Cuenca.', sfx: 'gavel', bgm: 'trial' },
-  { speaker: 'SUPER SAM', pose: 'supersam_idle', text: 'Your Honor, este caso lo resolví en once minutos. ELEVEN! Un muchacho que debía dos meses de renta, un cobrador en el suelo y un cartapacio de cobranza que voló. Time is money.' },
+  { speaker: 'SUPER SAM', pose: 'supersam_idle', text: 'Your Honor, este caso lo resolví en once minutos. ELEVEN! Un muchacho que debía dos meses de renta, un cobrador en el suelo y un cartapacio de cobranza que voló. Time is money.', addProfile: 'perfil_supersam' },
   { speaker: 'JUEZ', pose: 'judge_neutral', text: '¿La defensa está lista? ...¿La defensa está presente?' },
   { speaker: 'DEFENSA', pose: 'donramon_idle', text: '¡Aquí, aquí! Perdón, señor juez, es que la puerta de la sala pesa más que mi cliente.' },
   { speaker: 'CHAPULÍN', pose: 'chapulin_idle', text: '¡No contaban con mi asesoría legal!' },
@@ -67,9 +67,9 @@ export const CASE0_TESTIMONY_1: Testimony = {
           { speaker: 'TORIBIO', pose: 'toribio_nervioso', text: 'El bloque no cabía, licenciado. Lo tuvieron que partir. Sin hielo no hay paleta, y sin paleta no hay renta.' },
           { speaker: 'CASIMIRO', pose: 'casimiro_sweat', text: 'Dos cuadras se recorren corriendo, licenciado. Tomo tercero, “atletismo”.' },
           { speaker: 'DEFENSA', pose: 'donramon_point', text: 'Corriendo, con un bloque de seis kilos y sin que el hielero lo viera salir. Usted vende enciclopedias, no milagros.' },
-          { speaker: 'DEFENSA', pose: 'donramon_point', text: 'Además, el informe médico ampliado indica que el golpe vino desde atrás y desde arriba.', updateEvidence: 'informe_lesiones' },
+          { speaker: 'DEFENSA', pose: 'donramon_point', text: 'Además, el informe médico ampliado indica que el golpe vino desde atrás y desde arriba.', updateEvidence: 'informe_lesiones', updateProfile: 'perfil_nazario' },
           { speaker: 'CHAPULÍN', pose: 'chapulin_point', text: '¡De atrás! ¡Como los cobradores de mi casero!' },
-          { speaker: 'JUEZ', pose: 'judge_shock', text: 'La ventana del golpe sigue abierta, pero a la una en punto el acusado estaba haciendo fila en la hielería.' },
+          { speaker: 'JUEZ', pose: 'judge_shock', text: 'La ventana del golpe sigue abierta, pero a la una en punto el acusado estaba haciendo fila en la hielería.', updateProfile: 'perfil_toribio' },
           { speaker: 'SUPER SAM', pose: 'supersam_slam', sfx: 'desk_slam', text: '¡Entonces el testigo se equivocó de reloj! ¡Ajuste la hora y el caso sigue igual!' },
           { speaker: 'JUEZ', pose: 'judge_neutral', text: 'Testigo, va a explicar cómo sabe que era la una en punto.' },
           { speaker: 'CHAPULÍN', pose: 'chapulin_point', text: 'Ahí está el detalle, Don Ramón. Nos acaban de regalar el segundo testimonio.' },
@@ -142,7 +142,7 @@ export const CASE0_TESTIMONY_3: Testimony = {
       ], followUp: {
         evidence: ['tarjeta_enciclopedias'], prompt: '¿Qué dice el oficio del testigo sobre su presencia en la vecindad?', successDialogue: [
           { speaker: 'DEFENSA', pose: 'donramon_slam', cutin: 'objection_toma_eso', sfx: 'desk_slam', text: '¡Este señor no vende enciclopedias!', bgm: 'pursuit' },
-          { speaker: 'DEFENSA', pose: 'donramon_point', text: 'La sociedad está disuelta desde 1971. No hay hoja de ruta, ni un solo pedido, y los tomos tienen el lomo roto.' },
+          { speaker: 'DEFENSA', pose: 'donramon_point', text: 'La sociedad está disuelta desde 1971. No hay hoja de ruta, ni un solo pedido, y los tomos tienen el lomo roto.', updateProfile: 'perfil_casimiro' },
           { speaker: 'CASIMIRO', pose: 'casimiro_panic', text: '¡Uno se prepara! ¡Uno estudia el producto!' },
           { speaker: 'DEFENSA', pose: 'donramon_point', text: 'Usted no toca puertas para vender. Las toca para saber cuáles se abren solas.' },
           { speaker: 'DEFENSA', pose: 'donramon_slam', sfx: 'desk_slam', text: 'Y por eso no tiró el cartapacio, señor juez. El dinero se lo echó a la bolsa; los papeles se los quedó. Esa lista dice quién pagó, quién debe y en qué casa hay efectivo. Ése es el único catálogo que este señor sabe leer.' },
@@ -182,7 +182,7 @@ export const CASE0_OPENING_PRESENT: OpeningPresent = {
     { speaker: 'DEFENSA', pose: 'donramon_slam', cutin: 'objection_protesto', sfx: 'desk_slam', text: '¡PROTESTO! ¡Con permisito, dijo Monchito!' },
     { speaker: 'DEFENSA', pose: 'donramon_point', text: 'Mi cliente estaba ahí porque ahí vive, señor fiscal. Con ese razonamiento usted acusaría a la repisa.' },
     { speaker: 'JUEZ', pose: 'judge_thinking', text: 'La corte también quiere saber por qué la víctima no declara.' },
-    { speaker: 'SUPER SAM', pose: 'supersam_point', text: 'Amnesia, Your Honor. Del golpe. Muy inconveniente para mi presupuesto.' },
+    { speaker: 'SUPER SAM', pose: 'supersam_point', text: 'Amnesia, Your Honor. Del golpe. Muy inconveniente para mi presupuesto.', addProfile: 'perfil_nazario' },
     { speaker: 'JUEZ', pose: 'judge_neutral', text: 'Entonces el peso de este juicio lo carga un solo testigo. La defensa puede presionar sin gastar credibilidad, pero presentar una prueba sí cuesta. Úselas en consecuencia.' },
     { speaker: 'CHAPULÍN', pose: 'chapulin_point', text: 'Y una más, Don Ramón: algunas pruebas esconden detalles. Selecciónalas en el ACTA y pulsa EXAMINAR DETALLE para verlas de cerca.' },
     { speaker: 'MODO EXAMINAR', text: 'Si una prueba tiene EXAMINAR DETALLE, mírala de cerca antes de presentarla: la vista ampliada te ayudará a encontrar el detalle correcto.', instant: true },

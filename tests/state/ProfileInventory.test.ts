@@ -5,11 +5,14 @@ import { GameStateManager } from '../../src/state/index.js';
 
 const case1 = getCaseScript('es', 'case1');
 const case2 = getCaseScript('es', 'case2');
+const case3 = getCaseScript('es', 'case3');
 
 describe('Acta de Personajes inventory', () => {
   it('adds profiles only for a case that declares them', () => {
     const state = new GameStateManager();
     state.beginNewCase(case1);
+    expect(state.hasProfile('perfil_florinda')).toBe(true);
+    expect(state.hasProfile('perfil_jirafales')).toBe(true);
     expect(state.addProfile('perfil_tripaseca')).toBe(true);
     expect(state.hasProfile('perfil_tripaseca')).toBe(true);
     // A second add is a no-op, exactly like evidence.
@@ -17,7 +20,23 @@ describe('Acta de Personajes inventory', () => {
 
     state.beginNewCase(case2);
     expect(state.addProfile('perfil_tripaseca')).toBe(false);
-    expect(state.profiles.owned).toEqual([]);
+    expect(state.hasProfile('perfil_donramon')).toBe(true);
+    expect(state.hasProfile('perfil_chapulin')).toBe(true);
+    expect(state.hasProfile('perfil_supersam')).toBe(true);
+    expect(state.hasProfile('perfil_chompiras')).toBe(false);
+  });
+
+  it('starts later acts with returning characters already on the record', () => {
+    const state = new GameStateManager();
+    state.beginNewCase(case3);
+
+    expect(state.hasProfile('perfil_donramon')).toBe(true);
+    expect(state.hasProfile('perfil_chapulin')).toBe(true);
+    expect(state.getProfileDesc('perfil_donramon')).toContain('Doctor Chapatín');
+    expect(state.getProfileDesc('perfil_chapulin')).toContain('Co-defensor');
+    expect(state.profiles.getStage('perfil_donramon')).toBe(0);
+    expect(state.addProfile('perfil_donramon')).toBe(false);
+    expect(state.addProfile('perfil_chapulin')).toBe(false);
   });
 
   it('advances description stages linearly and saturates', () => {
@@ -46,10 +65,12 @@ describe('Acta de Personajes inventory', () => {
     const state = new GameStateManager();
     state.beginNewCase(case1);
     state.addProfile('perfil_donramon');
+    state.addProfile('perfil_tripaseca');
     state.updateProfile('perfil_florinda');
 
     state.beginNewCase(case1);
-    expect(state.profiles.owned).toEqual([]);
+    expect(state.hasProfile('perfil_donramon')).toBe(true);
+    expect(state.hasProfile('perfil_tripaseca')).toBe(false);
     expect(state.profiles.updateStage).toEqual({});
   });
 

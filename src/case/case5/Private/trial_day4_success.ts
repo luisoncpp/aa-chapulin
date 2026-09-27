@@ -57,7 +57,7 @@ export const CASE5_D4_T1_LIBRO_SUCCESS: DialogueLine[] = [
   { speaker: 'GENOVEVA', text: '...Sí la tiene.', pose: 'genoveva_idle' },
   { speaker: 'DEFENSA', text: 'Léale a la corte el encabezado impreso de la segunda columna.', pose: 'chapulin_slam', sfx: 'desk_slam' },
   { speaker: 'GENOVEVA', text: '...«Hora de devolución de gafete».', pose: 'genoveva_sweat' },
-  { speaker: 'NARRADOR', text: 'Silencio en la sala.', sfx: 'realization' },
+  { bg: 'assets/bg_gallery_characters.webp', furniture: 'none', speaker: 'NARRADOR', text: 'Silencio en la sala.', sfx: 'realization' },
   { speaker: 'GENOVEVA', text: '......', pose: 'genoveva_shock' },
   { speaker: 'GENOVEVA', text: 'Trece años.', pose: 'genoveva_shock' },
   { speaker: 'GENOVEVA', text: 'Trece años diciéndole «hora de salida» a una columna que dice otra cosa.', pose: 'genoveva_sweat' },

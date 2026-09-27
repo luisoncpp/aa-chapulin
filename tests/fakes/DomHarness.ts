@@ -55,6 +55,11 @@ export function setupDomHarness(): DomElements {
           <div id="dialogue-arrow">▼</div>
         </div>
       </div>
+      <div id="record-notice" class="hidden">
+        <img id="record-notice-icon" alt="">
+        <div id="record-notice-text"></div>
+        <div id="record-notice-arrow">▼</div>
+      </div>
       <div id="cutin-overlay" class="hidden">
         <img id="cutin-img" src="" alt="Cut-in">
       </div>

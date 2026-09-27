@@ -16,7 +16,7 @@ export const CASE3_DELEGACION_D3: InvestigationScene = {
     { speaker: 'NARRADOR', text: '18 de septiembre, 4:00 PM. El sargento no se ha cambiado de uniforme desde anoche. Ni piensa hacerlo.' },
     { speaker: 'SARGENTO', text: '¡Mi Licenciado! ¡Toda la noche en los tambos de basura de la estación! ¡Ocho horas! ¡Con estas manitas!', pose: 'pazguato_decidido' },
     { speaker: 'CHAPULIN', text: '¡Y con mis antenitas de vinil! ¡Vibraron re\' feo sobre el tambo del callejón!', pose: 'chapulin_point' },
-    { speaker: 'SARGENTO', text: 'Ahí estaba, mi Licenciado. Debajo de las cáscaras. Cartucho tres.', pose: 'pazguato_decidido', addEvidence: 'cartucho_corte' },
+    { speaker: 'SARGENTO', text: 'Ahí estaba, mi Licenciado. Debajo de las cáscaras. Cartucho tres.', pose: 'pazguato_decidido', addEvidence: 'cartucho_corte', updateProfile: 'perfil_sargento' },
     { speaker: 'NARRADOR', text: '(Ponen el cartucho en la máquina. La sala se queda muda.)', sfx: 'realization' },
     { speaker: 'BARRIGA', text: '¡Doctor Chapatín, no! ¡Auxilio! ...' },
     { speaker: 'DEFENSA', text: 'Otra vez. Súbanle a lo que se oye ATRÁS de la voz.', pose: 'donramon_shock' },

@@ -24,6 +24,9 @@ sequenceDiagram
     alt isTyping is true
         Engine->>DOM: Fast-forward text immediately
         Engine->>Engine: isTyping = false
+    else record notices pending (RecordNoticeQueue)
+        Engine->>DOM: Show next #record-notice card (hide sprite + dialogue box)
+        Note over Engine,DOM: Dismissing the last card falls through to the next branch in the same press
     else dialogueQueue has items
         Engine->>Engine: shift() next line
         Engine->>Engine: renderDialogueLine(line)
@@ -56,18 +59,20 @@ sequenceDiagram
    - Resolves furniture from `line.furniture`, else infers it from trial mode + resolved background + pose.
    - `resolveStageFrame(furniture, line.pose)` maps that pair to one of `plain` / `bench-stand` / `bench-slam` / `podium`.
    - `applyStageFrame()` writes the frame's ratios to `#game-screen` as CSS custom properties, which resize and reposition `#character-container` and `#court-furniture-container` together instantly without CSS position transitions (ensuring instant camera cuts without character sliding). See [[src/engine/Private/StageLayout.ts]]. Character `--char-layer` commits with the furniture bitmap so slam palms cannot outrank a bench that has not arrived yet.
-7. **Evidence Automatic Grant**: If `line.addEvidence` is present, calls `gameState.addEvidence()`, plays realization SFX, and shows `#game-notification` (`notifEvidenceAdded`).
-8. **Evidence Description Update**: If `line.updateEvidence` is present, `gameState.updateEvidence()` applies catalog `updatedDesc`. Newly acquired items get the add toast; already owned items get `notifEvidenceUpdated` (same toast + realization SFX as a location unlock).
-9. **Location Unlock**: If `line.unlockLocation` is present and newly unlocked, realization SFX + `notifLocationUnlocked`.
+7. **Evidence / Profile Grant**: `line.addEvidence` / `line.addProfile` mutate state immediately and queue a record notice (`notifEvidenceAdded` / `notifProfileAdded`, with the item's `icon`). Nothing is shown yet.
+8. **Evidence / Profile Update**: `line.updateEvidence` / `line.updateProfile` advance one catalog stage. An item not yet held queues only the add notice; an owned one queues `notifEvidenceUpdated` / `notifProfileUpdated`.
+9. **Location Unlock**: If `line.unlockLocation` is newly unlocked, queues `notifLocationUnlocked` as a text-only card (no scene plate, so the location is not spoiled before the player travels there).
+
+**Record notices** ([[src/engine/Private/RecordNoticeQueue.ts]]): steps 7–9 never compete with the line being read. `handleAdvance` order is typewriter → notices → next line → `onQueueFinish`. Each notice is its own centered `#record-notice` card (icon + text, dialogue-box frame, realization SFX), advanced by click/Space/Enter like a line; the sprite and `#dialogue-box` are hidden while cards show and restored to their previous visibility after the last one. The last card's dismissal returns `false`, so the same press renders the next line (or runs the callback) with no empty frame. `clear()` drops pending cards. Cards are not written to the message history and are not a modal (keyboard stays live). Toasts not tied to a dialogue line (save/load, trial ready, talk unlocks, testimony title) still use `#game-notification`.
 10. **Progress Flag**: If `line.setFlag` is present, records it in `gameState.flags` as the line is displayed; save/load preserves it.
-11. **Speaker Tag**: Updates `#speaker-name` text content.
+11. **Speaker Tag**: Updates `#speaker-name` text content when the line has text; blank lines clear the nameplate so `#speaker-tag` stays hidden.
 12. **Typewriter Effect**: Ordinary dialogue starts a 28ms `setInterval` timer appending characters one by one, playing `soundEngine.playTextBlip()` on every second non-whitespace character. UI instruction lines marked `instant` are committed in one step without the timer or text-blip SFX.
 
 ## 4. Reads
 - `engine.dialogueQueue`
 - `typewriter.isTyping`
 - `typewriter.fullText`
-- `line` properties (`bg`, `bgm`, `sfx`, `cutin`, `pose`, `speaker`, `text`, `addEvidence`, `updateEvidence`, `unlockLocation`, `setFlag`)
+- `line` properties (`bg`, `bgm`, `sfx`, `cutin`, `pose`, `speaker`, `text`, `addEvidence`, `updateEvidence`, `addProfile`, `updateProfile`, `unlockLocation`, `setFlag`)
 
 ## 5. Writes
 - `typewriter.isTyping`

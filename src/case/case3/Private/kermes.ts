@@ -14,11 +14,11 @@ export const CASE3_KERMES: InvestigationScene = {
   idlePose: 'jirafales_idle',
   intro: [
     { speaker: 'NARRADOR', text: '16 de septiembre, 3:00 PM. Plaza de la Kermés, con los papeles de colores todavía colgados.' },
-    { speaker: 'FLORINDA', text: '¡Otra vez usted! ¿Ahora a quién defiende, a la chusma o a los caseros?', pose: 'florinda_angry' },
+    { speaker: 'FLORINDA', text: '¡Otra vez usted! ¿Ahora a quién defiende, a la chusma o a los caseros?', pose: 'florinda_angry', addProfile: 'perfil_florinda' },
     { speaker: 'DEFENSA', text: 'A un doctor de ochenta años, doña Florinda.', pose: 'donramon_idle' },
     { speaker: 'FLORINDA', text: '...Setenta y nueve. Se lo pregunté una vez y casi me mata con la bolsa.', pose: 'florinda_idle' },
-    { speaker: 'JIRAFALES', text: 'Yo di el Grito a las once en punto, Licenciado. A las once y tres minutos, las bocinas de la estación transmitieron ese alarido espantoso. Lo oímos DOS MIL personas.', pose: 'jirafales_smoking' },
-    { speaker: 'ANICETO', text: 'Muy buenas tardes tengan todos ustedes... Aniceto Rebollar, veinticinco años al servicio de esta vecindad. Perdonen si aún hablo despacito: anoche estuve amordazado veinte minutos que se me hicieron una eternidad.', pose: 'aniceto_idle' },
+    { speaker: 'JIRAFALES', text: 'Yo di el Grito a las once en punto, Licenciado. A las once y tres minutos, las bocinas de la estación transmitieron ese alarido espantoso. Lo oímos DOS MIL personas.', pose: 'jirafales_smoking', addProfile: 'perfil_jirafales' },
+    { speaker: 'ANICETO', text: 'Muy buenas tardes tengan todos ustedes... Aniceto Rebollar, veinticinco años al servicio de esta vecindad. Perdonen si aún hablo despacito: anoche estuve amordazado veinte minutos que se me hicieron una eternidad.', pose: 'aniceto_idle', addProfile: 'perfil_aniceto' },
     { speaker: 'CHAPULIN', text: '¡Pobre señor! Pero no se apure, que perro que ladra... no muerde, porque no puede hacer las dos cosas al mismo tiempo.', pose: 'chapulin_idle' },
     { speaker: 'ANICETO', text: 'Permítame, joven: es "perro que ladra no muerde". La dicción, ante todo. Veinticinco años corrigiendo micrófonos, ya es enfermedad.', pose: 'aniceto_thinking' },
     { speaker: 'DEFENSA', text: '(Este señor corrige hasta a un superhéroe. Qué manía.)', pose: 'donramon_sweat' }
@@ -49,14 +49,14 @@ export const CASE3_KERMES: InvestigationScene = {
         { speaker: 'JIRAFALES', text: 'Tenga usted mi libreto, Licenciado. Ahí está minuto por minuto todo lo que se anunció por estas bocinas.', pose: 'jirafales_idle', addEvidence: 'programa_kermes' },
         { speaker: 'DEFENSA', text: '¿Minuto por minuto, profesor?', pose: 'donramon_idle' },
         { speaker: 'JIRAFALES', text: '¡¡¡TA-TA-TA-TA-TAAAAAA!!! ¡Un maestro de ceremonias sin minutario es un charlatán con micrófono!', pose: 'jirafales_angry' },
-        { speaker: 'DEFENSA', text: '(Nueve cuarenta: el aviso del niño perdido. Papeles que no le sirven a nadie. Como todos los que me tocan a mí.)', pose: 'donramon_sweat' }
+        { speaker: 'DEFENSA', text: '(Nueve cuarenta: el aviso del niño perdido. Papeles que no le sirven a nadie. Como todos los que me tocan a mí.)', pose: 'donramon_sweat', updateProfile: 'perfil_jirafales' }
       ]
     },
     {
       id: 'about_barriga_plaza',
       label: '¿Vieron al Señor Barriga anoche?',
       dialogue: [
-        { speaker: 'FLORINDA', text: '¡Claro que lo vimos! A las 9:40 todavía estaba vivo y en esta plaza, ayudándonos a buscar a Quico.', pose: 'florinda_idle' },
+        { speaker: 'FLORINDA', text: '¡Claro que lo vimos! A las 9:40 todavía estaba vivo y en esta plaza, ayudándonos a buscar a Quico.', pose: 'florinda_idle', updateProfile: 'perfil_florinda' },
         { speaker: 'QUICO', text: '¡Cállate, cállate, que me desesperas!' },
         { speaker: 'NARRADOR', text: '(La voz de Quico llega desde fuera de cuadro, detrás de un puesto.)' },
         { speaker: 'JIRAFALES', text: 'El Señor Barriga nos ayudó con el aviso por las bocinas. Cachetes muy grandes, dije. ¡Y no me equivoqué!', pose: 'jirafales_smoking' }

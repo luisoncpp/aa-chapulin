@@ -56,7 +56,7 @@ export const CASE5_BERRONDO_TALKS: TalkOption[] = [
       { speaker: 'BERRONDO', text: 'Para vender copias, licenciado. Ficha por ficha, a quien las pida y las pague.', pose: 'berrondo_idle' },
       { speaker: 'DEFENSA', text: '¡¿Y eso se puede?!', pose: 'chapulin_panic' },
       { speaker: 'BERRONDO', text: 'Búsquelo usted, se lo suplico. Tomo IX del Código, voz «cosas fuera del comercio». La información no está ahí.', pose: 'berrondo_definicion' },
-      { speaker: 'BERRONDO', text: 'Vender información no es delito en este país, licenciado. Ni lo era en el setenta y uno, ni lo es hoy.', pose: 'berrondo_idle' },
+      { speaker: 'BERRONDO', text: 'Vender información no es delito en este país, licenciado. Ni lo era en el setenta y uno, ni lo es hoy.', pose: 'berrondo_idle', updateProfile: 'perfil_berrondo' },
       { speaker: 'DEFENSA', text: '(No me está confesando nada. Me está dando una clase.)', pose: 'chapulin_idle' }
     ]
   },

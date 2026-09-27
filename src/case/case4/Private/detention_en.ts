@@ -12,13 +12,13 @@ export const CASE4_DETENTION_EN: InvestigationScene = {
   idlePose: 'botija_nervioso',
   intro: [
     { speaker: 'NARRADOR', text: 'October 25, nine in the morning. City Detention Center.' },
-    { speaker: 'CHIMOLTRUFIA', text: 'Tell him to talk! Since last night all he does is repeat that I should not worry. And like I say one thing I say another: that is exactly what worries me!', pose: 'chimoltrufia_confundida' },
-    { speaker: 'BOTIJA', text: 'I did not want you seeing me in here again, old girl.', pose: 'botija_llorando' },
+    { speaker: 'CHIMOLTRUFIA', text: 'Tell him to talk! Since last night all he does is repeat that I should not worry. And like I say one thing I say another: that is exactly what worries me!', pose: 'chimoltrufia_confundida', addProfile: 'perfil_chimoltrufia' },
+    { speaker: 'BOTIJA', text: 'I did not want you seeing me in here again, old girl.', pose: 'botija_llorando', addProfile: 'perfil_botija' },
     { speaker: 'CHIMOLTRUFIA', text: 'Well, you already saw me seeing you! And I do not know what hurts more, looking at you or you not talking to me.', pose: 'chimoltrufia_shock' },
-    { speaker: 'DEFENSA', text: 'Pardon me, said Monchito. Don Ramón, public defender by trade and by necessity.', pose: 'donramon_idle' },
+    { speaker: 'DEFENSA', text: 'Pardon me, said Monchito. Don Ramón, public defender by trade and by necessity.', pose: 'donramon_idle', addProfile: 'perfil_donramon' },
     { speaker: 'CHIMOLTRUFIA', text: 'And how much do you charge?', pose: 'chimoltrufia_confundida' },
     { speaker: 'DEFENSA', text: 'Ma\'am, I am sixteen months behind on my own rent. Charging you would be an insult to my profession.', pose: 'donramon_sweat' },
-    { speaker: 'CHAPULIN', text: 'And do not lose your keep! We came to hear all of it, even the parts he would rather not tell.', pose: 'chapulin_idle' },
+    { speaker: 'CHAPULIN', text: 'And do not lose your keep! We came to hear all of it, even the parts he would rather not tell.', pose: 'chapulin_idle', addProfile: 'perfil_chapulin' },
     { speaker: 'BOTIJA', text: 'And you are with the police?', pose: 'botija_nervioso' },
     { speaker: 'CHAPULIN', text: 'I am El Chapulín Colorado.', pose: 'chapulin_idle' },
     { speaker: 'BOTIJA', text: 'Ah. Then I really am done for.', pose: 'botija_llorando' },
@@ -60,7 +60,7 @@ export const CASE4_DETENTION_EN: InvestigationScene = {
       dialogue: [
         { speaker: 'BOTIJA', text: 'Leaving the bathroom after the bang I recognized the man: El Cuajinais. I had argued with him that afternoon because he wanted to recruit me back into his business.', pose: 'botija_nervioso' },
         { speaker: 'BOTIJA', text: 'I told him no in front of the whole corridor. I feared Chimoltrufia would think I had accepted.', pose: 'botija_llorando' },
-        { speaker: 'BOTIJA', text: 'I checked his ID to confirm who he was, pocketed the wallet in fright, and hid in the hamper.', pose: 'botija_llorando', addEvidence: 'billetera_cuajinais' },
+        { speaker: 'BOTIJA', text: 'I checked his ID to confirm who he was, pocketed the wallet in fright, and hid in the hamper.', pose: 'botija_llorando', addEvidence: 'billetera_cuajinais', updateProfile: 'perfil_botija', addProfile: 'perfil_cuajinais' },
         { speaker: 'SARGENTO', text: 'I log the wallet myself: Mr. Gómez ID and $200. On record who held it and where.', pose: 'pazguato_saludo' }
       ]
     },

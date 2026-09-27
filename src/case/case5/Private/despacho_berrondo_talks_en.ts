@@ -57,7 +57,7 @@ export const CASE5_BERRONDO_TALKS_EN: TalkOption[] = [
       { speaker: 'BERRONDO', text: 'To sell copies, counselor. Card by card, to whoever asks and pays.', pose: 'berrondo_idle' },
       { speaker: 'DEFENSA', text: 'And that is allowed?!', pose: 'chapulin_panic' },
       { speaker: 'BERRONDO', text: 'Look it up, I beg you. Volume IX of the Code, entry "things outside commerce." The information is not there.', pose: 'berrondo_definicion' },
-      { speaker: 'BERRONDO', text: 'Selling information is not a crime in this country, counselor. It was not in seventy-one, and it is not today.', pose: 'berrondo_idle' },
+      { speaker: 'BERRONDO', text: 'Selling information is not a crime in this country, counselor. It was not in seventy-one, and it is not today.', pose: 'berrondo_idle', updateProfile: 'perfil_berrondo' },
       { speaker: 'DEFENSA', text: '(He is not confessing anything. He is giving me a lecture.)', pose: 'chapulin_idle' }
     ]
   },

@@ -8,8 +8,8 @@ void CASE4_CADENA_POINT_TARGET;
 
 export const CASE4_TRIAL_INTRO_EN: DialogueLine[] = [
   { bg: 'assets/bg_waiting_room.webp', furniture: 'none', speaker: 'NARRADOR', text: 'October 25, 3:00 PM. High Court - Waiting Room.', bgm: 'trial' },
-  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_gavel', text: 'Order in this court! This hearing opens over the death of the Suite 304 guest.', sfx: 'gavel', bgm: 'trial' },
-  { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_idle', text: 'One dead man, one gun, one man locked in with both. Time is money, Your Honor: this court bills by the hour, and so do I.' },
+  { bg: 'assets/bg_judge.webp', speaker: 'JUEZ', pose: 'judge_gavel', text: 'Order in this court! This hearing opens over the death of the Suite 304 guest.', sfx: 'gavel', bgm: 'trial', addProfile: 'perfil_juez' },
+  { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_idle', text: 'One dead man, one gun, one man locked in with both. Time is money, Your Honor: this court bills by the hour, and so do I.', addProfile: 'perfil_supersam' },
   { bg: 'assets/bg_courtroom.webp', speaker: 'SUPER SAM', pose: 'supersam_slam', text: 'And on top of it the defendant is a plumber! A man who earns his living putting his hand where it does not belong!', sfx: 'desk_slam' },
   { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_slam', text: 'OBJECTION! Pardon me, said Monchito!', sfx: 'desk_slam' },
   { bg: 'assets/bg_defense.webp', speaker: 'DEFENSA', pose: 'donramon_point', text: 'That man walked into that suite because the hotel sent him to work. With a written order and an hour on it.' },

@@ -1,7 +1,7 @@
 // @Architecture(descriptionShort="Unit tests for main GameEngine coordinator and factory", type="test", icon="layout")
 import { describe, expect, it, beforeEach, vi } from 'vitest';
 import { MidiMusicComposer, SoundEngine } from '../../src/audio/index.js';
-import { CASE_SCRIPT } from '../../src/case/index.js';
+import { CASE_SCRIPT, getCaseScript } from '../../src/case/index.js';
 import type { DomElements } from '../../src/engine/Private/DomElements.js';
 import { GameEngine, createGameEngine } from '../../src/engine/index.js';
 import { SCENE_FADE_MS } from '../../src/engine/Private/SceneFade.js';
@@ -30,6 +30,7 @@ describe('GameEngine Coordinator', () => {
       dom,
       state,
       script: CASE_SCRIPT,
+      resolveScript: getCaseScript,
       soundEngine: soundEngineInstance,
       midiComposer: midiComposerInstance
     });
@@ -53,6 +54,7 @@ describe('GameEngine Coordinator', () => {
     const unstartedEngine = new GameEngine({
       dom,
       state,
+      resolveScript: getCaseScript,
       soundEngine: soundEngineInstance,
       midiComposer: midiComposerInstance
     });
@@ -113,7 +115,6 @@ describe('GameEngine Coordinator', () => {
     expect(dom.speakerBoxEl.textContent).toBe('SUPER SAM');
     expect(dom.charSpriteEl.src).toContain('assets/supersam_slam.webp');
     expect(state.hasEvidence('chipote_chillon')).toBe(true);
-    expect(dom.gameNotificationEl.textContent).toContain('Chipote Chillón');
   });
 
   it('handles empty line or lines with generic speaker without throwing', () => {
@@ -141,8 +142,7 @@ describe('GameEngine Coordinator', () => {
     expect(dom.courtRecordModalEl.classList.contains('hidden')).toBe(true);
 
     // Presenting without selection does not throw
-    (engine as any).selectedEvidenceId = null;
-    expect(() => (engine as any).handlePresentFromModal()).not.toThrow();
+    expect(() => dom.presentBtnEl.click()).not.toThrow();
   });
 
   it('creates GameEngine using factory function createGameEngine', () => {
@@ -209,6 +209,7 @@ describe('GameEngine Coordinator', () => {
     }
     // The intro runs through the witness call before T1
     for (let i = 0; i < 60 && dom.trialNavEl.classList.contains('hidden'); i++) {
+      vi.advanceTimersByTime(2000);
       engine.handleAdvance();
     }
     expect(dom.trialNavEl.classList.contains('hidden')).toBe(false);
@@ -223,6 +224,7 @@ describe('GameEngine Coordinator', () => {
       engine.handleAdvance();
     }
     for (let i = 0; i < 60 && dom.trialNavEl.classList.contains('hidden'); i++) {
+      vi.advanceTimersByTime(2000);
       engine.handleAdvance();
     }
 
@@ -257,6 +259,7 @@ describe('GameEngine Coordinator', () => {
     const autoDebugEngine = new GameEngine({
       dom,
       state: debugState,
+      resolveScript: getCaseScript,
       soundEngine: soundEngineInstance,
       midiComposer: midiComposerInstance
     });
@@ -276,6 +279,7 @@ describe('GameEngine Coordinator', () => {
     new GameEngine({
       dom,
       state: debugState,
+      resolveScript: getCaseScript,
       soundEngine: soundEngineInstance,
       midiComposer: midiComposerInstance
     }).init();
@@ -389,7 +393,12 @@ describe('GameEngine Coordinator', () => {
       engine.handleAdvance();
     }
     expect(state.unlockedLocations).toEqual(['detention', 'museo_sala2']);
-    expect(dom.gameNotificationEl.textContent).toContain('Museo');
+    // The unlock card waits until the player advances past the granting line.
+    for (let i = 0; i < 3 && dom.recordNoticeEl.classList.contains('hidden'); i++) {
+      vi.advanceTimersByTime(10_000);
+      engine.handleAdvance();
+    }
+    expect(dom.recordNoticeEl.textContent).toContain('Museo');
   });
 
   it('starts Case 2 investigation at the detention center', () => {

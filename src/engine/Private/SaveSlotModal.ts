@@ -1,7 +1,7 @@
 // @Architecture(descriptionShort="Renders the eight-slot save and load list", type="view", icon="database")
 /**
  * Save / load slot modal.
- * Opened from the HUD; Continue on the title does not use this list.
+ * Opened from HUD Save, HUD Load, and title Continue.
  */
 
 import { i18n } from '../../i18n/index.js';

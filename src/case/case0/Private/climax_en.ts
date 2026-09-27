@@ -37,8 +37,8 @@ export const CASE0_CLIMAX_EN: ClimaxDefinition = {
         { speaker: 'CHAPULÍN', pose: 'chapulin_point', text: 'The same hand touched both things!' },
         { speaker: 'DEFENSA', pose: 'donramon_point', text: 'That man entered for the tin. He had it in his hands when the collector opened the door.' },
         { speaker: 'CASIMIRO', pose: 'casimiro_breakdown', text: 'HE WAS AN OLD MAN WITH A FULL BRIEFCASE! That boy had nothing!' },
-        { speaker: 'NARRADOR', text: 'The sample volumes fall from his case. For the first time, the witness stops looking at his watches.' },
-        { speaker: 'SUPER SAM', pose: 'supersam_idle', text: 'The prosecution withdraws its charge against Toribio Pantoja.' }
+        { bg: 'assets/bg_witness.webp', furniture: 'podium', speaker: 'NARRADOR', pose: 'casimiro_breakdown', text: 'The sample volumes fall from his case. For the first time, the witness stops looking at his watches.' },
+        { speaker: 'SUPER SAM', pose: 'supersam_idle', text: 'The prosecution withdraws its charge against Toribio Pantoja.', updateProfile: 'perfil_supersam' }
       ]
     }
   ],
@@ -65,11 +65,11 @@ export const CASE0_CLIMAX_EN: ClimaxDefinition = {
   ],
   verdict: [
     { speaker: 'JUEZ', pose: 'judge_gavel', text: 'For what was heard today, this court finds the defendant Toribio Pantoja...', sfx: 'gavel' },
-    { speaker: 'JUEZ', pose: 'judge_gavel', text: 'NOT GUILTY!', cutin: 'objection_inocente', bgm: 'victory' },
+    { speaker: 'JUEZ', pose: 'judge_gavel', text: 'NOT GUILTY!', cutin: 'objection_inocente', bgm: 'victory', updateProfile: 'perfil_toribio' },
     { speaker: 'TORIBIO', pose: 'toribio_aliviado', text: 'Counselor! I won! ...Did we win?' },
         { speaker: 'DEFENSA', pose: 'donramon_idle', text: 'You won. I just talked.' },
     { speaker: 'CHAPULÍN', pose: 'chapulin_idle', text: 'Pressing is free, presenting takes care, and every detail matters.' },
-    { speaker: 'JUEZ', pose: 'judge_gavel', text: 'Casimiro Lengua is remanded, and the collection file is returned. Court is adjourned.', sfx: 'gavel' }
+    { speaker: 'JUEZ', pose: 'judge_gavel', text: 'Casimiro Lengua is remanded, and the collection file is returned. Court is adjourned.', sfx: 'gavel', updateProfile: 'perfil_casimiro' }
   ],
   epilogue: {
     bg: EPILOGUE_BG,

@@ -15,7 +15,7 @@ export const CASE3_CABINA: InvestigationScene = {
   idlePose: 'pazguato_idle',
   intro: [
     { speaker: 'NARRADOR', text: '16 de septiembre, 11:00 AM. Radiodifusora XEVC, segundo piso del Edificio Barriga.' },
-    { speaker: 'SARGENTO', text: '¡A sus órdenes, mi Licenciado! Sargento Refugio Pazguato, para servir a usted y a la justicia.', pose: 'pazguato_saludo' },
+    { speaker: 'SARGENTO', text: '¡A sus órdenes, mi Licenciado! Sargento Refugio Pazguato, para servir a usted y a la justicia.', pose: 'pazguato_saludo', addProfile: 'perfil_sargento' },
     { speaker: 'DEFENSA', text: '¿La fiscalía sabe que nos deja entrar?', pose: 'donramon_idle' },
     { speaker: 'SARGENTO', text: 'Ay, no... Y no le diga al Súper Sam, porque ya van tres quincenas que me descuenta. Pero es que yo... yo creo que el doctorcito no fue.', pose: 'pazguato_sweat' },
     { speaker: 'CHAPULIN', text: '¡Ese es el espíritu! ¡Síganme los buenos!', pose: 'chapulin_idle' }
@@ -26,7 +26,7 @@ export const CASE3_CABINA: InvestigationScene = {
       id: 'about_informe',
       label: 'El informe médico',
       dialogue: [
-        { speaker: 'SARGENTO', text: 'Aquí traigo el informe, mi Licenciado. Lo traía doblado en cuatro... adentro de una torta de frijoles. No se preocupe, le quité el frijol.', pose: 'pazguato_saludo', addEvidence: 'informe_barriga' },
+        { speaker: 'SARGENTO', text: 'Aquí traigo el informe, mi Licenciado. Lo traía doblado en cuatro... adentro de una torta de frijoles. No se preocupe, le quité el frijol.', pose: 'pazguato_saludo', addEvidence: 'informe_barriga', addProfile: 'perfil_barriga' },
         { speaker: 'DEFENSA', text: '(Fibras rojas de lana en el cabello... Contusión con marca octagonal. Anotado.)', pose: 'donramon_idle' }
       ]
     },
@@ -34,7 +34,8 @@ export const CASE3_CABINA: InvestigationScene = {
       id: 'about_who_else',
       label: '¿Quién más estaba en el edificio?',
       dialogue: [
-        { speaker: 'SARGENTO', text: 'El joven Ñoño en la consola, la señora Chimoltrufia en la Cabina C, y don Aniceto... pobre don Aniceto, lo hallamos amarrado en la bodega. Al que le hicieron eso no le tembló la mano.', pose: 'pazguato_sweat', unlockLocation: 'plaza_kermes' },
+        { speaker: 'SARGENTO', text: 'El joven Ñoño estaba en la consola.', pose: 'pazguato_sweat', addProfile: 'perfil_nono' },
+        { speaker: 'SARGENTO', text: 'La señora Chimoltrufia estaba en la Cabina C. Y don Aniceto... pobre don Aniceto, lo hallamos amarrado en la bodega. Al que le hizo eso no le tembló la mano.', pose: 'pazguato_sweat', unlockLocation: 'plaza_kermes', addProfile: 'perfil_chimoltrufia' },
         { speaker: 'CHAPULIN', text: '¡Hay que hablar con la gente de la plaza!', pose: 'chapulin_point' }
       ]
     }

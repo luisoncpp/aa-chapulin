@@ -39,7 +39,7 @@ export const CASE3_TESTIMONY_2: Testimony = {
       pressText: [
         { speaker: 'DEFENSA', text: '¡UN MOMENTO!', cutin: 'objection_un_momento', sfx: 'whoosh', pose: 'donramon_point' },
         { speaker: 'DEFENSA', text: '¿Nadie más pasó por ese pasillo en toda la noche?', pose: 'donramon_idle' },
-        { speaker: 'CHIMOLTRUFIA', text: 'Bueno, pasar-pasar nadie... pero como a las diez cincuenta oí rechinar las ruedas del carrito de los discos. Ha de haber sido el conserje llevando discos, ¡bien cargadito que iba!', pose: 'chimoltrufia_confundida' },
+        { speaker: 'CHIMOLTRUFIA', text: 'Bueno, pasar-pasar nadie... pero como a las diez cincuenta oí rechinar las ruedas del carrito de los discos. Ha de haber sido el conserje llevando discos, ¡bien cargadito que iba!', pose: 'chimoltrufia_confundida', updateProfile: 'perfil_chimoltrufia' },
         { speaker: 'DEFENSA', text: '(Ahí está. A las 10:50 alguien empujaba algo pesado por ese pasillo... y el doctor ya se había ido a las 10:40.)', pose: 'donramon_idle' }
       ]
     },

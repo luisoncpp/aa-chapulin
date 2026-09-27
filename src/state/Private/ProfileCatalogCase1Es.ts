@@ -14,7 +14,7 @@ export const CASE1_PROFILES_ES: ProfileCatalogMap = {
     icon: 'assets/profile_perfil_chapulin.webp',
     desc: 'El acusado. Héroe profesional. Detenido a las 21:07 junto al cuerpo del velador, con su Chipote Chillón en la mano. Dice que llegó tarde.',
     updates: [
-      'Mide 1.60 m. El velador mide 1.92 m con botas. Para golpearlo desde arriba habría tenido que estar subido en algo.'
+      'Mide 1.62 m. El velador mide 1.92 m con botas. Para golpearlo desde arriba habría tenido que estar subido en algo.'
     ]
   },
   perfil_donramon: {
@@ -31,7 +31,7 @@ export const CASE1_PROFILES_ES: ProfileCatalogMap = {
     icon: 'assets/profile_perfil_supersam.webp',
     desc: 'Fiscal. Cobra por caso cerrado. Cerró éste en cinco minutos. Hoy subió al estrado sin su bolsa de dólares al hombro.',
     updates: [
-      'Se negó a decir dónde estuvo su bolsa de lona la noche del 21 y pidió el aplazamiento él mismo.'
+      'Se negó a decir dónde estuvo su bolsa de lona la noche del 28 y pidió el aplazamiento él mismo.'
     ]
   },
   perfil_tripaseca: {

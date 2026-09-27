@@ -112,6 +112,10 @@ export class EngineEventBinder {
       e.stopPropagation();
       onAdvance();
     });
+    dom.recordNoticeEl.addEventListener('click', /*onRecordNoticeClick*/ (e) => {
+      e.stopPropagation();
+      onAdvance();
+    });
     document.addEventListener('keydown', /*onKeyDown*/ (e) => {
       // An open modal owns the keyboard: advancing the scene behind it would
       // desync the dialogue the player is currently reading or scrolling.

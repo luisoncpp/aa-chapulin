@@ -106,9 +106,13 @@ describe('Case 0 — El Primer Juicio de Don Ramón', () => {
         bg: 'assets/bg_judge.webp',
         furniture: 'none'
       });
-      expect(success.slice(courtReturn).some((line) =>
-        line.bg === 'assets/bg_courtroom.webp' || line.furniture === 'bench'
-      )).toBe(false);
+      const postReturn = success.slice(courtReturn);
+      expect(postReturn.some((line) => line.bg === 'assets/bg_courtroom.webp')).toBe(false);
+      expect(postReturn.filter((line) => line.furniture === 'bench')).toEqual([success[card]]);
+      expect(success[card]).toMatchObject({
+        bg: 'assets/bg_defense.webp',
+        furniture: 'bench'
+      });
     }
   });
 

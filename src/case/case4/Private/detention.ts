@@ -15,13 +15,13 @@ export const CASE4_DETENTION: InvestigationScene = {
   idlePose: 'botija_nervioso',
   intro: [
     { speaker: 'NARRADOR', text: '25 de octubre, 9:00 de la mañana. Centro de Detención de la ciudad.' },
-    { speaker: 'CHIMOLTRUFIA', text: '¡Díganle que hable! Desde anoche nomás me repite que no me preocupe. Y como digo una cosa digo otra: ¡eso es lo que más me preocupa!', pose: 'chimoltrufia_confundida' },
-    { speaker: 'BOTIJA', text: 'No quería que me vieras aquí otra vez, vieja.', pose: 'botija_llorando' },
+    { speaker: 'CHIMOLTRUFIA', text: '¡Díganle que hable! Desde anoche nomás me repite que no me preocupe. Y como digo una cosa digo otra: ¡eso es lo que más me preocupa!', pose: 'chimoltrufia_confundida', addProfile: 'perfil_chimoltrufia' },
+    { speaker: 'BOTIJA', text: 'No quería que me vieras aquí otra vez, vieja.', pose: 'botija_llorando', addProfile: 'perfil_botija' },
     { speaker: 'CHIMOLTRUFIA', text: '¡Pues ya me viste viéndote! Y no sé qué me duele más, si verte o que no me hables.', pose: 'chimoltrufia_shock' },
-    { speaker: 'DEFENSA', text: 'Con permisito, dijo Monchito. Don Ramón, defensor de oficio y de necesidad.', pose: 'donramon_idle' },
+    { speaker: 'DEFENSA', text: 'Con permisito, dijo Monchito. Don Ramón, defensor de oficio y de necesidad.', pose: 'donramon_idle', addProfile: 'perfil_donramon' },
     { speaker: 'CHIMOLTRUFIA', text: '¿Y usted cuánto cobra?', pose: 'chimoltrufia_confundida' },
     { speaker: 'DEFENSA', text: 'Señora, yo llevo dieciséis meses sin pagarle la renta a mi casero. Cobrarle a usted sería una falta de respeto a mi profesión.', pose: 'donramon_sweat' },
-    { speaker: 'CHAPULIN', text: '¡Y que no panda el cúnico! Nosotros venimos a escucharlo todo, hasta lo que no quiera contar.', pose: 'chapulin_idle' },
+    { speaker: 'CHAPULIN', text: '¡Y que no panda el cúnico! Nosotros venimos a escucharlo todo, hasta lo que no quiera contar.', pose: 'chapulin_idle', addProfile: 'perfil_chapulin' },
     { speaker: 'BOTIJA', text: '¿Y usted es de la policía?', pose: 'botija_nervioso' },
     { speaker: 'CHAPULIN', text: 'Soy el Chapulín Colorado.', pose: 'chapulin_idle' },
     { speaker: 'BOTIJA', text: 'Ah. Entonces sí estoy perdido.', pose: 'botija_llorando' },
@@ -63,7 +63,7 @@ export const CASE4_DETENTION: InvestigationScene = {
       dialogue: [
         { speaker: 'BOTIJA', text: 'Al salir del baño después del estruendo reconocí al hombre: era el Cuajinais. Había discutido con él por la tarde porque quería reclutarme otra vez para sus negocios.', pose: 'botija_nervioso' },
         { speaker: 'BOTIJA', text: 'Le dije que no delante de todo el pasillo. Me dio miedo que la Chimoltrufia creyera que había aceptado.', pose: 'botija_llorando' },
-        { speaker: 'BOTIJA', text: 'Miré su credencial para comprobar su identidad, guardé la cartera al asustarme y me escondí en el cesto.', pose: 'botija_llorando', addEvidence: 'billetera_cuajinais' },
+        { speaker: 'BOTIJA', text: 'Miré su credencial para comprobar su identidad, guardé la cartera al asustarme y me escondí en el cesto.', pose: 'botija_llorando', addEvidence: 'billetera_cuajinais', updateProfile: 'perfil_botija', addProfile: 'perfil_cuajinais' },
         { speaker: 'SARGENTO', text: 'El inventario de la cartera lo levanto yo: credencial del Sr. Gómez y $200. Queda asentado quién la tenía y dónde.', pose: 'pazguato_saludo' }
       ]
     },

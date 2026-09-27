@@ -62,6 +62,7 @@ export interface DomElements {
   btnLoadGame?: HTMLButtonElement;
   btnContinueGame?: HTMLButtonElement;
   gameNotificationEl: HTMLElement;
+  recordNoticeEl: HTMLElement;
   btnStartGame: HTMLButtonElement;
   btnStartCase0?: HTMLButtonElement;
   btnStartCase2?: HTMLButtonElement;
@@ -94,11 +95,9 @@ export interface DomElements {
   btnPrevStatement: HTMLButtonElement;
   btnNextStatement: HTMLButtonElement;
 }
-
 function opt<T extends HTMLElement>(id: string): T | undefined {
   return (document.getElementById(id) as T) || undefined;
 }
-
 // @Section(DOM Element Cache)
 // fallow-ignore-next-line complexity
 export function getDomElements(): DomElements {
@@ -165,6 +164,7 @@ export function getDomElements(): DomElements {
     btnLoadGame: document.getElementById('btn-load-game') as HTMLButtonElement,
     btnContinueGame: document.getElementById('btn-continue-game') as HTMLButtonElement,
     gameNotificationEl: document.getElementById('game-notification')!,
+    recordNoticeEl: document.getElementById('record-notice')!,
     btnStartGame: document.getElementById('btn-start-game') as HTMLButtonElement,
     btnStartCase0: opt<HTMLButtonElement>('btn-start-case0'),
     btnStartCase2: document.getElementById('btn-start-case2') as HTMLButtonElement,

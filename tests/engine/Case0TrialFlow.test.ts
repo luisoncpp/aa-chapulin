@@ -1,5 +1,6 @@
 // @Architecture(descriptionShort="Case 0 direct courtroom launch checks", type="test", icon="bolt")
 import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { getCaseScript } from '../../src/case/index.js';
 import { CASE_SCRIPT_CASE0_ES } from '../../src/case/case0/index.js';
 import { startGame, type LaunchHost } from '../../src/engine/Private/EngineLaunch.js';
 import { TrialController } from '../../src/engine/Private/TrialController.js';
@@ -29,7 +30,8 @@ describe('Case 0 direct courtroom launch', () => {
       trial: { setScript: vi.fn(), startTrial: trialStart } as never,
       hasStarted: false, getScript: () => script,
       setScript: (next) => { script = next; },
-      markStarted: () => { host.hasStarted = true; }
+      markStarted: () => { host.hasStarted = true; },
+      resolveScript: getCaseScript
     };
   });
 

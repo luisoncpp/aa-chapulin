@@ -4,16 +4,18 @@ import { CASE0_WITNESS_RECALL_T3_EN } from './witness_calls_en.js';
 
 const WAITING_ROOM = 'assets/bg_waiting_room.webp';
 const JUDGE = 'assets/bg_judge.webp';
+const EXAMINE_MALETIN = 'assets/examine_maletin_cobranza.webp';
+const DEFENSE = 'assets/bg_defense.webp';
 
 export const CASE0_LOBBY_INTRO_EN: DialogueLine[] = [
   { bg: WAITING_ROOM, furniture: 'none', speaker: 'NARRADOR', text: 'July 13, 9:45 AM. High Court - Waiting Room.', bgm: 'suspense' },
-  { bg: WAITING_ROOM, furniture: 'none', speaker: 'TORIBIO', pose: 'toribio_llorando', text: 'Counselor! Counselor Don Ramón! Please tell me the truth. Are they sending me to the prison islands?' },
-  { bg: WAITING_ROOM, furniture: 'none', speaker: 'DEFENSA', pose: 'donramon_idle', text: 'Easy, Toribio. Do not get discouraged before we start. With Counselor Don Ramón for the defense, you are in the best hands...' },
+  { bg: WAITING_ROOM, furniture: 'none', speaker: 'TORIBIO', pose: 'toribio_llorando', text: 'Counselor! Counselor Don Ramón! Please tell me the truth. Are they sending me to the prison islands?', addProfile: 'perfil_toribio' },
+  { bg: WAITING_ROOM, furniture: 'none', speaker: 'DEFENSA', pose: 'donramon_idle', text: 'Easy, Toribio. Do not get discouraged before we start. With Counselor Don Ramón for the defense, you are in the best hands...', addProfile: 'perfil_donramon' },
   { bg: WAITING_ROOM, furniture: 'none', speaker: 'DEFENSA', pose: 'donramon_sweat', text: '(Truth is, my knees are shaking... First time I have entered a courthouse in a tie, and not because my landlord summoned me.)' },
   { bg: WAITING_ROOM, furniture: 'none', speaker: 'TORIBIO', pose: 'toribio_nervioso', text: 'But I am innocent! I only went to the ice shop for the block for my popsicles. When I came back, Don Nazario was already lying there like a sack!' },
   { bg: WAITING_ROOM, furniture: 'none', speaker: 'DEFENSA', pose: 'donramon_idle', text: 'I believe you, kid. But in there is a blond prosecutor who charges by the word and says he can put you away in eleven minutes.' },
   { bg: WAITING_ROOM, furniture: 'none', speaker: 'TORIBIO', pose: 'toribio_llorando', text: 'Oh, my dear mother! And now who can defend me?!' },
-  { bg: WAITING_ROOM, furniture: 'none', speaker: 'CHAPULIN', pose: 'chapulin_idle', text: 'MEEEEE!', sfx: 'whoosh' },
+  { bg: WAITING_ROOM, furniture: 'none', speaker: 'CHAPULIN', pose: 'chapulin_idle', text: 'MEEEEE!', sfx: 'whoosh', addProfile: 'perfil_chapulin' },
   { bg: WAITING_ROOM, furniture: 'none', speaker: 'TORIBIO', pose: 'toribio_nervioso', text: 'El Chapulín Colorado?!' },
   { bg: WAITING_ROOM, furniture: 'none', speaker: 'CHAPULIN', pose: 'chapulin_idle', text: 'No one expected my cleverness! Do not panic! My vinyl antennae detected an overdose of procedural panic in this hallway.' },
   { bg: WAITING_ROOM, furniture: 'none', speaker: 'DEFENSA', pose: 'donramon_shock', text: 'Chapulín! Thank goodness you are here. Say... do you really know anything about trials and law?' },
@@ -56,8 +58,8 @@ export const CASE0_T2_RECESS_AND_RESUMPTION_EN: DialogueLine[] = [
   { bg: WAITING_ROOM, furniture: 'none', speaker: 'DEFENSA', pose: 'donramon_idle', text: 'Back inside, Toribio. Hold tight. We are about to read that encyclopedia seller the whole rulebook.' },
   { bg: JUDGE, furniture: 'none', speaker: 'NARRADOR', text: 'Twenty minutes later. Back in court, the bailiff places the witness’s sample case on the stand.', bgm: 'suspense' },
   { speaker: 'JUEZ', pose: 'judge_neutral', text: 'Let the record show what was found inside.' },
-  { speaker: 'NARRADOR', text: 'Among the broken-spined volumes, folded flat and without a single coin, an accordion file full of papers: the neighborhood rent list, pocket by pocket.', addEvidence: 'maletin_cobranza' },
-  { speaker: 'NARRADOR', text: 'The bailiff gives the defense the Universal Knowledge Encyclopedias card.', addEvidence: 'tarjeta_enciclopedias' },
+  { bg: EXAMINE_MALETIN, furniture: 'none', speaker: 'NARRADOR', text: 'Among the broken-spined volumes, folded flat and without a single coin, an accordion file full of papers: the neighborhood rent list, pocket by pocket.', addEvidence: 'maletin_cobranza' },
+  { bg: DEFENSE, furniture: 'bench', speaker: 'NARRADOR', text: 'The bailiff gives the defense the Universal Knowledge Encyclopedias card.', addEvidence: 'tarjeta_enciclopedias' },
   { speaker: 'SUPER SAM', pose: 'supersam_slam', text: 'Your Honor... the prosecution asks to question this witness as a suspect. And to charge the recess time to the defense.', sfx: 'desk_slam' },
   { speaker: 'JUEZ', pose: 'judge_neutral', text: 'The first request is granted. The second is denied.' },
   { speaker: 'CHAPULIN', pose: 'chapulin_point', text: 'Now, Don Ramón, the witness has to testify about his own case!' },

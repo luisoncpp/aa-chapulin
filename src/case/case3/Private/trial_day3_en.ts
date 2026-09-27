@@ -24,7 +24,8 @@ const T5_SUCCESS: DialogueLine[] = [
   { speaker: 'DEFENSA', text: 'That whoever tied it stood IN FRONT of that mouth! Nobody gags another from behind and ties the knot in front!', sfx: 'desk_slam', pose: 'donramon_slam' },
   { speaker: 'CHAPULIN', text: 'And more! Twenty minutes tied and not a scrape on the wrists! And in the floor dust — not one struggle mark, just a neat sit-down!', pose: 'chapulin_slam', sfx: 'desk_slam' },
   { speaker: 'CHAPATIN', text: 'I examined him that night! That gentleman did not struggle one second! And if anyone doubts it, they can come argue with the bag!', pose: 'chapatin_enojado' },
-  { speaker: 'NARRADOR', text: '(Absolute silence. Don Aniceto Rebollar stops smiling for the first time in twenty-five years.)', sfx: 'realization' },
+  { speaker: 'NARRADOR', bg: 'assets/bg_gallery_characters.webp', furniture: 'none', text: '(Absolute silence.)' },
+  { speaker: 'NARRADOR', bg: 'assets/bg_witness.webp', furniture: 'podium', pose: 'aniceto_sweat', text: '(Don Aniceto Rebollar stops smiling for the first time in twenty-five years.)', sfx: 'realization' },
   { speaker: 'JUEZ', text: 'Are you saying the second victim... tied himself?!', pose: 'judge_shock' },
   { speaker: 'BARRIGA', text: 'No... No, no, no. Counselor, you don\'t understand. I trusted that man with the books for twenty-five years.', pose: 'barriga_shock' },
   { speaker: 'DEFENSA', text: 'I know, Señor Barriga. That\'s why you also trusted him with the secret. And that\'s why... he\'s the only one who could use it.', pose: 'donramon_idle' },
@@ -66,7 +67,7 @@ export const CASE3_TESTIMONY_5_EN: Testimony = {
       text: 'I told no one... no one, except one person I trusted completely.',
       pressText: [
         { speaker: 'DEFENSA', text: 'HOLD IT!', cutin: 'objection_un_momento', sfx: 'whoosh', pose: 'donramon_point' },
-        { speaker: 'BARRIGA', text: 'I told him at eight that night, in my office, while I put the Green Book in the safe. I remember clearly because he held the door while I dialed the combination.', pose: 'barriga_vendado' },
+        { speaker: 'BARRIGA', text: 'I told him at eight that night, in my office, while I put the Green Book in the safe. I remember clearly because he held the door while I dialed the combination.', pose: 'barriga_vendado', updateProfile: 'perfil_barriga' },
         { speaker: 'DEFENSA', text: '(One person knew about the shortage. One person saw the combination. And that person turned up tied.)', pose: 'donramon_idle' },
         { speaker: 'CHAPULIN', text: '(Don Ramón! But that person is victim number two!)', pose: 'chapulin_panic' },
         { speaker: 'DEFENSA', text: '(Exactly why, Chapulín. Exactly why nobody thought to look.)', pose: 'donramon_point' }

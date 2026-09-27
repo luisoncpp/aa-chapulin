@@ -130,7 +130,7 @@ export const CASE5_TESTIMONY_8: Testimony = {
         { speaker: 'BERRONDO', text: 'Derecho y obligación. Un bien de la masa no se exhibe sin su depositario.', pose: 'berrondo_definicion' },
         { speaker: 'BERRONDO', text: 'Si alguien me hubiera avisado, yo habría estado ahí a las cinco de la tarde, sentado junto a ese pobre hombre.', pose: 'berrondo_idle' },
         { speaker: 'BERRONDO', text: 'Y quizá no habría pasado nada.', pose: 'berrondo_idle' },
-        { speaker: 'NARRADOR', text: 'El Chapulín se queda quieto.', bgm: 'suspense' },
+        { bg: 'assets/bg_defense.webp', furniture: 'bench', speaker: 'NARRADOR', text: 'El Chapulín se queda quieto.', pose: 'chapulin_idle', bgm: 'suspense' },
         { speaker: 'DEFENSA', text: '(...Acaba de decir que nadie le avisó.)', pose: 'chapulin_idle' },
         { speaker: 'DEFENSA', text: '(Y lo dijo él solito, sin que yo se lo preguntara, para quedar bien.)', pose: 'chapulin_panic' }
       ],

@@ -47,7 +47,7 @@ export const CASE4_HOTEL_SUITE204_EN: InvestigationScene = {
       id: 'el_baul',
       label: 'The trunk',
       dialogue: [
-        { speaker: 'RUFINO', text: 'I own B-17: I signed dispatch and reception. I helped stow the guest’s things.', pose: 'rufino_smug' },
+        { speaker: 'RUFINO', text: 'I own B-17: I signed dispatch and reception. I helped stow the guest’s things.', pose: 'rufino_smug', updateProfile: 'perfil_rufino' },
         { speaker: 'DEFENSA', text: '(That explanation will face contrast.)', pose: 'donramon_point' }
       ]
     },

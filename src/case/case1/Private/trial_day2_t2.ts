@@ -47,7 +47,7 @@ const CASE1_D2_T2_SUCCESS: DialogueLine[] = [
   { speaker: 'DEFENSA', text: 'Y el marco está doblado hacia afuera, no hacia adentro.', pose: 'donramon_idle' },
   { speaker: 'TRIPASECA', text: '...¿Y eso qué?', pose: 'tripaseca_sweat' },
   { speaker: 'DEFENSA', text: 'Que un vidrio no se va del lado por donde le pegaron, señor Tripaseca. Usted mismo lo dijo hace un minuto: "eso lo sabe cualquiera".', pose: 'donramon_point' },
-  { speaker: 'DEFENSA', text: 'Esta vitrina se rompió desde adentro.', pose: 'donramon_slam', sfx: 'desk_slam', updateProfile: 'perfil_tripaseca' },
+  { speaker: 'DEFENSA', text: 'Esta vitrina se rompió desde adentro.', pose: 'donramon_slam', sfx: 'desk_slam' },
   { speaker: 'NARRADOR', text: 'La sala estalla.', bg: 'assets/bg_gallery_characters.webp', furniture: 'none', sfx: 'realization', bgm: 'objection' },
   { speaker: 'JUEZ', text: '¡ORDEN! ¡ORDEN EN LA SALA!', sfx: 'gavel', pose: 'judge_gavel' },
   { speaker: 'JUEZ', text: '¡¿Desde adentro?! ¡Es una vitrina de ochenta centímetros!', pose: 'judge_shock' },
@@ -106,7 +106,7 @@ export const CASE1_TESTIMONY_4: Testimony = {
       text: 'Esa puerta tiene la chapa vencida desde marzo. Se empuja y ya. No hay que ser mago.',
       pressText: [
         { speaker: 'DEFENSA', text: '¡UN MOMENTO! ¿Desde marzo, dijo usted?', sfx: 'whoosh', cutin: 'objection_un_momento', pose: 'donramon_point' },
-        { speaker: 'TRIPASECA', text: 'Desde marzo.', pose: 'tripaseca_smug' },
+        { speaker: 'TRIPASECA', text: 'Desde marzo.', pose: 'tripaseca_smug', updateProfile: 'perfil_tripaseca' },
         { speaker: 'DEFENSA', text: '¿Y usted cómo sabe desde qué mes está vencida la chapa de la puerta de servicio de un museo?', pose: 'donramon_shock' },
         { speaker: 'TRIPASECA', text: '...Pos se ve. Se ve que está vieja.', pose: 'tripaseca_sweat' },
         { speaker: 'DEFENSA', text: '"Vieja" se ve. "Marzo" no se ve, señor Tripaseca. Marzo se sabe.', pose: 'donramon_point' },

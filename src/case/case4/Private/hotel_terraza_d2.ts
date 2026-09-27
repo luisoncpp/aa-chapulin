@@ -14,7 +14,7 @@ export const CASE4_HOTEL_TERRAZA_D2: InvestigationScene = {
   idlePose: 'chompiras_idle',
   intro: [
     { speaker: 'NARRADOR', text: '26 de octubre, 11:00 AM. Terraza. Atiende el botones del montacargas.' },
-    { speaker: 'CHOMPIRAS', text: '¡Licenciado! ¿Usted es el que va a sacar al Botija? Porque si no lo saca, me quedo sin quién me ayude con los baúles.', pose: 'chompiras_idle' },
+    { speaker: 'CHOMPIRAS', text: '¡Licenciado! ¿Usted es el que va a sacar al Botija? Porque si no lo saca, me quedo sin quién me ayude con los baúles.', pose: 'chompiras_idle', addProfile: 'perfil_chompiras' },
     { speaker: 'DEFENSA', text: 'Lo voy a sacar. ¿Ustedes se conocen de antes?', pose: 'donramon_idle' },
     { speaker: 'CHOMPIRAS', text: 'De antes de antes. Pero de eso ya no hablamos, ¿verdad? Ahora somos gente de uniforme.', pose: 'chompiras_nervous' },
     { speaker: 'CHAPULIN', text: '¡Qué bonito es reformarse!', pose: 'chapulin_idle' },

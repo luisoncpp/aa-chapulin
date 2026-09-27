@@ -9,7 +9,7 @@ const T2_SUCCESS: DialogueLine[] = [
   { cutin: 'objection_toma_eso', speaker: 'DEFENSA', text: '¡TOMA ESO!', sfx: 'whoosh', bgm: 'pursuit', pose: 'donramon_point' },
   { speaker: 'DEFENSA', text: '¡Señor Peterete, sus mentiras caen por su propio peso!', pose: 'donramon_point' },
   { speaker: 'PETERETE', text: '¿M-mentiras? ¡Mida sus palabras, picapleitos!', pose: 'peterete_sweat' },
-  { speaker: 'DEFENSA', text: '¡El Informe de la Bóveda dictamina que los pestillos NO sufrieron ningún daño por palanca!', sfx: 'desk_slam', pose: 'donramon_slam' },
+  { speaker: 'DEFENSA', text: '¡El Informe de la Bóveda dictamina que los pestillos NO sufrieron ningún daño por palanca!', sfx: 'desk_slam', pose: 'donramon_slam', updateProfile: 'perfil_peterete' },
   { speaker: 'DEFENSA', text: 'La cerradura fue abierta suave y limpiamente con una LLAVE MAESTRA. Y la palanca tiene pintura AZUL MARINO del cuadro eléctrico.', pose: 'donramon_point' },
   { speaker: 'CHAPULIN', text: '¡Lo sospeché desde un principio! ¡Al Chómpiras le pusieron la palanca en las manos mientras dormía por un gas somnífero!', pose: 'chapulin_point' },
   { speaker: 'JUEZ', text: '¡¿Gas somnífero?! ¡Esto cambia el caso de un robo rústico a una conspiración premeditada!', pose: 'judge_shock' },

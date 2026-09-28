@@ -129,7 +129,7 @@ export const CASE1_TESTIMONY_5: Testimony = {
       id: 'c1_d2t3_3',
       speaker: 'TRIPASECA',
       pose: 'tripaseca_smug',
-      text: 'Y la cámara lo agarró. Una sola foto, pero ahí se le ve clarito el corazoncito ese que trae en el pecho.',
+      text: 'Y la cámara lo agarró. Una sola foto, pero ahí se le ve clarito el corazoncito con las letras C y H que trae en el pecho.',
       pressText: [
         { speaker: 'DEFENSA', text: '¡UN MOMENTO! Descríbame ese "corazoncito".', sfx: 'whoosh', cutin: 'objection_un_momento', pose: 'donramon_point' },
         { speaker: 'TRIPASECA', text: 'El corazón amarillo con las dos letras. Todo mundo lo conoce. Ce, hache.', pose: 'tripaseca_smug' },

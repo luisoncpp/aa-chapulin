@@ -101,7 +101,7 @@ const STAGE_3_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'TRIPASECA', text: 'Half of Mexico wears a forty-two!', pose: 'tripaseca_panic' },
   { speaker: 'DEFENSA', text: 'Half of Mexico, yes. But half of Mexico does not also leave a thread of its jacket caught in a grate from the inside.', pose: 'donramon_slam', sfx: 'desk_slam' },
   { speaker: 'TRIPASECA', text: 'ALL RIGHT, YES!', pose: 'tripaseca_panic' },
-  { speaker: 'NARRADOR', text: 'The witness jumps to his feet and knocks over the chair.', sfx: 'desk_slam' },
+  { speaker: 'NARRADOR', text: 'The witness knocks over the chair.', sfx: 'desk_slam' },
   { speaker: 'TRIPASECA', text: 'I did go in! I did shrink and I did go in through that grate! But I did not hit anybody!', pose: 'tripaseca_panic' },
   { speaker: 'TRIPASECA', text: 'The big man came at me and I only defended myself with what I had in my hand!', pose: 'tripaseca_panic' },
   { speaker: 'DEFENSA', text: "What you had in your hand was a prosecutor's canvas bag with six kilos of silver coin.", pose: 'donramon_point' },

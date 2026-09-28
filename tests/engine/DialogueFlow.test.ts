@@ -17,6 +17,7 @@ describe('DialogueFlow', () => {
   let soundEngine: SoundEngine;
   let typewriter: Typewriter;
   let flow: DialogueFlow;
+  let midi: MidiMusicComposer;
 
   beforeEach(() => {
     vi.useFakeTimers();
@@ -24,7 +25,7 @@ describe('DialogueFlow', () => {
     state = new GameStateManager();
     soundEngine = new SoundEngine();
     soundEngine.init(new FakeAudioContext() as unknown as AudioContext);
-    const midi = new MidiMusicComposer(soundEngine);
+    midi = new MidiMusicComposer(soundEngine);
     const investigation = new InvestigationController({
       dom, state, script: CASE_SCRIPT, soundEngine, midiComposer: midi, onQueueDialogue: () => {}
     });
@@ -46,6 +47,16 @@ describe('DialogueFlow', () => {
     vi.runAllTimers();
     flow.handleAdvance();
     expect(flow.getHistory()).toEqual([{ speaker: 'DEFENSA', text: 'Uno.' }]);
+  });
+
+  it('stops the music on a silence cue until the next line cues a track', () => {
+    flow.renderDialogueLine({ speaker: 'DEFENSA', text: 'Uno.', bgm: 'pursuit' });
+    flow.renderDialogueLine({ speaker: 'DEFENSA', text: '¡TOMA ESO!', bgm: 'silence' });
+    expect(midi.isPlaying).toBe(false);
+    midi.resumePlayback();
+    expect(midi.isPlaying).toBe(false);
+    flow.renderDialogueLine({ speaker: 'DEFENSA', text: 'Dos.', bgm: 'truth' });
+    expect(midi.currentTrack).toBe('truth');
   });
 
   it('sets a progress flag when its dialogue marker is shown', () => {

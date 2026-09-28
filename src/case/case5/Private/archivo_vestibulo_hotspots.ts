@@ -43,8 +43,8 @@ export const CASE5_VESTIBULO_HOTSPOTS: Hotspot[] = [
       { speaker: 'DEFENSA', text: '(Dos puertas. Y la policía sólo miró una.)', pose: 'chapulin_idle', addEvidence: 'plano_archivo' },
       { speaker: 'NARRADOR', text: 'Plano del Archivo Judicial. La puerta pública da al vestíbulo y al mostrador del libro de visitas.', bg: PLATE_DOS_ACCESOS, furniture: 'none' },
       { speaker: 'NARRADOR', text: 'La ventanilla de peritos da al patio de maniobras y no pasa por el mostrador del vestíbulo.', bg: PLATE_DOS_ACCESOS, furniture: 'none' },
-      { speaker: 'NARRADOR', text: 'Una escalera de servicio une el patio, el sótano y el extremo del pasillo 7 sin pasar por ningún mostrador.', bg: PLATE_DOS_ACCESOS, furniture: 'none' },
-      { speaker: 'DEFENSA', text: '(Por esa escalera se puede subir del sótano al pasillo siete sin que nadie te vea la cara.)', pose: 'chapulin_idle', bg: VESTIBULO_BG, furniture: 'none' },
+      { speaker: 'NARRADOR', text: 'El montacargas de servicio comunica el patio, el sótano y el extremo del pasillo 7 sin pasar por ningún mostrador.', bg: PLATE_DOS_ACCESOS, furniture: 'none' },
+      { speaker: 'DEFENSA', text: '(Por ese montacargas se puede subir del sótano al pasillo siete sin que nadie te vea la cara.)', pose: 'chapulin_idle', bg: VESTIBULO_BG, furniture: 'none' },
       { speaker: 'DEFENSA', text: '(No contaban con mi astucia... ni yo tampoco, la verdad.)', pose: 'chapulin_idle', bg: VESTIBULO_BG, furniture: 'none' }
     ]
   },

@@ -56,6 +56,7 @@ export const trialTrack: TrackDefinition = {
 export const crossExamModeratoTrack: TrackDefinition = {
   bpm: 128,
   length: 128,
+  instruments: { bass: 'chip_bass', lead: 'pulse_lead_25', chords: 'epiano' },
   bass: [
     // Relentless 16th-note driving bass
     45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45,
@@ -102,6 +103,7 @@ export const crossExamModeratoTrack: TrackDefinition = {
 export const crossExamAllegroTrack: TrackDefinition = {
   bpm: 144,
   length: 128,
+  instruments: { bass: 'chip_bass', lead: 'pulse_lead_12', chords: 'chip_pad' },
   bass: crossExamModeratoTrack.bass,
   lead: [
     // More urgent syncopated lead
@@ -115,5 +117,5 @@ export const crossExamAllegroTrack: TrackDefinition = {
     67,  0, 67, 71,  0, 71, 74,  0, 74, 72,  0, 71,  0,  0,  0,  0,
   ],
   chords: crossExamModeratoTrack.chords,
-  drums: crossExamModeratoTrack.drums,
+  drums: crossExamModeratoTrack.drums!.map((hit, index) => (index % 8 === 6 ? 'R' : hit))
 };

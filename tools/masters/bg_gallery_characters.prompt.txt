@@ -72,3 +72,14 @@ complete desk silhouettes from the clean `assets/bg_gallery.webp`. Exact
 placements and desk contours are in `tools/compose_gallery_characters.py`.
 The earlier low composite is backed up as
 `tools/masters/bg_gallery_characters_low_20260925.webp`.
+
+Wing correction, code only, 2026-09-27.
+
+"Yellow cape panels" above was wrong: El Chapulín wears two yellow insect
+wings on his upper back, never a cape. No new generation was made.
+tools/paint_chapulin_wings.py erases the painted cape from
+bg_gallery_characters_chapulin_standing.png and paints one wing hanging about
+60 degrees below horizontal behind the shoulder; the other wing is hidden by
+the torso in this profile. Output: bg_gallery_characters_chapulin_standing_wings.png.
+Any future Chapulín prompt must say "two small yellow insect wings on the
+upper back, pointed tips, no cape".

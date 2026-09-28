@@ -28,13 +28,12 @@ export const CASE5_CLIMAX_CHOICES_EN: ChoicePrompt[] = [
       { speaker: 'DEFENSA', text: 'But in this courtroom I will not present their stillness as proof. I have his statement about the auction and the deposit inventory.', pose: 'chapulin_idle' },
       { speaker: 'SECRETARIO', text: 'Then the auction clears Attorney Berrondo!' },
       { speaker: 'DON RAMÓN', text: 'No, Mr. Clerk.', pose: 'donramon_idle' },
-      { speaker: 'NARRADOR', text: 'Don Ramon stands up in the dock.', pose: 'donramon_idle', bgm: 'suspense' },
       { speaker: 'JUEZ', text: 'The defendant may speak.', sfx: 'gavel', pose: 'judge_gavel' },
       { speaker: 'DON RAMÓN', text: 'I have listened four days to talk about that crate and understood nothing until a minute ago.', pose: 'donramon_idle' },
       { speaker: 'DON RAMÓN', text: 'The antennae do not need to vibrate, Your Honor. What is in the crate was not stolen; Berrondo admitted buying it for three pesos and the inventory confirms the originals remain on deposit.', pose: 'donramon_idle' },
       { speaker: 'DON RAMÓN', text: 'Eleven thousand four hundred seven cards filed with each family\'s address, wages, valuables, and how their door closes.', pose: 'donramon_shock' },
       { speaker: 'DON RAMÓN', text: 'And they all gave them themselves. Sitting in their living rooms, with the salesman across from them, happy to be trusted the volumes.', pose: 'donramon_idle' },
-      { bg: 'assets/bg_gallery_characters.webp', furniture: 'none', speaker: 'NARRADOR', text: 'Absolute silence in the courtroom.', bgm: 'suspense' },
+      { bg: 'assets/bg_gallery_case5_secretary_berrondo_accused.webp', furniture: 'none', speaker: 'NARRADOR', text: 'Absolute silence in the courtroom.', bgm: 'suspense' },
       { speaker: 'DON RAMÓN', text: 'That man did not need to steal those cards, Your Honor. That is the point.', pose: 'donramon_idle' },
       { speaker: 'DON RAMÓN', text: 'The file is his: he bought it at auction for three pesos. And yet the originals remain in judicial deposit, under his own signature.', pose: 'donramon_idle' },
       { speaker: 'DON RAMÓN', text: 'Buying it legally does not make him innocent, Your Honor. That is proof of how he could sell the information for eleven years without anyone stopping him.', pose: 'donramon_shock' },
@@ -49,7 +48,7 @@ export const CASE5_CLIMAX_CHOICES_EN: ChoicePrompt[] = [
       { speaker: 'JUEZ', text: 'Defendant: dictate your address to the clerk.', sfx: 'gavel', pose: 'judge_gavel' },
       { speaker: 'DON RAMÓN', text: '...Calle del Espanto number eight, apartment seventy-two.', pose: 'donramon_idle' },
       { speaker: 'DON RAMÓN', text: 'Mexico City.', pose: 'donramon_sweat' },
-      { bg: 'assets/bg_judge.webp', furniture: 'judge-bench', speaker: 'NARRADOR', text: 'The clerk runs his finger through the drawer for forty seconds. The room does not breathe.', bgm: 'suspense' },
+      { bg: 'assets/bg_courtroom.webp', furniture: 'bench', speaker: 'NARRADOR', text: 'The clerk runs his finger through the drawer for forty seconds. The room does not breathe.', bgm: 'suspense' },
       { speaker: 'SECRETARIO', text: '...I have it, Your Honor.', addEvidence: 'ficha_domicilio' },
       { speaker: 'JUEZ', text: 'Defense: present it. You earned it.', sfx: 'gavel', pose: 'judge_gavel' }
     ]

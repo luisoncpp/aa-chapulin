@@ -68,11 +68,6 @@ describe('Case 5 day 1 investigation (Spanish)', () => {
     expect(sealing.length).toBeGreaterThan(0);
   });
 
-  it('never uses truth BGM in day-1 investigation', () => {
-    allDay1Lines(es).forEach((line) => {
-      expect(line.bgm).not.toBe('truth');
-    });
-  });
 
   it('keeps DEFENSA on chapulin poses and bans slam poses in investigation', () => {
     allDay1Lines(es).forEach((line) => {

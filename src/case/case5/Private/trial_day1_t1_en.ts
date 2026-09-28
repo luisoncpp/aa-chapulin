@@ -26,7 +26,7 @@ const CASE5_D1_T1_CONTRADICTION_EN: ContradictionRule = {
 };
 
 export const CASE5_TESTIMONY_1_EN: Testimony = {
-  title: 'Testimony: Nobody Else Came In That Afternoon',
+  title: 'Testimony: At 5:35',
   witness: 'Nicanor Tolentino',
   bgm: 'cross_exam_moderato',
   statements: [
@@ -84,7 +84,7 @@ export const CASE5_TESTIMONY_1_EN: Testimony = {
       id: 'c5_d1t1_4',
       speaker: 'NICANOR',
       pose: 'nicanor_idle',
-      text: 'After him nobody came in and nobody went out. At five thirty-five I went up to close and there was the poor gentleman.',
+      text: 'At 5:35 I went up to close and there was the poor gentleman. After that, no visitors went upstairs.',
       pressText: [
         MOMENTO,
         { speaker: 'DEFENSA', text: 'A long half hour, Mr. Nicanor. What did you do in that half hour?', pose: 'chapulin_point' },
@@ -93,6 +93,12 @@ export const CASE5_TESTIMONY_1_EN: Testimony = {
         { speaker: 'NICANOR', text: 'With the boiler and both dryers on full, counselor, you cannot hear Judgment Day up there.', pose: 'nicanor_sweat' },
         { speaker: 'DEFENSA', text: '(The dryers again. And again nobody stops.)', pose: 'chapulin_idle' }
       ],
+      deflect: {
+        evidence: ['hoja_relevo'],
+        dialogue: [
+          { speaker: 'JUEZ', text: "The sheet records the guards' shift change, not visitor entries. It does not contradict that statement yet.", pose: 'judge_thinking' }
+        ]
+      },
       contradiction: CASE5_D1_T1_CONTRADICTION_EN
     }
   ]

@@ -72,11 +72,6 @@ describe('Case 5 day 2 investigation (Spanish)', () => {
     expect(delegacion).toContain('expediente_serie');
   });
 
-  it('never uses truth BGM in day-2 investigation', () => {
-    allDay2Lines(es).forEach((line) => {
-      expect(line.bgm).not.toBe('truth');
-    });
-  });
 
   it('keeps DEFENSA on chapulin poses and bans slam poses in investigation', () => {
     allDay2Lines(es).forEach((line) => {

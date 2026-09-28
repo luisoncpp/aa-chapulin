@@ -32,7 +32,7 @@ flowchart LR
 Characters are rendered in high-definition 2D Capcom sprite style with crisp dark contour outlines, expressive facial anatomy, and solid primary color coding.
 
 ### A. El Chapulín Colorado (Defense / Defendant)
-* **Visual Motifs**: Scarlet-red superhero cowl and bodysuit, bright yellow heart chest crest with red "CH" typography, antennae with flexible physics, yellow wings/capelet.
+* **Visual Motifs**: Scarlet-red superhero cowl and bodysuit, bright yellow heart chest crest with red "CH" typography, antennae with flexible physics, two small yellow insect wings on the upper back (never a cape or capelet; the red hood only flares over the shoulders).
 * **Palette**: Crimson Red (`#C0392B`), Canary Yellow (`#F1C40F`), Warm Flesh (`#F5CBA7`), Charcoal Outline (`#1A1A1A`).
 * **Sprite Poses** ([[assets/chapulin_sprites_clean_1787540691618.jpg]]):
   * `chapulin_idle`: Confident superhero/defense stance with hands resting on hips (standalone character sprite with zero baked furniture).

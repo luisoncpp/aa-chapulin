@@ -74,9 +74,9 @@ export const CASE5_TESTIMONY_3_EN: Testimony = {
       text: 'And since nobody went up my staircase after the counselor, I concluded nobody else could reach hallway seven. That staircase starts three meters from my desk.',
       pressText: [
         MOMENTO,
-        { speaker: 'DEFENSA', text: 'Is your staircase the only one that reaches hallway seven?', pose: 'chapulin_point' },
+        { speaker: 'DEFENSA', text: 'Is your staircase the only way to reach hallway seven?', pose: 'chapulin_point' },
         { speaker: 'NICANOR', text: 'Mine is the people\'s staircase.', pose: 'nicanor_idle' },
-        { speaker: 'DEFENSA', text: 'I did not ask if it is the people\'s. I asked if it is the only one.', pose: 'chapulin_point' },
+        { speaker: 'DEFENSA', text: 'I did not ask if it is the people\'s. I asked if there was another way.', pose: 'chapulin_point' },
         { speaker: 'SUPER SAM', text: 'OBJECTION! This court already rejected that line! The witness testifies about his door!', pose: 'supersam_slam', sfx: 'desk_slam' },
         { speaker: 'JUEZ', text: '...The court overrules the objection.', pose: 'judge_neutral' },
         { speaker: 'SUPER SAM', text: 'WHAT?!', pose: 'supersam_sweat' },

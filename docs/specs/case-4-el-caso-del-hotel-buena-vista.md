@@ -15,6 +15,7 @@ Contiene spoilers completos. La comunicación con el usuario debe limitarse al e
 | 2026-09-25 | Contrato visual de galería: líneas de NARRADOR en juicios ES/EN y correspondencia con el guion | Se encontró y corrigió la reacción al murmullo de la galería en D2-T2 en ambos idiomas. El spec y los dos guiones asignan `assets/bg_gallery_characters.webp` con `furniture: 'none'`. Revisión completa de los guiones de juicio, clímax y epílogo; cero hallazgos restantes en esta lente. |
 | 2026-09-26 | Reacción colectiva narrada: silencio, murmullo, risas, estallidos y movimientos de sala sin exigir la palabra «galería» | Segunda pasada semántica de todos los guiones de juicio ES/EN, éxitos, clímax y epílogo. La reacción de D2-T2 (murmullo colectivo y monóculo que tiembla) ya estaba sincronizada en el spec y ambos guiones; no se hallaron otras reacciones colectivas narradas que requieran ese plano. El punto ciego de una búsqueda literal es que puede omitir reacciones descritas sin nombrar «galería/gallery»; en esta pasada ampliada no hubo otra instancia en el Caso 4. |
 | 2026-09-27 | Separación visual del murmullo colectivo y el gesto de Rufino en D2-T2 | El murmullo conserva el plano de galería; el gesto del monóculo pasa a un segundo plano de Rufino en el estrado. La música de suspense entra con ese cambio y ambos guiones mantienen la misma secuencia. |
+| 2026-09-27 | Pausas de silencio del narrador en juicios, clímax y epílogo ES/EN | Revisión de los guiones de juicio, éxitos, clímax y epílogo frente al spec. No hay líneas de silencio del narrador que oculten la pose o conserven un fondo ajeno; la única reacción colectiva narrada sigue usando el plano de galería y las demás narraciones tienen encuadre explícito o son descripciones de informe. Sin hallazgos nuevos. |
 
 ## 1. Objetivo y reglas de diseño
 
@@ -1259,7 +1260,7 @@ Cecilio y Maruja están en la sala desde sus propios testimonios y sus dos líne
 La confesión aporta motivo y emoción. No aporta ningún hecho indispensable para la demostración: todo lo necesario ya está probado.
 
 ~~~dialogue
-RUFINO: El collar lo planeé yo. Él nada más abrió una vitrina y desde entonces se creyó mi socio.
+RUFINO: El collar lo planeé yo. Él nada más abrió una vitrina y desde entonces se creyó mi socio. [bgm: truth]
 RUFINO: Once meses cobrando. Y esa noche llegó a mi hotel a ponerle precio a mi apellido.
 JUEZ: Su apellido es falso.
 RUFINO: Por eso valía tanto.

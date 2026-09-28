@@ -11,7 +11,7 @@ const T4_SUCCESS: DialogueLine[] = [
   { speaker: 'DEFENSA', text: 'This is his clinic consultation log! September 15, 10:50 PM: cardiotonic applied, patient N.B., charge: NOTHING!', sfx: 'desk_slam', pose: 'donramon_slam' },
   { speaker: 'SUPER SAM', text: 'A paper written by the defendant himself! Objection!', pose: 'supersam_slam', sfx: 'desk_slam' },
   { speaker: 'DEFENSA', text: 'Then look at his paper bag — the one the sergeant lifted from the scene! Empty ampule and freshly used syringe! My client had just injected someone in the alley, Mr. Prosecutor, not cracked a safe!', pose: 'donramon_point' },
-  { speaker: 'NONO', text: 'IT WAS ME!', sfx: 'realization', pose: 'nono_llorando' },
+  { speaker: 'NONO', text: 'IT WAS ME!', sfx: 'realization', pose: 'nono_llorando', bgm: 'truth' },
   { speaker: 'NARRADOR', bg: 'assets/bg_gallery_characters.webp', furniture: 'none', pose: 'nono_llorando', text: '(Young Ñoño stands in the gallery, face soaked.)' },
   { speaker: 'NONO', text: 'It was me! I went down to the alley at ten forty-five because I couldn\'t breathe! The doctor was ALREADY there, waiting for me! He\'s been injecting me in secret for a year without charging so my daddy won\'t learn my heart is bad!', pose: 'nono_llorando', updateProfile: 'perfil_nono' },
   { speaker: 'CHAPATIN', text: 'Imprudent boy! That was professional secrecy!', pose: 'chapatin_enojado' },
@@ -22,7 +22,7 @@ const T4_SUCCESS: DialogueLine[] = [
   { speaker: 'DEFENSA', text: 'Let\'s recap, Your Honor. Señor Barriga was struck in the office at 10:45, after my client had already left. Wheeled at 10:50. And at 10:50 my client was in the alley, syringe in one hand and a patient in the other.', pose: 'donramon_idle' },
   { speaker: 'SUPER SAM', text: 'G-grrrk!', pose: 'supersam_sweat' },
   { speaker: 'ANICETO', text: 'I\'m glad, Counselor. Truly. But then... whoever attacked me is still free, and neither you nor I know who.', pose: 'aniceto_idle' },
-  { speaker: 'JUEZ', text: 'The defense has dismantled the charge... but without an alternate culprit, this court cannot acquit.', pose: 'judge_thinking' },
+  { speaker: 'JUEZ', text: 'The defense has dismantled the charge... but without an alternate culprit, this court cannot acquit.', pose: 'judge_thinking', bgm: 'suspense' },
   { speaker: 'JUEZ', text: 'I order the storeroom searched and cartridge three located. Session adjourned twenty-four hours!', pose: 'judge_gavel', sfx: 'gavel' },
   { speaker: 'SUPER SAM', text: 'Sergeant! If that cartridge isn\'t here tomorrow, I dock your paycheck, your bonus, AND the torta!', pose: 'supersam_point' },
   { speaker: 'SARGENTO', text: '...Yes, my prosecutor. Even if I have to climb into the trash can whole.', pose: 'pazguato_decidido' }

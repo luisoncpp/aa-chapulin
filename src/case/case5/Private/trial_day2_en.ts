@@ -22,7 +22,7 @@ export const CASE5_DAY2_INTRO_FULL_EN: DialogueLine[] = [
   { speaker: 'SECRETARIO', pose: 'secretario_leyendo_pagina', text: 'Two. Counselor Fulgencio Berrondo, trustee in bankruptcy 114/1971. Entry 16:05, badge returned 16:50.' },
   { speaker: 'SECRETARIO', pose: 'secretario_leyendo_mira', text: 'Three. Counselor Hilario Balbuena, court clerk. Entry 17:44, badge returned 18:05.' },
   { speaker: 'SECRETARIO', pose: 'secretario_leyendo', text: 'Four. Sergeant Refugio Pazguato, judicial police. Entry 17:52, badge returned 22:15.' },
-  { bg: 'assets/bg_gallery_characters.webp', furniture: 'none', speaker: 'NARRADOR', text: 'Absolute silence in the courtroom.', bgm: 'suspense' },
+  { bg: 'assets/bg_gallery_case5_sam_berrondo_secretary.webp', furniture: 'none', speaker: 'NARRADOR', text: 'Absolute silence in the courtroom.', bgm: 'suspense' },
   { speaker: 'DEFENSA', text: '(...The second name is the man who gave me coffee this morning.)', pose: 'chapulin_panic' },
   { speaker: 'SUPER SAM', text: 'Your Honor, before the gallery starts inventing things!', pose: 'supersam_slam', sfx: 'desk_slam' },
   { speaker: 'SUPER SAM', text: 'Counselor Berrondo is an officer of the court and was doing his job! I myself invited him to assist on Monday morning, when he informed me of his status as the victim\'s trustee!', pose: 'supersam_point' },

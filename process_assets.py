@@ -15,6 +15,8 @@ import numpy as np
 from PIL import Image
 from scipy import ndimage
 
+from key_fringe_recolor import recolor_key_fringe
+
 CURRENT_ARTIFACT_DIR = r"C:\Users\luiso\.gemini\antigravity\brain\ea504c98-228b-4b3d-ad8c-a1a238ea3b94"
 PREV_ARTIFACT_DIR_8 = r"C:\Users\luiso\.gemini\antigravity\brain\242c8b4f-9360-4ec8-b38f-ecac117b2298"
 PREV_ARTIFACT_DIR_7 = r"C:\Users\luiso\.gemini\antigravity\brain\e2f1a61b-7fc5-4a37-9032-9dce380a7993"
@@ -309,6 +311,14 @@ def process_standalone_prop(prop_name: str, out_filename: str, crop_box=None):
 
 
 
+def recolor_prop_fringe(out_filename: str, depth: int) -> None:
+    path = os.path.join(DEST_DIR, out_filename)
+    with Image.open(path) as img:
+        cleaned = recolor_key_fringe(img, depth=depth)
+    cleaned.save(path, 'WEBP', quality=85, method=6)
+    print(f"  [OK] Recolored key fringe: {out_filename}")
+
+
 def process_evidence_icons(ev_name: str):
     ev_path = find_asset_file(ev_name)
     if not os.path.exists(ev_path):
@@ -548,6 +558,8 @@ def run_all_fixes():
         "court_judge_bench.webp",
         crop_box=(117, 130, 1035, 818)
     )
+    # Keyed from pink-red: despill turns the ink outline pure dark red.
+    recolor_prop_fringe("court_judge_bench.webp", depth=4)
 
     # 7. Objection Cut-Ins
     process_cutins("ui_objection_cutins_1787377615093.jpg")

@@ -73,7 +73,7 @@ const STAGE2_EN: DialogueLine[] = [
 ];
 
 const VERDICT_EN: DialogueLine[] = [
-  { speaker: 'RUFINO', text: 'I planned the necklace. All he did was open a display case, and ever since he thought himself my partner.', pose: 'rufino_breakdown' },
+  { speaker: 'RUFINO', text: 'I planned the necklace. All he did was open a display case, and ever since he thought himself my partner.', pose: 'rufino_breakdown', bgm: 'truth' },
   { speaker: 'RUFINO', text: 'Eleven months collecting. And that night he came to my hotel to put a price on my surname.', pose: 'rufino_breakdown' },
   { speaker: 'JUEZ', text: 'Your surname is false.', pose: 'judge_gavel', sfx: 'gavel' },
   { speaker: 'RUFINO', text: 'That is why it cost so much.', pose: 'rufino_breakdown' },

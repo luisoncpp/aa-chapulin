@@ -404,10 +404,8 @@ body {
     animation: characterBreathe 3s infinite ease-in-out;
 }
 
-/* A pose whose hands are planted on furniture must not drift: the idle float would
-   open and close a gap at the contact line every cycle. Frame-driven, so any future
-   surface-contact frame gets this for free. */
-#game-screen[data-stage-contact="true"] #character-sprite {
+/* Contact, resting, and gavel-strike poses must stay still. */
+#game-screen[data-stage-still="true"] #character-sprite {
     animation: none;
 }
 

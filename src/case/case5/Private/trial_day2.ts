@@ -22,7 +22,7 @@ export const CASE5_DAY2_INTRO_FULL: DialogueLine[] = [
   { speaker: 'SECRETARIO', pose: 'secretario_leyendo_pagina', text: 'Dos. Licenciado Fulgencio Berrondo, síndico de la quiebra 114/1971. Entrada 16:05, gafete devuelto 16:50.' },
   { speaker: 'SECRETARIO', pose: 'secretario_leyendo_mira', text: 'Tres. Licenciado Hilario Balbuena, actuario. Entrada 17:44, gafete devuelto 18:05.' },
   { speaker: 'SECRETARIO', pose: 'secretario_leyendo', text: 'Cuatro. Sargento Refugio Pazguato, policía judicial. Entrada 17:52, gafete devuelto 22:15.' },
-  { bg: 'assets/bg_gallery_characters.webp', furniture: 'none', speaker: 'NARRADOR', text: 'Silencio absoluto en la sala.', bgm: 'suspense' },
+  { bg: 'assets/bg_gallery_case5_sam_berrondo_secretary.webp', furniture: 'none', speaker: 'NARRADOR', text: 'Silencio absoluto en la sala.', bgm: 'suspense' },
   { speaker: 'DEFENSA', text: '(...El segundo nombre es el señor que me dio café esta mañana.)', pose: 'chapulin_panic' },
   { speaker: 'SUPER SAM', text: '¡Your Honor, antes de que la galería empiece a inventar!', pose: 'supersam_slam', sfx: 'desk_slam' },
   { speaker: 'SUPER SAM', text: '¡El licenciado Berrondo es auxiliar de la justicia y estaba haciendo su trabajo! ¡Yo mismo lo invité a coadyuvar el lunes por la mañana, cuando él me comunicó su carácter de síndico de la víctima!', pose: 'supersam_point' },

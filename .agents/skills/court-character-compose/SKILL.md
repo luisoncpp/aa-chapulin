@@ -20,7 +20,7 @@ This recipe comes from `assets/bg_gallery_characters.webp`, which puts Don Ramó
 - **Ace Attorney pose:** side profile, facing the opposite desk across the aisle. The defense (left) faces right and the prosecution (right) faces left. Never facing the camera, and never turned away toward the judge.
 - Take identity from `assets/<character>_idle.webp`, plus the previously approved cutout if one exists. The background must be transparent; check with `getchannel('A').getbbox()` and confirm the corners have alpha 0.
 - **Check the facing direction before flipping.** A cutout that already faces the right way needs no flip, and flipping mirrors letters and symbols (Super Sam's `$`).
-- Approved cutouts already exist in `tools/masters/bg_gallery_characters_{donramon,chapulin,supersam}_standing.png`. Reuse them before generating new ones.
+- Approved cutouts already exist in `tools/masters/bg_gallery_characters_{donramon,supersam}_standing.png` and `tools/masters/bg_gallery_characters_chapulin_standing_wings.png`. Reuse them before generating new ones. The plain `chapulin_standing.png` has a wrong cape. El Chapulín wears two yellow insect wings and never a cape, so any prompt for him must say so (`docs/lessons-learned/chapulin-wings-not-cape.md`).
 
 ## 2. Scale and position come from the furniture, not by eye
 

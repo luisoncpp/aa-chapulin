@@ -16,7 +16,7 @@ describe('legacy testimony snapshot migration', () => {
     state.beginTrialOnlyCase(CASE_SCRIPT_CASE0_ES);
     const controller = new TrialController({
       dom, state, script: CASE_SCRIPT_CASE0_ES, soundEngine,
-      midiComposer: new MidiMusicComposer(), onQueueDialogue: vi.fn(), onRenderLine: vi.fn(),
+      midiComposer: new MidiMusicComposer(soundEngine), onQueueDialogue: vi.fn(), onRenderLine: vi.fn(),
       onOpenCourtRecord: vi.fn()
     });
     controller.restoreTrialSnapshot({ phase: 'TESTIMONY', testimonyKey: 'testimony2', statementIdx: 0 });

@@ -137,9 +137,11 @@ describe('StageLayout composition frames', () => {
     const dom = setupDomHarness();
     applyStageFrame(dom.gameScreen, 'plain', 'almanegra_inconsciente');
     expect(dom.gameScreen.dataset.stageContact).toBe('true');
+    expect(dom.gameScreen.dataset.stageStill).toBe('true');
 
     applyStageFrame(dom.gameScreen, 'plain', 'almanegra_vendado');
     expect(dom.gameScreen.dataset.stageContact).toBe('false');
+    expect(dom.gameScreen.dataset.stageStill).toBe('false');
   });
 
   it('drops the judge bench below the defense desk and sinks only the gavel', () => {
@@ -152,6 +154,10 @@ describe('StageLayout composition frames', () => {
     applyStageFrame(dom.gameScreen, 'judge-stand', 'judge_gavel');
     expect(dom.gameScreen.style.getPropertyValue('--char-baseline')).toBe('28.00%');
     expect(dom.gameScreen.style.getPropertyValue('--furniture-height')).toBe('38.00%');
+    expect(dom.gameScreen.dataset.stageStill).toBe('true');
+
+    applyStageFrame(dom.gameScreen, 'judge-stand', 'judge_thinking');
+    expect(dom.gameScreen.dataset.stageStill).toBe('false');
   });
 
   it('aligns plain frame character baseline with the dialogue box top edge', () => {

@@ -9,11 +9,11 @@ import type { DialogueLine, Testimony } from '../../../types/index.js';
 /** GIRO 1: el arma no está en el museo. Cierra la successDialogue de D1-T2. */
 const CASE1_GIRO_1: DialogueLine[] = [
   { speaker: 'JUEZ', text: 'Esta corte va a ordenar algo muy simple. Fiscalía: el inventario del museo.', sfx: 'gavel', pose: 'judge_gavel' },
-  { speaker: 'SUPER SAM', text: '¿Para qué quiere el inventario, Your Honor?', pose: 'supersam_sweat' },
+  { speaker: 'SUPER SAM', text: '¿Para qué quiere el inventario, Your Honor?', pose: 'supersam_thinking' },
   { speaker: 'JUEZ', text: 'Para saber qué objeto de ese museo pesa como un saco de moneda y es flexible.', pose: 'judge_neutral' },
   { speaker: 'NARRADOR', text: 'El alguacil entrega un legajo. Super Sam lo hojea.', bg: 'assets/bg_courtroom.webp', furniture: 'bench', sfx: 'whoosh' },
   { speaker: 'NARRADOR', text: 'La sala espera.', bg: 'assets/bg_gallery_characters_sam_no_bag.webp', furniture: 'none' },
-  { speaker: 'SUPER SAM', text: '...Cuatrocientas doce piezas, Your Honor.', pose: 'supersam_sweat' },
+  { speaker: 'SUPER SAM', text: '...Cuatrocientas doce piezas, Your Honor.', pose: 'supersam_thinking' },
   { speaker: 'JUEZ', text: '¿Y?', pose: 'judge_thinking' },
   { speaker: 'SUPER SAM', text: 'Revisamos las piezas que se movieron esa noche. Ninguna llega a seis kilos. La más pesada fue la chicharra: un kilo doscientos. De oro macizo, con filigrana... de canto vivo.', pose: 'supersam_sweat' },
   { speaker: 'DEFENSA', text: 'De canto vivo, señor juez. Con aristas. Y la herida no tiene ni una.', pose: 'donramon_point' },
@@ -88,7 +88,7 @@ export const CASE1_TESTIMONY_2: Testimony = {
         { speaker: 'TRIPASECA', text: 'Asuntos de comerciante, licenciado. Uno camina, uno ve, uno compra.', pose: 'tripaseca_smug' },
         { speaker: 'DEFENSA', text: '¿Y qué compró usted esa noche?', pose: 'donramon_idle' },
         { speaker: 'TRIPASECA', text: 'Nada. Mal día.', pose: 'tripaseca_smug' },
-        { speaker: 'SUPER SAM', text: '¡Objection! ¡Que un hombre camine de noche no es un crimen! ¡Yo camino de noche!', pose: 'supersam_point' },
+        { speaker: 'SUPER SAM', text: '¡Objection! ¡Que un hombre camine de noche no es un crimen! ¡Yo camino de noche!', pose: 'supersam_crossed' },
         { speaker: 'DEFENSA', text: 'Nadie ha dicho que lo sea, señor fiscal. Yo sólo estoy tomando el tiempo.', pose: 'donramon_idle' }
       ]
     },
@@ -129,7 +129,7 @@ export const CASE1_TESTIMONY_2: Testimony = {
       pressText: [
         { speaker: 'DEFENSA', text: '¡UN MOMENTO! ¿A dónde corrió usted?', sfx: 'whoosh', cutin: 'objection_un_momento', pose: 'donramon_point' },
         { speaker: 'TRIPASECA', text: 'Al teléfono de la esquina. Marqué a la policía a las nueve con tres. Puede checarlo.', pose: 'tripaseca_smug' },
-        { speaker: 'SUPER SAM', text: '¡Y yo estaba a cuatro cuadras! ¡Llegué en cuatro minutos! ¡FOUR! ¡Eso es servicio!', pose: 'supersam_case1_slam', sfx: 'desk_slam' },
+        { speaker: 'SUPER SAM', text: '¡Y yo estaba a cuatro cuadras! ¡Llegué en cuatro minutos! ¡FOUR! ¡Eso es servicio!', pose: 'supersam_watch', sfx: 'desk_slam' },
         { speaker: 'DEFENSA', text: 'Cuatro minutos. Qué suerte tuvo el museo con usted tan cerca, señor fiscal.', pose: 'donramon_idle' },
         { speaker: 'SUPER SAM', text: '¡No es suerte! ¡Es... es eficiencia!', pose: 'supersam_sweat' },
         { speaker: 'DEFENSA', text: '(Se tardó en contestar. Un cuarto de segundo, pero se tardó.)', pose: 'donramon_idle' }

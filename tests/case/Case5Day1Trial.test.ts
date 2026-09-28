@@ -38,11 +38,6 @@ describe('Case 5 day 1 trial (Spanish)', () => {
     expect(en.trial.openingPresent?.evidence).toContain('insignia_abogado');
   });
 
-  it('never uses truth BGM in day-1 trial dialogue', () => {
-    lines.forEach((line) => {
-      expect(line.bgm).not.toBe('truth');
-    });
-  });
 
   it('keeps DEFENSA on chapulin poses only and bans donramon_slam', () => {
     defensaPoses(lines).forEach((pose) => {

@@ -8,6 +8,7 @@ files:
   - process_case2_assets.py
   - process_case3_assets.py
   - process_case4_assets.py
+  - key_fringe_recolor.py
   - verify_assets.py
 architectureDoc: docs/architecture/asset-pipeline.md
 descriptionShort: "Automates sprite chroma-keying, grid slicing, and asset verification"

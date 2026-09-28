@@ -16,9 +16,9 @@ export const CASE5_CLIMAX_STAGE1: ClimaxStage = {
   ],
   successDialogue: [
     { speaker: 'DEFENSA', text: '¡PROTESTO!', sfx: 'desk_slam', cutin: 'objection_protesto', pose: 'chapulin_slam', bgm: 'pursuit' },
-    { speaker: 'DEFENSA', text: 'El hombre que estuvo en ese pasillo está sentado en la mesa de la fiscalía, señor juez.', pose: 'chapulin_point' },
+    { speaker: 'DEFENSA', text: 'El hombre que estuvo en ese pasillo está de pie en la mesa de la fiscalía, señor juez.', pose: 'chapulin_point' },
     { speaker: 'DEFENSA', text: 'El licenciado Fulgencio Berrondo.', pose: 'chapulin_slam', sfx: 'desk_slam' },
-    { bg: 'assets/bg_gallery_characters.webp', furniture: 'none', speaker: 'NARRADOR', text: 'La galería se levanta entera.', sfx: 'realization' },
+    { bg: 'assets/bg_gallery_case5_secretary_berrondo_accused.webp', furniture: 'none', speaker: 'NARRADOR', text: 'La galería se levanta entera.', sfx: 'realization' },
     { speaker: 'BERRONDO', text: '......', pose: 'berrondo_idle', bg: 'assets/bg_courtroom.webp' },
     { speaker: 'SECRETARIO', text: '¡La representación social objeta! ¡El licenciado Berrondo auxilió a esta fiscalía durante tres días!' },
     { speaker: 'JUEZ', text: 'La corte comparte la objeción en principio. Defensa, fundamente o retire.', pose: 'judge_neutral' },

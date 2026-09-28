@@ -156,12 +156,17 @@ export function applyStageFrame(
   const baseline = frame.characterBaseline + poseBaselineOffset(frameId, pose);
   gameScreenEl.dataset.stageFrame = frameId;
   gameScreenEl.dataset.stageContact = String(frame.surfaceContact || isRestingPose(pose));
+  gameScreenEl.dataset.stageStill = String(shouldSuppressIdleFloat(frame, pose));
   style.setProperty('--char-height', toPercent(height));
   style.setProperty('--char-baseline', toPercent(baseline));
   style.setProperty('--char-layer', String(frame.characterLayer));
   style.setProperty('--furniture-width', toPercent(frame.furnitureWidth));
   style.setProperty('--furniture-height', toPercent(frame.furnitureHeight));
   style.setProperty('--furniture-baseline', toPercent(frame.furnitureBaseline));
+}
+
+function shouldSuppressIdleFloat(frame: StageFrame, pose?: PoseName): boolean {
+  return frame.surfaceContact || isRestingPose(pose) || pose === 'judge_gavel';
 }
 
 function poseBaselineOffset(frameId: StageFrameId, pose?: PoseName): number {

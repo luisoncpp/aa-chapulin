@@ -104,7 +104,7 @@ describe('Acta de Personajes in the Court Record', () => {
     expect(trial.isAwaitingProfile()).toBe(false);
   });
 
-  it('resolves the day-2 opening present with a person after ?trial=2', () => {
+  it('resolves the day-2 opening present with a person after ?trial=2', async () => {
     const dayState = new GameStateManager();
     dayState.beginNewCase(case1);
     dayState.beginNextTrialDay(case1.adjournment!);
@@ -120,14 +120,14 @@ describe('Acta de Personajes in the Court Record', () => {
       onOpenCourtRecord: () => undefined
     });
     dayTrial.startTrial(/*skipFade=*/ true);
-    vi.advanceTimersByTime(1200);
+    await vi.advanceTimersByTimeAsync(3_000);
     expect(dayTrial.isAwaitingProfile()).toBe(true);
 
     dayTrial.handlePresentProfile('perfil_almanegra');
     expect(dayTrial.currentTestimony?.witness).toBe('Alma Negra');
   });
 
-  it('keeps the formal penalty for repeated wrong opening profiles', () => {
+  it('keeps the formal penalty for repeated wrong opening profiles', async () => {
     const dayState = new GameStateManager();
     dayState.beginNewCase(case1);
     dayState.beginNextTrialDay(case1.adjournment!);
@@ -146,7 +146,7 @@ describe('Acta de Personajes in the Court Record', () => {
     });
 
     dayTrial.startTrial(/*skipFade=*/ true);
-    vi.advanceTimersByTime(1200);
+    await vi.advanceTimersByTimeAsync(3_000);
     dayTrial.handlePresentProfile('perfil_tripaseca');
     dayTrial.handlePresentProfile('perfil_tripaseca');
 

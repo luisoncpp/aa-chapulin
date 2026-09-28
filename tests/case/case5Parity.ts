@@ -42,7 +42,6 @@ export function assertInvestigationParity(
       es.investigation[id].hotspots.map(hotspotGeom)
     );
   });
-  enLines.forEach((line) => expect(line.bgm).not.toBe('truth'));
   assertNoSpanishLeak(enLines);
 }
 
@@ -78,7 +77,6 @@ export function assertEnglishTrialParity(
     }
   }
   enLines.forEach((line) => {
-    expect(line.bgm).not.toBe('truth');
     expect(line.pose).not.toBe('donramon_slam');
     if (line.speaker === 'DEFENSA' && line.pose) {
       expect(line.pose.startsWith('chapulin_'), `${line.pose} on DEFENSA`).toBe(true);

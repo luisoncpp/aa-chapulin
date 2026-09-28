@@ -16,23 +16,23 @@ export const CASE5_DAY4_OPENING_PRESENT_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'NARRADOR', text: 'The lower curve is the one the expert used: a room at twenty degrees.', bg: 'assets/plate_curva_enfriamiento.webp', furniture: 'none' },
   { speaker: 'NARRADOR', text: 'The upper curve is corridor 7 that afternoon: thirty-one degrees. The body cooled much more slowly.', bg: 'assets/plate_curva_enfriamiento.webp', furniture: 'none' },
   { speaker: 'NARRADOR', text: 'At the same temperature measured at 6:40 PM, the upper curve places death twenty-five minutes earlier.', bg: 'assets/plate_curva_enfriamiento.webp', furniture: 'none' },
-  { speaker: 'NARRADOR', text: 'The medical examiner stands up in the second row of the gallery without being called.', bg: 'assets/bg_gallery_characters.webp', furniture: 'none' },
+  { speaker: 'NARRADOR', text: 'The medical examiner stands up in the second row of the gallery without being called.', bg: 'assets/bg_gallery_case5_secretary_berrondo_accused.webp', furniture: 'none' },
   { speaker: 'NARRADOR', text: 'He speaks with the clerk for forty seconds, does two sums on a slip of paper, and nods.', sfx: 'realization' },
   { speaker: 'SECRETARIO', text: 'Your Honor, the expert corrects his report. At thirty-one degrees, the interval is adjusted.' },
   { speaker: 'JUEZ', text: 'State it.', sfx: 'gavel', pose: 'judge_gavel' },
   { speaker: 'SECRETARIO', text: 'From 4:35 PM to 5:05 PM.', updateEvidence: 'informe_forense_c5' },
-  { bg: 'assets/bg_gallery_characters.webp', furniture: 'none', speaker: 'NARRADOR', text: 'A low murmur in the gallery, slow to grow because the room is slow to understand it.', bgm: 'suspense' },
+  { bg: 'assets/bg_gallery_case5_secretary_berrondo_accused.webp', furniture: 'none', speaker: 'NARRADOR', text: 'A low murmur in the gallery, slow to grow because the room is slow to understand it.', bgm: 'suspense' },
   { speaker: 'SECRETARIO', text: '...Your Honor. With permission.' },
   { speaker: 'SECRETARIO', text: 'The defendant signed his entry at 4:40 PM and his exit at 4:58 PM.' },
   { speaker: 'SECRETARIO', text: 'The prosecution notes that the defense has just placed its own client inside the window.' },
-  { bg: 'assets/bg_gallery_characters.webp', furniture: 'none', speaker: 'NARRADOR', text: 'The gallery erupts.', sfx: 'gavel' },
+  { bg: 'assets/bg_gallery_case5_secretary_berrondo_accused.webp', furniture: 'none', speaker: 'NARRADOR', text: 'The gallery erupts.', sfx: 'gavel' },
   { speaker: 'JUEZ', text: 'ORDER! ORDER IN THE COURT!', sfx: 'gavel', pose: 'judge_gavel' },
   { speaker: 'JUEZ', text: 'Counselor Chapulin! Do you know what you have just done?', pose: 'judge_shock' },
   { speaker: 'DEFENSA', text: 'I do, Your Honor. I knew at five forty this morning.', pose: 'chapulin_idle' },
   { speaker: 'JUEZ', text: 'You have just placed your client alone with the victim within the hour of death!', pose: 'judge_shock', updateProfile: 'perfil_donramon' },
   { speaker: 'DEFENSA', text: 'Yes, Your Honor.', pose: 'chapulin_idle' },
   { speaker: 'DEFENSA', text: 'And I have just shown that the logged hour does not rule out the other man either. I still have to prove he reached the corridor.', pose: 'chapulin_point' },
-  { speaker: 'NARRADOR', text: 'Silence.', bgm: 'suspense' },
+  { bg: 'assets/bg_gallery_case5_secretary_berrondo_accused.webp', furniture: 'none', speaker: 'NARRADOR', text: 'Silence.', bgm: 'suspense' },
   { speaker: 'JUEZ', text: '...Explain yourself.', pose: 'judge_neutral' },
   { speaker: 'DEFENSA', text: 'Counselor Berrondo returned his visitor badge at 4:50 PM.', pose: 'chapulin_idle' },
   { speaker: 'DEFENSA', text: 'The prosecution treated that as a time of departure until we challenged the column header on Tuesday.', pose: 'chapulin_idle' },
@@ -57,7 +57,7 @@ export const CASE5_D4_T1_LIBRO_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'GENOVEVA', text: '...It does.', pose: 'genoveva_idle' },
   { speaker: 'DEFENSA', text: 'Read the court the printed header of the second column.', pose: 'chapulin_slam', sfx: 'desk_slam' },
   { speaker: 'GENOVEVA', text: '..."Time badge returned".', pose: 'genoveva_sweat' },
-  { bg: 'assets/bg_gallery_characters.webp', furniture: 'none', speaker: 'NARRADOR', text: 'Silence in the courtroom.', sfx: 'realization' },
+  { bg: 'assets/bg_gallery_case5_secretary_berrondo_accused.webp', furniture: 'none', speaker: 'NARRADOR', text: 'Silence in the courtroom.', sfx: 'realization' },
   { speaker: 'GENOVEVA', text: '......', pose: 'genoveva_shock' },
   { speaker: 'GENOVEVA', text: 'Thirteen years.', pose: 'genoveva_shock' },
   { speaker: 'GENOVEVA', text: 'Thirteen years calling a column that says something else "time of departure".', pose: 'genoveva_sweat' },
@@ -70,7 +70,7 @@ export const CASE5_D4_T1_LIBRO_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'GENOVEVA', text: '...Yes, sir.', pose: 'genoveva_sweat' },
   { speaker: 'GENOVEVA', text: 'With his credential he may be in the goods deposit at any hour, for as many hours as he wishes, and nobody has to know.', pose: 'genoveva_reglamento' },
   { speaker: 'GENOVEVA', text: 'That is what the paper says.', pose: 'genoveva_idle' },
-  { bg: 'assets/bg_gallery_characters.webp', furniture: 'none', speaker: 'NARRADOR', text: 'Rising murmur in the gallery.', sfx: 'realization', bgm: 'objection' },
+  { bg: 'assets/bg_gallery_case5_secretary_berrondo_accused.webp', furniture: 'none', speaker: 'NARRADOR', text: 'Rising murmur in the gallery.', sfx: 'realization', bgm: 'objection' },
   { speaker: 'BERRONDO', text: 'Your Honor, with permission: that is exact, and I said so myself yesterday.', pose: 'berrondo_idle', bg: 'assets/bg_courtroom.webp' },
   { speaker: 'BERRONDO', text: 'I have never hidden either of those things, because both are perfectly legal.', pose: 'berrondo_sweat', bg: 'assets/bg_courtroom.webp' },
   { speaker: 'DEFENSA', text: '(He is sweating. He has been sweating since yesterday.)', pose: 'chapulin_idle' },
@@ -103,8 +103,8 @@ export const CASE5_D4_T1_CHAIN_EN: TrialPresentStep[] = [
     successDialogue: [
       { cutin: 'objection_toma_eso', speaker: 'DEFENSA', text: 'TAKE THAT!', sfx: 'desk_slam', pose: 'chapulin_slam' },
       { speaker: 'DEFENSA', text: 'The card corner found in Casimiro\'s hand carried Don Ramón\'s address. Someone put it there to point at him.', pose: 'chapulin_point' },
-      { speaker: 'BERRONDO', text: 'A typed card does not prove it came from my index. Anyone who knew Mr. Valdés could have written it.', pose: 'berrondo_idle' },
-      { speaker: 'BERRONDO', text: 'Until this trial I did not even know that man\'s name. Why would I search eleven thousand cards for him?', pose: 'berrondo_idle' }
+      { speaker: 'BERRONDO', text: 'A typed card does not prove it came from my index. Anyone who knew Mr. Valdés could have written it.', pose: 'berrondo_idle', bg: 'assets/bg_courtroom.webp' },
+      { speaker: 'BERRONDO', text: 'Until this trial I did not even know that man\'s name. Why would I search eleven thousand cards for him?', pose: 'berrondo_idle', bg: 'assets/bg_courtroom.webp' }
     ]
   },
   {
@@ -112,7 +112,7 @@ export const CASE5_D4_T1_CHAIN_EN: TrialPresentStep[] = [
     prompt: 'What prosecution document named the person summoned and was distributed to the Syndic\'s Office?',
     successDialogue: [
       { speaker: 'DEFENSA', text: 'Notice 4471 names Ramón Valdés at Casimiro\'s request and orders a copy sent to the Syndic\'s Office.', pose: 'chapulin_point' },
-      { speaker: 'BERRONDO', text: 'I signed the receipt, but I did not pay attention to the subject. The written name does not prove I read it.', pose: 'berrondo_idle' },
+      { speaker: 'BERRONDO', text: 'I signed the receipt, but I did not pay attention to the subject. The written name does not prove I read it.', pose: 'berrondo_idle', bg: 'assets/bg_courtroom.webp' },
       { speaker: 'JUEZ', text: 'The notice proves what he could know, not what he did after signing it.', pose: 'judge_thinking' }
     ]
   },

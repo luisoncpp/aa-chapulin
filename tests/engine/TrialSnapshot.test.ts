@@ -34,8 +34,9 @@ describe('TrialController snapshot and setScript', () => {
     });
   });
 
-  it('starts a fresh trial at testimony 1 when the snapshot is missing or idle', () => {
+  it('starts a fresh trial at testimony 1 when the snapshot is missing or idle', async () => {
     controller.restoreTrialSnapshot();
+    await vi.advanceTimersByTimeAsync(3_000);
     expect(state.mode).toBe('TRIAL');
     // Case 1 day 1 has no `openingPresent`, so the intro leads straight into it.
     expect(controller.phase).toBe('TESTIMONY');
@@ -45,6 +46,7 @@ describe('TrialController snapshot and setScript', () => {
       phase: 'IDLE',
       statementIdx: 0
     });
+    await vi.advanceTimersByTimeAsync(3_000);
     expect(controller.currentTestimony).toBe(CASE_SCRIPT.trial.testimony1);
   });
 
@@ -100,11 +102,12 @@ describe('TrialController snapshot and setScript', () => {
     expect(day2.currentStatementIdx).toBe(1);
   });
 
-  it('treats a testimony snapshot without a key as a full trial restart', () => {
+  it('treats a testimony snapshot without a key as a full trial restart', async () => {
     controller.restoreTrialSnapshot({
       phase: 'TESTIMONY',
       statementIdx: 2
     });
+    await vi.advanceTimersByTimeAsync(3_000);
     expect(controller.currentTestimony).toBe(CASE_SCRIPT.trial.testimony1);
     expect(controller.currentStatementIdx).toBe(0);
   });

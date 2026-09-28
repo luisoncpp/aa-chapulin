@@ -1,8 +1,10 @@
 // @Architecture(descriptionShort="Unit tests for polyphonic MIDI tracker and soundtrack catalog", type="test", icon="music")
 import { describe, expect, it, beforeEach, afterEach, vi } from 'vitest';
+import { DRUM_SYMBOLS } from '../../src/audio/Private/Instruments/index.js';
 import { TRACK_CATALOG } from '../../src/audio/Private/TrackCatalog.js';
+import { HOLD } from '../../src/audio/Private/tracks/Notation.js';
 import { MidiMusicComposer, SoundEngine } from '../../src/audio/index.js';
-import type { TrackName } from '../../src/types/index.js';
+import type { NoteEntry, TrackName } from '../../src/types/index.js';
 import { FakeAudioContext } from '../fakes/FakeAudioContext.js';
 
 describe('MidiMusicComposer & TRACK_CATALOG', () => {
@@ -35,7 +37,7 @@ describe('MidiMusicComposer & TRACK_CATALOG', () => {
   it('synthesizes individual notes and polyphonic chords with options', () => {
     composer.isPlaying = true;
     expect(() => composer.playNote(69, 0.2)).not.toThrow();
-    expect(() => composer.playNote([60, 64, 67], 0.2, { type: 'sawtooth', gainLevel: 0.2, vibrato: true })).not.toThrow();
+    expect(() => composer.playNote([60, 64, 67], 0.2, 'chip_pad')).not.toThrow();
     expect(() => composer.playNote(0, 0.2)).not.toThrow();
     expect(() => composer.playNote([], 0.2)).not.toThrow();
   });
@@ -64,15 +66,15 @@ describe('MidiMusicComposer & TRACK_CATALOG', () => {
     expect(composer.isPlaying).toBe(true);
     expect(composer.currentTrack).toBe('trial');
     expect(composer.bpm).toBe(TRACK_CATALOG.trial.bpm);
-    expect(composer.step).toBe(0);
+    expect(composer.getPlaybackSnapshot().step).toBe(0);
 
     const stepMs = 60000 / TRACK_CATALOG.trial.bpm / 4;
-    vi.advanceTimersByTime(stepMs * 35);
-    expect(composer.step).toBe(35);
+    vi.advanceTimersByTime(Math.ceil(stepMs * 35));
+    expect(composer.getPlaybackSnapshot().step).toBe(35);
 
     // Calling playTrack for the same playing track is a no-op
     composer.playTrack('trial');
-    expect(composer.step).toBe(35);
+    expect(composer.getPlaybackSnapshot().step).toBe(35);
   });
 
   it('switches between tracks cleanly and resets step counter', () => {
@@ -81,19 +83,19 @@ describe('MidiMusicComposer & TRACK_CATALOG', () => {
 
     composer.playTrack('pursuit');
     expect(composer.currentTrack).toBe('pursuit');
-    expect(composer.step).toBe(0);
+    expect(composer.getPlaybackSnapshot().step).toBe(0);
     expect(composer.bpm).toBe(TRACK_CATALOG.pursuit.bpm);
   });
 
   it('continues playback when an alternate name uses the same composition', () => {
     composer.playTrack('victory');
     vi.advanceTimersByTime(200);
-    const stepBeforeAlias = composer.step;
+    const stepBeforeAlias = composer.getPlaybackSnapshot().step;
 
     composer.playTrack('epilogue');
 
     expect(composer.currentTrack).toBe('victory');
-    expect(composer.step).toBe(stepBeforeAlias);
+    expect(composer.getPlaybackSnapshot().step).toBe(stepBeforeAlias);
   });
 
   it('stops and resumes playback reliably', () => {
@@ -119,8 +121,6 @@ describe('MidiMusicComposer & TRACK_CATALOG', () => {
 
   it('validates polyphonic anti-fatigue integrity and step alignment for all compositions', () => {
     const trackNames = Object.keys(TRACK_CATALOG) as TrackName[];
-    const validDrums = new Set(['K', 'S', 'H', 'O', 'C', 'P', '0']);
-
     trackNames.forEach((name) => {
       const track = TRACK_CATALOG[name];
       expect(track).toBeDefined();
@@ -132,24 +132,23 @@ describe('MidiMusicComposer & TRACK_CATALOG', () => {
       expect(track.chords).toHaveLength(track.length);
       expect(track.drums).toHaveLength(track.length);
 
-      const validateNotes = (arr: any[] | undefined) => {
+      const validateNotes = (arr: NoteEntry[] | undefined) => {
         arr?.forEach((entry) => {
-          if (Array.isArray(entry)) {
-            entry.forEach((n) => expect(n).toBeGreaterThanOrEqual(0));
-          } else {
-            expect(entry).toBeGreaterThanOrEqual(0);
-          }
+          const notes = Array.isArray(entry) ? entry : [entry];
+          notes.forEach((n) => expect(n === HOLD || n >= 0).toBe(true));
         });
       };
 
       validateNotes(track.bass);
       validateNotes(track.lead);
       validateNotes(track.chords);
+      if (track.counter) {
+        expect(track.counter).toHaveLength(track.length);
+        validateNotes(track.counter);
+      }
 
       track.drums!.forEach((hit) => {
-        for (const char of hit) {
-          expect(validDrums.has(char)).toBe(true);
-        }
+        for (const char of hit) expect(DRUM_SYMBOLS.has(char)).toBe(true);
       });
     });
   });
@@ -186,19 +185,21 @@ describe('MidiMusicComposer & TRACK_CATALOG', () => {
   });
 
   it('pause keeps step and currentTrack; resumePaused continues from the same step', () => {
+    const stepMs = 60000 / 110 / 4;
     composer.playTrack('trial');
-    vi.advanceTimersByTime(60000 / 110 / 4 * 12);
-    const stepBeforePause = composer.step;
+    vi.advanceTimersByTime(Math.ceil(stepMs * 12));
+    const stepBeforePause = composer.getPlaybackSnapshot().step;
     composer.pause();
     expect(composer.isPlaying).toBe(false);
     expect(composer.currentTrack).toBe('trial');
-    expect(composer.step).toBe(stepBeforePause);
-    vi.advanceTimersByTime(60000 / 110 / 4 * 5);
-    expect(composer.step).toBe(stepBeforePause);
+    expect(composer.getPlaybackSnapshot().step).toBe(stepBeforePause);
+    expect(stepBeforePause).toBe(12);
+    vi.advanceTimersByTime(Math.ceil(stepMs * 5));
+    expect(composer.getPlaybackSnapshot().step).toBe(stepBeforePause);
     composer.resumePaused();
     expect(composer.isPlaying).toBe(true);
-    vi.advanceTimersByTime(60000 / 110 / 4);
-    expect(composer.step).toBe(stepBeforePause + 1);
+    vi.advanceTimersByTime(Math.ceil(stepMs) + 20);
+    expect(composer.getPlaybackSnapshot().step).toBe(stepBeforePause + 1);
   });
 
   it('seekToStep clamps to the active track length', () => {
@@ -215,6 +216,6 @@ describe('MidiMusicComposer & TRACK_CATALOG', () => {
     vi.advanceTimersByTime(60000 / 110 / 4 * 20);
     composer.playTrack('pursuit');
     expect(composer.currentTrack).toBe('pursuit');
-    expect(composer.step).toBe(0);
+    expect(composer.getPlaybackSnapshot().step).toBe(0);
   });
 });

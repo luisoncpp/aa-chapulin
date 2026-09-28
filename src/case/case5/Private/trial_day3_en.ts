@@ -14,7 +14,6 @@ export { CASE5_TESTIMONY_6_EN, CASE5_TESTIMONY_7_EN, CASE5_TESTIMONY_8_EN };
 
 export const CASE5_DAY3_INTRO_FULL_EN: DialogueLine[] = [
   ...CASE5_DAY3_INTRO_EN,
-  { speaker: 'NARRADOR', text: 'December 8, 4:00 PM. Third hearing.', bgm: 'trial' },
   { speaker: 'JUEZ', pose: 'judge_gavel', text: 'Court is resumed. This court received the record of this morning\'s judicial inspection.', sfx: 'gavel' },
   { speaker: 'JUEZ', pose: 'judge_neutral', text: 'It shows the deposit holds furniture and three thousand two hundred volumes distributed among its crates; in crate nine were inventoried two hundred ten luxury copies, a card file of eleven thousand four hundred seven cards, and a typewriter.' },
   { speaker: 'JUEZ', pose: 'judge_thinking', text: 'It also shows all of it has been inventoried since 1971 and none of it is stolen.' },

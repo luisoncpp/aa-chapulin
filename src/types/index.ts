@@ -8,7 +8,10 @@
 export type {
   SFXName,
   TrackName,
+  BgmCue,
   InstrumentWaveType,
+  ChannelName,
+  InstrumentId,
   DrumHitType,
   NoteEntry,
   TrackDefinition,

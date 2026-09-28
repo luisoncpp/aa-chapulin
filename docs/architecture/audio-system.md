@@ -14,8 +14,11 @@ flowchart TD
     BGMGain[BGMGainNode 0.65] --> Master
     SFXGain[SFXGainNode 0.85] --> Master
     
-    Composer[MidiMusicComposer] --> VoiceSynth[SynthVoiceSynthesizer]
-    VoiceSynth --> BGMGain
+    Composer[MidiMusicComposer] --> Scheduler[LookaheadScheduler]
+    Composer --> Renderer[StepRenderer]
+    Renderer --> Instruments[Instruments]
+    Instruments --> Mixer[MusicBus]
+    Mixer --> BGMGain
     SFX[SoundEngine SFX Methods] --> SFXGain
     
     SFX --> CourtSfx[CourtSfx]
@@ -50,18 +53,17 @@ Manages the `AudioContext` lifecycle and procedural SFX generators:
 
 ### 2. Procedural Polyphonic MIDI Tracker ([[src/audio/Private/MidiMusicComposer.ts]])
 
-Real-time step sequencer delegating voice rendering to [[src/audio/Private/SynthVoiceSynthesizer.ts]] and playing 16th-note musical patterns defined in [[src/audio/Private/TrackCatalog.ts]]:
+The composer owns track state: which cue is playing, the step, pause, seek, and aliases. It does not build oscillators. Three nested modules under `src/audio/Private/` do that, and nothing outside `src/audio/` imports them.
 
-- **Channels & Voice Synthesis**:
-  - **Bass**: Low triangle wave with punchy lowpass filtering (900 Hz, gain 0.35).
-  - **Lead**: Bright square wave melody channel with 5.5 Hz vibrato LFO and breathing rests (3600 Hz lowpass, gain 0.22).
-  - **Chords / Harmony**: Polyphonic sawtooth pad supporting 3-note triads and 4-note 7th chords with normalized gain scaling (2200 Hz lowpass, gain 0.16).
-  - **Drums**: Dynamic percussion engine supporting Kick (`K`), Snare (`S`), Closed Hat (`H`), Open Hat (`O`), Crash Cymbal (`C`), Slap (`P`), and compound hits (e.g. `'KC'`, `'KH'`).
-- **Pitch Math** ([[src/audio/Private/SynthVoiceSynthesizer.ts#Pitch Calculation]]): Standard MIDI note to Hz formula:
-  $$f = 440 \times 2^{\frac{m - 69}{12}}$$
-- **Anti-Fatigue Multi-Section Loop Design**:
-  All soundtrack themes feature 64 to 400 steps (~25–45s loop duration) structured into 4 narrative phrases (Exposition, Tension/Development, Climax, and Cadence Turnaround) with polyphonic harmonic backing and breathing rests to prevent ear fatigue during extended gameplay sessions.
-- **Meter is a free parameter**: the sequencer advances one 16th per tick and wraps on `step % track.length`, with no concept of a bar or a time signature. A track is therefore in whatever meter its own note grouping implies (5/4 = 20-step bars, 9/8 = 18). Only the composition has to agree with itself; nothing in the engine requires a multiple of 16.
+- **Scheduler** ([[src/audio/Private/Scheduler/index.ts]]): a 25 ms timer looks ahead 100 ms and schedules each 16th at an exact audio-clock time. If the tab stalled, it jumps to "now" instead of dumping a pile of late notes.
+- **StepRenderer** ([[src/audio/Private/StepRenderer.ts]]): reads one step of `bass` / `lead` / `chords` / `counter` / `drums`, turns `HOLD` (`-1`) into a longer note, applies `accents`, and picks the patch.
+- **Instruments** ([[src/audio/Private/Instruments/index.ts]]): oscillators, FM, Karplus-Strong buffers, and the drum kit. No samples. `chip_bass`, `chip_lead`, and `chip_pad` are the original triangle / square / sawtooth voices; a track that omits `instruments` still uses them. Anything else is one step long unless the patch sets `legacyLengthBeats` or the next cells are `HOLD`.
+- **Mixer** ([[src/audio/Private/Mixer/index.ts]]): a gain and pan per channel, a generated reverb (legacy patches send nothing), and a session gain. `stop()` and a track change fade that session in 30 ms so notes already queued do not leak. Above 48 live voices, new chord and counter notes are dropped first, then the lead. Bass and drums always play.
+- **Pitch**: \(f = 440 \times 2^{(m - 69) / 12}\).
+- **Drums**: `K` `S` `H` `O` `C` `P`, plus clap `X`, rim `R`, toms `T`/`M`, cowbell `B`, güiro `G`, timbal `Y`. Compound hits still work (`KX`).
+- **Snapshot**: `getPlaybackSnapshot()` reports the step that should be audible, not the one the lookahead has already queued. The jukebox bar uses that.
+- **Anti-fatigue**: themes run 64 to 512 steps. The sequencer itself has no bar line; a track's meter is whatever its own grouping says.
+- **Defaults stay**: only the cross-examination family (`cross_exam_moderato`, `allegro`, `grave`, `final`, `careo`), `truth` and `archivo` name instruments. Every other track, and `cross_exam_presto`, keeps the three chip voices by choice: the new palette was auditioned on them and the originals were preferred (2026-09-28).
 
 ### Track Catalog ([[src/audio/Private/TrackCatalog.ts]])
 
@@ -82,7 +84,7 @@ Modularized into private track collections under `src/audio/Private/tracks/`:
 13. `victory` (136 BPM, 128 steps) - Celebratory G Major case resolution march ("¡Síganme los buenos!") ([[src/audio/Private/tracks/AtmosphereTracks.ts]])
 14. `truth` (96 BPM, 384 steps, 60 seconds) - "Atando Cabos", the big-reveal theme. B minor, 24 bars of 4/4 in six 4-bar sections. Rules that carry it and should not be flattened:
     - **The chords channel is a 16th-note broken-chord ostinato**, one note per step, grouped 3+3+2 per half bar; kick and bass hit the same accents. This is the piano right hand shared by the series' truth themes: clockwork thinking under the explanation. The lead stays free for the theme.
-    - **No minor 2nds or 9ths between the lead and what sounds under it.** Every note has a fixed engine length (lead ~3 steps), so a passing G still rings against an F# pedal and sounds harsh rather than tense. G-rooted bars drop the pedal to D for that reason.
+    - **No minor 2nds or 9ths between the lead and what sounds under it.** The flute lead still rings for the old lead length (~3 steps) when the next cell is not `HOLD`, so a passing G against an F# pedal sounds harsh rather than tense. G-rooted bars drop the pedal to D for that reason. Piano bass and the piano ostinato last one step.
     - **The theme is a 3+3+2 rhythm sequenced upward a step per bar** in section B. That climb is the "closing in"; the release is withheld for `victory`.
 
     Shape: lament bass B-A-G-F# under an F# pedal, ostinato alone (1–4); the theme enters (5–8); climbing bass Em-F#m-G-A with the theme sequenced up (9–12); breakthrough D-E-F#sus4-F# with the lead hammering upward into a snare roll (13–16); the **apex**, where the ostinato becomes 3+3+2 block stabs over octave bass and the lead peaks at G6 before landing on B (17–20); the **hole** (ostinato and one kick), a low echo of the theme, then a Neapolitan C to F#7 turnaround with a chromatic bass climb into bar 1 (21–24) ([[src/audio/Private/tracks/TruthTracks.ts]]).
@@ -115,11 +117,12 @@ Modularized into private track collections under `src/audio/Private/tracks/`:
 - **Autoplay Handling**: Audio is muted by default until the player interacts with the start splash overlay or document, avoiding browser console autoplay warnings.
 - **Node Cleanup**: Oscillators and buffer sources call `.stop()` and are garbage-collected automatically once their envelopes finish.
 - **Seamless Switching**: Calling `playTrack()` clears existing playback timers before starting a different composition. Catalog aliases that reference the same `TrackDefinition` keep the current sequencer position, so narrative labels such as `victory` and `epilogue` do not restart the music during a scene transition.
-- **Pause / Resume / Seek (jukebox)**: `pause()` clears the interval but keeps `currentTrack` and `step`. `resumePaused()` re-arms the timer without resetting `step`. `seekToStep(n)` clamps to `track.length - 1`. `getPlaybackSnapshot()` exposes `{ track, step % length, length, isPlaying }` for UI. `stop()` remains the gameplay contract (`isPlaying=false`, `currentTrack=null`).
+- **Pause / Resume / Seek (jukebox)**: `pause()` stops the scheduler and keeps the session, `currentTrack`, and the audible step. Notes already scheduled finish. `resumePaused()` starts again 20 ms later from that step. `seekToStep(n)` clamps to `track.length - 1`. `getPlaybackSnapshot()` exposes the audible step wrapped by `length`. `stop()` fades the session and clears `currentTrack`.
 - **Soundtrack playlist**: `listSoundtrack()` in [[src/audio/index.ts]] walks `TRACK_CATALOG` in insertion order, skips duplicate `TrackDefinition` aliases (e.g. `epilogue`), and returns `{ id, bpm, length, durationMs }` entries for the title-screen jukebox.
 - **Game Over Cue**: Losing the last health point is a music change, not only a dialogue change. `gameOverLines` in [[src/engine/Private/TrialPenalty.ts]] stamps `bgm: GAME_OVER_BGM` (`game_over`, the `detention_center` elegy) on the first line of the guilty block — the engine's default lines and a case's own `guiltyDialogue` alike — so the verdict never plays over the cross-examination loop. A `guiltyDialogue` that declares its own `bgm` keeps it. The trial intro's `bgm: 'trial'` restores the courtroom loop on restart.
 - **Dramatic Cue Hand-Back**: `objection` and `pursuit` are stingers for a single dramatic beat, not a background loop. Nothing in the engine ends them: `DialogueFlow` only changes track when a line declares `bgm`, and the next `playTrack` is `TrialController.startTestimony`, which can be dozens of lines away. A contradiction `successDialogue` that raises a dramatic cue must therefore hand it back on the line where routine court business resumes — the witness dismissal, the next witness being sworn in, the session closing — by stamping the active testimony's own `bgm` (or `suspense` when the beat resolves into a quiet cliff-hanger). A `followUp` block that declares no `bgm` silently inherits the parent block's cue, so each follow-up peak declares its own cue explicitly. The only exemption is the last contradiction chain of the last trial day, which hands control to the climax; the climax's first dialogue line owns the cue from there. Enforced for Case 5 in [[tests/case/Case5TrialCue.test.ts]].
-- **Narrative Cue Switching**: Dialogue cues are chosen by dramatic job: `objection` scores a single successful contradiction (the breakthrough moment); `pursuit` scores the follow-up turnabout that chases a cornered witness. `truth` is different and script-driven only (`bgm: 'truth'` on the dialogue block): use it for the big truth-reveal sequences where the case's real story is laid out after the cornering — the "here is what really happened" narration — and switch back to the testimony/cross-exam loop when court business resumes. `suspense` is never a reveal: it opens the pre-verdict climax dilemma, and `victory` is the happy release that `truth` deliberately withholds.
+- **Narrative Cue Switching**: Dialogue cues are chosen by dramatic job: `objection` scores a single successful contradiction (the breakthrough moment); `pursuit` scores the follow-up turnabout that chases a cornered witness. `truth` is different and script-driven only (`bgm: 'truth'` on the dialogue block): melancholic and grave, it scores the moment after the objection has won when the real, often tragic sequence of the crime — motive, human cost, a confession — is laid bare. It is not for mid-cross-exam deduction or comic beats, and a case may not use it at all. Switch back to the testimony/cross-exam loop when court business resumes. `suspense` is never a reveal: it opens the pre-verdict climax dilemma, and `victory` is the happy release that `truth` deliberately withholds.
+- **Silence Cue**: `bgm: 'silence'` (`BgmCue` in [[src/types/Private/audio.ts]]) makes `MidiMusicComposer.playCue` stop the sequencer and clear `queuedTrack`, so an audio unlock cannot restart the old track; the next line with a track cue starts it fresh. Not a catalog entry, so the jukebox never lists it. Case 3 uses it on the carrito `¡TOMA ESO!` so `truth` enters on the reveal line.
 - **Press Cue Inheritance**: `Statement.pressText` is an interruption within the active testimony, so its dialogue must not declare `bgm`. The testimony's loop remains active through every press response; only a contradiction, scene transition, or other explicitly scripted narrative beat may change it. Regression: [[tests/case/Case5Day3Trial.test.ts]].
 `cross_exam_final` is the cross-examination loop reserved for the **last testimony of a case**, cued the same way as the other `cross_exam_*` tracks (`bgm` on the testimony block). Use it when the next contradiction is the one that ends the trial; use `moderato` / `allegro` / `presto` for every earlier testimony, so the change of theme itself tells the player this one is different. It is a cross-examination bed, not a reveal — when the explanation starts, hand over to `truth`, `objection` or `pursuit`.
 

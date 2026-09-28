@@ -78,7 +78,7 @@ export const CASE4_CLIMAX_STAGE2_SUCCESS: DialogueLine[] = [
 ];
 
 export const CASE4_CLIMAX_VERDICT: DialogueLine[] = [
-  { speaker: 'RUFINO', text: 'El collar lo planeé yo. Él nada más abrió una vitrina y desde entonces se creyó mi socio.', pose: 'rufino_breakdown' },
+  { speaker: 'RUFINO', text: 'El collar lo planeé yo. Él nada más abrió una vitrina y desde entonces se creyó mi socio.', pose: 'rufino_breakdown', bgm: 'truth' },
   { speaker: 'RUFINO', text: 'Once meses cobrando. Y esa noche llegó a mi hotel a ponerle precio a mi apellido.', pose: 'rufino_breakdown' },
   { speaker: 'JUEZ', text: 'Su apellido es falso.', pose: 'judge_gavel', sfx: 'gavel' },
   { speaker: 'RUFINO', text: 'Por eso valía tanto.', pose: 'rufino_breakdown' },

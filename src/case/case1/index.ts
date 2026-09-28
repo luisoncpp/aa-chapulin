@@ -68,7 +68,9 @@ function assembleCase1(parts: Case1Parts): CaseScript {
       testimonies: [parts.t1, parts.t2],
       testimony1: parts.t1,
       testimony2: parts.t2,
-      climax: parts.climax
+      climax: parts.climax,
+      // Super Sam takes the floor without his bag on day 1.
+      galleryBg: 'assets/bg_gallery_characters_sam_no_bag.webp'
     },
     adjournment: {
       nextLocation: 'patio_carga',

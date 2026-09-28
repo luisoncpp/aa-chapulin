@@ -17,6 +17,7 @@ Configurado en [[src/case/case.group.md]]. Dirección de arte: [[docs/specs/arti
 | 2026-09-25 | Cámara narrativa de la galería del tribunal (ES/EN, juicios y clímax) | 16 reacciones del público sincronizadas con `assets/bg_gallery_characters.webp` y `furniture: none` en el spec y en los dos guiones. Se excluyeron la galería del museo, las declaraciones de personajes y el lobby, que no contiene un corte a espectadores. |
 | 2026-09-26 | Reacciones colectivas sin mención literal de galería (ES/EN, juicios y clímax) | Dos omisiones de guion: “La sala espera” mientras Sam hojea el inventario y “El perito tarda cuatro minutos. Nadie se mueve” describían la espera colectiva del tribunal, pero sólo tenían SFX o música de suspenso. Se añadió `assets/bg_gallery_characters.webp` + `furniture: none` al spec y ambos guiones. También se corrigió la metadata ausente en el spec para “La sala se queda muda”, cuyo plano ya estaba en ES/EN. La pasada anterior detectó las reacciones explícitas por murmullo, escándalo o galería, pero dejó fuera las pausas que no nombraban al público; además, no comparó cada metadato de cámara con el guion. “La sala espera” sí es un plano colectivo: el hojeo de Sam es detalle focal, pero el remate abarca al tribunal. Revisión semántica de las demás líneas narrativas de juicios y clímax: no quedan silencios ni reacciones colectivas sin ese plano. |
 | 2026-09-27 | Cámara focal y reacciones individuales (ES/EN, D1-D2 y clímax) | Se separaron acción focal, reacción colectiva y reacción del testigo en los cambios de plano; las placas y muebles siguen al sujeto visible. Los beats del alguacil no inventan un sprite: el clímax muestra a Tripaseca desde el estrado durante el registro, y las tomas del mazo, el sobre, la bolsa y el zapato usan el fondo correspondiente. Spec y guiones ES/EN conservan el texto y sincronizan cada corte. |
+| 2026-09-27 | Revisión de silencios del narrador (ES/EN, juicios y clímax) | Los cinco beats de silencio ya fijan la galería en ambos guiones y en el spec; D1-T2 conserva la placa sin bolsa de Super Sam. La espera del perito también fija la galería. Sin omisiones nuevas; no se tocaron silencios focales sobre láminas ni escenas de investigación. |
 
 **Regla de parada:** una nueva lente sin hallazgos sobre las secciones modificadas.
 
@@ -585,16 +586,16 @@ Pregunta de la jornada, enunciada por el Juez en la apertura y contestada en el 
 NARRADOR: 29 de agosto, 2:00 PM. Tribunal Superior - Sala de Espera. [bg: bg_waiting_room; furniture: none; bgm: trial]
 JUEZ: ¡Silencio en la sala! Se abre la audiencia por el robo de la Chicharra Paralizadora de Oro y las lesiones al velador Alma Negra. [sfx: gavel; bgm: trial; pose: judge_gavel]
 SUPER SAM: Your Honor, este caso lo cerré en cinco minutos. FIVE! Un museo cerrado con llave, un velador en el suelo, y adentro un señor vestido de grillo con el chipote en la mano. [pose: supersam_slam; sfx: desk_slam]
-SUPER SAM: Time is money, y este juicio ya me está costando dinero. [pose: supersam_point]
+SUPER SAM: Time is money, y este juicio ya me está costando dinero. [pose: supersam_watch]
 DEFENSA: ¡PROTESTO! ¡Con permisito, dijo Monchito! [sfx: desk_slam; cutin: objection_protesto; pose: donramon_slam]
 DEFENSA: Mi cliente estaba adentro porque entró a ayudar, señor juez. Si eso es delito, aquí la mitad de la sala tendría que estar esposada. [pose: donramon_point]
 JUEZ: Queda asentado, licenciado. Fiscalía, exponga su teoría. [pose: judge_neutral]
 [ENTREGAR-PERFIL perfil_supersam]
 DEFENSA: (Fiscal Super Sam. Cobra por caso cerrado y hoy subió al estrado sin su bolsa de dólares al hombro. Nunca lo había visto sin ella. Lo apunto, aunque sea por chismoso.) [pose: donramon_idle]
-SUPER SAM: Simple, Your Honor. El acusado golpeó al velador, reventó la vitrina y se llevó la chicharra. Three steps, one criminal. [pose: supersam_point]
+SUPER SAM: Simple, Your Honor. El acusado golpeó al velador, reventó la vitrina y se llevó la chicharra. Three steps, one criminal. [pose: supersam_crossed]
 JUEZ: Entonces esta corte quiere una respuesta clara a una sola pregunta antes que a ninguna otra: **¿con qué se golpeó a ese hombre?** [pose: judge_thinking]
 SUPER SAM: ¡Con el chipote que traía en la mano! ¡La curadora lo vio! [pose: supersam_slam; sfx: desk_slam]
-SUPER SAM: La fiscalía llama al estrado a la señora Florinda Corcuera viuda de Matalascallando, curadora del museo. [pose: supersam_point]
+SUPER SAM: La fiscalía llama al estrado a la señora Florinda Corcuera viuda de Matalascallando, curadora del museo. [pose: supersam_case1_idle]
 JUEZ: Testigo, diga su nombre y su ocupación. [pose: judge_neutral]
 FLORINDA: Florinda Corcuera viuda de Matalascallando, curadora del Museo de las Curiosidades. Y que conste que yo no quería venir a un lugar con tanta chusma. [pose: florinda_angry]
 JUEZ: La corte le agradece la observación y le pide su testimonio. Únicamente lo que percibió. [sfx: gavel; pose: judge_gavel]
@@ -653,7 +654,7 @@ DEFENSA: (Cayó hacia la puerta. O sea que cuando le pegaron le estaba dando la 
 DEFENSA: Una última cosa, señora, y se la pregunto con todo respeto: **¿usted vio el golpe?** [pose: donramon_idle]
 FLORINDA: ...No. Cuando yo llegué ya estaba en el suelo. [pose: florinda_idle]
 JUEZ: ¡Cáspita! Que quede asentado: la testigo no presenció la agresión. [sfx: gavel; pose: judge_shock]
-SUPER SAM: ¡Objection! ¡No hace falta ver caer el árbol para saber quién traía el hacha! [pose: supersam_slam; sfx: desk_slam]
+SUPER SAM: ¡Objection! ¡No hace falta ver caer el árbol para saber quién traía el hacha! [pose: supersam_crossed]
 DEFENSA: Salvo que el hacha sea de juguete, señor fiscal. [pose: donramon_idle]
 ~~~
 
@@ -678,7 +679,7 @@ DEFENSA: Dos minutos. Y en el informe de detención está, renglón por renglón
 DEFENSA: De un kilo doscientos de oro macizo que cabe en las dos manos... **nada**. [pose: donramon_slam; sfx: desk_slam]
 FLORINDA: Pues... pues la escondió. [pose: florinda_shock]
 DEFENSA: ¿Dónde, señora? El mismo informe dice que revisaron el museo pieza por pieza esa noche. Cuatrocientas doce piezas y ni rastro. [pose: donramon_point]
-SUPER SAM: ¡Tuvo dos minutos! ¡En dos minutos yo cierro un caso! [pose: supersam_slam; sfx: desk_slam]
+SUPER SAM: ¡Tuvo dos minutos! ¡En dos minutos yo cierro un caso! [pose: supersam_watch; sfx: desk_slam]
 DEFENSA: En dos minutos usted cierra un caso, señor fiscal. Yo no dudo de su velocidad: dudo de la de mi cliente. [pose: donramon_idle]
 JUEZ: La corte concede que un objeto no localizado no acredita por sí solo la inocencia. [pose: judge_thinking]
 JUEZ: Pero también concede que la fiscalía no ha puesto esa chicharra en las manos de nadie. Por hoy, el robo queda en el aire. [sfx: gavel; pose: judge_gavel]
@@ -719,7 +720,7 @@ DEFENSA: ¡UN MOMENTO! ¿Qué asuntos lleva uno a un callejón de carga a las nu
 TRIPASECA: Asuntos de comerciante, licenciado. Uno camina, uno ve, uno compra. [pose: tripaseca_smug]
 DEFENSA: ¿Y qué compró usted esa noche? [pose: donramon_idle]
 TRIPASECA: Nada. Mal día. [pose: tripaseca_smug]
-SUPER SAM: ¡Objection! ¡Que un hombre camine de noche no es un crimen! ¡Yo camino de noche! [pose: supersam_point]
+SUPER SAM: ¡Objection! ¡Que un hombre camine de noche no es un crimen! ¡Yo camino de noche! [pose: supersam_crossed]
 DEFENSA: Nadie ha dicho que lo sea, señor fiscal. Yo sólo estoy tomando el tiempo. [pose: donramon_idle]
 ~~~
 
@@ -752,7 +753,7 @@ NARRADOR: Se ha añadido una nueva declaración al testimonio. [sfx: realization
 ~~~dialogue
 DEFENSA: ¡UN MOMENTO! ¿A dónde corrió usted? [sfx: whoosh; pose: donramon_point]
 TRIPASECA: Al teléfono de la esquina. Marqué a la policía a las nueve con tres. Puede checarlo. [pose: tripaseca_smug]
-SUPER SAM: ¡Y yo estaba a cuatro cuadras! ¡Llegué en cuatro minutos! ¡FOUR! ¡Eso es servicio! [pose: supersam_slam; sfx: desk_slam]
+SUPER SAM: ¡Y yo estaba a cuatro cuadras! ¡Llegué en cuatro minutos! ¡FOUR! ¡Eso es servicio! [pose: supersam_watch; sfx: desk_slam]
 DEFENSA: Cuatro minutos. Qué suerte tuvo el museo con usted tan cerca, señor fiscal. [pose: donramon_idle]
 SUPER SAM: ¡No es suerte! ¡Es... es eficiencia! [pose: supersam_sweat]
 DEFENSA: (Se tardó en contestar. Un cuarto de segundo, pero se tardó.) [pose: donramon_idle]
@@ -808,11 +809,11 @@ Se encola como cierre de la `successDialogue` de la contradicción de D1-T2, ant
 
 ~~~dialogue
 JUEZ: Esta corte va a ordenar algo muy simple. Fiscalía: **el inventario del museo**. [sfx: gavel; bgm: objection; pose: judge_gavel]
-SUPER SAM: ¿Para qué quiere el inventario, Your Honor? [pose: supersam_sweat]
+SUPER SAM: ¿Para qué quiere el inventario, Your Honor? [pose: supersam_thinking]
 JUEZ: Para saber qué objeto de ese museo pesa como un saco de moneda y es flexible. [pose: judge_neutral]
 NARRADOR: El alguacil entrega un legajo. Super Sam lo hojea. [bg: assets/bg_courtroom.webp; furniture: bench; sfx: whoosh]
 NARRADOR: La sala espera. [bg: assets/bg_gallery_characters_sam_no_bag.webp; furniture: none]
-SUPER SAM: ...Cuatrocientas doce piezas, Your Honor. [pose: supersam_sweat]
+SUPER SAM: ...Cuatrocientas doce piezas, Your Honor. [pose: supersam_thinking]
 JUEZ: ¿Y? [pose: judge_thinking]
 SUPER SAM: Revisamos las piezas que se movieron esa noche. Ninguna llega a seis kilos. La más pesada fue la chicharra: un kilo doscientos. De oro macizo, con filigrana... de canto vivo. [pose: supersam_sweat]
 DEFENSA: De canto vivo, señor juez. Con aristas. Y la herida no tiene ni una. [pose: donramon_point]
@@ -1837,7 +1838,7 @@ NARRADOR: El alguacil levanta el pie derecho del testigo. En la suela, el númer
 TRIPASECA: ¡Medio México calza del cuarenta y dos! [pose: tripaseca_panic]
 DEFENSA: Medio México, sí. Pero medio México no deja además su hilo del saco atorado en una rejilla por dentro. [pose: donramon_slam; sfx: desk_slam]
 TRIPASECA: ¡BUENO, SÍ! [pose: tripaseca_panic]
-NARRADOR: El testigo se levanta de golpe y tira la silla. [sfx: desk_slam]
+NARRADOR: El testigo tira la silla. [sfx: desk_slam]
 TRIPASECA: ¡Sí entré! ¡Sí me encogí y sí entré por esa rejilla! ¡Pero yo no le pegué a nadie! [pose: tripaseca_panic]
 TRIPASECA: ¡El grandote se me echó encima y yo nomás me defendí con lo que traía en la mano! [pose: tripaseca_panic]
 DEFENSA: Lo que traía en la mano era una bolsa de lona de la fiscalía con seis kilos de moneda de plata. [pose: donramon_point]

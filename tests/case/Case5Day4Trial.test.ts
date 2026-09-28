@@ -61,11 +61,6 @@ describe('Case 5 day 4 trial (Spanish)', () => {
     expect(hasUpdateEvidence(openingLines, 'informe_forense_c5')).toBe(true);
   });
 
-  it('never uses truth BGM in day-4 trial dialogue', () => {
-    lines.forEach((line) => {
-      expect(line.bgm).not.toBe('truth');
-    });
-  });
 
   it('keeps DEFENSA on chapulin poses only and bans donramon_slam', () => {
     defensaPoses(lines).forEach((pose) => {

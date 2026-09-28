@@ -26,7 +26,7 @@ const CASE5_D1_T1_CONTRADICTION: ContradictionRule = {
 };
 
 export const CASE5_TESTIMONY_1: Testimony = {
-  title: 'Testimonio: Nadie más entró esa tarde',
+  title: 'Testimonio: A las 5:35',
   witness: 'Nicanor Tolentino',
   bgm: 'cross_exam_moderato',
   statements: [
@@ -84,7 +84,7 @@ export const CASE5_TESTIMONY_1: Testimony = {
       id: 'c5_d1t1_4',
       speaker: 'NICANOR',
       pose: 'nicanor_idle',
-      text: 'Después de él no entró nadie y no salió nadie. A las cinco treinta y cinco subí a cerrar y ahí estaba el pobre señor.',
+      text: 'A las 5:35 subí a cerrar y ahí estaba el pobre señor. Después de eso ningún visitante subió.',
       pressText: [
         MOMENTO,
         { speaker: 'DEFENSA', text: 'Media hora larga, don Nicanor. ¿Qué hizo usted en esa media hora?', pose: 'chapulin_point' },
@@ -93,6 +93,12 @@ export const CASE5_TESTIMONY_1: Testimony = {
         { speaker: 'NICANOR', text: 'Con la caldera y los dos secadores puestos al máximo, licenciado, ahí arriba no se oye ni el juicio final.', pose: 'nicanor_sweat' },
         { speaker: 'DEFENSA', text: '(Otra vez los secadores. Y otra vez nadie se detiene.)', pose: 'chapulin_idle' }
       ],
+      deflect: {
+        evidence: ['hoja_relevo'],
+        dialogue: [
+          { speaker: 'JUEZ', text: 'La hoja registra el relevo de los custodios, no la entrada de visitantes. Todavía no contradice esa declaración.', pose: 'judge_thinking' }
+        ]
+      },
       contradiction: CASE5_D1_T1_CONTRADICTION
     }
   ]

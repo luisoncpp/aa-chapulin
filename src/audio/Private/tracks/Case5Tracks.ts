@@ -10,6 +10,7 @@ import type { TrackDefinition } from '../../../types/index.js';
 export const archivoTrack: TrackDefinition = {
   bpm: 84,
   length: 128,
+  instruments: { bass: 'chip_bass', lead: 'flute', chords: 'epiano' },
   bass: [
     43, 0, 0, 0, 50, 0, 0, 0, 43, 0, 0, 0, 47, 0, 0, 0,
     43, 0, 0, 0, 50, 0, 0, 0, 43, 0, 0, 0, 47, 0, 0, 0,
@@ -55,6 +56,7 @@ export const archivoTrack: TrackDefinition = {
 export const crossExamGraveTrack: TrackDefinition = {
   bpm: 96,
   length: 128,
+  instruments: { bass: 'upright_bass', lead: 'chip_lead', chords: 'string_pad' },
   bass: [
     36, 0, 36, 0, 36, 0, 43, 0, 36, 0, 36, 0, 36, 0, 43, 0,
     36, 0, 36, 0, 36, 0, 43, 0, 36, 0, 36, 0, 36, 0, 43, 0,

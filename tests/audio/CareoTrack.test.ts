@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'vitest';
+import { DRUM_SYMBOLS } from '../../src/audio/Private/Instruments/index.js';
 import { TRACK_CATALOG } from '../../src/audio/Private/TrackCatalog.js';
+import { HOLD } from '../../src/audio/Private/tracks/Notation.js';
 import { listSoundtrack } from '../../src/audio/Private/SoundtrackPlaylist.js';
 
 // Structural guard only. Musical intent lives in the comments in CareoTrack.ts.
@@ -10,11 +12,11 @@ describe('Careo final cross-examination soundtrack', () => {
     for (const channel of [track.bass!, track.lead!, track.chords!]) {
       expect(channel).toHaveLength(track.length);
       for (const note of channel.flat()) {
-        expect(Number.isInteger(note) && note >= 0 && note <= 127).toBe(true);
+        expect(note === HOLD || (Number.isInteger(note) && note >= 0 && note <= 127)).toBe(true);
       }
     }
     expect(track.drums).toHaveLength(track.length);
-    expect(track.drums!.every((hit) => /^[KSHOPC0]+$/.test(hit))).toBe(true);
+    expect(track.drums!.every((hit) => [...hit].every((char) => DRUM_SYMBOLS.has(char)))).toBe(true);
   });
 
   it('loops long enough to avoid fatigue and appears in the jukebox', () => {

@@ -4,7 +4,7 @@ Clase: `bg`. Espec: [[docs/specs/artistic-direction.md]] §3. Fondo panorámico:
 
 ## Mapa semántico y alcance
 
-Plano de la sala desde el pozo, de frente al juez. Cuando una línea de `NARRADOR` describe la galería del tribunal o la reacción de sus espectadores durante el juicio, debe mostrar `assets/bg_gallery_characters.webp` y declarar `furniture: 'none'`, salvo las cuatro tomas del juicio del Día 1 del Caso 1, que usan `assets/bg_gallery_characters_sam_no_bag.webp`. Ambas variantes incluyen a Don Ramón y el Chapulín tras la mesa de defensa y a Super Sam tras la mesa de fiscalía. No es la cámara del juez, ni la de la defensa, ni la de la fiscalía.
+Plano de la sala desde el pozo, de frente al juez. Cuando una línea de `NARRADOR` describe la galería del tribunal o la reacción de sus espectadores durante el juicio, debe mostrar `assets/bg_gallery_characters.webp` y declarar `furniture: 'none'`, salvo las cuatro tomas del juicio del Día 1 del Caso 1, que usan `assets/bg_gallery_characters_sam_no_bag.webp`, y las del Caso 5, que usan las siete variantes `bg_gallery_case5_*` según quién ocupa la mesa de la fiscalía y el estrado (`docs/specs/case-5-el-tomo-trece.md` §23, fondos reutilizados). Ambas variantes incluyen a Don Ramón y el Chapulín tras la mesa de defensa y a Super Sam tras la mesa de fiscalía. No es la cámara del juez, ni la de la defensa, ni la de la fiscalía.
 
 La galería ocupa dos gradas laterales elevadas por encima de los fondos de defensa y fiscalía. Los paneles de esos fondos bajan hasta el suelo detrás de cada mesa y no dejan ver las gradas en los planos cercanos. El estrado del juez queda al fondo, con el escritorio delante de la silla. Defensa y fiscalía tienen mesas independientes frente a frente. En primer plano, el lado abierto del podio de testigos mira a la cámara; el testigo miraría al juez.
 
@@ -171,3 +171,32 @@ Los tres personajes se generaron como recortes RGBA aislados usando sus poses `*
 **Defectos confirmados:** ninguno en los recortes de personajes, exclusión del saco y bordes de las mesas revisados.
 
 **Comprobación de píxeles:** 0 píxeles cambiados fuera de las columnas de las dos mesas respecto de `bg_gallery.webp`; 0 píxeles distintos en la mitad izquierda respecto de `bg_gallery_characters.webp`; 0 píxeles distintos en el panel visible de la mesa derecha bajo la máscara. El recorte de la antigua zona del saco coincide con `bg_gallery.webp`.
+
+## Corrección de alas del Chapulín 2026-09-27
+
+El recorte `bg_gallery_characters_chapulin_standing.png` pintaba una capa amarilla: el prompt pedía «yellow cape panels». El traje no tiene capa: lo amarillo son dos alas de insecto en la parte alta de la espalda (`assets/chapulin_panic.webp`). `tools/paint_chapulin_wings.py` borra la capa, su contorno y su halo, conserva la línea de tinta del traje y pinta detrás del cuerpo un ala con dos tonos y contorno carbón. Sale de detrás del hombro, cuelga unos 60° bajo la horizontal y termina en punta junto al codo. En este perfil la otra ala queda tapada por el torso y el brazo; el usuario eligió esa inclinación entre 45°, 53° y 60°, y aceptó que la segunda ala no se vea. La nueva fuente es `tools/masters/bg_gallery_characters_chapulin_standing_wings.png`, con la misma caja alfa que la anterior para que `place_figure` no desplace la figura.
+
+**Hechos de la corrección:** `PINTAR` al Chapulín con un ala amarilla puntiaguda que sale por detrás del hombro, ~~separada del codo~~ pegada al contorno del brazo y con la punta junto al codo (variante F elegida por el usuario; corregido en la auditoría del mismo día). `AUSENTE` capa, faldón o tela sobre los hombros; el remate rojo de la capucha sobre el hombro se conserva, como en `chapulin_idle`. `NO CONTRADECIR` el resto del Chapulín, Don Ramón, la fiscalía, los testigos, la sala y los bordes de las mesas.
+
+Se recompusieron las ocho láminas en las que aparece: `bg_gallery_characters`, `bg_gallery_characters_sam_no_bag` y seis `bg_gallery_case5_*` (todas salvo `empty_bag`, que copian las columnas de defensa de `bg_gallery_characters`). Cada versión anterior queda en `tools/masters/<lámina>_before_wings_20260927.webp`.
+
+**Comprobación de píxeles:** en cada una de las ocho láminas cambian 845 píxeles respecto de su copia previa, todos dentro de x 286–318, y 394–446. Fuera de las columnas de las mesas, `bg_gallery_characters` y `bg_gallery_characters_sam_no_bag` siguen idénticas a `bg_gallery.webp`.
+
+## Hallazgos de auditoría 2026-09-27 — alas del Chapulín
+
+**Veredicto:** cumple en contenido, exclusión de la capa, estilo y preservación de la sala en las ocho láminas recompuestas. `bg_gallery_characters` y `bg_gallery_case5_secretary_berrondo_accused` se auditaron sobre sus `.tmp.webp` mientras dos servidores `npx serve` mantenían abiertos los originales. Se instalaron el mismo día, y los archivos instalados repiten los 845 píxeles y la zona de defensa idéntica.
+
+**Cumple:**
+- `PINTAR` ala: en el recorte ×12 (x 270–330, y 385–455) se ve un ala amarilla puntiaguda que sale por detrás del hombro. Tiene dos tonos, contorno carbón y la punta junto al codo, por encima del canto de la mesa.
+- `AUSENTE` capa: en los recortes ×12 del hombro y ×10 del hueco entre brazo y torso no queda tela amarilla sobre los hombros, entre el brazo y el torso ni bajo el antebrazo; el hueco del brazo muestra la pared. El remate rojo de la capucha se conserva.
+- `NO CONTRADECIR`: en cada lámina cambian 845 píxeles respecto de su copia previa, todos en x 286–318, y 394–446. La zona de defensa (x 191–429, y 300–499) es idéntica en las ocho. Fuera de las columnas de las mesas, las dos variantes base siguen iguales a `bg_gallery.webp`.
+- F2: no se añadió texto.
+- F4: los nombres de archivo no cambian y `verify_assets.py` pasa.
+- F5: mismo cel-shading de dos tonos con contorno carbón.
+- F6: una sola imagen para ES y EN.
+- Consistencia: el ala coincide en color, punta y sombreado con las de `chapulin_panic.webp`.
+
+**Defectos confirmados:**
+- [x] RETIRADO POR REVISIÓN (2026-09-27) `MENOR · MALFORMADO · F1`: el brazo tapa casi toda la raíz del ala. A escala 1:1 sólo se lee la franja trasera y la punta, más aleta que ala completa, y la segunda ala no se ve. El usuario eligió la variante F después de ver esa lectura en la comparación 45°/53°/60° y aceptó que la segunda ala quedara oculta.
+
+**Corrección de auditoría:** el hecho `PINTAR` decía «separada del codo», pero la variante F aprobada tiene la punta junto al codo. Se corrigió la hoja; no es un defecto de la imagen.

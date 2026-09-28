@@ -28,7 +28,7 @@ export const CASE5_CLIMAX_STAGE3: ClimaxStage = {
     { speaker: 'DEFENSA', text: 'Veintitrés tomos y el hueco del trece.', pose: 'chapulin_idle' },
     { speaker: 'JUEZ', text: '¿Y?', pose: 'judge_thinking' },
     { speaker: 'DEFENSA', text: 'Y en el suelo, a un metro del cuerpo, había otro tomo.', pose: 'chapulin_slam', sfx: 'desk_slam' },
-    { bg: 'assets/bg_gallery_characters.webp', furniture: 'none', speaker: 'NARRADOR', text: 'Silencio absoluto en la sala.', bgm: 'suspense' },
+    { bg: 'assets/bg_gallery_case5_secretary_berrondo_accused.webp', furniture: 'none', speaker: 'NARRADOR', text: 'Silencio absoluto en la sala.', bgm: 'suspense' },
     { speaker: 'JUEZ', text: '...Veinticuatro tomos.', pose: 'judge_shock' },
     { speaker: 'DEFENSA', text: 'Veinticuatro tomos para veinticuatro ranuras... y una ranura que lleva vacía desde 1971.', pose: 'chapulin_point' },
     { speaker: 'DEFENSA', text: 'Sobran las cuentas, señor juez. Sobra uno.', pose: 'chapulin_slam', sfx: 'desk_slam' },

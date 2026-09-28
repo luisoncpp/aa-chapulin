@@ -57,7 +57,7 @@ function addIntro(intro: InvestigationScene['intro'] | undefined, urls: Set<stri
 
 export function warmTrialVisuals(script: CaseScript, trialDay: TrialDay): void {
   const urls = new Set<string>(COURTROOM_URLS);
-  urls.add(getTrialGalleryBackground(script.id, trialDay));
+  urls.add(getTrialGalleryBackground(script, trialDay));
   addTrialVisuals(script, trialDay, urls);
   warmUrls([...urls]);
 }

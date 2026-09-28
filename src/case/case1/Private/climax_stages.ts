@@ -101,7 +101,7 @@ const STAGE_3_SUCCESS: DialogueLine[] = [
   { speaker: 'TRIPASECA', text: '¡Medio México calza del cuarenta y dos!', pose: 'tripaseca_panic' },
   { speaker: 'DEFENSA', text: 'Medio México, sí. Pero medio México no deja además su hilo del saco atorado en una rejilla por dentro.', pose: 'donramon_slam', sfx: 'desk_slam' },
   { speaker: 'TRIPASECA', text: '¡BUENO, SÍ!', pose: 'tripaseca_panic' },
-  { speaker: 'NARRADOR', text: 'El testigo se levanta de golpe y tira la silla.', sfx: 'desk_slam' },
+  { speaker: 'NARRADOR', text: 'El testigo tira la silla.', sfx: 'desk_slam' },
   { speaker: 'TRIPASECA', text: '¡Sí entré! ¡Sí me encogí y sí entré por esa rejilla! ¡Pero yo no le pegué a nadie!', pose: 'tripaseca_panic' },
   { speaker: 'TRIPASECA', text: '¡El grandote se me echó encima y yo nomás me defendí con lo que traía en la mano!', pose: 'tripaseca_panic' },
   { speaker: 'DEFENSA', text: 'Lo que traía en la mano era una bolsa de lona de la fiscalía con seis kilos de moneda de plata.', pose: 'donramon_point' },

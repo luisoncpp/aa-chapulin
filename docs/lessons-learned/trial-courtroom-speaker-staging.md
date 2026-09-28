@@ -16,7 +16,7 @@ Resolving canonical courtroom camera angles dynamically based on the active spea
 - Witness / `TRIPASECA` / `BERRONDO` -> `bg_witness.jpg` (witness stand). Omitted `BERRONDO` pose infers `berrondo_idle`.
 - `NARRADOR` / `ALGUACIL` / `CUSTODIO` / tutorial labels -> no camera change, no sprite
 
-Explicit `line.bg` continues to override when a scene requires a specific cutaway or wide courtroom shot.
+Explicit `line.bg` (and `Statement.bg`, e.g. a prosecutor testifying from the stand) continues to override when a scene requires a specific cutaway or wide courtroom shot.
 
 ### 3. Bind Background and Foreground Furniture Resolution in a Single Step
 Furniture inference (e.g. `podium` vs `bench` vs `none`) cannot rely on previous DOM background state when background switching is asynchronous or separated from staging. Staging must first resolve the target camera angle, then resolve the matching foreground furniture and stage frame against that resolved angle:

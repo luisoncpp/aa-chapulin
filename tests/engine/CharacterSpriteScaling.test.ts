@@ -29,4 +29,8 @@ describe('idle breathing float against the dialogue plate', () => {
     const border = Number(/border:\s*(\d+)px solid/.exec(cssRule(css, '#dialogue-box'))![1]);
     expect(Math.max(...travel) - Math.min(...travel)).toBeLessThanOrEqual(border);
   });
+
+  it('stops floating for a still stage pose', () => {
+    expect(css).toMatch(/#game-screen\[data-stage-still="true"\]\s+#character-sprite\s*\{\s*animation:\s*none;/);
+  });
 });

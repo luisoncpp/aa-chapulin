@@ -15,6 +15,7 @@ from process_assets import (
 )
 from process_case2_assets import anchor_standing_bust, icon_drop_boxes, save_evidence_icon
 from process_case3_assets import floor_standing_busts
+from key_fringe_recolor import drop_cell_seams, drop_key_shadow, recolor_key_fringe
 
 os.makedirs(DEST_DIR, exist_ok=True)
 CASE5_RAW_DIR = os.path.join(os.path.dirname(__file__), "tools", "raw", "case5")
@@ -116,6 +117,10 @@ EXTRA_POSES = [
 FLOOR_BUSTS = [name for _sheet, names in SHEETS for name in names] + [
     name for _src, name in EXTRA_POSES
 ]
+# Keyed from pink-red (~240, 5, 130): despill leaves a red rim on the contour.
+PINK_KEY_POSES = [
+    name for name in FLOOR_BUSTS if name.startswith(("berrondo_", "genoveva_"))
+]
 
 
 def raw_path(filename: str) -> str:
@@ -142,7 +147,7 @@ def process_character_sheet(sheet_name: str, pose_names: list[str]) -> None:
                 (row + 1) * cell_height,
             ))
             cleaned = remove_bg_magenta_vectorized(cell, threshold=165.0, despill_depth=4)
-            cleaned = clean_edges_vectorized(cleaned, depth=5)
+            cleaned = drop_cell_seams(clean_edges_vectorized(cleaned, depth=5))
             final_img = extract_primary_components_fast(cleaned, min_area_fraction=0.10)
             final_img = despill_final(final_img)
             final_img.save(os.path.join(DEST_DIR, f"{name}.webp"), "WEBP", quality=85, method=6)
@@ -164,6 +169,17 @@ def process_full_poses(selected: set[str] | None) -> None:
             anchored = despill_final(anchor_standing_bust(filtered))
             anchored.save(os.path.join(DEST_DIR, f"{out_name}.webp"), "WEBP", quality=85, method=6)
             print(f"  [OK] Processed: {out_name}.webp ({anchored.size})")
+
+
+def recolor_pink_key_fringes(names: list[str]) -> None:
+    for name in names:
+        path = os.path.join(DEST_DIR, f"{name}.webp")
+        if not os.path.exists(path):
+            continue
+        with Image.open(path) as img:
+            cleaned = recolor_key_fringe(drop_key_shadow(img))
+        cleaned.save(path, "WEBP", quality=85, method=6)
+        print(f"  [OK] Recolored key fringe: {name}.webp")
 
 
 def cover_crop(img: Image.Image, size: tuple[int, int]) -> Image.Image:
@@ -219,6 +235,19 @@ def export_evidence_icons() -> None:
             cleaned, min_area_fraction=0.12, drop_boxes=drops
         )
         save_evidence_icon(filtered, name)
+        recolor_icon_fringe(name)
+
+
+# The typewriter also carries a painted dark-red key shadow under its base.
+ICON_FRINGE_DEPTH = {"maquina_escribir.webp": 8}
+
+
+def recolor_icon_fringe(name: str) -> None:
+    """The icon sheet is keyed from pink-red too; despill leaves a red rim on paper and wood."""
+    path = os.path.join(DEST_DIR, name)
+    with Image.open(path) as img:
+        cleaned = recolor_key_fringe(img, depth=ICON_FRINGE_DEPTH.get(name, 3))
+    cleaned.save(path, "WEBP", quality=85, method=6)
 
 
 def export_address_icons(selected: set[str] | None) -> None:
@@ -315,6 +344,9 @@ def run_case5(selected: set[str] | None = None) -> None:
     process_full_poses(selected)
     floor_standing_busts(
         FLOOR_BUSTS if selected is None else [n for n in FLOOR_BUSTS if n in selected]
+    )
+    recolor_pink_key_fringes(
+        PINK_KEY_POSES if selected is None else [n for n in PINK_KEY_POSES if n in selected]
     )
     export_backgrounds(selected)
     export_plates(EXAMINE, PLATE_SIZE, selected, "examine plate")

@@ -22,24 +22,18 @@ Operational guide for the procedural Web Audio API synthesizer, MIDI music track
    - Creates `sfxGain` (gain = 0.85) -> connects to `masterGain`.
    - Calls `ctx.resume()` to unlock suspended state.
 
-### Procedural Music Sequencer Loop
-1. `midiComposer.playTrack(trackName)`:
-   - Halts any existing tracker timer via `clearInterval()`.
-   - Looks up track definition from [[src/audio/Private/TrackCatalog.ts]] (BPM, step length, Bass, Lead, Chords, Drums).
-   - Computes 16th-note step interval: `stepTimeMs = (60000 / bpm) / 4`.
-   - Starts interval timer advancing `step` index every `stepTimeMs` milliseconds:
-     - **Bass**: Synthesizes triangle wave note with ADSR envelope through `bgmGain`.
-     - **Lead**: Synthesizes square wave note through `bgmGain`.
-     - **Chords**: Synthesizes sawtooth pad note through `bgmGain`.
-     - **Drums**: Synthesizes Kick (sine sweep), Snare (noise buffer), or Hi-Hat (highpass noise).
-   - Loops seamlessly when `step % track.length` wraps around.
-   - If a new cue resolves to a catalog alias of the currently playing `TrackDefinition`, the composer keeps the existing timer and step position. This preserves the victory composition while the verdict scene fades into a waiting-room epilogue.
+### Procedural Music Sequencer
+1. `midiComposer.playTrack(trackName)` looks up [[src/audio/Private/TrackCatalog.ts]]. The same `TrackDefinition` under another name (an alias) keeps the current step.
+2. A new composition fades the previous mix session (~30 ms) and starts [[src/audio/Private/Scheduler/index.ts]]. Every 25 ms the scheduler queues each 16th whose audio-clock time falls inside the next 100 ms.
+3. [[src/audio/Private/StepRenderer.ts]] reads that step. `0` and `HOLD` (`-1`) schedule nothing; `HOLD` lengthens the note that came before it. The patch comes from `track.instruments` or, if that channel is omitted, from `chip_bass` / `chip_lead` / `chip_pad`.
+4. [[src/audio/Private/Instruments/index.ts]] starts the voice at the scheduled time and connects it to [[src/audio/Private/Mixer/index.ts]]. Drums use the same bus. The mix goes to `bgmGain`, with an optional send into a generated reverb. Legacy chip patches send none.
+5. `stop()` stops the scheduler and fades the session so the lookahead's already-queued notes do not play into the next cue. The reverb tail is left alone.
 
 ### Trial Reveal Cue
 1. A correct contradiction queues its `successDialogue`.
 2. The first reveal line carries `bgm: 'objection'`, switching away from the testimony loop before the objection is explained.
 3. If the contradiction has a follow-up turnabout, its first line carries `bgm: 'pursuit'` and takes over for the remainder of that reveal.
-4. After the witness is cornered, the "here is what really happened" narration — the case's central truth argued at length — carries `bgm: 'truth'` on its first line instead. `truth` ("Atando Cabos") is reserved for the big reveal: a 60s B minor loop that opens on a 16th-note ostinato alone, brings in the theme at bar 5, climbs through a rising sequence, and peaks at 17–20, about 40 seconds in. Cue it on the first reveal line so the build has room to work. It turns back onto its own dominant and never resolves, so the release still belongs to `victory` at the verdict. When court business resumes, switch back to the testimony/cross-exam loop.
+4. After the witness is cornered, the "here is what really happened" narration — the case's central truth argued at length — carries `bgm: 'truth'` on its first line instead. `truth` ("Atando Cabos") is reserved for the big reveal: a 60s B minor loop that opens on a 16th-note ostinato alone, brings in the theme at bar 5, climbs through a rising sequence, and peaks at 17–20, about 40 seconds in. Cue it on the first reveal line so the build has room to work. It turns back onto its own dominant and never resolves, so the release still belongs to `victory` at the verdict. When court business resumes, switch back to the testimony/cross-exam loop. To land the shout in a silent room first, give the objection line `bgm: 'silence'` and put `truth` on the next line.
 5. `suspense` is never a reveal cue: it opens the pre-verdict climax dilemma (see [[docs/flows/trial-cross-examination-flow.md]]).
 6. **The block hands the cue back.** The engine never ends `objection` or `pursuit` on its own; the next `playTrack` call is `startTestimony` for the following testimony, which may be twenty lines later. The line where routine court business resumes inside the success or follow-up block must stamp the testimony's own `bgm` again, or the dramatic loop rides through the witness dismissal and the next swearing-in. A follow-up block with no `bgm` inherits the parent cue, so its own peak declares one explicitly. Last chain of the last day is exempt: it hands over to the climax, whose first line declares the cue.
 
@@ -75,8 +69,7 @@ Operational guide for the procedural Web Audio API synthesizer, MIDI music track
 - `soundEngine.ctx`
 - `soundEngine.masterGain.gain`
 - `midiComposer.currentTrack`
-- `midiComposer.step`
-- `midiComposer.timer`
+- `midiComposer` audible step (via `getPlaybackSnapshot()`)
 
 ## 6. Side Effects
 - Real-time audio signal generation to default system sound output.
@@ -84,6 +77,9 @@ Operational guide for the procedural Web Audio API synthesizer, MIDI music track
 ## 7. Files to Inspect
 - [[src/audio/Private/SoundEngine.ts]]
 - [[src/audio/Private/MidiMusicComposer.ts]]
+- [[src/audio/Private/Scheduler/index.ts]]
+- [[src/audio/Private/Instruments/index.ts]]
+- [[src/audio/Private/Mixer/index.ts]]
 - [[src/audio/Private/CourtSfx.ts]]
 - [[src/audio/Private/NoveltySfx.ts]]
 - [[src/audio/Private/TrackCatalog.ts]]

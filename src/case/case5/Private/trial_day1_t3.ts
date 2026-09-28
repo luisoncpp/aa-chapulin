@@ -74,9 +74,9 @@ export const CASE5_TESTIMONY_3: Testimony = {
       text: 'Y como por mi escalera no subió nadie después del licenciado, concluí que nadie más pudo llegar al pasillo siete. Esa escalera empieza a tres metros de mi mostrador.',
       pressText: [
         MOMENTO,
-        { speaker: 'DEFENSA', text: '¿Su escalera es la única que llega al pasillo siete?', pose: 'chapulin_point' },
+        { speaker: 'DEFENSA', text: '¿Su escalera es la única vía para llegar al pasillo siete?', pose: 'chapulin_point' },
         { speaker: 'NICANOR', text: 'La mía es la de la gente.', pose: 'nicanor_idle' },
-        { speaker: 'DEFENSA', text: 'No le pregunté si es la de la gente. Le pregunté si es la única.', pose: 'chapulin_point' },
+        { speaker: 'DEFENSA', text: 'No le pregunté si es la de la gente. Le pregunté si había otra vía.', pose: 'chapulin_point' },
         { speaker: 'SUPER SAM', text: '¡OBJECTION! ¡Ya rechazó esta corte esa línea! ¡El testigo declara sobre su puerta!', pose: 'supersam_slam', sfx: 'desk_slam' },
         { speaker: 'JUEZ', text: '...La corte rechaza la objeción.', pose: 'judge_neutral' },
         { speaker: 'SUPER SAM', text: '¡¿QUÉ?!', pose: 'supersam_sweat' },

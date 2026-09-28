@@ -51,31 +51,37 @@ describe('OpeningPresent', () => {
     });
   });
 
-  it('opens the court record after intro and before testimony 1', () => {
+  it('opens the court record after intro and before testimony 1', async () => {
     controller.startTrial();
     vi.advanceTimersByTime(SCENE_FADE_MS * 2);
     expect(controller.currentTestimony).toBeNull();
     expect(pending[0]).toBeTruthy();
     pending[0]!();
+    await vi.advanceTimersByTimeAsync(3_000);
+    expect(pending[1]).toBeTruthy();
+    pending[1]!();
     expect(courtRecordOpened).toBe(true);
     expect(controller.getPresentPrompt()).toBe('Presente la nota de amenaza.');
     expect(controller.isAwaitingEvidence()).toBe(true);
     expect(rendered).toHaveLength(0);
   });
 
-  it('plays success dialogue then starts testimony 1, and reopens on a wrong present', () => {
+  it('plays success dialogue then starts testimony 1, and reopens on a wrong present', async () => {
     controller.startTrial(/*skipFade=*/ true);
     pending[0]!();
+    await vi.advanceTimersByTimeAsync(3_000);
+    expect(pending[1]).toBeTruthy();
+    pending[1]!();
     controller.handlePresentEvidence('insignia_abogado');
     expect(state.health).toBe(4);
-    expect(queued[1].some((line) => line.speaker === 'SUPER SAM')).toBe(true);
-    expect(queued[1].some((line) => line.speaker === 'JUEZ')).toBe(true);
-    pending[1]!();
+    expect(queued[2].some((line) => line.speaker === 'SUPER SAM')).toBe(true);
+    expect(queued[2].some((line) => line.speaker === 'JUEZ')).toBe(true);
+    pending[2]!();
     expect(courtRecordOpened).toBe(true);
     courtRecordOpened = false;
     controller.handlePresentEvidence('nota_amenaza');
     expect(queued.some((d) => d.some((l) => l.text.includes('Giro 2')))).toBe(true);
-    pending[2]!();
+    pending[3]!();
     expect(controller.currentTestimony).toBe(controller.script.trial.testimony1);
     expect(controller.getPresentPrompt()).toBeNull();
   });

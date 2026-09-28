@@ -14,7 +14,6 @@ export { CASE5_TESTIMONY_6, CASE5_TESTIMONY_7, CASE5_TESTIMONY_8 };
 
 export const CASE5_DAY3_INTRO_FULL: DialogueLine[] = [
   ...CASE5_DAY3_INTRO,
-  { speaker: 'NARRADOR', text: '8 de diciembre, 4:00 PM. Tercera audiencia.', bgm: 'trial' },
   { speaker: 'JUEZ', pose: 'judge_gavel', text: 'Se reanuda la audiencia. Esta corte recibió el acta de la inspección judicial de esta mañana.', sfx: 'gavel' },
   { speaker: 'JUEZ', pose: 'judge_neutral', text: 'Consta que el depósito reúne mobiliario y tres mil doscientos tomos distribuidos entre sus huacales; en el huacal nueve se inventariaron doscientos diez ejemplares de lujo, un cedulario de once mil cuatrocientas siete tarjetas y una máquina de escribir.' },
   { speaker: 'JUEZ', pose: 'judge_thinking', text: 'Consta también que todo ello está inventariado desde 1971 y que nada de ello es robado.' },

@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { TRACK_CATALOG } from '../../src/audio/Private/TrackCatalog.js';
+import { HOLD } from '../../src/audio/Private/tracks/Notation.js';
 
 describe('Terraza Bar soundtrack', () => {
   it('provides a long loop with contrasting phrases and melodic breathing room', () => {
@@ -10,7 +11,7 @@ describe('Terraza Bar soundtrack', () => {
     for (const channel of [track.bass!, track.lead!, track.chords!]) {
       expect(channel).toHaveLength(track.length);
       for (const note of channel.flat()) {
-        expect(Number.isInteger(note) && note >= 0 && note <= 127).toBe(true);
+        expect(note === HOLD || (Number.isInteger(note) && note >= 0 && note <= 127)).toBe(true);
       }
     }
   });

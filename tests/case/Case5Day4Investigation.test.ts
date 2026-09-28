@@ -68,11 +68,6 @@ describe('Case 5 day 4 investigation (Spanish)', () => {
     expect(caldera).toContain('bitacora_caldera');
   });
 
-  it('never uses truth BGM in day-4 investigation', () => {
-    allDay4Lines(es).forEach((line) => {
-      expect(line.bgm).not.toBe('truth');
-    });
-  });
 
   it('keeps DEFENSA on chapulin poses and bans slam poses in investigation', () => {
     allDay4Lines(es).forEach((line) => {

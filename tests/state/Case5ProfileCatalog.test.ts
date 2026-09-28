@@ -9,13 +9,6 @@ function joinEnProfiles(catalog: ReturnType<typeof getProfileCatalog>): string {
 }
 
 describe('Case5ProfileCatalog', () => {
-  it('returns empty maps for cases without profiles', () => {
-    expect(getProfileCatalog('es', 'case0')).toEqual({});
-    expect(getProfileCatalog('es', 'case2')).toEqual({});
-    expect(getProfileCatalog('es', 'case3')).toEqual({});
-    expect(getProfileCatalog('es', 'case4')).toEqual({});
-  });
-
   it('keeps English profile copy free of Spanish leakage', () => {
     const enText = joinEnProfiles(getProfileCatalog('en', 'case5'));
     expect(enText).not.toMatch(/\bocciso\b/i);

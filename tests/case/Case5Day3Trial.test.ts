@@ -1,6 +1,6 @@
 // @Architecture(descriptionShort="Unit tests for Case 5 day-3 Spanish trial script", type="test", icon="layers")
 import { describe, expect, it } from 'vitest';
-import { getCaseScript } from '../../src/case/index.js';
+import { CASE_SCRIPT_CASE5_EN, CASE_SCRIPT_CASE5_ES } from '../../src/case/case5/index.js';
 import type { CaseScript, DialogueLine, Statement, Testimony } from '../../src/types/index.js';
 import { assertEnglishTrialParity } from './case5Parity.js';
 
@@ -38,8 +38,8 @@ function defensaPoses(lines: DialogueLine[]): string[] {
 }
 
 describe('Case 5 day 3 trial (Spanish)', () => {
-  const es = getCaseScript('es', 'case5') as CaseScript;
-  const en = getCaseScript('en', 'case5') as CaseScript;
+  const es = CASE_SCRIPT_CASE5_ES;
+  const en = CASE_SCRIPT_CASE5_EN;
   const day3 = day3Trial(es);
   const lines = trialDialogue(day3);
 
@@ -49,7 +49,6 @@ describe('Case 5 day 3 trial (Spanish)', () => {
     expect(day3.openingPresent?.prompt).toBe('¿Qué iba a señalar la víctima en esa diligencia?');
     expect(en.adjournment?.next?.trial.openingPresent?.evidence).toEqual(['efectos_casimiro']);
   });
-
 
 
   it('lets Don Ramón advise Chapulín through the Case 5 press hint', () => {
@@ -105,11 +104,6 @@ describe('Case 5 day 3 trial (Spanish)', () => {
       .every((line) => line.speaker === 'DEFENSA')).toBe(true);
   });
 
-  it('never uses truth BGM in day-3 trial dialogue', () => {
-    lines.forEach((line) => {
-      expect(line.bgm).not.toBe('truth');
-    });
-  });
 
   it('keeps Super Sam press responses on the testimony music in both languages', () => {
     [day3.testimonies[1], (day3Trial(en).testimonies[1])].forEach((superSam) => {

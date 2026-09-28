@@ -36,10 +36,15 @@ export interface Case5Parts {
   climax: ClimaxDefinition;
 }
 
-function dayTrial(intro: DialogueLine[], testimonies: Testimony[]): TrialDayScript {
+/** Opening gallery plates, by who sits at the prosecution table (spec §23.1). */
+const SAM_BERRONDO_GALLERY = 'assets/bg_gallery_case5_sam_berrondo.webp';
+const SECRETARY_BERRONDO_GALLERY = 'assets/bg_gallery_case5_secretary_berrondo_accused.webp';
+
+function dayTrial(intro: DialogueLine[], testimonies: Testimony[], galleryBg: string): TrialDayScript {
   return {
     intro,
     testimonies,
+    galleryBg,
     testimony1: testimonies[0],
     testimony2: testimonies[1]
   };
@@ -51,7 +56,7 @@ function adjournmentChain(parts: Case5Parts): AdjournmentDefinition {
     unlockLocations: ['vecindad_c5'],
     requiredEvidence: CASE5_DAY2_EVIDENCE,
     trial: {
-      ...dayTrial(parts.day2Intro, [parts.t4, parts.t5]),
+      ...dayTrial(parts.day2Intro, [parts.t4, parts.t5], SAM_BERRONDO_GALLERY),
       ...(parts.day2Opening ? { openingPresent: parts.day2Opening } : {})
     },
     next: {
@@ -59,7 +64,7 @@ function adjournmentChain(parts: Case5Parts): AdjournmentDefinition {
       unlockLocations: ['bodega_masa'],
       requiredEvidence: CASE5_DAY3_EVIDENCE,
       trial: {
-        ...dayTrial(parts.day3Intro, [parts.t6, parts.t7, parts.t8]),
+        ...dayTrial(parts.day3Intro, [parts.t6, parts.t7, parts.t8], SAM_BERRONDO_GALLERY),
         ...(parts.day3Opening ? { openingPresent: parts.day3Opening } : {})
       },
       next: {
@@ -67,7 +72,7 @@ function adjournmentChain(parts: Case5Parts): AdjournmentDefinition {
         unlockLocations: ['celda_c5_d4'],
         requiredEvidence: CASE5_DAY4_EVIDENCE,
         trial: {
-          ...dayTrial(parts.day4Intro, [parts.t9]),
+          ...dayTrial(parts.day4Intro, [parts.t9], SECRETARY_BERRONDO_GALLERY),
           ...(parts.day4Opening ? { openingPresent: parts.day4Opening } : {})
         }
       }
@@ -91,6 +96,7 @@ export function assembleCase5(parts: Case5Parts): CaseScript {
       testimony1: parts.t1,
       testimony2: parts.t2,
       climax: parts.climax,
+      galleryBg: SAM_BERRONDO_GALLERY,
       ...(parts.day1Opening ? { openingPresent: parts.day1Opening } : {})
     },
     adjournment: adjournmentChain(parts)

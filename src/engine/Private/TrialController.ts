@@ -115,7 +115,7 @@ export class TrialController {
       this.deps.onQueueDialogue(introParts.waitingRoom, /*onLobbyComplete*/ () => {
         fadeAcrossGallery(this.deps.dom, /*onGalleryComplete*/ () => {
           this.deps.onQueueDialogue(introParts.courtroom, afterIntro);
-        }, { caseId: this.deps.state.caseId, trialDay: this.deps.state.trialDay });
+        }, { script: this.script, trialDay: this.deps.state.trialDay });
       });
     };
     if (skipFade) {
@@ -161,7 +161,8 @@ export class TrialController {
     if (!visible.length) return;
     this.deps.dom.trialNavEl.classList.remove('hidden');
     const stmt = visible[this.currentStatementIdx] ?? visible[0];
-    this.deps.onRenderLine({ speaker: stmt.speaker, pose: stmt.pose, text: stmt.text });
+    const { speaker, pose, text, bg, furniture } = stmt;
+    this.deps.onRenderLine({ speaker, pose, text, bg, furniture });
   }
 
   public nextStatement(): void {

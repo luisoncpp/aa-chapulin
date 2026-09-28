@@ -4,7 +4,7 @@
  */
 
 import type { TrackDefinition } from '../../../types/index.js';
-import { crossExamAllegroTrack } from './CourtroomTracks.js';
+import { crossExamAllegroTrack, crossExamModeratoTrack } from './CourtroomTracks.js';
 
 export const kermesTrack: TrackDefinition = {
   bpm: 132,
@@ -57,5 +57,5 @@ export const crossExamPrestoTrack: TrackDefinition = {
   bass: crossExamAllegroTrack.bass,
   lead: crossExamAllegroTrack.lead,
   chords: crossExamAllegroTrack.chords,
-  drums: crossExamAllegroTrack.drums
+  drums: crossExamModeratoTrack.drums
 };

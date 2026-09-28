@@ -50,9 +50,9 @@ describe('TrialController', () => {
     });
   });
 
-  it('starts trial mode and goes straight into testimony 1', () => {
+  it('starts trial mode and goes straight into testimony 1', async () => {
     controller.startTrial();
-    vi.advanceTimersByTime(SCENE_FADE_MS * 2);
+    await vi.advanceTimersByTimeAsync(SCENE_FADE_MS * 2 + 3_000);
     expect(state.mode).toBe('TRIAL');
     // Day 1 has no `openingPresent`: the Acta is never forced open.
     expect(courtRecordOpenedWithTrial).toBe(false);
@@ -294,7 +294,7 @@ describe('TrialController', () => {
     expect(state.health).toBe(5);
   });
 
-  it('keeps trial controls hidden during intro dialogue and shows them only when cross-examination starts', () => {
+  it('keeps trial controls hidden during intro dialogue and shows them only when cross-examination starts', async () => {
     let pendingCallback: (() => void) | null = null;
     const asyncController = new TrialController({
       dom,
@@ -317,6 +317,9 @@ describe('TrialController', () => {
     expect(dom.trialNavEl.classList.contains('hidden')).toBe(true);
 
     // Once the intro finishes, cross-examination begins and the controls appear
+    expect(pendingCallback).not.toBeNull();
+    pendingCallback!();
+    await vi.advanceTimersByTimeAsync(3_000);
     expect(pendingCallback).not.toBeNull();
     pendingCallback!();
     expect(dom.trialNavEl.classList.contains('hidden')).toBe(false);
@@ -418,7 +421,7 @@ describe('TrialController', () => {
     expect(case2Controller.phase).toBe('IDLE');
   });
 
-  it('starts Case 2 day-2 testimonies after adjournment', () => {
+  it('starts Case 2 day-2 testimonies after adjournment', async () => {
     const case2 = getCaseScript('es', 'case2');
     state.beginTrialDay2(case2.adjournment!);
     const day2 = new TrialController({
@@ -435,7 +438,7 @@ describe('TrialController', () => {
       onOpenCourtRecord: () => {}
     });
     day2.startTrial();
-    vi.advanceTimersByTime(SCENE_FADE_MS * 2);
+    await vi.advanceTimersByTimeAsync(SCENE_FADE_MS * 2 + 3_000);
     expect(day2.currentTestimony).toBe(case2.adjournment?.trial.testimony1);
   });
 });

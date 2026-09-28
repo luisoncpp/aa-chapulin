@@ -118,3 +118,7 @@ Fuente auditada: RAW Lote B, pasada 2 de regeneración (la pasada 1 de esta mism
 ### Recomendación
 
 Ninguna bloqueante. Opcional: desteñir el escudo nacional (grisáceo, mural gastado) si se vuelve a tocar el fondo; no regenerar sólo por eso.
+
+## Inconsistencia con las láminas de galería (2026-09-27)
+
+Las siete láminas `bg_gallery_case5_*` pintan la bolsa de Sam con el signo `$` de sus sprites y, en la sala, llena de algodón. Este fondo la pinta doblada y con sello verde. Que esté doblada en el despacho es canon (`case-5-el-tomo-trece.md:2589`), pero la marca verde contradice el `$`. El usuario decidió no tocar este fondo, y la marca sigue sin unificar.

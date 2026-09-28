@@ -95,7 +95,7 @@ export class DialogueFlow {
   public renderDialogueLine(line: DialogueLine): void {
     if (!line) return;
     this.deps.history.record(line);
-    if (line.bgm) this.deps.midiComposer.playTrack(line.bgm);
+    if (line.bgm) this.deps.midiComposer.playCue(line.bgm);
     if (line.sfx) this.triggerSFX(line.sfx);
     if (line.cutin) VisualEffects.showCutin(this.deps.dom, line.cutin);
     if (line.confetti) VisualEffects.triggerConfetti(this.deps.dom.confettiContainerEl);

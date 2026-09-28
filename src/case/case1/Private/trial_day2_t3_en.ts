@@ -128,7 +128,7 @@ export const CASE1_TESTIMONY_5_EN: Testimony = {
       id: 'c1_d2t3_3',
       speaker: 'TRIPASECA',
       pose: 'tripaseca_smug',
-      text: 'And the camera caught him. One single photo, but you can see that little heart he wears on his chest plain as day.',
+      text: 'And the camera caught him. One single photo, but you can see that little heart with the letters C and H on his chest plain as day.',
       pressText: [
         { speaker: 'DEFENSA', text: 'HOLD IT! Describe that "little heart" to me.', sfx: 'whoosh', cutin: 'objection_un_momento', pose: 'donramon_point' },
         { speaker: 'TRIPASECA', text: 'The yellow heart with the two letters. Everybody knows it. C, H.', pose: 'tripaseca_smug' },

@@ -8,7 +8,7 @@ import { CASE5_VECINDAD_HOTSPOTS_EN } from './vecindad_hotspots_en.js';
 import { CASE5_VECINDAD_TALKS_EN } from './vecindad_talks_en.js';
 
 export const CASE5_VECINDAD_EN: InvestigationScene = {
-  title: 'The Tenement - Mr. Barriga\'s Office',
+  title: 'Mr. Barriga\'s Office',
   name: 'Mr. Barriga\'s Office',
   bg: 'assets/bg_despacho_c5.webp',
   bgm: 'investigation',

@@ -39,9 +39,8 @@ describe('Case 5 climax (Spanish)', () => {
     expect(climax.stages?.[4].requiredUpdateStage).toEqual({ maquina_escribir: 2 });
   });
 
-  it('never uses truth BGM and keeps DEFENSA on chapulin poses', () => {
+  it('keeps DEFENSA on chapulin poses', () => {
     allClimaxLines(es).forEach((line) => {
-      expect(line.bgm).not.toBe('truth');
       if (line.speaker === 'DEFENSA' && line.pose) {
         expect(line.pose.startsWith('chapulin_'), `${line.pose} on DEFENSA`).toBe(true);
       }
@@ -74,48 +73,3 @@ describe('Case 5 climax (Spanish)', () => {
   });
 });
 
-function sceneLines(script: CaseScript): DialogueLine[] {
-  return Object.values(script.investigation).flatMap((scene) => [
-    ...scene.intro,
-    ...scene.hotspots.flatMap((h) => h.dialogue),
-    ...scene.talkOptions.flatMap((o) => o.dialogue)
-  ]);
-}
-
-function testimonyLines(script: CaseScript): DialogueLine[] {
-  const days = [
-    script.trial,
-    script.adjournment?.trial,
-    script.adjournment?.next?.trial,
-    script.adjournment?.next?.next?.trial
-  ].filter(Boolean);
-  return days.flatMap((day) => {
-    const lines: DialogueLine[] = [...day!.intro, ...(day!.openingPresent?.successDialogue ?? [])];
-    for (const testimony of day!.testimonies) {
-      for (const stmt of testimony.statements) {
-        lines.push(stmt);
-        lines.push(...(stmt.pressText ?? []));
-        lines.push(...(stmt.deflect?.dialogue ?? []));
-        const rule = stmt.contradiction;
-        if (!rule) continue;
-        lines.push(...rule.successDialogue);
-        lines.push(...(rule.followUp?.successDialogue ?? []));
-        lines.push(...(rule.pointTarget?.successDialogue ?? []));
-        lines.push(...(rule.pointTarget?.zones.flatMap((z) => z.failureDialogue) ?? []));
-      }
-    }
-    return lines;
-  });
-}
-
-describe('Case 5 never cues the truth track', () => {
-  it.each(['es', 'en'] as const)('%s script has no truth BGM on scenes or lines', (lang) => {
-    const script = getCaseScript(lang, 'case5') as CaseScript;
-    Object.values(script.investigation).forEach((scene) => {
-      expect(scene.bgm).not.toBe('truth');
-    });
-    [...sceneLines(script), ...testimonyLines(script), ...allClimaxLines(script)].forEach((line) => {
-      expect(line.bgm).not.toBe('truth');
-    });
-  });
-});

@@ -145,7 +145,7 @@ describe('Case script referential integrity', () => {
           if (line.bg) expect(assetExists(line.bg), `bg ${line.bg}`).toBe(true);
           if (line.pose) expect(assetExists(`assets/${line.pose}.webp`), `pose ${line.pose}`).toBe(true);
           if (line.cutin) expect(assetExists(`assets/${line.cutin}.webp`), `cutin ${line.cutin}`).toBe(true);
-          if (line.bgm) expect(TRACK_CATALOG[line.bgm], `bgm ${line.bgm}`).toBeDefined();
+          if (line.bgm && line.bgm !== 'silence') expect(TRACK_CATALOG[line.bgm], `bgm ${line.bgm}`).toBeDefined();
         }
         for (const scene of Object.values(script.investigation)) {
           expect(assetExists(scene.bg), `scene bg ${scene.bg}`).toBe(true);

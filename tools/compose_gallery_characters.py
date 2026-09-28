@@ -58,7 +58,8 @@ class Figure:
 
 FIGURES = (
     # Farther figure first; Don Ramón stands nearer the camera and covers him.
-    Figure(source="bg_gallery_characters_chapulin_standing.png", desk=DEFENSE,
+    # Cape repainted as his insect wing by tools/paint_chapulin_wings.py.
+    Figure(source="bg_gallery_characters_chapulin_standing_wings.png", desk=DEFENSE,
            center_x=318, height_m=1.78, feet_offset_m=0.0),
     Figure(source="bg_gallery_characters_donramon_standing.png", desk=DEFENSE,
            center_x=240, height_m=1.78, feet_offset_m=0.0),

@@ -5,7 +5,7 @@
 
 import { i18n } from '../../i18n/index.js';
 import type { GameStateManager } from '../../state/index.js';
-import type { CaseId, CaseScript, DialogueLine, TrialDay } from '../../types/index.js';
+import type { CaseScript, DialogueLine, TrialDay } from '../../types/index.js';
 import type { DomElements } from './DomElements.js';
 import { getActiveTrial } from './TrialDayRouter.js';
 import { fadeToGalleryShot } from './SceneFade.js';
@@ -14,11 +14,11 @@ import { setStagingCaseId } from './TrialCaseStaging.js';
 
 const WAITING_ROOM_BG = 'assets/bg_waiting_room.webp';
 const GALLERY_BG = 'assets/bg_gallery_characters.webp';
-const CASE1_DAY1_GALLERY_BG = 'assets/bg_gallery_characters_sam_no_bag.webp';
 const GALLERY_HOLD_MS = 1000;
 
-export function getTrialGalleryBackground(caseId: CaseId, trialDay: TrialDay): string {
-  return caseId === 'case1' && trialDay === 1 ? CASE1_DAY1_GALLERY_BG : GALLERY_BG;
+/** Opening gallery plate: the day's `galleryBg` (case content), else the shared populated gallery. */
+export function getTrialGalleryBackground(script: CaseScript, trialDay: TrialDay): string {
+  return getActiveTrial(script, trialDay).galleryBg ?? GALLERY_BG;
 }
 
 export interface TrialIntroParts {
@@ -39,9 +39,9 @@ export function splitTrialIntroAtGallery(
 export function fadeAcrossGallery(
   dom: DomElements,
   onComplete: () => void,
-  trial: { caseId: CaseId; trialDay: TrialDay }
+  trial: { script: CaseScript; trialDay: TrialDay }
 ): void {
-  const bg = getTrialGalleryBackground(trial.caseId, trial.trialDay);
+  const bg = getTrialGalleryBackground(trial.script, trial.trialDay);
   const shot: DialogueLine = { text: '', bg, furniture: 'none' };
   fadeToGalleryShot(dom.flashEl, {
     onCovered: () => {

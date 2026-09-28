@@ -4,7 +4,7 @@
  * Used by [[src/case/index.ts]], [[src/engine/Private/GameEngine.ts]], and [[src/engine/Private/TrialController.ts]].
  */
 
-import type { SFXName, TrackName } from './audio.js';
+import type { BgmCue, SFXName, TrackName } from './audio.js';
 import type { EvidenceId } from './evidence.js';
 import type { ProfileId } from './profile.js';
 import type { CaseId, GameFlags, LocationId } from './state.js';
@@ -50,6 +50,10 @@ export type PoseName =
   | 'supersam_idle'
   | 'supersam_slam'
   | 'supersam_case1_slam'
+  | 'supersam_case1_idle'
+  | 'supersam_crossed'
+  | 'supersam_watch'
+  | 'supersam_thinking'
   | 'supersam_point'
   | 'supersam_sweat'
   | 'supersam_breakdown'
@@ -181,7 +185,7 @@ export interface DialogueLine {
   confetti?: boolean;
   pose?: PoseName;
   bg?: string;
-  bgm?: TrackName;
+  bgm?: BgmCue;
   sfx?: SFXName;
   cutin?: CutinName;
   addEvidence?: EvidenceId;
@@ -318,6 +322,9 @@ export interface Statement {
   speaker: SpeakerName;
   pose?: PoseName;
   text: string;
+  /** Camera for this statement; overrides the speaker default like `DialogueLine.bg`. */
+  bg?: string;
+  furniture?: FurnitureType;
   pressText?: DialogueLine[];
   contradiction?: ContradictionRule;
   /** Presents answered by the court instead of a penalty. */
@@ -390,17 +397,9 @@ export interface ClimaxDefinition {
   guiltyDialogue?: DialogueLine[];
 }
 
-export interface TrialScript {
-  intro: DialogueLine[];
-  testimonies: Testimony[];
-  /** Legacy aliases retained for existing integrations and v1 saves. */
-  testimony1?: Testimony;
-  testimony2?: Testimony;
+/** Day 1 of the trial: a trial day plus the case climax. */
+export interface TrialScript extends TrialDayScript {
   climax: ClimaxDefinition;
-  openingPresent?: OpeningPresent;
-  /** Defaults to Super Sam; scripts may override the penalty speaker. */
-  penaltyProsecutionSpeaker?: SpeakerName;
-  penaltyProsecutionPose?: PoseName;
 }
 
 export interface TrialDayScript {
@@ -410,8 +409,11 @@ export interface TrialDayScript {
   testimony1?: Testimony;
   testimony2?: Testimony;
   openingPresent?: OpeningPresent;
+  /** Defaults to Super Sam; scripts may override the penalty speaker. */
   penaltyProsecutionSpeaker?: SpeakerName;
   penaltyProsecutionPose?: PoseName;
+  /** Populated gallery plate for the lobby→courtroom fade; omit for `bg_gallery_characters.webp`. */
+  galleryBg?: string;
 }
 
 export interface AdjournmentDefinition {

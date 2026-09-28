@@ -15,3 +15,8 @@ Before you write any code, create any plans, or run any commands, you MUST read 
 
 @docs/UPDATE.md
 
+# Python Environment & Sandbox Rules
+- When running Python scripts or commands, ALWAYS use `python <script>` with `BypassSandbox: false`.
+- The sandbox environment is preconfigured with Python 3.14 (including Pillow, numpy, etc.) accessible directly via `python`.
+- Do NOT invoke `py` (the Windows launcher invokes a system path that fails in sandbox).
+- Do NOT request user permission to run Python with `BypassSandbox: true`. Python works directly in standard sandbox mode.

@@ -61,6 +61,7 @@ const crashed = (bar: string[]): string[] => [`${bar[0]}C`, ...bar.slice(1)];
 export const crossExamCareoTrack: TrackDefinition = {
   bpm: 164,
   length: 512,
+  instruments: { bass: 'piano', lead: 'pulse_lead_25', chords: 'piano' },
   bass: [
     ...pumpBass(38), ...pumpBass(38), ...pumpBass(34), ...pumpBass(33),
     ...gallopBass(38), ...gallopBass(36), ...gallopBass(34), ...gallopBass(33),

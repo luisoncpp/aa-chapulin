@@ -45,7 +45,7 @@ export const CASE5_TESTIMONY_4_EN: Testimony = {
         { speaker: 'JUEZ', text: 'With bank bands?', pose: 'judge_thinking' },
         { speaker: 'BARRIGA', text: 'With bands. I kept one because it had a number. I gave it to the Sergeant.', pose: 'barriga_idle' },
         { speaker: 'SARGENTO', text: 'And I traced it, Your Honor. Teller withdrawal on November twenty-six. Account in the name of a trust company.', pose: 'pazguato_decidido' },
-        { bg: 'assets/bg_gallery_characters.webp', furniture: 'none', speaker: 'NARRADOR', text: 'Murmurs.', sfx: 'realization' },
+        { bg: 'assets/bg_gallery_case5_sam_berrondo.webp', furniture: 'none', speaker: 'NARRADOR', text: 'Murmurs.', sfx: 'realization' },
         { speaker: 'BERRONDO', text: 'Your Honor, with leave: that withdrawal is mine and it is declared.', pose: 'berrondo_idle', bg: 'assets/bg_courtroom.webp' },
         { speaker: 'BERRONDO', text: 'I withdrew five thousand pesos on the twenty-sixth to pay a notary\'s fees in cash, an ugly but common thing.', pose: 'berrondo_idle', bg: 'assets/bg_courtroom.webp' },
         { speaker: 'BERRONDO', text: 'The notary issued an invoice and I have it here. Shall I add it?', pose: 'berrondo_idle', bg: 'assets/bg_courtroom.webp' },

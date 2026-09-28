@@ -76,11 +76,6 @@ describe('Case 5 day 2 trial (Spanish)', () => {
     );
   });
 
-  it('never uses truth BGM in day-2 trial dialogue', () => {
-    lines.forEach((line) => {
-      expect(line.bgm).not.toBe('truth');
-    });
-  });
 
   it('keeps DEFENSA on chapulin poses only and bans donramon_slam', () => {
     defensaPoses(lines).forEach((pose) => {

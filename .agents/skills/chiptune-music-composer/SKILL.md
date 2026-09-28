@@ -26,7 +26,7 @@ Music fatigue happens when short, repetitive loops play incessantly during think
    - **Bass**: Low octaves (MIDI 36–52 / C2–E3). Triangle wave for roundness.
    - **Chords / Harmony**: Mid octaves (MIDI 48–65 / C3–F4). Sawtooth/pad for rich body with polyphonic arrays.
    - **Lead**: High-mid octaves (MIDI 64–84 / E4–C6). Square wave with vibrato LFO and breathing rests.
-   - **Drums**: Dynamic mix of Kick (`K`), Snare (`S`), Hi-Hat (`H`), Open Hat (`O`), Crash Cymbal (`C`), Slap (`P`), or compound hits (`KC`, `KH`, `SH`).
+   - **Drums**: `K` `S` `H` `O` `C` `P`, and when the scene asks for it `X` `R` `T` `M` `B` `G` `Y` (see the palette below). Compounds: `KC`, `KH`, `SH`.
 
 For in-depth theory, see [references/game-audio-principles.md](file:///c:/Proyectos/ace-attorney-gemini/.agents/skills/chiptune-music-composer/references/game-audio-principles.md).
 
@@ -34,24 +34,50 @@ For in-depth theory, see [references/game-audio-principles.md](file:///c:/Proyec
 
 ## 2. Track Data Format Specification
 
-Tracks are defined as JavaScript/TypeScript objects matching `TrackDefinition`:
+Tracks are `TrackDefinition` objects. Each index is one 16th note. In 4/4, one bar is 16 steps.
 
 ```typescript
-export type NoteEntry = number | number[]; // Single note or polyphonic chord
+export const HOLD = -1; // sustain the previous note for this step
 
 export interface TrackDefinition {
-  bpm: number;          // Beats per minute (e.g. 115, 118, 142, 152, 158)
-  length: number;       // Total 16th-note steps (e.g. 64, 128, 256)
-  bass: NoteEntry[];    // MIDI notes (0 for rest)
-  lead: NoteEntry[];    // MIDI notes (0 for rest)
-  chords: NoteEntry[];  // MIDI notes or polyphonic arrays [48, 51, 55] (0 for rest)
-  drums: string[];      // 'K', 'S', 'H', 'O', 'C', 'P', or compound 'KC', 'KH', '0'
+  bpm: number;
+  length: number;
+  bass?: NoteEntry[];
+  lead?: NoteEntry[];
+  chords?: NoteEntry[];
+  counter?: NoteEntry[]; // optional fourth melodic line
+  drums?: string[];
+  instruments?: Partial<Record<'bass' | 'lead' | 'chords' | 'counter', InstrumentId>>;
+  accents?: Partial<Record<'bass' | 'lead' | 'chords' | 'counter', number[]>>; // 0..1 gain
 }
 ```
 
-- Each array index represents **one 16th note** ($1/4$ of a beat).
-- In $4/4$ time, 1 bar = 4 beats = 16 steps.
-- A 4-bar phrase = 64 steps. An 8-bar phrase = 128 steps. A 16-bar track = 256 steps.
+`0` rests. A positive number is a MIDI note. An array is a chord. `HOLD` extends the previous note; a run of `k` holds lasts `(k + 1)` steps, with a 10% gap unless the patch is legato.
+
+If `instruments` is omitted, the channel uses `chip_bass`, `chip_lead`, or `chip_pad` (the original triangle, square, and sawtooth). Those three stay the default so an old track does not change timbre by accident.
+
+### Instrument palette
+
+| Id | Use |
+|---|---|
+| `chip_bass`, `chip_lead`, `chip_pad` | Original voices. Keep at least one of these in the cross-examination family; the square lead is part of the game. |
+| `pulse_lead_12`, `pulse_lead_25` | NES pulse widths. Allegro and moderato leads. |
+| `upright_bass` | Walking and courtroom bass. |
+| `piano`, `epiano` | Ostinato, confrontation bass, investigation chords. One step long unless you write `HOLD`. |
+| `marimba`, `nylon_guitar` | Percussive color. Guitar and upright bass are Karplus-Strong buffers, not a delay loop. |
+| `brass`, `mariachi_trumpet` | Brass stabs and fanfares. Auditioned on trial, objection, pursuit and victory and rejected there; those stay chip. |
+| `flute`, `accordion`, `organ`, `string_pad` | Atmosphere and pads. |
+| `orchestra_hit` | A single downbeat stab, not a melody. |
+
+**Owner preference (2026-09-28):** only the cross-examination family, `truth` and `archivo` use the new patches. Every other track was auditioned with instruments and reverted to the chip voices. Ask before moving another existing track off the chip defaults.
+
+### Drums
+
+`K` kick, `S` snare, `H` closed hat, `O` open hat, `C` crash, `P` slap, `X` clap, `R` rimshot, `T` low tom, `M` mid tom, `B` cowbell, `G` güiro, `Y` timbal. Compounds such as `KC` play every character. `0` is a rest.
+
+### Role hints
+
+Keep cross-examinations recognisably chiptune (`chip_lead` or a pulse lead). Pursuit and objection can take the trumpet. Investigation and location themes can leave the chip set. Do not put reverb on bass or drums; the patches already send little or none.
 
 ---
 

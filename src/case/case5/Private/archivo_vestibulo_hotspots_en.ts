@@ -43,8 +43,8 @@ export const CASE5_VESTIBULO_HOTSPOTS_EN: Hotspot[] = [
       { speaker: 'DEFENSA', text: '(Two doors. And the police only looked at one.)', pose: 'chapulin_idle', addEvidence: 'plano_archivo' },
       { speaker: 'NARRADOR', text: 'Judicial Archive floor plan. The public door opens to the vestibule and the visitor log counter.', bg: PLATE_DOS_ACCESOS, furniture: 'none' },
       { speaker: 'NARRADOR', text: 'The expert window opens to the service yard and never passes the vestibule counter.', bg: PLATE_DOS_ACCESOS, furniture: 'none' },
-      { speaker: 'NARRADOR', text: 'A service stair links the yard, the basement, and the end of hallway 7 without passing any counter.', bg: PLATE_DOS_ACCESOS, furniture: 'none' },
-      { speaker: 'DEFENSA', text: '(By that stair you can go from the basement to hallway seven without anyone seeing your face.)', pose: 'chapulin_idle', bg: VESTIBULO_BG, furniture: 'none' },
+      { speaker: 'NARRADOR', text: 'The service freight elevator connects the yard, the basement, and the end of hallway 7 without passing any counter.', bg: PLATE_DOS_ACCESOS, furniture: 'none' },
+      { speaker: 'DEFENSA', text: '(By that elevator you can go from the basement to hallway seven without anyone seeing your face.)', pose: 'chapulin_idle', bg: VESTIBULO_BG, furniture: 'none' },
       { speaker: 'DEFENSA', text: '(They never counted on my cunning... and neither did I, to be honest.)', pose: 'chapulin_idle', bg: VESTIBULO_BG, furniture: 'none' }
     ]
   },

@@ -8,11 +8,11 @@ import type { DialogueLine, Testimony } from '../../../types/index.js';
 
 const CASE1_GIRO_1_EN: DialogueLine[] = [
   { speaker: 'JUEZ', text: 'This court is going to order something very simple. Prosecution: the museum inventory.', sfx: 'gavel', pose: 'judge_gavel' },
-  { speaker: 'SUPER SAM', text: 'What do you want the inventory for, Your Honor?', pose: 'supersam_sweat' },
+  { speaker: 'SUPER SAM', text: 'What do you want the inventory for, Your Honor?', pose: 'supersam_thinking' },
   { speaker: 'JUEZ', text: 'To learn which object in that museum weighs like a sack of coin and is flexible.', pose: 'judge_neutral' },
   { speaker: 'NARRADOR', text: 'The bailiff hands over a bundle of papers. Super Sam leafs through it.', bg: 'assets/bg_courtroom.webp', furniture: 'bench', sfx: 'whoosh' },
   { speaker: 'NARRADOR', text: 'The room waits.', bg: 'assets/bg_gallery_characters_sam_no_bag.webp', furniture: 'none' },
-  { speaker: 'SUPER SAM', text: '...Four hundred and twelve pieces, Your Honor.', pose: 'supersam_sweat' },
+  { speaker: 'SUPER SAM', text: '...Four hundred and twelve pieces, Your Honor.', pose: 'supersam_thinking' },
   { speaker: 'JUEZ', text: 'And?', pose: 'judge_thinking' },
   { speaker: 'SUPER SAM', text: 'We checked the pieces moved that night. Not one weighs as much as six kilos. The heaviest was the chicharra: one kilo two hundred. Solid gold, with filigree... sharp-edged.', pose: 'supersam_sweat' },
   { speaker: 'DEFENSA', text: 'Sharp-edged, Your Honor. With edges. And the wound has not a single one.', pose: 'donramon_point' },
@@ -87,7 +87,7 @@ export const CASE1_TESTIMONY_2_EN: Testimony = {
         { speaker: 'TRIPASECA', text: "A trader's business, counselor. One walks, one looks, one buys.", pose: 'tripaseca_smug' },
         { speaker: 'DEFENSA', text: 'And what did you buy that night?', pose: 'donramon_idle' },
         { speaker: 'TRIPASECA', text: 'Nothing. Bad day.', pose: 'tripaseca_smug' },
-        { speaker: 'SUPER SAM', text: 'Objection! A man walking at night is not a crime! I walk at night!', pose: 'supersam_point' },
+        { speaker: 'SUPER SAM', text: 'Objection! A man walking at night is not a crime! I walk at night!', pose: 'supersam_crossed' },
         { speaker: 'DEFENSA', text: 'Nobody said it was, counselor. I am only keeping time.', pose: 'donramon_idle' }
       ]
     },
@@ -128,7 +128,7 @@ export const CASE1_TESTIMONY_2_EN: Testimony = {
       pressText: [
         { speaker: 'DEFENSA', text: 'HOLD IT! Where did you run to?', sfx: 'whoosh', cutin: 'objection_un_momento', pose: 'donramon_point' },
         { speaker: 'TRIPASECA', text: 'The telephone on the corner. I called the police at nine oh three. You can check.', pose: 'tripaseca_smug' },
-        { speaker: 'SUPER SAM', text: 'And I was four blocks away! I arrived in four minutes! FOUR! That is service!', pose: 'supersam_case1_slam', sfx: 'desk_slam' },
+        { speaker: 'SUPER SAM', text: 'And I was four blocks away! I arrived in four minutes! FOUR! That is service!', pose: 'supersam_watch', sfx: 'desk_slam' },
         { speaker: 'DEFENSA', text: 'Four minutes. How lucky the museum was to have you so near, counselor.', pose: 'donramon_idle' },
         { speaker: 'SUPER SAM', text: 'It is not luck! It is... it is efficiency!', pose: 'supersam_sweat' },
         { speaker: 'DEFENSA', text: '(He took his time answering. A quarter of a second, but he took it.)', pose: 'donramon_idle' }

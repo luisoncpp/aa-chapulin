@@ -28,13 +28,12 @@ export const CASE5_CLIMAX_CHOICES: ChoicePrompt[] = [
       { speaker: 'DEFENSA', text: 'Pero en esta corte no voy a presentar su quietud como prueba. Tengo su declaración sobre el remate y el inventario del depósito.', pose: 'chapulin_idle' },
       { speaker: 'SECRETARIO', text: '¡Entonces el remate exculpa al licenciado Berrondo!' },
       { speaker: 'DON RAMÓN', text: 'No, señor secretario.', pose: 'donramon_idle' },
-      { speaker: 'NARRADOR', text: 'Don Ramón se pone de pie en el banquillo.', pose: 'donramon_idle', bgm: 'suspense' },
       { speaker: 'JUEZ', text: 'El acusado tiene la palabra.', sfx: 'gavel', pose: 'judge_gavel' },
       { speaker: 'DON RAMÓN', text: 'Yo llevo cuatro días oyendo hablar de ese huacal y no había entendido nada hasta hace un minuto.', pose: 'donramon_idle' },
       { speaker: 'DON RAMÓN', text: 'No hace falta que vibren las antenitas, señor juez. Lo que hay en el huacal no fue robado; Berrondo reconoció la compra por tres pesos y el inventario confirma que los originales siguen depositados.', pose: 'donramon_idle' },
       { speaker: 'DON RAMÓN', text: 'Once mil cuatrocientas siete tarjetas archivadas con el domicilio, el sueldo, lo que hay de valor y cómo cierra la puerta de cada familia.', pose: 'donramon_shock' },
       { speaker: 'DON RAMÓN', text: 'Y todas se las dieron ellas mismas. Sentaditas en su sala, con el vendedor enfrente, contentas de que les fiaran los tomos.', pose: 'donramon_idle' },
-      { bg: 'assets/bg_gallery_characters.webp', furniture: 'none', speaker: 'NARRADOR', text: 'Silencio absoluto en la sala.', bgm: 'suspense' },
+      { bg: 'assets/bg_gallery_case5_secretary_berrondo_accused.webp', furniture: 'none', speaker: 'NARRADOR', text: 'Silencio absoluto en la sala.', bgm: 'suspense' },
       { speaker: 'DON RAMÓN', text: 'Ese señor no necesitó robar esas tarjetas, señor juez. Ése es el asunto.', pose: 'donramon_idle' },
       { speaker: 'DON RAMÓN', text: 'Ese fichero es suyo: lo compró en un remate por tres pesos. Y, sin embargo, los originales siguen en el depósito judicial, bajo su propia firma.', pose: 'donramon_idle' },
       { speaker: 'DON RAMÓN', text: 'Que lo comprara legalmente no lo vuelve inocente, señor juez. Ésa es la prueba de cómo pudo vender la información durante once años sin que nadie lo detuviera.', pose: 'donramon_shock' },
@@ -49,7 +48,7 @@ export const CASE5_CLIMAX_CHOICES: ChoicePrompt[] = [
       { speaker: 'JUEZ', text: 'Acusado: dicte usted su domicilio al secretario.', sfx: 'gavel', pose: 'judge_gavel' },
       { speaker: 'DON RAMÓN', text: '...Vecindad de la calle del Espanto número ocho, vivienda setenta y dos.', pose: 'donramon_idle' },
       { speaker: 'DON RAMÓN', text: 'Ciudad de México.', pose: 'donramon_sweat' },
-      { bg: 'assets/bg_judge.webp', furniture: 'judge-bench', speaker: 'NARRADOR', text: 'El secretario recorre el cajón con el dedo durante cuarenta segundos. La sala no respira.', bgm: 'suspense' },
+      { bg: 'assets/bg_courtroom.webp', furniture: 'bench', speaker: 'NARRADOR', text: 'El secretario recorre el cajón con el dedo durante cuarenta segundos. La sala no respira.', bgm: 'suspense' },
       { speaker: 'SECRETARIO', text: '...La tengo, señor juez.', addEvidence: 'ficha_domicilio' },
       { speaker: 'JUEZ', text: 'Defensa: preséntela usted, que se la ganó.', sfx: 'gavel', pose: 'judge_gavel' }
     ]

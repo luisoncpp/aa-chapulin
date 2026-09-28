@@ -31,6 +31,7 @@ import type { TrackDefinition } from '../../../types/index.js';
 export const crossExamFinalTrack: TrackDefinition = {
   bpm: 158,
   length: 384,
+  instruments: { bass: 'piano', lead: 'chip_lead', chords: 'brass' },
   bass: [
     // S1 - Fm Fm Db C
     41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 53, 48,

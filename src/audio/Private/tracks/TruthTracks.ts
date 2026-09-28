@@ -1,5 +1,6 @@
 // @Architecture(descriptionShort="Truth-reveal theme for big trial revelations", icon="music")
 import type { TrackDefinition } from '../../../types/index.js';
+import { echoRange } from './Notation.js';
 
 // "Atando Cabos": 24 bars of 4/4 at 96 BPM in B minor, 60 seconds per loop.
 //
@@ -31,6 +32,7 @@ import type { TrackDefinition } from '../../../types/index.js';
 export const truthTrack: TrackDefinition = {
   bpm: 96,
   length: 384,
+  instruments: { bass: 'piano', lead: 'flute', chords: 'piano', counter: 'string_pad' },
   bass: [
     47, 0, 0, 47, 0, 0, 59, 0, 47, 0, 0, 47, 0, 0, 59, 0,
     45, 0, 0, 45, 0, 0, 57, 0, 45, 0, 0, 45, 0, 0, 57, 0,
@@ -136,3 +138,5 @@ export const truthTrack: TrackDefinition = {
     'K', '0', 'H', 'K', 'S', '0', 'S', '0', 'S', 'S', 'S', 'S', 'S', 'S', 'KS', 'O'
   ]
 };
+
+truthTrack.counter = echoRange(truthTrack.lead!, 256, 320);

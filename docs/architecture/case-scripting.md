@@ -50,7 +50,7 @@ Each entry in a dialogue sequence supports the following optional and required f
 | `requiresExamine` | string \| null | On a contradiction rule, the evidence id that must have been opened with `EXAMINE DETAIL` before the matching present is accepted. |
 | `deflect` | object \| null | On a statement, `{ evidence, dialogue }`: presents answered by the court instead of a penalty. See below. |
 | `bg` | string | File path to switch the background image (`#scene-bg`). |
-| `bgm` | string | Track ID to switch soundtrack playback in `midiComposer`. On a climax `dialogue[0]` it overrides the engine's `suspense` opener — see [[docs/lessons-learned/climax-bgm-line-override.md]]. For the big truth-reveal dialogue block (the "here is what really happened" sequence), use `truth` on the block's first line and return to the testimony loop when court business resumes — see [[docs/architecture/audio-system.md#Track Catalog]]. |
+| `bgm` | `BgmCue` | Track ID to switch soundtrack playback in `midiComposer`, or `'silence'` to stop it until the next cue (e.g. a shout that should land in a silent room before `truth` enters). On a climax `dialogue[0]` it overrides the engine's `suspense` opener — see [[docs/lessons-learned/climax-bgm-line-override.md]]. For the tragic truth-reveal block (the witness already broken, the real sequence and its human cost laid bare), use `truth` on the block's first line and return to the testimony loop when court business resumes — see [[docs/architecture/audio-system.md#Track Catalog]]. |
 | `sfx` | string | SFX identifier to trigger procedural audio (`'gavel'`, `'desk_slam'`, `'whoosh'`, `'realization'`, `'damage'`, `'chipote'`, `'chicharra'`). |
 | `cutin` | string | Cut-in graphic key (`'objection_protesto'`, `'objection_un_momento'`, `'objection_toma_eso'`, `'objection_culpable'`, `'objection_inocente'`). |
 | `addEvidence` | string | Evidence ID to automatically add to the player's inventory with a progress notification (same toast + realization SFX as a new location). |
@@ -84,6 +84,7 @@ Penalty lines used to hardcode Super Sam and Don Ramón. Cases that swap the ben
 | `defenseIdlePose` | `CaseScript` | `donramon_idle` (documentational; idle inference in VisualEffects still uses Don Ramón unless the line stamps a pose) |
 | `penaltyProsecutionSpeaker` / `penaltyProsecutionPose` | `TrialScript`, `TrialDayScript`, and `Testimony` | `'SUPER SAM'` / `supersam_point` |
 | `pressHint` | `CaseScript` | omitted → Chapulín (`chapulin_point`) speaks `i18n.t.pressHint` at Don Ramón |
+| `galleryBg` | `TrialDayScript` (so also `TrialScript`, which extends it) | `assets/bg_gallery_characters.webp`. Gallery plate of the fade between the waiting-room intro and the courtroom intro. Pick it by who sits at the prosecution table that day. Set once in the case's shared assembler so ES and EN cannot drift: Case 1 day 1 → `…_sam_no_bag`, Case 5 days 1–3 → `bg_gallery_case5_sam_berrondo`, day 4 → `bg_gallery_case5_secretary_berrondo_accused` ([[src/case/case5/Private/assemble.ts]]). The engine never branches on case id. |
 
 The press hint speaker follows **who is counsel**, not a hardcoded hero. Cases 0–4 omit `pressHint` so Chapulín coaches Don Ramón. When Chapulín is `DEFENSA`, set `pressHint` to Don Ramón (client, defense bench) addressing Chapulín — never Chapulín saying "¡Don Ramón!". After two wrong presents on a normal testimony statement that still has unrevealed `unlockedBy` lines, [[src/engine/Private/TrialPressFlow.ts]] queues `script.pressHint` instead of the Super Sam / SECRETARIO penalty; once all such lines are visible, penalties return to the normal court response. `openingPresent` and pending `followUp` are direct court prompts and always retain the formal penalty; their wrong-present paths pass `allowPressHint: false`.
 
@@ -139,6 +140,8 @@ interface EvidenceDeflect {
   dialogue: DialogueLine[];
 }
 ```
+
+`Statement.bg` / `Statement.furniture` stage one statement like the same `DialogueLine` fields: set, they win over the speaker camera ([[src/engine/Private/TrialSpeakerCameras.ts]]); omitted, the speaker default applies. Use them when a non-witness speaker testifies from the stand — Case 5 T7 puts Super Sam on `assets/bg_witness.webp` + `podium`, and his press lines must repeat the tag because each dialogue line resolves its own camera.
 
 `Statement.deflects` (and `Testimony.deflects` as fallback) is a witness denial for exhibits that are **not** the resolving contradiction. Present order in `presentCurrentContradiction` only ([[src/engine/Private/TrialPresent.ts]], [[src/engine/Private/TrialDeflect.ts]]): (1) current statement `contradiction.evidence` → success; (2) matching statement deflect, else testimony deflect → penalty + scripted denial, **not** Super Sam / press hint; (3) `onPresentPenalty`. Opening and follow-up presents skip deflects, while climax presents use their stage-level `ClimaxStage.deflects` after the correct target fails to match. Case 5 D3-T3 scripts `acuse_notificacion` / `oficio_diligencia` on statements 1–4 as a composed denial (`berrondo_idle` / `berrondo_definicion`); `berrondo_sweat` stays on the catch at statements 5–6.
 

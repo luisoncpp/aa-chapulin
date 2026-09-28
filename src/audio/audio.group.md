@@ -6,9 +6,9 @@ icon: bolt
 facades:
   - index.ts
 architectureDoc: docs/architecture/audio-system.md
-descriptionShort: "Synthesizes procedural sound effects and multitrack chiptune music"
+descriptionShort: "Synthesizes procedural sound effects and multitrack music"
 ---
 
 # Audio Synthesis
 
-Provides a zero-asset procedural sound engine and multitrack chiptune music sequencer built on the Web Audio API. Exposes singleton instances `soundEngine` and `midiComposer` via [[index.ts]] for playing courtroom sound effects and background themes. Internally delegates synthesis to specialized court, novelty, and MIDI sequencing modules in `Private/`.
+Zero-asset Web Audio. `index.ts` exposes `soundEngine` and `midiComposer`. Soundtrack timing, timbre, and mix live in three nested modules that only `src/audio/Private/` imports: `Scheduler/` (lookahead clock), `Instruments/` (patches, including the original chip voices), and `Mixer/` (channel strips, session fade, generated reverb).

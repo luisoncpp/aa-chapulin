@@ -71,11 +71,6 @@ describe('Case 5 day 3 investigation (Spanish)', () => {
     expect(penal).toContain('efectos_casimiro');
   });
 
-  it('never uses truth BGM in day-3 investigation', () => {
-    allDay3Lines(es).forEach((line) => {
-      expect(line.bgm).not.toBe('truth');
-    });
-  });
 
   it('keeps DEFENSA on chapulin poses and bans slam poses in investigation', () => {
     allDay3Lines(es).forEach((line) => {

@@ -48,7 +48,7 @@ sequenceDiagram
 ### Dialogue Line Rendering Sequence
 0. **Message History Record**: `DialogueHistory.record(line)` appends `{speaker, text}` to the session backlog ([[src/engine/Private/DialogueHistory.ts]]). It runs first and unconditionally, because `renderDialogueLine` is the only choke point every displayed line passes through — including cross-examination statements, which bypass the queue. An identical consecutive line is skipped so walking testimony back and forth does not duplicate the log.
 1. **Background Switch**: Resolved later with the decoded cut (step 6). Soundtrack still starts immediately.
-2. **Soundtrack Switch**: If `line.bgm` is present, `midiComposer.playTrack()` starts the requested chiptune track from [[src/audio/Private/TrackCatalog.ts]].
+2. **Soundtrack Switch**: If `line.bgm` is present, `midiComposer.playCue()` starts the requested chiptune track from [[src/audio/Private/TrackCatalog.ts]], or stops playback for `'silence'`.
 3. **Sound Effect**: If `line.sfx` is present, `triggerSFX(sfx)` runs corresponding synthesizer audio and optional screen effects (`gavel`, `desk_slam`, `whoosh`, `realization`, `damage`, `chipote`, `chicharra`).
 4. **Cut-in Animation**: If `line.cutin` is present, `VisualEffects.showCutin(cutin)` applies `.cutin-animate` keyframes to `#cutin-overlay`, shakes the screen, and flashes white.
 5. **Sprite Management**:

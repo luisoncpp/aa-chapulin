@@ -10,8 +10,9 @@ Documento de diseño narrativo, guión de diálogos y especificación técnica p
 | 2026-09-25 | Contrato visual de la galería en los cortes de NARRADOR (juicios ES/EN) | Hallazgo corregido: el corte de Ñoño de pie en la galería durante el éxito de la contradicción 4 usa `assets/bg_gallery_characters.webp` con `furniture: 'none'` en ambos idiomas y en el guion. Esta pasada buscó referencias literales a la galería; no cubrió reacciones colectivas descritas por paráfrasis como «la sala estalla». |
 | 2026-09-26 | Cobertura semántica de reacciones colectivas (juicios/clímax ES/EN) | Los beats colectivos —la sala estalla al probarse el grito grabado, silencio al caer la acusación y silencio al entrar Barriga— usan `bg_gallery_characters.webp`/`none`; los beats individuales de juez y testigo usan su encuadre propio. Candidatas descartadas: la reproducción en la Delegación queda muda (sala de investigación); el «Silencio.» del clímax y los silencios posteriores enfocan a Aniceto; el epílogo ocurre en la sala de espera; la acotación parentética «La sala vuelve a compadecerlo» pertenece a una línea de SUPER SAM, fuera del alcance NARRADOR/NARRATOR. |
 | 2026-09-27 | Encuadre de reacciones mixtas y acciones de utilería (Caso 3 ES/EN) | Separados galería, juez y testigos en los beats mixtos; encuadradas en defensa la operación de la cinta y la exhibición narrada del trofeo. Los sprites idle de Don Ramón y Aniceto no dibujan el Micrófono de Oro en sus manos. |
+| 2026-09-27 | Pose durante el silencio focal (clímax ES/EN) | El «Silencio.» tras la frase errónea del Chapulín continúa el plano de la defensa aunque la reacción enfocada es Aniceto; ambos guiones ahora usan `bg_witness.webp`/`podium` con `aniceto_sweat`, igual que el foco del parlamento que sigue. |
 
-**Cierre de esta pasada:** lente agotada tras recorrer los guiones de juicio, clímax y epílogo en español e inglés y cotejarlos con las menciones de juicio del spec. La regla de cámara se alinea con [[docs/specs/common/bg_gallery.md]].
+**Cierre de esta pasada:** lente agotada tras recorrer los guiones de juicio, clímax y epílogo en español e inglés y cotejarlos con las menciones de juicio del spec. Los silencios colectivos usan la galería; el silencio que enfoca a Aniceto mantiene su encuadre de testigo y `aniceto_sweat`. La regla de cámara se alinea con [[docs/specs/common/bg_gallery.md]].
 
 **Duración objetivo:** ~2 horas (6 fases: 3 días de investigación + 3 días de juicio, ~20 min cada una).
 
@@ -517,19 +518,19 @@ CHIMOLTRUFIA (stmt2_4): Por eso yo digo que fue él... aunque también digo que 
   - **Don Ramón**: *"(Ahí está. A las 10:50 alguien empujaba algo pesado por ese pasillo... y el doctor ya se había ido a las 10:40.)"*
 - **CONTRADICCIÓN en `stmt2_3b`** ("ha de haber sido el conserje llevando discos"):
   - **Presentar**: `marcas_carrito`.
-  - **Animación**: ¡TOMA ESO! (`cutin: objection_toma_eso`, `sfx: whoosh`, `bgm: pursuit`).
+  - **Animación**: ¡TOMA ESO! (`cutin: objection_toma_eso`, `sfx: whoosh`, `bgm: silence`; la música entra con `truth` en la línea de las rayas de grasa).
 
 ```dialogue
 [ÉXITO DE LA CONTRADICCIÓN 2 — CIERRE DEL DÍA 1]
 DEFENSA (donramon_point): ¡TOMA ESO! ¡Ese carrito no llevaba discos!
-DEFENSA (donramon_slam): ¡Estas dos rayas de grasa salen de la puerta del DESPACHO y terminan en la Cabina B! ¡Y en una rueda quedó atorado un hilo del saco del Señor Barriga! [sfx: desk_slam]
+DEFENSA (donramon_slam): ¡Estas dos rayas de grasa salen de la puerta del DESPACHO y terminan en la Cabina B! ¡Y en una rueda quedó atorado un hilo del saco del Señor Barriga! [sfx: desk_slam; bgm: truth]
 CHIMOLTRUFIA (chimoltrufia_shock): ¡Ay, qué la canción! ¿Entonces lo que iba en el carrito era...?
 CHAPULIN (chapulin_slam): ¡Era el señor Barriga! ¡Lo pasearon por el pasillo como si fuera un long play! [sfx: desk_slam]
 SUPER SAM (supersam_sweat): Objection! ¡El acusado pudo haberlo movido él mismo!
 DEFENSA (donramon_point): ¿En tres minutos, señor fiscal? Entre el grito de las 11:03 y el arresto de las 11:06 hay hora y media de minutos... digo, ¡hay tres minutos! ¡Un anciano no abre una caja fuerte, golpea a un hombre, lo sube a un carrito, lo pasea cincuenta metros y lo acuesta en tres minutos!
 JUEZ (judge_shock): ¡La defensa tiene razón! ¡Al Señor Barriga lo atacaron en el despacho y lo trasladaron a la cabina!
 SUPER SAM (supersam_slam): Then he did it EARLIER! ¡Y montó la escena para fingir la hora! [sfx: desk_slam]
-JUEZ (judge_gavel): Suficiente. Ordeno sellar y registrar el despacho del Señor Barriga. ¡Se aplaza la sesión veinticuatro horas! [sfx: gavel]
+JUEZ (judge_gavel): Suficiente. Ordeno sellar y registrar el despacho del Señor Barriga. ¡Se aplaza la sesión veinticuatro horas! [sfx: gavel; bgm: suspense]
 ```
 
 ---
@@ -704,7 +705,7 @@ DEFENSA (donramon_point): ¡TOMA ESO! ¡Esos pasos no pudieron ser los del Docto
 DEFENSA (donramon_slam): ¡Esta es la libreta de consultas de su clínica! ¡15 de septiembre, 10:50 de la noche: cardiotónico aplicado, paciente N.B., cobro: NADA! [sfx: desk_slam]
 SUPER SAM (supersam_slam): ¡Un papel escrito por el propio acusado! ¡Objection!
 DEFENSA (donramon_point): ¡Entonces vea su bolsa de papel, la que el sargento levantó de la escena! ¡Ampolleta vacía y jeringa recién usada! ¡Mi cliente venía de inyectar a alguien en el callejón, señor fiscal, no de asaltar una caja fuerte!
-NONO (nono_llorando): ¡ERA YO! [sfx: realization]
+NONO (nono_llorando): ¡ERA YO! [sfx: realization; bgm: truth]
 NARRADOR (nono_llorando): (El joven Ñoño se pone de pie en la galería, con la cara empapada.) [bg: assets/bg_gallery_characters.webp; furniture: none]
 NONO (nono_llorando): ¡Era yo! ¡Yo bajé al callejón a las diez cuarenta y cinco porque me faltaba el aire! ¡El doctor YA estaba ahí, esperándome! ¡Lleva un año inyectándome a escondidas y sin cobrarme para que mi papi no se entere de que estoy malo del corazón!
 CHAPATIN (chapatin_enojado): ¡Muchacho imprudente! ¡Eso era secreto profesional!
@@ -715,7 +716,7 @@ DEFENSA (donramon_point): ¿Correr, señor fiscal? La Chimoltrufia lo oyó irse 
 DEFENSA (donramon_idle): Recapitulemos, señor Juez. Al Señor Barriga lo golpearon en el despacho a las 10:45, cuando mi cliente ya había salido. Lo pasearon en un carrito a las 10:50. Y a las 10:50 mi cliente estaba en el callejón, con una jeringa en una mano y un paciente en la otra.
 SUPER SAM (supersam_sweat): ¡G-grrrk!
 ANICETO (aniceto_idle): Yo me alegro, Licenciado. De verdad. Pero entonces... el que me atacó a mí sigue suelto, y ni usted ni yo sabemos quién es.
-JUEZ (judge_thinking): La defensa ha desmontado la acusación... pero sin un culpable alternativo, este tribunal no puede absolver.
+JUEZ (judge_thinking): La defensa ha desmontado la acusación... pero sin un culpable alternativo, este tribunal no puede absolver. [bgm: suspense]
 JUEZ (judge_gavel): Ordeno registrar la bodega y localizar ese cartucho tres. ¡Se aplaza la sesión veinticuatro horas! [sfx: gavel]
 SUPER SAM (supersam_point): ¡Sargento! ¡Si mañana no aparece ese cartucho, le descuento la quincena, el aguinaldo y la torta!
 SARGENTO (pazguato_decidido): ...Sí, mi fiscal. Aunque tenga que meterme al bote de basura completito.
@@ -1009,7 +1010,7 @@ DEFENSA (donramon_idle): Chapulín. La cinta del sketch. Y hágame usted un favo
 CHAPULIN (chapulin_point): ¡Con muchísimo gusto! ¡Todos mis movimientos están fríamente calculados!
 NARRADOR: (Suena la cinta. La voz del "Casero Cascarrabias" arranca su frase famosa... y el Chapulín le baja el volumen y la completa él.) [bg: assets/bg_defense.webp; furniture: bench]
 CHAPULIN (chapulin_slam): "¡TENÍA QUE SER... EL CHANGO DEL OCHO!" [sfx: chipote]
-NARRADOR: (Silencio.)
+NARRADOR (aniceto_sweat): (Silencio.) [bg: assets/bg_witness.webp; furniture: podium]
 NARRADOR (aniceto_sweat): (Don Aniceto Rebollar, veinticinco años al aire, cierra los ojos. Le tiembla el labio. No puede. No puede dejarlo pasar.) [bg: assets/bg_witness.webp; furniture: podium]
 ANICETO (aniceto_breakdown): ¡¡¡ES "EL CHAVO DEL OCHO", ANIMAL!!! ¡¡¡"TE-NÍ-A QUE SER EL CHAVO DEL OCHO"!!! [sfx: realization, bgm: objection]
 NARRADOR: (Lo grita con la voz del Señor Barriga. Exacta. Redonda. Idéntica al cartucho. Dos mil personas la oyeron el 15 de septiembre y ciento veinte la oyen ahora.)
@@ -1023,7 +1024,7 @@ DEFENSA (donramon_point): Gracias, don Aniceto. Acaba usted de confesar con su m
 
 ```dialogue
 [BREAKDOWN DE ANICETO REBOLLAR]
-ANICETO (aniceto_breakdown): Veinticinco años... [bgm: pursuit]
+ANICETO (aniceto_breakdown): Veinticinco años... [bgm: truth]
 ANICETO (aniceto_breakdown): ¡Veinticinco años levantando esa estación con las uñas! ¡Pagándole la luz con mi sueldo! ¡Amarrando los cables con mecate!
 ANICETO (aniceto_breakdown): ¡Y ese trofeo era lo ÚNICO que me quedaba de mí! ¡Lo empeñé para pagar el transmisor y me lo rescaté con lo que había, porque el fondo iba a devolverlo, lo iba a devolver completito!
 BARRIGA (barriga_vendado): Aniceto... me hubieras pedido el dinero. Te lo doy. Te lo hubiera dado.

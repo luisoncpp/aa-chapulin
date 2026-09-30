@@ -32,7 +32,7 @@ function playString(target: VoiceTarget, patch: InstrumentPatch, event: NoteEven
   }
   source.start(event.when);
   source.stop(event.when + tail);
-  target.watch(source);
+  target.watch(source, event.when + tail);
 }
 
 function pluckedBuffer(ctx: BaseAudioContext, midi: number, freq: number, decay: number): AudioBuffer {

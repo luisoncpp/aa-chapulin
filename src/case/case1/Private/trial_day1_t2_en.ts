@@ -36,7 +36,7 @@ const CASE1_GIRO_1_EN: DialogueLine[] = [
   { speaker: 'JUEZ', text: 'I beg your pardon?!', pose: 'judge_shock' },
   { speaker: 'SUPER SAM', text: 'And the prosecution... the prosecution requests a recess.', pose: 'supersam_sweat' },
   { speaker: 'DEFENSA', text: '(What?)', pose: 'donramon_shock' },
-  { speaker: 'CHAPULIN', text: '(Don Ramón! The prosecutor who charges by the minute just asked for time!)', pose: 'chapulin_panic', updateProfile: 'perfil_supersam' },
+  { speaker: 'CHAPULIN', text: '(Don Ramón! The prosecutor who charges by the minute just asked for time!)', pose: 'chapulin_panic' },
   { speaker: 'JUEZ', text: 'The court grants the recess, and grants it with displeasure.', sfx: 'gavel', pose: 'judge_gavel' },
   { speaker: 'JUEZ', text: 'Tomorrow this court wants two things: how the thief got in, and how the weapon got out.', pose: 'judge_neutral' },
   { speaker: 'JUEZ', text: "And one thing more. The court authorises the defendant to accompany his counsel on tomorrow's enquiries, in the bailiff's custody.", pose: 'judge_neutral' },
@@ -59,16 +59,16 @@ const CASE1_D1_T2_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'JUEZ', text: 'Flexible and heavy at once?', pose: 'judge_shock' },
   { speaker: 'DEFENSA', text: 'A sack, Your Honor. A sack full of metal coin.', pose: 'donramon_slam', sfx: 'desk_slam' },
   { speaker: 'NARRADOR', text: 'A murmur runs through the gallery.', bg: 'assets/bg_gallery_characters_sam_no_bag.webp', furniture: 'none', sfx: 'realization' },
-  { speaker: 'TRIPASECA', text: '...I only said what I heard.', pose: 'tripaseca_sweat', updateProfile: 'perfil_tripaseca' },
+  { speaker: 'TRIPASECA', text: '...I only said what I heard.', pose: 'tripaseca_sweat' },
   { speaker: 'SUPER SAM', text: 'Objection! A sack of coins! Where would the defendant get a sack of coins?!', pose: 'supersam_case1_slam', sfx: 'desk_slam' },
   { speaker: 'DEFENSA', text: 'That, counselor, is the first intelligent question you have asked in two days.', pose: 'donramon_idle' },
   { speaker: 'DEFENSA', text: 'And there is another thing, Your Honor. The blow came from above. The watchman is six foot three in boots.', pose: 'donramon_point' },
   { speaker: 'DEFENSA', text: 'My client is five foot four. Antennae included.', pose: 'donramon_idle' },
   { speaker: 'CHAPULIN', text: 'Five foot four and a half!', pose: 'chapulin_panic' },
-  { speaker: 'DEFENSA', text: 'Five foot four and a half, my apologies.', pose: 'donramon_sweat' },
+  { speaker: 'DEFENSA', text: 'Five foot four and a half, my apologies.', pose: 'donramon_sweat', updateProfile: 'perfil_chapulin' },
   { speaker: 'JUEZ', text: 'Good gracious! To land that blow, the defendant would have had to be standing on something.', pose: 'judge_shock' },
   { speaker: 'DEFENSA', text: 'On something like... a wooden pedestal at waist height, Your Honor.', pose: 'donramon_point', updateProfile: 'perfil_tripaseca' },
-  { speaker: 'DEFENSA', text: '(And we will come to that. Not yet. The weapon first.)', pose: 'donramon_idle', updateProfile: 'perfil_chapulin' },
+  { speaker: 'DEFENSA', text: '(And we will come to that. Not yet. The weapon first.)', pose: 'donramon_idle' },
   ...CASE1_GIRO_1_EN
 ];
 

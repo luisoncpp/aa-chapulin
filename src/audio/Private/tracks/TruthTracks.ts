@@ -33,6 +33,8 @@ export const truthTrack: TrackDefinition = {
   bpm: 96,
   length: 384,
   instruments: { bass: 'piano', lead: 'flute', chords: 'piano', counter: 'string_pad' },
+  // The whole mix at the reverb's full level: the wet sound approved on audition.
+  reverb: 1,
   bass: [
     47, 0, 0, 47, 0, 0, 59, 0, 47, 0, 0, 47, 0, 0, 59, 0,
     45, 0, 0, 45, 0, 0, 57, 0, 45, 0, 0, 45, 0, 0, 57, 0,

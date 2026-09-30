@@ -74,5 +74,5 @@ function sweep(hit: DrumHit, opts: { wave: OscillatorType; startFreq: number; en
   gain.connect(hit.dest);
   osc.start(hit.when);
   osc.stop(hit.when + opts.dur + 0.01);
-  hit.watch(osc);
+  hit.watch(osc, hit.when + opts.dur + 0.01);
 }

@@ -73,7 +73,7 @@ export const CASE5_D3_T1_HUACAL_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'SUPER SAM', text: 'Objection! A machine with one crooked key is not a murderer!', pose: 'supersam_slam', sfx: 'desk_slam' },
   { speaker: 'JUEZ', text: 'It is not, Mr. Prosecutor. But it is a machine that types the same way as something that appeared in a museum loading yard.', pose: 'judge_thinking' },
   { speaker: 'JUEZ', text: 'And this court wants to know who typed it and who knew what.', pose: 'judge_neutral' },
-  { speaker: 'JUEZ', text: 'The witness may step down.', sfx: 'gavel', pose: 'judge_gavel', updateProfile: 'perfil_chompiras' },
+  { speaker: 'JUEZ', text: 'The witness may step down.', sfx: 'gavel', pose: 'judge_gavel' },
   { speaker: 'SUPER SAM', text: 'Your Honor. The prosecution requests permission to testify.', pose: 'supersam_idle' },
   { speaker: 'JUEZ', text: 'The prosecution requests WHAT?', pose: 'judge_shock' },
   { speaker: 'SUPER SAM', text: 'That I be sworn in, Your Honor. Under oath.', pose: 'supersam_idle' },

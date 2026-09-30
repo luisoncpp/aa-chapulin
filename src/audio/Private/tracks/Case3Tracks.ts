@@ -9,6 +9,7 @@ import { crossExamAllegroTrack, crossExamModeratoTrack } from './CourtroomTracks
 export const kermesTrack: TrackDefinition = {
   bpm: 132,
   length: 128,
+  instruments: { bass: 'piano', lead: 'mariachi_trumpet', chords: 'nylon_guitar' },
   bass: [
     48, 0, 48, 0, 55, 0, 48, 0, 48, 0, 55, 0, 48, 0, 55, 0,
     48, 0, 48, 0, 55, 0, 48, 0, 48, 0, 55, 0, 48, 0, 55, 0,

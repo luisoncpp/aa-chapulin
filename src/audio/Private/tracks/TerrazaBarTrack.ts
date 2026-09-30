@@ -7,6 +7,7 @@ import type { TrackDefinition } from '../../../types/index.js';
 export const terrazaBarTrack: TrackDefinition = {
   bpm: 108,
   length: 256,
+  instruments: { bass: 'chip_bass', lead: 'flute', chords: 'epiano' },
   bass: [
     45, 0, 0, 0, 0, 0, 52, 0, 45, 0, 0, 0, 48, 0, 47, 0,
     38, 0, 0, 0, 0, 0, 45, 0, 38, 0, 0, 0, 42, 0, 44, 0,

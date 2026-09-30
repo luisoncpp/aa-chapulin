@@ -88,6 +88,8 @@ export interface TrackDefinition {
   instruments?: Partial<Record<ChannelName, InstrumentId>>;
   /** Per-step gain multipliers, `0..1`, aligned with that channel's note array. */
   accents?: Partial<Record<ChannelName, number[]>>;
+  /** 0..1 share of the whole mix sent to the reverb, added to each patch's own send. */
+  reverb?: number;
 }
 
 export type TrackCatalogMap = Record<TrackName, TrackDefinition>;

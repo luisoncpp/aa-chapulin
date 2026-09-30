@@ -68,11 +68,11 @@ export const CASE0_CLIMAX: ClimaxDefinition = {
   ],
   verdict: [
     { speaker: 'JUEZ', pose: 'judge_gavel', text: 'Por lo escuchado hoy, este tribunal declara al acusado Toribio Pantoja...', sfx: 'gavel' },
-    { speaker: 'JUEZ', pose: 'judge_gavel', text: '¡INOCENTE!', cutin: 'objection_inocente', bgm: 'victory', updateProfile: 'perfil_toribio' },
+    { speaker: 'JUEZ', pose: 'judge_gavel', text: '¡INOCENTE!', cutin: 'objection_inocente', bgm: 'victory' },
     { speaker: 'TORIBIO', pose: 'toribio_aliviado', text: '¡Licenciado! ¡Licenciado, gané! ...¿ganamos?' },
         { speaker: 'DEFENSA', pose: 'donramon_idle', text: 'Ganó usted. Yo nomás hablé.' },
     { speaker: 'CHAPULÍN', pose: 'chapulin_idle', text: 'Se presiona gratis, se presenta con cuidado y se mira todo de cerquita.' },
-    { speaker: 'JUEZ', pose: 'judge_gavel', text: 'Se ordena la detención de Casimiro Lengua y la devolución del cartapacio de cobranza. Se cierra la audiencia.', sfx: 'gavel', updateProfile: 'perfil_casimiro' }
+    { speaker: 'JUEZ', pose: 'judge_gavel', text: 'Se ordena la detención de Casimiro Lengua y la devolución del cartapacio de cobranza. Se cierra la audiencia.', sfx: 'gavel' }
   ],
   epilogue: {
     bg: EPILOGUE_BG,

@@ -49,7 +49,7 @@ export const CASE3_KERMES: InvestigationScene = {
         { speaker: 'JIRAFALES', text: 'Tenga usted mi libreto, Licenciado. Ahí está minuto por minuto todo lo que se anunció por estas bocinas.', pose: 'jirafales_idle', addEvidence: 'programa_kermes' },
         { speaker: 'DEFENSA', text: '¿Minuto por minuto, profesor?', pose: 'donramon_idle' },
         { speaker: 'JIRAFALES', text: '¡¡¡TA-TA-TA-TA-TAAAAAA!!! ¡Un maestro de ceremonias sin minutario es un charlatán con micrófono!', pose: 'jirafales_angry' },
-        { speaker: 'DEFENSA', text: '(Nueve cuarenta: el aviso del niño perdido. Papeles que no le sirven a nadie. Como todos los que me tocan a mí.)', pose: 'donramon_sweat', updateProfile: 'perfil_jirafales' }
+        { speaker: 'DEFENSA', text: '(Nueve cuarenta: el aviso del niño perdido. Papeles que no le sirven a nadie. Como todos los que me tocan a mí.)', pose: 'donramon_sweat' }
       ]
     },
     {

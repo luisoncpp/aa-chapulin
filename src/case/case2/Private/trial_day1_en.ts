@@ -31,7 +31,7 @@ const T1_SUCCESS: DialogueLine[] = [
   { speaker: 'DEFENSA', text: 'It is a centralized electromechanical clock. When someone forced the generator box at 9:15 PM, it lost power and froze at 9:15 PM!', pose: 'donramon_point' },
   { speaker: 'JUEZ', text: 'Good heavens! The power was cut three quarters of an hour earlier?', pose: 'judge_shock' },
   { speaker: 'DEFENSA', text: 'Exactly! Whoever restored power reprogrammed the digital clock to 10:00 PM. The theft began at 9:15 PM in total darkness!', pose: 'donramon_idle' },
-  { speaker: 'FLORINDA', text: 'Oh my! Then at 9:15 PM they were already robbing the hacienda?!', pose: 'florinda_shock', updateProfile: 'perfil_florinda' },
+  { speaker: 'FLORINDA', text: 'Oh my! Then at 9:15 PM they were already robbing the hacienda?!', pose: 'florinda_shock' },
   { speaker: 'SUPER SAM', text: 'Grrr... A time gap does not excuse the defendant from cracking the safe. I call Mr. Peterete!', pose: 'supersam_sweat' },
   { speaker: 'PETERETE', text: 'With this honorable court\'s permission. It is always a pleasure to assist justice.', pose: 'peterete_smug' },
   { speaker: 'JUEZ', text: 'Witness, state your name and occupation.', pose: 'judge_neutral' },

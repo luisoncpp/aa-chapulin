@@ -49,7 +49,7 @@ export const CASE3_KERMES_EN: InvestigationScene = {
         { speaker: 'JIRAFALES', text: 'Take my script, Counselor. Minute by minute, everything announced over these speakers.', pose: 'jirafales_idle', addEvidence: 'programa_kermes' },
         { speaker: 'DEFENSA', text: 'Minute by minute, Professor?', pose: 'donramon_idle' },
         { speaker: 'JIRAFALES', text: '¡¡¡TA-TA-TA-TA-TAAAAAA!!! A master of ceremonies without a rundown is a charlatan with a microphone!', pose: 'jirafales_angry' },
-        { speaker: 'DEFENSA', text: '(Nine-forty: the lost-child notice. Papers nobody needs. Like every paper I ever get.)', pose: 'donramon_sweat', updateProfile: 'perfil_jirafales' }
+        { speaker: 'DEFENSA', text: '(Nine-forty: the lost-child notice. Papers nobody needs. Like every paper I ever get.)', pose: 'donramon_sweat' }
       ]
     },
     {

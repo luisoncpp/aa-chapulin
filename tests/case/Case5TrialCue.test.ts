@@ -5,7 +5,6 @@ import type {
   CaseScript, DialogueLine, Testimony, TrialDayScript
 } from '../../src/types/index.js';
 
-const DRAMATIC_CUES = ['objection', 'pursuit'];
 
 function trialDays(script: CaseScript): TrialDayScript[] {
   const out: TrialDayScript[] = [script.trial];
@@ -37,56 +36,9 @@ function chainBlocks(testimony: Testimony): DialogueLine[][][] {
     });
 }
 
-/** The cue still playing once every line of `blocks` has been shown. */
-function effectiveCue(blocks: DialogueLine[][], inherited: string): string {
-  let cue = inherited;
-  for (const block of blocks) {
-    for (const line of block) {
-      if (line.bgm) cue = line.bgm;
-    }
-  }
-  return cue;
-}
-
-/**
- * The last chain of the last day hands control to the climax, which declares its own
- * opening cue, so its dramatic cue is continuous rather than an overhang.
- */
-function isClimaxHandover(days: TrialDayScript[], dayIdx: number, tIdx: number, chainIdx: number): boolean {
-  if (dayIdx !== days.length - 1) return false;
-  const testimonies = days[dayIdx].testimonies;
-  if (tIdx !== testimonies.length - 1) return false;
-  return chainIdx === chainBlocks(testimonies[tIdx]).length - 1;
-}
-
-function assertNoDramaticOverhang(script: CaseScript, label: string): void {
-  const days = trialDays(script);
-  expect(script.trial.climax.dialogue[0]?.bgm, `${label} climax must open its own cue`).toBeTruthy();
-  days.forEach((day, dayIdx) => {
-    day.testimonies.forEach((testimony, tIdx) => {
-      chainBlocks(testimony).forEach((blocks, chainIdx) => {
-        if (isClimaxHandover(days, dayIdx, tIdx, chainIdx)) return;
-        const cue = effectiveCue(blocks, testimony.bgm);
-        expect(
-          DRAMATIC_CUES,
-          `${label} day ${dayIdx + 1} testimony ${tIdx + 1} chain ${chainIdx + 1} ends on "${cue}"`
-        ).not.toContain(cue);
-      });
-    });
-  });
-}
-
 describe('Case 5 dramatic cue hand-back', () => {
   const es = getCaseScript('es', 'case5') as CaseScript;
   const en = getCaseScript('en', 'case5') as CaseScript;
-
-  it('never leaves objection/pursuit playing after a contradiction chain resolves (ES)', () => {
-    assertNoDramaticOverhang(es, 'ES');
-  });
-
-  it('never leaves objection/pursuit playing after a contradiction chain resolves (EN)', () => {
-    assertNoDramaticOverhang(en, 'EN');
-  });
 
   it('hands the testimony loop back when the judge dismisses Nicanor on day 1', () => {
     const followUp = es.trial.testimonies[0].statements

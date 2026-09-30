@@ -65,11 +65,11 @@ const STAGE2_EN: DialogueLine[] = [
   { speaker: 'MARUJA', text: 'And I saw it on him at the 204 door, when he signed the wine receipt.', pose: 'maruja_idle' },
   { speaker: 'DEFENSA', text: 'Botija never held it, and nobody has testified to lending it to him that night.', pose: 'donramon_point' },
   { speaker: 'SARGENTO', text: 'I seized it yesterday afternoon, when the court ordered custody. There was not a single night in which to get rid of it.', pose: 'pazguato_decidido' },
-  { speaker: 'DEFENSA', text: 'And there closes what stood open a moment ago: who kept the cork never held this ring, and the piece that left that fragment sits guarded since yesterday.', pose: 'donramon_idle', updateProfile: 'perfil_rufino' },
+  { speaker: 'DEFENSA', text: 'And there closes what stood open a moment ago: who kept the cork never held this ring, and the piece that left that fragment sits guarded since yesterday.', pose: 'donramon_idle' },
   { speaker: 'JUEZ', text: 'The court holds that possibility resolved.', pose: 'judge_gavel', sfx: 'gavel' },
   { speaker: 'DEFENSA', text: 'Mr. Rufián: you were left alone with a sealed bottle... and the piece missing from your ring was inside that cork.', pose: 'donramon_point', cutin: 'objection_toma_eso', sfx: 'whoosh', bgm: 'objection' },
   { speaker: 'RUFINO', text: '...', pose: 'rufino_panic' },
-  { speaker: 'RUFINO', text: 'That cork belonged in the trash! He gave it to her! HE GAVE IT TO HER RIGHT IN FRONT OF ME, LIKE A PIECE OF CANDY!', pose: 'rufino_breakdown', sfx: 'desk_slam' }
+  { speaker: 'RUFINO', text: 'That cork belonged in the trash! He gave it to her! HE GAVE IT TO HER RIGHT IN FRONT OF ME, LIKE A PIECE OF CANDY!', pose: 'rufino_breakdown', sfx: 'desk_slam', bgm: 'silence' }
 ];
 
 const VERDICT_EN: DialogueLine[] = [
@@ -96,7 +96,7 @@ const VERDICT_EN: DialogueLine[] = [
 export const CASE4_CLIMAX_EN: ClimaxDefinition = {
   dialogue: [
     { speaker: 'SUPER SAM', text: 'Facts, Your Honor. Facts. The wine left the cellar sealed, the defendant carried it, and a while later it killed a man.', pose: 'supersam_slam', sfx: 'desk_slam', bgm: 'suspense' },
-    { speaker: 'SUPER SAM', text: 'Mr. Rufián hid a corpse out of cowardice. That is a different crime and it goes on a different invoice. Someone else poured that glass!', pose: 'supersam_idle', updateProfile: 'perfil_supersam' },
+    { speaker: 'SUPER SAM', text: 'Mr. Rufián hid a corpse out of cowardice. That is a different crime and it goes on a different invoice. Someone else poured that glass!', pose: 'supersam_idle' },
     { speaker: 'RUFINO', text: 'I received a sealed bottle. I set it on the table and touched it no more until my guest opened it.', pose: 'rufino_smug' },
     { speaker: 'DEFENSA', text: 'That bottle was opened in front of a witness, seal intact. Nobody disputes that.', pose: 'donramon_idle' },
     { speaker: 'JUEZ', text: 'Then, counselor, this court needs to know how a toxin enters a sealed bottle.', pose: 'judge_thinking' },

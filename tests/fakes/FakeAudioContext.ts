@@ -59,6 +59,11 @@ export class FakeGainNode extends FakeAudioNode {
 export class FakeOscillatorNode extends FakeAudioNode {
   public type: OscillatorType = 'sine';
   public onended: (() => void) | null = null;
+  public readonly endedListeners: (() => void)[] = [];
+
+  public addEventListener(_type: 'ended', listener: () => void): void {
+    this.endedListeners.push(listener);
+  }
   public periodicWave: FakePeriodicWave | null = null;
   private readonly _frequency = new FakeAudioParam(440);
   private readonly _detune = new FakeAudioParam(0);
@@ -131,6 +136,11 @@ export class FakeAudioBuffer {
 export class FakeAudioBufferSourceNode extends FakeAudioNode {
   public buffer: FakeAudioBuffer | null = null;
   public onended: (() => void) | null = null;
+  public readonly endedListeners: (() => void)[] = [];
+
+  public addEventListener(_type: 'ended', listener: () => void): void {
+    this.endedListeners.push(listener);
+  }
   public started = false;
   public stopped = false;
   public startTime = 0;

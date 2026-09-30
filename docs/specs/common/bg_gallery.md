@@ -14,6 +14,7 @@ Guía de escala: `tools/gallery_guide/out/full_empty_guide.png` para generar (si
 
 ### F1 Contenido
 
+- [ ] `PINTAR` — El frente del estrado del juez conserva el diseño de la parte superior visible de `court_judge_bench`: tres paneles rehundidos, cuatro pilastras estrechas, canto continuo de latón bajo el tablero y zócalo escalonado. No necesita conservar la relación de aspecto del prop. Adaptar el diseño al tamaño y perspectiva del panorama sin mover el juez, la silla ni el resto de la sala (encargo y aclaración del usuario, 2026-09-29; `docs/specs/common/court_judge_bench.md`, auditoría F1 del 2026-09-22).
 - [ ] `PINTAR` — Cámara en el pozo, simétrica, mirando al juez (`docs/specs/artistic-direction.md:101`).
 - [ ] `PINTAR` — Dos gradas laterales altas, con cuatro espectadores sentados en cada lado, visibles por debajo de la barra superior del juego. Miran hacia el pasillo central, con la cabeza erguida. Los parapetos son macizos, sin barandal abierto (indicaciones del usuario, 2026-09-24).
 - [ ] `PINTAR` — Al fondo, el juez calvo, de barba blanca y toga negra, está sentado tras el estrado con canto de oro. La única silla queda detrás del canto; encima está la balanza circular del plano cercano (`tools/raw/bg_judge_close.png`). El respaldo de la versión instalada es más alto que la escala prevista en la guía (auditoría 2026-09-24).
@@ -49,6 +50,7 @@ Guía de escala: `tools/gallery_guide/out/full_empty_guide.png` para generar (si
 
 ## Consistencia (regenerar juntos)
 
+- `court_judge_bench` — comparte el diseño del frente del estrado. Conservar el prop aprobado y corregir sólo el estrado del panorama, según el encargo del 2026-09-29.
 - `bg_judge` — comparte la silla de botones, los dos montantes y la balanza circular. Regenerar juntos, este activo no es fuente de verdad del otro.
 - `bg_defense` — comparte el lambrín liso del lado izquierdo. Regenerar juntos, este activo no es fuente de verdad del otro.
 - `bg_courtroom` — comparte las cortinas burdeos y el escudo de la balanza del lado derecho. Regenerar juntos, este activo no es fuente de verdad del otro.
@@ -200,3 +202,41 @@ Se recompusieron las ocho láminas en las que aparece: `bg_gallery_characters`, 
 - [x] RETIRADO POR REVISIÓN (2026-09-27) `MENOR · MALFORMADO · F1`: el brazo tapa casi toda la raíz del ala. A escala 1:1 sólo se lee la franja trasera y la punta, más aleta que ala completa, y la segunda ala no se ve. El usuario eligió la variante F después de ver esa lectura en la comparación 45°/53°/60° y aceptó que la segunda ala quedara oculta.
 
 **Corrección de auditoría:** el hecho `PINTAR` decía «separada del codo», pero la variante F aprobada tiene la punta junto al codo. Se corrigió la hoja; no es un defecto de la imagen.
+
+## Hallazgos de auditoría 2026-09-29, estrado del juez
+
+Veredicto: ~~cumple en diseño del estrado, contenido, exclusiones y preservación de la sala~~. El usuario rechazó el acabado por bordes superpuestos. Se conserva esta pasada como registro de la reparación fallida, sustituida por la auditoría del 2026-09-30. Se instaló el mismo parche en `bg_gallery`, las dos variantes `bg_gallery_characters*` y las siete `bg_gallery_case5_*`.
+
+Cumple:
+
+- F1, estrado: los recortes propios de los tres paneles muestran marcos biselados, cuatro pilastras con capiteles, tablero grueso, banda continua de latón y zócalo. Se nombra mesa del juez. Su diseño sigue la parte superior de `court_judge_bench`, adaptada a la silueta del panorama sin exigir la relación de aspecto del prop, según la aclaración del usuario.
+- F1, sala: recortes separados de ambas gradas, juez y silla, cada mesa, podio y suelo confirman ocho espectadores mirando al pasillo, una silla con el juez sentado, dos mesas vacías, podio abierto hacia la cámara y tablones. Todos esos píxeles permanecen intactos. El micrófono original queda delante del estrado. No hay abogados ni testigo añadidos en la base.
+- F2–F3: sin texto, marcas, fecha ni número de caso nuevos. F4–F6: nombres y reparto de las variantes intactos, misma imagen para ES/EN, contorno oscuro y paleta de caoba, latón y luz ámbar. No hay hotspots en estas láminas.
+- Preservación: exportación WebP sin pérdida de 1376×768, reabierta y comparada con los respaldos. En las diez imágenes hay 0 píxeles distintos fuera de la máscara del estrado. La base cambia 46 376 píxeles, todos dentro de x=525..849, y=330..478. El micrófono se excluye de la máscara. Las tres variantes con testigo conservan además sus píxeles de personaje y un margen de un píxel; los recortes ampliados de Berrondo y Sam confirman contornos intactos.
+- Consistencia: las diez láminas comparten el mismo parche en la parte visible del estrado. `court_judge_bench` se conserva. Las desviaciones de escala registradas el 2026-09-24 permanecen sin cambios.
+
+Defectos confirmados: ~~ninguno en esta reparación~~. `MEDIO · MALFORMADO · F1/F5`: el recorte de la mesa generado se encajó dentro de la silueta antigua y dejó fragmentos del borde anterior. La protección binaria del testigo también conservaba fondo antiguo junto a sus contornos. El usuario rechazó esos bordes. Los tres paneles y pilastras sí resolvían el diseño, pero no el acabado.
+
+Fuentes: edición con el tool integrado `image_gen`, `tools/masters/bg_gallery_bench_generated_20260929.png`; prompt completo e inputs en `tools/masters/bg_gallery_bench_fix_20260929.prompt.txt` y `bg_gallery_bench_input_20260929.png`; maestro compuesto `bg_gallery_bench_fixed_20260929.png`. Composición y máscara en `tools/patch_gallery_judge_bench.py`. Respaldos `tools/masters/*_before_bench_fix_20260929.webp`. Verificación de las diez láminas en `tools/masters/bg_gallery_bench_fix_20260929.verification.json`.
+
+Validación: `npm run typecheck` y `npx vitest run tests/case`, 36 archivos y 267 pruebas aprobados. No hay script de lint configurado en `package.json`.
+
+## Hallazgos de auditoría 2026-09-30, eliminación de bordes del parche
+
+Veredicto: cumple en la continuidad de bordes revisada, contenido y preservación fuera de la región compuesta. Sustituye la aprobación de acabado del 2026-09-29 que el usuario rechazó.
+
+Cumple:
+
+- F1/F5: se usa directamente la sección adjunta por el usuario, idéntica al PNG generado. La sección completa de 1786×881 se reduce a 355×175 y se coloca en x=510, y=315. Ya no se recorta ni se enmascara contra la silueta antigua de la mesa. Los recortes ampliados del tablero, ambos extremos, los tres paneles y el zócalo muestran bordes únicos y continuos.
+- F1, testigos: recortes ampliados de Berrondo y Sam muestran sus contornos sobre la madera nueva. Se sustituye la contribución del fondo antiguo usando el alfa de los recortes RGBA originales, con su escala y posición aprobadas. No se guarda una franja de fondo antiguo alrededor de los personajes.
+- F1/F4, sala: el juez y su silla quedan intactos. Las galerías, las mesas de abogados, el podio y el suelo fuera de la pequeña zona de composición conservan sus píxeles originales. La sección seleccionada incluye la cabeza y el tramo superior del micrófono; su cuello continúa en el original, con transición local en el borde inferior del recorte.
+- F2–F3/F6: sin texto, marcas o cifras nuevas. Composición compartida ES/EN. Las diez láminas conservan tamaño 1376×768 y exportación sin pérdida.
+- Preservación: 0 píxeles distintos fuera de la región x=511..863, y=327..488 en las diez láminas, comparadas con los respaldos previos a la primera reparación. El fondo base cambia 56 989 píxeles. La transición de cinco píxeles se limita a la pared y el suelo junto al recorte, sin cruzar los contornos de la mesa.
+
+Defectos confirmados: ninguno en los bordes de mesa, las uniones con pared y suelo y los dos testigos revisados.
+
+Corrección de auditoría: comprobar 0 cambios fuera de una máscara no prueba la calidad de su empalme. Se retira la aprobación anterior del acabado por observación del usuario y por los recortes que muestran contornos viejos junto al parche.
+
+Fuentes: `tools/masters/bg_gallery_bench_selected_20260930.png`, copia exacta del adjunto; maestro `bg_gallery_bench_seam_fixed_20260930.png`; verificación de las diez láminas `bg_gallery_bench_seam_fix_20260930.verification.json`; composición `tools/patch_gallery_judge_bench.py`, ejecución `python -m tools.patch_gallery_judge_bench --install`. Las imágenes rechazadas se conservan como `*_before_bench_seam_fix_20260930.webp` y la verificación anterior como `bg_gallery_bench_rejected_20260929.verification.json`.
+
+Validación: inspección ampliada de los empalmes y de los contornos de los testigos; comparación de píxeles tras reabrir cada WebP; `python verify_assets.py` aprobado. No hubo nueva generación ni cambios de guion, motor o hotspots.

@@ -103,6 +103,7 @@ The **Acta de Personajes** is a second inventory ([[src/state/Private/ProfileInv
 ### 7. Browser Storage Persistence (`SaveManager`)
 - Eight slots live in `window.localStorage` under `'ace_attorney_save_slots'` ([[src/state/Private/SaveSlots.ts]]). `SaveManager` in [[src/state/Private/SaveManager.ts]] is the facade: `listSlots`, `saveToSlot`, `loadSlot`, `loadNewest`, `deleteSlot`. `save()` still writes slot 0 and `load()` still returns the newest timestamp for callers that do not open the list.
 - HUD Save, HUD Load, and title Continue open the slot list ([[src/engine/Private/SaveSlotModal.ts]]). Continue uses load mode and the list is stacked above the splash. An empty row saves immediately. An occupied row asks before overwrite. Delete asks, then removes that slot only.
+- Investigation slot summaries resolve localized place names from [[src/case/LocationNames.ts]], so opening the list does not load full case scripts or present location IDs as names.
 - A payload written before slots, under `'ace_attorney_save_data'`, is copied into slot 0 on the first read and the old key is removed after the envelope write succeeds. If that write fails, the old key stays.
 - `exportState(trialSnapshot)` serializes game progression, unlocked locations, inventory, flags, health, mode, language, `caseId`, `trialDay`, and active trial testimony statements.
 - `restoreState(data)` rehydrates game state and validates schema versioning (`CURRENT_SAVE_VERSION = 2`). Slot count is not a schema version: do not bump `CURRENT_SAVE_VERSION` for a storage-envelope change.

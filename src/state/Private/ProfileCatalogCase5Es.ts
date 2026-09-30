@@ -12,11 +12,9 @@ export const CASE5_PROFILES_ES: ProfileCatalogMap = {
     name: 'Don Ramón',
     role: 'Acusado',
     icon: 'assets/profile_perfil_donramon.webp',
-    desc: 'Acusado de asesinar a Casimiro Lengua. Abogado de banqueta. Es la sexta vez que pisa este juzgado y la primera que lo hace esposado.',
+    desc: 'Acusado por la muerte de Casimiro Lengua. Abogado de banqueta y viejo conocido de esta corte; nunca antes había comparecido esposado.',
     updates: [
-      'El acta registra diecisiete mensualidades de renta pagadas en efectivo; Ramón dice que él no pagó.',
-      'Estuvo doce minutos a solas con la víctima, sin testigo que viera la mesa.',
-      'La ventana corregida lo incluye. Su defensa acaba de meterlo en ella.'
+      'Acusado por la muerte de Casimiro, a quien años atrás venció en el juicio por el asalto a Nazario Cuenca. Aun así, fue el único abogado al que su antiguo adversario pidió tener junto a él en la apelación.'
     ]
   },
   perfil_chapulin: {
@@ -25,20 +23,16 @@ export const CASE5_PROFILES_ES: ProfileCatalogMap = {
     role: 'Defensor titular',
     icon: 'assets/profile_perfil_chapulin.webp',
     desc: 'Defensor titular, por designación del propio acusado. No tiene título, tiene antenitas. Litiga con la insignia prestada de su cliente.',
-    updates: [
-      'Ganó tres jornadas seguidas y no ha demostrado todavía que alguien estuviera en ese pasillo.'
-    ]
   },
   perfil_casimiro: {
     id: 'perfil_casimiro',
     name: 'Casimiro Lengua',
     role: 'Víctima',
     icon: 'assets/profile_perfil_casimiro.webp',
-    desc: 'La víctima. Sentenciado en julio por el asalto al cobrador Nazario Cuenca; su condena no está en discusión.',
+    desc: 'Víctima del caso, sentenciado en julio por el asalto a Nazario Cuenca.',
     updates: [
-      'Lo encontraron con su expediente abierto en la página 214.',
-      'Pidió declarar en una diligencia de su apelación y que estuviera presente el abogado que lo venció.',
-      'Ofreció entregar un fichero el 8 de noviembre. La fiscalía le contestó dieciocho días después.'
+      'Antes de morir, Casimiro seguía ligado a una empresa disuelta once años atrás. Su pasado como vendedor lo llevó de nuevo al Archivo Judicial.',
+      'Víctima del caso, sentenciado en julio por el asalto a Nazario. Al apelar aquella condena, pidió tener presente a Don Ramón, el abogado que lo había vencido; ahora confiaba en su antiguo adversario.'
     ]
   },
   perfil_supersam: {
@@ -46,11 +40,11 @@ export const CASE5_PROFILES_ES: ProfileCatalogMap = {
     name: 'Super Sam',
     role: 'Fiscal',
     icon: 'assets/profile_perfil_supersam.webp',
-    desc: 'Fiscal. Cobra por caso cerrado.',
+    desc: 'Fiscal acostumbrado a cerrar casos con rapidez y a cobrar por caso cerrado.',
     updates: [
-      'Desde agosto carga una bolsa vacía para recordar por qué cerró aquel caso en cinco minutos.',
-      'Firmó seiscientos oficios al mes durante once años sin leer la lista de distribución.',
-      'Admitió que cobró un kilo de los seis que le robaron y rellena la bolsa con algodón para recordar lo que todavía le falta.'
+      'Desde agosto conserva una bolsa como recordatorio del caso que cerró en cinco minutos. El recordatorio lo acompaña fuera de la fiscalía.',
+      'Fiscal que cobra por caso cerrado; durante once años firmó cientos de oficios sin leerlos. Su rutina por pieza ya no parece una simple manía de oficina.',
+      'Ahora rellena la misma bolsa con algodón y la carga para recordar el peso que le falta. Admite que el gesto le ayuda a no olvidar.'
     ]
   },
   perfil_berrondo: {
@@ -58,12 +52,10 @@ export const CASE5_PROFILES_ES: ProfileCatalogMap = {
     name: 'Fulgencio Berrondo',
     role: 'Acusador coadyuvante',
     icon: 'assets/profile_perfil_berrondo.webp',
-    desc: 'Acusador coadyuvante. Abogado colegiado desde 1955. Se presentó ante la fiscalía como síndico de la víctima y ofreció auxiliarla sin cobrar honorarios.',
+    desc: 'Acusador coadyuvante y abogado colegiado desde 1955. Se ofreció a auxiliar a la fiscalía sin cobrar honorarios.',
     updates: [
-      'Su primera sindicatura, la quiebra 114/1971, es la única que sigue abierta, desde hace once años.',
-      'Administra un cedulario de once mil cuatrocientas tarjetas y vende copias. No es delito.',
-      'Concede que vender no es delito; la corte ordena inspeccionar su huacal de todos modos.',
-      'Firmó el acuse de una diligencia que él mismo dijo desconocer.'
+      'Como síndico, mantiene a su cargo la única quiebra que aún está abierta. Esa responsabilidad enlaza su carrera con la víctima y con el Archivo Judicial.',
+      'Acusador coadyuvante, abogado desde 1955 y síndico de la quiebra de El Saber Universal. Compró su cedulario al liquidarse la empresa y vende copias; para Berrondo, es parte del oficio.'
     ]
   },
   perfil_nicanor: {
@@ -71,43 +63,34 @@ export const CASE5_PROFILES_ES: ProfileCatalogMap = {
     name: 'Nicanor Tolentino',
     role: 'Conserje',
     icon: 'assets/profile_perfil_nicanor.webp',
-    desc: 'Conserje del Archivo Judicial. Treinta y un años de servicio. Fue quien encontró a la víctima.',
-    updates: [
-      'Sacude el Tomo XI los lunes. El sábado del crimen vio el estante completo; el hallazgo fue a las 17:35, cuando subía a cerrar el pasillo.'
-    ]
+    desc: 'Conserje del Archivo Judicial desde hace treinta y un años; encontró a la víctima.',
   },
   perfil_genoveva: {
     id: 'perfil_genoveva',
     name: 'Genoveva Peñaloza',
     role: 'Encargada de ventanilla',
     icon: 'assets/profile_perfil_genoveva.webp',
-    desc: 'Empleada de la ventanilla judicial. Lleva el libro de peritos y auxiliares.',
-    updates: [
-      'Registra cuándo se devuelve cada gafete y archiva los vales de consulta. No ve la puerta del patio y el reglamento no la obliga.'
-    ]
+    desc: 'Empleada de la ventanilla judicial; lleva el registro de peritos y auxiliares.',
   },
   perfil_sargento: {
     id: 'perfil_sargento',
     name: 'El Sargento',
     role: 'Policía judicial',
     icon: 'assets/profile_perfil_sargento.webp',
-    desc: 'Policía judicial. Pidió los análisis, no movió nada y lo asentó todo. Dice que aprendió en septiembre.'
+    desc: 'Policía judicial metódico. Tras equivocarse al documentar otra escena, ahora procura dejar que las pruebas hablen antes de tocarlas.'
   },
   perfil_barriga: {
     id: 'perfil_barriga',
     name: 'Señor Barriga',
     role: 'Casero',
     icon: 'assets/profile_perfil_barriga.webp',
-    desc: 'Casero del acusado. Diecisiete años cobrándole.'
+    desc: 'Casero de Don Ramón desde hace diecisiete años. Su relación de larga data lo convierte en una de las personas que mejor conoce la vida diaria del acusado.'
   },
   perfil_chompiras: {
     id: 'perfil_chompiras',
     name: 'El Chómpiras',
     role: 'Cargador',
     icon: 'assets/profile_perfil_chompiras.webp',
-    desc: 'Cargador del Archivo. Absuelto en agosto del robo del Chanfle de Oro. Es lo primero que le han dado con seguro y con aguinaldo, y no piensa perderlo.',
-    updates: [
-      'Ayuda a destapar el huacal 9 desde septiembre y lo ha visto abierto seis o siete veces.'
-    ]
+    desc: 'Cargador del Archivo desde septiembre, absuelto meses atrás del robo del Chanfle de Oro. Es su primer empleo formal y no quiere perder esta oportunidad.'
   }
 };

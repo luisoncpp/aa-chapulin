@@ -113,6 +113,8 @@ WIDE_EXAMINE = [
     ("examine_foto_v3.png", "examine_foto.webp"),
 ]
 PHOTO_ICON_SOURCE = "examine_foto_v3.png"
+PROFILE_SOURCE = "profile_perfil_cuajinais_raw.png"
+PROFILE_SIZE = (256, 256)
 
 
 def output_stem(filename: str) -> str:
@@ -161,6 +163,7 @@ def all_output_stems() -> set[str]:
     names.update(output_stem(pair[1]) for pair in WIDE_BGS)
     names.update(output_stem(pair[1]) for pair in WIDE_EXAMINE)
     names.add("foto_suite304")
+    names.add("profile_perfil_cuajinais")
     return names
 
 
@@ -240,6 +243,26 @@ def export_photo_icon() -> None:
     print("  [OK] Saved photo icon from examine_foto_v3.png (128, 128)")
 
 
+def export_cuajinais_profile() -> None:
+    """Export the generated portrait as a square court-record icon."""
+    src_p = find_asset_file(PROFILE_SOURCE)
+    if not os.path.exists(src_p):
+        print(f"Warning: Profile source not found {src_p}")
+        return
+    with Image.open(src_p) as source:
+        portrait = source.convert("RGBA").resize(
+            PROFILE_SIZE,
+            Image.Resampling.LANCZOS,
+        )
+    portrait.save(
+        os.path.join(DEST_DIR, "profile_perfil_cuajinais.webp"),
+        "WEBP",
+        quality=85,
+        method=6,
+    )
+    print("  [OK] Saved Cuajinais profile portrait from generated source")
+
+
 def run_case4(selected: set[str] | None = None) -> None:
     print("=== CASE 4 ASSET PROCESSING ===")
     for sheet, names in SHEETS:
@@ -269,6 +292,8 @@ def run_case4(selected: set[str] | None = None) -> None:
         process_evidence_grid(raw, [(0, 0, out)], 1, 1)
     if selected is None or "foto_suite304" in selected:
         export_photo_icon()
+    if selected is None or "profile_perfil_cuajinais" in selected:
+        export_cuajinais_profile()
     export_plates(pair_outputs(BGS, selected), BG_SIZE)
     export_plates(pair_outputs(EXAMINE, selected), EXAMINE_SIZE)
     export_plates(pair_outputs(WIDE_BGS, selected), WIDE_BG_SIZE)

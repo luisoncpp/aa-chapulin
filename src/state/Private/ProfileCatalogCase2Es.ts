@@ -19,26 +19,23 @@ export const CASE2_PROFILES_ES: ProfileCatalogMap = {
     icon: 'assets/profile_perfil_chompiras.webp',
     desc: 'Aquiles Esquivel Madrazo, conocido como El Chómpiras. Está acusado de robar el Chanfle de Oro.',
     updates: [
-      'El residuo del ducto coincide con la esencia sedante. La evidencia indica que estuvo profundamente dormido durante parte del robo.'
+      'Aquiles Esquivel Madrazo, conocido como El Chómpiras, está acusado de robar el Chanfle de Oro. El residuo del ducto coincide con la esencia sedante; la evidencia indica que estuvo profundamente dormido durante parte del robo.'
     ]
   },
   perfil_florinda: {
     id: 'perfil_florinda', name: 'Doña Florinda', role: 'Encargada del restaurante',
     icon: 'assets/profile_perfil_florinda.webp',
     desc: 'Dueña del restaurante junto a la hacienda.',
-    updates: [
-      'Notó un parpadeo de las luces a las 9:15 PM y encontró al Chómpiras dentro de la bóveda cuando sonó la alarma.'
-    ]
   },
   perfil_peterete: {
     id: 'perfil_peterete', name: 'El Peterete', role: 'Jefe de seguridad',
     icon: 'assets/peterete_smug.webp',
     desc: 'Jefe de seguridad de la hacienda y perito valuador. Participa en la inspección de la bóveda.',
     updates: [
-      'Sostiene que el Chómpiras abrió la caja fuerte durante el apagón y que el robo ocurrió a las 10:00 PM.',
-      'La multa y el registro postal contradicen su relato de que estuvo en la oficina de correos a las 9:30 PM.',
-      'El plano muestra un montaplatos entre la bóveda y el callejón. El testigo había afirmado que no existía una salida al exterior.',
-      'El molde reproduce la llave maestra. La hora de compra de la esencia coincide con el periodo en que el jefe de seguridad tenía acceso a la llave original.'
+      'Jefe de seguridad de la hacienda y perito valuador, participó en la inspección de la bóveda. Sostiene que el Chómpiras forzó la caja fuerte durante el apagón y que el robo ocurrió a las 10:00 PM; el informe contradice que hubiera daños de palanca.',
+      'Jefe de seguridad y perito valuador. Sostiene que el Chómpiras forzó la caja fuerte durante el apagón y que el robo ocurrió a las 10:00 PM; el informe contradice que hubiera daños de palanca. La multa y el registro postal contradicen su relato de que estuvo en la oficina de correos a las 9:30 PM.',
+      'Jefe de seguridad y perito valuador. Sostuvo que el Chómpiras forzó la caja fuerte durante el apagón y que el robo ocurrió a las 10:00 PM; el informe y el registro postal contradicen partes de su versión. El plano muestra un montaplatos entre la bóveda y el callejón, contra su afirmación de que no había salida al exterior.',
+      'Jefe de seguridad y perito valuador. Su versión sobre la caja fuerte, el horario y el correo fue contradicha por los informes y el plano. El molde de cera reproduce la llave maestra.'
     ]
   },
   perfil_jirafales: {
@@ -46,7 +43,7 @@ export const CASE2_PROFILES_ES: ProfileCatalogMap = {
     icon: 'assets/profile_perfil_jirafales.webp',
     desc: 'Profesor y huésped del restaurante de Doña Florinda la noche del robo. Se interesa por la arquitectura y la precisión.',
     updates: [
-      'Su plano muestra el ducto de ventilación y un montaplatos que conecta la bóveda con el callejón.'
+      'Profesor y huésped del restaurante de Doña Florinda, interesado en arquitectura y precisión. Su plano muestra el ducto de ventilación y un montaplatos que conecta la bóveda con el callejón.'
     ]
   },
   perfil_jaimito: {
@@ -54,7 +51,7 @@ export const CASE2_PROFILES_ES: ProfileCatalogMap = {
     icon: 'assets/jaimito_idle.webp',
     desc: 'Cartero de Tangamandapio. Su carrito de correo estuvo en el callejón trasero de la hacienda.',
     updates: [
-      'La multa municipal sitúa su carrito abandonado a las 9:30 PM; Jaimito recuerda que dormía en el parque.'
+      'Cartero de Tangamandapio cuyo carrito estuvo en el callejón trasero de la hacienda. Su sello oficial nunca se separa de él; el registro postal de las 9:30 PM lleva un sello manual irregular.'
     ]
   },
   perfil_clotilde: {
@@ -62,8 +59,7 @@ export const CASE2_PROFILES_ES: ProfileCatalogMap = {
     icon: 'assets/clotilde_idle.webp',
     desc: 'Vecina aficionada a la botánica. Prepara una esencia de rosas y valeriana.',
     updates: [
-      'Un cliente elegante compró tres frascos la tarde anterior al robo; Clotilde recuerda su sombrero y bufanda, pero no da su nombre.',
-      'La tarde de la compra coincide con el momento en que el jefe de seguridad tenía la llave maestra original.'
+      'Vecina aficionada a la botánica que prepara esencia de rosas y valeriana. Un cliente elegante compró tres frascos la tarde anterior al robo; Clotilde recuerda su sombrero y bufanda, pero no da su nombre.'
     ]
   },
   perfil_supersam: {

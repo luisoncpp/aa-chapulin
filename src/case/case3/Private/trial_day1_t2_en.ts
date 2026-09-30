@@ -6,16 +6,16 @@
 import type { DialogueLine, Testimony } from '../../../types/index.js';
 
 const T2_SUCCESS: DialogueLine[] = [
-  { cutin: 'objection_toma_eso', speaker: 'DEFENSA', text: 'TAKE THAT!', sfx: 'whoosh', bgm: 'silence', pose: 'donramon_point' },
+  { cutin: 'objection_toma_eso', speaker: 'DEFENSA', text: 'TAKE THAT!', sfx: 'whoosh', bgm: 'pursuit', pose: 'donramon_point' },
   { speaker: 'DEFENSA', text: 'That cart was not carrying records!', pose: 'donramon_point' },
-  { speaker: 'DEFENSA', text: 'These two grease streaks leave the OFFICE door and end in Cabina B! And a thread from Señor Barriga\'s jacket was stuck in a wheel!', sfx: 'desk_slam', pose: 'donramon_slam', bgm: 'truth' },
+  { speaker: 'DEFENSA', text: 'These two grease streaks leave the OFFICE door and end in Cabina B! And a thread from Señor Barriga\'s jacket was stuck in a wheel!', sfx: 'desk_slam', pose: 'donramon_slam' },
   { speaker: 'CHIMOLTRUFIA', text: '¡Ay, qué la canción! So what was on the cart was...?', pose: 'chimoltrufia_shock' },
   { speaker: 'CHAPULIN', text: 'It was Señor Barriga! They wheeled him down the hall like a long-play record!', pose: 'chapulin_slam', sfx: 'desk_slam' },
   { speaker: 'SUPER SAM', text: 'Objection! The defendant could have moved him himself!', pose: 'supersam_sweat' },
   { speaker: 'DEFENSA', text: 'In three minutes, Mr. Prosecutor? Between the 11:03 scream and the 11:06 arrest there\'s three minutes! An old man does not open a safe, strike a man, load him on a cart, roll him fifty meters, and lay him down in three minutes!', pose: 'donramon_point' },
   { speaker: 'JUEZ', text: 'The defense is right! Señor Barriga was attacked in the office and moved to the booth!', pose: 'judge_shock' },
   { speaker: 'SUPER SAM', text: 'Then he did it EARLIER! And staged the scene to fake the time!', pose: 'supersam_slam', sfx: 'desk_slam' },
-  { speaker: 'JUEZ', text: 'Enough. I order Señor Barriga\'s office sealed and searched. This session is adjourned twenty-four hours!', pose: 'judge_gavel', sfx: 'gavel', bgm: 'suspense' }
+  { speaker: 'JUEZ', text: 'Enough. I order Señor Barriga\'s office sealed and searched. This session is adjourned twenty-four hours!', pose: 'judge_gavel', sfx: 'gavel' }
 ];
 
 export const CASE3_TESTIMONY_2_EN: Testimony = {

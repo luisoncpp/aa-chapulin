@@ -9,7 +9,7 @@ import type { InstrumentPatch } from './Private/InstrumentPatch.js';
 import { midiToFreq, type NoteEvent, type VoiceTarget } from './Private/VoiceTypes.js';
 
 export { midiToFreq };
-export type { NoteEvent, VoiceTarget };
+export type { InstrumentPatch, NoteEvent, VoiceTarget };
 
 // fallow-ignore-next-line unused-export
 export const DRUM_SYMBOLS = new Set(['K', 'S', 'H', 'O', 'C', 'P', 'X', 'R', 'T', 'M', 'B', 'G', 'Y', '0']);

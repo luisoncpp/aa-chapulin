@@ -53,7 +53,7 @@ export const CASE4_HOTEL_LOBBY_D3_EN: InvestigationScene = {
       label: 'The gaming salon',
       dialogue: [
         { speaker: 'CHIMOLTRUFIA', text: 'Rounds signed by the players between 23:10 and 23:25.', pose: 'chimoltrufia_idle', addEvidence: 'boleta_baccarat' },
-        { speaker: 'DEFENSA', text: 'This slip confirms Mr. Rufián was at the baccarat table when the bang sounded.', pose: 'donramon_idle', updateProfile: 'perfil_rufino' },
+        { speaker: 'DEFENSA', text: 'This slip confirms Mr. Rufián was at the baccarat table when the bang sounded.', pose: 'donramon_idle' },
         { speaker: 'CHAPULIN', text: 'Oh no! Then we lost?', pose: 'chapulin_panic' },
         { speaker: 'DEFENSA', text: 'No, Chapulín. We lost an idea we never held.', pose: 'donramon_idle' },
         { speaker: 'CHAPULIN', text: 'Ah, good. Those are the ones that hurt least.', pose: 'chapulin_idle' },

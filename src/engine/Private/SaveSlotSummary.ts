@@ -3,7 +3,7 @@
  * Text shown on one row of [[./SaveSlotModal.ts]].
  */
 
-import { peekCaseScript } from '../../case/loadCaseScript.js';
+import { getInvestigationLocationName } from '../../case/LocationNames.js';
 import { i18n } from '../../i18n/index.js';
 import type { SaveData } from '../../state/index.js';
 
@@ -42,6 +42,6 @@ function trialPlace(data: SaveData): string {
 
 function investigationPlace(data: SaveData): string {
   const caseId = data.caseId ?? 'case1';
-  const scene = peekCaseScript(i18n.getLanguage(), caseId)?.investigation[data.currentLocation];
-  return scene?.title ?? data.currentLocation;
+  return getInvestigationLocationName(i18n.getLanguage(), caseId, data.currentLocation)
+    ?? data.currentLocation;
 }

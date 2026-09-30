@@ -121,7 +121,7 @@ timeline
 
 ## 4.1 Acta de Personajes
 
-El Caso 3 declara perfiles y muestra la pestaña **PERSONAS** del Acta. El orden de juego llama a este episodio **Acto 3**; `case3` es sólo el identificador del catálogo y nunca se usa como etapa de progreso. Cada alta y actualización de esta tabla pertenece al **Acto 3** y se ancla al día/escena/testimonio de este caso. Los perfiles de personajes ya presentes en actos anteriores se incorporan silenciosamente al empezar, usando la descripción inicial de este catálogo; sus líneas `addProfile` no repiten la notificación. El resto de las fichas se agrega en la primera presentación explícita. Sólo se actualiza después de que el jugador conoce un dato nuevo. La descripción visible en cada punto debe limitarse a hechos ya establecidos: no anticipar identidades, móviles, engaños ni revelaciones posteriores. Mantener las mismas etapas en ES y EN.
+El Caso 3 declara perfiles y muestra la pestaña **PERSONAS** del Acta. El orden de juego llama a este episodio **Acto 3**; `case3` es sólo el identificador del catálogo y nunca se usa como etapa de progreso. Cada alta y actualización de esta tabla pertenece al **Acto 3** y se ancla al día/escena/testimonio de este caso. Los perfiles de personajes ya presentes en actos anteriores se incorporan silenciosamente al empezar, usando la descripción inicial de este catálogo; sus líneas `addProfile` no repiten la notificación. El resto de las fichas se agrega en la primera presentación explícita. Sólo se actualiza después de que el jugador conoce un dato nuevo. Cada actualización reemplaza la descripción visible: conserva el rol y los datos de perfil que siguen siendo útiles, suma sólo información relevante ya revelada y omite acciones pasajeras. No anticipar identidades, móviles, engaños, condiciones médicas ni revelaciones posteriores. Mantener las mismas etapas en ES y EN.
 
 Icono: retrato del personaje correspondiente en `assets/profile_<id>.webp`. Quico no recibe ficha: sólo se oye fuera de cuadro y no es presentado como personaje visible. No añadir ranuras de señalamiento; estas fichas son información de lectura.
 
@@ -129,15 +129,15 @@ Icono: retrato del personaje correspondiente en `assets/profile_<id>.webp`. Quic
 |---|---|---|---|
 | `perfil_donramon` | D1, presentación en el Centro de Detención | *«Abogado defensor del Doctor Chapatín. Quince meses de renta atrasada con el Señor Barriga.»* | — |
 | `perfil_chapulin` | D1, presentación en el Centro de Detención | *«Co-defensor. Héroe de antenitas y refranes que rara vez llegan enteros.»* | — |
-| `perfil_chapatin` | D1, presentación en el Centro de Detención | *«Acusado de atacar al Señor Barriga. Médico anciano y gruñón. Lleva una bolsa de papel que usa como arma.»* | **D1, investigación en el Centro de Detención:** *«Se niega a revelar dónde estuvo después de salir de la cabina e invoca el secreto profesional.»* · **D2, T2:** *«El registro de su clínica y el testimonio de Ñoño confirman que atendió en secreto a un paciente en el callejón a las 10:50 PM.»* |
-| `perfil_sargento` | D1, presentación en XEVC | *«Policía Preventiva, grado de sargento. Participó en el hallazgo del Doctor Chapatín junto a la víctima.»* | **D1, T1:** *«Admite que movió el trofeo antes de fotografiar la escena.»* · **D3, investigación en la Delegación:** *«Pasó la noche buscando en la basura y recuperó el cartucho de corte de estación.»* |
-| `perfil_chimoltrufia` | D1, primera presentación en XEVC | *«Locutora —o ayudante, o encargada del café— de la sección de horóscopos de XEVC.»* | **D1, T2:** *«Estaba en la Cabina C y oyó pasar el carrito de discos por el pasillo; creyó que era el conserje.»* |
-| `perfil_florinda` | D1, presentación en la Plaza de la Kermés | *«Presidenta del comité vecinal y encargada del puesto de la kermés.»* | **D1, investigación en la Plaza:** *«Confirma que el Señor Barriga estaba vivo en la plaza a las 9:40 PM, buscando a Quico.»* |
-| `perfil_jirafales` | D1, presentación en la Plaza de la Kermés | *«Maestro de ceremonias del Grito. Lleva un minutario de la noche.»* | **D1, investigación en la Plaza:** *«Su libreto registra el aviso del niño extraviado a las 9:40 PM.»* |
-| `perfil_aniceto` | D1, presentación en la Plaza de la Kermés | *«Locutor titular de XEVC. Lleva veinticinco años al aire y habla con una dicción impecable.»* | **D2, T2:** *«Declaró que lo encontraron atado y amordazado en la bodega; la corte lo trata como una segunda víctima.»* · **D3, clímax, después de la trampa de voz y su confesión:** *«La voz del cartucho es la suya. Confesó haber fabricado el grito, montado su rescate y usado el dinero del Fondo para recuperar su trofeo.»* |
-| `perfil_nono` | D1, primera presentación nominal en XEVC | *«Operador de consola de XEVC e hijo del Señor Barriga. Dice que estuvo en la consola durante el Grito.»* | **D2, T2:** *«Reveló que tiene un problema del corazón y que el Doctor Chapatín lo atiende en secreto.»* |
-| `perfil_supersam` | D1, apertura del juicio | *«Fiscal acusador. Quiere cerrar el caso antes de la hora de comer.»* | **D2, T2:** *«Defiende la declaración de Aniceto como la de una segunda víctima, incluso después de que la coartada del acusado queda establecida.»* |
-| `perfil_barriga` | D1, primera identificación de la víctima en XEVC | *«Casero, dueño de XEVC y víctima del ataque. Sigue en coma.»* | **D3, T1:** *«Despertó y declaró. Había descubierto un faltante de $40,000 y se lo contó a una persona de confianza en su despacho.»* |
+| `perfil_chapatin` | D1, presentación en el Centro de Detención | *«Acusado de atacar al Señor Barriga. Médico anciano y gruñón. Lleva una bolsa de papel que usa como arma.»* | **D1, investigación en el Centro de Detención:** conservar su acusación y caracterización; añadir que se niega a revelar dónde estuvo tras salir de la cabina e invoca el secreto profesional. **D2, T2:** conservarlas y añadir que el registro de su clínica y el testimonio del paciente sitúan su atención privada en el callejón a las 10:50 PM. |
+| `perfil_sargento` | D1, presentación en XEVC | *«Policía Preventiva, grado de sargento. Participó en el hallazgo del Doctor Chapatín junto a la víctima.»* | **D1, T1:** conservar su cargo y participación en el hallazgo; añadir que admite haber movido el trofeo antes de fotografiar la escena. La recuperación posterior del cartucho no actualiza el perfil. |
+| `perfil_chimoltrufia` | D1, primera presentación en XEVC | *«Locutora —o ayudante, o encargada del café— de la sección de horóscopos de XEVC.»* | **D1, T2:** conservar su puesto incierto en XEVC; añadir que estaba en Cabina C, oyó pasar el carrito de discos y creyó que era el conserje. |
+| `perfil_florinda` | D1, presentación en la Plaza de la Kermés | *«Presidenta del comité vecinal y encargada del puesto de la kermés.»* | **D1, investigación en la Plaza:** conservar sus responsabilidades; añadir que confirma que el Señor Barriga seguía vivo a las 9:40 PM mientras buscaba a Quico. |
+| `perfil_jirafales` | D1, presentación en la Plaza de la Kermés | *«Maestro de ceremonias del Grito. Su libreto conserva el minutario de la noche.»* | — El libreto ya forma parte del perfil inicial; su aviso de las 9:40 no requiere una actualización separada. |
+| `perfil_aniceto` | D1, presentación en la Plaza de la Kermés | *«Locutor titular de XEVC. Lleva veinticinco años al aire y habla con una dicción impecable.»* | **D2, T2:** conservar su papel y experiencia; añadir que declaró que lo encontraron atado y amordazado en la bodega y que la corte lo trata como una segunda víctima. La confesión del clímax no actualiza la ficha. |
+| `perfil_nono` | D1, primera presentación nominal en XEVC | *«Operador de consola de XEVC e hijo del Señor Barriga. Dice que estuvo en la consola durante el Grito.»* | **D2, T2, después de que él lo revela:** conservar su cargo y parentesco; añadir que tiene un problema del corazón y que el Doctor Chapatín lo atiende en secreto. No mencionar su condición antes de su testimonio. |
+| `perfil_supersam` | D1, apertura del juicio | *«Fiscal acusador. Quiere cerrar el caso antes de la hora de comer.»* | — Sus argumentos y cambios de postura no son información de perfil. |
+| `perfil_barriga` | D1, primera identificación de la víctima en XEVC | *«Casero, dueño de XEVC y víctima del ataque. Sigue en coma.»* | **D3, T1:** conservar su rol; añadir que había descubierto un faltante de $40,000 y se lo contó a una persona de confianza en su despacho. No registrar el acto de despertar o declarar como historial. |
 | `perfil_juez` | D1, apertura del juicio | *«Juez de la Corte. Bondadoso, influenciable y aficionado a los programas de radio de XEVC.»* | — |
 
 **Regla de sincronización:** poner `addProfile` en la línea de primera presentación para personajes nuevos; si el ID ya apareció en un acto anterior, el perfil ya estará disponible y la línea será inocua. Poner `updateProfile` sólo después del testimonio, evidencia o giro que establece información nueva en el Acto 3. En particular, no registrar en el Acta antes de la trampa y confesión que Aniceto fabricó la grabación o el montaje, ni antes del testimonio de Ñoño la naturaleza de su tratamiento. Los rótulos D1/D2/D3 son días internos del Caso 3, no números de caso ni de acto globales.
@@ -518,19 +518,19 @@ CHIMOLTRUFIA (stmt2_4): Por eso yo digo que fue él... aunque también digo que 
   - **Don Ramón**: *"(Ahí está. A las 10:50 alguien empujaba algo pesado por ese pasillo... y el doctor ya se había ido a las 10:40.)"*
 - **CONTRADICCIÓN en `stmt2_3b`** ("ha de haber sido el conserje llevando discos"):
   - **Presentar**: `marcas_carrito`.
-  - **Animación**: ¡TOMA ESO! (`cutin: objection_toma_eso`, `sfx: whoosh`, `bgm: silence`; la música entra con `truth` en la línea de las rayas de grasa).
+  - **Animación**: ¡TOMA ESO! (`cutin: objection_toma_eso`, `sfx: whoosh`, `bgm: pursuit`).
 
 ```dialogue
 [ÉXITO DE LA CONTRADICCIÓN 2 — CIERRE DEL DÍA 1]
 DEFENSA (donramon_point): ¡TOMA ESO! ¡Ese carrito no llevaba discos!
-DEFENSA (donramon_slam): ¡Estas dos rayas de grasa salen de la puerta del DESPACHO y terminan en la Cabina B! ¡Y en una rueda quedó atorado un hilo del saco del Señor Barriga! [sfx: desk_slam; bgm: truth]
+DEFENSA (donramon_slam): ¡Estas dos rayas de grasa salen de la puerta del DESPACHO y terminan en la Cabina B! ¡Y en una rueda quedó atorado un hilo del saco del Señor Barriga! [sfx: desk_slam]
 CHIMOLTRUFIA (chimoltrufia_shock): ¡Ay, qué la canción! ¿Entonces lo que iba en el carrito era...?
 CHAPULIN (chapulin_slam): ¡Era el señor Barriga! ¡Lo pasearon por el pasillo como si fuera un long play! [sfx: desk_slam]
 SUPER SAM (supersam_sweat): Objection! ¡El acusado pudo haberlo movido él mismo!
 DEFENSA (donramon_point): ¿En tres minutos, señor fiscal? Entre el grito de las 11:03 y el arresto de las 11:06 hay hora y media de minutos... digo, ¡hay tres minutos! ¡Un anciano no abre una caja fuerte, golpea a un hombre, lo sube a un carrito, lo pasea cincuenta metros y lo acuesta en tres minutos!
 JUEZ (judge_shock): ¡La defensa tiene razón! ¡Al Señor Barriga lo atacaron en el despacho y lo trasladaron a la cabina!
 SUPER SAM (supersam_slam): Then he did it EARLIER! ¡Y montó la escena para fingir la hora! [sfx: desk_slam]
-JUEZ (judge_gavel): Suficiente. Ordeno sellar y registrar el despacho del Señor Barriga. ¡Se aplaza la sesión veinticuatro horas! [sfx: gavel; bgm: suspense]
+JUEZ (judge_gavel): Suficiente. Ordeno sellar y registrar el despacho del Señor Barriga. ¡Se aplaza la sesión veinticuatro horas! [sfx: gavel]
 ```
 
 ---
@@ -706,8 +706,8 @@ DEFENSA (donramon_slam): ¡Esta es la libreta de consultas de su clínica! ¡15 
 SUPER SAM (supersam_slam): ¡Un papel escrito por el propio acusado! ¡Objection!
 DEFENSA (donramon_point): ¡Entonces vea su bolsa de papel, la que el sargento levantó de la escena! ¡Ampolleta vacía y jeringa recién usada! ¡Mi cliente venía de inyectar a alguien en el callejón, señor fiscal, no de asaltar una caja fuerte!
 NONO (nono_llorando): ¡ERA YO! [sfx: realization; bgm: truth]
-NARRADOR (nono_llorando): (El joven Ñoño se pone de pie en la galería, con la cara empapada.) [bg: assets/bg_gallery_characters.webp; furniture: none]
-NONO (nono_llorando): ¡Era yo! ¡Yo bajé al callejón a las diez cuarenta y cinco porque me faltaba el aire! ¡El doctor YA estaba ahí, esperándome! ¡Lleva un año inyectándome a escondidas y sin cobrarme para que mi papi no se entere de que estoy malo del corazón!
+NARRADOR: (El joven Ñoño se pone de pie en la galería, con la cara empapada.) [bg: assets/bg_gallery_characters.webp; furniture: none]
+NONO: ¡Era yo! ¡Yo bajé al callejón a las diez cuarenta y cinco porque me faltaba el aire! ¡El doctor YA estaba ahí, esperándome! ¡Lleva un año inyectándome a escondidas y sin cobrarme para que mi papi no se entere de que estoy malo del corazón! [bg: assets/bg_gallery_characters.webp; furniture: none]
 CHAPATIN (chapatin_enojado): ¡Muchacho imprudente! ¡Eso era secreto profesional!
 CHAPATIN (chapatin_conmovido): ...Y baje la voz, que se le va a subir la presión.
 JUEZ (judge_shock): ¡Entonces el acusado estaba FUERA del edificio durante el traslado del cuerpo!

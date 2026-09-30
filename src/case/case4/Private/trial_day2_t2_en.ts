@@ -44,7 +44,7 @@ const BAUL_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'SUPER SAM', text: 'The man could have kept his clothes in there! People travel with clothes!', pose: 'supersam_point' },
   { speaker: 'DEFENSA', text: 'Yes. And almost always wearing them. Let us count it slowly: a victim already dead before ten, a trunk going up at 22:20, the cloth of his suit snagged inside, and eighty kilos vanishing on the third floor...', pose: 'donramon_idle' },
   { speaker: 'CHAPULIN', text: 'And the third floor is where the dead man turned up!', pose: 'chapulin_point' },
-  { speaker: 'DEFENSA', text: 'The defense holds that B-17 went up with the body inside. And I ask the gentleman who received it to tell us what he took out.', cutin: 'objection_toma_eso', sfx: 'desk_slam', bgm: 'objection', pose: 'donramon_slam', updateProfile: 'perfil_supersam' },
+  { speaker: 'DEFENSA', text: 'The defense holds that B-17 went up with the body inside. And I ask the gentleman who received it to tell us what he took out.', cutin: 'objection_toma_eso', sfx: 'desk_slam', bgm: 'objection', pose: 'donramon_slam' },
   { speaker: 'JUEZ', text: 'Mr. Rufián, your reception and the later opening are documented. Answer this court.', pose: 'judge_gavel', sfx: 'gavel' },
   { speaker: 'RUFINO', text: 'I... I did not want the name of this hotel dragged into such a...', pose: 'rufino_panic' },
   { speaker: 'SUPER SAM', text: 'Such a WHAT?', pose: 'supersam_point' },
@@ -106,7 +106,7 @@ export const CASE4_TESTIMONY_4_EN: Testimony = {
       text: 'And the strap was whole when the count received it. I signed the stub beside Botija.',
       pressText: [
         { speaker: 'DEFENSA', text: 'HOLD IT!', cutin: 'objection_un_momento', sfx: 'whoosh', pose: 'donramon_point' },
-        { speaker: 'CHOMPIRAS', text: 'Number and strap confirmed. The strap breaks after Rufino takes delivery. Botija holds no hidden cabin stretch.', pose: 'chompiras_idle', updateProfile: 'perfil_chompiras' }
+        { speaker: 'CHOMPIRAS', text: 'Number and strap confirmed. The strap breaks after Rufino takes delivery. Botija holds no hidden cabin stretch.', pose: 'chompiras_idle' }
       ]
     }
   ]

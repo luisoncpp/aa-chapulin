@@ -23,7 +23,7 @@ export const CASE5_D3_T2_OFICIO_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'JUEZ', text: 'What was that?', pose: 'judge_thinking' },
   { bg: 'assets/bg_witness.webp', furniture: 'podium', speaker: 'SUPER SAM', text: 'That I sign six hundred letters a month, and I have not read what goes at the bottom of one in eleven years.', pose: 'supersam_sweat', updateProfile: 'perfil_supersam' },
   { bg: 'assets/bg_judge.webp', furniture: 'judge-bench', speaker: 'NARRADOR', text: 'The clerk lifts his pen.', pose: 'secretario_leyendo' },
-  { speaker: 'JUEZ', text: 'So entered.', sfx: 'gavel', pose: 'judge_gavel', updateProfile: 'perfil_casimiro' },
+  { speaker: 'JUEZ', text: 'So entered.', sfx: 'gavel', pose: 'judge_gavel' },
   { speaker: 'JUEZ', text: 'And let it also be entered that this court still has nothing against anyone, because receiving a legal notice is not a crime.', pose: 'judge_neutral' },
   { speaker: 'DEFENSA', text: '(I know, Your Honor. I have known it for three days.)', pose: 'chapulin_idle' },
   { speaker: 'JUEZ', text: 'Defense, is there anything left of Mr. Prosecutor?', pose: 'judge_thinking' },

@@ -75,7 +75,7 @@ export const CASE4_HOTEL_TERRAZA_EN: InvestigationScene = {
         { speaker: 'MARUJA', text: 'He pulled it out, placed it in my hand like a man offering a flower, and then he poured. I left with the cork in my purse.', pose: 'maruja_idle', updateProfile: 'perfil_maruja' },
         { speaker: 'SARGENTO', text: 'Then that stopper left the room before you did... and before he drank.', pose: 'pazguato_saludo' },
         { speaker: 'MARUJA', text: 'I kept it because the gentleman was kind. Nobody warned me it would turn into evidence.', pose: 'maruja_nerviosa' },
-        { speaker: 'NARRADOR', text: 'The Sergeant bags it, numbers it, and logs the delivery hour in tiny, perfect handwriting.', updateProfile: 'perfil_sargento' },
+        { speaker: 'NARRADOR', text: 'The Sergeant bags it, numbers it, and logs the delivery hour in tiny, perfect handwriting.', updateProfile: 'perfil_cuajinais' },
         { speaker: 'SARGENTO', text: 'It stays as an annex to my report. With my signature and yours.', pose: 'pazguato_decidido', updateEvidence: 'informe_policial' },
         { speaker: 'CHAPULIN', text: 'And what is that for, Sergeant? It is a cork!', pose: 'chapulin_idle' },
         { speaker: 'SARGENTO', text: 'It is so that in a month nobody can argue with me about where this cork has been. Because it will be written down.', pose: 'pazguato_idle' },

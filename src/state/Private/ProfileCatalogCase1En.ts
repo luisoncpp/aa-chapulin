@@ -14,7 +14,7 @@ export const CASE1_PROFILES_EN: ProfileCatalogMap = {
     icon: 'assets/profile_perfil_chapulin.webp',
     desc: 'The defendant. Professional hero. Arrested at 9:07 PM beside the night watchman, his Chipote Chillón in his hand. Says he arrived late.',
     updates: [
-      'He is 1.62 m (5’4”). The watchman is 6’3” in boots. To strike him from above, he would have had to be standing on something.'
+      'The defendant is a professional hero arrested at 9:07 PM beside the watchman, his Chipote Chillón in hand. He says he arrived late. He is 1.62 m (5’4”); the watchman is 6’3” in boots. To strike him from above, he would have had to be standing on something.'
     ]
   },
   perfil_donramon: {
@@ -30,9 +30,6 @@ export const CASE1_PROFILES_EN: ProfileCatalogMap = {
     role: 'Prosecutor',
     icon: 'assets/profile_perfil_supersam.webp',
     desc: 'Prosecutor. Paid by the closed case. Closed this one in five minutes. Today he took the floor without his dollar bag on his shoulder.',
-    updates: [
-      'He refused to say where his canvas bag was on the night of the 28th, and he asked for the recess himself.'
-    ]
   },
   perfil_tripaseca: {
     id: 'perfil_tripaseca',
@@ -41,9 +38,8 @@ export const CASE1_PROFILES_EN: ProfileCatalogMap = {
     icon: 'assets/profile_perfil_tripaseca.webp',
     desc: 'Star witness. A trader: buys cheap and sells whatever will sell. Says he was walking through the loading alley around nine.',
     updates: [
-      "He described the sound of the blow as 'a sackful of iron hitting the floor'.",
-      'He claimed he saw the defendant standing on the display case pedestal. Nobody asked him how he knew there was a pedestal.',
-      'He knows the loading door latch has been broken since March.'
+      'The star witness is a trader who buys cheap and sells whatever will sell. He says he was walking through the loading alley around nine. His account places the defendant on the display case pedestal, though he has not explained how he knew about it.',
+      'The star witness is a trader who buys cheap and sells whatever will sell. He says he was walking through the loading alley around nine. His account places the defendant on a pedestal that cannot be seen from the alley; he also knows the loading door latch has been broken since March.'
     ]
   },
   perfil_florinda: {
@@ -53,7 +49,7 @@ export const CASE1_PROFILES_EN: ProfileCatalogMap = {
     icon: 'assets/profile_perfil_florinda.webp',
     desc: 'Curator of the Museum of Curiosities. Holder of the only key to the front door. Locked up at 8:40 PM with Professor Jirafales as witness.',
     updates: [
-      'She arrived at 9:05 PM and saw the defendant standing beside the watchman. That is all she saw.'
+      'Curator of the Museum of Curiosities and holder of the only front-door key; she locked up at 8:40 PM with Professor Jirafales as a witness. She arrived at 9:05 PM and saw the defendant standing beside the watchman, but did not witness the assault.'
     ]
   },
   perfil_jirafales: {
@@ -70,7 +66,7 @@ export const CASE1_PROFILES_EN: ProfileCatalogMap = {
     icon: 'assets/profile_perfil_almanegra.webp',
     desc: 'Museum night watchman. The victim. Woke up on the second day. Occipital fracture. Talks like a pirate because, he says, he was one.',
     updates: [
-      'His round is written down in a notebook that hangs from a nail, in plain sight of any visitor.'
+      'The museum night watchman and the victim. He woke on the second day, has an occipital fracture, and speaks like a pirate because he says he used to be one. His round is written in a notebook hanging from a nail, in plain sight of any visitor.'
     ]
   }
 };

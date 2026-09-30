@@ -57,6 +57,8 @@ export const crossExamGraveTrack: TrackDefinition = {
   bpm: 96,
   length: 128,
   instruments: { bass: 'upright_bass', lead: 'chip_lead', chords: 'string_pad' },
+  // The whole mix at the reverb's full level: the wet sound approved on audition.
+  reverb: 1,
   bass: [
     36, 0, 36, 0, 36, 0, 43, 0, 36, 0, 36, 0, 36, 0, 43, 0,
     36, 0, 36, 0, 36, 0, 43, 0, 36, 0, 36, 0, 36, 0, 43, 0,

@@ -18,6 +18,8 @@ function applyAdsr(param: AudioParam, when: number, duration: number, level: num
   param.setValueAtTime(0.0001, when);
   param.linearRampToValueAtTime(level, attackEnd);
   param.setTargetAtTime(Math.max(level * env.s, 0.0001), attackEnd, Math.max(env.d / 3, 0.001));
+  const decayEnd = attackEnd + env.d;
+  if (env.fadeSec && decayEnd < when + duration) param.setTargetAtTime(0.0001, decayEnd, env.fadeSec);
   param.setTargetAtTime(0.0001, when + duration, Math.max(env.r / 4, 0.001));
   return duration + env.r;
 }
@@ -30,7 +32,8 @@ export function applyFilter(filter: BiquadFilterNode, spec: FilterEnvelope, when
   filter.frequency.setValueAtTime(base, when);
   if (spec.attack <= 0) return;
   filter.frequency.exponentialRampToValueAtTime(peak, when + spec.attack);
-  filter.frequency.exponentialRampToValueAtTime(base, when + spec.attack + Math.max(spec.decay, 0.001));
+  const sustain = Math.max(spec.sustain ?? spec.base, 20);
+  filter.frequency.exponentialRampToValueAtTime(sustain, when + spec.attack + Math.max(spec.decay, 0.001));
 }
 
 export function scoop(param: AudioParam, when: number, cents: number, sec: number, restAt: number): void {

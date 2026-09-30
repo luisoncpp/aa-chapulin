@@ -21,7 +21,7 @@ export const CASE2_CLIMAX_CHOICES: ChoicePrompt[] = [
       { speaker: 'JUEZ', text: '¡La defensa recibirá una penalización si no deja de perder el tiempo!', pose: 'judge_shock' }
     ],
     successDialogue: [
-      { speaker: 'DEFENSA', text: '¡La clave no es cómo iba vestido, sino CUÁNDO fue! Doña Clotilde dijo que el hombre fue a comprar la esencia la tarde del 21 de agosto.', pose: 'donramon_point', updateProfile: 'perfil_clotilde' },
+      { speaker: 'DEFENSA', text: '¡La clave no es cómo iba vestido, sino CUÁNDO fue! Doña Clotilde dijo que el hombre fue a comprar la esencia la tarde del 21 de agosto.', pose: 'donramon_point' },
       { speaker: 'JUEZ', text: '¿La tarde del 21 de agosto? ¿Y por qué es tan importante esa hora específica?', pose: 'judge_neutral' }
     ]
   },

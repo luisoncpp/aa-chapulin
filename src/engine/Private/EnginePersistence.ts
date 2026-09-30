@@ -12,7 +12,11 @@ import { hideCaseComplete } from './CaseComplete.js';
 import { dismissSplash, loadCase, type LaunchHost } from './EngineLaunch.js';
 import { applyTrialSnapshot, persistTrialSnapshot } from './TrialSnapshot.js';
 import { ModalManager } from './ModalManager.js';
-import { closeSaveSlotModal, openSaveSlotModal, type SlotPickerMode } from './SaveSlotModal.js';
+import {
+  closeSaveSlotModal,
+  openSaveSlotModal,
+  type SlotPickerMode
+} from './SaveSlotModal.js';
 import { VisualEffects } from './VisualEffects.js';
 
 export interface PersistenceHost extends LaunchHost {

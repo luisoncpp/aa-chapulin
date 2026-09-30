@@ -53,7 +53,7 @@ export const CASE3_CLIMAX_CHOICES: ChoicePrompt[] = [
       { cutin: 'objection_protesto', speaker: 'DEFENSA', text: 'Gracias, don Aniceto. Acaba usted de confesar con su mejor voz.', sfx: 'whoosh', pose: 'donramon_point' },
       { speaker: 'ANICETO', text: 'Veinticinco años...', bgm: 'truth', pose: 'aniceto_breakdown' },
       { speaker: 'ANICETO', text: '¡Veinticinco años levantando esa estación con las uñas! ¡Pagándole la luz con mi sueldo! ¡Amarrando los cables con mecate!', pose: 'aniceto_breakdown' },
-      { speaker: 'ANICETO', text: '¡Y ese trofeo era lo ÚNICO que me quedaba de mí! ¡Lo empeñé para pagar el transmisor y me lo rescaté con lo que había, porque el fondo iba a devolverlo, lo iba a devolver completito!', pose: 'aniceto_breakdown', updateProfile: 'perfil_aniceto' },
+      { speaker: 'ANICETO', text: '¡Y ese trofeo era lo ÚNICO que me quedaba de mí! ¡Lo empeñé para pagar el transmisor y me lo rescaté con lo que había, porque el fondo iba a devolverlo, lo iba a devolver completito!', pose: 'aniceto_breakdown' },
       { speaker: 'BARRIGA', text: 'Aniceto... me hubieras pedido el dinero. Te lo doy. Te lo hubiera dado.', pose: 'barriga_vendado' },
       { speaker: 'ANICETO', text: '¡NO! ¡Tú ibas a decir mi nombre! ¡MI NOMBRE! ¡Al aire! ¡En MI estación! ¡Después de que esta vecindad me quiso veinticinco años!', pose: 'aniceto_breakdown' },
       { speaker: 'ANICETO', text: '¡Y sabía que el doctor iba a subir corriendo! ¡Lo sabía! ¡Es médico! ¡Los médicos siempre corren!', sfx: 'damage', pose: 'aniceto_breakdown' },

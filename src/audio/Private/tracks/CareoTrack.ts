@@ -62,6 +62,8 @@ export const crossExamCareoTrack: TrackDefinition = {
   bpm: 164,
   length: 512,
   instruments: { bass: 'piano', lead: 'pulse_lead_25', chords: 'piano' },
+  // The whole mix at the reverb's full level: the wet sound approved on audition.
+  reverb: 1,
   bass: [
     ...pumpBass(38), ...pumpBass(38), ...pumpBass(34), ...pumpBass(33),
     ...gallopBass(38), ...gallopBass(36), ...gallopBass(34), ...gallopBass(33),

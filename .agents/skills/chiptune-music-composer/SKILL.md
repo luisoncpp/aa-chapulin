@@ -63,13 +63,13 @@ If `instruments` is omitted, the channel uses `chip_bass`, `chip_lead`, or `chip
 | `chip_bass`, `chip_lead`, `chip_pad` | Original voices. Keep at least one of these in the cross-examination family; the square lead is part of the game. |
 | `pulse_lead_12`, `pulse_lead_25` | NES pulse widths. Allegro and moderato leads. |
 | `upright_bass` | Walking and courtroom bass. |
-| `piano`, `epiano` | Ostinato, confrontation bass, investigation chords. One step long unless you write `HOLD`. |
-| `marimba`, `nylon_guitar` | Percussive color. Guitar and upright bass are Karplus-Strong buffers, not a delay loop. |
-| `brass`, `mariachi_trumpet` | Brass stabs and fanfares. Auditioned on trial, objection, pursuit and victory and rejected there; those stay chip. |
+| `piano`, `epiano` | Ostinato, confrontation bass, investigation chords. Without `HOLD` a note rings through the rests after it until the channel's next note (at most 1.2–1.5 s); write a note on the next step to keep it short. |
+| `marimba`, `nylon_guitar` | Percussive color, and ring the same way. Guitar and upright bass are Karplus-Strong buffers, not a delay loop. |
+| `brass`, `mariachi_trumpet` | Brass stabs and fanfares. |
 | `flute`, `accordion`, `organ`, `string_pad` | Atmosphere and pads. |
 | `orchestra_hit` | A single downbeat stab, not a melody. |
 
-**Owner preference (2026-09-28):** only the cross-examination family, `truth` and `archivo` use the new patches. Every other track was auditioned with instruments and reverted to the chip voices. Ask before moving another existing track off the chip defaults.
+**Owner preference (2026-09-28):** the first instrument assignment was kept only on the cross-examination family, `truth` and `archivo`; the rest went back to the chip voices while other instruments are tried. Changing instruments is welcome; changing an existing track's notes is not, unless asked.
 
 ### Drums
 

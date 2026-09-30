@@ -12,6 +12,8 @@ export interface AdsrSpec {
   d: number;
   s: number;
   r: number;
+  /** Time constant of a further fade from `s` toward silence, like a struck string. */
+  fadeSec?: number;
 }
 
 export type AmpEnvelope = { kind: 'legacy' } | ({ kind: 'adsr' } & AdsrSpec);
@@ -23,6 +25,8 @@ export interface FilterEnvelope {
   attack: number;
   decay: number;
   q: number;
+  /** Cutoff held after the decay. Defaults to `base`. */
+  sustain?: number;
 }
 
 export interface FmSpec {
@@ -39,7 +43,7 @@ export interface InstrumentPatch {
   amp: AmpEnvelope;
   filter?: FilterEnvelope;
   pitch?: { scoopCents: number; scoopSec: number };
-  /** `frequencyHz` is the legacy lead: depth in Hz on `frequency`, not cents. */
+  /** `frequencyHz` is the legacy lead: depth in Hz on `frequency`, never wider than `depthCents`. */
   vibrato?: { rateHz: number; depthCents: number; delaySec: number; frequencyHz?: number };
   tremolo?: { rateHz: number; depth: number };
   transient?: { gain: number; filterFreq: number; sec: number };
@@ -54,4 +58,6 @@ export interface InstrumentPatch {
   reverbSend: number;
   /** Fixed length in beats when the next step is not HOLD. */
   legacyLengthBeats?: number;
+  /** With no HOLD, the note rings until the channel's next note, at most this long. */
+  ringSec?: number;
 }

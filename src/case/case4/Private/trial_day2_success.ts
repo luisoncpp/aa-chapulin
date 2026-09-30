@@ -60,7 +60,7 @@ export const CASE4_D2_T1_RUTA_A_SUCCESS: DialogueLine[] = [
   { speaker: 'JUEZ', text: 'Aunque eso tampoco descarta que alguien interviniera mucho antes.', pose: 'judge_thinking' },
   { speaker: 'SUPER SAM', text: 'Fine. Eso explica el ruido. ¡Pero el ruido no envenenó a nadie! ¡Todavía nadie me dice quién le puso algo a ese vino!', pose: 'supersam_slam', sfx: 'desk_slam' },
   { speaker: 'DEFENSA', text: 'Tiene razón. Y por eso tampoco puede decirme que el único que pudo tocarlo fue el que lo cargó. Señorita: usted dejó al huésped de la 204 a solas con esa botella.', pose: 'donramon_idle' },
-  { speaker: 'MARUJA', text: '...Sí. Ese ratito yo no lo vi.', pose: 'maruja_nerviosa', updateProfile: 'perfil_cuajinais' },
+  { speaker: 'MARUJA', text: '...Sí. Ese ratito yo no lo vi.', pose: 'maruja_nerviosa' },
   { speaker: 'DEFENSA', text: 'Nadie lo vio. Y ahí es justo donde la fiscalía dejó de contar.', pose: 'donramon_point' },
   ...CASE4_CALL_CHOMPIRAS
 ];
@@ -102,7 +102,7 @@ export const CASE4_D2_T2_BAUL_SUCCESS: DialogueLine[] = [
   { speaker: 'SUPER SAM', text: '¡El hombre pudo guardar su ropa ahí adentro! ¡La gente viaja con ropa!', pose: 'supersam_point' },
   { speaker: 'DEFENSA', text: 'Sí. Y casi siempre puesta. Contémoslo despacio: una víctima que ya estaba muerta antes de las diez, un baúl que sube a las 22:20, la tela de su traje enganchada adentro, y ochenta kilos que se esfuman en el tercer piso...', pose: 'donramon_idle' },
   { speaker: 'CHAPULIN', text: '¡Y el tercer piso es donde apareció el muerto!', pose: 'chapulin_point' },
-  { speaker: 'DEFENSA', text: 'La defensa sostiene que el B-17 subió con el cadáver adentro. Y le pido al señor que lo recibió que nos diga qué le sacó.', cutin: 'objection_toma_eso', sfx: 'desk_slam', bgm: 'objection', pose: 'donramon_slam', updateProfile: 'perfil_supersam' },
+  { speaker: 'DEFENSA', text: 'La defensa sostiene que el B-17 subió con el cadáver adentro. Y le pido al señor que lo recibió que nos diga qué le sacó.', cutin: 'objection_toma_eso', sfx: 'desk_slam', bgm: 'objection', pose: 'donramon_slam' },
   { speaker: 'JUEZ', text: 'Señor Rufián, su recepción y la apertura posterior están documentadas. Responda a este tribunal.', pose: 'judge_gavel', sfx: 'gavel' },
   { speaker: 'RUFINO', text: 'Yo... yo no quería que el nombre de este hotel se viera envuelto en semejante...', pose: 'rufino_panic' },
   { speaker: 'SUPER SAM', text: '¿En semejante QUÉ?', pose: 'supersam_point' },

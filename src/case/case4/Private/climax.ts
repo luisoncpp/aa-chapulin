@@ -16,7 +16,7 @@ const WAITING_ROOM_BG = 'assets/bg_waiting_room.webp';
 export const CASE4_CLIMAX: ClimaxDefinition = {
   dialogue: [
     { speaker: 'SUPER SAM', text: 'Facts, Your Honor. Hechos. El vino salió cerrado de la cava, lo transportó el acusado y un rato después mató a un hombre.', pose: 'supersam_slam', sfx: 'desk_slam', bgm: 'suspense' },
-    { speaker: 'SUPER SAM', text: 'El señor Rufián escondió un cadáver por cobarde. Eso es otro delito y va en otra factura. ¡La copa la sirvió alguien más!', pose: 'supersam_idle', updateProfile: 'perfil_supersam' },
+    { speaker: 'SUPER SAM', text: 'El señor Rufián escondió un cadáver por cobarde. Eso es otro delito y va en otra factura. ¡La copa la sirvió alguien más!', pose: 'supersam_idle' },
     { speaker: 'RUFINO', text: 'Yo recibí una botella sellada. La dejé sobre la mesa y no volví a tocarla hasta que mi invitado la abrió.', pose: 'rufino_smug' },
     { speaker: 'DEFENSA', text: 'Esa botella se abrió delante de una testigo, con el lacre puesto. Eso no lo discute nadie.', pose: 'donramon_idle' },
     { speaker: 'JUEZ', text: 'Entonces, licenciado, este tribunal necesita saber cómo entra un tóxico en una botella cerrada.', pose: 'judge_thinking' },

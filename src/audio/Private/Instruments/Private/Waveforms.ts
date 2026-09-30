@@ -20,7 +20,8 @@ function waveTable(ctx: BaseAudioContext): Map<string, PeriodicWave> {
 function pulseWave(ctx: BaseAudioContext, duty: number): PeriodicWave {
   const real = new Float32Array(65);
   const imag = new Float32Array(65);
-  for (let n = 1; n <= 64; n++) real[n] = (2 / (n * Math.PI)) * Math.sin(n * Math.PI * duty);
+  // A ±1 pulse, like the built-in square; the textbook 0-to-1 pulse is half the swing.
+  for (let n = 1; n <= 64; n++) real[n] = (4 / (n * Math.PI)) * Math.sin(n * Math.PI * duty);
   return ctx.createPeriodicWave(real, imag, { disableNormalization: true });
 }
 

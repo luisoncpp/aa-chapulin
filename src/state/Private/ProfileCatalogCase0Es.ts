@@ -18,15 +18,14 @@ export const CASE0_PROFILES_ES: ProfileCatalogMap = {
     id: 'perfil_supersam', name: 'Super Sam', role: 'Fiscal',
     icon: 'assets/profile_perfil_supersam.webp',
     desc: 'Fiscal del caso. Cree que la deuda de renta y la presencia de Toribio junto al cobrador bastan para acusarlo.',
-    updates: ['La fiscalía retiró la acusación contra Toribio al comprobarse que la evidencia no la sostenía.']
+    updates: ['Fiscal del caso, convencido al inicio de que la deuda y la presencia de Toribio junto al cobrador bastaban para acusarlo. La fiscalía retiró la acusación al comprobarse que la evidencia no la sostenía.']
   },
   perfil_toribio: {
     id: 'perfil_toribio', name: 'Toribio Pantoja', role: 'Acusado; paletero',
     icon: 'assets/toribio_idle.webp',
     desc: 'Paletero de veinte años, acusado de agredir a Don Nazario. Debía dos meses de renta y lo encontraron junto a la víctima.',
     updates: [
-      'El recibo de la hielería registra su entrada a las 13:05 y salida a las 13:55; respalda su coartada para la una.',
-      'El tribunal lo declaró inocente.'
+      'Paletero de veinte años, acusado de agredir a Don Nazario; debía dos meses de renta y lo encontraron junto a la víctima. El recibo de la hielería registra su llegada a las 13:05 y salida a las 13:55, lo que respalda su coartada para la una.'
     ]
   },
   perfil_casimiro: {
@@ -34,14 +33,13 @@ export const CASE0_PROFILES_ES: ProfileCatalogMap = {
     icon: 'assets/profile_perfil_casimiro.webp',
     desc: 'Se presenta como distribuidor autorizado de Enciclopedias El Saber Universal.',
     updates: [
-      'La credencial comercial quedó desacreditada: la sociedad está disuelta y no hay pedidos ni ruta comprobable.',
-      'El tribunal ordenó detenerlo por agredir a Don Nazario y llevarse el cartapacio de cobranza.'
+      'Testigo de la fiscalía, se presentó como distribuidor autorizado de Enciclopedias El Saber Universal. La credencial comercial que mostró quedó desacreditada: la sociedad está disuelta y no hay pedidos ni ruta comprobable.'
     ]
   },
   perfil_nazario: {
     id: 'perfil_nazario', name: 'Don Nazario Cuenca', role: 'Cobrador de rentas; víctima',
     icon: 'assets/foto_nazario.webp',
     desc: 'Sobrevivió a una agresión en la vivienda 4. Tiene amnesia del episodio y no puede declarar.',
-    updates: ['El informe y el testimonio establecen que lo golpearon desde atrás y desde arriba dentro de la vivienda 4.']
+    updates: ['Cobrador de rentas agredido en la vivienda 4. Sobrevivió, tiene amnesia del episodio y no puede declarar. El informe médico ampliado establece que el golpe vino desde atrás y desde arriba.']
   }
 };

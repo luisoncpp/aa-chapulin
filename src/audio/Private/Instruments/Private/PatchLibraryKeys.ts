@@ -11,22 +11,24 @@ export const KEY_PATCHES: Record<KeyId, InstrumentPatch> = {
       { wave: 'triangle', gain: 0.8 },
       { wave: 'sine', gain: 0.35, octave: 1 }
     ],
-    amp: { ...adsr, a: 0.004, d: 0.18, s: 0.2, r: 0.12 },
+    amp: { ...adsr, a: 0.004, d: 0.18, s: 0.2, r: 0.12, fadeSec: 0.5 },
     filter: { type: 'lowpass', base: 900, peak: 2800, attack: 0.004, decay: 0.2, q: 0.8 },
     transient: { gain: 0.2, filterFreq: 1800, sec: 0.03 },
     gain: 0.22,
     pan: 0.08,
-    reverbSend: 0.12
+    reverbSend: 0.12,
+    ringSec: 1.5
   },
   epiano: {
     layers: [{ wave: 'sine', gain: 1 }],
     synthesis: 'fm',
     fm: { ratio: 1, index: 1.4, indexDecaySec: 0.35, tineRatio: 14, tineIndex: 2.2, tineDecaySec: 0.06 },
-    amp: { ...adsr, a: 0.005, d: 0.25, s: 0.15, r: 0.18 },
+    amp: { ...adsr, a: 0.005, d: 0.25, s: 0.15, r: 0.18, fadeSec: 0.6 },
     filter: { type: 'lowpass', base: 1400, peak: 1400, attack: 0, decay: 0, q: 0.6 },
     gain: 0.16,
     pan: 0.05,
-    reverbSend: 0.1
+    reverbSend: 0.1,
+    ringSec: 1.2
   },
   marimba: {
     layers: [{ wave: 'sine', gain: 1 }],
@@ -35,7 +37,8 @@ export const KEY_PATCHES: Record<KeyId, InstrumentPatch> = {
     amp: { ...adsr, a: 0.002, d: 0.12, s: 0.05, r: 0.08 },
     gain: 0.2,
     pan: -0.08,
-    reverbSend: 0.14
+    reverbSend: 0.14,
+    ringSec: 0.6
   },
   organ: {
     layers: [{ wave: 'organ', gain: 1 }],
@@ -55,7 +58,8 @@ export const KEY_PATCHES: Record<KeyId, InstrumentPatch> = {
     transient: { gain: 0.08, filterFreq: 2500, sec: 0.015 },
     gain: 0.28,
     pan: 0.18,
-    reverbSend: 0.1
+    reverbSend: 0.1,
+    ringSec: 1
   },
   upright_bass: {
     layers: [{ wave: 'sine', gain: 1 }],

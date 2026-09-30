@@ -10,6 +10,7 @@ import type { TrackDefinition } from '../../../types/index.js';
 export const investigationCoreTrack: TrackDefinition = {
   bpm: 120,
   length: 128,
+  instruments: { bass: 'chip_bass', lead: 'chip_lead', chords: 'piano' },
   bass: [
     38, 38, 50, 38, 38, 38, 50, 38, 38, 38, 50, 38, 38, 50, 38, 50,
     38, 38, 50, 38, 38, 38, 50, 38, 38, 38, 50, 38, 38, 50, 38, 50,
@@ -56,6 +57,7 @@ export const investigationCoreTrack: TrackDefinition = {
 export const restauranteTrack: TrackDefinition = {
   bpm: 116,
   length: 128,
+  instruments: { bass: 'piano', lead: 'pulse_lead_25', chords: 'epiano' },
   bass: [
     41, 0, 0, 41, 48, 0, 45, 0, 41, 0, 0, 41, 48, 0, 45, 0,
     38, 0, 0, 38, 45, 0, 41, 0, 38, 0, 0, 38, 45, 0, 41, 0,
@@ -102,6 +104,7 @@ export const restauranteTrack: TrackDefinition = {
 export const callejonPostalTrack: TrackDefinition = {
   bpm: 104,
   length: 128,
+  instruments: { bass: 'chip_bass', lead: 'pulse_lead_25', chords: 'piano' },
   bass: [
     43, 0, 47, 0, 50, 0, 52, 0, 54, 0, 55, 0, 52, 0, 50, 0,
     43, 0, 47, 0, 50, 0, 53, 0, 50, 0, 47, 0, 43, 0, 41, 0,
@@ -148,6 +151,7 @@ export const callejonPostalTrack: TrackDefinition = {
 export const casaClotildeTrack: TrackDefinition = {
   bpm: 98,
   length: 128,
+  instruments: { bass: 'piano', lead: 'flute', chords: 'epiano' },
   bass: [
     43, 0, 0, 0, 50, 0, 0, 0, 46, 0, 0, 0, 50, 0, 0, 0,
     42, 0, 0, 0, 50, 0, 0, 0, 41, 0, 0, 0, 50, 0, 0, 0,

@@ -23,7 +23,7 @@ const CHIP: Record<'chip_bass' | 'chip_lead' | 'chip_pad' | 'pulse_lead_12' | 'p
     layers: [{ wave: 'square', gain: 1 }],
     amp: legacy,
     filter: lowpass(3600),
-    vibrato: { rateHz: 5.5, depthCents: 0, delaySec: 0.08, frequencyHz: 6 },
+    vibrato: { rateHz: 5.5, depthCents: 20, delaySec: 0.08, frequencyHz: 6 },
     gain: 0.22,
     pan: 0,
     reverbSend: 0,

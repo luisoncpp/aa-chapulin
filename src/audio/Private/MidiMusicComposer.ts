@@ -130,7 +130,7 @@ export class MidiMusicComposer {
   private arm(fromStep: number, leadInSec: number, fresh: boolean): void {
     if (!this.se.ctx || !this.se.bgmGain) return;
     this.bus = MusicBus.for(this.se.ctx, this.se.bgmGain);
-    this.bus.open(fresh);
+    this.bus.open(fresh, TRACK_CATALOG[this.currentTrack!]?.reverb ?? 0);
     this.scheduler.start({ ctx: this.se.ctx, bpm: this.bpm, fromStep, leadInSec });
   }
 
@@ -150,7 +150,7 @@ export class MidiMusicComposer {
       ctx: this.se.ctx,
       dry: this.se.bgmGain,
       reverb: bus.reverbInput(),
-      watch: (node) => bus.watch(node)
+      watch: (node, endAt) => bus.watch(node, endAt)
     };
   }
 

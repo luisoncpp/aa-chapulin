@@ -1,7 +1,7 @@
 import type { FmSpec, InstrumentPatch } from './InstrumentPatch.js';
 import { attachMotion } from './Motion.js';
 import { ampThrough } from './VoiceOutput.js';
-import { eachNote, midiToFreq, type NoteEvent, type VoiceTarget } from './VoiceTypes.js';
+import { eachNote, midiToFreq, releaseOnEnd, type NoteEvent, type VoiceTarget } from './VoiceTypes.js';
 
 // fallow-ignore-next-line complexity
 export function playFm(target: VoiceTarget, patch: InstrumentPatch, event: NoteEvent): void {
@@ -24,7 +24,8 @@ function playCarrier(target: VoiceTarget, patch: InstrumentPatch, fm: FmSpec, ev
   attachMotion(target, patch, [carrier], amp, event, tail);
   carrier.start(event.when);
   carrier.stop(event.when + tail);
-  target.watch(carrier);
+  target.watch(carrier, event.when + tail);
+  releaseOnEnd(carrier, [filter, amp]);
 }
 
 function addTine(target: VoiceTarget, carrier: OscillatorNode, freq: number, fm: FmSpec, event: NoteEvent): void {
@@ -51,5 +52,5 @@ function modulate(spec: {
   amount.connect(spec.carrier.frequency);
   mod.start(spec.event.when);
   mod.stop(spec.event.when + spec.event.durationSec + spec.decaySec);
-  spec.target.watch(mod);
+  spec.target.watch(mod, spec.event.when + spec.event.durationSec + spec.decaySec);
 }

@@ -1,3 +1,5 @@
+import { releaseOnEnd } from './VoiceTypes.js';
+
 interface NoiseRequest {
   ctx: BaseAudioContext;
   dest: AudioNode;
@@ -6,7 +8,7 @@ interface NoiseRequest {
   filterFreq: number;
   filterType?: BiquadFilterType;
   gain: number;
-  watch?: (node: AudioScheduledSourceNode) => void;
+  watch?: (node: AudioScheduledSourceNode, endAt: number) => void;
 }
 
 const noise = new WeakMap<BaseAudioContext, AudioBuffer>();
@@ -28,7 +30,8 @@ export function playNoise(req: NoiseRequest): void {
   const offset = Math.random() * Math.max(0, duration - req.sec);
   source.start(req.when, offset, req.sec);
   source.stop(req.when + req.sec + 0.01);
-  req.watch?.(source);
+  req.watch?.(source, req.when + req.sec + 0.01);
+  releaseOnEnd(source, [filter, gain]);
 }
 
 function sharedNoise(ctx: BaseAudioContext): AudioBuffer {

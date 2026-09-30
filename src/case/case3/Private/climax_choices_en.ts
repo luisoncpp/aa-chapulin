@@ -53,7 +53,7 @@ export const CASE3_CLIMAX_CHOICES_EN: ChoicePrompt[] = [
       { cutin: 'objection_protesto', speaker: 'DEFENSA', text: 'Thank you, Don Aniceto. You just confessed in your best voice.', sfx: 'whoosh', pose: 'donramon_point' },
       { speaker: 'ANICETO', text: 'Twenty-five years...', bgm: 'truth', pose: 'aniceto_breakdown' },
       { speaker: 'ANICETO', text: 'Twenty-five years holding that station up with my fingernails! Paying the power bill with my salary! Tying cables with rope!', pose: 'aniceto_breakdown' },
-      { speaker: 'ANICETO', text: 'And that trophy was the ONLY thing I had left of myself! I pawned it to pay for the transmitter and redeemed it with what there was, because the fund was going to pay it back — all of it!', pose: 'aniceto_breakdown', updateProfile: 'perfil_aniceto' },
+      { speaker: 'ANICETO', text: 'And that trophy was the ONLY thing I had left of myself! I pawned it to pay for the transmitter and redeemed it with what there was, because the fund was going to pay it back — all of it!', pose: 'aniceto_breakdown' },
       { speaker: 'BARRIGA', text: 'Aniceto... you could have asked me for the money. I\'d give it. I would have given it.', pose: 'barriga_vendado' },
       { speaker: 'ANICETO', text: 'NO! You were going to say my name! MY NAME! On air! On MY station! After this neighborhood loved me for twenty-five years!', pose: 'aniceto_breakdown' },
       { speaker: 'ANICETO', text: 'And I knew the doctor would run upstairs! I knew! He\'s a doctor! Doctors always run!', sfx: 'damage', pose: 'aniceto_breakdown' },

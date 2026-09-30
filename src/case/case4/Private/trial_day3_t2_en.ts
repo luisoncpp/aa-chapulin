@@ -33,7 +33,7 @@ const T6_SUCCESS_EN: DialogueLine[] = [
 export const CASE4_TESTIMONY_6_EN: Testimony = {
   title: 'Testimony: A business meeting',
   witness: 'Rufino Rufián',
-  bgm: 'cross_exam_presto',
+  bgm: 'cross_exam_careo',
   statements: [
     {
       id: 'd3_t2_1',

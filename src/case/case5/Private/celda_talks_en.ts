@@ -56,7 +56,7 @@ export const CASE5_CELDA_TALKS_EN: TalkOption[] = [
       { speaker: 'DEFENSA', text: '(Arrest at nine forty PM. Inventory: one lawyer badge, three pesos, a notebook...)', pose: 'chapulin_idle' },
       { speaker: 'DEFENSA', text: '(...and a rent receipt in his name. Seventeen months. Paid.)', pose: 'chapulin_panic' },
       { speaker: 'DEFENSA', text: 'Don Ramon! This says you paid seventeen months of rent!', pose: 'chapulin_point' },
-      { speaker: 'DON RAMON', text: 'I paid nothing, kid.', pose: 'donramon_idle', updateProfile: 'perfil_donramon' },
+      { speaker: 'DON RAMON', text: 'I paid nothing, kid.', pose: 'donramon_idle' },
       { speaker: 'DON RAMON', text: 'Monday afternoon Mr. Barriga stopped me in the courtyard, handed me a receipt, and said thank you.', pose: 'donramon_sweat' },
       { speaker: 'DON RAMON', text: 'He said thank you, Chapulin. In seventeen years he never had. I thought he was mocking me.', pose: 'donramon_sweat' },
       { speaker: 'DEFENSA', text: '(I will keep the report.)', pose: 'chapulin_idle', addEvidence: 'parte_detencion' },

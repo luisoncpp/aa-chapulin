@@ -9,6 +9,7 @@ import type { TrackDefinition } from '../../../types/index.js';
 export const investigationTrack: TrackDefinition = {
   bpm: 112,
   length: 128,
+  instruments: { bass: 'piano', lead: 'chip_lead', chords: 'epiano' },
   bass: [
     40, 0, 43, 0, 47, 0, 43, 0, 45, 0, 49, 0, 45, 0, 43, 0, 
     40, 0, 43, 0, 47, 0, 43, 0, 45, 0, 49, 0, 45, 0, 43, 0, 
@@ -57,6 +58,7 @@ export const investigationTrack: TrackDefinition = {
 export const suspenseTrack: TrackDefinition = {
   bpm: 116,
   length: 128,
+  instruments: { bass: 'chip_bass', lead: 'chip_lead', chords: 'epiano' },
   bass: [
     38, 0, 0, 38, 0, 0, 38, 0, 38, 0, 0, 38, 0, 0, 38, 0, 
     38, 0, 0, 38, 0, 0, 38, 0, 38, 0, 0, 38, 0, 0, 38, 0, 
@@ -102,6 +104,7 @@ export const suspenseTrack: TrackDefinition = {
 export const victoryTrack: TrackDefinition = {
   bpm: 136,
   length: 128,
+  instruments: { bass: 'chip_bass', lead: 'pulse_lead_25', chords: 'piano' },
   bass: [
     43, 0, 43, 0, 31, 0, 38, 0, 43, 0, 43, 0, 31, 0, 38, 0, 
     43, 0, 43, 0, 31, 0, 38, 0, 43, 0, 43, 0, 31, 0, 38, 0, 
@@ -147,6 +150,7 @@ export const victoryTrack: TrackDefinition = {
 export const detentionCenterTrack: TrackDefinition = {
   bpm: 70,
   length: 128,
+  instruments: { bass: 'chip_bass', lead: 'flute', chords: 'piano' },
   bass: [
     46, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
     46, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 

@@ -14,8 +14,8 @@ export const WIND_PATCHES: Record<WindId, InstrumentPatch> = {
       { wave: 'sawtooth', gain: unison, detuneCents: 8 }
     ],
     amp: { ...adsr, a: 0.04, d: 0.08, s: 0.7, r: 0.08 },
-    filter: { type: 'lowpass', base: 400, peak: 2200, attack: 0.06, decay: 0.15, q: 0.8 },
-    pitch: { scoopCents: 180, scoopSec: 0.07 },
+    filter: { type: 'lowpass', base: 500, peak: 2400, sustain: 1500, attack: 0.06, decay: 0.15, q: 0.8 },
+    pitch: { scoopCents: 30, scoopSec: 0.03 },
     gain: 0.13,
     pan: 0.15,
     reverbSend: 0.08,
@@ -24,8 +24,8 @@ export const WIND_PATCHES: Record<WindId, InstrumentPatch> = {
   mariachi_trumpet: {
     layers: [{ wave: 'square', gain: 1 }],
     amp: { ...adsr, a: 0.03, d: 0.07, s: 0.65, r: 0.07 },
-    filter: { type: 'lowpass', base: 700, peak: 3200, attack: 0.05, decay: 0.12, q: 0.9 },
-    pitch: { scoopCents: 280, scoopSec: 0.06 },
+    filter: { type: 'lowpass', base: 700, peak: 3200, sustain: 2200, attack: 0.05, decay: 0.12, q: 0.9 },
+    pitch: { scoopCents: 45, scoopSec: 0.045 },
     vibrato: { rateHz: 5.2, depthCents: 18, delaySec: 0.12 },
     gain: 0.16,
     pan: 0.22,

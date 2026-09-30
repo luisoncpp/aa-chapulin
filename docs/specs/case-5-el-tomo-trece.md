@@ -36,6 +36,7 @@
 | 28 | **Reacciones colectivas parafraseadas como sala o audiencia** (silencios y pausas focales frente a silencio colectivo; “nadie tose/mueve/oye”, sala que no respira, estallidos, risas y murmullo; ES/EN ↔ spec) | 2026-09-26 | 12 hallazgos nuevos aplicados además de los 28 del primer pase: 40 eventos en total, sincronizados en 80 líneas de código ES/EN y 40 entradas del guion español. Se añadieron silencios explícitos de sala/tribunal, “nadie tose”, el murmullo del testimonio 2 del día 2, “la sala no respira” y las dos referencias colectivas al sonido del papel y las teclas. Se dejaron fuera los silencios desnudos que funcionan como pausas focales. Fuentes y spec quedaron alineados; no hay candidatos colectivos pendientes. |
 | 29 | **Puesta en escena de acciones narradas** (acción visible ↔ fondo, mueble y pose; ES/EN ↔ spec) | 2026-09-27 | De los 19 grupos, 18 requirieron cambios: 22 renglones del guion espejados en 44 líneas de fuente ES/EN. El forense del día 4 ya cumplía `bg_gallery_characters` + `none` y quedó intacto. No se añadieron assets. |
 | 30 | **Continuidad de cámara en pausas de silencio** (pausa colectiva ↔ galería; reacción focal ↔ personaje, pose y cámara; fuentes ES/EN ↔ spec) | 2026-09-27 | 6 pausas judiciales cotejadas en las fuentes ES/EN y el spec. Cuatro colectivas encuadran la galería con `furniture: 'none'`; dos focales dan voz a Super Sam o Berrondo con su pose y cámara. La pausa tras la declaración de la libreta del día 3 ya tenía galería en las fuentes y se alineó también en el spec. |
+| 31 | **Retrato frente a bitácora** (rol, historia personal y vínculo con el Caso 5 ↔ catálogos ES/EN; cada avance ↔ revelación de personaje) | 2026-09-29 | 8 avances cotejados entre catálogo, guion y spec: Don Ramón 1, Casimiro 2, Super Sam 3, Berrondo 2; sólo avanzan en revelaciones personales o de relación con el caso. Se retiraron las actualizaciones que guardaban detalles de renta, horas, registros o declaraciones como evidencia; ES/EN y spec quedaron alineados. Cero hallazgos nuevos en esta lente. |
 
 **Regla:** cada nueva pasada declara aquí su lente antes de empezar; repetir una lente no cuenta como auditoría. El criterio de parada es una pasada con lente nueva que rinde cero hallazgos.
 
@@ -337,22 +338,22 @@ El contador es lineal y satura: una tercera actualización se descartaría en si
 
 Mecánica introducida en el Caso 1 (§6 de [[docs/specs/case-1-turnabout-red-grasshopper.md]]). **No se toca el esquema.** El Caso 5 declara perfiles, así que su Acta muestra la barra de pestañas al recibir la primera ficha. Al iniciar un acto, el motor incorpora silenciosamente las fichas cuyo personaje ya figuraba en un acto anterior y que también existe en el catálogo actual, en el orden Case 0 → Case 2 (Act 1) → Case 1 (Act 2) → Case 3 → Case 4 → Case 5. La descripción y etapa inicial son las de este catálogo; no se importa el contador de etapas de otro caso. Las fichas nuevas siguen entrando en su primera escena. ([[docs/lessons-learned/conditional-acta-tab-bar.md]])
 
-Regla heredada intacta: **durante un contrainterrogatorio la tarjeta de persona no ofrece botón de presentar.** Es lo que hace imposible acusar a Berrondo antes de que el Juez lo pida. Una ficha sólo puede contener hechos ya presentados al jugador; cada etapa nueva se entrega en el acto narrativo que revela el dato, nunca antes de ese acto.
+Regla heredada intacta: **durante un contrainterrogatorio la tarjeta de persona no ofrece botón de presentar.** Es lo que hace imposible acusar a Berrondo antes de que el Juez lo pida. Una ficha sólo puede contener contexto ya presentado al jugador; cada cambio se entrega en el acto narrativo que revela ese contexto, nunca antes. La descripción es un retrato breve del papel, la historia personal relevante y el vínculo con este caso, no una bitácora de pruebas ni una lista exhaustiva de hechos conocidos. Las etapas pueden reemplazar o reformular la descripción cuando una revelación cambia la lectura del personaje; no se actualiza por cada pista, declaración o deducción.
 
 ### 6.1 Catálogo del Caso 5 (10 fichas)
 
 | Ficha | Alta | Descripción inicial | Etapas |
 |---|---|---|---|
-| `perfil_donramon` | D1 celda | *«Acusado de asesinar a Casimiro Lengua. Abogado de banqueta. Es la sexta vez que pisa este juzgado y la primera que lo hace esposado.»* | **3.** (1) D1, al leer el acta de detención: *«El acta registra diecisiete mensualidades de renta pagadas en efectivo; Ramón dice que él no pagó.»* (2) D1-T2: *«Estuvo doce minutos a solas con la víctima, sin testigo que viera la mesa.»* (3) GIRO 4: *«La ventana corregida lo incluye. Su defensa acaba de meterlo en ella.»* |
-| `perfil_chapulin` | D1 celda | *«Defensor titular, por designación del propio acusado. No tiene título, tiene antenitas. Litiga con la insignia prestada de su cliente.»* | **1** (GIRO 3): *«Ganó tres jornadas seguidas y no ha demostrado todavía que alguien estuviera en ese pasillo.»* |
-| `perfil_casimiro` | D1 celda | *«La víctima. Sentenciado en julio por el asalto al cobrador Nazario Cuenca; su condena no está en discusión.»* | **3.** (1) D1-T3: *«Lo encontraron con su expediente abierto en la página 214.»* (2) D2, `openingPresent`: *«Pidió declarar en una diligencia de su apelación y que estuviera presente el abogado que lo venció.»* (3) D3-T2: *«Ofreció entregar un fichero el 8 de noviembre. La fiscalía le contestó dieciocho días después.»* |
-| `perfil_supersam` | D1 apertura | *«Fiscal. Cobra por caso cerrado.»* | **3.** (1) D3 investigación, fiscalía: *«Desde agosto carga una bolsa vacía para recordar por qué cerró aquel caso en cinco minutos.»* (2) D3-T2, al admitir que ignoró el oficio: *«Firmó seiscientos oficios al mes durante once años sin leer la lista de distribución.»* (3) Tras el `followUp` de D3-T2: *«Admitió que cobró un kilo de los seis que le robaron y rellena la bolsa con algodón para recordar lo que todavía le falta.»* |
-| `perfil_berrondo` | D1 apertura | *«Acusador coadyuvante. Abogado colegiado desde 1955. Se presentó ante la fiscalía como síndico de la víctima y ofreció auxiliarla sin cobrar honorarios.»* | **4.** (1) D2 investigación, despacho: *«Su primera sindicatura, la quiebra 114/1971, es la única que sigue abierta, desde hace once años.»* (2) D2 investigación, despacho: *«Administra un cedulario de once mil cuatrocientas tarjetas y vende copias. No es delito.»* (3) D2-T2: *«Concede que vender no es delito; la corte ordena inspeccionar su huacal de todos modos.»* (4) D3-T3: *«Firmó el acuse de una diligencia que él mismo dijo desconocer.»* |
-| `perfil_nicanor` | D1 vestíbulo | *«Conserje del Archivo Judicial. Treinta y un años de servicio. Fue quien encontró a la víctima.»* | **1** (D1-T3): *«Sacude el Tomo XI los lunes. El sábado del crimen vio el estante completo; el hallazgo fue a las 17:35, cuando subía a cerrar el pasillo.»* |
-| `perfil_genoveva` | D2 juicio | *«Empleada de la ventanilla judicial. Lleva el libro de peritos y auxiliares.»* | **1** (D4-T1): *«Registra cuándo se devuelve cada gafete y archiva los vales de consulta. No ve la puerta del patio y el reglamento no la obliga.»* Presentación D4-T1 para pedirle el registro del 29 de noviembre. |
-| `perfil_sargento` | D1 pasillo 7 | *«Policía judicial. Pidió los análisis, no movió nada y lo asentó todo. Dice que aprendió en septiembre.»* | — |
-| `perfil_barriga` | D2 vecindad | *«Casero del acusado. Diecisiete años cobrándole. Recibió diecisiete meses en efectivo el 29 de noviembre y expidió recibo.»* | — |
-| `perfil_chompiras` | D3 bodega | *«Cargador del Archivo. Absuelto en agosto del robo del Chanfle de Oro. Es lo primero que le han dado con seguro y con aguinaldo, y no piensa perderlo.»* | **1** (D3-T1): *«Ayuda a destapar el huacal 9 desde septiembre y lo ha visto abierto seis o siete veces.»* |
+| `perfil_donramon` | D1 celda | *«Acusado por la muerte de Casimiro Lengua. Abogado de banqueta y viejo conocido de esta corte; nunca antes había comparecido esposado.»* | **1 cambio** (D2, `openingPresent`): al recordar por qué Casimiro lo pidió en su apelación, Don Ramón revela que años atrás lo venció en el juicio por el asalto a Nazario Cuenca. |
+| `perfil_chapulin` | D1 celda | *«Defensor titular, por designación del propio acusado. No tiene título, tiene antenitas. Litiga con la insignia prestada de su cliente.»* | —. La ficha presenta su oficio improvisado y sus rasgos de personaje; no recibe actualizaciones de progreso. |
+| `perfil_casimiro` | D1 celda | *«Víctima del caso, sentenciado en julio por el asalto a Nazario Cuenca.»* | **2 cambios.** (1) D1-T3: su pasado como vendedor para una empresa disuelta lo conecta con el Archivo. (2) D2, `openingPresent`: pidió declarar durante su apelación y pidió tener presente al abogado que lo había vencido. |
+| `perfil_supersam` | D1 apertura | *«Fiscal acostumbrado a cerrar casos con rapidez y a cobrar por caso cerrado.»* | **3 cambios.** (1) D3 investigación: una bolsa que guarda recuerda el caso que cerró en cinco minutos. (2) D3-T2: admite que durante años firmó oficios sin leerlos. (3) En el D3-T2 revela por qué sigue cargando la bolsa: quiere sentir a diario el peso que perdió. Son rasgos de su relación con el oficio y con el caso anterior, no un inventario de pruebas. |
+| `perfil_berrondo` | D1 apertura | *«Acusador coadyuvante y abogado colegiado desde 1955. Se ofreció a auxiliar a la fiscalía sin cobrar honorarios.»* No nombrar su cargo concursal antes de que lo explique en D2 investigación. | **2 cambios**, ambos en D2 investigación: (1) su primera y única quiebra aún abierta explica su vínculo con el Archivo y la víctima; (2) compró el cedulario de la empresa liquidada y vive de vender copias, una postura que revela cómo entiende su oficio. |
+| `perfil_nicanor` | D1 vestíbulo | *«Conserje del Archivo Judicial desde hace treinta y un años; encontró a la víctima.»* | —. Su antigüedad y relación con el lugar bastan para presentar a este testigo; las horas de su relato pertenecen al caso, no a su perfil. |
+| `perfil_genoveva` | D2 juicio | *«Empleada de la ventanilla judicial; lleva el registro de peritos y auxiliares.»* | —. El cargo sitúa su relación con el Archivo; los detalles del registro se conservan en la prueba correspondiente. |
+| `perfil_sargento` | D1 pasillo 7 | *«Policía judicial metódico. Tras equivocarse al documentar otra escena, ahora procura dejar que las pruebas hablen antes de tocarlas.»* | — |
+| `perfil_barriga` | D2 vecindad | *«Casero de Don Ramón desde hace diecisiete años. Su relación de larga data lo convierte en una de las personas que mejor conoce la vida diaria del acusado.»* | — |
+| `perfil_chompiras` | D3 bodega | *«Cargador del Archivo desde septiembre, absuelto meses atrás del robo del Chanfle de Oro. Es su primer empleo formal y no quiere perder esta oportunidad.»* | —. Su historia de reinserción basta para explicar qué arriesga al trabajar en el Archivo; los detalles del huacal son evidencia. |
 
 ### 6.2 Ranuras de señalamiento de persona
 
@@ -600,7 +601,6 @@ DON RAMÓN: El lunes en la tarde el señor Barriga me detuvo en el patio, me dio
 DON RAMÓN: Me dijo «gracias», Chapulín. Nunca en diecisiete años me había dicho gracias. Yo creí que se estaba burlando. [pose: donramon_sweat]
 DEFENSA: (Me quedo con el acta.) [pose: chapulin_idle]
 [ENTREGAR parte_detencion]
-[ACTUALIZAR-PERFIL perfil_donramon]
 NARRADOR: El alguacil desliza una segunda hoja, engrapada aparte: la hoja de relevo de custodia del Archivo. [sfx: click]
 DEFENSA: (Cuatro firmas y cuatro horas. Rangel y Nieto salen de la reja a las cinco en punto...) [pose: chapulin_idle]
 DEFENSA: (...y Cadena y Solís firman su entrada hasta las cinco y cuarto.) [pose: chapulin_panic]
@@ -1170,7 +1170,6 @@ JUEZ: ¡ORDEN! ¡ORDEN EN LA SALA! [sfx: gavel; pose: judge_gavel]
 [ACTUALIZAR informe_forense_c5]
 DEFENSA: Y con la ampliación que pedimos esta mañana, señor juez: el golpe entró de arriba abajo y por detrás, sin arco. [pose: chapulin_point]
 DEFENSA: El objeto se sostuvo a dos manos y se cerró sobre la nuca. Como se cierra un libro. [pose: chapulin_idle]
-[ACTUALIZAR-PERFIL perfil_donramon]
 SUPER SAM: ¡Su cliente estuvo doce minutos a solas con él, counselor! ¡Sin un testigo que viera esa mesa! [pose: supersam_slam; sfx: desk_slam]
 DEFENSA: Y esos doce minutos son lo único que tengo, señor fiscal. Ya lo sé. [pose: chapulin_idle]
 DEFENSA: Por eso no le estoy pidiendo a la corte que me crea. Le estoy pidiendo que cuente. [pose: chapulin_point]
@@ -1285,9 +1284,8 @@ JUEZ: Léala, licenciado. [sfx: gavel; pose: judge_gavel]
 DEFENSA: «Enciclopedias El Saber Universal, Sociedad Anónima.» Prueba decomisada al sentenciado en julio. [pose: chapulin_point]
 DEFENSA: Y al pie, de puño y letra del secretario: «sociedad disuelta desde 1971». [pose: chapulin_idle]
 DEFENSA: Don Nicanor sacude el Tomo XI cada lunes. El sábado del crimen vio el estante completo y el expediente abierto en esta página. [pose: chapulin_point]
-[ACTUALIZAR-PERFIL perfil_casimiro]
-[ACTUALIZAR-PERFIL perfil_nicanor]
 JUEZ: ¿Y qué venía a hacer ese hombre aquí con la tarjeta de una compañía disuelta hace once años? [pose: judge_thinking]
+[ACTUALIZAR-PERFIL perfil_casimiro]
 DEFENSA: Eso, señor juez, es exactamente lo que alguien no quiso que dijera. [pose: chapulin_slam; sfx: desk_slam]
 SUPER SAM: ¡OBJECTION! ¡Especulación! [pose: supersam_slam; sfx: desk_slam]
 JUEZ: Concedido. Pero la corte la anota igual, porque la va a necesitar. [pose: judge_neutral]
@@ -1531,6 +1529,7 @@ DEFENSA: «Fulgencio Berrondo. Síndico. Quiebra 114/1971.» [pose: chapulin_idl
 BERRONDO: Enciclopedias El Saber Universal, Sociedad Anónima. Mi primera sindicatura y la última que me queda abierta. [pose: berrondo_idle]
 DEFENSA: ¿Once años abierta? [pose: chapulin_panic]
 BERRONDO: Once años, casi nueve meses. Hay acreedores que murieron esperando y herederos que no aparecen. [pose: berrondo_idle]
+[ACTUALIZAR-PERFIL perfil_berrondo]
 BERRONDO: Un concurso no se cierra cuando uno quiere, licenciado. Se cierra cuando ya no queda nadie a quien deberle. [pose: berrondo_idle]
 DEFENSA: ¿Y esa credencial sirve para algo todavía? [pose: chapulin_idle]
 BERRONDO: Sirve para todo. Tenga, llévese una copia certificada; la tengo hecha desde hace años porque me la piden mucho. [pose: berrondo_idle]
@@ -1565,7 +1564,6 @@ BERRONDO: ...sal. [pose: berrondo_idle]
 DEFENSA: ¡Chanfle! [pose: chapulin_panic]
 BERRONDO: Del latín *concursus*, «concurrencia»: todos los acreedores concurren a la vez sobre lo que queda. [pose: berrondo_definicion]
 BERRONDO: Es una palabra bonita para una cosa muy fea, licenciado. [pose: berrondo_idle]
-[ACTUALIZAR-PERFIL perfil_berrondo]
 ~~~
 
 **Lámina explicativa L3.**
@@ -1621,6 +1619,7 @@ BERRONDO: Para vender copias, licenciado. Ficha por ficha, a quien las pida y la
 DEFENSA: ¡¿Y eso se puede?! [pose: chapulin_panic]
 BERRONDO: Búsquelo usted, se lo suplico. Tomo IX del Código, voz «cosas fuera del comercio». La información no está ahí. [pose: berrondo_definicion]
 BERRONDO: Vender información no es delito en este país, licenciado. Ni lo era en el setenta y uno, ni lo es hoy. [pose: berrondo_idle]
+[ACTUALIZAR-PERFIL perfil_berrondo]
 DEFENSA: (No me está confesando nada. Me está dando una clase.) [pose: chapulin_idle]
 ~~~
 
@@ -1763,11 +1762,12 @@ DEFENSA: Su condena no está en discusión y esta defensa no va a pedir que se r
 JUEZ: ¿Y qué hacía en el Archivo? [pose: judge_neutral]
 DEFENSA: Venía a declarar en una diligencia de su apelación, señor juez. La diligencia la pidió él. [pose: chapulin_idle]
 DEFENSA: Y pidió que estuviera presente el único abogado que lo había vencido. [pose: chapulin_point]
+[ACTUALIZAR-PERFIL perfil_casimiro]
 JUEZ: ¿Por qué pediría eso un hombre? [pose: judge_thinking]
 DON RAMÓN: Porque era el único que no le tenía miedo, señor juez. [pose: donramon_idle]
+[ACTUALIZAR-PERFIL perfil_donramon]
 DON RAMÓN: A la gente como el señor Lengua le tienen miedo, o lástima, o asco. Nunca nada más respeto. [pose: donramon_idle]
 JUEZ: Que se asiente. [sfx: gavel; pose: judge_gavel]
-[ACTUALIZAR-PERFIL perfil_casimiro]
 SUPER SAM: Conmovedor. La fiscalía llama al testigo que cobró esa renta. [pose: supersam_point]
 SUPER SAM: Señor Zenón Barriga y Pesado, arrendador. [pose: supersam_point]
 BARRIGA: Presente. Y quiero aclarar de una vez que yo no quería venir. [pose: barriga_reclamo]
@@ -2015,7 +2015,6 @@ JUEZ: ¿Perdón? [pose: judge_shock]
 BERRONDO: Digo que el licenciado tiene razón, señor juez, y se lo agradezco. [pose: berrondo_idle]
 BERRONDO: Yo declaré «salí» y debí declarar «devolví el gafete». Es una imprecisión mía y rectifico. [pose: berrondo_idle]
 BERRONDO: Salí por el patio de maniobras, que es donde dejo el automóvil. Nadie lleva registro de ese portón porque no hay nada que registrar. [pose: berrondo_idle]
-[ACTUALIZAR-PERFIL perfil_berrondo]
 DEFENSA: (Me dio la razón. Me dio la razón y me quitó todo.) [pose: chapulin_panic]
 JUEZ: Queda rectificada la declaración. Y la corte sigue sin saber quién pagó esa renta. [pose: judge_neutral]
 JUEZ: Defensa: ¿tiene usted algo que ligue a este testigo con el dinero, o vamos a seguir discutiendo columnas? [pose: judge_thinking]
@@ -2088,7 +2087,6 @@ BERRONDO: **Segunda.** No hay una sola prueba de que yo haya vendido la ficha de
 BERRONDO: **Tercera.** Aunque la hubiera, vender información sigue sin ser delito en este país. [bg: bg_witness; pose: berrondo_idle]
 BERRONDO: Puede esta corte censurarme moralmente. No puede procesarme. [bg: bg_witness; pose: berrondo_idle]
 JUEZ: ...La corte concede las tres, licenciado, y lo hace con el estómago revuelto. [pose: judge_thinking]
-[ACTUALIZAR-PERFIL perfil_berrondo]
 DEFENSA: ¡Señor juez! [pose: chapulin_panic]
 JUEZ: Licenciado, si yo condenara hoy a alguien por un patrón, mañana condenarían a su cliente por el mismo procedimiento. [pose: judge_neutral]
 JUEZ: Un móvil y una oportunidad no son una autoría. En esta sala eso vale para todos o no vale para nadie. [sfx: gavel; pose: judge_gavel]
@@ -2283,13 +2281,15 @@ DEFENSA: ¿Y ésta? [pose: chapulin_idle]
 SUPER SAM: Ésa es mi bolsa. [pose: supersam_crossed]
 DEFENSA: Está vacía. [pose: chapulin_idle]
 SUPER SAM: Desde agosto. [pose: supersam_thinking]
+DEFENSA: Pues la que usted trae al hombro se ve bien llena. [pose: chapulin_idle]
+SUPER SAM: Algodón, counselor. [pose: supersam_sweat]
 DEFENSA: Señor fiscal, en agosto usted me acusó a mí. [pose: chapulin_point]
 SUPER SAM: Lo sé perfectamente, counselor. Cerré ese caso en cinco minutos. Five. [pose: supersam_watch]
-SUPER SAM: Y llevo más de tres meses cargando una bolsa vacía para que no se me olvide por qué los cerré tan rápido. [pose: supersam_sweat]
+SUPER SAM: Y llevo más de tres meses rellenándola de algodón para que no se me olvide por qué los cerré tan rápido. [pose: supersam_sweat]
+[ACTUALIZAR-PERFIL perfil_supersam]
 DEFENSA: ...¿Perdón? [pose: chapulin_panic]
 SUPER SAM: Nada. Get out of my office. [pose: supersam_point]
 DEFENSA: (No. No me lo va a decir hoy. Y si se lo saco a la fuerza, deja de ser suyo.) [pose: chapulin_idle]
-[ACTUALIZAR-PERFIL perfil_supersam]
 ~~~
 
 > **Regla de arco (intocable).** La autodestrucción de Super Sam es **voluntaria** y ocurre en el estrado, no aquí. Si la defensa lo acorrala con una prueba, el episodio le roba lo único que este personaje tiene. El jugador **no puede** presentar nada en esta escena.
@@ -2570,7 +2570,6 @@ DEFENSA: (La ese caída. Como en la libreta del muerto.) [pose: chapulin_panic]
 SUPER SAM: ¡Objection! ¡Una máquina con una tecla chueca no es un asesino! [pose: supersam_slam; sfx: desk_slam]
 JUEZ: No lo es, señor fiscal. Pero es un aparato que escribe igual que algo que apareció en el patio de un museo. [pose: judge_thinking]
 JUEZ: Y esta corte quiere saber quién lo escribió y quién sabía qué. [pose: judge_neutral]
-[ACTUALIZAR-PERFIL perfil_chompiras]
 JUEZ: El testigo puede retirarse. [sfx: gavel; pose: judge_gavel]
 SUPER SAM: Your Honor. La fiscalía solicita rendir declaración. [pose: supersam_idle]
 JUEZ: ¿La fiscalía solicita QUÉ? [pose: judge_shock]
@@ -2703,6 +2702,7 @@ SUPER SAM: Y ésa, counselor, es la única cosa de todo esto de la que de veras 
 DEFENSA: ¡UN MOMENTO! ¿«Por contabilidad»? [sfx: whoosh; pose: chapulin_point]
 SUPER SAM: Llena de plata pesaba seis kilos. Llena de algodón pesa novecientos gramos. [bg: bg_witness; furniture: podium; pose: supersam_point]
 SUPER SAM: Levanto la misma bolsa todos los días y me falta el mismo peso. Así no tengo que acordarme a propósito. [bg: bg_witness; furniture: podium; pose: supersam_sweat]
+[ACTUALIZAR-PERFIL perfil_supersam]
 DEFENSA: ¿Y el algodón para qué? [pose: chapulin_idle]
 SUPER SAM: Para que no se me note el balance, counselor. Un fiscal que cobra por caso cerrado no puede llegar al juzgado con la bolsa floja. [bg: bg_witness; furniture: podium; pose: supersam_sweat]
 SUPER SAM: A eso, en mi tierra, le llaman amortización. [bg: bg_witness; furniture: podium; pose: supersam_sweat]
@@ -2741,7 +2741,6 @@ SUPER SAM: ...Seiscientos, Your Honor. [bg: bg_witness; furniture: podium; pose:
 JUEZ: ¿Cómo dice? [pose: judge_thinking]
 SUPER SAM: Que firmo seiscientos oficios al mes, y que no he leído lo que va hasta abajo de ninguno en once años. [bg: bg_witness; furniture: podium; pose: supersam_sweat]
 [ACTUALIZAR-PERFIL perfil_supersam]
-[ACTUALIZAR-PERFIL perfil_casimiro]
 NARRADOR: El secretario levanta la pluma. [bg: bg_judge; furniture: judge-bench; pose: secretario_leyendo]
 JUEZ: Que se asiente. [sfx: gavel; pose: judge_gavel]
 JUEZ: Y que se asiente también que este tribunal no tiene todavía nada contra nadie, porque recibir una notificación legal no es un delito. [pose: judge_neutral]
@@ -2782,7 +2781,6 @@ SUPER SAM: ...... [bg: bg_witness; furniture: podium; pose: supersam_sweat]
 SUPER SAM: ...Your Honor. [bg: bg_witness; furniture: podium; pose: supersam_sweat]
 SUPER SAM: La fiscalía —yo— solicito ser separado de este asunto y puesto a disposición de la Contraloría. [bg: bg_witness; furniture: podium; pose: supersam_case1_idle]
 JUEZ: Se le tiene por separado. El secretario de acuerdos continuará en representación social. [sfx: gavel; pose: judge_gavel]
-[ACTUALIZAR-PERFIL perfil_supersam]
 JUEZ: Y esta corte le dice una cosa, señor Sullivan, porque no se la va a decir nadie más. [pose: judge_thinking]
 JUEZ: Lo que usted hizo hoy no lo absuelve. Pero no lo hizo por barato. [pose: judge_neutral]
 SUPER SAM: ...Thank you, Your Honor. [pose: supersam_case1_idle]
@@ -2937,7 +2935,6 @@ BERRONDO: A mí me va a costar más, licenciado. [pose: berrondo_idle]
 BERRONDO: Rectifico mi declaración: sí se me notificó, el veintinueve de noviembre, y lo olvidé. [pose: berrondo_idle]
 BERRONDO: Es un olvido gravísimo en un hombre de mi oficio y no lo voy a excusar. [pose: berrondo_idle]
 JUEZ: Que se asiente la rectificación. [sfx: gavel; pose: judge_gavel]
-[ACTUALIZAR-PERFIL perfil_berrondo]
 DEFENSA: (Lo agarré. Por fin lo agarré en una.) [pose: chapulin_point]
 DON RAMÓN: (Joven, no se ponga contento.) [pose: donramon_sweat]
 DON RAMÓN: (Un olvido no es un homicidio. Y ese señor acaba de cambiar una mentira por un defecto de carácter.) [pose: donramon_idle]
@@ -2983,7 +2980,6 @@ JUEZ: La segunda puerta abrió una posibilidad. Después de tres días, la defen
 JUEZ: Y frente a esa ausencia queda un hecho probado: el acusado conocía el camino, salió dos minutos antes del intervalo y pudo volver durante los quince minutos sin vigilancia. [sfx: gavel; pose: judge_gavel]
 DON RAMÓN: ...Señor juez, yo no volví a subir. [pose: donramon_shock]
 JUEZ: Lo sé, licenciado Valdés. Y esta corte no puede sentenciar con lo que sabe: sentencia con lo que le prueban. [pose: judge_neutral]
-[ACTUALIZAR-PERFIL perfil_chapulin]
 NARRADOR: El secretario de acuerdos, que ahora ocupa la mesa de la fiscalía, se pone de pie sin ganas.
 SECRETARIO: La representación social sostiene la acusación, señor juez.
 JUEZ: Mañana es el cuarto día. Esta corte no va a conceder un quinto. [sfx: gavel; pose: judge_gavel]
@@ -3207,7 +3203,6 @@ JUEZ: ¡ORDEN! ¡ORDEN EN LA SALA! [sfx: gavel; pose: judge_gavel]
 JUEZ: ¡Licenciado Chapulín! ¿Usted sabe lo que acaba de hacer? [pose: judge_shock]
 DEFENSA: Lo sé, señor juez. Lo supe a las cinco cuarenta de la mañana. [pose: chapulin_idle]
 JUEZ: ¡Acaba usted de colocar a su defendido a solas con la víctima **dentro** de la hora de la muerte! [pose: judge_shock]
-[ACTUALIZAR-PERFIL perfil_donramon]
 DEFENSA: Sí, señor juez. [pose: chapulin_idle]
 DEFENSA: Y acabo de demostrar que la hora registrada tampoco descarta al otro hombre. Todavía tengo que probar que llegó al pasillo. [pose: chapulin_point]
 NARRADOR: Silencio en la sala. [bgm: suspense] [bg: bg_gallery_case5_secretary_berrondo_accused; furniture: none]
@@ -3326,7 +3321,6 @@ DEFENSA: Todo el mundo le dice así, señorita. Yo también confundí los térmi
 DEFENSA: Señor juez: ese libro no registra quién estaba dentro del Archivo. [pose: chapulin_point]
 DEFENSA: Registra **quién pidió un gafete y quién lo devolvió**. [pose: chapulin_slam; sfx: desk_slam]
 JUEZ: Que se asiente con esas palabras exactas. [sfx: gavel; pose: judge_gavel]
-[ACTUALIZAR-PERFIL perfil_genoveva]
 DEFENSA: Y una cosa más, señorita, porque usted es la única persona de este juicio que se sabe el reglamento. [pose: chapulin_idle]
 DEFENSA: Un síndico que ya devolvió el gafete, ¿puede seguir dentro del edificio? [pose: chapulin_point]
 GENOVEVA: ...Sí, señor. [pose: genoveva_sweat]
@@ -4365,7 +4359,7 @@ Este apartado manda sobre las cronologías, el guion, la tabla de descarte y la 
 | **I4** | El presente es 1982: 1971 queda a once años y 1955 a veintisiete años de ejercicio. | Mezclar duraciones incompatibles. |
 | **I5** | Chómpiras trabaja desde septiembre y vio seis o siete aperturas. La rutina anterior pertenece a otros empleados. | Darle una memoria laboral de once o quince años. |
 | **I6** | En el Señalamiento 1 sólo A y B sostienen el vínculo con el cedulario. C, D y E no atribuyen un vendedor. | Usar contexto económico como prueba de autoría común. |
-| **I7** | Cada etapa declarada de perfil tiene un comando de actualización obligatorio: Berrondo 3, Chómpiras 1. | Saltar etapas del Acta por actualizaciones faltantes. |
+| **I7** | Sólo las revelaciones que cambian el retrato de un personaje avanzan el Acta: Don Ramón 1, Casimiro 2, Super Sam 3 y Berrondo 2; los demás perfiles no se actualizan por nueva evidencia. | Usar las fichas como bitácora de pistas o dejar que una actualización contradiga el catálogo. |
 | **I8** | Ninguna zona incorrecta puede responder válidamente la pregunta visible; cada fallo debe describir su propio panel con verdad. | Penalizar al jugador por leer correctamente el dinero o el producto. |
 | **I9** | El inventario histórico declara 11,400 tarjetas originales; el fichero actual contiene 11,407 físicas. Las once bajas permanecen archivadas con marca de inactividad. | Restar bajas del conteo físico o borrar el pago de las siete altas. |
 | **I10** | El crimen ocurre el sábado 4 de diciembre de 1982; las jornadas judiciales van del lunes 6 al jueves 9. La notificación y la renta son del lunes 29 de noviembre; el retiro, del viernes 26. | Asignar días de la semana imposibles o romper los intervalos de la cronología. |
@@ -4410,7 +4404,7 @@ Este apartado manda sobre las cronologías, el guion, la tabla de descarte y la 
 | **I49** | La fila 3 de §20.1 marca a Don Ramón con el citatorio del lunes; la fila 4 marca a **Nicanor** (no al Sargento) como quien conoce el relevo de las 17:00. | Negar al acusado un aviso que el guion muestra y atribuir al Sargento un dato institucional que declara el conserje. |
 | **I50** | §25 enumera las uniones cerradas `EvidenceId`, `ProfileId` y `PoseName` que el Caso 5 exige ampliar antes de compilar. | Declarar el inventario de integración exhaustivo sin nombrar los tipos que el motor cierra. |
 | **I51** | El panel B de `examine_expediente_serie` reproduce los **seis** renglones de la ficha del museo, con «5 min.» y sin guion tipográfico inventado. | Resumir el panel B en menos renglones o escribir «— 5 min.» donde la fuente imprime «5 min.» |
-| **I52** | La etapa 2 de `perfil_berrondo` cita un dato de D2-T2, no un argumento reservado a GIRO 2. | Adelantar en la ficha de persona una deducción que el guion aún no ejecutó. |
+| **I52** | Las dos etapas de `perfil_berrondo` retratan su responsabilidad de síndico y su forma de entender el trabajo de vender copias, reveladas en D2 investigación; no enumeran hechos usados como prueba. | Convertir la ficha en un resumen de evidencia o anticipar información que Berrondo todavía no ha revelado. |
 | **I53** | La fila del actuario en §21 siembra y cobra sólo en bloques que realmente lo mencionan (correspondencia, acuse/oficio, D2-T2, F16). | Citar como siembra o cobro un bloque que no contiene al actuario. |
 | **I54** | Las cuarenta y siete partidas pertenecen al **inventario de la masa concursal**, no al contenido físico del huacal; §4.2 es vista derivada y el montacargas de las 16:40–16:45 cabe en §24.B. | Conflar inventario con cajones del huacal, tratar §4.2 como fuente autónoma o aislar un trayecto ya presupuestado. |
 | **I55** | La descripción de `oficio_diligencia` enumera la copia para la **Sindicatura de la quiebra 114/1971**; en D3-T2.3, `huacal_9` es un `deflect` porque prueba la presencia sabatina del síndico, pero no que conociera esta diligencia. | Exigir que el jugador adivine la sindicatura desde una lista de distribución resumida o penalizar una presentación razonable de la tapa del huacal antes del oficio. |

@@ -56,7 +56,7 @@ export const CASE5_CELDA_TALKS: TalkOption[] = [
       { speaker: 'DEFENSA', text: '(Detención a las nueve cuarenta de la noche. Inventario: una insignia de abogado, tres pesos, una libreta...)', pose: 'chapulin_idle' },
       { speaker: 'DEFENSA', text: '(...y un recibo de renta a su nombre. Diecisiete mensualidades. Pagadas.)', pose: 'chapulin_panic' },
       { speaker: 'DEFENSA', text: '¡Don Ramón! ¡Aquí dice que usted pagó diecisiete meses de renta!', pose: 'chapulin_point' },
-      { speaker: 'DON RAMÓN', text: 'Yo no pagué nada, joven.', pose: 'donramon_idle', updateProfile: 'perfil_donramon' },
+      { speaker: 'DON RAMÓN', text: 'Yo no pagué nada, joven.', pose: 'donramon_idle' },
       { speaker: 'DON RAMÓN', text: 'El lunes en la tarde el señor Barriga me detuvo en el patio, me dio un recibo y me dijo «gracias».', pose: 'donramon_sweat' },
       { speaker: 'DON RAMÓN', text: 'Me dijo «gracias», Chapulín. Nunca en diecisiete años me había dicho gracias. Yo creí que se estaba burlando.', pose: 'donramon_sweat' },
       { speaker: 'DEFENSA', text: '(Me quedo con el acta.)', pose: 'chapulin_idle', addEvidence: 'parte_detencion' },

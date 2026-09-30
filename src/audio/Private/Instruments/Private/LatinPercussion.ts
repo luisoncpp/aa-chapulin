@@ -48,7 +48,7 @@ function tom(hit: DrumHit, startFreq: number, endFreq: number): void {
   gain.connect(hit.dest);
   osc.start(hit.when);
   osc.stop(hit.when + 0.19);
-  hit.watch(osc);
+  hit.watch(osc, hit.when + 0.19);
 }
 
 function cowbell(hit: DrumHit): void {
@@ -79,7 +79,7 @@ function guiro(hit: DrumHit): void {
   playNoise({ ctx: hit.ctx, dest: filter, when: hit.when, sec: 0.18, filterFreq: 3000, gain: 1, watch: hit.watch });
   lfo.start(hit.when);
   lfo.stop(hit.when + 0.19);
-  hit.watch(lfo);
+  hit.watch(lfo, hit.when + 0.19);
 }
 
 function timbal(hit: DrumHit): void {
@@ -105,5 +105,5 @@ function toneInto(spec: {
   gain.connect(spec.dest);
   osc.start(spec.hit.when);
   osc.stop(spec.hit.when + spec.dur + 0.01);
-  spec.hit.watch(osc);
+  spec.hit.watch(osc, spec.hit.when + spec.dur + 0.01);
 }

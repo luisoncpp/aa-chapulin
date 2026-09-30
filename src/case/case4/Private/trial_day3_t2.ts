@@ -9,7 +9,7 @@ import { CASE4_D3_T2_NOTA_SUCCESS, CASE4_TELEGRAMA_POINT_TARGET } from './trial_
 export const CASE4_TESTIMONY_6: Testimony = {
   title: 'Testimonio: Una reunión de negocios',
   witness: 'Rufino Rufián',
-  bgm: 'cross_exam_presto',
+  bgm: 'cross_exam_careo',
   statements: [
     {
       id: 'd3_t2_1',

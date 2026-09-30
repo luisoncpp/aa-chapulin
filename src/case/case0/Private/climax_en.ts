@@ -65,11 +65,11 @@ export const CASE0_CLIMAX_EN: ClimaxDefinition = {
   ],
   verdict: [
     { speaker: 'JUEZ', pose: 'judge_gavel', text: 'For what was heard today, this court finds the defendant Toribio Pantoja...', sfx: 'gavel' },
-    { speaker: 'JUEZ', pose: 'judge_gavel', text: 'NOT GUILTY!', cutin: 'objection_inocente', bgm: 'victory', updateProfile: 'perfil_toribio' },
+    { speaker: 'JUEZ', pose: 'judge_gavel', text: 'NOT GUILTY!', cutin: 'objection_inocente', bgm: 'victory' },
     { speaker: 'TORIBIO', pose: 'toribio_aliviado', text: 'Counselor! I won! ...Did we win?' },
         { speaker: 'DEFENSA', pose: 'donramon_idle', text: 'You won. I just talked.' },
     { speaker: 'CHAPULÍN', pose: 'chapulin_idle', text: 'Pressing is free, presenting takes care, and every detail matters.' },
-    { speaker: 'JUEZ', pose: 'judge_gavel', text: 'Casimiro Lengua is remanded, and the collection file is returned. Court is adjourned.', sfx: 'gavel', updateProfile: 'perfil_casimiro' }
+    { speaker: 'JUEZ', pose: 'judge_gavel', text: 'Casimiro Lengua is remanded, and the collection file is returned. Court is adjourned.', sfx: 'gavel' }
   ],
   epilogue: {
     bg: EPILOGUE_BG,

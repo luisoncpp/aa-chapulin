@@ -8,15 +8,15 @@ export const CASE4_PROFILES_ES: ProfileCatalogMap = {
     id: 'perfil_chimoltrufia', name: 'La Chimoltrufia', role: 'Esposa de Botija',
     icon: 'assets/chimoltrufia_idle.webp',
     desc: 'Esposa de Botija. Vino al Centro de Detención preocupada por su marido.',
-    updates: ['Lleva catorce años en el hotel y conoce el archivo de recepción; la pusieron al frente del mostrador mientras Cecilio atiende a la prensa.']
+    updates: ['Esposa de Botija, preocupada por su marido. Lleva catorce años en el hotel y conoce el archivo de recepción.']
   },
   perfil_botija: {
     id: 'perfil_botija', name: 'Gordon Botija', role: 'Acusado de homicidio',
     icon: 'assets/botija_idle.webp',
     desc: 'Fontanero del Gran Hotel Buena Vista, acusado de homicidio. Está detenido desde la noche anterior.',
     updates: [
-      'Reconoció al muerto como Cuajinais, un antiguo conocido. Tomó la cartera y se escondió por miedo a que los relacionaran otra vez.',
-      'Dice que rechazó la propuesta de volver a trabajar con Cuajinais; varias personas oyeron la discusión.'
+      'Fontanero del Gran Hotel Buena Vista, acusado de homicidio y detenido desde la noche anterior. Reconoció al muerto como Cuajinais, un antiguo conocido; tomó la cartera y se escondió por miedo a que los relacionaran otra vez.',
+      'Fontanero del Gran Hotel Buena Vista, acusado de homicidio y detenido desde la noche anterior. Reconoció a Cuajinais como antiguo conocido, tomó la cartera y se escondió por miedo a que los relacionaran. Dice que rechazó la propuesta de volver a trabajar con Cuajinais; varias personas oyeron la discusión.'
     ]
   },
   perfil_donramon: {
@@ -34,8 +34,8 @@ export const CASE4_PROFILES_ES: ProfileCatalogMap = {
     icon: 'assets/cecilio_idle.webp',
     desc: 'Cecilio Buenavista, encargado de recibir a los huéspedes del Gran Hotel Buena Vista.',
     updates: [
-      'Propietario y gerente del hotel. Lleva treinta y un años al frente de la recepción y distingue colores mejor que personas.',
-      'Comprobó con la mano el estado de la puerta. En su testimonio sostuvo que solo alguien dentro pudo echar la cadena.'
+      'Propietario y gerente del Gran Hotel Buena Vista, al frente de la recepción durante treinta y un años.',
+      'Propietario y gerente del Gran Hotel Buena Vista, al frente de la recepción durante treinta y un años. Tiene una limitación visual: a dos metros distingue colores, pero no personas.'
     ]
   },
   perfil_rufino: {
@@ -43,17 +43,14 @@ export const CASE4_PROFILES_ES: ProfileCatalogMap = {
     icon: 'assets/rufino_monocle.webp',
     desc: 'Huésped de la Suite 204. Se presenta como el Conde de Montemayor.',
     updates: [
-      'Explica que la cabeza de su anillo gira para proteger el relieve y que lo usa para sellar correspondencia.',
-      'Admite que Cuajinais lo visitó y que recibió su firma; también reconoce que recibió el baúl B-17.',
-      'La boleta confirma que estuvo en la mesa de baccarat durante el estruendo. Esa coartada explica dónde estaba a esa hora, no qué ocurrió antes.',
-      'El encaje del anillo y el fragmento del cierre, junto con los análisis, prueban su intervención en el envenenamiento.'
+      'Huésped de la Suite 204 que se presenta como el Conde de Montemayor. Explica que la cabeza de su anillo gira para proteger el relieve y que lo usa para sellar correspondencia.',
+      'Huésped de la Suite 204 que se presenta como el Conde de Montemayor. Explicó el uso de su anillo para sellar correspondencia. Admite que Cuajinais lo visitó y que recibió su firma; también reconoce haber recibido el baúl B-17.'
     ]
   },
   perfil_sargento: {
     id: 'perfil_sargento', name: 'El Sargento', role: 'Policía a cargo de la escena',
     icon: 'assets/profile_perfil_sargento.webp',
     desc: 'Sargento Refugio Pazguato, policía a cargo de la escena. Numera los objetos y pide avisar antes de moverlos.',
-    updates: ['Registró la entrega del cierre con hora y las firmas de Maruja y del propio Sargento.']
   },
   perfil_maruja: {
     id: 'perfil_maruja', name: 'Maruja', role: 'Huésped del Buena Vista',
@@ -63,29 +60,23 @@ export const CASE4_PROFILES_ES: ProfileCatalogMap = {
   },
   perfil_cuajinais: {
     id: 'perfil_cuajinais', name: 'El Cuajinais', role: 'Huésped encontrado muerto en la Suite 304',
-    icon: 'assets/billetera_cuajinais.webp',
+    icon: 'assets/profile_perfil_cuajinais.webp',
     desc: 'Huésped encontrado muerto en la Suite 304. Botija dice que lo conocía de antes.',
     updates: [
-      'El examen establece que murió antes de recibir la herida de bala; aún no identifica quién lo mató ni cómo.',
-      'Maruja lo vio vivo en la Suite 204 esa noche, antes de que bebiera de la botella.',
-      'El telegrama acredita que reclamó a Rufino una parte del Collar de Cleopatra y amenazó con acudir a la policía.'
+      'Huésped encontrado muerto en la Suite 304; Botija dice que lo conocía de antes. El examen establece que murió antes de recibir la herida de bala, sin identificar quién lo mató ni cómo.',
+      'Huésped encontrado muerto en la Suite 304, antiguo conocido de Botija. El examen establece que murió antes de la herida de bala. Maruja lo vio vivo en la Suite 204 esa noche, antes de que bebiera de la botella.',
+      'Huésped encontrado muerto en la Suite 304 y antiguo conocido de Botija. El examen establece que murió antes de la herida de bala; Maruja lo vio vivo antes de beber de la botella. El telegrama acredita que reclamó a Rufino una parte del Collar de Cleopatra y amenazó con acudir a la policía.'
     ]
   },
   perfil_supersam: {
     id: 'perfil_supersam', name: 'Super Sam', role: 'Fiscal',
     icon: 'assets/profile_perfil_supersam.webp',
     desc: 'Fiscal. Sostiene que Botija es responsable de la muerte y usa su presencia en la Suite 304 como parte de la acusación.',
-    updates: [
-      'La herida de bala no causó la muerte; la acusación debe buscar otra causa.',
-      'La prueba vincula a Botija con el porte, pero todavía debe demostrarse que conocía su contenido.',
-      'La fiscalía considera que Rufino escondió el cadáver, pero sostiene que otra persona sirvió la copa.'
-    ]
   },
   perfil_chompiras: {
     id: 'perfil_chompiras', name: 'El Chómpiras', role: 'Botones y operador del montacargas',
     icon: 'assets/profile_perfil_chompiras.webp',
     desc: 'Botones y operador del montacargas del Gran Hotel Buena Vista. Lleva registro de los equipajes que pasan por la cabina.',
-    updates: ['Su registro y su relato sitúan el baúl cerrado entre la planta 2, la Suite 304 y la azotea; no indican qué llevaba dentro.']
   },
   perfil_juez: {
     id: 'perfil_juez', name: 'El Juez', role: 'Juez de la Corte',

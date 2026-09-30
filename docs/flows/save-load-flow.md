@@ -37,7 +37,7 @@ Operational guide for player save game persistence and restoration flows using b
 
 ### Continue Sequence
 1. Player clicks `#btn-continue-game`. The button is hidden when no slot is valid. On boot, `GameEngine.init` checks `hasSave` after the engine, audio, and UI bind — not after every case script. A legacy single save is still adopted so an older Continue still appears.
-2. The click opens the load list (`#save-slot-modal`, above the splash) with no case module fetch. Occupied rows show the i18n case name, the place (scene title if that case is already cached, otherwise the saved location id; trial rows use courtroom plus day), and the local time. Empty rows are not selectable.
+2. The click opens the load list (`#save-slot-modal`, above the splash) without loading case scripts. Occupied rows show the i18n case name, the localized investigation place from the lightweight location-name catalog, and the local time; trial rows use courtroom plus day. Empty rows are not selectable.
 3. Choosing an occupied row fetches that slot's case module only, then follows the Load Game sequence. `loadGame()` still returns the newest slot for callers that do not go through the button.
 
 ### Restore

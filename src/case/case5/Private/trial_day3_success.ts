@@ -73,7 +73,7 @@ export const CASE5_D3_T1_HUACAL_SUCCESS: DialogueLine[] = [
   { speaker: 'SUPER SAM', text: '¡Objection! ¡Una máquina con una tecla chueca no es un asesino!', pose: 'supersam_slam', sfx: 'desk_slam' },
   { speaker: 'JUEZ', text: 'No lo es, señor fiscal. Pero es un aparato que escribe igual que algo que apareció en el patio de un museo.', pose: 'judge_thinking' },
   { speaker: 'JUEZ', text: 'Y esta corte quiere saber quién lo escribió y quién sabía qué.', pose: 'judge_neutral' },
-  { speaker: 'JUEZ', text: 'El testigo puede retirarse.', sfx: 'gavel', pose: 'judge_gavel', updateProfile: 'perfil_chompiras' },
+  { speaker: 'JUEZ', text: 'El testigo puede retirarse.', sfx: 'gavel', pose: 'judge_gavel' },
   { speaker: 'SUPER SAM', text: 'Your Honor. La fiscalía solicita rendir declaración.', pose: 'supersam_idle' },
   { speaker: 'JUEZ', text: '¿La fiscalía solicita QUÉ?', pose: 'judge_shock' },
   { speaker: 'SUPER SAM', text: 'Que me tomen declaración a mí, Your Honor. Bajo protesta.', pose: 'supersam_idle' },

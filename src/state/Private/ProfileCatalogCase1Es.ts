@@ -14,7 +14,7 @@ export const CASE1_PROFILES_ES: ProfileCatalogMap = {
     icon: 'assets/profile_perfil_chapulin.webp',
     desc: 'El acusado. Héroe profesional. Detenido a las 21:07 junto al cuerpo del velador, con su Chipote Chillón en la mano. Dice que llegó tarde.',
     updates: [
-      'Mide 1.62 m. El velador mide 1.92 m con botas. Para golpearlo desde arriba habría tenido que estar subido en algo.'
+      'El acusado es un héroe profesional detenido a las 21:07 junto al velador, con su Chipote Chillón en la mano. Dice que llegó tarde. Mide 1.62 m; el velador mide 1.92 m con botas. Para golpearlo desde arriba habría tenido que estar subido en algo.'
     ]
   },
   perfil_donramon: {
@@ -30,9 +30,6 @@ export const CASE1_PROFILES_ES: ProfileCatalogMap = {
     role: 'Fiscal',
     icon: 'assets/profile_perfil_supersam.webp',
     desc: 'Fiscal. Cobra por caso cerrado. Cerró éste en cinco minutos. Hoy subió al estrado sin su bolsa de dólares al hombro.',
-    updates: [
-      'Se negó a decir dónde estuvo su bolsa de lona la noche del 28 y pidió el aplazamiento él mismo.'
-    ]
   },
   perfil_tripaseca: {
     id: 'perfil_tripaseca',
@@ -41,9 +38,8 @@ export const CASE1_PROFILES_ES: ProfileCatalogMap = {
     icon: 'assets/profile_perfil_tripaseca.webp',
     desc: 'Testigo estrella. Comerciante: compra barato y vende lo que se deje. Dice que pasaba por el callejón de carga cerca de las nueve.',
     updates: [
-      "Describió el sonido del golpe como 'un costalazo de fierros'.",
-      'Dijo haber visto al acusado parado sobre el pedestal de la vitrina. Nadie le preguntó cómo sabía que había un pedestal.',
-      'Sabe que la chapa de la puerta de carga está vencida desde marzo.'
+      'Testigo estrella y comerciante: compra barato y vende lo que se deje. Dice que pasaba por el callejón de carga cerca de las nueve. Su versión coloca al acusado sobre un pedestal de la vitrina, aunque todavía no explica cómo lo sabía.',
+      'Testigo estrella y comerciante: compra barato y vende lo que se deje. Dice que pasaba por el callejón de carga cerca de las nueve. Su versión coloca al acusado sobre un pedestal que no se ve desde el callejón; además, sabe que la chapa de la puerta de carga está vencida desde marzo.'
     ]
   },
   perfil_florinda: {
@@ -53,7 +49,7 @@ export const CASE1_PROFILES_ES: ProfileCatalogMap = {
     icon: 'assets/profile_perfil_florinda.webp',
     desc: 'Curadora del Museo de las Curiosidades. Única llave de la puerta principal. Cerró a las 20:40 con el Profesor Jirafales de testigo.',
     updates: [
-      'Llegó a las 21:05 y vio al acusado de pie junto al velador. Es lo único que vio.'
+      'Curadora del Museo de las Curiosidades y única titular de la llave de la puerta principal; cerró a las 20:40 con el Profesor Jirafales de testigo. Llegó a las 21:05 y vio al acusado de pie junto al velador, pero no presenció la agresión.'
     ]
   },
   perfil_jirafales: {
@@ -70,7 +66,7 @@ export const CASE1_PROFILES_ES: ProfileCatalogMap = {
     icon: 'assets/profile_perfil_almanegra.webp',
     desc: 'Velador del museo. Víctima. Despertó al segundo día. Fractura occipital. Habla como pirata porque, dice, lo fue.',
     updates: [
-      'Su ronda está escrita en una libreta que cuelga de un clavo, a la vista de cualquier visitante.'
+      'Velador del museo y víctima. Despertó al segundo día, tiene una fractura occipital y habla como pirata porque dice que lo fue. Su ronda está escrita en una libreta que cuelga de un clavo, a la vista de cualquier visitante.'
     ]
   }
 };

@@ -78,7 +78,7 @@ export const CASE4_HOTEL_TERRAZA: InvestigationScene = {
         { speaker: 'MARUJA', text: 'Lo sacó, me lo puso en la mano como quien regala una flor, y luego se sirvió. Yo me fui con el corcho en el bolso.', pose: 'maruja_idle', updateProfile: 'perfil_maruja' },
         { speaker: 'SARGENTO', text: 'Entonces ese cierre salió de la habitación antes que usted... y antes de que él bebiera.', pose: 'pazguato_saludo' },
         { speaker: 'MARUJA', text: 'Lo guardé porque el caballero fue amable. Nadie me avisó que iba a convertirse en prueba.', pose: 'maruja_nerviosa' },
-        { speaker: 'NARRADOR', text: 'El Sargento lo embolsa, lo numera y anota la hora de entrega con una letra minúscula y perfecta.', updateProfile: 'perfil_sargento' },
+        { speaker: 'NARRADOR', text: 'El Sargento lo embolsa, lo numera y anota la hora de entrega con una letra minúscula y perfecta.', updateProfile: 'perfil_cuajinais' },
         { speaker: 'SARGENTO', text: 'Queda como anexo de mi informe. Con mi firma y la de usted.', pose: 'pazguato_decidido', updateEvidence: 'informe_policial' },
         { speaker: 'CHAPULIN', text: '¿Y eso para qué sirve, Sargento? ¡Es un corcho!', pose: 'chapulin_idle' },
         { speaker: 'SARGENTO', text: 'Sirve para que dentro de un mes nadie pueda discutirme dónde estuvo este corcho. Porque va a estar escrito.', pose: 'pazguato_idle' },

@@ -19,26 +19,23 @@ export const CASE2_PROFILES_EN: ProfileCatalogMap = {
     icon: 'assets/profile_perfil_chompiras.webp',
     desc: 'Aquiles Esquivel Madrazo, known as El Chómpiras. He is accused of stealing the Golden Chanfle.',
     updates: [
-      'The residue in the vent matches the sedative essence. The evidence indicates he was deeply asleep during part of the theft.'
+      'Aquiles Esquivel Madrazo, known as El Chómpiras, is accused of stealing the Golden Chanfle. The residue in the vent matches the sedative essence; the evidence indicates he was deeply asleep during part of the theft.'
     ]
   },
   perfil_florinda: {
     id: 'perfil_florinda', name: 'Doña Florinda', role: 'Restaurant manager',
     icon: 'assets/profile_perfil_florinda.webp',
     desc: 'Owner of the restaurant beside the hacienda.',
-    updates: [
-      'She noticed the lights flicker at 9:15 PM and found Chómpiras inside the vault when the alarm sounded.'
-    ]
   },
   perfil_peterete: {
     id: 'perfil_peterete', name: 'El Peterete', role: 'Chief of security',
     icon: 'assets/peterete_smug.webp',
     desc: 'Chief of security and certified appraiser for the hacienda. He takes part in the vault inspection.',
     updates: [
-      'He claims Chómpiras forced the safe during the blackout and that the theft took place at 10:00 PM.',
-      'The citation and postal ledger contradict his claim that he was at the post office at 9:30 PM.',
-      'The blueprint shows a dumbwaiter between the vault and the alley. The witness had claimed there was no exit to the outside.',
-      'The mold reproduces the master key. The essence purchase time matches the period when the security chief had access to the original key.'
+      'Chief of security and certified appraiser who took part in the vault inspection. He claims Chómpiras forced the safe during the blackout and that the theft took place at 10:00 PM; the report contradicts damage from a crowbar.',
+      'Chief of security and certified appraiser. He claims Chómpiras forced the safe during the blackout and that the theft took place at 10:00 PM; the report contradicts crowbar damage. The citation and postal ledger contradict his claim that he was at the post office at 9:30 PM.',
+      'Chief of security and certified appraiser. His account of the theft is contradicted by the report and postal record. The blueprint shows a dumbwaiter between the vault and the alley, against his claim that there was no way outside.',
+      'Chief of security and certified appraiser. His account of the vault, timing, and mail was contradicted by the reports and blueprint. The mold reproduces the master key.'
     ]
   },
   perfil_jirafales: {
@@ -46,7 +43,7 @@ export const CASE2_PROFILES_EN: ProfileCatalogMap = {
     icon: 'assets/profile_perfil_jirafales.webp',
     desc: 'Professor and guest at Doña Florinda’s restaurant on the night of the theft. He takes an interest in architecture and precision.',
     updates: [
-      'His blueprint shows the ventilation duct and a dumbwaiter connecting the vault to the alley.'
+      'Professor and guest at Doña Florinda’s restaurant, interested in architecture and precision. His blueprint shows the ventilation duct and a dumbwaiter connecting the vault to the alley.'
     ]
   },
   perfil_jaimito: {
@@ -54,7 +51,7 @@ export const CASE2_PROFILES_EN: ProfileCatalogMap = {
     icon: 'assets/jaimito_idle.webp',
     desc: 'Mail carrier from Tangamandapio. His mail cart was in the alley behind the hacienda.',
     updates: [
-      'The municipal citation places his cart unattended at 9:30 PM; Jaimito remembers sleeping in the park.'
+      'Mail carrier from Tangamandapio whose cart was in the alley behind the hacienda. His official stamp never leaves him; the 9:30 PM postal entry bears an irregular hand stamp.'
     ]
   },
   perfil_clotilde: {
@@ -62,8 +59,7 @@ export const CASE2_PROFILES_EN: ProfileCatalogMap = {
     icon: 'assets/clotilde_idle.webp',
     desc: 'A neighbor with an interest in botany. She prepares an essence of roses and valerian.',
     updates: [
-      'An elegant customer bought three bottles the afternoon before the theft; Clotilde remembers his hat and scarf, but does not name him.',
-      'The purchase took place on the afternoon when the chief of security had the original master key.'
+      'A neighbor interested in botany who makes rose and valerian essence. An elegant customer bought three bottles the afternoon before the theft; Clotilde remembers his hat and scarf, but does not name him.'
     ]
   },
   perfil_supersam: {

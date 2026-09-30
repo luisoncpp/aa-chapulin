@@ -1,22 +1,27 @@
 import type { InstrumentPatch, OscLayer } from './InstrumentPatch.js';
-import { eachNote, midiToFreq, type NoteEvent, type VoiceTarget } from './VoiceTypes.js';
+import { midiToFreq, releaseOnEnd, soundingNotes, type NoteEvent, type VoiceTarget } from './VoiceTypes.js';
 import { scoop } from './Envelopes.js';
 import { playNoise } from './NoiseSource.js';
 import { periodicWave } from './Waveforms.js';
 import { attachMotion } from './Motion.js';
 import { ampThrough } from './VoiceOutput.js';
 
-// fallow-ignore-next-line complexity
+/**
+ * A chord shares one filter, amp and hammer: the filter envelope does not follow pitch,
+ * so this sounds the same as one chain per note at a fraction of the audio-thread cost.
+ */
 export function playSubtractive(target: VoiceTarget, patch: InstrumentPatch, event: NoteEvent): void {
-  eachNote(event, (note) => playOne(target, patch, note));
-}
-
-function playOne(target: VoiceTarget, patch: InstrumentPatch, event: NoteEvent & { midi: number }): void {
-  const freq = midiToFreq(event.midi);
-  if (freq <= 0) return;
+  const notes = soundingNotes(event.midi);
+  if (notes.length === 0) return;
   const { filter, amp, tail } = ampThrough({ target, patch, event });
-  const oscs = patch.layers.map((layer) => startLayer({ target, layer, patch, freq, event, filter, tail }));
-  attachMotion(target, patch, oscs, amp, event, tail);
+  const share = 1 / Math.sqrt(notes.length);
+  const first = notes.map((midi, idx) => {
+    const note = { ...event, midi };
+    const oscs = patch.layers.map((layer) => startLayer({ target, layer, patch, freq: midiToFreq(midi), event: note, filter, tail, share }));
+    attachMotion(target, idx === 0 ? patch : { ...patch, tremolo: undefined }, oscs, amp, note, tail);
+    return oscs[0];
+  })[0];
+  releaseOnEnd(first, [filter, amp]);
   if (patch.transient) hammer(target, patch, event, filter);
 }
 
@@ -28,6 +33,8 @@ interface LayerStart {
   event: NoteEvent;
   filter: BiquadFilterNode;
   tail: number;
+  /** Per-note level inside a chord, 1/sqrt(notes). */
+  share: number;
 }
 
 function startLayer(spec: LayerStart): OscillatorNode {
@@ -37,12 +44,12 @@ function startLayer(spec: LayerStart): OscillatorNode {
   tune(osc, { layer, patch, event });
   shape(target.ctx, osc, layer.wave);
   const level = target.ctx.createGain();
-  level.gain.setValueAtTime(layer.gain, event.when);
+  level.gain.setValueAtTime(layer.gain * spec.share, event.when);
   osc.connect(level);
   level.connect(filter);
   osc.start(event.when);
   osc.stop(event.when + tail);
-  target.watch(osc);
+  target.watch(osc, event.when + tail);
   return osc;
 }
 

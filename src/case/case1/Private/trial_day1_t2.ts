@@ -37,7 +37,7 @@ const CASE1_GIRO_1: DialogueLine[] = [
   { speaker: 'JUEZ', text: '¡¿Cómo dice?!', pose: 'judge_shock' },
   { speaker: 'SUPER SAM', text: 'Y la fiscalía... la fiscalía solicita un aplazamiento.', pose: 'supersam_sweat' },
   { speaker: 'DEFENSA', text: '(¿Qué?)', pose: 'donramon_shock' },
-  { speaker: 'CHAPULIN', text: '(¡Don Ramón! ¡El fiscal que cobra por minuto acaba de pedir tiempo!)', pose: 'chapulin_panic', updateProfile: 'perfil_supersam' },
+  { speaker: 'CHAPULIN', text: '(¡Don Ramón! ¡El fiscal que cobra por minuto acaba de pedir tiempo!)', pose: 'chapulin_panic' },
   { speaker: 'JUEZ', text: 'La corte concede el aplazamiento, y lo concede con disgusto.', sfx: 'gavel', pose: 'judge_gavel' },
   { speaker: 'JUEZ', text: 'Mañana esta corte quiere dos cosas: por dónde entró el ladrón y por dónde salió el arma.', pose: 'judge_neutral' },
   { speaker: 'JUEZ', text: 'Y una cosa más. La corte autoriza al acusado a acompañar a su defensa en las diligencias de mañana, bajo custodia del alguacil.', pose: 'judge_neutral' },
@@ -60,16 +60,16 @@ const CASE1_D1_T2_SUCCESS: DialogueLine[] = [
   { speaker: 'JUEZ', text: '¿Flexible y pesado a la vez?', pose: 'judge_shock' },
   { speaker: 'DEFENSA', text: 'Un saco, señor juez. Un saco lleno de moneda metálica.', pose: 'donramon_slam', sfx: 'desk_slam' },
   { speaker: 'NARRADOR', text: 'Murmullo en la galería.', bg: 'assets/bg_gallery_characters_sam_no_bag.webp', furniture: 'none', sfx: 'realization' },
-  { speaker: 'TRIPASECA', text: '...Pos yo nomás dije lo que oí.', pose: 'tripaseca_sweat', updateProfile: 'perfil_tripaseca' },
+  { speaker: 'TRIPASECA', text: '...Pos yo nomás dije lo que oí.', pose: 'tripaseca_sweat' },
   { speaker: 'SUPER SAM', text: '¡Objection! ¡Un saco de monedas! ¡¿De dónde iba a sacar el acusado un saco de monedas?!', pose: 'supersam_case1_slam', sfx: 'desk_slam' },
   { speaker: 'DEFENSA', text: 'Ésa, señor fiscal, es la primera pregunta inteligente que hace usted en dos días.', pose: 'donramon_idle' },
   { speaker: 'DEFENSA', text: 'Y hay otra cosa, señor juez. El golpe vino de arriba. El velador mide un metro noventa y dos con botas.', pose: 'donramon_point' },
   { speaker: 'DEFENSA', text: 'Mi cliente mide un metro sesenta. Con antenitas.', pose: 'donramon_idle' },
   { speaker: 'CHAPULIN', text: '¡Un metro sesenta y dos!', pose: 'chapulin_panic' },
-  { speaker: 'DEFENSA', text: 'Un metro sesenta y dos, perdón.', pose: 'donramon_sweat' },
+  { speaker: 'DEFENSA', text: 'Un metro sesenta y dos, perdón.', pose: 'donramon_sweat', updateProfile: 'perfil_chapulin' },
   { speaker: 'JUEZ', text: '¡Cáspita! Para dar ese golpe, el acusado habría tenido que estar subido en algo.', pose: 'judge_shock' },
   { speaker: 'DEFENSA', text: 'En algo como... un pedestal de madera a la altura de la cintura, señor juez.', pose: 'donramon_point', updateProfile: 'perfil_tripaseca' },
-  { speaker: 'DEFENSA', text: '(Y de eso ya hablaremos. Todavía no. Primero el arma.)', pose: 'donramon_idle', updateProfile: 'perfil_chapulin' },
+  { speaker: 'DEFENSA', text: '(Y de eso ya hablaremos. Todavía no. Primero el arma.)', pose: 'donramon_idle' },
   ...CASE1_GIRO_1
 ];
 

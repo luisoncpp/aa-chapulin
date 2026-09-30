@@ -4,7 +4,7 @@ import { reverbImpulse } from './ReverbImpulse.js';
 export type StripName = ChannelName | 'drums';
 
 const STRIPS: StripName[] = ['bass', 'lead', 'chords', 'counter', 'drums'];
-const VOICE_CAP = 48;
+const VOICE_CAP = 64;
 const SESSION_FADE_SEC = 0.03;
 
 interface Strip {
@@ -25,7 +25,8 @@ export class MusicBus {
   private static readonly buses = new WeakMap<BaseAudioContext, MusicBus>();
   private session: Session | null = null;
   private reverb: GainNode | null = null;
-  private voices = 0;
+  /** Scheduled stop times of the sources started so far. */
+  private voiceEnds: number[] = [];
 
   private constructor(
     private readonly ctx: AudioContext,
@@ -41,16 +42,17 @@ export class MusicBus {
   }
 
   /** `fresh` fades the previous session. A paused resume keeps the current one. */
-  public open(fresh: boolean): void {
-    if (fresh || !this.session) this.beginSession();
+  public open(fresh: boolean, trackReverb = 0): void {
+    if (fresh || !this.session) this.beginSession(trackReverb);
   }
 
-  public beginSession(): void {
+  /** `trackReverb` sends the whole mix to the reverb, on top of each patch's own send. */
+  public beginSession(trackReverb = 0): void {
     this.endSession();
     const gain = this.ctx.createGain();
     gain.gain.setValueAtTime(1, this.ctx.currentTime);
-    // Dry only: each voice feeds the reverb itself, scaled by its patch's reverbSend.
     gain.connect(this.bgm);
+    if (trackReverb > 0) this.sendSession(gain, trackReverb);
     const strips = new Map<StripName, Strip>();
     for (const name of STRIPS) strips.set(name, this.createStrip(gain));
     this.session = { gain, strips };
@@ -77,20 +79,22 @@ export class MusicBus {
     return this.reverbSend();
   }
 
-  public admits(name: StripName): boolean {
+  /** Counts voices still sounding at `when`; `onended` arrives late on a busy main thread. */
+  public admits(name: StripName, when: number): boolean {
     if (name === 'bass' || name === 'drums') return true;
-    return this.voices < VOICE_CAP;
+    this.voiceEnds = this.voiceEnds.filter((end) => end > when);
+    return this.voiceEnds.length < VOICE_CAP;
   }
 
-  public watch(node: AudioScheduledSourceNode): void {
-    this.voices++;
-    node.onended = () => {
-      this.voices = Math.max(0, this.voices - 1);
-    };
+  public watch(_node: AudioScheduledSourceNode, endAt: number): void {
+    this.voiceEnds.push(endAt);
   }
 
-  public voiceCount(): number {
-    return this.voices;
+  private sendSession(session: GainNode, amount: number): void {
+    const send = this.ctx.createGain();
+    send.gain.setValueAtTime(amount, this.ctx.currentTime);
+    session.connect(send);
+    send.connect(this.reverbSend());
   }
 
   private ensureSession(): void {

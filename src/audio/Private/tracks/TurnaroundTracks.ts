@@ -9,6 +9,7 @@ import type { TrackDefinition } from '../../../types/index.js';
 export const objectionTrack: TrackDefinition = {
   bpm: 156,
   length: 256,
+  instruments: { bass: 'piano', lead: 'chip_lead', chords: 'string_pad' },
   bass: [
     // Intro (Arps)
     43, 43, 55, 43, 43, 43, 55, 43, 43, 43, 55, 43, 43, 43, 55, 43,
@@ -90,6 +91,7 @@ export const objectionTrack: TrackDefinition = {
 export const pursuitTrack: TrackDefinition = {
   bpm: 162,
   length: 128,
+  instruments: { bass: 'chip_bass', lead: 'pulse_lead_25', chords: 'brass' },
   bass: [
     38, 38, 50, 38, 38, 38, 50, 38, 38, 38, 50, 38, 38, 38, 50, 38, 
     38, 38, 50, 38, 38, 38, 50, 38, 38, 38, 50, 38, 38, 38, 50, 38, 

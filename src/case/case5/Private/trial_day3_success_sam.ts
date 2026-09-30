@@ -23,7 +23,7 @@ export const CASE5_D3_T2_OFICIO_SUCCESS: DialogueLine[] = [
   { speaker: 'JUEZ', text: '¿Cómo dice?', pose: 'judge_thinking' },
   { bg: 'assets/bg_witness.webp', furniture: 'podium', speaker: 'SUPER SAM', text: 'Que firmo seiscientos oficios al mes, y que no he leído lo que va hasta abajo de ninguno en once años.', pose: 'supersam_sweat', updateProfile: 'perfil_supersam' },
   { bg: 'assets/bg_judge.webp', furniture: 'judge-bench', speaker: 'NARRADOR', text: 'El secretario levanta la pluma.', pose: 'secretario_leyendo' },
-  { speaker: 'JUEZ', text: 'Que se asiente.', sfx: 'gavel', pose: 'judge_gavel', updateProfile: 'perfil_casimiro' },
+  { speaker: 'JUEZ', text: 'Que se asiente.', sfx: 'gavel', pose: 'judge_gavel' },
   { speaker: 'JUEZ', text: 'Y que se asiente también que este tribunal no tiene todavía nada contra nadie, porque recibir una notificación legal no es un delito.', pose: 'judge_neutral' },
   { speaker: 'DEFENSA', text: '(Ya lo sé, señor juez. Llevo tres días sabiéndolo.)', pose: 'chapulin_idle' },
   { speaker: 'JUEZ', text: 'Defensa, ¿le queda algo del señor fiscal?', pose: 'judge_thinking' },

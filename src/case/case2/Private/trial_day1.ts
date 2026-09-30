@@ -31,7 +31,7 @@ const T1_SUCCESS: DialogueLine[] = [
   { speaker: 'DEFENSA', text: 'Este reloj es electromecánico centralizado. Cuando a las 9:15 PM alguien forzó la caja del generador, ¡se quedó sin energía y se detuvo a las 9:15 PM!', pose: 'donramon_point' },
   { speaker: 'JUEZ', text: '¡Cáspita! ¿Significa que la energía se cortó tres cuartos de hora antes?', pose: 'judge_shock' },
   { speaker: 'DEFENSA', text: '¡Exacto! Quien restableció la corriente reprogramó el reloj digital a las 10:00 PM. ¡El robo comenzó a las 9:15 PM en completa oscuridad!', pose: 'donramon_idle' },
-  { speaker: 'FLORINDA', text: '¡Ay, Dios mío! ¡¿Entonces a las 9:15 PM ya estaban robando la hacienda?!', pose: 'florinda_shock', updateProfile: 'perfil_florinda' },
+  { speaker: 'FLORINDA', text: '¡Ay, Dios mío! ¡¿Entonces a las 9:15 PM ya estaban robando la hacienda?!', pose: 'florinda_shock' },
   { speaker: 'SUPER SAM', text: 'Grrr... Un simple desfase horario no exime al acusado de haber reventado la caja. ¡Llamo al estrado al señor Peterete!', pose: 'supersam_sweat' },
   { speaker: 'PETERETE', text: 'Con la venia de esta honorable corte. Siempre es un placer colaborar con la justicia.', pose: 'peterete_smug' },
   { speaker: 'JUEZ', text: 'Testigo, diga su nombre y su ocupación.', pose: 'judge_neutral' },

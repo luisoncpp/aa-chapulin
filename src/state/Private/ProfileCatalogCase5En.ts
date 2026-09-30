@@ -12,11 +12,9 @@ export const CASE5_PROFILES_EN: ProfileCatalogMap = {
     name: 'Don Ramón',
     role: 'The defendant',
     icon: 'assets/profile_perfil_donramon.webp',
-    desc: 'Accused of murdering Casimiro Lengua. A street-corner lawyer. Sixth time in this courthouse, first time in handcuffs.',
+    desc: 'Accused in Casimiro Lengua’s death. A street-corner lawyer and familiar face to this court; he has never appeared here in handcuffs.',
     updates: [
-      'The report records seventeen months of rent paid in cash; Ramon says he did not pay it.',
-      'He was alone with the victim for twelve minutes, with no witness who saw the table.',
-      'The corrected window includes him. His defense just put him inside it.'
+      'Accused in Casimiro’s death, Ramon once defeated him in the case over the assault on Nazario Cuenca. Even so, he was the only lawyer his old adversary asked to have beside him at the appeal.'
     ]
   },
   perfil_chapulin: {
@@ -25,20 +23,16 @@ export const CASE5_PROFILES_EN: ProfileCatalogMap = {
     role: 'Lead defense',
     icon: 'assets/profile_perfil_chapulin.webp',
     desc: 'Lead defense counsel, appointed by the defendant himself. No law degree, has antennae. Litigates with his client’s borrowed badge.',
-    updates: [
-      'He has won three trial days in a row and still has not shown that anyone was in that corridor.'
-    ]
   },
   perfil_casimiro: {
     id: 'perfil_casimiro',
     name: 'Casimiro Lengua',
     role: 'The victim',
     icon: 'assets/profile_perfil_casimiro.webp',
-    desc: 'The victim. Sentenced in July for assaulting collector Nazario Cuenca; that conviction is not in dispute.',
+    desc: 'The victim, sentenced in July for assaulting Nazario Cuenca.',
     updates: [
-      'They found him with his file open at page 214.',
-      'He asked to testify at a hearing for his appeal and asked for the lawyer who beat him to be there.',
-      'He offered to hand over a card file on November 8. The prosecution answered eighteen days later.'
+      'Before his death, Casimiro was still tied to a company dissolved eleven years earlier. His past as a salesman brought him back to the Judicial Archive.',
+      'The victim, sentenced in July for assaulting Nazario. As he appealed that conviction, he asked to have Ramon, the lawyer who beat him, present; he now trusted his old adversary.'
     ]
   },
   perfil_supersam: {
@@ -46,11 +40,11 @@ export const CASE5_PROFILES_EN: ProfileCatalogMap = {
     name: 'Super Sam',
     role: 'Prosecutor',
     icon: 'assets/profile_perfil_supersam.webp',
-    desc: 'Prosecutor. Paid by the closed case.',
+    desc: 'A prosecutor accustomed to closing cases quickly and paid by the closed case.',
     updates: [
-      'Since August he has carried an empty bag to remember why he closed that case in five minutes.',
-      'He signed six hundred letters a month for eleven years without reading the distribution list.',
-      'He admitted taking one kilo of the six stolen from him and filling the bag with cotton to remember what he is still missing.'
+      'Since August, he has kept a bag to remember the case he closed in five minutes. The ritual follows him outside the prosecutor’s office.',
+      'A prosecutor paid by the closed case; for eleven years, he signed hundreds of letters without reading them. His piecework routine no longer looks like a harmless office quirk.',
+      'Now he fills that same bag with cotton and carries it to remember the weight that is missing. He admits the ritual helps him keep from forgetting.'
     ]
   },
   perfil_berrondo: {
@@ -58,12 +52,10 @@ export const CASE5_PROFILES_EN: ProfileCatalogMap = {
     name: 'Fulgencio Berrondo',
     role: 'Assisting accuser',
     icon: 'assets/profile_perfil_berrondo.webp',
-    desc: 'Assisting accuser. Licensed attorney since 1955. Introduced himself to the prosecution as trustee for the victim and offered to assist without charging fees.',
+    desc: 'Assisting accuser and licensed attorney since 1955. He offered to assist the prosecution without charging fees.',
     updates: [
-      'His first trusteeship, bankruptcy 114/1971, is the only one still open, for eleven years now.',
-      'He runs a card file of eleven thousand four hundred cards and sells copies. Not a crime.',
-      'Concedes selling is not a crime; the court orders inspection of his crate anyway.',
-      'He signed the acknowledgment for a diligence he himself said he did not know.'
+      'As trustee, he is still responsible for the only bankruptcy that remains open. That duty links his career to the victim and the Judicial Archive.',
+      'An assisting accuser, attorney since 1955, and trustee for El Saber Universal. He bought its card file when the company was liquidated and sells copies; to Berrondo, it is part of the work.'
     ]
   },
   perfil_nicanor: {
@@ -71,43 +63,34 @@ export const CASE5_PROFILES_EN: ProfileCatalogMap = {
     name: 'Nicanor Tolentino',
     role: 'Janitor',
     icon: 'assets/profile_perfil_nicanor.webp',
-    desc: 'Janitor of the Judicial Archive. Thirty-one years of service. He found the victim.',
-    updates: [
-      'He dusts Volume XI on Mondays. On the Saturday of the crime he saw the shelf complete; he found the victim at 5:35 PM while going up to close the corridor.'
-    ]
+    desc: 'Janitor at the Judicial Archive for thirty-one years; he found the victim.',
   },
   perfil_genoveva: {
     id: 'perfil_genoveva',
     name: 'Genoveva Peñaloza',
     role: 'Badge window clerk',
     icon: 'assets/profile_perfil_genoveva.webp',
-    desc: 'Clerk at the courthouse window. Keeps the experts and auxiliaries logbook.',
-    updates: [
-      'She records when each badge is returned and files the consultation slips. She cannot see the courtyard door, and the rules do not require her to.'
-    ]
+    desc: 'Courthouse window clerk in charge of the experts and auxiliaries logbook.',
   },
   perfil_sargento: {
     id: 'perfil_sargento',
     name: 'El Sargento',
     role: 'Judicial police',
     icon: 'assets/profile_perfil_sargento.webp',
-    desc: 'Judicial police. Ordered the analyses, moved nothing, and logged everything. Says he learned in September.'
+    desc: 'A methodical judicial officer. After mishandling another scene, he now lets the evidence speak before he touches it.'
   },
   perfil_barriga: {
     id: 'perfil_barriga',
     name: 'Señor Barriga',
     role: 'Landlord',
     icon: 'assets/profile_perfil_barriga.webp',
-    desc: 'The defendant’s landlord. Seventeen years collecting from him.'
+    desc: 'Don Ramón’s landlord for seventeen years. Their long relationship makes him one of the few people who know the defendant’s daily life.'
   },
   perfil_chompiras: {
     id: 'perfil_chompiras',
     name: 'El Chómpiras',
     role: 'Porter',
     icon: 'assets/profile_perfil_chompiras.webp',
-    desc: 'Archive porter. Acquitted in August of stealing the Golden Chanfle. It is the first job with insurance and a Christmas bonus he has had, and he does not intend to lose it.',
-    updates: [
-      'He has helped unseal Crate 9 since September and has seen it open six or seven times.'
-    ]
+    desc: 'Archive porter since September, acquitted months ago of stealing the Golden Chanfle. This is his first steady job, and he does not want to lose the chance.'
   }
 };

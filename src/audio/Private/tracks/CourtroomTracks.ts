@@ -9,6 +9,7 @@ import type { TrackDefinition } from '../../../types/index.js';
 export const trialTrack: TrackDefinition = {
   bpm: 110,
   length: 128,
+  instruments: { bass: 'chip_bass', lead: 'chip_lead', chords: 'brass' },
   bass: [
     // A section
     48,  0, 48,  0, 55,  0, 48,  0, 48,  0, 55,  0, 48,  0, 55,  0,

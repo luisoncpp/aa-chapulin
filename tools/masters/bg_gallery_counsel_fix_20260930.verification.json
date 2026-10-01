@@ -1,0 +1,99 @@
+{
+  "size": [
+    1376,
+    768
+  ],
+  "installed": true,
+  "results": [
+    {
+      "file": "bg_gallery.webp",
+      "changed_pixels": 87292,
+      "outside_changes": 0,
+      "foreground_changes_outside_contact": 0,
+      "contact_fix_changed_pixels": 0,
+      "outside_contact_fix_changes": 0,
+      "contact_pixels_recomposed": 3576
+    },
+    {
+      "file": "bg_gallery_case5_berrondo_witness_sam.webp",
+      "changed_pixels": 86273,
+      "outside_changes": 0,
+      "foreground_changes_outside_contact": 0,
+      "contact_fix_changed_pixels": 622,
+      "outside_contact_fix_changes": 0,
+      "contact_pixels_recomposed": 3576
+    },
+    {
+      "file": "bg_gallery_case5_empty_bag.webp",
+      "changed_pixels": 86324,
+      "outside_changes": 0,
+      "foreground_changes_outside_contact": 0,
+      "contact_fix_changed_pixels": 60,
+      "outside_contact_fix_changes": 0,
+      "contact_pixels_recomposed": 3576
+    },
+    {
+      "file": "bg_gallery_case5_sam_berrondo.webp",
+      "changed_pixels": 85973,
+      "outside_changes": 0,
+      "foreground_changes_outside_contact": 0,
+      "contact_fix_changed_pixels": 733,
+      "outside_contact_fix_changes": 0,
+      "contact_pixels_recomposed": 3576
+    },
+    {
+      "file": "bg_gallery_case5_sam_berrondo_secretary.webp",
+      "changed_pixels": 85842,
+      "outside_changes": 0,
+      "foreground_changes_outside_contact": 0,
+      "contact_fix_changed_pixels": 811,
+      "outside_contact_fix_changes": 0,
+      "contact_pixels_recomposed": 3576
+    },
+    {
+      "file": "bg_gallery_case5_sam_witness_berrondo.webp",
+      "changed_pixels": 85220,
+      "outside_changes": 0,
+      "foreground_changes_outside_contact": 0,
+      "contact_fix_changed_pixels": 670,
+      "outside_contact_fix_changes": 0,
+      "contact_pixels_recomposed": 3576
+    },
+    {
+      "file": "bg_gallery_case5_secretary_berrondo_accused.webp",
+      "changed_pixels": 86150,
+      "outside_changes": 0,
+      "foreground_changes_outside_contact": 0,
+      "contact_fix_changed_pixels": 640,
+      "outside_contact_fix_changes": 0,
+      "contact_pixels_recomposed": 3576
+    },
+    {
+      "file": "bg_gallery_case5_secretary_berrondo_witness.webp",
+      "changed_pixels": 85562,
+      "outside_changes": 0,
+      "foreground_changes_outside_contact": 0,
+      "contact_fix_changed_pixels": 534,
+      "outside_contact_fix_changes": 0,
+      "contact_pixels_recomposed": 3576
+    },
+    {
+      "file": "bg_gallery_characters.webp",
+      "changed_pixels": 86272,
+      "outside_changes": 0,
+      "foreground_changes_outside_contact": 0,
+      "contact_fix_changed_pixels": 614,
+      "outside_contact_fix_changes": 0,
+      "contact_pixels_recomposed": 3576
+    },
+    {
+      "file": "bg_gallery_characters_sam_no_bag.webp",
+      "changed_pixels": 86249,
+      "outside_changes": 0,
+      "foreground_changes_outside_contact": 0,
+      "contact_fix_changed_pixels": 631,
+      "outside_contact_fix_changes": 0,
+      "contact_pixels_recomposed": 3576
+    }
+  ]
+}

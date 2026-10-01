@@ -14,6 +14,7 @@ Guía de escala: `tools/gallery_guide/out/full_empty_guide.png` para generar (si
 
 ### F1 Contenido
 
+- [ ] `PINTAR` — Las mesas de defensa y fiscalía comparten el diseño de `court_bench`: bufete ancho de caoba, adaptado a la perspectiva de las dos mesas enfrentadas. Usar el prop aprobado como referencia de diseño. Regenerar sólo esas regiones y pegarlas sobre una copia limpia; los píxeles del resto de la sala deben permanecer idénticos (encargo del usuario, 2026-09-30; `docs/specs/artistic-direction.md:128`; `docs/specs/common/court_judge_bench.md:11`).
 - [ ] `PINTAR` — El frente del estrado del juez conserva el diseño de la parte superior visible de `court_judge_bench`: tres paneles rehundidos, cuatro pilastras estrechas, canto continuo de latón bajo el tablero y zócalo escalonado. No necesita conservar la relación de aspecto del prop. Adaptar el diseño al tamaño y perspectiva del panorama sin mover el juez, la silla ni el resto de la sala (encargo y aclaración del usuario, 2026-09-29; `docs/specs/common/court_judge_bench.md`, auditoría F1 del 2026-09-22).
 - [ ] `PINTAR` — Cámara en el pozo, simétrica, mirando al juez (`docs/specs/artistic-direction.md:101`).
 - [ ] `PINTAR` — Dos gradas laterales altas, con cuatro espectadores sentados en cada lado, visibles por debajo de la barra superior del juego. Miran hacia el pasillo central, con la cabeza erguida. Los parapetos son macizos, sin barandal abierto (indicaciones del usuario, 2026-09-24).
@@ -50,6 +51,7 @@ Guía de escala: `tools/gallery_guide/out/full_empty_guide.png` para generar (si
 
 ## Consistencia (regenerar juntos)
 
+- `court_bench` y las diez láminas `bg_gallery*` — comparten las mesas de defensa y fiscalía. Conservar el prop aprobado; corregir sólo las regiones de mesas del panorama y sus variantes, manteniendo personajes y objetos delante. Encargo del usuario, 2026-09-30. Este activo no es fuente de verdad del otro.
 - `court_judge_bench` — comparte el diseño del frente del estrado. Conservar el prop aprobado y corregir sólo el estrado del panorama, según el encargo del 2026-09-29.
 - `bg_judge` — comparte la silla de botones, los dos montantes y la balanza circular. Regenerar juntos, este activo no es fuente de verdad del otro.
 - `bg_defense` — comparte el lambrín liso del lado izquierdo. Regenerar juntos, este activo no es fuente de verdad del otro.
@@ -240,3 +242,40 @@ Corrección de auditoría: comprobar 0 cambios fuera de una máscara no prueba l
 Fuentes: `tools/masters/bg_gallery_bench_selected_20260930.png`, copia exacta del adjunto; maestro `bg_gallery_bench_seam_fixed_20260930.png`; verificación de las diez láminas `bg_gallery_bench_seam_fix_20260930.verification.json`; composición `tools/patch_gallery_judge_bench.py`, ejecución `python -m tools.patch_gallery_judge_bench --install`. Las imágenes rechazadas se conservan como `*_before_bench_seam_fix_20260930.webp` y la verificación anterior como `bg_gallery_bench_rejected_20260929.verification.json`.
 
 Validación: inspección ampliada de los empalmes y de los contornos de los testigos; comparación de píxeles tras reabrir cada WebP; `python verify_assets.py` aprobado. No hubo nueva generación ni cambios de guion, motor o hotspots.
+
+## Hallazgos de auditoría 2026-09-30, mesas de defensa y fiscalía
+
+Veredicto: cumple en el diseño de las dos mesas y en la preservación del resto de la sala. ~~Cumple en los contactos de personajes~~: el usuario señaló ropa incrustada en el tablero. La auditoría de contactos siguiente sustituye esa aprobación. Se corrigieron `bg_gallery`, las dos variantes `bg_gallery_characters*` y las siete `bg_gallery_case5_*`.
+
+Cumple:
+
+- F1/F5, mesas: los recortes ampliados independientes muestran un bufete de caoba por lado, con tres paneles rehundidos en la cara larga y uno en el extremo cercano, marcos biselados, pilastras estrechas, capiteles y pies escalonados. La banda de latón queda bajo el tablero grueso, como en `court_bench`. Las dos mesas siguen enfrentadas y tienen esquinas con un solo contorno continuo.
+- F1, sala: recortes separados de cada grada, juez y silla, podio con micrófono y suelo confirman los ocho espectadores, el estrado aprobado, el interior del podio para una persona y los tablones. Son los píxeles del fondo limpio. Las mesas permanecen vacías en la base. No aparecen cuerdas, postes, otra silla ni abogados añadidos.
+- F1/F4, variantes: los recortes de contacto de las diez láminas muestran personajes ocultos por las mesas y bolsas apoyadas sobre el tablero. Se conserva la contribución original de las figuras opacas y se sustituye sólo el fondo en sus bordes semitransparentes. Los testigos y el podio quedan fuera de ambas regiones.
+- F2/F3/F6: no hay texto, fechas, cifras de caso ni marcas nuevas. Cada lámina mantiene 1376×768 y se comparte entre ES/EN. No hay hotspots que recalibrar.
+- Preservación: tras reabrir los diez WebP sin pérdida, hay 0 píxeles distintos fuera de las dos regiones de composición y 0 cambios sobre las figuras opacas. La base cambia 87 292 píxeles. La transición se limita al margen de pared/suelo junto a las mesas y cubre ambos contornos completos para no dejar bordes antiguos superpuestos. `court_bench` permanece intacto.
+
+Defectos confirmados: ~~ninguno en los contactos~~ `MEDIO · MALFORMADO · F1/F5`: el recorte de Don Ramón aportado por el usuario muestra ropa cruzando el canto trasero; también ocurre con el Chapulín y Super Sam. Se preservó el corte de la mesa anterior aunque la nueva arista se había desplazado. El diseño de las mesas permanece aprobado. El desvío de escala aceptado el 2026-09-24 permanece igual.
+
+Fuentes: edición integrada `image_gen` desde `assets/bg_gallery.webp` y `assets/court_bench.webp`; donante `tools/masters/bg_gallery_counsel_generated_20260930.png`; prompt `bg_gallery_counsel_fix_20260930.prompt.txt`; respaldos `tools/masters/*_before_counsel_fix_20260930.webp`. Composición reproducible: `python -m tools.patch_gallery_counsel --install`. Verificación: `tools/masters/bg_gallery_counsel_fix_20260930.verification.json`.
+
+Validación: `python verify_assets.py`, `npm run typecheck` y `npx vitest run tests/case` aprobados, 36 archivos y 267 pruebas. No hay script de lint en `package.json`.
+
+## Hallazgos de auditoría 2026-09-30, contactos sobre las mesas nuevas
+
+Veredicto: cumple en la superposición de ropa y muebles tras corregir la máscara. Sustituye la aprobación de contactos de la pasada anterior.
+
+Cumple:
+
+- F1/F5: recortes ×8 de Don Ramón, Chapulín y Super Sam muestran el canto trasero de latón continuo delante del traje, cuerpo y capa. La ropa termina detrás del contorno superior, sin atravesar el tablero ni dejar una franja de pared. Las variantes con Berrondo y el Secretario usan la misma arista medida.
+- F1/F4: se reutilizan los RGBA aprobados, a la misma escala y posición. Sólo se recompone una banda alrededor de las aristas antiguas y nuevas, partiendo del fondo limpio. El contorno se ajusta al primer reflejo de latón y su tinta superior; buscar el píxel más oscuro seleccionaba a veces el tablero por debajo del reflejo. `back_edge` comparte ahora esta medición con los compositores de variantes; la medición anterior sólo se conserva para reconstruir los respaldos históricos.
+- Preservación: `bg_gallery.webp` permanece idéntico a la base aprobada en la reparación de mesas. `bg_gallery_characters` cambia 614 píxeles respecto de la versión rechazada; la variante sin saco cambia 631. Las siete variantes del Caso 5 cambian entre 60 y 811 píxeles. En todas hay 0 cambios fuera de la banda de contacto. Cabezas, posiciones, testigos, juez, podio, gradas y el resto de las mesas quedan intactos. Exportación WebP sin pérdida, 1376×768.
+- F2/F3/F6: sin texto, fecha, marcas ni cambio de idioma. No hay hotspots.
+
+Defectos confirmados: ninguno en los contornos de contacto revisados.
+
+Corrección de auditoría: preservar cada píxel opaco del personaje no garantiza una superposición correcta cuando se mueve el canto del mueble. Debe restaurarse la mesa nueva delante de la figura y comprobarse su borde ampliado.
+
+Fuentes: `tools/compose_gallery_characters.py` y `tools/patch_gallery_counsel.py`; respaldos `tools/masters/*_before_counsel_contact_fix_20260930.webp`. La verificación anterior se conserva en `bg_gallery_counsel_rejected_20260930.verification.json`; la vigente está en `bg_gallery_counsel_fix_20260930.verification.json`.
+
+Validación: inspección ampliada de los contactos de las diez láminas, verificación de píxeles tras reabrir WebP, `python verify_assets.py` y `npm run typecheck` aprobados. La suite de casos aprobó 266 pruebas y agotó el límite de cinco segundos en la integridad del Caso 5; el archivo `ScriptIntegrity.test.ts` pasó sus 48 pruebas al repetirlo aislado con `--testTimeout 15000 --maxWorkers 1`, incluida la prueba que había agotado el tiempo.

@@ -95,7 +95,7 @@ def outline_top(clean: np.ndarray, x: int, rim: float) -> int:
     return top
 
 
-def back_edge(pixels: np.ndarray, desk: Desk) -> np.ndarray:
+def legacy_back_edge(pixels: np.ndarray, desk: Desk) -> np.ndarray:
     """Straight line through the ink top of the back rim, one y per column."""
     lo, hi = sorted((desk.corner_x, desk.far_x))
     xs = np.arange(lo + 5, hi - 4)
@@ -110,6 +110,31 @@ def back_edge(pixels: np.ndarray, desk: Desk) -> np.ndarray:
     near = columns < lo if desk.corner_x == lo else columns > hi
     line[near] = slope * clamped[near] + offset
     return line
+
+
+def back_edge(pixels: np.ndarray, desk: Desk) -> np.ndarray:
+    """Fit the rear brass highlight, then restore its dark upper contour.
+
+    The regenerated rim has a dark tabletop below the brass. Looking for the
+    darkest row can select that lower surface and let cloth cross the rim.
+    """
+    lo, hi = sorted((desk.corner_x, desk.far_x))
+    samples = []
+    for x in range(lo + 10, hi - 9):
+        center = round(desk.rim_y(x))
+        for y in range(center - 10, center + 3):
+            r, g, b = pixels[y, x]
+            if r > 155 and g > 90 and r - g > 40 and g - b > 30:
+                samples.append((x, y))
+                break
+    if len(samples) < 20:
+        raise ValueError("Cannot locate the counsel desk's rear brass rim")
+    xs, ys = np.array(samples).T
+    slope, offset = np.polyfit(xs, ys, 1)
+    keep = np.abs(ys - (slope * xs + offset)) < 1.2
+    slope, offset = np.polyfit(xs[keep], ys[keep], 1)
+    columns = np.arange(desk.x_min, desk.x_max + 1)
+    return slope * np.clip(columns, lo, hi) + offset - 1.8
 
 
 def restore_desks(canvas: Image.Image, clean: Image.Image) -> None:

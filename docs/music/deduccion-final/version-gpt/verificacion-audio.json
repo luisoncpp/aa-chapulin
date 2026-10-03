@@ -1,0 +1,52 @@
+{
+  "sample_rate": 44100,
+  "format": "Stereo WAV PCM_16",
+  "master_gain": 1.71383606390052,
+  "escucha": {
+    "seconds": 69.5,
+    "peak_dbfs": -1.5,
+    "rms_dbfs": -14.833,
+    "dc": [
+      0.00026042913066740085,
+      0.0002603420423025641
+    ],
+    "max_sample_delta": 0.2952332925701053,
+    "nonfinite_samples": 0
+  },
+  "loop": {
+    "seconds": 60.0,
+    "peak_dbfs": -1.635,
+    "rms_dbfs": -14.73,
+    "dc": [
+      0.00030268697096050913,
+      0.0003027442297475951
+    ],
+    "max_sample_delta": 0.2952332925701053,
+    "nonfinite_samples": 0
+  },
+  "revelacion": {
+    "seconds": 9.5,
+    "peak_dbfs": -1.566,
+    "rms_dbfs": -15.537,
+    "dc": [
+      2.2883441534897936e-05,
+      2.1884749469615586e-05
+    ],
+    "max_sample_delta": 0.19153213381478945,
+    "nonfinite_samples": 0
+  },
+  "loop_seam_delta": [
+    0.007152306228255106,
+    0.009200014282940053
+  ],
+  "loop_boundary_reference_p99_delta": [
+    0.07040350396608204,
+    0.06424659565720195
+  ],
+  "loop_sections_rms_dbfs": [
+    -14.71,
+    -14.84,
+    -14.67,
+    -14.71
+  ]
+}

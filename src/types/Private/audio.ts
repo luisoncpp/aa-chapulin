@@ -25,6 +25,8 @@ export type TrackName =
   | 'objection'
   | 'pursuit'
   | 'truth'
+  | 'deduccion_final'
+  | 'deduccion_anticipacion'
   | 'investigation'
   | 'investigation_core'
   | 'restaurante'

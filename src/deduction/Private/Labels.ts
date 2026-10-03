@@ -1,0 +1,25 @@
+// @Architecture(descriptionShort="Localized utility controls for the deduction presentation")
+export const labels = {
+  es: { title: 'Deducción final', demo: 'Demo independiente', menu: 'Menú', record: 'Acta', history: 'Historial', save: 'Guardar', load: 'Cargar',
+    restart: 'Reiniciar', language: 'English', sound: 'Sonido', motion: 'Movimiento reducido', flat: 'Fondo 2D',
+    start: 'Entrar al pensamiento', next: 'Continuar', confirm: 'Conectar esta idea', retry: 'Volver a pensar', return: 'Volver al tribunal',
+    thought: 'Pensamiento', question: 'Conecta los hechos', rejected: 'Esa hipótesis no encaja', connection: 'Ahora encaja',
+    conclusion: '¡Ya lo tengo!', returned: 'De vuelta en el tribunal', close: 'Cerrar', evidence: 'Pruebas', people: 'Personas',
+    empty: 'Vacío', slot: 'Ranura', overwrite: '¿Sobrescribir?', yes: 'Sí', no: 'No', saved: 'Demo guardado.',
+    failed: 'No se pudo guardar. El navegador no permite almacenamiento.', noSave: 'La ranura está vacía o no es compatible.',
+    instruction: 'Elige una idea.',
+    footer: 'Historia ficticia para probar la mecánica. Sin límite de tiempo. Los errores conservan la salud.',
+    health: 'Salud de la defensa: 5 de 5', typing: 'Completar texto', memory: 'Hecho conocido', finished: 'Demo terminado',
+    renderer: 'Presentación', reset: 'El progreso sin guardar se perderá. ¿Reiniciar el demo?' },
+  en: { title: 'Final deduction', demo: 'Standalone demo', menu: 'Menu', record: 'Court Record', history: 'History', save: 'Save', load: 'Load',
+    restart: 'Restart', language: 'Español', sound: 'Sound', motion: 'Reduced motion', flat: '2D background',
+    start: 'Enter the thought', next: 'Continue', confirm: 'Connect this idea', retry: 'Think again', return: 'Return to court',
+    thought: 'Inner thought', question: 'Connect the facts', rejected: 'That hypothesis does not fit', connection: 'It fits now',
+    conclusion: 'I have it!', returned: 'Back in the courtroom', close: 'Close', evidence: 'Evidence', people: 'People',
+    empty: 'Empty', slot: 'Slot', overwrite: 'Overwrite?', yes: 'Yes', no: 'No', saved: 'Demo saved.',
+    failed: 'Could not save. The browser does not allow storage.', noSave: 'This slot is empty or incompatible.',
+    instruction: 'Choose an idea.',
+    footer: 'A fictional story to test the mechanic. No time limit. Wrong hypotheses preserve health.',
+    health: 'Defense health: 5 of 5', typing: 'Reveal text', memory: 'Known fact', finished: 'Demo complete',
+    renderer: 'Presentation', reset: 'Unsaved progress will be lost. Restart the demo?' }
+};

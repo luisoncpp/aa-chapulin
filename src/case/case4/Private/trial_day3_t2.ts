@@ -1,10 +1,11 @@
 // @Architecture(descriptionShort="Case 4 day-3 Rufino business testimony", type="data", icon="layers")
 /**
- * Case 4 Trial Day 3 — Testimony 6, Rufino (§12.3). Directo al clímax.
+ * Case 4 Trial Day 3 — Testimony 6, Rufino (§12.3). Revisualización (§12.4) y clímax.
  */
 
 import type { Testimony } from '../../../types/index.js';
 import { CASE4_D3_T2_NOTA_SUCCESS, CASE4_TELEGRAMA_POINT_TARGET } from './trial_day3_success.js';
+import { CASE4_FINAL_DEDUCTION } from './final_deduction.js';
 
 export const CASE4_TESTIMONY_6: Testimony = {
   title: 'Testimonio: Una reunión de negocios',
@@ -53,7 +54,13 @@ export const CASE4_TESTIMONY_6: Testimony = {
       contradiction: {
         evidence: ['nota_amenaza'],
         pointTarget: CASE4_TELEGRAMA_POINT_TARGET,
-        successDialogue: CASE4_D3_T2_NOTA_SUCCESS
+        successDialogue: CASE4_D3_T2_NOTA_SUCCESS,
+        followUp: {
+          deduction: CASE4_FINAL_DEDUCTION,
+          successDialogue: [
+            { speaker: 'DEFENSA', text: 'Con la venia, señor juez. La defensa ya sabe por dónde entró ese tóxico.', pose: 'donramon_point' }
+          ]
+        }
       }
     }
   ]

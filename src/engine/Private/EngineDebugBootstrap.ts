@@ -9,7 +9,7 @@ import type { CaseId, Language, TrialDay } from '../../types/index.js';
 export interface DebugUrlActions {
   setLanguage: (lang: Language) => void;
   loadCase: (caseId: CaseId) => void;
-  startTrialDebug: (day?: TrialDay) => void;
+  startTrialDebug: (day?: TrialDay, deduction?: boolean) => void;
 }
 
 function parseTrialDay(url: string): TrialDay | undefined {
@@ -29,5 +29,5 @@ export function applyDebugUrlParams(actions: DebugUrlActions): void {
   else if (url.includes('case=4')) actions.loadCase('case4');
   else if (url.includes('case=2')) actions.loadCase('case2');
   const trialDay = parseTrialDay(url);
-  if (trialDay) actions.startTrialDebug(trialDay);
+  if (trialDay) actions.startTrialDebug(trialDay, url.includes('deduction'));
 }

@@ -4,6 +4,7 @@ export interface DomElements {
   bgEl: HTMLElement;
   speakerBoxEl: HTMLElement;
   dialogueTextEl: HTMLElement;
+  tutorialImageEl: HTMLImageElement;
   charSpriteEl: HTMLImageElement;
   courtFurnitureContainerEl: HTMLElement;
   courtFurnitureSpriteEl: HTMLImageElement;
@@ -95,9 +96,7 @@ export interface DomElements {
   btnPrevStatement: HTMLButtonElement;
   btnNextStatement: HTMLButtonElement;
 }
-function opt<T extends HTMLElement>(id: string): T | undefined {
-  return (document.getElementById(id) as T) || undefined;
-}
+function opt<T extends HTMLElement>(id: string): T | undefined { return (document.getElementById(id) as T) || undefined; }
 // @Section(DOM Element Cache)
 // fallow-ignore-next-line complexity
 export function getDomElements(): DomElements {
@@ -106,6 +105,7 @@ export function getDomElements(): DomElements {
     bgEl: document.getElementById('scene-bg')!,
     speakerBoxEl: document.getElementById('speaker-name')!,
     dialogueTextEl: document.getElementById('dialogue-text')!,
+    tutorialImageEl: document.getElementById('tutorial-image') as HTMLImageElement,
     charSpriteEl: document.getElementById('character-sprite') as HTMLImageElement,
     courtFurnitureContainerEl: document.getElementById('court-furniture-container')!,
     courtFurnitureSpriteEl: document.getElementById('court-furniture-sprite') as HTMLImageElement,

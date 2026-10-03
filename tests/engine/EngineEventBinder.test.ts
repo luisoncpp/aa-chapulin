@@ -102,6 +102,10 @@ describe('EngineEventBinder', () => {
     expect(advanced).toBe(true);
 
     advanced = false;
+    dom.tutorialImageEl.click();
+    expect(advanced).toBe(true);
+
+    advanced = false;
     dom.recordNoticeEl.click();
     expect(advanced).toBe(true);
 

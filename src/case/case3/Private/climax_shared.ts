@@ -15,6 +15,8 @@ export function assembleCase3Climax(lines: {
   stage4: DialogueLine[];
   prompts: [string, string, string, string];
   choices: ChoicePrompt[];
+  deductionOpening?: DialogueLine[];
+  deduction?: ClimaxDefinition['deduction'];
   verdict: DialogueLine[];
   epilogue: DialogueLine[];
 }): ClimaxDefinition {
@@ -34,6 +36,8 @@ export function assembleCase3Climax(lines: {
       }
     ],
     choices: lines.choices,
+    deductionOpening: lines.deductionOpening,
+    deduction: lines.deduction,
     verdict: lines.verdict,
     epilogue: { bg: WAITING_ROOM_BG, dialogue: lines.epilogue }
   };

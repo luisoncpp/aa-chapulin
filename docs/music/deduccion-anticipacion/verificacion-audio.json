@@ -1,0 +1,84 @@
+{
+  "track": "deduccion_anticipacion",
+  "seconds": 60,
+  "segments": [
+    {
+      "startStep": 0,
+      "milliseconds": 634.0999999642372
+    },
+    {
+      "startStep": 32,
+      "milliseconds": 581.6999999880791
+    },
+    {
+      "startStep": 64,
+      "milliseconds": 938.5
+    },
+    {
+      "startStep": 96,
+      "milliseconds": 793.9000000357628
+    },
+    {
+      "startStep": 128,
+      "milliseconds": 665.0999999642372
+    },
+    {
+      "startStep": 160,
+      "milliseconds": 551.8000000119209
+    },
+    {
+      "startStep": 192,
+      "milliseconds": 836.4000000357628
+    },
+    {
+      "startStep": 224,
+      "milliseconds": 689.6999999880791
+    },
+    {
+      "startStep": 256,
+      "milliseconds": 715.6999999880791
+    },
+    {
+      "startStep": 288,
+      "milliseconds": 649.3999999761581
+    },
+    {
+      "startStep": 320,
+      "milliseconds": 643.8000000119209
+    },
+    {
+      "startStep": 352,
+      "milliseconds": 724.4000000357628
+    },
+    {
+      "startStep": 384,
+      "milliseconds": 762.1999999880791
+    },
+    {
+      "startStep": 416,
+      "milliseconds": 711.0999999642372
+    },
+    {
+      "startStep": 448,
+      "milliseconds": 1054.8999999761581
+    },
+    {
+      "startStep": 480,
+      "milliseconds": 1651.6000000238419
+    }
+  ],
+  "peakDbfs": -11.038357940735871,
+  "rmsDbfs": -27.777527414504526,
+  "nonfiniteSamples": 0,
+  "clippedSamples": 0,
+  "boundaryDeltas": [
+    0.013896620599552989,
+    0.014032122679054737
+  ],
+  "sectionRmsDbfs": [
+    -28.69744351946651,
+    -27.308043187126586,
+    -26.676949542134523,
+    -28.81058302362773
+  ]
+}

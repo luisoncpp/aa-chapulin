@@ -30,7 +30,9 @@ export const CASE5_TESTIMONY_6: Testimony = {
         { speaker: 'DEFENSA', text: '¿Desde cuándo trabajas ahí?', pose: 'chapulin_point' },
         { speaker: 'CHOMPIRAS', text: 'Desde el quince de septiembre, señor juez. Me lo consiguió el Sargento.', pose: 'chompiras_idle' },
         { speaker: 'SARGENTO', text: 'Le conseguí una solicitud, señor juez. El trabajo se lo ganó él solo.', pose: 'pazguato_decidido' },
-        { speaker: 'CHOMPIRAS', text: 'Es la primera vez en mi vida que me pagan por cargar algo que no es mío y que sigue sin ser mío al final.', pose: 'chompiras_relieved' },
+        { speaker: 'CHOMPIRAS', text: 'Y no, licenciado, no me quedé quieto: corría entre el Archivo y lo que cayera hasta noviembre. Por eso no he faltado ni un día: no duermo.', pose: 'chompiras_idle' },
+        { speaker: 'DEFENSA', text: '¿Y todavía te quedan ganas de seguir cargando?', pose: 'chapulin_point' },
+        { speaker: 'CHOMPIRAS', text: '¡Tómalo por el lado amable! Esto es lo primero que he cargado con seguro y con aguinaldo, y lo primero que vale más que yo y sigue sin ser mío al final.', pose: 'chompiras_relieved' },
         { bg: 'assets/bg_gallery_case5_sam_berrondo.webp', furniture: 'none', speaker: 'NARRADOR', text: 'Risas suaves en la galería.', sfx: 'realization' }
       ]
     },

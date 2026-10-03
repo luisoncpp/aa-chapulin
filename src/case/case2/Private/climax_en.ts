@@ -49,15 +49,17 @@ export const CASE2_CLIMAX_EN = assembleCase2Climax({
   choices: CASE2_CLIMAX_CHOICES_EN,
   verdict: VERDICT_LINES,
   epilogue: [
-    { speaker: 'NARRADOR', text: '(Later, in the courthouse waiting room...)' },
-    { speaker: 'CHOMPIRAS', text: 'Oh, Don Ramón, Chapulín! I don\'t know how to thank you! I already saw myself eating rock soup for 20 years!', pose: 'chompiras_relieved' },
-    { speaker: 'CHAPULIN', text: 'Think nothing of it, Chómpiras! Nobility and cunning always beat evil! Follow the good guys!', pose: 'chapulin_point' },
-    { speaker: 'FLORINDA', text: 'I must admit, Don Ramón... for once in your life you did not behave like the usual rabble.', pose: 'florinda_idle' },
-    { speaker: 'JIRAFALES', text: 'A lecture in Aristotelian deduction, Don Ramón. Admirable.', pose: 'jirafales_idle' },
-    { speaker: 'DEFENSA', text: 'Heh heh! No cheese, only potatoes! And now that I have proven my legal talent...', pose: 'donramon_idle' },
-    { speaker: 'NARRADOR', text: '(Suddenly, heavy footsteps in the hall... it is Señor Barriga with his briefcase!)', sfx: 'realization' },
-    { speaker: 'DEFENSA', text: 'CHANFLE!!! SEÑOR BARRIGA IS HERE FOR THE 14 MONTHS OF RENT!!!', pose: 'donramon_panic' },
-    { speaker: 'CHAPULIN', text: 'Here, Don Ramón! Take a Chiquitolina Pill and hide in my pocket!', pose: 'chapulin_idle' },
-    { speaker: 'DEFENSA', text: 'Excuse me, said Monchitooooo!', pose: 'donramon_point' }
+    { speaker: 'NARRADOR', text: '(Later, in the courthouse waiting room...)', bg: 'assets/bg_waiting_room.webp', furniture: 'none' },
+    { speaker: 'CHOMPIRAS', text: 'Oh, Don Ramón, Chapulín! I don\'t know how to thank you! I already saw myself eating rock soup for 20 years!', pose: 'chompiras_relieved', bg: 'assets/bg_waiting_room.webp', furniture: 'none' },
+    { speaker: 'CHAPULIN', text: 'Think nothing of it, Chómpiras! Nobility and cunning always beat evil! Follow the good guys!', pose: 'chapulin_point', bg: 'assets/bg_waiting_room.webp', furniture: 'none' },
+    { speaker: 'FLORINDA', text: 'I must admit, Don Ramón... for once in your life you did not behave like the usual rabble.', pose: 'florinda_idle', bg: 'assets/bg_waiting_room.webp', furniture: 'none' },
+    { speaker: 'JIRAFALES', text: 'A lecture in Aristotelian deduction, Don Ramón. Admirable.', pose: 'jirafales_idle', bg: 'assets/bg_waiting_room.webp', furniture: 'none' },
+    { speaker: 'DEFENSA', text: 'Heh heh! No cheese, only potatoes! And now that I have proven my legal talent...', pose: 'donramon_idle', bg: 'assets/bg_waiting_room.webp', furniture: 'none' },
+    { speaker: 'NARRADOR', text: '(Suddenly, heavy footsteps in the hall... it is Señor Barriga with his briefcase!)', sfx: 'realization', bg: 'assets/bg_waiting_room.webp', furniture: 'none' },
+    { speaker: 'DEFENSA', text: 'CHANFLE!!! SEÑOR BARRIGA IS HERE FOR THE 14 MONTHS OF RENT!!!', pose: 'donramon_panic', bg: 'assets/bg_waiting_room.webp', furniture: 'none' },
+    { speaker: 'CHOMPIRAS', text: 'Look on the bright side!', pose: 'chompiras_relieved', bg: 'assets/bg_waiting_room.webp', furniture: 'none' },
+    { speaker: 'DEFENSA', text: 'The bright side won\'t pay the rent!', pose: 'donramon_panic', bg: 'assets/bg_waiting_room.webp', furniture: 'none' },
+    { speaker: 'CHAPULIN', text: 'Here, Don Ramón! Take a Chiquitolina Pill and hide in my pocket!', pose: 'chapulin_idle', bg: 'assets/bg_waiting_room.webp', furniture: 'none' },
+    { speaker: 'DEFENSA', text: 'Excuse me, said Monchitooooo!', pose: 'donramon_point', bg: 'assets/bg_waiting_room.webp', furniture: 'none' }
   ]
 });

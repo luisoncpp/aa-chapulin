@@ -28,6 +28,8 @@ export const CASE3_CALL_CHIMOLTRUFIA: DialogueLine[] = [
   { speaker: 'CHIMOLTRUFIA', pose: 'chimoltrufia_confundida', text: 'La Chimoltrufia, para servirle. Y soy locutora de horóscopos de la XEVC... bueno, ayudante de locutora. Bueno, la que hace el café. ¡Como digo una cosa, digo otra!' },
   { speaker: 'JUEZ', pose: 'judge_thinking', text: '...¿Y cuál de las tres le anoto?' },
   { speaker: 'CHIMOLTRUFIA', pose: 'chimoltrufia_idle', text: 'Las tres, mi Juez. Total, una sola me pagan.' },
+  { speaker: 'JUEZ', pose: 'judge_thinking', text: '¿Le pagan una y hace usted las tres?' },
+  { speaker: 'CHIMOLTRUFIA', pose: 'chimoltrufia_idle', text: '¿Pa\' qué te digo que no, si sí?' },
   { speaker: 'DEFENSA', pose: 'donramon_sweat', text: '(Chanfle. Esta señora se contradice con la que habló antes... y la que habló antes era ella.)' },
   { speaker: 'JUEZ', pose: 'judge_gavel', sfx: 'gavel', text: 'Queda asentado... lo que haya quedado. Testigo, proceda con su testimonio.' }
 ];

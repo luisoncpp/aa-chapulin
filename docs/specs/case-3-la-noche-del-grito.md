@@ -11,8 +11,11 @@ Documento de diseño narrativo, guión de diálogos y especificación técnica p
 | 2026-09-26 | Cobertura semántica de reacciones colectivas (juicios/clímax ES/EN) | Los beats colectivos —la sala estalla al probarse el grito grabado, silencio al caer la acusación y silencio al entrar Barriga— usan `bg_gallery_characters.webp`/`none`; los beats individuales de juez y testigo usan su encuadre propio. Candidatas descartadas: la reproducción en la Delegación queda muda (sala de investigación); el «Silencio.» del clímax y los silencios posteriores enfocan a Aniceto; el epílogo ocurre en la sala de espera; la acotación parentética «La sala vuelve a compadecerlo» pertenece a una línea de SUPER SAM, fuera del alcance NARRADOR/NARRATOR. |
 | 2026-09-27 | Encuadre de reacciones mixtas y acciones de utilería (Caso 3 ES/EN) | Separados galería, juez y testigos en los beats mixtos; encuadradas en defensa la operación de la cinta y la exhibición narrada del trofeo. Los sprites idle de Don Ramón y Aniceto no dibujan el Micrófono de Oro en sus manos. |
 | 2026-09-27 | Pose durante el silencio focal (clímax ES/EN) | El «Silencio.» tras la frase errónea del Chapulín continúa el plano de la defensa aunque la reacción enfocada es Aniceto; ambos guiones ahora usan `bg_witness.webp`/`podium` con `aniceto_sweat`, igual que el foco del parlamento que sigue. |
+| 2026-10-02 | Contrato de motor y continuidad de la deducción final (ES/EN) | El último presente del clímax abre dos conexiones privadas sin penalización. Al volver, se reproducen las líneas públicas del primer acierto y la trampa original; la confesión y el veredicto conservan sus líneas y orden. |
 
 **Cierre de esta pasada:** lente agotada tras recorrer los guiones de juicio, clímax y epílogo en español e inglés y cotejarlos con las menciones de juicio del spec. Los silencios colectivos usan la galería; el silencio que enfoca a Aniceto mantiene su encuadre de testigo y `aniceto_sweat`. La regla de cámara se alinea con [[docs/specs/common/bg_gallery.md]].
+
+**Cierre de la pasada de integración:** el presente final conserva las diez líneas de éxito de la etapa 4 antes de abrir la deducción. El pensamiento no descuenta salud; al completarlo, se reproducen las tres líneas públicas previas a la trampa y después el diálogo de la demostración, confesión y veredicto en su orden original.
 
 **Duración objetivo:** ~2 horas (6 fases: 3 días de investigación + 3 días de juicio, ~20 min cada una).
 
@@ -181,7 +184,7 @@ flowchart TD
         G2 --> G3
         G3 --> G4[T2 Aniceto acorralado]
         G4 --> G5[Contradiccion: la ventana trabada]
-        G5 --> G6[Climax: cuatro pruebas y dos decisiones]
+        G5 --> G6[Clímax: cuatro pruebas, deducción privada y trampa en sala]
         G6 --> G7[La trampa del refran mal dicho]
         G7 --> G8[Veredicto INOCENTE]
     end
@@ -494,6 +497,8 @@ JUEZ (judge_neutral): Señora, para el acta: su nombre y su ocupación.
 CHIMOLTRUFIA (chimoltrufia_confundida): La Chimoltrufia, para servirle. Y soy locutora de horóscopos de la XEVC... bueno, ayudante de locutora. Bueno, la que hace el café. ¡Como digo una cosa, digo otra!
 JUEZ (judge_thinking): ...¿Y cuál de las tres le anoto?
 CHIMOLTRUFIA (chimoltrufia_idle): Las tres, mi Juez. Total, una sola me pagan.
+JUEZ (judge_thinking): ¿Le pagan una y hace usted las tres?
+CHIMOLTRUFIA (chimoltrufia_idle): ¿Pa' qué te digo que no, si sí?
 DEFENSA (donramon_sweat): (Chanfle. Esta señora se contradice con la que habló antes... y la que habló antes era ella.)
 JUEZ (judge_gavel): Queda asentado... lo que haya quedado. Testigo, proceda con su testimonio. [sfx: gavel]
 ```
@@ -912,7 +917,7 @@ JUEZ (judge_gavel): ¡ORDEN! La corte exige que la defensa demuestre, con prueba
 
 ---
 
-### El Gran Clímax: Cuatro Pruebas y Dos Decisiones
+### El Gran Clímax: Cuatro Pruebas y una Deducción Privada
 
 ```dialogue
 [DILEMA FINAL DEL CLÍMAX]
@@ -973,38 +978,16 @@ SUPER SAM (supersam_sweat): He's right... Sin la voz, todo esto son papeles. Tim
 JUEZ (judge_thinking): El fiscal tiene razón, por increíble que parezca. Licenciado, ¿puede usted probar que esa voz pertenece al testigo?
 ```
 
-#### Elección Múltiple 1: ¿Qué falta?
-- **Pregunta:** ¿Qué le falta a la defensa para cerrar el caso?
-- **Opciones**:
-  - Su confesión firmada. *(Incorrecta)*
-  - **Probar que la voz del cartucho es la suya.** *(Correcta)*
-  - Las huellas en el trofeo. *(Incorrecta)*
+#### Deducción final: demostrar la voz y preparar la trampa
+
+El último presente reproduce el éxito de la etapa 4, incluida la pregunta del juez. Don Ramón entra en su pensamiento con un zoom a la frente; las opciones aparecen como placas tridimensionales y cada placa se elige con un clic. Los pensamientos y las devoluciones usan la caja de diálogo normal. Al conectar una idea, el nombre de la prueba o personaje y el hecho recordado aparecen sobre el túnel. El remate "HAY QUE HACERLO / CORREGIR AL CHAPULÍN" ocupa la pantalla sobre un fondo claro, con la música detenida, hasta que el jugador pulsa para volver al tribunal. Los errores no descuentan salud y las demás placas desaparecen mientras se lee una devolución.
+
+1. Sin depender de que Aniceto confiese, la defensa necesita que la sala compare la voz del cartucho con una voz que él mismo repita. Los distractores «conseguir una confesión» y «buscar huellas» no resuelven esa comparación.
+2. Aniceto ya corrigió al Chapulín en la kermés. Para provocar la misma reacción en el juicio, Don Ramón decide poner el sketch y confiar en que el Chapulín se equivoque al repetir la frase final. Puede prever el error, pero no las palabras concretas que dirá.
+
+La conclusión no prueba por sí sola la identidad de la voz. Al volver al tribunal se reproducen las tres líneas públicas originales: la defensa pide oír a Aniceto, él se niega y el juez pregunta cómo lo lograrán. La defensa pone en marcha la idea en ese momento:
 
 ```dialogue
-[OPCIÓN INCORRECTA: confesión / huellas]
-DEFENSA (donramon_sweat): ¡Pues... que confiese, señor Juez! ¡Que confiese ya!
-ANICETO (aniceto_sweat): Con mucho gusto confieso... que estoy indignado.
-JUEZ (judge_gavel): Licenciado, este tribunal no funciona con buenos deseos. ¡Penalización! [sfx: damage]
-
-[OPCIÓN CORRECTA]
-DEFENSA (donramon_point): Falta una sola cosa, señor Juez: que esta sala oiga al señor Rebollar hablar con la voz del señor Barriga.
-ANICETO (aniceto_panic): ¡Jamás! ¡No pienso abrir la boca!
-JUEZ (judge_thinking): Y no está obligado a hacerlo. ¿Cómo piensa lograrlo, Licenciado?
-```
-
-#### Elección Múltiple 2: La trampa
-- **Pregunta:** ¿Cómo hacemos que "La Voz de Oro" hable con la voz del Señor Barriga delante del tribunal?
-- **Opciones**:
-  - Pedírselo amablemente. *(Incorrecta)*
-  - Amenazarlo con la cárcel. *(Incorrecta)*
-  - **Poner el sketch... y decir mal su frase famosa.** *(Correcta)*
-
-```dialogue
-[OPCIÓN INCORRECTA: pedírselo / amenazarlo]
-DEFENSA (donramon_sweat): ¿No nos haría usted una vocecita, por favorcito?
-ANICETO (aniceto_panic): Licenciado, tengo veinticinco años de carrera y usted tiene una insignia abollada.
-JUEZ (judge_gavel): ¡No haga usted payasadas en mi tribunal! [sfx: damage]
-
 [OPCIÓN CORRECTA — LA TRAMPA]
 DEFENSA (donramon_idle): Chapulín. La cinta del sketch. Y hágame usted un favor... dígala como usted dice los refranes.
 CHAPULIN (chapulin_point): ¡Con muchísimo gusto! ¡Todos mis movimientos están fríamente calculados!
@@ -1147,7 +1130,7 @@ Ninguna pista se introduce sin pagar. Verificación pieza por pieza:
 | **Super Sam** | *"Time is money!"*, *"Objection!"*, *"Your salary is cut!"* | Mezcla inglés-español, como en los casos previos. |
 | **Doña Florinda** | *"¡Chusma, chusma!"* | — |
 | **Profesor Jirafales** | *"¡¡¡TA-TA-TA-TA-TAAAAAA!!!"* | Cinco "ta", vocal final alargada. |
-| **La Chimoltrufia** | *"¡Como digo una cosa, digo otra!"*, *"¡Ay, qué la canción!"* | La primera se usa como muletilla real, no como chiste aislado: sus declaraciones **se contradicen de verdad**. |
+| **La Chimoltrufia** | *"¡Como digo una cosa, digo otra!"*, *"¡Ay, qué la canción!"*, *"¿Pa' qué te digo que no, si sí?"* | Sus contradicciones son literales. En inglés, la respuesta compartida es *"Why would I say no when the answer's yes?"*. |
 | **Señor Barriga** | *"¡Tenía que ser el Chavo del Ocho!"* | Es la frase del sketch imitado **y** la trampa del clímax. Debe aparecer idéntica en los tres lugares. |
 | **Doctor Chapatín** | No tiene muletilla fija. Su firma es **conductual**: la bolsa de papel como arma y la furia ante cualquier mención de su edad. | No inventarle catchphrases. Escribirlo por comportamiento, no por frase. |
 | **El Sargento** (Sargento Refugio Pazguato) | *"¡A sus órdenes, mi Licenciado!"*, *"Es que otra vez me descontaron del sueldo."* | Personaje nuevo: en la serie y en el juego todos lo llaman "el Sargento" / "Sargento". Su nombre completo **se dice una sola vez en todo el caso**, en la Cabina B del día 1 ([[src/case/case3/Private/cabina.ts]]). Por eso en el llamado al estrado Super Sam lo corta a media sílaba (*"Sargento Refu..."*) en lugar de repetirlo: el gag sólo funciona si el nombre ya se gastó antes y no se vuelve a gastar. |
@@ -1220,7 +1203,7 @@ Se reutilizan los cinco existentes. No se requieren nuevos.
 | Interrogatorio (T2 de los días 1 y 2) | `cross_exam_allegro` | Reutiliza | El T2 del día 3 usa `cross_exam_presto`. |
 | Interrogatorio final (día 3, T2) | `cross_exam_presto` | **Nuevo** (~168 BPM) | Variante acelerada del allegro: lead en semicorcheas, bajo en octavas, redoble cada 4 compases. Sólo suena una vez en todo el juego, en el último testimonio. |
 | Objeción / giro | `objection` | Reutiliza | Los dos GIROS (D2-T1 grito enlatado; D3-T1 se ató solo) entran sobre el downbeat de este tema. |
-| Clímax acorralado | `pursuit` | Reutiliza | Los `¡TOMA ESO!` de contradicción (como en Casos 1–2) pueden entrar en `pursuit`. El lock definitivo es la **etapa 4 del clímax**: desde ahí no vuelve a salir hasta el veredicto. |
+| Clímax acorralado | `pursuit` | Reutiliza | Los `¡TOMA ESO!` de contradicción (como en Casos 1–2) pueden entrar en `pursuit`. El lock definitivo es la **etapa 4 del clímax**. La deducción final pasa a `deduccion_final`; al regresar vuelve `suspense`, y `objection` entra al reaccionar Aniceto. |
 | Victoria | `victory` | Reutiliza | — |
 | Kermés (Día 1, plaza) | `kermes` | **Nuevo** (~132 BPM) | Diegético: suena "desde las bocinas". Banda de plaza en chiptune — trompeta cuadrada, tuba en el bajo triangular, tarola de marcha. Filtrado paso-bajo mientras el jugador está adentro del edificio, abierto en la plaza. |
 
@@ -1238,4 +1221,5 @@ Se reutilizan los cinco existentes. No se requieren nuevos.
 6. **Audio** (`src/audio/Private/`): las dos pistas **nuevas** de §18 — `cross_exam_presto` (~168 BPM, variante acelerada del allegro) y `kermes` (~132 BPM, diegético, filtrado paso-bajo dentro del edificio). Componer cada una en su propio módulo del tracker y registrarlas en `TrackCatalog.ts`, además de ampliar `TrackName`. Ningún SFX nuevo: todos reutilizados.
 7. **Pipeline**: `process_case3_assets.py` clonando `process_case2_assets.py`; verificar con `verify_assets.py`.
 8. **Pruebas**: `tests/case/Case3Scripts.test.ts` (integridad de IDs, que toda prueba tenga al menos una ranura de presentación, que toda declaración `unlockedBy` apunte a una declaración existente y presionable, y que **la última locación de cada día entregue al menos una prueba de `requiredEvidence`** — §6.4), `tests/engine/StatementUnlock.test.ts`, `tests/state/EvidenceUpdateStages.test.ts`, y ampliación de `TrialDayRouter.test.ts` al día 3.
+9. **Deducción final (implementada)**: `CASE3_FINAL_DEDUCTION` contiene las dos conexiones en ES/EN. La última presentación del clímax conserva el éxito de la etapa 4 y luego abre esta sesión privada; volver reproduce `deductionOpening`, seguido por `verdict`, la celebración y el epílogo. El snapshot de clímax conserva paso, idioma e hipótesis. La URL de revisión es `?case=3&trial=3&deduction`.
 9. **Documentación al implementar**: actualizar `docs/architecture/case-scripting.md` (nuevos campos de esquema), `docs/flows/trial-cross-examination-flow.md` (paso de desbloqueo por presión) y `docs/live/glossary.md` (personajes y términos del Caso 3).

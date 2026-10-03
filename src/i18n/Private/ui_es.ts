@@ -84,6 +84,8 @@ export const UI_ES: UiTranslations = {
     objection: '¡No contaban con mi astucia!',
     pursuit: '¡Que no panda el cúnico!',
     truth: 'Verdad — Cerrando el Cerco',
+    deduccion_final: 'Deducción final — Todo encaja',
+    deduccion_anticipacion: 'Deducción final — A un paso de la verdad',
     investigation: 'Investigación — Swing Noir',
     investigation_core: 'Investigación — Escena del Crimen',
     restaurante: 'Restaurante — Bossa Tranquila',

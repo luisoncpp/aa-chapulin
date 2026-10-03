@@ -17,6 +17,8 @@ export const CASE4_HOTEL_TERRAZA_D2_EN: InvestigationScene = {
     { speaker: 'CHOMPIRAS', text: 'From before before. But we do not talk about that anymore, right? We are uniformed men now.', pose: 'chompiras_nervous' },
     { speaker: 'CHAPULIN', text: 'How beautiful it is to reform!', pose: 'chapulin_idle' },
     { speaker: 'CHOMPIRAS', text: 'Beautiful, yes. Well paid, no.', pose: 'chompiras_relieved' },
+    { speaker: 'CHAPULIN', text: 'Then you are still carrying other people’s things.', pose: 'chapulin_point' },
+    { speaker: 'CHOMPIRAS', text: 'Look on the bright side! Now the owners ask me to do it.', pose: 'chompiras_relieved' },
     { speaker: 'DEFENSA', text: 'We are looking for a shipment with this number.', pose: 'donramon_idle' },
     { speaker: 'CHOMPIRAS', text: 'Then you cannot miss, counselor. Guests change their names every other day; luggage does not. The bag carries its tag and that is that.', pose: 'chompiras_nervous' },
     { speaker: 'CHAPULIN', text: 'And do you ride inside the freight lift?', pose: 'chapulin_point' },

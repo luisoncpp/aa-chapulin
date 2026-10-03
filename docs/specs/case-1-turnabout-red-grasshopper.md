@@ -326,7 +326,9 @@ DEFENSA: Empecemos por ahí. Cuénteme la noche completa, desde el principio, si
 DEFENSA: (Ya me anoté a los dos en el Acta. A él porque es mi cliente; a mí porque si me distraigo, se me olvida de qué lado estoy.) [pose: donramon_idle]
 ~~~
 
-> **MODO TUTORIAL (una sola vez, `instant: true`):** *El corazón amarillo del ACTA DEL JUICIO ahora tiene dos pestañas: **PRUEBAS** y **PERSONAS**. En la pestaña de PERSONAS se guarda todo lo que sabes de cada quien, y se actualiza sola conforme avanza el caso.*
+> **MODO TUTORIAL (una sola vez, `instant: true`):** El ACTA DEL JUICIO reúne PRUEBAS y PERSONAS. Consulta PRUEBAS para revisar los objetos y documentos del caso. En PERSONAS encontrarás las fichas de los participantes. Revísalas durante la investigación, porque pueden actualizarse con nuevos datos.
+
+La ayuda se muestra centrada, con el escenario oscurecido al 60% y sin pose, conservando el fondo del centro de detención y el HUD disponible. Su `tutorialImage` muestra un recorte limpio de las pestañas del Acta (`assets/tutorials/tabs-es.webp` / `tabs-en.webp`), encima del texto y con descripción alternativa localizada. Clic en el mensaje o la imagen, Espacio y Enter continúan la escena; la siguiente línea recupera su pose. Los avisos habituales del modo de exploración conservan el cuadro inferior. Contrato de presentación: [[docs/architecture/game-engine.md]].
 
 #### Opciones de diálogo (Talk)
 

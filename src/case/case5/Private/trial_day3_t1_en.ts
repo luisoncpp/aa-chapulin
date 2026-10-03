@@ -30,7 +30,9 @@ export const CASE5_TESTIMONY_6_EN: Testimony = {
         { speaker: 'DEFENSA', text: 'How long have you worked there?', pose: 'chapulin_point' },
         { speaker: 'CHOMPIRAS', text: 'Since September 15, Your Honor. The Sergeant got me the job.', pose: 'chompiras_idle' },
         { speaker: 'SARGENTO', text: 'I got him an application, Your Honor. He earned the job himself.', pose: 'pazguato_decidido' },
-        { speaker: 'CHOMPIRAS', text: 'It is the first time in my life I get paid to haul something that is not mine and still is not mine at the end.', pose: 'chompiras_relieved' },
+        { speaker: 'CHOMPIRAS', text: 'And no, counselor, I did not sit around: I kept running between the Archive and whatever work I could find until November. That is why I have not missed a day: I do not sleep.', pose: 'chompiras_idle' },
+        { speaker: 'DEFENSA', text: 'And you still have the energy to keep hauling crates?', pose: 'chapulin_point' },
+        { speaker: 'CHOMPIRAS', text: 'Look on the bright side! This is the first thing I have hauled with insurance and a Christmas bonus, and the first thing worth more than me that still will not be mine in the end.', pose: 'chompiras_relieved' },
         { bg: 'assets/bg_gallery_case5_sam_berrondo.webp', furniture: 'none', speaker: 'NARRADOR', text: 'Soft laughter in the gallery.', sfx: 'realization' }
       ]
     },

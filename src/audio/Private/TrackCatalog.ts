@@ -20,6 +20,8 @@ import { archivoTrack, crossExamGraveTrack } from './tracks/Case5Tracks.js';
 import { terrazaBarTrack } from './tracks/TerrazaBarTrack.js';
 import { crossExamFinalTrack } from './tracks/FinalConfrontationTrack.js';
 import { crossExamCareoTrack } from './tracks/CareoTrack.js';
+import { deductionTrack } from './tracks/DeductionTrack.js';
+import { anticipationTrack } from './tracks/AnticipationTrack.js';
 
 export const TRACK_CATALOG: TrackCatalogMap = {
   // @Section(Courtroom & Cross-Examination Tracks)
@@ -35,6 +37,8 @@ export const TRACK_CATALOG: TrackCatalogMap = {
   objection: objectionTrack,
   pursuit: pursuitTrack,
   truth: truthTrack,
+  deduccion_final: deductionTrack,
+  deduccion_anticipacion: anticipationTrack,
 
   // @Section(Atmosphere & Celebration Tracks)
   investigation: investigationTrack,

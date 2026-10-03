@@ -3,7 +3,7 @@
  * Case 5 Trial Day 4 — opening present, T9 successes, GIRO 4 (spec §17), English.
  */
 
-import type { ChoicePrompt, DialogueLine, TrialPresentStep } from '../../../types/index.js';
+import type { DialogueLine } from '../../../types/index.js';
 
 export const CASE5_DAY4_OPENING_PRESENT_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'DEFENSA', text: 'The Archive maintenance log, Your Honor, and the thermograph strip from corridor seven!', pose: 'chapulin_slam', sfx: 'desk_slam' },
@@ -76,68 +76,21 @@ export const CASE5_D4_T1_LIBRO_SUCCESS_EN: DialogueLine[] = [
   { speaker: 'DEFENSA', text: '(He is sweating. He has been sweating since yesterday.)', pose: 'chapulin_idle' },
   { speaker: 'JUEZ', text: 'Defense: being in a basement is not being in a corridor.', pose: 'judge_neutral' },
   { speaker: 'JUEZ', text: 'This court has spent four days waiting for someone to climb a staircase.', pose: 'judge_thinking' },
-  { speaker: 'DEFENSA', text: '(I am coming, Your Honor. Just one thing first.)', pose: 'chapulin_idle' }
+  { speaker: 'JUEZ', text: 'Ms. Penaloza, take a seat and remain available to the court.', pose: 'judge_neutral' },
+  { speaker: 'GENOVEVA', text: 'Yes, Your Honor.', pose: 'genoveva_idle' },
+  { speaker: 'DEFENSA', text: '(He was in the building. We still need to know what he prepared before coming.)', pose: 'chapulin_idle' }
 ];
 
-const PLAN_CHOICE_EN: ChoicePrompt = {
-  id: 'd4_plan_preparation',
-  question: 'If Berrondo prepared the setup before Saturday, what hypothesis can we test?',
-  options: [
-    { id: 'esperar', label: 'He waited for Saturday and improvised.' },
-    { id: 'planear', label: 'He searched in advance for a piece to frame Don Ramón.' }
-  ],
-  correctId: 'planear',
-  successDialogue: [
-    { speaker: 'DEFENSA', text: '(If he planned the lure, he had to confirm beforehand that Don Ramón\'s card was still in the index.)', pose: 'chapulin_idle' }
-  ],
-  failDialogue: [
-    { speaker: 'DON RAMÓN', text: '(If he waited for Saturday, there will be no earlier record to help us.)', pose: 'donramon_idle' },
-    { speaker: 'DEFENSA', text: '(Let us return to the hypothesis that leaves a trace we can check.)', pose: 'chapulin_idle' }
-  ]
-};
-
-export const CASE5_D4_T1_CHAIN_EN: TrialPresentStep[] = [
-  {
-    evidence: ['esquina_tarjeta'],
-    prompt: 'What scene finding could have been prepared to frame Don Ramón?',
-    successDialogue: [
-      { cutin: 'objection_toma_eso', speaker: 'DEFENSA', text: 'TAKE THAT!', sfx: 'desk_slam', pose: 'chapulin_slam' },
-      { speaker: 'DEFENSA', text: 'The card corner found in Casimiro\'s hand carried Don Ramón\'s address. Someone put it there to point at him.', pose: 'chapulin_point' },
-      { speaker: 'BERRONDO', text: 'A typed card does not prove it came from my index. Anyone who knew Mr. Valdés could have written it.', pose: 'berrondo_idle', bg: 'assets/bg_courtroom.webp' },
-      { speaker: 'BERRONDO', text: 'Until this trial I did not even know that man\'s name. Why would I search eleven thousand cards for him?', pose: 'berrondo_idle', bg: 'assets/bg_courtroom.webp' }
-    ]
-  },
-  {
-    evidence: ['oficio_diligencia'],
-    prompt: 'What prosecution document named the person summoned and was distributed to the Syndic\'s Office?',
-    successDialogue: [
-      { speaker: 'DEFENSA', text: 'Notice 4471 names Ramón Valdés at Casimiro\'s request and orders a copy sent to the Syndic\'s Office.', pose: 'chapulin_point' },
-      { speaker: 'BERRONDO', text: 'I signed the receipt, but I did not pay attention to the subject. The written name does not prove I read it.', pose: 'berrondo_idle', bg: 'assets/bg_courtroom.webp' },
-      { speaker: 'JUEZ', text: 'The notice proves what he could know, not what he did after signing it.', pose: 'judge_thinking' }
-    ]
-  },
-  { choice: PLAN_CHOICE_EN, successDialogue: [] },
-  {
-    evidence: ['fichero_cedulario'],
-    prompt: 'What item would he have consulted to confirm that Don Ramón was still indexed?',
-    successDialogue: [
-      { speaker: 'DEFENSA', text: 'The card-file index holds the address cards. If he chose one, he could confirm that Don Ramón\'s was still filed.', pose: 'chapulin_point' },
-      { speaker: 'DON RAMÓN', text: '(That is still a hypothesis, kid.)', pose: 'donramon_idle' }
-    ]
-  },
-  {
-    profileTarget: ['perfil_genoveva'],
-    prompt: 'Who can check the deposit records and tell us whether there was an earlier consultation?',
-    successDialogue: [
+export const CASE5_D4_T1_CEDULARIO_SUCCESS_EN: DialogueLine[] = [
       { speaker: 'DEFENSA', text: 'Your Honor, I ask that Ms. Penaloza return to the stand. She files the deposit vouchers.', pose: 'chapulin_point' },
       { speaker: 'JUEZ', text: 'Miss, check your folder. Is there a card-file consultation by Counselor Berrondo on November twenty-ninth?', pose: 'judge_neutral' },
+      { speaker: 'NARRADOR', text: 'Genoveva opens a rubber folder and separates the pink slips tied with a rubber band.', bgm: 'suspense' },
       { speaker: 'GENOVEVA', text: 'Yes, Your Honor. "November twenty-ninth. Crate 9. Item consulted: card-file index. Requester: Counselor Fulgencio Berrondo. Signature: F. Berrondo."', pose: 'genoveva_sweat' },
       { speaker: 'DEFENSA', text: 'That was a Monday. The voucher records a consultation, but not which card he saw, and it was not required to open the crate.', pose: 'chapulin_slam', sfx: 'desk_slam' },
+      { speaker: 'DEFENSA', text: 'Counselor, you testified that you only visit the crate on Thursdays.', pose: 'chapulin_point' },
+      { speaker: 'BERRONDO', text: 'The voucher records an extraordinary consultation. It does not say which card I saw, and my office permits me to consult that item.', pose: 'berrondo_idle', bg: 'assets/bg_courtroom.webp' },
       { speaker: 'JUEZ', text: 'Let that be entered. The card will be identified by its address, not by this voucher.', pose: 'judge_neutral' },
       { speaker: 'SECRETARIO', text: 'I receive the folder, Your Honor.' },
+      { speaker: 'JUEZ', text: 'It remains in the court\'s custody. Ms. Penaloza, remain available to this court.', pose: 'judge_neutral' },
       { speaker: 'JUEZ', text: 'Counselor Chapulin. This court has spent four days forbidding you to point at a person, and today it is going to order you to.', sfx: 'gavel', pose: 'judge_gavel' }
-    ]
-  }
 ];
-
-export const CASE5_D4_T1_CEDULARIO_SUCCESS_EN: DialogueLine[] = CASE5_D4_T1_CHAIN_EN[4].successDialogue;

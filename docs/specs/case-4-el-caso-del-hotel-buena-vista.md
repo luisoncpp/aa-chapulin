@@ -71,6 +71,8 @@ El primer montaje incrimina por disparo. Si la investigación descubre el veneno
 | El Cuajinais | Víctima y antiguo socio de Rufino. Su extorsión explica la reunión y el móvil. | Traje de lana marrón, cicatriz en mejilla izquierda, fotografías periciales. |
 | El Juez | Exige distinguir posibilidad, corroboración y prueba de una afirmación. Autoriza investigación de ambos implicados al cambiar los hechos. | Familia judge del juego. |
 
+Frases de los personajes: Chómpiras usa «¡Tómalo por el lado amable!» («Look on the bright side!»); Chimoltrufia usa la frase compartida «¿Pa' qué te digo que no, si sí?» («Why would I say no when the answer's yes?»).
+
 En investigación se usan poses de pie. Los golpes de mesa corresponden al tribunal. La derrota de Rufino no exige nuevos sprites: se desprende el monóculo, pierde la compostura y deja de hablar como aristócrata. El Sargento conserva su empleo para futuros episodios.
 
 ## 4. Espacio, accesos y cronología única
@@ -600,6 +602,8 @@ DEFENSA: Lo voy a sacar. ¿Ustedes se conocen de antes?
 CHOMPIRAS: De antes de antes. Pero de eso ya no hablamos, ¿verdad? Ahora somos gente de uniforme.
 CHAPULIN: ¡Qué bonito es reformarse!
 CHOMPIRAS: Bonito sí. Bien pagado no.
+CHAPULIN: Entonces todavía cargas cosas ajenas.
+CHOMPIRAS: ¡Tómalo por el lado amable! Ahora me lo piden los dueños.
 DEFENSA: Buscamos un envío con este número.
 CHOMPIRAS: Entonces no hay pierde, mi licenciado. Los huéspedes se cambian de nombre a cada rato; las maletas no. La maleta trae su etiqueta y se acabó.
 CHAPULIN: ¿Y tú te subes adentro del montacargas?
@@ -942,7 +946,7 @@ Temas:
 ~~~dialogue
 CHIMOLTRUFIA: Yo nunca creí que hubieras matado a nadie.
 BOTIJA: Pero sí creíste que había aceptado el trabajo del Cuajinais.
-CHIMOLTRUFIA: Lo pensé dos días. Y me dio más coraje pensarlo que preguntártelo.
+CHIMOLTRUFIA: ¿Pa' qué te digo que no, si sí? Lo pensé dos días. Y me dio más coraje pensarlo que preguntártelo.
 BOTIJA: Le dije que no. Le dije que no delante de todo el pasillo.
 DEFENSA: Eso lo oyó gente. Y por eso el fiscal cree que discutieron por dinero.
 BOTIJA: Discutimos porque no quise. Es la primera vez que me acusan de algo por decir que no.
@@ -1140,7 +1144,31 @@ CHAPULIN: ¡Ya era hora! Llevo tres días cargando con ella.
 JUEZ: Que la defensa exponga cómo se alteró ese vino. Es lo último que le queda por resolver a este proceso.
 ~~~
 
-Al terminar el segundo testimonio no hay aplazamiento: la audiencia entra directamente en el clímax.
+Al terminar el segundo testimonio no hay aplazamiento. La contradicción lleva un `followUp.deduction` que abre la revisualización de §12.4; al volver, la audiencia entra en el clímax.
+
+### 12.4 Revisualización: la noche de la botella
+
+Don Ramón piensa desde la mesa de defensa y responde cinco preguntas de opción múltiple (`src/case/case4/Private/final_deduction.ts`, bilingüe). Los errores explican y repiten sin penalizar; el Acta se puede consultar. Acceso directo de revisión: `?case=4&trial=3&deduction`.
+
+**Regla:** la revisualización no nombra el anillo ni el canal del corcho. El método se deduce en privado; el stage 1 lo prueba en público señalando el canal y el stage 2 revela la pieza al presentarla. El punto de cera no se atribuye a ningún objeto: el examen del lacre describe lo que se ve, no qué lo produjo.
+
+| # | Pregunta | Respuesta | Fuente |
+| --- | --- | --- | --- |
+| 1 | ¿Desde cuándo sabía Rufino que Gómez iba a buscarlo? | Desde las 20:50, por el acuse del telegrama; veinticinco minutos después pidió la botella. | nota_amenaza |
+| 2 | ¿Quién estuvo a solas con la botella cerrada? | Rufino, entre la entrega y la llegada de su invitado. | Presión 3 de D3-T1 |
+| 3 | ¿Por qué estaba Botija dentro de esa habitación? | Rufino lo pidió por su nombre. | orden_servicios |
+| 4 | ¿Cómo pudo meter algo en la botella sin romper el lacre? | No lo rompió: lo atravesó. | botella_vino; §13.1 |
+| 5 | ¿Por qué nadie vio el agujero? | Lo tapó con un punto de cera. | Lacre del cuello (cava, D3) |
+
+Conclusión: **«El cierre se atravesó y se tapó.»**
+
+Al volver a la sala:
+
+~~~dialogue
+DEFENSA: Con la venia, señor juez. La defensa ya sabe por dónde entró ese tóxico.
+~~~
+
+Después empieza §13.1. El éxito del stage 1 sigue explicando el método a la corte, porque la revisualización es privada y el tribunal todavía no lo ha oído.
 
 ## 13. Clímax, veredicto y epílogo
 
@@ -1431,9 +1459,9 @@ Las cifras son un presupuesto de diseño, no una medición. El texto de este doc
 | D2 investigación (5 escenas) | 22 |
 | D2 juicio (2 testimonios) | 18 |
 | D3 investigación (4 escenas) | 18 |
-| D3 juicio (2 testimonios) | 16 |
+| D3 juicio (2 testimonios y revisualización) | 20 |
 | Clímax, veredicto y epílogo | 12 |
-| Total | 122 |
+| Total | 126 |
 
 Banda esperada de 110 a 135 minutos según lectura y fallos. La validación es jugada, no calculada: una partida completa sin conocimiento previo, midiendo cada bloque y anotando dónde el jugador relee o se detiene. No se alarga con esperas, repeticiones de temas ni diálogo de relleno; si falta duración, se añade investigación con decisiones, no líneas.
 

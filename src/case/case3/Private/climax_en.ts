@@ -5,6 +5,7 @@
 
 import type { ClimaxDefinition, DialogueLine } from '../../../types/index.js';
 import { CASE3_CLIMAX_CHOICES_EN } from './climax_choices_en.js';
+import { CASE3_FINAL_DEDUCTION } from './final_deduction.js';
 import { assembleCase3Climax } from './climax_shared.js';
 
 const WAITING_ROOM = 'assets/bg_waiting_room.webp';
@@ -90,7 +91,9 @@ export const CASE3_CLIMAX_EN: ClimaxDefinition = assembleCase3Climax({
     'WHO could make that voice?',
     'WHY?'
   ],
-  choices: CASE3_CLIMAX_CHOICES_EN,
+  choices: [],
+  deductionOpening: CASE3_CLIMAX_CHOICES_EN[0].successDialogue,
+  deduction: CASE3_FINAL_DEDUCTION,
   verdict: VERDICT_LINES,
   epilogue: EPILOGUE
 });

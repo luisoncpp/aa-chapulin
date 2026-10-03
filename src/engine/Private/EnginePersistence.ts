@@ -103,6 +103,7 @@ function finishLoad(host: PersistenceHost, data: SaveData | null): boolean {
 }
 
 function restoreSaveData(host: PersistenceHost, data: SaveData): void {
+  host.trial.cancelDeduction();
   hideCaseComplete(host.dom);
   if (!host.hasStarted) dismissSplash(host.dom, host.soundEngine);
   host.markStarted();

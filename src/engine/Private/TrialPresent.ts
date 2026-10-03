@@ -280,6 +280,11 @@ function queueExamineRequirement(ctrl: TrialController): void {
 }
 
 function afterContradictionSuccess(ctrl: TrialController, rule: ContradictionRule): void {
+  if (rule.followUp?.deduction) {
+    pending.set(ctrl, {});
+    ctrl.startDeduction(rule.followUp.deduction.id);
+    return;
+  }
   if (!rule.followUp) {
     advanceAfterContradiction(ctrl);
     return;

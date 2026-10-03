@@ -23,7 +23,7 @@ export const CASE1_DETENTION_EN: InvestigationScene = {
     { speaker: 'CHAPULIN', text: "Counselor, before you start: I didn't steal anything. I arrived late. Again.", pose: 'chapulin_panic' },
     { speaker: 'DEFENSA', text: "Then let's start there. Tell me the whole night, from the beginning, skipping nothing.", pose: 'donramon_idle', addProfile: 'perfil_chapulin' },
     { speaker: 'DEFENSA', text: "(I've written us both into the record. Him because he's my client; me because if I get distracted I forget which side I'm on.)", pose: 'donramon_idle', addProfile: 'perfil_donramon' },
-    { speaker: 'MODO TUTORIAL', text: 'The yellow heart of the COURT RECORD now has two tabs: EVIDENCE and PROFILES. The PROFILES tab holds everything you know about each person, and it updates itself as the case moves.', instant: true }
+    { speaker: 'MODO TUTORIAL', tutorialImage: { src: 'assets/tutorials/tabs-en.webp', alt: 'The Court Record EVIDENCE and PROFILES tabs' }, text: 'The COURT RECORD contains EVIDENCE and PROFILES. Use EVIDENCE to review items and documents from the case. PROFILES contains cards for the people involved. Check them during the investigation, as they may update with new information.', instant: true }
   ],
   hotspots: [
     {

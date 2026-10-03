@@ -12,7 +12,8 @@ export const CASE5_CORRESPONDENCIA_TALKS: TalkOption[] = [
     dialogue: [
       { speaker: 'CHIMOLTRUFIA', text: 'Un señor mayor, muy elegante, de traje negro y cadenita de reloj.', pose: 'chimoltrufia_idle' },
       { speaker: 'DEFENSA', text: '¿Vino él mismo?', pose: 'chapulin_point' },
-      { speaker: 'CHIMOLTRUFIA', text: 'Él mismo. Siempre viene él mismo.', pose: 'chimoltrufia_idle' },
+      { speaker: 'CHIMOLTRUFIA', text: "¿Pa' qué te digo que no, si sí?", pose: 'chimoltrufia_idle' },
+      { speaker: 'CHIMOLTRUFIA', text: 'Siempre viene él mismo.', pose: 'chimoltrufia_idle' },
       { speaker: 'CHIMOLTRUFIA', text: 'Bueno, a veces manda a alguien.', pose: 'chimoltrufia_confundida' },
       { speaker: 'CHIMOLTRUFIA', text: 'Pero ese día vino él, porque me dio las gracias y me dijo «señorita» y a mí nadie me dice señorita.', pose: 'chimoltrufia_shock' },
       { speaker: 'DEFENSA', text: '¿Y le dijo algo del oficio?', pose: 'chapulin_idle' },

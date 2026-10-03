@@ -47,6 +47,7 @@ sequenceDiagram
 
 ### Dialogue Line Rendering Sequence
 0. **Message History Record**: `DialogueHistory.record(line)` appends `{speaker, text}` to the session backlog ([[src/engine/Private/DialogueHistory.ts]]). It runs first and unconditionally, because `renderDialogueLine` is the only choke point every displayed line passes through — including cross-examination statements, which bypass the queue. An identical consecutive line is skipped so walking testimony back and forth does not duplicate the log.
+   **Tutorial presentation**: `TutorialPresentation.render(line, caseId)` selects a centered variant of the same dialogue box for `MODO TUTORIAL` / `TUTORIAL MODE` and Case 0 `MODO EXAMINAR` / `EXAMINE MODE`. It shades the stage, hides the character, and loads optional `tutorialImage` above the instant text. Images preserve their proportions; the content can scroll, and failure leaves the text readable. The HUD remains usable, and ordinary modal keyboard guards still apply. Images do not enter history or saves. Delayed responses are discarded after a new line or reset.
 1. **Background Switch**: Resolved later with the decoded cut (step 6). Soundtrack still starts immediately.
 2. **Soundtrack Switch**: If `line.bgm` is present, `midiComposer.playCue()` starts the requested chiptune track from [[src/audio/Private/TrackCatalog.ts]], or stops playback for `'silence'`.
 3. **Sound Effect**: If `line.sfx` is present, `triggerSFX(sfx)` runs corresponding synthesizer audio and optional screen effects (`gavel`, `desk_slam`, `whoosh`, `realization`, `damage`, `chipote`, `chicharra`).
@@ -67,6 +68,8 @@ sequenceDiagram
 10. **Progress Flag**: If `line.setFlag` is present, records it in `gameState.flags` as the line is displayed; save/load preserves it.
 11. **Speaker Tag**: Updates `#speaker-name` text content when the line has text; blank lines clear the nameplate so `#speaker-tag` stays hidden.
 12. **Typewriter Effect**: Ordinary dialogue starts a 28ms `setInterval` timer appending characters one by one, playing `soundEngine.playTextBlip()` on every second non-whitespace character. UI instruction lines marked `instant` are committed in one step without the timer or text-blip SFX.
+
+Tutorial cards always use instant text. Clicks on the card or its image, Space, and Enter follow the existing advance handler. It removes the tutorial presentation before showing a record notice, rendering the next line, or calling the queue completion callback; the next line stages its own pose. `clear()` also removes the shade, illustration, and tutorial text, including when loading a save. A text-only tutorial must clear the previous illustration. Other cases' exploration-mode bottom prompts are unaffected.
 
 ## 4. Reads
 - `engine.dialogueQueue`

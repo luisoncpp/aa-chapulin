@@ -18,6 +18,7 @@ export function statementParityFields(s: Statement) {
     deflect: s.deflect?.evidence,
     followUpEvidence: s.contradiction?.followUp?.evidence,
     followUpProfileTarget: s.contradiction?.followUp?.profileTarget,
+    deduction: s.contradiction?.followUp?.deduction,
     followUpSequence: sequence?.map((step) => ({
       evidence: step.evidence,
       profileTarget: step.profileTarget,

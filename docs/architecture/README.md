@@ -8,6 +8,7 @@ Covers implemented architecture. For future architectural plans and roadmaps, ch
 
 | File | Subsystem | CodeChart Group | Notes |
 |------|-----------|-----------------|-------|
+| [[docs/architecture/final-deduction.md\|final-deduction.md]] | Final Deduction | [[src/deduction/deduction.group.md\|deduction]] | Shared progression and Three.js choices, standalone demo, and Cases 3/5 trial integration. |
 | [[docs/architecture/game-engine.md\|game-engine.md]] | Presentation & Game Engine | [[src/engine/engine.group.md\|engine]] | DOM rendering, dialogue queue, typewriter FX, sprite stage, modals, and screen FX ([[src/engine/index.ts]]). |
 | [[docs/architecture/game-state.md\|game-state.md]] | Game State & Inventory | [[src/state/state.group.md\|state]] | Singleton `gameState`, Court Record, penalty meter, investigation readiness, and progress flags ([[src/state/index.ts]]). |
 | [[docs/architecture/audio-system.md\|audio-system.md]] | Audio & Music Synthesis | [[src/audio/audio.group.md\|audio]] | Web Audio API sound synthesis, procedural SFX generator, and 4-channel procedural MIDI tracker ([[src/audio/index.ts]]). |

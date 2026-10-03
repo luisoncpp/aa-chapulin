@@ -31,7 +31,7 @@ export interface EngineBootApi {
   persist: () => PersistenceHost;
   present: () => PresentModalHost;
   startGame: (caseId: CaseId) => void;
-  startTrialDebug: (day?: TrialDay) => void;
+  startTrialDebug: (day?: TrialDay, deduction?: boolean) => void;
   onAdvance: () => void;
   toggleLanguage: () => void;
   setLanguage: (lang: Language) => void;
@@ -48,7 +48,7 @@ export function initGameEngine(api: EngineBootApi): void {
   applyDebugUrlParams({
     setLanguage: (lang) => api.setLanguage(lang),
     loadCase: (caseId) => api.prepareDebugCase(caseId),
-    startTrialDebug: (day) => api.startTrialDebug(day)
+    startTrialDebug: (day, deduction) => api.startTrialDebug(day, deduction)
   });
 }
 

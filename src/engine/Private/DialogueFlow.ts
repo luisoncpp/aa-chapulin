@@ -17,6 +17,7 @@ import { RecordNoticeQueue } from './RecordNoticeQueue.js';
 import { presentDialogueVisuals } from './StageCommit.js';
 import { setStagingCaseId } from './TrialCaseStaging.js';
 import { VisualEffects } from './VisualEffects.js';
+import { TutorialPresentation } from './TutorialPresentation.js';
 
 export interface DialogueFlowDeps {
   dom: DomElements;
@@ -33,9 +34,11 @@ export class DialogueFlow {
   private queue: DialogueLine[] = [];
   private onQueueFinish: (() => void) | null = null;
   private readonly notices: RecordNoticeQueue;
+  private readonly tutorial: TutorialPresentation;
 
   constructor(private readonly deps: DialogueFlowDeps) {
     this.notices = new RecordNoticeQueue(deps.dom, deps.soundEngine);
+    this.tutorial = new TutorialPresentation(deps.dom);
   }
 
   /** Clears the pending queue only; the message history survives queue resets. */
@@ -43,6 +46,7 @@ export class DialogueFlow {
     this.queue = [];
     this.onQueueFinish = null;
     this.notices.clear();
+    this.tutorial.clear();
     this.refreshAdvanceArrow();
   }
 
@@ -52,6 +56,7 @@ export class DialogueFlow {
       this.deps.typewriter.completeImmediately();
       return true;
     }
+    this.tutorial.clear();
     if (this.notices.advance()) {
       this.refreshAdvanceArrow();
       return true;
@@ -87,26 +92,23 @@ export class DialogueFlow {
     return this.deps.history.entries();
   }
 
-  /**
-   * Every displayed line funnels through here, including cross-examination
-   * statements rendered outside the queue, so this is the only correct place to
-   * record the message history.
-   */
+  /** Records all displayed lines, including statements that bypass the queue. */
   public renderDialogueLine(line: DialogueLine): void {
     if (!line) return;
     this.deps.history.record(line);
+    const isTutorial = this.tutorial.render(line, this.deps.state.caseId);
     if (line.bgm) this.deps.midiComposer.playCue(line.bgm);
     if (line.sfx) this.triggerSFX(line.sfx);
     if (line.cutin) VisualEffects.showCutin(this.deps.dom, line.cutin);
     if (line.confetti) VisualEffects.triggerConfetti(this.deps.dom.confettiContainerEl);
-    this.applyLineSpeakerAndPose(line);
+    this.applyLineSpeakerAndPose(isTutorial ? { ...line, pose: undefined } : line);
     this.grantEvidenceIfPresent(line.addEvidence);
     this.updateEvidenceIfPresent(line.updateEvidence);
     this.grantProfileIfPresent(line.addProfile);
     this.updateProfileIfPresent(line.updateProfile);
     this.unlockLocationIfPresent(line.unlockLocation);
     this.setProgressFlagIfPresent(line.setFlag);
-    if (line.instant) {
+    if (line.instant || isTutorial) {
       this.deps.typewriter.showImmediately(line.text || '');
     } else {
       this.deps.typewriter.start(line.text || '');
@@ -114,12 +116,7 @@ export class DialogueFlow {
     this.refreshAdvanceArrow();
   }
 
-  /**
-   * The blinking arrow promises "click for more". It must only show when
-   * `handleAdvance` would actually do something: a queued line left, or a
-   * pending completion callback. Cross-examination statements are rendered
-   * outside the queue, so this hides the arrow there too.
-   */
+  /** Shows the advance promise only while a line, callback, or notice remains. */
   private refreshAdvanceArrow(): void {
     const canAdvance = this.queue.length > 0 || this.onQueueFinish !== null || this.notices.hasPending;
     this.deps.dom.dialogueArrowEl.classList.toggle('hidden', !canAdvance);

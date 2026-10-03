@@ -8,6 +8,7 @@ import type { BgmCue, SFXName, TrackName } from './audio.js';
 import type { EvidenceId } from './evidence.js';
 import type { ProfileId } from './profile.js';
 import type { CaseId, GameFlags, LocationId } from './state.js';
+import type { DeductionSequence } from '../../deduction/index.js';
 
 // @Section(Dialogue & Visual Tags)
 export type SpeakerName =
@@ -181,6 +182,8 @@ export interface DialogueLine {
   text: string;
   /** Render this UI instruction immediately without typewriter audio. */
   instant?: boolean;
+  /** Optional in-message illustration for an instruction-only tutorial line. */
+  tutorialImage?: { src: string; alt: string };
   /** Trigger the celebration effect when this line is displayed. */
   confetti?: boolean;
   pose?: PoseName;
@@ -264,6 +267,8 @@ export interface PointTargetContradiction {
 }
 
 export interface ContradictionFollowUp {
+  /** Private reasoning replaces the present chain; successDialogue resumes in court. */
+  deduction?: DeductionSequence;
   evidence?: EvidenceId[];
   /** Replaces `evidence` when the court demands a person instead of an exhibit. */
   profileTarget?: ProfileId[];
@@ -395,6 +400,10 @@ export interface ClimaxDefinition {
   epilogue?: ClimaxEpilogue;
   /** Health-0 guilty lines. When set, replaces the generic i18n game-over pair. */
   guiltyDialogue?: DialogueLine[];
+  /** Private reasoning that runs after the final present and before the court's proof. */
+  deduction?: DeductionSequence;
+  /** Public declaration that follows the private reasoning, before the verdict lines. */
+  deductionOpening?: DialogueLine[];
 }
 
 /** Day 1 of the trial: a trial day plus the case climax. */

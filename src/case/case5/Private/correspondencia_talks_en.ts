@@ -12,7 +12,8 @@ export const CASE5_CORRESPONDENCIA_TALKS_EN: TalkOption[] = [
     dialogue: [
       { speaker: 'CHIMOLTRUFIA', text: 'An older gentleman, very elegant, in a black suit and a watch chain.', pose: 'chimoltrufia_idle' },
       { speaker: 'DEFENSA', text: 'Did he come himself?', pose: 'chapulin_point' },
-      { speaker: 'CHIMOLTRUFIA', text: 'Himself. He always comes himself.', pose: 'chimoltrufia_idle' },
+      { speaker: 'CHIMOLTRUFIA', text: "Why would I say no when the answer's yes?", pose: 'chimoltrufia_idle' },
+      { speaker: 'CHIMOLTRUFIA', text: 'He always comes himself.', pose: 'chimoltrufia_idle' },
       { speaker: 'CHIMOLTRUFIA', text: 'Well, sometimes he sends someone.', pose: 'chimoltrufia_confundida' },
       { speaker: 'CHIMOLTRUFIA', text: 'But that day he came himself, because he thanked me and called me "miss" and nobody calls me miss.', pose: 'chimoltrufia_shock' },
       { speaker: 'DEFENSA', text: 'Did he say anything about the letter?', pose: 'chapulin_idle' },

@@ -18,6 +18,7 @@ import { VisualEffects } from './VisualEffects.js';
 interface ClimaxRunDeps extends PenaltyHost {
   midiComposer: MidiMusicComposer;
   onOpenCourtRecord: (isTrialPresent: boolean) => void;
+  onStartDeduction?: () => void;
 }
 
 export interface ClimaxControllerPort {
@@ -189,6 +190,10 @@ function continueMatchedClimaxStage(matched: MatchedStage, deps: ClimaxRunDeps):
 
 function finishFinalClimaxStage(matched: MatchedStage, deps: ClimaxRunDeps): ClimaxSession {
   const { climax, stageIdx, stage, onChoiceSelect } = matched;
+  if (climax.deduction && deps.onStartDeduction) {
+    deps.onQueueDialogue(stage.successDialogue, /*openPrivateDeduction*/ () => deps.onStartDeduction?.());
+    return { stageIdx, choiceIdx: null };
+  }
   if (climax.choices && climax.choices.length > 0 && climax.choicesAfterStage == null) {
     deps.onQueueDialogue(stage.successDialogue, /*openFirstChoice*/ () => {
       openClimaxChoice(choiceOpenSession(deps, climax, 0, onChoiceSelect));

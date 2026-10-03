@@ -40,7 +40,7 @@ const TRIAL_SPEAKER_BACKGROUNDS: Record<string, string> = {
 };
 
 const INSTRUCTION_SPEAKERS = new Set([
-  'NARRADOR', 'MODO EXAMINAR', 'EXAMINE MODE', 'ALGUACIL', 'CUSTODIO'
+  'NARRADOR', 'MODO EXAMINAR', 'EXAMINE MODE', 'MODO TUTORIAL', 'TUTORIAL MODE', 'ALGUACIL', 'CUSTODIO'
 ]);
 
 export function trialBackgroundFor(speaker?: string, caseId?: CaseId): string | null {

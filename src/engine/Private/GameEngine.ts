@@ -77,7 +77,8 @@ export class GameEngine {
       midiComposer: this.midiComposer, onQueueDialogue: (dlg, cb) => this.queueDialogue(dlg, cb),
       onRenderLine: (line) => this.renderDialogueLine(line),
       onOpenCourtRecord: (isTrialPresent) => openEngineCourtRecord(this.presentHost(), isTrialPresent),
-      onAdjourn: (location) => this.handleAdjournment(location)
+      onAdjourn: (location) => this.handleAdjournment(location),
+      onStartDeduction: () => this.trial.startDeduction()
     });
     this.dialogue = new DialogueFlow({
       dom: this.dom, state: this.state, getScript: () => this.script,
@@ -106,7 +107,7 @@ export class GameEngine {
       investigation: this.investigation, trial: this.trial, state: this.state,
       dialogue: this.dialogue, persist: () => this.host(), present: () => this.presentHost(),
       startGame: (caseId) => this.startGame(caseId),
-      startTrialDebug: (day) => this.startTrialDebug(day),
+      startTrialDebug: (day, deduction) => this.startTrialDebug(day, deduction),
       onAdvance: () => this.handleAdvance(),
       toggleLanguage: () => this.toggleLanguage(),
       setLanguage: (lang) => this.setLanguage(lang),
@@ -140,8 +141,8 @@ export class GameEngine {
     requestStartGame(this.playGate(), caseId);
   }
 
-  public startTrialDebug(day?: TrialDay): void {
-    requestTrialDebug(this.playGate(), day);
+  public startTrialDebug(day?: TrialDay, deduction = false): void {
+    requestTrialDebug(this.playGate(), day, deduction);
   }
 
   private playGate() {
@@ -153,7 +154,7 @@ export class GameEngine {
       markLaunching: (busy: boolean) => { this.launching = busy; },
       clearHistory: () => this.dialogue.clearHistory(),
       launchGame: (id: CaseId) => launchGame(this.host(), id),
-      launchTrial: (day?: TrialDay) => launchTrial(this.host(), day)
+      launchTrial: (day?: TrialDay, deduction?: boolean) => launchTrial(this.host(), day, deduction)
     };
   }
 
@@ -173,6 +174,7 @@ export class GameEngine {
     }
     this.soundEngine.ensureActive();
     const advanced = this.dialogue.handleAdvance();
+    if (!advanced && this.trial.handleDeductionAdvance()) return;
     if (!advanced && this.trial.isAwaitingEvidence()) {
       if (this.dom.courtRecordModalEl.classList.contains('hidden')) {
         openEngineCourtRecord(this.presentHost(), /*isTrialPresent=*/ true);

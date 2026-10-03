@@ -49,15 +49,17 @@ export const CASE2_CLIMAX = assembleCase2Climax({
   choices: CASE2_CLIMAX_CHOICES,
   verdict: VERDICT_LINES,
   epilogue: [
-    { speaker: 'NARRADOR', text: '(Más tarde, en la sala de espera del tribunal...)' },
-    { speaker: 'CHOMPIRAS', text: '¡Ay, Don Ramón, Chapulín! ¡No sé cómo agradecerles! ¡Ya me veía 20 años comiendo sopa de piedras!', pose: 'chompiras_relieved' },
-    { speaker: 'CHAPULIN', text: '¡No hay de qué, Chómpiras! ¡La nobleza y la astucia siempre vencen al mal! ¡Síganme los buenos!', pose: 'chapulin_point' },
-    { speaker: 'FLORINDA', text: 'Debo admitir, Don Ramón... que por una vez en su vida no se comportó como la chusma habitual.', pose: 'florinda_idle' },
-    { speaker: 'JIRAFALES', text: 'Ha sido una cátedra de deducción aristotélica, Don Ramón. Admirable.', pose: 'jirafales_idle' },
-    { speaker: 'DEFENSA', text: '¡Je, je! ¡No hay de queso nomás de papa! Y ahora que demostré mi talento legal...', pose: 'donramon_idle' },
-    { speaker: 'NARRADOR', text: '(De pronto, pasos pesados en el pasillo... ¡es el Señor Barriga con su portafolio!)', sfx: 'realization' },
-    { speaker: 'DEFENSA', text: '¡¡¡CHANFLE!!! ¡¡¡EL SEÑOR BARRIGA VIENE POR LOS 14 MESES DE RENTA!!!', pose: 'donramon_panic' },
-    { speaker: 'CHAPULIN', text: '¡Toma, Don Ramón! ¡Tómate una Pastilla de Chiquitolina y escóndete en mi bolsillo!', pose: 'chapulin_idle' },
-    { speaker: 'DEFENSA', text: '¡Con permisito, dijo Monchitooooo!', pose: 'donramon_point' }
+    { speaker: 'NARRADOR', text: '(Más tarde, en la sala de espera del tribunal...)', bg: 'assets/bg_waiting_room.webp', furniture: 'none' },
+    { speaker: 'CHOMPIRAS', text: '¡Ay, Don Ramón, Chapulín! ¡No sé cómo agradecerles! ¡Ya me veía 20 años comiendo sopa de piedras!', pose: 'chompiras_relieved', bg: 'assets/bg_waiting_room.webp', furniture: 'none' },
+    { speaker: 'CHAPULIN', text: '¡No hay de qué, Chómpiras! ¡La nobleza y la astucia siempre vencen al mal! ¡Síganme los buenos!', pose: 'chapulin_point', bg: 'assets/bg_waiting_room.webp', furniture: 'none' },
+    { speaker: 'FLORINDA', text: 'Debo admitir, Don Ramón... que por una vez en su vida no se comportó como la chusma habitual.', pose: 'florinda_idle', bg: 'assets/bg_waiting_room.webp', furniture: 'none' },
+    { speaker: 'JIRAFALES', text: 'Ha sido una cátedra de deducción aristotélica, Don Ramón. Admirable.', pose: 'jirafales_idle', bg: 'assets/bg_waiting_room.webp', furniture: 'none' },
+    { speaker: 'DEFENSA', text: '¡Je, je! ¡No hay de queso nomás de papa! Y ahora que demostré mi talento legal...', pose: 'donramon_idle', bg: 'assets/bg_waiting_room.webp', furniture: 'none' },
+    { speaker: 'NARRADOR', text: '(De pronto, pasos pesados en el pasillo... ¡es el Señor Barriga con su portafolio!)', sfx: 'realization', bg: 'assets/bg_waiting_room.webp', furniture: 'none' },
+    { speaker: 'DEFENSA', text: '¡¡¡CHANFLE!!! ¡¡¡EL SEÑOR BARRIGA VIENE POR LOS 14 MESES DE RENTA!!!', pose: 'donramon_panic', bg: 'assets/bg_waiting_room.webp', furniture: 'none' },
+    { speaker: 'CHOMPIRAS', text: '¡Tómalo por el lado amable!', pose: 'chompiras_relieved', bg: 'assets/bg_waiting_room.webp', furniture: 'none' },
+    { speaker: 'DEFENSA', text: '¡El lado amable no paga la renta!', pose: 'donramon_panic', bg: 'assets/bg_waiting_room.webp', furniture: 'none' },
+    { speaker: 'CHAPULIN', text: '¡Toma, Don Ramón! ¡Tómate una Pastilla de Chiquitolina y escóndete en mi bolsillo!', pose: 'chapulin_idle', bg: 'assets/bg_waiting_room.webp', furniture: 'none' },
+    { speaker: 'DEFENSA', text: '¡Con permisito, dijo Monchitooooo!', pose: 'donramon_point', bg: 'assets/bg_waiting_room.webp', furniture: 'none' }
   ]
 });

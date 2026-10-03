@@ -63,7 +63,7 @@ The composer owns track state: which cue is playing, the step, pause, seek, and 
 - **Drums**: `K` `S` `H` `O` `C` `P`, plus clap `X`, rim `R`, toms `T`/`M`, cowbell `B`, güiro `G`, timbal `Y`. Compound hits still work (`KX`).
 - **Snapshot**: `getPlaybackSnapshot()` reports the step that should be audible, not the one the lookahead has already queued. The jukebox bar uses that.
 - **Anti-fatigue**: themes run 64 to 512 steps. The sequencer itself has no bar line; a track's meter is whatever its own grouping says.
-- **Reverb**: each patch sends its own `reverbSend` to one shared convolver; chip voices send 0. A track's optional `reverb` (0..1) also sends the whole session mix, faded with the session. `cross_exam_grave`, `cross_exam_careo` and `truth` use `reverb: 1`.
+- **Reverb**: each patch sends its own `reverbSend` to one shared convolver; chip voices send 0. A track's optional `reverb` (0..1) also sends the whole session mix, faded with the session. `cross_exam_grave`, `cross_exam_careo`, `truth` and `deduccion_final` use `reverb: 1`.
 - **Defaults stay**: `cross_exam_presto` names no instruments, so it is the three chip voices. The other tracks name a patch per channel. The first assignment was kept after audition for the `cross_exam_*` family, `truth` and `archivo`; every other track carries a second assignment (2026-09-28), chosen from patch length against each channel's note spacing, and pending audition. The patch fixes of the same date (brass bend and brightness, chip-lead vibrato cap, pulse level, struck-note ring) reach the approved tracks too: `truth` and `cross_exam_careo` piano notes before rests now ring, and `cross_exam_grave`'s low chip lead no longer wobbles by a semitone, so those need a second listen.
 
 ### Track Catalog ([[src/audio/Private/TrackCatalog.ts]])
@@ -104,6 +104,14 @@ Modularized into private track collections under `src/audio/Private/tracks/`:
     - **Bars 13–16 are stop-time** (two hits per bar and a ticking hat), then a snare roll into the only major-key section.
 
     Shape: the question, Dm-Dm-Bb-A (1–4); a hammered answer over a lament bass, Dm-C-Bb-A7 (5–8); the question a minor third up, Fm-Fm-Db-C7 (9–12); stop-time gasp and a scalar run, Fm-Db-Bbm-A7 (13–16); D major, the defense believes, D-Bm-G-A (17–20); deceptive Bb with the hammer climbing, Bb-C-Dm-A7/E (21–24); the **apex**, bar 1 an octave up, peaking at Bb6, Dm-Bb-Gm-A7 (25–28); the breath, low widening fragments and a chromatic pickup into bar 1, Bb-Gm-Bb-A7 (29–32) ([[src/audio/Private/tracks/CareoTrack.ts]]).
+
+### Deducción final
+
+`deduccion_final`, "Todo encaja", lives in [[src/audio/Private/tracks/DeductionTrack.ts]] and is available in the splash jukebox in Spanish and English. 512 steps, 32 bars of 4/4 at 128 BPM, exactly 60 seconds. B minor with a dorian G#: an octave-pump B pedal under a piano cell that climbs two octaves (1-8), a pedal that moves G-E-G-F# with pulse answers in the gaps (9-16), the climb again with saw triads and a held pulse line (17-24), and a chord ladder in 3-3-3-3-4 stabs over the B pedal that ends on F#7, F#7(b9) and a quarter bar of silence before the loop crashes back on Bm (25-32). The tension comes from the pedal, the ladder and the stop, the devices of the Revisualization reference; notes are original.
+
+The track file is generated: edit `tools/music/deduccion_final/compose.py` and run `python tools/music/deduccion_final/compose.py`. Notes in [[docs/music/deduccion-final/README.md]]. This cue is ready for future `bgm: 'deduccion_final'` use; the deduction mechanic and its conclusion transition remain separate work.
+
+`deduccion_anticipacion`, "A un paso de la verdad", adds a second deduction composition in [[src/audio/Private/tracks/AnticipationTrack.ts]]. Its 512 steps at 128 BPM loop in 60 seconds. An electric-piano motor, triangle bass, pulse melody and quiet string suspensions build anticipation over D minor and a prolonged A pedal. The motif climbs in sections two and three; the last section thins out and returns through A7 to Dm/A, withholding a tonic-bass arrival. Both language catalogs expose it in the jukebox. [[docs/music/deduccion-anticipacion/README.md]] describes the arrangement. A future script can select `bgm: 'deduccion_anticipacion'`; no case or deduction mechanic cues it yet.
 
 ### Terraza Bar
 

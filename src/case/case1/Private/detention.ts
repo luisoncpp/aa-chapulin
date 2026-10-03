@@ -24,7 +24,7 @@ export const CASE1_DETENTION: InvestigationScene = {
     { speaker: 'CHAPULIN', text: 'Licenciado, antes de que empiece: yo no me robé nada. Llegué tarde. Otra vez.', pose: 'chapulin_panic' },
     { speaker: 'DEFENSA', text: 'Empecemos por ahí. Cuénteme la noche completa, desde el principio, sin saltarse nada.', pose: 'donramon_idle', addProfile: 'perfil_chapulin' },
     { speaker: 'DEFENSA', text: '(Ya me anoté a los dos en el Acta. A él porque es mi cliente; a mí porque si me distraigo, se me olvida de qué lado estoy.)', pose: 'donramon_idle', addProfile: 'perfil_donramon' },
-    { speaker: 'MODO TUTORIAL', text: 'El corazón amarillo del ACTA DEL JUICIO ahora tiene dos pestañas: PRUEBAS y PERSONAS. En la pestaña de PERSONAS se guarda todo lo que sabes de cada quien, y se actualiza sola conforme avanza el caso.', instant: true }
+    { speaker: 'MODO TUTORIAL', tutorialImage: { src: 'assets/tutorials/tabs-es.webp', alt: 'Pestañas PRUEBAS y PERSONAS del Acta del Juicio' }, text: 'El ACTA DEL JUICIO reúne PRUEBAS y PERSONAS. Consulta PRUEBAS para revisar los objetos y documentos del caso. En PERSONAS encontrarás las fichas de los participantes. Revísalas durante la investigación, porque pueden actualizarse con nuevos datos.', instant: true }
   ],
   hotspots: [
     {

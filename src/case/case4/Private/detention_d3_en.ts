@@ -65,7 +65,7 @@ export const CASE4_DETENTION_D3_EN: InvestigationScene = {
         { speaker: 'BOTIJA', text: 'My record shames me, and that my wife might think I went back to the trade. That is why I hid the wallet.', pose: 'botija_llorando' },
         { speaker: 'CHIMOLTRUFIA', text: 'I never thought you killed anyone.', pose: 'chimoltrufia_idle' },
         { speaker: 'BOTIJA', text: 'But you did think I had taken Cuajinais’s job.', pose: 'botija_nervioso' },
-        { speaker: 'CHIMOLTRUFIA', text: 'I thought it for two days. And it angered me more to think it than to ask.', pose: 'chimoltrufia_confundida' },
+        { speaker: 'CHIMOLTRUFIA', text: 'Why would I say no when the answer\'s yes? I believed it for two days. And believing it made me angrier than asking you would have.', pose: 'chimoltrufia_confundida' },
         { speaker: 'BOTIJA', text: 'I told him no. I told him no in front of the whole corridor.', pose: 'botija_nervioso' },
         { speaker: 'DEFENSA', text: 'People heard that. And that is why the prosecutor thinks you argued over money.', pose: 'donramon_idle' },
         { speaker: 'BOTIJA', text: 'We argued because I refused. First time I am charged with something for saying no.', pose: 'botija_llorando', updateProfile: 'perfil_botija' },

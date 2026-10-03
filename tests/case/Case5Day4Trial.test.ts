@@ -3,6 +3,7 @@ import { describe, expect, it } from 'vitest';
 import { getCaseScript } from '../../src/case/index.js';
 import type { CaseScript, DialogueLine, Statement, Testimony } from '../../src/types/index.js';
 import { assertEnglishTrialParity } from './case5Parity.js';
+import { DeductionSession, validateSequence } from '../../src/deduction/index.js';
 
 function contradictions(t: Testimony): Statement[] {
   return t.statements.filter((s) => s.contradiction);
@@ -89,23 +90,24 @@ describe('Case 5 day 4 trial (Spanish)', () => {
     assertEnglishTrialParity(enDay4, esDay4, trialDialogue(enDay4));
   });
 
-  it('calls Genoveva in openingPresent success and defines the preparation chain after T9', () => {
+  it('calls Genoveva and reaches the public proof after a solvable deduction', () => {
     const opening = day4.openingPresent!.successDialogue.map((l) => l.speaker);
     expect(opening).toContain('GENOVEVA');
     expect(opening[opening.length - 1]).toBe('JUEZ');
 
     const follow = day4.testimonies[0].statements
       .find((s) => s.id === 'c5_d4t1_2')?.contradiction?.followUp;
-    expect(follow?.sequence?.map((step) => step.evidence ?? step.profileTarget ?? (step.choice ? ['choice'] : [])))
-      .toEqual([
-        ['esquina_tarjeta'],
-        ['oficio_diligencia'],
-        ['choice'],
-        ['fichero_cedulario'],
-        ['perfil_genoveva']
-      ]);
-    expect(follow?.sequence?.[2].choice?.correctId).toBe('planear');
-    expect(follow?.sequence?.[4].successDialogue.at(-1)?.text)
-      .toContain('se lo va a ordenar');
+    const sequence = follow!.deduction!;
+    expect(() => validateSequence(sequence)).not.toThrow();
+    const session = new DeductionSession(sequence);
+    for (let guard = 0; session.phase !== 'returned' && guard < 40; guard++) {
+      if (session.phase === 'question') {
+        session.focus(session.step.correctId);
+        expect(session.choose()).toBe(true);
+      } else expect(session.advance()).toBe(true);
+    }
+    expect(session.phase).toBe('returned');
+    expect(follow!.successDialogue.some(line => line.speaker === 'GENOVEVA')).toBe(true);
+    expect(follow!.successDialogue.some(line => line.speaker === 'SECRETARIO')).toBe(true);
   });
 });

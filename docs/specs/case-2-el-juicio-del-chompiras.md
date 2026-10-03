@@ -204,7 +204,7 @@ CHOMPIRAS (chompiras_relieved): ¡El Chapulín Colorado! ¡No contaban con mi as
    - **Chómpiras**: *"Es un señor muy fino y elegante. Dice que es el jefe de seguridad de la hacienda y perito valuador. Trae un sombrero muy bonito y siempre me ayuda a no caer en malos pasos."*
    - **Chapulín**: *"¡Sospechosa amabilidad! ¡Todos mis movimientos están fríamente calculados!"*
    - **Don Ramón**: *"Dime una cosa, muchacho... Si él es el jefe de seguridad, ¿no es el principal responsable de vigilar el Chanfle de Oro? ¿Y fue él quien te encerró justo en la escena del crimen?"*
-   - **Chómpiras**: *"Pues sí, jefecito. Hasta me dijo: 'Quédate aquí quietecito, que si algo desaparece, tú serás el chivo expiatorio perfecto'. ¡Qué señor tan bromista!"*
+   - **Chómpiras**: *"¿Pa' qué te digo que no, si sí? Hasta me dijo: 'Quédate aquí quietecito, que si algo desaparece, tú serás el chivo expiatorio perfecto'. ¡Qué señor tan bromista!"* En inglés: *"Why would I say no when the answer's yes?"*; se conserva completo el relato del chivo expiatorio.
    - **Don Ramón**: *"(¡De bromista no tiene nada! Este Peterete lo planeó todo para incriminar al pobre diablo. ¡Es nuestro sospechoso número uno!)"*
    - **Se desbloquea locación**: `boveda_crimen`.
 
@@ -621,7 +621,9 @@ JUEZ (judge_gavel): ¡Declaro al acusado, Aquiles Esquivel Madrazo... INOCENTE! 
 
 ---
 
-## 10. Epílogo: Celebración en la Vecindad (Post-Trial Epilogue)
+## 10. Epílogo: Celebración en la Sala de Espera (Post-Trial Epilogue)
+
+Cada línea de este epílogo usa `assets/bg_waiting_room.webp` con `furniture: 'none'`.
 
 ```dialogue
 [SALA DE ESPERA DE LA CORTE - FINAL]
@@ -632,6 +634,8 @@ JIRAFALES (jirafales_idle): Ha sido una cátedra de deducción aristotélica, Do
 DEFENSA (donramon_idle): ¡Je, je! ¡No hay de queso nomás de papa! Y ahora que demostré mi talento legal...
 NARRADOR: (De pronto, se escuchan pasos pesados en el pasillo... ¡es el Señor Barriga con su portafolio!) [sfx: realization]
 DEFENSA (donramon_panic): ¡¡¡CHANFLE!!! ¡¡¡EL SEÑOR BARRIGA VIENE POR LOS 14 MESES DE RENTA!!!
+CHOMPIRAS (chompiras_relieved): ¡Tómalo por el lado amable!
+DEFENSA (donramon_panic): ¡El lado amable no paga la renta!
 CHAPULIN (chapulin_idle): ¡Toma, Don Ramón! ¡Tómate una 'Pastilla de Chiquitolina' y escóndete en mi bolsillo!
 DEFENSA (donramon_point): ¡Con permisito, dijo Monchitooooo!
 [FIN DEL CASO 2]

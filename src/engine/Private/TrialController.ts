@@ -2,6 +2,9 @@
 import type { MidiMusicComposer, SoundEngine } from '../../audio/index.js';
 import type { GameStateManager, TrialStateSnapshot } from '../../state/index.js';
 import type { CaseScript, DialogueLine, EvidenceId, ProfileId, LocationId, Statement, Testimony } from '../../types/index.js';
+import type { DeductionSnapshot } from '../../deduction/index.js';
+import { TrialDeduction } from './TrialDeduction.js';
+import { findTrialDeduction, finishTrialDeduction } from './TrialDeductionRoute.js';
 import type { DomElements } from './DomElements.js';
 import {
   indexInVisible,
@@ -39,6 +42,7 @@ export interface TrialControllerDeps {
   onRenderLine: (line: DialogueLine) => void;
   onOpenCourtRecord: (isTrialPresent: boolean) => void;
   onAdjourn?: (location: LocationId) => void;
+  onStartDeduction?: () => void;
 }
 
 export class TrialController {
@@ -51,6 +55,7 @@ export class TrialController {
   private testimonyIndex: number | null = null;
   private readonly pressedStatementIds = new Set<string>();
   private failedPresentCount = 0;
+  private deduction: TrialDeduction | null = null;
   script: CaseScript;
   constructor(public readonly deps: TrialControllerDeps) {
     this.script = deps.script;
@@ -88,12 +93,53 @@ export class TrialController {
       trialDay: this.deps.state.trialDay, climaxStageIdx: this.climaxStageIdx,
       climaxChoiceIdx: this.climaxChoiceIdx ?? undefined,
       climaxResolved: this.climaxResolved,
+      deduction: this.deduction?.snapshot(),
       pressedStatementIds: [...this.pressedStatementIds]
     };
   }
 
   public restoreTrialSnapshot(snapshot?: TrialStateSnapshot): void {
     restoreTrialFromSnapshot(this, snapshot);
+  }
+
+  public startDeduction(sequenceId?: string): void {
+    const route = findTrialDeduction(this, sequenceId);
+    if (!route) return;
+    const { sequence } = route;
+    if (route.testimonyIndex !== undefined) this.testimonyIndex = route.testimonyIndex;
+    this.deduction?.dispose();
+    this.phase = 'CLIMAX'; this.climaxResolved = true; this.climaxChoiceIdx = null;
+    this.climaxStageIdx = Math.max(0, (this.script.trial.climax.stages?.length ?? 1) - 1);
+    this.hideControls();
+    this.deps.dom.investigationNavEl.classList.add('hidden');
+    this.deps.dom.examineNavEl.classList.add('hidden');
+    this.deps.dom.hotspotsContainerEl.replaceChildren();
+    this.deduction = new TrialDeduction(this.deps, sequence, () => this.finishDeduction());
+  }
+
+  public restoreDeduction(snapshot: DeductionSnapshot): boolean {
+    const route = findTrialDeduction(this, snapshot.sequenceId);
+    if (!route) return false;
+    const { sequence } = route;
+    if (route.testimonyIndex !== undefined) this.testimonyIndex = route.testimonyIndex;
+    try {
+      this.deduction?.dispose();
+      this.phase = 'CLIMAX'; this.climaxResolved = true; this.climaxChoiceIdx = null;
+      this.deps.dom.bgEl.style.backgroundImage = "url('assets/bg_courtroom.webp')";
+      this.hideControls();
+      this.deduction = new TrialDeduction(this.deps, sequence, () => this.finishDeduction(), snapshot);
+      return true;
+    } catch { this.deduction = null; return false; }
+  }
+
+  public cancelDeduction(): void { this.deduction?.dispose(); this.deduction = null; }
+  public handleDeductionAdvance(): boolean { return this.deduction?.advance() ?? false; }
+
+  private finishDeduction(): void {
+    const route = findTrialDeduction(this, this.deduction?.snapshot().sequenceId);
+    this.cancelDeduction();
+    this.deps.midiComposer.playTrack('suspense');
+    if (route) finishTrialDeduction(this, route);
   }
 
   public resetPressedState(ids?: string[]): void {
@@ -103,6 +149,7 @@ export class TrialController {
   }
 
   public startTrial(skipFade = false): void {
+    this.cancelDeduction();
     warmTrialVisuals(this.script, this.deps.state.trialDay);
     const intro = getActiveTrial(this.script, this.deps.state.trialDay).intro;
     const introParts = splitTrialIntroAtGallery(this.script, this.deps.state.trialDay);
@@ -136,6 +183,7 @@ export class TrialController {
   }
 
   public startTestimony(testimonyIndex: number | 'testimony1' | 'testimony2'): void {
+    this.cancelDeduction();
     const normalizedIndex = typeof testimonyIndex === 'number'
       ? testimonyIndex
       : testimonyIndex === 'testimony1' ? 0 : 1;
@@ -225,6 +273,7 @@ export class TrialController {
   // fallow-ignore-next-line complexity
   public setScript(script: CaseScript): void {
     this.script = script;
+    this.deduction?.setLanguage(this.deps.state.language);
     if (this.phase === 'CLIMAX' && this.climaxChoiceIdx != null) {
       rebindClimaxChoiceModal(this);
       return;

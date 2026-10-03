@@ -14,7 +14,7 @@ export const CASE0_TRIAL_INTRO: DialogueLine[] = [
   { speaker: 'DEFENSA', pose: 'donramon_idle', text: '(Catorce meses de renta atrasada, Don Ramón. Si ganas esto, comes.)' },
   { speaker: 'JUEZ', pose: 'judge_neutral', text: 'Antes de comenzar, la corte debe verificar que quien ocupa el estrado de la defensa es un litigante autorizado.' },
   { speaker: 'CHAPULÍN', pose: 'chapulin_point', text: '¡Eso quiere decir que te pide tu credencial! La prueba que te identifica está en el ACTA DEL JUICIO.' },
-  { speaker: 'MODO EXAMINAR', text: 'En esta apertura, el ACTA DEL JUICIO se abrirá sola. Cuando se abra, selecciona la insignia y pulsa el botón ¡Presentar Prueba!', instant: true }
+  { speaker: 'MODO EXAMINAR', tutorialImage: { src: 'assets/tutorials/present-badge-es.webp', alt: 'La insignia seleccionada y el botón ¡Presentar Prueba!' }, text: 'En esta apertura, el ACTA DEL JUICIO se abrirá sola. Cuando se abra, selecciona la insignia y pulsa el botón ¡Presentar Prueba!', instant: true }
 ];
 
 const tutorialPress: DialogueLine[] = [
@@ -185,7 +185,7 @@ export const CASE0_OPENING_PRESENT: OpeningPresent = {
     { speaker: 'SUPER SAM', pose: 'supersam_point', text: 'Amnesia, Your Honor. Del golpe. Muy inconveniente para mi presupuesto.', addProfile: 'perfil_nazario' },
     { speaker: 'JUEZ', pose: 'judge_neutral', text: 'Entonces el peso de este juicio lo carga un solo testigo. La defensa puede presionar sin gastar credibilidad, pero presentar una prueba sí cuesta. Úselas en consecuencia.' },
     { speaker: 'CHAPULÍN', pose: 'chapulin_point', text: 'Y una más, Don Ramón: algunas pruebas esconden detalles. Selecciónalas en el ACTA y pulsa EXAMINAR DETALLE para verlas de cerca.' },
-    { speaker: 'MODO EXAMINAR', text: 'Si una prueba tiene EXAMINAR DETALLE, mírala de cerca antes de presentarla: la vista ampliada te ayudará a encontrar el detalle correcto.', instant: true },
+    { speaker: 'MODO EXAMINAR', tutorialImage: { src: 'assets/tutorials/examine-es.webp', alt: 'Botón Examinar Detalle del Acta del Juicio' }, text: 'Si una prueba tiene EXAMINAR DETALLE, mírala de cerca antes de presentarla: la vista ampliada te ayudará a encontrar el detalle correcto.', instant: true },
     ...CASE0_WITNESS_CALL_T1
   ]
 };

@@ -14,7 +14,7 @@ export const CASE0_TRIAL_INTRO_EN: DialogueLine[] = [
   { speaker: 'DEFENSA', pose: 'donramon_idle', text: '(Fourteen months of back rent, Don Ramón. Win this and we eat.)' },
   { speaker: 'JUEZ', pose: 'judge_neutral', text: 'Before we begin, the court must verify that the person at the defense bench is an authorized attorney.' },
   { speaker: 'CHAPULÍN', pose: 'chapulin_point', text: 'That means it wants your badge! The item that identifies you is in the COURT RECORD.' },
-  { speaker: 'EXAMINE MODE', text: 'For this opening, the COURT RECORD will open by itself. When it does, select the badge and press the Present Evidence! button.', instant: true }
+  { speaker: 'EXAMINE MODE', tutorialImage: { src: 'assets/tutorials/present-badge-en.webp', alt: 'The selected attorney badge and the Present Evidence! button' }, text: 'For this opening, the COURT RECORD will open by itself. When it does, select the badge and press the Present Evidence! button.', instant: true }
 ];
 
 const CARTAPACIO_PLATE_EN = 'assets/examine_maletin_cobranza.webp';
@@ -183,7 +183,7 @@ export const CASE0_OPENING_PRESENT_EN: OpeningPresent = {
     { speaker: 'SUPER SAM', pose: 'supersam_point', text: 'Amnesia, Your Honor. From the blow. Very inconvenient for my budget.', addProfile: 'perfil_nazario' },
     { speaker: 'JUEZ', pose: 'judge_neutral', text: 'Then this trial rests on a single witness. Pressing costs no credibility, but presenting evidence does. Use them accordingly.' },
     { speaker: 'CHAPULÍN', pose: 'chapulin_point', text: 'One more thing, Don Ramón: some pieces of evidence hide details. Select them in the COURT RECORD and click EXAMINE DETAIL to view them up close.' },
-    { speaker: 'EXAMINE MODE', text: 'If a piece of evidence offers EXAMINE DETAIL, inspect it before presenting: the enlarged view will help you find the correct detail.', instant: true },
+    { speaker: 'EXAMINE MODE', tutorialImage: { src: 'assets/tutorials/examine-en.webp', alt: 'The Court Record Examine Detail button' }, text: 'If a piece of evidence offers EXAMINE DETAIL, inspect it before presenting: the enlarged view will help you find the correct detail.', instant: true },
     ...CASE0_WITNESS_CALL_T1_EN
   ]
 };

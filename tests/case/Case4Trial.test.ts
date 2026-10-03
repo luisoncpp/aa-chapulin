@@ -164,7 +164,7 @@ describe('Case 4 Hotel Buena Vista trial scripts', () => {
     expect(esFollowUps.length).toBeGreaterThan(0);
     expect(enFollowUps.length).toBeGreaterThan(0);
     for (const fu of [...esFollowUps, ...enFollowUps]) {
-      if (fu.evidence.length > 0) expect(fu.prompt ?? 'optional').toBeTruthy();
+      if (fu.evidence?.length) expect(fu.prompt ?? 'optional').toBeTruthy();
     }
 
     expect(CASE4_DAY2_INTRO[2].bgm).toBeUndefined();

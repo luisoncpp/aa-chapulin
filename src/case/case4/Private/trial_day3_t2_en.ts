@@ -1,8 +1,9 @@
 // @Architecture(descriptionShort="English Case 4 day-3 business testimony", type="data", icon="layers")
-/** Case 4 Trial Day 3 — Testimony 6, business, English. Straight to climax. */
+/** Case 4 Trial Day 3 — Testimony 6, business, English. Deduction (§12.4), then climax. */
 
 import type { DialogueLine, PointTargetContradiction, Testimony } from '../../../types/index.js';
 import { CASE4_TELEGRAMA_POINT_TARGET } from './trial_day3_success.js';
+import { CASE4_FINAL_DEDUCTION } from './final_deduction.js';
 
 const TELEGRAM_EN: PointTargetContradiction = {
   ...CASE4_TELEGRAMA_POINT_TARGET,
@@ -74,7 +75,15 @@ export const CASE4_TESTIMONY_6_EN: Testimony = {
         { speaker: 'DEFENSA', text: 'HOLD IT!', cutin: 'objection_un_momento', sfx: 'whoosh', pose: 'donramon_point' },
         { speaker: 'RUFINO', text: 'Nobody announced that visit to me.', pose: 'rufino_monocle' }
       ],
-      contradiction: { evidence: ['nota_amenaza'], pointTarget: TELEGRAM_EN, successDialogue: T6_SUCCESS_EN }
+      contradiction: {
+        evidence: ['nota_amenaza'], pointTarget: TELEGRAM_EN, successDialogue: T6_SUCCESS_EN,
+        followUp: {
+          deduction: CASE4_FINAL_DEDUCTION,
+          successDialogue: [
+            { speaker: 'DEFENSA', text: 'With your leave, Your Honor. The defense now knows how that poison got in.', pose: 'donramon_point' }
+          ]
+        }
+      }
     }
   ]
 };

@@ -4,7 +4,8 @@
  */
 
 import type { DialogueLine, Testimony } from '../../../types/index.js';
-import { CASE5_D4_T1_CHAIN, CASE5_D4_T1_LIBRO_SUCCESS } from './trial_day4_success.js';
+import { CASE5_D4_T1_CEDULARIO_SUCCESS, CASE5_D4_T1_LIBRO_SUCCESS } from './trial_day4_success.js';
+import { CASE5_FINAL_DEDUCTION } from './final_deduction.js';
 
 const MOMENTO: DialogueLine = {
   speaker: 'DEFENSA',
@@ -55,8 +56,8 @@ export const CASE5_TESTIMONY_9: Testimony = {
         evidence: ['libro_peritos'],
         successDialogue: CASE5_D4_T1_LIBRO_SUCCESS,
         followUp: {
-          successDialogue: [],
-          sequence: CASE5_D4_T1_CHAIN
+          successDialogue: CASE5_D4_T1_CEDULARIO_SUCCESS,
+          deduction: CASE5_FINAL_DEDUCTION
         }
       }
     },

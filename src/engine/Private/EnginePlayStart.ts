@@ -14,7 +14,7 @@ export interface PlayStartGate {
   markLaunching: (busy: boolean) => void;
   clearHistory: () => void;
   launchGame: (caseId: CaseId) => void;
-  launchTrial: (day?: TrialDay) => void;
+  launchTrial: (day?: TrialDay, deduction?: boolean) => void;
 }
 
 export function requestStartGame(gate: PlayStartGate, caseId: CaseId): void {
@@ -28,14 +28,14 @@ export function requestStartGame(gate: PlayStartGate, caseId: CaseId): void {
   void startGameWhenLoaded(gate, caseId);
 }
 
-export function requestTrialDebug(gate: PlayStartGate, day?: TrialDay): void {
+export function requestTrialDebug(gate: PlayStartGate, day?: TrialDay, deduction = false): void {
   if (gate.hasStarted() || gate.launching()) return;
   if (gate.resolveScript) {
-    gate.launchTrial(day);
+    gate.launchTrial(day, deduction);
     return;
   }
   gate.markLaunching(/*busy=*/ true);
-  void startTrialWhenLoaded(gate, day);
+  void startTrialWhenLoaded(gate, day, deduction);
 }
 
 async function startGameWhenLoaded(gate: PlayStartGate, caseId: CaseId): Promise<void> {
@@ -46,9 +46,9 @@ async function startGameWhenLoaded(gate: PlayStartGate, caseId: CaseId): Promise
   gate.launchGame(caseId);
 }
 
-async function startTrialWhenLoaded(gate: PlayStartGate, day?: TrialDay): Promise<void> {
+async function startTrialWhenLoaded(gate: PlayStartGate, day: TrialDay | undefined, deduction: boolean): Promise<void> {
   await ensureCasePair(gate.caseId());
   gate.markLaunching(/*busy=*/ false);
   if (gate.hasStarted()) return;
-  gate.launchTrial(day);
+  gate.launchTrial(day, deduction);
 }

@@ -4,6 +4,7 @@
  */
 
 import type { SoundEngine } from '../../audio/index.js';
+import { i18n } from '../../i18n/index.js';
 import { peekCaseScript, rememberCasePair, type ScriptResolver } from '../../case/loadCaseScript.js';
 import type { GameStateManager } from '../../state/index.js';
 import type { CaseId, CaseScript, TrialDay } from '../../types/index.js';
@@ -28,6 +29,7 @@ export interface LaunchHost {
 }
 
 export function loadCase(host: LaunchHost, caseId: CaseId): void {
+  host.trial.cancelDeduction();
   host.state.caseId = caseId;
   if (host.resolveScript) {
     rememberCasePair(caseId, {
@@ -68,7 +70,7 @@ export function startGame(host: LaunchHost, caseId: CaseId = 'case1'): void {
   host.investigation.startInvestigation(host.getScript().startLocation);
 }
 
-export function startTrialDebug(host: LaunchHost, day?: TrialDay): void {
+export function startTrialDebug(host: LaunchHost, day?: TrialDay, deduction = false): void {
   if (host.hasStarted) return;
   stopMusicPlayerIfOpen(host.dom);
   hideCaseComplete(host.dom);
@@ -85,5 +87,11 @@ export function startTrialDebug(host: LaunchHost, day?: TrialDay): void {
   }
   if (host.state.caseId === 'case0') host.state.beginTrialOnlyCase(host.getScript());
   else host.state.populateTrialEvidence();
+  if (deduction) {
+    host.dom.locationBannerEl.textContent = i18n.t.locationCourtroom;
+    host.dom.bgEl.style.backgroundImage = "url('assets/bg_courtroom.webp')";
+    host.trial.startDeduction();
+    return;
+  }
   host.trial.startTrial();
 }

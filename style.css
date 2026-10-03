@@ -409,6 +409,144 @@ body {
     animation: none;
 }
 
+/* The court can move as one plate while the private deduction fades over it. */
+#deduction-court-zoom {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    transform-origin: center;
+}
+
+.deduction-overlay {
+    position: absolute;
+    inset: 0;
+    background: #163457;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.deduction-overlay[data-phase="entry"] {
+    opacity: 0;
+}
+
+.deduction-visual,
+.deduction-targets {
+    position: absolute;
+    inset: 0;
+}
+
+.deduction-visual canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.deduction-visual canvas,
+.deduction-visual .fallback-space,
+.deduction-visual .fallback-space svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.deduction-visual .fallback-space {
+    background: radial-gradient(ellipse at 50% 31%, #e9faff 0%, #75a6ca 4%, #315b85 24%, #163457 75%);
+}
+
+.deduction-visual[data-renderer="3d"] .fallback-space {
+    display: none;
+}
+
+.deduction-targets {
+    pointer-events: none;
+}
+
+.deduction-targets button {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    pointer-events: auto;
+    border: 2px solid transparent;
+    background: transparent;
+    color: transparent;
+}
+
+.deduction-overlay[data-renderer="2d"] .deduction-targets button {
+    border-color: #fb6e86;
+    background: #981e37;
+    color: white;
+    font: 1.5rem/1.05 'VT323', monospace;
+    padding: 0.25rem;
+}
+
+.deduction-overlay[data-renderer="2d"] .deduction-targets button[aria-checked="true"] {
+    border-color: white;
+    background: #fff4ed;
+    color: #381c32;
+}
+
+.deduction-targets button:focus-visible {
+    outline: 3px solid #fff4ed;
+    outline-offset: 3px;
+    border-color: #ffcb66;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+#game-screen[data-deduction] #controls-bar {
+    visibility: hidden;
+}
+
+.deduction-memory {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    width: 80%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: #fff;
+    font-size: clamp(24px, 3.3vw, 34px);
+    line-height: 1.15;
+    text-shadow: 0 2px 3px #152c4e;
+    animation: deduction-remembered 650ms ease-out;
+}
+
+.deduction-memory strong { display: block; font-weight: normal; font-size: 1.15em; }
+.deduction-memory p { margin-top: 12px; color: #e7f1ff; }
+
+.deduction-overlay[data-phase="conclusion"] {
+    background: #eef4ff;
+    container-type: inline-size;
+}
+
+.deduction-overlay[data-phase="conclusion"] .deduction-visual,
+#game-screen[data-deduction-phase="conclusion"] #top-hud,
+#game-screen[data-deduction-phase="conclusion"] #dialogue-box-container {
+    visibility: hidden;
+}
+
+.deduction-conclusion {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    padding: 30px;
+    border: 0;
+    background: transparent;
+    color: #10162b;
+    font: bold clamp(36px, 7.5cqw, 80px)/1.06 'VT323', monospace;
+    white-space: pre-line;
+    text-align: center;
+    pointer-events: auto;
+    cursor: pointer;
+    animation: deduction-arrive 1000ms ease-out;
+}
+
+.deduction-conclusion::after { content: '▼'; position: absolute; right: 24px; bottom: 16px; font-size: 22px; }
+.deduction-conclusion:focus-visible { outline: 3px solid #182d4c; outline-offset: -8px; }
+@keyframes deduction-arrive { from { opacity: 0; } to { opacity: 1; } }
+@keyframes deduction-remembered { from { opacity: 0; transform: translate(-50%, 30px) scale(0.8); } to { opacity: 1; transform: translate(-50%, 0) scale(1); } }
+@media (prefers-reduced-motion: reduce) { .deduction-memory, .deduction-conclusion { animation: none; } }
+
 /* The cycle is anchored at its PEAK, not its rest pose: at 50% the sprite sits on the
    dialogue box edge, and the rest of the cycle sinks it *into* the plate rather than
    lifting it off. The peak is 2px, not 0: the baseline percentage rounds short of the gold
@@ -684,6 +822,10 @@ body {
     display: none;
 }
 
+#dialogue-content {
+    height: 100%;
+}
+
 #dialogue-text {
     /* Auto-fit steps this down for long lines (see DialogueTextFit.ts). */
     font-size: var(--dialogue-font-size, 24px);
@@ -703,6 +845,65 @@ body {
     font-size: 20px;
     color: #ffd700;
     animation: blinkArrow 0.8s infinite alternate;
+}
+
+/* Tutorial cards use the same dialogue plate; the HUD remains available above the shade. */
+#game-screen.tutorial-visible::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 18;
+    pointer-events: none;
+}
+
+.tutorial-visible #dialogue-box-container {
+    inset: 0;
+    height: 100%;
+    padding: 70px 20px;
+    justify-content: center;
+    align-items: center;
+    z-index: 30;
+}
+
+.tutorial-visible #dialogue-box {
+    width: 680px;
+    max-width: 100%;
+    height: auto;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 24px 24px 32px;
+}
+
+.tutorial-visible #dialogue-content {
+    height: auto;
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+
+.tutorial-visible #dialogue-text {
+    height: auto;
+    overflow: visible;
+    font-size: 24px;
+    padding-right: 0;
+}
+
+#tutorial-image {
+    display: block;
+    max-width: 100%;
+    max-height: 180px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    margin: 0 auto 18px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tutorial-visible #dialogue-arrow {
+        animation: none;
+    }
 }
 
 #dialogue-box.examine-mode {

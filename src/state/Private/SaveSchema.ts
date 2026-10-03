@@ -7,6 +7,7 @@
 import type {
   CaseId, EvidenceId, GameFlags, GameMode, Language, LocationId, ProfileId, TrialDay
 } from '../../types/index.js';
+import type { DeductionSnapshot } from '../../deduction/index.js';
 
 export interface TrialStateSnapshot {
   phase: 'IDLE' | 'TESTIMONY' | 'CLIMAX';
@@ -19,6 +20,7 @@ export interface TrialStateSnapshot {
   climaxChoiceIdx?: number;
   climaxResolved?: boolean;
   pressedStatementIds?: string[];
+  deduction?: DeductionSnapshot;
 }
 
 export interface SaveData {
@@ -71,7 +73,17 @@ export function isValidSaveData(data: unknown): data is SaveData {
   if (d.unlockedLocations !== undefined && !Array.isArray(d.unlockedLocations)) return false;
   if (d.language !== 'es' && d.language !== 'en') return false;
   if (!validTestimonyIndex(d.trial?.testimonyIndex)) return false;
+  if (d.trial?.deduction !== undefined && !isDeductionSnapshot(d.trial.deduction)) return false;
   return true;
+}
+
+function isDeductionSnapshot(value: unknown): value is DeductionSnapshot {
+  if (!value || typeof value !== 'object') return false;
+  const snapshot = value as Partial<DeductionSnapshot>;
+  const phases = ['entry', 'premise', 'question', 'rejected', 'travel', 'connection', 'conclusion', 'returned'];
+  return snapshot.version === 1 && typeof snapshot.sequenceId === 'string' && phases.includes(snapshot.phase ?? '') &&
+    Number.isInteger(snapshot.step) && Array.isArray(snapshot.accepted) &&
+    (snapshot.language === 'es' || snapshot.language === 'en') && Array.isArray(snapshot.history);
 }
 
 function validTestimonyIndex(index: number | null | undefined): boolean {

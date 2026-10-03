@@ -39,19 +39,24 @@ describe('Acta de Personajes inventory', () => {
     expect(state.addProfile('perfil_chapulin')).toBe(false);
   });
 
-  it('advances description stages linearly and saturates', () => {
+  it.each(['es', 'en'] as const)('advances description stages linearly and saturates (%s)', (language) => {
     const state = new GameStateManager();
-    state.beginNewCase(case1);
+    state.setLanguage(language);
+    state.beginNewCase(getCaseScript(language, 'case1'));
     state.addProfile('perfil_tripaseca');
-    const initial = state.getProfileDesc('perfil_tripaseca');
+    const profile = state.profiles.catalog.perfil_tripaseca!;
+    const updates = profile.updates ?? [];
+    expect(updates.length).toBeGreaterThan(0);
+    expect(state.getProfileDesc('perfil_tripaseca')).toBe(profile.desc);
 
-    expect(state.updateProfile('perfil_tripaseca')).toBe(true);
-    expect(state.getProfileDesc('perfil_tripaseca')).not.toBe(initial);
-    expect(state.updateProfile('perfil_tripaseca')).toBe(true);
-    expect(state.updateProfile('perfil_tripaseca')).toBe(true);
-    // Three stages declared: the fourth update is silently dropped.
+    for (const [index, description] of updates.entries()) {
+      expect(state.updateProfile('perfil_tripaseca')).toBe(true);
+      expect(state.profiles.getStage('perfil_tripaseca')).toBe(index + 1);
+      expect(state.getProfileDesc('perfil_tripaseca')).toBe(description);
+    }
     expect(state.updateProfile('perfil_tripaseca')).toBe(false);
-    expect(state.profiles.getStage('perfil_tripaseca')).toBe(3);
+    expect(state.profiles.getStage('perfil_tripaseca')).toBe(updates.length);
+    expect(state.getProfileDesc('perfil_tripaseca')).toBe(updates.at(-1));
   });
 
   it('adds the profile first when a script updates one it never handed out', () => {
@@ -74,11 +79,21 @@ describe('Acta de Personajes inventory', () => {
     expect(state.profiles.updateStage).toEqual({});
   });
 
-  it('saturates the debug profiles alongside debug evidence', () => {
+  it.each(['es', 'en'] as const)('saturates the debug profiles alongside debug evidence (%s)', (language) => {
     const state = new GameStateManager();
-    state.beginNewCase(case1);
+    const script = getCaseScript(language, 'case1');
+    state.setLanguage(language);
+    state.beginNewCase(script);
+    const previouslyKnown = [...state.profiles.owned];
+    const debugProfiles = script.debugProfiles ?? [];
+    expect(debugProfiles.length).toBeGreaterThan(0);
     state.populateTrialEvidence();
-    expect(state.profiles.owned).toHaveLength(7);
-    expect(state.profiles.getStage('perfil_tripaseca')).toBe(3);
+    expect(new Set(state.profiles.owned)).toEqual(new Set([...previouslyKnown, ...debugProfiles]));
+    for (const id of debugProfiles) {
+      const profile = state.profiles.catalog[id]!;
+      expect(state.profiles.getStage(id)).toBe(profile.updates?.length ?? 0);
+      expect(state.getProfileDesc(id)).toBe(profile.updates?.at(-1) ?? profile.desc);
+      expect(state.updateProfile(id)).toBe(false);
+    }
   });
 });

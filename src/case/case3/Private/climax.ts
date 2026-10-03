@@ -5,6 +5,7 @@
 
 import type { ClimaxDefinition } from '../../../types/index.js';
 import { CASE3_CLIMAX_CHOICES } from './climax_choices.js';
+import { CASE3_FINAL_DEDUCTION } from './final_deduction.js';
 import { CASE3_EPILOGUE } from './climax_epilogue.js';
 import { assembleCase3Climax } from './climax_shared.js';
 import {
@@ -33,7 +34,9 @@ export const CASE3_CLIMAX: ClimaxDefinition = assembleCase3Climax({
     '¿QUIÉN podía hacer esa voz?',
     '¿POR QUÉ?'
   ],
-  choices: CASE3_CLIMAX_CHOICES,
+  choices: [],
+  deductionOpening: CASE3_CLIMAX_CHOICES[0].successDialogue,
+  deduction: CASE3_FINAL_DEDUCTION,
   verdict: VERDICT_LINES,
   epilogue: CASE3_EPILOGUE
 });

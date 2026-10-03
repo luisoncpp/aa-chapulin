@@ -1,4 +1,5 @@
 {
+  "entry": ["src/main.ts", "src/demos/deduction.ts"],
   "ignorePatterns": [
     "tests/**",
     "js/**"

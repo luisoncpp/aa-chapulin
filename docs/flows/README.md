@@ -16,6 +16,7 @@ This folder is for:
 
 | File | Scope | Trigger | Relevant Modules |
 |------|-------|---------|------------------|
+| [[docs/flows/final-deduction-flow.md\|final-deduction-flow.md]] | Final Deduction | Case 3's final climax present and Case 5's final testimony open private reasoning; the demo covers the same interaction. | [[src/engine/Private/TrialDeduction.ts]], [[src/deduction/index.ts]], [[src/case/case5/Private/final_deduction.ts]] |
 | [[docs/flows/investigation-flow.md\|investigation-flow.md]] | Crime Scene Exploration | Player clicks Examine, Talk, Move, or Hotspots during investigation. | [[src/engine/Private/InvestigationController.ts]], [[src/state/Private/GameStateManager.ts]] |
 | [[docs/flows/trial-cross-examination-flow.md\|trial-cross-examination-flow.md]] | Courtroom Cross-Examination | Player navigates statements, clicks "Presionar", presents evidence, adjourns (Case 2 day 1), or reaches verdict. | [[src/engine/Private/TrialController.ts]], [[src/engine/Private/TrialDayRouter.ts]] |
 | [[docs/flows/dialogue-and-cutin-flow.md\|dialogue-and-cutin-flow.md]] | Dialogue & Animation Sequencing | Engine queues dialogue lines, types text, displays cut-in shouts, and shakes screen. | [[src/engine/Private/GameEngine.ts]], [[src/engine/Private/Typewriter.ts]], [[src/engine/Private/VisualEffects.ts]] |

@@ -68,7 +68,7 @@ export const CASE4_DETENTION_D3: InvestigationScene = {
         { speaker: 'BOTIJA', text: 'Me da vergüenza mi expediente, y que mi mujer creyera que había vuelto al oficio. Por eso escondí la cartera.', pose: 'botija_llorando' },
         { speaker: 'CHIMOLTRUFIA', text: 'Yo nunca creí que hubieras matado a nadie.', pose: 'chimoltrufia_idle' },
         { speaker: 'BOTIJA', text: 'Pero sí creíste que había aceptado el trabajo del Cuajinais.', pose: 'botija_nervioso' },
-        { speaker: 'CHIMOLTRUFIA', text: 'Lo pensé dos días. Y me dio más coraje pensarlo que preguntártelo.', pose: 'chimoltrufia_confundida' },
+        { speaker: 'CHIMOLTRUFIA', text: '¿Pa\' qué te digo que no, si sí? Lo pensé dos días. Y me dio más coraje pensarlo que preguntártelo.', pose: 'chimoltrufia_confundida' },
         { speaker: 'BOTIJA', text: 'Le dije que no. Le dije que no delante de todo el pasillo.', pose: 'botija_nervioso' },
         { speaker: 'DEFENSA', text: 'Eso lo oyó gente. Y por eso el fiscal cree que discutieron por dinero.', pose: 'donramon_idle' },
         { speaker: 'BOTIJA', text: 'Discutimos porque no quise. Es la primera vez que me acusan de algo por decir que no.', pose: 'botija_llorando', updateProfile: 'perfil_botija' },

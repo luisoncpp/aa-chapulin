@@ -9,12 +9,14 @@ import type { TrialController } from './TrialController.js';
 import { restoreClimaxFromSnapshot } from './TrialClimax.js';
 
 export function restoreTrialFromSnapshot(ctrl: TrialController, snapshot?: TrialStateSnapshot): void {
+  ctrl.cancelDeduction();
   ctrl.deps.dom.investigationNavEl.classList.add('hidden');
   ctrl.deps.dom.examineNavEl.classList.add('hidden');
   ctrl.deps.dom.hotspotsContainerEl.innerHTML = '';
   ctrl.deps.dom.locationBannerEl.textContent = i18n.t.locationCourtroom;
   ctrl.resetPressedState(snapshot?.pressedStatementIds);
   ctrl.climaxResolved = false;
+  if (snapshot?.phase === 'CLIMAX' && snapshot.deduction && ctrl.restoreDeduction(snapshot.deduction)) return;
   if (snapshot?.phase === 'CLIMAX') {
     restoreClimaxFromSnapshot(
       ctrl,

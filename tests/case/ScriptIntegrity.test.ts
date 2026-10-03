@@ -7,6 +7,7 @@ import { TRACK_CATALOG } from '../../src/audio/Private/TrackCatalog.js';
 import { getEvidenceCatalog, getProfileCatalog } from '../../src/state/index.js';
 import type { CaseId, CaseScript, DialogueLine } from '../../src/types/index.js';
 import { adjournmentDays, pointTargets, scriptLines, statementIds } from './ScriptWalk.js';
+import { validateSequence } from '../../src/deduction/index.js';
 
 const CASE_IDS: readonly CaseId[] = ['case0', 'case1', 'case2', 'case3', 'case4', 'case5'];
 const LANGUAGES = ['es', 'en'] as const;
@@ -54,6 +55,13 @@ describe('Case script referential integrity', () => {
           if (line.updateProfile) expect(profiles[line.updateProfile], line.updateProfile).toBeDefined();
         };
         for (const line of scriptLines(es)) collect(line);
+        const deductions = [es.trial.climax.deduction, ...[es.trial, ...adjournmentDays(es)]
+          .flatMap(day => day.testimonies.flatMap(testimony => testimony.statements
+            .map(statement => statement.contradiction?.followUp?.deduction)))];
+        for (const sequence of deductions) {
+          if (!sequence) continue;
+          expect(() => validateSequence(sequence), sequence.id).not.toThrow();
+        }
         for (const id of [...es.requiredEvidence, ...es.debugEvidence]) {
           expect(catalog[id], id).toBeDefined();
         }
@@ -145,6 +153,7 @@ describe('Case script referential integrity', () => {
           if (line.bg) expect(assetExists(line.bg), `bg ${line.bg}`).toBe(true);
           if (line.pose) expect(assetExists(`assets/${line.pose}.webp`), `pose ${line.pose}`).toBe(true);
           if (line.cutin) expect(assetExists(`assets/${line.cutin}.webp`), `cutin ${line.cutin}`).toBe(true);
+          if (line.tutorialImage) expect(assetExists(line.tutorialImage.src), `tutorial image ${line.tutorialImage.src}`).toBe(true);
           if (line.bgm && line.bgm !== 'silence') expect(TRACK_CATALOG[line.bgm], `bgm ${line.bgm}`).toBeDefined();
         }
         for (const scene of Object.values(script.investigation)) {
@@ -166,4 +175,3 @@ describe('Case script referential integrity', () => {
     });
   }
 });
-

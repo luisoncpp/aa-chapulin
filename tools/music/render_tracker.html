@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="es">
+<meta charset="utf-8">
+<title>Render de la música del juego</title>
+<h1>Render de la música del juego</h1>
+<p>Usa los instrumentos y la mezcla del motor. Compila el proyecto antes de abrir esta página.</p>
+<button id="render">Generar WAV</button>
+<p id="status" role="status">Listo</p>
+<audio id="audio" controls></audio>
+<p><a id="download" hidden>Descargar WAV</a></p>
+<p><a id="report" hidden>Descargar informe</a></p>
+<pre id="metrics"></pre>
+<script type="module">
+import { TRACK_CATALOG } from '../../dist/audio/Private/TrackCatalog.js';
+import { renderStep } from '../../dist/audio/Private/StepRenderer.js';
+import { MusicBus } from '../../dist/audio/Private/Mixer/index.js';
+
+const id = new URLSearchParams(location.search).get('track') ?? 'deduccion_anticipacion';
+const track = TRACK_CATALOG[id];
+const RATE = 44100;
+const CHUNK = 32;
+const PRE = 32;
+const STEP = 60 / track.bpm / 4;
+const duration = track.length * STEP;
+const status = document.querySelector('#status');
+const metrics = { track: id, seconds: duration, segments: [] };
+document.querySelector('h1').textContent += `: ${id}`;
+document.querySelector('#render').addEventListener('click', generate);
+
+async function renderSegment(start) {
+  const count = Math.min(CHUNK, track.length - start);
+  const ctx = new OfflineAudioContext(2, Math.ceil((count + PRE) * STEP * RATE), RATE);
+  const master = ctx.createGain();
+  master.gain.value = 0.85 * 0.65;
+  master.connect(ctx.destination);
+  const bus = MusicBus.for(ctx, master);
+  bus.open(/*fresh=*/ true, track.reverb ?? 0);
+  const began = performance.now();
+  for (let step = 0; step < count + PRE; step++) {
+    const idx = (start + step - PRE + track.length) % track.length;
+    renderStep({ track, idx, when: step * STEP, ctx, bus });
+  }
+  const audio = await ctx.startRendering();
+  metrics.segments.push({ startStep: start, milliseconds: performance.now() - began });
+  const from = Math.round(PRE * STEP * RATE);
+  const to = from + Math.round(count * STEP * RATE);
+  return [audio.getChannelData(0).slice(from, to), audio.getChannelData(1).slice(from, to)];
+}
+
+async function generate() {
+  document.querySelector('#render').disabled = true;
+  try {
+    const mix = [new Float32Array(Math.round(duration * RATE)), new Float32Array(Math.round(duration * RATE))];
+    for (let start = 0; start < track.length; start += CHUNK) {
+      status.textContent = `Renderizando ${start}/${track.length} pasos`;
+      const segment = await renderSegment(start);
+      const offset = Math.round(start * STEP * RATE);
+      segment.forEach(/*copyStereoChannel*/ (samples, channel) => mix[channel].set(samples, offset));
+    }
+    measure(mix);
+    const wav = URL.createObjectURL(encodeWav(mix));
+    document.querySelector('#audio').src = wav;
+    link('#download', wav, `${id}.wav`);
+    link('#report', URL.createObjectURL(new Blob([JSON.stringify(metrics, null, 2)], { type: 'application/json' })), `${id}-audio.json`);
+    document.querySelector('#metrics').textContent = JSON.stringify(metrics, null, 2);
+    status.textContent = 'Render completo';
+  } catch (error) {
+    status.textContent = String(error);
+  }
+}
+
+function link(selector, url, filename) {
+  const element = document.querySelector(selector);
+  element.href = url;
+  element.download = filename;
+  element.hidden = false;
+}
+
+function measure(mix) {
+  let peak = 0, square = 0, nonfinite = 0, clipped = 0;
+  for (const samples of mix) for (const sample of samples) {
+    if (!Number.isFinite(sample)) nonfinite++;
+    peak = Math.max(peak, Math.abs(sample));
+    square += sample * sample;
+    if (Math.abs(sample) >= 1) clipped++;
+  }
+  metrics.peakDbfs = 20 * Math.log10(peak);
+  metrics.rmsDbfs = 10 * Math.log10(square / (mix[0].length * 2));
+  metrics.nonfiniteSamples = nonfinite;
+  metrics.clippedSamples = clipped;
+  metrics.boundaryDeltas = mix.map(/*stereoSeam*/ (samples) => samples[0] - samples.at(-1));
+  metrics.sectionRmsDbfs = Array.from({ length: 4 }, (_, section) => {
+    const start = Math.round(section * mix[0].length / 4);
+    const end = Math.round((section + 1) * mix[0].length / 4);
+    let energy = 0;
+    for (const samples of mix) for (let i = start; i < end; i++) energy += samples[i] ** 2;
+    return 10 * Math.log10(energy / (2 * (end - start)));
+  });
+}
+
+function encodeWav(mix) {
+  const count = mix[0].length;
+  const buffer = new ArrayBuffer(44 + count * 4);
+  const view = new DataView(buffer);
+  const ascii = (offset, value) => [...value].forEach(/*headerCharacter*/ (char, index) => view.setUint8(offset + index, char.charCodeAt(0)));
+  ascii(0, 'RIFF'); view.setUint32(4, buffer.byteLength - 8, true); ascii(8, 'WAVE');
+  ascii(12, 'fmt '); view.setUint32(16, 16, true); view.setUint16(20, 1, true);
+  view.setUint16(22, 2, true); view.setUint32(24, RATE, true); view.setUint32(28, RATE * 4, true);
+  view.setUint16(32, 4, true); view.setUint16(34, 16, true); ascii(36, 'data'); view.setUint32(40, count * 4, true);
+  for (let i = 0; i < count; i++) for (let ch = 0; ch < 2; ch++) {
+    const sample = Math.max(-1, Math.min(1, mix[ch][i]));
+    view.setInt16(44 + i * 4 + ch * 2, Math.round(sample * (sample < 0 ? 32768 : 32767)), true);
+  }
+  return new Blob([buffer], { type: 'audio/wav' });
+}
+</script>
+</html>

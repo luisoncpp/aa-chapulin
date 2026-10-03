@@ -1,0 +1,23 @@
+{
+  "todo-encaja-loop.mid": {
+    "tracks": 7,
+    "ppq": 480,
+    "note_ons": 1397,
+    "all_note_ons_and_offs_match": true,
+    "tempo_matches": true
+  },
+  "todo-encaja-revelacion.mid": {
+    "tracks": 7,
+    "ppq": 480,
+    "note_ons": 65,
+    "all_note_ons_and_offs_match": true,
+    "tempo_matches": true
+  },
+  "todo-encaja.mid": {
+    "tracks": 7,
+    "ppq": 480,
+    "note_ons": 1462,
+    "all_note_ons_and_offs_match": true,
+    "tempo_matches": true
+  }
+}

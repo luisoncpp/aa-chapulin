@@ -51,7 +51,10 @@ export function setupDomHarness(): DomElements {
       <div id="dialogue-box-container">
         <div id="dialogue-box">
           <div id="speaker-tag"><span id="speaker-name">CHAPULÍN</span></div>
-          <div id="dialogue-text">Texto</div>
+          <div id="dialogue-content">
+            <img id="tutorial-image" class="hidden" alt="">
+            <div id="dialogue-text">Texto</div>
+          </div>
           <div id="dialogue-arrow">▼</div>
         </div>
       </div>

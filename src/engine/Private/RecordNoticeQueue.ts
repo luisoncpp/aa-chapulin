@@ -7,6 +7,7 @@
 
 import type { SoundEngine } from '../../audio/index.js';
 import type { DomElements } from './DomElements.js';
+import type { DialogueSnapshot } from '../../types/index.js';
 
 export interface RecordNotice {
   iconSrc: string | null;
@@ -18,6 +19,7 @@ export class RecordNoticeQueue {
   private showing = false;
   private spriteWasHidden = false;
   private boxWasHidden = false;
+  private current?: RecordNotice;
 
   constructor(private readonly dom: DomElements, private readonly soundEngine: SoundEngine) {}
 
@@ -27,6 +29,17 @@ export class RecordNoticeQueue {
 
   public push(notice: RecordNotice): void {
     this.pending.push(notice);
+  }
+
+  public snapshot(): DialogueSnapshot['notices'] {
+    return { pending: [...this.pending], current: this.current };
+  }
+
+  public restore(snapshot: DialogueSnapshot['notices']): void {
+    this.pending = [...snapshot.pending];
+    if (!snapshot.current) return;
+    this.coverStage();
+    this.paint(snapshot.current);
   }
 
   /**
@@ -59,6 +72,7 @@ export class RecordNoticeQueue {
   }
 
   private restoreStage(): void {
+    this.current = undefined;
     this.showing = false;
     this.dom.recordNoticeEl.classList.add('hidden');
     this.dom.charSpriteEl.classList.toggle('hidden', this.spriteWasHidden);
@@ -66,6 +80,7 @@ export class RecordNoticeQueue {
   }
 
   private paint(notice: RecordNotice): void {
+    this.current = notice;
     const icon = this.dom.recordNoticeEl.querySelector<HTMLImageElement>('#record-notice-icon')!;
     const text = this.dom.recordNoticeEl.querySelector<HTMLElement>('#record-notice-text')!;
     if (notice.iconSrc) icon.src = notice.iconSrc;

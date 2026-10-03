@@ -3,10 +3,12 @@
  * After a matching present, the player clicks a zone on a 640×360 evidence plate.
  */
 
-import type { CaseScript, PointTargetContradiction, PointZone, TrialDayScript } from '../../types/index.js';
+import type { CaseScript, PointTargetContradiction, PointZone } from '../../types/index.js';
 import { applyPenaltyEffects, queuePenaltyOrRestart, type PenaltyHost } from './TrialPenalty.js';
 import type { DomElements } from './DomElements.js';
+import { findPointTarget } from './PointTargets.js';
 import { ModalManager } from './ModalManager.js';
+import type { DialogueContinuation } from '../../types/index.js';
 import {
   findHitZone, percentFromStageClick, POINT_STAGE_HEIGHT, POINT_STAGE_WIDTH, resolvePointImage
 } from './PresentPointGeometry.js';
@@ -15,6 +17,7 @@ export interface PresentPointStart {
   deps: PenaltyHost;
   pointTarget: PointTargetContradiction;
   onSuccess: () => void;
+  next?: DialogueContinuation;
 }
 
 interface ActivePoint extends PresentPointStart {}
@@ -47,6 +50,17 @@ export function closePresentPoint(dom: DomElements): void {
   dom.presentPointOverlayEl?.classList.add('hidden');
 }
 
+export function resetPresentPoint(dom: DomElements): void {
+  active = null;
+  suspendedForCourtRecord = false;
+  closePresentPoint(dom);
+}
+
+export function snapshotPresentPoint(dom: DomElements): Extract<DialogueContinuation, { kind: 'point' }> | undefined {
+  if (active?.deps.dom !== dom || !active.next || (!isPresentPointOpen(dom) && !suspendedForCourtRecord)) return;
+  return { kind: 'point', target: active.pointTarget, next: active.next };
+}
+
 export function bindPresentPoint(dom: DomElements): void {
   dom.presentPointStageEl?.addEventListener('click', /*onPointStageClick*/ (e) => {
     e.stopPropagation();
@@ -64,7 +78,7 @@ export function startPresentPoint(config: PresentPointStart): void {
 
 export function rebindPresentPointScript(script: CaseScript): void {
   if (!active) return;
-  const target = findPointTarget(script, active.pointTarget.targetEvidenceId);
+  const target = findPointTarget(script, active.pointTarget.targetEvidenceId, active.pointTarget.id);
   if (!target) return;
   active = { ...active, pointTarget: target };
   if (!suspendedForCourtRecord) showOverlay(active.deps.dom, target, active.deps);
@@ -109,7 +123,9 @@ function completeCorrectPoint(): void {
   const continueSequence = nextPointContinuation(current);
   const successDialogue = pointTarget.successDialogue;
   if (!successDialogue?.length) return continueSequence();
-  deps.onQueueDialogue(successDialogue, continueSequence);
+  const next = pointTarget.next ? { kind: 'point' as const, target: pointTarget.next,
+    next: current.next ?? { kind: 'none' as const } } : current.next;
+  deps.onQueueDialogue(successDialogue, continueSequence, next);
 }
 
 function nextPointContinuation(current: ActivePoint): () => void {
@@ -141,7 +157,8 @@ function replayPointFailure(target: PointTargetContradiction, hit: PointZone | n
     reopen();
     return;
   }
-  active.deps.onQueueDialogue(lines, reopen);
+  active.deps.onQueueDialogue(lines, reopen, { kind: 'point', target,
+    next: active.next ?? { kind: 'none' } });
 }
 
 function failureLines(target: PointTargetContradiction, hit: PointZone | null) {
@@ -149,45 +166,4 @@ function failureLines(target: PointTargetContradiction, hit: PointZone | null) {
   if (hitFailure?.length) return hitFailure;
   const firstWrong = target.zones.find((z) => !z.isCorrect);
   return firstWrong?.failureDialogue ?? [];
-}
-
-function findPointTarget(script: CaseScript, evidenceId: string): PointTargetContradiction | null {
-  const testimonyTargets = trialDays(script).flatMap((day) => [
-    ...day.testimonies, day.testimony1, day.testimony2
-  ].filter((testimony): testimony is NonNullable<typeof testimony> => Boolean(testimony)))
-    .flatMap(pointTargetsInTestimony);
-  const climaxTargets = script.trial.climax.stages?.flatMap((stage) => stage.pointTarget ? [stage.pointTarget] : []) ?? [];
-  const activeId = active?.pointTarget.id;
-  return [...testimonyTargets, ...climaxTargets]
-    .flatMap(pointTargetChain)
-    .find((target) => activeId ? target.id === activeId : target.targetEvidenceId === evidenceId) ?? null;
-}
-
-function trialDays(script: CaseScript): TrialDayScript[] {
-  const days: TrialDayScript[] = [script.trial];
-  let adjournment = script.adjournment;
-  while (adjournment) {
-    days.push(adjournment.trial);
-    adjournment = adjournment.next;
-  }
-  return days;
-}
-
-function pointTargetChain(target: PointTargetContradiction): PointTargetContradiction[] {
-  return target.next ? [target, ...pointTargetChain(target.next)] : [target];
-}
-
-function pointTargetsInTestimony(
-  testimony: NonNullable<CaseScript['trial']['testimonies'][number]>
-): PointTargetContradiction[] {
-  return testimony.statements.flatMap((statement) => [
-    ...pointTargetsInRule(statement.contradiction),
-    ...pointTargetsInRule(statement.contradiction?.followUp)
-  ]);
-}
-
-function pointTargetsInRule(
-  rule: { pointTarget?: PointTargetContradiction } | undefined
-): PointTargetContradiction[] {
-  return rule?.pointTarget ? [rule.pointTarget] : [];
 }

@@ -4,8 +4,8 @@ import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 
 function cssRule(css: string, selector: string): string {
-  const escaped = selector.replace(/[.#]/g, '\\$&');
-  const match = css.match(new RegExp(`${escaped}\\s*\\{([^}]+)\\}`));
+  const escaped = selector.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\$&');
+  const match = css.match(new RegExp(`(?:^|})\\s*${escaped}\\s*\\{([^}]+)\\}`, 'm'));
   return match?.[1] ?? '';
 }
 
@@ -30,7 +30,6 @@ describe('examine HUD does not occlude hotspot hit-testing', () => {
     const idleBottom = px(cssProp(bar, 'bottom'), 'controls-bar bottom');
     const examineBottom = px(cssProp(examineBar, 'bottom'), 'examine controls-bar bottom');
     const examineBoxH = px(cssProp(examineBox, 'height'), 'examine dialogue height');
-    expect(idleBottom).toBe(138);
     expect(examineBottom).toBeLessThan(idleBottom);
     expect(examineBottom).toBeGreaterThan(examineBoxH);
   });

@@ -18,6 +18,11 @@ import {
   type SlotPickerMode
 } from './SaveSlotModal.js';
 import { VisualEffects } from './VisualEffects.js';
+import { resumeDialogue } from './DialogueResume.js';
+import { resetPresentPoint } from './PresentPoint.js';
+import { resetFlashPlate } from './SceneFade.js';
+import { invalidateSceneTasks } from './SceneTasks.js';
+import { showCaseComplete } from './CaseComplete.js';
 
 export interface PersistenceHost extends LaunchHost {
   dialogue: DialogueFlow;
@@ -33,6 +38,9 @@ function commitSave(host: PersistenceHost, slotIndex: number, storage?: Storage)
   const activeStorage = storage ?? host.storage;
   const trialSnapshot = host.state.mode === 'TRIAL' ? persistTrialSnapshot(host.trial) : undefined;
   const payload = host.state.exportState(trialSnapshot);
+  payload.investigationExamine = host.state.mode === 'INVESTIGATION' && host.investigation.isExamineActive;
+  payload.caseComplete = !host.dom.caseCompleteOverlayEl?.classList.contains('hidden');
+  if (!trialSnapshot?.deduction && !payload.investigationExamine) payload.dialogue = host.dialogue.snapshot();
   const success = SaveManager.saveToSlot(slotIndex, payload, activeStorage);
   if (!success) return false;
   host.soundEngine.playRealization();
@@ -103,7 +111,15 @@ function finishLoad(host: PersistenceHost, data: SaveData | null): boolean {
 }
 
 function restoreSaveData(host: PersistenceHost, data: SaveData): void {
+  invalidateSceneTasks(host.dom.flashEl);
+  resetFlashPlate(host.dom.flashEl);
+  VisualEffects.clearConfetti(host.dom.confettiContainerEl);
   host.trial.cancelDeduction();
+  resetPresentPoint(host.dom);
+  host.dialogue.clear();
+  host.trial.phase = 'IDLE';
+  host.trial.clearActiveTestimony();
+  host.dom.gameScreen.querySelectorAll('.game-modal').forEach((modal) => modal.classList.add('hidden'));
   hideCaseComplete(host.dom);
   if (!host.hasStarted) dismissSplash(host.dom, host.soundEngine);
   host.markStarted();
@@ -111,16 +127,26 @@ function restoreSaveData(host: PersistenceHost, data: SaveData): void {
   loadCase(host, data.caseId ?? 'case1');
   host.setLanguage(data.language);
   ModalManager.updateHealthUI(host.dom.healthBarEl, host.state.health, host.state.maxHealth);
-  host.dialogue.clear();
   // A restored save resumes elsewhere; the previous session's backlog would not
   // line up with the lines the engine is about to re-queue.
   host.dialogue.clearHistory();
+  restoreSavedPresentation(host, data);
+}
+
+function restoreSavedPresentation(host: PersistenceHost, data: SaveData): void {
   if (data.mode === 'INVESTIGATION') {
-    host.investigation.startInvestigation(data.currentLocation);
+    host.investigation.startInvestigation(data.currentLocation, /*deferIntro=*/ Boolean(data.dialogue));
     host.investigation.checkInvestigationProgress();
-    return;
+  } else {
+    applyTrialSnapshot(host.trial, data.trial, /*silent=*/ Boolean(data.dialogue || data.trial?.point));
   }
-  applyTrialSnapshot(host.trial, data.trial);
+  if (data.dialogue) {
+    host.dom.trialNavEl.classList.add('hidden');
+    if (data.mode === 'INVESTIGATION') host.investigation.suspendForDialogue();
+    host.dialogue.restore(data.dialogue, () => resumeDialogue(host, data.dialogue!.next));
+  } else if (data.trial?.point) resumeDialogue(host, data.trial.point);
+  if (data.investigationExamine) host.investigation.startExamineMode();
+  if (data.caseComplete) showCaseComplete(host.dom);
 }
 
 export function updateContinueButton(host: PersistenceHost, storage?: Storage): void {

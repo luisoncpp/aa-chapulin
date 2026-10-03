@@ -21,7 +21,7 @@ export function tryDeflect(
   ctrl.hideControls();
   ctrl.deps.onQueueDialogue(
     deflect.dialogue,
-    /*resumeStatement*/ () => ctrl.renderCurrentStatement()
+    /*resumeStatement*/ () => ctrl.renderCurrentStatement(), { kind: 'statement' }
   );
   return true;
 }
@@ -67,5 +67,5 @@ function queueDeflectMiss(ctrl: TrialController, dialogue: DialogueLine[]): void
     },
     /*onContinue*/ () => ctrl.renderCurrentStatement()
   );
-  ctrl.deps.onQueueDialogue(dialogue, resume);
+  ctrl.deps.onQueueDialogue(dialogue, resume, { kind: ctrl.deps.state.gameOver ? 'restart' : 'statement' });
 }

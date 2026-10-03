@@ -1,4 +1,5 @@
 // @Architecture(descriptionShort="Applies incorrect-present penalties and game-over lines", type="util", icon="bolt")
+import type { DialogueQueue } from '../../types/index.js';
 /**
  * Penalty and game-over dialogue for [[./TrialController.ts]].
  */
@@ -11,12 +12,13 @@ import type { DomElements } from './DomElements.js';
 import { resolveCourtPenaltyRoles } from './CourtPenaltyRoles.js';
 import { ModalManager } from './ModalManager.js';
 import { VisualEffects } from './VisualEffects.js';
+import type { DialogueContinuation } from '../../types/index.js';
 
 export interface PenaltyHost {
   dom: DomElements;
   state: GameStateManager;
   soundEngine: SoundEngine;
-  onQueueDialogue: (dialogue: DialogueLine[], onComplete?: () => void) => void;
+  onQueueDialogue: DialogueQueue;
   onRestartTrial?: () => void;
   guiltyDialogue?: DialogueLine[];
   script?: CaseScript;
@@ -31,7 +33,8 @@ export function applyPenaltyEffects(deps: PenaltyHost): void {
   VisualEffects.flashScreen(deps.dom.flashEl);
 }
 
-export function queuePenaltyDialogue(deps: PenaltyHost, onResume: () => void): void {
+export function queuePenaltyDialogue(deps: PenaltyHost, onResume: () => void,
+  next: DialogueContinuation = { kind: 'statement' }): void {
   const isEn = i18n.getLanguage() === 'en';
   const roles = resolveCourtPenaltyRoles({
     script: deps.script,
@@ -49,7 +52,7 @@ export function queuePenaltyDialogue(deps: PenaltyHost, onResume: () => void): v
     { speaker: 'JUEZ', text: i18n.t.penaltyJudgeText, pose: 'judge_gavel', sfx: 'gavel' }
   ];
   if (deps.state.gameOver) lines.push(...gameOverLines(deps, roles.defensePanicPose));
-  deps.onQueueDialogue(lines, /*onComplete*/ onResume);
+  deps.onQueueDialogue(lines, /*onComplete*/ onResume, deps.state.gameOver ? { kind: 'restart' } : next);
 }
 
 /** Somber cue that replaces the trial loop the moment the health bar empties. */

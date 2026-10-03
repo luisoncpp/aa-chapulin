@@ -1,9 +1,10 @@
 // @Architecture(descriptionShort="Queues climax verdict then waiting-room epilogue", type="controller", icon="dialog")
+import type { DialogueQueue } from '../../types/index.js';
 /**
  * Correct-climax victory: courtroom confetti, then a fade into the waiting room.
  */
 
-import type { ClimaxDefinition, DialogueLine, EvidenceId } from '../../types/index.js';
+import type { ClimaxDefinition, EvidenceId } from '../../types/index.js';
 import type { DomElements } from './DomElements.js';
 import { applyClimaxPresentPrompt } from './ClimaxPresentPrompt.js';
 import { isPresentPointOpen } from './PresentPoint.js';
@@ -21,7 +22,7 @@ export type { ClimaxControllerPort } from './TrialClimaxPresent.js';
 
 interface ClimaxQueueDeps {
   dom: DomElements;
-  onQueueDialogue: (dialogue: DialogueLine[], onComplete?: () => void) => void;
+  onQueueDialogue: DialogueQueue;
 }
 
 function buildClimaxCtx(ctrl: ClimaxControllerPort): ClimaxRestoreCtx {
@@ -57,7 +58,7 @@ function openClimaxPresent(
   }
   deps.onQueueDialogue(climax.dialogue, /*onComplete*/ () => {
     deps.onOpenCourtRecord(/*isTrialPresent=*/ true);
-  });
+  }, { kind: 'present' });
 }
 
 export function restoreClimaxFromSnapshot(
@@ -119,7 +120,6 @@ export function rebindClimaxChoiceModal(ctrl: ClimaxControllerPort): void {
   ));
 }
 
-// fallow-ignore-next-line unused-export
 export { celebrateClimax, queueClimaxCelebration } from './TrialChoice.js';
 
 export function isAwaitingClimaxEvidence(ctrl: ClimaxControllerPort): boolean {
@@ -133,7 +133,6 @@ export function getClimaxPresentPrompt(ctrl: ClimaxControllerPort): string | nul
   return stages[ctrl.climaxStageIdx]?.prompt ?? null;
 }
 
-// fallow-ignore-next-line unused-export
 export function queueClimaxVictory(climax: ClimaxDefinition, deps: ClimaxQueueDeps): void {
   queueClimaxCelebration(climax.verdict, climax, deps);
 }

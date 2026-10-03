@@ -17,7 +17,7 @@ Operational guide for player save game persistence and restoration flows using b
 ### Save Game Sequence
 1. The HUD save button opens the eight-slot list. Occupied rows show the case short name, the place (investigation scene title, or courtroom plus trial day), and the local time. Empty rows read "Vacío" / "Empty".
 2. An empty row writes immediately. An occupied row asks Sí / No and writes only on Sí.
-3. On confirm, if `gameState.mode === 'TRIAL'`, `persistTrialSnapshot()` collects `{ phase, testimonyKey, statementIdx }`.
+3. On confirm, `persistTrialSnapshot()` collects trial progression, pressed statements, pending opening/follow-up questions and the active point overlay. `DialogueFlow.snapshot()` captures the displayed line, remaining lines, record notices and a serializable completion action. Final Deduction keeps its own snapshot instead of saving its internal dialogue queue twice.
 4. `gameState.exportState(trialSnapshot)` in [[src/state/Private/GameStateManager.ts#State Persistence]] captures the payload (`version`, `timestamp`, mode, location, inventory, flags, trial, and the rest of the current schema).
 5. `SaveManager.saveToSlot(index, data)` stores it in the envelope at `window.localStorage['ace_attorney_save_slots']`.
 6. On success:
@@ -47,8 +47,10 @@ Operational guide for player save game persistence and restoration flows using b
 4. `ModalManager.updateHealthUI()` renders health points on `#health-bar`.
 5. Dialogue queue and message history are cleared.
 6. **Investigation Mode**: `investigation.startInvestigation(data.currentLocation)` initializes the crime scene.
-7. **Trial Mode**: `trial.restoreTrialSnapshot(data.trial)` jumps into the saved testimony statement or climax stage.
-8. `#game-notification` displays `i18n.t.notifGameLoaded`.
+7. **Trial Mode**: `trial.restoreTrialSnapshot(data.trial)` restores progression. Saved dialogue and point overlays then supply presentation; pending opening and follow-up questions reopen with their answer routing intact.
+8. **Active dialogue**: `DialogueFlow.restore()` displays the saved line without repeating evidence/profile updates, restores its notices, and queues only the remaining lines. Finishing runs the saved completion action through [[src/engine/Private/DialogueResume.ts]]. The Case 0 save tutorial resumes the recess and continues to testimony 3. Investigation dialogue finishes its original intro, talk or hotspot action instead of being skipped by an already-set flag.
+9. **Scene work**: loading invalidates delayed fades, gallery holds and celebration callbacks from the old session. Examine mode and the case-complete plate are restored when saved.
+10. `#game-notification` displays `i18n.t.notifGameLoaded`.
 
 ### Legacy single save
 On the first read, if the envelope key is missing and `ace_attorney_save_data` holds a valid payload, that payload is copied into slot 0 (shown as slot 1). The old key is removed only after the envelope write succeeds.
@@ -82,3 +84,5 @@ On the first read, if the envelope key is missing and `ace_attorney_save_data` h
 - **LocalStorage disabled or quota exceeded**: slot writes return `false`. A failed envelope write during adoption leaves the legacy key in place.
 - **One corrupt slot**: that row is treated as empty. The other seven still load.
 - **Corrupted envelope JSON**: the list is empty. A sibling legacy key is not resurrected once the envelope key exists.
+
+Older saves without dialogue checkpoints remain loadable and use the saved testimony/climax position. Their original dialogue position cannot be recovered because it was never recorded.

@@ -2,7 +2,7 @@
 import type { MidiMusicComposer, SoundEngine } from '../../audio/index.js';
 import { i18n } from '../../i18n/index.js';
 import type { GameStateManager } from '../../state/index.js';
-import type { CaseScript, DialogueLine, Hotspot, LocationId, PoseName, TalkOption } from '../../types/index.js';
+import type { CaseScript, DialogueQueue, Hotspot, LocationId, PoseName, TalkOption } from '../../types/index.js';
 import type { DomElements } from './DomElements.js';
 import { renderHotspots, visibleHotspots } from './HotspotLayer.js';
 import {
@@ -11,7 +11,8 @@ import {
 } from './InvestigationSceneTransition.js';
 import { resetTrialButton, updateTrialButtonProgress } from './InvestigationTrialButton.js';
 import { ModalManager } from './ModalManager.js';
-import { notifyNewlyUnlocked, visibleTalkOptions } from './TalkOptionUnlock.js';
+import { visibleTalkOptions } from './TalkOptionUnlock.js';
+import { suspendForDialogue, finishIntro, finishHotspot, finishTalk, type InvestigationDialogueContext } from './InvestigationDialogue.js';
 import { VisualEffects } from './VisualEffects.js';
 
 export class InvestigationController {
@@ -23,14 +24,13 @@ export class InvestigationController {
   private script: CaseScript;
   private readonly soundEngine: SoundEngine;
   private readonly midiComposer: MidiMusicComposer;
-  private readonly onQueueDialogue: (dialogue: DialogueLine[], onComplete?: () => void) => void;
+  private readonly onQueueDialogue: DialogueQueue;
   private readonly handleExaminePointerMove = (event: PointerEvent): void => {
     const bounds = this.dom.dialogueBoxEl.getBoundingClientRect();
     const isOverHud = event.clientX >= bounds.left && event.clientX <= bounds.right
       && event.clientY >= bounds.top && event.clientY <= bounds.bottom;
     this.dom.dialogueBoxEl.classList.toggle('examine-hud-hidden', isOverHud);
   };
-
   constructor(deps: InvestigationControllerDeps) {
     this.dom = deps.dom;
     this.state = deps.state;
@@ -39,14 +39,11 @@ export class InvestigationController {
     this.midiComposer = deps.midiComposer;
     this.onQueueDialogue = deps.onQueueDialogue;
   }
-
   public restoreSceneIdlePose(): void {
     const scene = this.script.investigation[this.state.currentLocation];
     this.currentLocationCharPose = resolveSceneIdlePose(scene, this.state);
     applySceneIdlePose(this.dom, this.currentLocationCharPose);
   }
-
-  // @Section(Investigation Scene Transition)
   // fallow-ignore-next-line complexity
   public startInvestigation(location: LocationId = 'museum', deferIntro = false): void {
     this.state.mode = 'INVESTIGATION';
@@ -83,14 +80,14 @@ export class InvestigationController {
     this.dom.investigationNavEl.classList.add('hidden');
     this.isFirstTimeDialogue = true;
     this.state.markIntroPlayed(intro.id);
-    this.onQueueDialogue(intro.dialogue, /*onComplete*/ () => {
-      this.isFirstTimeDialogue = false;
-      this.dom.investigationNavEl.classList.remove('hidden');
-      this.restoreSceneIdlePose();
-    });
+    this.onQueueDialogue(intro.dialogue, () => this.finishIntro(), { kind: 'investigation-intro' });
   }
 
-  // @Section(Hotspot Rendering & Clicks)
+  // fallow-ignore-next-line unused-class-member -- called through PersistenceHost.investigation
+  public suspendForDialogue(): void { suspendForDialogue(this.dialogueContext()); }
+  public finishIntro(): void { finishIntro(this.dialogueContext()); }
+  public finishHotspot(id: string): void { finishHotspot(this.dialogueContext(), id); }
+  public finishTalk(): void { finishTalk(this.dialogueContext()); }
   public renderHotspots(hotspots: Hotspot[]): void {
     renderHotspots(visibleHotspots(hotspots, this.state.flags), {
       container: this.dom.hotspotsContainerEl,
@@ -112,17 +109,9 @@ export class InvestigationController {
     this.dom.examineNavEl.classList.add('hidden');
     this.dom.investigationNavEl.classList.add('hidden');
     this.isFirstTimeDialogue = true;
-    this.onQueueDialogue(h.dialogue, /*onComplete*/ () => {
-      this.isFirstTimeDialogue = false;
-      this.state.markHotspotExamined(h.id);
-      this.renderHotspots(this.script.investigation[this.state.currentLocation]?.hotspots ?? []);
-      this.notifyUnlockedTalk();
-      this.checkInvestigationProgress();
-      this.startExamineMode();
-    });
+    this.onQueueDialogue(h.dialogue, () => this.finishHotspot(h.id), { kind: 'investigation-hotspot', id: h.id });
   }
 
-  // @Section(Examine Mode & Tooltips)
   public startExamineMode(): void {
     if (this.isFirstTimeDialogue) return;
     this.isExamineActive = true;
@@ -161,7 +150,6 @@ export class InvestigationController {
     this.restoreSceneIdlePose();
   }
 
-  // @Section(Talk Dialog & Readiness)
   // fallow-ignore-next-line complexity
   public openTalkMenu(): void {
     if (this.isFirstTimeDialogue) return;
@@ -174,23 +162,13 @@ export class InvestigationController {
       this.state.markTalkCompleted(opt.id);
       this.dom.investigationNavEl.classList.add('hidden');
       this.isFirstTimeDialogue = true;
-      this.onQueueDialogue(opt.dialogue, /*onComplete*/ () => {
-        this.isFirstTimeDialogue = false;
-        this.dom.investigationNavEl.classList.remove('hidden');
-        this.restoreSceneIdlePose();
-        this.notifyUnlockedTalk();
-        this.checkInvestigationProgress();
-        if (this.state.mode === 'INVESTIGATION' && !this.isExamineActive) {
-          this.openTalkMenu();
-        }
-      });
+      this.onQueueDialogue(opt.dialogue, () => this.finishTalk(), { kind: 'investigation-talk' });
     });
   }
 
-  private notifyUnlockedTalk(): void {
-    notifyNewlyUnlocked(this.script.investigation[this.state.currentLocation]?.talkOptions, {
-      dom: this.dom, state: this.state, soundEngine: this.soundEngine
-    });
+  private dialogueContext(): InvestigationDialogueContext {
+    return { dom: this.dom, state: this.state, script: this.script,
+      soundEngine: this.soundEngine, controller: this };
   }
 
   public openMoveMenu(): void {
@@ -207,9 +185,7 @@ export class InvestigationController {
     });
   }
 
-  public resetTrialLaunchButton(): void {
-    resetTrialButton(this.dom.btnInvTrial);
-  }
+  public resetTrialLaunchButton(): void { resetTrialButton(this.dom.btnInvTrial); }
 
   public setScript(script: CaseScript): void {
     this.script = script;

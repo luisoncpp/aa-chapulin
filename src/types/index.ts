@@ -44,6 +44,7 @@ export type {
 } from './Private/state.js';
 
 // @Section(Narrative & Script Types)
+export type { DialogueContinuation, DialogueSnapshot, DialogueQueue } from './Private/persistence.js';
 export type {
   SpeakerName,
   PoseName,

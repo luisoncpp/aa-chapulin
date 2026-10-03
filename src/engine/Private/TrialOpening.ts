@@ -11,6 +11,7 @@ import { getActiveTrial } from './TrialDayRouter.js';
 import { fadeToGalleryShot } from './SceneFade.js';
 import { presentDialogueVisuals } from './StageCommit.js';
 import { setStagingCaseId } from './TrialCaseStaging.js';
+import { scheduleSceneTask } from './SceneTasks.js';
 
 const WAITING_ROOM_BG = 'assets/bg_waiting_room.webp';
 const GALLERY_BG = 'assets/bg_gallery_characters.webp';
@@ -52,7 +53,7 @@ export function fadeAcrossGallery(
       return presentDialogueVisuals(dom, shot, /*isTrialMode=*/ true);
     },
     onRevealed: () => {
-      setTimeout(/*continueAfterGalleryShot*/ () => {
+      scheduleSceneTask(dom.flashEl, /*continueAfterGalleryShot*/ () => {
         dom.dialogueBoxEl.classList.remove('hidden');
         onComplete();
       }, /*delayInMs=*/ GALLERY_HOLD_MS);

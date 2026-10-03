@@ -56,12 +56,12 @@ export function onPresentPenalty(
       pressedStatementIds,
       script: ctrl.script
     },
-    ctrl.deps.onQueueDialogue,
+    (lines, callback) => ctrl.deps.onQueueDialogue(lines, callback, { kind: onResume ? 'present' : 'statement' }),
     /*onResume*/ resume
   )) return;
   queuePenaltyDialogue(
     { ...ctrl.deps, script: ctrl.script, testimony: ctrl.currentTestimony, guiltyDialogue: ctrl.script.trial.climax.guiltyDialogue },
-    /*onResume*/ resume
+    /*onResume*/ resume, { kind: onResume ? 'present' : 'statement' }
   );
 }
 

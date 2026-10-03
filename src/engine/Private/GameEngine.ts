@@ -11,7 +11,7 @@ import {
 import { i18n } from '../../i18n/index.js';
 import { gameState as defaultGameState, type GameStateManager } from '../../state/index.js';
 import type {
-  CaseId, CaseScript, DialogueLine, EvidenceId, Language, LocationId, ProfileId, TrialDay
+  CaseId, CaseScript, DialogueContinuation, DialogueLine, EvidenceId, Language, LocationId, ProfileId, TrialDay
 } from '../../types/index.js';
 import { handleAdjournment } from './AdjournmentHandler.js';
 import { DialogueFlow } from './DialogueFlow.js';
@@ -70,11 +70,11 @@ export class GameEngine {
     const typewriter = new Typewriter(this.dom.dialogueTextEl, this.soundEngine);
     this.investigation = new InvestigationController({
       dom: this.dom, state: this.state, script: this.script, soundEngine: this.soundEngine,
-      midiComposer: this.midiComposer, onQueueDialogue: (dlg, cb) => this.queueDialogue(dlg, cb)
+      midiComposer: this.midiComposer, onQueueDialogue: (dlg, cb, next) => this.queueDialogue(dlg, cb, next)
     });
     this.trial = new TrialController({
       dom: this.dom, state: this.state, script: this.script, soundEngine: this.soundEngine,
-      midiComposer: this.midiComposer, onQueueDialogue: (dlg, cb) => this.queueDialogue(dlg, cb),
+      midiComposer: this.midiComposer, onQueueDialogue: (dlg, cb, next) => this.queueDialogue(dlg, cb, next),
       onRenderLine: (line) => this.renderDialogueLine(line),
       onOpenCourtRecord: (isTrialPresent) => openEngineCourtRecord(this.presentHost(), isTrialPresent),
       onAdjourn: (location) => this.handleAdjournment(location),
@@ -182,8 +182,9 @@ export class GameEngine {
     }
   }
 
-  public queueDialogue(dialogueArray: DialogueLine[], onComplete: (() => void) | null = null): void {
-    this.dialogue.queueDialogue(dialogueArray, onComplete);
+  public queueDialogue(dialogueArray: DialogueLine[], onComplete: (() => void) | null = null,
+    continuation?: DialogueContinuation): void {
+    this.dialogue.queueDialogue(dialogueArray, onComplete, continuation);
   }
 
   public renderDialogueLine(line: DialogueLine): void {

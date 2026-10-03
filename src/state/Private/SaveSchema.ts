@@ -5,9 +5,10 @@
  */
 
 import type {
-  CaseId, EvidenceId, GameFlags, GameMode, Language, LocationId, ProfileId, TrialDay
+  CaseId, DialogueContinuation, DialogueSnapshot, EvidenceId, GameFlags, GameMode, Language, LocationId, ProfileId, TrialDay
 } from '../../types/index.js';
 import type { DeductionSnapshot } from '../../deduction/index.js';
+import { isContinuation, isDialogueSnapshot } from './DialogueSaveValidation.js';
 
 export interface TrialStateSnapshot {
   phase: 'IDLE' | 'TESTIMONY' | 'CLIMAX';
@@ -21,6 +22,9 @@ export interface TrialStateSnapshot {
   climaxResolved?: boolean;
   pressedStatementIds?: string[];
   deduction?: DeductionSnapshot;
+  pendingPresent?: { opening?: boolean; followUp?: boolean; sequenceIndex?: number };
+  presentationKnown?: boolean;
+  point?: Extract<DialogueContinuation, { kind: 'point' }>;
 }
 
 export interface SaveData {
@@ -40,6 +44,9 @@ export interface SaveData {
   trial?: TrialStateSnapshot;
   caseId?: CaseId;
   trialDay?: TrialDay;
+  dialogue?: DialogueSnapshot;
+  investigationExamine?: boolean;
+  caseComplete?: boolean;
 }
 
 export const CURRENT_SAVE_VERSION = 2;
@@ -74,6 +81,8 @@ export function isValidSaveData(data: unknown): data is SaveData {
   if (d.language !== 'es' && d.language !== 'en') return false;
   if (!validTestimonyIndex(d.trial?.testimonyIndex)) return false;
   if (d.trial?.deduction !== undefined && !isDeductionSnapshot(d.trial.deduction)) return false;
+  if (d.dialogue !== undefined && !isDialogueSnapshot(d.dialogue)) return false;
+  if (d.trial?.point !== undefined && (!isContinuation(d.trial.point) || d.trial.point.kind !== 'point')) return false;
   return true;
 }
 

@@ -33,5 +33,5 @@ export function finishTrialDeduction(ctrl: TrialController, route: TrialDeductio
       return;
     }
     queueClimaxVictory(ctrl.script.trial.climax, ctrl.deps);
-  });
+  }, { kind: route.testimonyIndex !== undefined ? 'advance' : 'verdict' });
 }

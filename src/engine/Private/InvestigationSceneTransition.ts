@@ -1,4 +1,5 @@
 // @Architecture(descriptionShort="Manages scene presentation staging and intro dialogue resolution", type="util", icon="panel")
+import type { DialogueQueue } from '../../types/index.js';
 /**
  * Investigation Scene Transition & Intro Resolution
  * Helper functions for [[./InvestigationController.ts]].
@@ -18,7 +19,7 @@ export interface InvestigationControllerDeps {
   script: CaseScript;
   soundEngine: SoundEngine;
   midiComposer: MidiMusicComposer;
-  onQueueDialogue: (dialogue: DialogueLine[], onComplete?: () => void) => void;
+  onQueueDialogue: DialogueQueue;
 }
 
 export interface ResolvedIntro {

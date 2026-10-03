@@ -9,6 +9,7 @@ import type {
   AdjournmentDefinition,
   CaseScript,
   TrialDay,
+  Testimony,
   TrialDayScript
 } from '../../types/index.js';
 
@@ -40,4 +41,9 @@ export function applyAdjournment(state: GameStateManager, script: CaseScript): A
   state.beginNextTrialDay(adjournment);
   state.applyProgressionRules(script);
   return adjournment;
+}
+
+export function getTrialTestimony(script: CaseScript, day: TrialDay, index: number): Testimony | null {
+  const trial = getActiveTrial(script, day);
+  return [trial.testimony1, trial.testimony2][index] ?? trial.testimonies[index] ?? null;
 }

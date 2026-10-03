@@ -1,4 +1,5 @@
 // @Architecture(descriptionShort="Climax multiple-choice prompts after final present", type="controller", icon="dialog")
+import type { DialogueQueue } from '../../types/index.js';
 /**
  * Choice modal, resolve logic, and celebration for trial climax.
  */
@@ -12,6 +13,7 @@ import { showCaseComplete } from './CaseComplete.js';
 import { COURTROOM_CELEBRATION_MS, fadeToBlack, fadeThroughBlack } from './SceneFade.js';
 import { applyPenaltyEffects, queuePenaltyOrRestart, type PenaltyHost } from './TrialPenalty.js';
 import { VisualEffects } from './VisualEffects.js';
+import { scheduleSceneTask } from './SceneTasks.js';
 
 export interface ClimaxSession {
   stageIdx: number;
@@ -28,7 +30,7 @@ export interface ChoiceOpenSession {
 
 interface ClimaxQueueDeps {
   dom: DomElements;
-  onQueueDialogue: (dialogue: DialogueLine[], onComplete?: () => void) => void;
+  onQueueDialogue: DialogueQueue;
 }
 
 export interface ClimaxRestoreCtx extends ClimaxQueueDeps, PenaltyHost {
@@ -76,7 +78,7 @@ export function resolveClimaxChoice(
     queuePenaltyOrRestart(ctx, /*reopenChoice*/ () => {
       ctx.onQueueDialogue(prompt.failDialogue, /*reopenChoice*/ () => {
         openClimaxChoice(choiceOpenSession(ctx, climax, choiceIdx, onSelect));
-      });
+      }, { kind: 'choice' });
     });
     return choiceIdx;
   }
@@ -84,14 +86,14 @@ export function resolveClimaxChoice(
   if (!isLast) {
     ctx.onQueueDialogue(prompt.successDialogue, /*openNextChoice*/ () => {
       openClimaxChoice(choiceOpenSession(ctx, climax, choiceIdx + 1, onSelect));
-    });
+    }, { kind: 'choice' });
     return choiceIdx + 1;
   }
   if (climax.choicesAfterStage != null && climax.stages && climax.choicesAfterStage < climax.stages.length - 1) {
     ctx.setStageIdx(climax.choicesAfterStage + 1);
     ctx.onQueueDialogue(prompt.successDialogue, /*openNextPresent*/ () => {
       ctx.onOpenCourtRecord(/*isTrialPresent=*/ true);
-    });
+    }, { kind: 'present' });
     return null;
   }
   queueClimaxCelebration(prompt.successDialogue, climax, ctx);
@@ -111,7 +113,7 @@ export function restoreClimaxSession(ctx: ClimaxRestoreCtx): void {
   if (ctx.stageIdx === 0) {
     ctx.onQueueDialogue(ctx.climax.dialogue, /*onComplete*/ () => {
       ctx.onOpenCourtRecord(/*isTrialPresent=*/ true);
-    });
+    }, { kind: 'present' });
     return;
   }
   ctx.onOpenCourtRecord(/*isTrialPresent=*/ true);
@@ -125,7 +127,6 @@ function stampEpilogueLines(bg: string, lines: DialogueLine[]): DialogueLine[] {
   }));
 }
 
-// fallow-ignore-next-line unused-export
 export function celebrateClimax(climax: ClimaxDefinition, deps: ClimaxQueueDeps): void {
   if (!climax.verdict.some((line) => line.confetti)) {
     VisualEffects.triggerConfetti(deps.dom.confettiContainerEl);
@@ -144,11 +145,11 @@ export function queueClimaxCelebration(
 ): void {
   deps.onQueueDialogue(verdictLines, /*onVerdictDone*/ () => {
     celebrateClimax(climax, deps);
-  });
+  }, { kind: 'celebrate' });
 }
 
 function scheduleWaitingRoomFade(epilogue: ClimaxEpilogue, deps: ClimaxQueueDeps): void {
-  setTimeout(/*leaveCourtroom*/ () => {
+  scheduleSceneTask(deps.dom.flashEl, /*leaveCourtroom*/ () => {
     fadeThroughBlack(
       deps.dom.flashEl,
       /*onCovered*/ () => cutToWaitingRoom(epilogue, deps),
@@ -167,11 +168,11 @@ function cutToWaitingRoom(epilogue: ClimaxEpilogue, deps: ClimaxQueueDeps): void
 
 function queueEpilogue(epilogue: ClimaxEpilogue, deps: ClimaxQueueDeps): void {
   const lines = stampEpilogueLines(epilogue.bg, epilogue.dialogue);
-  deps.onQueueDialogue(lines, /*onEpilogueDone*/ () => fadeToCaseComplete(deps));
+  deps.onQueueDialogue(lines, /*onEpilogueDone*/ () => fadeToCaseComplete(deps), { kind: 'complete' });
 }
 
 function scheduleCaseComplete(deps: ClimaxQueueDeps): void {
-  setTimeout(/*leaveVerdictShot*/ () => fadeToCaseComplete(deps), /*delayInMs=*/ COURTROOM_CELEBRATION_MS);
+  scheduleSceneTask(deps.dom.flashEl, /*leaveVerdictShot*/ () => fadeToCaseComplete(deps), /*delayInMs=*/ COURTROOM_CELEBRATION_MS);
 }
 
 function fadeToCaseComplete(deps: ClimaxQueueDeps): void {

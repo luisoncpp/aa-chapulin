@@ -2,11 +2,12 @@
 /**
  * Timed black-cover used when leaving the courtroom after a verdict.
  */
+import { guardSceneTask, scheduleSceneTask } from './SceneTasks.js';
 
 export const COURTROOM_CELEBRATION_MS = 1600;
 // fallow-ignore-next-line unused-export
 export const SCENE_FADE_MS = 500;
-export const GALLERY_FADE_MS = 1000;
+const GALLERY_FADE_MS = 1000;
 
 interface FadeCallbacks {
   onCovered: () => void | Promise<void>;
@@ -31,20 +32,20 @@ export function fadeToGalleryShot(flashEl: HTMLElement, callbacks: FadeCallbacks
 
 export function fadeToBlack(flashEl: HTMLElement, onCovered: () => void): void {
   coverWithBlack(flashEl, SCENE_FADE_MS);
-  setTimeout(/*stayCovered*/ onCovered, /*delayInMs=*/ SCENE_FADE_MS);
+  scheduleSceneTask(flashEl, /*stayCovered*/ onCovered, /*delayInMs=*/ SCENE_FADE_MS);
 }
 
 function swapUnderBlack(flashEl: HTMLElement, transition: FadeTransition): void {
   coverWithBlack(flashEl, transition.durationMs);
-  setTimeout(/*swapWhileCovered*/ () => {
+  scheduleSceneTask(flashEl, /*swapWhileCovered*/ () => {
     const plateReady = transition.onCovered();
     if (!plateReady) {
       uncoverFromBlack(flashEl, transition.onRevealed, transition.durationMs);
       return;
     }
-    void plateReady.then(/*revealWhenReady*/ () => {
+    void plateReady.then(guardSceneTask(flashEl, /*revealWhenReady*/ () => {
       uncoverFromBlack(flashEl, transition.onRevealed, transition.durationMs);
-    });
+    }));
   }, /*delayInMs=*/ transition.durationMs);
 }
 
@@ -63,7 +64,7 @@ function uncoverFromBlack(
   durationMs: number
 ): void {
   flashEl.style.opacity = '0';
-  setTimeout(/*resetFlashPlate*/ () => {
+  scheduleSceneTask(flashEl, /*resetFlashPlate*/ () => {
     resetFlashPlate(flashEl);
     onRevealed();
   }, /*delayInMs=*/ durationMs);

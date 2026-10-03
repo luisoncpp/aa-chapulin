@@ -27,7 +27,7 @@ describe('Case 0 direct courtroom launch', () => {
     host = {
       dom: setupDomHarness(), state, soundEngine,
       investigation: { setScript: vi.fn(), startInvestigation: investigationStart } as never,
-      trial: { setScript: vi.fn(), startTrial: trialStart } as never,
+      trial: { setScript: vi.fn(), startTrial: trialStart, cancelDeduction: vi.fn() } as never,
       hasStarted: false, getScript: () => script,
       setScript: (next) => { script = next; },
       markStarted: () => { host.hasStarted = true; },

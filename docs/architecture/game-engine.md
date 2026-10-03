@@ -10,6 +10,12 @@ Technical guide for the presentation and game engine deep module ([[src/engine/i
 
 `GameEngine.init` binds splash controls and shows Continue after a `localStorage` check. It does not download case scripts. Starting an act, a debug trial URL, or restoring a slot loads that case through [[src/case/loadCaseScript.ts]]. Tests inject `resolveScript: getCaseScript` so those paths stay synchronous.
 
+### Save presentation and continuation
+
+Trial phase alone does not identify the scene being read. `DialogueFlow` saves the displayed line, remaining queue, record notices and a typed completion action. Engine-owned queues supply that action as the third `onQueueDialogue` argument; [[src/engine/Private/DialogueResume.ts]] rebuilds its callback on load. A restored line renders without repeating its progression effects. Pending questions and point overlays restore separately, while Final Deduction owns its existing snapshot. Starting a trial clears testimony and pending-question state before its opening.
+
+[[src/engine/Private/SceneTasks.ts]] guards delayed scene callbacks by a stage generation. Loading invalidates the old generation so a pending fade or celebration cannot replace the restored scene. Regression coverage lives in [[tests/engine/DialogueSaveLoad.test.ts]] and [[tests/engine/SceneSaveLoad.test.ts]].
+
 The `src/engine/` module is organized into encapsulated deep module components with a thin public interface ([[src/engine/index.ts]]):
 
 ```mermaid

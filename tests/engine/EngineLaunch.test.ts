@@ -33,7 +33,7 @@ describe('EngineLaunch', () => {
       state,
       soundEngine,
       investigation: { setScript: vi.fn(), startInvestigation } as never,
-      trial: { setScript: vi.fn(), startTrial } as never,
+      trial: { setScript: vi.fn(), startTrial, cancelDeduction: vi.fn() } as never,
       hasStarted: false,
       getScript: () => script,
       setScript: (next) => { script = next; },

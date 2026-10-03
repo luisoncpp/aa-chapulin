@@ -21,6 +21,7 @@ Avoid: "bug description + fix". Prefer: "what I learned that applies to future w
 
 | File | Topic | Date |
 |------|-------|------|
+| [[docs/lessons-learned/dialogue-save-continuations.md]] | Dialogue completion, pending prompts and delayed scene work belong to a save checkpoint. | 2026-10-03 |
 | [`zero-asset-procedural-audio.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/lessons-learned/zero-asset-procedural-audio.md) | Procedural Web Audio API sound synthesis and chiptune tracker vs static audio assets. | 2026-08-23 |
 | [`chroma-key-sprite-slicing.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/lessons-learned/chroma-key-sprite-slicing.md) | Automating AI pixel art sprite extraction via magenta chroma-keying and numpy alpha masking. | 2026-08-23 |
 | [`browser-audio-autoplay-unlock.md`](file:///c:/Proyectos/ace-attorney-gemini/docs/lessons-learned/browser-audio-autoplay-unlock.md) | Bypassing modern browser AudioContext autoplay policies using interactive splash gates. | 2026-08-23 |

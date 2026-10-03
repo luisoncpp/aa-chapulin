@@ -4,10 +4,9 @@
  */
 
 import type { MidiMusicComposer, SoundEngine } from '../../audio/index.js';
-import { i18n } from '../../i18n/index.js';
 import type { GameStateManager } from '../../state/index.js';
 import type {
-  CaseScript, DialogueLine, EvidenceId, LocationId, ProfileId, SFXName
+  CaseScript, DialogueContinuation, DialogueSnapshot, DialogueLine, SFXName
 } from '../../types/index.js';
 import type { DialogueHistory, HistoryEntry } from './DialogueHistory.js';
 import type { DomElements } from './DomElements.js';
@@ -17,6 +16,7 @@ import { RecordNoticeQueue } from './RecordNoticeQueue.js';
 import { presentDialogueVisuals } from './StageCommit.js';
 import { setStagingCaseId } from './TrialCaseStaging.js';
 import { VisualEffects } from './VisualEffects.js';
+import { DialogueProgress } from './DialogueProgress.js';
 import { TutorialPresentation } from './TutorialPresentation.js';
 
 export interface DialogueFlowDeps {
@@ -33,16 +33,24 @@ export interface DialogueFlowDeps {
 export class DialogueFlow {
   private queue: DialogueLine[] = [];
   private onQueueFinish: (() => void) | null = null;
+  private current: DialogueLine | null = null;
+  private continuation: DialogueContinuation = { kind: 'none' };
+  private queued = false;
   private readonly notices: RecordNoticeQueue;
+  private readonly progress: DialogueProgress;
   private readonly tutorial: TutorialPresentation;
 
   constructor(private readonly deps: DialogueFlowDeps) {
     this.notices = new RecordNoticeQueue(deps.dom, deps.soundEngine);
+    this.progress = new DialogueProgress(deps, this.notices);
     this.tutorial = new TutorialPresentation(deps.dom);
   }
 
   /** Clears the pending queue only; the message history survives queue resets. */
   public clear(): void {
+    this.deps.typewriter.stop();
+    this.current = null;
+    this.queued = false;
     this.queue = [];
     this.onQueueFinish = null;
     this.notices.clear();
@@ -62,13 +70,14 @@ export class DialogueFlow {
       return true;
     }
     if (this.queue.length > 0) {
-      this.renderDialogueLine(this.queue.shift()!);
+      this.renderQueuedLine(this.queue.shift()!);
       return true;
     }
     return this.finishQueue();
   }
 
   private finishQueue(): boolean {
+    this.queued = ['celebrate', 'complete', 'courtroom'].includes(this.continuation.kind);
     const cb = this.onQueueFinish;
     this.onQueueFinish = null;
     this.refreshAdvanceArrow();
@@ -76,12 +85,33 @@ export class DialogueFlow {
     return cb !== null;
   }
 
-  public queueDialogue(dialogueArray: DialogueLine[], onComplete: (() => void) | null = null): void {
+  public queueDialogue(dialogueArray: DialogueLine[], onComplete: (() => void) | null = null,
+    continuation: DialogueContinuation = { kind: 'none' }): void {
+    this.continuation = continuation;
+    this.queued = dialogueArray.length > 0;
     this.queue = [...dialogueArray];
     this.onQueueFinish = onComplete;
     if (this.queue.length > 0) {
-      this.renderDialogueLine(this.queue.shift()!);
+      this.renderQueuedLine(this.queue.shift()!);
     }
+  }
+
+  public snapshot(): DialogueSnapshot | undefined {
+    if (!this.queued || !this.current) return undefined;
+    const bg = this.deps.dom.bgEl.style.backgroundImage.match(/url\(["']?(.*?)["']?\)/)?.[1];
+    return { current: { ...this.current, bg: this.current.bg ?? bg,
+      bgm: this.deps.midiComposer.currentTrack ?? 'silence' }, remaining: [...this.queue],
+      next: this.continuation, notices: this.notices.snapshot() };
+  }
+
+  public restore(snapshot: DialogueSnapshot, onComplete: () => void): void {
+    this.clear();
+    this.queue = [...snapshot.remaining];
+    this.onQueueFinish = onComplete;
+    this.continuation = snapshot.next;
+    this.renderDialogueLine(snapshot.current, /*restoring=*/ true);
+    this.queued = true;
+    this.notices.restore(snapshot.notices);
   }
 
   public clearHistory(): void {
@@ -93,27 +123,29 @@ export class DialogueFlow {
   }
 
   /** Records all displayed lines, including statements that bypass the queue. */
-  public renderDialogueLine(line: DialogueLine): void {
+  public renderDialogueLine(line: DialogueLine, restoring = false): void {
     if (!line) return;
+    this.queued = false;
+    this.current = line;
     this.deps.history.record(line);
     const isTutorial = this.tutorial.render(line, this.deps.state.caseId);
     if (line.bgm) this.deps.midiComposer.playCue(line.bgm);
-    if (line.sfx) this.triggerSFX(line.sfx);
-    if (line.cutin) VisualEffects.showCutin(this.deps.dom, line.cutin);
+    if (line.sfx && !restoring) this.triggerSFX(line.sfx);
+    if (line.cutin && !restoring) VisualEffects.showCutin(this.deps.dom, line.cutin);
     if (line.confetti) VisualEffects.triggerConfetti(this.deps.dom.confettiContainerEl);
     this.applyLineSpeakerAndPose(isTutorial ? { ...line, pose: undefined } : line);
-    this.grantEvidenceIfPresent(line.addEvidence);
-    this.updateEvidenceIfPresent(line.updateEvidence);
-    this.grantProfileIfPresent(line.addProfile);
-    this.updateProfileIfPresent(line.updateProfile);
-    this.unlockLocationIfPresent(line.unlockLocation);
-    this.setProgressFlagIfPresent(line.setFlag);
+    if (!restoring) this.progress.apply(line);
     if (line.instant || isTutorial) {
       this.deps.typewriter.showImmediately(line.text || '');
     } else {
       this.deps.typewriter.start(line.text || '');
     }
     this.refreshAdvanceArrow();
+  }
+
+  private renderQueuedLine(line: DialogueLine): void {
+    this.renderDialogueLine(line);
+    this.queued = true;
   }
 
   /** Shows the advance promise only while a line, callback, or notice remains. */
@@ -131,57 +163,6 @@ export class DialogueFlow {
     }
     presentDialogueVisuals(this.deps.dom, line, /*isTrialMode=*/ isTrial);
     this.deps.dom.speakerBoxEl.textContent = line.text ? (line.speaker || '') : '';
-  }
-
-  private grantEvidenceIfPresent(evidenceId?: EvidenceId): void {
-    if (!evidenceId) return;
-    const added = this.deps.state.addEvidence(evidenceId);
-    if (!added) return;
-    const item = this.deps.state.allEvidence[evidenceId];
-    this.notices.push({ iconSrc: item.icon, message: i18n.t.notifEvidenceAdded(item.name) });
-  }
-
-  // fallow-ignore-next-line complexity
-  private updateEvidenceIfPresent(evidenceId?: EvidenceId): void {
-    if (!evidenceId) return;
-    const alreadyHeld = this.deps.state.hasEvidence(evidenceId);
-    if (!alreadyHeld) this.grantEvidenceIfPresent(evidenceId);
-    const updated = this.deps.state.updateEvidence(evidenceId);
-    if (!alreadyHeld || !updated) return;
-    const item = this.deps.state.allEvidence[evidenceId];
-    this.notices.push({ iconSrc: item.icon, message: i18n.t.notifEvidenceUpdated(item.name) });
-  }
-
-  private grantProfileIfPresent(profileId?: ProfileId): void {
-    if (!profileId) return;
-    if (!this.deps.state.addProfile(profileId)) return;
-    const item = this.deps.state.profiles.catalog[profileId];
-    if (item) this.notices.push({ iconSrc: item.icon, message: i18n.t.notifProfileAdded(item.name) });
-  }
-
-  // fallow-ignore-next-line complexity
-  private updateProfileIfPresent(profileId?: ProfileId): void {
-    if (!profileId) return;
-    const alreadyHeld = this.deps.state.hasProfile(profileId);
-    if (!alreadyHeld) this.grantProfileIfPresent(profileId);
-    const updated = this.deps.state.updateProfile(profileId);
-    if (!alreadyHeld || !updated) return;
-    const item = this.deps.state.profiles.catalog[profileId];
-    if (item) this.notices.push({ iconSrc: item.icon, message: i18n.t.notifProfileUpdated(item.name) });
-  }
-
-  // fallow-ignore-next-line complexity
-  private unlockLocationIfPresent(locationId?: LocationId): void {
-    if (!locationId) return;
-    const unlocked = this.deps.state.unlockLocation(locationId);
-    if (!unlocked) return;
-    const scene = this.deps.getScript().investigation[locationId];
-    const locName = scene?.name ?? scene?.title ?? locationId;
-    this.notices.push({ iconSrc: null, message: i18n.t.notifLocationUnlocked(locName) });
-  }
-
-  private setProgressFlagIfPresent(flag?: string): void {
-    if (flag) this.deps.state.flags[flag] = true;
   }
 
   // fallow-ignore-next-line complexity

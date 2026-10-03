@@ -8,14 +8,14 @@ import { i18n } from '../../i18n/index.js';
 import type {
   CaseScript, ClimaxDefinition, ClimaxStage, DialogueLine, EvidenceId, ProfileId, Testimony
 } from '../../types/index.js';
-import type { DomElements } from './DomElements.js';
 import { startPresentPoint } from './PresentPoint.js';
-import { choiceOpenSession, openClimaxChoice, queueClimaxCelebration, type ClimaxSession } from './TrialChoice.js';
+import { type ClimaxSession } from './TrialChoice.js';
 import { applyPenaltyEffects, queuePenaltyOrRestart, type PenaltyHost } from './TrialPenalty.js';
 import type { TrialControllerDeps, TrialPhase } from './TrialController.js';
+import { continueMatchedClimaxStage, getClimaxStages } from './ClimaxSuccess.js';
 import { VisualEffects } from './VisualEffects.js';
 
-interface ClimaxRunDeps extends PenaltyHost {
+export interface ClimaxRunDeps extends PenaltyHost {
   midiComposer: MidiMusicComposer;
   onOpenCourtRecord: (isTrialPresent: boolean) => void;
   onStartDeduction?: () => void;
@@ -34,22 +34,14 @@ export interface ClimaxControllerPort {
   restartAfterGameOver(): void;
 }
 
-interface ClimaxQueueDeps {
-  dom: DomElements;
-  onQueueDialogue: (dialogue: DialogueLine[], onComplete?: () => void) => void;
-}
-
-interface MatchedStage {
+export interface MatchedStage {
   climax: ClimaxDefinition;
   stageIdx: number;
   stage: ClimaxStage;
   onChoiceSelect: (optionId: string) => void;
 }
 
-export function getClimaxStages(climax: ClimaxDefinition): ClimaxStage[] {
-  if (climax.stages && climax.stages.length > 0) return climax.stages;
-  return [{ presentTarget: climax.presentTarget, successDialogue: climax.verdict }];
-}
+
 
 export function currentClimaxStage(ctrl: ClimaxControllerPort): ClimaxStage {
   const stages = getClimaxStages(ctrl.script.trial.climax);
@@ -83,7 +75,7 @@ function applyWrongClimax(deps: ClimaxRunDeps, notif: string, failDialogue?: Dia
       deps.onOpenCourtRecord(/*isTrialPresent=*/ true);
     };
     if (!failDialogue?.length) return reopen();
-    deps.onQueueDialogue(failDialogue, reopen);
+    deps.onQueueDialogue(failDialogue, reopen, { kind: 'present' });
   });
 }
 
@@ -121,7 +113,7 @@ function tryClimaxDeflect(
   if (!deflect) return false;
   deps.onQueueDialogue(deflect.dialogue, /*reopenClimaxPresent*/ () => {
     deps.onOpenCourtRecord(/*isTrialPresent=*/ true);
-  });
+  }, { kind: 'present' });
   return true;
 }
 
@@ -143,13 +135,23 @@ function continueOrPoint(ctrl: ClimaxControllerPort, matched: MatchedStage, deps
     return;
   }
   const startPoint = /*beginPointOverlay*/ () => {
-    startPresentPoint({ deps, pointTarget: matched.stage.pointTarget!, onSuccess: apply });
+    startPresentPoint({ deps, pointTarget: matched.stage.pointTarget!, onSuccess: apply,
+      next: { kind: 'climax-point', index: matched.stageIdx } });
   };
   if (matched.stage.introDialogue?.length) {
-    deps.onQueueDialogue(matched.stage.introDialogue, startPoint);
+    deps.onQueueDialogue(matched.stage.introDialogue, startPoint, {
+      kind: 'point', target: matched.stage.pointTarget!, next: { kind: 'climax-point', index: matched.stageIdx }
+    });
     return;
   }
   startPoint();
+}
+
+export function resumeClimaxPoint(ctrl: ClimaxControllerPort, stageIdx: number): void {
+  const climax = ctrl.script.trial.climax;
+  const stage = getClimaxStages(climax)[stageIdx];
+  applyClimaxSession(ctrl, continueMatchedClimaxStage({ climax, stageIdx, stage,
+    onChoiceSelect: (id) => ctrl.handleSelectChoice(id) }, climaxRunDeps(ctrl)));
 }
 
 // fallow-ignore-next-line complexity
@@ -166,54 +168,4 @@ function climaxStageMatches(
   return true;
 }
 
-function isFinalClimaxStage(climax: ClimaxDefinition, stageIdx: number): boolean {
-  return stageIdx >= getClimaxStages(climax).length - 1;
-}
-
-// fallow-ignore-next-line complexity
-function continueMatchedClimaxStage(matched: MatchedStage, deps: ClimaxRunDeps): ClimaxSession {
-  const { climax, stageIdx, stage } = matched;
-  if (!isFinalClimaxStage(climax, stageIdx)) {
-    if (climax.choicesAfterStage === stageIdx && climax.choices?.length) {
-      deps.onQueueDialogue(stage.successDialogue, /*openFirstChoice*/ () => {
-        openClimaxChoice(choiceOpenSession(deps, climax, 0, matched.onChoiceSelect));
-      });
-      return { stageIdx, choiceIdx: 0 };
-    }
-    deps.onQueueDialogue(stage.successDialogue, /*openNextPresent*/ () => {
-      deps.onOpenCourtRecord(/*isTrialPresent=*/ true);
-    });
-    return { stageIdx: stageIdx + 1, choiceIdx: null };
-  }
-  return finishFinalClimaxStage(matched, deps);
-}
-
-function finishFinalClimaxStage(matched: MatchedStage, deps: ClimaxRunDeps): ClimaxSession {
-  const { climax, stageIdx, stage, onChoiceSelect } = matched;
-  if (climax.deduction && deps.onStartDeduction) {
-    deps.onQueueDialogue(stage.successDialogue, /*openPrivateDeduction*/ () => deps.onStartDeduction?.());
-    return { stageIdx, choiceIdx: null };
-  }
-  if (climax.choices && climax.choices.length > 0 && climax.choicesAfterStage == null) {
-    deps.onQueueDialogue(stage.successDialogue, /*openFirstChoice*/ () => {
-      openClimaxChoice(choiceOpenSession(deps, climax, 0, onChoiceSelect));
-    });
-    return { stageIdx, choiceIdx: 0 };
-  }
-  queueFinalStageVictory(climax, stage, deps);
-  return { stageIdx, choiceIdx: null, settled: true };
-}
-
-function queueFinalStageVictory(
-  climax: ClimaxDefinition,
-  stage: ClimaxStage,
-  deps: ClimaxQueueDeps
-): void {
-  if (!climax.stages?.length) {
-    queueClimaxCelebration(climax.verdict, climax, deps);
-    return;
-  }
-  deps.onQueueDialogue(stage.successDialogue, /*thenVerdict*/ () => {
-    queueClimaxCelebration(climax.verdict, climax, deps);
-  });
-}
+export { getClimaxStages } from './ClimaxSuccess.js';
